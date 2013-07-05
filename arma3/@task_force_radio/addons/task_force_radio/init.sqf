@@ -23,11 +23,11 @@ sleep 3;
 		while{current_rotation_horizontal < 0} do {
 			current_rotation_horizontal = current_rotation_horizontal + 360;
 		};
-
+		
+		request = format["%1, %2 ,%3, %4", current_x, current_y, current_z, current_rotation_horizontal ];
+		result = "task_force_radio_pipe" callExtension request;
 	
-
-	
-		hintSilent (formatText["%1, %2 ,%3, %4", current_x, current_y, current_z, current_rotation_horizontal ]);
-		sleep 0.2
+		hintSilent result;
+		sleep 0.5
 	}
 }
