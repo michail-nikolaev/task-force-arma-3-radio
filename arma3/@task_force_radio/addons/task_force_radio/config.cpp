@@ -11,5 +11,5 @@ class CfgPatches
 
 class Extended_PostInit_EventHandlers
 {
-	task_force_radio_Post_Init = "task_force_radio_Post_Init_Init_Var = [] execVM ""\task_force_radio\init.sqf""";
+	task_force_radio_Post_Init = "if !(isDedicated) then { call compile preProcessFileLineNumbers '\task_force_radio\init.sqf' }";
 };
