@@ -14,6 +14,12 @@
 #include <string.h>
 #include <string>
 #include <assert.h>
+#include <iostream>
+#include <sstream>
+#include <map>
+#include <vector>
+#include <algorithm>
+#include <iterator>
 #include "public_errors.h"
 #include "public_errors_rare.h"
 #include "public_definitions.h"
@@ -21,8 +27,168 @@
 #include "ts3_functions.h"
 #include "plugin.h"
 
+#define M_PI       3.14159265358979323846
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+
+HANDLE thread = INVALID_HANDLE_VALUE;
+bool exitThread = FALSE;
+bool pipeConnected = false;
+anyID myID = -1;
+uint64 currentConnectionHandlerID = -1;
+std::string myNickname;
+
+typedef std::map<std::string, anyID> STRING_TO_ANY_ID_MAP;
+STRING_TO_ANY_ID_MAP nicknameToClientId;
+
 static struct TS3Functions ts3Functions;
-anyID myID;
+
+HANDLE openPipe() 
+{
+	HANDLE pipe = CreateFile(
+			PIPE_NAME,
+			GENERIC_READ, // only need read access
+			FILE_SHARE_READ | FILE_SHARE_WRITE,
+			NULL,
+			OPEN_EXISTING,
+			FILE_ATTRIBUTE_NORMAL,
+			NULL
+		);
+	return pipe;
+}
+
+std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) 
+{
+	std::stringstream ss(s);
+	std::string item;
+	while (std::getline(ss, item, delim)) 
+	{
+		elems.push_back(item);
+	}
+	return elems;
+}
+
+
+void updateDebugInfo() {
+	if(ts3Functions.setClientSelfVariableAsString(currentConnectionHandlerID, CLIENT_META_DATA, pipeConnected ? "Task Force Radio Connected to Arma 3 :)" : "Task Force Radio NOT Connected to Arma 3 :(") != ERROR_ok) {
+		printf("Can't set own META_DATA");
+	}	
+}
+
+std::vector<std::string> split(const std::string &s, char delim) 
+{
+	std::vector<std::string> elems;
+	split(s, delim, elems);
+	return elems;
+}
+
+void processGameCommand(std::string command)
+{
+	std::vector<std::string> tokens = split(command, '|');	
+	if (tokens.size() == 6 && tokens[5] == "COORD") 
+	{
+		std::string nickname = tokens[0];
+		float x = std::stof(tokens[1]);
+		float y = std::stof(tokens[2]);
+		float z = std::stof(tokens[3]);
+		float viewAngle = std::stof(tokens[4]);
+
+		TS3_VECTOR position;
+		position.x = x;
+		position.y = z; // yes, it right
+		position.z = y; // yes, it right
+
+		if (nickname == myNickname) 
+		{
+
+			float radians = viewAngle * (M_PI / 180.0f);
+			TS3_VECTOR look;
+			look.x = sin(radians);
+			look.z = cos(radians);
+			look.y = 0;
+
+			DWORD errorCode = ts3Functions.systemset3DListenerAttributes(currentConnectionHandlerID, &position, &look, NULL);
+			if(errorCode != ERROR_ok)
+			{
+				printf("DEBUG: Failed to set own 3d position. Error code %d\n", errorCode);
+			}
+			else
+			{
+				printf("DEBUG: OWN 3D POSITION SET.\n");
+			}			
+		} else 
+		{
+			if (nicknameToClientId.count(nickname))
+			{
+				DWORD errorCode = ts3Functions.channelset3DAttributes(currentConnectionHandlerID, nicknameToClientId[nickname], &position);
+			}			
+		}
+	}
+}
+
+DWORD WINAPI PipeThread( LPVOID lpParam )
+{
+	HANDLE pipe = INVALID_HANDLE_VALUE;
+	while (!exitThread)
+	{
+		if (pipe == INVALID_HANDLE_VALUE) pipe = openPipe();		
+		char buffer[4096];
+		memset(buffer, 0, 4096);
+		DWORD numBytesRead = 0;
+		BOOL result = ReadFile(
+					pipe,
+					buffer, // the data from the pipe will be put here
+					4096, // number of bytes allocated
+					&numBytesRead, // this will store number of bytes actually read
+					NULL // not using overlapped IO
+				);
+		if (result) {
+			if (!pipeConnected)
+			{
+				pipeConnected = true;
+				updateDebugInfo();
+			}
+			processGameCommand(std::string(buffer));
+		} else {
+			if (pipeConnected) 
+			{
+				pipeConnected = false;
+				updateDebugInfo();
+			}
+			pipe = openPipe();
+			Sleep(1000);
+		}		
+	}	
+	CloseHandle(pipe);
+	pipe = INVALID_HANDLE_VALUE;
+	return NULL;
+}
+
+void updateNicknamesList(uint64 serverConnectionHandlerID, uint64 channelId) {
+	anyID* clients = NULL;
+	if (ts3Functions.getChannelClientList(serverConnectionHandlerID, channelId, &clients) == ERROR_ok) 
+	{
+		int i = 0;		
+		anyID* clientsCopy = clients;
+		while (clients[i]) 		
+		{
+			anyID clientId = clients[i];
+			char* name;
+			if(ts3Functions.getClientVariableAsString(serverConnectionHandlerID, clientId, CLIENT_NICKNAME, &name) != ERROR_ok) {
+				printf("Error getting client nickname\n");
+				return;
+			} 
+			else 
+			{
+				std::string clientNickname(name);
+				nicknameToClientId[clientNickname] = clientId;
+
+				ts3Functions.freeMemory(name);
+			}
+			i++;
+		}		
+		ts3Functions.freeMemory(clients);
+	}
+}
 
 #ifdef _WIN32
 #define _strcpy(dest, destSize, src) strcpy_s(dest, destSize, src)
@@ -124,6 +290,9 @@ int ts3plugin_init() {
     ts3Functions.getConfigPath(configPath, PATH_BUFSIZE);
 	ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE);
 
+	exitThread = FALSE;
+	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);
+
 	printf("PLUGIN: App path: %s\nResources path: %s\nConfig path: %s\nPlugin path: %s\n", appPath, resourcesPath, configPath, pluginPath);
 
     return 0;  /* 0 = success, 1 = failure, -2 = failure but client will not show a "failed to load" warning */
@@ -136,6 +305,16 @@ int ts3plugin_init() {
 void ts3plugin_shutdown() {
     /* Your plugin cleanup code here */
     printf("PLUGIN: shutdown\n");
+	exitThread = TRUE;
+	Sleep(1000);
+	DWORD exitCode;
+	BOOL result = GetExitCodeThread(thread, &exitCode);
+	if (!result || exitCode == STILL_ACTIVE) 
+	{
+		TerminateThread(thread, -1);
+	}
+	thread = INVALID_HANDLE_VALUE;
+	exitThread = FALSE;
 
 	/*
 	 * Note:
@@ -245,7 +424,7 @@ void ts3plugin_infoData(uint64 serverConnectionHandlerID, uint64 id, enum Plugin
 	}
 
 	*data = (char*)malloc(INFODATA_BUFSIZE * sizeof(char));  /* Must be allocated in the plugin! */
-	snprintf(*data, INFODATA_BUFSIZE, "The nickname is [I]\"%s\"[/I]", name);  /* bbCode is supported. HTML is not supported */
+	snprintf(*data, INFODATA_BUFSIZE, "INFO: [I]\"%s\"[/I]", name);  /* bbCode is supported. HTML is not supported */
 	ts3Functions.freeMemory(name);
 }
 
@@ -333,6 +512,14 @@ void ts3plugin_onConnectStatusChangeEvent(uint64 serverConnectionHandlerID, int 
 			printf("DEBUG: Failure getting client ID. Error code %d\n",errorCode);
 		}
 
+		currentConnectionHandlerID = serverConnectionHandlerID;
+		char* bufferForNickname;
+		if(ts3Functions.getClientVariableAsString(serverConnectionHandlerID, myID, CLIENT_NICKNAME, &bufferForNickname) != ERROR_ok) {
+			printf("Error getting client nickname\n");
+			return;
+		}
+		myNickname = std::string(bufferForNickname);
+		ts3Functions.freeMemory(bufferForNickname);
 
 		// Set system 3d settings
 		errorCode = ts3Functions.systemset3DSettings(serverConnectionHandlerID, 1.0f, 1.0f);
@@ -344,10 +531,17 @@ void ts3plugin_onConnectStatusChangeEvent(uint64 serverConnectionHandlerID, int 
 		{
 			printf("DEBUG: 3d settings set.\n");
 		}
-	}    
+	} 
+	else if (newStatus == STATUS_DISCONNECTED)
+	{
+		myID = -1;
+		currentConnectionHandlerID = -1;
+		myNickname = "";
+	}
 }
 
 void ts3plugin_onNewChannelEvent(uint64 serverConnectionHandlerID, uint64 channelID, uint64 channelParentID) {
+	updateNicknamesList(serverConnectionHandlerID, channelID);
 }
 
 void ts3plugin_onNewChannelCreatedEvent(uint64 serverConnectionHandlerID, uint64 channelID, uint64 channelParentID, anyID invokerID, const char* invokerName, const char* invokerUniqueIdentifier) {
@@ -357,9 +551,11 @@ void ts3plugin_onDelChannelEvent(uint64 serverConnectionHandlerID, uint64 channe
 }
 
 void ts3plugin_onChannelMoveEvent(uint64 serverConnectionHandlerID, uint64 channelID, uint64 newChannelParentID, anyID invokerID, const char* invokerName, const char* invokerUniqueIdentifier) {
+	updateNicknamesList(serverConnectionHandlerID, channelID);
 }
 
 void ts3plugin_onUpdateChannelEvent(uint64 serverConnectionHandlerID, uint64 channelID) {
+	updateNicknamesList(serverConnectionHandlerID, channelID);
 }
 
 void ts3plugin_onUpdateChannelEditedEvent(uint64 serverConnectionHandlerID, uint64 channelID, anyID invokerID, const char* invokerName, const char* invokerUniqueIdentifier) {
@@ -369,6 +565,7 @@ void ts3plugin_onUpdateClientEvent(uint64 serverConnectionHandlerID, anyID clien
 }
 
 void ts3plugin_onClientMoveEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility, const char* moveMessage) {	
+	updateNicknamesList(serverConnectionHandlerID, newChannelID);
 }
 
 void ts3plugin_onClientMoveSubscriptionEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility) {
@@ -378,12 +575,15 @@ void ts3plugin_onClientMoveTimeoutEvent(uint64 serverConnectionHandlerID, anyID 
 }
 
 void ts3plugin_onClientMoveMovedEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility, anyID moverID, const char* moverName, const char* moverUniqueIdentifier, const char* moveMessage) {
+	updateNicknamesList(serverConnectionHandlerID, newChannelID);
 }
 
 void ts3plugin_onClientKickFromChannelEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility, anyID kickerID, const char* kickerName, const char* kickerUniqueIdentifier, const char* kickMessage) {
+	updateNicknamesList(serverConnectionHandlerID, oldChannelID);
 }
 
 void ts3plugin_onClientKickFromServerEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility, anyID kickerID, const char* kickerName, const char* kickerUniqueIdentifier, const char* kickMessage) {
+	updateNicknamesList(serverConnectionHandlerID, oldChannelID);
 }
 
 void ts3plugin_onClientIDsEvent(uint64 serverConnectionHandlerID, const char* uniqueClientIdentifier, anyID clientID, const char* clientName) {
@@ -418,61 +618,7 @@ int ts3plugin_onTextMessageEvent(uint64 serverConnectionHandlerID, anyID targetM
     return 0;  /* 0 = handle normally, 1 = client will ignore the text message */
 }
 
-void ts3plugin_onTalkStatusChangeEvent(uint64 serverConnectionHandlerID, int status, int isReceivedWhisper, anyID clientID) {
-	/* Demonstrate usage of getClientDisplayName */
-	char name[512];
-	long double randValue = rand();
-	std::string str = std::to_string(randValue);
-	if(ts3Functions.setClientSelfVariableAsString(serverConnectionHandlerID, CLIENT_META_DATA, str.c_str()) != ERROR_ok) {
-		printf("Can't set own META_DATA");
-	}
-	if(ts3Functions.getClientDisplayName(serverConnectionHandlerID, clientID, name, 512) == ERROR_ok) {
-		if(status == STATUS_TALKING) {			
-			printf("--> %s starts talking\n", name);
-		} else {
-			printf("--> %s stops talking\n", name);
-		}
-	}
-
-	int errorCode;
-	TS3_VECTOR myPosition;
-	TS3_VECTOR hisPosition;
-
-	myPosition.x = (rand() % 10) * ((rand() % 2) ? 1 : -1);
-	myPosition.z = (rand() % 10) * ((rand() % 2) ? 1 : -1);
-	myPosition.y = (rand() % 10) * ((rand() % 2) ? 1 : -1);
-
-	hisPosition.x = (rand() % 10) * ((rand() % 2) ? 1 : -1);
-	hisPosition.y = (rand() % 10) * ((rand() % 2) ? 1 : -1);
-	hisPosition.z = (rand() % 10) * ((rand() % 2) ? 1 : -1);
-
-	if(clientID == myID) 
-	{		
-
-		errorCode = ERROR_ok;
-		errorCode = ts3Functions.systemset3DListenerAttributes(serverConnectionHandlerID, &myPosition, NULL, NULL); 
-		if(errorCode != ERROR_ok)
-		{
-			printf("DEBUG: Failed to set own 3d position. Error code %d\n", errorCode);
-		}
-		else
-		{
-			printf("DEBUG: OWN 3D POSITION SET.\n");
-		}
-	}
-	else
-	{		
-		errorCode = ts3Functions.channelset3DAttributes(serverConnectionHandlerID, clientID, &hisPosition);
-		if(errorCode != ERROR_ok)
-		{
-			printf("DEBUG: Failed to set remote clients 3d position. Error code %d\n", errorCode);
-		}
-		else
-		{
-			printf("DEBUG: REMOTE CLIENT 3D POSITION SET.\n");
-		}
-	}
-	
+void ts3plugin_onTalkStatusChangeEvent(uint64 serverConnectionHandlerID, int status, int isReceivedWhisper, anyID clientID) {	
 }
 
 void ts3plugin_onConnectionInfoEvent(uint64 serverConnectionHandlerID, anyID clientID) {
@@ -518,7 +664,7 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 }
 
 void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHandlerID, anyID clientID, float distance, float* volume) {	
-	float calculatedVolume = 1.0f - distance * 0.1f; // ~ 10 meters of hearing range.
+	float calculatedVolume = 1.0f - distance * 0.05f; // ~ 20 meters of hearing range.
 	if (calculatedVolume < 0.0f)  calculatedVolume = 0.0f;
 	*volume = calculatedVolume;
 }
