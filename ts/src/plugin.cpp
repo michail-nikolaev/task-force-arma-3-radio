@@ -94,8 +94,8 @@ void processGameCommand(std::string command)
 
 		TS3_VECTOR position;
 		position.x = x;
-		position.y = z; // yes, it right
-		position.z = y; // yes, it right
+		position.y = z; // yes, it is right
+		position.z = y; // yes, it is right
 
 		if (nickname == myNickname) 
 		{
@@ -131,32 +131,52 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 	while (!exitThread)
 	{
 		if (pipe == INVALID_HANDLE_VALUE) pipe = openPipe();		
-		char buffer[4096];
-		memset(buffer, 0, 4096);
+
 		DWORD numBytesRead = 0;
-		BOOL result = ReadFile(
-					pipe,
-					buffer, // the data from the pipe will be put here
-					4096, // number of bytes allocated
-					&numBytesRead, // this will store number of bytes actually read
-					NULL // not using overlapped IO
-				);
-		if (result) {
-			if (!pipeConnected)
-			{
-				pipeConnected = true;
-				updateDebugInfo();
+		DWORD numBytesAvail = 0;
+		if (PeekNamedPipe(pipe, NULL, 0, &numBytesRead, &numBytesAvail, NULL)) 
+		{
+			if (numBytesAvail > 0) 
+			{					
+				char buffer[4096];
+				memset(buffer, 0, 4096);
+		
+				BOOL result = ReadFile(
+							pipe,
+							buffer, // the data from the pipe will be put here
+							4096, // number of bytes allocated
+							&numBytesRead, // this will store number of bytes actually read
+							NULL // not using overlapped IO
+						);
+				if (result) {
+					if (!pipeConnected)
+					{
+						pipeConnected = true;
+						updateDebugInfo();
+					}
+					processGameCommand(std::string(buffer));
+				} else {
+					if (pipeConnected) 
+					{
+						pipeConnected = false;
+						updateDebugInfo();
+					}
+					Sleep(1000);
+					pipe = openPipe();					
+				}		
 			}
-			processGameCommand(std::string(buffer));
-		} else {
+		} 
+		else 
+		{
 			if (pipeConnected) 
 			{
 				pipeConnected = false;
 				updateDebugInfo();
 			}
-			pipe = openPipe();
 			Sleep(1000);
-		}		
+			pipe = openPipe();			
+		}
+		Sleep(1);
 	}	
 	CloseHandle(pipe);
 	pipe = INVALID_HANDLE_VALUE;
@@ -520,6 +540,11 @@ void ts3plugin_onConnectStatusChangeEvent(uint64 serverConnectionHandlerID, int 
 		}
 		myNickname = std::string(bufferForNickname);
 		ts3Functions.freeMemory(bufferForNickname);
+
+		uint64 channelId;
+		if (ts3Functions.getChannelOfClient(serverConnectionHandlerID, myID, &channelId) == ERROR_ok) {
+			updateNicknamesList(serverConnectionHandlerID, channelId);
+		}
 
 		// Set system 3d settings
 		errorCode = ts3Functions.systemset3DSettings(serverConnectionHandlerID, 1.0f, 1.0f);
