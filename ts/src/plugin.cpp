@@ -30,15 +30,32 @@
 #define M_PI       3.14159265358979323846
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 
+struct CLIENT_DATA
+{
+	anyID clintId;
+	TS3_VECTOR clientPosition;
+};
+
+typedef std::map<std::string, CLIENT_DATA> STRING_TO_CLIENT_DATA_MAP;
+struct SERVER_RADIO_DATA 
+{
+	anyID myID;
+	std::string myNickname;
+	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
+
+	SERVER_RADIO_DATA()
+	{
+		myID = -1;
+	}
+};
+typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
+
 HANDLE thread = INVALID_HANDLE_VALUE;
 bool exitThread = FALSE;
 bool pipeConnected = false;
-anyID myID = -1;
-uint64 currentConnectionHandlerID = -1;
-std::string myNickname;
 
-typedef std::map<std::string, anyID> STRING_TO_ANY_ID_MAP;
-STRING_TO_ANY_ID_MAP nicknameToClientId;
+CRITICAL_SECTION serverDataCriticalSection;
+SERVER_ID_TO_SERVER_DATA serverIdToData;
 
 static struct TS3Functions ts3Functions;
 
@@ -69,9 +86,15 @@ std::vector<std::string> &split(const std::string &s, char delim, std::vector<st
 
 
 void updateDebugInfo() {
-	if(ts3Functions.setClientSelfVariableAsString(currentConnectionHandlerID, CLIENT_META_DATA, pipeConnected ? "Task Force Radio Connected to Arma 3 :)" : "Task Force Radio NOT Connected to Arma 3 :(") != ERROR_ok) {
-		printf("Can't set own META_DATA");
-	}	
+	
+	EnterCriticalSection(&serverDataCriticalSection);
+	for (SERVER_ID_TO_SERVER_DATA::iterator it = serverIdToData.begin(); it != serverIdToData.end(); it++)
+	{
+		if(ts3Functions.setClientSelfVariableAsString(it->first, CLIENT_META_DATA, pipeConnected ? "Task Force Radio Connected to Arma 3 :)" : "Task Force Radio NOT Connected to Arma 3 :(") != ERROR_ok) {
+			printf("Can't set own META_DATA");
+		}	
+	}			
+	LeaveCriticalSection(&serverDataCriticalSection);	
 }
 
 std::vector<std::string> split(const std::string &s, char delim) 
@@ -94,34 +117,46 @@ void processGameCommand(std::string command)
 
 		TS3_VECTOR position;
 		position.x = x;
-		position.y = z; // yes, it is right
-		position.z = y; // yes, it is right
-
-		if (nickname == myNickname) 
+		position.y = z; // yes, it is correct
+		position.z = y; // yes, it is correct
+		
+		EnterCriticalSection(&serverDataCriticalSection); // TODO: defensive copy?
+		
+		for (SERVER_ID_TO_SERVER_DATA::iterator it = serverIdToData.begin(); it != serverIdToData.end(); it++)
 		{
-
-			float radians = viewAngle * (M_PI / 180.0f);
-			TS3_VECTOR look;
-			look.x = sin(radians);
-			look.z = cos(radians);
-			look.y = 0;
-
-			DWORD errorCode = ts3Functions.systemset3DListenerAttributes(currentConnectionHandlerID, &position, &look, NULL);
-			if(errorCode != ERROR_ok)
+			if (nickname == it->second.myNickname) 
 			{
-				printf("DEBUG: Failed to set own 3d position. Error code %d\n", errorCode);
+
+				float radians = viewAngle * ((float) M_PI / 180.0f);
+				TS3_VECTOR look;
+				look.x = sin(radians);
+				look.z = cos(radians);
+				look.y = 0;
+				it->second.nicknameToClientData[nickname].clintId = it->second.myID;
+				it->second.nicknameToClientData[nickname].clientPosition = position;
+
+				DWORD errorCode = ts3Functions.systemset3DListenerAttributes(it->first, &position, &look, NULL);
+				if(errorCode != ERROR_ok)
+				{
+					printf("DEBUG: Failed to set own 3d position. Error code %d\n", errorCode);
+				}
+				else
+				{
+					printf("DEBUG: OWN 3D POSITION SET.\n");
+				}			
+			} else 
+			{
+				if (it->second.nicknameToClientData.count(nickname))
+				{
+					it->second.nicknameToClientData[nickname].clientPosition = position;
+					if (ts3Functions.channelset3DAttributes(it->first, it->second.nicknameToClientData[nickname].clintId, &it->second.nicknameToClientData[nickname].clientPosition) != ERROR_ok)
+					{
+						printf("Cant set client 3D position");
+					}
+				}			
 			}
-			else
-			{
-				printf("DEBUG: OWN 3D POSITION SET.\n");
-			}			
-		} else 
-		{
-			if (nicknameToClientId.count(nickname))
-			{
-				DWORD errorCode = ts3Functions.channelset3DAttributes(currentConnectionHandlerID, nicknameToClientId[nickname], &position);
-			}			
-		}
+		}		
+		LeaveCriticalSection(&serverDataCriticalSection);		
 	}
 }
 
@@ -134,6 +169,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 
 		DWORD numBytesRead = 0;
 		DWORD numBytesAvail = 0;
+		bool sleep = true;
 		if (PeekNamedPipe(pipe, NULL, 0, &numBytesRead, &numBytesAvail, NULL)) 
 		{
 			if (numBytesAvail > 0) 
@@ -149,6 +185,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 							NULL // not using overlapped IO
 						);
 				if (result) {
+					sleep = false;
 					if (!pipeConnected)
 					{
 						pipeConnected = true;
@@ -176,36 +213,52 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 			Sleep(1000);
 			pipe = openPipe();			
 		}
-		Sleep(1);
+		if (sleep) Sleep(1);
 	}	
 	CloseHandle(pipe);
 	pipe = INVALID_HANDLE_VALUE;
 	return NULL;
 }
 
-void updateNicknamesList(uint64 serverConnectionHandlerID, uint64 channelId) {
+void updateNicknamesList(uint64 serverConnectionHandlerID) {
 	anyID* clients = NULL;
+
+	EnterCriticalSection(&serverDataCriticalSection);
+	uint64 channelId;
+	if (ts3Functions.getChannelOfClient(serverConnectionHandlerID, serverIdToData[serverConnectionHandlerID].myID, &channelId) != ERROR_ok) 
+	{
+		printf("PLUGIN: Can't get current channel");
+		return;
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
+
 	if (ts3Functions.getChannelClientList(serverConnectionHandlerID, channelId, &clients) == ERROR_ok) 
 	{
 		int i = 0;		
 		anyID* clientsCopy = clients;
+		EnterCriticalSection(&serverDataCriticalSection);
 		while (clients[i]) 		
 		{
 			anyID clientId = clients[i];
 			char* name;
 			if(ts3Functions.getClientVariableAsString(serverConnectionHandlerID, clientId, CLIENT_NICKNAME, &name) != ERROR_ok) {
 				printf("Error getting client nickname\n");
-				return;
+				continue;
 			} 
 			else 
 			{
 				std::string clientNickname(name);
-				nicknameToClientId[clientNickname] = clientId;
+				if (!serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(clientNickname))
+				{
+					serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname] = CLIENT_DATA();
+				}
+				serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname].clintId = clientId;				
 
 				ts3Functions.freeMemory(name);
 			}
 			i++;
-		}		
+		}	
+		LeaveCriticalSection(&serverDataCriticalSection);
 		ts3Functions.freeMemory(clients);
 	}
 }
@@ -309,6 +362,8 @@ int ts3plugin_init() {
     ts3Functions.getResourcesPath(resourcesPath, PATH_BUFSIZE);
     ts3Functions.getConfigPath(configPath, PATH_BUFSIZE);
 	ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE);
+
+	InitializeCriticalSection(&serverDataCriticalSection);
 
 	exitThread = FALSE;
 	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);
@@ -525,26 +580,24 @@ void ts3plugin_onConnectStatusChangeEvent(uint64 serverConnectionHandlerID, int 
 	unsigned int errorCode;
 	if(newStatus == STATUS_CONNECTION_ESTABLISHED)
 	{		
-
-		errorCode = ts3Functions.getClientID(serverConnectionHandlerID, &myID);
+		EnterCriticalSection(&serverDataCriticalSection);
+		serverIdToData[serverConnectionHandlerID] = SERVER_RADIO_DATA();
+		errorCode = ts3Functions.getClientID(serverConnectionHandlerID, &serverIdToData[serverConnectionHandlerID].myID);
 		if(errorCode != ERROR_ok)
 		{
 			printf("DEBUG: Failure getting client ID. Error code %d\n",errorCode);
 		}
-
-		currentConnectionHandlerID = serverConnectionHandlerID;
+		
 		char* bufferForNickname;
-		if(ts3Functions.getClientVariableAsString(serverConnectionHandlerID, myID, CLIENT_NICKNAME, &bufferForNickname) != ERROR_ok) {
+		if(ts3Functions.getClientVariableAsString(serverConnectionHandlerID, serverIdToData[serverConnectionHandlerID].myID, CLIENT_NICKNAME, &bufferForNickname) != ERROR_ok) {
 			printf("Error getting client nickname\n");
 			return;
 		}
-		myNickname = std::string(bufferForNickname);
+		serverIdToData[serverConnectionHandlerID].myNickname = std::string(bufferForNickname);
+		LeaveCriticalSection(&serverDataCriticalSection);
 		ts3Functions.freeMemory(bufferForNickname);
-
-		uint64 channelId;
-		if (ts3Functions.getChannelOfClient(serverConnectionHandlerID, myID, &channelId) == ERROR_ok) {
-			updateNicknamesList(serverConnectionHandlerID, channelId);
-		}
+		
+		updateNicknamesList(serverConnectionHandlerID);
 
 		// Set system 3d settings
 		errorCode = ts3Functions.systemset3DSettings(serverConnectionHandlerID, 1.0f, 1.0f);
@@ -559,14 +612,12 @@ void ts3plugin_onConnectStatusChangeEvent(uint64 serverConnectionHandlerID, int 
 	} 
 	else if (newStatus == STATUS_DISCONNECTED)
 	{
-		myID = -1;
-		currentConnectionHandlerID = -1;
-		myNickname = "";
+		serverIdToData.erase(serverConnectionHandlerID);
 	}
 }
 
 void ts3plugin_onNewChannelEvent(uint64 serverConnectionHandlerID, uint64 channelID, uint64 channelParentID) {
-	updateNicknamesList(serverConnectionHandlerID, channelID);
+	updateNicknamesList(serverConnectionHandlerID);
 }
 
 void ts3plugin_onNewChannelCreatedEvent(uint64 serverConnectionHandlerID, uint64 channelID, uint64 channelParentID, anyID invokerID, const char* invokerName, const char* invokerUniqueIdentifier) {
@@ -576,11 +627,11 @@ void ts3plugin_onDelChannelEvent(uint64 serverConnectionHandlerID, uint64 channe
 }
 
 void ts3plugin_onChannelMoveEvent(uint64 serverConnectionHandlerID, uint64 channelID, uint64 newChannelParentID, anyID invokerID, const char* invokerName, const char* invokerUniqueIdentifier) {
-	updateNicknamesList(serverConnectionHandlerID, channelID);
+	updateNicknamesList(serverConnectionHandlerID);
 }
 
 void ts3plugin_onUpdateChannelEvent(uint64 serverConnectionHandlerID, uint64 channelID) {
-	updateNicknamesList(serverConnectionHandlerID, channelID);
+	updateNicknamesList(serverConnectionHandlerID);
 }
 
 void ts3plugin_onUpdateChannelEditedEvent(uint64 serverConnectionHandlerID, uint64 channelID, anyID invokerID, const char* invokerName, const char* invokerUniqueIdentifier) {
@@ -590,7 +641,7 @@ void ts3plugin_onUpdateClientEvent(uint64 serverConnectionHandlerID, anyID clien
 }
 
 void ts3plugin_onClientMoveEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility, const char* moveMessage) {	
-	updateNicknamesList(serverConnectionHandlerID, newChannelID);
+	updateNicknamesList(serverConnectionHandlerID);
 }
 
 void ts3plugin_onClientMoveSubscriptionEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility) {
@@ -600,15 +651,15 @@ void ts3plugin_onClientMoveTimeoutEvent(uint64 serverConnectionHandlerID, anyID 
 }
 
 void ts3plugin_onClientMoveMovedEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility, anyID moverID, const char* moverName, const char* moverUniqueIdentifier, const char* moveMessage) {
-	updateNicknamesList(serverConnectionHandlerID, newChannelID);
+	updateNicknamesList(serverConnectionHandlerID);
 }
 
 void ts3plugin_onClientKickFromChannelEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility, anyID kickerID, const char* kickerName, const char* kickerUniqueIdentifier, const char* kickMessage) {
-	updateNicknamesList(serverConnectionHandlerID, oldChannelID);
+	updateNicknamesList(serverConnectionHandlerID);
 }
 
 void ts3plugin_onClientKickFromServerEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility, anyID kickerID, const char* kickerName, const char* kickerUniqueIdentifier, const char* kickMessage) {
-	updateNicknamesList(serverConnectionHandlerID, oldChannelID);
+	updateNicknamesList(serverConnectionHandlerID);
 }
 
 void ts3plugin_onClientIDsEvent(uint64 serverConnectionHandlerID, const char* uniqueClientIdentifier, anyID clientID, const char* clientName) {
