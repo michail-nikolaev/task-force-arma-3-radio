@@ -19,7 +19,6 @@
 #include <map>
 #include <vector>
 #include <algorithm>
-#include <iterator>
 #include "public_errors.h"
 #include "public_errors_rare.h"
 #include "public_definitions.h"
@@ -32,7 +31,7 @@
 
 struct CLIENT_DATA
 {
-	anyID clintId;
+	anyID clientId;
 	TS3_VECTOR clientPosition;
 };
 
@@ -88,13 +87,11 @@ std::vector<std::string> &split(const std::string &s, char delim, std::vector<st
 void updateDebugInfo() {
 	
 	EnterCriticalSection(&serverDataCriticalSection);
-	for (SERVER_ID_TO_SERVER_DATA::iterator it = serverIdToData.begin(); it != serverIdToData.end(); it++)
-	{
-		if(ts3Functions.setClientSelfVariableAsString(it->first, CLIENT_META_DATA, pipeConnected ? "Task Force Radio Connected to Arma 3 :)" : "Task Force Radio NOT Connected to Arma 3 :(") != ERROR_ok) {
-			printf("Can't set own META_DATA");
-		}	
-	}			
+
 	LeaveCriticalSection(&serverDataCriticalSection);	
+	if(ts3Functions.setClientSelfVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_META_DATA, pipeConnected ? "Task Force Radio Connected to Arma 3 :)" : "Task Force Radio NOT Connected to Arma 3 :(") != ERROR_ok) {
+		printf("Can't set own META_DATA");
+	}	
 }
 
 std::vector<std::string> split(const std::string &s, char delim) 
@@ -120,42 +117,39 @@ void processGameCommand(std::string command)
 		position.y = z; // yes, it is correct
 		position.z = y; // yes, it is correct
 		
-		EnterCriticalSection(&serverDataCriticalSection); // TODO: defensive copy?
-		
-		for (SERVER_ID_TO_SERVER_DATA::iterator it = serverIdToData.begin(); it != serverIdToData.end(); it++)
+		EnterCriticalSection(&serverDataCriticalSection); // TODO: defensive copy?		
+		uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
+		if (nickname == serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname) 
 		{
-			if (nickname == it->second.myNickname) 
-			{
 
-				float radians = viewAngle * ((float) M_PI / 180.0f);
-				TS3_VECTOR look;
-				look.x = sin(radians);
-				look.z = cos(radians);
-				look.y = 0;
-				it->second.nicknameToClientData[nickname].clintId = it->second.myID;
-				it->second.nicknameToClientData[nickname].clientPosition = position;
+			float radians = viewAngle * ((float) M_PI / 180.0f);
+			TS3_VECTOR look;
+			look.x = sin(radians);
+			look.z = cos(radians);
+			look.y = 0;
+			serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientId = serverIdToData[currentServerConnectionHandlerID].myID;
+			serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientPosition = position;
 
-				DWORD errorCode = ts3Functions.systemset3DListenerAttributes(it->first, &position, &look, NULL);
-				if(errorCode != ERROR_ok)
-				{
-					printf("DEBUG: Failed to set own 3d position. Error code %d\n", errorCode);
-				}
-				else
-				{
-					printf("DEBUG: OWN 3D POSITION SET.\n");
-				}			
-			} else 
+			DWORD errorCode = ts3Functions.systemset3DListenerAttributes(currentServerConnectionHandlerID, &position, &look, NULL);
+			if(errorCode != ERROR_ok)
 			{
-				if (it->second.nicknameToClientData.count(nickname))
-				{
-					it->second.nicknameToClientData[nickname].clientPosition = position;
-					if (ts3Functions.channelset3DAttributes(it->first, it->second.nicknameToClientData[nickname].clintId, &it->second.nicknameToClientData[nickname].clientPosition) != ERROR_ok)
-					{
-						printf("Cant set client 3D position");
-					}
-				}			
+				printf("DEBUG: Failed to set own 3d position. Error code %d\n", errorCode);
 			}
-		}		
+			else
+			{
+				printf("DEBUG: OWN 3D POSITION SET.\n");
+			}			
+		} else 
+		{
+			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname))
+			{
+				serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientPosition = position;
+				if (ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientId, &serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientPosition) != ERROR_ok)
+				{
+					printf("Cant set client 3D position");
+				}
+			}			
+		}				
 		LeaveCriticalSection(&serverDataCriticalSection);		
 	}
 }
@@ -222,15 +216,19 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 
 void updateNicknamesList(uint64 serverConnectionHandlerID) {
 	anyID* clients = NULL;
+	anyID myID;
+	if(ts3Functions.getClientID(serverConnectionHandlerID, &myID) != ERROR_ok)
+	{
+		printf("DEBUG: Failure getting client ID. Error code %d\n");
+		return;
+	}
 
-	EnterCriticalSection(&serverDataCriticalSection);
 	uint64 channelId;
-	if (ts3Functions.getChannelOfClient(serverConnectionHandlerID, serverIdToData[serverConnectionHandlerID].myID, &channelId) != ERROR_ok) 
+	if (ts3Functions.getChannelOfClient(serverConnectionHandlerID, myID, &channelId) != ERROR_ok) 
 	{
 		printf("PLUGIN: Can't get current channel");
 		return;
 	}
-	LeaveCriticalSection(&serverDataCriticalSection);
 
 	if (ts3Functions.getChannelClientList(serverConnectionHandlerID, channelId, &clients) == ERROR_ok) 
 	{
@@ -252,7 +250,7 @@ void updateNicknamesList(uint64 serverConnectionHandlerID) {
 				{
 					serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname] = CLIENT_DATA();
 				}
-				serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname].clintId = clientId;				
+				serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname].clientId = clientId;				
 
 				ts3Functions.freeMemory(name);
 			}
@@ -369,6 +367,9 @@ int ts3plugin_init() {
 	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);
 
 	printf("PLUGIN: App path: %s\nResources path: %s\nConfig path: %s\nPlugin path: %s\n", appPath, resourcesPath, configPath, pluginPath);
+
+	updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
+
 
     return 0;  /* 0 = success, 1 = failure, -2 = failure but client will not show a "failed to load" warning */
 	/* -2 is a very special case and should only be used if a plugin displays a dialog (e.g. overlay) asking the user to disable
