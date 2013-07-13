@@ -28,19 +28,6 @@
 		prevTaskForceRadioResult = "OK";
 		taskForceDisplay46 = false;
 		while {true} do {
-			if !(isNull (findDisplay 46)) then {
-				if !(taskForceDisplay46) then {
-					hint "Waiting for 1 second....";
-					sleep 1;
-					keyUpCallback = (findDisplay 46) displayAddEventHandler ["keyUp", "_this call radio_keyUp"];
-					keyDownCallback = (findDisplay 46) displayAddEventHandler ["keyDown", "_this call radio_keyDown"];
-					hintSilent "";
-				};
-				taskForceDisplay46 = true;
-			} else {
-				taskForceDisplay46 = false;
-			};
-
 			{
 				current_eyepos = eyepos _x;
 				xname = name _x;
@@ -78,6 +65,18 @@
 				};
 				prevTaskForceRadioResult = taskForceRadioResult;
 			} forEach allUnits;
-			sleep 0.2
+			sleep 0.2;
+			if !(isNull (findDisplay 46)) then {
+				if !(taskForceDisplay46) then {
+					hint "Waiting for 1 second....";
+					sleep 1;
+					keyUpCallback = (findDisplay 46) displayAddEventHandler ["keyUp", "_this call radio_keyUp"];
+					keyDownCallback = (findDisplay 46) displayAddEventHandler ["keyDown", "_this call radio_keyDown"];
+					hintSilent "";
+				};
+				taskForceDisplay46 = true;
+			} else {
+				taskForceDisplay46 = false;
+			};
 		}
 }
