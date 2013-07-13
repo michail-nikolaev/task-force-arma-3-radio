@@ -28,10 +28,12 @@
 
 #define M_PI       3.14159265358979323846
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PLUGIN_NAME "task_force_radio"
 
 struct CLIENT_DATA
 {
 	anyID clientId;
+	bool tangentPressed;
 	TS3_VECTOR clientPosition;
 };
 
@@ -40,11 +42,14 @@ struct SERVER_RADIO_DATA
 {
 	anyID myID;
 	std::string myNickname;
+	bool tangentPressed;
+	TS3_VECTOR myPosition;
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
 
 	SERVER_RADIO_DATA()
 	{
 		myID = -1;
+		tangentPressed = false;
 	}
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
@@ -52,6 +57,8 @@ typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
 HANDLE thread = INVALID_HANDLE_VALUE;
 bool exitThread = FALSE;
 bool pipeConnected = false;
+bool vadEnabled = false;
+static char* pluginID = NULL;
 
 CRITICAL_SECTION serverDataCriticalSection;
 SERVER_ID_TO_SERVER_DATA serverIdToData;
@@ -83,12 +90,56 @@ std::vector<std::string> &split(const std::string &s, char delim, std::vector<st
 	return elems;
 }
 
+// taken from https://github.com/MadStyleCow/A2TS_Rebuild/blob/master/src/ts3plugin.cpp#L1367
+BOOL hlp_checkVad()
+{
+	char* vad; // Is "true" or "false"
+	if(ts3Functions.getPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", &vad) == ERROR_ok)
+	{
+		if(strcmp(vad,"true") == 0)
+		{
+			ts3Functions.freeMemory(vad);
+			return TRUE;
+		}
+		else
+		{
+			ts3Functions.freeMemory(vad);
+			return FALSE;
+		}
+	}
+	else
+	{
+		printf("PLUGIN: Failed to get VAD value.\n");
+		return FALSE;
+	}
+}
 
-void updateDebugInfo() {
-	
-	EnterCriticalSection(&serverDataCriticalSection);
+void hlp_enableVad()
+{
+	if(ts3Functions.setPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", "true") == ERROR_ok)
+	{
+		printf("PLUGIN: VAD succesfully enabled.\n");
+	}
+	else
+	{
+		printf("PLUGIN: Failure enabling VAD.\n");
+	}
+}
 
-	LeaveCriticalSection(&serverDataCriticalSection);	
+void hlp_disableVad()
+{
+	if(ts3Functions.setPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", "false") == ERROR_ok)
+	{
+		printf("PLUGIN: VAD succesfully disabled.\n");
+	}
+	else
+	{
+		printf("PLUGIN: Failure disabling VAD.\n");
+	}
+}
+
+
+void updateDebugInfo() {		
 	if(ts3Functions.setClientSelfVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_META_DATA, pipeConnected ? "Task Force Radio Connected to Arma 3 :)" : "Task Force Radio NOT Connected to Arma 3 :(") != ERROR_ok) {
 		printf("Can't set own META_DATA");
 	}	
@@ -101,25 +152,41 @@ std::vector<std::string> split(const std::string &s, char delim)
 	return elems;
 }
 
+CLIENT_DATA getClientData(uint64 serverConnectionHandlerID, anyID clientID)
+{
+	CLIENT_DATA data = CLIENT_DATA();
+	EnterCriticalSection(&serverDataCriticalSection);
+	for (STRING_TO_CLIENT_DATA_MAP::iterator it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); 
+		it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
+	{
+		if (it->second.clientId == clientID)
+		{
+			data = it->second;			
+			break;
+		}
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
+	return data;
+}
+
 void processGameCommand(std::string command)
 {
-	std::vector<std::string> tokens = split(command, '|');	
-	if (tokens.size() == 6 && tokens[5] == "COORD") 
+	std::vector<std::string> tokens = split(command, '@'); // may not be used in nickname
+	if (tokens.size() == 6 && tokens[0] == "POS") 
 	{
-		std::string nickname = tokens[0];
-		float x = std::stof(tokens[1]);
-		float y = std::stof(tokens[2]);
-		float z = std::stof(tokens[3]);
-		float viewAngle = std::stof(tokens[4]);
+		std::string nickname = tokens[1];
+		float x = std::stof(tokens[2]);
+		float y = std::stof(tokens[3]);
+		float z = std::stof(tokens[4]);
+		float viewAngle = std::stof(tokens[5]);
 
 		TS3_VECTOR position;
 		position.x = x;
 		position.y = z; // yes, it is correct
-		position.z = y; // yes, it is correct
-		
-		EnterCriticalSection(&serverDataCriticalSection); // TODO: defensive copy?		
+		position.z = y; // yes, it is correct		
 		uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
-		if (nickname == serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname) 
+		EnterCriticalSection(&serverDataCriticalSection); 
+		if (nickname == serverIdToData[currentServerConnectionHandlerID].myNickname) 
 		{
 
 			float radians = viewAngle * ((float) M_PI / 180.0f);
@@ -129,28 +196,82 @@ void processGameCommand(std::string command)
 			look.y = 0;
 			serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientId = serverIdToData[currentServerConnectionHandlerID].myID;
 			serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientPosition = position;
+			serverIdToData[currentServerConnectionHandlerID].myPosition = position;
 
+			LeaveCriticalSection(&serverDataCriticalSection);
 			DWORD errorCode = ts3Functions.systemset3DListenerAttributes(currentServerConnectionHandlerID, &position, &look, NULL);
+			EnterCriticalSection(&serverDataCriticalSection); 
 			if(errorCode != ERROR_ok)
 			{
 				printf("DEBUG: Failed to set own 3d position. Error code %d\n", errorCode);
-			}
+			}	
 			else
 			{
 				printf("DEBUG: OWN 3D POSITION SET.\n");
 			}			
-		} else 
+		} 
+		else 
 		{
 			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname))
 			{
-				serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientPosition = position;
-				if (ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientId, &serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientPosition) != ERROR_ok)
+				serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientPosition = position;				
+				// in case of not a radio - set position of client
+				if (!serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].tangentPressed) 
 				{
-					printf("Cant set client 3D position");
+					LeaveCriticalSection(&serverDataCriticalSection);
+					if (ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientId, &position) != ERROR_ok)
+					{
+						printf("Can't set client 3D position");
+					}
+					EnterCriticalSection(&serverDataCriticalSection);
+				} 
+				else 
+				{
+					LeaveCriticalSection(&serverDataCriticalSection);
+					if (ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientId, NULL) != ERROR_ok)
+					{
+						printf("Can't set client 3D position");
+					}
+					EnterCriticalSection(&serverDataCriticalSection);
 				}
+				
 			}			
 		}				
+		LeaveCriticalSection(&serverDataCriticalSection);
+	} 
+	else if (tokens.size() == 2 && tokens[0] == "TANGENT")
+	{
+		bool pressed = (tokens[1] == "PRESSED");
+		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
+
+		bool changed = false;
+		EnterCriticalSection(&serverDataCriticalSection);		
+		changed = (serverIdToData[serverId].tangentPressed != pressed);
+		serverIdToData[serverId].tangentPressed = pressed;
 		LeaveCriticalSection(&serverDataCriticalSection);		
+		if (changed)
+		{			
+			// broadcast info about tangent pressed over all client
+			//std::string commandToBroadcast = command + "@" + "Archie Smith";
+			std::string commandToBroadcast = command + "@" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
+			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);			
+
+			if (pressed)
+			{
+				vadEnabled = hlp_checkVad();
+				hlp_disableVad();
+			} 
+			else
+			{
+				if (vadEnabled)	hlp_enableVad();				
+			}
+			if((ts3Functions.setClientSelfVariableAsInt(serverId, CLIENT_INPUT_DEACTIVATED, pressed ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
+				printf("Can't active talking by tangent");
+			}
+			if(ts3Functions.flushClientSelfUpdates(serverId, NULL) != ERROR_ok) {
+				printf("Can't flush self updates");
+			}
+		}		
 	}
 }
 
@@ -277,7 +398,6 @@ void updateNicknamesList(uint64 serverConnectionHandlerID) {
 #define CHANNELINFO_BUFSIZE 512
 #define RETURNCODE_BUFSIZE 128
 
-static char* pluginID = NULL;
 
 #ifdef _WIN32
 /* Helper function to convert wchar_T to Utf-8 encoded strings on Windows */
@@ -639,6 +759,7 @@ void ts3plugin_onUpdateChannelEditedEvent(uint64 serverConnectionHandlerID, uint
 }
 
 void ts3plugin_onUpdateClientEvent(uint64 serverConnectionHandlerID, anyID clientID, anyID invokerID, const char* invokerName, const char* invokerUniqueIdentifier) {
+	updateNicknamesList(serverConnectionHandlerID);
 }
 
 void ts3plugin_onClientMoveEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility, const char* moveMessage) {	
@@ -679,6 +800,10 @@ void ts3plugin_onServerUpdatedEvent(uint64 serverConnectionHandlerID) {
 int ts3plugin_onServerErrorEvent(uint64 serverConnectionHandlerID, const char* errorMessage, unsigned int error, const char* returnCode, const char* extraMessage) {
 	printf("PLUGIN: onServerErrorEvent %llu %s %d %s\n", (long long unsigned int)serverConnectionHandlerID, errorMessage, error, (returnCode ? returnCode : ""));
 	if(returnCode) {
+		/* A plugin could now check the returnCode with previously (when calling a function) remembered returnCodes and react accordingly */
+		/* In case of using a a plugin return code, the plugin can return:
+		 * 0: Client will continue handling this error (print to chat tab)
+		 * 1: Client will ignore this error, the plugin announces it has handled it */
 		return 1;
 	}
 	return 0;  /* If no plugin return code was used, the return value of this function is ignored */
@@ -725,10 +850,74 @@ void ts3plugin_onPlaybackShutdownCompleteEvent(uint64 serverConnectionHandlerID)
 void ts3plugin_onSoundDeviceListChangedEvent(const char* modeID, int playOrCap) {
 }
 
-void ts3plugin_onEditPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {
+// part taken from: https://github.com/MadStyleCow/A2TS_Rebuild/blob/master/src/ts3plugin.cpp#L1772
+void RadioNoiseDSP(float slevel, short * samples, int channels, int sampleCount)
+{
+	float l = 1 / (slevel+0.1f) / 64;	
+	// 3d sound to mono
+	for (int i = 0; i < sampleCount * 2; i+= channels)
+	{
+		short no3D = 0;
+		for (int j = 0; j < channels; j++)
+		{
+			no3D += samples[i + j];
+		}
+		for (int j = 0; j < channels; j++)
+		{
+			samples[i + j] += no3D;
+		}		
+	}
+	
+	for (int i = 0; i < sampleCount * channels; i++)
+	{
+		float d = (float)samples[i]/SHRT_MAX;
+		float pdl = 0.0f;
+		float pdh1 = 0.0f;
+		float pdh2 = 0.0f;
+		float k = (((float)rand()/RAND_MAX)*(1-slevel)*2+1);
+		float n = ((float)rand()/RAND_MAX)*2-1;
+		d *= k;
+		//noise
+		d += n*l;
+		if (i > 0)
+		{
+			d = pdl + 0.15 * (d - pdl);
+			pdl = d;
+		}
+		else
+		{
+			pdl = d;
+		}
+		if (i > 0)
+		{
+			float pd = d;
+			d = 0.85 * (pdh1 + d - pdh2);
+			pdh1 = d;
+			pdh2 = pd;
+		}
+		else
+		{
+			pdh1 = d;
+			pdh2 = d;
+		}
+		d *= 2;
+		if (d > 1)
+			d = 1;
+		else if (d < -1)
+			d = -1;
+		samples[i] = d*(SHRT_MAX-1);
+	}
+}
+
+void ts3plugin_onEditPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {	
 }
 
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
+	bool overRadio = getClientData(serverConnectionHandlerID, clientID).tangentPressed;	
+	if (overRadio)
+	{		
+		RadioNoiseDSP(1.0, samples, channels, sampleCount);
+	}
 }
 
 void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
@@ -738,9 +927,17 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 }
 
 void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHandlerID, anyID clientID, float distance, float* volume) {	
-	float calculatedVolume = 1.0f - distance * 0.05f; // ~ 20 meters of hearing range.
-	if (calculatedVolume < 0.0f)  calculatedVolume = 0.0f;
-	*volume = calculatedVolume;
+	CLIENT_DATA data = getClientData(serverConnectionHandlerID, clientID);
+	if (!data.tangentPressed)
+	{
+		float calculatedVolume = 1.0f - distance * 0.05f; // ~ 20 meters of hearing range.
+		if (calculatedVolume < 0.0f)  calculatedVolume = 0.0f;
+		*volume = calculatedVolume;			
+	} 
+	else 
+	{
+		*volume = 1.0f;
+	}	
 }
 
 
@@ -893,8 +1090,58 @@ void ts3plugin_onBanListEvent(uint64 serverConnectionHandlerID, uint64 banid, co
 void ts3plugin_onClientServerQueryLoginPasswordEvent(uint64 serverConnectionHandlerID, const char* loginPassword) {
 }
 
+void processPluginCommand(std::string command)
+{
+	std::vector<std::string> tokens = split(command, '@'); // may not be used in nickname
+	if (tokens.size() == 3 && tokens[0] == "TANGENT") 
+	{
+		bool pressed = (tokens[1] == "PRESSED");
+		std::string nickname = tokens[2];
+		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
+
+		EnterCriticalSection(&serverDataCriticalSection);
+		CLIENT_DATA clientData = serverIdToData[serverId].nicknameToClientData[nickname];
+		TS3_VECTOR myPosition = serverIdToData[serverId].myPosition;
+		LeaveCriticalSection(&serverDataCriticalSection);
+
+		if (serverIdToData.count(serverId)) 
+		{
+			if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
+			{
+				serverIdToData[serverId].nicknameToClientData[nickname].tangentPressed = pressed;
+				if (pressed)
+				{
+					// talking on radio - set position same, as for listener
+					if (ts3Functions.channelset3DAttributes(serverId, clientData.clientId, NULL) != ERROR_ok) {
+						printf("Cant't set 3d attributes according to tangent ON");
+					}
+				} 
+				else 
+				{
+					// talking on radio - set position in the field
+					if (ts3Functions.channelset3DAttributes(serverId, clientData.clientId, &clientData.clientPosition) != ERROR_ok) {
+						printf("Cant't set 3d attributes according to tangent OFF");
+					}
+				}
+			}
+		}		
+	}
+}
+
 void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand) {
 	printf("ON PLUGIN COMMAND: %s %s\n", pluginName, pluginCommand);
+	if(serverConnectionHandlerID == ts3Functions.getCurrentServerConnectionHandlerID())
+	{
+		if(strcmp(pluginName, PLUGIN_NAME) != 0)
+		{
+			printf("PLUGIN: Plugin command event failure.\n");
+		}
+		else
+		{
+			
+			processPluginCommand( std::string(pluginCommand));
+		}
+	}
 }
 
 void ts3plugin_onIncomingClientQueryEvent(uint64 serverConnectionHandlerID, const char* commandText) {
