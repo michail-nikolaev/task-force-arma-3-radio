@@ -507,7 +507,7 @@ void ts3plugin_shutdown() {
 	BOOL result = GetExitCodeThread(thread, &exitCode);
 	if (!result || exitCode == STILL_ACTIVE) 
 	{
-		TerminateThread(thread, -1);
+		printf("PLUGIN: thread not terminated")
 	}
 	thread = INVALID_HANDLE_VALUE;
 	exitThread = FALSE;
