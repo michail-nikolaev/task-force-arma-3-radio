@@ -30,7 +30,7 @@ void __stdcall RVExtension(char *output, int outputSize, const char *input)
 	string answer;
 	if (WriteFile(pipe, input, strlen(input), &written, NULL)) 
 	{		
-		answer = string(input);
+		answer = "OK";
 	} else {
 		DWORD error = GetLastError();		
 		if (error == ERROR_NO_DATA) 
