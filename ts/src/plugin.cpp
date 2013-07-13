@@ -649,6 +649,7 @@ void ts3plugin_onClientMoveSubscriptionEvent(uint64 serverConnectionHandlerID, a
 }
 
 void ts3plugin_onClientMoveTimeoutEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility, const char* timeoutMessage) {
+	updateNicknamesList(serverConnectionHandlerID);
 }
 
 void ts3plugin_onClientMoveMovedEvent(uint64 serverConnectionHandlerID, anyID clientID, uint64 oldChannelID, uint64 newChannelID, int visibility, anyID moverID, const char* moverName, const char* moverUniqueIdentifier, const char* moveMessage) {
@@ -678,10 +679,6 @@ void ts3plugin_onServerUpdatedEvent(uint64 serverConnectionHandlerID) {
 int ts3plugin_onServerErrorEvent(uint64 serverConnectionHandlerID, const char* errorMessage, unsigned int error, const char* returnCode, const char* extraMessage) {
 	printf("PLUGIN: onServerErrorEvent %llu %s %d %s\n", (long long unsigned int)serverConnectionHandlerID, errorMessage, error, (returnCode ? returnCode : ""));
 	if(returnCode) {
-		/* A plugin could now check the returnCode with previously (when calling a function) remembered returnCodes and react accordingly */
-		/* In case of using a a plugin return code, the plugin can return:
-		 * 0: Client will continue handling this error (print to chat tab)
-		 * 1: Client will ignore this error, the plugin announces it has handled it */
 		return 1;
 	}
 	return 0;  /* If no plugin return code was used, the return value of this function is ignored */
