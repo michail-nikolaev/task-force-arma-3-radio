@@ -53,17 +53,19 @@
 				while{current_rotation_horizontal < 0} do {
 					current_rotation_horizontal = current_rotation_horizontal + 360;
 				};
-				request = format["POS@%1@%2@%3@%4@%5", xname, current_x, current_y, current_z, current_rotation_horizontal ];	
-				taskForceRadioResult = "task_force_radio_pipe" callExtension request;
-				if (taskForceRadioResult != "OK") then 
-				{
-					hintSilent taskForceRadioResult;			
-				} else {
-					if (prevTaskForceRadioResult != "OK") then {
-						hintSilent "";
-					}
-				};
-				prevTaskForceRadioResult = taskForceRadioResult;
+				if (isMultiplayer) then {
+					request = format["POS@%1@%2@%3@%4@%5", xname, current_x, current_y, current_z, current_rotation_horizontal ];	
+					taskForceRadioResult = "task_force_radio_pipe" callExtension request;
+					if (taskForceRadioResult != "OK") then 
+					{
+						hintSilent taskForceRadioResult;			
+					} else {
+						if (prevTaskForceRadioResult != "OK") then {
+							hintSilent "";
+						}
+					};
+					prevTaskForceRadioResult = taskForceRadioResult;
+				}
 			} forEach allUnits;
 			sleep 0.2;
 			if !(isNull (findDisplay 46)) then {

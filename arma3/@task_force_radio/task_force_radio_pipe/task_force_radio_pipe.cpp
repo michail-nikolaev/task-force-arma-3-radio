@@ -9,11 +9,27 @@ void closePipe()
 	pipe = INVALID_HANDLE_VALUE;
 }
 
+#ifdef _DEBUG
+bool isDebugArmaInstance() 
+{		
+	std::wstring execPath(GetCommandLine());
+	if (std::string::npos != execPath.find(DEBUG_PARAMETER))
+	{
+		return true;
+	}	
+	return false;
+}
+#endif
+
 void openPipe() 
 {
 	closePipe();
+	LPCWSTR pipeName = PIPE_NAME;
+#ifdef _DEBUG
+	if (isDebugArmaInstance()) pipeName = DEBUG_PIPE_NAME;
+#endif
 	pipe = CreateNamedPipe(
-			PIPE_NAME, // name of the pipe
+			pipeName, // name of the pipe
 			PIPE_ACCESS_OUTBOUND | FILE_FLAG_OVERLAPPED, // 1-way pipe -- send only
 			PIPE_TYPE_MESSAGE, // send data as message
 			1, // only allow 1 instance of this pipe
@@ -44,7 +60,7 @@ void __stdcall RVExtension(char *output, int outputSize, const char *input)
 		}
 		else 
 		{
-			answer = "Pipe error " + error;
+			answer = string("Pipe error ") + to_string((long long)error);
 			openPipe();
 		}
 	}
