@@ -29,15 +29,26 @@
 #define M_PI       3.14159265358979323846
 
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
+#define MILLIS_TO_EXPIRE 5000  // 5 seconds without updates of client position to expire
+
+#define PLUGIN_VERSION "0.2 alpha"
 
 struct CLIENT_DATA
 {
+	
 	anyID clientId;
 	bool tangentPressed;
 	TS3_VECTOR clientPosition;
 	uint64 positionTime;
+	CLIENT_DATA() 
+	{
+		positionTime = 0;
+		tangentPressed = false;
+		clientPosition.x = clientPosition.y = clientPosition.z;
+		clientId = -1;
+	}
 };
 
 typedef std::map<std::string, CLIENT_DATA> STRING_TO_CLIENT_DATA_MAP;
@@ -158,11 +169,12 @@ std::vector<std::string> split(const std::string &s, char delim)
 bool hasClientData(uint64 serverConnectionHandlerID, anyID clientID)
 {
 	bool result = false;
+	DWORD time = GetTickCount();
 	EnterCriticalSection(&serverDataCriticalSection);
 	for (STRING_TO_CLIENT_DATA_MAP::iterator it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); 
 		it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
 	{
-		if (it->second.clientId == clientID)
+		if (it->second.clientId == clientID && (time - it->second.positionTime < MILLIS_TO_EXPIRE))
 		{
 			result = true;
 			break;
@@ -365,96 +377,25 @@ void processGameCommand(std::string command)
 	}
 }
 
-void processOldPositions(uint64 serverConnectionHandlerID)
+void removeExpiredPositions(uint64 serverConnectionHandlerID)
 {
 	DWORD time = GetTickCount();
+	std::vector<std::string> toRemove;
+
 	EnterCriticalSection(&serverDataCriticalSection);
 	for (auto it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
 	{
-		if (time - it->second.positionTime > 5000) // 5 seconds without updates of client position
-		{
-			it->second.clientPosition = serverIdToData[serverConnectionHandlerID].myPosition;
-			LeaveCriticalSection(&serverDataCriticalSection);
-			if (ts3Functions.channelset3DAttributes(serverConnectionHandlerID, it->second.clientId, NULL) != ERROR_ok)
-			{
-				printf("Can't set default for user");
-			}
-			EnterCriticalSection(&serverDataCriticalSection);
+		if (time - it->second.positionTime > MILLIS_TO_EXPIRE)
+		{			
+			toRemove.push_back(it->first);
 		}
 	}
-	LeaveCriticalSection(&serverDataCriticalSection);
-}
-
-DWORD WINAPI PipeThread( LPVOID lpParam )
-{
-	HANDLE pipe = INVALID_HANDLE_VALUE;
-	int errorCount = 0;
-	while (!exitThread)
+	for (auto it = toRemove.begin(); it != toRemove.end(); it++)
 	{
-		if (pipe == INVALID_HANDLE_VALUE) pipe = openPipe();		
+		serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
 
-		DWORD numBytesRead = 0;
-		DWORD numBytesAvail = 0;
-		bool sleep = true;
-		if (PeekNamedPipe(pipe, NULL, 0, &numBytesRead, &numBytesAvail, NULL)) 
-		{
-			if (numBytesAvail > 0) 
-			{					
-				char buffer[4096];
-				memset(buffer, 0, 4096);
-		
-				BOOL result = ReadFile(
-							pipe,
-							buffer, // the data from the pipe will be put here
-							4096, // number of bytes allocated
-							&numBytesRead, // this will store number of bytes actually read
-							NULL // not using overlapped IO
-						);
-				if (result) {
-					sleep = false;
-					if (!pipeConnected)
-					{
-						pipeConnected = true;
-						updateDebugInfo();
-					}
-					processGameCommand(std::string(buffer));
-				} else {
-					if (pipeConnected) 
-					{
-						pipeConnected = false;
-						updateDebugInfo();
-					}
-					errorCount++;
-					Sleep(1000);
-					pipe = openPipe();					
-				}		
-			} 
-		} 
-		else 
-		{
-			errorCount++;
-			if (pipeConnected) 
-			{
-				pipeConnected = false;				
-				updateDebugInfo();
-			}			
-			Sleep(1000);
-			pipe = openPipe();			
-		}
-		if (sleep) 
-		{
-			processOldPositions(ts3Functions.getCurrentServerConnectionHandlerID());
-			Sleep(1);
-		}
-		if (errorCount > 10)
-		{
-			centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
-			errorCount = 0;
-		}
-	}	
-	CloseHandle(pipe);
-	pipe = INVALID_HANDLE_VALUE;
-	return NULL;
 }
 
 void updateNicknamesList(uint64 serverConnectionHandlerID) {	
@@ -487,6 +428,85 @@ void updateNicknamesList(uint64 serverConnectionHandlerID) {
 	serverIdToData[serverConnectionHandlerID].myNickname = myNickname;
 	LeaveCriticalSection(&serverDataCriticalSection);
 
+}
+
+
+DWORD WINAPI PipeThread( LPVOID lpParam )
+{
+	HANDLE pipe = INVALID_HANDLE_VALUE;	
+	DWORD lastUpdate = GetTickCount();
+	DWORD lastCheckForExpire = GetTickCount();
+
+	while (!exitThread)
+	{
+		if (pipe == INVALID_HANDLE_VALUE) pipe = openPipe();		
+
+		DWORD numBytesRead = 0;
+		DWORD numBytesAvail = 0;
+		bool sleep = true;
+		if (PeekNamedPipe(pipe, NULL, 0, &numBytesRead, &numBytesAvail, NULL)) 
+		{
+			if (numBytesAvail > 0) 
+			{					
+				char buffer[4096];
+				memset(buffer, 0, 4096);
+		
+				BOOL result = ReadFile(
+							pipe,
+							buffer, // the data from the pipe will be put here
+							4096, // number of bytes allocated
+							&numBytesRead, // this will store number of bytes actually read
+							NULL // not using overlapped IO
+						);
+				if (result) {
+					lastUpdate = GetTickCount();
+					sleep = false;
+					if (!pipeConnected)
+					{
+						pipeConnected = true;
+						updateDebugInfo();
+					}
+					processGameCommand(std::string(buffer));
+				} else {
+					if (pipeConnected) 
+					{
+						pipeConnected = false;
+						updateDebugInfo();
+					}					
+					Sleep(1000);
+					pipe = openPipe();					
+				}		
+			} 
+		} 
+		else 
+		{			
+			if (pipeConnected) 
+			{
+				pipeConnected = false;				
+				updateDebugInfo();
+			}			
+			Sleep(1000);
+			pipe = openPipe();			
+		}
+		if (sleep) 
+		{
+			Sleep(1);
+		}
+		if (GetTickCount() - lastCheckForExpire > MILLIS_TO_EXPIRE)
+		{			
+			removeExpiredPositions(ts3Functions.getCurrentServerConnectionHandlerID());
+			updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
+			lastCheckForExpire = GetTickCount();
+		}
+		if (GetTickCount() - lastUpdate > MILLIS_TO_EXPIRE)
+		{
+			centerAll(ts3Functions.getCurrentServerConnectionHandlerID());			
+			lastUpdate = GetTickCount();
+		}
+	}	
+	CloseHandle(pipe);
+	pipe = INVALID_HANDLE_VALUE;
+	return NULL;
 }
 
 #ifdef _WIN32
@@ -543,7 +563,7 @@ const char* ts3plugin_name() {
 
 /* Plugin version */
 const char* ts3plugin_version() {
-    return "0.1";
+    return PLUGIN_VERSION;
 }
 
 /* Plugin API version. Must be the same as the clients API major version, else the plugin fails to load. */
@@ -955,10 +975,8 @@ void ts3plugin_onPlaybackShutdownCompleteEvent(uint64 serverConnectionHandlerID)
 void ts3plugin_onSoundDeviceListChangedEvent(const char* modeID, int playOrCap) {
 }
 
-// part taken from: https://github.com/MadStyleCow/A2TS_Rebuild/blob/master/src/ts3plugin.cpp#L1772
-void RadioNoiseDSP(float slevel, short * samples, int channels, int sampleCount)
+void stereoMonoDSP(short * samples, int channels, int sampleCount)
 {
-	float l = 1 / (slevel+0.1f) / 64;	
 	// 3d sound to mono
 	for (int i = 0; i < sampleCount * 2; i+= channels)
 	{
@@ -972,6 +990,12 @@ void RadioNoiseDSP(float slevel, short * samples, int channels, int sampleCount)
 			samples[i + j] += no3D;
 		}		
 	}
+}
+
+// part taken from: https://github.com/MadStyleCow/A2TS_Rebuild/blob/master/src/ts3plugin.cpp#L1772
+void RadioNoiseDSP(float slevel, short * samples, int channels, int sampleCount)
+{
+	float l = 1 / (slevel+0.1f) / 64;		
 	
 	for (int i = 0; i < sampleCount * channels; i++)
 	{
@@ -1023,8 +1047,13 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 		bool overRadio = getClientData(serverConnectionHandlerID, clientID).tangentPressed;	
 		if (overRadio)
 		{		
+			stereoMonoDSP(samples, channels, sampleCount);
 			RadioNoiseDSP(1.0, samples, channels, sampleCount);
 		}
+	}
+	else 
+	{
+		stereoMonoDSP(samples, channels, sampleCount); // mono for clients without infotmation about positions
 	}
 }
 
@@ -1035,10 +1064,10 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 }
 
 void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHandlerID, anyID clientID, float distance, float* volume) {	
-	if (hasClientData(serverConnectionHandlerID, clientID))
+  	if (hasClientData(serverConnectionHandlerID, clientID))
 	{
 		CLIENT_DATA data = getClientData(serverConnectionHandlerID, clientID);
-		if (!data.tangentPressed)
+		if (!data.tangentPressed) 
 		{
 			float calculatedVolume = 1.0f - distance * 0.05f; // ~ 20 meters of hearing range.
 			if (calculatedVolume < 0.0f)  calculatedVolume = 0.0f;
@@ -1048,6 +1077,10 @@ void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHa
 		{
 			*volume = 1.0f;
 		}	
+	}
+	else 
+	{
+		*volume = 1.0f;
 	}
 }
 
