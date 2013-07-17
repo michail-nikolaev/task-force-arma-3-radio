@@ -25,13 +25,19 @@
 #include "public_rare_definitions.h"
 #include "ts3_functions.h"
 #include "plugin.h"
+#include "DspFilters\Butterworth.h"
 
 #define M_PI       3.14159265358979323846
+
+#define MAX_CHANNELS  8
+Dsp::SimpleFilter<Dsp::Butterworth::HighPass<6>, MAX_CHANNELS> filter; 	
+static float* floatsSample[MAX_CHANNELS];
+	
 
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
-#define MILLIS_TO_EXPIRE 5000  // 5 seconds without updates of client position to expire
+#define MILLIS_TO_EXPIRE 1000  // 1 second without updates of client position to expire
 
 #define PLUGIN_VERSION "0.2 alpha"
 
@@ -68,6 +74,12 @@ struct SERVER_RADIO_DATA
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
 
+#define PATH_BUFSIZE 512
+char appPath[PATH_BUFSIZE];
+char resourcesPath[PATH_BUFSIZE];
+char configPath[PATH_BUFSIZE];
+char pluginPath[PATH_BUFSIZE];
+
 HANDLE thread = INVALID_HANDLE_VALUE;
 bool exitThread = FALSE;
 bool pipeConnected = false;
@@ -78,6 +90,7 @@ CRITICAL_SECTION serverDataCriticalSection;
 SERVER_ID_TO_SERVER_DATA serverIdToData;
 
 static struct TS3Functions ts3Functions;
+
 
 HANDLE openPipe() 
 {
@@ -91,6 +104,16 @@ HANDLE openPipe()
 			NULL
 		);
 	return pipe;
+}
+
+void playWavFile(const char* fileName)
+{	
+	std::string path = std::string(pluginPath);	
+	DWORD error;
+	if ((error = ts3Functions.playWaveFile(ts3Functions.getCurrentServerConnectionHandlerID(), (path + std::string(fileName)).c_str())) != ERROR_ok) 
+	{
+		printf("can't play sound");
+	}
 }
 
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) 
@@ -359,12 +382,14 @@ void processGameCommand(std::string command)
 
 			if (pressed)
 			{
+				playWavFile("\\radio-sounds\\local_on.wav");
 				vadEnabled = hlp_checkVad();
 				hlp_disableVad();
 			} 
 			else
 			{
-				if (vadEnabled)	hlp_enableVad();				
+				if (vadEnabled)	hlp_enableVad();	
+				playWavFile("\\radio-sounds\\local_off.wav");
 			}
 			if((ts3Functions.setClientSelfVariableAsInt(serverId, CLIENT_INPUT_DEACTIVATED, pressed ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
 				printf("Can't active talking by tangent");
@@ -435,7 +460,8 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 {
 	HANDLE pipe = INVALID_HANDLE_VALUE;	
 	DWORD lastUpdate = GetTickCount();
-	DWORD lastCheckForExpire = GetTickCount();
+	DWORD lastCheckForExpire = GetTickCount();	
+	boolean inGame = false;
 
 	while (!exitThread)
 	{
@@ -461,10 +487,15 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 				if (result) {
 					lastUpdate = GetTickCount();
 					sleep = false;
+					if (!inGame)
+					{
+						playWavFile("\\radio-sounds\\on.wav");
+						inGame = true;
+					}
 					if (!pipeConnected)
 					{
 						pipeConnected = true;
-						updateDebugInfo();
+						updateDebugInfo();						
 					}
 					processGameCommand(std::string(buffer));
 				} else {
@@ -502,6 +533,8 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 		{
 			centerAll(ts3Functions.getCurrentServerConnectionHandlerID());			
 			lastUpdate = GetTickCount();
+			if (inGame) playWavFile("\\radio-sounds\\off.wav");
+			inGame = false;
 		}
 	}	
 	CloseHandle(pipe);
@@ -518,7 +551,6 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 
 #define PLUGIN_API_VERSION 19
 
-#define PATH_BUFSIZE 512
 #define COMMAND_BUFSIZE 128
 #define INFODATA_BUFSIZE 128
 #define SERVERINFO_BUFSIZE 256
@@ -593,11 +625,6 @@ void ts3plugin_setFunctionPointers(const struct TS3Functions funcs) {
  * If the function returns 1 on failure, the plugin will be unloaded again.
  */
 int ts3plugin_init() {
-    char appPath[PATH_BUFSIZE];
-    char resourcesPath[PATH_BUFSIZE];
-    char configPath[PATH_BUFSIZE];
-	char pluginPath[PATH_BUFSIZE];
-
     /* Your plugin init code here */
     printf("PLUGIN: init\n");
 
@@ -619,6 +646,11 @@ int ts3plugin_init() {
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
 
+	filter.setup(6, 48000, 2000);
+	for (int q = 0; q < MAX_CHANNELS; q++)
+	{
+		floatsSample[q] = new float[1];
+	}
 
     return 0;  /* 0 = success, 1 = failure, -2 = failure but client will not show a "failed to load" warning */
 	/* -2 is a very special case and should only be used if a plugin displays a dialog (e.g. overlay) asking the user to disable
@@ -975,7 +1007,31 @@ void ts3plugin_onPlaybackShutdownCompleteEvent(uint64 serverConnectionHandlerID)
 void ts3plugin_onSoundDeviceListChangedEvent(const char* modeID, int playOrCap) {
 }
 
-void stereoMonoDSP(short * samples, int channels, int sampleCount)
+
+void highPassFilterDSP(short * samples, int channels, int sampleCount)
+{
+	float zero = 0.0f;		
+
+	for (int i = 0; i < sampleCount * 2; i+= channels)
+	{		
+		for (int j = 0; j < channels; j++)
+		{			
+			floatsSample[j][0] = (float) samples[i + j] / (float) SHRT_MAX;			
+		}
+		// skip other channels
+		for (int j = channels; j < MAX_CHANNELS; j++)
+		{
+			floatsSample[j][0] = 0.0;
+		}
+		filter.process<float>(1, floatsSample);
+		for (int j = 0; j < channels; j++) 
+		{
+			samples[i + j]  = floatsSample[j][0] * SHRT_MAX * 3;
+		}
+	}
+}
+
+void stereoToMonoDSP(short * samples, int channels, int sampleCount)
 {
 	// 3d sound to mono
 	for (int i = 0; i < sampleCount * 2; i+= channels)
@@ -992,51 +1048,6 @@ void stereoMonoDSP(short * samples, int channels, int sampleCount)
 	}
 }
 
-// part taken from: https://github.com/MadStyleCow/A2TS_Rebuild/blob/master/src/ts3plugin.cpp#L1772
-void RadioNoiseDSP(float slevel, short * samples, int channels, int sampleCount)
-{
-	float l = 1 / (slevel+0.1f) / 64;		
-	
-	for (int i = 0; i < sampleCount * channels; i++)
-	{
-		float d = (float)samples[i]/SHRT_MAX;
-		float pdl = 0.0f;
-		float pdh1 = 0.0f;
-		float pdh2 = 0.0f;
-		float k = (((float)rand()/RAND_MAX)*(1-slevel)*2+1);
-		float n = ((float)rand()/RAND_MAX)*2-1;
-		d *= k;
-		//noise
-		d += n*l;
-		if (i > 0)
-		{
-			d = pdl + 0.15 * (d - pdl);
-			pdl = d;
-		}
-		else
-		{
-			pdl = d;
-		}
-		if (i > 0)
-		{
-			float pd = d;
-			d = 0.85 * (pdh1 + d - pdh2);
-			pdh1 = d;
-			pdh2 = pd;
-		}
-		else
-		{
-			pdh1 = d;
-			pdh2 = d;
-		}
-		d *= 2;
-		if (d > 1)
-			d = 1;
-		else if (d < -1)
-			d = -1;
-		samples[i] = d*(SHRT_MAX-1);
-	}
-}
 
 void ts3plugin_onEditPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {	
 }
@@ -1047,13 +1058,13 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 		bool overRadio = getClientData(serverConnectionHandlerID, clientID).tangentPressed;	
 		if (overRadio)
 		{		
-			stereoMonoDSP(samples, channels, sampleCount);
-			RadioNoiseDSP(1.0, samples, channels, sampleCount);
+			stereoToMonoDSP(samples, channels, sampleCount);			
+			highPassFilterDSP(samples, channels, sampleCount);
 		}
 	}
 	else 
 	{
-		stereoMonoDSP(samples, channels, sampleCount); // mono for clients without infotmation about positions
+		stereoToMonoDSP(samples, channels, sampleCount); // mono for clients without information about positions
 	}
 }
 
@@ -1243,6 +1254,9 @@ void processPluginCommand(std::string command)
 		std::string nickname = tokens[2];
 		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 
+		boolean playPressed = false;
+		boolean playReleased = false;
+
 		EnterCriticalSection(&serverDataCriticalSection);
 		CLIENT_DATA clientData = serverIdToData[serverId].nicknameToClientData[nickname];
 		TS3_VECTOR myPosition = serverIdToData[serverId].myPosition;
@@ -1251,10 +1265,18 @@ void processPluginCommand(std::string command)
 		{
 			if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
 			{
+				if (serverIdToData[serverId].nicknameToClientData[nickname].tangentPressed != pressed)
+				{
+					playPressed = pressed;
+					playReleased = !pressed;
+				}
 				serverIdToData[serverId].nicknameToClientData[nickname].tangentPressed = pressed;
 			}
 		}		
 		LeaveCriticalSection(&serverDataCriticalSection);
+		
+		if (playPressed) playWavFile("\\radio-sounds\\remote_start.wav");
+		if (playReleased) playWavFile("\\radio-sounds\\remote_end.wav");
 	}
 }
 

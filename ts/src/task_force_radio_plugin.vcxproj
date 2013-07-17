@@ -160,6 +160,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\include\dspfilters\source\Bessel.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\Biquad.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\Butterworth.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\Cascade.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\ChebyshevI.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\ChebyshevII.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\Custom.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\Design.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\Documentation.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\Elliptic.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\Filter.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\Legendre.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\Param.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\PoleFilter.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\RBJ.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\RootFinder.cpp" />
+    <ClCompile Include="..\include\dspfilters\source\State.cpp" />
     <ClCompile Include="plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
