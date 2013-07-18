@@ -30,7 +30,7 @@
 #define M_PI       3.14159265358979323846
 
 #define MAX_CHANNELS  8
-Dsp::SimpleFilter<Dsp::Butterworth::HighPass<6>, MAX_CHANNELS> filter; 	
+Dsp::SimpleFilter<Dsp::Butterworth::HighPass<4>, MAX_CHANNELS> filter; 	
 static float* floatsSample[MAX_CHANNELS];
 	
 
@@ -109,7 +109,7 @@ HANDLE openPipe()
 void playWavFile(const char* fileName)
 {	
 	std::string path = std::string(pluginPath);	
-	DWORD error;
+	DWORD error;	
 	if ((error = ts3Functions.playWaveFile(ts3Functions.getCurrentServerConnectionHandlerID(), (path + std::string(fileName)).c_str())) != ERROR_ok) 
 	{
 		printf("can't play sound");
@@ -180,6 +180,7 @@ void updateDebugInfo() {
 	if(ts3Functions.setClientSelfVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_META_DATA, pipeConnected ? "Task Force Radio Connected to Arma 3 :)" : "Task Force Radio NOT Connected to Arma 3 :(") != ERROR_ok) {
 		printf("Can't set own META_DATA");
 	}	
+	ts3Functions.flushClientSelfUpdates(ts3Functions.getCurrentServerConnectionHandlerID(), NULL);
 }
 
 std::vector<std::string> split(const std::string &s, char delim) 
@@ -382,14 +383,14 @@ void processGameCommand(std::string command)
 
 			if (pressed)
 			{
-				playWavFile("\\radio-sounds\\local_on.wav");
+				playWavFile("radio-sounds/local_on.wav");
 				vadEnabled = hlp_checkVad();
 				hlp_disableVad();
 			} 
 			else
 			{
 				if (vadEnabled)	hlp_enableVad();	
-				playWavFile("\\radio-sounds\\local_off.wav");
+				playWavFile("radio-sounds/local_off.wav");
 			}
 			if((ts3Functions.setClientSelfVariableAsInt(serverId, CLIENT_INPUT_DEACTIVATED, pressed ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
 				printf("Can't active talking by tangent");
@@ -489,7 +490,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 					sleep = false;
 					if (!inGame)
 					{
-						playWavFile("\\radio-sounds\\on.wav");
+						playWavFile("radio-sounds/on.wav");
 						inGame = true;
 					}
 					if (!pipeConnected)
@@ -533,7 +534,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 		{
 			centerAll(ts3Functions.getCurrentServerConnectionHandlerID());			
 			lastUpdate = GetTickCount();
-			if (inGame) playWavFile("\\radio-sounds\\off.wav");
+			if (inGame) playWavFile("radio-sounds/off.wav");
 			inGame = false;
 		}
 	}	
@@ -646,7 +647,7 @@ int ts3plugin_init() {
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
 
-	filter.setup(6, 48000, 2000);
+	filter.setup(4, 48000, 2000);
 	for (int q = 0; q < MAX_CHANNELS; q++)
 	{
 		floatsSample[q] = new float[1];
@@ -1012,21 +1013,26 @@ void highPassFilterDSP(short * samples, int channels, int sampleCount)
 {
 	float zero = 0.0f;		
 
-	for (int i = 0; i < sampleCount * 2; i+= channels)
+	for (int i = 0; i < sampleCount * channels; i+= channels)
 	{		
 		for (int j = 0; j < channels; j++)
 		{			
-			floatsSample[j][0] = ((float) samples[i + j] / (float) SHRT_MAX) * 5.0;			
+			floatsSample[j][0] = ((float) samples[i + j] / (float) SHRT_MAX);			
 		}
 		// skip other channels
 		for (int j = channels; j < MAX_CHANNELS; j++)
 		{
 			floatsSample[j][0] = 0.0;
 		}
+		EnterCriticalSection(&serverDataCriticalSection);
 		filter.process<float>(1, floatsSample);
+		LeaveCriticalSection(&serverDataCriticalSection);
 		for (int j = 0; j < channels; j++) 
 		{
-			samples[i + j]  = floatsSample[j][0] * SHRT_MAX;
+			long long newValue = floatsSample[j][0] * SHRT_MAX * 10;
+			if (newValue > SHRT_MAX - 100) newValue =  SHRT_MAX - 100;
+			if (newValue < -SHRT_MAX + 100) newValue =  -SHRT_MAX + 100;
+			samples[i + j]  = newValue;
 		}
 	}
 }
@@ -1034,16 +1040,16 @@ void highPassFilterDSP(short * samples, int channels, int sampleCount)
 void stereoToMonoDSP(short * samples, int channels, int sampleCount)
 {
 	// 3d sound to mono
-	for (int i = 0; i < sampleCount * 2; i+= channels)
+	for (int i = 0; i < sampleCount * channels; i+= channels)
 	{
-		short no3D = 0;
+		long long no3D = 0;
 		for (int j = 0; j < channels; j++)
 		{
 			no3D += samples[i + j];
 		}
 		for (int j = 0; j < channels; j++)
 		{
-			samples[i + j] += no3D;
+			samples[i + j] = (no3D / channels);
 		}		
 	}
 }
@@ -1275,8 +1281,8 @@ void processPluginCommand(std::string command)
 		}		
 		LeaveCriticalSection(&serverDataCriticalSection);
 		
-		if (playPressed) playWavFile("\\radio-sounds\\remote_start.wav");
-		if (playReleased) playWavFile("\\radio-sounds\\remote_end.wav");
+		if (playPressed) playWavFile("radio-sounds/remote_start.wav");
+		if (playReleased) playWavFile("radio-sounds/remote_end.wav");
 	}
 }
 
