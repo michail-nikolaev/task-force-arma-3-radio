@@ -39,7 +39,7 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_NAME "task_force_radio"
 #define MILLIS_TO_EXPIRE 1000  // 1 second without updates of client position to expire
 
-#define PLUGIN_VERSION "0.2 alpha"
+#define PLUGIN_VERSION "0.2 pre alpha"
 
 struct CLIENT_DATA
 {
@@ -1016,7 +1016,7 @@ void highPassFilterDSP(short * samples, int channels, int sampleCount)
 	{		
 		for (int j = 0; j < channels; j++)
 		{			
-			floatsSample[j][0] = (float) samples[i + j] / (float) SHRT_MAX;			
+			floatsSample[j][0] = ((float) samples[i + j] / (float) SHRT_MAX) * 5.0;			
 		}
 		// skip other channels
 		for (int j = channels; j < MAX_CHANNELS; j++)
@@ -1026,7 +1026,7 @@ void highPassFilterDSP(short * samples, int channels, int sampleCount)
 		filter.process<float>(1, floatsSample);
 		for (int j = 0; j < channels; j++) 
 		{
-			samples[i + j]  = floatsSample[j][0] * SHRT_MAX * 3;
+			samples[i + j]  = floatsSample[j][0] * SHRT_MAX;
 		}
 	}
 }
