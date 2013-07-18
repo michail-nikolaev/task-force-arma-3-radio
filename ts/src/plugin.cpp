@@ -32,12 +32,13 @@
 #define MAX_CHANNELS  8
 Dsp::SimpleFilter<Dsp::Butterworth::HighPass<4>, MAX_CHANNELS> filter; 	
 static float* floatsSample[MAX_CHANNELS];
-	
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+
+
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
-#define MILLIS_TO_EXPIRE 1000  // 1 second without updates of client position to expire
+#define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
 
 #define PLUGIN_VERSION "0.2 pre alpha"
 
@@ -91,6 +92,30 @@ SERVER_ID_TO_SERVER_DATA serverIdToData;
 
 static struct TS3Functions ts3Functions;
 
+void log(const char* message, LogLevel level = LogLevel::LogLevel_DEVEL)
+{
+#ifndef _DEBUG
+	if (level != LogLevel::LogLevel_DEVEL)
+#endif
+	ts3Functions.logMessage(message, level, "task_force_radio", 141);
+}
+
+void log_string(std::string message, LogLevel level = LogLevel::LogLevel_DEVEL) 
+{
+	log(message.c_str(), level);
+}
+
+void log(char* message, DWORD errorCode, LogLevel level = LogLevel::LogLevel_ERROR)
+{
+	char* errorBuffer;	
+	ts3Functions.getErrorMessage(errorCode, &errorBuffer);
+	std::string output = std::string(message) + std::string(" : ") + std::string(errorBuffer);
+#ifndef _DEBUG
+	if (level != LogLevel::LogLevel_DEVEL)
+#endif _DEBUG	
+	ts3Functions.logMessage(output.c_str(), level, "task_force_radio", 141);
+	ts3Functions.freeMemory(errorBuffer);
+}
 
 HANDLE openPipe() 
 {
@@ -112,7 +137,7 @@ void playWavFile(const char* fileName)
 	DWORD error;	
 	if ((error = ts3Functions.playWaveFile(ts3Functions.getCurrentServerConnectionHandlerID(), (path + std::string(fileName)).c_str())) != ERROR_ok) 
 	{
-		printf("can't play sound");
+		log("can't play sound", error, LogLevel::LogLevel_ERROR);
 	}
 }
 
@@ -131,7 +156,8 @@ std::vector<std::string> &split(const std::string &s, char delim, std::vector<st
 BOOL hlp_checkVad()
 {
 	char* vad; // Is "true" or "false"
-	if(ts3Functions.getPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", &vad) == ERROR_ok)
+	DWORD error;
+	if((error = ts3Functions.getPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", &vad)) == ERROR_ok)
 	{
 		if(strcmp(vad,"true") == 0)
 		{
@@ -146,39 +172,34 @@ BOOL hlp_checkVad()
 	}
 	else
 	{
-		printf("PLUGIN: Failed to get VAD value.\n");
+		log("Failed to get VAD value", error);
 		return FALSE;
 	}
 }
 
 void hlp_enableVad()
 {
-	if(ts3Functions.setPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", "true") == ERROR_ok)
+	DWORD error;
+	if((error = ts3Functions.setPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", "true")) != ERROR_ok)
 	{
-		printf("PLUGIN: VAD succesfully enabled.\n");
-	}
-	else
-	{
-		printf("PLUGIN: Failure enabling VAD.\n");
-	}
+		log("VAD succesfully enabled", error);
+	}	
 }
 
 void hlp_disableVad()
 {
-	if(ts3Functions.setPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", "false") == ERROR_ok)
+	DWORD error;
+	if((error = ts3Functions.setPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", "false")) != ERROR_ok)
 	{
-		printf("PLUGIN: VAD succesfully disabled.\n");
-	}
-	else
-	{
-		printf("PLUGIN: Failure disabling VAD.\n");
-	}
+		log("Failure disabling VAD", error);
+	}	
 }
 
 
 void updateDebugInfo() {		
-	if(ts3Functions.setClientSelfVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_META_DATA, pipeConnected ? "Task Force Radio Connected to Arma 3 :)" : "Task Force Radio NOT Connected to Arma 3 :(") != ERROR_ok) {
-		printf("Can't set own META_DATA");
+	DWORD error;
+	if((error = ts3Functions.setClientSelfVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_META_DATA, pipeConnected ? "Task Force Radio Connected to Arma 3 :)" : "Task Force Radio NOT Connected to Arma 3 :(")) != ERROR_ok) {
+		log("Can't set own META_DATA", error);
 	}	
 	ts3Functions.flushClientSelfUpdates(ts3Functions.getCurrentServerConnectionHandlerID(), NULL);
 }
@@ -248,9 +269,10 @@ std::vector<anyID> getChannelClients(uint64 serverConnectionHandlerID, uint64 ch
 anyID getMyId(uint64 serverConnectionHandlerID)
 {
 	anyID myID;
-	if(ts3Functions.getClientID(serverConnectionHandlerID, &myID) != ERROR_ok)
+	DWORD error;
+	if((error = ts3Functions.getClientID(serverConnectionHandlerID, &myID)) != ERROR_ok)
 	{
-		printf("DEBUG: Failure getting client ID. Error code %d\n");		
+		log("Failure getting client ID", error);
 	}
 	return myID;
 }
@@ -258,9 +280,10 @@ anyID getMyId(uint64 serverConnectionHandlerID)
 uint64 getCurrentChannel(uint64 serverConnectionHandlerID)
 {
 	uint64 channelId;
-	if (ts3Functions.getChannelOfClient(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), &channelId) != ERROR_ok) 
+	DWORD error;
+	if ((error = ts3Functions.getChannelOfClient(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), &channelId)) != ERROR_ok) 
 	{
-		printf("PLUGIN: Can't get current channel");		
+		log("Can't get current channel", error);		
 	}
 	return channelId;
 }
@@ -269,22 +292,23 @@ void centerAll(uint64 serverConnectionId)
 {
 	std::vector<anyID> clientsIds = getChannelClients(serverConnectionId, getCurrentChannel(serverConnectionId));
 	anyID myId = getMyId(serverConnectionId);
+	DWORD error;
 	for (auto it = clientsIds.begin(); it != clientsIds.end(); it++)
 	{
 		TS3_VECTOR zero;
 		zero.x = zero.y = zero.z = 0.0f;
 		if (*it == getMyId(serverConnectionId))
 		{			
-			if (ts3Functions.systemset3DListenerAttributes(serverConnectionId, &zero, NULL, NULL) != ERROR_ok)
+			if ((error = ts3Functions.systemset3DListenerAttributes(serverConnectionId, &zero, NULL, NULL)) != ERROR_ok)
 			{
-				printf("can't center listener");
+				log("can't center listener", error);
 			}
 		}
 		else 
 		{
-			if (ts3Functions.channelset3DAttributes(serverConnectionId, *it, &zero) != ERROR_ok)
+			if ((error = ts3Functions.channelset3DAttributes(serverConnectionId, *it, &zero)) != ERROR_ok)
 			{
-				printf("can't center client");
+				log("can't center client", error);
 			}
 		}
 	}
@@ -293,8 +317,9 @@ void centerAll(uint64 serverConnectionId)
 std::string getMyNickname(uint64 serverConnectionHandlerID)
 {
 	char* bufferForNickname;
-	if(ts3Functions.getClientVariableAsString(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), CLIENT_NICKNAME, &bufferForNickname) != ERROR_ok) {
-		printf("Error getting client nickname\n");
+	DWORD error;
+	if((error = ts3Functions.getClientVariableAsString(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), CLIENT_NICKNAME, &bufferForNickname)) != ERROR_ok) {
+		log("Error getting client nickname", error);
 		return "";
 	}
 	std::string result = std::string(bufferForNickname);
@@ -306,6 +331,7 @@ std::string getMyNickname(uint64 serverConnectionHandlerID)
 void processGameCommand(std::string command)
 {
 	std::vector<std::string> tokens = split(command, '@'); // may not be used in nickname
+	DWORD error;
 	if (tokens.size() == 6 && tokens[0] == "POS") 
 	{
 		std::string nickname = tokens[1];
@@ -336,16 +362,12 @@ void processGameCommand(std::string command)
 			serverIdToData[currentServerConnectionHandlerID].myPosition = position;
 
 			LeaveCriticalSection(&serverDataCriticalSection);
-			DWORD errorCode = ts3Functions.systemset3DListenerAttributes(currentServerConnectionHandlerID, &position, &look, NULL);
+			DWORD error = ts3Functions.systemset3DListenerAttributes(currentServerConnectionHandlerID, &position, &look, NULL);
 			EnterCriticalSection(&serverDataCriticalSection); 
-			if(errorCode != ERROR_ok)
+			if(error != ERROR_ok)
 			{
-				printf("DEBUG: Failed to set own 3d position. Error code %d\n", errorCode);
-			}	
-			else
-			{
-				printf("DEBUG: OWN 3D POSITION SET.\n");
-			}			
+				log("Failed to set own 3d position", error);
+			}				
 		} 
 		else 
 		{
@@ -353,10 +375,10 @@ void processGameCommand(std::string command)
 			{
 				serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientPosition = position;				
 				serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].positionTime = time;
-				LeaveCriticalSection(&serverDataCriticalSection);
-				if (ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientId, &position) != ERROR_ok)
+				LeaveCriticalSection(&serverDataCriticalSection);				
+				if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientId, &position)) != ERROR_ok)
 				{
-					printf("Can't set client 3D position");
+					log("Can't set client 3D position", error);
 				}
 				EnterCriticalSection(&serverDataCriticalSection);
 				
@@ -376,11 +398,6 @@ void processGameCommand(std::string command)
 		LeaveCriticalSection(&serverDataCriticalSection);		
 		if (changed)
 		{			
-			// broadcast info about tangent pressed over all client
-			//std::string commandToBroadcast = command + "@" + "Archie Smith";
-			std::string commandToBroadcast = command + "@" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
-			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);			
-
 			if (pressed)
 			{
 				playWavFile("radio-sounds/local_on.wav");
@@ -392,12 +409,17 @@ void processGameCommand(std::string command)
 				if (vadEnabled)	hlp_enableVad();	
 				playWavFile("radio-sounds/local_off.wav");
 			}
-			if((ts3Functions.setClientSelfVariableAsInt(serverId, CLIENT_INPUT_DEACTIVATED, pressed ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
-				printf("Can't active talking by tangent");
+			// broadcast info about tangent pressed over all client			
+			std::string commandToBroadcast = command + "@" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
+			log_string(commandToBroadcast, LogLevel::LogLevel_DEVEL);
+			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
+
+			if((error = ts3Functions.setClientSelfVariableAsInt(serverId, CLIENT_INPUT_DEACTIVATED, pressed ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
+				log("Can't active talking by tangent", error);
 			}
 			DWORD error = ts3Functions.flushClientSelfUpdates(serverId, NULL) ; 
 			if(error != ERROR_ok && error != ERROR_ok_no_update) {
-				printf("Can't flush self updates");
+				log("Can't flush self updates", error);
 			}
 		}		
 	}
@@ -427,12 +449,13 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 void updateNicknamesList(uint64 serverConnectionHandlerID) {	
 
 	std::vector<anyID> clients = getChannelClients(serverConnectionHandlerID, getCurrentChannel(serverConnectionHandlerID));
+	DWORD error;
 	for (auto clientIdIterator = clients.begin(); clientIdIterator != clients.end(); clientIdIterator++)
 	{
 		anyID clientId = *clientIdIterator;		
 		char* name;
-		if(ts3Functions.getClientVariableAsString(serverConnectionHandlerID, clientId, CLIENT_NICKNAME, &name) != ERROR_ok) {
-			printf("Error getting client nickname\n");
+		if((error = ts3Functions.getClientVariableAsString(serverConnectionHandlerID, clientId, CLIENT_NICKNAME, &name)) != ERROR_ok) {
+			log("Error getting client nickname", error);
 			continue;
 		} 
 		else 
@@ -626,8 +649,7 @@ void ts3plugin_setFunctionPointers(const struct TS3Functions funcs) {
  * If the function returns 1 on failure, the plugin will be unloaded again.
  */
 int ts3plugin_init() {
-    /* Your plugin init code here */
-    printf("PLUGIN: init\n");
+    /* Your plugin init code here */    
 
     /* Example on how to query application, resources and configuration paths from client */
     /* Note: Console client returns empty string for app and resources path */
@@ -640,9 +662,7 @@ int ts3plugin_init() {
 	InitializeCriticalSection(&serverDataCriticalSection);
 
 	exitThread = FALSE;
-	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);
-
-	printf("PLUGIN: App path: %s\nResources path: %s\nConfig path: %s\nPlugin path: %s\n", appPath, resourcesPath, configPath, pluginPath);
+	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);		
 
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
@@ -662,14 +682,14 @@ int ts3plugin_init() {
 /* Custom code called right before the plugin is unloaded */
 void ts3plugin_shutdown() {
     /* Your plugin cleanup code here */
-    printf("PLUGIN: shutdown\n");
+    log("shutdown...");
 	exitThread = TRUE;
 	Sleep(1000);
 	DWORD exitCode;
 	BOOL result = GetExitCodeThread(thread, &exitCode);
 	if (!result || exitCode == STILL_ACTIVE) 
 	{
-		printf("PLUGIN: thread not terminated");
+		log("thread not terminated", LogLevel::LogLevel_CRITICAL);
 	}
 	thread = INVALID_HANDLE_VALUE;
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
@@ -694,8 +714,7 @@ void ts3plugin_shutdown() {
  */
 
 /* Tell client if plugin offers a configuration window. If this function is not implemented, it's an assumed "does not offer" (PLUGIN_OFFERS_NO_CONFIGURE). */
-int ts3plugin_offersConfigure() {
-	printf("PLUGIN: offersConfigure\n");
+int ts3plugin_offersConfigure() {	
 	/*
 	 * Return values:
 	 * PLUGIN_OFFERS_NO_CONFIGURE         - Plugin does not implement ts3plugin_configure
@@ -706,8 +725,7 @@ int ts3plugin_offersConfigure() {
 }
 
 /* Plugin might offer a configuration window. If ts3plugin_offersConfigure returns 0, this function does not need to be implemented. */
-void ts3plugin_configure(void* handle, void* qParentWidget) {
-    printf("PLUGIN: configure\n");
+void ts3plugin_configure(void* handle, void* qParentWidget) {    
 }
 
 /*
@@ -719,7 +737,8 @@ void ts3plugin_registerPluginID(const char* id) {
 	const size_t sz = strlen(id) + 1;
 	pluginID = (char*)malloc(sz * sizeof(char));
 	_strcpy(pluginID, sz, id);  /* The id buffer will invalidate after exiting this function */
-	printf("PLUGIN: registerPluginID: %s\n", pluginID);
+	std::string message = std::string("registerPluginID: ") + std::string(pluginID);
+	log(message.c_str(), LogLevel::LogLevel_INFO);
 }
 
 /* Plugin command keyword. Return NULL or "" if not used. */
@@ -733,8 +752,7 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
 }
 
 /* Client changed current server connection handler */
-void ts3plugin_currentServerConnectionChanged(uint64 serverConnectionHandlerID) {
-    printf("PLUGIN: currentServerConnectionChanged %llu (%llu)\n", (long long unsigned int)serverConnectionHandlerID, (long long unsigned int)ts3Functions.getCurrentServerConnectionHandlerID());
+void ts3plugin_currentServerConnectionChanged(uint64 serverConnectionHandlerID) {    
 }
 
 /*
@@ -760,24 +778,23 @@ void ts3plugin_infoData(uint64 serverConnectionHandlerID, uint64 id, enum Plugin
 	switch(type) {
 		case PLUGIN_SERVER:
 			if(ts3Functions.getServerVariableAsString(serverConnectionHandlerID, VIRTUALSERVER_NAME, &name) != ERROR_ok) {
-				printf("Error getting virtual server name\n");
+				log("Error getting virtual server name");
 				return;
 			}
 			break;
 		case PLUGIN_CHANNEL:
 			if(ts3Functions.getChannelVariableAsString(serverConnectionHandlerID, id, CHANNEL_NAME, &name) != ERROR_ok) {
-				printf("Error getting channel name\n");
+				log("Error getting channel name");
 				return;
 			}
 			break;
 		case PLUGIN_CLIENT:
 			if(ts3Functions.getClientVariableAsString(serverConnectionHandlerID, (anyID)id, CLIENT_META_DATA, &name) != ERROR_ok) {
-				printf("Error getting client nickname\n");
+				log("Error getting client nickname");
 				return;
 			}
 			break;
-		default:
-			printf("Invalid item type: %d\n", type);
+		default:			
 			data = NULL;  /* Ignore */
 			return;
 	}
@@ -882,12 +899,8 @@ void ts3plugin_onConnectStatusChangeEvent(uint64 serverConnectionHandlerID, int 
 		errorCode = ts3Functions.systemset3DSettings(serverConnectionHandlerID, 1.0f, 1.0f);
 		if(errorCode != ERROR_ok)
 		{
-			printf("DEBUG: Failed to set 3d settings. Error code %d\n",errorCode);
-		}
-		else
-		{
-			printf("DEBUG: 3d settings set.\n");
-		}
+			log("Failed to set 3d settings", errorCode);
+		}		
 	} 
 	else if (newStatus == STATUS_DISCONNECTED)
 	{
@@ -955,8 +968,7 @@ void ts3plugin_onServerEditedEvent(uint64 serverConnectionHandlerID, anyID edite
 void ts3plugin_onServerUpdatedEvent(uint64 serverConnectionHandlerID) {
 }
 
-int ts3plugin_onServerErrorEvent(uint64 serverConnectionHandlerID, const char* errorMessage, unsigned int error, const char* returnCode, const char* extraMessage) {
-	printf("PLUGIN: onServerErrorEvent %llu %s %d %s\n", (long long unsigned int)serverConnectionHandlerID, errorMessage, error, (returnCode ? returnCode : ""));
+int ts3plugin_onServerErrorEvent(uint64 serverConnectionHandlerID, const char* errorMessage, unsigned int error, const char* returnCode, const char* extraMessage) {	
 	if(returnCode) {
 		/* A plugin could now check the returnCode with previously (when calling a function) remembered returnCodes and react accordingly */
 		/* In case of using a a plugin return code, the plugin can return:
@@ -970,8 +982,7 @@ int ts3plugin_onServerErrorEvent(uint64 serverConnectionHandlerID, const char* e
 void ts3plugin_onServerStopEvent(uint64 serverConnectionHandlerID, const char* shutdownMessage) {
 }
 
-int ts3plugin_onTextMessageEvent(uint64 serverConnectionHandlerID, anyID targetMode, anyID toID, anyID fromID, const char* fromName, const char* fromUniqueIdentifier, const char* message, int ffIgnored) {
-    printf("PLUGIN: onTextMessageEvent %llu %d %d %s %s %d\n", (long long unsigned int)serverConnectionHandlerID, targetMode, fromID, fromName, message, ffIgnored);
+int ts3plugin_onTextMessageEvent(uint64 serverConnectionHandlerID, anyID targetMode, anyID toID, anyID fromID, const char* fromName, const char* fromUniqueIdentifier, const char* message, int ffIgnored) {    
     return 0;  /* 0 = handle normally, 1 = client will ignore the text message */
 }
 
@@ -1105,7 +1116,7 @@ void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHa
 void ts3plugin_onCustom3dRolloffCalculationWaveEvent(uint64 serverConnectionHandlerID, uint64 waveHandle, float distance, float* volume) {
 }
 
-void ts3plugin_onUserLoggingMessageEvent(const char* logMessage, int logLevel, const char* logChannel, uint64 logID, const char* logTime, const char* completeLogString) {
+void ts3plugin_onUserLoggingMessageEvent(const char* logMessage, int logLevel, const char* logChannel, uint64 logID, const char* logTime, const char* completelog_string) {
 }
 
 /* Clientlib rare */
@@ -1287,12 +1298,12 @@ void processPluginCommand(std::string command)
 }
 
 void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand) {
-	printf("ON PLUGIN COMMAND: %s %s\n", pluginName, pluginCommand);
+	log_string(std::string("ON PLUGIN COMMAND ") +  pluginName + " " + pluginCommand, LogLevel::LogLevel_DEVEL);
 	if(serverConnectionHandlerID == ts3Functions.getCurrentServerConnectionHandlerID())
 	{
 		if(strcmp(pluginName, PLUGIN_NAME) != 0)
-		{
-			printf("PLUGIN: Plugin command event failure.\n");
+		{			
+			log("Plugin command event failure", LogLevel::LogLevel_ERROR);
 		}
 		else
 		{
@@ -1315,13 +1326,6 @@ void ts3plugin_onServerTemporaryPasswordListEvent(uint64 serverConnectionHandler
  * This callback can be called spontaneously or in response to ts3Functions.getAvatar()
  */
 void ts3plugin_onAvatarUpdated(uint64 serverConnectionHandlerID, anyID clientID, const char* avatarPath) {
-	/* If avatarPath is NULL, the avatar got deleted */
-	/* If not NULL, avatarPath contains the path to the avatar file in the TS3Client cache */
-	if(avatarPath != NULL) {
-		printf("onAvatarUpdated: %llu %d %s\n", (long long unsigned int)serverConnectionHandlerID, clientID, avatarPath);
-	} else {
-		printf("onAvatarUpdated: %llu %d - deleted\n", (long long unsigned int)serverConnectionHandlerID, clientID);
-	}
 }
 
 /*
@@ -1337,8 +1341,7 @@ void ts3plugin_onMenuItemEvent(uint64 serverConnectionHandlerID, enum PluginMenu
 }
 
 /* This function is called if a plugin hotkey was pressed. Omit if hotkeys are unused. */
-void ts3plugin_onHotkeyEvent(const char* keyword) {
-	printf("PLUGIN: Hotkey event: %s\n", keyword);
+void ts3plugin_onHotkeyEvent(const char* keyword) {	
 	/* Identify the hotkey by keyword ("keyword_1", "keyword_2" or "keyword_3" in this example) and handle here... */
 }
 
