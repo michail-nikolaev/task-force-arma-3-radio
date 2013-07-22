@@ -15,7 +15,9 @@ Arma 3 Team Speak Radio Plugin
 * Откройте список плагинов в Team Speak, включите `Task Force Arma 3 Radio`, отключите `ACRE` и `radio ts ARMA3.ru version`, чтобы избежать конфликтов
 * Можно на всякий случай перезапустить Team Speak :)
 * Запустите игру с аддонами `CBA_A3` и `@task_force_radio` (Community Base Addons: A3 Beta и Task Force 141 Radio), это можно сделать командой `arma3.exe -mod:@CBA_A3;@task_force_radio`
-* Убедитесь, что ник в игре и Team Speak совпадает
+* Убедитесь, что ник в игре и Team Speak совпадает (если вы используете squal url, то добавляемый им в конец ника тэг не стоит ичитывать)
+* Убедитесь, что громкость звуков в Team Speak не отключена (Options -> Payback -> Sound Pack Volume установите на максимум +0db)
+* Рекомендуется отключить звуки-оповещения TeamSpeak: Options -> Notifications -> Sound Pack: "Sounds Deactivated" (применится только после перезапуска Team Speak)
 * Зайдите в тот же канал, где и другие игроки с данной рацией
 
 Управление:
@@ -25,3 +27,6 @@ Arma 3 Team Speak Radio Plugin
 
 На всякий случай:
 * Если из-за падения или еще чего-то вы перестали слышать других игроков даже вне игры, откройте `Setup 3D Sound` и скликните `Center All`
+
+Администраторам TeamSpeak серверов:
+* Уменьшите уровень защиты от флуда - правый клик по серверу -> Edit Virtual Server -> More -> Anti Flood, поставьте значения 30, 300, 300 (сверху вниз)
