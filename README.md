@@ -8,7 +8,7 @@ Arma 3 Team Speak Radio Plugin
 * Скачайте архив https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.2%20pre%20alpha.zip
 * Убедитесь, что в Team Speak клавиша Caps Lock не используется для разговора
 * Отключите в ARMA 3 разговор по внутренней рации по нажатию Caps Lock (чтобы не двоиться)
-* Скопируется содержимое папки Arma 3 в `....\SteamApps\common\Arma 3` (папку с игрой)
+* Скопируйте содержимое папки Arma 3 в `....\SteamApps\common\Arma 3` (папку с игрой)
 * Скопируйте содержимое `TeamSpeak 3 Client\x32` в папку с TeamSpeak если он 32-ух битный, или `TeamSpeak 3 Client\x64`, если 64-ёх
 * Чтобы узнать, какой у вас TeamSpeak поищите файл `ts3client_win64.exe` или `ts3client_win32.exe` в папке с Team Speak
 * Запустите Team Speak, зайдите на любой сервер, кликните правой кнопкой на вашем канале и выберите `Setup 3D Sound`, установите галочку `Enable 3D Sound` справа снизу
@@ -29,4 +29,4 @@ Arma 3 Team Speak Radio Plugin
 * Если из-за падения или еще чего-то вы перестали слышать других игроков даже вне игры, откройте `Setup 3D Sound` и скликните `Center All`
 
 Администраторам TeamSpeak серверов:
-* Уменьшите уровень защиты от флуда - правый клик по серверу -> Edit Virtual Server -> More -> Anti Flood, поставьте значения 30, 300, 300 (сверху вниз)
+* Уменьшите уровень защиты от флуда - правый клик по серверу -> Edit Virtual Server -> More -> Anti Flood, поставьте значения 30, 300, 3000 (сверху вниз)
