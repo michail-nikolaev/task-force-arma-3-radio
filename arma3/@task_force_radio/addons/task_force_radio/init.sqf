@@ -44,12 +44,17 @@
 			_current_rotation_horizontal = 0;
 			_current_hyp_horizontal = sqrt(_current_look_at_x * _current_look_at_x + _current_look_at_y * _current_look_at_y);
 	
-			if (_current_look_at_x < 0) then {
-				_current_rotation_horizontal = round -acos(_current_look_at_y / _current_hyp_horizontal);
-			}
-			else
-			{
-				_current_rotation_horizontal = round acos(_current_look_at_y / _current_hyp_horizontal);
+			if (_current_hyp_horizontal > 0) then {
+		
+				if (_current_look_at_x < 0) then {
+					_current_rotation_horizontal = round -acos(_current_look_at_y / _current_hyp_horizontal);
+				}
+				else
+				{
+					_current_rotation_horizontal = round acos(_current_look_at_y / _current_hyp_horizontal);
+				};
+			} else {
+				_current_rotation_horizontal = 0;
 			};
 			while{_current_rotation_horizontal < 0} do {
 				_current_rotation_horizontal = _current_rotation_horizontal + 360;
