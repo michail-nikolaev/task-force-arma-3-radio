@@ -53,7 +53,7 @@ struct CLIENT_DATA
 	{
 		positionTime = 0;
 		tangentPressed = false;
-		clientPosition.x = clientPosition.y = clientPosition.z;
+		clientPosition.x = clientPosition.y = clientPosition.z = 0;
 		clientId = -1;
 	}
 };
