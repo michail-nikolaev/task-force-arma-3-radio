@@ -40,7 +40,7 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_NAME "task_force_radio"
 #define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
 
-#define PLUGIN_VERSION "0.2 pre alpha"
+#define PLUGIN_VERSION "0.3 pre alpha"
 
 struct CLIENT_DATA
 {
@@ -49,6 +49,7 @@ struct CLIENT_DATA
 	bool tangentPressed;
 	TS3_VECTOR clientPosition;
 	uint64 positionTime;
+	std::string swFrequency;
 	CLIENT_DATA() 
 	{
 		positionTime = 0;
@@ -66,6 +67,7 @@ struct SERVER_RADIO_DATA
 	bool tangentPressed;
 	TS3_VECTOR myPosition;
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
+	std::string mySwFrequency;
 
 	SERVER_RADIO_DATA()
 	{
@@ -386,9 +388,9 @@ void processGameCommand(std::string command)
 		}				
 		LeaveCriticalSection(&serverDataCriticalSection);
 	} 
-	else if (tokens.size() == 2 && tokens[0] == "TANGENT")
+	else if (tokens.size() == 3 && tokens[0] == "TANGENT")
 	{
-		bool pressed = (tokens[1] == "PRESSED");
+		bool pressed = (tokens[1] == "PRESSED");		
 		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 
 		bool changed = false;
@@ -422,6 +424,13 @@ void processGameCommand(std::string command)
 				log("Can't flush self updates", error);
 			}
 		}		
+	} 
+	else if (tokens.size() == 2 && tokens[0] == "SW_FREQ")
+	{
+		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
+		EnterCriticalSection(&serverDataCriticalSection);	
+		serverIdToData[serverId].mySwFrequency = tokens[1];
+		LeaveCriticalSection(&serverDataCriticalSection);		
 	}
 }
 
@@ -1069,11 +1078,19 @@ void stereoToMonoDSP(short * samples, int channels, int sampleCount)
 void ts3plugin_onEditPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {	
 }
 
+bool isOverRadio(uint64 serverConnectionHandlerID, anyID clientID)
+{
+	CLIENT_DATA data = getClientData(serverConnectionHandlerID, clientID);
+	EnterCriticalSection(&serverDataCriticalSection);
+	std::string myFrequency = serverIdToData[serverConnectionHandlerID].mySwFrequency;
+	LeaveCriticalSection(&serverDataCriticalSection);
+	return data.tangentPressed && (myFrequency == data.swFrequency);
+}
+
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
 	if (hasClientData(serverConnectionHandlerID, clientID))
-	{
-		bool overRadio = getClientData(serverConnectionHandlerID, clientID).tangentPressed;	
-		if (overRadio)
+	{		
+		if (isOverRadio(serverConnectionHandlerID, clientID))
 		{		
 			stereoToMonoDSP(samples, channels, sampleCount);			
 			highPassFilterDSP(samples, channels, sampleCount);
@@ -1093,9 +1110,8 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 
 void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHandlerID, anyID clientID, float distance, float* volume) {	
   	if (hasClientData(serverConnectionHandlerID, clientID))
-	{
-		CLIENT_DATA data = getClientData(serverConnectionHandlerID, clientID);
-		if (!data.tangentPressed) 
+	{	
+		if (!isOverRadio(serverConnectionHandlerID, clientID))
 		{
 			float calculatedVolume = 1.0f - distance * 0.05f; // ~ 20 meters of hearing range.
 			if (calculatedVolume < 0.0f)  calculatedVolume = 0.0f;
@@ -1265,16 +1281,18 @@ void ts3plugin_onClientServerQueryLoginPasswordEvent(uint64 serverConnectionHand
 void processPluginCommand(std::string command)
 {
 	std::vector<std::string> tokens = split(command, '@'); // may not be used in nickname
-	if (tokens.size() == 3 && tokens[0] == "TANGENT")
+	if (tokens.size() == 4 && tokens[0] == "TANGENT")
 	{
 		bool pressed = (tokens[1] == "PRESSED");
-		std::string nickname = tokens[2];
+		std::string nickname = tokens[3];
+		std::string frequency = tokens[2];
 		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 
 		boolean playPressed = false;
 		boolean playReleased = false;
 
 		EnterCriticalSection(&serverDataCriticalSection);
+		std::string myFrequency = serverIdToData[serverId].mySwFrequency;
 		CLIENT_DATA clientData = serverIdToData[serverId].nicknameToClientData[nickname];
 		TS3_VECTOR myPosition = serverIdToData[serverId].myPosition;
 		
@@ -1288,12 +1306,16 @@ void processPluginCommand(std::string command)
 					playReleased = !pressed;
 				}
 				serverIdToData[serverId].nicknameToClientData[nickname].tangentPressed = pressed;
+				serverIdToData[serverId].nicknameToClientData[nickname].swFrequency = frequency;
 			}
 		}		
 		LeaveCriticalSection(&serverDataCriticalSection);
 		
-		if (playPressed) playWavFile("radio-sounds/remote_start.wav");
-		if (playReleased) playWavFile("radio-sounds/remote_end.wav");
+		if (myFrequency == frequency)
+		{
+			if (playPressed) playWavFile("radio-sounds/remote_start.wav");
+			if (playReleased) playWavFile("radio-sounds/remote_end.wav");
+		}		
 	}
 }
 
