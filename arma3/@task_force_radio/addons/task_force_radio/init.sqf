@@ -1,12 +1,34 @@
+
+#include "\task_force_radio\define.h"
+
+MIN_SW_FREQ = 30;
+MAX_SW_FREQ = 512;
+
+FREQ_ROUND_POWER = 10;
+
+IDC_ANPRC152_RADIO_DIALOG_EDIT_ID = IDC_ANPRC152_RADIO_DIALOG_EDIT;
+IDC_ANPRC152_RADIO_DIALOG_ID = IDC_ANPRC152_RADIO_DIALOG;
+
+sw_frequency = str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER);
+
 [] spawn {	
 	
 	radio_keyDown =
 	{
 		private "_result";
 		if (alive player) then {
-			if (_this select 1 == 58) then {
+			// CAPS LOCK
+			if (_this select 1 == 58) then { 
 				hintSilent "Transmiting...";
-				_result = "task_force_radio_pipe" callExtension "TANGENT@PRESSED";
+				_request = format["TANGENT@PRESSED@%1", sw_frequency];
+				_result = "task_force_radio_pipe" callExtension _request;
+			};
+			// U
+			if (_this select 1 == 22) then {			
+				if !(dialog) then {
+					createDialog "anprc152_radio_dialog";
+					ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT, sw_frequency];
+				}
 			};
 		};
 	};
@@ -17,9 +39,10 @@
 	{
 		private "_result";
 		if (alive player) then {		
-			if (_this select 1 == 58) then {
+			if (_this select 1 == 58) then { // CAPS LOCK
 				hintSilent "";
-				_result = "task_force_radio_pipe" callExtension "TANGENT@RELEASED";	
+				_request = format["TANGENT@RELEASED@%1", sw_frequency];
+				_result = "task_force_radio_pipe" callExtension _request;	
 			};		
 		};
 	};
@@ -74,6 +97,10 @@
 			}
 		} forEach allUnits;
 		sleep 0.2;
+		// send current sw freq
+		_request = format["SW_FREQ@%1", sw_frequency];
+		_result = "task_force_radio_pipe" callExtension _request;
+
 		if !(isNull (findDisplay 46)) then {
 			if !(_have_display_46) then {
 				hint "Waiting for 1 second....";
@@ -87,4 +114,5 @@
 			_have_display_46 = false;
 		};
 	}
-}
+};
+
