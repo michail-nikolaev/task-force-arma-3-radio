@@ -7,6 +7,7 @@ Arma 3 Team Speak Radio Plugin
 
 * Скачайте архив https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.3%20pre%20alpha.zip
 * Убедитесь, что в Team Speak клавиша Caps Lock не используется для разговора
+* Убедись, что вы запускаете игру только один раз (только одно окно игры)
 * Отключите в ARMA 3 разговор по внутренней рации по нажатию Caps Lock (чтобы не двоиться)
 * Скопируйте содержимое папки Arma 3 в `....\SteamApps\common\Arma 3` (папку с игрой)
 * Скопируйте содержимое `TeamSpeak 3 Client\x32` в папку с TeamSpeak если он 32-ух битный, или `TeamSpeak 3 Client\x64`, если 64-ёх

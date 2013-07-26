@@ -28,6 +28,7 @@
 #include "DspFilters\Butterworth.h"
 
 #define M_PI       3.14159265358979323846
+#define RADIO_GAIN 15
 
 #define MAX_CHANNELS  8
 Dsp::SimpleFilter<Dsp::Butterworth::HighPass<4>, MAX_CHANNELS> filter; 	
@@ -676,7 +677,7 @@ int ts3plugin_init() {
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
 
-	filter.setup(4, 48000, 2000);
+	filter.setup(4, 48000, 1800);
 	for (int q = 0; q < MAX_CHANNELS; q++)
 	{
 		floatsSample[q] = new float[1];
@@ -1034,7 +1035,8 @@ void highPassFilterDSP(short * samples, int channels, int sampleCount)
 	float zero = 0.0f;		
 
 	for (int i = 0; i < sampleCount * channels; i+= channels)
-	{		
+	{	
+		EnterCriticalSection(&serverDataCriticalSection);
 		for (int j = 0; j < channels; j++)
 		{			
 			floatsSample[j][0] = ((float) samples[i + j] / (float) SHRT_MAX);			
@@ -1043,17 +1045,20 @@ void highPassFilterDSP(short * samples, int channels, int sampleCount)
 		for (int j = channels; j < MAX_CHANNELS; j++)
 		{
 			floatsSample[j][0] = 0.0;
-		}
-		EnterCriticalSection(&serverDataCriticalSection);
-		filter.process<float>(1, floatsSample);
-		LeaveCriticalSection(&serverDataCriticalSection);
+		}		
+		filter.process<float>(1, floatsSample);		
 		for (int j = 0; j < channels; j++) 
-		{
-			long long newValue = floatsSample[j][0] * SHRT_MAX * 10;
+		{			
+			float sample = floatsSample[j][0] * RADIO_GAIN;
+			long long newValue;
+			if (sample > 1.0) newValue = SHRT_MAX;
+			else if (sample < 0) newValue = SHRT_MIN;
+			else newValue =  sample * SHRT_MAX;
 			if (newValue > SHRT_MAX - 100) newValue =  SHRT_MAX - 100;
 			if (newValue < -SHRT_MAX + 100) newValue =  -SHRT_MAX + 100;
 			samples[i + j]  = newValue;
 		}
+		LeaveCriticalSection(&serverDataCriticalSection);
 	}
 }
 
@@ -1283,7 +1288,7 @@ void processPluginCommand(std::string command)
 	std::vector<std::string> tokens = split(command, '@'); // may not be used in nickname
 	if (tokens.size() == 4 && tokens[0] == "TANGENT")
 	{
-		bool pressed = (tokens[1] == "PRESSED");
+  		bool pressed = (tokens[1] == "PRESSED");
 		std::string nickname = tokens[3];
 		std::string frequency = tokens[2];
 		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
