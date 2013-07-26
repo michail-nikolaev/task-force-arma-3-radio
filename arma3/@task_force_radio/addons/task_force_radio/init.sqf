@@ -43,7 +43,7 @@ sw_frequency = str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) 
 				hintSilent "";
 				_request = format["TANGENT@RELEASED@%1", sw_frequency];
 				_result = "task_force_radio_pipe" callExtension _request;	
-			};		
+			};
 		};
 	};
 	
@@ -98,8 +98,10 @@ sw_frequency = str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) 
 		} forEach allUnits;
 		sleep 0.2;
 		// send current sw freq
-		_request = format["SW_FREQ@%1", sw_frequency];
-		_result = "task_force_radio_pipe" callExtension _request;
+		if (isMultiplayer) then {
+			_request = format["SW_FREQ@%1", sw_frequency];
+			_result = "task_force_radio_pipe" callExtension _request;
+		}
 
 		if !(isNull (findDisplay 46)) then {
 			if !(_have_display_46) then {
