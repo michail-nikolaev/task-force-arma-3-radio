@@ -1029,17 +1029,37 @@ void ts3plugin_onPlaybackShutdownCompleteEvent(uint64 serverConnectionHandlerID)
 void ts3plugin_onSoundDeviceListChangedEvent(const char* modeID, int playOrCap) {
 }
 
+void applyGain(short * samples, int channels, int sampleCount, float directTalkingVolume)
+{
+	for (int i = 0; i < sampleCount * channels; i++) samples[i] *= directTalkingVolume;
+}
 
-void highPassFilterDSP(short * samples, int channels, int sampleCount)
+void processRadioDSP(short * samples, int channels, int sampleCount, float directTalkingVolume)
 {
 	float zero = 0.0f;		
 
 	for (int i = 0; i < sampleCount * channels; i+= channels)
 	{	
+		// prepare mono for radio
+		short mono[MAX_CHANNELS];
+		long long no3D = 0;
+		for (int j = 0; j < MAX_CHANNELS; j++) mono[j] = 0.0;
+		for (int j = 0; j < channels; j++)
+		{
+			no3D += samples[i + j];
+		}
+		for (int j = 0; j < channels; j++)
+		{
+			mono[j] = (no3D / channels);
+		}	
+		// all channels mixed
+		float mix[MAX_CHANNELS];
+		for (int j = 0; j < MAX_CHANNELS; j++) mix[j] = 0.0;
+		// process radio filter
 		EnterCriticalSection(&serverDataCriticalSection);
 		for (int j = 0; j < channels; j++)
 		{			
-			floatsSample[j][0] = ((float) samples[i + j] / (float) SHRT_MAX);			
+			floatsSample[j][0] = ((float) mono[j] / (float) SHRT_MAX);			
 		}
 		// skip other channels
 		for (int j = channels; j < MAX_CHANNELS; j++)
@@ -1049,15 +1069,24 @@ void highPassFilterDSP(short * samples, int channels, int sampleCount)
 		filter.process<float>(1, floatsSample);		
 		for (int j = 0; j < channels; j++) 
 		{			
-			float sample = floatsSample[j][0] * RADIO_GAIN;
+			mix[j] = floatsSample[j][0] * RADIO_GAIN;					
+		}
+		LeaveCriticalSection(&serverDataCriticalSection);
+		// now process and add direct talking to mix
+		for (int j = 0; j < channels; j++)
+		{
+			mix[j] +=  ((float) samples[i + j] / (float) SHRT_MAX) * directTalkingVolume;
+		}
+		// put mixed output to stream
+		for (int j = 0; j < channels; j++)
+		{
+			float sample = mix[j];
 			long long newValue;
 			if (sample > 1.0) newValue = SHRT_MAX;
 			else if (sample < -1.0) newValue = SHRT_MIN;
-			else newValue =  sample * SHRT_MAX;
-			
-			samples[i + j]  = newValue;
-		}
-		LeaveCriticalSection(&serverDataCriticalSection);
+			else newValue =  sample * SHRT_MAX;		
+			samples[i + j] = newValue;
+		}				
 	}
 }
 
@@ -1082,6 +1111,22 @@ void stereoToMonoDSP(short * samples, int channels, int sampleCount)
 void ts3plugin_onEditPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {	
 }
 
+inline float sq(float x) {return x * x;}
+
+float volumeFromDistance(uint64 serverConnectionHandlerID, anyID clientID)
+{
+	CLIENT_DATA data = getClientData(serverConnectionHandlerID, clientID);
+	EnterCriticalSection(&serverDataCriticalSection);
+	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;	
+	LeaveCriticalSection(&serverDataCriticalSection);
+	TS3_VECTOR clientPosition = data.clientPosition;
+	float distance = sqrt(sq(myPosition.x - clientPosition.x) + sq(myPosition.y - clientPosition.y) + sq(myPosition.z - clientPosition.z));
+	float calculatedVolume = 1.0f - distance * 0.05f; // ~ 20 meters of hearing range.
+	if (calculatedVolume < 0.0f)  calculatedVolume = 0.0f;
+	return calculatedVolume;			
+}
+
+
 bool isOverRadio(uint64 serverConnectionHandlerID, anyID clientID)
 {
 	CLIENT_DATA data = getClientData(serverConnectionHandlerID, clientID);
@@ -1095,9 +1140,12 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 	if (hasClientData(serverConnectionHandlerID, clientID))
 	{		
 		if (isOverRadio(serverConnectionHandlerID, clientID))
-		{		
-			stereoToMonoDSP(samples, channels, sampleCount);			
-			highPassFilterDSP(samples, channels, sampleCount);
+		{					
+			processRadioDSP(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, clientID));
+		} 
+		else 
+		{
+			applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, clientID));
 		}
 	}
 	else 
@@ -1112,24 +1160,8 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, int* edited) {
 }
 
-void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHandlerID, anyID clientID, float distance, float* volume) {	
-  	if (hasClientData(serverConnectionHandlerID, clientID))
-	{	
-		if (!isOverRadio(serverConnectionHandlerID, clientID))
-		{
-			float calculatedVolume = 1.0f - distance * 0.05f; // ~ 20 meters of hearing range.
-			if (calculatedVolume < 0.0f)  calculatedVolume = 0.0f;
-			*volume = calculatedVolume;			
-		} 
-		else 
-		{
-			*volume = 1.0f;
-		}	
-	}
-	else 
-	{
-		*volume = 1.0f;
-	}
+void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHandlerID, anyID clientID, float distance, float* volume) {	  	
+	*volume = 1.0f;	// custom gain applied
 }
 
 

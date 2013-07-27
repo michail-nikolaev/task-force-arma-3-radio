@@ -6,6 +6,8 @@ class CfgPatches
 		weapons[] = {};
 		requiredVersion = 1.0;
 		requiredAddons[] = {"Extended_EventHandlers"};
+		author[] = {"Nkey"};
+		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
 	};
 };
 
