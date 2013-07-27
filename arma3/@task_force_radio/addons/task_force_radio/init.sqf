@@ -101,7 +101,7 @@ sw_frequency = str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) 
 		if (isMultiplayer) then {
 			_request = format["SW_FREQ@%1", sw_frequency];
 			_result = "task_force_radio_pipe" callExtension _request;
-		}
+		};
 
 		if !(isNull (findDisplay 46)) then {
 			if !(_have_display_46) then {

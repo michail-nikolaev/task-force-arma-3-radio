@@ -28,7 +28,7 @@
 #include "DspFilters\Butterworth.h"
 
 #define M_PI       3.14159265358979323846
-#define RADIO_GAIN 15
+#define RADIO_GAIN 12
 
 #define MAX_CHANNELS  8
 Dsp::SimpleFilter<Dsp::Butterworth::HighPass<4>, MAX_CHANNELS> filter; 	
@@ -36,8 +36,8 @@ static float* floatsSample[MAX_CHANNELS];
 
 
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
 
@@ -1052,10 +1052,9 @@ void highPassFilterDSP(short * samples, int channels, int sampleCount)
 			float sample = floatsSample[j][0] * RADIO_GAIN;
 			long long newValue;
 			if (sample > 1.0) newValue = SHRT_MAX;
-			else if (sample < 0) newValue = SHRT_MIN;
+			else if (sample < -1.0) newValue = SHRT_MIN;
 			else newValue =  sample * SHRT_MAX;
-			if (newValue > SHRT_MAX - 100) newValue =  SHRT_MAX - 100;
-			if (newValue < -SHRT_MAX + 100) newValue =  -SHRT_MAX + 100;
+			
 			samples[i + j]  = newValue;
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);
