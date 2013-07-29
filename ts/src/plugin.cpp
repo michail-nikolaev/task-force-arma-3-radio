@@ -1121,11 +1121,11 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, anyID clientID)
 	LeaveCriticalSection(&serverDataCriticalSection);
 	TS3_VECTOR clientPosition = data.clientPosition;
 	float distance = sqrt(sq(myPosition.x - clientPosition.x) + sq(myPosition.y - clientPosition.y) + sq(myPosition.z - clientPosition.z));
-	float calculatedVolume = 1.0f - distance * 0.05f; // ~ 20 meters of hearing range.
-	if (calculatedVolume < 0.0f)  calculatedVolume = 0.0f;
-	return calculatedVolume;			
+	if (distance < 1.0) return 1.0; // less than a 1m
+	float gain = (1.0f / distance) - (1.0 / 20.0f);
+	if (gain < 0.001) return 0; else return gain;	
 }
-
+ 
 
 bool isOverRadio(uint64 serverConnectionHandlerID, anyID clientID)
 {
