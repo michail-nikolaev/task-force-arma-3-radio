@@ -36,12 +36,12 @@ static float* floatsSample[MAX_CHANNELS];
 
 
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
 
-#define PLUGIN_VERSION "0.3 pre alpha"
+#define PLUGIN_VERSION "0.3.5 pre alpha"
 
 struct CLIENT_DATA
 {
