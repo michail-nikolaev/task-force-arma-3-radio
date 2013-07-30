@@ -36,8 +36,8 @@ static float* floatsSample[MAX_CHANNELS];
 
 
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
 
@@ -785,7 +785,7 @@ void ts3plugin_currentServerConnectionChanged(uint64 serverConnectionHandlerID) 
 /* Static title shown in the left column in the info frame */
 const char* ts3plugin_infoTitle() {
 	std::string info = std::string("Task Force Radio Status (") + PLUGIN_VERSION + ")";
-	int maxLen = info.length() + 1;
+	size_t maxLen = info.length() + 1;
 	char* result = (char*) malloc(maxLen * sizeof(char));
 	memset(result, 0, maxLen);
 	strncpy_s(result, maxLen, info.c_str(), info.length());
@@ -1035,7 +1035,7 @@ void ts3plugin_onSoundDeviceListChangedEvent(const char* modeID, int playOrCap) 
 
 void applyGain(short * samples, int channels, int sampleCount, float directTalkingVolume)
 {
-	for (int i = 0; i < sampleCount * channels; i++) samples[i] *= (short) directTalkingVolume;
+	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short)(samples[i] * directTalkingVolume);
 }
 
 void processRadioDSP(short * samples, int channels, int sampleCount, float directTalkingVolume)
@@ -1124,9 +1124,9 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, anyID clientID)
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;	
 	LeaveCriticalSection(&serverDataCriticalSection);
 	TS3_VECTOR clientPosition = data.clientPosition;
-	float distance = sqrt(sq(myPosition.x - clientPosition.x) + sq(myPosition.y - clientPosition.y) + sq(myPosition.z - clientPosition.z));
+ 	float distance = sqrt(sq(myPosition.x - clientPosition.x) + sq(myPosition.y - clientPosition.y) + sq(myPosition.z - clientPosition.z));
 	if (distance < 1.0) return 1.0; // less than a 1m
-	float gain = (1.0f / sq(distance)) - (1.0f / sq(20.0f)); // about 20 meters - max distance
+	float gain = (1.0f / distance) - (1.0f / 20.0f); // about 20 meters - max distance
 	if (gain < 0.001) return 0; else return gain;	
 }
  
