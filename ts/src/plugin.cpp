@@ -31,17 +31,16 @@
 #define RADIO_GAIN 12
 
 #define MAX_CHANNELS  8
-Dsp::SimpleFilter<Dsp::Butterworth::HighPass<4>, MAX_CHANNELS> filter; 	
 static float* floatsSample[MAX_CHANNELS];
 
 
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
 
-#define PLUGIN_VERSION "0.3.5 pre alpha"
+#define PLUGIN_VERSION "0.3.8 pre alpha"
 
 struct CLIENT_DATA
 {
@@ -51,16 +50,22 @@ struct CLIENT_DATA
 	TS3_VECTOR clientPosition;
 	uint64 positionTime;
 	std::string swFrequency;
+	Dsp::SimpleFilter<Dsp::Butterworth::HighPass<4>, MAX_CHANNELS> filter;
+	void resetFilter() 
+	{
+		filter.reset();
+	}
 	CLIENT_DATA() 
 	{
 		positionTime = 0;
 		tangentPressed = false;
 		clientPosition.x = clientPosition.y = clientPosition.z = 0;
 		clientId = -1;
+		filter.setup(4, 48000, 1800);
 	}
 };
 
-typedef std::map<std::string, CLIENT_DATA> STRING_TO_CLIENT_DATA_MAP;
+typedef std::map<std::string, CLIENT_DATA*> STRING_TO_CLIENT_DATA_MAP;
 struct SERVER_RADIO_DATA 
 {
 	anyID myID;
@@ -202,7 +207,10 @@ void hlp_disableVad()
 
 void updateUserStatusInfo() {		
 	DWORD error;
-	std::string result = std::string("[I]Connected to Arma 3:[/I][B] ") + (pipeConnected ? "true" : "false") + "[/B]  [I]Playing: [/I][B]" + (inGame ? "true" : "false") + "[/B]";
+	std::string result = std::string("[I]Connected to Arma 3:[/I][B] ") 
+		+ (pipeConnected ? "true" : "false") + "[/B]  [I]Playing: [/I][B]" 
+		+ (inGame ? "true" : "false") 
+		+ "[/B]  [I]Version: [/I][B]" + PLUGIN_VERSION + "[/B]";
 	if((error = ts3Functions.setClientSelfVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_META_DATA, result.c_str())) != ERROR_ok) {
 		log("Can't set own META_DATA", error);
 	}	
@@ -224,7 +232,7 @@ bool hasClientData(uint64 serverConnectionHandlerID, anyID clientID)
 	for (STRING_TO_CLIENT_DATA_MAP::iterator it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); 
 		it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
 	{
-		if (it->second.clientId == clientID && (time - it->second.positionTime < MILLIS_TO_EXPIRE))
+		if (it->second->clientId == clientID && (time - it->second->positionTime < MILLIS_TO_EXPIRE))
 		{
 			result = true;
 			break;
@@ -234,16 +242,16 @@ bool hasClientData(uint64 serverConnectionHandlerID, anyID clientID)
 	return result;
 }
 
-CLIENT_DATA getClientData(uint64 serverConnectionHandlerID, anyID clientID)
+CLIENT_DATA* getClientData(uint64 serverConnectionHandlerID, anyID clientID)
 {
-	CLIENT_DATA data = CLIENT_DATA();
+	CLIENT_DATA* data = NULL;
 	EnterCriticalSection(&serverDataCriticalSection);
 	for (STRING_TO_CLIENT_DATA_MAP::iterator it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); 
 		it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
 	{
-		if (it->second.clientId == clientID)
+		if (it->second->clientId == clientID)
 		{
-			data = it->second;			
+			data = it->second;
 			break;
 		}
 	}
@@ -361,10 +369,13 @@ void processGameCommand(std::string command)
 			look.x = sin(radians);
 			look.z = cos(radians);
 			look.y = 0;
-
-			serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientId = serverIdToData[currentServerConnectionHandlerID].myID;
-			serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientPosition = position;
-			serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].positionTime = time;
+			CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+			if (clientData)
+			{
+				clientData->clientId = serverIdToData[currentServerConnectionHandlerID].myID;
+				clientData->clientPosition = position;
+				clientData->positionTime = time;				
+			}
 			serverIdToData[currentServerConnectionHandlerID].myPosition = position;
 
 			LeaveCriticalSection(&serverDataCriticalSection);
@@ -379,14 +390,18 @@ void processGameCommand(std::string command)
 		{
 			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname))
 			{
-				serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientPosition = position;				
-				serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].positionTime = time;
-				LeaveCriticalSection(&serverDataCriticalSection);				
-				if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname].clientId, &position)) != ERROR_ok)
-				{
-					log("Can't set client 3D position", error);
+				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+				if (clientData)
+				{				
+					clientData->clientPosition = position;				
+					clientData->positionTime = time;
+					LeaveCriticalSection(&serverDataCriticalSection);				
+					if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &position)) != ERROR_ok)
+					{
+						log("Can't set client 3D position", error);
+					}
+					EnterCriticalSection(&serverDataCriticalSection);
 				}
-				EnterCriticalSection(&serverDataCriticalSection);
 				
 			}			
 		}				
@@ -446,14 +461,17 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 	EnterCriticalSection(&serverDataCriticalSection);
 	for (auto it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
 	{
-		if (time - it->second.positionTime > MILLIS_TO_EXPIRE)
+		if (time - it->second->positionTime > MILLIS_TO_EXPIRE)
 		{			
 			toRemove.push_back(it->first);
 		}
 	}
 	for (auto it = toRemove.begin(); it != toRemove.end(); it++)
 	{
-		serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);
+		CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[*it];
+		serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);		
+		delete data;
+		log_string(std::string("Expire position of ") + *it, LogLevel_DEBUG);
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
 
@@ -477,9 +495,9 @@ void updateNicknamesList(uint64 serverConnectionHandlerID) {
 			std::string clientNickname(name);
 			if (!serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(clientNickname))
 			{
-				serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname] = CLIENT_DATA();
+				serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname] = new CLIENT_DATA();
 			}
-			serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname].clientId = clientId;
+			serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname]->clientId = clientId;
 			LeaveCriticalSection(&serverDataCriticalSection);
 
 			ts3Functions.freeMemory(name);
@@ -689,7 +707,6 @@ int ts3plugin_init() {
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
 
-	filter.setup(4, 48000, 1800);
 	for (int q = 0; q < MAX_CHANNELS; q++)
 	{
 		floatsSample[q] = new float[1];
@@ -705,8 +722,10 @@ int ts3plugin_init() {
 void ts3plugin_shutdown() {
     /* Your plugin cleanup code here */
     log("shutdown...");
-	exitThread = TRUE;
+	exitThread = TRUE;	
 	Sleep(1000);
+	pipeConnected = inGame = false;
+	updateUserStatusInfo();
 	DWORD exitCode;
 	BOOL result = GetExitCodeThread(thread, &exitCode);
 	if (!result || exitCode == STILL_ACTIVE) 
@@ -1038,7 +1057,7 @@ void applyGain(short * samples, int channels, int sampleCount, float directTalki
 	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short)(samples[i] * directTalkingVolume);
 }
 
-void processRadioDSP(short * samples, int channels, int sampleCount, float directTalkingVolume)
+void processRadioDSP(short * samples, int channels, int sampleCount, float directTalkingVolume, Dsp::SimpleFilter<Dsp::Butterworth::HighPass<4>, MAX_CHANNELS>* filter)
 {
 	float zero = 0.0f;		
 
@@ -1070,7 +1089,7 @@ void processRadioDSP(short * samples, int channels, int sampleCount, float direc
 		{
 			floatsSample[j][0] = 0.0;
 		}		
-		filter.process<float>(1, floatsSample);		
+		filter->process<float>(1, floatsSample);		
 		for (int j = 0; j < channels; j++) 
 		{			
 			mix[j] = floatsSample[j][0] * RADIO_GAIN;					
@@ -1117,44 +1136,52 @@ void ts3plugin_onEditPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, an
 
 inline float sq(float x) {return x * x;}
 
-float volumeFromDistance(uint64 serverConnectionHandlerID, anyID clientID)
-{
-	CLIENT_DATA data = getClientData(serverConnectionHandlerID, clientID);
+float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
+{	
 	EnterCriticalSection(&serverDataCriticalSection);
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;	
 	LeaveCriticalSection(&serverDataCriticalSection);
-	TS3_VECTOR clientPosition = data.clientPosition;
+	TS3_VECTOR clientPosition = data->clientPosition;
  	float distance = sqrt(sq(myPosition.x - clientPosition.x) + sq(myPosition.y - clientPosition.y) + sq(myPosition.z - clientPosition.z));
 	if (distance < 1.0) return 1.0; // less than a 1m
-	float gain = (1.0f / distance) - (1.0f / 20.0f); // about 20 meters - max distance
+	float gain = (1.0f / (distance / 2.0)) - (1.0f / (30.0f / 2.0)); // about 30 meters - max distance
 	if (gain < 0.001) return 0; else return gain;	
 }
  
 
-bool isOverRadio(uint64 serverConnectionHandlerID, anyID clientID)
-{
-	CLIENT_DATA data = getClientData(serverConnectionHandlerID, clientID);
+bool isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
+{	
 	EnterCriticalSection(&serverDataCriticalSection);
 	std::string myFrequency = serverIdToData[serverConnectionHandlerID].mySwFrequency;
 	LeaveCriticalSection(&serverDataCriticalSection);
-	return data.tangentPressed && (myFrequency == data.swFrequency);
+	return data->tangentPressed && (myFrequency == data->swFrequency);
 }
 
-void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
+void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {	
+	static DWORD last_no_info;
 	if (hasClientData(serverConnectionHandlerID, clientID))
 	{		
-		if (isOverRadio(serverConnectionHandlerID, clientID))
-		{					
-			processRadioDSP(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, clientID));
-		} 
-		else 
-		{
-			applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, clientID));
+		CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);
+		if (data != NULL) 
+		{		
+			if (isOverRadio(serverConnectionHandlerID, data))
+			{					
+				processRadioDSP(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data), &(data->filter));
+			} 
+			else 
+			{
+				applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data));
+			}
 		}
 	}
 	else 
-	{
+	{		
 		stereoToMonoDSP(samples, channels, sampleCount); // mono for clients without information about positions
+		if (GetTickCount() - last_no_info > MILLIS_TO_EXPIRE) 
+		{
+			log_string(std::string("No info about ") + std::to_string((long long)clientID), LogLevel_DEBUG);
+			last_no_info = GetTickCount();
+		}		
 	}
 }
 
@@ -1333,29 +1360,41 @@ void processPluginCommand(std::string command)
 
 		EnterCriticalSection(&serverDataCriticalSection);
 		std::string myFrequency = serverIdToData[serverId].mySwFrequency;
-		CLIENT_DATA clientData = serverIdToData[serverId].nicknameToClientData[nickname];
-		TS3_VECTOR myPosition = serverIdToData[serverId].myPosition;
+		if (serverIdToData[serverId].nicknameToClientData.count(nickname))
+		{		
+			CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[nickname];
+			if (clientData)
+			{			
+				TS3_VECTOR myPosition = serverIdToData[serverId].myPosition;
 		
-		if (serverIdToData.count(serverId)) 
-		{
-			if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
-			{
-				if (serverIdToData[serverId].nicknameToClientData[nickname].tangentPressed != pressed)
+				if (serverIdToData.count(serverId)) 
 				{
-					playPressed = pressed;
-					playReleased = !pressed;
-				}
-				serverIdToData[serverId].nicknameToClientData[nickname].tangentPressed = pressed;
-				serverIdToData[serverId].nicknameToClientData[nickname].swFrequency = frequency;
-			}
-		}		
-		LeaveCriticalSection(&serverDataCriticalSection);
+					if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
+					{
+						if (clientData->tangentPressed != pressed)
+						{
+							playPressed = pressed;
+							playReleased = !pressed;
+						}
+						clientData->tangentPressed = pressed;
+						clientData->swFrequency = frequency;
+					}
+				}		
+				LeaveCriticalSection(&serverDataCriticalSection);
 		
-		if (myFrequency == frequency)
-		{
-			if (playPressed) playWavFile("radio-sounds/remote_start.wav");
-			if (playReleased) playWavFile("radio-sounds/remote_end.wav");
-		}		
+				if (myFrequency == frequency)
+				{
+					if (playPressed) playWavFile("radio-sounds/remote_start.wav");
+					if (playReleased) 
+					{
+							playWavFile("radio-sounds/remote_end.wav");
+							EnterCriticalSection(&serverDataCriticalSection);
+							clientData->resetFilter();
+							LeaveCriticalSection(&serverDataCriticalSection);
+					}
+				}	
+			}
+		}
 	}
 }
 
