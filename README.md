@@ -5,7 +5,7 @@ Arma 3 Team Speak Radio Plugin
 
 Инструкция по установке:
 
-* Скачайте архив https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.3.8%20pre%20alpha.zip
+* Скачайте архив https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.3.9%20pre%20alpha.zip
 * Убедитесь, что в Team Speak клавиша Caps Lock не используется для разговора
 * Убедись, что вы запускаете игру только один раз (только одно окно игры)
 * Отключите в ARMA 3 разговор по внутренней рации по нажатию Caps Lock (чтобы не двоиться)
@@ -37,3 +37,7 @@ Arma 3 Team Speak Radio Plugin
 
 Разработчикам:
 * Если уж данная разработка будет как-либо популярна, то хотелось бы избежать кучи несовместимых форков. По этой причине в случае желания внесения изменений связывайтесь со мной - велика вероятность, что ваши разработки будут вмержены в главную ветку. Ждем ваших Pull Requests :)
+
+Спасибки:
+* Отряду [Task Force Arrowhead](http://forum.task-force.ru/) за тестирование, поддержку, терпение и всяческую помощь
+* [Блендеру](http://arma3.ru/forums/index.php/user/41-blender/) за шрифт
