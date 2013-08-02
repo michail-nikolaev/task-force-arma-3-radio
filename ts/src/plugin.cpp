@@ -35,12 +35,12 @@ static float* floatsSample[MAX_CHANNELS];
 
 
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
 
-#define PLUGIN_VERSION "0.3.8 pre alpha"
+#define PLUGIN_VERSION "0.3.9 pre alpha"
 
 struct CLIENT_DATA
 {
@@ -1143,9 +1143,9 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 	LeaveCriticalSection(&serverDataCriticalSection);
 	TS3_VECTOR clientPosition = data->clientPosition;
  	float distance = sqrt(sq(myPosition.x - clientPosition.x) + sq(myPosition.y - clientPosition.y) + sq(myPosition.z - clientPosition.z));
-	if (distance < 1.0) return 1.0; // less than a 1m
-	float gain = (1.0f / (distance / 2.0)) - (1.0f / (30.0f / 2.0)); // about 30 meters - max distance
-	if (gain < 0.001) return 0; else return gain;	
+	if (distance < 1.0) distance = 1.0;
+	float gain = (1.0f / sq(distance * 0.5));
+	if (gain < 0.001) return 0; else return min(1.0, gain);	
 }
  
 
