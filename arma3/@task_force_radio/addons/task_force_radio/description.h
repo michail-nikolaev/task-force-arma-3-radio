@@ -23,7 +23,7 @@ class CfgFontFamilies {
 	class VTN_LCD  {
 		fonts[] = {"\task_force_radio\fonts\vtn_lcd26","\task_force_radio\fonts\vtn_lcd46"};
 		spaceWidth = 0.900000;
-		spacing = 0.170000;
+		spacing = 0.250000;
 	};
 };
 class RscBackPicture
@@ -96,9 +96,8 @@ class RscEditLCD
 	autocomplete = "";
 	text = "";
 	size = 0.2;
-	style = "0x00 + 0x40";
+	style = "0x00 + 0x40 + 0x200";
 	font = "VTN_LCD";
-	borderSize = 0;
 	shadow = 2;
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	canModify = 1;

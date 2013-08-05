@@ -676,7 +676,7 @@ const char* ts3plugin_author() {
 /* Plugin description */
 const char* ts3plugin_description() {
 	/* If you want to use wchar_t, see ts3plugin_name() on how to use */
-    return "Simple Radio Addon for Arma 3 for Task Force 141 squad";
+    return "Radio Addon for Arma 3";
 }
 
 /* Set TeamSpeak 3 callback functions */
