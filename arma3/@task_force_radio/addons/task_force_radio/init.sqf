@@ -1,8 +1,12 @@
-
+disableSerialization;
 #include "\task_force_radio\define.h"
+#define SHIFTL 42
+#define CTRLL 29
+#define ALTL 56
 
 MIN_SW_FREQ = 30;
 MAX_SW_FREQ = 512;
+
 
 FREQ_ROUND_POWER = 10;
 
@@ -11,21 +15,40 @@ IDC_ANPRC152_RADIO_DIALOG_ID = IDC_ANPRC152_RADIO_DIALOG;
 
 sw_frequency = str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER);
 
+tangent_sw_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "tanget_sw"  >> "key");
+tangent_sw_shift = getNumber (configFile >> "task_force_radio_keys" >>  "tanget_sw"  >> "shift");
+tangent_sw_ctrl = getNumber (configFile >> "task_force_radio_keys" >>  "tanget_sw"  >> "ctrl");
+tangent_sw_alt = getNumber (configFile >> "task_force_radio_keys" >>  "tanget_sw"  >> "alt");
+
+dialog_sw_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "dialog_sw"  >> "key");
+dialog_sw_shift = getNumber (configFile >> "task_force_radio_keys" >>  "dialog_sw"  >> "shift");
+dialog_sw_ctrl = getNumber (configFile >> "task_force_radio_keys" >>  "dialog_sw"  >> "ctrl");
+dialog_sw_alt = getNumber (configFile >> "task_force_radio_keys" >>  "dialog_sw"  >> "alt");
+
+tanget_sw_pressed = false;
+
 [] spawn {	
 	
 	radio_keyDown =
 	{
-		private "_result";
+		private["_result", "_request", "_ctrl", "_scancode", "_shift", "_alt"];
+
+		_scancode = _this select 1;		
+		if (_this select 2 and _scancode != SHIFTL) then {_shift = 1} else {_shift = 0};
+		if (_this select 3 and _scancode != CTRLL) then {_ctrl = 1} else {_ctrl = 0};
+		if (_this select 4 and _scancode != ALTL) then {_alt = 1} else {_alt = 0};
+
 		if (alive player) then {
-			// CAPS LOCK
-			if (_this select 1 == 58) then { 
+
+			if (!(tanget_sw_pressed) and (_scancode == tangent_sw_scancode) and (_shift == tangent_sw_shift) and (_ctrl == tangent_sw_ctrl) and (_alt == tangent_sw_alt)) then { 
 				_hintText = format["Transmiting on <t color='#ffff00'>%1</t>...", sw_frequency];
 				hintSilent parseText (_hintText);
 				_request = format["TANGENT@PRESSED@%1", sw_frequency];
 				_result = "task_force_radio_pipe" callExtension _request;
+				tanget_sw_pressed = true;
 			};
-			// U
-			if (_this select 1 == 22) then {			
+
+			if ((_scancode == dialog_sw_scancode) and (_shift == dialog_sw_shift) and (_ctrl == dialog_sw_ctrl) and (_alt == dialog_sw_alt)) then {
 				if !(dialog) then {
 					createDialog "anprc152_radio_dialog";
 					ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT, sw_frequency];
@@ -38,12 +61,19 @@ sw_frequency = str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) 
 	
 	radio_keyUp =
 	{
-		private "_result";
+		private["_result", "_request", "_ctrl", "_scancode", "_shift", "_alt"];
+
+		_scancode = _this select 1;		
+		if (_this select 2 and _scancode != SHIFTL) then {_shift = 1} else {_shift = 0};
+		if (_this select 3 and _scancode != CTRLL) then {_ctrl = 1} else {_ctrl = 0};
+		if (_this select 4 and _scancode != ALTL) then {_alt = 1} else {_alt = 0};
+
 		if (alive player) then {		
-			if (_this select 1 == 58) then { // CAPS LOCK
+			if ((tanget_sw_pressed) and ((_scancode != tangent_sw_scancode) or (_shift != tangent_sw_shift) or (_ctrl != tangent_sw_ctrl) or (_alt != tangent_sw_alt))) then { 
 				hintSilent "";
 				_request = format["TANGENT@RELEASED@%1", sw_frequency];
 				_result = "task_force_radio_pipe" callExtension _request;	
+				tanget_sw_pressed = false;
 			};
 		};
 	};
