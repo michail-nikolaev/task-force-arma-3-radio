@@ -69,7 +69,7 @@ tanget_sw_pressed = false;
 		if (_this select 4 and _scancode != ALTL) then {_alt = 1} else {_alt = 0};
 
 		if (alive player) then {		
-			if ((tanget_sw_pressed) and ((_scancode != tangent_sw_scancode) or (_shift != tangent_sw_shift) or (_ctrl != tangent_sw_ctrl) or (_alt != tangent_sw_alt))) then { 
+			if ((tanget_sw_pressed) and ((_scancode == tangent_sw_scancode) or (_shift != tangent_sw_shift) or (_ctrl != tangent_sw_ctrl) or (_alt != tangent_sw_alt))) then { 
 				hintSilent "";
 				_request = format["TANGENT@RELEASED@%1", sw_frequency];
 				_result = "task_force_radio_pipe" callExtension _request;	
@@ -130,8 +130,9 @@ tanget_sw_pressed = false;
 		};
 		sleep 0.2;
 		// send current sw freq
-		if (isMultiplayer) then {
-			_request = format["SW_FREQ@%1", sw_frequency];
+		if (isMultiplayer) then {	
+			_alive = alive player;
+			_request = format["SW_FREQ@%1@%2", sw_frequency, _alive];
 			_result = "task_force_radio_pipe" callExtension _request;
 		} else {
 			_result = "task_force_radio_pipe" callExtension "PING";
