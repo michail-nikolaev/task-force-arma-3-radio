@@ -33,14 +33,14 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-
+#define SERIOUS_MOD_CHANNEL_NAME "TaskForceRadio"
 
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
 
-#define PLUGIN_VERSION "0.3.9 pre alpha"
+#define PLUGIN_VERSION "0.4.0 pre alpha"
 
 struct CLIENT_DATA
 {
@@ -74,6 +74,7 @@ struct SERVER_RADIO_DATA
 	TS3_VECTOR myPosition;
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
 	std::string mySwFrequency;
+	bool alive;
 
 	SERVER_RADIO_DATA()
 	{
@@ -343,7 +344,14 @@ std::string getMyNickname(uint64 serverConnectionHandlerID)
 
 void processGameCommand(std::string command)
 {
-	if (command == "PING") return;
+	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
+	if (command == "PING") 
+	{
+		EnterCriticalSection(&serverDataCriticalSection);	
+		serverIdToData[currentServerConnectionHandlerID].alive = false;
+		LeaveCriticalSection(&serverDataCriticalSection);
+		return;
+	};
 	std::vector<std::string> tokens = split(command, '@'); // may not be used in nickname
 	DWORD error;
 	if (tokens.size() == 6 && tokens[0] == "POS") 
@@ -357,8 +365,7 @@ void processGameCommand(std::string command)
 		TS3_VECTOR position;
 		position.x = x;
 		position.y = z; // yes, it is correct
-		position.z = y; // yes, it is correct		
-		uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
+		position.z = y; // yes, it is correct				
 		DWORD time = GetTickCount();
 		EnterCriticalSection(&serverDataCriticalSection); 
 		if (nickname == serverIdToData[currentServerConnectionHandlerID].myNickname) 
@@ -444,11 +451,12 @@ void processGameCommand(std::string command)
 			}
 		}		
 	} 
-	else if (tokens.size() == 2 && tokens[0] == "SW_FREQ")
+	else if (tokens.size() == 3 && tokens[0] == "SW_FREQ")
 	{
 		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 		EnterCriticalSection(&serverDataCriticalSection);	
 		serverIdToData[serverId].mySwFrequency = tokens[1];
+		serverIdToData[serverId].alive = tokens[2] == "true";
 		LeaveCriticalSection(&serverDataCriticalSection);		
 	}
 }
@@ -706,6 +714,7 @@ int ts3plugin_init() {
 
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
+	ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "Loading TaskForceRadioPlugin", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
 
 	for (int q = 0; q < MAX_CHANNELS; q++)
 	{
@@ -725,6 +734,7 @@ void ts3plugin_shutdown() {
 	exitThread = TRUE;	
 	Sleep(1000);
 	pipeConnected = inGame = false;
+	ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "Disabling TaskForceRadioPlugin", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
 	updateUserStatusInfo();
 	DWORD exitCode;
 	BOOL result = GetExitCodeThread(thread, &exitCode);
@@ -1130,6 +1140,31 @@ void stereoToMonoDSP(short * samples, int channels, int sampleCount)
 	}
 }
 
+bool isSeriousModeEnabled(uint64 serverConnectionHandlerID, anyID clientId)
+{
+	static DWORD lastCheckTickCount = 0;
+	static boolean cachedResult = false;
+	if (GetTickCount() - lastCheckTickCount > MILLIS_TO_EXPIRE)
+	{	
+		uint64 channelId;
+		DWORD error;
+		if ((error = ts3Functions.getChannelOfClient(serverConnectionHandlerID, clientId, &channelId)) != ERROR_ok)
+		{
+			log("Can't get channel of client", error);
+			return false;	
+		}
+		char* channelName;
+		if ((error = ts3Functions.getChannelVariableAsString(serverConnectionHandlerID, channelId, CHANNEL_NAME, &channelName)) != ERROR_ok) {
+			log("Can't get channel name", error);
+			return false;
+		}
+		bool result = !strcmp(SERIOUS_MOD_CHANNEL_NAME, channelName);
+		ts3Functions.freeMemory(channelName);
+		cachedResult = result;
+		lastCheckTickCount = GetTickCount();
+	} 
+	return cachedResult;
+}
 
 void ts3plugin_onEditPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {	
 }
@@ -1144,8 +1179,8 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 	TS3_VECTOR clientPosition = data->clientPosition;
  	float distance = sqrt(sq(myPosition.x - clientPosition.x) + sq(myPosition.y - clientPosition.y) + sq(myPosition.z - clientPosition.z));
 	if (distance < 1.0) distance = 1.0;
-	float gain = (1.0f / sq(distance * 0.5));
-	if (gain < 0.001) return 0; else return min(1.0, gain);	
+	float gain = (1.0f / sq(distance * 0.5f));
+	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);	
 }
  
 
@@ -1162,21 +1197,38 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 	if (hasClientData(serverConnectionHandlerID, clientID))
 	{		
 		CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);
-		if (data != NULL) 
+		EnterCriticalSection(&serverDataCriticalSection);
+		bool alive = serverIdToData[serverConnectionHandlerID].alive;
+		LeaveCriticalSection(&serverDataCriticalSection);
+		if (isSeriousModeEnabled(serverConnectionHandlerID, clientID) && !alive)
+		{
+			applyGain(samples, channels, sampleCount, 0.0f);
+		}
+		else 
 		{		
-			if (isOverRadio(serverConnectionHandlerID, data))
-			{					
-				processRadioDSP(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data), &(data->filter));
-			} 
-			else 
-			{
-				applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data));
+			if (data != NULL) 
+			{		
+				if (isOverRadio(serverConnectionHandlerID, data))
+				{					
+					processRadioDSP(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data), &(data->filter));
+				} 
+				else 
+				{
+					applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data));
+				}
 			}
 		}
 	}
 	else 
 	{		
-		stereoToMonoDSP(samples, channels, sampleCount); // mono for clients without information about positions
+		if (!isSeriousModeEnabled(serverConnectionHandlerID, clientID)) 
+		{
+			stereoToMonoDSP(samples, channels, sampleCount); // mono for clients without information about positions
+		}
+		else 
+		{
+			applyGain(samples, channels, sampleCount, 0.0f);
+		}
 		if (GetTickCount() - last_no_info > MILLIS_TO_EXPIRE) 
 		{
 			log_string(std::string("No info about ") + std::to_string((long long)clientID), LogLevel_DEBUG);
