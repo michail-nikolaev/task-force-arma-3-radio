@@ -28,7 +28,7 @@ dialog_sw_alt = getNumber (configFile >> "task_force_radio_keys" >>  "dialog_sw"
 tanget_sw_pressed = false;
 
 [] spawn {	
-	
+	sleep 4;
 	radio_keyDown =
 	{
 		private["_result", "_request", "_ctrl", "_scancode", "_shift", "_alt"];
