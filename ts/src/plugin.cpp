@@ -40,7 +40,7 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_NAME "task_force_radio"
 #define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
 
-#define PLUGIN_VERSION "0.4.0 pre alpha"
+#define PLUGIN_VERSION "0.4.2 pre alpha"
 
 struct CLIENT_DATA
 {
@@ -206,15 +206,26 @@ void hlp_disableVad()
 }
 
 
-void updateUserStatusInfo() {		
-	DWORD error;
+std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includeVersion)
+{
 	std::string result = std::string("[I]Connected to Arma 3:[/I][B] ") 
 		+ (pipeConnected ? "true" : "false") + "[/B]  [I]Playing: [/I][B]" 
 		+ (inGame ? "true" : "false") 
-		+ "[/B]  [I]Version: [/I][B]" + PLUGIN_VERSION + "[/B]";
+		+ (includeVersion ? std::string("[/B]  [I]Version: [/I][B]") + PLUGIN_VERSION + "[/B]" : "");
+	return result;
+}
+
+void updateUserStatusInfo(bool pluginEnabled) {		
+	DWORD error;
+	std::string result;
+	if (pluginEnabled) 	
+		result = getConnectionStatusInfo(pipeConnected, inGame, true);	
+	else 
+		result = "[B]Task Force Radio Plugin Disabled[/B]";
 	if((error = ts3Functions.setClientSelfVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_META_DATA, result.c_str())) != ERROR_ok) {
 		log("Can't set own META_DATA", error);
 	}	
+		
 	ts3Functions.flushClientSelfUpdates(ts3Functions.getCurrentServerConnectionHandlerID(), NULL);
 }
 
@@ -344,6 +355,7 @@ std::string getMyNickname(uint64 serverConnectionHandlerID)
 
 void processGameCommand(std::string command)
 {
+	static int counter = 0;
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
 	if (command == "PING") 
 	{
@@ -356,6 +368,7 @@ void processGameCommand(std::string command)
 	DWORD error;
 	if (tokens.size() == 6 && tokens[0] == "POS") 
 	{
+		counter++;
 		std::string nickname = tokens[1];
 		float x = std::stof(tokens[2]);
 		float y = std::stof(tokens[3]);
@@ -453,6 +466,7 @@ void processGameCommand(std::string command)
 	} 
 	else if (tokens.size() == 3 && tokens[0] == "SW_FREQ")
 	{
+		counter = 0;
 		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 		EnterCriticalSection(&serverDataCriticalSection);	
 		serverIdToData[serverId].mySwFrequency = tokens[1];
@@ -581,7 +595,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 			if (pipeConnected) 
 			{
 				pipeConnected = false;				
-				updateUserStatusInfo();
+				updateUserStatusInfo(true);
 			}			
 			Sleep(1000);
 			pipe = openPipe();			
@@ -605,7 +619,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 		}
 		if (GetTickCount() - lastInfoUpdate > MILLIS_TO_EXPIRE)
 		{
-			updateUserStatusInfo();
+			updateUserStatusInfo(true);
 			lastInfoUpdate = GetTickCount();
 		}
 	}	
@@ -714,7 +728,7 @@ int ts3plugin_init() {
 
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
-	ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "Loading TaskForceRadioPlugin", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
+	ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "[B]Task Force Radio: [/B][I]Loading Task Force Radio Plugin[/I]", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
 
 	for (int q = 0; q < MAX_CHANNELS; q++)
 	{
@@ -727,6 +741,8 @@ int ts3plugin_init() {
 	 * For normal case, if a plugin really failed to load because of an error, the correct return value is 1. */
 }
 
+
+
 /* Custom code called right before the plugin is unloaded */
 void ts3plugin_shutdown() {
     /* Your plugin cleanup code here */
@@ -734,8 +750,8 @@ void ts3plugin_shutdown() {
 	exitThread = TRUE;	
 	Sleep(1000);
 	pipeConnected = inGame = false;
-	ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "Disabling TaskForceRadioPlugin", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
-	updateUserStatusInfo();
+	ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "[B]Task Force Radio: [/B][I]Disabling Task Force Radio Plugin[/I]", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
+	updateUserStatusInfo(false);
 	DWORD exitCode;
 	BOOL result = GetExitCodeThread(thread, &exitCode);
 	if (!result || exitCode == STILL_ACTIVE) 
@@ -1178,8 +1194,8 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 	LeaveCriticalSection(&serverDataCriticalSection);
 	TS3_VECTOR clientPosition = data->clientPosition;
  	float distance = sqrt(sq(myPosition.x - clientPosition.x) + sq(myPosition.y - clientPosition.y) + sq(myPosition.z - clientPosition.z));
-	if (distance < 1.0) distance = 1.0;
-	float gain = (1.0f / sq(distance * 0.5f));
+	if (distance <= 1.0) return 1.0;
+	float gain = 1.0 - log10((distance / 20) * 10); // 20 metres
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);	
 }
  
@@ -1192,9 +1208,37 @@ bool isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 	return data->tangentPressed && (myFrequency == data->swFrequency);
 }
 
+bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID)
+{
+	char* clientInfo;
+	bool result = false;
+	DWORD error;
+	if ((error = ts3Functions.getClientVariableAsString(serverConnectionHandlerID, clientID, CLIENT_META_DATA, &clientInfo)) != ERROR_ok) {
+		log("Can't get client metadata", error);
+		return false;
+	} 
+	else 
+	{
+		std::string shouldStartWith = getConnectionStatusInfo(true, true, false);
+		std::string clientStatus = std::string(clientInfo);
+		if (clientStatus.size() > shouldStartWith.size())
+		{
+			auto res = std::mismatch(shouldStartWith.begin(), shouldStartWith.end(), clientStatus.begin());
+			result = (res.first == shouldStartWith.end());
+		} 
+		else 
+		{
+			result = false;
+		}		
+		ts3Functions.freeMemory(clientInfo);
+	}
+
+	return result;
+}
+
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {	
 	static DWORD last_no_info;
-	if (hasClientData(serverConnectionHandlerID, clientID))
+	if (hasClientData(serverConnectionHandlerID, clientID) && isPluginEnabledForUser(serverConnectionHandlerID, clientID))
 	{		
 		CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);
 		EnterCriticalSection(&serverDataCriticalSection);
@@ -1231,7 +1275,10 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 		}
 		if (GetTickCount() - last_no_info > MILLIS_TO_EXPIRE) 
 		{
-			log_string(std::string("No info about ") + std::to_string((long long)clientID), LogLevel_DEBUG);
+			if (!hasClientData(serverConnectionHandlerID, clientID))
+				log_string(std::string("No info about ") + std::to_string((long long)clientID), LogLevel_DEBUG);
+			if (!isPluginEnabledForUser(serverConnectionHandlerID, clientID))
+				log_string(std::string("No plugin enabled for ") + std::to_string((long long)clientID), LogLevel_DEBUG);
 			last_no_info = GetTickCount();
 		}		
 	}
