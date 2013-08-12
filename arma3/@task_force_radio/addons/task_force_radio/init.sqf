@@ -84,48 +84,50 @@ tanget_sw_pressed = false;
 	_have_display_46 = false;
 	while {true} do {
 		if (isMultiplayer) then {
-			{			
-				_current_eyepos = eyepos _x;
-				_xname = name _x;
-				_current_x = (_current_eyepos select 0);
-				_current_y = (_current_eyepos select 1);
-				_current_z = (_current_eyepos select 2);
-		
-				_current_look_at = screenToWorld [0.5,0.5];
-				_current_look_at_x = (_current_look_at select 0) - _current_x;
-				_current_look_at_y = (_current_look_at select 1) - _current_y;
-				_current_look_at_z = (_current_look_at select 2) - _current_z;
-		
-				_current_rotation_horizontal = 0;
-				_current_hyp_horizontal = sqrt(_current_look_at_x * _current_look_at_x + _current_look_at_y * _current_look_at_y);
-		
-				if (_current_hyp_horizontal > 0) then {
+			{		
+				if (isPlayer _x) then {
+					_current_eyepos = eyepos _x;
+					_xname = name _x;
+					_current_x = (_current_eyepos select 0);
+					_current_y = (_current_eyepos select 1);
+					_current_z = (_current_eyepos select 2);
 			
-					if (_current_look_at_x < 0) then {
-						_current_rotation_horizontal = round -acos(_current_look_at_y / _current_hyp_horizontal);
-					}
-					else
-					{
-						_current_rotation_horizontal = round acos(_current_look_at_y / _current_hyp_horizontal);
-					};
-				} else {
+					_current_look_at = screenToWorld [0.5,0.5];
+					_current_look_at_x = (_current_look_at select 0) - _current_x;
+					_current_look_at_y = (_current_look_at select 1) - _current_y;
+					_current_look_at_z = (_current_look_at select 2) - _current_z;
+			
 					_current_rotation_horizontal = 0;
-				};
-				while{_current_rotation_horizontal < 0} do {
-					_current_rotation_horizontal = _current_rotation_horizontal + 360;
-				};
+					_current_hyp_horizontal = sqrt(_current_look_at_x * _current_look_at_x + _current_look_at_y * _current_look_at_y);
+			
+					if (_current_hyp_horizontal > 0) then {
 				
-				_request = format["POS@%1@%2@%3@%4@%5", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal ];	
-				_result = "task_force_radio_pipe" callExtension _request;
-				if (_result != "OK") then 
-				{
-					hintSilent _result;			
-				} else {
-					if (_prev_result != "OK") then {
-						hintSilent "";
-					}
+						if (_current_look_at_x < 0) then {
+							_current_rotation_horizontal = round -acos(_current_look_at_y / _current_hyp_horizontal);
+						}
+						else
+						{
+							_current_rotation_horizontal = round acos(_current_look_at_y / _current_hyp_horizontal);
+						};
+					} else {
+						_current_rotation_horizontal = 0;
+					};
+					while{_current_rotation_horizontal < 0} do {
+						_current_rotation_horizontal = _current_rotation_horizontal + 360;
+					};
+					
+					_request = format["POS@%1@%2@%3@%4@%5", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal ];	
+					_result = "task_force_radio_pipe" callExtension _request;
+					if (_result != "OK") then 
+					{
+						hintSilent _result;			
+					} else {
+						if (_prev_result != "OK") then {
+							hintSilent "";
+						}
+					};
+					_prev_result = _result;
 				};
-				_prev_result = _result;
 			} forEach allUnits;
 		};
 		sleep 0.2;
