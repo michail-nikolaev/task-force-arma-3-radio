@@ -39,20 +39,21 @@ tanget_sw_pressed = false;
 		if (_this select 4 and _scancode != ALTL) then {_alt = 1} else {_alt = 0};
 
 		if (alive player) then {
-
-			if (!(tanget_sw_pressed) and (_scancode == tangent_sw_scancode) and (_shift == tangent_sw_shift) and (_ctrl == tangent_sw_ctrl) and (_alt == tangent_sw_alt)) then { 
-				_hintText = format["Transmiting on <t color='#ffff00'>%1</t>...", sw_frequency];
-				hintSilent parseText (_hintText);
-				_request = format["TANGENT@PRESSED@%1", sw_frequency];
-				_result = "task_force_radio_pipe" callExtension _request;
-				tanget_sw_pressed = true;
-			};
-
-			if ((_scancode == dialog_sw_scancode) and (_shift == dialog_sw_shift) and (_ctrl == dialog_sw_ctrl) and (_alt == dialog_sw_alt)) then {
-				if !(dialog) then {
-					createDialog "anprc152_radio_dialog";
-					ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT, sw_frequency];
-				}
+			if ("ItemRadio" in assignedItems player) then {
+				if (!(tanget_sw_pressed) and (_scancode == tangent_sw_scancode) and (_shift == tangent_sw_shift) and (_ctrl == tangent_sw_ctrl) and (_alt == tangent_sw_alt)) then { 
+					_hintText = format["Transmiting on <t color='#ffff00'>%1</t>...", sw_frequency];
+					hintSilent parseText (_hintText);
+					_request = format["TANGENT@PRESSED@%1", sw_frequency];
+					_result = "task_force_radio_pipe" callExtension _request;
+					tanget_sw_pressed = true;
+				};
+	
+				if ((_scancode == dialog_sw_scancode) and (_shift == dialog_sw_shift) and (_ctrl == dialog_sw_ctrl) and (_alt == dialog_sw_alt)) then {
+					if !(dialog) then {
+						createDialog "anprc152_radio_dialog";
+						ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT, sw_frequency];
+					}
+				};
 			};
 		};
 	};
@@ -132,9 +133,13 @@ tanget_sw_pressed = false;
 		};
 		sleep 0.2;
 		// send current sw freq
-		if (isMultiplayer) then {	
+		if (isMultiplayer) then {
+			_freq = "No_SW_Radio";
+			if ("ItemRadio" in assignedItems player) then {
+				_freq = sw_frequency;
+			};
 			_alive = alive player;
-			_request = format["SW_FREQ@%1@%2", sw_frequency, _alive];
+			_request = format["SW_FREQ@%1@%2", _freq, _alive];
 			_result = "task_force_radio_pipe" callExtension _request;
 		} else {
 			_result = "task_force_radio_pipe" callExtension "PING";
