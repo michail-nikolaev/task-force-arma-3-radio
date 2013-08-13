@@ -34,13 +34,14 @@
 static float* floatsSample[MAX_CHANNELS];
 
 #define SERIOUS_MOD_CHANNEL_NAME "TaskForceRadio"
+#define SERIOUS_CHANNEL_PASSWORD "123"
 
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
 
-#define PLUGIN_VERSION "0.4.2 pre alpha"
+#define PLUGIN_VERSION "0.4.3 pre alpha"
 
 struct CLIENT_DATA
 {
@@ -67,8 +68,7 @@ struct CLIENT_DATA
 
 typedef std::map<std::string, CLIENT_DATA*> STRING_TO_CLIENT_DATA_MAP;
 struct SERVER_RADIO_DATA 
-{
-	anyID myID;
+{	
 	std::string myNickname;
 	bool tangentPressed;
 	TS3_VECTOR myPosition;
@@ -78,7 +78,6 @@ struct SERVER_RADIO_DATA
 
 	SERVER_RADIO_DATA()
 	{
-		myID = -1;
 		tangentPressed = false;
 	}
 };
@@ -94,6 +93,7 @@ HANDLE thread = INVALID_HANDLE_VALUE;
 bool exitThread = FALSE;
 bool pipeConnected = false;
 bool inGame = false;
+uint64 notSeriousChannelId = uint64(-1);
 bool vadEnabled = false;
 static char* pluginID = NULL;
 
@@ -352,6 +352,58 @@ std::string getMyNickname(uint64 serverConnectionHandlerID)
 	return result;
 }
 
+void onGameEnd(uint64 serverConnectionHandlerID, anyID clientId) 
+{
+	DWORD error;
+	if (notSeriousChannelId != uint64(-1))
+	{
+		if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, notSeriousChannelId, "", NULL)) != ERROR_ok) {
+			log("Can't join back channel", error);
+		}
+		notSeriousChannelId = uint64(-1);
+	}
+}
+
+void onRespawn(uint64 serverConnectionHandlerID, anyID clientId)
+{
+	notSeriousChannelId = getCurrentChannel(serverConnectionHandlerID);
+	uint64* result;
+	DWORD error;
+	if ((error = ts3Functions.getChannelList(serverConnectionHandlerID, &result)) != ERROR_ok)
+	{
+		log("Can't get channel list", error);		
+	} 
+	else 
+	{
+		bool joined = false;
+		uint64* iter = result;
+		while (*iter && !joined)
+		{
+			uint64 channelId = *iter;
+			iter++;
+			char* channelName;
+			if ((error = ts3Functions.getChannelVariableAsString(serverConnectionHandlerID, channelId, CHANNEL_NAME, &channelName)) != ERROR_ok) {
+				log("Can't get channel name", error);
+			} 
+			else 
+			{
+				if (!strcmp(SERIOUS_MOD_CHANNEL_NAME, channelName))
+				{					
+					if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, channelId, SERIOUS_CHANNEL_PASSWORD, NULL)) != ERROR_ok) {
+						log("Can't join channel", error);
+					} 
+					else 
+					{
+						joined = true;
+					}
+
+				}
+				ts3Functions.freeMemory(channelName);
+			}
+		}
+		ts3Functions.freeMemory(result);
+	}
+}
 
 void processGameCommand(std::string command)
 {
@@ -380,6 +432,7 @@ void processGameCommand(std::string command)
 		position.y = z; // yes, it is correct
 		position.z = y; // yes, it is correct				
 		DWORD time = GetTickCount();
+		anyID myId = getMyId(currentServerConnectionHandlerID);
 		EnterCriticalSection(&serverDataCriticalSection); 
 		if (nickname == serverIdToData[currentServerConnectionHandlerID].myNickname) 
 		{
@@ -392,7 +445,7 @@ void processGameCommand(std::string command)
 			CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
 			if (clientData)
 			{
-				clientData->clientId = serverIdToData[currentServerConnectionHandlerID].myID;
+				clientData->clientId = myId;
 				clientData->clientPosition = position;
 				clientData->positionTime = time;				
 			}
@@ -572,7 +625,8 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 						if (!inGame)
 						{
 							playWavFile("radio-sounds/on.wav");
-							inGame = true;
+							inGame = true;							
+							onRespawn(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
 						}	
 					}				
 					if (!pipeConnected)
@@ -614,8 +668,16 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 		{
 			centerAll(ts3Functions.getCurrentServerConnectionHandlerID());			
 			lastInGame = GetTickCount();
-			if (inGame) playWavFile("radio-sounds/off.wav");
+			if (inGame) 
+			{
+				playWavFile("radio-sounds/off.wav");			
+				EnterCriticalSection(&serverDataCriticalSection);				
+				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].alive = false;
+				LeaveCriticalSection(&serverDataCriticalSection);
+				onGameEnd(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
+			}
 			inGame = false;
+			
 		}
 		if (GetTickCount() - lastInfoUpdate > MILLIS_TO_EXPIRE)
 		{
@@ -748,16 +810,19 @@ void ts3plugin_shutdown() {
     /* Your plugin cleanup code here */
     log("shutdown...");
 	exitThread = TRUE;	
-	Sleep(1000);
-	pipeConnected = inGame = false;
-	ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "[B]Task Force Radio: [/B][I]Disabling Task Force Radio Plugin[/I]", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
-	updateUserStatusInfo(false);
+	Sleep(1000);	
 	DWORD exitCode;
 	BOOL result = GetExitCodeThread(thread, &exitCode);
 	if (!result || exitCode == STILL_ACTIVE) 
 	{
 		log("thread not terminated", LogLevel_CRITICAL);
 	}
+	EnterCriticalSection(&serverDataCriticalSection);
+	serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].alive = false;
+	LeaveCriticalSection(&serverDataCriticalSection);
+	pipeConnected = inGame = false;
+	ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "[B]Task Force Radio: [/B][I]Disabling Task Force Radio Plugin[/I]", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
+	updateUserStatusInfo(false);
 	thread = INVALID_HANDLE_VALUE;
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	exitThread = FALSE;
@@ -945,8 +1010,7 @@ void ts3plugin_onConnectStatusChangeEvent(uint64 serverConnectionHandlerID, int 
 		anyID myId = getMyId(serverConnectionHandlerID);
 		EnterCriticalSection(&serverDataCriticalSection);
 
-		serverIdToData[serverConnectionHandlerID] = SERVER_RADIO_DATA();
-		serverIdToData[serverConnectionHandlerID].myID = myId;				
+		serverIdToData[serverConnectionHandlerID] = SERVER_RADIO_DATA();					
 		serverIdToData[serverConnectionHandlerID].myNickname = myNickname;
 
 		LeaveCriticalSection(&serverDataCriticalSection);
@@ -1195,7 +1259,7 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 	TS3_VECTOR clientPosition = data->clientPosition;
  	float distance = sqrt(sq(myPosition.x - clientPosition.x) + sq(myPosition.y - clientPosition.y) + sq(myPosition.z - clientPosition.z));
 	if (distance <= 1.0) return 1.0;
-	float gain = 1.0 - log10((distance / 20) * 10); // 20 metres
+	float gain = 1.0f - log10((distance / 20.0f) * 10.0f); // 20 metres
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);	
 }
  
@@ -1238,12 +1302,12 @@ bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID)
 
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {	
 	static DWORD last_no_info;
+	EnterCriticalSection(&serverDataCriticalSection);
+	bool alive = serverIdToData[serverConnectionHandlerID].alive;
+	LeaveCriticalSection(&serverDataCriticalSection);
 	if (hasClientData(serverConnectionHandlerID, clientID) && isPluginEnabledForUser(serverConnectionHandlerID, clientID))
 	{		
-		CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);
-		EnterCriticalSection(&serverDataCriticalSection);
-		bool alive = serverIdToData[serverConnectionHandlerID].alive;
-		LeaveCriticalSection(&serverDataCriticalSection);
+		CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);		
 		if (isSeriousModeEnabled(serverConnectionHandlerID, clientID) && !alive)
 		{
 			applyGain(samples, channels, sampleCount, 0.0f);
@@ -1271,7 +1335,10 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 		}
 		else 
 		{
-			applyGain(samples, channels, sampleCount, 0.0f);
+			if (!alive & inGame & isPluginEnabledForUser(serverConnectionHandlerID, clientID))
+				stereoToMonoDSP(samples, channels, sampleCount); // dead player hears other dead players in serious mode			
+			else 
+				applyGain(samples, channels, sampleCount, 0.0f); // alive player hears only alive players in serious mode
 		}
 		if (GetTickCount() - last_no_info > MILLIS_TO_EXPIRE) 
 		{
