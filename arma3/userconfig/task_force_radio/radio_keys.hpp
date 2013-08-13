@@ -8,8 +8,8 @@
 	};
 
 	class dialog_sw {
-		key = 22;
-		ctrl = 0;
+		key = 25;
+		ctrl = 1;
 		shift = 0;
 		alt = 0;
 	};

@@ -388,15 +388,17 @@ void onRespawn(uint64 serverConnectionHandlerID, anyID clientId)
 			else 
 			{
 				if (!strcmp(SERIOUS_MOD_CHANNEL_NAME, channelName))
-				{					
-					if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, channelId, SERIOUS_CHANNEL_PASSWORD, NULL)) != ERROR_ok) {
-						log("Can't join channel", error);
-					} 
-					else 
-					{
-						joined = true;
+				{			
+					if (getCurrentChannel(serverConnectionHandlerID) != channelId)
+					{					
+						if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, channelId, SERIOUS_CHANNEL_PASSWORD, NULL)) != ERROR_ok) {
+							log("Can't join channel", error);
+						} 
+						else 
+						{
+							joined = true;
+						}
 					}
-
 				}
 				ts3Functions.freeMemory(channelName);
 			}
