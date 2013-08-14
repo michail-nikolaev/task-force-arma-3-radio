@@ -29,6 +29,12 @@ tanget_sw_pressed = false;
 
 [] spawn {	
 	sleep 4;
+
+	haveSWRadio = 
+	{
+		("ItemRadio" in assignedItems player);
+	};
+
 	radio_keyDown =
 	{
 		private["_result", "_request", "_ctrl", "_scancode", "_shift", "_alt"];
@@ -39,7 +45,7 @@ tanget_sw_pressed = false;
 		if (_this select 4 and _scancode != ALTL) then {_alt = 1} else {_alt = 0};
 
 		if (alive player) then {
-			if ("ItemRadio" in assignedItems player) then {
+			if (call haveSWRadio) then {
 				if (!(tanget_sw_pressed) and (_scancode == tangent_sw_scancode) and (_shift == tangent_sw_shift) and (_ctrl == tangent_sw_ctrl) and (_alt == tangent_sw_alt)) then { 
 					_hintText = format["Transmiting on <t color='#ffff00'>%1</t>...", sw_frequency];
 					hintSilent parseText (_hintText);
@@ -135,7 +141,7 @@ tanget_sw_pressed = false;
 		// send current sw freq
 		if (isMultiplayer) then {
 			_freq = "No_SW_Radio";
-			if ("ItemRadio" in assignedItems player) then {
+			if (call haveSWRadio) then {
 				_freq = sw_frequency;
 			};
 			_alive = alive player;
