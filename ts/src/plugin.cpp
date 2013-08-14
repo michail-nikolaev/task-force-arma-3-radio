@@ -1527,6 +1527,7 @@ void processPluginCommand(std::string command)
 		boolean playReleased = false;
 
 		EnterCriticalSection(&serverDataCriticalSection);
+		bool alive = serverIdToData[serverId].alive;
 		std::string myFrequency = serverIdToData[serverId].mySwFrequency;
 		if (serverIdToData[serverId].nicknameToClientData.count(nickname))
 		{		
@@ -1551,9 +1552,9 @@ void processPluginCommand(std::string command)
 				LeaveCriticalSection(&serverDataCriticalSection);
 		
 				if (myFrequency == frequency)
-				{
-					if (playPressed) playWavFile("radio-sounds/remote_start.wav");
-					if (playReleased) 
+				{					
+					if (playPressed && alive) playWavFile("radio-sounds/remote_start.wav");
+					if (playReleased && alive) 
 					{
 							playWavFile("radio-sounds/remote_end.wav");
 							EnterCriticalSection(&serverDataCriticalSection);
