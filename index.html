@@ -1,36 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Task-force-arma-3-radio : Arma 3 Team Speak Radio Plugin" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Task-force-arma-3-radio by michail-nikolaev</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <title>Task-force-arma-3-radio</title>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/michail-nikolaev/task-force-arma-3-radio">View on GitHub</a>
-
-          <h1 id="project_title">Task-force-arma-3-radio</h1>
-          <h2 id="project_tagline">Arma 3 Team Speak Radio Plugin</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/michail-nikolaev/task-force-arma-3-radio/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/michail-nikolaev/task-force-arma-3-radio/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+    <div class="wrapper">
+      <header>
+        <h1>Task-force-arma-3-radio</h1>
+        <p>Arma 3 Team Speak Radio Plugin</p>
+        <p class="view"><a href="https://github.com/michail-nikolaev/task-force-arma-3-radio">View the Project on GitHub <small>michail-nikolaev/task-force-arma-3-radio</small></a></p>
+        <ul>
+          <li><a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/michail-nikolaev/task-force-arma-3-radio">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
         <h1>
 <a name="task-force-arma-3-radio" class="anchor" href="#task-force-arma-3-radio"><span class="octicon octicon-link"></span></a>task-force-arma-3-radio</h1>
 
@@ -39,7 +35,7 @@
 <p>Инструкция по установке:</p>
 
 <ul>
-<li>Скачайте <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.4.3%20pre%20alpha.zip">архив с рацией 0.4.3 pre alpha</a>
+<li>Скачайте <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.5.0%20alpha.zip">архив с рацией 0.5.0 alpha</a>
 </li>
 <li>Убедитесь, что в Team Speak клавиша Caps Lock не используется для разговора</li>
 <li>Убедись, что вы запускаете игру только один раз (только одно окно игры)</li>
@@ -60,9 +56,20 @@
 
 <ul>
 <li>Используйте кнопку разговора в Team Speak, чтобы говорить прямой речью</li>
-<li>Используйте <code>U</code>, чтобы открыть интерфейс рации. Для того, чтобы ввести частоту нажмите <code>CLR</code>, введите значение и нажмите <code>ENT</code>
+<li>Используйте <code>CTRL</code> + <code>P</code>, чтобы открыть интерфейс коротковолновой рации (у вас в инвентаре должна быть рация в слоте). Для того, чтобы ввести частоту нажмите <code>CLR</code>, введите значение и нажмите <code>ENT</code>
 </li>
 <li>Используйте <code>Caps Lock</code>, чтобы говорить по рации</li>
+<li>Используйте <code>ALT</code> + <code>P</code>, чтобы открыть интерфейс рации дальней связи (у вас в инвентаре должна быть рация в слоте). Для того, чтобы ввести частоту нажмите <code>MENU CLR</code>, введите значение и нажмите <code>FREQ</code>
+</li>
+<li>Используйте <code>CTRL</code> + Caps Lock`, чтобы говорить по рации дальней связи</li>
+<li>Управление можно настроить посредством редактирования <code>userconfig\task_force_radio\radio_keys.hpp</code>
+</li>
+</ul><p>Частоты:</p>
+
+<ul>
+<li>Рация <a href="http://ru.wikipedia.org/wiki/AN/PRC-152">AN/PRC-152</a> (коротковолновая) может работать на частотах от 30 до 512 MHz.</li>
+<li>Рация <a href="http://en.wikipedia.org/wiki/SINCGARS#Models">RT-1523G (ASIP)</a> работает на частотах от 30 до 87 MHz.</li>
+<li>Обе рации поддерживают SINCGARS протокол, поэтому могут связываться друг с другом. В случае если передача осуществляется с <a href="http://ru.wikipedia.org/wiki/AN/PRC-152">AN/PRC-152</a>, звук будет высокочастотным. В случае передачи с <a href="http://en.wikipedia.org/wiki/SINCGARS#Models">RT-1523G (ASIP)</a> - низкочастотным. </li>
 </ul><p><strong>Пояснения о режимах:</strong></p>
 
 <ul>
@@ -85,21 +92,17 @@
 </ul><p>Спасибки:</p>
 
 <ul>
-<li>Отряду <a href="http://forum.task-force.ru/">Task Force Arrowhead</a> за тестирование, поддержку, терпение и всяческую помощь</li>
+<li>Отряду <a href="http://forum.task-force.ru/">Task Force Arrowhead</a> за тестирование, поддержку, терпение и всяческую помощь, лично <a href="http://forum.task-force.ru/index.php?action=profile;u=7">MTF</a> за помощь в графической части</li>
 <li>
 <a href="http://arma3.ru/forums/index.php/user/41-blender/">Блендеру</a> за шрифт</li>
 </ul>
       </section>
     </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Task-force-arma-3-radio maintained by <a href="https://github.com/michail-nikolaev">michail-nikolaev</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
+    <footer>
+      <p>Project maintained by <a href="https://github.com/michail-nikolaev">michail-nikolaev</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -110,7 +113,6 @@
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
-
 
   </body>
 </html>
