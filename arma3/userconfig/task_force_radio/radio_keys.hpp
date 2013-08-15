@@ -14,6 +14,21 @@
 		alt = 0;
 	};
 
+	class tanget_lr {
+		key = 58;
+		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+
+	class dialog_lr {
+		key = 25;
+		ctrl = 0;
+		shift = 0;
+		alt = 1;
+	};
+
+
 };
 
 /* KEY LIST // Tastendruckzuweisung // Le key de la baguette // Обозначения клавиш // Zorro key // Lista klawiszy // Billentyû lista // whatever */

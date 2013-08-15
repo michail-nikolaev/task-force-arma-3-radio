@@ -23,7 +23,7 @@ class CfgFontFamilies {
 	class VTN_LCD  {
 		fonts[] = {"\task_force_radio\fonts\vtn_lcd26","\task_force_radio\fonts\vtn_lcd46"};
 		spaceWidth = 0.900000;
-		spacing = 0.250000;
+		spacing = 0.25000;
 	};
 };
 class RscBackPicture
@@ -99,7 +99,7 @@ class RscEditLCD
 	style = "0x00 + 0x40 + 0x200";
 	font = "VTN_LCD";
 	shadow = 2;
-	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
 	canModify = 1;
 };
 class HiddenButton
@@ -216,7 +216,7 @@ class enter: HiddenButton
 	y = 0.49235 * safezoneH + safezoneY;
 	w = 0.0172125 * safezoneW;
 	h = 0.020826 * safezoneH;
-	action = "_f = parseNumber(ctrlText IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);  if ((_f > MIN_SW_FREQ) and (_f < MAX_SW_FREQ)) then {sw_frequency = str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER); hintSilent '';} else {hint 'Incorrect frequency value'}; ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT_ID, sw_frequency];";
+	action = "_f = parseNumber(ctrlText IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);  if ((_f > MIN_SW_FREQ) and (_f < MAX_SW_FREQ)) then {sw_frequency = str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER); hintSilent '';} else {hint formatText ['Incorrect frequency value, range is %1-%2', MIN_SW_FREQ, MAX_SW_FREQ]}; ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT_ID, sw_frequency];";
 };
 class clear: HiddenButton
 {
@@ -231,6 +231,81 @@ class clear: HiddenButton
 // GUI EDITOR OUTPUT END
 ////////////////////////////////////////////////////////	
 
+};
+
+
+
+/* #Wetyli
+$[
+	1.062,
+	["rt1523g",[["0","0","1","1"],"0.001","0.001","GUI_GRID"],0,1,0],
+	[1200,"",[1,"task_force_radio\rt1523g\rt1523g.paa",["0.0935937 * safezoneW + safezoneX","0.159984 * safezoneH + safezoneY","0.502031 * safezoneW","0.612028 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1400,"",[1,"12.6",["0.356562 * safezoneW + safezoneX","0.363994 * safezoneH + safezoneY","0.0796875 * safezoneW","0.0510023 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","2"],[]],
+	[1600,"",[1,"",["0.263806 * safezoneW + safezoneX","0.623256 * safezoneH + safezoneY","0.036975 * safezoneW","0.0403769 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1601,"",[1,"",["0.400869 * safezoneW + safezoneX","0.470249 * safezoneH + safezoneY","0.0357 * safezoneW","0.0378267 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+]
+*/
+
+
+class rt1523g_radio_dialog 
+{
+	idd = IDC_RT1523G_RADIO_DIALOG;
+	movingEnable = 1;
+	controlsBackground[] = { };
+	objects[] = { };
+	controls[]=
+{
+	rt1523g_background,
+	rt1523g_enter,
+	rt1523g_edit,
+	rt1523g_clear
+};
+
+////////////////////////////////////////////////////////
+// GUI EDITOR OUTPUT START (by [TF]Nkey, v1.062, #Wetyli)
+////////////////////////////////////////////////////////
+
+class rt1523g_background: RscBackPicture
+{
+	idc = IDC_RT1523G_RADIO_DIALOG_BACKGROUND;
+	text = "\task_force_radio\rt1523g\rt1523g.paa";
+	x = 0.0935937 * safezoneW + safezoneX;
+	y = 0.159984 * safezoneH + safezoneY;
+	w = 0.502031 * safezoneW;
+	h = 0.612028 * safezoneH;
+	moving = 1;
+};
+class rt1523g_edit: RscEditLCD
+{
+	moving = 1;
+	idc = IDC_RT1523G_RADIO_DIALOG_EDIT;
+	text = lr_frequency;
+	x = 0.356562 * safezoneW + safezoneX;
+	y = 0.363994 * safezoneH + safezoneY;
+	w = 0.0796875 * safezoneW;
+	h = 0.0510023 * safezoneH;
+};
+class rt1523g_clear: HiddenButton
+{
+	idc = IDC_RT1523G_RADIO_DIALOG_CLEAR;
+	x = 0.263806 * safezoneW + safezoneX;
+	y = 0.623256 * safezoneH + safezoneY;
+	w = 0.036975 * safezoneW;
+	h = 0.0403769 * safezoneH;
+	action = "ctrlSetText [IDC_RT1523G_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_RT1523G_RADIO_DIALOG_ID) displayCtrl IDC_RT1523G_RADIO_DIALOG_EDIT_ID);";
+};
+class rt1523g_enter: HiddenButton
+{
+	idc = IDC_RT1523G_RADIO_DIALOG_ENTER;
+	x = 0.400869 * safezoneW + safezoneX;
+	y = 0.470249 * safezoneH + safezoneY;
+	w = 0.0357 * safezoneW;
+	h = 0.0378267 * safezoneH;
+	action = "_f = parseNumber(ctrlText IDC_RT1523G_RADIO_DIALOG_EDIT_ID);  if ((_f > MIN_ASIP_FREQ) and (_f < MAX_ASIP_FREQ)) then {lr_frequency = str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER); hintSilent '';} else {hint formatText ['Incorrect frequency value, range is %1-%2', MIN_ASIP_FREQ, MAX_ASIP_FREQ]}; ctrlSetText [IDC_RT1523G_RADIO_DIALOG_EDIT_ID, lr_frequency];";
+};
+////////////////////////////////////////////////////////
+// GUI EDITOR OUTPUT END
+////////////////////////////////////////////////////////
 };
 
 
