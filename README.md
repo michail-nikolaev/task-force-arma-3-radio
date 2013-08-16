@@ -52,3 +52,4 @@ Arma 3 Team Speak Radio Plugin
 Спасибки:
 * Отряду [Task Force Arrowhead](http://forum.task-force.ru/) за тестирование, поддержку, терпение и всяческую помощь, лично [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) за помощь в графической части
 * [Блендеру](http://arma3.ru/forums/index.php/user/41-blender/) за шрифт
+* [vinniefalco](https://github.com/vinniefalco) за [DSP фильтры](https://github.com/vinniefalco/DSPFilters)
