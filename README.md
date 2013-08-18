@@ -50,6 +50,6 @@ Arma 3 Team Speak Radio Plugin
 * Если уж данная разработка будет как-либо популярна, то хотелось бы избежать кучи несовместимых форков. По этой причине в случае желания внесения изменений связывайтесь со мной - велика вероятность, что ваши разработки будут вмержены в главную ветку. Ждем ваших Pull Requests :)
 
 Спасибки:
-* Отряду [Task Force Arrowhead](http://forum.task-force.ru/) за тестирование, поддержку, терпение и всяческую помощь, лично [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) за помощь в графической части
+* Отряду [Task Force Arrowhead](http://forum.task-force.ru/) за тестирование, поддержку, терпение и всяческую помощь, лично [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) за помощь в графической части
 * [Блендеру](http://arma3.ru/forums/index.php/user/41-blender/) за шрифт
 * [vinniefalco](https://github.com/vinniefalco) за [DSP фильтры](https://github.com/vinniefalco/DSPFilters)
