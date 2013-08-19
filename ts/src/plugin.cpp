@@ -28,7 +28,8 @@
 #include "DspFilters\Butterworth.h"
 
 #define M_PI       3.14159265358979323846
-#define RADIO_GAIN 12
+#define RADIO_GAIN_SW 20
+#define RADIO_GAIN_LR 10
 
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
@@ -39,9 +40,20 @@ static float* floatsSample[MAX_CHANNELS];
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
+#define PLUGIN_NAME_x64 "task_force_radio_x64"
 #define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
 
-#define PLUGIN_VERSION "0.5.0 alpha"
+#define LR_DISTANCE 20000
+#define SW_DISTANCE 3000
+
+inline float sq(float x) {return x * x;}
+
+float distance(TS3_VECTOR from, TS3_VECTOR to)
+{
+	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
+}
+
+#define PLUGIN_VERSION "0.5.1 alpha"
 
 struct CLIENT_DATA
 {	
@@ -51,7 +63,7 @@ struct CLIENT_DATA
 	TS3_VECTOR clientPosition;
 	uint64 positionTime;
 	std::string frequency;	
-	Dsp::SimpleFilter<Dsp::Butterworth::HighPass<4>, MAX_CHANNELS> filterSW;
+	Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS> filterSW;
 	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS> filterLR;
 	void resetSWFilter() 
 	{
@@ -68,7 +80,7 @@ struct CLIENT_DATA
 		longRangeTangent = false;
 		clientPosition.x = clientPosition.y = clientPosition.z = 0;
 		clientId = -1;
-		filterSW.setup(4, 48000, 1800);
+		filterSW.setup(2, 48000, 2000, 800);
 		filterLR.setup(4, 48000, 1800);
 	}
 };
@@ -1159,7 +1171,7 @@ void applyGain(short * samples, int channels, int sampleCount, float directTalki
 	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short)(samples[i] * directTalkingVolume);
 }
 
-void processRadioDSP(short * samples, int channels, int sampleCount, float directTalkingVolume, Dsp::SimpleFilter<Dsp::Butterworth::HighPass<4>, MAX_CHANNELS>* filterSw,
+void processRadioDSP(short * samples, int channels, int sampleCount, float directTalkingVolume, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* filterSw,
 																								Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* filterLr)
 {
 	float zero = 0.0f;		
@@ -1196,7 +1208,8 @@ void processRadioDSP(short * samples, int channels, int sampleCount, float direc
 		if (filterLr != NULL) filterLr->process<float>(1, floatsSample);
 		for (int j = 0; j < channels; j++) 
 		{			
-			mix[j] = floatsSample[j][0] * RADIO_GAIN;					
+			if (filterSw != NULL) mix[j] = floatsSample[j][0] * RADIO_GAIN_SW;
+			if (filterLr != NULL) mix[j] = floatsSample[j][0] * RADIO_GAIN_LR;
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);
 		// now process and add direct talking to mix
@@ -1263,17 +1276,15 @@ bool isSeriousModeEnabled(uint64 serverConnectionHandlerID, anyID clientId)
 void ts3plugin_onEditPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {	
 }
 
-inline float sq(float x) {return x * x;}
-
 float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 {	
 	EnterCriticalSection(&serverDataCriticalSection);
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;	
 	LeaveCriticalSection(&serverDataCriticalSection);
 	TS3_VECTOR clientPosition = data->clientPosition;
- 	float distance = sqrt(sq(myPosition.x - clientPosition.x) + sq(myPosition.y - clientPosition.y) + sq(myPosition.z - clientPosition.z));
-	if (distance <= 1.0) return 1.0;
-	float gain = 1.0f - log10((distance / 20.0f) * 10.0f); // 20 metres
+ 	float d = distance(myPosition, clientPosition);
+	if (d <= 1.0) return 1.0;
+	float gain = 1.0f - log10((d / 20.0f) * 10.0f); // 20 metres
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);	
 }
 
@@ -1288,10 +1299,20 @@ OVER_RADIO_TYPE isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 {	
 	OVER_RADIO_TYPE result = LISTEN_NONE;
 	EnterCriticalSection(&serverDataCriticalSection);	
+	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
+	TS3_VECTOR clientPosition = data->clientPosition;
+
 	if (data->tangentPressed 
 		&& (serverIdToData[serverConnectionHandlerID].myLrFrequency == data->frequency || serverIdToData[serverConnectionHandlerID].mySwFrequency == data->frequency))
 	{
-		result =  (data->longRangeTangent ? LISTEN_TO_LR : LISTEN_TO_SW);
+		if (data->longRangeTangent && distance(myPosition, clientPosition) < LR_DISTANCE)
+		{
+			result = LISTEN_TO_LR;
+		} 
+		else if (!data->longRangeTangent && distance(myPosition, clientPosition) < SW_DISTANCE)
+		{
+			result = LISTEN_TO_SW;
+		}		
 	} 
 	LeaveCriticalSection(&serverDataCriticalSection);
 	return result;	
@@ -1344,7 +1365,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 				OVER_RADIO_TYPE overRadioType = isOverRadio(serverConnectionHandlerID, data);
 				if (overRadioType != LISTEN_NONE)
 				{			
-					Dsp::SimpleFilter<Dsp::Butterworth::HighPass<4>, MAX_CHANNELS>* filterSw = (overRadioType == LISTEN_TO_SW) ? &(data->filterSW) : NULL;
+					Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* filterSw = (overRadioType == LISTEN_TO_SW) ? &(data->filterSW) : NULL;
 					Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* filterLr = (overRadioType == LISTEN_TO_LR) ? &(data->filterLR) : NULL;
 					processRadioDSP(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data), filterSw, filterLr);
 				} 
@@ -1578,14 +1599,15 @@ void processPluginCommand(std::string command)
 						clientData->frequency = frequency;
 					}
 				}		
+				float d = distance(myPosition, clientData->clientPosition);
 				LeaveCriticalSection(&serverDataCriticalSection);
 		
-				if (mySwFrequency == frequency)
+				if (mySwFrequency == frequency && d < SW_DISTANCE)
 				{					
 					if (playPressed && alive) playWavFile("radio-sounds/remote_start.wav");
 					if (playReleased && alive) playWavFile("radio-sounds/remote_end.wav");												
 				}
-				if (myLrFrequency == frequency)
+				if (myLrFrequency == frequency && d < LR_DISTANCE)
 				{
 					if (playPressed && alive) playWavFile("radio-sounds/remote_start_lr.wav");
 					if (playReleased && alive) playWavFile("radio-sounds/remote_end_lr.wav");											
@@ -1605,14 +1627,13 @@ void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char
 	log_string(std::string("ON PLUGIN COMMAND ") +  pluginName + " " + pluginCommand, LogLevel_DEVEL);
 	if(serverConnectionHandlerID == ts3Functions.getCurrentServerConnectionHandlerID())
 	{
-		if(strcmp(pluginName, PLUGIN_NAME) != 0)
+		if((strcmp(pluginName, PLUGIN_NAME)) == 0 || (strcmp(pluginName, PLUGIN_NAME_x64) == 0))
 		{			
-			log("Plugin command event failure", LogLevel_ERROR);
+			processPluginCommand(std::string(pluginCommand));
 		}
 		else
 		{
-			
-			processPluginCommand(std::string(pluginCommand));
+			log("Plugin command event failure", LogLevel_ERROR);			
 		}
 	}
 }
