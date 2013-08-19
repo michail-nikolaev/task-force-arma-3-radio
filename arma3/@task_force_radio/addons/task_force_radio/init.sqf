@@ -53,7 +53,7 @@ tanget_lr_pressed = false;
 	};
 	haveLRRadio = 
 	{
-		("ItemRadio" in assignedItems player);
+		(backpack player == "tf_rt1523g");
 	};
 
 	radio_keyDown =
@@ -184,10 +184,10 @@ tanget_lr_pressed = false;
 		// send current sw freq
 		if (isMultiplayer) then {
 			_freq = "No_SW_Radio";
+			_freq_lr = "No_LR_Radio";
 			if (call haveSWRadio) then {
 				_freq = sw_frequency;
 			};
-			_freq_lr = "No_LR_Radio";
 			if (call haveLRRadio) then {
 				_freq_lr = lr_frequency;
 			};
@@ -211,5 +211,11 @@ tanget_lr_pressed = false;
 			_have_display_46 = false;
 		};
 	}
+};
+
+if (leader player == player) then {
+	sleep 4;
+	removeBackpack player;
+	player addBackpack "tf_rt1523g";
 };
 
