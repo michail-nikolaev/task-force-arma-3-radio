@@ -41,7 +41,7 @@ static float* floatsSample[MAX_CHANNELS];
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x64 "task_force_radio_x64"
-#define MILLIS_TO_EXPIRE 2000  // 1 second without updates of client position to expire
+#define MILLIS_TO_EXPIRE 2000  // 2 secondS without updates of client position to expire
 
 #define LR_DISTANCE 20000
 #define SW_DISTANCE 3000
@@ -53,7 +53,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.5.1 alpha"
+#define PLUGIN_VERSION "0.5.2 pre beta"
 
 struct CLIENT_DATA
 {	
@@ -104,9 +104,6 @@ struct SERVER_RADIO_DATA
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
 
 #define PATH_BUFSIZE 512
-char appPath[PATH_BUFSIZE];
-char resourcesPath[PATH_BUFSIZE];
-char configPath[PATH_BUFSIZE];
 char pluginPath[PATH_BUFSIZE];
 
 HANDLE thread = INVALID_HANDLE_VALUE;
@@ -212,7 +209,7 @@ void hlp_enableVad()
 	DWORD error;
 	if((error = ts3Functions.setPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", "true")) != ERROR_ok)
 	{
-		log("VAD succesfully enabled", error);
+		log("VAD successfully enabled", error);
 	}	
 }
 
@@ -609,7 +606,6 @@ void updateNicknamesList(uint64 serverConnectionHandlerID) {
 
 }
 
-
 DWORD WINAPI PipeThread( LPVOID lpParam )
 {
 	HANDLE pipe = INVALID_HANDLE_VALUE;	
@@ -723,25 +719,8 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 
 #define PLUGIN_API_VERSION 19
 
-#define COMMAND_BUFSIZE 128
 #define INFODATA_BUFSIZE 128
-#define SERVERINFO_BUFSIZE 256
-#define CHANNELINFO_BUFSIZE 512
-#define RETURNCODE_BUFSIZE 128
 
-
-#ifdef _WIN32
-/* Helper function to convert wchar_T to Utf-8 encoded strings on Windows */
-static int wcharToUtf8(const wchar_t* str, char** result) {
-	int outlen = WideCharToMultiByte(CP_UTF8, 0, str, -1, 0, 0, 0, 0);
-	*result = (char*)malloc(outlen);
-	if(WideCharToMultiByte(CP_UTF8, 0, str, -1, *result, outlen, 0, 0) == 0) {
-		*result = NULL;
-		return -1;
-	}
-	return 0;
-}
-#endif
 
 /*********************************** Required functions ************************************/
 /*
@@ -750,19 +729,7 @@ static int wcharToUtf8(const wchar_t* str, char** result) {
 
 /* Unique name identifying this plugin */
 const char* ts3plugin_name() {	
-#ifdef _WIN32
-	/* TeamSpeak expects UTF-8 encoded characters. Following demonstrates a possibility how to convert UTF-16 wchar_t into UTF-8. */
-	static char* result = NULL;  /* Static variable so it's allocated only once */
-	if(!result) {
-		const wchar_t* name = L"Task Force Arma 3 Radio";
-		if(wcharToUtf8(name, &result) == -1) {  /* Convert name into UTF-8 encoded result */
-			result = "Task Force Arma 3 Radio";  /* Conversion failed, fallback here */
-		}
-	}
-	return result;
-#else
 	return "Task Force Arma 3 Radio";
-#endif
 }
 
 /* Plugin version */
@@ -796,16 +763,8 @@ void ts3plugin_setFunctionPointers(const struct TS3Functions funcs) {
  * Custom code called right after loading the plugin. Returns 0 on success, 1 on failure.
  * If the function returns 1 on failure, the plugin will be unloaded again.
  */
-int ts3plugin_init() {
-    /* Your plugin init code here */    
-
-    /* Example on how to query application, resources and configuration paths from client */
-    /* Note: Console client returns empty string for app and resources path */
-    ts3Functions.getAppPath(appPath, PATH_BUFSIZE);
-    ts3Functions.getResourcesPath(resourcesPath, PATH_BUFSIZE);
-    ts3Functions.getConfigPath(configPath, PATH_BUFSIZE);
+int ts3plugin_init() {    
 	ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE);
-
 
 	InitializeCriticalSection(&serverDataCriticalSection);
 
@@ -821,10 +780,7 @@ int ts3plugin_init() {
 		floatsSample[q] = new float[1];
 	}
 
-    return 0;  /* 0 = success, 1 = failure, -2 = failure but client will not show a "failed to load" warning */
-	/* -2 is a very special case and should only be used if a plugin displays a dialog (e.g. overlay) asking the user to disable
-	 * the plugin again, avoiding the show another dialog by the client telling the user the plugin failed to load.
-	 * For normal case, if a plugin really failed to load because of an error, the correct return value is 1. */
+    return 0;
 }
 
 
@@ -850,13 +806,7 @@ void ts3plugin_shutdown() {
 	thread = INVALID_HANDLE_VALUE;
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	exitThread = FALSE;
-
-	/*
-	 * Note:
-	 * If your plugin implements a settings dialog, it must be closed and deleted here, else the
-	 * TeamSpeak client will most likely crash (DLL removed but dialog from DLL code still open).
-	 */
-
+	
 	/* Free pluginID if we registered it */
 	if(pluginID) {
 		free(pluginID);
@@ -890,7 +840,7 @@ void ts3plugin_configure(void* handle, void* qParentWidget) {
  * Note the passed pluginID parameter is no longer valid after calling this function, so you must copy it and store it in the plugin.
  */
 void ts3plugin_registerPluginID(const char* id) {
-	const size_t sz = strlen(id) + 1;
+	const size_t sz = strlen(id) + 1;	
 	pluginID = (char*)malloc(sz * sizeof(char));
 	_strcpy(pluginID, sz, id);  /* The id buffer will invalidate after exiting this function */
 	std::string message = std::string("registerPluginID: ") + std::string(pluginID);
@@ -966,16 +916,6 @@ int ts3plugin_requestAutoload() {
 	return 0;  /* 1 = request autoloaded, 0 = do not request autoload */
 }
 
-/* Helper function to create a menu item */
-static struct PluginMenuItem* createMenuItem(enum PluginMenuType type, int id, const char* text, const char* icon) {
-	struct PluginMenuItem* menuItem = (struct PluginMenuItem*)malloc(sizeof(struct PluginMenuItem));
-	menuItem->type = type;
-	menuItem->id = id;
-	_strcpy(menuItem->text, PLUGIN_MENU_BUFSZ, text);
-	_strcpy(menuItem->icon, PLUGIN_MENU_BUFSZ, icon);
-	return menuItem;
-}
-
 /*
  * Initialize plugin menus.
  * This function is called after ts3plugin_init and ts3plugin_registerPluginID. A pluginID is required for plugin menus to work.
@@ -985,35 +925,13 @@ static struct PluginMenuItem* createMenuItem(enum PluginMenuType type, int id, c
 void ts3plugin_initMenus(struct PluginMenuItem*** menuItems, char** menuIcon) {
 }
 
-/* Helper function to create a hotkey */
-static struct PluginHotkey* createHotkey(const char* keyword, const char* description) {
-	struct PluginHotkey* hotkey = (struct PluginHotkey*)malloc(sizeof(struct PluginHotkey));
-	_strcpy(hotkey->keyword, PLUGIN_HOTKEY_BUFSZ, keyword);
-	_strcpy(hotkey->description, PLUGIN_HOTKEY_BUFSZ, description);
-	return hotkey;
-}
-
-/* Some makros to make the code to create hotkeys a bit more readable */
-#define BEGIN_CREATE_HOTKEYS(x) const size_t sz = x + 1; size_t n = 0; *hotkeys = (struct PluginHotkey**)malloc(sizeof(struct PluginHotkey*) * sz);
-#define CREATE_HOTKEY(a, b) (*hotkeys)[n++] = createHotkey(a, b);
-#define END_CREATE_HOTKEYS (*hotkeys)[n++] = NULL; assert(n == sz);
-
 /*
  * Initialize plugin hotkeys. If your plugin does not use this feature, this function can be omitted.
  * Hotkeys require ts3plugin_registerPluginID and ts3plugin_freeMemory to be implemented.
  * This function is automatically called by the client after ts3plugin_init.
  */
 void ts3plugin_initHotkeys(struct PluginHotkey*** hotkeys) {
-	/* Register hotkeys giving a keyword and a description.
-	 * The keyword will be later passed to ts3plugin_onHotkeyEvent to identify which hotkey was triggered.
-	 * The description is shown in the clients hotkey dialog. */
-	BEGIN_CREATE_HOTKEYS(3);  /* Create 3 hotkeys. Size must be correct for allocating memory. */
-	CREATE_HOTKEY("keyword_1", "Test hotkey 1");
-	CREATE_HOTKEY("keyword_2", "Test hotkey 2");
-	CREATE_HOTKEY("keyword_3", "Test hotkey 3");
-	END_CREATE_HOTKEYS;
-
-	/* The client will call ts3plugin_freeMemory to release all allocated memory */
+	hotkeys[0] = NULL;	
 }
 
 /************************** TeamSpeak callbacks ***************************/
