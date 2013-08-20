@@ -53,7 +53,7 @@ tanget_lr_pressed = false;
 	};
 	haveLRRadio = 
 	{
-		(backpack player == "tf_rt1523g");
+		(backpack player == "tf_rt1523g") or ((vehicle player != player) and ((gunner (vehicle player) == player) or (driver (vehicle player) == player) or (commander (vehicle player) == player) or ((vehicle player) turretUnit [0] == player)));
 	};
 
 	radio_keyDown =
