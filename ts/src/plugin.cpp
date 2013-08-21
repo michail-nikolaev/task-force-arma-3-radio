@@ -53,7 +53,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.5.2 pre beta"
+#define PLUGIN_VERSION "0.5.3 pre beta"
 
 struct CLIENT_DATA
 {	
@@ -537,15 +537,22 @@ void processGameCommand(std::string command)
 			}
 		}		
 	} 
-	else if (tokens.size() == 4 && tokens[0] == "FREQ")
+	else if (tokens.size() == 5 && tokens[0] == "FREQ")
 	{
 		counter = 0; // TODO: remove, only to debug
 		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 		EnterCriticalSection(&serverDataCriticalSection);	
 		serverIdToData[serverId].mySwFrequency = tokens[1];
 		serverIdToData[serverId].myLrFrequency = tokens[2];
-		serverIdToData[serverId].alive = tokens[3] == "true";
+		serverIdToData[serverId].alive = tokens[3] == "true";		
 		LeaveCriticalSection(&serverDataCriticalSection);		
+		if (getMyNickname(serverId) != tokens[4])
+		{
+			DWORD error;
+			if((error = ts3Functions.setClientSelfVariableAsString(serverId,  CLIENT_NICKNAME, tokens[4].c_str())) != ERROR_ok) {
+				log("Error setting client nickname", error);				
+			}
+		}
 	}
 }
 
