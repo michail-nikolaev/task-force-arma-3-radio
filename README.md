@@ -26,7 +26,7 @@ Arma 3 Team Speak Radio Plugin
 > Рекомендуется отключить встроенные звуки оповещений TeamSpeak: `Options > Notifications > Sound Pack: "Sounds Deactivated"`. Для применения этой опции необходимо перезапустить TeamSpeak.
 
 * Запустите игру с аддонами `@CBA_A3` и `@task_force_radio` (Community Base Addons: A3 Beta и Task Force Arrowhead Radio). Это можно сделать, прописав в ярлыке игры имена модов после EXE файла `…\arma3.exe -mod:@CBA_A3;@task_force_radio`.
-* Убедитесь, что ник в профиле игры и TeamSpeak совпадает.
+> Убедитесь, что ник в профиле игры и TeamSpeak совпадает, если это нет так - плагин изменит ваш ник в TS в процессе игры.
 * Зайдите в тот же канал, где находятся другие игроки, играющие с данной рацией.
 
 ###Использование в игре
