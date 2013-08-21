@@ -192,21 +192,24 @@ tanget_lr_pressed = false;
 				_freq_lr = lr_frequency;
 			};
 			_alive = alive player;
-			_request = format["FREQ@%1@%2@%3", _freq, _freq_lr, _alive];
+			_nickname = name player;
+			_request = format["FREQ@%1@%2@%3@%4", _freq, _freq_lr, _alive, _nickname];
 			_result = "task_force_radio_pipe" callExtension _request;
 		} else {
 			_result = "task_force_radio_pipe" callExtension "PING";
 		};
 
-		if !(isNull (findDisplay 46)) then {
+		if !(isNull (findDisplay 46)) then {	
 			if !(_have_display_46) then {
 				hint "Waiting for 1 second....";
 				sleep 1;
 				_keyUpCallback = (findDisplay 46) displayAddEventHandler ["keyUp", "_this call radio_keyUp"];
 				_keyDownCallback = (findDisplay 46) displayAddEventHandler ["keyDown", "_this call radio_keyDown"];
 				hintSilent "";
-			};
-			_have_display_46 = true;
+				if (_keyUpCallback >= 0 and _keyDownCallback >= 0) then {			
+					_have_display_46 = true;
+				}
+			};			
 		} else {
 			_have_display_46 = false;
 		};
