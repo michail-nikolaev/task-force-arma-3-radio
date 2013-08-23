@@ -29,7 +29,7 @@
 
 #define M_PI       3.14159265358979323846
 #define RADIO_GAIN_SW 20
-#define RADIO_GAIN_LR 10
+#define RADIO_GAIN_LR 7
 
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
@@ -40,7 +40,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
-#define PLUGIN_NAME_x64 "task_force_radio_x64"
+#define PLUGIN_NAME_x32 "task_force_radio_win32"
+#define PLUGIN_NAME_x64 "task_force_radio_win64"
 #define MILLIS_TO_EXPIRE 2000  // 2 secondS without updates of client position to expire
 
 #define LR_DISTANCE 20000
@@ -53,7 +54,9 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.5.3 pre beta"
+#define PLUGIN_VERSION "0.5.4 pre beta"
+
+std::string addon_version;
 
 struct CLIENT_DATA
 {	
@@ -144,6 +147,19 @@ void log(char* message, DWORD errorCode, LogLevel level = LogLevel_ERROR)
 	ts3Functions.freeMemory(errorBuffer);
 }
 
+bool startWith(std::string shouldStartWith, std::string startIn)
+{
+	if (startIn.size() > shouldStartWith.size())
+	{
+		auto res = std::mismatch(shouldStartWith.begin(), shouldStartWith.end(), startIn.begin());
+		return (res.first == shouldStartWith.end());
+	} 
+	else 
+	{
+		return false;
+	}		
+}
+
 HANDLE openPipe() 
 {
 	HANDLE pipe = CreateFile(
@@ -209,8 +225,8 @@ void hlp_enableVad()
 	DWORD error;
 	if((error = ts3Functions.setPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", "true")) != ERROR_ok)
 	{
-		log("VAD successfully enabled", error);
-	}	
+		log("Failed to set VAD value", error);
+	} 	
 }
 
 void hlp_disableVad()
@@ -225,10 +241,14 @@ void hlp_disableVad()
 
 std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includeVersion)
 {
+	EnterCriticalSection(&serverDataCriticalSection);
+	std::string addon = addon_version;
+	LeaveCriticalSection(&serverDataCriticalSection);
 	std::string result = std::string("[I]Connected to Arma 3:[/I][B] ") 
 		+ (pipeConnected ? "true" : "false") + "[/B]  [I]Playing: [/I][B]" 
 		+ (inGame ? "true" : "false") 
-		+ (includeVersion ? std::string("[/B]  [I]Version: [/I][B]") + PLUGIN_VERSION + "[/B]" : "");
+		+ (includeVersion ? std::string("[/B]  [I]Plugin Version: [/I][B]") + PLUGIN_VERSION + "[/B]" : "")
+		+ (includeVersion ? std::string("[I] Addon Version: [/I][B]") + addon + "[/B]" : "");
 	return result;
 }
 
@@ -374,8 +394,11 @@ void onGameEnd(uint64 serverConnectionHandlerID, anyID clientId)
 	DWORD error;
 	if (notSeriousChannelId != uint64(-1))
 	{
-		if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, notSeriousChannelId, "", NULL)) != ERROR_ok) {
-			log("Can't join back channel", error);
+		if (getCurrentChannel(serverConnectionHandlerID) != notSeriousChannelId) 
+		{
+			if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, notSeriousChannelId, "", NULL)) != ERROR_ok) {
+				log("Can't join back channel", error);
+			}
 		}
 		notSeriousChannelId = uint64(-1);
 	}
@@ -428,14 +451,15 @@ void processGameCommand(std::string command)
 {
 	static int counter = 0; // TODO: remove, only to debug
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
-	if (command == "PING") 
+	std::vector<std::string> tokens = split(command, '@'); // @ may not be used in nickname
+	if (tokens.size() == 2 && tokens[0] == "VERSION") 
 	{
 		EnterCriticalSection(&serverDataCriticalSection);	
 		serverIdToData[currentServerConnectionHandlerID].alive = false;
+		addon_version = tokens[1];
 		LeaveCriticalSection(&serverDataCriticalSection);
 		return;
-	};
-	std::vector<std::string> tokens = split(command, '@'); // may not be used in nickname
+	};	
 	DWORD error;
 	if (tokens.size() == 6 && tokens[0] == "POS") 
 	{
@@ -516,7 +540,7 @@ void processGameCommand(std::string command)
 			{
 				if (!longRange) playWavFile("radio-sounds/local_on.wav"); else playWavFile("radio-sounds/local_on_lr.wav");
 				vadEnabled = hlp_checkVad();
-				hlp_disableVad();
+				if (vadEnabled) hlp_disableVad();
 			} 
 			else
 			{
@@ -528,7 +552,7 @@ void processGameCommand(std::string command)
 			log_string(commandToBroadcast, LogLevel_DEVEL);
 			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
 
-			if((error = ts3Functions.setClientSelfVariableAsInt(serverId, CLIENT_INPUT_DEACTIVATED, pressed ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
+			if((error = ts3Functions.setClientSelfVariableAsInt(serverId, CLIENT_INPUT_DEACTIVATED, pressed || vadEnabled ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
 				log("Can't active talking by tangent", error);
 			}
 			DWORD error = ts3Functions.flushClientSelfUpdates(serverId, NULL); 
@@ -546,7 +570,7 @@ void processGameCommand(std::string command)
 		serverIdToData[serverId].myLrFrequency = tokens[2];
 		serverIdToData[serverId].alive = tokens[3] == "true";		
 		LeaveCriticalSection(&serverDataCriticalSection);		
-		if (getMyNickname(serverId) != tokens[4])
+		if (getMyNickname(serverId) != tokens[4] && tokens[4] != "Error: No unit")
 		{
 			DWORD error;
 			if((error = ts3Functions.setClientSelfVariableAsString(serverId,  CLIENT_NICKNAME, tokens[4].c_str())) != ERROR_ok) {
@@ -646,7 +670,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 					lastUpdate = GetTickCount();
 					sleep = false;
 					std::string command = std::string(buffer);
-					if (command != "PING")
+					if (!startWith("VERSION", command))
 					{
 						lastInGame = GetTickCount();
 						if (!inGame)
@@ -726,7 +750,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 
 #define PLUGIN_API_VERSION 19
 
-#define INFODATA_BUFSIZE 128
+#define INFODATA_BUFSIZE 512
 
 
 /*********************************** Required functions ************************************/
@@ -1256,15 +1280,7 @@ bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID)
 	{
 		std::string shouldStartWith = getConnectionStatusInfo(true, true, false);
 		std::string clientStatus = std::string(clientInfo);
-		if (clientStatus.size() > shouldStartWith.size())
-		{
-			auto res = std::mismatch(shouldStartWith.begin(), shouldStartWith.end(), clientStatus.begin());
-			result = (res.first == shouldStartWith.end());
-		} 
-		else 
-		{
-			result = false;
-		}		
+		result = startWith(shouldStartWith, clientStatus);		
 		ts3Functions.freeMemory(clientInfo);
 	}
 
@@ -1514,6 +1530,7 @@ void processPluginCommand(std::string command)
 				{
 					if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
 					{
+						log_string(std::string("REMOTE COMAMND ") +  command, LogLevel_DEVEL);
 						if (clientData->tangentPressed != pressed)
 						{
 							playPressed = pressed;
@@ -1523,7 +1540,16 @@ void processPluginCommand(std::string command)
 						clientData->longRangeTangent = longRange;
 						clientData->frequency = frequency;
 					}
-				}		
+					else 
+					{
+						log_string(std::string("MY COMAMND ") +  command, LogLevel_DEVEL);
+					}
+
+				}
+				else
+				{
+					log_string(std::string("NO INFO ABOUT SERVER ID ") +  nickname);
+				}
 				float d = distance(myPosition, clientData->clientPosition);
 				LeaveCriticalSection(&serverDataCriticalSection);
 		
@@ -1532,10 +1558,18 @@ void processPluginCommand(std::string command)
 					if (playPressed && alive) playWavFile("radio-sounds/remote_start.wav");
 					if (playReleased && alive) playWavFile("radio-sounds/remote_end.wav");												
 				}
+				else 
+				{
+					log_string(std::string("NOT TRANSFERING SW ") + (alive ? "alive" : "not_alive") + " mySW:" + mySwFrequency + "frequency: " + frequency + "distance:" + std::to_string((long long) d), LogLevel_DEVEL);
+				}
 				if (myLrFrequency == frequency && d < LR_DISTANCE)
 				{
 					if (playPressed && alive) playWavFile("radio-sounds/remote_start_lr.wav");
 					if (playReleased && alive) playWavFile("radio-sounds/remote_end_lr.wav");											
+				}
+				else 
+				{
+					log_string(std::string("NOT TRANSFERING LR ") + (alive ? "alive" : "not_alive") + " myLR:" + myLrFrequency + "frequency: " + frequency + "distance:" + std::to_string((long long) d), LogLevel_DEVEL);
 				}
 				EnterCriticalSection(&serverDataCriticalSection);
 				if (playReleased && alive)
@@ -1544,7 +1578,19 @@ void processPluginCommand(std::string command)
 				}
 				LeaveCriticalSection(&serverDataCriticalSection);
 			}
+			else 
+			{
+				log_string(std::string("PLUGIN COMMAND, BUT NO CLIENT DATA ") +  nickname);
+			}
 		}
+		else 
+		{
+			log_string(std::string("PLUGIN FROM UNKNOWN NICKNAME ") +  nickname);
+		}
+	}
+	else 
+	{
+		log_string(std::string("UNKNOWN PLUGIN COMMAND ") +  command);
 	}
 }
 
@@ -1552,7 +1598,7 @@ void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char
 	log_string(std::string("ON PLUGIN COMMAND ") +  pluginName + " " + pluginCommand, LogLevel_DEVEL);
 	if(serverConnectionHandlerID == ts3Functions.getCurrentServerConnectionHandlerID())
 	{
-		if((strcmp(pluginName, PLUGIN_NAME)) == 0 || (strcmp(pluginName, PLUGIN_NAME_x64) == 0))
+		if((strcmp(pluginName, PLUGIN_NAME) == 0) || (strcmp(pluginName, PLUGIN_NAME_x64) == 0) || (strcmp(pluginName, PLUGIN_NAME_x32) == 0))
 		{			
 			processPluginCommand(std::string(pluginCommand));
 		}
@@ -1560,6 +1606,10 @@ void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char
 		{
 			log("Plugin command event failure", LogLevel_ERROR);			
 		}
+	} 
+	else 
+	{
+		log("Plugin command unknown ID", LogLevel_ERROR);			
 	}
 }
 

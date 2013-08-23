@@ -5,7 +5,7 @@ Arma 3 Team Speak Radio Plugin
 
 ###Установка
 
-* Скачайте [архив с рацией 0.5.3 pre beta](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.5.3%20pre%20beta.zip) и распакуйте его.
+* Скачайте [архив с рацией 0.5.4 pre beta](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.5.4%20pre%20beta.zip) и распакуйте его.
 * Cкопируйте содержимое папки `TeamSpeak 3 Client` в корневую папку TeamSpeak.
 * Скопируйте содержимое папки `Arma 3` в папку с игрой `...\SteamApps\common\Arma 3`.
 
@@ -25,7 +25,9 @@ Arma 3 Team Speak Radio Plugin
 
 > Рекомендуется отключить встроенные звуки оповещений TeamSpeak: `Options > Notifications > Sound Pack: "Sounds Deactivated"`. Для применения этой опции необходимо перезапустить TeamSpeak.
 
-* Запустите игру с аддонами `@CBA_A3` и `@task_force_radio` (Community Base Addons: A3 Beta и Task Force Arrowhead Radio). Это можно сделать, прописав в ярлыке игры имена модов после EXE файла `…\arma3.exe -mod:@CBA_A3;@task_force_radio`.
+> Не рекомендуется использовать плагин при одновременном подключении к нескольким серверам в TeamSpeak
+
+* Запустите игру с аддонами `@CBA_A3` и `@task_force_radio` (Community Base Addons: A3 Beta и Task Force Arrowhead Radio). Это можно сделать, прописав в ярлыке игры (ярлык созданный Steam не подходит) имена модов после EXE файла `…\arma3.exe -mod:@CBA_A3;@task_force_radio`.
 * Убедитесь, что ник в профиле игры и TeamSpeak совпадает.
 * Зайдите в тот же канал, где находятся другие игроки, играющие с данной рацией.
 
@@ -74,3 +76,4 @@ Arma 3 Team Speak Radio Plugin
 * [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) за помощь с графикой и документацией.
 * [Блендеру](http://arma3.ru/forums/index.php/user/41-blender/) за шрифт.
 * [vinniefalco](https://github.com/vinniefalco) за [DSP фильтры](https://github.com/vinniefalco/DSPFilters)
+* [WOG](http://wogames.info/) и лично [TRUE](http://wogames.info/profile/TRUE/) за помощь в тестировании

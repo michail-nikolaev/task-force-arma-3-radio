@@ -4,6 +4,8 @@ disableSerialization;
 #define CTRLL 29
 #define ALTL 56
 
+ADDON_VERSION = "0.5.4 pre beta";
+
 MIN_SW_FREQ = 30;
 MAX_SW_FREQ = 512;
 
@@ -195,9 +197,9 @@ tanget_lr_pressed = false;
 			_nickname = name player;
 			_request = format["FREQ@%1@%2@%3@%4", _freq, _freq_lr, _alive, _nickname];
 			_result = "task_force_radio_pipe" callExtension _request;
-		} else {
-			_result = "task_force_radio_pipe" callExtension "PING";
 		};
+		_request = format["VERSION@%1", ADDON_VERSION];
+		_result = "task_force_radio_pipe" callExtension _request;
 
 		if !(isNull (findDisplay 46)) then {	
 			if !(_have_display_46) then {
