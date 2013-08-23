@@ -34,9 +34,6 @@ Arma 3 Team Speak Radio Plugin
 * Запустите игру с аддонами `@CBA_A3` и `@task_force_radio` (Community Base Addons: A3 Beta и Task Force Arrowhead Radio). Это можно сделать, прописав в ярлыке игры (ярлык созданный Steam не подходит) имена модов после EXE файла `…\arma3.exe -mod:@CBA_A3;@task_force_radio`.
 * Убедитесь, что ник в профиле игры и TeamSpeak совпадает.
 * Зайдите в тот же канал, где находятся другие игроки, играющие с данной рацией.
-=======
-
-
 
 ###Использование в игре
 
