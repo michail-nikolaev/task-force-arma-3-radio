@@ -54,7 +54,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.5.4 pre beta"
+#define PLUGIN_VERSION "0.5.5 beta"
 
 std::string addon_version;
 
@@ -244,11 +244,11 @@ std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includ
 	EnterCriticalSection(&serverDataCriticalSection);
 	std::string addon = addon_version;
 	LeaveCriticalSection(&serverDataCriticalSection);
-	std::string result = std::string("[I]Connected to Arma 3:[/I][B] ") 
-		+ (pipeConnected ? "true" : "false") + "[/B]  [I]Playing: [/I][B]" 
-		+ (inGame ? "true" : "false") 
-		+ (includeVersion ? std::string("[/B]  [I]Plugin Version: [/I][B]") + PLUGIN_VERSION + "[/B]" : "")
-		+ (includeVersion ? std::string("[I] Addon Version: [/I][B]") + addon + "[/B]" : "");
+	std::string result = std::string("[I]Connected[/I] [B]") 
+		+ (pipeConnected ? "Y" : "N") + "[/B] [I]Play[/I] [B]" 
+		+ (inGame ? "Y" : "N") 
+		+ (includeVersion ? std::string("[/B] [I]P:[/I][B]") + PLUGIN_VERSION + "[/B]" : "")
+		+ (includeVersion ? std::string("[I] A: [/I][B]") + addon + "[/B]" : "");
 	return result;
 }
 
@@ -750,7 +750,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 
 #define PLUGIN_API_VERSION 19
 
-#define INFODATA_BUFSIZE 512
+#define INFODATA_BUFSIZE 128
 
 
 /*********************************** Required functions ************************************/
