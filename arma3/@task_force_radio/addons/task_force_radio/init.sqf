@@ -4,7 +4,7 @@ disableSerialization;
 #define CTRLL 29
 #define ALTL 56
 
-ADDON_VERSION = "0.5.4 pre beta";
+ADDON_VERSION = "0.5.5 beta";
 
 MIN_SW_FREQ = 30;
 MAX_SW_FREQ = 512;
@@ -218,9 +218,11 @@ tanget_lr_pressed = false;
 	}
 };
 
-if (leader player == player) then {
-	sleep 4;
-	removeBackpack player;
-	player addBackpack "tf_rt1523g";
+[] spawn {
+	sleep 5;
+	if (leader player == player) then {		
+		removeBackpack player;
+		player addBackpack "tf_rt1523g";
+	};
 };
 
