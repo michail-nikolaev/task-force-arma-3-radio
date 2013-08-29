@@ -54,7 +54,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.5.5 beta"
+#define PLUGIN_VERSION "0.5.6 beta"
 
 std::string addon_version;
 
@@ -454,8 +454,7 @@ void processGameCommand(std::string command)
 	std::vector<std::string> tokens = split(command, '@'); // @ may not be used in nickname
 	if (tokens.size() == 2 && tokens[0] == "VERSION") 
 	{
-		EnterCriticalSection(&serverDataCriticalSection);	
-		serverIdToData[currentServerConnectionHandlerID].alive = false;
+		EnterCriticalSection(&serverDataCriticalSection);		
 		addon_version = tokens[1];
 		LeaveCriticalSection(&serverDataCriticalSection);
 		return;
