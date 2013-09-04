@@ -4,7 +4,7 @@ disableSerialization;
 #define CTRLL 29
 #define ALTL 56
 
-ADDON_VERSION = "0.5.6 beta";
+ADDON_VERSION = "0.5.7 beta";
 
 MIN_SW_FREQ = 30;
 MAX_SW_FREQ = 512;

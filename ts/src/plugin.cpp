@@ -54,7 +54,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.5.6 beta"
+#define PLUGIN_VERSION "0.5.7 beta"
 
 std::string addon_version;
 
@@ -749,7 +749,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 
 #define PLUGIN_API_VERSION 19
 
-#define INFODATA_BUFSIZE 128
+#define INFODATA_BUFSIZE 512
 
 
 /*********************************** Required functions ************************************/
