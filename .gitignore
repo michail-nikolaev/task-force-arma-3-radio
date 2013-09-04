@@ -26,3 +26,5 @@
 /ts/task_force_radio_plugin.sln
 /ts/task_force_radio_plugin.suo
 /arma3/@task_force_radio/task_force_radio_pipe/exe
+/arma3/@task_force_radio/addons/task_force_radio.log
+/arma3/@task_force_radio/addons/*.biprivatekey
