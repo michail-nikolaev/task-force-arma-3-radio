@@ -43,8 +43,15 @@ dialog_lr_shift = getNumber (configFile >> "task_force_radio_keys" >>  "dialog_l
 dialog_lr_ctrl = getNumber (configFile >> "task_force_radio_keys" >>  "dialog_lr"  >> "ctrl");
 dialog_lr_alt = getNumber (configFile >> "task_force_radio_keys" >>  "dialog_lr"  >> "alt");
 
+speak_volume_scancode = 15; //getNumber (configFile >> "task_force_radio_keys" >>  "speak_volume"  >> "key");
+speak_volume_shift = 0; //getNumber (configFile >> "task_force_radio_keys" >>  "speak_volume"  >> "shift");
+speak_volume_ctrl = 1; //getNumber (configFile >> "task_force_radio_keys" >>  "speak_volume"  >> "ctrl");
+speak_volume_alt = 0; //getNumber (configFile >> "task_force_radio_keys" >>  "speak_volume"  >> "alt");
+
 tanget_sw_pressed = false;
 tanget_lr_pressed = false;
+
+speak_volume_level = "Normal";
 
 [] spawn {	
 	sleep 4;
@@ -99,6 +106,19 @@ tanget_lr_pressed = false;
 						ctrlSetText [IDC_RT1523G_RADIO_DIALOG_EDIT, lr_frequency];
 					}
 				};
+			};
+			if ((_scancode == speak_volume_scancode) and (_shift == speak_volume_shift) and (_ctrl == speak_volume_ctrl) and (_alt == speak_volume_alt)) then {
+				if (speak_volume_level == "Whispering") then {
+					speak_volume_level = "Normal"
+				} else {
+					if (speak_volume_level == "Normal") then {
+						speak_volume_level = "Yelling";
+					} else {
+						speak_volume_level = "Whispering";
+					}
+				};
+				_hintText = format["<t color='#f700da'>Voice volume: %1</t>", speak_volume_level];
+				hintSilent parseText (_hintText);
 			};
 		};
 	};
@@ -195,7 +215,7 @@ tanget_lr_pressed = false;
 			};
 			_alive = alive player;
 			_nickname = name player;
-			_request = format["FREQ@%1@%2@%3@%4", _freq, _freq_lr, _alive, _nickname];
+			_request = format["FREQ@%1@%2@%3@%4@%5", _freq, _freq_lr, _alive, speak_volume_level, _nickname];
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
 		_request = format["VERSION@%1", ADDON_VERSION];
