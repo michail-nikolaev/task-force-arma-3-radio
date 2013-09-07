@@ -29,7 +29,7 @@
 
 #define M_PI       3.14159265358979323846
 #define RADIO_GAIN_SW 20
-#define RADIO_GAIN_LR 7
+#define RADIO_GAIN_LR 5
 
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
@@ -37,8 +37,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define SERIOUS_MOD_CHANNEL_NAME "TaskForceRadio"
 #define SERIOUS_CHANNEL_PASSWORD "123"
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -55,6 +55,10 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 }
 
 #define PLUGIN_VERSION "0.5.7 beta"
+#define WHISPER_VOLUME "Whispering"
+#define NORMAL_VOLUME "Normal"
+#define YELLING_VOLUME "Yelling"
+
 
 std::string addon_version;
 
@@ -66,6 +70,7 @@ struct CLIENT_DATA
 	TS3_VECTOR clientPosition;
 	uint64 positionTime;
 	std::string frequency;	
+	std::string	voiceVolume;
 	Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS> filterSW;
 	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS> filterLR;
 	void resetSWFilter() 
@@ -83,6 +88,7 @@ struct CLIENT_DATA
 		longRangeTangent = false;
 		clientPosition.x = clientPosition.y = clientPosition.z = 0;
 		clientId = -1;
+		voiceVolume = NORMAL_VOLUME;
 		filterSW.setup(2, 48000, 2000, 800);
 		filterLR.setup(4, 48000, 1800);
 	}
@@ -97,6 +103,7 @@ struct SERVER_RADIO_DATA
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
 	std::string mySwFrequency;
 	std::string myLrFrequency;
+	std::string myVoiceVolume;
 	bool alive;
 
 	SERVER_RADIO_DATA()
@@ -105,6 +112,8 @@ struct SERVER_RADIO_DATA
 	}
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
+
+
 
 #define PATH_BUFSIZE 512
 char pluginPath[PATH_BUFSIZE];
@@ -182,6 +191,13 @@ void playWavFile(const char* fileName)
 	{
 		log("can't play sound", error, LogLevel_ERROR);
 	}
+}
+
+float distanceFromVoice(std::string voiceLevel)
+{
+	if (voiceLevel == WHISPER_VOLUME) return 5.0;
+	if (voiceLevel == NORMAL_VOLUME) return 20.0;	
+	if (voiceLevel == YELLING_VOLUME) return 50.0;
 }
 
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) 
@@ -289,6 +305,23 @@ bool hasClientData(uint64 serverConnectionHandlerID, anyID clientID)
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
 	return result;
+}
+
+std::string getClientNickanme(uint64 serverConnectionHandlerID, anyID clientID)
+{
+	std::string nickname = "Unknown nickname";
+	EnterCriticalSection(&serverDataCriticalSection);
+	for (STRING_TO_CLIENT_DATA_MAP::iterator it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); 
+		it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
+	{
+		if (it->second->clientId == clientID)
+		{
+			nickname = it->first;
+			break;
+		}
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
+	return nickname;
 }
 
 CLIENT_DATA* getClientData(uint64 serverConnectionHandlerID, anyID clientID)
@@ -448,8 +481,7 @@ void onRespawn(uint64 serverConnectionHandlerID, anyID clientId)
 }
 
 void processGameCommand(std::string command)
-{
-	static int counter = 0; // TODO: remove, only to debug
+{	
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
 	std::vector<std::string> tokens = split(command, '@'); // @ may not be used in nickname
 	if (tokens.size() == 2 && tokens[0] == "VERSION") 
@@ -461,8 +493,7 @@ void processGameCommand(std::string command)
 	};	
 	DWORD error;
 	if (tokens.size() == 6 && tokens[0] == "POS") 
-	{
-		counter++; // TODO: remove, only to debug
+	{	
 		std::string nickname = tokens[1];
 		float x = std::stof(tokens[2]);
 		float y = std::stof(tokens[3]);
@@ -560,19 +591,19 @@ void processGameCommand(std::string command)
 			}
 		}		
 	} 
-	else if (tokens.size() == 5 && tokens[0] == "FREQ")
-	{
-		counter = 0; // TODO: remove, only to debug
+	else if (tokens.size() == 6 && tokens[0] == "FREQ")
+	{		
 		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 		EnterCriticalSection(&serverDataCriticalSection);	
 		serverIdToData[serverId].mySwFrequency = tokens[1];
 		serverIdToData[serverId].myLrFrequency = tokens[2];
 		serverIdToData[serverId].alive = tokens[3] == "true";		
+		serverIdToData[serverId].myVoiceVolume = tokens[4];
 		LeaveCriticalSection(&serverDataCriticalSection);		
-		if (getMyNickname(serverId) != tokens[4] && tokens[4] != "Error: No unit")
+		if (getMyNickname(serverId) != tokens[5] && tokens[5] != "Error: No unit")
 		{
 			DWORD error;
-			if((error = ts3Functions.setClientSelfVariableAsString(serverId,  CLIENT_NICKNAME, tokens[4].c_str())) != ERROR_ok) {
+			if((error = ts3Functions.setClientSelfVariableAsString(serverId,  CLIENT_NICKNAME, tokens[5].c_str())) != ERROR_ok) {
 				log("Error setting client nickname", error);				
 			}
 		}
@@ -1228,11 +1259,13 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 {	
 	EnterCriticalSection(&serverDataCriticalSection);
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;	
-	LeaveCriticalSection(&serverDataCriticalSection);
+	std::string clientVolume = data->voiceVolume;	
 	TS3_VECTOR clientPosition = data->clientPosition;
- 	float d = distance(myPosition, clientPosition);
+	float d = distance(myPosition, clientPosition);
+	LeaveCriticalSection(&serverDataCriticalSection);
+ 	
 	if (d <= 1.0) return 1.0;
-	float gain = 1.0f - log10((d / 20.0f) * 10.0f); // 20 metres
+	float gain = 1.0f - log10((d / distanceFromVoice(clientVolume)) * 10.0f);
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);	
 }
 
@@ -1287,7 +1320,7 @@ bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID)
 }
 
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {	
-	static DWORD last_no_info;
+	static DWORD last_no_info;	
 	EnterCriticalSection(&serverDataCriticalSection);
 	bool alive = serverIdToData[serverConnectionHandlerID].alive;
 	LeaveCriticalSection(&serverDataCriticalSection);
@@ -1331,10 +1364,11 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 		}
 		if (GetTickCount() - last_no_info > MILLIS_TO_EXPIRE) 
 		{
+			std::string nickname = getClientNickanme(serverConnectionHandlerID, clientID);
 			if (!hasClientData(serverConnectionHandlerID, clientID))
-				log_string(std::string("No info about ") + std::to_string((long long)clientID), LogLevel_DEBUG);
+				log_string(std::string("No info about ") + std::to_string((long long)clientID) + " " + nickname, LogLevel_DEBUG);
 			if (!isPluginEnabledForUser(serverConnectionHandlerID, clientID))
-				log_string(std::string("No plugin enabled for ") + std::to_string((long long)clientID), LogLevel_DEBUG);
+				log_string(std::string("No plugin enabled for ") + std::to_string((long long)clientID) + " " + nickname, LogLevel_DEBUG);
 			last_no_info = GetTickCount();
 		}		
 	}
@@ -1367,6 +1401,19 @@ int ts3plugin_onClientPokeEvent(uint64 serverConnectionHandlerID, anyID fromClie
 }
 
 void ts3plugin_onClientSelfVariableUpdateEvent(uint64 serverConnectionHandlerID, int flag, const char* oldValue, const char* newValue) {
+	if (flag == CLIENT_FLAG_TALKING)
+	{
+		std::string one = "1";
+		if (one == newValue) 
+		{
+			uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
+			std::string myNickname = getMyNickname(serverId);
+			EnterCriticalSection(&serverDataCriticalSection);
+			std::string command = "VOLUME@" + myNickname + "@" + serverIdToData[serverId].myVoiceVolume;			
+			LeaveCriticalSection(&serverDataCriticalSection);
+			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, command.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
+		}
+	}
 }
 
 void ts3plugin_onFileListEvent(uint64 serverConnectionHandlerID, uint64 channelID, const char* path, const char* name, uint64 size, uint64 datetime, int type, uint64 incompletesize, const char* returnCode) {
@@ -1503,13 +1550,13 @@ void ts3plugin_onClientServerQueryLoginPasswordEvent(uint64 serverConnectionHand
 void processPluginCommand(std::string command)
 {
 	std::vector<std::string> tokens = split(command, '@'); // may not be used in nickname
+	uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 	if (tokens.size() == 4 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR"))
 	{
   		bool pressed = (tokens[1] == "PRESSED");
 		bool longRange = (tokens[0] == "TANGENT_LR");
 		std::string nickname = tokens[3];
-		std::string frequency = tokens[2];
-		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
+		std::string frequency = tokens[2];		
 
 		boolean playPressed = false;
 		boolean playReleased = false;
@@ -1586,6 +1633,17 @@ void processPluginCommand(std::string command)
 		{
 			log_string(std::string("PLUGIN FROM UNKNOWN NICKNAME ") +  nickname);
 		}
+	}
+	else if (tokens.size() == 3 && tokens[0] == "VOLUME")
+	{			
+		EnterCriticalSection(&serverDataCriticalSection);
+		std::string nickname = tokens[1];
+		std::string volume = tokens[2];
+		if (serverIdToData[serverId].nicknameToClientData.count(nickname) && serverIdToData[serverId].nicknameToClientData[nickname]) 
+		{
+			serverIdToData[serverId].nicknameToClientData[nickname]->voiceVolume = volume;
+		}
+		LeaveCriticalSection(&serverDataCriticalSection);		
 	}
 	else 
 	{
