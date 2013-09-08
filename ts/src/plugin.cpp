@@ -198,6 +198,7 @@ float distanceFromVoice(std::string voiceLevel)
 	if (voiceLevel == WHISPER_VOLUME) return 5.0;
 	if (voiceLevel == NORMAL_VOLUME) return 20.0;	
 	if (voiceLevel == YELLING_VOLUME) return 50.0;
+	return 0.0;
 }
 
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) 
@@ -254,6 +255,193 @@ void hlp_disableVad()
 	}	
 }
 
+anyID getClientId(uint64 serverConnectionHandlerID, std::string nickname)
+{
+	anyID clienId = -1;
+	EnterCriticalSection(&serverDataCriticalSection);
+	if (serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(nickname) && serverIdToData[serverConnectionHandlerID].nicknameToClientData[nickname])
+	{
+		clienId = serverIdToData[serverConnectionHandlerID].nicknameToClientData[nickname]->clientId;
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
+	return clienId;
+}
+
+
+bool isSeriousModeEnabled(uint64 serverConnectionHandlerID, anyID clientId)
+{
+	static DWORD lastCheckTickCount = 0;
+	static boolean cachedResult = false;
+	if (GetTickCount() - lastCheckTickCount > MILLIS_TO_EXPIRE)
+	{	
+		uint64 channelId;
+		DWORD error;
+		if ((error = ts3Functions.getChannelOfClient(serverConnectionHandlerID, clientId, &channelId)) != ERROR_ok)
+		{
+			log("Can't get channel of client", error);
+			return false;	
+		}
+		char* channelName;
+		if ((error = ts3Functions.getChannelVariableAsString(serverConnectionHandlerID, channelId, CHANNEL_NAME, &channelName)) != ERROR_ok) {
+			log("Can't get channel name", error);
+			return false;
+		}
+		bool result = !strcmp(SERIOUS_MOD_CHANNEL_NAME, channelName);
+		ts3Functions.freeMemory(channelName);
+		cachedResult = result;
+		lastCheckTickCount = GetTickCount();
+	} 
+	return cachedResult;
+}
+
+void setClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId, bool status)
+{	
+	anyID clientIds[2];
+	clientIds[0] = clientId;
+	clientIds[1] = 0;
+	if (clientIds[0] > 0)
+	{
+		DWORD error;
+		if (status)
+		{
+			if ((error = ts3Functions.requestMuteClients(serverConnectionHandlerID, clientIds, NULL)) != ERROR_ok)
+			{
+				log("Can't mute client", error);
+			}
+		} 
+		else 
+		{
+			if ((error = ts3Functions.requestUnmuteClients(serverConnectionHandlerID, clientIds, NULL)) != ERROR_ok)
+			{
+				log("Can't unmute client", error);
+			}
+		}
+	}
+}
+
+enum OVER_RADIO_TYPE
+{
+	LISTEN_TO_SW,
+	LISTEN_TO_LR,
+	LISTEN_NONE
+};
+
+OVER_RADIO_TYPE isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
+{	
+	OVER_RADIO_TYPE result = LISTEN_NONE;
+	EnterCriticalSection(&serverDataCriticalSection);	
+	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
+	TS3_VECTOR clientPosition = data->clientPosition;
+
+	if (data->tangentPressed 
+		&& (serverIdToData[serverConnectionHandlerID].myLrFrequency == data->frequency || serverIdToData[serverConnectionHandlerID].mySwFrequency == data->frequency))
+	{
+		if (data->longRangeTangent && distance(myPosition, clientPosition) < LR_DISTANCE)
+		{
+			result = LISTEN_TO_LR;
+		} 
+		else if (!data->longRangeTangent && distance(myPosition, clientPosition) < SW_DISTANCE)
+		{
+			result = LISTEN_TO_SW;
+		}		
+	} 
+	LeaveCriticalSection(&serverDataCriticalSection);
+	return result;	
+}
+
+std::string getClientNickanme(uint64 serverConnectionHandlerID, anyID clientID)
+{
+	std::string nickname = "Unknown nickname";
+	EnterCriticalSection(&serverDataCriticalSection);
+	for (STRING_TO_CLIENT_DATA_MAP::iterator it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); 
+		it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
+	{
+		if (it->second->clientId == clientID)
+		{
+			nickname = it->first;
+			break;
+		}
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
+	return nickname;
+}
+
+CLIENT_DATA* getClientData(uint64 serverConnectionHandlerID, anyID clientID)
+{
+	CLIENT_DATA* data = NULL;
+	EnterCriticalSection(&serverDataCriticalSection);
+	for (STRING_TO_CLIENT_DATA_MAP::iterator it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); 
+		it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
+	{
+		if (it->second->clientId == clientID)
+		{
+			data = it->second;
+			break;
+		}
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
+	return data;
+}
+
+float distanceFromClient(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
+{
+	EnterCriticalSection(&serverDataCriticalSection);
+	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;	
+	std::string clientVolume = data->voiceVolume;	
+	TS3_VECTOR clientPosition = data->clientPosition;
+	float d = distance(myPosition, clientPosition);
+	LeaveCriticalSection(&serverDataCriticalSection);
+	return d;
+}
+
+float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
+{	
+	EnterCriticalSection(&serverDataCriticalSection);
+	std::string clientVolume = data->voiceVolume;
+	LeaveCriticalSection(&serverDataCriticalSection);
+
+	float d = distanceFromClient(serverConnectionHandlerID, data);
+	if (d <= 1.0) return 1.0;
+	float gain = 1.0f - log10((d / distanceFromVoice(clientVolume)) * 10.0f);
+	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);	
+}
+
+void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId)
+{	
+	bool mute = false;
+	if (isSeriousModeEnabled(serverConnectionHandlerID, clientId))
+	{
+		EnterCriticalSection(&serverDataCriticalSection);
+		CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientId);
+		if (data)
+		{
+			OVER_RADIO_TYPE overRadioType = isOverRadio(serverConnectionHandlerID, data);
+			if (overRadioType == LISTEN_NONE)
+			{
+				mute = (distanceFromClient(serverConnectionHandlerID, data) > distanceFromVoice(YELLING_VOLUME));
+			}
+		}		
+		LeaveCriticalSection(&serverDataCriticalSection);
+	}
+	setClientMuteStatus(serverConnectionHandlerID, clientId, mute);	
+}
+
+void unmuteAll(uint64 serverConnectionHandlerID)
+{
+	anyID* ids;
+	DWORD error;
+	if((error = ts3Functions.getClientList(serverConnectionHandlerID, &ids)) != ERROR_ok)
+	{
+		log("Error getting all clients from server", error);
+		return;
+	}	
+	
+	if((error = ts3Functions.requestUnmuteClients(serverConnectionHandlerID, ids, NULL)) != ERROR_ok)
+	{
+		log("Can't unmute all clients", error);
+	}	
+	ts3Functions.freeMemory(ids);
+}
 
 std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includeVersion)
 {
@@ -305,40 +493,6 @@ bool hasClientData(uint64 serverConnectionHandlerID, anyID clientID)
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
 	return result;
-}
-
-std::string getClientNickanme(uint64 serverConnectionHandlerID, anyID clientID)
-{
-	std::string nickname = "Unknown nickname";
-	EnterCriticalSection(&serverDataCriticalSection);
-	for (STRING_TO_CLIENT_DATA_MAP::iterator it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); 
-		it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
-	{
-		if (it->second->clientId == clientID)
-		{
-			nickname = it->first;
-			break;
-		}
-	}
-	LeaveCriticalSection(&serverDataCriticalSection);
-	return nickname;
-}
-
-CLIENT_DATA* getClientData(uint64 serverConnectionHandlerID, anyID clientID)
-{
-	CLIENT_DATA* data = NULL;
-	EnterCriticalSection(&serverDataCriticalSection);
-	for (STRING_TO_CLIENT_DATA_MAP::iterator it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); 
-		it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
-	{
-		if (it->second->clientId == clientID)
-		{
-			data = it->second;
-			break;
-		}
-	}
-	LeaveCriticalSection(&serverDataCriticalSection);
-	return data;
 }
 
 std::vector<anyID> getChannelClients(uint64 serverConnectionHandlerID, uint64 channelId)
@@ -435,6 +589,7 @@ void onGameEnd(uint64 serverConnectionHandlerID, anyID clientId)
 		}
 		notSeriousChannelId = uint64(-1);
 	}
+	unmuteAll(serverConnectionHandlerID);
 }
 
 void onRespawn(uint64 serverConnectionHandlerID, anyID clientId)
@@ -549,7 +704,8 @@ void processGameCommand(std::string command)
 					EnterCriticalSection(&serverDataCriticalSection);
 				}
 				
-			}			
+			}
+			setGameClientMuteStatus(currentServerConnectionHandlerID, getClientId(currentServerConnectionHandlerID, nickname));
 		}				
 		LeaveCriticalSection(&serverDataCriticalSection);
 	} 
@@ -742,13 +898,14 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 		if (GetTickCount() - lastCheckForExpire > MILLIS_TO_EXPIRE)
 		{			
 			removeExpiredPositions(ts3Functions.getCurrentServerConnectionHandlerID());
-			updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
+			updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());			
 			lastCheckForExpire = GetTickCount();
 		}
 		if (GetTickCount() - lastInGame > MILLIS_TO_EXPIRE)
 		{
 			centerAll(ts3Functions.getCurrentServerConnectionHandlerID());			
-			lastInGame = GetTickCount();
+			unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
+			lastInGame = GetTickCount();			
 			if (inGame) 
 			{
 				playWavFile("radio-sounds/off.wav");			
@@ -1226,77 +1383,7 @@ void stereoToMonoDSP(short * samples, int channels, int sampleCount)
 	}
 }
 
-bool isSeriousModeEnabled(uint64 serverConnectionHandlerID, anyID clientId)
-{
-	static DWORD lastCheckTickCount = 0;
-	static boolean cachedResult = false;
-	if (GetTickCount() - lastCheckTickCount > MILLIS_TO_EXPIRE)
-	{	
-		uint64 channelId;
-		DWORD error;
-		if ((error = ts3Functions.getChannelOfClient(serverConnectionHandlerID, clientId, &channelId)) != ERROR_ok)
-		{
-			log("Can't get channel of client", error);
-			return false;	
-		}
-		char* channelName;
-		if ((error = ts3Functions.getChannelVariableAsString(serverConnectionHandlerID, channelId, CHANNEL_NAME, &channelName)) != ERROR_ok) {
-			log("Can't get channel name", error);
-			return false;
-		}
-		bool result = !strcmp(SERIOUS_MOD_CHANNEL_NAME, channelName);
-		ts3Functions.freeMemory(channelName);
-		cachedResult = result;
-		lastCheckTickCount = GetTickCount();
-	} 
-	return cachedResult;
-}
-
 void ts3plugin_onEditPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {	
-}
-
-float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
-{	
-	EnterCriticalSection(&serverDataCriticalSection);
-	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;	
-	std::string clientVolume = data->voiceVolume;	
-	TS3_VECTOR clientPosition = data->clientPosition;
-	float d = distance(myPosition, clientPosition);
-	LeaveCriticalSection(&serverDataCriticalSection);
- 	
-	if (d <= 1.0) return 1.0;
-	float gain = 1.0f - log10((d / distanceFromVoice(clientVolume)) * 10.0f);
-	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);	
-}
-
-enum OVER_RADIO_TYPE
-{
-	LISTEN_TO_SW,
-	LISTEN_TO_LR,
-	LISTEN_NONE
-};
-
-OVER_RADIO_TYPE isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
-{	
-	OVER_RADIO_TYPE result = LISTEN_NONE;
-	EnterCriticalSection(&serverDataCriticalSection);	
-	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
-	TS3_VECTOR clientPosition = data->clientPosition;
-
-	if (data->tangentPressed 
-		&& (serverIdToData[serverConnectionHandlerID].myLrFrequency == data->frequency || serverIdToData[serverConnectionHandlerID].mySwFrequency == data->frequency))
-	{
-		if (data->longRangeTangent && distance(myPosition, clientPosition) < LR_DISTANCE)
-		{
-			result = LISTEN_TO_LR;
-		} 
-		else if (!data->longRangeTangent && distance(myPosition, clientPosition) < SW_DISTANCE)
-		{
-			result = LISTEN_TO_SW;
-		}		
-	} 
-	LeaveCriticalSection(&serverDataCriticalSection);
-	return result;	
 }
 
 bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID)
@@ -1570,34 +1657,27 @@ void processPluginCommand(std::string command)
 			CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[nickname];
 			if (clientData)
 			{			
-				TS3_VECTOR myPosition = serverIdToData[serverId].myPosition;
-		
-				if (serverIdToData.count(serverId)) 
+				TS3_VECTOR myPosition = serverIdToData[serverId].myPosition;						
+				if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
 				{
-					if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
+					log_string(std::string("REMOTE COMMAND ") +  command, LogLevel_DEVEL);
+					if (clientData->tangentPressed != pressed)
 					{
-						log_string(std::string("REMOTE COMAMND ") +  command, LogLevel_DEVEL);
-						if (clientData->tangentPressed != pressed)
-						{
-							playPressed = pressed;
-							playReleased = !pressed;
-						}
-						clientData->tangentPressed = pressed;
-						clientData->longRangeTangent = longRange;
-						clientData->frequency = frequency;
+						playPressed = pressed;
+						playReleased = !pressed;
 					}
-					else 
-					{
-						log_string(std::string("MY COMAMND ") +  command, LogLevel_DEVEL);
-					}
-
+					clientData->tangentPressed = pressed;
+					clientData->longRangeTangent = longRange;
+					clientData->frequency = frequency;
 				}
-				else
+				else 
 				{
-					log_string(std::string("NO INFO ABOUT SERVER ID ") +  nickname);
-				}
+					log_string(std::string("MY COMAMND ") +  command, LogLevel_DEVEL);
+				}				
 				float d = distance(myPosition, clientData->clientPosition);
+				anyID clientId = clientData->clientId;
 				LeaveCriticalSection(&serverDataCriticalSection);
+				setGameClientMuteStatus(serverId, clientId);
 		
 				if (mySwFrequency == frequency && d < SW_DISTANCE)
 				{					
