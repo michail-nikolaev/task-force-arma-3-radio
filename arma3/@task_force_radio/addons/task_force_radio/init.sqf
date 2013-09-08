@@ -4,7 +4,7 @@ disableSerialization;
 #define CTRLL 29
 #define ALTL 56
 
-ADDON_VERSION = "0.5.7 beta";
+ADDON_VERSION = "0.6.1 beta";
 
 MIN_SW_FREQ = 30;
 MAX_SW_FREQ = 512;
@@ -20,8 +20,20 @@ IDC_ANPRC152_RADIO_DIALOG_ID = IDC_ANPRC152_RADIO_DIALOG;
 IDC_RT1523G_RADIO_DIALOG_EDIT_ID = IDC_RT1523G_RADIO_DIALOG_EDIT;
 IDC_RT1523G_RADIO_DIALOG_ID = IDC_RT1523G_RADIO_DIALOG;
 
-sw_frequency = str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER);
-lr_frequency = str (round (((random (MAX_ASIP_FREQ - MIN_ASIP_FREQ)) + MIN_ASIP_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER);
+MAX_CHANNELS = 8;
+sw_frequencies = [0, 0, 0, 0, 0, 0, 0, 0];
+for "_i" from 0 to (count sw_frequencies) step 1 do {
+	sw_frequencies set [_i, (str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER))];
+};
+sw_active_channel = 0;
+
+MAX_LR_CHANNELS = 9;
+lr_frequencies = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+for "_i" from 0 to (count lr_frequencies) step 1 do {
+	lr_frequencies set [_i, str (round (((random (MAX_ASIP_FREQ - MIN_ASIP_FREQ)) + MIN_ASIP_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)];
+};
+lr_active_channel = 0;
+
 
 tangent_sw_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "tanget_sw"  >> "key");
 tangent_sw_shift = getNumber (configFile >> "task_force_radio_keys" >>  "tanget_sw"  >> "shift");
@@ -62,7 +74,27 @@ speak_volume_level = "Normal";
 	};
 	haveLRRadio = 
 	{
-		(backpack player == "tf_rt1523g") or ((vehicle player != player) and ((gunner (vehicle player) == player) or (driver (vehicle player) == player) or (commander (vehicle player) == player) or ((vehicle player) turretUnit [0] == player)));
+		(backpack player == "tf_rt1523g") or ((vehicle player != player) and ((gunner (vehicle player) == player) or (driver (vehicle player) == player) or (commander (vehicle player) == player) or ((vehicle player) turretUnit [0] == player)));		
+	};
+	currentSWFrequency = 
+	{
+		(sw_frequencies select sw_active_channel);
+	};
+	currentLRFrequency = 
+	{
+		(lr_frequencies select lr_active_channel);
+	};
+	updateSWDialogToChannel = 
+	{
+		ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT, call currentSWFrequency];
+		_channelText =  format["C%1", (sw_active_channel + 1)];
+		ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_CHANNEL_EDIT, _channelText];
+	};
+	updateLRDialogToChannel = 
+	{
+		ctrlSetText [IDC_RT1523G_RADIO_DIALOG_EDIT, call currentLRFrequency];
+		_channelText =  format["CH: %1", (lr_active_channel + 1)];
+		ctrlSetText [IDC_RT1523G_RADIO_DIALOG_CHANNEL_EDIT, _channelText];
 	};
 
 	radio_keyDown =
@@ -77,9 +109,9 @@ speak_volume_level = "Normal";
 		if (alive player) then {
 			if (call haveSWRadio) then {
 				if (!(tanget_sw_pressed) and (_scancode == tangent_sw_scancode) and (_shift == tangent_sw_shift) and (_ctrl == tangent_sw_ctrl) and (_alt == tangent_sw_alt)) then { 
-					_hintText = format["Transmiting SW on <t color='#ffff00'>%1</t>...", sw_frequency];
+					_hintText = format["Transmiting SW on <t color='#ffff00'>%1</t>...", call currentSWFrequency];
 					hintSilent parseText (_hintText);
-					_request = format["TANGENT@PRESSED@%1", sw_frequency];
+					_request = format["TANGENT@PRESSED@%1", call currentSWFrequency];
 					_result = "task_force_radio_pipe" callExtension _request;
 					tanget_sw_pressed = true;
 				};
@@ -87,15 +119,15 @@ speak_volume_level = "Normal";
 				if ((_scancode == dialog_sw_scancode) and (_shift == dialog_sw_shift) and (_ctrl == dialog_sw_ctrl) and (_alt == dialog_sw_alt)) then {
 					if !(dialog) then {
 						createDialog "anprc152_radio_dialog";
-						ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT, sw_frequency];
+						call updateSWDialogToChannel;
 					}
 				};
 			};
 			if (call haveLRRadio) then {
 				if (!(tanget_lr_pressed) and (_scancode == tangent_lr_scancode) and (_shift == tangent_lr_shift) and (_ctrl == tangent_lr_ctrl) and (_alt == tangent_lr_alt)) then { 
-					_hintText = format["Transmiting LR on <t color='#ff00ff'>%1</t>...", lr_frequency];
+					_hintText = format["Transmiting LR on <t color='#ff00ff'>%1</t>...", call currentLRFrequency];
 					hintSilent parseText (_hintText);
-					_request = format["TANGENT_LR@PRESSED@%1", lr_frequency];
+					_request = format["TANGENT_LR@PRESSED@%1", call currentLRFrequency];
 					_result = "task_force_radio_pipe" callExtension _request;
 					tanget_lr_pressed = true;
 				};
@@ -103,7 +135,7 @@ speak_volume_level = "Normal";
 				if ((_scancode == dialog_lr_scancode) and (_shift == dialog_lr_shift) and (_ctrl == dialog_lr_ctrl) and (_alt == dialog_lr_alt)) then {
 					if !(dialog) then {
 						createDialog "rt1523g_radio_dialog";
-						ctrlSetText [IDC_RT1523G_RADIO_DIALOG_EDIT, lr_frequency];
+						call updateLRDialogToChannel;
 					}
 				};
 			};
@@ -137,13 +169,13 @@ speak_volume_level = "Normal";
 		if (alive player) then {		
 			if ((tanget_sw_pressed) and ((_scancode == tangent_sw_scancode) or (_shift != tangent_sw_shift) or (_ctrl != tangent_sw_ctrl) or (_alt != tangent_sw_alt))) then { 
 				hintSilent "";
-				_request = format["TANGENT@RELEASED@%1", sw_frequency];
+				_request = format["TANGENT@RELEASED@%1", call currentSWFrequency];
 				_result = "task_force_radio_pipe" callExtension _request;	
 				tanget_sw_pressed = false;
 			};
 			if ((tanget_lr_pressed) and ((_scancode == tangent_lr_scancode) or (_shift != tangent_lr_shift) or (_ctrl != tangent_lr_ctrl) or (_alt != tangent_lr_alt))) then { 
 				hintSilent "";
-				_request = format["TANGENT_LR@RELEASED@%1", lr_frequency];
+				_request = format["TANGENT_LR@RELEASED@%1", call currentLRFrequency];
 				_result = "task_force_radio_pipe" callExtension _request;	
 				tanget_lr_pressed = false;
 			};
@@ -208,10 +240,10 @@ speak_volume_level = "Normal";
 			_freq = "No_SW_Radio";
 			_freq_lr = "No_LR_Radio";
 			if (call haveSWRadio) then {
-				_freq = sw_frequency;
+				_freq = call currentSWFrequency;
 			};
 			if (call haveLRRadio) then {
-				_freq_lr = lr_frequency;
+				_freq_lr = call currentLRFrequency;
 			};
 			_alive = alive player;
 			_nickname = name player;

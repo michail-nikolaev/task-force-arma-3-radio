@@ -37,12 +37,12 @@ static float* floatsSample[MAX_CHANNELS];
 #define SERIOUS_MOD_CHANNEL_NAME "TaskForceRadio"
 #define SERIOUS_CHANNEL_PASSWORD "123"
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
-#define MILLIS_TO_EXPIRE 2000  // 2 secondS without updates of client position to expire
+#define MILLIS_TO_EXPIRE 2000  // 2 seconds without updates of client position to expire
 
 #define LR_DISTANCE 20000
 #define SW_DISTANCE 3000
@@ -54,7 +54,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.5.7 beta"
+#define PLUGIN_VERSION "0.6.1 beta"
 #define WHISPER_VOLUME "Whispering"
 #define NORMAL_VOLUME "Normal"
 #define YELLING_VOLUME "Yelling"
