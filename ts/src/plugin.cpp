@@ -30,6 +30,7 @@
 #define M_PI       3.14159265358979323846
 #define RADIO_GAIN_SW 20
 #define RADIO_GAIN_LR 5
+#define CANT_SPEAK_GAIN 6
 
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
@@ -54,10 +55,11 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.6.1 beta"
+#define PLUGIN_VERSION "0.6.3 beta"
 #define WHISPER_VOLUME "Whispering"
 #define NORMAL_VOLUME "Normal"
 #define YELLING_VOLUME "Yelling"
+#define CANT_SPEAK_DISTANCE 3
 
 
 std::string addon_version;
@@ -71,8 +73,10 @@ struct CLIENT_DATA
 	uint64 positionTime;
 	std::string frequency;	
 	std::string	voiceVolume;
+	bool canSpeak;
 	Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS> filterSW;
-	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS> filterLR;
+	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS> filterLR;	
+	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS> filterCantSpeak;	
 	void resetSWFilter() 
 	{
 		filterSW.reset();
@@ -89,8 +93,10 @@ struct CLIENT_DATA
 		clientPosition.x = clientPosition.y = clientPosition.z = 0;
 		clientId = -1;
 		voiceVolume = NORMAL_VOLUME;
+		canSpeak = true;
 		filterSW.setup(2, 48000, 2000, 800);
 		filterLR.setup(4, 48000, 1800);
+		filterCantSpeak.setup(4, 48000, 100);
 	}
 };
 
@@ -105,6 +111,7 @@ struct SERVER_RADIO_DATA
 	std::string myLrFrequency;
 	std::string myVoiceVolume;
 	bool alive;
+	bool canSpeak;
 
 	SERVER_RADIO_DATA()
 	{
@@ -326,6 +333,17 @@ enum OVER_RADIO_TYPE
 	LISTEN_NONE
 };
 
+float errorProbabilityFromDistance(OVER_RADIO_TYPE radioType, float d)
+{
+	float maxD = (radioType == LISTEN_TO_SW) ? (float) SW_DISTANCE : (float) LR_DISTANCE;
+	float f = d / maxD;
+	if (f < 0.8) return 0.0f;
+	if (f < 0.85) return f * 0.1f; 
+	if (f < 0.9) return f * 0.2f; 
+	if (f < 0.95) return f * 0.4f; 
+	return 0.5;
+}
+
 OVER_RADIO_TYPE isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 {	
 	OVER_RADIO_TYPE result = LISTEN_NONE;
@@ -349,7 +367,7 @@ OVER_RADIO_TYPE isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 	return result;	
 }
 
-std::string getClientNickanme(uint64 serverConnectionHandlerID, anyID clientID)
+std::string getClientNickname(uint64 serverConnectionHandlerID, anyID clientID)
 {
 	std::string nickname = "Unknown nickname";
 	EnterCriticalSection(&serverDataCriticalSection);
@@ -394,15 +412,16 @@ float distanceFromClient(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 	return d;
 }
 
-float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
+float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, float d, bool shouldPlayerHear)
 {	
 	EnterCriticalSection(&serverDataCriticalSection);
 	std::string clientVolume = data->voiceVolume;
+	bool canSpeak = data->canSpeak;
 	LeaveCriticalSection(&serverDataCriticalSection);
-
-	float d = distanceFromClient(serverConnectionHandlerID, data);
+		
 	if (d <= 1.0) return 1.0;
-	float gain = 1.0f - log10((d / distanceFromVoice(clientVolume)) * 10.0f);
+	float maxDistance = shouldPlayerHear ? distanceFromVoice(clientVolume) : CANT_SPEAK_DISTANCE; 
+	float gain = 1.0f - log10((d / maxDistance) * 10.0f);
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);	
 }
 
@@ -578,6 +597,7 @@ std::string getMyNickname(uint64 serverConnectionHandlerID)
 
 void onGameEnd(uint64 serverConnectionHandlerID, anyID clientId) 
 {
+	log("On Game End");
 	DWORD error;
 	if (notSeriousChannelId != uint64(-1))
 	{
@@ -594,6 +614,7 @@ void onGameEnd(uint64 serverConnectionHandlerID, anyID clientId)
 
 void onRespawn(uint64 serverConnectionHandlerID, anyID clientId)
 {
+	log("On Respawn");	
 	notSeriousChannelId = getCurrentChannel(serverConnectionHandlerID);
 	uint64* result;
 	DWORD error;
@@ -616,17 +637,14 @@ void onRespawn(uint64 serverConnectionHandlerID, anyID clientId)
 			else 
 			{
 				if (!strcmp(SERIOUS_MOD_CHANNEL_NAME, channelName))
-				{			
-					if (getCurrentChannel(serverConnectionHandlerID) != channelId)
-					{					
-						if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, channelId, SERIOUS_CHANNEL_PASSWORD, NULL)) != ERROR_ok) {
-							log("Can't join channel", error);
-						} 
-						else 
-						{
-							joined = true;
-						}
-					}
+				{								
+					if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, channelId, SERIOUS_CHANNEL_PASSWORD, NULL)) != ERROR_ok) {
+						log("Can't join channel", error);
+					} 
+					else 
+					{
+						joined = true;
+					}					
 				}
 				ts3Functions.freeMemory(channelName);
 			}
@@ -647,13 +665,14 @@ void processGameCommand(std::string command)
 		return;
 	};	
 	DWORD error;
-	if (tokens.size() == 6 && tokens[0] == "POS") 
+	if (tokens.size() == 7 && tokens[0] == "POS") 
 	{	
 		std::string nickname = tokens[1];
 		float x = std::stof(tokens[2]);
 		float y = std::stof(tokens[3]);
-		float z = std::stof(tokens[4]);
+		float z = std::stof(tokens[4]);		
 		float viewAngle = std::stof(tokens[5]);
+		bool canSpeak = tokens[6] == "true";
 
 		TS3_VECTOR position;
 		position.x = x;
@@ -675,9 +694,11 @@ void processGameCommand(std::string command)
 			{
 				clientData->clientId = myId;
 				clientData->clientPosition = position;
-				clientData->positionTime = time;				
+				clientData->positionTime = time;
+				clientData->canSpeak = canSpeak;
 			}
 			serverIdToData[currentServerConnectionHandlerID].myPosition = position;
+			serverIdToData[currentServerConnectionHandlerID].canSpeak = canSpeak;
 
 			LeaveCriticalSection(&serverDataCriticalSection);
 			DWORD error = ts3Functions.systemset3DListenerAttributes(currentServerConnectionHandlerID, &position, &look, NULL);
@@ -696,6 +717,7 @@ void processGameCommand(std::string command)
 				{				
 					clientData->clientPosition = position;				
 					clientData->positionTime = time;
+					clientData->canSpeak = canSpeak;
 					LeaveCriticalSection(&serverDataCriticalSection);				
 					if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &position)) != ERROR_ok)
 					{
@@ -705,7 +727,9 @@ void processGameCommand(std::string command)
 				}
 				
 			}
+			LeaveCriticalSection(&serverDataCriticalSection);
 			setGameClientMuteStatus(currentServerConnectionHandlerID, getClientId(currentServerConnectionHandlerID, nickname));
+			EnterCriticalSection(&serverDataCriticalSection);
 		}				
 		LeaveCriticalSection(&serverDataCriticalSection);
 	} 
@@ -1307,53 +1331,33 @@ void applyGain(short * samples, int channels, int sampleCount, float directTalki
 	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short)(samples[i] * directTalkingVolume);
 }
 
-void processRadioDSP(short * samples, int channels, int sampleCount, float directTalkingVolume, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* filterSw,
-																								Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* filterLr)
+
+void processCantHearDSP(short * samples, int channels, int sampleCount, Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* filterCantSpeak)
 {
-	float zero = 0.0f;		
+	// all channels mixed
+	float mix[MAX_CHANNELS];
+	for (int j = 0; j < MAX_CHANNELS; j++) mix[j] = 0.0;
 
 	for (int i = 0; i < sampleCount * channels; i+= channels)
-	{	
-		// prepare mono for radio
-		short mono[MAX_CHANNELS];
-		long long no3D = 0;
-		for (int j = 0; j < MAX_CHANNELS; j++) mono[j] = 0;
-		for (int j = 0; j < channels; j++)
-		{
-			no3D += samples[i + j];
-		}
-		for (int j = 0; j < channels; j++)
-		{
-			mono[j] = (short) (no3D / channels);
-		}	
-		// all channels mixed
-		float mix[MAX_CHANNELS];
-		for (int j = 0; j < MAX_CHANNELS; j++) mix[j] = 0.0;
+	{
 		// process radio filter
 		EnterCriticalSection(&serverDataCriticalSection);
 		for (int j = 0; j < channels; j++)
 		{			
-			floatsSample[j][0] = ((float) mono[j] / (float) SHRT_MAX);			
+			floatsSample[j][0] = (samples[i + j] / (float) SHRT_MAX);			
 		}
 		// skip other channels
 		for (int j = channels; j < MAX_CHANNELS; j++)
 		{
 			floatsSample[j][0] = 0.0;
-		}		
-		if (filterSw != NULL) filterSw->process<float>(1, floatsSample);
-		if (filterLr != NULL) filterLr->process<float>(1, floatsSample);
+		}
+		filterCantSpeak->process<float>(1, floatsSample);
 		for (int j = 0; j < channels; j++) 
 		{			
-			if (filterSw != NULL) mix[j] = floatsSample[j][0] * RADIO_GAIN_SW;
-			if (filterLr != NULL) mix[j] = floatsSample[j][0] * RADIO_GAIN_LR;
+			mix[j] = floatsSample[j][0] * CANT_SPEAK_GAIN;			
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);
-		// now process and add direct talking to mix
-		for (int j = 0; j < channels; j++)
-		{
-			mix[j] +=  ((float) samples[i + j] / (float) SHRT_MAX) * directTalkingVolume;
-		}
-		// put mixed output to stream
+		// put mixed output to stream		
 		for (int j = 0; j < channels; j++)
 		{
 			float sample = mix[j];
@@ -1362,7 +1366,79 @@ void processRadioDSP(short * samples, int channels, int sampleCount, float direc
 			else if (sample < -1.0) newValue = SHRT_MIN;
 			else newValue =  (short) (sample * (SHRT_MAX - 1));		
 			samples[i + j] = newValue;
-		}				
+		}	
+	}	
+}
+
+void processRadioDSP(short * samples, int channels, int sampleCount, float directTalkingVolume, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* filterSw,
+																								Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* filterLr,																								
+																								float errorProbability)
+{
+	float zero = 0.0f;		
+	int errorLessThan = (int) (RAND_MAX * errorProbability);
+	int error = rand();
+	if (error < errorLessThan) 
+	{
+		for (int i = 0; i < sampleCount * channels; i++)
+			samples[i] = rand() % 200;
+	}
+	else
+	{	
+		for (int i = 0; i < sampleCount * channels; i+= channels)
+		{	
+			// all channels mixed
+			float mix[MAX_CHANNELS];
+			for (int j = 0; j < MAX_CHANNELS; j++) mix[j] = 0.0;
+			
+			// prepare mono for radio
+			short mono[MAX_CHANNELS];
+			long long no3D = 0;
+			for (int j = 0; j < MAX_CHANNELS; j++) mono[j] = 0;
+			for (int j = 0; j < channels; j++)
+			{
+				no3D += samples[i + j];
+			}
+			for (int j = 0; j < channels; j++)
+			{
+				mono[j] = (short) (no3D / channels);
+			}	
+				
+			// process radio filter
+			EnterCriticalSection(&serverDataCriticalSection);
+			for (int j = 0; j < channels; j++)
+			{			
+				floatsSample[j][0] = ((float) mono[j] / (float) SHRT_MAX);			
+			}
+			// skip other channels
+			for (int j = channels; j < MAX_CHANNELS; j++)
+			{
+				floatsSample[j][0] = 0.0;
+			}		
+			if (filterSw != NULL) filterSw->process<float>(1, floatsSample);
+			if (filterLr != NULL) filterLr->process<float>(1, floatsSample);			
+			for (int j = 0; j < channels; j++) 
+			{			
+				if (filterSw != NULL) mix[j] = floatsSample[j][0] * RADIO_GAIN_SW;
+				if (filterLr != NULL) mix[j] = floatsSample[j][0] * RADIO_GAIN_LR;
+			}
+			LeaveCriticalSection(&serverDataCriticalSection);
+			// now process and add direct talking to mix
+			for (int j = 0; j < channels; j++)
+			{
+				mix[j] +=  ((float) samples[i + j] / (float) SHRT_MAX) * directTalkingVolume;
+			}						
+			
+			// put mixed output to stream		
+			for (int j = 0; j < channels; j++)
+			{
+				float sample = mix[j];
+				short newValue;
+				if (sample > 1.0) newValue = SHRT_MAX;
+				else if (sample < -1.0) newValue = SHRT_MIN;
+				else newValue =  (short) (sample * (SHRT_MAX - 1));		
+				samples[i + j] = newValue;
+			}	
+		}
 	}
 }
 
@@ -1410,29 +1486,38 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 	static DWORD last_no_info;	
 	EnterCriticalSection(&serverDataCriticalSection);
 	bool alive = serverIdToData[serverConnectionHandlerID].alive;
+	bool canSpeak = serverIdToData[serverConnectionHandlerID].canSpeak;
 	LeaveCriticalSection(&serverDataCriticalSection);
 	if (hasClientData(serverConnectionHandlerID, clientID) && isPluginEnabledForUser(serverConnectionHandlerID, clientID))
-	{		
-		CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);		
+	{				
 		if (isSeriousModeEnabled(serverConnectionHandlerID, clientID) && !alive)
 		{
 			applyGain(samples, channels, sampleCount, 0.0f);
 		}
 		else 
 		{		
+			CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);		
 			if (data != NULL) 
 			{		
+				EnterCriticalSection(&serverDataCriticalSection);
 				OVER_RADIO_TYPE overRadioType = isOverRadio(serverConnectionHandlerID, data);
+				float d = distanceFromClient(serverConnectionHandlerID, data);				
+				bool shouldPlayerHear = data->canSpeak && canSpeak;				
 				if (overRadioType != LISTEN_NONE)
 				{			
 					Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* filterSw = (overRadioType == LISTEN_TO_SW) ? &(data->filterSW) : NULL;
-					Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* filterLr = (overRadioType == LISTEN_TO_LR) ? &(data->filterLR) : NULL;
-					processRadioDSP(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data), filterSw, filterLr);
+					Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* filterLr = (overRadioType == LISTEN_TO_LR) ? &(data->filterLR) : NULL;															
+					processRadioDSP(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear), filterSw, filterLr, errorProbabilityFromDistance(overRadioType, d));					
+					// in case of radio processing we ignoring "Can't hear" filtering
 				} 
 				else 
-				{
-					applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data));
+				{					
+					Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* filterCantSpeak = shouldPlayerHear ? NULL : &(data->filterCantSpeak);
+					applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear));					
+					if (filterCantSpeak != NULL)
+						processCantHearDSP(samples, channels, sampleCount, filterCantSpeak); 					
 				}
+				LeaveCriticalSection(&serverDataCriticalSection);
 			}
 		}
 	}
@@ -1451,7 +1536,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 		}
 		if (GetTickCount() - last_no_info > MILLIS_TO_EXPIRE) 
 		{
-			std::string nickname = getClientNickanme(serverConnectionHandlerID, clientID);
+			std::string nickname = getClientNickname(serverConnectionHandlerID, clientID);
 			if (!hasClientData(serverConnectionHandlerID, clientID))
 				log_string(std::string("No info about ") + std::to_string((long long)clientID) + " " + nickname, LogLevel_DEBUG);
 			if (!isPluginEnabledForUser(serverConnectionHandlerID, clientID))
@@ -1701,8 +1786,7 @@ void processPluginCommand(std::string command)
 				if (playReleased && alive)
 				{
 					if (clientData->longRangeTangent) clientData->resetSWFilter(); else clientData->resetLRFilter();
-				}
-				LeaveCriticalSection(&serverDataCriticalSection);
+				}				
 			}
 			else 
 			{
@@ -1713,6 +1797,7 @@ void processPluginCommand(std::string command)
 		{
 			log_string(std::string("PLUGIN FROM UNKNOWN NICKNAME ") +  nickname);
 		}
+		LeaveCriticalSection(&serverDataCriticalSection);
 	}
 	else if (tokens.size() == 3 && tokens[0] == "VOLUME")
 	{			
