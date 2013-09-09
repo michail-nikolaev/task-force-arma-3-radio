@@ -1372,11 +1372,11 @@ void stereoToMonoDSP(short * samples, int channels, int sampleCount)
 	for (int i = 0; i < sampleCount * channels; i+= channels)
 	{
 		long long no3D = 0;
-		for (int j = 0; j < channels; j++)
+		for (int j = 0; j < 2; j++)
 		{
 			no3D += samples[i + j];
 		}
-		for (int j = 0; j < channels; j++)
+		for (int j = 0; j < 2; j++)
 		{
 			samples[i + j] = (short) (no3D / channels);
 		}		
