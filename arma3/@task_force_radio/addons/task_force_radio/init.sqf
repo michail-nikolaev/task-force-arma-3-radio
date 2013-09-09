@@ -4,7 +4,7 @@ disableSerialization;
 #define CTRLL 29
 #define ALTL 56
 
-ADDON_VERSION = "0.6.1 beta";
+ADDON_VERSION = "0.6.3 beta";
 
 MIN_SW_FREQ = 30;
 MAX_SW_FREQ = 512;
@@ -96,6 +96,22 @@ speak_volume_level = "Normal";
 		_channelText =  format["CH: %1", (lr_active_channel + 1)];
 		ctrlSetText [IDC_RT1523G_RADIO_DIALOG_CHANNEL_EDIT, _channelText];
 	};
+	canSpeak = 
+	{
+		_player = _this select 0;
+		_player_eys_pos = eyepos _player;
+		((vehicle _player != _player) or ((_player_eys_pos select 2) > 0));
+	};
+	canUseRadio =
+	{
+		_player = _this select 0;
+		_player_eys_pos = eyepos _player;
+		((_player_eys_pos select 2) > 0) or ( (vehicle _player != _player) and ((_player_eys_pos select 2) > -3) );
+	};
+	inWaterHint = 
+	{
+		hintSilent parseText ("<t color='#33ccff'>Can't use radio under WATER</t>");
+	};
 
 	radio_keyDown =
 	{
@@ -108,12 +124,16 @@ speak_volume_level = "Normal";
 
 		if (alive player) then {
 			if (call haveSWRadio) then {
-				if (!(tanget_sw_pressed) and (_scancode == tangent_sw_scancode) and (_shift == tangent_sw_shift) and (_ctrl == tangent_sw_ctrl) and (_alt == tangent_sw_alt)) then { 
-					_hintText = format["Transmiting SW on <t color='#ffff00'>%1</t>...", call currentSWFrequency];
-					hintSilent parseText (_hintText);
-					_request = format["TANGENT@PRESSED@%1", call currentSWFrequency];
-					_result = "task_force_radio_pipe" callExtension _request;
-					tanget_sw_pressed = true;
+				if (!(tanget_sw_pressed) and (_scancode == tangent_sw_scancode) and (_shift == tangent_sw_shift) and (_ctrl == tangent_sw_ctrl) and (_alt == tangent_sw_alt)) then {
+					if ([player] call canUseRadio) then { 
+						_hintText = format["Transmiting SW on <t color='#ffff00'>%1</t>...", call currentSWFrequency];
+						hintSilent parseText (_hintText);
+						_request = format["TANGENT@PRESSED@%1", call currentSWFrequency];
+						_result = "task_force_radio_pipe" callExtension _request;
+						tanget_sw_pressed = true;
+					} else {
+						call inWaterHint;
+					}
 				};
 	
 				if ((_scancode == dialog_sw_scancode) and (_shift == dialog_sw_shift) and (_ctrl == dialog_sw_ctrl) and (_alt == dialog_sw_alt)) then {
@@ -125,11 +145,16 @@ speak_volume_level = "Normal";
 			};
 			if (call haveLRRadio) then {
 				if (!(tanget_lr_pressed) and (_scancode == tangent_lr_scancode) and (_shift == tangent_lr_shift) and (_ctrl == tangent_lr_ctrl) and (_alt == tangent_lr_alt)) then { 
-					_hintText = format["Transmiting LR on <t color='#ff00ff'>%1</t>...", call currentLRFrequency];
-					hintSilent parseText (_hintText);
-					_request = format["TANGENT_LR@PRESSED@%1", call currentLRFrequency];
-					_result = "task_force_radio_pipe" callExtension _request;
-					tanget_lr_pressed = true;
+					if ([player] call canUseRadio) then {
+						_hintText = format["Transmiting LR on <t color='#ff00ff'>%1</t>...", call currentLRFrequency];
+						hintSilent parseText (_hintText);
+						_request = format["TANGENT_LR@PRESSED@%1", call currentLRFrequency];
+						_result = "task_force_radio_pipe" callExtension _request;
+						tanget_lr_pressed = true;
+					} else {
+						call inWaterHint;
+					}
+
 				};
 	
 				if ((_scancode == dialog_lr_scancode) and (_shift == dialog_lr_shift) and (_ctrl == dialog_lr_ctrl) and (_alt == dialog_lr_alt)) then {
@@ -149,7 +174,7 @@ speak_volume_level = "Normal";
 						speak_volume_level = "Whispering";
 					}
 				};
-				_hintText = format["<t color='#f700da'>Voice volume: %1</t>", speak_volume_level];
+				_hintText = format["<t color='#66ff33'>Voice volume: %1</t>", speak_volume_level];
 				hintSilent parseText (_hintText);
 			};
 		};
@@ -220,7 +245,7 @@ speak_volume_level = "Normal";
 						_current_rotation_horizontal = _current_rotation_horizontal + 360;
 					};
 					
-					_request = format["POS@%1@%2@%3@%4@%5", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal ];	
+					_request = format["POS@%1@%2@%3@%4@%5@%6", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal, [_x] call canSpeak];	
 					_result = "task_force_radio_pipe" callExtension _request;
 					if (_result != "OK") then 
 					{
@@ -239,10 +264,10 @@ speak_volume_level = "Normal";
 		if (isMultiplayer) then {
 			_freq = "No_SW_Radio";
 			_freq_lr = "No_LR_Radio";
-			if (call haveSWRadio) then {
+			if ((call haveSWRadio) and ([player] call canUseRadio)) then {
 				_freq = call currentSWFrequency;
 			};
-			if (call haveLRRadio) then {
+			if ((call haveLRRadio) and ([player] call canUseRadio)) then {
 				_freq_lr = call currentLRFrequency;
 			};
 			_alive = alive player;
