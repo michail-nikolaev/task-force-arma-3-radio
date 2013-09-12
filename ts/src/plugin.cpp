@@ -266,7 +266,7 @@ anyID getClientId(uint64 serverConnectionHandlerID, std::string nickname)
 {
 	anyID clienId = -1;
 	EnterCriticalSection(&serverDataCriticalSection);
-	if (serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(nickname) && serverIdToData[serverConnectionHandlerID].nicknameToClientData[nickname])
+	if (serverIdToData.count(serverConnectionHandlerID) && serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(nickname) && serverIdToData[serverConnectionHandlerID].nicknameToClientData[nickname])
 	{
 		clienId = serverIdToData[serverConnectionHandlerID].nicknameToClientData[nickname]->clientId;
 	}
@@ -691,7 +691,10 @@ void processGameCommand(std::string command)
 				look.x = sin(radians);
 				look.z = cos(radians);
 				look.y = 0;
-				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+				CLIENT_DATA* clientData = NULL;
+				if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname))
+						clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+
 				if (clientData)
 				{
 					clientData->clientId = myId;
@@ -803,19 +806,22 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 	std::vector<std::string> toRemove;
 
 	EnterCriticalSection(&serverDataCriticalSection);
-	for (auto it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
-	{
-		if (it->second && time - it->second->positionTime > MILLIS_TO_EXPIRE)
-		{			
-			toRemove.push_back(it->first);
+	if (serverIdToData.count(serverConnectionHandlerID))
+	{	
+		for (auto it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
+		{
+			if (it->second && time - it->second->positionTime > MILLIS_TO_EXPIRE)
+			{			
+				toRemove.push_back(it->first);
+			}
 		}
-	}
-	for (auto it = toRemove.begin(); it != toRemove.end(); it++)
-	{
-		CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[*it];
-		serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);		
-		delete data;
-		log_string(std::string("Expire position of ") + *it, LogLevel_DEBUG);
+		for (auto it = toRemove.begin(); it != toRemove.end(); it++)
+		{
+			CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[*it];
+			serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);		
+			delete data;
+			log_string(std::string("Expire position of ") + *it, LogLevel_DEBUG);
+		}
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
 
@@ -836,12 +842,15 @@ void updateNicknamesList(uint64 serverConnectionHandlerID) {
 		else 
 		{
 			EnterCriticalSection(&serverDataCriticalSection);			
-			std::string clientNickname(name);
-			if (!serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(clientNickname))
-			{
-				serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname] = new CLIENT_DATA();
+			if (serverIdToData.count(serverConnectionHandlerID))
+			{			
+				std::string clientNickname(name);
+				if (!serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(clientNickname))
+				{
+					serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname] = new CLIENT_DATA();
+				}
+				serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname]->clientId = clientId;
 			}
-			serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname]->clientId = clientId;
 			LeaveCriticalSection(&serverDataCriticalSection);
 
 			ts3Functions.freeMemory(name);
@@ -1745,7 +1754,7 @@ void processPluginCommand(std::string command)
 		bool alive = serverIdToData[serverId].alive;
 		std::string mySwFrequency = serverIdToData[serverId].mySwFrequency;
 		std::string myLrFrequency = serverIdToData[serverId].myLrFrequency;
-		if (serverIdToData[serverId].nicknameToClientData.count(nickname))
+		if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(nickname))
 		{		
 			CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[nickname];
 			if (clientData)
@@ -1812,7 +1821,7 @@ void processPluginCommand(std::string command)
 		EnterCriticalSection(&serverDataCriticalSection);
 		std::string nickname = tokens[1];
 		std::string volume = tokens[2];
-		if (serverIdToData[serverId].nicknameToClientData.count(nickname) && serverIdToData[serverId].nicknameToClientData[nickname]) 
+		if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(nickname) && serverIdToData[serverId].nicknameToClientData[nickname]) 
 		{
 			serverIdToData[serverId].nicknameToClientData[nickname]->voiceVolume = volume;
 		}
