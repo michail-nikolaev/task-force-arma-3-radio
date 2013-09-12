@@ -681,68 +681,73 @@ void processGameCommand(std::string command)
 		DWORD time = GetTickCount();
 		anyID myId = getMyId(currentServerConnectionHandlerID);
 		EnterCriticalSection(&serverDataCriticalSection); 
-		if (nickname == serverIdToData[currentServerConnectionHandlerID].myNickname) 
-		{
+		if (serverIdToData.count(currentServerConnectionHandlerID))
+		{		
+			if (nickname == serverIdToData[currentServerConnectionHandlerID].myNickname) 
+			{
 
-			float radians = viewAngle * ((float) M_PI / 180.0f);
-			TS3_VECTOR look;
-			look.x = sin(radians);
-			look.z = cos(radians);
-			look.y = 0;
-			CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
-			if (clientData)
-			{
-				clientData->clientId = myId;
-				clientData->clientPosition = position;
-				clientData->positionTime = time;
-				clientData->canSpeak = canSpeak;
-			}
-			serverIdToData[currentServerConnectionHandlerID].myPosition = position;
-			serverIdToData[currentServerConnectionHandlerID].canSpeak = canSpeak;
-
-			LeaveCriticalSection(&serverDataCriticalSection);
-			DWORD error = ts3Functions.systemset3DListenerAttributes(currentServerConnectionHandlerID, &position, &look, NULL);
-			EnterCriticalSection(&serverDataCriticalSection); 
-			if(error != ERROR_ok)
-			{
-				log("Failed to set own 3d position", error);
-			}				
-		} 
-		else 
-		{
-			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname))
-			{
+				float radians = viewAngle * ((float) M_PI / 180.0f);
+				TS3_VECTOR look;
+				look.x = sin(radians);
+				look.z = cos(radians);
+				look.y = 0;
 				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
 				if (clientData)
-				{				
-					clientData->clientPosition = position;				
+				{
+					clientData->clientId = myId;
+					clientData->clientPosition = position;
 					clientData->positionTime = time;
 					clientData->canSpeak = canSpeak;
-					LeaveCriticalSection(&serverDataCriticalSection);				
-					if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &position)) != ERROR_ok)
-					{
-						log("Can't set client 3D position", error);
-					}
-					EnterCriticalSection(&serverDataCriticalSection);
 				}
+				serverIdToData[currentServerConnectionHandlerID].myPosition = position;
+				serverIdToData[currentServerConnectionHandlerID].canSpeak = canSpeak;
+
+				LeaveCriticalSection(&serverDataCriticalSection);
+				DWORD error = ts3Functions.systemset3DListenerAttributes(currentServerConnectionHandlerID, &position, &look, NULL);
+				EnterCriticalSection(&serverDataCriticalSection); 
+				if(error != ERROR_ok)
+				{
+					log("Failed to set own 3d position", error);
+				}				
+			} 
+			else 
+			{
+				if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname))
+				{
+					CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+					if (clientData)
+					{				
+						clientData->clientPosition = position;				
+						clientData->positionTime = time;
+						clientData->canSpeak = canSpeak;
+						LeaveCriticalSection(&serverDataCriticalSection);				
+						if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &position)) != ERROR_ok)
+						{
+							log("Can't set client 3D position", error);
+						}
+						EnterCriticalSection(&serverDataCriticalSection);
+					}
 				
-			}
-			LeaveCriticalSection(&serverDataCriticalSection);
-			setGameClientMuteStatus(currentServerConnectionHandlerID, getClientId(currentServerConnectionHandlerID, nickname));
-			EnterCriticalSection(&serverDataCriticalSection);
-		}				
+				}
+				LeaveCriticalSection(&serverDataCriticalSection);
+				setGameClientMuteStatus(currentServerConnectionHandlerID, getClientId(currentServerConnectionHandlerID, nickname));
+				EnterCriticalSection(&serverDataCriticalSection);
+			}	
+		}
 		LeaveCriticalSection(&serverDataCriticalSection);
 	} 
 	else if (tokens.size() == 3 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR"))
 	{
 		bool pressed = (tokens[1] == "PRESSED");
-		bool longRange = (tokens[0] == "TANGENT_LR");
-		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
+		bool longRange = (tokens[0] == "TANGENT_LR");		
 
 		bool changed = false;
 		EnterCriticalSection(&serverDataCriticalSection);		
-		changed = (serverIdToData[serverId].tangentPressed != pressed);
-		serverIdToData[serverId].tangentPressed = pressed;
+		if (serverIdToData.count(currentServerConnectionHandlerID))
+		{
+			changed = (serverIdToData[currentServerConnectionHandlerID].tangentPressed != pressed);
+			serverIdToData[currentServerConnectionHandlerID].tangentPressed = pressed;
+		}
 		LeaveCriticalSection(&serverDataCriticalSection);		
 		if (changed)
 		{			
@@ -762,28 +767,30 @@ void processGameCommand(std::string command)
 			log_string(commandToBroadcast, LogLevel_DEVEL);
 			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
 
-			if((error = ts3Functions.setClientSelfVariableAsInt(serverId, CLIENT_INPUT_DEACTIVATED, pressed || vadEnabled ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
+			if((error = ts3Functions.setClientSelfVariableAsInt(currentServerConnectionHandlerID, CLIENT_INPUT_DEACTIVATED, pressed || vadEnabled ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
 				log("Can't active talking by tangent", error);
 			}
-			DWORD error = ts3Functions.flushClientSelfUpdates(serverId, NULL); 
+			DWORD error = ts3Functions.flushClientSelfUpdates(currentServerConnectionHandlerID, NULL); 
 			if(error != ERROR_ok && error != ERROR_ok_no_update) {
 				log("Can't flush self updates", error);
 			}
 		}		
 	} 
 	else if (tokens.size() == 6 && tokens[0] == "FREQ")
-	{		
-		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
+	{				
 		EnterCriticalSection(&serverDataCriticalSection);	
-		serverIdToData[serverId].mySwFrequency = tokens[1];
-		serverIdToData[serverId].myLrFrequency = tokens[2];
-		serverIdToData[serverId].alive = tokens[3] == "true";		
-		serverIdToData[serverId].myVoiceVolume = tokens[4];
+		if (serverIdToData.count(currentServerConnectionHandlerID))
+		{		
+			serverIdToData[currentServerConnectionHandlerID].mySwFrequency = tokens[1];
+			serverIdToData[currentServerConnectionHandlerID].myLrFrequency = tokens[2];
+			serverIdToData[currentServerConnectionHandlerID].alive = tokens[3] == "true";		
+			serverIdToData[currentServerConnectionHandlerID].myVoiceVolume = tokens[4];
+		}
 		LeaveCriticalSection(&serverDataCriticalSection);		
-		if (getMyNickname(serverId) != tokens[5] && tokens[5] != "Error: No unit")
+		if (getMyNickname(currentServerConnectionHandlerID) != tokens[5] && (tokens[5] != "Error: No unit" && tokens[5] != "Error: No vehicle"))
 		{
 			DWORD error;
-			if((error = ts3Functions.setClientSelfVariableAsString(serverId,  CLIENT_NICKNAME, tokens[5].c_str())) != ERROR_ok) {
+			if((error = ts3Functions.setClientSelfVariableAsString(currentServerConnectionHandlerID,  CLIENT_NICKNAME, tokens[5].c_str())) != ERROR_ok) {
 				log("Error setting client nickname", error);				
 			}
 		}
@@ -798,7 +805,7 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 	EnterCriticalSection(&serverDataCriticalSection);
 	for (auto it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
 	{
-		if (time - it->second->positionTime > MILLIS_TO_EXPIRE)
+		if (it->second && time - it->second->positionTime > MILLIS_TO_EXPIRE)
 		{			
 			toRemove.push_back(it->first);
 		}
@@ -1010,8 +1017,7 @@ int ts3plugin_init() {
 
 	InitializeCriticalSection(&serverDataCriticalSection);
 
-	exitThread = FALSE;
-	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);		
+	exitThread = FALSE;		
 
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
@@ -1021,6 +1027,7 @@ int ts3plugin_init() {
 	{
 		floatsSample[q] = new float[1];
 	}
+	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);		
 
     return 0;
 }
@@ -1047,6 +1054,7 @@ void ts3plugin_shutdown() {
 	updateUserStatusInfo(false);
 	thread = INVALID_HANDLE_VALUE;
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
+	unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	exitThread = FALSE;
 	
 	/* Free pluginID if we registered it */
