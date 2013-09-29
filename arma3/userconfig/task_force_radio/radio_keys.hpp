@@ -35,6 +35,126 @@
 		alt = 0;
 	};
 
+	class sw_channel_1 {
+		key = 79;
+		ctrl = 0;
+		shift = 0;
+		alt = 0;
+	};
+	class sw_channel_2 {
+		key = 80;
+		ctrl = 0;
+		shift = 0;
+		alt = 0;
+	};
+	class sw_channel_3 {
+		key = 81;
+		ctrl = 0;
+		shift = 0;
+		alt = 0;
+	};
+	class sw_channel_4 {
+		key = 75;
+		ctrl = 0;
+		shift = 0;
+		alt = 0;
+	};
+	class sw_channel_5 {
+		key = 76;
+		ctrl = 0;
+		shift = 0;
+		alt = 0;
+	};
+	class sw_channel_6 {
+		key = 77;
+		ctrl = 0;
+		shift = 0;
+		alt = 0;
+	};
+	class sw_channel_7 {
+		key = 71;
+		ctrl = 0;
+		shift = 0;
+		alt = 0;
+	};
+	class sw_channel_8 {
+		key = 72;
+		ctrl = 0;
+		shift = 0;
+		alt = 0;
+	};
+
+
+	class lr_channel_1 {
+		key = 79;
+		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+	class lr_channel_2 {
+		key = 80;
+		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+	class lr_channel_3 {
+		key = 81;
+		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+	class lr_channel_4 {
+		key = 75;
+		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+	class lr_channel_5 {
+		key = 76;
+		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+	class lr_channel_6 {
+		key = 77;
+		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+	class lr_channel_7 {
+		key = 71;
+		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+	class lr_channel_8 {
+		key = 72;
+		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+	class lr_channel_9 {
+		key = 73;
+		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+
+
+	class tanget_dd {
+		key = 58;
+		ctrl = 0;
+		shift = 1;
+		alt = 0;
+	};
+
+	class dialog_dd {
+		key = 25;
+		ctrl = 0;
+		shift = 1;
+		alt = 0;
+	};
+
 
 };
 

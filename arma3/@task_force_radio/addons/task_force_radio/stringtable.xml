@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ID="Arma2">
+	<Package ID="Missions">
+		<Container ID="A3RU_MissionInformation">
+			<Key ID="STR_current_freq">
+				<Original>
+					Current frequency
+				</Original>
+				<Russian>
+					Текущая частота
+				</Russian>
+			</Key>
+			<Key ID="STR_current_channel">
+				<Original>
+					Current channel
+				</Original>
+				<Russian>
+					Текущий канал
+				</Russian>
+			</Key>
+			<Key ID="STR_set_frequency">
+				<Original>
+					Set frequency
+				</Original>
+				<Russian>
+					Установить частоту
+				</Russian>
+			</Key>
+			<Key ID="STR_clear_frequency">
+				<Original>
+					Clear frequency
+				</Original>
+				<Russian>
+					Стереть частоту
+				</Russian>
+			</Key>
+			<Key ID="STR_previous_channel">
+				<Original>
+					Previous channel
+				</Original>
+				<Russian>
+					Предыдущий канал
+				</Russian>
+			</Key>
+			<Key ID="STR_next_channel">
+				<Original>
+					Next channel
+				</Original>
+				<Russian>
+					Следующий канал
+				</Russian>
+			</Key>
+			<Key ID="STR_increase_volume">
+				<Original>
+					Increase volume
+				</Original>
+				<Russian>
+					Увеличить громкость
+				</Russian>
+			</Key>
+			<Key ID="STR_decrease_volume">
+				<Original>
+					Decrease volume
+				</Original>
+				<Russian>
+					Уменьшить громкость
+				</Russian>
+			</Key>
+			<Key ID="STR_volume">
+				<Original>
+					Change volume
+				</Original>
+				<Russian>
+					Настроить громкость
+				</Russian>
+			</Key>
+			<Key ID="STR_incorrect_frequency">
+				<Original>
+					Incorrect frequency value, range is %1-%2
+				</Original>
+				<Russian>
+					Неверная частота, диапазон %1-%2
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_volume">
+				<Original>
+					Radio volume level: %1
+				</Original>
+				<Russian>
+					Громкость рации: %1
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_1">
+				<Original>
+					Channel 1
+				</Original>
+				<Russian>
+					Канал 1
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_2">
+				<Original>
+					Channel 2
+				</Original>
+				<Russian>
+					Канал 2
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_3">
+				<Original>
+					Channel 3
+				</Original>
+				<Russian>
+					Канал 3
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_4">
+				<Original>
+					Channel 4
+				</Original>
+				<Russian>
+					Канал 4
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_5">
+				<Original>
+					Channel 5
+				</Original>
+				<Russian>
+					Канал 5
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_6">
+				<Original>
+					Channel 6
+				</Original>
+				<Russian>
+					Канал 6
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_7">
+				<Original>
+					Channel 7
+				</Original>
+				<Russian>
+					Канал 7
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_8">
+				<Original>
+					Channel 8
+				</Original>
+				<Russian>
+					Канал 8
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_9">
+				<Original>
+					Channel 9
+				</Original>
+				<Russian>
+					Канал 9
+				</Russian>
+			</Key>
+			<Key ID="STR_depth">
+				<Original>
+					Current depth
+				</Original>
+				<Russian>
+					Текущая глубина
+				</Russian>
+			</Key>
+			<Key ID="STR_active_sw_channel">
+				<Original>
+					Active SW channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Original>
+				<Russian>
+					Текущий канал: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_active_lr_channel">
+				<Original>
+					Active LR channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Original>
+				<Russian>
+					Текущий канал дальней связи: &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_in_water_hint">
+				<Original>
+					&lt;t color=&apos;#33ccff&apos;&gt;Can&apos;t use radio under WATER&lt;/t&gt;
+				</Original>
+				<Russian>
+					&lt;t color=&apos;#33ccff&apos;&gt;Нельзя использовать данную рацию под водой&lt;/t&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_on_ground_hint">
+				<Original>
+					&lt;t color=&apos;#993300&apos;&gt;Can&apos;t use driver radio on the air&lt;/t&gt;
+				</Original>
+				<Russian>
+					&lt;t color=&apos;#993300&apos;&gt;Нельзя использовать данную рацию в воздушной среде&lt;/t&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_transmit_sw">
+				<Original>
+					Transmiting SW on &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...
+				</Original>
+				<Russian>
+					Передача на частоте &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...
+				</Russian>
+			</Key>
+			<Key ID="STR_transmit_lr">
+				<Original>
+					Transmiting LR on &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
+				</Original>
+				<Russian>
+					Дальняя передача на частоте &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
+				</Russian>
+			</Key>
+			<Key ID="STR_transmit_dd">
+				<Original>
+					Transmiting Diver Radio on &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
+				</Original>
+				<Russian>
+					Подводная передача на частоте &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
+				</Russian>
+			</Key>
+			<Key ID="STR_waiting">
+				<Original>
+					Waiting...
+				</Original>
+				<Russian>
+					Ожидание...
+				</Russian>
+			</Key>
+			<Key ID="STR_voice_volume">
+				<Original>
+					&lt;t color=&apos;#66ff33&apos;&gt;Voice volume: %1&lt;/t&gt;
+				</Original>
+				<Russian>
+					&lt;t color=&apos;#66ff33&apos;&gt;Громкость голоса: %1&lt;/t&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_voice_normal">
+				<Original>
+					normal
+				</Original>
+				<Russian>
+					норма
+				</Russian>
+			</Key>
+			<Key ID="STR_voice_yelling">
+				<Original>
+					yelling
+				</Original>
+				<Russian>
+					крик
+				</Russian>
+			</Key>
+			<Key ID="STR_voice_whispering">
+				<Original>
+					whispering
+				</Original>
+				<Russian>
+					шепот
+				</Russian>
+			</Key>
+			<Key ID="STR_init">
+				<Original>
+					Initialization...
+				</Original>
+				<Russian>
+					Инициализация...
+				</Russian>
+			</Key>
+
+
+
+
+
+
+
+		</Container>
+	</Package>
+</Project>
