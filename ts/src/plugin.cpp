@@ -895,13 +895,9 @@ void processGameCommand(std::string command)
 						clientData->canSpeak = canSpeak;
 						clientData->canUseSWRadio = canUseSWRadio;
 						clientData->canUseLRRadio = canUseLRRadio;
-						clientData->canUseDDRadio = canUseDDRadio;
-						TS3_VECTOR normalized;
-						normalized.x = position.x - serverIdToData[currentServerConnectionHandlerID].myPosition.x;
-						normalized.y = position.y - serverIdToData[currentServerConnectionHandlerID].myPosition.y;
-						normalized.z = position.z - serverIdToData[currentServerConnectionHandlerID].myPosition.z;
+						clientData->canUseDDRadio = canUseDDRadio;						
 						LeaveCriticalSection(&serverDataCriticalSection);							
-						if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &normalized)) != ERROR_ok)
+						if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &position)) != ERROR_ok)
 						{
 							log("Can't set client 3D position", error);
 						}

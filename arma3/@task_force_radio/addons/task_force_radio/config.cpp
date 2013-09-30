@@ -5,7 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 1.0;
-		requiredAddons[] = {"Extended_EventHandlers"};
+		requiredAddons[] = {"Extended_EventHandlers", "A3_UI_F"};
 		author[] = {"[TF]Nkey"};
 		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
 		version = 0.7.0;
@@ -26,6 +26,30 @@ class CfgVehicles {
 		maximumLoad = 30;
 		mass = 15;
 	};	
+};
+
+class CfgMarkers
+{
+	class hd_objective
+	{
+		name = "$STR_CFG_MARKERS_dot";
+		icon = "\A3\ui_f\data\map\markers\handdrawn\dot_CA.paa";
+		color[] = {0,0,0,1};
+		size = 32;
+		shadow = 1;
+		scope = 2;
+		markerClass = "draw";
+	};
+	class hd_dot
+	{
+		name = "$STR_CFG_MARKERS_FLAG";
+		icon = "\A3\ui_f\data\map\markers\handdrawn\objective_CA.paa";
+		color[] = {0,0,0,1};
+		size = 32;
+		shadow = 1;
+		scope = 2;
+		markerClass = "draw";
+	};
 };
 
 class Extended_PostInit_EventHandlers
