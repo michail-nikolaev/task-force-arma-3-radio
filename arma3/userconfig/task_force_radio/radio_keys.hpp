@@ -29,8 +29,8 @@
 	};
 
 	class speak_volume {
-		key = 15;
-		ctrl = 1;
+		key = 15
+		ctrl = 1
 		shift = 0;
 		alt = 0;
 	};
@@ -144,8 +144,8 @@
 	class tanget_dd {
 		key = 58;
 		ctrl = 0;
-		shift = 1;
-		alt = 0;
+		shift = 0;
+		alt = 1;
 	};
 
 	class dialog_dd {

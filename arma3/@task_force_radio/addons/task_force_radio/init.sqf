@@ -360,6 +360,14 @@ speak_volume_level = "normal";
 		while{_current_rotation_horizontal < 0} do {
 			_current_rotation_horizontal = _current_rotation_horizontal + 360;
 		};
+		if (alive player) then 
+		{
+			_player_pos = eyepos player;
+			_current_x = _current_x - (_player_pos select 0);
+			_current_y = _current_y - (_player_pos select 1);
+			_current_z = _current_z - (_player_pos select 2);
+		};
+		
 		
 		(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal, [_x] call canSpeak, [_x] call canUseSWRadio, [_x] call canUseLRRadio, [_x] call canUseDDRadio]);	
 	};
@@ -369,18 +377,7 @@ speak_volume_level = "normal";
 	_have_display_46 = false;
 
 	while {true} do {
-		if (isMultiplayer) then {
-			_request = [player] call preparePositionCoordinates;
-					_result = "task_force_radio_pipe" callExtension _request;
-					if (_result != "OK") then 
-					{
-						hintSilent _result;			
-					} else {
-						if (_prev_result != "OK") then {
-							hintSilent "";
-						}
-					};
-					_prev_result = _result;
+		if (isMultiplayer) then {			
 			{		
 				if (isPlayer _x) then {
 					_request = [_x] call preparePositionCoordinates;
