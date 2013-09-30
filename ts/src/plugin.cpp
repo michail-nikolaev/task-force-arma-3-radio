@@ -39,8 +39,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define SERIOUS_MOD_CHANNEL_NAME "TaskForceRadio"
 #define SERIOUS_CHANNEL_PASSWORD "123"
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
