@@ -158,7 +158,7 @@ CRITICAL_SECTION serverDataCriticalSection;
 SERVER_ID_TO_SERVER_DATA serverIdToData;
 
 static struct TS3Functions ts3Functions;
-#define DEBUG_MOD_ENABLED true
+//#define DEBUG_MOD_ENABLED
 
 void log(const char* message, LogLevel level = LogLevel_DEVEL)
 {
@@ -212,11 +212,16 @@ HANDLE openPipe()
 	return pipe;
 }
 
-void playWavFile(const char* fileName)
+void playWavFile(const char* fileNameWithoutExtension, bool withGain, int gainLevel)
 {	
 	std::string path = std::string(pluginPath);	
 	DWORD error;	
-	if ((error = ts3Functions.playWaveFile(ts3Functions.getCurrentServerConnectionHandlerID(), (path + std::string(fileName)).c_str())) != ERROR_ok) 
+	std::string to_play = "";
+
+	if (withGain) to_play = path + std::string(fileNameWithoutExtension) + "_" + std::to_string((long long)gainLevel) + ".wav";
+	else to_play = path + std::string(fileNameWithoutExtension) + ".wav";
+
+	if ((error = ts3Functions.playWaveFile(ts3Functions.getCurrentServerConnectionHandlerID(), to_play.c_str())) != ERROR_ok) 
 	{
 		log("can't play sound", error, LogLevel_ERROR);
 	}
@@ -298,6 +303,7 @@ anyID getClientId(uint64 serverConnectionHandlerID, std::string nickname)
 
 bool isInChannel(uint64 serverConnectionHandlerID, anyID clientId, const char* channelToCheck)
 {			
+	if (clientId == (anyID)-1) return false;
 	uint64 channelId;
 	DWORD error;
 	if ((error = ts3Functions.getChannelOfClient(serverConnectionHandlerID, clientId, &channelId)) != ERROR_ok)
@@ -487,9 +493,22 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, fl
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);	
 }
 
+
+bool isConnected(uint64 serverConnectionHandlerID)
+{	
+	DWORD error;
+	int result;
+	if((error = ts3Functions.getConnectionStatus(serverConnectionHandlerID, &result)) != ERROR_ok)
+	{
+		return false;
+	}
+	return result;
+}
+
 anyID getMyId(uint64 serverConnectionHandlerID)
 {
-	anyID myID;
+	anyID myID = (anyID) -1;
+	if (!isConnected(serverConnectionHandlerID)) return myID;
 	DWORD error;
 	if((error = ts3Functions.getClientID(serverConnectionHandlerID, &myID)) != ERROR_ok)
 	{
@@ -506,14 +525,15 @@ void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId)
 		EnterCriticalSection(&serverDataCriticalSection);
 		CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientId);
 		CLIENT_DATA* myData = getClientData(serverConnectionHandlerID, getMyId(serverConnectionHandlerID));
-		if (data && myData)
+		bool alive = false;		
+		if (data && myData && serverIdToData[serverConnectionHandlerID].alive)
 		{
 			OVER_RADIO_TYPE overRadioType = isOverRadio(serverConnectionHandlerID, data, myData);
 			if (overRadioType == LISTEN_NONE)
 			{
 				mute = (distanceFromClient(serverConnectionHandlerID, data) > distanceFromVoice(YELLING_VOLUME));
 			}
-		}		
+		} else mute = true;
 		LeaveCriticalSection(&serverDataCriticalSection);
 	}
 	setClientMuteStatus(serverConnectionHandlerID, clientId, mute);	
@@ -672,7 +692,9 @@ std::string getMyNickname(uint64 serverConnectionHandlerID)
 {
 	char* bufferForNickname;
 	DWORD error;
-	if((error = ts3Functions.getClientVariableAsString(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), CLIENT_NICKNAME, &bufferForNickname)) != ERROR_ok) {
+	anyID myId = getMyId(serverConnectionHandlerID);
+	if (myId == (anyID) -1) return "";	
+	if((error = ts3Functions.getClientVariableAsString(serverConnectionHandlerID, myId, CLIENT_NICKNAME, &bufferForNickname)) != ERROR_ok) {
 		log("Error getting client nickname", error);
 		return "";
 	}
@@ -745,6 +767,42 @@ bool isTrue(std::string& string)
 	return string == "true";
 }
 
+void updateNicknamesList(uint64 serverConnectionHandlerID) {	
+
+	std::vector<anyID> clients = getChannelClients(serverConnectionHandlerID, getCurrentChannel(serverConnectionHandlerID));
+	DWORD error;
+	for (auto clientIdIterator = clients.begin(); clientIdIterator != clients.end(); clientIdIterator++)
+	{
+		anyID clientId = *clientIdIterator;		
+		char* name;
+		if((error = ts3Functions.getClientVariableAsString(serverConnectionHandlerID, clientId, CLIENT_NICKNAME, &name)) != ERROR_ok) {
+			log("Error getting client nickname", error);
+			continue;
+		} 
+		else 
+		{
+			EnterCriticalSection(&serverDataCriticalSection);			
+			if (serverIdToData.count(serverConnectionHandlerID))
+			{			
+				std::string clientNickname(name);
+				if (!serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(clientNickname))
+				{
+					serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname] = new CLIENT_DATA();
+				}
+				serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname]->clientId = clientId;
+			}
+			LeaveCriticalSection(&serverDataCriticalSection);
+
+			ts3Functions.freeMemory(name);
+		}					
+	}
+	std::string myNickname = getMyNickname(serverConnectionHandlerID);
+	EnterCriticalSection(&serverDataCriticalSection);			
+	serverIdToData[serverConnectionHandlerID].myNickname = myNickname;
+	LeaveCriticalSection(&serverDataCriticalSection);
+
+}
+
 void processGameCommand(std::string command)
 {	
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
@@ -805,7 +863,9 @@ void processGameCommand(std::string command)
 				serverIdToData[currentServerConnectionHandlerID].canSpeak = canSpeak;
 
 				LeaveCriticalSection(&serverDataCriticalSection);
-				DWORD error = ts3Functions.systemset3DListenerAttributes(currentServerConnectionHandlerID, &position, &look, NULL);
+				TS3_VECTOR zero;
+				zero.x = zero.y = zero.z = 0.0f;
+				DWORD error = ts3Functions.systemset3DListenerAttributes(currentServerConnectionHandlerID, &zero, &look, NULL);
 				EnterCriticalSection(&serverDataCriticalSection); 
 				if(error != ERROR_ok)
 				{
@@ -814,6 +874,12 @@ void processGameCommand(std::string command)
 			} 
 			else 
 			{
+				if (!serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname))
+				{
+					LeaveCriticalSection(&serverDataCriticalSection);
+					if (isConnected(currentServerConnectionHandlerID)) updateNicknamesList(currentServerConnectionHandlerID);
+					EnterCriticalSection(&serverDataCriticalSection);
+				}
 				if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname))
 				{
 					CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
@@ -825,8 +891,12 @@ void processGameCommand(std::string command)
 						clientData->canUseSWRadio = canUseSWRadio;
 						clientData->canUseLRRadio = canUseLRRadio;
 						clientData->canUseDDRadio = canUseDDRadio;
-						LeaveCriticalSection(&serverDataCriticalSection);				
-						if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &position)) != ERROR_ok)
+						TS3_VECTOR normalized;
+						normalized.x = position.x - serverIdToData[currentServerConnectionHandlerID].myPosition.x;
+						normalized.y = position.y - serverIdToData[currentServerConnectionHandlerID].myPosition.y;
+						normalized.z = position.z - serverIdToData[currentServerConnectionHandlerID].myPosition.z;
+						LeaveCriticalSection(&serverDataCriticalSection);							
+						if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &normalized)) != ERROR_ok)
 						{
 							log("Can't set client 3D position", error);
 						}
@@ -835,7 +905,7 @@ void processGameCommand(std::string command)
 				
 				}
 				LeaveCriticalSection(&serverDataCriticalSection);
-				setGameClientMuteStatus(currentServerConnectionHandlerID, getClientId(currentServerConnectionHandlerID, nickname));
+				if (isConnected(currentServerConnectionHandlerID)) setGameClientMuteStatus(currentServerConnectionHandlerID, getClientId(currentServerConnectionHandlerID, nickname));
 				EnterCriticalSection(&serverDataCriticalSection);
 			}	
 		}
@@ -859,9 +929,9 @@ void processGameCommand(std::string command)
 		{			
 			if (pressed)
 			{
-				if (longRange) playWavFile("radio-sounds/local_on_lr.wav");
-				else if (diverRadio) playWavFile("radio-sounds/local_on_dd.wav");
-				else playWavFile("radio-sounds/local_on.wav");
+				if (longRange) playWavFile("radio-sounds/lr/local_start", false, 0);
+				else if (diverRadio) playWavFile("radio-sounds/dd/local_start", false, 0);
+				else playWavFile("radio-sounds/sw/local_start", false, 0);
 
 				vadEnabled = hlp_checkVad();
 				if (vadEnabled) hlp_disableVad();
@@ -870,9 +940,9 @@ void processGameCommand(std::string command)
 			{
 				if (vadEnabled)	hlp_enableVad();	
 
-				if (longRange) playWavFile("radio-sounds/local_off_lr.wav");
-				else if (diverRadio) playWavFile("radio-sounds/local_off_dd.wav");
-				else playWavFile("radio-sounds/local_off.wav");				
+				if (longRange) playWavFile("radio-sounds/lr/local_end", false, 0);
+				else if (diverRadio) playWavFile("radio-sounds/dd/local_end", false, 0);
+				else playWavFile("radio-sounds/sw/local_end", false, 0);				
 			}
 			// broadcast info about tangent pressed over all client			
 			std::string commandToBroadcast = command + "@" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
@@ -905,7 +975,8 @@ void processGameCommand(std::string command)
 			serverIdToData[currentServerConnectionHandlerID].wavesLevel = (float) std::atof(tokens[10].c_str());
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);		
-		if (getMyNickname(currentServerConnectionHandlerID) != tokens[9] && (tokens[9] != "Error: No unit" && tokens[9] != "Error: No vehicle"))
+		std::string myNickname = getMyNickname(currentServerConnectionHandlerID);
+		if (myNickname != tokens[9] && myNickname.length() > 0 && (tokens[9] != "Error: No unit" && tokens[9] != "Error: No vehicle"))
 		{
 			DWORD error;
 			if((error = ts3Functions.setClientSelfVariableAsString(currentServerConnectionHandlerID,  CLIENT_NICKNAME, tokens[9].c_str())) != ERROR_ok) {
@@ -942,41 +1013,6 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 
 }
 
-void updateNicknamesList(uint64 serverConnectionHandlerID) {	
-
-	std::vector<anyID> clients = getChannelClients(serverConnectionHandlerID, getCurrentChannel(serverConnectionHandlerID));
-	DWORD error;
-	for (auto clientIdIterator = clients.begin(); clientIdIterator != clients.end(); clientIdIterator++)
-	{
-		anyID clientId = *clientIdIterator;		
-		char* name;
-		if((error = ts3Functions.getClientVariableAsString(serverConnectionHandlerID, clientId, CLIENT_NICKNAME, &name)) != ERROR_ok) {
-			log("Error getting client nickname", error);
-			continue;
-		} 
-		else 
-		{
-			EnterCriticalSection(&serverDataCriticalSection);			
-			if (serverIdToData.count(serverConnectionHandlerID))
-			{			
-				std::string clientNickname(name);
-				if (!serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(clientNickname))
-				{
-					serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname] = new CLIENT_DATA();
-				}
-				serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname]->clientId = clientId;
-			}
-			LeaveCriticalSection(&serverDataCriticalSection);
-
-			ts3Functions.freeMemory(name);
-		}					
-	}
-	std::string myNickname = getMyNickname(serverConnectionHandlerID);
-	EnterCriticalSection(&serverDataCriticalSection);			
-	serverIdToData[serverConnectionHandlerID].myNickname = myNickname;
-	LeaveCriticalSection(&serverDataCriticalSection);
-
-}
 
 DWORD WINAPI PipeThread( LPVOID lpParam )
 {
@@ -1016,7 +1052,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 						lastInGame = GetTickCount();
 						if (!inGame)
 						{
-							playWavFile("radio-sounds/on.wav");
+							playWavFile("radio-sounds/on", false, 0);
 							inGame = true;							
 							onRespawn(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
 						}	
@@ -1053,8 +1089,11 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 		if (GetTickCount() - lastCheckForExpire > MILLIS_TO_EXPIRE)
 		{			
 			bool isSerious = isSeriousModeEnabled(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
-			if (inGame) setMuteForDeadPlayers(ts3Functions.getCurrentServerConnectionHandlerID(), isSerious);
-			updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
+			if (isConnected(ts3Functions.getCurrentServerConnectionHandlerID())) 
+			{
+				if (inGame) setMuteForDeadPlayers(ts3Functions.getCurrentServerConnectionHandlerID(), isSerious);
+				updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
+			}			
 			removeExpiredPositions(ts3Functions.getCurrentServerConnectionHandlerID());
 			lastCheckForExpire = GetTickCount();
 		}
@@ -1068,7 +1107,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 			lastInGame = GetTickCount();			
 			if (inGame) 
 			{
-				playWavFile("radio-sounds/off.wav");			
+				playWavFile("radio-sounds/off", 0, false);			
 				EnterCriticalSection(&serverDataCriticalSection);				
 				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].alive = false;
 				LeaveCriticalSection(&serverDataCriticalSection);
@@ -1147,10 +1186,12 @@ int ts3plugin_init() {
 	InitializeCriticalSection(&serverDataCriticalSection);
 
 	exitThread = FALSE;		
-
-	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
-	updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
-	ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "[B]Task Force Radio: [/B][I]Loading Task Force Radio Plugin[/I]", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
+	if (isConnected(ts3Functions.getCurrentServerConnectionHandlerID()))
+	{
+		centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
+		updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
+		ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "[B]Task Force Radio: [/B][I]Loading Task Force Radio Plugin[/I]", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
+	}
 
 	for (int q = 0; q < MAX_CHANNELS; q++)
 	{
@@ -1938,14 +1979,17 @@ void processPluginCommand(std::string command)
 				}				
 				float d = distance(myPosition, clientData->clientPosition);
 				anyID clientId = clientData->clientId;
+				int sw_volume = (int) serverIdToData[serverId].swVolumeLevel + 1;
+				int lr_volume = (int) serverIdToData[serverId].lrVolumeLevel + 1;
+				int dd_volume = (int) serverIdToData[serverId].ddVolumeLevel + 1;
 				LeaveCriticalSection(&serverDataCriticalSection);
 				setGameClientMuteStatus(serverId, clientId);
 				bool frequncyMatch = (mySwFrequency == frequency) || (myLrFrequency == frequency); 
 		
 				if (frequncyMatch && shortRange && clientData->canUseSWRadio && d < SW_DISTANCE)
 				{					
-					if (playPressed && alive) playWavFile("radio-sounds/remote_start.wav");
-					if (playReleased && alive) playWavFile("radio-sounds/remote_end.wav");												
+					if (playPressed && alive) playWavFile("radio-sounds/sw/remote_start", true, sw_volume);
+					if (playReleased && alive) playWavFile("radio-sounds/sw/remote_end", true, sw_volume);												
 				}
 				else 
 				{
@@ -1953,8 +1997,8 @@ void processPluginCommand(std::string command)
 				}
 				if (frequncyMatch && longRange && clientData->canUseLRRadio && d < LR_DISTANCE)
 				{
-					if (playPressed && alive) playWavFile("radio-sounds/remote_start_lr.wav");
-					if (playReleased && alive) playWavFile("radio-sounds/remote_end_lr.wav");											
+					if (playPressed && alive) playWavFile("radio-sounds/lr/remote_start", true, lr_volume);
+					if (playReleased && alive) playWavFile("radio-sounds/lr/remote_end", true, lr_volume);	
 				}
 				else 
 				{
@@ -1962,8 +2006,8 @@ void processPluginCommand(std::string command)
 				}
 				if ((myDdFrequency == frequency) && diverRadio && clientData->canUseDDRadio && d < distanceForDiverRadio(d, serverId))
 				{
-					if (playPressed && alive) playWavFile("radio-sounds/remote_start_dd.wav");
-					if (playReleased && alive) playWavFile("radio-sounds/remote_end_dd.wav");											
+					if (playPressed && alive) playWavFile("radio-sounds/dd/remote_start", true, dd_volume);
+					if (playReleased && alive) playWavFile("radio-sounds/dd/remote_end", true, dd_volume);
 				}
 				else 
 				{
