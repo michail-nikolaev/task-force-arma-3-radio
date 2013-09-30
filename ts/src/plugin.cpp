@@ -173,7 +173,7 @@ void log_string(std::string message, LogLevel level = LogLevel_DEVEL)
 	log(message.c_str(), level);
 }
 
-void log(char* message, DWORD errorCode, LogLevel level = LogLevel_ERROR)
+void log(char* message, DWORD errorCode, LogLevel level = LogLevel_INFO)
 {
 	char* errorBuffer;	
 	ts3Functions.getErrorMessage(errorCode, &errorBuffer);
@@ -212,8 +212,20 @@ HANDLE openPipe()
 	return pipe;
 }
 
+bool isConnected(uint64 serverConnectionHandlerID)
+{	
+	DWORD error;
+	int result;
+	if((error = ts3Functions.getConnectionStatus(serverConnectionHandlerID, &result)) != ERROR_ok)
+	{
+		return false;
+	}
+	return result != 0;
+}
+
 void playWavFile(const char* fileNameWithoutExtension, bool withGain, int gainLevel)
 {	
+	if (!isConnected(ts3Functions.getCurrentServerConnectionHandlerID())) return;
 	std::string path = std::string(pluginPath);	
 	DWORD error;	
 	std::string to_play = "";
@@ -494,17 +506,6 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, fl
 }
 
 
-bool isConnected(uint64 serverConnectionHandlerID)
-{	
-	DWORD error;
-	int result;
-	if((error = ts3Functions.getConnectionStatus(serverConnectionHandlerID, &result)) != ERROR_ok)
-	{
-		return false;
-	}
-	return result;
-}
-
 anyID getMyId(uint64 serverConnectionHandlerID)
 {
 	anyID myID = (anyID) -1;
@@ -573,6 +574,7 @@ std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includ
 }
 
 void updateUserStatusInfo(bool pluginEnabled) {		
+	if (!isConnected(ts3Functions.getCurrentServerConnectionHandlerID())) return;
 	DWORD error;
 	std::string result;
 	if (pluginEnabled) 	
@@ -695,7 +697,7 @@ std::string getMyNickname(uint64 serverConnectionHandlerID)
 	anyID myId = getMyId(serverConnectionHandlerID);
 	if (myId == (anyID) -1) return "";	
 	if((error = ts3Functions.getClientVariableAsString(serverConnectionHandlerID, myId, CLIENT_NICKNAME, &bufferForNickname)) != ERROR_ok) {
-		log("Error getting client nickname", error);
+		log("Error getting client nickname", error, LogLevel_DEBUG);
 		return "";
 	}
 	std::string result = std::string(bufferForNickname);
@@ -723,41 +725,44 @@ void onGameEnd(uint64 serverConnectionHandlerID, anyID clientId)
 void onRespawn(uint64 serverConnectionHandlerID, anyID clientId)
 {
 	log("On Respawn");	
-	notSeriousChannelId = getCurrentChannel(serverConnectionHandlerID);
-	uint64* result;
-	DWORD error;
-	if ((error = ts3Functions.getChannelList(serverConnectionHandlerID, &result)) != ERROR_ok)
+	if (isConnected(serverConnectionHandlerID))
 	{
-		log("Can't get channel list", error);		
-	} 
-	else 
-	{
-		bool joined = false;
-		uint64* iter = result;
-		while (*iter && !joined)
+			notSeriousChannelId = getCurrentChannel(serverConnectionHandlerID);
+		uint64* result;
+		DWORD error;
+		if ((error = ts3Functions.getChannelList(serverConnectionHandlerID, &result)) != ERROR_ok)
 		{
-			uint64 channelId = *iter;
-			iter++;
-			char* channelName;
-			if ((error = ts3Functions.getChannelVariableAsString(serverConnectionHandlerID, channelId, CHANNEL_NAME, &channelName)) != ERROR_ok) {
-				log("Can't get channel name", error);
-			} 
-			else 
+			log("Can't get channel list", error);		
+		} 
+		else 
+		{
+			bool joined = false;
+			uint64* iter = result;
+			while (*iter && !joined)
 			{
-				if (!strcmp(SERIOUS_MOD_CHANNEL_NAME, channelName))
-				{								
-					if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, channelId, SERIOUS_CHANNEL_PASSWORD, NULL)) != ERROR_ok) {
-						log("Can't join channel", error);
-					} 
-					else 
-					{
-						joined = true;
-					}					
+				uint64 channelId = *iter;
+				iter++;
+				char* channelName;
+				if ((error = ts3Functions.getChannelVariableAsString(serverConnectionHandlerID, channelId, CHANNEL_NAME, &channelName)) != ERROR_ok) {
+					log("Can't get channel name", error);
+				} 
+				else 
+				{
+					if (!strcmp(SERIOUS_MOD_CHANNEL_NAME, channelName))
+					{								
+						if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, channelId, SERIOUS_CHANNEL_PASSWORD, NULL)) != ERROR_ok) {
+							log("Can't join channel", error);
+						} 
+						else 
+						{
+							joined = true;
+						}					
+					}
+					ts3Functions.freeMemory(channelName);
 				}
-				ts3Functions.freeMemory(channelName);
 			}
+			ts3Functions.freeMemory(result);
 		}
-		ts3Functions.freeMemory(result);
 	}
 }
 
