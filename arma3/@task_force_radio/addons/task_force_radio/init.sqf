@@ -1,4 +1,5 @@
 disableSerialization;
+#include "diary.sqf"
 #include "\task_force_radio\define.h"
 #define SHIFTL 42
 #define CTRLL 29
