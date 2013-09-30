@@ -39,8 +39,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define SERIOUS_MOD_CHANNEL_NAME "TaskForceRadio"
 #define SERIOUS_CHANNEL_PASSWORD "123"
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -1090,12 +1090,12 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 		if (GetTickCount() - lastCheckForExpire > MILLIS_TO_EXPIRE)
 		{			
 			bool isSerious = isSeriousModeEnabled(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
+			removeExpiredPositions(ts3Functions.getCurrentServerConnectionHandlerID());
 			if (isConnected(ts3Functions.getCurrentServerConnectionHandlerID())) 
 			{
 				if (inGame) setMuteForDeadPlayers(ts3Functions.getCurrentServerConnectionHandlerID(), isSerious);
 				updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
-			}			
-			removeExpiredPositions(ts3Functions.getCurrentServerConnectionHandlerID());
+			}						
 			lastCheckForExpire = GetTickCount();
 		}
 		if (GetTickCount() - lastInGame > MILLIS_TO_EXPIRE)
