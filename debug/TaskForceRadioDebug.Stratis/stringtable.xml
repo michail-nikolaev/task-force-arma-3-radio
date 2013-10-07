@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ID="Arma2">
+	<Package ID="Missions">
+		<Container ID="A3RU_MissionInformation">
+			<Key ID="STR_current_freq">
+				<Original>
+					Current frequency
+				</Original>
+				<Russian>
+					Текущая частота
+				</Russian>
+			</Key>
+			<Key ID="STR_current_channel">
+				<Original>
+					Current channel
+				</Original>
+				<Russian>
+					Текущий канал
+				</Russian>
+			</Key>
+			<Key ID="STR_set_frequency">
+				<Original>
+					Set frequency
+				</Original>
+				<Russian>
+					Установить частоту
+				</Russian>
+			</Key>
+			<Key ID="STR_clear_frequency">
+				<Original>
+					Clear frequency
+				</Original>
+				<Russian>
+					Стереть частоту
+				</Russian>
+			</Key>
+			<Key ID="STR_previous_channel">
+				<Original>
+					Previous channel
+				</Original>
+				<Russian>
+					Предыдущий канал
+				</Russian>
+			</Key>
+			<Key ID="STR_next_channel">
+				<Original>
+					Next channel
+				</Original>
+				<Russian>
+					Следующий канал
+				</Russian>
+			</Key>
+			<Key ID="STR_increase_volume">
+				<Original>
+					Increase volume
+				</Original>
+				<Russian>
+					Увеличить громкость
+				</Russian>
+			</Key>
+			<Key ID="STR_decrease_volume">
+				<Original>
+					Decrease volume
+				</Original>
+				<Russian>
+					Уменьшить громкость
+				</Russian>
+			</Key>
+			<Key ID="STR_volume">
+				<Original>
+					Change volume
+				</Original>
+				<Russian>
+					Настроить громкость
+				</Russian>
+			</Key>
+			<Key ID="STR_incorrect_frequency">
+				<Original>
+					Incorrect frequency value, range is %1-%2
+				</Original>
+				<Russian>
+					Неверная частота, диапазон %1-%2
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_volume">
+				<Original>
+					Radio volume level: %1
+				</Original>
+				<Russian>
+					Громкость рации: %1
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_1">
+				<Original>
+					Channel 1
+				</Original>
+				<Russian>
+					Канал 1
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_2">
+				<Original>
+					Channel 2
+				</Original>
+				<Russian>
+					Канал 2
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_3">
+				<Original>
+					Channel 3
+				</Original>
+				<Russian>
+					Канал 3
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_4">
+				<Original>
+					Channel 4
+				</Original>
+				<Russian>
+					Канал 4
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_5">
+				<Original>
+					Channel 5
+				</Original>
+				<Russian>
+					Канал 5
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_6">
+				<Original>
+					Channel 6
+				</Original>
+				<Russian>
+					Канал 6
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_7">
+				<Original>
+					Channel 7
+				</Original>
+				<Russian>
+					Канал 7
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_8">
+				<Original>
+					Channel 8
+				</Original>
+				<Russian>
+					Канал 8
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_channel_9">
+				<Original>
+					Channel 9
+				</Original>
+				<Russian>
+					Канал 9
+				</Russian>
+			</Key>
+			<Key ID="STR_depth">
+				<Original>
+					Current depth
+				</Original>
+				<Russian>
+					Текущая глубина
+				</Russian>
+			</Key>
+			<Key ID="STR_active_sw_channel">
+				<Original>
+					Active SW channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Original>
+				<Russian>
+					Текущий канал: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_active_lr_channel">
+				<Original>
+					Active LR channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Original>
+				<Russian>
+					Текущий канал дальней связи: &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_in_water_hint">
+				<Original>
+					&lt;t color=&apos;#33ccff&apos;&gt;Can&apos;t use radio under WATER&lt;/t&gt;
+				</Original>
+				<Russian>
+					&lt;t color=&apos;#33ccff&apos;&gt;Нельзя использовать данную рацию под водой&lt;/t&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_on_ground_hint">
+				<Original>
+					&lt;t color=&apos;#993300&apos;&gt;Can&apos;t use driver radio on the air&lt;/t&gt;
+				</Original>
+				<Russian>
+					&lt;t color=&apos;#993300&apos;&gt;Нельзя использовать данную рацию в воздушной среде&lt;/t&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_transmit_sw">
+				<Original>
+					Transmiting SW on &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...
+				</Original>
+				<Russian>
+					Передача на частоте &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...
+				</Russian>
+			</Key>
+			<Key ID="STR_transmit_lr">
+				<Original>
+					Transmiting LR on &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
+				</Original>
+				<Russian>
+					Дальняя передача на частоте &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
+				</Russian>
+			</Key>
+			<Key ID="STR_transmit_dd">
+				<Original>
+					Transmiting Diver Radio on &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
+				</Original>
+				<Russian>
+					Подводная передача на частоте &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
+				</Russian>
+			</Key>
+			<Key ID="STR_waiting">
+				<Original>
+					Waiting...
+				</Original>
+				<Russian>
+					Ожидание...
+				</Russian>
+			</Key>
+			<Key ID="STR_voice_volume">
+				<Original>
+					&lt;t color=&apos;#66ff33&apos;&gt;Voice volume: %1&lt;/t&gt;
+				</Original>
+				<Russian>
+					&lt;t color=&apos;#66ff33&apos;&gt;Громкость голоса: %1&lt;/t&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_voice_normal">
+				<Original>
+					normal
+				</Original>
+				<Russian>
+					норма
+				</Russian>
+			</Key>
+			<Key ID="STR_voice_yelling">
+				<Original>
+					yelling
+				</Original>
+				<Russian>
+					крик
+				</Russian>
+			</Key>
+			<Key ID="STR_voice_whispering">
+				<Original>
+					whispering
+				</Original>
+				<Russian>
+					шепот
+				</Russian>
+			</Key>
+			<Key ID="STR_init">
+				<Original>
+					Initialization...
+				</Original>
+				<Russian>
+					Инициализация...
+				</Russian>
+			</Key>
+			<Key ID="STR_subject_name">
+				<Original>
+					Radio
+				</Original>
+				<Russian>
+					Рации
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_control">
+				<Original>
+					Controls
+				</Original>
+				<Russian>
+					Управление
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_control_text">
+				<Original>
+										&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;Кнопка разговора в TeamSpeak&lt;/font&gt;  	Прямая речь.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;Caps Lock&lt;/font&gt;	Разговор по рации.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + Caps Lock&lt;/font&gt;	Разговор по рации дальней связи.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + P&lt;/font&gt;	Открыть интерфейс коротковолновой рации (рация должна быть в слоте инвентаря). Для того, чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками PRE+ и PRE-.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;NUM[1-8]&lt;/font&gt;	Быстрое переключение каналов коротковолновой рации.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ALT + P&lt;/font&gt;	Открыть интерфейс рации дальней связи (рация дальней связи должна быть одета на спину, либо вы должны быть в технике за водителя, стрелка, командира или помощника пилота). Для того, чтобы ввести частоту нажмите MENU CLR, введите значение и нажмите FREQ. Также вы можете переключать активный канал нажимая цифровые кноки на рации (всего 9 каналов). Возможно изменение громкости приема кнопками TIME и BATT CALL.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Быстрое переключение каналов рации дальней связи.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + TAB&lt;/font&gt;	Изменить громкость прямой речи. Можно говорить шепотом (Whispering), нормально (Normal) и кричать (Yelling). Не влияет на кромкость сигнала в радио передаче.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;SHIFT + P&lt;/font&gt;	Открыть интерфейс переговорного устройства для дайверов (на вас должен быть надет ребризер). Для того, чтобы ввести частоту, нажмите MODE, введите значение и нажмите ADV. Возможно изменение громкости приема кнопкой с правой стороны устройства.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ALT + Caps Lock&lt;/font&gt;	Разговор по переговорному устройству для дайверов.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ESC&lt;/font&gt;	Выход из интерфейса рации.&lt;br/&gt;
+				</Original>
+				<Russian>
+					&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;Кнопка разговора в TeamSpeak&lt;/font&gt;  	Прямая речь.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;Caps Lock&lt;/font&gt;	Разговор по рации.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + Caps Lock&lt;/font&gt;	Разговор по рации дальней связи.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + P&lt;/font&gt;	Открыть интерфейс коротковолновой рации (рация должна быть в слоте инвентаря). Для того, чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками PRE+ и PRE-.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;NUM[1-8]&lt;/font&gt;	Быстрое переключение каналов коротковолновой рации.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ALT + P&lt;/font&gt;	Открыть интерфейс рации дальней связи (рация дальней связи должна быть одета на спину, либо вы должны быть в технике за водителя, стрелка, командира или помощника пилота). Для того, чтобы ввести частоту нажмите MENU CLR, введите значение и нажмите FREQ. Также вы можете переключать активный канал нажимая цифровые кноки на рации (всего 9 каналов). Возможно изменение громкости приема кнопками TIME и BATT CALL.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Быстрое переключение каналов рации дальней связи.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + TAB&lt;/font&gt;	Изменить громкость прямой речи. Можно говорить шепотом (Whispering), нормально (Normal) и кричать (Yelling). Не влияет на кромкость сигнала в радио передаче.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;SHIFT + P&lt;/font&gt;	Открыть интерфейс переговорного устройства для дайверов (на вас должен быть надет ребризер). Для того, чтобы ввести частоту, нажмите MODE, введите значение и нажмите ADV. Возможно изменение громкости приема кнопкой с правой стороны устройства.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ALT + Caps Lock&lt;/font&gt;	Разговор по переговорному устройству для дайверов.&lt;br/&gt;
+&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ESC&lt;/font&gt;	Выход из интерфейса рации.&lt;br/&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_radios">
+				<Original>
+					Radios
+				</Original>
+				<Russian>
+					Радиостанции
+				</Russian>
+			</Key>
+			<Key ID="STR_radios_text">
+				<Original>
+					Рация &lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;AN/PRC-152&lt;/font&gt; (коротковолновая) может работать на частотах от 30 до 512 MHz. Дальность действия - 3 км (учитывая зону с помехами).&lt;br/&gt;
+Рация &lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;RT-1523G (ASIP)&lt;/font&gt; работает на частотах от 30 до 87 MHz. Данная рация одевается как рюкзак и доступна в технике водителю, командиру, стрелку и помощнику пилота. В начале миссии эта рация автоматически выдается лидерам групп. Дальность действия - 20 км (учитывая зону с помехами).&lt;br/&gt;
+Обе рации поддерживают SINCGARS протокол, поэтому могут связываться друг с другом. В случае если передача осуществляется с AN/PRC-152, звук будет высокочастотным. В случае передачи с RT-1523G (ASIP) - низкочастотным.&lt;br/&gt;
+Переговорное устройство для дайверов использует ультразвук для передачии голоса. Диапозон частот от 32 до 41 kHz. Работает только под водой. Дальность действия от 30 до 200 метров в зависимости от уровня волн.&lt;br/&gt;
+				</Original>
+				<Russian>
+					Рация &lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;AN/PRC-152&lt;/font&gt; (коротковолновая) может работать на частотах от 30 до 512 MHz. Дальность действия - 3 км (учитывая зону с помехами).&lt;br/&gt;
+Рация &lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;RT-1523G (ASIP)&lt;/font&gt; работает на частотах от 30 до 87 MHz. Данная рация одевается как рюкзак и доступна в технике водителю, командиру, стрелку и помощнику пилота. В начале миссии эта рация автоматически выдается лидерам групп. Дальность действия - 20 км (учитывая зону с помехами).&lt;br/&gt;
+Обе рации поддерживают SINCGARS протокол, поэтому могут связываться друг с другом. В случае если передача осуществляется с AN/PRC-152, звук будет высокочастотным. В случае передачи с RT-1523G (ASIP) - низкочастотным.&lt;br/&gt;
+Переговорное устройство для дайверов использует ультразвук для передачии голоса. Диапозон частот от 32 до 41 kHz. Работает только под водой. Дальность действия от 30 до 200 метров в зависимости от уровня волн.&lt;br/&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_diver">
+				<Original>
+					For divers
+				</Original>
+				<Russian>
+					Подводникам
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_diver_text">
+				<Original>
+					Вы не можете говорить голосом находясь под водой (даже в водолазном костюме). Однако на близком расстояние ваш собеседник сможет расслышать что-либо очень невнятное.&lt;br/&gt;
+Находясь под водой, вы невнятно и слабо слышите голоса на суше.&lt;br/&gt;
+Для связи между дайверами используйте Переговорное устройство.&lt;br/&gt;
+Вы не можете пользоваться радио связью под водой (ни говорить, ни слышать). Если нужно что-то передать на сушу - всплывайте. Исключение - субмарина на перескопной глубине (в ней водолазам можно использовать рацию дальней связи).&lt;br/&gt;
+				</Original>
+				<Russian>
+					Вы не можете говорить голосом находясь под водой (даже в водолазном костюме). Однако на близком расстояние ваш собеседник сможет расслышать что-либо очень невнятное.&lt;br/&gt;
+Находясь под водой, вы невнятно и слабо слышите голоса на суше.&lt;br/&gt;
+Для связи между дайверами используйте Переговорное устройство.&lt;br/&gt;
+Вы не можете пользоваться радио связью под водой (ни говорить, ни слышать). Если нужно что-то передать на сушу - всплывайте. Исключение - субмарина на перескопной глубине (в ней водолазам можно использовать рацию дальней связи).&lt;br/&gt;
+				</Russian>
+			</Key>
+
+
+
+
+
+
+
+
+
+		</Container>
+	</Package>
+</Project>
