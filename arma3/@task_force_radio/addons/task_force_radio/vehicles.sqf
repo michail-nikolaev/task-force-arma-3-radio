@@ -1,0 +1,61 @@
+/**
+ * Checks _this for LW radio presence 
+ * checks _this for sound isolation
+ * @example _params = (vehicle player) call tfr_checkVehicle;
+ * @param vehicle
+ * @return [_presence = True|False, _isolated = 0..1 ];
+ */
+tfr_checkVehicle = {
+
+	private ["_isolated"];
+
+	// all vehs is full open by default, let's strict some below
+	_isolated = 0;
+
+	switch true do {
+		// Heavy Armour
+		case ( _this isKindOf "Tank" ): { _isolated = 1; }; // tanks are usually very armored
+
+		// Cars
+		case ( _this isKindOf "Wheeled_APC"): { _isolated = 0.6; }; // armored light 
+		case ( _this isKindOf "MRAP_01_base_F" ): { _isolated = 0.3; }; // Hunter
+		case ( _this isKindOf "O_MRAP_02_F" ): { _isolated = 0.49; }; // Ifrit
+		case ( _this isKindOf "MRAP_03_base_F" ): { _isolated = 0.49; }; // Strider
+		case ( _this isKindOf "I_MRAP_03_F" ): { _isolated = 0.49; }; // Strider Ind
+		case ( _this isKindOf "Car"): { _isolated = 0.1; } // almost open
+
+		// Air
+		case ( _this isKindOf "Heli_Light_02_base_F" ): { _isolated = 0.7 }; // Orca
+		case ( _this isKindOf "Heli_Attack_02_base_F" ): { _isolated = 0.7 }; // Mi-48
+		case ( _this isKindOf "Heli_Attack_01_base_F" ): { _isolated = 0.7 }; // AH-99
+		case ( _this isKindOf "Heli_Transport_01_base_F" ): { _isolated = 0.3 }; // UH-80 opened by gun pods
+		case ( _this isKindOf "Heli_Transport_02_base_F" ): { _isolated = 0.8 }; // CH-49 Mohawk
+
+		// planes TBD - open for now
+		case ( _this isKindOf "Parachute" ): { _isolated = 0; }; // to exclude from below
+		case ( _this isKindOf "Air"): { _isolated = 0.1; }; // armored light
+	};
+
+	// presence of radio station
+	_presence = false;
+
+	_classes_with_radios = [ 
+		"Tank", "Air", "Wheeled_APC", // Common classes
+		"MRAP_01_base_F", //Hunter
+		"MRAP_02_base_F", //Ifrit
+		"O_MRAP_02_F", //Ifrit
+		"MRAP_03_base_F", //Strider
+		"I_MRAP_03_F", //Strider
+		"Offroad_01_armed_base_F", //Armed jeep
+		"B_Truck_01_mover_F", // Blufor HEMTT 
+		"Truck_02_base_F", //Opfor Zamak
+		"Boat_Armed_01_base_F", // Armed Speedboat
+		"C_Boat_Civil_01_police_F", //Motorboat (Police)
+		"C_Boat_Civil_01_rescue_F", //Motorboat (Rescue)
+	];
+
+	{ if ( _this isKindOf _x ) exitWith { _presence = true; }; } foreach _classes_with_radios;
+
+	// for now just return [ bool, bool ]
+	[ _presence, _isolated > 0.5 ]
+};
