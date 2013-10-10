@@ -28,7 +28,7 @@ class CfgVehicles {
 	};	
 };
 
-#define ANPRC_152(X,Y) class anprc152_##X :  ItemRadio \
+#define ANPRC_152(X,Y) class tf_anprc152_##X :  ItemRadio \
 	{ \
 		displayName = Y; \
 		descriptionShort = Y; \
