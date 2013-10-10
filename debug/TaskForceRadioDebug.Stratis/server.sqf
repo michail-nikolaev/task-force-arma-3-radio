@@ -12,14 +12,13 @@
 				if !(isNil "_radio_request") then
 				{
 					missionNamespace setVariable [_variableName, nil];
-					hint str(_radio_request);
 					(owner (_x)) publicVariableClient (_variableName);
 					_responseVariableName = "radio_response_" + (getPlayerUID _x) + str (side _x);
 					_response = [];
 					_response resize _radio_request;
 					for "_next_radio" from 1 to _radio_request do
 					{
-						_new_radio_id = format["anprc152_%1", anprc152_count];					
+						_new_radio_id = format["tf_anprc152_%1", anprc152_count];					
 						_response set [(_next_radio - 1), _new_radio_id];
 	
 						anprc152_count = anprc152_count + 1;

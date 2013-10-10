@@ -290,6 +290,16 @@
 					Управление
 				</Russian>
 			</Key>
+			<Key ID="STR_wait_radio">
+				<Original>
+					Waiting for the unique radio from server...
+				</Original>
+				<Russian>
+					Ожидаем получение уникальной рации от сервера...
+				</Russian>
+			</Key>
+
+
 			<Key ID="STR_radio_control_text">
 				<Original>
 										&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;Кнопка разговора в TeamSpeak&lt;/font&gt;  	Прямая речь.&lt;br/&gt;

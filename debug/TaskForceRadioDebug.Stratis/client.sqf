@@ -440,8 +440,8 @@ radioCount =
 	_to_remove = [];
 
 	{	
-		//TODO: add "tf"
-		if ((["ItemRadio", _x, true] call BIS_fnc_inString) or (["anprc152_", _x, true] call BIS_fnc_inString)) then 
+		//TODO: "BMP2" isKindOf "Tank"
+		if (("ItemRadio" == _x) or (["tf_anprc152_", _x, true] call BIS_fnc_inString)) then 
 		{
 			_to_remove set[_result, _x];
 			_result = _result + 1;
@@ -449,7 +449,7 @@ radioCount =
 	} forEach (assignedItems player);
 
 	{
-		if ((["ItemRadio", _x, true] call BIS_fnc_inString) or (["anprc152_", _x, true] call BIS_fnc_inString)) then 
+		if (("ItemRadio" == _x) or (["tf_anprc152_", _x, true] call BIS_fnc_inString)) then 
 		{
 			_to_remove set[_result, _x];
 			_result = _result + 1;
@@ -481,6 +481,7 @@ processRespawn =
 			_responseVariableName = "radio_response_" + (getPlayerUID player) + str (side player);
 			 missionNamespace setVariable [_responseVariableName, nil];
 			publicVariableServer _variableName;
+			titleText [localize ("STR_wait_radio"), "PLAIN"];
 			waitUntil {!(isNil _responseVariableName)};
 			_response = missionNamespace getVariable _responseVariableName;	
 			{
@@ -490,6 +491,7 @@ processRespawn =
 			{
 				player assignItem (_response select 0);
 			};
+			titleText ["", "PLAIN"];
 						
 		};
 	};
