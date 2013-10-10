@@ -150,34 +150,23 @@ speak_volume_level = "normal";
 		_channelText =  format["CH: %1", (lr_active_channel + 1)];
 		ctrlSetText [IDC_RT1523G_RADIO_DIALOG_CHANNEL_EDIT, _channelText];
 	};
-	eyeDepth = 
-	{
-		_player = _this select 0;
-		((eyepos _player) select 2) + ((getPosASLW _player) select 2) - ((getPosASL _player) select 2);
+	eyeDepth = { // _this - player
+		((eyepos _this) select 2) + ((getPosASLW _this) select 2) - ((getPosASL _this) select 2);
 	};
-	canSpeak = 
-	{
-		_player = _this select 0;
-		(([_player] call eyeDepth) > 0);
-	};
-	canUseSWRadio =
-	{
-		_player = _this select 0;
-		(([_player] call eyeDepth) > 0);
-	};
-	canUseLRRadio =
-	{
-		_player = _this select 0;
-		((([_player] call eyeDepth > 0)) 
+
+	canSpeak = { ((_this call eyeDepth) > 0); };
+
+	canUseSWRadio =	{ ((_this call eyeDepth) > 0); };
+
+	canUseLRRadio =	{
+		_player = _this;
+		(((_player call eyeDepth > 0)) 
 			or ( 
-				(vehicle _player != _player) and (([_player] call eyeDepth) > -3) and (isAbleToBreathe _player)
+				(vehicle _player != _player) and ((_player call eyeDepth) > -3) and (isAbleToBreathe _player)
 			 ));
 	};
-	canUseDDRadio =
-	{
-		_player = _this select 0;
-		(([_player] call eyeDepth) < 0);
-	};
+
+	canUseDDRadio =	{ ((_this call eyeDepth) < 0); };
 
 	inWaterHint = 
 	{
@@ -200,7 +189,7 @@ speak_volume_level = "normal";
 		if (alive player) then {
 			if (call haveSWRadio) then {
 				if (!(tangent_sw_pressed) and (_scancode == tangent_sw_scancode) and (_shift == tangent_sw_shift) and (_ctrl == tangent_sw_ctrl) and (_alt == tangent_sw_alt)) then {
-					if ([player] call canUseSWRadio) then { 
+					if (player call canUseSWRadio) then { 
 						_hintText = format[localize "STR_transmit_sw", call currentSWFrequency];
 						hintSilent parseText (_hintText);
 						_request = format["TANGENT@PRESSED@%1", call currentSWFrequency];
@@ -228,7 +217,7 @@ speak_volume_level = "normal";
 			};
 			if (call haveLRRadio) then {
 				if (!(tangent_lr_pressed) and (_scancode == tangent_lr_scancode) and (_shift == tangent_lr_shift) and (_ctrl == tangent_lr_ctrl) and (_alt == tangent_lr_alt)) then { 
-					if ([player] call canUseLRRadio) then {
+					if (player call canUseLRRadio) then {
 						_hintText = format[localize "STR_transmit_lr", call currentLRFrequency];
 						hintSilent parseText (_hintText);
 						_request = format["TANGENT_LR@PRESSED@%1", call currentLRFrequency];
@@ -258,7 +247,7 @@ speak_volume_level = "normal";
 			};
 			if (call haveDDRadio) then {
 				if (!(tangent_dd_pressed) and (_scancode == tangent_dd_scancode) and (_shift == tangent_dd_shift) and (_ctrl == tangent_dd_ctrl) and (_alt == tangent_dd_alt)) then {
-					if ([player] call canUseDDRadio) then { 
+					if (player call canUseDDRadio) then { 
 						_hintText = format[localize "STR_transmit_dd", dd_frequency];
 						hintSilent parseText (_hintText);
 						_request = format["TANGENT_DD@PRESSED@%1", dd_frequency];
@@ -331,7 +320,7 @@ speak_volume_level = "normal";
 	
 	preparePositionCoordinates = 		
 	{
-		_x = _this select 0;
+		_x = _this;
 		_current_eyepos = eyepos _x;
 		_xname = name _x;
 		_current_x = (_current_eyepos select 0);
@@ -370,7 +359,7 @@ speak_volume_level = "normal";
 		};
 		
 		
-		(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal, [_x] call canSpeak, [_x] call canUseSWRadio, [_x] call canUseLRRadio, [_x] call canUseDDRadio]);	
+		(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal, _x call canSpeak, _x call canUseSWRadio, _x call canUseLRRadio, _x call canUseDDRadio]);	
 	};
 		
 		
@@ -381,7 +370,7 @@ speak_volume_level = "normal";
 		if (isMultiplayer) then {			
 			{		
 				if (isPlayer _x) then {
-					_request = [_x] call preparePositionCoordinates;
+					_request = _x call preparePositionCoordinates;
 					_result = "task_force_radio_pipe" callExtension _request;
 					if (_result != "OK") then 
 					{
@@ -393,7 +382,7 @@ speak_volume_level = "normal";
 					};
 					_prev_result = _result;
 				};
-			} forEach allUnits;
+			} forEach playableUnits;
 		};
 		sleep 0.2;
 		// send current sw freq
@@ -401,15 +390,16 @@ speak_volume_level = "normal";
 			_freq = "No_SW_Radio";
 			_freq_lr = "No_LR_Radio";
 			_freq_dd = "No_DD_Radio";
-			if ((call haveSWRadio) and ([player] call canUseSWRadio)) then {
+			if ((call haveSWRadio) and (player call canUseSWRadio)) then {
 				_freq = call currentSWFrequency;
 			};
-			if ((call haveLRRadio) and ([player] call canUseLRRadio)) then {
+			if ((call haveLRRadio) and (player call canUseLRRadio)) then {
 				_freq_lr = call currentLRFrequency;
 			};
-			if ((call haveDDRadio) and ([player] call canUseDDRadio)) then {
+			if ((call haveDDRadio) and (player call canUseDDRadio)) then {
 				_freq_dd = dd_frequency;
 			};
+
 			_alive = alive player;
 			_nickname = name player;
 			_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _freq, _freq_lr, _freq_dd, _alive, speak_volume_level, sw_volume_level, lr_volume_level, dd_volume_level, _nickname, waves];
