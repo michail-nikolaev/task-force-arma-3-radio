@@ -113,9 +113,9 @@ lr_channel_9_alt = 0; //getNumber (configFile >> "task_force_radio_keys" >>  "lr
 
 
 tangent_dd_scancode = 58; //getNumber (configFile >> "task_force_radio_keys" >>  "tanget_dd"  >> "key");
-tangent_dd_shift = 1; //getNumber (configFile >> "task_force_radio_keys" >>  "tanget_dd"  >> "shift");
+tangent_dd_shift = 0; //getNumber (configFile >> "task_force_radio_keys" >>  "tanget_dd"  >> "shift");
 tangent_dd_ctrl = 0; //getNumber (configFile >> "task_force_radio_keys" >>  "tanget_dd"  >> "ctrl");
-tangent_dd_alt = 0; //getNumber (configFile >> "task_force_radio_keys" >>  "tanget_dd"  >> "alt");
+tangent_dd_alt = 1; //getNumber (configFile >> "task_force_radio_keys" >>  "tanget_dd"  >> "alt");
 
 dialog_dd_scancode = 25; //getNumber (configFile >> "task_force_radio_keys" >>  "dialog_dd"  >> "key");
 dialog_dd_shift = 1; //getNumber (configFile >> "task_force_radio_keys" >>  "dialog_dd"  >> "shift");
