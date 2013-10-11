@@ -382,7 +382,7 @@ speak_volume_level = "normal";
 					};
 					_prev_result = _result;
 				};
-			} forEach playableUnits;
+			} forEach allUnits;
 		};
 		sleep 0.2;
 		// send current sw freq
