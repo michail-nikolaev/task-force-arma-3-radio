@@ -57,7 +57,7 @@ class Mission
 					id=0;
 					side="WEST";
 					vehicle="B_diver_exp_F";
-					player="PLAY CDG";
+					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 				};
@@ -75,7 +75,7 @@ class Mission
 					id=1;
 					side="EAST";
 					vehicle="O_Soldier_F";
-					player="PLAYER COMMANDER";
+					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 				};
