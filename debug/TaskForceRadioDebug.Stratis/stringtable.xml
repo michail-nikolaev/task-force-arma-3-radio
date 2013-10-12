@@ -202,6 +202,54 @@
 					&lt;t color=&apos;#993300&apos;&gt;Нельзя использовать данную рацию в воздушной среде&lt;/t&gt;
 				</Russian>
 			</Key>
+			<Key ID="STR_select_action">
+				<Original>
+					Select action
+				</Original>
+				<Russian>
+					Выберите действие
+				</Russian>
+			</Key>
+			<Key ID="STR_select_action_setup">
+				<Original>
+					Settings...
+				</Original>
+				<Russian>
+					Настройки...
+				</Russian>
+			</Key>
+			<Key ID="STR_select_action_setup_tooltip">
+				<Original>
+					Open settings dialog
+				</Original>
+				<Russian>
+					Открыть диалог настройки
+				</Russian>
+			</Key>
+			<Key ID="STR_select_action_use">
+				<Original>
+					Set as active
+				</Original>
+				<Russian>
+					Сделать активной
+				</Russian>
+			</Key>
+			<Key ID="STR_select_action_use_tooltip">
+				<Original>
+					Use for transmiting
+				</Original>
+				<Russian>
+					Использовать для передачи
+				</Russian>
+			</Key>
+			<Key ID="STR_select_radio">
+				<Original>
+					Select short range radio
+				</Original>
+				<Russian>
+					Выберите рацию ближней связи
+				</Russian>
+			</Key>
 			<Key ID="STR_transmit_sw">
 				<Original>
 					Transmiting SW on &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...

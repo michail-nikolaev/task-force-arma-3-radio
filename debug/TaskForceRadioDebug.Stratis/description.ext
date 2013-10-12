@@ -234,7 +234,7 @@ class enter: HiddenButton
 	w = 0.0172125 * safezoneW;
 	h = 0.020826 * safezoneH;
 	tooltip = $STR_set_frequency;
-	action = "_f = parseNumber(ctrlText IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);  if ((_f > MIN_SW_FREQ) and (_f < MAX_SW_FREQ)) then {sw_frequencies set[sw_active_channel, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)]; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_SW_FREQ, MAX_SW_FREQ]}; call updateSWDialogToChannel;";
+	action = "_f = parseNumber(ctrlText IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);  if ((_f > MIN_SW_FREQ) and (_f < MAX_SW_FREQ)) then {[sw_dialog_radio, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setSwFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_SW_FREQ, MAX_SW_FREQ]}; call updateSWDialogToChannel;";
 };
 class clear: HiddenButton
 {
@@ -254,7 +254,7 @@ class next_channel: HiddenButton
 	w = 0.0172125 * safezoneW;
 	h = 0.020826 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "sw_active_channel = (sw_active_channel - 1 + MAX_CHANNELS) mod MAX_CHANNELS; call updateSWDialogToChannel;"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"
 };
 class prev_channel: HiddenButton
 {
@@ -264,7 +264,7 @@ class prev_channel: HiddenButton
 	w = 0.01785 * safezoneW;
 	h = 0.0204009 * safezoneH;
 	tooltip = $STR_next_channel;
-	action = "sw_active_channel = (sw_active_channel + 1) mod MAX_CHANNELS; call updateSWDialogToChannel;"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) + 1) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"
 };
 class increase_volume: HiddenButton
 {
@@ -273,7 +273,7 @@ class increase_volume: HiddenButton
 	y = 0.526776 * safezoneH + safezoneY;
 	w = 0.0162563 * safezoneW;
 	h = 0.0191259 * safezoneH;
-	action = "sw_volume_level = (sw_volume_level + 1) mod MAX_SW_VOLUME; hint formatText [localize 'STR_radio_volume', ((sw_volume_level + 1) * 10)];"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) + 1) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume)+ 1) * 10)];"
 	tooltip = $STR_increase_volume;
 };
 class decrease_volume: HiddenButton
@@ -283,7 +283,7 @@ class decrease_volume: HiddenButton
 	y = 0.553553 * safezoneH + safezoneY;
 	w = 0.0159375 * safezoneW;
 	h = 0.0195509 * safezoneH;
-	action = "sw_volume_level = (sw_volume_level - 1 + MAX_SW_VOLUME) mod MAX_SW_VOLUME; hint formatText [localize 'STR_radio_volume', ((sw_volume_level + 1) * 10)];"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) - 1 + MAX_SW_VOLUME) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume) + 1) * 10)];"
 	tooltip = $STR_decrease_volume;
 };
 ////////////////////////////////////////////////////////

@@ -5,12 +5,17 @@ disableSerialization;
 
 waitUntil {time > 0};
 waitUntil {!(isNull player)};
-titleText [localize ("STR_wait_radio"), "PLAIN"];
+titleText [localize ("STR_init"), "PLAIN"];
 
 #include "task_force_radio\define.h"
+
 #define SHIFTL 42
 #define CTRLL 29
 #define ALTL 56
+#define ACTIVE_CHANNEL_OFFSET 0
+#define VOLUME_OFFSET 1
+#define FREQ_OFFSET 2
+MAX_CHANNELS = 8;
 
 ADDON_VERSION = "0.7.0 beta";
 
@@ -21,7 +26,6 @@ MAX_SW_VOLUME = 10;
 MAX_LR_VOLUME = 10;
 MAX_DD_VOLUME = 10;
 
-sw_volume_level = 7;
 lr_volume_level = 7;
 dd_volume_level = 7;
 
@@ -43,12 +47,85 @@ IDC_DIDER_RADIO_DIALOG_ID = IDC_DIVER_RADIO_DIALOG;
 IDC_DIVER_RADIO_EDIT_ID = IDC_DIVER_RADIO_EDIT;
 IDC_DIVER_RADIO_DEPTH_ID = IDC_DIVER_RADIO_DEPTH;
 
-MAX_CHANNELS = 8;
-sw_frequencies = [0, 0, 0, 0, 0, 0, 0, 0];
-for "_i" from 0 to MAX_CHANNELS step 1 do {
-	sw_frequencies set [_i, (str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER))];
+
+
+setSwSetting = 
+{
+	private ["_radio_id", "_value", "_variableName"];
+	_radio_id = _this select 0;
+	_value = _this select 1;
+	_variableName = format["%1_settings", _radio_id];	
+	missionNamespace setVariable [_variableName, _value];
+	publicVariable _variableName;
 };
-sw_active_channel = 0;
+
+getSwChannel = 
+{
+	_settings = _this call getSwSettings;
+	_settings select ACTIVE_CHANNEL_OFFSET;
+};
+
+setSwChannel = 
+{
+	_radio_id = _this select 0;
+	_channel_to_set = _this select 1;
+	_settings = _radio_id call getSwSettings;
+	_settings set [ACTIVE_CHANNEL_OFFSET, _channel_to_set];
+	[_radio_id, _settings] call setSwSetting;
+};
+
+getSwFrequency = 
+{
+	_settings = _this call getSwSettings;
+	_settings select (FREQ_OFFSET + (_settings select ACTIVE_CHANNEL_OFFSET));
+};
+
+setSwVolume = 
+{
+	_radio_id = _this select 0;
+	_value = _this select 1;
+	_settings = _radio_id call getSwSettings;
+	_settings set [VOLUME_OFFSET, _value];
+	[_radio_id, _settings] call setSwSetting;
+};
+
+getSwVolume =
+{
+	_setting = _this call getSwSettings;
+	_setting select VOLUME_OFFSET;
+};
+
+setSwFrequency = 
+{
+	private ["_radio_id", "_freq", "_settings"];
+	_radio_id = _this select 0;
+	_freq = _this select 1;
+	_settings = _radio_id call getSwSettings;
+	_settings set [(_settings select ACTIVE_CHANNEL_OFFSET) + FREQ_OFFSET, _freq];
+	[_radio_id, _settings] call setSwSetting;
+};
+
+getSwSettings = 
+{
+	private ["_variableName", "_value"];
+	_variableName = format["%1_settings", _this];
+	_value = missionNamespace getVariable _variableName;
+	if (isNil "_value") then {
+		_value = call generateSwSetting;
+		[_this, _value] call setSwSetting;
+	};
+	_value;
+};
+
+generateSwSetting = 
+{
+	_sw_frequencies = [0, 7, 0, 0, 0, 0, 0, 0, 0, 0];
+	for "_i" from FREQ_OFFSET to (FREQ_OFFSET + MAX_CHANNELS) step 1 do {
+		_sw_frequencies set [_i, (str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER))];
+	};
+	_sw_frequencies;
+};
+
 
 MAX_LR_CHANNELS = 9;
 lr_frequencies = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -66,6 +143,7 @@ tangent_dd_pressed = false;
 dd_frequency = str (round (((random (MAX_DD_FREQ - MIN_DD_FREQ)) + MIN_DD_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER);
 
 speak_volume_level = "normal";
+sw_dialog_radio = nil;
 
 isRadio = 
 {
@@ -91,14 +169,17 @@ haveDDRadio =
 {
 	((vest player == "V_RebreatherIR") or (vest player == "V_RebreatherB") or (vest player == "V_RebreatherIA"));
 };
+
+
 processSWChannelKeys = 
 {				
 	private ["_sw_channel_number", "_hintText"];
 	_sw_channel_number = _this select 0;
 
-	if (call haveSWRadio) then {
-		sw_active_channel = _sw_channel_number;
-		_hintText = format[localize "STR_active_sw_channel", sw_active_channel + 1];
+	if (call haveSWRadio) then {		
+		[call activeSwRadio, _sw_channel_number] call setSwChannel;
+
+		_hintText = format[localize "STR_active_sw_channel", _sw_channel_number + 1];
 		hint parseText (_hintText);
 		if (dialog) then {
 			call updateSWDialogToChannel;
@@ -127,7 +208,7 @@ processLRChannelKeys =
 };
 currentSWFrequency = 
 {
-	(sw_frequencies select sw_active_channel);
+	(call activeSwRadio) call getSwFrequency;
 };
 currentLRFrequency = 
 {
@@ -142,8 +223,8 @@ updateDDDialog =
 };
 updateSWDialogToChannel = 
 {
-	ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT, call currentSWFrequency];
-	_channelText =  format["C%1", (sw_active_channel + 1)];
+	ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT, sw_dialog_radio call getSwFrequency];
+	_channelText =  format["C%1", (sw_dialog_radio call getSwChannel) + 1];
 	ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_CHANNEL_EDIT, _channelText];
 };
 updateLRDialogToChannel = 
@@ -195,9 +276,9 @@ onSwTangentPressed =
 	private["_result", "_request"];
 	if (!(tangent_sw_pressed) and {alive player} and {call haveSWRadio}) then {
 		if ([player] call canUseSWRadio) then { 
-			_hintText = format[localize "STR_transmit_sw", call currentSWFrequency];
+			_hintText = format[localize "STR_transmit_sw", [call activeSwRadio] call currentSWFrequency];
 			hintSilent parseText (_hintText);
-			_request = format["TANGENT@PRESSED@%1", call currentSWFrequency];
+			_request = format["TANGENT@PRESSED@%1", [call activeSwRadio] call currentSWFrequency];
 			_result = "task_force_radio_pipe" callExtension _request;
 			tangent_sw_pressed = true;
 		} else {
@@ -212,7 +293,7 @@ onSwTangentReleased =
 	private["_result", "_request"];
 	if ((tangent_sw_pressed) and {alive player}) then {
 		hintSilent "";
-		_request = format["TANGENT@RELEASED@%1", call currentSWFrequency];
+		_request = format["TANGENT@RELEASED@%1", [call activeSwRadio] call currentSWFrequency];
 		_result = "task_force_radio_pipe" callExtension _request;	
 		tangent_sw_pressed = false;
 	};
@@ -221,9 +302,12 @@ onSwTangentReleased =
 
 onSwDialogOpen = 
 {
-	if ((alive player) and {call haveSWRadio} and {!dialog}) then {
-		createDialog "anprc152_radio_dialog";
-		call updateSWDialogToChannel;
+	[] spawn {
+		sleep 0.1;
+		if ((alive player) and {!(isNil "sw_dialog_radio")} and {!dialog}) then {
+			createDialog "anprc152_radio_dialog";
+			call updateSWDialogToChannel;
+		};
 	};
 	true;
 };
@@ -259,7 +343,12 @@ onLRTangentReleased =
 
 onLRTangentReleasedHack = 
 {
-	if ((_this select 1) == 29) then {
+	private ["_scancode"];
+	_scancode = _this select 1; 
+	if (((_scancode == CTRLL) and (tangent_lr_ctrl == 1))
+	   or ((_scancode == ALTL) and (tangent_lr_alt == 1))
+	   or ((_scancode == SHIFTL) and (tangent_lr_shift == 1)))
+	 then {
 		call onLRTangentReleased;
 	};
 };
@@ -307,7 +396,12 @@ onDDTangentReleased =
 
 onDDTangentReleasedHack = 
 {
-	if ((_this select 1) == 56) then {
+	private ["_scancode"];
+	_scancode = _this select 1; 
+	if (((_scancode == CTRLL) and (tangent_dd_ctrl == 1))
+	   or ((_scancode == ALTL) and (tangent_dd_alt == 1))
+	   or ((_scancode == SHIFTL) and (tangent_dd_shift == 1)))
+	 then {
 		call onDDTangentReleased;
 	};
 };
@@ -389,10 +483,86 @@ preparePositionCoordinates =
 	(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal, [_x] call canSpeak, [_x] call canUseSWRadio, [_x] call canUseLRRadio, [_x] call canUseDDRadio]);	
 };
 
+setActiveSwRadio = 
+{
+	player unassignItem (call activeSwRadio);
+	player assignItem _this;
+};
+
+swRadioSubMenu = 
+{	
+	_submenu = 
+	[
+		["secondary", localize "STR_select_action", "buttonList", "", false],
+		[
+			[localize "STR_select_action_setup", "call onSwDialogOpen;", "", localize "STR_select_action_setup_tooltip", "", -1, true, true],
+			[localize "STR_select_action_use", "sw_dialog_radio call setActiveSwRadio", "", localize "STR_select_action_use_tooltip", "", -1, true, true]
+		]		
+	];
+	_submenu;
+};
+
+activeSwRadio = 
+{
+	private ["_result"];
+	_result = nil;
+	{	
+		if (_x call isRadio) exitWith {_result = _x};
+		
+	} forEach (assignedItems player);
+	_result;
+};
+
+swRadioMenu =
+{	
+	if ((count (call radiosList) > 1) or {(count (call radiosList) == 1) and !(call haveSWRadio) }) then
+	{
+		_menuDef = ["main", localize "STR_select_radio", "buttonList", "", false];
+		_positions = [];
+		{
+			_command = format["sw_dialog_radio = '%1';call onSwDialogOpen;", _x];
+			_submenu = "";
+			_active_radio = call activeSwRadio;
+			if ((isNil "_active_radio") or {_x != _active_radio}) then
+			{
+				_command = format["sw_dialog_radio = '%1';", _x];
+				_submenu = "_this call swRadioSubMenu";
+			};
+			_position = [
+				getText(configFile >> "CfgWeapons"  >> _x >> "displayName"), 
+				_command, 
+				getText(configFile >> "CfgWeapons"  >> _x >> "picture"),
+				"",
+				_submenu,
+				-1,
+				true,
+				true
+			];
+			_positions set [count _positions, _position];
+		} forEach (call radiosList);
+		_menu =
+		[
+			_menuDef,
+			_positions	
+		];
+		_menu;
+	} else {
+		if (call haveSWRadio) then {
+			sw_dialog_radio = call activeSwRadio;
+			call onSwDialogOpen;
+		};
+		nil;
+	};
+};
+
+
 
 [] spawn {
 	waituntil {!(IsNull (findDisplay 46))};
-	[dialog_sw_scancode, [dialog_sw_shift == 1, dialog_sw_ctrl == 1, dialog_sw_alt == 1], {_this call onSwDialogOpen}, "keydown", "1"] call CBA_fnc_addKeyHandler;
+
+
+	["player", [[dialog_sw_scancode, [dialog_sw_shift == 1, dialog_sw_ctrl == 1, dialog_sw_alt == 1]]], -3, '_this call swRadioMenu'] call CBA_fnc_flexiMenu_Add;
+
 	[tangent_sw_scancode, [tangent_sw_shift == 1, tangent_sw_ctrl == 1, tangent_sw_alt == 1], {call onSwTangentPressed}, "keydown", "2"] call CBA_fnc_addKeyHandler;
 	[tangent_sw_scancode, [tangent_sw_shift == 1, tangent_sw_ctrl == 1, tangent_sw_alt == 1], {call onSwTangentReleased}, "keyup", "_2"] call CBA_fnc_addKeyHandler;
 
@@ -407,7 +577,6 @@ preparePositionCoordinates =
 
 	[tangent_lr_scancode, [tangent_lr_shift == 1, tangent_lr_ctrl == 1, tangent_lr_alt == 1], {call onLRTangentPressed}, "keydown", "11"] call CBA_fnc_addKeyHandler;
 	[tangent_lr_scancode, [tangent_lr_shift == 1, tangent_lr_ctrl == 1, tangent_lr_alt == 1], {call onLRTangentReleased}, "keyup", "_11"] call CBA_fnc_addKeyHandler;
-	// TODO: finish
 	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call onLRTangentReleasedHack"];
 	[dialog_lr_scancode, [dialog_lr_shift == 1, dialog_lr_ctrl == 1, dialog_lr_alt == 1], {call onLRDialogOpen}, "keydown", "12"] call CBA_fnc_addKeyHandler;
 
@@ -423,7 +592,6 @@ preparePositionCoordinates =
 
 	[tangent_dd_scancode, [tangent_dd_shift == 1, tangent_dd_ctrl == 1, tangent_dd_alt == 1], {call onDDTangentReleased}, "keyup", "_22"] call CBA_fnc_addKeyHandler;
 	[tangent_dd_scancode, [tangent_dd_shift == 1, tangent_dd_ctrl == 1, tangent_dd_alt == 1], {call onDDTangentPressed}, "keydown", "22"] call CBA_fnc_addKeyHandler;
-	// TODO: finish
 	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call onDDTangentReleasedHack"];
 	[dialog_dd_scancode, [dialog_dd_shift == 1, dialog_dd_ctrl == 1, dialog_dd_alt == 1], {call onDDDialogOpen}, "keydown", "23"] call CBA_fnc_addKeyHandler;
 
@@ -456,11 +624,14 @@ preparePositionCoordinates =
 		sleep 0.2;
 		// send current sw freq
 		if (isMultiplayer) then {
-			_freq = "No_SW_Radio";
+			_freq = ["No_SW_Radio"];
 			_freq_lr = "No_LR_Radio";
 			_freq_dd = "No_DD_Radio";
 			if ((call haveSWRadio) and ([player] call canUseSWRadio)) then {
-				_freq = call currentSWFrequency;
+				_freq = [];
+				{
+					_freq set[count _freq, format ["%1@%2", _x call getSwFrequency, _x call getSwVolume]];
+				} forEach (call radiosList);
 			};
 			if ((call haveLRRadio) and ([player] call canUseLRRadio)) then {
 				_freq_lr = call currentLRFrequency;
@@ -470,7 +641,7 @@ preparePositionCoordinates =
 			};
 			_alive = alive player;
 			_nickname = name player;
-			_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _freq, _freq_lr, _freq_dd, _alive, speak_volume_level, sw_volume_level, lr_volume_level, dd_volume_level, _nickname, waves];
+			_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@%9", str(_freq), _freq_lr, _freq_dd, _alive, speak_volume_level, lr_volume_level, dd_volume_level, _nickname, waves];
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
 		_request = format["VERSION@%1", ADDON_VERSION];
@@ -497,7 +668,7 @@ radiosList =
 	_result;
 };
 
-radioToRequstCount = 
+radioToRequestCount = 
 {
 	_result = 0;
 	_to_remove = [];
@@ -538,7 +709,7 @@ processRespawn =
 				};
 			};
 			_variableName = "radio_request_" + (getPlayerUID player) + str (side player);
-			_radio_count = call radioToRequstCount;
+			_radio_count = call radioToRequestCount;
 			missionNamespace setVariable [_variableName, _radio_count];
 			_responseVariableName = "radio_response_" + (getPlayerUID player) + str (side player);
 			 missionNamespace setVariable [_responseVariableName, nil];
