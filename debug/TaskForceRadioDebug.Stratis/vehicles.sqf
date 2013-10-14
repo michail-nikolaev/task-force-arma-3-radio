@@ -68,3 +68,67 @@ tfr_hasVehicleRadio = {
 
 	_presence
 };
+
+/**
+ * Returns side of vehicle, based on model of vehicle, not on who is captured
+ * Used for radio model
+ * @param vehicle
+ * @return side
+ */
+tfr_getVehicleSide = {
+	
+	west_models = [
+		/// LAND
+		"MRAP_01_base_F",
+		"APC_Tracked_01_base_F",
+		"MBT_01_base_F", // M2A1 Slammer, M4 Scorcher, M5 Sandstorm MLRS
+		"APC_Wheeled_01_base_F", // AMV-7 Marshall
+
+		/// AIR
+		"Heli_Attack_01_base_F", // AH-99
+		"Heli_Light_01_base_F", // MH-9, AH-9
+		"Heli_Transport_01_base_F", // UH-80 Ghost Hawk
+
+		/// SUB
+		"B_SDV_01_F",
+		"B_Boat_Armed_01_minigun_F",
+	];
+
+	east_models = [
+		/// LAND
+		"MRAP_02_base_F",
+		"APC_Tracked_02_base_F",
+		"MBT_02_base_F", // T-100 Varsuk
+		"APC_Wheeled_02_base_F", // Marid
+
+		/// AIR
+		"Heli_Attack_02_base_F", //Mi-48 Kajman
+		"Heli_Light_02_base_F", // Orca
+		"Heli_Transport_02_base_F", //CH-49 Mohawk
+
+		// SHIP
+		"O_SDV_01_F",
+		"O_Boat_Armed_01_hmg_F",
+	];
+
+	res_models = [
+		/// LAND
+		"MRAP_03_base_F", // strider
+		"APC_Wheeled_03_base_F", // AFV-4 Gorgon
+
+		/// AIR
+		"Plane_Fighter_03_base_F", // A-143 Buzzard
+
+		/// SHIP
+		"I_SDV_01_F",
+		"I_Boat_Armed_01_minigun_F",
+	];
+
+	_side = civilian; //by default
+
+	{ if ( _this isKindOf _x ) exitWith { _side = west; }; } foreach west_models;
+	{ if ( _this isKindOf _x ) exitWith { _side = east; }; } foreach east_models;
+	{ if ( _this isKindOf _x ) exitWith { _side = resistance; }; } foreach res_models;
+	
+	_side
+};
