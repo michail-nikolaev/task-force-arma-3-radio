@@ -61,6 +61,7 @@ tfr_hasVehicleRadio = {
 		"Boat_Armed_01_base_F", // Armed Speedboat
 		"C_Boat_Civil_01_police_F", //Motorboat (Police)
 		"C_Boat_Civil_01_rescue_F", //Motorboat (Rescue)
+		"SDV_01_base_F", //SDV
 	];
 
 	{ if ( _this isKindOf _x ) exitWith { _presence = true; }; } foreach _classes_with_radios;
