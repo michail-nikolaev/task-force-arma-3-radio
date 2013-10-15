@@ -250,6 +250,14 @@
 					Выберите рацию ближней связи
 				</Russian>
 			</Key>
+			<Key ID="STR_select_lr_radio">
+				<Original>
+					Select long range radio
+				</Original>
+				<Russian>
+					Выберите рацию дальней связи
+				</Russian>
+			</Key>
 			<Key ID="STR_transmit_sw">
 				<Original>
 					Transmiting SW on &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...
