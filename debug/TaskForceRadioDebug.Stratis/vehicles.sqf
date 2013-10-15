@@ -44,7 +44,7 @@ tfr_isVehicleIsolated = {
  * @return True|False
  */
 tfr_hasVehicleRadio = {
-	private ["_presence"];
+	private ["_presence", "_classes_with_radios"];
 	// presence of radio station
 	_presence = false;
 
@@ -76,8 +76,9 @@ tfr_hasVehicleRadio = {
  * @return side
  */
 tfr_getVehicleSide = {
+	private[ "_west_models", "_east_models", "_res_models", "_side"  ];
 	
-	west_models = [
+	_west_models = [
 		/// LAND
 		"MRAP_01_base_F",
 		"APC_Tracked_01_base_F",
@@ -94,7 +95,7 @@ tfr_getVehicleSide = {
 		"B_Boat_Armed_01_minigun_F",
 	];
 
-	east_models = [
+	_east_models = [
 		/// LAND
 		"MRAP_02_base_F",
 		"APC_Tracked_02_base_F",
@@ -111,7 +112,7 @@ tfr_getVehicleSide = {
 		"O_Boat_Armed_01_hmg_F",
 	];
 
-	res_models = [
+	_res_models = [
 		/// LAND
 		"MRAP_03_base_F", // strider
 		"APC_Wheeled_03_base_F", // AFV-4 Gorgon
