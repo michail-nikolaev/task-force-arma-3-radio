@@ -35,6 +35,9 @@ MAX_ASIP_FREQ = 87;
 MIN_DD_FREQ = 32;
 MAX_DD_FREQ = 41;
 
+MAX_LR_CHANNELS = 9;
+
+
 FREQ_ROUND_POWER = 10;
 
 IDC_ANPRC152_RADIO_DIALOG_EDIT_ID = IDC_ANPRC152_RADIO_DIALOG_EDIT;
@@ -59,10 +62,27 @@ setSwSetting =
 	publicVariable _variableName;
 };
 
+setLrSettings = 
+{
+	private ["_radio_object", "_radio_qualifier", "_value"];
+	_radio_object = _this select 0;
+	_radio_qualifier = _this select 1;
+	_value = _this select 2;
+	_radio_object setVariable [_radio_qualifier, _value, true];
+};
+
+
 getSwChannel = 
 {
 	_settings = _this call getSwSettings;
 	_settings select ACTIVE_CHANNEL_OFFSET;
+};
+
+getLrChannel = 
+{
+	_settings = _this call getLrSettings;
+	_settings select ACTIVE_CHANNEL_OFFSET;
+	
 };
 
 setSwChannel = 
@@ -74,9 +94,28 @@ setSwChannel =
 	[_radio_id, _settings] call setSwSetting;
 };
 
+
+setLrChannel = 
+{
+	private ["_radio_object", "_radio_qualifier", "_value"];
+	_radio_object = _this select 0;
+	_radio_qualifier = _this select 1;
+	_value = _this select 2;
+	_settings = [_radio_object, _radio_qualifier] call getLrSettings;
+	_settings set [ACTIVE_CHANNEL_OFFSET, _value];
+	[_radio_object, _radio_qualifier, _settings] call setLrSettings;
+};
+
+
 getSwFrequency = 
 {
 	_settings = _this call getSwSettings;
+	_settings select (FREQ_OFFSET + (_settings select ACTIVE_CHANNEL_OFFSET));
+};
+
+getLrFrequency = 
+{
+	_settings = _this call getLrSettings;
 	_settings select (FREQ_OFFSET + (_settings select ACTIVE_CHANNEL_OFFSET));
 };
 
@@ -89,10 +128,27 @@ setSwVolume =
 	[_radio_id, _settings] call setSwSetting;
 };
 
+setLrVolume = 
+{
+	private ["_radio_object", "_radio_qualifier", "_value"];
+	_radio_object = _this select 0;
+	_radio_qualifier = _this select 1;
+	_value = _this select 2;
+	_settings = [_radio_object, _radio_qualifier] call getLrSettings;
+	_settings set [VOLUME_OFFSET, _value];
+	[_radio_object, _radio_qualifier, _settings] call setLrSettings;
+};
+
 getSwVolume =
 {
-	_setting = _this call getSwSettings;
-	_setting select VOLUME_OFFSET;
+	_settings = _this call getSwSettings;
+	_settings select VOLUME_OFFSET;
+};
+
+getLrVolume = 
+{	
+	_settings = _this call getLrSettings;
+	_settings select VOLUME_OFFSET;	
 };
 
 setSwFrequency = 
@@ -103,6 +159,18 @@ setSwFrequency =
 	_settings = _radio_id call getSwSettings;
 	_settings set [(_settings select ACTIVE_CHANNEL_OFFSET) + FREQ_OFFSET, _freq];
 	[_radio_id, _settings] call setSwSetting;
+};
+
+setLrFrequency =
+{
+	private ["_radio_object", "_radio_qualifier", "_value"];
+	_radio_object = _this select 0;
+	_radio_qualifier = _this select 1;
+	_value = _this select 2;
+	
+	_settings = [_radio_object, _radio_qualifier] call getLrSettings;
+	_settings set [(_settings select ACTIVE_CHANNEL_OFFSET) + FREQ_OFFSET, _value];
+	[_radio_object, _radio_qualifier, _settings] call setLrSettings;
 };
 
 getSwSettings = 
@@ -117,6 +185,19 @@ getSwSettings =
 	_value;
 };
 
+getLrSettings = 
+{
+	private ["_radio_object", "_radio_qualifier", "_value"];
+	_radio_object = _this select 0;
+	_radio_qualifier = _this select 1;
+	_value = _radio_object getVariable _radio_qualifier;
+	if (isNil "_value") then {
+		_value = call generateLrSettings;
+		[_radio_object, _radio_qualifier, _value] call setLrSettings;
+	};
+	_value;
+};
+
 generateSwSetting = 
 {
 	_sw_frequencies = [0, 7, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -126,13 +207,18 @@ generateSwSetting =
 	_sw_frequencies;
 };
 
-
-MAX_LR_CHANNELS = 9;
-lr_frequencies = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-for "_i" from 0 to MAX_LR_CHANNELS step 1 do {
-	lr_frequencies set [_i, str (round (((random (MAX_ASIP_FREQ - MIN_ASIP_FREQ)) + MIN_ASIP_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)];
+generateLrSettings = 
+{
+	_lr_frequencies = [0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	for "_i" from FREQ_OFFSET to (FREQ_OFFSET + MAX_LR_CHANNELS) step 1 do {
+		_lr_frequencies set [_i, (str (round (((random (MAX_ASIP_FREQ - MIN_ASIP_FREQ)) + MIN_ASIP_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER))];
+	};
+	_lr_frequencies;
 };
-lr_active_channel = 0;
+
+
+//lr_frequencies = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+//lr_active_channel
 
 #include "keys.sqf"
 
@@ -144,6 +230,9 @@ dd_frequency = str (round (((random (MAX_DD_FREQ - MIN_DD_FREQ)) + MIN_DD_FREQ) 
 
 speak_volume_level = "normal";
 sw_dialog_radio = nil;
+
+lr_dialog_radio = nil;
+lr_active_radio = nil;
 
 isRadio = 
 {
@@ -163,7 +252,7 @@ haveSWRadio =
 };
 haveLRRadio = 
 {
-	(backpack player == "tf_rt1523g") or ((vehicle player != player) and ((gunner (vehicle player) == player) or (driver (vehicle player) == player) or (commander (vehicle player) == player) or ((vehicle player) turretUnit [0] == player)));		
+	count (call lrRadiosList) > 0;		
 };
 haveDDRadio = 
 {
@@ -195,8 +284,9 @@ processLRChannelKeys =
 	_lr_channel_number = _this select 0;
 
 	if (call haveLRRadio) then {
-		lr_active_channel = _lr_channel_number;
-		_hintText = format[localize "STR_active_lr_channel", lr_active_channel + 1];
+		_active_lr = call activeLrRadio;
+		[_active_lr select 0, _active_lr select 1, _lr_channel_number] call setLrChannel;
+		_hintText = format[localize "STR_active_lr_channel", _lr_channel_number + 1];
 		hint parseText (_hintText);
 		if (dialog) then {
 			call updateLRDialogToChannel;
@@ -212,7 +302,7 @@ currentSWFrequency =
 };
 currentLRFrequency = 
 {
-	(lr_frequencies select lr_active_channel);
+	(call activeLrRadio) call getLrFrequency;
 };
 updateDDDialog = 
 {
@@ -230,7 +320,7 @@ updateSWDialogToChannel =
 updateLRDialogToChannel = 
 {
 	ctrlSetText [IDC_RT1523G_RADIO_DIALOG_EDIT, call currentLRFrequency];
-	_channelText =  format["CH: %1", (lr_active_channel + 1)];
+	_channelText =  format["CH: %1", (lr_dialog_radio call getLrChannel) + 1];
 	ctrlSetText [IDC_RT1523G_RADIO_DIALOG_CHANNEL_EDIT, _channelText];
 };
 eyeDepth = 
@@ -317,9 +407,9 @@ onLRTangentPressed =
 	private["_result", "_request"];
 	if (!(tangent_lr_pressed) and {alive player} and {call haveLRRadio}) then {
 		if ([player] call canUseLRRadio) then {
-			_hintText = format[localize "STR_transmit_lr", call currentLRFrequency];
+			_hintText = format[localize "STR_transmit_lr", [call activeLrRadio] call currentLRFrequency];
 			hintSilent parseText (_hintText);
-			_request = format["TANGENT_LR@PRESSED@%1", call currentLRFrequency];
+			_request = format["TANGENT_LR@PRESSED@%1", [call activeLrRadio] call currentLRFrequency];
 			_result = "task_force_radio_pipe" callExtension _request;
 			tangent_lr_pressed = true;
 		} else {
@@ -334,7 +424,7 @@ onLRTangentReleased =
 	private["_result", "_request", "_return"];	
 	if ((tangent_lr_pressed) and {alive player}) then {
 		hintSilent "";
-		_request = format["TANGENT_LR@RELEASED@%1", call currentLRFrequency];
+		_request = format["TANGENT_LR@RELEASED@%1", [call activeLrRadio] call currentLRFrequency];
 		_result = "task_force_radio_pipe" callExtension _request;	
 		tangent_lr_pressed = false;
 	};
@@ -355,11 +445,15 @@ onLRTangentReleasedHack =
 
 onLRDialogOpen = 
 {
-	if ((alive player) and {call haveLRRadio}) then {
-		if !(dialog) then {
-			createDialog "rt1523g_radio_dialog";
-			call updateLRDialogToChannel;
-		}
+	[] spawn {
+		sleep 0.1;
+	
+		if ((alive player) and {call haveLRRadio}) then {
+			if !(dialog) then {
+				createDialog "rt1523g_radio_dialog";
+				call updateLRDialogToChannel;
+			}
+		};
 	};
 	true;
 };
@@ -489,17 +583,9 @@ setActiveSwRadio =
 	player assignItem _this;
 };
 
-swRadioSubMenu = 
-{	
-	_submenu = 
-	[
-		["secondary", localize "STR_select_action", "buttonList", "", false],
-		[
-			[localize "STR_select_action_setup", "call onSwDialogOpen;", "", localize "STR_select_action_setup_tooltip", "", -1, true, true],
-			[localize "STR_select_action_use", "sw_dialog_radio call setActiveSwRadio", "", localize "STR_select_action_use_tooltip", "", -1, true, true]
-		]		
-	];
-	_submenu;
+setActiveLrRadio = 
+{
+	lr_active_radio = _this;
 };
 
 activeSwRadio = 
@@ -511,6 +597,42 @@ activeSwRadio =
 		
 	} forEach (assignedItems player);
 	_result;
+};
+
+activeLrRadio = 
+{
+	_radios = call lrRadiosList;
+	if (isNil "lr_active_radio") then {		
+		if (count _radios > 0) then {
+			lr_active_radio = _radios select 0;		
+		};
+	} else {
+		_found = false;
+		{
+			if (((_x select 0) == (lr_active_radio select 0)) and ((_x select 1) == (lr_active_radio select 1))) exitWith {_found = true};
+		} forEach _radios;
+		if !(_found) then {
+			if (count _radios > 0) then {
+				lr_active_radio = _radios select 0;		
+			} else {
+				lr_active_radio = nil;
+			};
+		}
+	};
+	lr_active_radio;
+};
+
+swRadioSubMenu = 
+{	
+	_submenu = 
+	[
+		["secondary", localize "STR_select_action", "buttonList", "", false],
+		[
+			[localize "STR_select_action_setup", "call onSwDialogOpen;", "", localize "STR_select_action_setup_tooltip", "", -1, true, true],
+			[localize "STR_select_action_use", "sw_dialog_radio call setActiveSwRadio", "", localize "STR_select_action_use_tooltip", "", -1, true, true]
+		]		
+	];
+	_submenu;
 };
 
 swRadioMenu =
@@ -555,6 +677,64 @@ swRadioMenu =
 	};
 };
 
+lrRadioSubMenu = 
+{	
+	_submenu = 
+	[
+		["secondary", localize "STR_select_action", "buttonList", "", false],
+		[
+			[localize "STR_select_action_setup", "call onLrDialogOpen;", "", localize "STR_select_action_setup_tooltip", "", -1, true, true],
+			[localize "STR_select_action_use", "lr_dialog_radio call setActiveLrRadio", "", localize "STR_select_action_use_tooltip", "", -1, true, true]
+		]		
+	];
+	_submenu;
+};
+
+lrRadioMenu = 
+{
+
+	if (count (call lrRadiosList) > 1) then
+	{
+		_menuDef = ["main", localize "STR_select_lr_radio", "buttonList", "", false];
+		_positions = [];
+		_pos = 0;
+		{
+			_command = format["lr_dialog_radio = (call lrRadiosList) select %1;call onLrDialogOpen;", _pos];
+			_submenu = "";
+			_active_radio = call activeLrRadio;
+			if (((_x select 0) != (_active_radio select 0)) or ((_x select 1) != (_active_radio select 1))) then
+			{
+				_command = format["lr_dialog_radio = (call lrRadiosList) select %1;", _pos];
+				_submenu = "_this call lrRadioSubMenu";
+			};
+			_position = [
+				getText(configFile >> "CfgVehicles"  >> typeof(_x select 0) >> "displayName"), 
+				_command, 
+				getText(configFile >> "CfgVehicles"  >> typeof(_x select 0) >> "picture"),
+				"",
+				_submenu,
+				-1,
+				true,
+				true
+			];
+			_positions set [count _positions, _position];
+			_pos = _pos + 1;
+		} forEach (call lrRadiosList);
+		_menu =
+		[
+			_menuDef,
+			_positions	
+		];
+		_menu;
+	} else {
+		if (call haveSWRadio) then {
+			lr_dialog_radio = call activeLrRadio;
+			call onLrDialogOpen;
+		};
+		nil;
+	};
+};
+
 
 
 [] spawn {
@@ -578,7 +758,7 @@ swRadioMenu =
 	[tangent_lr_scancode, [tangent_lr_shift == 1, tangent_lr_ctrl == 1, tangent_lr_alt == 1], {call onLRTangentPressed}, "keydown", "11"] call CBA_fnc_addKeyHandler;
 	[tangent_lr_scancode, [tangent_lr_shift == 1, tangent_lr_ctrl == 1, tangent_lr_alt == 1], {call onLRTangentReleased}, "keyup", "_11"] call CBA_fnc_addKeyHandler;
 	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call onLRTangentReleasedHack"];
-	[dialog_lr_scancode, [dialog_lr_shift == 1, dialog_lr_ctrl == 1, dialog_lr_alt == 1], {call onLRDialogOpen}, "keydown", "12"] call CBA_fnc_addKeyHandler;
+	["player", [[dialog_lr_scancode, [dialog_lr_shift == 1, dialog_lr_ctrl == 1, dialog_lr_alt == 1]]], -3, '_this call lrRadioMenu'] call CBA_fnc_flexiMenu_Add;
 
 	[lr_channel_1_scancode, [lr_channel_1_shift == 1, lr_channel_1_ctrl == 1, lr_channel_1_alt == 1], {[0] call processLRChannelKeys}, "keydown", "13"] call CBA_fnc_addKeyHandler;
 	[lr_channel_2_scancode, [lr_channel_2_shift == 1, lr_channel_2_ctrl == 1, lr_channel_2_alt == 1], {[1] call processLRChannelKeys}, "keydown", "14"] call CBA_fnc_addKeyHandler;
@@ -625,7 +805,7 @@ swRadioMenu =
 		// send current sw freq
 		if (isMultiplayer) then {
 			_freq = ["No_SW_Radio"];
-			_freq_lr = "No_LR_Radio";
+			_freq_lr = ["No_LR_Radio"];
 			_freq_dd = "No_DD_Radio";
 			if ((call haveSWRadio) and ([player] call canUseSWRadio)) then {
 				_freq = [];
@@ -634,6 +814,10 @@ swRadioMenu =
 				} forEach (call radiosList);
 			};
 			if ((call haveLRRadio) and ([player] call canUseLRRadio)) then {
+				_freq_lr = [];
+				{
+					_freq_lr set[count _freq_lr, format ["%1@%2", _x call getLrFrequency, _x call getLrVolume]];
+				} forEach (call lrRadiosList);
 				_freq_lr = call currentLRFrequency;
 			};
 			if ((call haveDDRadio) and ([player] call canUseDDRadio)) then {
@@ -641,7 +825,7 @@ swRadioMenu =
 			};
 			_alive = alive player;
 			_nickname = name player;
-			_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@%9", str(_freq), _freq_lr, _freq_dd, _alive, speak_volume_level, lr_volume_level, dd_volume_level, _nickname, waves];
+			_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@%9", str(_freq), str(_freq_lr), _freq_dd, _alive, speak_volume_level, lr_volume_level, dd_volume_level, _nickname, waves];
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
 		_request = format["VERSION@%1", ADDON_VERSION];
@@ -666,6 +850,66 @@ radiosList =
 		};
 	} forEach (items player);
 	_result;
+};
+
+vehicleLr = 
+{
+	private ["_result"];
+	_result = [];
+	if ((vehicle player) != player) then {
+		if (gunner (vehicle player) == player) then {
+			_result = [vehicle player, "gunner_radio_settings"];
+		};
+		if (driver (vehicle player) == player) then {
+			_result = [vehicle player, "driver_radio_settings"];
+		};
+		if (commander (vehicle player) == player) then {
+			_result = [vehicle player, "commander_radio_settings"];
+		};
+		if ((vehicle player) turretUnit [0] == player) then {
+			_result = [vehicle player, "turretUnit_0_radio_setting"];
+		};
+	};
+	_result;
+};
+
+backpackLr = 
+{
+	private ["_result"];
+	_result = [];
+	if (backpack player == "tf_rt1523g") then {
+		_result = [unitBackpack player, "radio_settings"];
+	};
+	_result;
+};
+
+
+lrRadiosList = 
+{
+	private ["_result", "_active_lr", "_vehicle_lr", "_backpack_lr"];
+	_result = [];
+	_active_lr = nil;
+	if (!isNil "lr_active_radio") then {
+		_active_lr = lr_active_radio;
+	};
+	_vehicle_lr = call vehicleLr;
+	_backpack_lr = call backpackLr;
+
+	if (!(isNil "_active_lr") and {(count _vehicle_lr > 0)} and {(_active_lr select 0) == (_vehicle_lr select 0)} and {(_active_lr select 1) == (_vehicle_lr select 1)}) then {
+		_result set [count _result, _active_lr];
+		if (count _backpack_lr > 0) then {
+			_result set [count _result, _backpack_lr];
+		};
+	} else {
+		if (count _backpack_lr > 0) then {
+			_result set [count _result, _backpack_lr];
+		};
+		if (count _vehicle_lr > 0) then {
+			_result set [count _result, _vehicle_lr];
+		};
+	};
+
+	_result;	
 };
 
 radioToRequestCount = 
