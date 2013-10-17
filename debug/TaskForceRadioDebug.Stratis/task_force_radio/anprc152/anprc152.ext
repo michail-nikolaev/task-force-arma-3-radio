@@ -1,0 +1,135 @@
+/* #Tykiko
+$[
+	1.063,
+	["anprc152_radio_dialog",[["0","0","1","1"],"0.001","0.001","GUI_GRID"],0,1,0],
+	[1200,"",[1,"task_force_radio\anprc152\152.paa",["0.0543875 * safezoneW + safezoneX","0.0265282 * safezoneH + safezoneY","0.143438 * safezoneW","0.901041 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1400,"",[1,"",["0.114312 * safezoneW + safezoneX","0.387795 * safezoneH + safezoneY","0.0653438 * safezoneW","0.043352 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1600,"",[1,"",["0.156387 * safezoneW + safezoneX","0.462598 * safezoneH + safezoneY","0.0159375 * safezoneW","0.0182758 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1601,"",[1,"",["0.156706 * safezoneW + safezoneX","0.49235 * safezoneH + safezoneY","0.0172125 * safezoneW","0.020826 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1602,"",[1,"",["0.106662 * safezoneW + safezoneX","0.553978 * safezoneH + safezoneY","0.0172125 * safezoneW","0.020826 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1603,"",[1,"",["0.131844 * safezoneW + safezoneX","0.553978 * safezoneH + safezoneY","0.01785 * safezoneW","0.0204009 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1401,"",[1,"",["0.0744687 * safezoneW + safezoneX","0.38737 * safezoneH + safezoneY","0.0398438 * safezoneW","0.042927 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1604,"",[1,"",["0.157344 * safezoneW + safezoneX","0.526776 * safezoneH + safezoneY","0.0162563 * safezoneW","0.0191259 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
+	[1605,"",[1,"",["0.157025 * safezoneW + safezoneX","0.553553 * safezoneH + safezoneY","0.0159375 * safezoneW","0.0195509 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]]
+]
+*/
+
+class anprc152_radio_dialog 
+{
+	idd = IDC_ANPRC152_RADIO_DIALOG;
+	movingEnable = 1;
+	controlsBackground[] = { };
+	objects[] = { };
+	controls[]=
+{
+	background,
+	enter,
+	edit,
+	channel_edit,
+	clear,
+	prev_channel,
+	next_channel,
+	increase_volume,
+	decrease_volume	
+};
+////////////////////////////////////////////////////////
+// GUI EDITOR OUTPUT START (by [TF]Nkey, v1.062, #Gicyfo)
+////////////////////////////////////////////////////////
+
+class background: RscBackPicture
+{
+	idc = IDC_ANPRC152_RADIO_DIALOG_BACKGROUND;
+	text = "task_force_radio\anprc152\152.paa";
+	x = 0.0543875 * safezoneW + safezoneX;
+	y = 0.0265282 * safezoneH + safezoneY;
+	w = 0.143438 * safezoneW;
+	h = 0.901041 * safezoneH;
+	moving = 1;
+};
+class edit: RscEditLCD
+{
+	moving = 1;
+	idc = IDC_ANPRC152_RADIO_DIALOG_EDIT;
+	x = 0.114312 * safezoneW + safezoneX;
+	y = 0.387795 * safezoneH + safezoneY;
+	w = 0.0653438 * safezoneW;
+	h = 0.043352 * safezoneH;
+	tooltip = $STR_current_freq;
+	canModify = 1;
+};
+class channel_edit: RscEditLCD
+{
+	moving = 1;
+	idc = IDC_ANPRC152_RADIO_DIALOG_CHANNEL_EDIT;
+	x = 0.0744687 * safezoneW + safezoneX;
+	y = 0.38737 * safezoneH + safezoneY;
+	w = 0.0398438 * safezoneW;
+	h = 0.042927 * safezoneH;
+	tooltip = $STR_current_channel;
+	canModify = 0;
+};
+class enter: HiddenButton
+{
+	idc = IDC_ANPRC152_RADIO_DIALOG_ENTER;
+	x = 0.156706 * safezoneW + safezoneX;
+	y = 0.49235 * safezoneH + safezoneY;
+	w = 0.0172125 * safezoneW;
+	h = 0.020826 * safezoneH;
+	tooltip = $STR_set_frequency;
+	action = "_f = parseNumber(ctrlText IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);  if ((_f > MIN_SW_FREQ) and (_f < MAX_SW_FREQ)) then {[sw_dialog_radio, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setSwFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_SW_FREQ, MAX_SW_FREQ]}; call updateSWDialogToChannel;";
+};
+class clear: HiddenButton
+{
+	idc = IDC_ANPRC152_RADIO_DIALOG_CLEAR;
+	x = 0.156387 * safezoneW + safezoneX;
+	y = 0.462598 * safezoneH + safezoneY;
+	w = 0.0159375 * safezoneW;
+	h = 0.0182758 * safezoneH;
+	tooltip = $STR_clear_frequency
+	action = "ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANPRC152_RADIO_DIALOG_ID) displayCtrl IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);";
+};
+class next_channel: HiddenButton
+{
+	idc = IDC_ANPRC152_RADIO_DIALOG_NEXT;
+	x = 0.106662 * safezoneW + safezoneX;
+	y = 0.553978 * safezoneH + safezoneY;
+	w = 0.0172125 * safezoneW;
+	h = 0.020826 * safezoneH;
+	tooltip = $STR_previous_channel;
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"
+};
+class prev_channel: HiddenButton
+{
+	idc = IDC_ANPRC152_RADIO_DIALOG_PREV;
+	x = 0.131844 * safezoneW + safezoneX;
+	y = 0.553978 * safezoneH + safezoneY;
+	w = 0.01785 * safezoneW;
+	h = 0.0204009 * safezoneH;
+	tooltip = $STR_next_channel;
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) + 1) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"
+};
+class increase_volume: HiddenButton
+{
+	idc = IDC_ANPRC152_RADIO_DIALOG_RSCBUTTON_INCREASE;
+	x = 0.157344 * safezoneW + safezoneX;
+	y = 0.526776 * safezoneH + safezoneY;
+	w = 0.0162563 * safezoneW;
+	h = 0.0191259 * safezoneH;
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) + 1) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume)+ 1) * 10)];"
+	tooltip = $STR_increase_volume;
+};
+class decrease_volume: HiddenButton
+{
+	idc = IDC_ANPRC152_RADIO_DIALOG_RSCBUTTON_DECREASE;
+	x = 0.157025 * safezoneW + safezoneX;
+	y = 0.553553 * safezoneH + safezoneY;
+	w = 0.0159375 * safezoneW;
+	h = 0.0195509 * safezoneH;
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) - 1 + MAX_SW_VOLUME) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume) + 1) * 10)];"
+	tooltip = $STR_decrease_volume;
+};
+////////////////////////////////////////////////////////
+// GUI EDITOR OUTPUT END
+////////////////////////////////////////////////////////	
+
+};
