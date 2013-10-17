@@ -43,6 +43,9 @@ FREQ_ROUND_POWER = 10;
 IDC_ANPRC152_RADIO_DIALOG_EDIT_ID = IDC_ANPRC152_RADIO_DIALOG_EDIT;
 IDC_ANPRC152_RADIO_DIALOG_ID = IDC_ANPRC152_RADIO_DIALOG;
 
+IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID = IDC_ANPRC148JEM_EDIT148;
+IDC_ANPRC148JEM_RADIO_DIALOG_ID = IDC_ANPRC148JEM_DIALOG;
+
 IDC_RT1523G_RADIO_DIALOG_EDIT_ID = IDC_RT1523G_RADIO_DIALOG_EDIT;
 IDC_RT1523G_RADIO_DIALOG_ID = IDC_RT1523G_RADIO_DIALOG;
 
@@ -395,7 +398,12 @@ onSwDialogOpen =
 	[] spawn {
 		sleep 0.1;
 		if ((alive player) and {!(isNil "sw_dialog_radio")} and {!dialog}) then {
-			createDialog "anprc152_radio_dialog";
+			if (([sw_dialog_radio, "tf_anprc152_"] call CBA_fnc_find) == 0) then {
+				createDialog "anprc152_radio_dialog";
+			};
+			if (([sw_dialog_radio, "tf_anprc148jem_"] call CBA_fnc_find) == 0) then {
+				createDialog "anprc148jem_radio_dialog";
+			};
 			call updateSWDialogToChannel;
 		};
 	};
