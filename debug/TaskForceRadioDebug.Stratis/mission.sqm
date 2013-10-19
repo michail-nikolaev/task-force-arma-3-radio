@@ -9,7 +9,8 @@ class Mission
 		"A3_Armor_F_AMV",
 		"A3_Boat_F_SDV_01",
 		"A3_Characters_F_OPFOR",
-		"A3_Characters_F_INDEP"
+		"A3_Characters_F_INDEP",
+		"A3_Soft_F_Car"
 	};
 	addOnsAuto[]=
 	{
@@ -19,6 +20,7 @@ class Mission
 		"A3_Soft_F_MRAP_01",
 		"A3_Armor_F_AMV",
 		"A3_Boat_F_SDV_01",
+		"A3_Soft_F_Car",
 		"a3_map_stratis"
 	};
 	randomSeed=1577368;
@@ -102,7 +104,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=3;
+		items=4;
 		class Item0
 		{
 			position[]={2833.3464,3.2926722,6029.4297};
@@ -127,6 +129,14 @@ class Mission
 			id=5;
 			side="EMPTY";
 			vehicle="B_SDV_01_F";
+			skill=0.60000002;
+		};
+		class Item3
+		{
+			position[]={2876.9351,3.1340258,5937.1641};
+			id=6;
+			side="EMPTY";
+			vehicle="C_Hatchback_01_sport_F";
 			skill=0.60000002;
 		};
 	};

@@ -77,6 +77,7 @@ class enter155: HiddenButton
 	w = 0.023625 * safezoneW;
 	h = 0.0294066 * safezoneH;
 	tooltip = $STR_set_frequency;
+	action = "_f = parseNumber(ctrlText IDC_ANPRC155_RADIO_DIALOG_EDIT_ID);if ((_f > MIN_ASIP_FREQ) and (_f < MAX_ASIP_FREQ)) then {[lr_dialog_radio select 0, lr_dialog_radio select 1, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setLrFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_ASIP_FREQ, MAX_ASIP_FREQ]}; call updateLRDialogToChannel;";
 };
 class clear155: HiddenButton
 {
@@ -85,7 +86,8 @@ class clear155: HiddenButton
 	y = 0.473394 * safezoneH + safezoneY;
 	w = 0.0216563 * safezoneW;
 	h = 0.0252056 * safezoneH;
-	tooltip = $STR_clear_frequency
+	tooltip = $STR_clear_frequency;
+	action = "ctrlSetText [IDC_ANPRC155_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANPRC155_RADIO_DIALOG_ID) displayCtrl IDC_ANPRC155_RADIO_DIALOG_EDIT_ID);";
 };
 class prev_channel155: HiddenButton
 {
@@ -95,6 +97,7 @@ class prev_channel155: HiddenButton
 	w = 0.02625 * safezoneW;
 	h = 0.0294066 * safezoneH;
 	tooltip = $STR_previous_channel;
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1,  ((lr_dialog_radio call getLrChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setLrChannel; call updateLRDialogToChannel;"
 };
 class next_channel155: HiddenButton
 {
@@ -104,6 +107,7 @@ class next_channel155: HiddenButton
 	w = 0.0249375 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_next_channel;
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call getLrChannel) + 1) mod MAX_CHANNELS] call setLrChannel; call updateLRDialogToChannel;"
 };
 class increase_volume155: HiddenButton
 {
@@ -113,6 +117,7 @@ class increase_volume155: HiddenButton
 	w = 0.021 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_volume;
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call getLrVolume) + 1) mod MAX_LR_VOLUME] call setLrVolume;  hint formatText [localize 'STR_radio_volume', (((lr_dialog_radio call getLrVolume) + 1) * 10)]";
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
