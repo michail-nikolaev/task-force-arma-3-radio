@@ -20,7 +20,7 @@ tfr_isVehicleIsolated = {
 		case ( _this isKindOf "O_MRAP_02_F" ): { _isolated = 0.51; }; // Ifrit
 		case ( _this isKindOf "MRAP_03_base_F" ): { _isolated = 0.51; }; // Strider
 		case ( _this isKindOf "I_MRAP_03_F" ): { _isolated = 0.51; }; // Strider Ind
-		case ( _this isKindOf "Car"): { _isolated = 0.1; } // almost open
+		case ( _this isKindOf "Car"): { _isolated = 0.1; }; // almost open
 
 		// Air
 		case ( _this isKindOf "Heli_Light_02_base_F" ): { _isolated = 0.7 }; // Orca
@@ -61,7 +61,7 @@ tfr_hasVehicleRadio = {
 		"Boat_Armed_01_base_F", // Armed Speedboat
 		"C_Boat_Civil_01_police_F", //Motorboat (Police)
 		"C_Boat_Civil_01_rescue_F", //Motorboat (Rescue)
-		"SDV_01_base_F", //SDV
+		"SDV_01_base_F" //SDV
 	];
 
 	{ if ( _this isKindOf _x ) exitWith { _presence = true; }; } foreach _classes_with_radios;
@@ -92,7 +92,7 @@ tfr_getVehicleSide = {
 
 		/// SUB
 		"B_SDV_01_F",
-		"B_Boat_Armed_01_minigun_F",
+		"B_Boat_Armed_01_minigun_F"
 	];
 
 	_east_models = [
@@ -109,7 +109,7 @@ tfr_getVehicleSide = {
 
 		// SHIP
 		"O_SDV_01_F",
-		"O_Boat_Armed_01_hmg_F",
+		"O_Boat_Armed_01_hmg_F"
 	];
 
 	_res_models = [
@@ -122,14 +122,14 @@ tfr_getVehicleSide = {
 
 		/// SHIP
 		"I_SDV_01_F",
-		"I_Boat_Armed_01_minigun_F",
+		"I_Boat_Armed_01_minigun_F"
 	];
 
 	_side = civilian; //by default
 
-	{ if ( _this isKindOf _x ) exitWith { _side = west; }; } foreach west_models;
-	{ if ( _this isKindOf _x ) exitWith { _side = east; }; } foreach east_models;
-	{ if ( _this isKindOf _x ) exitWith { _side = resistance; }; } foreach res_models;
+	{ if ( _this isKindOf _x ) exitWith { _side = west; }; } foreach _west_models;
+	{ if ( _this isKindOf _x ) exitWith { _side = east; }; } foreach _east_models;
+	{ if ( _this isKindOf _x ) exitWith { _side = resistance; }; } foreach _res_models;
 	
 	_side
 };
