@@ -44,7 +44,7 @@ FREQ_ROUND_POWER = 10;
 IDC_ANPRC152_RADIO_DIALOG_EDIT_ID = IDC_ANPRC152_RADIO_DIALOG_EDIT;
 IDC_ANPRC152_RADIO_DIALOG_ID = IDC_ANPRC152_RADIO_DIALOG;
 
-IDC_ANPRC155_RADIO_DIALOG_EDIT_ID = IDC_ANPRC155_RADIO_DIALOG;
+IDC_ANPRC155_RADIO_DIALOG_EDIT_ID = IDC_ANPRC155_EDIT155;
 IDC_ANPRC155_RADIO_DIALOG_ID = IDC_ANPRC155_RADIO_DIALOG;
 
 IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID = IDC_ANPRC148JEM_EDIT148;
@@ -884,7 +884,7 @@ vehicleLr =
 {
 	private ["_result"];
 	_result = [];
-	if ((vehicle player) != player) then {
+	if (((vehicle player) != player) and {(vehicle player) call tfr_hasVehicleRadio}) then {
 		if (gunner (vehicle player) == player) then {
 			_result = [vehicle player, "gunner_radio_settings"];
 		};
