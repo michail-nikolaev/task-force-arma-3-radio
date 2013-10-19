@@ -20,7 +20,7 @@
 					_response resize _radio_request;
 					for "_next_radio" from 1 to _radio_request do
 					{
-						if (str(side player) == "WEST") then {
+						if (side player == west) then {
 							_new_radio_id = format["tf_anprc152_%1", anprc152_count];					
 							_response set [(_next_radio - 1), _new_radio_id];
 		

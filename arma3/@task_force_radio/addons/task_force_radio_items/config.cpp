@@ -16,14 +16,25 @@ class CfgPatches
 
 class CfgVehicles {
 	class Bag_Base;
-	class tf_rt1523g: Bag_Base
+	class B_Kitbag_mcamo;
+	class B_Kitbag_cbr;
+	class B_Kitbag_sgg;
+	class tf_rt1523g: B_Kitbag_mcamo
 	{
 		displayName = "RT-1523G (ASIP)";
 		descriptionShort = "RT-1523G (ASIP)";
 		picture = "\task_force_radio_items\rt1523g\rt1523g_icon.paa";
-		model = "\A3\weapons_f\Ammoboxes\bags\Backpack_Small";
 		scope = 2;
-		maximumLoad = 30;
+		maximumLoad = 60;
+		mass = 15;
+	};	
+	class tf_anprc155: B_Kitbag_sgg
+	{
+		displayName = "AN/PRC 155";
+		descriptionShort = "AN/PRC 155";
+		picture = "\task_force_radio_items\anprc155\155_icon.paa";
+		scope = 2;
+		maximumLoad = 60;
 		mass = 15;
 	};	
 };
@@ -32,6 +43,7 @@ class CfgVehicles {
 	{ \
 		displayName = Y; \
 		descriptionShort = Y; \
+		scope = 1; \
 		picture = "\task_force_radio_items\anprc152\152_icon.paa"; \
 	};
 
@@ -39,6 +51,7 @@ class CfgVehicles {
 	{ \
 		displayName = Y; \
 		descriptionShort = Y; \
+		scope = 1; \
 		picture = "\task_force_radio_items\anprc148jem\148_icon.paa"; \
 	};
 
