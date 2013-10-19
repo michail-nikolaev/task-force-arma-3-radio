@@ -8,6 +8,7 @@ waitUntil {!(isNull player)};
 titleText [localize ("STR_init"), "PLAIN"];
 
 #include "task_force_radio\define.h"
+#include "vehicles.sqf"
 
 #define SHIFTL 42
 #define CTRLL 29
@@ -42,6 +43,9 @@ FREQ_ROUND_POWER = 10;
 
 IDC_ANPRC152_RADIO_DIALOG_EDIT_ID = IDC_ANPRC152_RADIO_DIALOG_EDIT;
 IDC_ANPRC152_RADIO_DIALOG_ID = IDC_ANPRC152_RADIO_DIALOG;
+
+IDC_ANPRC155_RADIO_DIALOG_EDIT_ID = IDC_ANPRC155_RADIO_DIALOG;
+IDC_ANPRC155_RADIO_DIALOG_ID = IDC_ANPRC155_RADIO_DIALOG;
 
 IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID = IDC_ANPRC148JEM_EDIT148;
 IDC_ANPRC148JEM_RADIO_DIALOG_ID = IDC_ANPRC148JEM_DIALOG;
@@ -219,9 +223,6 @@ generateLrSettings =
 	_lr_frequencies;
 };
 
-
-//lr_frequencies = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-//lr_active_channel
 
 #include "keys.sqf"
 
@@ -458,7 +459,26 @@ onLRDialogOpen =
 	
 		if ((alive player) and {call haveLRRadio}) then {
 			if !(dialog) then {
-				createDialog "rt1523g_radio_dialog";
+				_dialog_to_open = "rt1523g_radio_dialog";
+
+				if ((lr_dialog_radio select 0) isKindOf "Bag_Base") then {				
+					if (typeOf(lr_dialog_radio select 0) == "tf_rt1523g") then {
+						_dialog_to_open = "rt1523g_radio_dialog";
+					};
+					if (typeOf(lr_dialog_radio select 0) == "tf_anprc155") then {
+						_dialog_to_open = "anprc155_radio_dialog";
+					};
+				} else {
+					if (((lr_active_radio select 0) call tfr_getVehicleSide) == west) then {
+						_dialog_to_open = "rt1523g_radio_dialog";
+					};
+					if (((lr_active_radio select 0) call tfr_getVehicleSide) == resistance) then {
+						_dialog_to_open = "anprc155_radio_dialog";
+					};
+				};
+				
+			
+				createDialog _dialog_to_open;
 				call updateLRDialogToChannel;
 			}
 		};
@@ -885,7 +905,7 @@ backpackLr =
 {
 	private ["_result"];
 	_result = [];
-	if (backpack player == "tf_rt1523g") then {
+	if ((backpack player == "tf_rt1523g") or {backpack player == "tf_anprc155"}) then {
 		_result = [unitBackpack player, "radio_settings"];
 	};
 	_result;
@@ -957,7 +977,11 @@ processRespawn =
 				if (backpack player != "tf_rt1523g") then {
 					player action ["putbag", player];
 					sleep 3;
-					player addBackpack "tf_rt1523g";
+					if (side player == west) then {
+						player addBackpack "tf_rt1523g";
+					} else {
+						player addBackpack "tf_anprc155";
+					};
 				};
 			};
 			_variableName = "radio_request_" + (getPlayerUID player) + str (side player);
