@@ -158,6 +158,7 @@ class HiddenButton
 #include "task_force_radio\anprc148jem\anprc148jem.ext"
 #include "task_force_radio\rt1523g\rt1523g.ext"
 #include "task_force_radio\anprc155\anprc155.ext"
+#include "task_force_radio\fadak\fadak.ext"
 #include "task_force_radio\diver_radio\diver_radio.ext"
 
 

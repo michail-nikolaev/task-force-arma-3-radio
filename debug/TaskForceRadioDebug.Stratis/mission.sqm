@@ -40,12 +40,14 @@ class Mission
 		"A3_Air_F_Beta_Heli_Transport_02",
 		"a3_boat_f_beta_boat_transport_01",
 		"A3_Boat_F_Beta_Boat_Armed_01",
-		"a3_boat_f_gamma_boat_transport_01"
+		"a3_boat_f_gamma_boat_transport_01",
+		"a3_characters_f_beta"
 	};
 	addOnsAuto[]=
 	{
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_OPFOR",
+		"a3_characters_f_beta",
 		"A3_Characters_F_INDEP",
 		"A3_Soft_F_MRAP_01",
 		"A3_Armor_F_AMV",
@@ -136,8 +138,8 @@ class Mission
 					position[]={1703.5531,2.6138146,5847.3018};
 					id=1;
 					side="EAST";
-					vehicle="O_Soldier_F";
-					player="PLAY CDG";
+					vehicle="O_crew_F";
+					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 				};
@@ -155,7 +157,7 @@ class Mission
 					id=2;
 					side="GUER";
 					vehicle="I_diver_F";
-					player="PLAYER COMMANDER";
+					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 				};

@@ -50,6 +50,9 @@ IDC_ANPRC155_RADIO_DIALOG_ID = IDC_ANPRC155_RADIO_DIALOG;
 IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID = IDC_ANPRC148JEM_EDIT148;
 IDC_ANPRC148JEM_RADIO_DIALOG_ID = IDC_ANPRC148JEM_DIALOG;
 
+IDC_FADAK_RADIO_DIALOG_EDIT_ID = IDC_FADAK_EDIT_FADAK;
+IDC_FADAK_RADIO_DIALOG_ID = IDC_FADAK_RADIO_DIALOG;
+
 IDC_RT1523G_RADIO_DIALOG_EDIT_ID = IDC_RT1523G_RADIO_DIALOG_EDIT;
 IDC_RT1523G_RADIO_DIALOG_ID = IDC_RT1523G_RADIO_DIALOG;
 
@@ -405,6 +408,10 @@ onSwDialogOpen =
 			if (([sw_dialog_radio, "tf_anprc148jem_"] call CBA_fnc_find) == 0) then {
 				createDialog "anprc148jem_radio_dialog";
 			};
+			if (([sw_dialog_radio, "tf_fadak_"] call CBA_fnc_find) == 0) then {
+				createDialog "fadak_radio_dialog";
+			};
+
 			call updateSWDialogToChannel;
 		};
 	};
