@@ -1,8 +1,8 @@
-/* #Horegy
+/* #Mocany
 $[
 	1.063,
 	["anprc148jem",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
-	[1200,"",[1,"task_force_radio\anprc148jem\148.paa",["0.165312 * safezoneW + safezoneX","-0.033519 * safezoneH + safezoneY","0.170625 * safezoneW","1.02223 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1200,"",[1,"task_force_radio\anprc148jem\148.paa",["-0.0269687 * safezoneW + safezoneX","-0.0251171 * safezoneH + safezoneY","0.555188 * safezoneW","1.00402 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1600,"enter148",[1,"",["0.278844 * safezoneW + safezoneX","0.497199 * safezoneH + safezoneY","0.0275625 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
 	[1601,"clear148",[1,"",["0.280156 * safezoneW + safezoneX","0.457991 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Clear frequency","-1"],[]],
 	[1400,"edit148",[1,"188.8",["0.238813 * safezoneW + safezoneX","0.351567 * safezoneH + safezoneY","0.0623438 * safezoneW","0.067215 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current frequency","-1"],[]],
@@ -13,6 +13,7 @@ $[
 	[1605,"decrease_volume148",[1,"",["0.202719 * safezoneW + safezoneX","0.457991 * safezoneH + safezoneY","0.0269063 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]]
 ]
 */
+
 
 
 class anprc148jem_radio_dialog 
@@ -41,10 +42,10 @@ class background148: RscBackPicture
 {
 	idc = IDC_ANPRC148JEM_RSCPICTURE_1200;
 	text = "task_force_radio\anprc148jem\148.paa";
-	x = 0.165312 * safezoneW + safezoneX;
-	y = -0.033519 * safezoneH + safezoneY;
-	w = 0.170625 * safezoneW;
-	h = 1.02223 * safezoneH;
+	x = -0.0269687 * safezoneW + safezoneX;
+	y = -0.0251171 * safezoneH + safezoneY;
+	w = 0.555188 * safezoneW;
+	h = 1.00402 * safezoneH;
 	moving = 1;
 };
 class enter148: HiddenButton

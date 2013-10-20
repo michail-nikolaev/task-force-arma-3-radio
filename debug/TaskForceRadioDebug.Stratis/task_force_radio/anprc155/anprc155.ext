@@ -1,8 +1,8 @@
-/* #Zeluvy
+/* #Gyxypy
 $[
 	1.063,
 	["anprc155",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
-	[1200,"background155",[1,"task_force_radio\anprc155\155.paa",["0.0996875 * safezoneW + safezoneX","0.163925 * safezoneH + safezoneY","0.612281 * safezoneW","0.4495 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1200,"background155",[1,"task_force_radio\anprc155\155.paa",["0.087875 * safezoneW + safezoneX","-0.167949 * safezoneH + safezoneY","0.634594 * safezoneW","1.10205 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1400,"channel_edit155",[1,"CH:3",["0.330031 * safezoneW + safezoneX","0.341765 * safezoneH + safezoneY","0.0485625 * safezoneW","0.0658147 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current channel","-1"],[]],
 	[1401,"edit155",[1,"88.8",["0.37925 * safezoneW + safezoneX","0.341765 * safezoneH + safezoneY","0.0452813 * safezoneW","0.0658147 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current frequency","-1"],[]],
 	[1600,"enter155",[1,"",["0.41075 * safezoneW + safezoneX","0.505601 * safezoneH + safezoneY","0.023625 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
@@ -12,7 +12,6 @@ $[
 	[1604,"increase_volume155",[1,"",["0.408781 * safezoneW + safezoneX","0.540609 * safezoneH + safezoneY","0.021 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Change volume","-1"],[]]
 ]
 */
-
 
 class anprc155_radio_dialog 
 {
@@ -39,10 +38,10 @@ class background155: RscBackPicture
 {
 	idc = IDC_ANPRC155_BACKGROUND155;
 	text = "task_force_radio\anprc155\155.paa";
-	x = 0.0996875 * safezoneW + safezoneX;
-	y = 0.163925 * safezoneH + safezoneY;
-	w = 0.612281 * safezoneW;
-	h = 0.4495 * safezoneH;
+	x = 0.087875 * safezoneW + safezoneX;
+	y = -0.167949 * safezoneH + safezoneY;
+	w = 0.634594 * safezoneW;
+	h = 1.10205 * safezoneH;
 	moving = 1;
 };
 class channel_edit155: RscEditLCD
