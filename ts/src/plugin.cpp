@@ -343,6 +343,7 @@ bool isOtherRadioPluginEnabled(uint64 serverConnectionHandlerID, anyID clientId)
 	return isInChannel(serverConnectionHandlerID, clientId, "RT") 
 			|| isInChannel(serverConnectionHandlerID, clientId, "RT_A3") 
 			|| isInChannel(serverConnectionHandlerID, clientId, "Radio") 
+			|| isInChannel(serverConnectionHandlerID, clientId, "[ARMA3.RU] Radio") 			
 			|| isInChannel(serverConnectionHandlerID, clientId, "PvP_WOG");
 }
 
