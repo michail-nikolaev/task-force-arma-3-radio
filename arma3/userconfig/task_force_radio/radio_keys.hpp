@@ -29,8 +29,8 @@
 	};
 
 	class speak_volume {
-		key = 15
-		ctrl = 1
+		key = 15;
+		ctrl = 1;
 		shift = 0;
 		alt = 0;
 	};
