@@ -1,18 +1,19 @@
-/* #Tykiko
+/* #Kapiga
 $[
 	1.063,
 	["anprc152_radio_dialog",[["0","0","1","1"],"0.001","0.001","GUI_GRID"],0,1,0],
-	[1200,"",[1,"task_force_radio\anprc152\152.paa",["0.0543875 * safezoneW + safezoneX","0.0265282 * safezoneH + safezoneY","0.143438 * safezoneW","0.901041 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1400,"",[1,"",["0.114312 * safezoneW + safezoneX","0.387795 * safezoneH + safezoneY","0.0653438 * safezoneW","0.043352 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1600,"",[1,"",["0.156387 * safezoneW + safezoneX","0.462598 * safezoneH + safezoneY","0.0159375 * safezoneW","0.0182758 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1601,"",[1,"",["0.156706 * safezoneW + safezoneX","0.49235 * safezoneH + safezoneY","0.0172125 * safezoneW","0.020826 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1602,"",[1,"",["0.106662 * safezoneW + safezoneX","0.553978 * safezoneH + safezoneY","0.0172125 * safezoneW","0.020826 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1603,"",[1,"",["0.131844 * safezoneW + safezoneX","0.553978 * safezoneH + safezoneY","0.01785 * safezoneW","0.0204009 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1401,"",[1,"",["0.0744687 * safezoneW + safezoneX","0.38737 * safezoneH + safezoneY","0.0398438 * safezoneW","0.042927 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1604,"",[1,"",["0.157344 * safezoneW + safezoneX","0.526776 * safezoneH + safezoneY","0.0162563 * safezoneW","0.0191259 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
-	[1605,"",[1,"",["0.157025 * safezoneW + safezoneX","0.553553 * safezoneH + safezoneY","0.0159375 * safezoneW","0.0195509 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]]
+	[1200,"background",[1,"task_force_radio\anprc152\152.paa",["-0.089575 * safezoneW + safezoneX","-0.0293181 * safezoneH + safezoneY","0.56175 * safezoneW","0.988621 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1400,"edit",[1,"",["0.181588 * safezoneW + safezoneX","0.368371 * safezoneH + safezoneY","0.0653438 * safezoneW","0.043352 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1600,"enter",[1,"",["0.222275 * safezoneW + safezoneX","0.447488 * safezoneH + safezoneY","0.019425 * safezoneW","0.0220549 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1601,"clear",[1,"",["0.222275 * safezoneW + safezoneX","0.481096 * safezoneH + safezoneY","0.0191625 * safezoneW","0.0245055 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1602,"previous_channel",[1,"",["0.16925 * safezoneW + safezoneX","0.547961 * safezoneH + safezoneY","0.0207375 * safezoneW","0.0259058 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1603,"next_channel",[1,"",["0.1955 * safezoneW + safezoneX","0.547961 * safezoneH + safezoneY","0.0207375 * safezoneW","0.0241554 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1401,"channel_edit",[1,"",["0.141162 * safezoneW + safezoneX","0.368021 * safezoneH + safezoneY","0.0398438 * safezoneW","0.042927 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1604,"increase_volume",[1,"",["0.222275 * safezoneW + safezoneX","0.515404 * safezoneH + safezoneY","0.0191625 * safezoneW","0.0203045 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
+	[1605,"decrease_volume",[1,"",["0.222275 * safezoneW + safezoneX","0.54621 * safezoneH + safezoneY","0.0202125 * safezoneW","0.0245055 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]]
 ]
 */
+
 
 class anprc152_radio_dialog 
 {
@@ -40,18 +41,18 @@ class background: RscBackPicture
 {
 	idc = IDC_ANPRC152_RADIO_DIALOG_BACKGROUND;
 	text = "task_force_radio\anprc152\152.paa";
-	x = 0.0543875 * safezoneW + safezoneX;
-	y = 0.0265282 * safezoneH + safezoneY;
-	w = 0.143438 * safezoneW;
-	h = 0.901041 * safezoneH;
+	x = -0.089575 * safezoneW + safezoneX;
+	y = -0.0293181 * safezoneH + safezoneY;
+	w = 0.56175 * safezoneW;
+	h = 0.988621 * safezoneH;
 	moving = 1;
 };
 class edit: RscEditLCD
 {
 	moving = 1;
 	idc = IDC_ANPRC152_RADIO_DIALOG_EDIT;
-	x = 0.114312 * safezoneW + safezoneX;
-	y = 0.387795 * safezoneH + safezoneY;
+	x = 0.181588 * safezoneW + safezoneX;
+	y = 0.368371 * safezoneH + safezoneY;
 	w = 0.0653438 * safezoneW;
 	h = 0.043352 * safezoneH;
 	tooltip = $STR_current_freq;
@@ -61,8 +62,8 @@ class channel_edit: RscEditLCD
 {
 	moving = 1;
 	idc = IDC_ANPRC152_RADIO_DIALOG_CHANNEL_EDIT;
-	x = 0.0744687 * safezoneW + safezoneX;
-	y = 0.38737 * safezoneH + safezoneY;
+	x = 0.141162 * safezoneW + safezoneX;
+	y = 0.368021 * safezoneH + safezoneY;
 	w = 0.0398438 * safezoneW;
 	h = 0.042927 * safezoneH;
 	tooltip = $STR_current_channel;
@@ -71,60 +72,60 @@ class channel_edit: RscEditLCD
 class enter: HiddenButton
 {
 	idc = IDC_ANPRC152_RADIO_DIALOG_ENTER;
-	x = 0.156706 * safezoneW + safezoneX;
-	y = 0.49235 * safezoneH + safezoneY;
-	w = 0.0172125 * safezoneW;
-	h = 0.020826 * safezoneH;
+	x = 0.222275 * safezoneW + safezoneX;
+	y = 0.481096 * safezoneH + safezoneY;
+	w = 0.0191625 * safezoneW;
+	h = 0.0245055 * safezoneH;
 	tooltip = $STR_set_frequency;
 	action = "_f = parseNumber(ctrlText IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);  if ((_f > MIN_SW_FREQ) and (_f < MAX_SW_FREQ)) then {[sw_dialog_radio, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setSwFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_SW_FREQ, MAX_SW_FREQ]}; call updateSWDialogToChannel;";
 };
 class clear: HiddenButton
 {
 	idc = IDC_ANPRC152_RADIO_DIALOG_CLEAR;
-	x = 0.156387 * safezoneW + safezoneX;
-	y = 0.462598 * safezoneH + safezoneY;
-	w = 0.0159375 * safezoneW;
-	h = 0.0182758 * safezoneH;
+	x = 0.222275 * safezoneW + safezoneX;
+	y = 0.447488 * safezoneH + safezoneY;
+	w = 0.019425 * safezoneW;
+	h = 0.0220549 * safezoneH;
 	tooltip = $STR_clear_frequency
 	action = "ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANPRC152_RADIO_DIALOG_ID) displayCtrl IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);";
 };
 class next_channel: HiddenButton
 {
 	idc = IDC_ANPRC152_RADIO_DIALOG_NEXT;
-	x = 0.106662 * safezoneW + safezoneX;
-	y = 0.553978 * safezoneH + safezoneY;
-	w = 0.0172125 * safezoneW;
-	h = 0.020826 * safezoneH;
+	x = 0.16925 * safezoneW + safezoneX;
+	y = 0.547961 * safezoneH + safezoneY;
+	w = 0.0207375 * safezoneW;
+	h = 0.0259058 * safezoneH;
 	tooltip = $STR_previous_channel;
 	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"
 };
 class prev_channel: HiddenButton
 {
 	idc = IDC_ANPRC152_RADIO_DIALOG_PREV;
-	x = 0.131844 * safezoneW + safezoneX;
-	y = 0.553978 * safezoneH + safezoneY;
-	w = 0.01785 * safezoneW;
-	h = 0.0204009 * safezoneH;
+	x = 0.1955 * safezoneW + safezoneX;
+	y = 0.547961 * safezoneH + safezoneY;
+	w = 0.0207375 * safezoneW;
+	h = 0.0241554 * safezoneH;
 	tooltip = $STR_next_channel;
 	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) + 1) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"
 };
 class increase_volume: HiddenButton
 {
 	idc = IDC_ANPRC152_RADIO_DIALOG_RSCBUTTON_INCREASE;
-	x = 0.157344 * safezoneW + safezoneX;
-	y = 0.526776 * safezoneH + safezoneY;
-	w = 0.0162563 * safezoneW;
-	h = 0.0191259 * safezoneH;
+	x = 0.222275 * safezoneW + safezoneX;
+	y = 0.515404 * safezoneH + safezoneY;
+	w = 0.0191625 * safezoneW;
+	h = 0.0203045 * safezoneH;
 	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) + 1) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume)+ 1) * 10)];"
 	tooltip = $STR_increase_volume;
 };
 class decrease_volume: HiddenButton
 {
 	idc = IDC_ANPRC152_RADIO_DIALOG_RSCBUTTON_DECREASE;
-	x = 0.157025 * safezoneW + safezoneX;
-	y = 0.553553 * safezoneH + safezoneY;
-	w = 0.0159375 * safezoneW;
-	h = 0.0195509 * safezoneH;
+	x = 0.222275 * safezoneW + safezoneX;
+	y = 0.54621 * safezoneH + safezoneY;
+	w = 0.0202125 * safezoneW;
+	h = 0.0245055 * safezoneH;
 	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) - 1 + MAX_SW_VOLUME) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume) + 1) * 10)];"
 	tooltip = $STR_decrease_volume;
 };

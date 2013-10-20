@@ -1,9 +1,8 @@
-
-/* #Cumiwo
+/* #Deviqe
 $[
 	1.063,
 	["diver_radio",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,0],
-	[1200,"",[1,"task_force_radio\diver_radio\diver_radio.paa",["0.189219 * safezoneW + safezoneX","0.227987 * safezoneH + safezoneY","0.239063 * safezoneW","0.44202 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1200,"",[1,"task_force_radio\diver_radio\diver_radio.paa",["0.1745 * safezoneW + safezoneX","0.224138 * safezoneH + safezoneY","0.268406 * safezoneW","0.4467 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1600,"",[1,"",["0.324688 * safezoneW + safezoneX","0.534002 * safezoneH + safezoneY","0.031875 * safezoneW","0.042502 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
 	[1601,"",[1,"",["0.254562 * safezoneW + safezoneX","0.537402 * safezoneH + safezoneY","0.0334687 * safezoneW","0.044202 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Clear frequency","-1"],[]],
 	[1400,"",[1,"32.7",["0.274484 * safezoneW + safezoneX","0.394595 * safezoneH + safezoneY","0.0613594 * safezoneW","0.0833038 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Current frequency","-1"],[]],
@@ -11,6 +10,7 @@ $[
 	[1401,"",[1,"24",["0.253766 * safezoneW + safezoneX","0.488099 * safezoneH + safezoneY","0.0574531 * safezoneW","0.0391018 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Current depth","-1"],[]]
 ]
 */
+
 
 
 class diver_radio_dialog 
@@ -36,10 +36,10 @@ class diver_background: RscBackPicture
 {
 	idc = IDC_DIVER_RADIO_BACKGROUND;
 	text = "task_force_radio\diver_radio\diver_radio.paa";
-	x = 0.189219 * safezoneW + safezoneX;
-	y = 0.227987 * safezoneH + safezoneY;
-	w = 0.239063 * safezoneW;
-	h = 0.44202 * safezoneH;
+	x = 0.1745 * safezoneW + safezoneX;
+	y = 0.224138 * safezoneH + safezoneY;
+	w = 0.268406 * safezoneW;
+	h = 0.4467 * safezoneH;
 	moving = 1;
 };
 class diver_enter: HiddenButton
