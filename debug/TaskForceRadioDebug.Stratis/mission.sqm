@@ -37,7 +37,10 @@ class Mission
 		"A3_Soft_F_TruckHeavy",
 		"A3_Armor_F_APC_Wheeled_03",
 		"A3_Air_F_Gamma_Plane_Fighter_03",
-		"A3_Air_F_Beta_Heli_Transport_02"
+		"A3_Air_F_Beta_Heli_Transport_02",
+		"a3_boat_f_beta_boat_transport_01",
+		"A3_Boat_F_Beta_Boat_Armed_01",
+		"a3_boat_f_gamma_boat_transport_01"
 	};
 	addOnsAuto[]=
 	{
@@ -75,6 +78,9 @@ class Mission
 		"A3_Armor_F_APC_Wheeled_03",
 		"A3_Air_F_Gamma_Plane_Fighter_03",
 		"A3_Air_F_Beta_Heli_Transport_02",
+		"a3_boat_f_beta_boat_transport_01",
+		"A3_Boat_F_Beta_Boat_Armed_01",
+		"a3_boat_f_gamma_boat_transport_01",
 		"a3_map_stratis"
 	};
 	randomSeed=1577368;
@@ -284,7 +290,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=60;
+		items=72;
 		class Item0
 		{
 			position[]={1791.3357,5.5,6065.0708};
@@ -468,7 +474,7 @@ class Mission
 		};
 		class Item21
 		{
-			position[]={1740.0393,0,6051.2217};
+			position[]={1721.4357,0.00015959203,6034.7437};
 			id=31;
 			side="EMPTY";
 			vehicle="B_Boat_Transport_01_F";
@@ -477,7 +483,7 @@ class Mission
 		};
 		class Item22
 		{
-			position[]={1743.8346,0,6061.8491};
+			position[]={1725.231,0.0045882789,6045.3711};
 			id=32;
 			side="EMPTY";
 			vehicle="B_Lifeboat";
@@ -486,7 +492,7 @@ class Mission
 		};
 		class Item23
 		{
-			position[]={1747.6796,-1.3514851e-005,6076.6519};
+			position[]={1729.0759,-0.005209724,6060.1738};
 			id=33;
 			side="EMPTY";
 			vehicle="B_Boat_Armed_01_minigun_F";
@@ -813,6 +819,114 @@ class Mission
 			id=69;
 			side="EMPTY";
 			vehicle="I_Heli_Transport_02_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item60
+		{
+			position[]={1655.5607,0.006670218,5825.897};
+			azimut=275;
+			id=70;
+			side="EMPTY";
+			vehicle="O_SDV_01_F";
+			skill=0.60000002;
+		};
+		class Item61
+		{
+			position[]={1662.7256,0.006013256,5854.2158};
+			id=71;
+			side="EMPTY";
+			vehicle="O_Boat_Transport_01_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item62
+		{
+			position[]={1666.5209,-0.0045797029,5864.8433};
+			id=72;
+			side="EMPTY";
+			vehicle="O_Lifeboat";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item63
+		{
+			position[]={1670.3658,-0.0053764773,5879.646};
+			id=73;
+			side="EMPTY";
+			vehicle="O_Boat_Armed_01_hmg_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item64
+		{
+			position[]={1566.2435,0.025423359,5615.3608};
+			azimut=275;
+			id=74;
+			side="EMPTY";
+			vehicle="I_SDV_01_F";
+			skill=0.60000002;
+		};
+		class Item65
+		{
+			position[]={1573.4084,0.23693466,5643.6797};
+			id=75;
+			side="EMPTY";
+			vehicle="I_Boat_Transport_01_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item66
+		{
+			position[]={1577.2037,0.069010921,5654.3071};
+			id=76;
+			side="EMPTY";
+			vehicle="C_Rubberboat";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item67
+		{
+			position[]={1581.0487,0.057939284,5669.1099};
+			id=77;
+			side="EMPTY";
+			vehicle="I_Boat_Armed_01_minigun_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item68
+		{
+			position[]={1676.4937,5.5,5472.5356};
+			id=78;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item69
+		{
+			position[]={1659.6528,5.5,5474.5181};
+			id=79;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item70
+		{
+			position[]={1645.2887,5.5,5471.5439};
+			id=80;
+			side="EMPTY";
+			vehicle="B_G_Quadbike_01_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item71
+		{
+			position[]={1549.6923,-0.030005155,5490.3804};
+			id=81;
+			side="EMPTY";
+			vehicle="B_G_Boat_Transport_01_F";
 			leader=1;
 			skill=0.60000002;
 		};
