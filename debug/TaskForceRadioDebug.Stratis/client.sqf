@@ -376,7 +376,9 @@ onSwTangentPressed =
 			_hintText = format[localize "STR_transmit_sw", [call activeSwRadio] call currentSWFrequency];
 			hintSilent parseText (_hintText);
 			_request = format["TANGENT@PRESSED@%1", [call activeSwRadio] call currentSWFrequency];
-			_result = "task_force_radio_pipe" callExtension _request;
+			if (isMultiplayer) then {
+				_result = "task_force_radio_pipe" callExtension _request;
+			};
 			tangent_sw_pressed = true;
 		} else {
 			call inWaterHint;
@@ -391,7 +393,9 @@ onSwTangentReleased =
 	if ((tangent_sw_pressed) and {alive player}) then {
 		hintSilent "";
 		_request = format["TANGENT@RELEASED@%1", [call activeSwRadio] call currentSWFrequency];
-		_result = "task_force_radio_pipe" callExtension _request;	
+		if (isMultiplayer) then {
+			_result = "task_force_radio_pipe" callExtension _request;
+		};
 		tangent_sw_pressed = false;
 	};
 	true;
@@ -426,7 +430,9 @@ onLRTangentPressed =
 			_hintText = format[localize "STR_transmit_lr", [call activeLrRadio] call currentLRFrequency];
 			hintSilent parseText (_hintText);
 			_request = format["TANGENT_LR@PRESSED@%1", [call activeLrRadio] call currentLRFrequency];
-			_result = "task_force_radio_pipe" callExtension _request;
+			if (isMultiplayer) then {
+				_result = "task_force_radio_pipe" callExtension _request;
+			};
 			tangent_lr_pressed = true;
 		} else {
 			call inWaterHint;
@@ -441,7 +447,9 @@ onLRTangentReleased =
 	if ((tangent_lr_pressed) and {alive player}) then {
 		hintSilent "";
 		_request = format["TANGENT_LR@RELEASED@%1", [call activeLrRadio] call currentLRFrequency];
-		_result = "task_force_radio_pipe" callExtension _request;	
+		if (isMultiplayer) then {
+			_result = "task_force_radio_pipe" callExtension _request;
+		};
 		tangent_lr_pressed = false;
 	};
 	true;
@@ -501,7 +509,9 @@ onDDTangentPressed =
 			_hintText = format[localize "STR_transmit_dd", dd_frequency];
 			hintSilent parseText (_hintText);
 			_request = format["TANGENT_DD@PRESSED@%1", dd_frequency];
-			_result = "task_force_radio_pipe" callExtension _request;
+			if (isMultiplayer) then {
+				_result = "task_force_radio_pipe" callExtension _request;
+			};
 			tangent_dd_pressed = true;
 		} else {
 			call onGroundHint;
@@ -516,7 +526,9 @@ onDDTangentReleased =
 	if ((tangent_dd_pressed) and {alive player}) then {
 		hintSilent "";
 		_request = format["TANGENT_DD@RELEASED@%1", dd_frequency];
-		_result = "task_force_radio_pipe" callExtension _request;	
+		if (isMultiplayer) then {
+			_result = "task_force_radio_pipe" callExtension _request;
+		};
 		tangent_dd_pressed = false;
 	};
 	true;
@@ -570,6 +582,22 @@ onSpeakVolumeChange =
 	true;
 };
 
+vehicleId = 
+{
+	private["_result"];
+	_result = "no";
+	if (((vehicle _this) != _this) and {(vehicle _this) call tfr_isVehicleIsolated}) then {
+		_result = netid (vehicle _this);
+		if (_result == "") then {
+			_result = "singleplayer";
+		};
+		if ([_this] call CBA_fnc_isTurnedOut) then {
+			_result = _result + "_turnout";
+		};
+	};
+	_result;
+};
+
 preparePositionCoordinates = 		
 {
 	_x = _this select 0;
@@ -609,7 +637,7 @@ preparePositionCoordinates =
 		_current_y = _current_y - (_player_pos select 1);
 		_current_z = _current_z - (_player_pos select 2);
 	};
-	(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal, [_x] call canSpeak, [_x] call canUseSWRadio, [_x] call canUseLRRadio, [_x] call canUseDDRadio]);	
+	(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal, [_x] call canSpeak, [_x] call canUseSWRadio, [_x] call canUseLRRadio, [_x] call canUseDDRadio,  _x call vehicleId]);	
 };
 
 setActiveSwRadio = 
