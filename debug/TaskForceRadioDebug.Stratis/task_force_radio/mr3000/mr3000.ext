@@ -95,7 +95,7 @@ class mr3000_next_channel: HiddenButton
 	w = 0.0190313 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_next_channel;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call getLrChannel) + 1) mod MAX_CHANNELS] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call getLrChannel) + 1) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;"
 };
 class mr3000_previous_channel: HiddenButton
 {
@@ -105,7 +105,7 @@ class mr3000_previous_channel: HiddenButton
 	w = 0.0203438 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1,  ((lr_dialog_radio call getLrChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1,  ((lr_dialog_radio call getLrChannel) - 1 + MAX_LR_CHANNELS) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;"
 };
 class mr3000_increase_volume: HiddenButton
 {
