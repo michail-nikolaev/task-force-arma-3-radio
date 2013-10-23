@@ -56,6 +56,9 @@ IDC_FADAK_RADIO_DIALOG_ID = IDC_FADAK_RADIO_DIALOG;
 IDC_RT1523G_RADIO_DIALOG_EDIT_ID = IDC_RT1523G_RADIO_DIALOG_EDIT;
 IDC_RT1523G_RADIO_DIALOG_ID = IDC_RT1523G_RADIO_DIALOG;
 
+IDC_MR3000_RADIO_DIALOG_EDIT_ID = IDC_MR3000_MR3000_EDIT;
+IDC_MR3000_RADIO_DIALOG_ID = IDC_MR3000_RADIO_DIALOG;
+
 IDC_DIDER_RADIO_DIALOG_ID = IDC_DIVER_RADIO_DIALOG;
 IDC_DIVER_RADIO_EDIT_ID = IDC_DIVER_RADIO_EDIT;
 IDC_DIVER_RADIO_DEPTH_ID = IDC_DIVER_RADIO_DEPTH;
@@ -483,12 +486,18 @@ onLRDialogOpen =
 					if (typeOf(lr_dialog_radio select 0) == "tf_anprc155") then {
 						_dialog_to_open = "anprc155_radio_dialog";
 					};
+					if (typeOf(lr_dialog_radio select 0) == "tf_mr3000") then {
+						_dialog_to_open = "mr3000_radio_dialog";
+					};
 				} else {
-					if (((lr_active_radio select 0) call tfr_getVehicleSide) == west) then {
+					if (((lr_dialog_radio select 0) call tfr_getVehicleSide) == west) then {
 						_dialog_to_open = "rt1523g_radio_dialog";
 					};
-					if (((lr_active_radio select 0) call tfr_getVehicleSide) == resistance) then {
+					if (((lr_dialog_radio select 0) call tfr_getVehicleSide) == resistance) then {
 						_dialog_to_open = "anprc155_radio_dialog";
+					};
+					if (((lr_dialog_radio select 0) call tfr_getVehicleSide) == east) then {
+						_dialog_to_open = "mr3000_radio_dialog";
 					};
 				};
 				
@@ -940,7 +949,7 @@ backpackLr =
 {
 	private ["_result"];
 	_result = [];
-	if ((backpack player == "tf_rt1523g") or {backpack player == "tf_anprc155"}) then {
+	if ((backpack player == "tf_rt1523g") or {backpack player == "tf_anprc155"} or {backpack player == "tf_mr3000"}) then {
 		_result = [unitBackpack player, "radio_settings"];
 	};
 	_result;
@@ -1009,13 +1018,17 @@ processRespawn =
 		if (alive player) then
 		{
 			if (leader player == player) then {		
-				if (backpack player != "tf_rt1523g") then {
+				if ((backpack player != "tf_rt1523g") and {backpack player != "tf_anprc155"} and {backpack player != "tf_mr3000"}) then {
 					player action ["putbag", player];
 					sleep 3;
 					if (side player == west) then {
 						player addBackpack "tf_rt1523g";
 					} else {
-						player addBackpack "tf_anprc155";
+						if (side player == east) then {
+							player addBackpack "tf_mr3000";	
+						} else {
+							player addBackpack "tf_anprc155";
+						};
 					};
 				};
 			};
