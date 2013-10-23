@@ -37,6 +37,15 @@ class CfgVehicles {
 		maximumLoad = 60;
 		mass = 15;
 	};	
+	class tf_mr3000: B_Kitbag_cbr
+	{
+		displayName = "MR3000";
+		descriptionShort = "MR3000";
+		picture = "\task_force_radio_items\mr3000\mr3000_icon.paa";
+		scope = 2;
+		maximumLoad = 60;
+		mass = 15;
+	};
 };
 
 #define ANPRC_152(X,Y) class tf_anprc152_##X :  ItemRadio \
