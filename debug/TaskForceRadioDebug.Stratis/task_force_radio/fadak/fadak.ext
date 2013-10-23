@@ -1,4 +1,4 @@
-/* #Saqify
+/* #Qigupu
 $[
 	1.063,
 	["fadak",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -9,10 +9,11 @@ $[
 	[1603,"previous_channel_fadak",[1,"",["0.293281 * safezoneW + safezoneX","0.654034 * safezoneH + safezoneY","0.0150938 * safezoneW","0.022405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1604,"increase_volume_fadak",[1,"",["0.27425 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1605,"decrease_volume_fadak",[1,"",["0.236188 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1400,"edit_fadak",[1,"444.8",["0.244719 * safezoneW + safezoneX","0.36417 * safezoneH + safezoneY","0.0544688 * safezoneW","0.0560125 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1400,"edit_fadak",[1,"444.8",["0.251938 * safezoneW + safezoneX","0.36417 * safezoneH + safezoneY","0.0492188 * safezoneW","0.0560125 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1401,"channel_edit_fadak",[1,"C8",["0.259813 * safezoneW + safezoneX","0.315159 * safezoneH + safezoneY","0.02625 * safezoneW","0.0630141 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
+
 
 
 class fadak_radio_dialog 
@@ -111,11 +112,10 @@ class edit_fadak: RscEditLCD
 {
 	idc = IDC_FADAK_EDIT_FADAK;
 	text = $STR_A3_fadak_edit_fadak;
-	x = 0.244719 * safezoneW + safezoneX;
+	x = 0.251938 * safezoneW + safezoneX;
 	y = 0.36417 * safezoneH + safezoneY;
-	w = 0.0544688 * safezoneW;
+	w = 0.0492188 * safezoneW;
 	h = 0.0560125 * safezoneH;
-	colorText[] = {0,0,0,1};
 	tooltip = $STR_current_freq;
 	canModify = 1;
 };
@@ -127,7 +127,6 @@ class channel_edit_fadak: RscEditLCD
 	y = 0.315159 * safezoneH + safezoneY;
 	w = 0.02625 * safezoneW;
 	h = 0.0630141 * safezoneH;
-	colorText[] = {0,0,0,1};
 	tooltip = $STR_current_channel;
 	canModify = 0;
 };
