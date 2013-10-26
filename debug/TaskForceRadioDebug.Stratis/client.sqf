@@ -93,12 +93,14 @@ setLrSettings =
 
 getSwChannel = 
 {
+	private ["_settings"];
 	_settings = _this call getSwSettings;
 	_settings select ACTIVE_CHANNEL_OFFSET;
 };
 
 getLrChannel = 
 {
+	private ["_settings"];
 	_settings = _this call getLrSettings;
 	_settings select ACTIVE_CHANNEL_OFFSET;
 	
@@ -106,6 +108,7 @@ getLrChannel =
 
 setSwChannel = 
 {
+	private ["_settings", "_radio_id", "_channel_to_set"];
 	_radio_id = _this select 0;
 	_channel_to_set = _this select 1;
 	_settings = _radio_id call getSwSettings;
@@ -116,7 +119,7 @@ setSwChannel =
 
 setLrChannel = 
 {
-	private ["_radio_object", "_radio_qualifier", "_value"];
+	private ["_radio_object", "_radio_qualifier", "_value", "_settings"];
 	_radio_object = _this select 0;
 	_radio_qualifier = _this select 1;
 	_value = _this select 2;
@@ -128,18 +131,21 @@ setLrChannel =
 
 getSwFrequency = 
 {
+	private ["_settings"];
 	_settings = _this call getSwSettings;
 	_settings select (FREQ_OFFSET + (_settings select ACTIVE_CHANNEL_OFFSET));
 };
 
 getLrFrequency = 
 {
+	private ["_settings"];
 	_settings = _this call getLrSettings;
 	_settings select (FREQ_OFFSET + (_settings select ACTIVE_CHANNEL_OFFSET));
 };
 
 setSwVolume = 
 {
+	private ["_settings", "_radio_id", "_value"];
 	_radio_id = _this select 0;
 	_value = _this select 1;
 	_settings = _radio_id call getSwSettings;
@@ -149,7 +155,7 @@ setSwVolume =
 
 setLrVolume = 
 {
-	private ["_radio_object", "_radio_qualifier", "_value"];
+	private ["_radio_object", "_radio_qualifier", "_value", "_settings"];
 	_radio_object = _this select 0;
 	_radio_qualifier = _this select 1;
 	_value = _this select 2;
@@ -160,12 +166,14 @@ setLrVolume =
 
 getSwVolume =
 {
+	private ["_settings"];
 	_settings = _this call getSwSettings;
 	_settings select VOLUME_OFFSET;
 };
 
 getLrVolume = 
 {	
+	private ["_settings"];
 	_settings = _this call getLrSettings;
 	_settings select VOLUME_OFFSET;	
 };
@@ -182,7 +190,7 @@ setSwFrequency =
 
 setLrFrequency =
 {
-	private ["_radio_object", "_radio_qualifier", "_value"];
+	private ["_radio_object", "_radio_qualifier", "_value", "_settings"];
 	_radio_object = _this select 0;
 	_radio_qualifier = _this select 1;
 	_value = _this select 2;
@@ -237,6 +245,7 @@ generateSwSetting =
 
 generateLrSettings = 
 {
+	private ["_lr_frequencies"];
 	_lr_frequencies = [0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 	for "_i" from FREQ_OFFSET to (FREQ_OFFSET + MAX_LR_CHANNELS) step 1 do {
 		_lr_frequencies set [_i, (str (round (((random (MAX_ASIP_FREQ - MIN_ASIP_FREQ)) + MIN_ASIP_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER))];
@@ -331,6 +340,7 @@ currentLRFrequency =
 };
 updateDDDialog = 
 {
+	private ["_depth", "_depthText"];
 	ctrlSetText [IDC_DIVER_RADIO_EDIT_ID, dd_frequency];
 	_depth = round (((eyepos player) select 2) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER;
 	_depthText =  format["%1m", _depth];
@@ -338,23 +348,27 @@ updateDDDialog =
 };
 updateSWDialogToChannel = 
 {
+	private ["_channelText"];
 	ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT, sw_dialog_radio call getSwFrequency];
 	_channelText =  format["C%1", (sw_dialog_radio call getSwChannel) + 1];
 	ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_CHANNEL_EDIT, _channelText];
 };
 updateLRDialogToChannel = 
 {
+	private ["_channelText"];
 	ctrlSetText [IDC_RT1523G_RADIO_DIALOG_EDIT, lr_dialog_radio call getLrFrequency];
 	_channelText =  format["CH: %1", (lr_dialog_radio call getLrChannel) + 1];
 	ctrlSetText [IDC_RT1523G_RADIO_DIALOG_CHANNEL_EDIT, _channelText];
 };
 eyeDepth = 
 {
+	private ["_player"];
 	_player = _this;
 	((eyepos _player) select 2) + ((getPosASLW _player) select 2) - ((getPosASL _player) select 2);
 };
 canSpeak = 
 {
+	private ["_player"];
 	_player = _this;
 	(((_player call eyeDepth) > 0) or 
 					(
@@ -365,6 +379,7 @@ canSpeak =
 };
 canUseSWRadio =
 {
+	private ["_player"];
 	_player = _this;
 	(((_player call eyeDepth > 0)) 
 		or ( 
@@ -376,7 +391,7 @@ canUseSWRadio =
 };
 canUseLRRadio =
 {
-_player = _this;
+	private ["_player"];
 	_player = _this;
 	(((_player call eyeDepth > 0)) 
 		or ( 
@@ -388,6 +403,7 @@ _player = _this;
 };
 canUseDDRadio =
 {
+	private ["_player"];
 	_player = _this;
 	((_player call eyeDepth) < 0);
 };
@@ -403,7 +419,7 @@ onGroundHint =
 
 onSwTangentPressed = 
 {
-	private["_result", "_request"];
+	private["_result", "_request", "_hintText"];
 	if (!(tangent_sw_pressed) and {alive player} and {call haveSWRadio}) then {
 		if (player call canUseSWRadio) then { 
 			_hintText = format[localize "STR_transmit_sw", [call activeSwRadio] call currentSWFrequency];
@@ -457,7 +473,7 @@ onSwDialogOpen =
 
 onLRTangentPressed = 
 {
-	private["_result", "_request"];
+	private["_result", "_request", "_hintText"];
 	if (!(tangent_lr_pressed) and {alive player} and {call haveLRRadio}) then {
 		if (player call canUseLRRadio) then {
 			_hintText = format[localize "STR_transmit_lr", [call activeLrRadio] call currentLRFrequency];
@@ -476,7 +492,7 @@ onLRTangentPressed =
 
 onLRTangentReleased = 
 {
-	private["_result", "_request", "_return"];	
+	private["_result", "_request"];	
 	if ((tangent_lr_pressed) and {alive player}) then {
 		hintSilent "";
 		_request = format["TANGENT_LR@RELEASED@%1", [call activeLrRadio] call currentLRFrequency];
@@ -502,6 +518,7 @@ onLRTangentReleasedHack =
 
 onLRDialogOpen = 
 {
+	private ["_dialog_to_open"];
 	[] spawn {
 		sleep 0.1;
 	
@@ -542,7 +559,7 @@ onLRDialogOpen =
 
 onDDTangentPressed = 
 {
-	private["_result", "_request"];
+	private["_result", "_request", "_hintText"];
 	if (!(tangent_dd_pressed) and {alive player} and {call haveDDRadio}) then {
 		if (player call canUseDDRadio) then { 
 			_hintText = format[localize "STR_transmit_dd", dd_frequency];
@@ -639,9 +656,10 @@ vehicleId =
 
 preparePositionCoordinates = 		
 {
-	_x = _this select 0;
-	_current_eyepos = eyepos _x;
-	_xname = name _x;
+	private ["_x_player", "_current_eyepos", "_x_playername", "_current_x", "_current_y", "_current_z", "_current_look_at_x", "_current_look_at_y", "_current_look_at_z", "_current_hyp_horizontal", "_current_rotation_horizontal", "_player_pos"];
+	_x_player = _this select 0;
+	_current_eyepos = eyepos _x_player;
+	_x_playername = name _x_player;
 	_current_x = (_current_eyepos select 0);
 	_current_y = (_current_eyepos select 1);
 	_current_z = (_current_eyepos select 2);
@@ -676,7 +694,7 @@ preparePositionCoordinates =
 		_current_y = _current_y - (_player_pos select 1);
 		_current_z = _current_z - (_player_pos select 2);
 	};
-	(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal, _x call canSpeak, _x call canUseSWRadio, _x call canUseLRRadio, _x call canUseDDRadio,  _x call vehicleId]);	
+	(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _x_playername, _current_x, _current_y, _current_z, _current_rotation_horizontal, _x_player call canSpeak, _x_player call canUseSWRadio, _x_player call canUseLRRadio, _x_player call canUseDDRadio,  _x_player call vehicleId]);
 };
 
 setActiveSwRadio = 
@@ -703,6 +721,7 @@ activeSwRadio =
 
 activeLrRadio = 
 {
+	private ["_radios", "_found"];
 	_radios = call lrRadiosList;
 	if (isNil "lr_active_radio") then {		
 		if (count _radios > 0) then {
@@ -726,6 +745,7 @@ activeLrRadio =
 
 swRadioSubMenu = 
 {	
+	private ["_submenu"];
 	_submenu = 
 	[
 		["secondary", localize "STR_select_action", "buttonList", "", false],
@@ -739,6 +759,7 @@ swRadioSubMenu =
 
 swRadioMenu =
 {	
+	private ["_menuDef", "_positions", "_active_radio", "_submenu", "_command"];
 	if ((count (call radiosList) > 1) or {(count (call radiosList) == 1) and !(call haveSWRadio) }) then
 	{
 		_menuDef = ["main", localize "STR_select_radio", "buttonList", "", false];
@@ -781,6 +802,7 @@ swRadioMenu =
 
 lrRadioSubMenu = 
 {	
+	private ["_submenu"];
 	_submenu = 
 	[
 		["secondary", localize "STR_select_action", "buttonList", "", false],
@@ -795,6 +817,7 @@ lrRadioSubMenu =
 lrRadioMenu = 
 {
 
+	private ["_menuDef", "_positions", "_active_radio", "_submenu", "_command", "_pos"];
 	if (count (call lrRadiosList) > 1) then
 	{
 		_menuDef = ["main", localize "STR_select_lr_radio", "buttonList", "", false];
@@ -840,8 +863,8 @@ lrRadioMenu =
 
 
 [] spawn {
+	private ["_prev_result", "_request", "_result", "_freq", "_freq_lr", "_freq_dd", "_alive", "_nickname", "_active_sw_radio"];
 	waituntil {!(IsNull (findDisplay 46))};
-
 
 	["player", [[dialog_sw_scancode, [dialog_sw_shift == 1, dialog_sw_ctrl == 1, dialog_sw_alt == 1]]], -3, '_this call swRadioMenu'] call CBA_fnc_flexiMenu_Add;
 
@@ -879,9 +902,6 @@ lrRadioMenu =
 
 	[speak_volume_scancode, [speak_volume_shift == 1, speak_volume_ctrl == 1, speak_volume_alt == 1], {call onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;
 	
-	
-
-		
 		
 	_prev_result = "OK";
 
@@ -949,6 +969,7 @@ lrRadioMenu =
 
 radiosList = 
 {
+	private ["_result"];
 	_result = [];
 	{	
 		if (_x call isRadio) then 
