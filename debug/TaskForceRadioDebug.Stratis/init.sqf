@@ -6,5 +6,5 @@ if ((isServer) or (isDedicated)) then
 if (!(isDedicated)) then
 {
 	nul = [] execVM "client.sqf";
-	execVM "mission.sqf";
+//	execVM "mission.sqf";
 };
