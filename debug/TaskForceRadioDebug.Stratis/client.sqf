@@ -25,7 +25,6 @@ radio_request_mutex = false;
 saved_active_sw_settings = nil;
 use_saved_sw_setting = false;
 
-ADDON_VERSION = "0.7.0 beta";
 
 MIN_SW_FREQ = 30;
 MAX_SW_FREQ = 512;
@@ -351,31 +350,46 @@ updateLRDialogToChannel =
 };
 eyeDepth = 
 {
-	_player = _this select 0;
+	_player = _this;
 	((eyepos _player) select 2) + ((getPosASLW _player) select 2) - ((getPosASL _player) select 2);
 };
 canSpeak = 
 {
-	_player = _this select 0;
-	(([_player] call eyeDepth) > 0);
+	_player = _this;
+	(((_player call eyeDepth) > 0) or 
+					(
+						(vehicle _player) call tfr_isVehicleIsolated) 
+							and 
+						!([_player] call CBA_fnc_isTurnedOut)
+					)
 };
 canUseSWRadio =
 {
-	_player = _this select 0;
-	(([_player] call eyeDepth) > 0);
+	_player = _this;
+	(((_player call eyeDepth > 0)) 
+		or ( 
+			(_player call canSpeak) and (vehicle _player != _player) and ((_player call eyeDepth) > -1) and ((isAbleToBreathe _player) or (
+															(vehicle _player) call tfr_isVehicleIsolated)
+															and !([_player] call CBA_fnc_isTurnedOut)
+														)
+		 ));
 };
 canUseLRRadio =
 {
-	_player = _this select 0;
-	((([_player] call eyeDepth > 0)) 
+_player = _this;
+	_player = _this;
+	(((_player call eyeDepth > 0)) 
 		or ( 
-			(vehicle _player != _player) and (([_player] call eyeDepth) > -3) and (isAbleToBreathe _player)
+			(vehicle _player != _player) and ((_player call eyeDepth) > -3) and ((isAbleToBreathe _player) or (
+															(vehicle _player) call tfr_isVehicleIsolated)
+															and !([_player] call CBA_fnc_isTurnedOut)
+														)
 		 ));
 };
 canUseDDRadio =
 {
-	_player = _this select 0;
-	(([_player] call eyeDepth) < 0);
+	_player = _this;
+	((_player call eyeDepth) < 0);
 };
 
 inWaterHint = 
@@ -391,7 +405,7 @@ onSwTangentPressed =
 {
 	private["_result", "_request"];
 	if (!(tangent_sw_pressed) and {alive player} and {call haveSWRadio}) then {
-		if ([player] call canUseSWRadio) then { 
+		if (player call canUseSWRadio) then { 
 			_hintText = format[localize "STR_transmit_sw", [call activeSwRadio] call currentSWFrequency];
 			hintSilent parseText (_hintText);
 			_request = format["TANGENT@PRESSED@%1", [call activeSwRadio] call currentSWFrequency];
@@ -445,7 +459,7 @@ onLRTangentPressed =
 {
 	private["_result", "_request"];
 	if (!(tangent_lr_pressed) and {alive player} and {call haveLRRadio}) then {
-		if ([player] call canUseLRRadio) then {
+		if (player call canUseLRRadio) then {
 			_hintText = format[localize "STR_transmit_lr", [call activeLrRadio] call currentLRFrequency];
 			hintSilent parseText (_hintText);
 			_request = format["TANGENT_LR@PRESSED@%1", [call activeLrRadio] call currentLRFrequency];
@@ -530,7 +544,7 @@ onDDTangentPressed =
 {
 	private["_result", "_request"];
 	if (!(tangent_dd_pressed) and {alive player} and {call haveDDRadio}) then {
-		if ([player] call canUseDDRadio) then { 
+		if (player call canUseDDRadio) then { 
 			_hintText = format[localize "STR_transmit_dd", dd_frequency];
 			hintSilent parseText (_hintText);
 			_request = format["TANGENT_DD@PRESSED@%1", dd_frequency];
@@ -662,7 +676,7 @@ preparePositionCoordinates =
 		_current_y = _current_y - (_player_pos select 1);
 		_current_z = _current_z - (_player_pos select 2);
 	};
-	(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal, [_x] call canSpeak, [_x] call canUseSWRadio, [_x] call canUseLRRadio, [_x] call canUseDDRadio,  _x call vehicleId]);	
+	(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _xname, _current_x, _current_y, _current_z, _current_rotation_horizontal, _x call canSpeak, _x call canUseSWRadio, _x call canUseLRRadio, _x call canUseDDRadio,  _x call vehicleId]);	
 };
 
 setActiveSwRadio = 
@@ -895,20 +909,20 @@ lrRadioMenu =
 			_freq = ["No_SW_Radio"];
 			_freq_lr = ["No_LR_Radio"];
 			_freq_dd = "No_DD_Radio";
-			if ((call haveSWRadio) and ([player] call canUseSWRadio)) then {
+			if ((call haveSWRadio) and (player call canUseSWRadio)) then {
 				_freq = [];
 				{
 					_freq set[count _freq, format ["%1@%2", _x call getSwFrequency, _x call getSwVolume]];
 				} forEach (call radiosList);
 			};
-			if ((call haveLRRadio) and ([player] call canUseLRRadio)) then {
+			if ((call haveLRRadio) and (player call canUseLRRadio)) then {
 				_freq_lr = [];
 				{
 					_freq_lr set[count _freq_lr, format ["%1@%2", _x call getLrFrequency, _x call getLrVolume]];
 				} forEach (call lrRadiosList);
 				_freq_lr = call currentLRFrequency;
 			};
-			if ((call haveDDRadio) and ([player] call canUseDDRadio)) then {
+			if ((call haveDDRadio) and (player call canUseDDRadio)) then {
 				_freq_dd = dd_frequency;
 			};
 			_alive = alive player;
@@ -1042,6 +1056,7 @@ radioToRequestCount =
 };
 
 first_radio_request = true;
+last_request_time = 0;
 
 requestRadios = 
 {
@@ -1051,27 +1066,30 @@ requestRadios =
 		if (!radio_request_mutex) exitWith {radio_request_mutex = true; true};
 		false;
 	};
+	if (time - last_request_time > 3) then {
+		last_request_time = time;
+		_variableName = "radio_request_" + (getPlayerUID player) + str (side player);
+		_radio_count = _this call radioToRequestCount;
 	
-	_variableName = "radio_request_" + (getPlayerUID player) + str (side player);
-	_radio_count = _this call radioToRequestCount;
-
-	if (_radio_count > 0) then {
-		missionNamespace setVariable [_variableName, _radio_count];
-		_responseVariableName = "radio_response_" + (getPlayerUID player) + str (side player);
-		 missionNamespace setVariable [_responseVariableName, nil];
-		publicVariableServer _variableName;
-		titleText [localize ("STR_wait_radio"), "PLAIN"];
-		waitUntil {!(isNil _responseVariableName)};
-		_response = missionNamespace getVariable _responseVariableName;	
-		{
-			player addItem _x;
-		} forEach _response;
-		if ((count _response > 0) and (first_radio_request)) then 
-		{
-			first_radio_request = false;
-			player assignItem (_response select 0);
+		if (_radio_count > 0) then {
+			missionNamespace setVariable [_variableName, _radio_count];
+			_responseVariableName = "radio_response_" + (getPlayerUID player) + str (side player);
+			 missionNamespace setVariable [_responseVariableName, nil];
+			publicVariableServer _variableName;
+			titleText [localize ("STR_wait_radio"), "PLAIN"];
+			waitUntil {!(isNil _responseVariableName)};
+			_response = missionNamespace getVariable _responseVariableName;	
+			{
+				player addItem _x;
+			} forEach _response;
+			if ((count _response > 0) and (first_radio_request)) then 
+			{
+				first_radio_request = false;
+				player assignItem (_response select 0);
+			};
+			titleText ["", "PLAIN"];
 		};
-		titleText ["", "PLAIN"];
+		last_request_time = time;
 	};
 	radio_request_mutex = false;
 };
@@ -1125,6 +1143,19 @@ respawnedAt = time;
 	waitUntil {!(isNull player)};
 	sleep 5;
 	call radioReplaceProcess;
+};
+
+[] spawn {
+	waitUntil {!((isNil "server_addon_version") and (time < 20))};
+	if (isNil "server_addon_version") then {
+		hintC (localize "STR_no_server");
+	} else {
+		if (server_addon_version != ADDON_VERSION) then {
+			hintC format[localize "STR_different_version", server_addon_version, ADDON_VERSION];
+		};
+	};
+
+
 };
 
 
