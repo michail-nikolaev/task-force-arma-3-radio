@@ -3,7 +3,7 @@
 #define MAX_FADAK_COUNT 1000
 
 [] spawn {
-	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_new_radio_id"];
+	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_new_radio_id", "_task_force_radio_used", "_last_check"];
 	waitUntil {time > 0};
 	server_addon_version = ADDON_VERSION;
 	publicVariable "server_addon_version";
@@ -61,6 +61,22 @@
 					};
 					missionNamespace setVariable [_responseVariableName, _response];
 					(owner (_x)) publicVariableClient (_responseVariableName);
+				};
+				_task_force_radio_used = _x getVariable "tf_force_radio_active";
+				if (isNil "_task_force_radio_used") then {
+
+					_variableName = "no_radio_" + (getPlayerUID _x) + str (side _x);
+					_last_check = missionNamespace getVariable _variableName;
+
+					if (isNil "_last_check") then {
+						missionNamespace setVariable [_variableName, time];
+					} else {
+						if (time - _last_check > 30) then {
+							[["TASK FORCE RADIO ADDON NOT ENABLED OR VERSION LESS THAN 0.8.0"],"BIS_fnc_guiMessage",(owner _x), false] spawn BIS_fnc_MP;
+							_x setVariable ["tf_force_radio_active", "error_shown", true];
+						};
+					};					
+
 				};
 			};
 		} forEach allUnits;
