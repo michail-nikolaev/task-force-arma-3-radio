@@ -1129,6 +1129,7 @@ processRespawn =
 {
 	[] spawn {	
 		waitUntil {!(isNull player)};	
+		player setVariable ["tf_force_radio_active", ADDON_VERSION, true];
 		respawnedAt = time;
 		if (alive player) then
 		{
