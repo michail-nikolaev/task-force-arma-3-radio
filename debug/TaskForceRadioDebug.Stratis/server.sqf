@@ -4,6 +4,8 @@
 
 [] spawn {
 	waitUntil {time > 0};
+	server_addon_version = ADDON_VERSION;
+	publicVariable "server_addon_version";
 
 	anprc152_count = 1;
 	anprc148jem_count = 1;
