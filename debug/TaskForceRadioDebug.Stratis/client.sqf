@@ -1,5 +1,7 @@
 #define DEBUG_MODE_FULL
 
+//tf_no_auto_long_range_radio = true;
+
 disableSerialization;
 #include "diary.sqf"
 
@@ -17,6 +19,11 @@ titleText [localize ("STR_init"), "PLAIN"];
 #define VOLUME_OFFSET 1
 #define FREQ_OFFSET 2
 MAX_CHANNELS = 8;
+
+radio_request_mutex = false;
+
+saved_active_sw_settings = nil;
+use_saved_sw_setting = false;
 
 ADDON_VERSION = "0.7.0 beta";
 
@@ -213,9 +220,18 @@ getLrSettings =
 
 generateSwSetting = 
 {
-	_sw_frequencies = [0, 7, 0, 0, 0, 0, 0, 0, 0, 0];
-	for "_i" from FREQ_OFFSET to (FREQ_OFFSET + MAX_CHANNELS) step 1 do {
-		_sw_frequencies set [_i, (str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER))];
+	private ["_sw_frequencies"];
+	_sw_frequencies = [];
+	if (!(use_saved_sw_setting) or (isNil "saved_active_sw_settings")) then {
+		_sw_frequencies = [0, 7, 0, 0, 0, 0, 0, 0, 0, 0];
+		for "_i" from FREQ_OFFSET to (FREQ_OFFSET + MAX_CHANNELS) step 1 do {
+			_sw_frequencies set [_i, (str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER))];
+		};
+	} else {
+		_sw_frequencies = saved_active_sw_settings;
+	};
+	if (use_saved_sw_setting) then {
+		use_saved_sw_setting = false;
 	};
 	_sw_frequencies;
 };
@@ -902,7 +918,19 @@ lrRadioMenu =
 		};
 		_request = format["VERSION@%1", ADDON_VERSION];
 		_result = "task_force_radio_pipe" callExtension _request;
-	}
+		if !(use_saved_sw_setting) then {
+			if ((alive player) and (call haveSWRadio)) then {
+				_active_sw_radio = call activeSwRadio;
+				if !(isNil "_active_sw_radio") then {
+					saved_active_sw_settings = _active_sw_radio call getSwSettings;
+				} else {
+					saved_active_sw_settings = nil;	
+				};
+			} else {
+				saved_active_sw_settings = nil;	
+			};
+		};
+	};
 };
 
 radiosList = 
@@ -986,11 +1014,13 @@ lrRadiosList =
 
 radioToRequestCount = 
 {
+	private ["_result", "_to_remove", "_allRadios"];
 	_result = 0;
 	_to_remove = [];
+	_allRadios = _this;
 
 	{	
-		if (("ItemRadio" == _x) or (_x call isRadio)) then 
+		if (("ItemRadio" == _x) or ((_x call isRadio) and _allRadios)) then 
 		{
 			_to_remove set[_result, _x];
 			_result = _result + 1;
@@ -998,7 +1028,7 @@ radioToRequestCount =
 	} forEach (assignedItems player);
 
 	{
-		if (("ItemRadio" == _x) or (_x call isRadio)) then 
+		if (("ItemRadio" == _x) or ((_x call isRadio) and _allRadios)) then 
 		{
 			_to_remove set[_result, _x];
 			_result = _result + 1;
@@ -1011,51 +1041,90 @@ radioToRequestCount =
 	_result;
 };
 
-processRespawn =
+first_radio_request = true;
+
+requestRadios = 
 {
-	[] spawn {	
-		waitUntil {!(isNull player)};	
-		if (alive player) then
+	private ["_radio_count", "_variableName", "_responseVariableName", "_response"];
+
+	waitUntil {
+		if (!radio_request_mutex) exitWith {radio_request_mutex = true; true};
+		false;
+	};
+	
+	_variableName = "radio_request_" + (getPlayerUID player) + str (side player);
+	_radio_count = _this call radioToRequestCount;
+
+	if (_radio_count > 0) then {
+		missionNamespace setVariable [_variableName, _radio_count];
+		_responseVariableName = "radio_response_" + (getPlayerUID player) + str (side player);
+		 missionNamespace setVariable [_responseVariableName, nil];
+		publicVariableServer _variableName;
+		titleText [localize ("STR_wait_radio"), "PLAIN"];
+		waitUntil {!(isNil _responseVariableName)};
+		_response = missionNamespace getVariable _responseVariableName;	
 		{
-			if (leader player == player) then {		
-				if ((backpack player != "tf_rt1523g") and {backpack player != "tf_anprc155"} and {backpack player != "tf_mr3000"}) then {
-					player action ["putbag", player];
-					sleep 3;
-					if (side player == west) then {
-						player addBackpack "tf_rt1523g";
-					} else {
-						if (side player == east) then {
-							player addBackpack "tf_mr3000";	
-						} else {
-							player addBackpack "tf_anprc155";
-						};
-					};
-				};
-			};
-			_variableName = "radio_request_" + (getPlayerUID player) + str (side player);
-			_radio_count = call radioToRequestCount;
-			missionNamespace setVariable [_variableName, _radio_count];
-			_responseVariableName = "radio_response_" + (getPlayerUID player) + str (side player);
-			 missionNamespace setVariable [_responseVariableName, nil];
-			publicVariableServer _variableName;
-			titleText [localize ("STR_wait_radio"), "PLAIN"];
-			waitUntil {!(isNil _responseVariableName)};
-			_response = missionNamespace getVariable _responseVariableName;	
-			{
-				player addItem _x;
-			} forEach _response;
-			if (count _response > 0) then 
-			{
-				player assignItem (_response select 0);
-			};
-			titleText ["", "PLAIN"];
-						
+			player addItem _x;
+		} forEach _response;
+		if ((count _response > 0) and (first_radio_request)) then 
+		{
+			first_radio_request = false;
+			player assignItem (_response select 0);
+		};
+		titleText ["", "PLAIN"];
+	};
+	radio_request_mutex = false;
+};
+
+radioReplaceProcess = 
+{
+	while {true} do {
+		sleep 5;
+		if ((time - respawnedAt > 10) and (alive player)) then {
+			false call requestRadios;
 		};
 	};
 };
 
+processRespawn =
+{
+	[] spawn {	
+		waitUntil {!(isNull player)};	
+		respawnedAt = time;
+		if (alive player) then
+		{
+			if (leader player == player) then {	
+				if (isNil "tf_no_auto_long_range_radio") then {
+					if ((backpack player != "tf_rt1523g") and {backpack player != "tf_anprc155"} and {backpack player != "tf_mr3000"}) then {
+						player action ["putbag", player];
+						sleep 3;
+						if (side player == west) then {
+							player addBackpack "tf_rt1523g";
+						} else {
+							if (side player == east) then {
+								player addBackpack "tf_mr3000";	
+							} else {
+								player addBackpack "tf_anprc155";
+							};
+						};
+					};
+				};
+			};
+			true call requestRadios;						
+		};
+	};
+};
 
 player addEventHandler ["respawn", {call processRespawn}];
+player addEventHandler ["killed", {use_saved_sw_setting = true; first_radio_request = true;}];
 call processRespawn;
+
+respawnedAt = time;
+
+[] spawn {
+	waitUntil {!(isNull player)};
+	sleep 5;
+	call radioReplaceProcess;
+};
 
 
