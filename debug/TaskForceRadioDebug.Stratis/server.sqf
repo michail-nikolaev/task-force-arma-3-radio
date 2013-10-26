@@ -3,6 +3,7 @@
 #define MAX_FADAK_COUNT 1000
 
 [] spawn {
+	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_new_radio_id"];
 	waitUntil {time > 0};
 	server_addon_version = ADDON_VERSION;
 	publicVariable "server_addon_version";
