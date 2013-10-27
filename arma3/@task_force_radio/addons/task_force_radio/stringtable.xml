@@ -2,6 +2,22 @@
 <Project ID="Arma2">
 	<Package ID="Missions">
 		<Container ID="A3RU_MissionInformation">
+			<Key ID="STR_different_version">
+				<Original>
+					Different version of Task Force Radio are used. Server version: %1, Your version: %2
+				</Original>
+				<Russian>
+					Несовпадение версий Task Force Radio. Версия на сервере: %1, Ваша версия: %2
+				</Russian>
+			</Key>
+			<Key ID="STR_no_server">
+				<Original>
+					No Task Force Radio deployed on server!
+				</Original>
+				<Russian>
+					Не обнаружена серверная часть Task Force Radio!
+				</Russian>
+			</Key>
 			<Key ID="STR_current_freq">
 				<Original>
 					Current frequency
@@ -202,6 +218,62 @@
 					&lt;t color=&apos;#993300&apos;&gt;Нельзя использовать данную рацию в воздушной среде&lt;/t&gt;
 				</Russian>
 			</Key>
+			<Key ID="STR_select_action">
+				<Original>
+					Select action
+				</Original>
+				<Russian>
+					Выберите действие
+				</Russian>
+			</Key>
+			<Key ID="STR_select_action_setup">
+				<Original>
+					Settings...
+				</Original>
+				<Russian>
+					Настройки...
+				</Russian>
+			</Key>
+			<Key ID="STR_select_action_setup_tooltip">
+				<Original>
+					Open settings dialog
+				</Original>
+				<Russian>
+					Открыть диалог настройки
+				</Russian>
+			</Key>
+			<Key ID="STR_select_action_use">
+				<Original>
+					Set as active
+				</Original>
+				<Russian>
+					Сделать активной
+				</Russian>
+			</Key>
+			<Key ID="STR_select_action_use_tooltip">
+				<Original>
+					Use for transmiting
+				</Original>
+				<Russian>
+					Использовать для передачи
+				</Russian>
+			</Key>
+			<Key ID="STR_select_radio">
+				<Original>
+					Select short range radio
+				</Original>
+				<Russian>
+					Выберите рацию ближней связи
+				</Russian>
+			</Key>
+			<Key ID="STR_select_lr_radio">
+				<Original>
+					Select long range radio
+				</Original>
+				<Russian>
+					Выберите рацию дальней связи
+				</Russian>
+			</Key>
 			<Key ID="STR_transmit_sw">
 				<Original>
 					Transmiting SW on &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...
@@ -215,7 +287,7 @@
 					Transmiting LR on &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
 				</Original>
 				<Russian>
-					Дальняя передача на частоте &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
+					Дальняя передача: &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
 				</Russian>
 			</Key>
 			<Key ID="STR_transmit_dd">
@@ -223,7 +295,7 @@
 					Transmiting Diver Radio on &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
 				</Original>
 				<Russian>
-					Подводная передача на частоте &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
+					Подводная передача: &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
 				</Russian>
 			</Key>
 			<Key ID="STR_waiting">
@@ -290,6 +362,16 @@
 					Управление
 				</Russian>
 			</Key>
+			<Key ID="STR_wait_radio">
+				<Original>
+					Waiting for the unique radio from server...
+				</Original>
+				<Russian>
+					Ожидаем получение уникальной рации от сервера...
+				</Russian>
+			</Key>
+
+
 			<Key ID="STR_radio_control_text">
 				<Original>
 										&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;Кнопка разговора в TeamSpeak&lt;/font&gt;  	Прямая речь.&lt;br/&gt;
@@ -331,7 +413,7 @@
 					Рация &lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;AN/PRC-152&lt;/font&gt; (коротковолновая) может работать на частотах от 30 до 512 MHz. Дальность действия - 3 км (учитывая зону с помехами).&lt;br/&gt;
 Рация &lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;RT-1523G (ASIP)&lt;/font&gt; работает на частотах от 30 до 87 MHz. Данная рация одевается как рюкзак и доступна в технике водителю, командиру, стрелку и помощнику пилота. В начале миссии эта рация автоматически выдается лидерам групп. Дальность действия - 20 км (учитывая зону с помехами).&lt;br/&gt;
 Обе рации поддерживают SINCGARS протокол, поэтому могут связываться друг с другом. В случае если передача осуществляется с AN/PRC-152, звук будет высокочастотным. В случае передачи с RT-1523G (ASIP) - низкочастотным.&lt;br/&gt;
-Переговорное устройство для дайверов использует ультразвук для передачии голоса. Диапозон частот от 32 до 41 kHz. Работает только под водой. Дальность действия от 30 до 200 метров в зависимости от уровня волн.&lt;br/&gt;
+Переговорное устройство для дайверов использует ультразвук для передачии голоса. Диапозон частот от 32 до 41 kHz. Работает только под водой. Дальность действия от 70 до 300 метров в зависимости от уровня волн.&lt;br/&gt;
 				</Original>
 				<Russian>
 					Рация &lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;AN/PRC-152&lt;/font&gt; (коротковолновая) может работать на частотах от 30 до 512 MHz. Дальность действия - 3 км (учитывая зону с помехами).&lt;br/&gt;

@@ -40,7 +40,7 @@ class CfgMarkers
 
 class Extended_PostInit_EventHandlers
 {
-	task_force_radio_Post_Init = "if !(isDedicated) then { call compile preProcessFileLineNumbers '\task_force_radio\init.sqf' }";
+	task_force_radio_Post_Init = "call compile preProcessFileLineNumbers '\task_force_radio\init.sqf'";
 };
 
 #include "\userconfig\task_force_radio\radio_keys.hpp"

@@ -9,7 +9,7 @@ waitUntil {time > 0};
 waitUntil {!(isNull player)};
 titleText [localize ("STR_init"), "PLAIN"];
 
-#include "define.h"
+#include "\task_force_radio\define.h"
 #include "vehicles.sqf"
 
 #define SHIFTL 42
