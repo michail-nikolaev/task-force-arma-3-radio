@@ -63,9 +63,8 @@
 					(owner (_x)) publicVariableClient (_responseVariableName);
 				};
 				_task_force_radio_used = _x getVariable "tf_force_radio_active";
+				_variableName = "no_radio_" + (getPlayerUID _x) + str (side _x);				
 				if (isNil "_task_force_radio_used") then {
-
-					_variableName = "no_radio_" + (getPlayerUID _x) + str (side _x);
 					_last_check = missionNamespace getVariable _variableName;
 
 					if (isNil "_last_check") then {
@@ -74,9 +73,12 @@
 						if (time - _last_check > 30) then {
 							[["TASK FORCE RADIO ADDON NOT ENABLED OR VERSION LESS THAN 0.8.0"],"BIS_fnc_guiMessage",(owner _x), false] spawn BIS_fnc_MP;
 							_x setVariable ["tf_force_radio_active", "error_shown", true];
+							
 						};
 					};					
 
+				} else {
+					missionNamespace setVariable [_variableName, nil];
 				};
 			};
 		} forEach allUnits;

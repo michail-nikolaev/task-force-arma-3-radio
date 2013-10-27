@@ -1,0 +1,137 @@
+/* #Qigupu
+$[
+	1.063,
+	["fadak",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
+	[1200,"background_fadak",[1,"task_force_radio\fadak\fadak.paa",["-0.00531252 * safezoneW + safezoneX","-0.158147 * safezoneH + safezoneY","0.586031 * safezoneW","1.03623 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1600,"enter_fadak",[1,"",["0.292625 * safezoneW + safezoneX","0.547611 * safezoneH + safezoneY","0.0170625 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1601,"clear_fadak",[1,"",["0.293281 * safezoneW + safezoneX","0.581218 * safezoneH + safezoneY","0.0150938 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1602,"next_channel_fadak",[1,"",["0.293281 * safezoneW + safezoneX","0.619027 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0238053 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1603,"previous_channel_fadak",[1,"",["0.293281 * safezoneW + safezoneX","0.654034 * safezoneH + safezoneY","0.0150938 * safezoneW","0.022405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1604,"increase_volume_fadak",[1,"",["0.27425 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1605,"decrease_volume_fadak",[1,"",["0.236188 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1400,"edit_fadak",[1,"444.8",["0.251938 * safezoneW + safezoneX","0.36417 * safezoneH + safezoneY","0.0492188 * safezoneW","0.0560125 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1401,"channel_edit_fadak",[1,"C8",["0.259813 * safezoneW + safezoneX","0.315159 * safezoneH + safezoneY","0.02625 * safezoneW","0.0630141 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+]
+*/
+
+
+
+class fadak_radio_dialog 
+{
+	idd = IDC_FADAK_RADIO_DIALOG;
+	movingEnable = 1;
+	controlsBackground[] = { };
+	objects[] = { };
+controls[]=
+{
+	background_fadak,
+	enter_fadak,
+	clear_fadak,
+	next_channel_fadak,
+	previous_channel_fadak,
+	increase_volume_fadak,
+	decrease_volume_fadak,
+	edit_fadak,
+	channel_edit_fadak
+};
+////////////////////////////////////////////////////////
+// GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Xyjiti)
+////////////////////////////////////////////////////////
+
+class background_fadak: RscBackPicture
+{
+	idc = IDC_FADAK_BACKGROUND_FADAK;
+	text = "\task_force_radio\fadak\fadak.paa";
+	x = -0.00531252 * safezoneW + safezoneX;
+	y = -0.158147 * safezoneH + safezoneY;
+	w = 0.586031 * safezoneW;
+	h = 1.03623 * safezoneH;
+	moving = 1;
+};
+class enter_fadak: HiddenButton
+{
+	idc = IDC_FADAK_ENTER_FADAK;
+	x = 0.292625 * safezoneW + safezoneX;
+	y = 0.547611 * safezoneH + safezoneY;
+	w = 0.0170625 * safezoneW;
+	h = 0.0252056 * safezoneH;
+	tooltip = $STR_set_frequency;
+	action = "_f = parseNumber(ctrlText IDC_FADAK_RADIO_DIALOG_EDIT_ID);  if ((_f > MIN_SW_FREQ) and (_f < MAX_SW_FREQ)) then {[sw_dialog_radio, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setSwFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_SW_FREQ, MAX_SW_FREQ]}; call updateSWDialogToChannel;";
+};
+class clear_fadak: HiddenButton
+{
+	idc = IDC_FADAK_CLEAR_FADAK;
+	x = 0.293281 * safezoneW + safezoneX;
+	y = 0.581218 * safezoneH + safezoneY;
+	w = 0.0150938 * safezoneW;
+	h = 0.0280062 * safezoneH;
+	tooltip = $STR_clear_frequency
+	action = "ctrlSetText [IDC_FADAK_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_FADAK_RADIO_DIALOG_ID) displayCtrl IDC_FADAK_RADIO_DIALOG_EDIT_ID);";
+};
+class next_channel_fadak: HiddenButton
+{
+	idc = IDC_FADAK_NEXT_CHANNEL_FADAK;
+	x = 0.293281 * safezoneW + safezoneX;
+	y = 0.619027 * safezoneH + safezoneY;
+	w = 0.0164063 * safezoneW;
+	h = 0.0238053 * safezoneH;
+	tooltip = $STR_next_channel;
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) + 1) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"	
+};
+class previous_channel_fadak: HiddenButton
+{
+	idc = IDC_FADAK_PREVIOUS_CHANNEL_FADAK;
+	x = 0.293281 * safezoneW + safezoneX;
+	y = 0.654034 * safezoneH + safezoneY;
+	w = 0.0150938 * safezoneW;
+	h = 0.022405 * safezoneH;
+	tooltip = $STR_previous_channel;
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"
+};
+class increase_volume_fadak: HiddenButton
+{
+	idc = IDC_FADAK_INCREASE_VOLUME_FADAK;
+	x = 0.27425 * safezoneW + safezoneX;
+	y = 0.652634 * safezoneH + safezoneY;
+	w = 0.0164063 * safezoneW;
+	h = 0.0252056 * safezoneH;
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) + 1) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume)+ 1) * 10)];"
+	tooltip = $STR_increase_volume;
+};
+class decrease_volume_fadak: HiddenButton
+{
+	idc = IDC_FADAK_DECREASE_VOLUME_FADAK;
+	x = 0.236188 * safezoneW + safezoneX;
+	y = 0.652634 * safezoneH + safezoneY;
+	w = 0.0164063 * safezoneW;
+	h = 0.0252056 * safezoneH;
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) - 1 + MAX_SW_VOLUME) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume) + 1) * 10)];"
+	tooltip = $STR_decrease_volume;
+};
+class edit_fadak: RscEditLCD
+{
+	idc = IDC_FADAK_EDIT_FADAK;
+	text = $STR_A3_fadak_edit_fadak;
+	x = 0.251938 * safezoneW + safezoneX;
+	y = 0.36417 * safezoneH + safezoneY;
+	w = 0.0492188 * safezoneW;
+	h = 0.0560125 * safezoneH;
+	tooltip = $STR_current_freq;
+	canModify = 1;
+};
+class channel_edit_fadak: RscEditLCD
+{
+	idc = IDC_FADAK_CHANNEL_EDIT_FADAK;
+	text = $STR_A3_fadak_channel_edit_fadak;
+	x = 0.259813 * safezoneW + safezoneX;
+	y = 0.315159 * safezoneH + safezoneY;
+	w = 0.02625 * safezoneW;
+	h = 0.0630141 * safezoneH;
+	tooltip = $STR_current_channel;
+	canModify = 0;
+};
+////////////////////////////////////////////////////////
+// GUI EDITOR OUTPUT END
+////////////////////////////////////////////////////////
+};
+

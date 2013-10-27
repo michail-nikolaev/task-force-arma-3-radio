@@ -9,7 +9,7 @@ waitUntil {time > 0};
 waitUntil {!(isNull player)};
 titleText [localize ("STR_init"), "PLAIN"];
 
-#include "task_force_radio\define.h"
+#include "define.h"
 #include "vehicles.sqf"
 
 #define SHIFTL 42
@@ -33,7 +33,6 @@ MAX_SW_VOLUME = 10;
 MAX_LR_VOLUME = 10;
 MAX_DD_VOLUME = 10;
 
-lr_volume_level = 7;
 dd_volume_level = 7;
 
 MIN_ASIP_FREQ = 30;
@@ -932,22 +931,21 @@ lrRadioMenu =
 			if ((call haveSWRadio) and (player call canUseSWRadio)) then {
 				_freq = [];
 				{
-					_freq set[count _freq, format ["%1@%2", _x call getSwFrequency, _x call getSwVolume]];
+					_freq set[count _freq, format ["%1|%2", _x call getSwFrequency, _x call getSwVolume]];
 				} forEach (call radiosList);
 			};
 			if ((call haveLRRadio) and (player call canUseLRRadio)) then {
 				_freq_lr = [];
 				{
-					_freq_lr set[count _freq_lr, format ["%1@%2", _x call getLrFrequency, _x call getLrVolume]];
-				} forEach (call lrRadiosList);
-				_freq_lr = call currentLRFrequency;
+					_freq_lr set[count _freq_lr, format ["%1|%2", _x call getLrFrequency, _x call getLrVolume]];
+				} forEach (call lrRadiosList);				
 			};
 			if ((call haveDDRadio) and (player call canUseDDRadio)) then {
 				_freq_dd = dd_frequency;
 			};
 			_alive = alive player;
 			_nickname = name player;
-			_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@%9", str(_freq), str(_freq_lr), _freq_dd, _alive, speak_volume_level, lr_volume_level, dd_volume_level, _nickname, waves];
+			_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@", str(_freq), str(_freq_lr), _freq_dd, _alive, speak_volume_level, dd_volume_level, _nickname, waves];
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
 		_request = format["VERSION@%1", ADDON_VERSION];
