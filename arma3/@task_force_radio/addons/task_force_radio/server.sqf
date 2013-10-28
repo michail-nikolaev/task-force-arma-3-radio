@@ -27,7 +27,7 @@
 					_response resize _radio_request;
 					for "_next_radio" from 1 to _radio_request do
 					{
-						if (side player == west) then {
+						if (side _x == west) then {
 							_new_radio_id = format["tf_anprc152_%1", anprc152_count];					
 							_response set [(_next_radio - 1), _new_radio_id];
 		
@@ -37,7 +37,7 @@
 								anprc152_count = 1;
 							};
 						} else {
-							if (side player == east) then {
+							if (side _x == east) then {
 								_new_radio_id = format["tf_fadak_%1", fadak_count];					
 								_response set [(_next_radio - 1), _new_radio_id];
 			
