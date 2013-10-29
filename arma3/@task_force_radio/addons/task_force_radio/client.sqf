@@ -910,13 +910,18 @@ lrRadioMenu =
 				if (isPlayer _x) then {
 					_request = [_x] call preparePositionCoordinates;
 					_result = "task_force_radio_pipe" callExtension _request;
-					if (_result != "OK") then 
+					if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"}) then 
 					{
 						hintSilent _result;			
 					} else {
-						if (_prev_result != "OK") then {
+						if ((_prev_result != "OK") and {_prev_result != "SPEAKING"} and {_prev_result != "NOT_SPEAKING"}) then {
 							hintSilent "";
 						}
+					};
+					if (_result == "SPEAKING") then {
+						_x setRandomLip true;
+					} else {
+						_x setRandomLip false;
 					};
 					_prev_result = _result;
 				};
@@ -1115,11 +1120,18 @@ requestRadios =
 
 radioReplaceProcess = 
 {
+	private ["_currentPlayerFlag"];
 	while {true} do {
 		sleep 5;
 		if ((time - respawnedAt > 10) and (alive player)) then {
 			false call requestRadios;
 		};
+		if !(isNull player) then {
+			_currentPlayerFlag = player getVariable "tf_force_radio_active";
+			if (isNil "_currentPlayerFlag") then {
+				player setVariable ["tf_force_radio_active", ADDON_VERSION, true];
+			};
+		}
 	};
 };
 
@@ -1127,7 +1139,7 @@ processRespawn =
 {
 	[] spawn {	
 		waitUntil {!(isNull player)};	
-		player setVariable ["tf_force_radio_active", ADDON_VERSION, true];
+		
 		respawnedAt = time;
 		if (alive player) then
 		{
