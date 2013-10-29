@@ -202,13 +202,20 @@ HANDLE openPipe()
 {
 	HANDLE pipe = CreateFile(
 			PIPE_NAME,
-			GENERIC_READ, // only need read access
+			GENERIC_READ | GENERIC_WRITE, 
 			FILE_SHARE_READ | FILE_SHARE_WRITE,
 			NULL,
 			OPEN_EXISTING,
 			FILE_ATTRIBUTE_NORMAL,
 			NULL
 		);
+	DWORD error = GetLastError();
+	DWORD dwMode = PIPE_READMODE_MESSAGE; 
+	bool fSuccess= SetNamedPipeHandleState( 
+		pipe,    // pipe handle 
+		&dwMode,  // new pipe mode 
+		NULL,     // don't set maximum bytes 
+		NULL);    // don't set maximum time 
 	return pipe;
 }
 
@@ -879,7 +886,7 @@ std::map<std::string, int> parseFrequencies(std::string string) {
 	return result;
 }
 
-void processGameCommand(std::string command)
+std::string processGameCommand(std::string command)
 {	
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
 	std::vector<std::string> tokens = split(command, '@'); // @ may not be used in nickname
@@ -888,7 +895,7 @@ void processGameCommand(std::string command)
 		EnterCriticalSection(&serverDataCriticalSection);		
 		addon_version = tokens[1];
 		LeaveCriticalSection(&serverDataCriticalSection);
-		return;
+		return "OK";
 	};	
 	DWORD error;
 	//(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _x_playername, _current_x, _current_y, _current_z, _current_rotation_horizontal, _x_player call canSpeak, _x_player call canUseSWRadio, _x_player call canUseLRRadio, _x_player call canUseDDRadio,  _x_player call vehicleId]);
@@ -912,6 +919,7 @@ void processGameCommand(std::string command)
 		DWORD time = GetTickCount();
 		anyID myId = getMyId(currentServerConnectionHandlerID);
 		EnterCriticalSection(&serverDataCriticalSection); 
+		anyID playerId = anyID(-1);
 		if (serverIdToData.count(currentServerConnectionHandlerID))
 		{		
 			if (nickname == serverIdToData[currentServerConnectionHandlerID].myNickname) 
@@ -928,6 +936,7 @@ void processGameCommand(std::string command)
 
 				if (clientData)
 				{
+					playerId = myId;
 					clientData->clientId = myId;
 					clientData->clientPosition = position;
 					clientData->positionTime = time;
@@ -962,7 +971,8 @@ void processGameCommand(std::string command)
 				{
 					CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
 					if (clientData)
-					{				
+					{		
+						playerId = clientData->clientId;
 						clientData->clientPosition = position;				
 						clientData->positionTime = time;
 						clientData->canSpeak = canSpeak;
@@ -984,7 +994,24 @@ void processGameCommand(std::string command)
 				EnterCriticalSection(&serverDataCriticalSection);
 			}	
 		}
-		LeaveCriticalSection(&serverDataCriticalSection);
+		LeaveCriticalSection(&serverDataCriticalSection);		
+		
+		if (playerId != anyID(-1)) {
+			int result = 0;
+			if (playerId == myId) {
+				if ((error = ts3Functions.getClientSelfVariableAsInt(currentServerConnectionHandlerID, CLIENT_FLAG_TALKING, &result)) != ERROR_ok) {
+					log("Can't get talking status", error);
+				} 
+			} else {
+				if ((error = ts3Functions.getClientVariableAsInt(currentServerConnectionHandlerID, playerId, CLIENT_FLAG_TALKING, &result)) != ERROR_ok) {
+					log("Can't get talking status", error);
+				} 
+			}
+			if (result) {
+				return "SPEAKING";
+			}			
+		}
+		return  "NOT_SPEAKING";
 	} 
 	else if (tokens.size() == 3 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD"))
 	{
@@ -1031,7 +1058,8 @@ void processGameCommand(std::string command)
 			if(error != ERROR_ok && error != ERROR_ok_no_update) {
 				log("Can't flush self updates", error);
 			}
-		}		
+		}
+		return "OK";
 	} 
 	//_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@", str(_freq), str(_freq_lr), _freq_dd, _alive, speak_volume_level, dd_volume_level, _nickname, waves];
 	else if (tokens.size() == 9 && tokens[0] == "FREQ")
@@ -1057,7 +1085,9 @@ void processGameCommand(std::string command)
 				log("Error setting client nickname", error);				
 			}
 		}
+		return "OK";
 	}
+	return "FAIL";
 }
 
 void removeExpiredPositions(uint64 serverConnectionHandlerID)
@@ -1135,7 +1165,14 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 					{
 						pipeConnected = true;						
 					}
-					processGameCommand(command);
+					std::string result = processGameCommand(command);
+					const char* output = result.c_str();
+					DWORD written = 0;
+					if (!WriteFile(pipe, output, result.length() + 1, &written, NULL)) {
+						log_string("Info to ARMA send", LogLevel_DEBUG);
+					} else {
+						log_string("Can't send info to ARMA", LogLevel_ERROR);
+					}
 				} else {
 					if (pipeConnected) 
 					{
@@ -1819,8 +1856,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 					if (shouldPlayerHear)
 						applyGain(samples, channels, sampleCount, vehicleCheck ? volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) : 0.0f);
 					else if (vehicleCheck)
-					{
-						Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* filterCantSpeak = shouldPlayerHear ? NULL : &(data->filterCantSpeak);
+					{						
 						processRadioDSP<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * CANT_SPEAK_GAIN, &(data->filterCantSpeak), 0.0f, false);
 					}						
 				}
