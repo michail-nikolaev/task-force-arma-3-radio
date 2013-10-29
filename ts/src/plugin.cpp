@@ -1732,7 +1732,7 @@ std::pair<std::string, bool> getVehicleDescriptor(std::string vechicleId) {
 	if (vechicleId == "no" || (vechicleId.find("_turnout") != std::string::npos)) {
 		result.second = true; 
 	}
-	if (vechicleId.find("_turnout") == std::string::npos) {
+	if (vechicleId.find("_turnout") != std::string::npos) {
 		result.first = vechicleId.substr(0, vechicleId.find("_turnout"));
 	} else {
 		result.first = vechicleId;
