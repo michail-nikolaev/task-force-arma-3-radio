@@ -39,8 +39,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define SERIOUS_MOD_CHANNEL_NAME "TaskForceRadio"
 #define SERIOUS_CHANNEL_PASSWORD "123"
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -58,7 +58,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.8.0"
+#define PLUGIN_VERSION "0.8.0 A"
 #define WHISPER_VOLUME "whispering"
 #define NORMAL_VOLUME "normal"
 #define YELLING_VOLUME "yelling"
@@ -1168,7 +1168,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 					std::string result = processGameCommand(command);
 					const char* output = result.c_str();
 					DWORD written = 0;
-					if (!WriteFile(pipe, output, result.length() + 1, &written, NULL)) {
+					if (WriteFile(pipe, output, result.length() + 1, &written, NULL)) {
 						log_string("Info to ARMA send", LogLevel_DEBUG);
 					} else {
 						log_string("Can't send info to ARMA", LogLevel_ERROR);
