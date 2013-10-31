@@ -2,6 +2,18 @@
 
 //tf_no_auto_long_range_radio = true;
 
+if (isNil "tf_west_radio_code") then {
+	tf_west_radio_code = "_bluefor";
+};
+
+if (isNil "tf_east_radio_code") then {
+	tf_east_radio_code = "_opfor";
+};
+
+if (isNil "tf_guer_radio_code") then {
+	tf_guer_radio_code = "_independent";
+};
+
 disableSerialization;
 #include "diary.sqf"
 
@@ -68,7 +80,50 @@ IDC_DIDER_RADIO_DIALOG_ID = IDC_DIVER_RADIO_DIALOG;
 IDC_DIVER_RADIO_EDIT_ID = IDC_DIVER_RADIO_EDIT;
 IDC_DIVER_RADIO_DEPTH_ID = IDC_DIVER_RADIO_DEPTH;
 
+getSwRadioCode = 
+{
+	private ["_result"];
+	_result = "";
+	if (([_this, "tf_anprc152_"] call CBA_fnc_find) == 0) then {
+		_result = tf_west_radio_code;
+	};
+	if (([_this, "tf_anprc148jem_"] call CBA_fnc_find) == 0) then {
+		_result = tf_guer_radio_code;
+	};
+	if (([_this, "tf_fadak_"] call CBA_fnc_find) == 0) then {
+		_result = tf_east_radio_code;
+	};
+	_result;
+};
 
+getLrRadioCode = 
+{
+	private ["_radio_object", "_result"];
+	_radio_object = _this select 0;
+	_result = "";
+	if ((_radio_object) isKindOf "Bag_Base") then {				
+		if (typeOf(_radio_object) == "tf_rt1523g") then {
+			_result = tf_west_radio_code;
+		};
+		if (typeOf(_radio_object) == "tf_anprc155") then {
+			_result = tf_guer_radio_code;
+		};
+		if (typeOf(_radio_object) == "tf_mr3000") then {
+			_result = tf_east_radio_code;
+		};
+	} else {
+		if (((_radio_object) call tfr_getVehicleSide) == west) then {
+			_result = tf_west_radio_code;
+		};
+		if (((_radio_object) call tfr_getVehicleSide) == resistance) then {
+			_result = tf_guer_radio_code;
+		};
+		if (((_radio_object) call tfr_getVehicleSide) == east) then {
+			_result = tf_east_radio_code;
+		};
+	};
+	_result;
+};
 
 setSwSetting = 
 {
@@ -421,9 +476,9 @@ onSwTangentPressed =
 	private["_result", "_request", "_hintText"];
 	if (!(tangent_sw_pressed) and {alive player} and {call haveSWRadio}) then {
 		if (player call canUseSWRadio) then { 
-			_hintText = format[localize "STR_transmit_sw", [call activeSwRadio] call currentSWFrequency];
+			_hintText = format[localize "STR_transmit_sw", call currentSWFrequency];
 			hintSilent parseText (_hintText);
-			_request = format["TANGENT@PRESSED@%1", [call activeSwRadio] call currentSWFrequency];
+			_request = format["TANGENT@PRESSED@%1%2",call currentSWFrequency, (call activeSwRadio) call getSwRadioCode];
 			if (isMultiplayer) then {
 				_result = "task_force_radio_pipe" callExtension _request;
 			};
@@ -440,7 +495,7 @@ onSwTangentReleased =
 	private["_result", "_request"];
 	if ((tangent_sw_pressed) and {alive player}) then {
 		hintSilent "";
-		_request = format["TANGENT@RELEASED@%1", [call activeSwRadio] call currentSWFrequency];
+		_request = format["TANGENT@RELEASED@%1%2",call currentSWFrequency, (call activeSwRadio) call getSwRadioCode];
 		if (isMultiplayer) then {
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
@@ -475,9 +530,9 @@ onLRTangentPressed =
 	private["_result", "_request", "_hintText"];
 	if (!(tangent_lr_pressed) and {alive player} and {call haveLRRadio}) then {
 		if (player call canUseLRRadio) then {
-			_hintText = format[localize "STR_transmit_lr", [call activeLrRadio] call currentLRFrequency];
+			_hintText = format[localize "STR_transmit_lr", call currentLRFrequency];
 			hintSilent parseText (_hintText);
-			_request = format["TANGENT_LR@PRESSED@%1", [call activeLrRadio] call currentLRFrequency];
+			_request = format["TANGENT_LR@PRESSED@%1%2", call currentLRFrequency, (call activeLrRadio) call getLrRadioCode];
 			if (isMultiplayer) then {
 				_result = "task_force_radio_pipe" callExtension _request;
 			};
@@ -494,7 +549,7 @@ onLRTangentReleased =
 	private["_result", "_request"];	
 	if ((tangent_lr_pressed) and {alive player}) then {
 		hintSilent "";
-		_request = format["TANGENT_LR@RELEASED@%1", [call activeLrRadio] call currentLRFrequency];
+		_request = format["TANGENT_LR@RELEASED@%1%2", call currentLRFrequency, (call activeLrRadio) call getLrRadioCode];
 		if (isMultiplayer) then {
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
@@ -936,13 +991,13 @@ lrRadioMenu =
 			if ((call haveSWRadio) and (player call canUseSWRadio)) then {
 				_freq = [];
 				{
-					_freq set[count _freq, format ["%1|%2", _x call getSwFrequency, _x call getSwVolume]];
+					_freq set[count _freq, format ["%1%2|%3", _x call getSwFrequency, _x call getSwRadioCode, _x call getSwVolume]];
 				} forEach (call radiosList);
 			};
 			if ((call haveLRRadio) and (player call canUseLRRadio)) then {
 				_freq_lr = [];
 				{
-					_freq_lr set[count _freq_lr, format ["%1|%2", _x call getLrFrequency, _x call getLrVolume]];
+					_freq_lr set[count _freq_lr, format ["%1%2|%3", _x call getLrFrequency, _x call getLrRadioCode, _x call getLrVolume]];
 				} forEach (call lrRadiosList);				
 			};
 			if ((call haveDDRadio) and (player call canUseDDRadio)) then {
