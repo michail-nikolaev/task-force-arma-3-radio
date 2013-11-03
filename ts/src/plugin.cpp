@@ -69,6 +69,8 @@ std::string addon_version;
 
 struct CLIENT_DATA
 {	
+	bool pluginEnabled;
+	DWORD pluginEnabledCheck;
 	anyID clientId;
 	bool tangentSwPressed;
 	bool tangentLrPressed;
@@ -1736,6 +1738,23 @@ bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID)
 		result = startWith(shouldStartWith, clientStatus);		
 		ts3Functions.freeMemory(clientInfo);
 	}
+	DWORD currentTime = GetTickCount();
+	EnterCriticalSection(&serverDataCriticalSection);
+	CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);
+	if (data) 
+	{
+		if (result) 
+		{			
+			data->pluginEnabledCheck = currentTime;
+		} else {
+			if (currentTime - data->pluginEnabledCheck < 10000) 
+			{
+				result = data->pluginEnabled;
+			}
+		}
+		data->pluginEnabled = result;
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
 
 	return result;
 }
@@ -2067,6 +2086,7 @@ void ts3plugin_onClientServerQueryLoginPasswordEvent(uint64 serverConnectionHand
 
 void processPluginCommand(std::string command)
 {
+	DWORD currentTime = GetTickCount();
 	std::vector<std::string> tokens = split(command, '@'); // may not be used in nickname
 	uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 	if (tokens.size() == 4 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" ||  tokens[0] == "TANGENT_DD"))
@@ -2080,8 +2100,7 @@ void processPluginCommand(std::string command)
 
 		boolean playPressed = false;
 		boolean playReleased = false;
-		anyID myId = getMyId(serverId);
-
+		anyID myId = getMyId(serverId);		
 		EnterCriticalSection(&serverDataCriticalSection);
 		bool alive = serverIdToData[serverId].alive;		
 
@@ -2089,10 +2108,12 @@ void processPluginCommand(std::string command)
 		{		
 			CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[nickname];
 			if (clientData)
-			{			
+			{	
+				clientData->pluginEnabled = true;
+				clientData->pluginEnabledCheck = currentTime;
 				TS3_VECTOR myPosition = serverIdToData[serverId].myPosition;						
 				if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
-				{
+				{					
 					log_string(std::string("REMOTE COMMAND ") +  command, LogLevel_DEVEL);
 					if ((clientData->tangentSwPressed || clientData->tangentDdPressed || clientData->tangentLrPressed) != pressed)
 					{
@@ -2158,6 +2179,8 @@ void processPluginCommand(std::string command)
 		if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(nickname) && serverIdToData[serverId].nicknameToClientData[nickname]) 
 		{
 			serverIdToData[serverId].nicknameToClientData[nickname]->voiceVolume = volume;
+			serverIdToData[serverId].nicknameToClientData[nickname]->pluginEnabled = true;
+			serverIdToData[serverId].nicknameToClientData[nickname]->pluginEnabledCheck = currentTime;
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);		
 	}
