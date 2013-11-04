@@ -1,4 +1,4 @@
-task-force-arma-3-radio
+Task Force Arma 3 radio
 =======================
 
 Arma 3 Team Speak Radio Plugin
@@ -31,7 +31,7 @@ Arma 3 Team Speak Radio Plugin
 > Рекомендуется отключить встроенные звуки оповещений TeamSpeak: `Options > Notifications > Sound Pack: "Sounds Deactivated"`. Для применения этой опции необходимо перезапустить TeamSpeak.
 
 
-###Использование в игре
+###Использование
 
 | Клавиши | Действие |
 | --- | --- |
@@ -49,7 +49,7 @@ Arma 3 Team Speak Radio Plugin
 
 > Вы можете переназначить клавиши управления в файле настроек, лежащем в папке с игрой `...\Arma 3\userconfig\task_force_radio\radio_keys.hpp`. Файл редактируется обычным блокнотом.
 
-###Дополнительная информация
+###Информация
 
 #####Рации
 * Рация [AN/PRC-152](http://ru.wikipedia.org/wiki/AN/PRC-152) (коротковолновая) может работать на частотах от 30 до 512 MHz. Дальность действия - 3 км (учитывая зону с помехами).
