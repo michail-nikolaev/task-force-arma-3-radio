@@ -179,6 +179,10 @@
     <ClCompile Include="..\include\dspfilters\source\RBJ.cpp" />
     <ClCompile Include="..\include\dspfilters\source\RootFinder.cpp" />
     <ClCompile Include="..\include\dspfilters\source\State.cpp" />
+    <ClCompile Include="..\include\simpleSource\SimpleComp.cpp" />
+    <ClCompile Include="..\include\simpleSource\SimpleEnvelope.cpp" />
+    <ClCompile Include="..\include\simpleSource\SimpleGate.cpp" />
+    <ClCompile Include="..\include\simpleSource\SimpleLimit.cpp" />
     <ClCompile Include="plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
