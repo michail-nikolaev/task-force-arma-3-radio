@@ -28,6 +28,15 @@ void openPipe()
 #ifdef _DEBUG
 	if (isDebugArmaInstance()) pipeName = DEBUG_PIPE_NAME;
 #endif
+
+	SECURITY_DESCRIPTOR SD;
+	InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION);
+	SetSecurityDescriptorDacl(&SD, TRUE, NULL, FALSE);
+	SECURITY_ATTRIBUTES SA;
+	SA.nLength = sizeof(SA);
+	SA.lpSecurityDescriptor = &SD;
+	SA.bInheritHandle = TRUE;
+
 	pipe = CreateNamedPipe(
 			pipeName, // name of the pipe
 			PIPE_ACCESS_DUPLEX| FILE_FLAG_OVERLAPPED, // 1-way pipe -- send only
@@ -36,7 +45,7 @@ void openPipe()
 			0, // no outbound buffer
 			0, // no inbound buffer
 			0, // use default wait time
-			NULL // use default security attributes
+			&SA // use default security attributes
 		);
 }
 
