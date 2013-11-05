@@ -906,7 +906,7 @@ lrRadioMenu =
 		];
 		_menu;
 	} else {
-		if (call haveSWRadio) then {
+		if (call haveLRRadio) then {
 			lr_dialog_radio = call activeLrRadio;
 			call onLrDialogOpen;
 		};

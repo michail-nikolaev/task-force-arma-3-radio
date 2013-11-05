@@ -26,9 +26,10 @@
 #include "ts3_functions.h"
 #include "plugin.h"
 #include "DspFilters\Butterworth.h"
+#include "simpleSource\SimpleComp.h"
 
 #define M_PI       3.14159265358979323846
-#define RADIO_GAIN_SW 20
+#define RADIO_GAIN_SW 130
 #define RADIO_GAIN_LR 5
 #define RADIO_GAIN_DD 15
 #define CANT_SPEAK_GAIN 14
@@ -44,7 +45,7 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
-#define MILLIS_TO_EXPIRE 2000  // 2 seconds without updates of client position to expire
+#define MILLIS_TO_EXPIRE 4000  // 4 seconds without updates of client position to expire
 
 #define LR_DISTANCE 20000
 #define SW_DISTANCE 3000
@@ -92,6 +93,8 @@ struct CLIENT_DATA
 	Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS> filterDD;	
 	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS> filterCantSpeak;	
 
+	chunkware_simple::SimpleComp compressorSw;
+
 	void resetSWFilter() 
 	{
 		filterSW.reset();
@@ -117,6 +120,13 @@ struct CLIENT_DATA
 		filterLR.setup(4, 48000, 1800);
 		filterDD.setup(2, 48000, 1000, 400);
 		filterCantSpeak.setup(4, 48000, 100);
+
+		compressorSw.setSampleRate(48000);		
+		compressorSw.setThresh(0);
+		compressorSw.setRelease(100);		
+		compressorSw.setAttack(100);
+		compressorSw.setRatio(0.5);
+		compressorSw.initRuntime();
 	}
 };
 
@@ -1110,9 +1120,9 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 		for (auto it = toRemove.begin(); it != toRemove.end(); it++)
 		{
 			CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[*it];
-			serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);		
-			delete data;
-			log_string(std::string("Expire position of ") + *it, LogLevel_DEBUG);
+			serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);
+			log_string(std::string("Expire position of ") + *it + " time:" + std::to_string(time - data->positionTime), LogLevel_DEBUG);
+			delete data;			
 		}
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
@@ -1832,8 +1842,18 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 					if (listed_info.over == LISTEN_TO_SW)
 					{
 						sw_buffer = allocatePool(sampleCount, channels, samples);
-						float volumeLevel = volumeMultiplifier((float) listed_info.volume);
-						processRadioDSP<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(sw_buffer, channels, sampleCount, (float) RADIO_GAIN_SW * volumeLevel, &(data->filterSW), errorProbabilityFromDistance(listed_info.over, d, serverConnectionHandlerID), true);
+						float volumeLevel = volumeMultiplifier((float) listed_info.volume);																		
+						if (channels >= 2) 
+						{
+							for (int q = 0; q < sampleCount; q++) {
+								double left = sw_buffer[channels * q];
+								double right = sw_buffer[channels * q + 1];
+								data->compressorSw.process(left, right);
+								sw_buffer[channels * q] = left;
+								sw_buffer[channels * q + 1] = right;
+							}
+						}
+						processRadioDSP<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(sw_buffer, channels, sampleCount, (float) RADIO_GAIN_SW * volumeLevel, &(data->filterSW), errorProbabilityFromDistance(listed_info.over, d, serverConnectionHandlerID), true);						
 					}
 					short* lr_buffer = NULL;
 					if (listed_info.over == LISTEN_TO_LR)
@@ -2089,6 +2109,7 @@ void processPluginCommand(std::string command)
 	DWORD currentTime = GetTickCount();
 	std::vector<std::string> tokens = split(command, '@'); // may not be used in nickname
 	uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
+	DWORD time =  GetTickCount();
 	if (tokens.size() == 4 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" ||  tokens[0] == "TANGENT_DD"))
 	{
   		bool pressed = (tokens[1] == "PRESSED");
@@ -2109,6 +2130,7 @@ void processPluginCommand(std::string command)
 			CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[nickname];
 			if (clientData)
 			{	
+				clientData->positionTime = time;
 				clientData->pluginEnabled = true;
 				clientData->pluginEnabledCheck = currentTime;
 				TS3_VECTOR myPosition = serverIdToData[serverId].myPosition;						
