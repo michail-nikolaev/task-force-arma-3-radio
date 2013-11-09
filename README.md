@@ -21,7 +21,7 @@ Arma 3 Team Speak Radio Plugin
   2. Отключите `ACRE` и `radio ts ARMA3.ru version`, если они есть, чтобы избежать конфликтов.
   3. На всякий случай внизу слева можно нажать кнопку Reload All для перезагрузки всех плагинов.
 * Убедитесь, что громкость оповещений в Team Speak не отключена: `Options > Payback > Sound Pack Volume` установите в положительное значение.
-* Запустите игру с аддонами `@CBA_A3` и `@task_force_radio` (Community Base Addons: A3 Beta и Task Force Arrowhead Radio). Это можно сделать, прописав в ярлыке игры имена модов после EXE файла `…\arma3.exe -mod=@CBA_A3;@task_force_radio`, но рекомендуется включить необходимые моды в насройках игры (Настройки - Дополнения, Settings -> Expansions).
+* Запустите игру с аддонами `@CBA_A3` и `@task_force_radio` (Community Base Addons: A3 Beta и Task Force Arrowhead Radio). Это можно сделать, прописав в ярлыке игры имена модов после EXE файла `…\arma3.exe -mod=@CBA_A3;@task_force_radio`, но рекомендуется включить необходимые моды в настройках игры (Настройки - Дополнения, Settings -> Expansions).
 * Зайдите в тот же канал, где находятся другие игроки, играющие с данной рацией, либо вас перебросит в канал `TaskForceRadio` в случае его наличия при старте миссии.
 
 > Если ник в профиле игры и TeamSpeak совпадает - плагин изменит ваш ник в TS в процессе игры.
