@@ -126,10 +126,9 @@ tf_east_radio_code = "_opfor"; tf_guer_radio_code = "_independent"; `. Для т
 * [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) за помощь с графикой и документацией.
 * [Hardckor ](http://forum.task-force.ru/index.php?action=profile;u=14) за помощь с графикой.
 * [Блендеру](http://arma3.ru/forums/index.php/user/41-blender/) за шрифт.
-* [vinniefalco](https://github.com/vinniefalco) за [DSP фильтры](https://github.com/vinniefalco/DSPFilters)
-* [WOG](http://wogames.info/) и лично [TRUE](http://wogames.info/profile/TRUE/) за помощь в тестировании
+* [vinniefalco](https://github.com/vinniefalco) за [DSP фильтры](https://github.com/vinniefalco/DSPFilters).
+* [WOG](http://wogames.info/) и лично [TRUE](http://wogames.info/profile/TRUE/) за помощь в тестировании.
 * [Music DSP Collection](https://github.com/music-dsp-collection) за компрессор.
-* [Avi](http://arma3.ru/forums/index.php/user/715-avi/) за кодревью
-* [andrey-zakharov](https://github.com/andrey-zakharov) ([Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/)) за помощь в разработке
+* [Avi](http://arma3.ru/forums/index.php/user/715-avi/) за кодревью.
+* [andrey-zakharov](https://github.com/andrey-zakharov) ([Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/)) за помощь в разработке.
 * Извините, если кого-то случайно забыл.
-s
