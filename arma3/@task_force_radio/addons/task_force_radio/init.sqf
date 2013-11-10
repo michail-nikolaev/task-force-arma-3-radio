@@ -1,4 +1,4 @@
-ADDON_VERSION = "0.8.0 A";
+ADDON_VERSION = "0.8.1";
 
 if ((isServer) or (isDedicated)) then
 {
