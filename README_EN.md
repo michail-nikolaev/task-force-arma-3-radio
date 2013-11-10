@@ -127,11 +127,11 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [Task Force Arrowhead](http://forum.task-force.ru/) squad for testing, support, patience and all the help.
 * [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) for the help with graphics and documentation.
 * [Hardckor ](http://forum.task-force.ru/index.php?action=profile;u=14) for the help with graphics.
-* [Блендеру](http://arma3.ru/forums/index.php/user/41-blender/) for the fonts.
-* [vinniefalco](https://github.com/vinniefalco) for  [DSP фильтры](https://github.com/vinniefalco/DSPFilters).
+* [Blender](http://arma3.ru/forums/index.php/user/41-blender/) for the fonts.
+* [vinniefalco](https://github.com/vinniefalco) for  [DSP Filter](https://github.com/vinniefalco/DSPFilters).
 * [WOG](http://wogames.info/) and [TRUE](http://wogames.info/profile/TRUE/) personally for the help in testing.
 * [Music DSP Collection](https://github.com/music-dsp-collection) for the compressor.
 * [Avi](http://arma3.ru/forums/index.php/user/715-avi/) for the code review.
-* [andrey-zakharov](https://github.com/andrey-zakharov) ([Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/)) ) for the help in development.
+* [andrey-zakharov](https://github.com/andrey-zakharov) ([Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/)) for the help in development.
 * Dina for translating.
 * Sorry guys if I’ve forgot someone by chance.
