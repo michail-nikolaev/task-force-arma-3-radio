@@ -9,7 +9,6 @@ void closePipe()
 	pipe = INVALID_HANDLE_VALUE;
 }
 
-#ifdef _DEBUG
 bool isDebugArmaInstance() 
 {		
 	std::wstring execPath(GetCommandLine());
@@ -19,15 +18,13 @@ bool isDebugArmaInstance()
 	}	
 	return false;
 }
-#endif
+
 
 void openPipe() 
 {
 	closePipe();
 	LPCWSTR pipeName = PIPE_NAME;
-#ifdef _DEBUG
 	if (isDebugArmaInstance()) pipeName = DEBUG_PIPE_NAME;
-#endif
 
 	SECURITY_DESCRIPTOR SD;
 	InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION);

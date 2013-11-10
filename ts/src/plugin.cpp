@@ -29,7 +29,7 @@
 #include "simpleSource\SimpleComp.h"
 
 #define M_PI       3.14159265358979323846
-#define RADIO_GAIN_SW 130
+#define RADIO_GAIN_SW 170
 #define RADIO_GAIN_LR 5
 #define RADIO_GAIN_DD 15
 #define CANT_SPEAK_GAIN 14
@@ -59,7 +59,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.8.0 A"
+#define PLUGIN_VERSION "0.8.1"
 #define WHISPER_VOLUME "whispering"
 #define NORMAL_VOLUME "normal"
 #define YELLING_VOLUME "yelling"
@@ -223,7 +223,7 @@ HANDLE openPipe()
 		);
 	DWORD error = GetLastError();
 	DWORD dwMode = PIPE_READMODE_MESSAGE; 
-	bool fSuccess= SetNamedPipeHandleState( 
+	SetNamedPipeHandleState( 
 		pipe,    // pipe handle 
 		&dwMode,  // new pipe mode 
 		NULL,     // don't set maximum bytes 
@@ -1849,8 +1849,8 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 								double left = sw_buffer[channels * q];
 								double right = sw_buffer[channels * q + 1];
 								data->compressorSw.process(left, right);
-								sw_buffer[channels * q] = left;
-								sw_buffer[channels * q + 1] = right;
+								sw_buffer[channels * q] = (short) left;
+								sw_buffer[channels * q + 1] = (short) right;
 							}
 						}
 						processRadioDSP<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(sw_buffer, channels, sampleCount, (float) RADIO_GAIN_SW * volumeLevel, &(data->filterSW), errorProbabilityFromDistance(listed_info.over, d, serverConnectionHandlerID), true);						
