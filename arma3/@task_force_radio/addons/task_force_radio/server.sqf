@@ -71,7 +71,7 @@
 						missionNamespace setVariable [_variableName, time];
 					} else {
 						if (time - _last_check > 30) then {
-							[["TASK FORCE RADIO ADDON NOT ENABLED OR VERSION LESS THAN 0.8.0"],"BIS_fnc_guiMessage",(owner _x), false] spawn BIS_fnc_MP;
+							[["TASK FORCE RADIO ADDON NOT ENABLED OR VERSION LESS THAN 0.8.1"],"BIS_fnc_guiMessage",(owner _x), false] spawn BIS_fnc_MP;
 							_x setVariable ["tf_force_radio_active", "error_shown", true];
 							
 						};
