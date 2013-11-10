@@ -29,7 +29,7 @@
 #include "simpleSource\SimpleComp.h"
 
 #define M_PI       3.14159265358979323846
-#define RADIO_GAIN_SW 150
+#define RADIO_GAIN_SW 300
 #define RADIO_GAIN_LR 5
 #define RADIO_GAIN_DD 15
 #define CANT_SPEAK_GAIN 14
@@ -125,7 +125,7 @@ struct CLIENT_DATA
 		compressorSw.setThresh(0);
 		compressorSw.setRelease(100);		
 		compressorSw.setAttack(100);
-		compressorSw.setRatio(0.8);
+		compressorSw.setRatio(0.5);
 		compressorSw.initRuntime();
 	}
 };
