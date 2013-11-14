@@ -100,7 +100,7 @@ class prev_channel148: HiddenButton
 	w = 0.023625 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_previous_channel;	
-	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;";
 };
 class next_channel148: HiddenButton
 {

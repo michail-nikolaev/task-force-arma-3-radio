@@ -65,7 +65,7 @@ class clear_fadak: HiddenButton
 	y = 0.581218 * safezoneH + safezoneY;
 	w = 0.0150938 * safezoneW;
 	h = 0.0280062 * safezoneH;
-	tooltip = $STR_clear_frequency
+	tooltip = $STR_clear_frequency;
 	action = "ctrlSetText [IDC_FADAK_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_FADAK_RADIO_DIALOG_ID) displayCtrl IDC_FADAK_RADIO_DIALOG_EDIT_ID);";
 };
 class next_channel_fadak: HiddenButton
