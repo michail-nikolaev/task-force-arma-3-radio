@@ -96,7 +96,7 @@ class prev_channel155: HiddenButton
 	w = 0.02625 * safezoneW;
 	h = 0.0294066 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1,  ((lr_dialog_radio call getLrChannel) - 1 + MAX_LR_CHANNELS) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1,  ((lr_dialog_radio call getLrChannel) - 1 + MAX_LR_CHANNELS) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;";
 };
 class next_channel155: HiddenButton
 {

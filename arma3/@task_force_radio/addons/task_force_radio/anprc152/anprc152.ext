@@ -86,7 +86,7 @@ class clear: HiddenButton
 	y = 0.447488 * safezoneH + safezoneY;
 	w = 0.019425 * safezoneW;
 	h = 0.0220549 * safezoneH;
-	tooltip = $STR_clear_frequency
+	tooltip = $STR_clear_frequency;
 	action = "ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANPRC152_RADIO_DIALOG_ID) displayCtrl IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);";
 };
 class next_channel: HiddenButton
