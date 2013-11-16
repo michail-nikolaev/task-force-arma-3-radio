@@ -81,7 +81,7 @@ class increase_volume: HiddenButton
 	y = 0.423497 * safezoneH + safezoneY;
 	w = 0.0119531 * safezoneW;
 	h = 0.0561026 * safezoneH;
-	action = "dd_volume_level = (dd_volume_level + 1) mod MAX_DD_VOLUME; hint formatText [localize 'STR_radio_volume', ((dd_volume_level + 1) * 10)];"
+	action = "dd_volume_level = (dd_volume_level + 1) mod MAX_DD_VOLUME; hint formatText [localize 'STR_radio_volume', ((dd_volume_level + 1) * 10)];";
 	tooltip = $STR_volume;
 };
 class diver_depth_edit: RscEditLCD

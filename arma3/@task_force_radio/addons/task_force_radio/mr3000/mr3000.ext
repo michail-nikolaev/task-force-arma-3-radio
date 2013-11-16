@@ -84,7 +84,7 @@ class mr3000_clear: HiddenButton
 	y = 0.414581 * safezoneH + safezoneY;
 	w = 0.0223125 * safezoneW;
 	h = 0.0308069 * safezoneH;
-	tooltip = $STR_clear_frequency
+	tooltip = $STR_clear_frequency;
 	action = "ctrlSetText [IDC_MR3000_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_MR3000_RADIO_DIALOG_ID) displayCtrl IDC_MR3000_RADIO_DIALOG_EDIT_ID);";
 };
 class mr3000_next_channel: HiddenButton

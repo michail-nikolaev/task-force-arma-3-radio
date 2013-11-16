@@ -91,7 +91,7 @@ class rt1523g_clear: HiddenButton
 	y = 0.623256 * safezoneH + safezoneY;
 	w = 0.036975 * safezoneW;
 	h = 0.0403769 * safezoneH;
-	tooltip = $STR_clear_frequency
+	tooltip = $STR_clear_frequency;
 	action = "ctrlSetText [IDC_RT1523G_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_RT1523G_RADIO_DIALOG_ID) displayCtrl IDC_RT1523G_RADIO_DIALOG_EDIT_ID);";
 };
 class rt1523g_enter: HiddenButton
