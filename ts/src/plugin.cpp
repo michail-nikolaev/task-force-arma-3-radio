@@ -27,7 +27,6 @@
 #include "plugin.h"
 #include "DspFilters\Butterworth.h"
 #include "simpleSource\SimpleComp.h"
-
 #define M_PI       3.14159265358979323846
 #define RADIO_GAIN_SW 300
 #define RADIO_GAIN_LR 5
@@ -59,7 +58,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.8.1.3"
+#define PLUGIN_VERSION "0.8.1.5"
 #define WHISPER_VOLUME "whispering"
 #define NORMAL_VOLUME "normal"
 #define YELLING_VOLUME "yelling"
@@ -81,7 +80,7 @@ struct CLIENT_DATA
 	std::string frequency;	
 	std::string	voiceVolume;
 	bool canSpeak;
-	bool dataFromGame;
+	int dataFrame;
 
 	bool canUseSWRadio;
 	bool canUseLRRadio;
@@ -94,8 +93,8 @@ struct CLIENT_DATA
 	Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS> filterDD;	
 	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS> filterCantSpeak;	
 
-	chunkware_simple::SimpleComp compressorSw;
 
+	chunkware_simple::SimpleComp compressorSw;
 	void resetSWFilter() 
 	{
 		filterSW.reset();
@@ -108,10 +107,12 @@ struct CLIENT_DATA
 	{
 		filterDD.reset();
 	}
+
 	CLIENT_DATA() 
 	{
 		positionTime = 0;
-		tangentSwPressed = tangentLrPressed = tangentDdPressed = dataFromGame = false;		
+		tangentSwPressed = tangentLrPressed = tangentDdPressed = false;		
+		dataFrame = 0;
 		clientPosition.x = clientPosition.y = clientPosition.z = 0;
 		clientId = -1;
 		voiceVolume = NORMAL_VOLUME;
@@ -129,6 +130,7 @@ struct CLIENT_DATA
 		compressorSw.setRatio(0.5);
 		compressorSw.initRuntime();
 	}
+
 };
 
 typedef std::map<std::string, CLIENT_DATA*> STRING_TO_CLIENT_DATA_MAP;
@@ -147,9 +149,12 @@ struct SERVER_RADIO_DATA
 	bool canSpeak;	
 	float wavesLevel;
 
+	int currentDataFrame;
+
 	SERVER_RADIO_DATA()
 	{
 		tangentPressed = false;
+		currentDataFrame = 0;
 	}
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
@@ -560,10 +565,11 @@ bool hasClientData(uint64 serverConnectionHandlerID, anyID clientID)
 	bool result = false;
 	DWORD time = GetTickCount();
 	EnterCriticalSection(&serverDataCriticalSection);
+	int currentDataFrame = serverIdToData[serverConnectionHandlerID].currentDataFrame;
 	for (STRING_TO_CLIENT_DATA_MAP::iterator it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); 
 		it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
 	{
-		if (it->second->clientId == clientID && (time - it->second->positionTime < MILLIS_TO_EXPIRE) && it->second->dataFromGame)
+		if (it->second->clientId == clientID && (abs(currentDataFrame - it->second->dataFrame) <= 1))
 		{
 			result = true;
 			break;
@@ -907,6 +913,7 @@ std::string processGameCommand(std::string command)
 	{
 		EnterCriticalSection(&serverDataCriticalSection);		
 		addon_version = tokens[1];
+		serverIdToData[currentServerConnectionHandlerID].currentDataFrame++;
 		LeaveCriticalSection(&serverDataCriticalSection);
 		return "OK";
 	};	
@@ -958,7 +965,7 @@ std::string processGameCommand(std::string command)
 					clientData->canUseLRRadio = canUseLRRadio;
 					clientData->canUseDDRadio = canUseDDRadio;
 					clientData->vehicleId = vehicleId;
-					clientData->dataFromGame = true;
+					clientData->dataFrame = serverIdToData[currentServerConnectionHandlerID].currentDataFrame;
 				}
 				serverIdToData[currentServerConnectionHandlerID].myPosition = position;
 				serverIdToData[currentServerConnectionHandlerID].canSpeak = canSpeak;
@@ -994,7 +1001,7 @@ std::string processGameCommand(std::string command)
 						clientData->canUseLRRadio = canUseLRRadio;
 						clientData->canUseDDRadio = canUseDDRadio;						
 						clientData->vehicleId = vehicleId;
-						clientData->dataFromGame = true;
+						clientData->dataFrame = serverIdToData[currentServerConnectionHandlerID].currentDataFrame;
 						LeaveCriticalSection(&serverDataCriticalSection);							
 						if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &position)) != ERROR_ok)
 						{
@@ -1115,7 +1122,7 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 	{	
 		for (auto it = serverIdToData[serverConnectionHandlerID].nicknameToClientData.begin(); it != serverIdToData[serverConnectionHandlerID].nicknameToClientData.end(); it++)
 		{
-			if (it->second && time - it->second->positionTime > MILLIS_TO_EXPIRE)
+			if (it->second && (time - it->second->positionTime > (MILLIS_TO_EXPIRE * 5) || (abs(serverIdToData[serverConnectionHandlerID].currentDataFrame - it->second->dataFrame) > 1)))
 			{			
 				toRemove.push_back(it->first);
 			}
@@ -1174,6 +1181,9 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 							playWavFile("radio-sounds/on", false, 0);
 							inGame = true;							
 							onRespawn(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
+							EnterCriticalSection(&serverDataCriticalSection);
+							serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].currentDataFrame = 0;
+							LeaveCriticalSection(&serverDataCriticalSection);
 						}	
 					}				
 					if (!pipeConnected)
@@ -1183,7 +1193,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 					std::string result = processGameCommand(command);
 					const char* output = result.c_str();
 					DWORD written = 0;
-					if (WriteFile(pipe, output, result.length() + 1, &written, NULL)) {
+					if (WriteFile(pipe, output, (DWORD) result.length() + 1, &written, NULL)) {
 						log_string("Info to ARMA send", LogLevel_DEBUG);
 					} else {
 						log_string("Can't send info to ARMA", LogLevel_ERROR);
@@ -1236,6 +1246,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 				playWavFile("radio-sounds/off", 0, false);			
 				EnterCriticalSection(&serverDataCriticalSection);				
 				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].alive = false;
+				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].currentDataFrame = 0;
 				LeaveCriticalSection(&serverDataCriticalSection);
 				onGameEnd(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
 			}
@@ -1810,7 +1821,6 @@ std::pair<std::string, bool> getVehicleDescriptor(std::string vechicleId) {
 }
 
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {	
-	
 	static DWORD last_no_info;
 	EnterCriticalSection(&serverDataCriticalSection);
 	bool alive = serverIdToData[serverConnectionHandlerID].alive;
@@ -1857,7 +1867,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 								sw_buffer[channels * q + 1] = (short) right;
 							}
 						}
-						processRadioDSP<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(sw_buffer, channels, sampleCount, (float) RADIO_GAIN_SW * volumeLevel, &(data->filterSW), errorProbabilityFromDistance(listed_info.over, d, serverConnectionHandlerID), true);						
+processRadioDSP<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(sw_buffer, channels, sampleCount, (float) RADIO_GAIN_SW * volumeLevel, &(data->filterSW), errorProbabilityFromDistance(listed_info.over, d, serverConnectionHandlerID), true);						
 					}
 					short* lr_buffer = NULL;
 					if (listed_info.over == LISTEN_TO_LR)
