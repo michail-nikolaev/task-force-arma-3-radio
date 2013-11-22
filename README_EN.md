@@ -2,6 +2,7 @@ Task Force Arma 3 radio
 =======================
 
 Arma 3 Team Speak Radio Plugin
+_v0.8.1.5 (11.17.2013)_
 
 ###Installation
 
@@ -31,7 +32,7 @@ Arma 3 Team Speak Radio Plugin
 > It is recommended to disable the TeamSpeak built-in alert sounds: `Options> Notifications> Sound Pack: "Sounds Deactivated"`. To use this option, restart TeamSpeak.
 
 
-###Использование
+###Usage
 
 | Keys | Action |
 | --- | --- |
