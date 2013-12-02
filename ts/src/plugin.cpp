@@ -123,11 +123,15 @@ struct CLIENT_DATA
 		filterCantSpeak.setup(4, 48000, 100);
 
 		compressor.setSampleRate(48000);		
-		compressor.setThresh(20);
+		compressor.setThresh(65);
 		compressor.setRelease(300);		
 		compressor.setAttack(1);
 		compressor.setRatio(0.1);		
 		compressor.initRuntime();
+
+		resetPersonalRadioEffect();
+		resetLongRangeRadioEffect();
+		resetUnderwaterRadioEffect();
 	}
 
 };
@@ -153,7 +157,7 @@ struct SERVER_RADIO_DATA
 	SERVER_RADIO_DATA()
 	{
 		tangentPressed = false;
-		currentDataFrame = 0;
+		currentDataFrame = 9999;
 	}
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
@@ -1242,7 +1246,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 				playWavFile("radio-sounds/off", 0, false);			
 				EnterCriticalSection(&serverDataCriticalSection);				
 				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].alive = false;
-				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].currentDataFrame = 0;
+				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].currentDataFrame = 9999;
 				LeaveCriticalSection(&serverDataCriticalSection);
 				onGameEnd(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
 			}
@@ -1322,8 +1326,7 @@ int ts3plugin_init() {
 	if (isConnected(ts3Functions.getCurrentServerConnectionHandlerID()))
 	{
 		centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
-		updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
-		ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "[B]Task Force Radio: [/B][I]Loading Task Force Radio Plugin[/I]", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
+		updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());		
 	}
 
 	for (int q = 0; q < MAX_CHANNELS; q++)
@@ -1352,8 +1355,7 @@ void ts3plugin_shutdown() {
 	EnterCriticalSection(&serverDataCriticalSection);
 	serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].alive = false;
 	LeaveCriticalSection(&serverDataCriticalSection);
-	pipeConnected = inGame = false;
-	ts3Functions.requestSendChannelTextMsg(ts3Functions.getCurrentServerConnectionHandlerID(), "[B]Task Force Radio: [/B][I]Disabling Task Force Radio Plugin[/I]", getCurrentChannel(ts3Functions.getCurrentServerConnectionHandlerID()), NULL);
+	pipeConnected = inGame = false;	
 	updateUserStatusInfo(false);
 	thread = INVALID_HANDLE_VALUE;
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
@@ -1818,7 +1820,7 @@ std::pair<std::string, bool> getVehicleDescriptor(std::string vechicleId) {
 	return result;
 }
 
-void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples, int sampleCount, int channels)
+void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples, int channels, int sampleCount)
 {
 	if (channels >= 2) 
 	{
