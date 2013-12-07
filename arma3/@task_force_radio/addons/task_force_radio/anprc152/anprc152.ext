@@ -77,7 +77,7 @@ class enter: HiddenButton
 	w = 0.0191625 * safezoneW;
 	h = 0.0245055 * safezoneH;
 	tooltip = $STR_set_frequency;
-	action = "_f = parseNumber(ctrlText IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);  if ((_f > MIN_SW_FREQ) and (_f < MAX_SW_FREQ)) then {[sw_dialog_radio, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setSwFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_SW_FREQ, MAX_SW_FREQ]}; call updateSWDialogToChannel;";
+	action = "_f = parseNumber(ctrlText IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);  if ((_f >= MIN_SW_FREQ) and (_f <= MAX_SW_FREQ)) then {[sw_dialog_radio, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setSwFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_SW_FREQ, MAX_SW_FREQ]}; call updateSWDialogToChannel;";
 };
 class clear: HiddenButton
 {

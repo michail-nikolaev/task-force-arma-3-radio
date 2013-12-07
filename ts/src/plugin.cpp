@@ -168,11 +168,14 @@ typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
 char pluginPath[PATH_BUFSIZE];
 
 HANDLE thread = INVALID_HANDLE_VALUE;
-bool exitThread = FALSE;
-bool pipeConnected = false;
-bool inGame = false;
-uint64 notSeriousChannelId = uint64(-1);
-bool vadEnabled = false;
+HANDLE threadService = INVALID_HANDLE_VALUE;
+
+volatile bool exitThread = FALSE;
+volatile bool pipeConnected = false;
+volatile bool inGame = false;
+
+volatile uint64 notSeriousChannelId = uint64(-1);
+volatile bool vadEnabled = false;
 static char* pluginID = NULL;
 
 CRITICAL_SECTION serverDataCriticalSection;
@@ -909,7 +912,7 @@ std::string processGameCommand(std::string command)
 {	
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
 	std::vector<std::string> tokens = split(command, '@'); // @ may not be used in nickname
-	if (tokens.size() == 2 && tokens[0] == "VERSION") 
+	if (tokens.size() == 3 && tokens[0] == "VERSION") 
 	{
 		EnterCriticalSection(&serverDataCriticalSection);		
 		addon_version = tokens[1];
@@ -1041,12 +1044,19 @@ std::string processGameCommand(std::string command)
 		bool longRange = (tokens[0] == "TANGENT_LR");		
 		bool diverRadio = (tokens[0] == "TANGENT_DD");		
 
-		bool changed = false;
-		EnterCriticalSection(&serverDataCriticalSection);		
+		bool changed = false;		
+		EnterCriticalSection(&serverDataCriticalSection);
 		if (serverIdToData.count(currentServerConnectionHandlerID))
-		{
+		{			
 			changed = (serverIdToData[currentServerConnectionHandlerID].tangentPressed != pressed);
-			serverIdToData[currentServerConnectionHandlerID].tangentPressed = pressed;
+			serverIdToData[currentServerConnectionHandlerID].tangentPressed = pressed;			
+			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(serverIdToData[currentServerConnectionHandlerID].myNickname))
+			{
+				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[serverIdToData[currentServerConnectionHandlerID].myNickname];
+				if (longRange) clientData->canUseLRRadio = true;
+				else if (diverRadio) clientData->canUseDDRadio = true;
+				else clientData->canUseSWRadio = true;
+			}
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);		
 		if (changed)
@@ -1139,25 +1149,70 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 
 }
 
+volatile DWORD lastInGame = GetTickCount();
+volatile DWORD lastCheckForExpire = GetTickCount();		
+volatile DWORD lastInfoUpdate = GetTickCount();
+
+DWORD WINAPI ServiceThread( LPVOID lpParam )
+{			
+	while (!exitThread)
+	{
+		if (GetTickCount() - lastCheckForExpire > MILLIS_TO_EXPIRE)
+		{			
+			bool isSerious = isSeriousModeEnabled(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
+			removeExpiredPositions(ts3Functions.getCurrentServerConnectionHandlerID());
+			if (isConnected(ts3Functions.getCurrentServerConnectionHandlerID())) 
+			{
+				if (inGame) setMuteForDeadPlayers(ts3Functions.getCurrentServerConnectionHandlerID(), isSerious);
+				updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
+			}						
+			lastCheckForExpire = GetTickCount();
+		}
+		if (GetTickCount() - lastInGame > MILLIS_TO_EXPIRE)
+		{
+			if (!isOtherRadioPluginEnabled(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID())))
+			{
+				centerAll(ts3Functions.getCurrentServerConnectionHandlerID());			
+				unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
+			}			
+			InterlockedExchange(&lastInGame, GetTickCount());
+			if (inGame) 
+			{
+				playWavFile("radio-sounds/off", 0, false);			
+				EnterCriticalSection(&serverDataCriticalSection);				
+				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].alive = false;
+				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].currentDataFrame = 9999;
+				LeaveCriticalSection(&serverDataCriticalSection);
+				onGameEnd(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
+			}
+			inGame = false;
+		}
+		if (GetTickCount() - lastInfoUpdate > MILLIS_TO_EXPIRE)
+		{
+			updateUserStatusInfo(true);
+			lastInfoUpdate = GetTickCount();
+		}
+		Sleep(100);
+	}
+
+	return NULL;
+}
 
 DWORD WINAPI PipeThread( LPVOID lpParam )
-{
+{	
 	HANDLE pipe = INVALID_HANDLE_VALUE;	
-	DWORD lastUpdate = GetTickCount();
-	DWORD lastInGame = GetTickCount();
-	DWORD lastCheckForExpire = GetTickCount();		
-	DWORD lastInfoUpdate = GetTickCount();
-
+	
+	DWORD sleep = 100;
 	while (!exitThread)
 	{
 		if (pipe == INVALID_HANDLE_VALUE) pipe = openPipe();		
 
 		DWORD numBytesRead = 0;
 		DWORD numBytesAvail = 0;
-		bool sleep = true;
+		
 		if (PeekNamedPipe(pipe, NULL, 0, &numBytesRead, &numBytesAvail, NULL)) 
 		{
-			if (numBytesAvail > 0) 
+			if (numBytesAvail > 0)
 			{					
 				char buffer[4096];
 				memset(buffer, 0, 4096);
@@ -1170,12 +1225,11 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 							NULL // not using overlapped IO
 						);
 				if (result) {
-					lastUpdate = GetTickCount();
-					sleep = false;
+					sleep = 100;
 					std::string command = std::string(buffer);
 					if (!startWith("VERSION", command))
 					{
-						lastInGame = GetTickCount();
+						InterlockedExchange(&lastInGame, GetTickCount());
 						if (!inGame)
 						{
 							playWavFile("radio-sounds/on", false, 0);
@@ -1206,7 +1260,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 					Sleep(1000);
 					pipe = openPipe();					
 				}		
-			}
+			} else sleep--;			
 		} 
 		else 
 		{			
@@ -1218,46 +1272,12 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 			Sleep(1000);
 			pipe = openPipe();			
 		}
-		if (sleep) 
-		{
-			Sleep(1);
-		}
-		if (GetTickCount() - lastCheckForExpire > MILLIS_TO_EXPIRE)
-		{			
-			bool isSerious = isSeriousModeEnabled(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
-			removeExpiredPositions(ts3Functions.getCurrentServerConnectionHandlerID());
-			if (isConnected(ts3Functions.getCurrentServerConnectionHandlerID())) 
-			{
-				if (inGame) setMuteForDeadPlayers(ts3Functions.getCurrentServerConnectionHandlerID(), isSerious);
-				updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
-			}						
-			lastCheckForExpire = GetTickCount();
-		}
-		if (GetTickCount() - lastInGame > MILLIS_TO_EXPIRE)
-		{
-			if (!isOtherRadioPluginEnabled(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID())))
-			{
-				centerAll(ts3Functions.getCurrentServerConnectionHandlerID());			
-				unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
-			}			
-			lastInGame = GetTickCount();			
-			if (inGame) 
-			{
-				playWavFile("radio-sounds/off", 0, false);			
-				EnterCriticalSection(&serverDataCriticalSection);				
-				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].alive = false;
-				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].currentDataFrame = 9999;
-				LeaveCriticalSection(&serverDataCriticalSection);
-				onGameEnd(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
-			}
-			inGame = false;
-			
-		}
-		if (GetTickCount() - lastInfoUpdate > MILLIS_TO_EXPIRE)
-		{
-			updateUserStatusInfo(true);
-			lastInfoUpdate = GetTickCount();
-		}
+ 		if (!sleep) 
+ 		{
+ 			Sleep(1);
+			sleep = 100;
+ 		}
+		
 	}	
 	CloseHandle(pipe);
 	pipe = INVALID_HANDLE_VALUE;
@@ -1334,6 +1354,7 @@ int ts3plugin_init() {
 		floatsSample[q] = new float[1];
 	}
 	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);		
+	threadService = CreateThread(NULL, 0, ServiceThread, NULL, 0, NULL);		
 
     return 0;
 }
@@ -1352,12 +1373,19 @@ void ts3plugin_shutdown() {
 	{
 		log("thread not terminated", LogLevel_CRITICAL);
 	}
+
+	result = GetExitCodeThread(threadService, &exitCode);
+	if (!result || exitCode == STILL_ACTIVE) 
+	{
+		log("service thread not terminated", LogLevel_CRITICAL);
+	}
+
 	EnterCriticalSection(&serverDataCriticalSection);
 	serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].alive = false;
 	LeaveCriticalSection(&serverDataCriticalSection);
 	pipeConnected = inGame = false;	
 	updateUserStatusInfo(false);
-	thread = INVALID_HANDLE_VALUE;
+	thread = threadService = INVALID_HANDLE_VALUE;
 	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	exitThread = FALSE;
@@ -2158,6 +2186,11 @@ void processPluginCommand(std::string command)
 				clientData->positionTime = time;
 				clientData->pluginEnabled = true;
 				clientData->pluginEnabledCheck = currentTime;
+
+				if (longRange) clientData->canUseLRRadio = true;
+				else if (diverRadio) clientData->canUseDDRadio = true;
+				else clientData->canUseSWRadio = true;
+
 				TS3_VECTOR myPosition = serverIdToData[serverId].myPosition;						
 				if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
 				{					

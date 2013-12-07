@@ -374,30 +374,30 @@
 
 			<Key ID="STR_radio_control_text">
 				<Original>
-										&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;Кнопка разговора в TeamSpeak&lt;/font&gt;  	Прямая речь.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;Caps Lock&lt;/font&gt;	Разговор по рации.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + Caps Lock&lt;/font&gt;	Разговор по рации дальней связи.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + P&lt;/font&gt;	Открыть интерфейс коротковолновой рации (рация должна быть в слоте инвентаря). Для того, чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками PRE+ и PRE-.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;NUM[1-8]&lt;/font&gt;	Быстрое переключение каналов коротковолновой рации.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ALT + P&lt;/font&gt;	Открыть интерфейс рации дальней связи (рация дальней связи должна быть одета на спину, либо вы должны быть в технике за водителя, стрелка, командира или помощника пилота). Для того, чтобы ввести частоту нажмите MENU CLR, введите значение и нажмите FREQ. Также вы можете переключать активный канал нажимая цифровые кноки на рации (всего 9 каналов). Возможно изменение громкости приема кнопками TIME и BATT CALL.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Быстрое переключение каналов рации дальней связи.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + TAB&lt;/font&gt;	Изменить громкость прямой речи. Можно говорить шепотом (Whispering), нормально (Normal) и кричать (Yelling). Не влияет на кромкость сигнала в радио передаче.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;SHIFT + P&lt;/font&gt;	Открыть интерфейс переговорного устройства для дайверов (на вас должен быть надет ребризер). Для того, чтобы ввести частоту, нажмите MODE, введите значение и нажмите ADV. Возможно изменение громкости приема кнопкой с правой стороны устройства.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ALT + Caps Lock&lt;/font&gt;	Разговор по переговорному устройству для дайверов.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ESC&lt;/font&gt;	Выход из интерфейса рации.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	Direct Speech.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	To talk on a radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	To talk on a long range radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	To open the personal radio interface (the radio must be in the inventory slot). In that case if you have a number of radios - you can select the one needed. It is also possible to set the radio as active (the one that will be used for transmission).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Rapid switching of shortwave radio channels.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	To open a long range radio interface (a long range radio must be put on your back, or you should be in a vehicle in a position of a driver, shooter, or pilot assistant). If a number of radios are available – you’ll be offered to choose one. Besides, one of them can be set as active.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Rapid switching of long range radio channels.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	To open an underwater transceiver interface (you should be wearing a rebreather).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	To talk on underwater transceiver.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	To exit from the radio interface.
+
 				</Original>
 				<Russian>
-					&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;Кнопка разговора в TeamSpeak&lt;/font&gt;  	Прямая речь.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;Caps Lock&lt;/font&gt;	Разговор по рации.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + Caps Lock&lt;/font&gt;	Разговор по рации дальней связи.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + P&lt;/font&gt;	Открыть интерфейс коротковолновой рации (рация должна быть в слоте инвентаря). Для того, чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками PRE+ и PRE-.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;NUM[1-8]&lt;/font&gt;	Быстрое переключение каналов коротковолновой рации.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ALT + P&lt;/font&gt;	Открыть интерфейс рации дальней связи (рация дальней связи должна быть одета на спину, либо вы должны быть в технике за водителя, стрелка, командира или помощника пилота). Для того, чтобы ввести частоту нажмите MENU CLR, введите значение и нажмите FREQ. Также вы можете переключать активный канал нажимая цифровые кноки на рации (всего 9 каналов). Возможно изменение громкости приема кнопками TIME и BATT CALL.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Быстрое переключение каналов рации дальней связи.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;CTRL + TAB&lt;/font&gt;	Изменить громкость прямой речи. Можно говорить шепотом (Whispering), нормально (Normal) и кричать (Yelling). Не влияет на кромкость сигнала в радио передаче.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;SHIFT + P&lt;/font&gt;	Открыть интерфейс переговорного устройства для дайверов (на вас должен быть надет ребризер). Для того, чтобы ввести частоту, нажмите MODE, введите значение и нажмите ADV. Возможно изменение громкости приема кнопкой с правой стороны устройства.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ALT + Caps Lock&lt;/font&gt;	Разговор по переговорному устройству для дайверов.&lt;br/&gt;
-&lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;ESC&lt;/font&gt;	Выход из интерфейса рации.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Разговор по рации.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Разговор по рации дальней связи.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Открыть интерфейс личной рации (рация должна быть в слоте инвентаря). В том случае, если у вас имеются несколько раций - вы сможете выбрать требуемую. Также есть возможность установить рацию как активную (ту, которая будет использоваться для передачи.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Быстрое переключение каналов коротковолновой рации.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Открыть интерфейс рации дальней связи (рация дальней связи должна быть одета на спину, либо вы должны быть в технике за водителя, стрелка, командира или помощника пилота). Если доступно несколько рации - вам будет предложено выбрать. Также одну из них можно установить как активную.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Быстрое переключение каналов рации дальней связи.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Изменить громкость прямой речи. Можно говорить шепотом (Whispering), нормально (Normal) и кричать (Yelling). Не влияет на кромкость сигнала в радио передаче.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Открыть интерфейс переговорного устройства для дайверов (на вас должен быть надет ребризер).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Разговор по переговорному устройству для дайверов.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Выход из интерфейса рации.&lt;br/&gt;
 				</Russian>
 			</Key>
 			<Key ID="STR_radios">
@@ -410,16 +410,87 @@
 			</Key>
 			<Key ID="STR_radios_text">
 				<Original>
-					Рация &lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;AN/PRC-152&lt;/font&gt; (коротковолновая) может работать на частотах от 30 до 512 MHz. Дальность действия - 3 км (учитывая зону с помехами).&lt;br/&gt;
-Рация &lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;RT-1523G (ASIP)&lt;/font&gt; работает на частотах от 30 до 87 MHz. Данная рация одевается как рюкзак и доступна в технике водителю, командиру, стрелку и помощнику пилота. В начале миссии эта рация автоматически выдается лидерам групп. Дальность действия - 20 км (учитывая зону с помехами).&lt;br/&gt;
-Обе рации поддерживают SINCGARS протокол, поэтому могут связываться друг с другом. В случае если передача осуществляется с AN/PRC-152, звук будет высокочастотным. В случае передачи с RT-1523G (ASIP) - низкочастотным.&lt;br/&gt;
-Переговорное устройство для дайверов использует ультразвук для передачии голоса. Диапозон частот от 32 до 41 kHz. Работает только под водой. Дальность действия от 70 до 300 метров в зависимости от уровня волн.&lt;br/&gt;
+&lt;font color=&quot;#0000FF&quot;&gt;Radio AN/PRC-152 (personal)&lt;br/&gt;
+BLUEFOR	&lt;br/&gt;
+30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
+To enter the frequency, press CLR, enter a value and press ENT. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume pressing PRE+ and PRE- keys.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#0000FF&quot;&gt;Radio RT-1523G (ASIP) (long range)&lt;br/&gt;
+BLUEFOR	&lt;br/&gt;
+30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
+To enter the frequency, press MENU CLR, enter a value and press FREQ. You can also switch the active radio channel by pressing the radio number buttons (a total of 9 channels). You can change the reception volume by TIME and BATT CALL keys.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC148-JEM (personal)&lt;br/&gt;
+INDEPENDENT&lt;br/&gt;
+30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
+To enter the frequency, press ESC, enter a value and press ENT. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume by MOD and GR keys.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC-155 (long range)&lt;br/&gt;
+INDEPENDENT&lt;br/&gt;
+30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
+To enter the frequency, press ESC, enter a value and press MENU. You can also switch the active radio channel by pressing the arrow keys (up and down). You can change the reception volume by the loudspeaker button. &lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#8B0000&quot;&gt;Radio FADAK (personal)&lt;br/&gt;
+OPFOR&lt;br/&gt;
+30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
+To enter the frequency, press CLR, enter a value and press ENT. You can also switch the active radio channel by pressing SET and PWR (a total of 8 channels). You can change the reception volume by DATA and SEND keys.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#8B0000&quot;&gt;Radio MR3000 (long range)&lt;br/&gt;
+OPFOR&lt;br/&gt;
+30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
+To enter the frequency, press CLR ESC, enter a value and press ENT. You can also switch the active radio channel by pressing the radio number buttons or horizontal arrow buttons (a total of 8 channels). You can change the reception volume by vertical arrow buttons.&lt;br/&gt;
+&lt;br/&gt;
+Underwater transceiver&lt;br/&gt;
+All&lt;br/&gt;
+32-41kHz / 70-300 m. (depending on waves)&lt;br/&gt;
+To enter the frequency, press MODE, enter a value and press ADV. You can change the reception volume by the button on the right side of the device.
 				</Original>
 				<Russian>
-					Рация &lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;AN/PRC-152&lt;/font&gt; (коротковолновая) может работать на частотах от 30 до 512 MHz. Дальность действия - 3 км (учитывая зону с помехами).&lt;br/&gt;
-Рация &lt;font color=&apos;#67ED24&apos; size=&apos;14&apos;&gt;RT-1523G (ASIP)&lt;/font&gt; работает на частотах от 30 до 87 MHz. Данная рация одевается как рюкзак и доступна в технике водителю, командиру, стрелку и помощнику пилота. В начале миссии эта рация автоматически выдается лидерам групп. Дальность действия - 20 км (учитывая зону с помехами).&lt;br/&gt;
-Обе рации поддерживают SINCGARS протокол, поэтому могут связываться друг с другом. В случае если передача осуществляется с AN/PRC-152, звук будет высокочастотным. В случае передачи с RT-1523G (ASIP) - низкочастотным.&lt;br/&gt;
-Переговорное устройство для дайверов использует ультразвук для передачии голоса. Диапозон частот от 32 до 41 kHz. Работает только под водой. Дальность действия от 30 до 200 метров в зависимости от уровня волн.&lt;br/&gt;
+&lt;font color=&quot;#0000FF&quot;&gt;
+Рация AN/PRC-152 (личная)&lt;br/&gt;
+BLUEFOR&lt;br/&gt;
+&lt;/font&gt;
+30-512Mhz / 3 км&lt;br/&gt;
+Для того чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками PRE+ и PRE-.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#0000FF&quot;&gt;
+Рация RT-1523G (ASIP) (дальняя связь)&lt;br/&gt;
+BLUEFOR&lt;br/&gt;
+&lt;/font&gt;
+30-87Mhz / 20 км&lt;br/&gt;
+Для того чтобы ввести частоту нажмите MENU CLR, введите значение и нажмите FREQ. Также вы можете переключать активный канал, нажимая цифровые кнопки на рации (всего 9 каналов). Возможно изменение громкости приема кнопками TIME и BATT CALL.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#006400&quot;&gt;
+Рация AN/PRC148-JEM (личная)&lt;br/&gt;
+INDEPENDENT&lt;br/&gt;
+&lt;/font&gt;
+30-512Mhz / 3 км&lt;br/&gt;
+Для того чтобы ввести частоту, нажмите ESC, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками MOD и GR.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#006400&quot;&gt;
+Рация AN/PRC-155 (дальняя связь)&lt;br/&gt;
+INDEPENDENT&lt;br/&gt;
+&lt;/font&gt;
+30-87Mhz / 20 км&lt;br/&gt;
+Для того чтобы ввести частоту нажмите ESC, введите значение и нажмите MENU. Также вы можете переключать активный канал, нажимая на стрелки (вверх в вниз). Возможно изменение громкости приема кнопкой с изображением динамика.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#8B0000&quot;&gt;
+Рация FADAK (личная)&lt;br/&gt;
+OPFOR&lt;br/&gt;
+&lt;/font&gt;
+30-512Mhz / 3 км&lt;br/&gt;
+Для того чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая SET и PWR (всего 8 каналов). Возможно изменение громкости приема кнопками DATA и SEND.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#8B0000&quot;&gt;
+Рация MR3000 (дальняя связь)&lt;br/&gt;
+OPFOR&lt;br/&gt;
+&lt;/font&gt;
+30-87Mhz / 20 км&lt;br/&gt;
+Для того чтобы ввести частоту нажмите CLR ESC, введите значение и нажмите ENT. Также вы можете переключать активный канал, нажимая цифровые кнопки на рации, либо горизонтальными кнопками-стрелками (всего 9 каналов). Возможно изменение громкости приема вертикальными кнопками-стрелками.&lt;br/&gt;
+&lt;br/&gt;
+Переговорное устройство дайверов&lt;br/&gt;
+32-41kHz / 70-300 м. (в зависимости от уровня волн)&lt;br/&gt;
+Для того чтобы ввести частоту, нажмите MODE, введите значение и нажмите ADV. Возможно изменение громкости приема кнопкой с правой стороны устройства.
 				</Russian>
 			</Key>
 			<Key ID="STR_radio_diver">
@@ -432,26 +503,64 @@
 			</Key>
 			<Key ID="STR_radio_diver_text">
 				<Original>
-					Вы не можете говорить голосом находясь под водой (даже в водолазном костюме). Однако на близком расстояние ваш собеседник сможет расслышать что-либо очень невнятное.&lt;br/&gt;
-Находясь под водой, вы невнятно и слабо слышите голоса на суше.&lt;br/&gt;
-Для связи между дайверами используйте Переговорное устройство.&lt;br/&gt;
-Вы не можете пользоваться радио связью под водой (ни говорить, ни слышать). Если нужно что-то передать на сушу - всплывайте. Исключение - субмарина на перескопной глубине (в ней водолазам можно использовать рацию дальней связи).&lt;br/&gt;
+You can not talk underwater (even wearing a diving suit). However, at close distance your companion can hear some indistinct speech (exception - if you are underwater in an isolated vehicle).&lt;br/&gt;
+Being underwater, you can faintly hear muffled voices on land.&lt;br/&gt;
+Use an underwater transceiver for communication among divers.&lt;br/&gt;
+You can not use radio communication underwater (neither to talk nor to hear). If you want to pass some message on land - surface. &lt;br/&gt;Exception - submarine in the periscope depth (divers can use a long range radio there).
 				</Original>
 				<Russian>
-					Вы не можете говорить голосом находясь под водой (даже в водолазном костюме). Однако на близком расстояние ваш собеседник сможет расслышать что-либо очень невнятное.&lt;br/&gt;
+Вы не можете говорить голосом находясь под водой (даже в водолазном костюме). Однако на близком расстоянии ваш собеседник сможет расслышать что-либо очень невнятное (исключение - если вы под водой в изолированной технике).&lt;br/&gt;
 Находясь под водой, вы невнятно и слабо слышите голоса на суше.&lt;br/&gt;
 Для связи между дайверами используйте Переговорное устройство.&lt;br/&gt;
-Вы не можете пользоваться радио связью под водой (ни говорить, ни слышать). Если нужно что-то передать на сушу - всплывайте. Исключение - субмарина на перескопной глубине (в ней водолазам можно использовать рацию дальней связи).&lt;br/&gt;
+Вы не можете пользоваться радио связью под водой (ни говорить, ни слышать). Если нужно что-то передать на сушу - всплывайте. Исключение - субмарина на перископной глубине (в ней водолазам можно использовать рацию дальней связи).&lt;br/&gt;
 				</Russian>
 			</Key>
+			<Key ID="STR_radio_intercept">
+				<Original>
+					Radio Interception
+				</Original>
+				<Russian>
+					Радиоперехват
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_intercept_text">
+				<Original>
+Radio can be taken from killed players, and given to each other. Thus, they retain all the settings (channels, frequency, volume).&lt;br/&gt;
+In vehicles radio settings are also saved.&lt;/br&gt;
+By default, radios of each faction use their own encryption codes, so you will not hear enemy talks, even setting the enemy’s frequency. To listen to the enemy’s net (and talk on the air) - it’s necessary by any means to capture an enemy radio station.
+				</Original>
+				<Russian>
+Рации можно поднимать у убитых игроков, передавать их друг другу.&lt;br/&gt;
+При этом они сохраняют все настройки (каналы, частоты, громкость).&lt;br/&gt;
+Настройки рации в технике также сохраняются.&lt;br/&gt;
+По умолчанию рации каждой фракции используют свои коды шифрования, поэтому вы не будете слышать вражеские переговоровы, даже введя используемую врагами частоту. &lt;br/&gt;
+Чтобы прослушивать (и говорить в эфир) противника - необходимо каким-либо образом захватить вражескую радиостанцию.
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_vehicle">
+				<Original>
+					Vehicles
+				</Original>
+				<Russian>
+					Техника
+				</Russian>
+			</Key>
+			<Key ID="STR_radio_vehicle_text">
+				<Original>
+A long range radio is available for a driver, commander, shooter, and pilot assistant. Not all the vehicles support built-in radios.
+&lt;br/&gt;
+Each vehicle slot has its own radio, which must be configured separately. If you plan to change the position in a vehicle – configure the radio in all the slots beforehand (for instance, on a driver or shooter slot).
+&lt;br/&gt;
+Vehicles are classified into open and closed (isolated). If you are in an isolated vehicle, you will not hear voices from outside (and vice versa). However, if you turn out of the vehicle, you will hear voices both from inside and outside.
+				</Original>
+				<Russian>
+Рация дальней доступна в технике водителю, командиру, стрелку и помощнику пилота. Не вся техника имеет встроенные рации.&lt;br/&gt;
 
+У каждого слота техники своя рация, которая должна быть настроена отдельно. Если вы планируете пересаживаться с места на места в технике - предварительно настройте рацию на всех слотах (например на слоте водителя и на слоте стрелка).&lt;br/&gt;
 
-
-
-
-
-
-
+Техника делиться на открытую и закрытую (изолированную). Если вы находитесь в изолированной технике, то не будете слышать голоса снаружи (и наоборот). Однако, если вы выгляните из техники, то будете слышать как голоса внутри, так и снаружи.&lt;br/&gt;
+				</Russian>
+			</Key>
 
 		</Container>
 	</Package>
