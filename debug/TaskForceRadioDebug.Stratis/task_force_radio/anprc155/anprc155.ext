@@ -76,7 +76,7 @@ class enter155: HiddenButton
 	w = 0.023625 * safezoneW;
 	h = 0.0294066 * safezoneH;
 	tooltip = $STR_set_frequency;
-	action = "_f = parseNumber(ctrlText IDC_ANPRC155_RADIO_DIALOG_EDIT_ID);if ((_f > MIN_ASIP_FREQ) and (_f < MAX_ASIP_FREQ)) then {[lr_dialog_radio select 0, lr_dialog_radio select 1, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setLrFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_ASIP_FREQ, MAX_ASIP_FREQ]}; call updateLRDialogToChannel;";
+	action = "_f = parseNumber(ctrlText IDC_ANPRC155_RADIO_DIALOG_EDIT_ID);if ((_f >= MIN_ASIP_FREQ) and (_f <= MAX_ASIP_FREQ)) then {[lr_dialog_radio select 0, lr_dialog_radio select 1, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setLrFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_ASIP_FREQ, MAX_ASIP_FREQ]}; call updateLRDialogToChannel;";
 };
 class clear155: HiddenButton
 {
@@ -96,7 +96,7 @@ class prev_channel155: HiddenButton
 	w = 0.02625 * safezoneW;
 	h = 0.0294066 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1,  ((lr_dialog_radio call getLrChannel) - 1 + MAX_LR_CHANNELS) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1,  ((lr_dialog_radio call getLrChannel) - 1 + MAX_LR_CHANNELS) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;";
 };
 class next_channel155: HiddenButton
 {

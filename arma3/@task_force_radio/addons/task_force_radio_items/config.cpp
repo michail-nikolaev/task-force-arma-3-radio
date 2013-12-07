@@ -5,12 +5,12 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 1.0;
-		requiredAddons[] = {};
+		requiredAddons[] = {"A3_Structures_F_Items_Electronics"};
 		author[] = {"[TF]Nkey"};
 		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
-		version = 0.8.1;
-		versionStr = "0.8.1";
-		versionAr[] = {0,8,1};
+		version = 0.8.2;
+		versionStr = "0.8.2";
+		versionAr[] = {0,8,2};
 	};
 };
 
@@ -26,7 +26,7 @@ class CfgVehicles {
 		picture = "\task_force_radio_items\rt1523g\rt1523g_icon.paa";
 		scope = 2;
 		maximumLoad = 60;
-		mass = 15;
+		mass = 15;		
 	};	
 	class tf_anprc155: B_Kitbag_sgg
 	{
@@ -53,6 +53,7 @@ class CfgVehicles {
 		displayName = Y; \
 		descriptionShort = Y; \
 		scope = 1; \
+		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F"; \
 		picture = "\task_force_radio_items\anprc152\152_icon.paa"; \
 	};
 
@@ -61,6 +62,7 @@ class CfgVehicles {
 		displayName = Y; \
 		descriptionShort = Y; \
 		scope = 1; \
+		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F"; \
 		picture = "\task_force_radio_items\fadak\fadak_icon.paa"; \
 	};
 
@@ -69,6 +71,7 @@ class CfgVehicles {
 		displayName = Y; \
 		descriptionShort = Y; \
 		scope = 1; \
+		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F"; \
 		picture = "\task_force_radio_items\anprc148jem\148_icon.paa"; \
 	};
 

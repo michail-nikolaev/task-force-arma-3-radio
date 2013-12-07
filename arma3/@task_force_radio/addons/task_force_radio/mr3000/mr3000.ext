@@ -75,7 +75,7 @@ class mr3000_enter: HiddenButton
 	w = 0.0223125 * safezoneW;
 		h = 0.0308069 * safezoneH;
 tooltip = $STR_set_frequency;
-	action = "_f = parseNumber(ctrlText IDC_MR3000_RADIO_DIALOG_EDIT_ID);if ((_f > MIN_ASIP_FREQ) and (_f < MAX_ASIP_FREQ)) then {[lr_dialog_radio select 0, lr_dialog_radio select 1, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setLrFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_ASIP_FREQ, MAX_ASIP_FREQ]}; call updateLRDialogToChannel;";
+	action = "_f = parseNumber(ctrlText IDC_MR3000_RADIO_DIALOG_EDIT_ID);if ((_f >= MIN_ASIP_FREQ) and (_f <= MAX_ASIP_FREQ)) then {[lr_dialog_radio select 0, lr_dialog_radio select 1, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setLrFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_ASIP_FREQ, MAX_ASIP_FREQ]}; call updateLRDialogToChannel;";
 };
 class mr3000_clear: HiddenButton
 {

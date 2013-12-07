@@ -1,4 +1,6 @@
-ADDON_VERSION = "0.8.1";
+TF_ADDON_VERSION = "0.8.2";
+
+nul = [] execVM "\task_force_radio\common.sqf";
 
 if ((isServer) or (isDedicated)) then
 {
