@@ -1,10 +1,4 @@
-﻿#include "task_force_radio\define.h"
-
-// TODO: remove
-enableDebugConsole = 2; 
-respawn = 3;
-respawndelay = 5;
-
+﻿#include "define.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// Base Classes

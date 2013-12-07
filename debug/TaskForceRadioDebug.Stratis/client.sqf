@@ -1,6 +1,22 @@
-#define DEBUG_MODE_FULL
+//#define DEBUG_MODE_FULL
 
 //tf_no_auto_long_range_radio = true;
+
+if (isNil "tf_radio_channel_name") then {
+	tf_radio_channel_name = "TaskForceRadio";
+};
+
+if (isNil "tf_west_radio_code") then {
+	tf_west_radio_code = "_bluefor";
+};
+
+if (isNil "tf_east_radio_code") then {
+	tf_east_radio_code = "_opfor";
+};
+
+if (isNil "tf_guer_radio_code") then {
+	tf_guer_radio_code = "_independent";
+};
 
 disableSerialization;
 #include "diary.sqf"
@@ -17,17 +33,17 @@ titleText [localize ("STR_init"), "PLAIN"];
 #define ALTL 56
 #define ACTIVE_CHANNEL_OFFSET 0
 #define VOLUME_OFFSET 1
-#define FREQ_OFFSET 2
-MAX_CHANNELS = 8;
+
 
 radio_request_mutex = false;
 
-saved_active_sw_settings = nil;
 use_saved_sw_setting = false;
+saved_active_sw_settings = nil;
+
+use_saved_lr_setting = false;
+saved_active_lr_settings = nil;
 
 
-MIN_SW_FREQ = 30;
-MAX_SW_FREQ = 512;
 
 MAX_SW_VOLUME = 10;
 MAX_LR_VOLUME = 10;
@@ -35,16 +51,8 @@ MAX_DD_VOLUME = 10;
 
 dd_volume_level = 7;
 
-MIN_ASIP_FREQ = 30;
-MAX_ASIP_FREQ = 87;
-
 MIN_DD_FREQ = 32;
 MAX_DD_FREQ = 41;
-
-MAX_LR_CHANNELS = 9;
-
-
-FREQ_ROUND_POWER = 10;
 
 IDC_ANPRC152_RADIO_DIALOG_EDIT_ID = IDC_ANPRC152_RADIO_DIALOG_EDIT;
 IDC_ANPRC152_RADIO_DIALOG_ID = IDC_ANPRC152_RADIO_DIALOG;
@@ -68,7 +76,50 @@ IDC_DIDER_RADIO_DIALOG_ID = IDC_DIVER_RADIO_DIALOG;
 IDC_DIVER_RADIO_EDIT_ID = IDC_DIVER_RADIO_EDIT;
 IDC_DIVER_RADIO_DEPTH_ID = IDC_DIVER_RADIO_DEPTH;
 
+getSwRadioCode = 
+{
+	private ["_result"];
+	_result = "";
+	if (([_this, "tf_anprc152_"] call CBA_fnc_find) == 0) then {
+		_result = tf_west_radio_code;
+	};
+	if (([_this, "tf_anprc148jem_"] call CBA_fnc_find) == 0) then {
+		_result = tf_guer_radio_code;
+	};
+	if (([_this, "tf_fadak_"] call CBA_fnc_find) == 0) then {
+		_result = tf_east_radio_code;
+	};
+	_result;
+};
 
+getLrRadioCode = 
+{
+	private ["_radio_object", "_result"];
+	_radio_object = _this select 0;
+	_result = "";
+	if ((_radio_object) isKindOf "Bag_Base") then {				
+		if (typeOf(_radio_object) == "tf_rt1523g") then {
+			_result = tf_west_radio_code;
+		};
+		if (typeOf(_radio_object) == "tf_anprc155") then {
+			_result = tf_guer_radio_code;
+		};
+		if (typeOf(_radio_object) == "tf_mr3000") then {
+			_result = tf_east_radio_code;
+		};
+	} else {
+		if (((_radio_object) call tfr_getVehicleSide) == west) then {
+			_result = tf_west_radio_code;
+		};
+		if (((_radio_object) call tfr_getVehicleSide) == resistance) then {
+			_result = tf_guer_radio_code;
+		};
+		if (((_radio_object) call tfr_getVehicleSide) == east) then {
+			_result = tf_east_radio_code;
+		};
+	};
+	_result;
+};
 
 setSwSetting = 
 {
@@ -201,12 +252,22 @@ setLrFrequency =
 
 getSwSettings = 
 {
-	private ["_variableName", "_value"];
+	private ["_variableName", "_value", "_preset"];
 	_variableName = format["%1_settings", _this];
 	_value = missionNamespace getVariable _variableName;
 	if (isNil "_value") then {
-		_value = call generateSwSetting;
-		[_this, _value] call setSwSetting;
+		if (!(use_saved_sw_setting) or (isNil "saved_active_sw_settings")) then {		
+			_value = (group player) getVariable "tf_sw_frequency";
+			if (isNil "_value") then {
+				_value = call generateSwSetting;
+			};			
+		} else {
+			_value = saved_active_sw_settings;
+		};
+		if (use_saved_sw_setting) then {
+			use_saved_sw_setting = false;
+		};
+		[_this, + _value] call setSwSetting;
 	};
 	_value;
 };
@@ -218,39 +279,22 @@ getLrSettings =
 	_radio_qualifier = _this select 1;
 	_value = _radio_object getVariable _radio_qualifier;
 	if (isNil "_value") then {
-		_value = call generateLrSettings;
-		[_radio_object, _radio_qualifier, _value] call setLrSettings;
+		if (!(use_saved_lr_setting) or (isNil "saved_active_lr_settings")) then {
+			_value = (group player) getVariable "tf_lr_frequency";
+			if (isNil "_value") then {
+				_value = call generateLrSettings;			
+			};
+		} else {
+			_value = saved_active_lr_settings;
+		};
+		if (use_saved_lr_setting) then {
+			use_saved_lr_setting = false;
+		};
+		[_radio_object, _radio_qualifier, + _value] call setLrSettings;
 	};
 	_value;
 };
 
-generateSwSetting = 
-{
-	private ["_sw_frequencies"];
-	_sw_frequencies = [];
-	if (!(use_saved_sw_setting) or (isNil "saved_active_sw_settings")) then {
-		_sw_frequencies = [0, 7, 0, 0, 0, 0, 0, 0, 0, 0];
-		for "_i" from FREQ_OFFSET to (FREQ_OFFSET + MAX_CHANNELS) step 1 do {
-			_sw_frequencies set [_i, (str (round (((random (MAX_SW_FREQ - MIN_SW_FREQ)) + MIN_SW_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER))];
-		};
-	} else {
-		_sw_frequencies = saved_active_sw_settings;
-	};
-	if (use_saved_sw_setting) then {
-		use_saved_sw_setting = false;
-	};
-	_sw_frequencies;
-};
-
-generateLrSettings = 
-{
-	private ["_lr_frequencies"];
-	_lr_frequencies = [0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-	for "_i" from FREQ_OFFSET to (FREQ_OFFSET + MAX_LR_CHANNELS) step 1 do {
-		_lr_frequencies set [_i, (str (round (((random (MAX_ASIP_FREQ - MIN_ASIP_FREQ)) + MIN_ASIP_FREQ) * FREQ_ROUND_POWER) / FREQ_ROUND_POWER))];
-	};
-	_lr_frequencies;
-};
 
 
 #include "keys.sqf"
@@ -298,7 +342,7 @@ processSWChannelKeys =
 	private ["_sw_channel_number", "_hintText"];
 	_sw_channel_number = _this select 0;
 
-	if (call haveSWRadio) then {		
+	if ((call haveSWRadio) and {alive player}) then {		
 		[call activeSwRadio, _sw_channel_number] call setSwChannel;
 
 		_hintText = format[localize "STR_active_sw_channel", _sw_channel_number + 1];
@@ -316,7 +360,7 @@ processLRChannelKeys =
 	private ["_lr_channel_number", "_hintText"];
 	_lr_channel_number = _this select 0;
 
-	if (call haveLRRadio) then {
+	if ((call haveLRRadio) and {alive player}) then {
 		_active_lr = call activeLrRadio;
 		[_active_lr select 0, _active_lr select 1, _lr_channel_number] call setLrChannel;
 		_hintText = format[localize "STR_active_lr_channel", _lr_channel_number + 1];
@@ -360,51 +404,88 @@ updateLRDialogToChannel =
 	ctrlSetText [IDC_RT1523G_RADIO_DIALOG_CHANNEL_EDIT, _channelText];
 };
 eyeDepth = 
-{
-	private ["_player"];
-	_player = _this;
-	((eyepos _player) select 2) + ((getPosASLW _player) select 2) - ((getPosASL _player) select 2);
+{	
+	((eyepos _this) select 2) + ((getPosASLW _this) select 2) - ((getPosASL _this) select 2);
 };
+
+vehicleIsIsolatedAndInside = 
+{
+	private ["_result"];
+	_result = false;
+	if (vehicle _this != _this) then {
+		if ((vehicle _this) call tfr_isVehicleIsolated) then {
+			if !([_this] call CBA_fnc_isTurnedOut) then {
+				_result = true;
+			};
+		};
+	};
+	_result;
+};
+
 canSpeak = 
 {
-	private ["_player"];
-	_player = _this;
-	(((_player call eyeDepth) > 0) or 
-					(
-						(vehicle _player) call tfr_isVehicleIsolated) 
-							and 
-						!([_player] call CBA_fnc_isTurnedOut)
-					)
+	private ["_result", "_player", "_isolated_and_inside"];
+
+	_result = false;
+	_player = _this select 0;
+	_isolated_and_inside = _this select 1;
+
+	if ((_player call eyeDepth) > 0) then {
+		_result = true;
+	} else {
+		_result = _isolated_and_inside;
+	};
+	_result;
+
 };
 canUseSWRadio =
 {
-	private ["_player"];
-	_player = _this;
-	(((_player call eyeDepth > 0)) 
-		or ( 
-			(_player call canSpeak) and (vehicle _player != _player) and ((_player call eyeDepth) > -1) and ((isAbleToBreathe _player) or (
-															(vehicle _player) call tfr_isVehicleIsolated)
-															and !([_player] call CBA_fnc_isTurnedOut)
-														)
-		 ));
+	private ["_player", "_isolated_and_inside", "_result", "_depth"];
+
+	_result = false;
+	_player = _this select 0;
+	_depth = _player call eyeDepth;
+
+	if (_depth > 0) then {
+		_result = true;
+	} else {
+		if ((_this select 2) and {_depth > -1} and {vehicle _player != _player}) then {
+			if ((_this select 1) or {isAbleToBreathe _player}) then {
+				_result = true;
+			};
+		};
+	};
+	_result;
 };
 canUseLRRadio =
 {
-	private ["_player"];
-	_player = _this;
-	(((_player call eyeDepth > 0)) 
-		or ( 
-			(vehicle _player != _player) and ((_player call eyeDepth) > -3) and ((isAbleToBreathe _player) or (
-															(vehicle _player) call tfr_isVehicleIsolated)
-															and !([_player] call CBA_fnc_isTurnedOut)
-														)
-		 ));
+	private ["_player", "_isolated_and_inside", "_result", "_depth"];
+
+	_player = _this select 0;
+	_isolated_and_inside = _this select 1;
+	_depth = _player call eyeDepth;
+	_result = false;
+
+	if (_depth > 0) then {
+		_result = true;
+	} else {
+		if ((vehicle _player != _player) and {_depth > -3}) then {
+			if ((_isolated_and_inside) or {isAbleToBreathe _player}) then {
+				_result = true;
+			};
+		};
+	};
+
+	_result;
 };
 canUseDDRadio =
 {
-	private ["_player"];
-	_player = _this;
-	((_player call eyeDepth) < 0);
+	private ["_player", "_isolated_and_inside"];
+
+	_player = _this select 0;
+	_isolated_and_inside = _this select 1;
+
+	((_player call eyeDepth) < 0) and !(_isolated_and_inside);
 };
 
 inWaterHint = 
@@ -420,10 +501,10 @@ onSwTangentPressed =
 {
 	private["_result", "_request", "_hintText"];
 	if (!(tangent_sw_pressed) and {alive player} and {call haveSWRadio}) then {
-		if (player call canUseSWRadio) then { 
-			_hintText = format[localize "STR_transmit_sw", [call activeSwRadio] call currentSWFrequency];
+		if ([player, player call vehicleIsIsolatedAndInside, [player, player call vehicleIsIsolatedAndInside] call canSpeak] call canUseSWRadio) then { 
+			_hintText = format[localize "STR_transmit_sw", call currentSWFrequency];
 			hintSilent parseText (_hintText);
-			_request = format["TANGENT@PRESSED@%1", [call activeSwRadio] call currentSWFrequency];
+			_request = format["TANGENT@PRESSED@%1%2",call currentSWFrequency, (call activeSwRadio) call getSwRadioCode];
 			if (isMultiplayer) then {
 				_result = "task_force_radio_pipe" callExtension _request;
 			};
@@ -440,7 +521,7 @@ onSwTangentReleased =
 	private["_result", "_request"];
 	if ((tangent_sw_pressed) and {alive player}) then {
 		hintSilent "";
-		_request = format["TANGENT@RELEASED@%1", [call activeSwRadio] call currentSWFrequency];
+		_request = format["TANGENT@RELEASED@%1%2",call currentSWFrequency, (call activeSwRadio) call getSwRadioCode];
 		if (isMultiplayer) then {
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
@@ -474,10 +555,10 @@ onLRTangentPressed =
 {
 	private["_result", "_request", "_hintText"];
 	if (!(tangent_lr_pressed) and {alive player} and {call haveLRRadio}) then {
-		if (player call canUseLRRadio) then {
-			_hintText = format[localize "STR_transmit_lr", [call activeLrRadio] call currentLRFrequency];
+		if ([player, player call vehicleIsIsolatedAndInside] call canUseLRRadio) then {
+			_hintText = format[localize "STR_transmit_lr", call currentLRFrequency];
 			hintSilent parseText (_hintText);
-			_request = format["TANGENT_LR@PRESSED@%1", [call activeLrRadio] call currentLRFrequency];
+			_request = format["TANGENT_LR@PRESSED@%1%2", call currentLRFrequency, (call activeLrRadio) call getLrRadioCode];
 			if (isMultiplayer) then {
 				_result = "task_force_radio_pipe" callExtension _request;
 			};
@@ -494,7 +575,7 @@ onLRTangentReleased =
 	private["_result", "_request"];	
 	if ((tangent_lr_pressed) and {alive player}) then {
 		hintSilent "";
-		_request = format["TANGENT_LR@RELEASED@%1", [call activeLrRadio] call currentLRFrequency];
+		_request = format["TANGENT_LR@RELEASED@%1%2", call currentLRFrequency, (call activeLrRadio) call getLrRadioCode];
 		if (isMultiplayer) then {
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
@@ -560,7 +641,7 @@ onDDTangentPressed =
 {
 	private["_result", "_request", "_hintText"];
 	if (!(tangent_dd_pressed) and {alive player} and {call haveDDRadio}) then {
-		if (player call canUseDDRadio) then { 
+		if ([player, player call vehicleIsIsolatedAndInside] call canUseDDRadio) then { 
 			_hintText = format[localize "STR_transmit_dd", dd_frequency];
 			hintSilent parseText (_hintText);
 			_request = format["TANGENT_DD@PRESSED@%1", dd_frequency];
@@ -653,12 +734,14 @@ vehicleId =
 	_result;
 };
 
+
 preparePositionCoordinates = 		
 {
-	private ["_x_player", "_current_eyepos", "_x_playername", "_current_x", "_current_y", "_current_z", "_current_look_at_x", "_current_look_at_y", "_current_look_at_z", "_current_hyp_horizontal", "_current_rotation_horizontal", "_player_pos"];
-	_x_player = _this select 0;
+	private ["_x_player", "_current_eyepos", "_x_playername", "_current_x", "_current_y", "_current_z", "_current_look_at_x", "_current_look_at_y", "_current_look_at_z", "_current_hyp_horizontal", "_current_rotation_horizontal", "_player_pos", "_isolated_and_inside", "_can_speak"];
+	_x_player = _this;
 	_current_eyepos = eyepos _x_player;
 	_x_playername = name _x_player;
+
 	_current_x = (_current_eyepos select 0);
 	_current_y = (_current_eyepos select 1);
 	_current_z = (_current_eyepos select 2);
@@ -667,6 +750,8 @@ preparePositionCoordinates =
 	_current_look_at_x = (_current_look_at select 0) - _current_x;
 	_current_look_at_y = (_current_look_at select 1) - _current_y;
 	_current_look_at_z = (_current_look_at select 2) - _current_z;
+
+	_isolated_and_inside = _x_player call vehicleIsIsolatedAndInside;
 
 	_current_rotation_horizontal = 0;
 	_current_hyp_horizontal = sqrt(_current_look_at_x * _current_look_at_x + _current_look_at_y * _current_look_at_y);
@@ -693,7 +778,8 @@ preparePositionCoordinates =
 		_current_y = _current_y - (_player_pos select 1);
 		_current_z = _current_z - (_player_pos select 2);
 	};
-	(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _x_playername, _current_x, _current_y, _current_z, _current_rotation_horizontal, _x_player call canSpeak, _x_player call canUseSWRadio, _x_player call canUseLRRadio, _x_player call canUseDDRadio,  _x_player call vehicleId]);
+	_can_speak = [_x_player, _isolated_and_inside] call canSpeak;
+	(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _x_playername, _current_x, _current_y, _current_z, _current_rotation_horizontal, _can_speak, [_x_player, _isolated_and_inside, _can_speak] call canUseSWRadio, [_x_player, _isolated_and_inside] call canUseLRRadio, [_x_player, _isolated_and_inside] call canUseDDRadio,  _x_player call vehicleId]);
 };
 
 setActiveSwRadio = 
@@ -851,7 +937,7 @@ lrRadioMenu =
 		];
 		_menu;
 	} else {
-		if (call haveSWRadio) then {
+		if (call haveLRRadio) then {
 			lr_dialog_radio = call activeLrRadio;
 			call onLrDialogOpen;
 		};
@@ -859,10 +945,182 @@ lrRadioMenu =
 	};
 };
 
+tf_lastFrameTick = diag_tickTime;
+tf_msPerStep = 0;
 
+tf_nearPlayers = [];
+tf_farPlayers = [];
+
+tf_nearPlayersIndex = 0;
+tf_nearPlayersProcessed = true;
+
+tf_farPlayersIndex = 0;
+tf_farPlayersProcessed = true;
+
+tf_msPerStep = 0.035;
+tf_processingCounter = 0;
+
+tf_lastFrequencyInfoTick = 0;
+tf_lasNearPlayersUpdate = 0;
+
+tf_lastError = false;
+
+tf_fastProcessingCoeff = 0;
+
+tf_sendFrequencyInfo = 
+{
+	private ["_request", "_result", "_freq", "_freq_lr", "_freq_dd", "_alive", "_nickname", "_isolated_and_inside", "_can_speak", "_elemsToProcess"];
+
+	// send frequencies
+	_freq = ["No_SW_Radio"];
+	_freq_lr = ["No_LR_Radio"];
+	_freq_dd = "No_DD_Radio";
+
+	_isolated_and_inside = player call vehicleIsIsolatedAndInside;
+	_can_speak = [player, _isolated_and_inside] call canSpeak;
+
+	if ((call haveSWRadio) and {[player, _isolated_and_inside, _can_speak] call canUseSWRadio}) then {
+		_freq = [];
+		{
+			_freq set[count _freq, format ["%1%2|%3", _x call getSwFrequency, _x call getSwRadioCode, _x call getSwVolume]];
+		} forEach (call radiosList);
+	};
+	if ((call haveLRRadio) and {[player, _isolated_and_inside] call canUseLRRadio}) then {
+		_freq_lr = [];
+		{
+			_freq_lr set[count _freq_lr, format ["%1%2|%3", _x call getLrFrequency, _x call getLrRadioCode, _x call getLrVolume]];
+		} forEach (call lrRadiosList);				
+	};
+	if ((call haveDDRadio) and {[player, _isolated_and_inside] call canUseDDRadio}) then {
+		_freq_dd = dd_frequency;
+	};
+	_alive = alive player;
+	_nickname = name player;
+	_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@", str(_freq), str(_freq_lr), _freq_dd, _alive, speak_volume_level, dd_volume_level, _nickname, waves];
+	_result = "task_force_radio_pipe" callExtension _request;
+};
+
+tf_getNearPlayers = 
+{
+	private ["_result", "_index", "_players_in_group", "_add_to_near"];
+	_players_in_group = count (units (group player));
+	_result = [];
+	_index = 0;
+	{			
+		if (isPlayer _x) then {
+			_add_to_near = false;
+			if ((_players_in_group < 10) and {group player == group _x}) then {
+				_add_to_near = true; 
+			};
+
+			_was_speaking = _x getVariable "tf_start_speaking";
+			if (!(isNil "_was_speaking") and {diag_tickTime - _was_speaking < 20}) then {
+				_add_to_near = true;
+			};
+
+			if ((player distance _x < 60) or {_add_to_near}) then {				
+				_result set[_index, _x];
+				_index = _index + 1;
+			} 
+		};
+	} count allUnits;
+	_result;
+};
+
+processPlayerPositions =
+{
+	private ["_request", "_result", "_elemsToProcess"];
+	if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {
+		tf_nearPlayersIndex = 0;
+		tf_farPlayersIndex = 0;
+
+		tf_nearPlayers = call tf_getNearPlayers;		
+		tf_farPlayers = allUnits - tf_nearPlayers;		
+
+		tf_fastProcessingCoeff = 0;
+		if (count tf_farPlayers < count tf_nearPlayers) then {
+			tf_fastProcessingCoeff = 1;
+		};
+			
+		tf_nearPlayersIndex = 0;
+		tf_farPlayersIndex = 0;	
+
+		if (count tf_farPlayers > 0) then {
+			tf_farPlayersProcessed = false;
+		};
+		if (count tf_nearPlayers > 0) then {
+			tf_nearPlayersProcessed = false;
+		};
+
+		// send information about version
+		_request = format["VERSION@%1@%2", TF_ADDON_VERSION, tf_radio_channel_name];
+		_result = "task_force_radio_pipe" callExtension _request;
+
+
+	} else {
+		_elemsToProcess = (diag_tickTime - tf_lastFrameTick) / tf_msPerStep;
+		if (_elemsToProcess >= 1) then {
+			for "_y" from 0 to _elemsToProcess step 1 do {
+				private ["_xplayer"];				
+				if ((tf_processingCounter % 3 > tf_fastProcessingCoeff) and {count tf_farPlayers > 0}) then {
+					_xplayer = tf_farPlayers select tf_farPlayersIndex;
+					tf_farPlayersIndex = tf_farPlayersIndex + 1;
+					if (tf_farPlayersIndex >= count tf_farPlayers) then {
+						tf_farPlayersIndex = 0;
+						tf_farPlayersProcessed = true;
+					};
+				} else {
+					if (count tf_nearPlayers > 0) then {
+						_xplayer = tf_nearPlayers select tf_nearPlayersIndex;
+						tf_nearPlayersIndex = tf_nearPlayersIndex + 1;
+						if (tf_nearPlayersIndex >= count tf_nearPlayers) then {
+							tf_nearPlayersIndex = 0;							
+							tf_nearPlayersProcessed = true;		
+							if (diag_tickTime - tf_lastNearPlayersUpdate > 0.5) then {	
+								tf_nearPlayers = call tf_getNearPlayers;
+								tf_lastNearPlayersUpdate = diag_tickTime;
+							};
+
+						};
+					};
+				};
+														
+				
+				_request = _xplayer call preparePositionCoordinates;
+				_result = "task_force_radio_pipe" callExtension _request;
+	
+				if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"}) then 
+				{
+					hintSilent _result;
+					tf_lastError = true;
+				} else {
+					if (tf_lastError) then {
+						hintSilent "";
+						tf_lastError = false;
+					};
+				};
+				if (_result == "SPEAKING") then {
+					_xplayer setRandomLip true;
+					_xplayer setVariable ["tf_start_speaking", diag_tickTime];
+				} else {
+					_xplayer setRandomLip false;
+				};								
+
+				tf_processingCounter = tf_processingCounter + 1;
+			};
+			
+			tf_lastFrameTick = diag_tickTime;
+		};
+	};
+	if (diag_tickTime - tf_lastFrequencyInfoTick > 1) then {
+		call tf_sendFrequencyInfo;
+		tf_lastFrequencyInfoTick = diag_tickTime;
+	};
+	
+};
 
 [] spawn {
-	private ["_prev_result", "_request", "_result", "_freq", "_freq_lr", "_freq_dd", "_alive", "_nickname", "_active_sw_radio"];
+	
 	waituntil {!(IsNull (findDisplay 46))};
 
 	["player", [[dialog_sw_scancode, [dialog_sw_shift == 1, dialog_sw_ctrl == 1, dialog_sw_alt == 1]]], -3, '_this call swRadioMenu'] call CBA_fnc_flexiMenu_Add;
@@ -899,69 +1157,10 @@ lrRadioMenu =
 	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call onDDTangentReleasedHack"];
 	[dialog_dd_scancode, [dialog_dd_shift == 1, dialog_dd_ctrl == 1, dialog_dd_alt == 1], {call onDDDialogOpen}, "keydown", "23"] call CBA_fnc_addKeyHandler;
 
-	[speak_volume_scancode, [speak_volume_shift == 1, speak_volume_ctrl == 1, speak_volume_alt == 1], {call onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;
-	
-		
-	_prev_result = "OK";
+	[speak_volume_scancode, [speak_volume_shift == 1, speak_volume_ctrl == 1, speak_volume_alt == 1], {call onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;	
 
-	while {true} do {
-		if (isMultiplayer) then {
-			{		
-				if (isPlayer _x) then {
-					_request = [_x] call preparePositionCoordinates;
-					_result = "task_force_radio_pipe" callExtension _request;
-					if (_result != "OK") then 
-					{
-						hintSilent _result;			
-					} else {
-						if (_prev_result != "OK") then {
-							hintSilent "";
-						}
-					};
-					_prev_result = _result;
-				};
-			} forEach allUnits;
-		};
-		sleep 0.2;
-		// send current sw freq
-		if (isMultiplayer) then {
-			_freq = ["No_SW_Radio"];
-			_freq_lr = ["No_LR_Radio"];
-			_freq_dd = "No_DD_Radio";
-			if ((call haveSWRadio) and (player call canUseSWRadio)) then {
-				_freq = [];
-				{
-					_freq set[count _freq, format ["%1|%2", _x call getSwFrequency, _x call getSwVolume]];
-				} forEach (call radiosList);
-			};
-			if ((call haveLRRadio) and (player call canUseLRRadio)) then {
-				_freq_lr = [];
-				{
-					_freq_lr set[count _freq_lr, format ["%1|%2", _x call getLrFrequency, _x call getLrVolume]];
-				} forEach (call lrRadiosList);				
-			};
-			if ((call haveDDRadio) and (player call canUseDDRadio)) then {
-				_freq_dd = dd_frequency;
-			};
-			_alive = alive player;
-			_nickname = name player;
-			_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@", str(_freq), str(_freq_lr), _freq_dd, _alive, speak_volume_level, dd_volume_level, _nickname, waves];
-			_result = "task_force_radio_pipe" callExtension _request;
-		};
-		_request = format["VERSION@%1", ADDON_VERSION];
-		_result = "task_force_radio_pipe" callExtension _request;
-		if !(use_saved_sw_setting) then {
-			if ((alive player) and (call haveSWRadio)) then {
-				_active_sw_radio = call activeSwRadio;
-				if !(isNil "_active_sw_radio") then {
-					saved_active_sw_settings = _active_sw_radio call getSwSettings;
-				} else {
-					saved_active_sw_settings = nil;	
-				};
-			} else {
-				saved_active_sw_settings = nil;	
-			};
-		};
+	if (isMultiplayer) then {
+		["processPlayerPositionsHandler", "onEachFrame", "processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
 	};
 };
 
@@ -1087,12 +1286,12 @@ requestRadios =
 	};
 	if (time - last_request_time > 3) then {
 		last_request_time = time;
-		_variableName = "radio_request_" + (getPlayerUID player) + str (side player);
+		_variableName = "radio_request_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
 		_radio_count = _this call radioToRequestCount;
 	
 		if (_radio_count > 0) then {
 			missionNamespace setVariable [_variableName, _radio_count];
-			_responseVariableName = "radio_response_" + (getPlayerUID player) + str (side player);
+			_responseVariableName = "radio_response_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
 			 missionNamespace setVariable [_responseVariableName, nil];
 			publicVariableServer _variableName;
 			titleText [localize ("STR_wait_radio"), "PLAIN"];
@@ -1115,11 +1314,44 @@ requestRadios =
 
 radioReplaceProcess = 
 {
+	private ["_currentPlayerFlag", "_active_sw_radio", "_active_lr_radio"];
 	while {true} do {
-		sleep 5;
+		if !(use_saved_sw_setting) then {
+			if ((alive player) and (call haveSWRadio)) then {
+				_active_sw_radio = call activeSwRadio;
+				if !(isNil "_active_sw_radio") then {
+					saved_active_sw_settings = _active_sw_radio call getSwSettings;
+				} else {
+					saved_active_sw_settings = nil;	
+				};
+			} else {
+				saved_active_sw_settings = nil;	
+			};
+		};
+
+		if !(use_saved_lr_setting) then {
+			if ((alive player) and (call haveLRRadio)) then {
+				_active_lr_radio = call activeLrRadio;
+				if !(isNil "_active_lr_radio") then {
+					saved_active_lr_settings = _active_lr_radio call getLrSettings;
+				} else {
+					saved_active_lr_settings = nil;	
+				};
+			} else {
+				saved_active_lr_settings = nil;	
+			};
+		};
+
+		sleep 2;
 		if ((time - respawnedAt > 10) and (alive player)) then {
 			false call requestRadios;
 		};
+		if !(isNull player) then {
+			_currentPlayerFlag = player getVariable "tf_force_radio_active";
+			if (isNil "_currentPlayerFlag") then {
+				player setVariable ["tf_force_radio_active", TF_ADDON_VERSION, true];
+			};
+		}
 	};
 };
 
@@ -1127,19 +1359,19 @@ processRespawn =
 {
 	[] spawn {	
 		waitUntil {!(isNull player)};	
-		player setVariable ["tf_force_radio_active", ADDON_VERSION, true];
+		
 		respawnedAt = time;
 		if (alive player) then
 		{
 			if (leader player == player) then {	
-				if (isNil "tf_no_auto_long_range_radio") then {
+				if ((isNil "tf_no_auto_long_range_radio") and {backpack player != "B_Parachute"}) then {
 					if ((backpack player != "tf_rt1523g") and {backpack player != "tf_anprc155"} and {backpack player != "tf_mr3000"}) then {
 						player action ["putbag", player];
 						sleep 3;
-						if (side player == west) then {
+						if ((player call BIS_fnc_objectSide) == west) then {
 							player addBackpack "tf_rt1523g";
 						} else {
-							if (side player == east) then {
+							if ((player call BIS_fnc_objectSide) == east) then {
 								player addBackpack "tf_mr3000";	
 							} else {
 								player addBackpack "tf_anprc155";
@@ -1154,7 +1386,7 @@ processRespawn =
 };
 
 player addEventHandler ["respawn", {call processRespawn}];
-player addEventHandler ["killed", {use_saved_sw_setting = true; first_radio_request = true;}];
+player addEventHandler ["killed", {use_saved_sw_setting = true; use_saved_lr_setting = true; first_radio_request = true;}];
 call processRespawn;
 
 respawnedAt = time;
@@ -1170,8 +1402,8 @@ respawnedAt = time;
 	if (isNil "server_addon_version") then {
 		hintC (localize "STR_no_server");
 	} else {
-		if (server_addon_version != ADDON_VERSION) then {
-			hintC format[localize "STR_different_version", server_addon_version, ADDON_VERSION];
+		if (server_addon_version != TF_ADDON_VERSION) then {
+			hintC format[localize "STR_different_version", server_addon_version, TF_ADDON_VERSION];
 		};
 	};
 

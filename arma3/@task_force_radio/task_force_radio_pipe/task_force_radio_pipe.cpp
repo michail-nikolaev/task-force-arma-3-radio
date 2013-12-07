@@ -44,6 +44,12 @@ void openPipe()
 			0, // use default wait time
 			&SA // use default security attributes
 		);
+	if (pipe == INVALID_HANDLE_VALUE) 
+	{
+		DWORD error = GetLastError();
+		int a = 3;
+	}
+
 }
 
 void __stdcall RVExtension(char *output, int outputSize, const char *input)
