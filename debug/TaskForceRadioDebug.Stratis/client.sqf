@@ -597,6 +597,7 @@ onLRTangentReleasedHack =
 	 then {
 		call onLRTangentReleased;
 	};
+	false;
 };
 
 onLRDialogOpen = 
@@ -684,6 +685,7 @@ onDDTangentReleasedHack =
 	 then {
 		call onDDTangentReleased;
 	};
+	false;
 };
 
 onDDDialogOpen = 
