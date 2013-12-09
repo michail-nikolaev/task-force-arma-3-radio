@@ -37,9 +37,6 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-#define SERIOUS_MOD_CHANNEL_NAME "TaskForceRadio"
-#define SERIOUS_CHANNEL_PASSWORD "123"
-
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
@@ -59,14 +56,12 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.8.1.6"
+#define PLUGIN_VERSION "0.8.2"
 #define WHISPER_VOLUME "whispering"
 #define NORMAL_VOLUME "normal"
 #define YELLING_VOLUME "yelling"
 #define CANT_SPEAK_DISTANCE 5
 
-
-std::string addon_version;
 
 struct CLIENT_DATA
 {	
@@ -151,6 +146,11 @@ struct SERVER_RADIO_DATA
 	bool alive;
 	bool canSpeak;	
 	float wavesLevel;
+
+	std::string serious_mod_channel_name;
+	std::string serious_mod_channel_password;
+	std::string addon_version;
+
 
 	int currentDataFrame;
 
@@ -371,7 +371,13 @@ bool isInChannel(uint64 serverConnectionHandlerID, anyID clientId, const char* c
 
 bool isSeriousModeEnabled(uint64 serverConnectionHandlerID, anyID clientId)
 {
-	return isInChannel(serverConnectionHandlerID, clientId, SERIOUS_MOD_CHANNEL_NAME);
+	std::string serious_mod_channel_name = "__unknown__";
+	EnterCriticalSection(&serverDataCriticalSection);
+	if (serverIdToData.count(serverConnectionHandlerID)) {
+		serious_mod_channel_name = serverIdToData[serverConnectionHandlerID].serious_mod_channel_name;
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
+	return isInChannel(serverConnectionHandlerID, clientId, serious_mod_channel_name.c_str());
 }
 
 bool isOtherRadioPluginEnabled(uint64 serverConnectionHandlerID, anyID clientId)
@@ -664,9 +670,11 @@ void unmuteAll(uint64 serverConnectionHandlerID)
 
 std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includeVersion)
 {
+	uint64 id = ts3Functions.getCurrentServerConnectionHandlerID();
 	EnterCriticalSection(&serverDataCriticalSection);
-	std::string addon = addon_version;
+	std::string addon = serverIdToData[id].addon_version;
 	LeaveCriticalSection(&serverDataCriticalSection);
+	
 	std::string result = std::string("[I]Connected[/I] [B]") 
 		+ (pipeConnected ? "Y" : "N") + "[/B] [I]Play[/I] [B]" 
 		+ (inGame ? "Y" : "N") 
@@ -804,9 +812,13 @@ void onGameEnd(uint64 serverConnectionHandlerID, anyID clientId)
 		notSeriousChannelId = uint64(-1);
 	}
 	unmuteAll(serverConnectionHandlerID);
+	EnterCriticalSection(&serverDataCriticalSection);
+	serverIdToData[serverConnectionHandlerID].serious_mod_channel_name = "";
+	serverIdToData[serverConnectionHandlerID].serious_mod_channel_password = "";
+	LeaveCriticalSection(&serverDataCriticalSection);
 }
 
-void onRespawn(uint64 serverConnectionHandlerID, anyID clientId)
+void onGameStart(uint64 serverConnectionHandlerID, anyID clientId)
 {
 	log("On Respawn");	
 	if (isConnected(serverConnectionHandlerID))
@@ -814,6 +826,16 @@ void onRespawn(uint64 serverConnectionHandlerID, anyID clientId)
 			notSeriousChannelId = getCurrentChannel(serverConnectionHandlerID);
 		uint64* result;
 		DWORD error;
+
+		std::string serious_mod_channel_name = "__unknown__";
+		std::string serious_mod_channel_password = "__unknown__";
+		EnterCriticalSection(&serverDataCriticalSection);
+		if (serverIdToData.count(serverConnectionHandlerID)) {
+			serious_mod_channel_name = serverIdToData[serverConnectionHandlerID].serious_mod_channel_name;
+			serious_mod_channel_password = serverIdToData[serverConnectionHandlerID].serious_mod_channel_password;
+		}
+		LeaveCriticalSection(&serverDataCriticalSection);
+
 		if ((error = ts3Functions.getChannelList(serverConnectionHandlerID, &result)) != ERROR_ok)
 		{
 			log("Can't get channel list", error);		
@@ -832,9 +854,9 @@ void onRespawn(uint64 serverConnectionHandlerID, anyID clientId)
 				} 
 				else 
 				{
-					if (!strcmp(SERIOUS_MOD_CHANNEL_NAME, channelName))
+					if (!strcmp(serious_mod_channel_name.c_str(), channelName))
 					{								
-						if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, channelId, SERIOUS_CHANNEL_PASSWORD, NULL)) != ERROR_ok) {
+						if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID, clientId, channelId, serious_mod_channel_password.c_str(), NULL)) != ERROR_ok) {
 							log("Can't join channel", error);
 						} 
 						else 
@@ -912,10 +934,12 @@ std::string processGameCommand(std::string command)
 {	
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
 	std::vector<std::string> tokens = split(command, '@'); // @ may not be used in nickname
-	if (tokens.size() == 3 && tokens[0] == "VERSION") 
+	if (tokens.size() == 4 && tokens[0] == "VERSION") 
 	{
-		EnterCriticalSection(&serverDataCriticalSection);		
-		addon_version = tokens[1];
+		EnterCriticalSection(&serverDataCriticalSection);				
+		serverIdToData[currentServerConnectionHandlerID].addon_version = tokens[1];
+		serverIdToData[currentServerConnectionHandlerID].serious_mod_channel_name = tokens[2];
+		serverIdToData[currentServerConnectionHandlerID].serious_mod_channel_password = tokens[3];
 		serverIdToData[currentServerConnectionHandlerID].currentDataFrame++;
 		LeaveCriticalSection(&serverDataCriticalSection);
 		return "OK";
@@ -1226,25 +1250,28 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 						);
 				if (result) {
 					sleep = 100;
-					std::string command = std::string(buffer);
-					if (!startWith("VERSION", command))
-					{
-						InterlockedExchange(&lastInGame, GetTickCount());
-						if (!inGame)
-						{
-							playWavFile("radio-sounds/on", false, 0);
-							inGame = true;							
-							onRespawn(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
-							EnterCriticalSection(&serverDataCriticalSection);
-							serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].currentDataFrame = 0;
-							LeaveCriticalSection(&serverDataCriticalSection);
-						}	
-					}				
+					std::string command = std::string(buffer);				
 					if (!pipeConnected)
 					{
 						pipeConnected = true;						
 					}
 					std::string result = processGameCommand(command);
+					if (!startWith("VERSION", command))
+					{
+						InterlockedExchange(&lastInGame, GetTickCount());
+						EnterCriticalSection(&serverDataCriticalSection);
+						std::string channelName = serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].serious_mod_channel_name;
+						LeaveCriticalSection(&serverDataCriticalSection);
+						if (!inGame && channelName.length() > 0)
+						{
+							playWavFile("radio-sounds/on", false, 0);
+							inGame = true;							
+							onGameStart(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
+							EnterCriticalSection(&serverDataCriticalSection);
+							serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].currentDataFrame = 0;
+							LeaveCriticalSection(&serverDataCriticalSection);
+						}	
+					}
 					const char* output = result.c_str();
 					DWORD written = 0;
 					if (WriteFile(pipe, output, (DWORD) result.length() + 1, &written, NULL)) {
@@ -1902,7 +1929,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						float volumeLevel = volumeMultiplifier((float) listed_info.volume);
 						processCompressor(&data->compressor, sw_buffer, channels, sampleCount);
 						data->swEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, d, serverConnectionHandlerID));
-						processRadioEffect(sw_buffer, channels, sampleCount, volumeLevel * 0.2f, &data->swEffect);
+						processRadioEffect(sw_buffer, channels, sampleCount, volumeLevel * 0.3f, &data->swEffect);
 					}
 					short* lr_buffer = NULL;
 					if (listed_info.over == LISTEN_TO_LR)
@@ -1911,7 +1938,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						float volumeLevel = volumeMultiplifier((float) listed_info.volume);						
 						processCompressor(&data->compressor, lr_buffer, channels, sampleCount);
 						data->lrEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, d, serverConnectionHandlerID));
-						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.2f, &data->lrEffect);
+						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.3f, &data->lrEffect);
 					}
 					short* dd_buffer = NULL;
 					if (listed_info.over == LISTEN_TO_DD)

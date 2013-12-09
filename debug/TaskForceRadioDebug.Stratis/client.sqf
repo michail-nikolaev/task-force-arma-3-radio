@@ -5,6 +5,9 @@
 if (isNil "tf_radio_channel_name") then {
 	tf_radio_channel_name = "TaskForceRadio";
 };
+if (isNil "tf_radio_channel_password") then {
+	tf_radio_channel_password = "123";
+};
 
 if (isNil "tf_west_radio_code") then {
 	tf_west_radio_code = "_bluefor";
@@ -1027,96 +1030,108 @@ tf_getNearPlayers =
 	_result;
 };
 
+sendVersionInfo = 
+{
+	// send information about version
+	_request = format["VERSION@%1@%2@%3", TF_ADDON_VERSION, tf_radio_channel_name, tf_radio_channel_password];
+	_result = "task_force_radio_pipe" callExtension _request;
+};
+
 processPlayerPositions =
 {
-	private ["_request", "_result", "_elemsToProcess"];
-	if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {
-		tf_nearPlayersIndex = 0;
-		tf_farPlayersIndex = 0;
-
-		tf_nearPlayers = call tf_getNearPlayers;		
-		tf_farPlayers = allUnits - tf_nearPlayers;		
-
-		tf_fastProcessingCoeff = 0;
-		if (count tf_farPlayers < count tf_nearPlayers) then {
-			tf_fastProcessingCoeff = 1;
-		};
-			
-		tf_nearPlayersIndex = 0;
-		tf_farPlayersIndex = 0;	
-
-		if (count tf_farPlayers > 0) then {
-			tf_farPlayersProcessed = false;
-		};
-		if (count tf_nearPlayers > 0) then {
-			tf_nearPlayersProcessed = false;
-		};
-
-		// send information about version
-		_request = format["VERSION@%1@%2", TF_ADDON_VERSION, tf_radio_channel_name];
-		_result = "task_force_radio_pipe" callExtension _request;
-
-
-	} else {
-		_elemsToProcess = (diag_tickTime - tf_lastFrameTick) / tf_msPerStep;
-		if (_elemsToProcess >= 1) then {
-			for "_y" from 0 to _elemsToProcess step 1 do {
-				private ["_xplayer"];				
-				if ((tf_processingCounter % 3 > tf_fastProcessingCoeff) and {count tf_farPlayers > 0}) then {
-					_xplayer = tf_farPlayers select tf_farPlayersIndex;
+	private ["_request", "_result", "_elemsToProcess", "_other_units"];
+	if !(isNull player) then {
+		if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {
+			tf_nearPlayersIndex = 0;
+			tf_farPlayersIndex = 0;
+	
+			tf_nearPlayers = call tf_getNearPlayers;		
+			_other_units = allUnits - tf_nearPlayers;
+	
+			tf_farPlayers = [];
+			tf_farPlayersIndex = 0;	
+			{
+				if (isPlayer _x) then {
+					tf_farPlayers set[tf_farPlayersIndex, _x];
 					tf_farPlayersIndex = tf_farPlayersIndex + 1;
-					if (tf_farPlayersIndex >= count tf_farPlayers) then {
-						tf_farPlayersIndex = 0;
-						tf_farPlayersProcessed = true;
-					};
-				} else {
-					if (count tf_nearPlayers > 0) then {
-						_xplayer = tf_nearPlayers select tf_nearPlayersIndex;
-						tf_nearPlayersIndex = tf_nearPlayersIndex + 1;
-						if (tf_nearPlayersIndex >= count tf_nearPlayers) then {
-							tf_nearPlayersIndex = 0;							
-							tf_nearPlayersProcessed = true;		
-							if (diag_tickTime - tf_lastNearPlayersUpdate > 0.5) then {	
-								tf_nearPlayers = call tf_getNearPlayers;
-								tf_lastNearPlayersUpdate = diag_tickTime;
+				};
+			} count _other_units;
+	
+			tf_fastProcessingCoeff = 0;
+			if (count tf_farPlayers < count tf_nearPlayers) then {
+				tf_fastProcessingCoeff = 1;
+			};
+				
+			tf_nearPlayersIndex = 0;
+			tf_farPlayersIndex = 0;	
+	
+			if (count tf_farPlayers > 0) then {
+				tf_farPlayersProcessed = false;
+			};
+			if (count tf_nearPlayers > 0) then {
+				tf_nearPlayersProcessed = false;
+			};
+			call sendVersionInfo;
+		} else {
+			_elemsToProcess = (diag_tickTime - tf_lastFrameTick) / tf_msPerStep;
+			if (_elemsToProcess >= 1) then {
+				for "_y" from 0 to _elemsToProcess step 1 do {
+					private ["_xplayer"];				
+					if ((tf_processingCounter % 3 > tf_fastProcessingCoeff) and {count tf_farPlayers > 0}) then {
+						_xplayer = tf_farPlayers select tf_farPlayersIndex;
+						tf_farPlayersIndex = tf_farPlayersIndex + 1;
+						if (tf_farPlayersIndex >= count tf_farPlayers) then {
+							tf_farPlayersIndex = 0;
+							tf_farPlayersProcessed = true;
+						};
+					} else {
+						if (count tf_nearPlayers > 0) then {
+							_xplayer = tf_nearPlayers select tf_nearPlayersIndex;
+							tf_nearPlayersIndex = tf_nearPlayersIndex + 1;
+							if (tf_nearPlayersIndex >= count tf_nearPlayers) then {
+								tf_nearPlayersIndex = 0;							
+								tf_nearPlayersProcessed = true;		
+								if (diag_tickTime - tf_lastNearPlayersUpdate > 0.5) then {	
+									tf_nearPlayers = call tf_getNearPlayers;
+									tf_lastNearPlayersUpdate = diag_tickTime;
+								};
+	
 							};
-
 						};
 					};
-				};
-														
-				
-				_request = _xplayer call preparePositionCoordinates;
-				_result = "task_force_radio_pipe" callExtension _request;
-	
-				if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"}) then 
-				{
-					hintSilent _result;
-					tf_lastError = true;
-				} else {
-					if (tf_lastError) then {
-						hintSilent "";
-						tf_lastError = false;
+															
+					
+					_request = _xplayer call preparePositionCoordinates;
+					_result = "task_force_radio_pipe" callExtension _request;
+		
+					if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"}) then 
+					{
+						hintSilent _result;
+						tf_lastError = true;
+					} else {
+						if (tf_lastError) then {
+							hintSilent "";
+							tf_lastError = false;
+						};
 					};
-				};
-				if (_result == "SPEAKING") then {
-					_xplayer setRandomLip true;
-					_xplayer setVariable ["tf_start_speaking", diag_tickTime];
-				} else {
-					_xplayer setRandomLip false;
-				};								
-
-				tf_processingCounter = tf_processingCounter + 1;
-			};
-			
-			tf_lastFrameTick = diag_tickTime;
-		};
-	};
-	if (diag_tickTime - tf_lastFrequencyInfoTick > 1) then {
-		call tf_sendFrequencyInfo;
-		tf_lastFrequencyInfoTick = diag_tickTime;
-	};
+					if (_result == "SPEAKING") then {
+						_xplayer setRandomLip true;
+						_xplayer setVariable ["tf_start_speaking", diag_tickTime];
+					} else {
+						_xplayer setRandomLip false;
+					};								
 	
+					tf_processingCounter = tf_processingCounter + 1;
+				};
+				
+				tf_lastFrameTick = diag_tickTime;
+			};
+		};
+		if (diag_tickTime - tf_lastFrequencyInfoTick > 1) then {
+			call tf_sendFrequencyInfo;
+			tf_lastFrequencyInfoTick = diag_tickTime;
+		};
+	};	
 };
 
 [] spawn {
@@ -1160,6 +1175,7 @@ processPlayerPositions =
 	[speak_volume_scancode, [speak_volume_shift == 1, speak_volume_ctrl == 1, speak_volume_alt == 1], {call onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;	
 
 	if (isMultiplayer) then {
+		call sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
 	};
 };
