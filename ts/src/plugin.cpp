@@ -63,19 +63,19 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 #define YELLING_VOLUME "yelling"
 #define CANT_SPEAK_DISTANCE 5
 
-#define UPDATE_URL L"prosofteng.com"
-#define UPDATE_FILE L"/resources/hear/HearVersion.txt"
+#define UPDATE_URL L"raw.github.com"
+#define UPDATE_FILE L"/michail-nikolaev/task-force-arma-3-radio/master/current_version.txt"
 
 bool isUpdateAvaible() {	
 	DWORD dwBytes;
 	char ch;
-	std::string hearVersion;
+	std::string pluginVersion;
 
 	DWORD r = 0;
 	if (!InternetGetConnectedState(&r, 0)) return false;
 	if (r & INTERNET_CONNECTION_OFFLINE) return false;
 
-	HINTERNET Initialize = InternetOpen(L"Hear", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+	HINTERNET Initialize = InternetOpen(L"FTAR", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
 	HINTERNET Connection = InternetConnect(Initialize,UPDATE_URL,INTERNET_DEFAULT_HTTP_PORT, NULL,NULL,INTERNET_SERVICE_HTTP,0,0);
 	HINTERNET File = HttpOpenRequest(Connection,NULL,UPDATE_FILE,NULL,NULL,NULL,0,0);
 
@@ -84,14 +84,14 @@ bool isUpdateAvaible() {
 		while(InternetReadFile(File,&ch,1,&dwBytes))
 		{
 			if(dwBytes != 1)break;
-			hearVersion += ch;
+			pluginVersion += ch;
 		}
 	}
 	InternetCloseHandle(File);
 	InternetCloseHandle(Connection);
 	InternetCloseHandle(Initialize);
 	std::string currentVersion = PLUGIN_VERSION;
-	return !hearVersion.isEmpty() && hearVersion.trim() != currentVersion.trim();
+	return pluginVersion != currentVersion;
 }
 
 struct CLIENT_DATA
@@ -1208,6 +1208,15 @@ volatile DWORD lastInGame = GetTickCount();
 volatile DWORD lastCheckForExpire = GetTickCount();		
 volatile DWORD lastInfoUpdate = GetTickCount();
 
+DWORD WINAPI UpdateThread( LPVOID lpParam ) 
+{
+	if (isUpdateAvaible())
+	{
+		MessageBox(NULL, L"New version of Task Force Arrowhead Radio is available. Check radio.task-force.ru/en", L"Task Force Arrowhead Radio Update", MB_OK);
+	}
+	return 0;
+}
+
 DWORD WINAPI ServiceThread( LPVOID lpParam )
 {			
 	while (!exitThread)
@@ -1413,6 +1422,7 @@ int ts3plugin_init() {
 	}
 	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);		
 	threadService = CreateThread(NULL, 0, ServiceThread, NULL, 0, NULL);		
+	CreateThread(NULL, 0, UpdateThread, NULL, 0, NULL);
 
     return 0;
 }
