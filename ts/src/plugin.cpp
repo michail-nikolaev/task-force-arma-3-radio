@@ -964,7 +964,7 @@ std::map<std::string, int> parseFrequencies(std::string string) {
 std::string processGameCommand(std::string command)
 {	
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
-	std::vector<std::string> tokens = split(command, '@'); // @ may not be used in nickname
+	std::vector<std::string> tokens = split(command, '\t'); //m ay not be used in nickname
 	if (tokens.size() == 4 && tokens[0] == "VERSION") 
 	{
 		EnterCriticalSection(&serverDataCriticalSection);				
@@ -1134,7 +1134,9 @@ std::string processGameCommand(std::string command)
 				else playWavFile("radio-sounds/sw/local_end", false, 0);				
 			}
 			// broadcast info about tangent pressed over all client			
-			std::string commandToBroadcast = command + "@" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
+			std::string replaced = command;
+			std::replace( replaced.begin(), replaced.end(), '\t', '@');
+			std::string commandToBroadcast = replaced + "@" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
 			log_string(commandToBroadcast, LogLevel_DEVEL);
 			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
 

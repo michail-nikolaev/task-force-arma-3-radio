@@ -507,7 +507,7 @@ onSwTangentPressed =
 		if ([player, player call vehicleIsIsolatedAndInside, [player, player call vehicleIsIsolatedAndInside] call canSpeak] call canUseSWRadio) then { 
 			_hintText = format[localize "STR_transmit_sw", call currentSWFrequency];
 			hintSilent parseText (_hintText);
-			_request = format["TANGENT@PRESSED@%1%2",call currentSWFrequency, (call activeSwRadio) call getSwRadioCode];
+			_request = format["TANGENT	PRESSED	%1%2",call currentSWFrequency, (call activeSwRadio) call getSwRadioCode];
 			if (isMultiplayer) then {
 				_result = "task_force_radio_pipe" callExtension _request;
 			};
@@ -524,7 +524,7 @@ onSwTangentReleased =
 	private["_result", "_request"];
 	if ((tangent_sw_pressed) and {alive player}) then {
 		hintSilent "";
-		_request = format["TANGENT@RELEASED@%1%2",call currentSWFrequency, (call activeSwRadio) call getSwRadioCode];
+		_request = format["TANGENT	RELEASED	%1%2",call currentSWFrequency, (call activeSwRadio) call getSwRadioCode];
 		if (isMultiplayer) then {
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
@@ -561,7 +561,7 @@ onLRTangentPressed =
 		if ([player, player call vehicleIsIsolatedAndInside] call canUseLRRadio) then {
 			_hintText = format[localize "STR_transmit_lr", call currentLRFrequency];
 			hintSilent parseText (_hintText);
-			_request = format["TANGENT_LR@PRESSED@%1%2", call currentLRFrequency, (call activeLrRadio) call getLrRadioCode];
+			_request = format["TANGENT_LR	PRESSED	%1%2", call currentLRFrequency, (call activeLrRadio) call getLrRadioCode];
 			if (isMultiplayer) then {
 				_result = "task_force_radio_pipe" callExtension _request;
 			};
@@ -578,7 +578,7 @@ onLRTangentReleased =
 	private["_result", "_request"];	
 	if ((tangent_lr_pressed) and {alive player}) then {
 		hintSilent "";
-		_request = format["TANGENT_LR@RELEASED@%1%2", call currentLRFrequency, (call activeLrRadio) call getLrRadioCode];
+		_request = format["TANGENT_LR	RELEASED	%1%2", call currentLRFrequency, (call activeLrRadio) call getLrRadioCode];
 		if (isMultiplayer) then {
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
@@ -648,7 +648,7 @@ onDDTangentPressed =
 		if ([player, player call vehicleIsIsolatedAndInside] call canUseDDRadio) then { 
 			_hintText = format[localize "STR_transmit_dd", dd_frequency];
 			hintSilent parseText (_hintText);
-			_request = format["TANGENT_DD@PRESSED@%1", dd_frequency];
+			_request = format["TANGENT_DD	PRESSED	%1", dd_frequency];
 			if (isMultiplayer) then {
 				_result = "task_force_radio_pipe" callExtension _request;
 			};
@@ -665,7 +665,7 @@ onDDTangentReleased =
 	private["_result", "_request"];
 	if ((tangent_dd_pressed) and {alive player}) then {
 		hintSilent "";
-		_request = format["TANGENT_DD@RELEASED@%1", dd_frequency];
+		_request = format["TANGENT_DD	RELEASED	%1", dd_frequency];
 		if (isMultiplayer) then {
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
@@ -784,7 +784,7 @@ preparePositionCoordinates =
 		_current_z = _current_z - (_player_pos select 2);
 	};
 	_can_speak = [_x_player, _isolated_and_inside] call canSpeak;
-	(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _x_playername, _current_x, _current_y, _current_z, _current_rotation_horizontal, _can_speak, [_x_player, _isolated_and_inside, _can_speak] call canUseSWRadio, [_x_player, _isolated_and_inside] call canUseLRRadio, [_x_player, _isolated_and_inside] call canUseDDRadio,  _x_player call vehicleId]);
+	(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10", _x_playername, _current_x, _current_y, _current_z, _current_rotation_horizontal, _can_speak, [_x_player, _isolated_and_inside, _can_speak] call canUseSWRadio, [_x_player, _isolated_and_inside] call canUseLRRadio, [_x_player, _isolated_and_inside] call canUseDDRadio,  _x_player call vehicleId]);
 };
 
 setActiveSwRadio = 
@@ -1001,7 +1001,7 @@ tf_sendFrequencyInfo =
 	};
 	_alive = alive player;
 	_nickname = name player;
-	_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@", str(_freq), str(_freq_lr), _freq_dd, _alive, speak_volume_level, dd_volume_level, _nickname, waves];
+	_request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	", str(_freq), str(_freq_lr), _freq_dd, _alive, speak_volume_level, dd_volume_level, _nickname, waves];
 	_result = "task_force_radio_pipe" callExtension _request;
 };
 
@@ -1035,7 +1035,7 @@ tf_getNearPlayers =
 sendVersionInfo = 
 {
 	// send information about version
-	_request = format["VERSION@%1@%2@%3", TF_ADDON_VERSION, tf_radio_channel_name, tf_radio_channel_password];
+	_request = format["VERSION	%1	%2	%3", TF_ADDON_VERSION, tf_radio_channel_name, tf_radio_channel_password];
 	_result = "task_force_radio_pipe" callExtension _request;
 };
 
