@@ -27,6 +27,7 @@
 #include "plugin.h"
 #include "DspFilters\Butterworth.h"
 #include "simpleSource\SimpleComp.h"
+#include <wininet.h>
 
 #include "RadioEffect.h"
 
@@ -62,6 +63,36 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 #define YELLING_VOLUME "yelling"
 #define CANT_SPEAK_DISTANCE 5
 
+#define UPDATE_URL L"prosofteng.com"
+#define UPDATE_FILE L"/resources/hear/HearVersion.txt"
+
+bool isUpdateAvaible() {	
+	DWORD dwBytes;
+	char ch;
+	std::string hearVersion;
+
+	DWORD r = 0;
+	if (!InternetGetConnectedState(&r, 0)) return false;
+	if (r & INTERNET_CONNECTION_OFFLINE) return false;
+
+	HINTERNET Initialize = InternetOpen(L"Hear", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+	HINTERNET Connection = InternetConnect(Initialize,UPDATE_URL,INTERNET_DEFAULT_HTTP_PORT, NULL,NULL,INTERNET_SERVICE_HTTP,0,0);
+	HINTERNET File = HttpOpenRequest(Connection,NULL,UPDATE_FILE,NULL,NULL,NULL,0,0);
+
+	if(HttpSendRequest(File,NULL,0,NULL,0))
+	{
+		while(InternetReadFile(File,&ch,1,&dwBytes))
+		{
+			if(dwBytes != 1)break;
+			hearVersion += ch;
+		}
+	}
+	InternetCloseHandle(File);
+	InternetCloseHandle(Connection);
+	InternetCloseHandle(Initialize);
+	std::string currentVersion = PLUGIN_VERSION;
+	return !hearVersion.isEmpty() && hearVersion.trim() != currentVersion.trim();
+}
 
 struct CLIENT_DATA
 {	
