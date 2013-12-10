@@ -342,8 +342,9 @@ haveDDRadio =
 
 processSWChannelKeys = 
 {				
-	private ["_sw_channel_number", "_hintText"];
+	private ["_sw_channel_number", "_hintText", "_result"];
 	_sw_channel_number = _this select 0;
+	_result = false;
 
 	if ((call haveSWRadio) and {alive player}) then {		
 		[call activeSwRadio, _sw_channel_number] call setSwChannel;
@@ -352,16 +353,19 @@ processSWChannelKeys =
 		hint parseText (_hintText);
 		if (dialog) then {
 			call updateSWDialogToChannel;
-		}			
+		};
+		_result = true;
 	
 	};
-	true;
+	_result;
 
 };
 processLRChannelKeys = 
 {			
-	private ["_lr_channel_number", "_hintText"];
+	private ["_lr_channel_number", "_hintText", "_result"];
 	_lr_channel_number = _this select 0;
+	_result = false;
+
 
 	if ((call haveLRRadio) and {alive player}) then {
 		_active_lr = call activeLrRadio;
@@ -370,10 +374,11 @@ processLRChannelKeys =
 		hint parseText (_hintText);
 		if (dialog) then {
 			call updateLRDialogToChannel;
-		}			
+		};
+		_result = true;		
 	
 	};
-	true;
+	_result;
 
 };
 currentSWFrequency = 

@@ -117,6 +117,7 @@ struct CLIENT_DATA
 	PersonalRadioEffect swEffect;	
 	LongRangeRadioffect lrEffect;
 	UnderWaterRadioEffect ddEffect;
+	
 
 	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS> filterCantSpeak;	
 
@@ -166,6 +167,7 @@ typedef std::map<std::string, CLIENT_DATA*> STRING_TO_CLIENT_DATA_MAP;
 struct SERVER_RADIO_DATA 
 {	
 	std::string myNickname;
+	std::string myOriginalNickname;
 	bool tangentPressed;
 	TS3_VECTOR myPosition;
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
@@ -846,7 +848,13 @@ void onGameEnd(uint64 serverConnectionHandlerID, anyID clientId)
 	EnterCriticalSection(&serverDataCriticalSection);
 	serverIdToData[serverConnectionHandlerID].serious_mod_channel_name = "";
 	serverIdToData[serverConnectionHandlerID].serious_mod_channel_password = "";
+	std::string revertNickname = serverIdToData[serverConnectionHandlerID].myOriginalNickname; 
+	serverIdToData[serverConnectionHandlerID].myOriginalNickname = "";
 	LeaveCriticalSection(&serverDataCriticalSection);
+
+	if((error = ts3Functions.setClientSelfVariableAsString(serverConnectionHandlerID,  CLIENT_NICKNAME, revertNickname.c_str())) != ERROR_ok) {
+		log("Error setting back client nickname", error);				
+	}
 }
 
 void onGameStart(uint64 serverConnectionHandlerID, anyID clientId)
@@ -1169,9 +1177,13 @@ std::string processGameCommand(std::string command)
 		std::string myNickname = getMyNickname(currentServerConnectionHandlerID);
 		if (myNickname != nickname && myNickname.length() > 0 && (nickname != "Error: No unit" && nickname != "Error: No vehicle"))
 		{
-			DWORD error;
+			DWORD error;			
 			if((error = ts3Functions.setClientSelfVariableAsString(currentServerConnectionHandlerID,  CLIENT_NICKNAME, nickname.c_str())) != ERROR_ok) {
 				log("Error setting client nickname", error);				
+			} else {
+				EnterCriticalSection(&serverDataCriticalSection);
+				serverIdToData[currentServerConnectionHandlerID].myOriginalNickname = myNickname;
+				LeaveCriticalSection(&serverDataCriticalSection);
 			}
 		}
 		return "OK";
@@ -1972,7 +1984,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						float volumeLevel = volumeMultiplifier((float) listed_info.volume);
 						processCompressor(&data->compressor, sw_buffer, channels, sampleCount);
 						data->swEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, d, serverConnectionHandlerID));
-						processRadioEffect(sw_buffer, channels, sampleCount, volumeLevel * 0.3f, &data->swEffect);
+						processRadioEffect(sw_buffer, channels, sampleCount, volumeLevel * 0.4f, &data->swEffect);
 					}
 					short* lr_buffer = NULL;
 					if (listed_info.over == LISTEN_TO_LR)
@@ -1981,7 +1993,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						float volumeLevel = volumeMultiplifier((float) listed_info.volume);						
 						processCompressor(&data->compressor, lr_buffer, channels, sampleCount);
 						data->lrEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, d, serverConnectionHandlerID));
-						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.3f, &data->lrEffect);
+						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.4f, &data->lrEffect);
 					}
 					short* dd_buffer = NULL;
 					if (listed_info.over == LISTEN_TO_DD)
