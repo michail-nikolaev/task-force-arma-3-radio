@@ -21,6 +21,19 @@ if (isNil "tf_guer_radio_code") then {
 	tf_guer_radio_code = "_independent";
 };
 
+tf_getTeamSpeakServerName = 
+{
+	"task_force_radio_pipe" callExtension "TS_INFO	SERVER";
+};
+tf_getTeamSpeakChannelName = 
+{
+	"task_force_radio_pipe" callExtension "TS_INFO	CHANNEL";
+};
+tf_isTeamSpeakPluginEnabled = 
+{
+	("task_force_radio_pipe" callExtension "TS_INFO	PING") == "PONG";
+};
+
 disableSerialization;
 #include "diary.sqf"
 
