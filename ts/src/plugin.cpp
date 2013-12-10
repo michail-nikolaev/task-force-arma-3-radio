@@ -971,9 +971,35 @@ std::map<std::string, int> parseFrequencies(std::string string) {
 
 std::string processGameCommand(std::string command)
 {	
+	DWORD error;
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
-	std::vector<std::string> tokens = split(command, '\t'); //m ay not be used in nickname
-	if (tokens.size() == 4 && tokens[0] == "VERSION") 
+	std::vector<std::string> tokens = split(command, '\t'); //may not be used in nickname
+	if (tokens.size() == 2 && tokens[0] == "TS_INFO") 
+	{
+		if (tokens[1] == "SERVER")
+		{
+			char* name;
+			error = ts3Functions.getServerVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), VIRTUALSERVER_NAME, &name);
+			if(error != ERROR_ok) {
+				log("Can't get server name", error, LogLevel_ERROR);
+				return "ERROR_GETTING_SERVER_NAME";
+			} else {
+				std::string result(name);
+				ts3Functions.freeMemory(name);
+				return result;
+			}
+			
+		} 
+		else if (tokens[1] == "CHANNEL") 
+		{
+			return getChannelName(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
+		} 
+		else if (tokens[1] == "PING")
+		{
+			return "PONG";
+		}
+	}	
+	else if (tokens.size() == 4 && tokens[0] == "VERSION") 
 	{
 		EnterCriticalSection(&serverDataCriticalSection);				
 		serverIdToData[currentServerConnectionHandlerID].addon_version = tokens[1];
@@ -982,10 +1008,8 @@ std::string processGameCommand(std::string command)
 		serverIdToData[currentServerConnectionHandlerID].currentDataFrame++;
 		LeaveCriticalSection(&serverDataCriticalSection);
 		return "OK";
-	};	
-	DWORD error;
-	//(format["POS@%1@%2@%3@%4@%5@%6@%7@%8@%9@%10", _x_playername, _current_x, _current_y, _current_z, _current_rotation_horizontal, _x_player call canSpeak, _x_player call canUseSWRadio, _x_player call canUseLRRadio, _x_player call canUseDDRadio,  _x_player call vehicleId]);
-	if (tokens.size() == 11 && tokens[0] == "POS") 
+	}		
+	else if (tokens.size() == 11 && tokens[0] == "POS") 
 	{	
 		std::string nickname = tokens[1];
 		float x = std::stof(tokens[2]);
