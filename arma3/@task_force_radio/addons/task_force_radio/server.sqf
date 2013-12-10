@@ -27,6 +27,29 @@ if (isNil "tf_same_frequencies_for_side") then {
 	fadak_count = 1;
 
 	while {true} do {
+		{		
+			_group_freq = _x getVariable "tf_sw_frequency";
+			if (isNil "_group_freq") then {
+				if !(tf_same_frequencies_for_side) then {
+					_x setVariable ["tf_sw_frequency", call generateSwSetting, true];
+					_x setVariable ["tf_lr_frequency", call generateLrSettings, true];
+				} else {		
+					if (side _x == west) then {
+						_x setVariable ["tf_sw_frequency", _freq_west, true];
+						_x setVariable ["tf_lr_frequency", _freq_west_lr, true];
+					} else {
+						if (side _x == east) then {
+							_x setVariable ["tf_sw_frequency", _freq_east, true];
+							_x setVariable ["tf_lr_frequency", _freq_east_lr, true];
+						} else {
+							_x setVariable ["tf_sw_frequency", _freq_guer, true];
+							_x setVariable ["tf_lr_frequency", _freq_guer_lr, true];
+						};
+					};
+				};
+			};	
+		} forEach allGroups;
+
 		{
 			if (isPlayer _x) then 
 			{
@@ -96,30 +119,7 @@ if (isNil "tf_same_frequencies_for_side") then {
 					missionNamespace setVariable [_variableName, nil];
 				};
 			};
-		} forEach allUnits;
-		{		
-			_group_freq = _x getVariable "tf_sw_frequency";
-			if (isNil "_group_freq") then {
-				if !(tf_same_frequencies_for_side) then {
-					_x setVariable ["tf_sw_frequency", call generateSwSetting, true];
-					_x setVariable ["tf_lr_frequency", call generateLrSettings, true];
-				} else {		
-					if (side _x == west) then {
-						_x setVariable ["tf_sw_frequency", _freq_west, true];
-						_x setVariable ["tf_lr_frequency", _freq_west_lr, true];
-					} else {
-						if (side _x == east) then {
-							_x setVariable ["tf_sw_frequency", _freq_east, true];
-							_x setVariable ["tf_lr_frequency", _freq_east_lr, true];
-						} else {
-							_x setVariable ["tf_sw_frequency", _freq_guer, true];
-							_x setVariable ["tf_lr_frequency", _freq_guer_lr, true];
-						};
-					};
-				};
-			};
-	
-		} forEach allGroups;
+		} forEach allUnits;		
 		sleep 1;
 	};
 
