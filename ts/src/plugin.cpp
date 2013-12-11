@@ -2008,7 +2008,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						float volumeLevel = volumeMultiplifier((float) listed_info.volume);
 						processCompressor(&data->compressor, sw_buffer, channels, sampleCount);
 						data->swEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, d, serverConnectionHandlerID));
-						processRadioEffect(sw_buffer, channels, sampleCount, volumeLevel * 0.4f, &data->swEffect);
+						processRadioEffect(sw_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->swEffect);
 					}
 					short* lr_buffer = NULL;
 					if (listed_info.over == LISTEN_TO_LR)
@@ -2017,7 +2017,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						float volumeLevel = volumeMultiplifier((float) listed_info.volume);						
 						processCompressor(&data->compressor, lr_buffer, channels, sampleCount);
 						data->lrEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, d, serverConnectionHandlerID));
-						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.4f, &data->lrEffect);
+						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->lrEffect);
 					}
 					short* dd_buffer = NULL;
 					if (listed_info.over == LISTEN_TO_DD)
