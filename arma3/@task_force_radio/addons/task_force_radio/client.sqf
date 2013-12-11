@@ -5,6 +5,7 @@
 if (isNil "tf_radio_channel_name") then {
 	tf_radio_channel_name = "TaskForceRadio";
 };
+
 if (isNil "tf_radio_channel_password") then {
 	tf_radio_channel_password = "123";
 };
@@ -126,12 +127,12 @@ getLrRadioCode =
 	} else {
 		if (((_radio_object) call tfr_getVehicleSide) == west) then {
 			_result = tf_west_radio_code;
-		};
-		if (((_radio_object) call tfr_getVehicleSide) == resistance) then {
-			_result = tf_guer_radio_code;
-		};
-		if (((_radio_object) call tfr_getVehicleSide) == east) then {
-			_result = tf_east_radio_code;
+		} else {
+			if (((_radio_object) call tfr_getVehicleSide) == east) then {
+				_result = tf_east_radio_code;
+			} else {
+				_result = tf_guer_radio_code;
+			}
 		};
 	};
 	_result;
@@ -641,12 +642,12 @@ onLRDialogOpen =
 				} else {
 					if (((lr_dialog_radio select 0) call tfr_getVehicleSide) == west) then {
 						_dialog_to_open = "rt1523g_radio_dialog";
-					};
-					if (((lr_dialog_radio select 0) call tfr_getVehicleSide) == resistance) then {
-						_dialog_to_open = "anprc155_radio_dialog";
-					};
-					if (((lr_dialog_radio select 0) call tfr_getVehicleSide) == east) then {
-						_dialog_to_open = "mr3000_radio_dialog";
+					} else {
+						if (((lr_dialog_radio select 0) call tfr_getVehicleSide) == east) then {
+							_dialog_to_open = "mr3000_radio_dialog";
+						} else {
+							_dialog_to_open = "anprc155_radio_dialog";
+						};
 					};
 				};
 				

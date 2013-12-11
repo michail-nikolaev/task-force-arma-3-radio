@@ -1,13 +1,14 @@
 TF_ADDON_VERSION = "0.8.2";
 
-nul = [] execVM "\task_force_radio\common.sqf";
+#include "common.sqf"
+
 
 if ((isServer) or (isDedicated)) then
 {
-	nul = [] execVM "\task_force_radio\server.sqf";
+	nul = [] execVM "server.sqf";
 
 };
 if (!(isDedicated)) then
 {
-	nul = [] execVM "\task_force_radio\client.sqf";
+	nul = [] execVM "client.sqf";
 };

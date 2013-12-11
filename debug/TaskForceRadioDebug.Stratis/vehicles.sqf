@@ -124,13 +124,17 @@ tfr_getVehicleSide = {
 	_res_models = [
 		/// LAND
 		"MRAP_03_base_F", // strider
+		"MBT_03_base_F",
 		"APC_Wheeled_03_base_F", // AFV-4 Gorgon
+		"APC_Tracked_03_base_F",
 		"I_Truck_02_covered_F", // zamak
 		"I_Truck_02_transport_F", // zamak
 
 		/// AIR
 		"Plane_Fighter_03_base_F", // A-143 Buzzard
 		"I_Heli_Transport_02_F",
+		"I_Heli_light_03_base_F",
+		"I_Heli_light_03_unarmed_base_F",
 
 		/// SHIP
 		"I_SDV_01_F",

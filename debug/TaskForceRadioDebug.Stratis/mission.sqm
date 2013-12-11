@@ -41,7 +41,10 @@ class Mission
 		"a3_boat_f_beta_boat_transport_01",
 		"A3_Boat_F_Beta_Boat_Armed_01",
 		"a3_boat_f_gamma_boat_transport_01",
-		"a3_characters_f_beta"
+		"a3_characters_f_beta",
+		"a3_air_f_epb_heli_light_03",
+		"a3_armor_f_epb_mbt_03",
+		"a3_armor_f_epb_apc_tracked_03"
 	};
 	addOnsAuto[]=
 	{
@@ -83,6 +86,9 @@ class Mission
 		"A3_Boat_F_Beta_Boat_Armed_01",
 		"a3_soft_f_gamma_offroad",
 		"a3_boat_f_gamma_boat_transport_01",
+		"a3_air_f_epb_heli_light_03",
+		"a3_armor_f_epb_mbt_03",
+		"a3_armor_f_epb_apc_tracked_03",
 		"a3_map_stratis"
 	};
 	randomSeed=1577368;
@@ -163,7 +169,7 @@ class Mission
 				};
 				class Item1
 				{
-					position[]={3311.1062,57.736221,5333.022};
+					position[]={1647.076,4.0798435,5628.0767};
 					id=3;
 					side="GUER";
 					vehicle="I_diver_F";
@@ -1797,7 +1803,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=69;
+		items=73;
 		class Item0
 		{
 			position[]={1791.3357,5.5,6065.0708};
@@ -2411,6 +2417,38 @@ class Mission
 			side="EMPTY";
 			vehicle="B_G_Boat_Transport_01_F";
 			leader=1;
+			skill=0.60000002;
+		};
+		class Item69
+		{
+			position[]={1666.6155,5.5,5601.8149};
+			id=234;
+			side="EMPTY";
+			vehicle="I_Heli_light_03_F";
+			skill=0.60000002;
+		};
+		class Item70
+		{
+			position[]={1653.2137,5.4690905,5602.2813};
+			id=235;
+			side="EMPTY";
+			vehicle="I_Heli_light_03_unarmed_F";
+			skill=0.60000002;
+		};
+		class Item71
+		{
+			position[]={1705.8599,5.5,5622.6719};
+			id=236;
+			side="EMPTY";
+			vehicle="I_MBT_03_cannon_F";
+			skill=0.60000002;
+		};
+		class Item72
+		{
+			position[]={1715.2755,5.5,5628.9805};
+			id=237;
+			side="EMPTY";
+			vehicle="I_APC_tracked_03_cannon_F";
 			skill=0.60000002;
 		};
 	};
