@@ -35,6 +35,20 @@ tf_isTeamSpeakPluginEnabled =
 	("task_force_radio_pipe" callExtension "TS_INFO	PING") == "PONG";
 };
 
+tf_setPersonalRadioFrequency =
+{
+	if (call haveSWRadio) then {
+		[(call activeSwRadio), _this] call setSwFrequency;
+	};
+};
+
+tf_setLongRangeRadioFrequency = 
+{
+	if (call haveDDRadio) then {
+		[(call activeLrRadio) select 0, (call activeLrRadio) select 1, _this] call setLrFrequency;
+	};
+};
+
 disableSerialization;
 #include "diary.sqf"
 
