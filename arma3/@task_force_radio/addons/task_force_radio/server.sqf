@@ -7,15 +7,27 @@ if (isNil "tf_same_frequencies_for_side") then {
 };
 
 [] spawn {
-	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_new_radio_id", "_task_force_radio_used", "_last_check", "_freq_west", "_freq_east", "_freq_guer", "_freq_west_lr", "_freq_east_lr", "_freq_guer_lr", "_group_freq]"];
+	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_new_radio_id", "_task_force_radio_used", "_last_check", "_group_freq"];
+	
+	if (isNil "tf_freq_west") then {
+		tf_freq_west = call generateSwSetting;
+	};
+	if (isNil "ft_freq_east") then {
+		ft_freq_east = call generateSwSetting;
+	};
+	if (isNil "tf_freq_guer") then {
+		tf_freq_guer = call generateSwSetting;
+	};
 
-	_freq_west = call generateSwSetting;
-	_freq_east = call generateSwSetting;
-	_freq_guer = call generateSwSetting;
-
-	_freq_west_lr = call generateLrSettings;
-	_freq_east_lr = call generateLrSettings;
-	_freq_guer_lr = call generateLrSettings;
+	if (isNil "tf_freq_west_lr") then {
+		tf_freq_west_lr = call generateLrSettings;
+	};
+	if (isNil "ft_freq_east_lr") then {
+		ft_freq_east_lr = call generateLrSettings;
+	};
+	if (isNil "tf_freq_guer_lr") then {
+		tf_freq_guer_lr = call generateLrSettings;
+	};
 
 	
 	waitUntil {time > 0};
@@ -35,15 +47,15 @@ if (isNil "tf_same_frequencies_for_side") then {
 					_x setVariable ["tf_lr_frequency", call generateLrSettings, true];
 				} else {		
 					if (side _x == west) then {
-						_x setVariable ["tf_sw_frequency", _freq_west, true];
-						_x setVariable ["tf_lr_frequency", _freq_west_lr, true];
+						_x setVariable ["tf_sw_frequency", tf_freq_west, true];
+						_x setVariable ["tf_lr_frequency", tf_freq_west_lr, true];
 					} else {
 						if (side _x == east) then {
-							_x setVariable ["tf_sw_frequency", _freq_east, true];
-							_x setVariable ["tf_lr_frequency", _freq_east_lr, true];
+							_x setVariable ["tf_sw_frequency", ft_freq_east, true];
+							_x setVariable ["tf_lr_frequency", ft_freq_east_lr, true];
 						} else {
-							_x setVariable ["tf_sw_frequency", _freq_guer, true];
-							_x setVariable ["tf_lr_frequency", _freq_guer_lr, true];
+							_x setVariable ["tf_sw_frequency", tf_freq_guer, true];
+							_x setVariable ["tf_lr_frequency", tf_freq_guer_lr, true];
 						};
 					};
 				};
