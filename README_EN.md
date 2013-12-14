@@ -2,11 +2,11 @@ Task Force Arma 3 radio
 =======================
 
 Arma 3 Team Speak Radio Plugin
-_v0.8.1.5 (11.17.2013)_
+_v0.8.2 (12.14.2013)_
 
 ###Installation
 
-* Download and unzip [0.8.1. radio archive](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.8.1.zip).
+* Download and unzip [0.8.2 radio archive](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.8.2.zip).
 * Copy `TeamSpeak 3 Client` folder content to the TeamSpeak root folder.
 * Copy `Arma 3` folder content to the `...\SteamApps\common\Arma 3 folder`.
 
@@ -56,12 +56,12 @@ _v0.8.1.5 (11.17.2013)_
 
 | Radio | Side | Range/Distance | How to use |
 | --- | --- | --- | --- | 
-| Radio [AN/PRC-152](http://ru.wikipedia.org/wiki/AN/PRC-152) (personal) | <font color="blue">BLUEFOR<font> | 30-512Mhz / 3 km | To enter the frequency, press `CLR`, enter a value and press `ENT`. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume pressing `PRE+` and `PRE-` keys.| 
-| Radio [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (long range) | <font color="blue">BLUEFOR<font> | 30-87Mhz / 20 km | To enter the frequency, press `MENU CLR`, enter a value and press `FREQ`. You can also switch the active radio channel by pressing the radio number buttons (a total of 9 channels). You can change the reception volume by `TIME` and `BATT CALL` keys.|
-| Radio [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (personal) | <font color="green">INDEPENDENT</font> | 30-512Mhz / 3 km | To enter the frequency, press `ESC`, enter a value and press `ENT`. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume by `MOD` and `GR` keys| 
-| Radio [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (long range)| <font color="green">INDEPENDENT</font>  | 30-87Mhz / 20 km | To enter the frequency, press `ESC`, enter a value and press `MENU`. You can also switch the active radio channel by pressing the arrow keys (up & down). You can change the reception volume by the loudspeaker button. | 
-| Radio [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/) (personal) |  <font color="red">OPFOR</font> | 30-512Mhz / 3 km | To enter the frequency, press `CLR`, enter a value and press `ENT`. You can also switch the active radio channel by pressing `SET` and `PWR` (a total of 8 channels). You can change the reception volume by `DATA` and `SEND` keys.| 
-| Radio [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (long range) | <font color="red">OPFOR</font> | 30-87Mhz / 20 km | To enter the frequency, press `CLR ESC`, enter a value and press `ENT`. You can also switch the active radio channel by pressing the radio number buttons or horizontal arrow buttons (a total of 8 channels). You can change the reception volume by vertical arrow buttons. | 
+| Radio [AN/PRC-152](http://en.wikipedia.org/wiki/AN/PRC-152) (personal) | <font color="blue">BLUEFOR<font> | 30-512Mhz / 3 km | To enter the frequency, press `CLR`, enter a value and press `ENT`. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume pressing `PRE+` and `PRE-` keys. You can also change stereo setting by pressing `0`.| 
+| Radio [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (long range) | <font color="blue">BLUEFOR<font> | 30-87Mhz / 20 km | To enter the frequency, press `MENU CLR`, enter a value and press `FREQ`. You can also switch the active radio channel by pressing the radio number buttons (a total of 9 channels). You can change the reception volume by `TIME` and `BATT CALL` keys. You can also change stereo setting by pressing `STO`.|
+| Radio [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (personal) | <font color="green">INDEPENDENT</font> | 30-512Mhz / 3 km | To enter the frequency, press `ESC`, enter a value and press `ENT`. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume by `MOD` and `GR` keys. You can also change stereo setting by pressing `ALT`.| 
+| Radio [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (long range)| <font color="green">INDEPENDENT</font>  | 30-87Mhz / 20 km | To enter the frequency, press `ESC`, enter a value and press `MENU`. You can also switch the active radio channel by pressing the arrow keys (up & down). You can change the reception volume by the loudspeaker button. You can also change stereo setting by pressing `PRE`.| 
+| Radio [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/) (personal) |  <font color="red">OPFOR</font> | 30-512Mhz / 3 km | To enter the frequency, press `CLR`, enter a value and press `ENT`. You can also switch the active radio channel by pressing `SET` and `PWR` (a total of 8 channels). You can change the reception volume by `DATA` and `SEND` keys. You can also change stereo setting by pressing `0`.| 
+| Radio [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (long range) | <font color="red">OPFOR</font> | 30-87Mhz / 20 km | To enter the frequency, press `CLR ESC`, enter a value and press `ENT`. You can also switch the active radio channel by pressing the radio number buttons or horizontal arrow buttons (a total of 8 channels). You can change the reception volume by vertical arrow buttons. You can also change stereo setting by pressing `0`. | 
 | Underwater transceiver | All | 32-41kHz / 70-300 m. (depending on waves) | To enter the frequency, press `MODE`, enter a value and press `ADV`. You can change the reception volume by the button on the right side of the device. | 
 
 

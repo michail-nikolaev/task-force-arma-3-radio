@@ -197,6 +197,15 @@ setSwChannel =
 	[_radio_id, _settings] call setSwSetting;
 };
 
+setSwStereo = 
+{
+	private ["_settings", "_radio_id", "_value_to_set"];
+	_radio_id = _this select 0;
+	_value_to_set = _this select 1;
+	_settings = _radio_id call getSwSettings;
+	_settings set [SW_STEREO_OFFSET, _value_to_set];
+	[_radio_id, _settings] call setSwSetting;
+};
 
 setLrChannel = 
 {
@@ -209,6 +218,16 @@ setLrChannel =
 	[_radio_object, _radio_qualifier, _settings] call setLrSettings;
 };
 
+getSwStereo = 
+{
+	private ["_settings", "_result"];
+	_settings = _this call getSwSettings;
+	_result = 0;
+	if (count _settings >= SW_STEREO_OFFSET) then {
+		_result = _settings select SW_STEREO_OFFSET;
+	};
+	_result;
+};
 
 getSwFrequency = 
 {
@@ -222,6 +241,17 @@ getLrFrequency =
 	private ["_settings"];
 	_settings = _this call getLrSettings;
 	_settings select (FREQ_OFFSET + (_settings select ACTIVE_CHANNEL_OFFSET));
+};
+
+getLrStereo = 
+{
+	private ["_settings", "_result"];
+	_settings = _this call getLrSettings;
+	_result = 0;
+	if (count _settings >= LR_STEREO_OFFSET) then {
+		_result = _settings select LR_STEREO_OFFSET;
+	};
+	_result;
 };
 
 setSwVolume = 
@@ -278,6 +308,18 @@ setLrFrequency =
 	
 	_settings = [_radio_object, _radio_qualifier] call getLrSettings;
 	_settings set [(_settings select ACTIVE_CHANNEL_OFFSET) + FREQ_OFFSET, _value];
+	[_radio_object, _radio_qualifier, _settings] call setLrSettings;
+};
+
+setLrStereo = 
+{
+	private ["_radio_object", "_radio_qualifier", "_value", "_settings"];
+	_radio_object = _this select 0;
+	_radio_qualifier = _this select 1;
+	_value = _this select 2;
+	
+	_settings = [_radio_object, _radio_qualifier] call getLrSettings;
+	_settings set [LR_STEREO_OFFSET, _value];
 	[_radio_object, _radio_qualifier, _settings] call setLrSettings;
 };
 
@@ -1024,13 +1066,13 @@ tf_sendFrequencyInfo =
 	if ((call haveSWRadio) and {[player, _isolated_and_inside, _can_speak] call canUseSWRadio}) then {
 		_freq = [];
 		{
-			_freq set[count _freq, format ["%1%2|%3", _x call getSwFrequency, _x call getSwRadioCode, _x call getSwVolume]];
+			_freq set[count _freq, format ["%1%2|%3|%4", _x call getSwFrequency, _x call getSwRadioCode, _x call getSwVolume, _x call getSwStereo]];
 		} forEach (call radiosList);
 	};
 	if ((call haveLRRadio) and {[player, _isolated_and_inside] call canUseLRRadio}) then {
 		_freq_lr = [];
 		{
-			_freq_lr set[count _freq_lr, format ["%1%2|%3", _x call getLrFrequency, _x call getLrRadioCode, _x call getLrVolume]];
+			_freq_lr set[count _freq_lr, format ["%1%2|%3|%4", _x call getLrFrequency, _x call getLrRadioCode, _x call getLrVolume, _x call getLrStereo]];
 		} forEach (call lrRadiosList);				
 	};
 	if ((call haveDDRadio) and {[player, _isolated_and_inside] call canUseDDRadio}) then {
@@ -1131,16 +1173,18 @@ processPlayerPositions =
 			tf_nearPlayersIndex = 0;
 			tf_farPlayersIndex = 0;	
 	
-			if (count tf_farPlayers > 0) then {
-				tf_farPlayersProcessed = false;
-			};
 			if (count tf_nearPlayers > 0) then {
+				tf_farPlayersProcessed = false;
+				tf_msNearPerStep = tf_msNearPerStepMax max (tf_nearUpdateTime / (count tf_nearPlayers));
+			} else {
 				tf_nearPlayersProcessed = false;
+				tf_msNearPerStep = tf_nearUpdateTime;
 			};
-
-			tf_msNearPerStep = tf_msNearPerStepMax max (tf_nearUpdateTime / (count tf_nearPlayers));
-			tf_msFarPerStep = tf_msFarPerStepMax max (tf_farUpdateTime / (count tf_farPlayers));
-
+			if (count tf_farPlayers > 0) then {
+				tf_msFarPerStep = tf_msFarPerStepMax max (tf_farUpdateTime / (count tf_farPlayers));
+			} else {
+				tf_msFarPerStep = tf_farUpdateTime;
+			};
 			call sendVersionInfo;
 		} else {
 			_elemsNearToProcess = (diag_tickTime - tf_lastNearFrameTick) / tf_msNearPerStep;		
