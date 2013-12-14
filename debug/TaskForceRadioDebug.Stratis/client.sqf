@@ -223,7 +223,7 @@ getSwStereo =
 	private ["_settings", "_result"];
 	_settings = _this call getSwSettings;
 	_result = 0;
-	if (count _settings >= SW_STEREO_OFFSET) then {
+	if (count _settings > SW_STEREO_OFFSET) then {
 		_result = _settings select SW_STEREO_OFFSET;
 	};
 	_result;
@@ -248,7 +248,7 @@ getLrStereo =
 	private ["_settings", "_result"];
 	_settings = _this call getLrSettings;
 	_result = 0;
-	if (count _settings >= LR_STEREO_OFFSET) then {
+	if (count _settings > LR_STEREO_OFFSET) then {
 		_result = _settings select LR_STEREO_OFFSET;
 	};
 	_result;
