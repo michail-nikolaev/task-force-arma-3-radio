@@ -2,8 +2,11 @@
 #define MAX_ANPRC148JEM_COUNT 1000
 #define MAX_FADAK_COUNT 1000
 
-if (isNil "tf_same_frequencies_for_side") then {
-	tf_same_frequencies_for_side = false;
+if (isNil "tf_same_sw_frequencies_for_side") then {
+	tf_same_sw_frequencies_for_side = false;
+};
+if (isNil "tf_same_lr_frequencies_for_side") then {
+	tf_same_lr_frequencies_for_side = true;
 };
 
 [] spawn {
@@ -42,24 +45,36 @@ if (isNil "tf_same_frequencies_for_side") then {
 		{		
 			_group_freq = _x getVariable "tf_sw_frequency";
 			if (isNil "_group_freq") then {
-				if !(tf_same_frequencies_for_side) then {
+				if !(tf_same_sw_frequencies_for_side) then {
 					_x setVariable ["tf_sw_frequency", call generateSwSetting, true];
-					_x setVariable ["tf_lr_frequency", call generateLrSettings, true];
 				} else {		
 					if (side _x == west) then {
 						_x setVariable ["tf_sw_frequency", tf_freq_west, true];
-						_x setVariable ["tf_lr_frequency", tf_freq_west_lr, true];
 					} else {
 						if (side _x == east) then {
 							_x setVariable ["tf_sw_frequency", ft_freq_east, true];
-							_x setVariable ["tf_lr_frequency", ft_freq_east_lr, true];
 						} else {
 							_x setVariable ["tf_sw_frequency", tf_freq_guer, true];
+						};
+					};
+				};
+			};
+			_group_freq = _x getVariable "tf_lr_frequency";
+			if (isNil "_group_freq") then {
+				if !(tf_same_lr_frequencies_for_side) then {
+					_x setVariable ["tf_lr_frequency", call generateLrSettings, true];
+				} else {		
+					if (side _x == west) then {
+						_x setVariable ["tf_lr_frequency", tf_freq_west_lr, true];
+					} else {
+						if (side _x == east) then {
+							_x setVariable ["tf_lr_frequency", ft_freq_east_lr, true];
+						} else {
 							_x setVariable ["tf_lr_frequency", tf_freq_guer_lr, true];
 						};
 					};
 				};
-			};	
+			};		
 		} forEach allGroups;
 
 		{
@@ -121,7 +136,7 @@ if (isNil "tf_same_frequencies_for_side") then {
 						missionNamespace setVariable [_variableName, time];
 					} else {
 						if (time - _last_check > 30) then {
-							[["TASK FORCE RADIO ADDON NOT ENABLED OR VERSION LESS THAN 0.8.1"],"BIS_fnc_guiMessage",(owner _x), false] spawn BIS_fnc_MP;
+							[["LOOKS LIKE TASK FORCE RADIO ADDON NOT ENABLED OR VERSION LESS THAN 0.8.1"],"BIS_fnc_guiMessage",(owner _x), false] spawn BIS_fnc_MP;
 							_x setVariable ["tf_force_radio_active", "error_shown", true];
 							
 						};
