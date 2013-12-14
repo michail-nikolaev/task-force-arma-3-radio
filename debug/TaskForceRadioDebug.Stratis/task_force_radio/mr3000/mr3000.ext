@@ -1,4 +1,4 @@
-/* #Cycepa
+/* #Rosaxy
 $[
 	1.063,
 	["mr3000",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -20,9 +20,11 @@ $[
 	[1614,"mr3000_channel_8",[1,"",["0.440938 * safezoneW + safezoneX","0.602223 * safezoneH + safezoneY","0.021 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1615,"mr3000_channel_9",[1,"",["0.471125 * safezoneW + safezoneX","0.602223 * safezoneH + safezoneY","0.021 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1400,"mr3000_edit",[1,"47.8",["0.471781 * safezoneW + safezoneX","0.415981 * safezoneH + safezoneY","0.0531563 * safezoneW","0.0686153 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1401,"mr3000_channel_edit",[1,"CH: 4",["0.423219 * safezoneW + safezoneX","0.415981 * safezoneH + safezoneY","0.0479062 * safezoneW","0.0686153 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1401,"mr3000_channel_edit",[1,"CH: 4",["0.423219 * safezoneW + safezoneX","0.415981 * safezoneH + safezoneY","0.0479062 * safezoneW","0.0686153 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1616,"mr3000_stereo",[1,"",["0.503281 * safezoneW + safezoneX","0.602223 * safezoneH + safezoneY","0.0216563 * safezoneW","0.0308069 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
+
 
 
 class mr3000_radio_dialog 
@@ -51,7 +53,8 @@ controls[]=
 	mr3000_channel_8,
 	mr3000_channel_9,
 	mr3000_edit,
-	mr3000_channel_edit
+	mr3000_channel_edit,
+	mr3000_stereo
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Zozaci)
@@ -248,6 +251,16 @@ class mr3000_channel_edit: RscEditLCD
 	h = 0.0686153 * safezoneH;
 	tooltip = $STR_current_channel;
 	canModify = 0;
+};
+class mr3000_stereo: HiddenButton
+{
+	idc = IDC_MR3000_MR3000_STEREO;
+	x = 0.503281 * safezoneW + safezoneX;
+	y = 0.602223 * safezoneH + safezoneY;
+	w = 0.0216563 * safezoneW;
+	h = 0.0308069 * safezoneH;
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call getLrStereo) + 1) mod MAX_STEREO] call setLrStereo; hint (localize str(formatText ['STR_stereo_settings_%1', lr_dialog_radio call getLrStereo]))";
+	tooltip = $STR_stereo_settings;
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END

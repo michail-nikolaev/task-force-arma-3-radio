@@ -173,7 +173,7 @@ class Mission
 					id=3;
 					side="GUER";
 					vehicle="I_diver_F";
-					player="PLAYER COMMANDER";
+					player="PLAY CDG";
 					skill=0.60000002;
 				};
 			};
@@ -244,7 +244,7 @@ class Mission
 					id=7;
 					side="EAST";
 					vehicle="O_Soldier_F";
-					player="PLAY CDG";
+					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 				};

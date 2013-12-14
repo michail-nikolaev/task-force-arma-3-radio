@@ -1,4 +1,4 @@
-/* #Mocany
+/* #Zuhety
 $[
 	1.063,
 	["anprc148jem",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -10,9 +10,11 @@ $[
 	[1602,"prev_channel148",[1,"",["0.204031 * safezoneW + safezoneX","0.495799 * safezoneH + safezoneY","0.023625 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1603,"next_channel148",[1,"",["0.242094 * safezoneW + safezoneX","0.497199 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
 	[1604,"increase_volume148",[1,"",["0.242094 * safezoneW + safezoneX","0.45659 * safezoneH + safezoneY","0.0242813 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
-	[1605,"decrease_volume148",[1,"",["0.202719 * safezoneW + safezoneX","0.457991 * safezoneH + safezoneY","0.0269063 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]]
+	[1605,"decrease_volume148",[1,"",["0.202719 * safezoneW + safezoneX","0.457991 * safezoneH + safezoneY","0.0269063 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
+	[1606,"stereo148",[1,"",["0.201406 * safezoneW + safezoneX","0.536408 * safezoneH + safezoneY","0.018375 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]]
 ]
 */
+
 
 
 
@@ -32,7 +34,8 @@ class anprc148jem_radio_dialog
 	prev_channel148,
 	next_channel148,
 	increase_volume148,
-	decrease_volume148
+	decrease_volume148,
+	stereo148
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Horegy)
@@ -131,6 +134,16 @@ class decrease_volume148: HiddenButton
 	h = 0.0266059 * safezoneH;
 	tooltip = $STR_decrease_volume;
 	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) - 1 + MAX_SW_VOLUME) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume) + 1) * 10)];"
+};
+class stereo148: HiddenButton
+{
+	idc = IDC_ANPRC148JEM_STEREO148;
+	x = 0.201406 * safezoneW + safezoneX;
+	y = 0.536408 * safezoneH + safezoneY;
+	w = 0.018375 * safezoneW;
+	h = 0.0294066 * safezoneH;
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwStereo) + 1) mod MAX_STEREO] call setSwStereo; hint (localize str(formatText ['STR_stereo_settings_%1', sw_dialog_radio call getSwStereo]))";
+	tooltip = $STR_stereo_settings;
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END

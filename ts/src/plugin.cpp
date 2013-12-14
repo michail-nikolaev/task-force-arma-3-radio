@@ -164,6 +164,11 @@ struct CLIENT_DATA
 };
 
 typedef std::map<std::string, CLIENT_DATA*> STRING_TO_CLIENT_DATA_MAP;
+struct FREQ_SETTINGS
+{
+	int volume;
+	int stereoMode;
+};
 struct SERVER_RADIO_DATA 
 {	
 	std::string myNickname;
@@ -171,8 +176,8 @@ struct SERVER_RADIO_DATA
 	bool tangentPressed;
 	TS3_VECTOR myPosition;
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
-	std::map<std::string, int> mySwFrequencies;
-	std::map<std::string, int> myLrFrequencies;
+	std::map<std::string, FREQ_SETTINGS> mySwFrequencies;
+	std::map<std::string, FREQ_SETTINGS> myLrFrequencies;
 	std::string myDdFrequency;
 	int ddVolumeLevel;
 	std::string myVoiceVolume;
@@ -469,6 +474,7 @@ struct LISTED_INFO {
 	OVER_RADIO_TYPE over;
 	LISTED_ON on;
 	int volume;
+	int stereoMode;
 };
 
 float distanceForDiverRadio(float d, uint64 serverConnectionHandlerID)
@@ -516,7 +522,8 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 		{
 			result.over = LISTEN_TO_SW;
 			result.on = LISTED_ON_LR;
-			result.volume = serverIdToData[serverConnectionHandlerID].myLrFrequencies[data->frequency];
+			result.volume = serverIdToData[serverConnectionHandlerID].myLrFrequencies[data->frequency].volume;
+			result.stereoMode = serverIdToData[serverConnectionHandlerID].myLrFrequencies[data->frequency].stereoMode;
 		}		
 	}
 	
@@ -527,7 +534,8 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 		{
 			result.over = LISTEN_TO_SW;
 			result.on = LISTED_ON_SW;
-			result.volume = serverIdToData[serverConnectionHandlerID].mySwFrequencies[data->frequency];
+			result.volume = serverIdToData[serverConnectionHandlerID].mySwFrequencies[data->frequency].volume;
+			result.stereoMode = serverIdToData[serverConnectionHandlerID].mySwFrequencies[data->frequency].stereoMode;
 		}		
 	}
 	
@@ -538,7 +546,8 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 		{
 			result.over = LISTEN_TO_LR;
 			result.on = LISTED_ON_SW;
-			result.volume = serverIdToData[serverConnectionHandlerID].mySwFrequencies[data->frequency];
+			result.volume = serverIdToData[serverConnectionHandlerID].mySwFrequencies[data->frequency].volume;
+			result.stereoMode = serverIdToData[serverConnectionHandlerID].mySwFrequencies[data->frequency].stereoMode;
 		}		
 	}
 
@@ -549,7 +558,8 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 		{
 			result.over = LISTEN_TO_LR;
 			result.on = LISTED_ON_LR;
-			result.volume = serverIdToData[serverConnectionHandlerID].myLrFrequencies[data->frequency];
+			result.volume = serverIdToData[serverConnectionHandlerID].myLrFrequencies[data->frequency].volume;
+			result.stereoMode = serverIdToData[serverConnectionHandlerID].myLrFrequencies[data->frequency].stereoMode;
 		}		
 	}
 	
@@ -561,6 +571,7 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 			result.over = LISTEN_TO_DD;			
 			result.on = LISTED_ON_DD;
 			result.volume = serverIdToData[serverConnectionHandlerID].ddVolumeLevel;
+			result.stereoMode = 0;
 		}		
 	}
 	
@@ -953,8 +964,8 @@ void updateNicknamesList(uint64 serverConnectionHandlerID) {
 
 }
 
-std::map<std::string, int> parseFrequencies(std::string string) {
-	std::map<std::string, int> result;
+std::map<std::string, FREQ_SETTINGS> parseFrequencies(std::string string) {
+	std::map<std::string, FREQ_SETTINGS> result;
 	std::string sub = string.substr(1, string.length() - 2);	
 	std::vector<std::string> v = split(sub, ',');
 	for (auto i = v.begin(); i != v.end(); i++) 
@@ -962,8 +973,11 @@ std::map<std::string, int> parseFrequencies(std::string string) {
 		std::string xs = *i;
 		xs = xs.substr(1, xs.length() - 2);
 		std::vector<std::string> parts = split(xs, '|');
-		if (parts.size() == 2) {
-			result[parts[0]] = std::atoi(parts[1].c_str());
+		if (parts.size() == 3) {
+			FREQ_SETTINGS settings;
+			settings.volume = std::atoi(parts[1].c_str());
+			settings.stereoMode = std::atoi(parts[2].c_str());
+			result[parts[0]] = settings;
 		}
 	}
 	return result;
@@ -1780,7 +1794,7 @@ void applyGain(short * samples, int channels, int sampleCount, float directTalki
 
 
 template<class T>
-void processRadioEffect(short* samples, int channels, int sampleCount, float gain, T* effect)
+void processRadioEffect(short* samples, int channels, int sampleCount, float gain, T* effect, int stereoMode)
 {
 	for (int i = 0; i < sampleCount * channels; i+= channels)
 	{			
@@ -1798,8 +1812,23 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 		effect->process(&buffer, 1);		
 		LeaveCriticalSection(&serverDataCriticalSection);								
 
-		// put mixed output to stream		
-		for (int j = 0; j < channels; j++)
+		// put mixed output to stream			
+		for (int j = 0; j < channels; j++) samples[i + j] = 0;
+
+		int startChannel = 0;
+		int endChannel = channels;
+		if (stereoMode == 1) 
+		{			
+			startChannel = 0;
+			endChannel = 1;
+		} 
+		else if (stereoMode == 2) 
+		{
+			startChannel = 1;
+			endChannel = 2;
+		}
+
+		for (int j = startChannel; j < endChannel; j++)
 		{
 			float sample = buffer;
 			short newValue;
@@ -2008,7 +2037,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						float volumeLevel = volumeMultiplifier((float) listed_info.volume);
 						processCompressor(&data->compressor, sw_buffer, channels, sampleCount);
 						data->swEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, d, serverConnectionHandlerID));
-						processRadioEffect(sw_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->swEffect);
+						processRadioEffect(sw_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->swEffect, listed_info.stereoMode);
 					}
 					short* lr_buffer = NULL;
 					if (listed_info.over == LISTEN_TO_LR)
@@ -2017,7 +2046,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						float volumeLevel = volumeMultiplifier((float) listed_info.volume);						
 						processCompressor(&data->compressor, lr_buffer, channels, sampleCount);
 						data->lrEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, d, serverConnectionHandlerID));
-						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->lrEffect);
+						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->lrEffect, listed_info.stereoMode);
 					}
 					short* dd_buffer = NULL;
 					if (listed_info.over == LISTEN_TO_DD)
@@ -2026,7 +2055,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						float volumeLevel = volumeMultiplifier((float) serverIdToData[serverConnectionHandlerID].ddVolumeLevel);
 						processCompressor(&data->compressor, dd_buffer, channels, sampleCount);
 						data->ddEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, d, serverConnectionHandlerID));
-						processRadioEffect(dd_buffer, channels, sampleCount, volumeLevel * 0.4f, &data->ddEffect);
+						processRadioEffect(dd_buffer, channels, sampleCount, volumeLevel * 0.4f, &data->ddEffect, listed_info.stereoMode);
 					}				
 					if (!shouldPlayerHear && vehicleCheck)
 					{						

@@ -10,6 +10,38 @@
 					Несовпадение версий Task Force Radio. Версия на сервере: %1, Ваша версия: %2
 				</Russian>
 			</Key>
+			<Key ID="STR_stereo_settings">
+				<Original>
+					Stereo settings
+				</Original>
+				<Russian>
+					Настройки стерео
+				</Russian>
+			</Key>
+			<Key ID="STR_stereo_settings_0">
+				<Original>
+					Left and right
+				</Original>
+				<Russian>
+					Левый и правый
+				</Russian>
+			</Key>
+			<Key ID="STR_stereo_settings_1">
+				<Original>
+					Left only
+				</Original>
+				<Russian>
+					Только левый
+				</Russian>
+			</Key>
+			<Key ID="STR_stereo_settings_2">
+				<Original>
+					Right only
+				</Original>
+				<Russian>
+					Только правый
+				</Russian>
+			</Key>
 			<Key ID="STR_no_server">
 				<Original>
 					No Task Force Radio deployed on server!
@@ -413,80 +445,80 @@
 &lt;font color=&quot;#0000FF&quot;&gt;Radio AN/PRC-152 (personal)&lt;br/&gt;
 BLUEFOR	&lt;br/&gt;
 30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press CLR, enter a value and press ENT. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume pressing PRE+ and PRE- keys.&lt;br/&gt;
+To enter the frequency, press CLR, enter a value and press ENT. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume pressing PRE+ and PRE- keys. You can also change stereo setting by pressing 0.&lt;br/&gt;
 &lt;br/&gt;
 &lt;font color=&quot;#0000FF&quot;&gt;Radio RT-1523G (ASIP) (long range)&lt;br/&gt;
 BLUEFOR	&lt;br/&gt;
 30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press MENU CLR, enter a value and press FREQ. You can also switch the active radio channel by pressing the radio number buttons (a total of 9 channels). You can change the reception volume by TIME and BATT CALL keys.&lt;br/&gt;
+To enter the frequency, press MENU CLR, enter a value and press FREQ. You can also switch the active radio channel by pressing the radio number buttons (a total of 9 channels). You can change the reception volume by TIME and BATT CALL keys. You can also change stereo setting by pressing STO.&lt;br/&gt;
 &lt;br/&gt;
 &lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC148-JEM (personal)&lt;br/&gt;
 INDEPENDENT&lt;br/&gt;
 30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press ESC, enter a value and press ENT. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume by MOD and GR keys.&lt;br/&gt;
+To enter the frequency, press ESC, enter a value and press ENT. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume by MOD and GR keys. You can also change stereo setting by pressing ALT.&lt;br/&gt;
 &lt;br/&gt;
 &lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC-155 (long range)&lt;br/&gt;
 INDEPENDENT&lt;br/&gt;
 30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press ESC, enter a value and press MENU. You can also switch the active radio channel by pressing the arrow keys (up and down). You can change the reception volume by the loudspeaker button. &lt;br/&gt;
+To enter the frequency, press ESC, enter a value and press MENU. You can also switch the active radio channel by pressing the arrow keys (up and down). You can change the reception volume by the loudspeaker button. You can also change stereo setting by pressing PRE. &lt;br/&gt;
 &lt;br/&gt;
 &lt;font color=&quot;#8B0000&quot;&gt;Radio FADAK (personal)&lt;br/&gt;
 OPFOR&lt;br/&gt;
 30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press CLR, enter a value and press ENT. You can also switch the active radio channel by pressing SET and PWR (a total of 8 channels). You can change the reception volume by DATA and SEND keys.&lt;br/&gt;
+To enter the frequency, press CLR, enter a value and press ENT. You can also switch the active radio channel by pressing SET and PWR (a total of 8 channels). You can change the reception volume by DATA and SEND keys. You can also change stereo setting by pressing 0.&lt;br/&gt;
 &lt;br/&gt;
 &lt;font color=&quot;#8B0000&quot;&gt;Radio MR3000 (long range)&lt;br/&gt;
 OPFOR&lt;br/&gt;
 30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press CLR ESC, enter a value and press ENT. You can also switch the active radio channel by pressing the radio number buttons or horizontal arrow buttons (a total of 8 channels). You can change the reception volume by vertical arrow buttons.&lt;br/&gt;
+To enter the frequency, press CLR ESC, enter a value and press ENT. You can also switch the active radio channel by pressing the radio number buttons or horizontal arrow buttons (a total of 8 channels). You can change the reception volume by vertical arrow buttons. You can also change stereo setting by pressing 0.&lt;br/&gt;
 &lt;br/&gt;
 Underwater transceiver&lt;br/&gt;
 All&lt;br/&gt;
 32-41kHz / 70-300 m. (depending on waves)&lt;br/&gt;
 To enter the frequency, press MODE, enter a value and press ADV. You can change the reception volume by the button on the right side of the device.
 				</Original>
-				<Russian>
+				<Original>
 &lt;font color=&quot;#0000FF&quot;&gt;
 Рация AN/PRC-152 (личная)&lt;br/&gt;
 BLUEFOR&lt;br/&gt;
 &lt;/font&gt;
 30-512Mhz / 3 км&lt;br/&gt;
-Для того чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками PRE+ и PRE-.&lt;br/&gt;
+Для того чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками PRE+ и PRE-. Вы также можете изменять стерео настройки нажимая 0.&lt;br/&gt;
 &lt;br/&gt;
 &lt;font color=&quot;#0000FF&quot;&gt;
 Рация RT-1523G (ASIP) (дальняя связь)&lt;br/&gt;
 BLUEFOR&lt;br/&gt;
 &lt;/font&gt;
 30-87Mhz / 20 км&lt;br/&gt;
-Для того чтобы ввести частоту нажмите MENU CLR, введите значение и нажмите FREQ. Также вы можете переключать активный канал, нажимая цифровые кнопки на рации (всего 9 каналов). Возможно изменение громкости приема кнопками TIME и BATT CALL.&lt;br/&gt;
+Для того чтобы ввести частоту нажмите MENU CLR, введите значение и нажмите FREQ. Также вы можете переключать активный канал, нажимая цифровые кнопки на рации (всего 9 каналов). Возможно изменение громкости приема кнопками TIME и BATT CALL. Вы также можете изменять стерео настройки нажимая STO.&lt;br/&gt;
 &lt;br/&gt;
 &lt;font color=&quot;#006400&quot;&gt;
 Рация AN/PRC148-JEM (личная)&lt;br/&gt;
 INDEPENDENT&lt;br/&gt;
 &lt;/font&gt;
 30-512Mhz / 3 км&lt;br/&gt;
-Для того чтобы ввести частоту, нажмите ESC, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками MOD и GR.&lt;br/&gt;
+Для того чтобы ввести частоту, нажмите ESC, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками MOD и GR. Вы также можете изменять стерео настройки нажимая ALT.&lt;br/&gt;
 &lt;br/&gt;
 &lt;font color=&quot;#006400&quot;&gt;
 Рация AN/PRC-155 (дальняя связь)&lt;br/&gt;
 INDEPENDENT&lt;br/&gt;
 &lt;/font&gt;
 30-87Mhz / 20 км&lt;br/&gt;
-Для того чтобы ввести частоту нажмите ESC, введите значение и нажмите MENU. Также вы можете переключать активный канал, нажимая на стрелки (вверх в вниз). Возможно изменение громкости приема кнопкой с изображением динамика.&lt;br/&gt;
+Для того чтобы ввести частоту нажмите ESC, введите значение и нажмите MENU. Также вы можете переключать активный канал, нажимая на стрелки (вверх в вниз). Возможно изменение громкости приема кнопкой с изображением динамика. Вы также можете изменять стерео настройки нажимая PRE.&lt;br/&gt;
 &lt;br/&gt;
 &lt;font color=&quot;#8B0000&quot;&gt;
 Рация FADAK (личная)&lt;br/&gt;
 OPFOR&lt;br/&gt;
 &lt;/font&gt;
 30-512Mhz / 3 км&lt;br/&gt;
-Для того чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая SET и PWR (всего 8 каналов). Возможно изменение громкости приема кнопками DATA и SEND.&lt;br/&gt;
+Для того чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая SET и PWR (всего 8 каналов). Возможно изменение громкости приема кнопками DATA и SEND. Вы также можете изменять стерео настройки нажимая 0.&lt;br/&gt;
 &lt;br/&gt;
 &lt;font color=&quot;#8B0000&quot;&gt;
 Рация MR3000 (дальняя связь)&lt;br/&gt;
 OPFOR&lt;br/&gt;
 &lt;/font&gt;
 30-87Mhz / 20 км&lt;br/&gt;
-Для того чтобы ввести частоту нажмите CLR ESC, введите значение и нажмите ENT. Также вы можете переключать активный канал, нажимая цифровые кнопки на рации, либо горизонтальными кнопками-стрелками (всего 9 каналов). Возможно изменение громкости приема вертикальными кнопками-стрелками.&lt;br/&gt;
+Для того чтобы ввести частоту нажмите CLR ESC, введите значение и нажмите ENT. Также вы можете переключать активный канал, нажимая цифровые кнопки на рации, либо горизонтальными кнопками-стрелками (всего 9 каналов). Возможно изменение громкости приема вертикальными кнопками-стрелками. Вы также можете изменять стерео настройки нажимая 0.&lt;br/&gt;
 &lt;br/&gt;
 Переговорное устройство дайверов&lt;br/&gt;
 32-41kHz / 70-300 м. (в зависимости от уровня волн)&lt;br/&gt;
