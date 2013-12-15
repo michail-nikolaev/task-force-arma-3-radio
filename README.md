@@ -6,7 +6,7 @@ _v0.8.3 от 15.12.2013_
 
 ###Установка
 
-* Скачайте [архив с рацией 0.8.2](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.8.2.zip) и распакуйте его.
+* Скачайте [архив с рацией 0.8.2](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.8.3.zip) и распакуйте его.
 * Cкопируйте содержимое папки `TeamSpeak 3 Client` в корневую папку TeamSpeak.
 * Скопируйте содержимое папки `Arma 3` в папку с игрой `...\SteamApps\common\Arma 3`.
 
