@@ -57,7 +57,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.8.2"
+#define PLUGIN_VERSION "0.8.3"
 #define WHISPER_VOLUME "whispering"
 #define NORMAL_VOLUME "normal"
 #define YELLING_VOLUME "yelling"
@@ -169,6 +169,7 @@ struct FREQ_SETTINGS
 	int volume;
 	int stereoMode;
 };
+#define INVALID_DATA_FRAME 9999
 struct SERVER_RADIO_DATA 
 {	
 	std::string myNickname;
@@ -195,7 +196,7 @@ struct SERVER_RADIO_DATA
 	SERVER_RADIO_DATA()
 	{
 		tangentPressed = false;
-		currentDataFrame = 9999;
+		currentDataFrame = INVALID_DATA_FRAME;
 	}
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
@@ -1013,6 +1014,23 @@ std::string processGameCommand(std::string command)
 			return "PONG";
 		}
 	}	
+	else if (tokens.size() == 2 && tokens[0] == "KILLED") 
+	{
+		std::string nickname = tokens[1];
+		EnterCriticalSection(&serverDataCriticalSection);
+		if (serverIdToData.count(currentServerConnectionHandlerID))
+		{
+			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname))
+			{
+				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+				if (clientData)
+				{
+					clientData->dataFrame = INVALID_DATA_FRAME;
+				}
+			}
+		}
+		LeaveCriticalSection(&serverDataCriticalSection);
+	}
 	else if (tokens.size() == 4 && tokens[0] == "VERSION") 
 	{
 		EnterCriticalSection(&serverDataCriticalSection);				
@@ -1297,7 +1315,7 @@ DWORD WINAPI ServiceThread( LPVOID lpParam )
 				playWavFile("radio-sounds/off", 0, false);			
 				EnterCriticalSection(&serverDataCriticalSection);				
 				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].alive = false;
-				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].currentDataFrame = 9999;
+				serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].currentDataFrame = INVALID_DATA_FRAME;
 				LeaveCriticalSection(&serverDataCriticalSection);
 				onGameEnd(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
 			}
@@ -1796,6 +1814,20 @@ void applyGain(short * samples, int channels, int sampleCount, float directTalki
 template<class T>
 void processRadioEffect(short* samples, int channels, int sampleCount, float gain, T* effect, int stereoMode)
 {
+	int startChannel = 0;
+	int endChannel = channels;
+	if (stereoMode == 1) 
+	{			
+		startChannel = 0;
+		endChannel = 1;
+		gain *= 1.5f;
+	} 
+	else if (stereoMode == 2) 
+	{
+		startChannel = 1;
+		endChannel = 2;
+		gain *= 1.5f;
+	}
 	for (int i = 0; i < sampleCount * channels; i+= channels)
 	{			
 		// prepare mono for radio						
@@ -1813,20 +1845,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 		LeaveCriticalSection(&serverDataCriticalSection);								
 
 		// put mixed output to stream			
-		for (int j = 0; j < channels; j++) samples[i + j] = 0;
-
-		int startChannel = 0;
-		int endChannel = channels;
-		if (stereoMode == 1) 
-		{			
-			startChannel = 0;
-			endChannel = 1;
-		} 
-		else if (stereoMode == 2) 
-		{
-			startChannel = 1;
-			endChannel = 2;
-		}
+		for (int j = 0; j < channels; j++) samples[i + j] = 0;		
 
 		for (int j = startChannel; j < endChannel; j++)
 		{
