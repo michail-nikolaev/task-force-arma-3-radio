@@ -8,9 +8,9 @@ class CfgPatches
 		requiredAddons[] = {"A3_Structures_F_Items_Electronics"};
 		author[] = {"[TF]Nkey"};
 		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
-		version = 0.8.2;
-		versionStr = "0.8.2";
-		versionAr[] = {0,8,2};
+		version = 0.8.3;
+		versionStr = "0.8.3";
+		versionAr[] = {0,8,3};
 	};
 };
 

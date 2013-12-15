@@ -184,7 +184,9 @@ protected:
 		}
 
 		return temp;
-	}	float foldback(float in, float threshold)
+	}
+
+	float foldback(float in, float threshold)
 	{
 		if (threshold < 0.001) return 0.0f;
 		if (in>threshold || in<-threshold)
@@ -200,7 +202,8 @@ protected:
 		phase += (90.0f * 1.0f / (float) SAMPLE_RATE);
 		if (phase > 1.0f) phase = 0.0f;
 		return in * (1.0f - mix) + multiple * mix;
-	}
+	}
+
 
 	float errorLevel;
 	float phase;

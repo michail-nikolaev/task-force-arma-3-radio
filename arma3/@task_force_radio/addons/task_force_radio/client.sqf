@@ -1039,10 +1039,12 @@ tf_farPlayersIndex = 0;
 tf_farPlayersProcessed = true;
 
 tf_msNearPerStepMax = 0.05;
+tf_msNearPerStepMin = 1.00;
 tf_msNearPerStep = tf_msNearPerStepMax;
 tf_nearUpdateTime = 0.5;
 
 tf_msFarPerStepMax = 0.07;
+tf_msFarPerStepMin = 2.00;
 tf_msFarPerStep = tf_msFarPerStepMax;
 tf_farUpdateTime = 7;
 
@@ -1050,6 +1052,8 @@ tf_lastFrequencyInfoTick = 0;
 tf_lastNearPlayersUpdate = 0;
 
 tf_lastError = false;
+
+tf_msSpectatorPerStepMax = 0.035;
 
 tf_sendFrequencyInfo = 
 {
@@ -1089,25 +1093,27 @@ tf_getNearPlayers =
 	private ["_result", "_index", "_players_in_group", "_add_to_near"];
 	_players_in_group = count (units (group player));
 	_result = [];
-	_index = 0;
-	{			
-		if (isPlayer _x) then {
-			_add_to_near = false;
-			if ((_players_in_group < 10) and {group player == group _x}) then {
-				_add_to_near = true; 
+	if (alive player) then {
+		_index = 0;
+		{			
+			if (isPlayer _x) then {
+				_add_to_near = false;
+				if ((_players_in_group < 10) and {group player == group _x}) then {
+					_add_to_near = true; 
+				};
+	
+				_was_speaking = _x getVariable "tf_start_speaking";
+				if (!(isNil "_was_speaking") and {diag_tickTime - _was_speaking < 20}) then {
+					_add_to_near = true;
+				};
+	
+				if ((player distance _x < 60) or {_add_to_near}) then {				
+					_result set[_index, _x];
+					_index = _index + 1;
+				} 
 			};
-
-			_was_speaking = _x getVariable "tf_start_speaking";
-			if (!(isNil "_was_speaking") and {diag_tickTime - _was_speaking < 20}) then {
-				_add_to_near = true;
-			};
-
-			if ((player distance _x < 60) or {_add_to_near}) then {				
-				_result set[_index, _x];
-				_index = _index + 1;
-			} 
-		};
-	} count allUnits;
+		} count allUnits;
+	};
 	_result;
 };
 
@@ -1118,8 +1124,17 @@ sendVersionInfo =
 	_result = "task_force_radio_pipe" callExtension _request;
 };
 
+
+sendPlayerKilled =
+{
+	private ["_request", "_result"];
+	_request = format["KILLED	%1", name _this];
+	_result = "task_force_radio_pipe" callExtension _request;
+};
+
 sendPlayerInfo =
 {
+		private ["_request", "_result", "_listener"];
 		_request = _this call preparePositionCoordinates;
 		_result = "task_force_radio_pipe" callExtension _request;
 
@@ -1138,7 +1153,7 @@ sendPlayerInfo =
 			_this setVariable ["tf_start_speaking", diag_tickTime];
 		} else {
 			_this setRandomLip false;
-		};						
+		};
 };
 
 processPlayerPositions =
@@ -1164,24 +1179,24 @@ processPlayerPositions =
 					tf_farPlayersIndex = tf_farPlayersIndex + 1;
 				};
 			} count _other_units;
-	
-			tf_fastProcessingCoeff = 0;
-			if (count tf_farPlayers < count tf_nearPlayers) then {
-				tf_fastProcessingCoeff = 1;
-			};
 				
-			tf_nearPlayersIndex = 0;
 			tf_farPlayersIndex = 0;	
 	
 			if (count tf_nearPlayers > 0) then {
-				tf_farPlayersProcessed = false;
-				tf_msNearPerStep = tf_msNearPerStepMax max (tf_nearUpdateTime / (count tf_nearPlayers));
-			} else {
 				tf_nearPlayersProcessed = false;
+				tf_msNearPerStep = tf_msNearPerStepMax max (tf_nearUpdateTime / (count tf_nearPlayers));
+				tf_msNearPerStep = tf_msNearPerStep min tf_msNearPerStepMin;
+			} else {
 				tf_msNearPerStep = tf_nearUpdateTime;
 			};
 			if (count tf_farPlayers > 0) then {
-				tf_msFarPerStep = tf_msFarPerStepMax max (tf_farUpdateTime / (count tf_farPlayers));
+				tf_farPlayersProcessed = false;
+				if (count tf_nearPlayers > 0) then {
+					tf_msFarPerStep = tf_msFarPerStepMax max (tf_farUpdateTime / (count tf_farPlayers));
+					tf_msFarPerStep = tf_msFarPerStep min tf_msFarPerStepMin;
+				} else {
+					tf_msFarPerStep = tf_msSpectatorPerStepMax;
+				};
 			} else {
 				tf_msFarPerStep = tf_farUpdateTime;
 			};
@@ -1270,6 +1285,8 @@ processPlayerPositions =
 	if (isMultiplayer) then {
 		call sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
+		
+		player addMPEventHandler ["MPKilled", {(_this select 0) call sendPlayerKilled}];
 	};
 };
 
