@@ -2,7 +2,7 @@ Task Force Arma 3 radio
 =======================
 
 Arma 3 Team Speak Radio Plugin
-_v0.8.3 от 15.12.2013_
+_v0.8.3 от 18.12.2013_
 
 ###Установка
 
@@ -26,6 +26,8 @@ _v0.8.3 от 15.12.2013_
 * Зайдите в тот же канал, где находятся другие игроки, играющие с данной рацией, либо вас перебросит в канал `TaskForceRadio` в случае его наличия при старте миссии.
 
 > Если ник в профиле игры и TeamSpeak совпадает - плагин изменит ваш ник в TS в процессе игры.
+
+> Убедитесь, что вас ник в игре содержит не менее 3-ех символов и не содержит символа `@`.
 
 > Не рекомендуется использовать плагин при одновременном подключении к нескольким серверам в TeamSpeak
 
@@ -118,6 +120,16 @@ _v0.8.3 от 15.12.2013_
 * Для того, чтобы изменить коды шифрования, используемые фракциями (для того, чтобы позволить нескольким фракциям переговариваться) добавьте в `init.sqf` примерно следующий код:
 `tf_west_radio_code = "_bluefor";
 tf_east_radio_code = "_opfor"; tf_guer_radio_code = "_independent"; `. Для того, чтобы две фракции могли связываться по радио у них должен быть идентичный код шифрования (вам потребуется поменять значения).
+* Чтобы установить частоту активной рации локального игрока можно воспользоваться следующими функциями: `"34.5" call tf_setLongRangeRadioFrequency"`, `"123.5" call tf_setPersonalRadioFrequency`.
+* По умолчания все игроки в одной группе имееют одинаковые настройки персональных раций. Чтобы установить иденичные настройки для игроков всей стороны: `tf_same_frequencies_for_side = true;`
+* По умолчания все игроки одной стороны имееют одинаковые настройки дальних раций. Для того, чтобы отключить данное поведение (устанавливать одинаковые настройки дальней рации только в пределах группы) : `tf_same_lr_frequencies_for_side = false`.
+* Вызовами `call generateSwSetting` и `call generateLrSettings` вы можете генерировать случайные настройки для персональных и дальних раций соотвественно. Результатом функций является массив вида: `[активный канал, громкость, частоты....каналов, зарезервировано, настройки_стерео]`. Созданные таким образом массивы можно изменять и использовать в функциях ниже.
+* Установив значения `tf_freq_west`, `ft_freq_east` и `tf_freq_guer` совместно с `tf_same_sw_frequencies_for_side = true`, вы можете предустановить настройки персональных раций для игроков какой-либо стороны. Аналогично `tf_freq_west_lr`, `ft_freq_east_lr` и `ft_freq_east_lr` совместно с `tf_same_lr_frequencies_for_side = true`.
+* Установив значения `(group _player) setVariable["tf_lr_frequency", _value, true]` совместно с `tf_same_lr_frequencies_for_side = false` вы можете предустановить частоты для игроков группы. Аналогично `tf_sw_frequency` вместе с `tf_same_sw_frequencies_for_side = false`.
+* `call tf_getTeamSpeakServerName` - получить название TeamSpeak сервера, `call tf_getTeamSpeakChannelName` - получить название канала TeamSpeak, `call tf_isTeamSpeakPluginEnabled` - проверить, активен ли плагин TeamSpeak.
+* `tf_radio_channel_name` и `tf_radio_channel_password` - изменить название и пароль канала для серьезного режима.
+* Чтобы явно установить сторону технику: `_vehicle setVariable ["tf_side", _value, true]`. Возможные значения: `"west"`, `"east"`, `"guer".`
+
 
 #####Администраторам TeamSpeak серверов
 На всякий случай уменьшите уровень защиты от флуда: `Правый клик по серверу > Edit Virtual Server > More > Anti Flood` поставьте значения 30, 300, 3000 (сверху вниз).
@@ -137,4 +149,11 @@ tf_east_radio_code = "_opfor"; tf_guer_radio_code = "_independent"; `. Для т
 * [Avi](http://arma3.ru/forums/index.php/user/715-avi/) за кодревью.
 * [andrey-zakharov](https://github.com/andrey-zakharov) ([Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/)) за помощь в разработке.
 * Дине за перевод.
+* [Zealot](http://forums.bistudio.com/member.php?125460-zealot111) за помощь в разработке и полезные скрипты.
+* [NouberNou](http://forums.bistudio.com/member.php?56560-NouberNou) за советы и конкуренцию.
+* [Megagoth1702](http://forums.unitedoperations.net/index.php/user/2271-megagoth1702/) за свою давнюю работу по эмуляции звучания рацию.
+* [Naught](http://forums.unitedoperations.net/index.php/user/6555-naught/) за ревью.
+* [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) за перевод.
+* Всем, кто делал видео и статьм с обзорами.
+* Всем пользователям (особенно тем, что нашли баги).
 * Извините, если кого-то случайно забыл.
