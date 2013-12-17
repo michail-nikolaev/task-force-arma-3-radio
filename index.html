@@ -35,7 +35,7 @@
 <a name="task-force-arma-3-radio" class="anchor" href="#task-force-arma-3-radio"><span class="octicon octicon-link"></span></a>Task Force Arma 3 radio</h1>
 
 <p>Arma 3 Team Speak Radio Plugin
-<em>v0.8.3 от 15.12.2013</em></p>
+<em>v0.8.3 от 18.12.2013</em></p>
 
 <h3>
 <a name="%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0"><span class="octicon octicon-link"></span></a>Установка</h3>
@@ -67,6 +67,8 @@
 <li>Зайдите в тот же канал, где находятся другие игроки, играющие с данной рацией, либо вас перебросит в канал <code>TaskForceRadio</code> в случае его наличия при старте миссии.</li>
 </ul><blockquote>
 <p>Если ник в профиле игры и TeamSpeak совпадает - плагин изменит ваш ник в TS в процессе игры.</p>
+
+<p>Убедитесь, что вас ник в игре содержит не менее 3-ех символов и не содержит символа <code>@</code>.</p>
 
 <p>Не рекомендуется использовать плагин при одновременном подключении к нескольким серверам в TeamSpeak</p>
 
@@ -274,6 +276,19 @@
 <li>Для того, чтобы изменить коды шифрования, используемые фракциями (для того, чтобы позволить нескольким фракциям переговариваться) добавьте в <code>init.sqf</code> примерно следующий код:
 <code>tf_west_radio_code = "_bluefor";
 tf_east_radio_code = "_opfor"; tf_guer_radio_code = "_independent";</code>. Для того, чтобы две фракции могли связываться по радио у них должен быть идентичный код шифрования (вам потребуется поменять значения).</li>
+<li>Чтобы установить частоту активной рации локального игрока можно воспользоваться следующими функциями: <code>"34.5" call tf_setLongRangeRadioFrequency"</code>, <code>"123.5" call tf_setPersonalRadioFrequency</code>.</li>
+<li>По умолчания все игроки в одной группе имееют одинаковые настройки персональных раций. Чтобы установить иденичные настройки для игроков всей стороны: <code>tf_same_frequencies_for_side = true;</code>
+</li>
+<li>По умолчания все игроки одной стороны имееют одинаковые настройки дальних раций. Для того, чтобы отключить данное поведение (устанавливать одинаковые настройки дальней рации только в пределах группы) : <code>tf_same_lr_frequencies_for_side = false</code>.</li>
+<li>Вызовами <code>call generateSwSetting</code> и <code>call generateLrSettings</code> вы можете генерировать случайные настройки для персональных и дальних раций соотвественно. Результатом функций является массив вида: <code>[активный канал, громкость, частоты....каналов, зарезервировано, настройки_стерео]</code>. Созданные таким образом массивы можно изменять и использовать в функциях ниже.</li>
+<li>Установив значения <code>tf_freq_west</code>, <code>ft_freq_east</code> и <code>tf_freq_guer</code> совместно с <code>tf_same_sw_frequencies_for_side = true</code>, вы можете предустановить настройки персональных раций для игроков какой-либо стороны. Аналогично <code>tf_freq_west_lr</code>, <code>ft_freq_east_lr</code> и <code>ft_freq_east_lr</code> совместно с <code>tf_same_lr_frequencies_for_side = true</code>.</li>
+<li>Установив значения <code>(group _player) setVariable["tf_lr_frequency", _value, true]</code> совместно с <code>tf_same_lr_frequencies_for_side = false</code> вы можете предустановить частоты для игроков группы. Аналогично <code>tf_sw_frequency</code> вместе с <code>tf_same_sw_frequencies_for_side = false</code>.</li>
+<li>
+<code>call tf_getTeamSpeakServerName</code> - получить название TeamSpeak сервера, <code>call tf_getTeamSpeakChannelName</code> - получить название канала TeamSpeak, <code>call tf_isTeamSpeakPluginEnabled</code> - проверить, активен ли плагин TeamSpeak.</li>
+<li>
+<code>tf_radio_channel_name</code> и <code>tf_radio_channel_password</code> - изменить название и пароль канала для серьезного режима.</li>
+<li>Чтобы явно установить сторону технику: <code>_vehicle setVariable ["tf_side", _value, true]</code>. Возможные значения: <code>"west"</code>, <code>"east"</code>, <code>"guer".</code>
+</li>
 </ul><h5>
 <a name="%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0%D0%BC-teamspeak-%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%BE%D0%B2" class="anchor" href="#%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0%D0%BC-teamspeak-%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%BE%D0%B2"><span class="octicon octicon-link"></span></a>Администраторам TeamSpeak серверов</h5>
 
@@ -306,6 +321,18 @@ tf_east_radio_code = "_opfor"; tf_guer_radio_code = "_independent";</code>. Дл
 <li>
 <a href="https://github.com/andrey-zakharov">andrey-zakharov</a> (<a href="http://arma3.ru/forums/index.php/user/1328-vaulter/">Vaulter</a>) за помощь в разработке.</li>
 <li>Дине за перевод.</li>
+<li>
+<a href="http://forums.bistudio.com/member.php?125460-zealot111">Zealot</a> за помощь в разработке и полезные скрипты.</li>
+<li>
+<a href="http://forums.bistudio.com/member.php?56560-NouberNou">NouberNou</a> за советы и конкуренцию.</li>
+<li>
+<a href="http://forums.unitedoperations.net/index.php/user/2271-megagoth1702/">Megagoth1702</a> за свою давнюю работу по эмуляции звучания рацию.</li>
+<li>
+<a href="http://forums.unitedoperations.net/index.php/user/6555-naught/">Naught</a> за ревью.</li>
+<li>
+<a href="http://forums.bistudio.com/member.php?100692-Andy230">Andy230</a> за перевод.</li>
+<li>Всем, кто делал видео и статьм с обзорами.</li>
+<li>Всем пользователям (особенно тем, что нашли баги).</li>
 <li>Извините, если кого-то случайно забыл.</li>
 </ul>
       </section>
