@@ -134,14 +134,13 @@ Ak chcete bezpečne používať plugin na TS3 serveri nastavte flood protection:
 
 
 #####Pre vývojárov
-Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa dokázalo zamedziť nekompatibilite. Z tohto dôvodu ak by niekto chcel prispieť do tohto projektu, kľudne ma kontaktujte - je veľmi pravdepodobné, že vaše implementácie budú procesnuté spolu s ostatnými vylepšeniami. Teším na prípadnú spoluprácu. :)
+Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa dokázalo zamedziť nekompatibilite. Z tohto dôvodu ak by niekto chcel prispieť do tohto projektu, kľudne ma kontaktujte - je veľmi pravdepodobné, že vaša implementácia bude začlenená spolu s ostatnými vylepšeniami. Teším na prípadnú spoluprácu. :)
 
 #####Veľká vďaka patrí
 * [Task Force Arrowhead](http://forum.task-force.ru/) squad za testovanie, podporu, trpezlivosť a všetku pomoc.
 * [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) za pomoc s grafikou a dokumentáciou.
 * [Hardckor ](http://forum.task-force.ru/index.php?action=profile;u=14) za pomoc s grafikou.
-* [Shogun](http://forum.task-force.ru/index.php?action=profile;u=13) za pomoc s grafikou.
-* [Blender](http://arma3.ru/forums/index.php/user/41-blender/) za písma.
+* [Shogun](http://forum.task-force.ru/index.php?action=profile;u=13) za pomoc s grafikou.* [Blender](http://arma3.ru/forums/index.php/user/41-blender/) za písma.
 * [vinniefalco](https://github.com/vinniefalco) za  [DSP Filter](https://github.com/vinniefalco/DSPFilters).
 * [WOG](http://wogames.info/) a [TRUE](http://wogames.info/profile/TRUE/) osobne za pomoc pri testovaní.
 * [Music DSP Collection](https://github.com/music-dsp-collection) za kompresor.
@@ -154,5 +153,5 @@ Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa doká
 * [Naught](http://forums.unitedoperations.net/index.php/user/6555-naught/) za preskúmanie kódu.
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) za preklad.
 * Každému kto robil video alebo článok s recenziou modu.
-* Každému užívateľovi (hlavne tí, ktorí hlásia chyby modu).
+* Všetkým užívateľom (hlavne tým, ktorí hlásia chyby modu).
 * Ospravedlňte ma, ak som niekho náhodou zabudol.
