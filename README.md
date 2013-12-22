@@ -141,7 +141,8 @@ tf_east_radio_code = "_opfor"; tf_guer_radio_code = "_independent"; `. Для т
 #####Спасибки
 * Отряду [Task Force Arrowhead](http://forum.task-force.ru/) за тестирование, поддержку, терпение и всяческую помощь.
 * [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) за помощь с графикой и документацией.
-* [Hardckor ](http://forum.task-force.ru/index.php?action=profile;u=14) за помощь с графикой.
+* [Hardckor](http://forum.task-force.ru/index.php?action=profile;u=14) за помощь с графикой.
+* [Shogun](http://forum.task-force.ru/index.php?action=profile;u=13) за помощь с графикой.
 * [Блендеру](http://arma3.ru/forums/index.php/user/41-blender/) за шрифт.
 * [vinniefalco](https://github.com/vinniefalco) за [DSP фильтры](https://github.com/vinniefalco/DSPFilters).
 * [WOG](http://wogames.info/) и лично [TRUE](http://wogames.info/profile/TRUE/) за помощь в тестировании.

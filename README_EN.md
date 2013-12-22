@@ -140,6 +140,7 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [Task Force Arrowhead](http://forum.task-force.ru/) squad for testing, support, patience and all the help.
 * [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) for the help with graphics and documentation.
 * [Hardckor ](http://forum.task-force.ru/index.php?action=profile;u=14) for the help with graphics.
+* [Shogun](http://forum.task-force.ru/index.php?action=profile;u=13) for the help with graphics.
 * [Blender](http://arma3.ru/forums/index.php/user/41-blender/) for the fonts.
 * [vinniefalco](https://github.com/vinniefalco) for [DSP Filter](https://github.com/vinniefalco/DSPFilters).
 * [WOG](http://wogames.info/) and [TRUE](http://wogames.info/profile/TRUE/) personally for the help in testing.
