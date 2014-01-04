@@ -120,7 +120,7 @@ The plugin supports two operation modes - **serious** and **lightweight modes**.
 * To change the encryption codes used by factions (to allow multiple factions talking), add the following code: `tf_west_radio_code = "_bluefor";tf_east_radio_code = "_opfor"; tf_guer_radio_code = "_independent"; `. To allow two factions to contact one another by radio, they must have an identical encryption code (you'll need to change values).
 
 * To set active radio frequency of the local player you may use: `"34.5" call tf_setLongRangeRadioFrequency"`, `"123.5" call tf_setPersonalRadioFrequency`.
-* By default all players in the same group have equals frequencies. If you want to set equal frequencies for the faction: `tf_same_frequencies_for_side = true;`.
+* By default all players in the same group have equals frequencies. If you want to set equal frequencies for the faction: `tf_same_sw_frequencies_for_side = true;`.
 * By default all players of faction have the same frequencies of long range radios. If you want to disable such feature (set the same LR frequencies for group only) use: `tf_same_lr_frequencies_for_side = false`.
 * Using `call generateSwSetting` and `call generateLrSettings` you may generate random settings for personal and LR radios accordingly. Result is array: `[active_channel, volume, frequencies..of..channels, reserved, stereo_setting]`. Such arrays are used in functions below.
 * Set values of `tf_freq_west`, `ft_freq_east` and `tf_freq_guer` together with `tf_same_sw_frequencies_for_side = true` to preset settings of personal radios for some faction. Similarly with  `tf_freq_west_lr`, `ft_freq_east_lr` and `ft_freq_east_lr` together with `tf_same_lr_frequencies_for_side = true`.
