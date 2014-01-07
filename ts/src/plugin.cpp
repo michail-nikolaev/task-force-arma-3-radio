@@ -988,7 +988,7 @@ std::string processGameCommand(std::string command)
 {	
 	DWORD error;
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
-	std::vector<std::string> tokens = split(command, '\t'); //may not be used in nickname
+	std::vector<std::string> tokens = split(command, '\t'); //may not be used in nickname	
 	if (tokens.size() == 2 && tokens[0] == "TS_INFO") 
 	{
 		if (tokens[1] == "SERVER")
@@ -1332,11 +1332,12 @@ DWORD WINAPI ServiceThread( LPVOID lpParam )
 	return NULL;
 }
 
+#define FAILS_TO_SLEEP 1000
 DWORD WINAPI PipeThread( LPVOID lpParam )
 {	
 	HANDLE pipe = INVALID_HANDLE_VALUE;	
 	
-	DWORD sleep = 100;
+	DWORD sleep = FAILS_TO_SLEEP;
 	while (!exitThread)
 	{
 		if (pipe == INVALID_HANDLE_VALUE) pipe = openPipe();		
@@ -1359,7 +1360,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 							NULL // not using overlapped IO
 						);
 				if (result) {
-					sleep = 100;
+					sleep = FAILS_TO_SLEEP;
 					std::string command = std::string(buffer);				
 					if (!pipeConnected)
 					{
@@ -1412,7 +1413,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
  		if (!sleep) 
  		{
  			Sleep(1);
-			sleep = 100;
+			sleep = FAILS_TO_SLEEP;
  		}
 		
 	}	
