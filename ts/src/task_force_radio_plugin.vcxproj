@@ -78,7 +78,6 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">task_force_radio_win64</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">task_force_radio_win32</TargetName>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">G:\Dev\arma\task-force-arma-3-radio\ts\include\codec2;$(LibraryPath)</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">G:\Dev\arma\task-force-arma-3-radio\ts\include\codec2;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -161,13 +160,12 @@
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>
-      </DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExpandAttributedSource>true</ExpandAttributedSource>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -175,6 +173,8 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <AdditionalDependencies>wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AssemblyDebug>
+      </AssemblyDebug>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
