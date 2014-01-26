@@ -79,7 +79,7 @@ class next_channel_fadak: HiddenButton
 	w = 0.0164063 * safezoneW;
 	h = 0.0238053 * safezoneH;
 	tooltip = $STR_next_channel;
-	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) + 1) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"	
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) + 1) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;";
 };
 class previous_channel_fadak: HiddenButton
 {
@@ -89,7 +89,7 @@ class previous_channel_fadak: HiddenButton
 	w = 0.0150938 * safezoneW;
 	h = 0.022405 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;";
 };
 class increase_volume_fadak: HiddenButton
 {
@@ -98,7 +98,7 @@ class increase_volume_fadak: HiddenButton
 	y = 0.652634 * safezoneH + safezoneY;
 	w = 0.0164063 * safezoneW;
 	h = 0.0252056 * safezoneH;
-	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) + 1) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume)+ 1) * 10)];"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) + 1) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume)+ 1) * 10)];";
 	tooltip = $STR_increase_volume;
 };
 class decrease_volume_fadak: HiddenButton
@@ -108,7 +108,7 @@ class decrease_volume_fadak: HiddenButton
 	y = 0.652634 * safezoneH + safezoneY;
 	w = 0.0164063 * safezoneW;
 	h = 0.0252056 * safezoneH;
-	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) - 1 + MAX_SW_VOLUME) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume) + 1) * 10)];"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) - 1 + MAX_SW_VOLUME) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume) + 1) * 10)];";
 	tooltip = $STR_decrease_volume;
 };
 class edit_fadak: RscEditLCD
