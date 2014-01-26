@@ -98,7 +98,7 @@ class mr3000_next_channel: HiddenButton
 	w = 0.0190313 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_next_channel;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call getLrChannel) + 1) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call getLrChannel) + 1) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;";
 };
 class mr3000_previous_channel: HiddenButton
 {
@@ -108,7 +108,7 @@ class mr3000_previous_channel: HiddenButton
 	w = 0.0203438 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1,  ((lr_dialog_radio call getLrChannel) - 1 + MAX_LR_CHANNELS) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1,  ((lr_dialog_radio call getLrChannel) - 1 + MAX_LR_CHANNELS) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;";
 };
 class mr3000_increase_volume: HiddenButton
 {
@@ -147,7 +147,7 @@ class mr3000_channel_1: HiddenButton
 	y = 0.54621 * safezoneH + safezoneY;
 	w = 0.0190313 * safezoneW;
 	h = 0.0322072 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 0] call setLrChannel;call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 0] call setLrChannel;call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_1;
 };
 class mr3000_channel_2: HiddenButton
@@ -157,7 +157,7 @@ class mr3000_channel_2: HiddenButton
 	y = 0.547611 * safezoneH + safezoneY;
 	w = 0.0223125 * safezoneW;
 	h = 0.0294066 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 1] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 1] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_2;
 };
 class mr3000_channel_3: HiddenButton
@@ -167,7 +167,7 @@ class mr3000_channel_3: HiddenButton
 	y = 0.54621 * safezoneH + safezoneY;
 	w = 0.0203438 * safezoneW;
 	h = 0.0322072 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 2] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 2] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_3;
 };
 class mr3000_channel_4: HiddenButton
@@ -177,7 +177,7 @@ class mr3000_channel_4: HiddenButton
 	y = 0.54621 * safezoneH + safezoneY;
 	w = 0.021 * safezoneW;
 	h = 0.0308069 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 3] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 3] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_4;
 };
 class mr3000_channel_5: HiddenButton
@@ -187,7 +187,7 @@ class mr3000_channel_5: HiddenButton
 	y = 0.54621 * safezoneH + safezoneY;
 	w = 0.0223125 * safezoneW;
 	h = 0.0322072 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 4] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 4] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_5;
 };
 class mr3000_channel_6: HiddenButton
@@ -197,7 +197,7 @@ class mr3000_channel_6: HiddenButton
 	y = 0.602223 * safezoneH + safezoneY;
 	w = 0.021 * safezoneW;
 	h = 0.0294066 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 5] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 5] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_6;
 };
 class mr3000_channel_7: HiddenButton
@@ -207,7 +207,7 @@ class mr3000_channel_7: HiddenButton
 	y = 0.603623 * safezoneH + safezoneY;
 	w = 0.021 * safezoneW;
 	h = 0.0294066 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 6] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 6] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_7;
 };
 class mr3000_channel_8: HiddenButton
@@ -217,7 +217,7 @@ class mr3000_channel_8: HiddenButton
 	y = 0.602223 * safezoneH + safezoneY;
 	w = 0.021 * safezoneW;
 	h = 0.0294066 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 7] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 7] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_8;
 };
 class mr3000_channel_9: HiddenButton
@@ -227,7 +227,7 @@ class mr3000_channel_9: HiddenButton
 	y = 0.602223 * safezoneH + safezoneY;
 	w = 0.021 * safezoneW;
 	h = 0.0294066 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 8] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 8] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_9;
 };
 class mr3000_edit: RscEditLCD
