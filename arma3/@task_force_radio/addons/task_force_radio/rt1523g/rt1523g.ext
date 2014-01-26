@@ -114,7 +114,7 @@ class rt1523g_channel01: HiddenButton
 	y = 0.472799 * safezoneH + safezoneY;
 	w = 0.0306 * safezoneW;
 	h = 0.0378267 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 0] call setLrChannel;call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 0] call setLrChannel;call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_1;
 };
 class rt1523g_channel02: HiddenButton
@@ -124,7 +124,7 @@ class rt1523g_channel02: HiddenButton
 	y = 0.474499 * safezoneH + safezoneY;
 	w = 0.0334688 * safezoneW;
 	h = 0.0365517 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 1] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 1] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_2;
 };
 class rt1523g_channel03: HiddenButton
@@ -134,7 +134,7 @@ class rt1523g_channel03: HiddenButton
 	y = 0.475774 * safezoneH + safezoneY;
 	w = 0.031875 * safezoneW;
 	h = 0.0340016 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 2] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 2] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_3;
 };
 class rt1523g_channel04: HiddenButton
@@ -144,7 +144,7 @@ class rt1523g_channel04: HiddenButton
 	y = 0.525076 * safezoneH + safezoneY;
 	w = 0.0306 * safezoneW;
 	h = 0.0314514 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 3] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 3] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_4;
 };
 class rt1523g_channel05: HiddenButton
@@ -154,7 +154,7 @@ class rt1523g_channel05: HiddenButton
 	y = 0.525076 * safezoneH + safezoneY;
 	w = 0.0328313 * safezoneW;
 	h = 0.0340016 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 4] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 4] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_5;
 };
 class rt1523g_channel06: HiddenButton
@@ -164,7 +164,7 @@ class rt1523g_channel06: HiddenButton
 	y = 0.525076 * safezoneH + safezoneY;
 	w = 0.0306 * safezoneW;
 	h = 0.0340016 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 5] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 5] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_6;
 };
 class rt1523g_channel07: HiddenButton
@@ -174,7 +174,7 @@ class rt1523g_channel07: HiddenButton
 	y = 0.574378 * safezoneH + safezoneY;
 	w = 0.0312375 * safezoneW;
 	h = 0.0340016 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 6] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 6] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_7;
 };
 class rt1523g_channel08: HiddenButton
@@ -184,7 +184,7 @@ class rt1523g_channel08: HiddenButton
 	y = 0.575653 * safezoneH + safezoneY;
 	w = 0.0312375 * safezoneW;
 	h = 0.0327265 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 7] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 7] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_8;
 };
 class rt1523g_channel09: HiddenButton
@@ -194,7 +194,7 @@ class rt1523g_channel09: HiddenButton
 	y = 0.574378 * safezoneH + safezoneY;
 	w = 0.0312375 * safezoneW;
 	h = 0.0340016 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 8] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, 8] call setLrChannel; call updateLRDialogToChannel;";
 	tooltip = $STR_radio_channel_9;
 };
 class rt1523g_increase_volume: HiddenButton
