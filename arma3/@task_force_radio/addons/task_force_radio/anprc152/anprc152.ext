@@ -100,7 +100,7 @@ class next_channel: HiddenButton
 	w = 0.0207375 * safezoneW;
 	h = 0.0259058 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) - 1 + MAX_CHANNELS) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;";
 };
 class prev_channel: HiddenButton
 {
@@ -110,7 +110,7 @@ class prev_channel: HiddenButton
 	w = 0.0207375 * safezoneW;
 	h = 0.0241554 * safezoneH;
 	tooltip = $STR_next_channel;
-	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) + 1) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwChannel) + 1) mod MAX_CHANNELS] call setSwChannel; call updateSWDialogToChannel;";
 };
 class increase_volume: HiddenButton
 {
@@ -119,7 +119,7 @@ class increase_volume: HiddenButton
 	y = 0.515404 * safezoneH + safezoneY;
 	w = 0.0191625 * safezoneW;
 	h = 0.0203045 * safezoneH;
-	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) + 1) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume)+ 1) * 10)];"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) + 1) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume)+ 1) * 10)];";
 	tooltip = $STR_increase_volume;
 };
 class decrease_volume: HiddenButton
@@ -129,7 +129,7 @@ class decrease_volume: HiddenButton
 	y = 0.54621 * safezoneH + safezoneY;
 	w = 0.0202125 * safezoneW;
 	h = 0.0245055 * safezoneH;
-	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) - 1 + MAX_SW_VOLUME) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume) + 1) * 10)];"
+	action = "[sw_dialog_radio, ((sw_dialog_radio call getSwVolume) - 1 + MAX_SW_VOLUME) mod MAX_SW_VOLUME] call setSwVolume; hint formatText [localize 'STR_radio_volume', (((sw_dialog_radio call getSwVolume) + 1) * 10)];";
 	tooltip = $STR_decrease_volume;
 };
 class stereo152: HiddenButton
