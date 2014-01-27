@@ -16,7 +16,7 @@ onEachFrame {
 			_label = _label + format["%1/", _parents select _i ];
 		};
 
-		_label = _label + format["      (isolated: %1 LR: %2, side: %3)", (_x call tfr_isVehicleIsolated), (_x call tfr_hasVehicleRadio), str((_x call tfr_getVehicleSide))];
+		_label = _label + format["      (isolated: %1 LR: %2, side: %3)", (_x call TFAR_fnc_isVehicleIsolated), (_x call TFAR_fnc_hasVehicleRadio), str((_x call TFAR_fnc_getVehicleSide))];
 
 		drawLine3D [ _vehpos, _endpount, [1,1,1,.45] ];
 		drawIcon3D [ 
