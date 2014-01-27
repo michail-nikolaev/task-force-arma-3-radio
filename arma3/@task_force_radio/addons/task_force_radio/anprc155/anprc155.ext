@@ -79,7 +79,7 @@ class enter155: HiddenButton
 	w = 0.023625 * safezoneW;
 	h = 0.0294066 * safezoneH;
 	tooltip = $STR_set_frequency;
-	action = "_f = parseNumber(ctrlText IDC_ANPRC155_RADIO_DIALOG_EDIT_ID);if ((_f >= MIN_ASIP_FREQ) and (_f <= MAX_ASIP_FREQ)) then {[lr_dialog_radio select 0, lr_dialog_radio select 1, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call setLrFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_ASIP_FREQ, MAX_ASIP_FREQ]}; call updateLRDialogToChannel;";
+	action = "_f = parseNumber(ctrlText IDC_ANPRC155_RADIO_DIALOG_EDIT_ID);if ((_f >= MIN_ASIP_FREQ) and (_f <= MAX_ASIP_FREQ)) then {[lr_dialog_radio select 0, lr_dialog_radio select 1, str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER)] call TFAR_fnc_setLrFrequency; hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_ASIP_FREQ, MAX_ASIP_FREQ]}; call TFAR_fnc_updateLRDialogToChannel;";
 };
 class clear155: HiddenButton
 {
@@ -99,7 +99,7 @@ class prev_channel155: HiddenButton
 	w = 0.02625 * safezoneW;
 	h = 0.0294066 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1,  ((lr_dialog_radio call getLrChannel) - 1 + MAX_LR_CHANNELS) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;";
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1,  ((lr_dialog_radio call TFAR_fnc_getLrChannel) - 1 + MAX_LR_CHANNELS) mod MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;";
 };
 class next_channel155: HiddenButton
 {
@@ -109,7 +109,7 @@ class next_channel155: HiddenButton
 	w = 0.0249375 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_next_channel;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call getLrChannel) + 1) mod MAX_LR_CHANNELS] call setLrChannel; call updateLRDialogToChannel;"
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call TFAR_fnc_getLrChannel) + 1) mod MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;";
 };
 class increase_volume155: HiddenButton
 {
@@ -119,7 +119,7 @@ class increase_volume155: HiddenButton
 	w = 0.021 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_volume;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call getLrVolume) + 1) mod MAX_LR_VOLUME] call setLrVolume;  hint formatText [localize 'STR_radio_volume', (((lr_dialog_radio call getLrVolume) + 1) * 10)]";
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;  hint formatText [localize 'STR_radio_volume', (((lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) * 10)]";
 };
 class stereo155: HiddenButton
 {
@@ -128,7 +128,7 @@ class stereo155: HiddenButton
 	y = 0.54481 * safezoneH + safezoneY;
 	w = 0.0223125 * safezoneW;
 	h = 0.0266059 * safezoneH;
-	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call getLrStereo) + 1) mod MAX_STEREO] call setLrStereo; hint (localize str(formatText ['STR_stereo_settings_%1', lr_dialog_radio call getLrStereo]))";
+	action = "[lr_dialog_radio select 0, lr_dialog_radio select 1, ((lr_dialog_radio call TFAR_fnc_getLrStereo) + 1) mod MAX_STEREO] call TFAR_fnc_setLrStereo; hint (localize str(formatText ['STR_stereo_settings_%1', lr_dialog_radio call TFAR_fnc_getLrStereo]))";
 	tooltip = $STR_stereo_settings;
 };
 ////////////////////////////////////////////////////////
