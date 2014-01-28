@@ -92,6 +92,12 @@ class CfgFunctions
 			class currentLRFrequency{};
 			class setLongRangeRadioFrequency{};
 			class setPersonalRadioFrequency{};
+			class eyeDepth{};
+			class inWaterHint{};
+			class onGroundHint{};
+			class getTeamSpeakServerName{};
+			class getTeamSpeakChannelName{};
+			class isTeamSpeakPluginEnabled{};
 		};
 	};
 };

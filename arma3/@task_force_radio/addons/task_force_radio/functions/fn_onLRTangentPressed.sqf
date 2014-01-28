@@ -9,7 +9,7 @@ if (!(tangent_lr_pressed) and {alive player} and {call TFAR_fnc_haveLRRadio}) th
 		};
 		tangent_lr_pressed = true;
 	} else {
-		call inWaterHint;
+		call TFAR_fnc_inWaterHint;
 	}
 };
 true
