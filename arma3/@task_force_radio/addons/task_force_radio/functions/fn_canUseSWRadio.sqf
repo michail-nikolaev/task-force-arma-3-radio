@@ -2,7 +2,7 @@ private ["_player", "_isolated_and_inside", "_result", "_depth"];
 
 _result = false;
 _player = _this select 0;
-_depth = _player call eyeDepth;
+_depth = _player call TFAR_fnc_eyeDepth;
 
 if (_depth > 0) then {
 	_result = true;
