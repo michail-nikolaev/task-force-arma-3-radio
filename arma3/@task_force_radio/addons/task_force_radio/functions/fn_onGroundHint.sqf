@@ -1,0 +1,1 @@
+hintSilent parseText (localize "STR_on_ground_hint");

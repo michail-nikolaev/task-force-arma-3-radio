@@ -18,19 +18,6 @@ if (isNil "tf_guer_radio_code") then {
 	tf_guer_radio_code = "_independent";
 };
 
-tf_getTeamSpeakServerName = 
-{
-	"task_force_radio_pipe" callExtension "TS_INFO	SERVER";
-};
-tf_getTeamSpeakChannelName = 
-{
-	"task_force_radio_pipe" callExtension "TS_INFO	CHANNEL";
-};
-tf_isTeamSpeakPluginEnabled = 
-{
-	("task_force_radio_pipe" callExtension "TS_INFO	PING") == "PONG";
-};
-
 disableSerialization;
 #include "diary.sqf"
 
@@ -94,20 +81,6 @@ sw_dialog_radio = nil;
 
 lr_dialog_radio = nil;
 lr_active_radio = nil;
-
-eyeDepth = 
-{	
-	((eyepos _this) select 2) + ((getPosASLW _this) select 2) - ((getPosASL _this) select 2);
-};
-
-inWaterHint = 
-{
-	hintSilent parseText (localize "STR_in_water_hint");
-};
-onGroundHint = 
-{
-	hintSilent parseText (localize "STR_on_ground_hint");
-};
 
 tf_lastNearFrameTick = diag_tickTime;
 tf_lastFarFrameTick = diag_tickTime;

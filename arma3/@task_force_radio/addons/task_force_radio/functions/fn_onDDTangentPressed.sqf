@@ -9,7 +9,7 @@ if (!(tangent_dd_pressed) and {alive player} and {call TFAR_fnc_haveDDRadio}) th
 		};
 		tangent_dd_pressed = true;
 	} else {
-		call onGroundHint;
+		call TFAR_fnc_onGroundHint;
 	}
 };
 true
