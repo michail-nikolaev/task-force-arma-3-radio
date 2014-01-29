@@ -153,6 +153,7 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [Megagoth1702](http://forums.unitedoperations.net/index.php/user/2271-megagoth1702/) for its old job of emulating the radio sound.
 * [Naught](http://forums.unitedoperations.net/index.php/user/6555-naught/) for code review.
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) for translating.
-* Everyone, who made video and arcticles with review.
+* [L-H](http://forums.bistudio.com/member.php?87524-LordHeart) for code changes.
+* Everyone, who made video and articles with review.
 * Everyone user (especially who report bugs).
 * Sorry guys if I’ve forgot someone by chance.

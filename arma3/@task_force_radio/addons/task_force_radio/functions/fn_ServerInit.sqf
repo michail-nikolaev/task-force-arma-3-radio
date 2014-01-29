@@ -13,23 +13,23 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_new_radio_id", "_task_force_radio_used", "_last_check", "_group_freq"];
 	
 	if (isNil "tf_freq_west") then {
-		tf_freq_west = call generateSwSetting;
+		tf_freq_west = call TFAR_fnc_generateSwSettings;
 	};
 	if (isNil "ft_freq_east") then {
-		ft_freq_east = call generateSwSetting;
+		ft_freq_east = call TFAR_fnc_generateSwSettings;
 	};
 	if (isNil "tf_freq_guer") then {
-		tf_freq_guer = call generateSwSetting;
+		tf_freq_guer = call TFAR_fnc_generateSwSettings;
 	};
 
 	if (isNil "tf_freq_west_lr") then {
-		tf_freq_west_lr = call generateLrSettings;
+		tf_freq_west_lr = call TFAR_fnc_generateLrSettings;
 	};
 	if (isNil "ft_freq_east_lr") then {
-		ft_freq_east_lr = call generateLrSettings;
+		ft_freq_east_lr = call TFAR_fnc_generateLrSettings;
 	};
 	if (isNil "tf_freq_guer_lr") then {
-		tf_freq_guer_lr = call generateLrSettings;
+		tf_freq_guer_lr = call TFAR_fnc_generateLrSettings;
 	};
 
 	
@@ -46,7 +46,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 			_group_freq = _x getVariable "tf_sw_frequency";
 			if (isNil "_group_freq") then {
 				if !(tf_same_sw_frequencies_for_side) then {
-					_x setVariable ["tf_sw_frequency", call generateSwSetting, true];
+					_x setVariable ["tf_sw_frequency", call TFAR_fnc_generateSwSettings, true];
 				} else {		
 					if (side _x == west) then {
 						_x setVariable ["tf_sw_frequency", tf_freq_west, true];
@@ -62,7 +62,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 			_group_freq = _x getVariable "tf_lr_frequency";
 			if (isNil "_group_freq") then {
 				if !(tf_same_lr_frequencies_for_side) then {
-					_x setVariable ["tf_lr_frequency", call generateLrSettings, true];
+					_x setVariable ["tf_lr_frequency", call TFAR_fnc_generateLrSettings, true];
 				} else {		
 					if (side _x == west) then {
 						_x setVariable ["tf_lr_frequency", tf_freq_west_lr, true];
@@ -149,5 +149,4 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 		} forEach allUnits;		
 		sleep 1;
 	};
-
 };
