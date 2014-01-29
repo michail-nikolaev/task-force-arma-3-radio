@@ -5,7 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 1.0;
-		requiredAddons[] = {"Extended_EventHandlers", "A3_UI_F", "task_force_radio_items"};
+		requiredAddons[] = { "CBA_Main", "A3_UI_F", "task_force_radio_items"};
 		author[] = {"[TF]Nkey"};
 		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
 		version = 0.8.3;
@@ -37,11 +37,6 @@ class CfgMarkers
 		markerClass = "draw";
 	};
 };
-
-class Extended_PostInit_EventHandlers
-{
-	task_force_radio_Post_Init = "call compile preProcessFileLineNumbers '\task_force_radio\init.sqf'";
-};
-
+#include "\task_force_radio\CfgFunctions.h"
 #include "\userconfig\task_force_radio\radio_keys.hpp"
 #include "\task_force_radio\description.h"

@@ -1,0 +1,1 @@
+hintSilent parseText (localize "STR_in_water_hint");
