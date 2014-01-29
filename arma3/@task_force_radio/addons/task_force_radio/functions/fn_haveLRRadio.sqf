@@ -1,0 +1,1 @@
+count (call TFAR_fnc_lrRadiosList) > 0
