@@ -1,7 +1,7 @@
 [] spawn {	
 	waitUntil {!(isNull player)};	
 	
-	respawnedAt = time;
+	TF_respawnedAt = time;
 	if (alive player) then
 	{
 		if (leader player == player) then {	
