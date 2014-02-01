@@ -1,5 +1,5 @@
 private["_result", "_request", "_hintText"];
-if (!(tangent_lr_pressed) and {alive player} and {call TFAR_fnc_haveLRRadio}) then {
+if (!(TF_tangent_lr_pressed) and {alive player} and {call TFAR_fnc_haveLRRadio}) then {
 	if ([player, player call TFAR_fnc_vehicleIsIsolatedAndInside] call TFAR_fnc_canUseLRRadio) then {
 		_hintText = format[localize "STR_transmit_lr", call TFAR_fnc_currentLRFrequency];
 		hintSilent parseText (_hintText);
@@ -7,7 +7,7 @@ if (!(tangent_lr_pressed) and {alive player} and {call TFAR_fnc_haveLRRadio}) th
 		if (isMultiplayer) then {
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
-		tangent_lr_pressed = true;
+		TF_tangent_lr_pressed = true;
 	} else {
 		call TFAR_fnc_inWaterHint;
 	}
