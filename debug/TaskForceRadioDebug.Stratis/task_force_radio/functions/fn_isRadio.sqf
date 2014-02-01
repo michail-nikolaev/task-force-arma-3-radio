@@ -1,0 +1,1 @@
+[configFile >> "CfgWeapons"  >> _this, configFile >> "CfgWeapons" >>"ItemRadio"] call CBA_fnc_inheritsFrom
