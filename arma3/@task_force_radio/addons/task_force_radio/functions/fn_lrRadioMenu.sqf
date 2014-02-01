@@ -5,12 +5,12 @@ if (count (call TFAR_fnc_lrRadiosList) > 1) then
 	_positions = [];
 	_pos = 0;
 	{
-		_command = format["lr_dialog_radio = (call TFAR_fnc_lrRadiosList) select %1;call TFAR_fnc_onLrDialogOpen;", _pos];
+		_command = format["TF_lr_dialog_radio = (call TFAR_fnc_lrRadiosList) select %1;call TFAR_fnc_onLrDialogOpen;", _pos];
 		_submenu = "";
 		_active_radio = call TFAR_fnc_activeLrRadio;
 		if (((_x select 0) != (_active_radio select 0)) or ((_x select 1) != (_active_radio select 1))) then
 		{
-			_command = format["lr_dialog_radio = (call TFAR_fnc_lrRadiosList) select %1;", _pos];
+			_command = format["TF_lr_dialog_radio = (call TFAR_fnc_lrRadiosList) select %1;", _pos];
 			_submenu = "_this call TFAR_fnc_lrRadioSubMenu";
 		};
 		_position = [
@@ -34,7 +34,7 @@ if (count (call TFAR_fnc_lrRadiosList) > 1) then
 	_menu
 } else {
 	if (call TFAR_fnc_haveLRRadio) then {
-		lr_dialog_radio = call TFAR_fnc_activeLrRadio;
+		TF_lr_dialog_radio = call TFAR_fnc_activeLrRadio;
 		call TFAR_fnc_onLrDialogOpen;
 	};
 	nil
