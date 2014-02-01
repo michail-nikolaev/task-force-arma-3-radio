@@ -9,6 +9,9 @@
 				<Russian>
 					Несовпадение версий Task Force Radio. Версия на сервере: %1, Ваша версия: %2
 				</Russian>
+				<French>
+					Différentes versions de Task Force Radio sont utilisées. Version du serveur : %1, Votre version : %2
+				</French>
 			</Key>
 			<Key ID="STR_stereo_settings">
 				<Original>
@@ -17,6 +20,9 @@
 				<Russian>
 					Настройки стерео
 				</Russian>
+				<French>
+					Configurations stéréo
+				</French>
 			</Key>
 			<Key ID="STR_stereo_settings_0">
 				<Original>
@@ -25,6 +31,9 @@
 				<Russian>
 					Левый и правый
 				</Russian>
+				<French>
+					Gauche et droite
+				</French>
 			</Key>
 			<Key ID="STR_stereo_settings_1">
 				<Original>
@@ -33,6 +42,9 @@
 				<Russian>
 					Только левый
 				</Russian>
+				<French>
+					Gauche seulement
+				</French>
 			</Key>
 			<Key ID="STR_stereo_settings_2">
 				<Original>
@@ -41,6 +53,9 @@
 				<Russian>
 					Только правый
 				</Russian>
+				<French>
+					Droite seulement
+				</French>
 			</Key>
 			<Key ID="STR_no_server">
 				<Original>
@@ -49,6 +64,9 @@
 				<Russian>
 					Не обнаружена серверная часть Task Force Radio!
 				</Russian>
+				<French>
+					Il n'y a pas de Task Force Radio déployé sur le serveur !
+				</French>
 			</Key>
 			<Key ID="STR_current_freq">
 				<Original>
@@ -57,6 +75,9 @@
 				<Russian>
 					Текущая частота
 				</Russian>
+				<French>
+					Fréquence actuelle
+				</French>
 			</Key>
 			<Key ID="STR_current_channel">
 				<Original>
@@ -65,6 +86,9 @@
 				<Russian>
 					Текущий канал
 				</Russian>
+				<French>
+					Canal actuel
+				</French>
 			</Key>
 			<Key ID="STR_set_frequency">
 				<Original>
@@ -73,6 +97,9 @@
 				<Russian>
 					Установить частоту
 				</Russian>
+				<French>
+					Valider la fréquence
+				</French>
 			</Key>
 			<Key ID="STR_clear_frequency">
 				<Original>
@@ -81,6 +108,9 @@
 				<Russian>
 					Стереть частоту
 				</Russian>
+				<French>
+					Effacer la fréquence
+				</French>
 			</Key>
 			<Key ID="STR_previous_channel">
 				<Original>
@@ -89,6 +119,9 @@
 				<Russian>
 					Предыдущий канал
 				</Russian>
+				<French>
+					Canal précédent
+				</French>
 			</Key>
 			<Key ID="STR_next_channel">
 				<Original>
@@ -97,6 +130,9 @@
 				<Russian>
 					Следующий канал
 				</Russian>
+				<French>
+					Canal suivant
+				</French>
 			</Key>
 			<Key ID="STR_increase_volume">
 				<Original>
@@ -105,6 +141,9 @@
 				<Russian>
 					Увеличить громкость
 				</Russian>
+				<French>
+					Augmenter le volume
+				</French>
 			</Key>
 			<Key ID="STR_decrease_volume">
 				<Original>
@@ -113,6 +152,9 @@
 				<Russian>
 					Уменьшить громкость
 				</Russian>
+				<French>
+					Réduire le volume
+				</French>
 			</Key>
 			<Key ID="STR_volume">
 				<Original>
@@ -121,6 +163,9 @@
 				<Russian>
 					Настроить громкость
 				</Russian>
+				<French>
+					Changer le volume
+				</French>
 			</Key>
 			<Key ID="STR_incorrect_frequency">
 				<Original>
@@ -129,6 +174,9 @@
 				<Russian>
 					Неверная частота, диапазон %1-%2
 				</Russian>
+				<French>
+					Valeur de fréquence incorrecte, la plage est de %1-%2
+				</French>
 			</Key>
 			<Key ID="STR_radio_volume">
 				<Original>
@@ -137,6 +185,9 @@
 				<Russian>
 					Громкость рации: %1
 				</Russian>
+				<French>
+					Volume de la radio : %1
+				</French>
 			</Key>
 			<Key ID="STR_radio_channel_1">
 				<Original>
@@ -145,6 +196,9 @@
 				<Russian>
 					Канал 1
 				</Russian>
+				<French>
+					Canal 1
+				</French>
 			</Key>
 			<Key ID="STR_radio_channel_2">
 				<Original>
@@ -153,6 +207,9 @@
 				<Russian>
 					Канал 2
 				</Russian>
+				<French>
+					Canal 2
+				</French>
 			</Key>
 			<Key ID="STR_radio_channel_3">
 				<Original>
@@ -161,6 +218,9 @@
 				<Russian>
 					Канал 3
 				</Russian>
+				<French>
+					Canal 3
+				</French>
 			</Key>
 			<Key ID="STR_radio_channel_4">
 				<Original>
@@ -169,6 +229,9 @@
 				<Russian>
 					Канал 4
 				</Russian>
+				<French>
+					Canal 4
+				</French>
 			</Key>
 			<Key ID="STR_radio_channel_5">
 				<Original>
@@ -177,6 +240,9 @@
 				<Russian>
 					Канал 5
 				</Russian>
+				<French>
+					Canal 5
+				</French>
 			</Key>
 			<Key ID="STR_radio_channel_6">
 				<Original>
@@ -185,6 +251,9 @@
 				<Russian>
 					Канал 6
 				</Russian>
+				<French>
+					Canal 6
+				</French>
 			</Key>
 			<Key ID="STR_radio_channel_7">
 				<Original>
@@ -193,6 +262,9 @@
 				<Russian>
 					Канал 7
 				</Russian>
+				<French>
+					Canal 7
+				</French>
 			</Key>
 			<Key ID="STR_radio_channel_8">
 				<Original>
@@ -201,6 +273,9 @@
 				<Russian>
 					Канал 8
 				</Russian>
+				<French>
+					Canal 8
+				</French>
 			</Key>
 			<Key ID="STR_radio_channel_9">
 				<Original>
@@ -209,6 +284,9 @@
 				<Russian>
 					Канал 9
 				</Russian>
+				<French>
+					Canal 9
+				</French>
 			</Key>
 			<Key ID="STR_depth">
 				<Original>
@@ -217,6 +295,9 @@
 				<Russian>
 					Текущая глубина
 				</Russian>
+				<French>
+					Current depth
+				</French>
 			</Key>
 			<Key ID="STR_active_sw_channel">
 				<Original>
@@ -225,6 +306,9 @@
 				<Russian>
 					Текущий канал: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Russian>
+				<French>
+					Canal courte portée actif : &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</French>
 			</Key>
 			<Key ID="STR_active_lr_channel">
 				<Original>
@@ -233,6 +317,9 @@
 				<Russian>
 					Текущий канал дальней связи: &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;
 				</Russian>
+				<French>
+					Canal longue portée actif : &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</French>
 			</Key>
 			<Key ID="STR_in_water_hint">
 				<Original>
@@ -241,6 +328,9 @@
 				<Russian>
 					&lt;t color=&apos;#33ccff&apos;&gt;Нельзя использовать данную рацию под водой&lt;/t&gt;
 				</Russian>
+				<French>
+					&lt;t color=&apos;#33ccff&apos;&gt;Vous ne pouvez pas utiliser de radio sous l'eau !&lt;/t&gt;
+				</French>
 			</Key>
 			<Key ID="STR_on_ground_hint">
 				<Original>
@@ -249,6 +339,9 @@
 				<Russian>
 					&lt;t color=&apos;#993300&apos;&gt;Нельзя использовать данную рацию в воздушной среде&lt;/t&gt;
 				</Russian>
+				<French>
+					&lt;t color=&apos;#993300&apos;&gt;Vous ne pouvez pas utiliser la radio du véhicule dans les airs !&lt;/t&gt;
+				</French>
 			</Key>
 			<Key ID="STR_select_action">
 				<Original>
@@ -257,6 +350,9 @@
 				<Russian>
 					Выберите действие
 				</Russian>
+				<French>
+					Sélectionner l'action
+				</French>
 			</Key>
 			<Key ID="STR_select_action_setup">
 				<Original>
@@ -265,6 +361,9 @@
 				<Russian>
 					Настройки...
 				</Russian>
+				<French>
+					Options
+				</French>
 			</Key>
 			<Key ID="STR_select_action_setup_tooltip">
 				<Original>
@@ -273,6 +372,9 @@
 				<Russian>
 					Открыть диалог настройки
 				</Russian>
+				<French>
+					Ouvrir la fenêtre des options
+				</French>
 			</Key>
 			<Key ID="STR_select_action_use">
 				<Original>
@@ -281,6 +383,9 @@
 				<Russian>
 					Сделать активной
 				</Russian>
+				<French>
+					Mettre dans le slot de radio
+				</French>
 			</Key>
 			<Key ID="STR_select_action_use_tooltip">
 				<Original>
@@ -289,6 +394,9 @@
 				<Russian>
 					Использовать для передачи
 				</Russian>
+				<French>
+					Choisir comme radio active
+				</French>
 			</Key>
 			<Key ID="STR_select_radio">
 				<Original>
@@ -297,6 +405,9 @@
 				<Russian>
 					Выберите рацию ближней связи
 				</Russian>
+				<French>
+					Selectionner la radio courte portée
+				</French>
 			</Key>
 			<Key ID="STR_select_lr_radio">
 				<Original>
@@ -305,6 +416,9 @@
 				<Russian>
 					Выберите рацию дальней связи
 				</Russian>
+				<French>
+					Selectionner la radio longue portée
+				</French>
 			</Key>
 			<Key ID="STR_transmit_sw">
 				<Original>
@@ -313,6 +427,9 @@
 				<Russian>
 					Передача на частоте &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...
 				</Russian>
+				<French>
+					Transmission courte portée sur &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...
+				</French>
 			</Key>
 			<Key ID="STR_transmit_lr">
 				<Original>
@@ -321,6 +438,9 @@
 				<Russian>
 					Дальняя передача: &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
 				</Russian>
+				<French>
+					Transmission longue portée sur &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
+				</French>
 			</Key>
 			<Key ID="STR_transmit_dd">
 				<Original>
@@ -329,6 +449,9 @@
 				<Russian>
 					Подводная передача: &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
 				</Russian>
+				<French>
+					Transmission sous-marine sur &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
+				</French>
 			</Key>
 			<Key ID="STR_waiting">
 				<Original>
@@ -337,6 +460,9 @@
 				<Russian>
 					Ожидание...
 				</Russian>
+				<French>
+					En attente...
+				</French>
 			</Key>
 			<Key ID="STR_voice_volume">
 				<Original>
@@ -345,6 +471,9 @@
 				<Russian>
 					&lt;t color=&apos;#66ff33&apos;&gt;Громкость голоса: %1&lt;/t&gt;
 				</Russian>
+				<French>
+					&lt;t color=&apos;#66ff33&apos;&gt;Volume de la voix : %1&lt;/t&gt;
+				</French>
 			</Key>
 			<Key ID="STR_voice_normal">
 				<Original>
@@ -353,6 +482,9 @@
 				<Russian>
 					норма
 				</Russian>
+				<French>
+					Normal
+				</French>
 			</Key>
 			<Key ID="STR_voice_yelling">
 				<Original>
@@ -361,6 +493,9 @@
 				<Russian>
 					крик
 				</Russian>
+				<French>
+					Forte
+				</French>
 			</Key>
 			<Key ID="STR_voice_whispering">
 				<Original>
@@ -369,6 +504,9 @@
 				<Russian>
 					шепот
 				</Russian>
+				<French>
+					Faible
+				</French>
 			</Key>
 			<Key ID="STR_init">
 				<Original>
@@ -377,6 +515,9 @@
 				<Russian>
 					Инициализация...
 				</Russian>
+				<French>
+					Initialization...
+				</French>
 			</Key>
 			<Key ID="STR_subject_name">
 				<Original>
@@ -385,6 +526,9 @@
 				<Russian>
 					Рации
 				</Russian>
+				<French>
+					Radio
+				</French>
 			</Key>
 			<Key ID="STR_radio_control">
 				<Original>
@@ -393,6 +537,9 @@
 				<Russian>
 					Управление
 				</Russian>
+				<French>
+					Contrôles
+				</French>
 			</Key>
 			<Key ID="STR_wait_radio">
 				<Original>
@@ -401,6 +548,9 @@
 				<Russian>
 					Ожидаем получение уникальной рации от сервера...
 				</Russian>
+				<French>
+					En attente de l'unique radio du serveur...
+				</French>
 			</Key>
 
 
@@ -417,7 +567,6 @@
 &lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	To open an underwater transceiver interface (you should be wearing a rebreather).&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	To talk on underwater transceiver.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	To exit from the radio interface.
-
 				</Original>
 				<Russian>
 &lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Разговор по рации.&lt;br/&gt;
@@ -431,6 +580,19 @@
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Разговор по переговорному устройству для дайверов.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Выход из интерфейса рации.&lt;br/&gt;
 				</Russian>
+				<French>
+&lt;font color=&quot;#67ED24&quot;&gt; Bouton Push-to-talk dans TeamSpeak&lt;/font&gt;	Voix Directe.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Pour parler à la radio courte portée.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Pour parler à la radio longue portée.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Pour ouvrir l'interface de la radio courte portée (elle doit être dans le slot de radio). Dans le cas où vous avez plusieurs radios vous pouvez choisir celle dont vous voulez ouvrir l'interface. Il est aussi possible de choisir la radio active (celle qui sera utilisé pour les transmissions).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Changement rapide de canal sur la radio courte portée.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Pour ouvrir l'interface de la radio longue portée (Vous devez avoir une radio longue portée sur votre dos, ou vous pouvez utiliser celle d'un véhicule en tant que conducteur, tireur ou copilote). Si plusieurs radios sont disponibles vous devrez en choisir une. Il est aussi possible de choisir la radio active (celle qui sera utilisé pour les transmissions).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt; Changement rapide de canal sur la radio longue portée.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Pour changer le volume de la voix direct. Vous pouvez avoir 3 volumes de voix : Faible, Normale ou Forte. N'affecte pas le volume de la voix en transmission radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Pour ouvrir l'interface de la radio sous-marine (vous devez porter un recycleur).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Pour parler à la radio sous-marine.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Pour fermer l'interface de la radio.	
+				</French>
 			</Key>
 			<Key ID="STR_radios">
 				<Original>
@@ -439,6 +601,9 @@
 				<Russian>
 					Радиостанции
 				</Russian>
+				<French>
+					Radios
+				</French>
 			</Key>
 			<Key ID="STR_radios_text">
 				<Original>
@@ -524,6 +689,42 @@ OPFOR&lt;br/&gt;
 32-41kHz / 70-300 м. (в зависимости от уровня волн)&lt;br/&gt;
 Для того чтобы ввести частоту, нажмите MODE, введите значение и нажмите ADV. Возможно изменение громкости приема кнопкой с правой стороны устройства.
 				</Russian>
+				<French>
+&lt;font color=&quot;#0000FF&quot;&gt;Radio AN/PRC-152 (Courte portée)&lt;br/&gt;
+BLUEFOR	&lt;br/&gt;
+30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
+Pour entrer une fréquence, cliquer sur CLR, entrer une valeur et cliquer sur ENT. Vous pouvez changer le canal actif en cliquant sur les touches fléchées gauche et droite (Pour un total de 8 canaux), pour changer le volume de réception cliquer sur les touches PRE+ et PRE-. Vous pouvez aussi changer les options stéréos en cliquant sur la touche 0.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#0000FF&quot;&gt;Radio RT-1523G (ASIP) (long range)&lt;br/&gt;
+BLUEFOR	&lt;br/&gt;
+30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
+Pour entrer une fréquence, cliquer sur  MENU CLR, entrer une valeur et cliquer sur FREQ. Vous pouvez changer le canal actif en cliquant sur les touches numériques (Pour un total de 9 canaux), pour changer le volume de réception cliquer sur les touches TIME et BATT CALL. Vous pouvez aussi changer les options stéréos en cliquant sur la touche STO.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC148-JEM (Courte portée)&lt;br/&gt;
+INDEPENDENT&lt;br/&gt;
+30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
+Pour entrer une fréquence, cliquer sur ESC, entrer une valeur et cliquer sur ENT. Vous pouvez changer le canal actif en cliquant sur les touches fléchées (Pour un total de 8 canaux), pour changer le volume de réception cliquer sur les touches MOD et GR. Vous pouvez aussi changer les options stéréos en cliquant sur la touche ALT.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC-155 (long range)&lt;br/&gt;
+INDEPENDENT&lt;br/&gt;
+30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
+Pour entrer une fréquence, cliquer sur ESC, entrer une valeur et cliquer sur MENU. Vous pouvez changer le canal actif en cliquant sur les touches fléchées (Haut et bas), pour changer le volume de réception cliquer sur le bouton haut-parleur. Vous pouvez aussi changer les options stéréos en cliquant sur la touche PRE. &lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#8B0000&quot;&gt;Radio FADAK (Courte portée)&lt;br/&gt;
+OPFOR&lt;br/&gt;
+30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
+Pour entrer une fréquence, cliquer sur CLR, entrer une valeur et cliquer sur ENT. Vous pouvez changer le canal actif en cliquant sur les touches SET et PWR (Pour un total de 8 canaux), pour changer le volume de réception cliquer sur les touches DATA et SEND. Vous pouvez aussi changer les options stéréos en cliquant sur la touche 0.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#8B0000&quot;&gt;Radio MR3000 (long range)&lt;br/&gt;
+OPFOR&lt;br/&gt;
+30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
+Pour entrer une fréquence, cliquer sur CLR ESC, entrer une valeur et cliquer sur ENT. Vous pouvez changer le canal actif en cliquant sur les touches chiffrées ou sur les touches fléchées horizontales (Pour un total de 8 canaux), pour changer le volume de réception cliquer sur les touches fléchées verticales. Vous pouvez aussi changer les options stéréos en cliquant sur la touche 0.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#FFFF00&quot;&gt;Radio sous-marine&lt;br/&gt;
+TOUTES LES FACTIONS&lt;br/&gt;
+32-41kHz / 70-300 m. (Dépent des vagues)&lt;br/&gt;
+Pour entrer une fréquence, cliquer sur MODE, entrer une valeur et cliquer sur ADV, pour changer le volume de réception cliquer sur la partie droite de l'appareil.
+				</French>
 			</Key>
 			<Key ID="STR_radio_diver">
 				<Original>
@@ -532,6 +733,9 @@ OPFOR&lt;br/&gt;
 				<Russian>
 					Подводникам
 				</Russian>
+				<French>
+					Pour les plongeurs
+				</French>
 			</Key>
 			<Key ID="STR_radio_diver_text">
 				<Original>
@@ -546,6 +750,12 @@ You can not use radio communication underwater (neither to talk nor to hear). If
 Для связи между дайверами используйте Переговорное устройство.&lt;br/&gt;
 Вы не можете пользоваться радио связью под водой (ни говорить, ни слышать). Если нужно что-то передать на сушу - всплывайте. Исключение - субмарина на перископной глубине (в ней водолазам можно использовать рацию дальней связи).&lt;br/&gt;
 				</Russian>
+				<French>
+Vous ne pouvez pas parler sous l'eau (même en portant une combinaison de plongée). Cependant, à courte distance vos coéquipiers peuvent entendre des paroles indistinctes (excéption - si vous êtes dans un véhicule sous-marin isolé).&lt;br/&gt;
+En étant sous l'eau, Being underwater, vous pouvez entendre faiblement des voix assourdies sur la terre.&lt;br/&gt;
+Utiliser une radio sous-marine pour la communications entre plongeurs.&lt;br/&gt;
+Vous ne pouvez pas utiliser de radio sous l'eau (ni recevoir ni transmettre). Si vous voulez passer un message à la surface ou sur terre. &lt;br/&gt;Exception - les sous-marins à profondeur de périscope (les plongeurs peuvent utiliser une radio longue portée à ce moment la).					
+				</French>
 			</Key>
 			<Key ID="STR_radio_intercept">
 				<Original>
@@ -554,6 +764,9 @@ You can not use radio communication underwater (neither to talk nor to hear). If
 				<Russian>
 					Радиоперехват
 				</Russian>
+				<French>
+					Interception Radio 
+				</French>
 			</Key>
 			<Key ID="STR_radio_intercept_text">
 				<Original>
@@ -568,6 +781,11 @@ By default, radios of each faction use their own encryption codes, so you will n
 По умолчанию рации каждой фракции используют свои коды шифрования, поэтому вы не будете слышать вражеские переговоровы, даже введя используемую врагами частоту. &lt;br/&gt;
 Чтобы прослушивать (и говорить в эфир) противника - необходимо каким-либо образом захватить вражескую радиостанцию.
 				</Russian>
+				<French>
+Les radios peuvent être prises sur les joueurs tués, et utilisé par n'importe qui. De plus, elles gardent leurs configurations (canaux, fréquence, volume).&lt;br/&gt;
+Les radios des véhicules gardent aussi leurs configurations.&lt;/br&gt;
+Par défaut, les radios de chaque faction utilise leurs propres codes de cryptage, donc vous n'entendrez pas les communications ennemis même si la fréquence est la même. Pour espionner leurs transmissions il est primordiale de capturer par tout les moyens necessaires une station radio ennemi.
+				</French>
 			</Key>
 			<Key ID="STR_radio_vehicle">
 				<Original>
@@ -576,6 +794,9 @@ By default, radios of each faction use their own encryption codes, so you will n
 				<Russian>
 					Техника
 				</Russian>
+				<French>
+					Vehicules
+				</French>
 			</Key>
 			<Key ID="STR_radio_vehicle_text">
 				<Original>
@@ -592,8 +813,14 @@ Vehicles are classified into open and closed (isolated). If you are in an isolat
 
 Техника делиться на открытую и закрытую (изолированную). Если вы находитесь в изолированной технике, то не будете слышать голоса снаружи (и наоборот). Однако, если вы выгляните из техники, то будете слышать как голоса внутри, так и снаружи.&lt;br/&gt;
 				</Russian>
+				<French>
+Une radio longue portée est disponible pour le conducteur, chef de char, tireur et copilot. Les véhicules non pas tous une radio longue portée installée.
+&lt;br/&gt;
+Chaque place de véhicule à sa propre radio devant être configuré séparément. Si vous prévoyez de changer de position dans un véhicule – configurez la radio à toutes les places nécessaires à l'avance (par exemple, à la place de conducteur et de tireur).
+&lt;br/&gt;
+Les vehicules sont classé dans la catégorie "Ouvert" et "Fermé" (isolé). Si vous êtes dans un véhicule fermé, vous n'entendrez pas les voix provenant de l'exterieur (et vice versa). Par contre, si vous sortez la tête du véhicule vous entendrez les voix de l'interieur et exterieur.
+				</French>
 			</Key>
-
 		</Container>
 	</Package>
 </Project>
