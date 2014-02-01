@@ -1,5 +1,5 @@
 private["_result", "_request", "_hintText"];
-if (!(tangent_sw_pressed) and {alive player} and {call TFAR_fnc_haveSWRadio}) then {
+if (!(TF_tangent_sw_pressed) and {alive player} and {call TFAR_fnc_haveSWRadio}) then {
 	if ([player, player call TFAR_fnc_vehicleIsIsolatedAndInside, [player, player call TFAR_fnc_vehicleIsIsolatedAndInside] call TFAR_fnc_canSpeak] call TFAR_fnc_canUseSWRadio) then { 
 		_hintText = format[localize "STR_transmit_sw", call TFAR_fnc_currentSWFrequency];
 		hintSilent parseText (_hintText);
@@ -7,7 +7,7 @@ if (!(tangent_sw_pressed) and {alive player} and {call TFAR_fnc_haveSWRadio}) th
 		if (isMultiplayer) then {
 			_result = "task_force_radio_pipe" callExtension _request;
 		};
-		tangent_sw_pressed = true;
+		TF_tangent_sw_pressed = true;
 	} else {
 		call TFAR_fnc_inWaterHint;
 	};
