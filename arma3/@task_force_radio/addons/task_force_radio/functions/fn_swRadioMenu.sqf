@@ -4,12 +4,12 @@ if ((count (call TFAR_fnc_radiosList) > 1) or {(count (call TFAR_fnc_radiosList)
 	_menuDef = ["main", localize "STR_select_radio", "buttonList", "", false];
 	_positions = [];
 	{
-		_command = format["sw_dialog_radio = '%1';call TFAR_fnc_onSwDialogOpen;", _x];
+		_command = format["TF_sw_dialog_radio = '%1';call TFAR_fnc_onSwDialogOpen;", _x];
 		_submenu = "";
 		_active_radio = call TFAR_fnc_activeSwRadio;
 		if ((isNil "_active_radio") or {_x != _active_radio}) then
 		{
-			_command = format["sw_dialog_radio = '%1';", _x];
+			_command = format["TF_sw_dialog_radio = '%1';", _x];
 			_submenu = "_this call TFAR_fnc_swRadioSubMenu";
 		};
 		_position = [
@@ -32,7 +32,7 @@ if ((count (call TFAR_fnc_radiosList) > 1) or {(count (call TFAR_fnc_radiosList)
 	_menu
 } else {
 	if (call TFAR_fnc_haveSWRadio) then {
-		sw_dialog_radio = call TFAR_fnc_activeSwRadio;
+		TF_sw_dialog_radio = call TFAR_fnc_activeSwRadio;
 		call TFAR_fnc_onSwDialogOpen;
 	};
 	nil

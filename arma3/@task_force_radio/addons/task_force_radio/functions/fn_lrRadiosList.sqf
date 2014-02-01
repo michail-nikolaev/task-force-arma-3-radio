@@ -1,8 +1,8 @@
 private ["_result", "_active_lr", "_vehicle_lr", "_backpack_lr"];
 _result = [];
 _active_lr = nil;
-if (!isNil "lr_active_radio") then {
-	_active_lr = lr_active_radio;
+if (!isNil "TF_lr_active_radio") then {
+	_active_lr = TF_lr_active_radio;
 };
 _vehicle_lr = call TFAR_fnc_vehicleLr;
 _backpack_lr = call TFAR_fnc_backpackLr;
