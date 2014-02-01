@@ -17,7 +17,7 @@ if (isNil "tf_east_radio_code") then {
 if (isNil "tf_guer_radio_code") then {
 	tf_guer_radio_code = "_independent";
 
-    if ([west, resistance] call BIS_fnc_areFriendly) then {
+	if ([west, resistance] call BIS_fnc_areFriendly) then {
 		tf_guer_radio_code = "_bluefor";
 	};
 
@@ -103,15 +103,15 @@ tf_nearPlayersProcessed = true;
 tf_farPlayersIndex = 0;
 tf_farPlayersProcessed = true;
 
-tf_msNearPerStepMax = 0.05;
-tf_msNearPerStepMin = 1.00;
+tf_msNearPerStepMax = 0.025;
+tf_msNearPerStepMin = 0.1;
 tf_msNearPerStep = tf_msNearPerStepMax;
-tf_nearUpdateTime = 0.5;
+tf_nearUpdateTime = 0.3;
 
-tf_msFarPerStepMax = 0.07;
-tf_msFarPerStepMin = 2.00;
+tf_msFarPerStepMax = 0.035;
+tf_msFarPerStepMin = 1.00;
 tf_msFarPerStep = tf_msFarPerStepMax;
-tf_farUpdateTime = 7;
+tf_farUpdateTime = 3.5;
 
 tf_lastFrequencyInfoTick = 0;
 tf_lastNearPlayersUpdate = 0;
@@ -122,7 +122,7 @@ tf_msSpectatorPerStepMax = 0.035;
 
 [] spawn {
 	
-	waituntil {!(IsNull (findDisplay 46))};
+	waitUntil {!(IsNull (findDisplay 46))};
 
 	["player", [[dialog_sw_scancode, [dialog_sw_shift == 1, dialog_sw_ctrl == 1, dialog_sw_alt == 1]]], -3, '_this call TFAR_fnc_swRadioMenu'] call CBA_fnc_flexiMenu_Add;
 
@@ -159,7 +159,7 @@ tf_msSpectatorPerStepMax = 0.035;
 	[dialog_dd_scancode, [dialog_dd_shift == 1, dialog_dd_ctrl == 1, dialog_dd_alt == 1], {call TFAR_fnc_onDDDialogOpen}, "keydown", "23"] call CBA_fnc_addKeyHandler;
 
 	[speak_volume_scancode, [speak_volume_shift == 1, speak_volume_ctrl == 1, speak_volume_alt == 1], {call TFAR_fnc_onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;	
-
+	
 	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
