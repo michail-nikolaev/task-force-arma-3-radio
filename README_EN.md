@@ -27,7 +27,7 @@ _v0.8.3 (12.18.2013)_
 
 > If you’ve got the same nick both in the game profile and TeamSpeak - plugin will change your nickname in TS during the game.
 
-> Make sure your game nickname contains at least 3 characters and not contains `@`.
+> Make sure your game nickname contains at least 3 characters and doesn't contain `@`.
 
 > It is not recommended to use the plugin with simultaneous connection to multiple servers in TeamSpeak.
 
