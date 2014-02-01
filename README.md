@@ -152,7 +152,7 @@ tf_east_radio_code = "_opfor"; tf_guer_radio_code = "_independent"; `. Для т
 * Дине за перевод.
 * [Zealot](http://forums.bistudio.com/member.php?125460-zealot111) за помощь в разработке и полезные скрипты.
 * [NouberNou](http://forums.bistudio.com/member.php?56560-NouberNou) за советы и конкуренцию.
-* [Megagoth1702](http://forums.unitedoperations.net/index.php/user/2271-megagoth1702/) за свою давнюю работу по эмуляции звучания рацию.
+* [Megagoth1702](http://forums.unitedoperations.net/index.php/user/2271-megagoth1702/) за свою давнюю работу по эмуляции звучания рации.
 * [Naught](http://forums.unitedoperations.net/index.php/user/6555-naught/) за ревью.
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) за перевод.
 * Всем, кто делал видео и статьм с обзорами.
