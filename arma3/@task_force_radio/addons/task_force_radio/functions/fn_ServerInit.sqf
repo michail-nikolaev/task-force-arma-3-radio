@@ -16,7 +16,13 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 		tf_freq_west = call TFAR_fnc_generateSwSettings;
 	};
 	if (isNil "ft_freq_east") then {
-		ft_freq_east = call TFAR_fnc_generateSwSettings;
+		if (isNil "tf_freq_east") then {
+			TF_freq_east = call TFAR_fnc_generateSwSettings;
+		};
+	}
+	else
+	{
+		TF_freq_east =	ft_freq_east;
 	};
 	if (isNil "tf_freq_guer") then {
 		tf_freq_guer = call TFAR_fnc_generateSwSettings;
@@ -26,7 +32,16 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 		tf_freq_west_lr = call TFAR_fnc_generateLrSettings;
 	};
 	if (isNil "ft_freq_east_lr") then {
-		ft_freq_east_lr = call TFAR_fnc_generateLrSettings;
+		if (isNil "tf_freq_east_lr") then {
+			TF_freq_east_lr = call TFAR_fnc_generateSwSettings;
+		};
+	}
+	else
+	{
+		TF_freq_east_lr =	ft_freq_east_lr;
+	};
+	if (isNil "tf_freq_guer") then {
+		tf_freq_guer = call TFAR_fnc_generateSwSettings;
 	};
 	if (isNil "tf_freq_guer_lr") then {
 		tf_freq_guer_lr = call TFAR_fnc_generateLrSettings;
@@ -34,12 +49,12 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 
 	
 	waitUntil {time > 0};
-	server_addon_version = TF_ADDON_VERSION;
-	publicVariable "server_addon_version";
+	TF_server_addon_version = TF_ADDON_VERSION;
+	publicVariable "TF_server_addon_version";
 
-	anprc152_count = 1;
-	anprc148jem_count = 1;
-	fadak_count = 1;
+	TF_anprc152_count = 1;
+	TF_anprc148jem_count = 1;
+	TF_fadak_count = 1;
 
 	while {true} do {
 		{		
@@ -52,7 +67,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 						_x setVariable ["tf_sw_frequency", tf_freq_west, true];
 					} else {
 						if (side _x == east) then {
-							_x setVariable ["tf_sw_frequency", ft_freq_east, true];
+							_x setVariable ["tf_sw_frequency", TF_freq_east, true];
 						} else {
 							_x setVariable ["tf_sw_frequency", tf_freq_guer, true];
 						};
@@ -68,7 +83,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 						_x setVariable ["tf_lr_frequency", tf_freq_west_lr, true];
 					} else {
 						if (side _x == east) then {
-							_x setVariable ["tf_lr_frequency", ft_freq_east_lr, true];
+							_x setVariable ["tf_lr_frequency", TF_freq_east_lr, true];
 						} else {
 							_x setVariable ["tf_lr_frequency", tf_freq_guer_lr, true];
 						};
@@ -93,32 +108,32 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 					for "_next_radio" from 1 to _radio_request do
 					{
 						if ((_x call BIS_fnc_objectSide) == west) then {
-							_new_radio_id = format["tf_anprc152_%1", anprc152_count];					
+							_new_radio_id = format["tf_anprc152_%1", TF_anprc152_count];					
 							_response set [(_next_radio - 1), _new_radio_id];
 		
-							anprc152_count = anprc152_count + 1;
-							if (anprc152_count > MAX_ANPRC152_COUNT) then 
+							TF_anprc152_count = TF_anprc152_count + 1;
+							if (TF_anprc152_count > MAX_ANPRC152_COUNT) then 
 							{
-								anprc152_count = 1;
+								TF_anprc152_count = 1;
 							};
 						} else {
 							if ((_x call BIS_fnc_objectSide) == east) then {
-								_new_radio_id = format["tf_fadak_%1", fadak_count];					
+								_new_radio_id = format["tf_fadak_%1", TF_fadak_count];					
 								_response set [(_next_radio - 1), _new_radio_id];
 			
-								fadak_count = fadak_count + 1;
-								if (fadak_count > MAX_FADAK_COUNT) then 
+								TF_fadak_count = TF_fadak_count + 1;
+								if (TF_fadak_count > MAX_FADAK_COUNT) then 
 								{
-									fadak_count = 1;
+									TF_fadak_count = 1;
 								};
 							} else {	
-								_new_radio_id = format["tf_anprc148jem_%1", anprc148jem_count];					
+								_new_radio_id = format["tf_anprc148jem_%1", TF_anprc148jem_count];					
 								_response set [(_next_radio - 1), _new_radio_id];
 			
-								anprc148jem_count = anprc148jem_count + 1;
-								if (anprc148jem_count > MAX_ANPRC148JEM_COUNT) then 
+								TF_anprc148jem_count = TF_anprc148jem_count + 1;
+								if (TF_anprc148jem_count > MAX_ANPRC148JEM_COUNT) then 
 								{
-									anprc148jem_count = 1;
+									TF_anprc148jem_count = 1;
 								};
 							};
 						};
