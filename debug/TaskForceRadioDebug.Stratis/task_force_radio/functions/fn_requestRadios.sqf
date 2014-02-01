@@ -1,11 +1,11 @@
 private ["_radio_count", "_variableName", "_responseVariableName", "_response"];
 
 waitUntil {
-	if (!radio_request_mutex) exitWith {radio_request_mutex = true; true};
+	if (!TF_radio_request_mutex) exitWith {TF_radio_request_mutex = true; true};
 	false;
 };
-if (time - last_request_time > 3) then {
-	last_request_time = time;
+if (time - TF_last_request_time > 3) then {
+	TF_last_request_time = time;
 	_variableName = "radio_request_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
 	_radio_count = _this call TFAR_fnc_radioToRequestCount;
 
@@ -20,13 +20,13 @@ if (time - last_request_time > 3) then {
 		{
 			player addItem _x;
 		} forEach _response;
-		if ((count _response > 0) and (first_radio_request)) then 
+		if ((count _response > 0) and (TF_first_radio_request)) then 
 		{
-			first_radio_request = false;
+			TF_first_radio_request = false;
 			player assignItem (_response select 0);
 		};
 		titleText ["", "PLAIN"];
 	};
-	last_request_time = time;
+	TF_last_request_time = time;
 };
-radio_request_mutex = false;
+TF_radio_request_mutex = false;
