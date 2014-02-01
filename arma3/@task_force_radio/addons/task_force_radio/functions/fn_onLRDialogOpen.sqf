@@ -29,6 +29,7 @@ private ["_dialog_to_open"];
 			};
 			
 			createDialog _dialog_to_open;
+			player playAction "Gear";
 			call TFAR_fnc_updateLRDialogToChannel;
 		}
 	};
