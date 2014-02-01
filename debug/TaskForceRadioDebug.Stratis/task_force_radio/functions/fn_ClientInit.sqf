@@ -16,6 +16,14 @@ if (isNil "tf_east_radio_code") then {
 };
 if (isNil "tf_guer_radio_code") then {
 	tf_guer_radio_code = "_independent";
+
+    if ([west, resistance] call BIS_fnc_areFriendly) then {
+		tf_guer_radio_code = "_bluefor";
+	};
+
+	if ([east, resistance] call BIS_fnc_areFriendly) then {
+		tf_guer_radio_code = "_opfor";
+	};
 };
 
 disableSerialization;
