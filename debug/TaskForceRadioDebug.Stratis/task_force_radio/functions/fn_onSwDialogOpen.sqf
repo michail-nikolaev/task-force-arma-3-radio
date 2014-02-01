@@ -10,7 +10,7 @@
 		if (([sw_dialog_radio, "tf_fadak_"] call CBA_fnc_find) == 0) then {
 			createDialog "fadak_radio_dialog";
 		};
-
+		player playAction "Gear";
 		call TFAR_fnc_updateSWDialogToChannel;
 	};
 };
