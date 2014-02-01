@@ -103,15 +103,15 @@ tf_nearPlayersProcessed = true;
 tf_farPlayersIndex = 0;
 tf_farPlayersProcessed = true;
 
-tf_msNearPerStepMax = 0.05;
-tf_msNearPerStepMin = 1.00;
+tf_msNearPerStepMax = 0.025;
+tf_msNearPerStepMin = 0.1;
 tf_msNearPerStep = tf_msNearPerStepMax;
-tf_nearUpdateTime = 0.5;
+tf_nearUpdateTime = 0.3;
 
-tf_msFarPerStepMax = 0.07;
-tf_msFarPerStepMin = 2.00;
+tf_msFarPerStepMax = 0.035;
+tf_msFarPerStepMin = 1.00;
 tf_msFarPerStep = tf_msFarPerStepMax;
-tf_farUpdateTime = 7;
+tf_farUpdateTime = 3.5;
 
 tf_lastFrequencyInfoTick = 0;
 tf_lastNearPlayersUpdate = 0;
