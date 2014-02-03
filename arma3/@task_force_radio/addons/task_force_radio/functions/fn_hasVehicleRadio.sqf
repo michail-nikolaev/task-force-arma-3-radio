@@ -4,5 +4,10 @@
  * @param vehicle
  * @return True|False
  */
- if (_this getVariable ["tf_hasRadio", false]) exitWith {true};
-(getNumber(configFile >> "CfgVehicles" >> (typeof _this) >> "tf_hasLRradio") == 1)
+private "_result";
+_result = _this getVariable "tf_hasRadio";
+if (isNil "_result") then
+{
+	_result = (getNumber(configFile >> "CfgVehicles" >> (typeof _this) >> "tf_hasLRradio") == 1);
+};
+_result
