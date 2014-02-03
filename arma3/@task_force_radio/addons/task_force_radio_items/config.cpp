@@ -18,7 +18,9 @@ class CfgVehicles {
 	class Bag_Base
 	{
 		tf_hasLRradio = 0;
-		tf_side = "All";
+		tf_encryptionCode = "";
+		tf_dialogUpdate = "call TFAR_fnc_updateLRDialogToChannel;";
+		tf_range = 20000;
 	};
 	class B_Kitbag_mcamo;
 	class B_Kitbag_cbr;
@@ -32,7 +34,7 @@ class CfgVehicles {
 		maximumLoad = 60;
 		mass = 15;		
 		tf_hasLRradio = 1;
-		tf_side = "West";
+		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialog = "rt1523g_radio_dialog";
 	};	
 	class tf_anprc155: B_Kitbag_sgg
@@ -44,7 +46,7 @@ class CfgVehicles {
 		maximumLoad = 60;
 		mass = 15;
 		tf_hasLRradio = 1;
-		tf_side = "Guer";
+		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialog = "anprc155_radio_dialog";
 	};	
 	class tf_mr3000: B_Kitbag_cbr
@@ -56,7 +58,7 @@ class CfgVehicles {
 		maximumLoad = 60;
 		mass = 15;
 		tf_hasLRradio = 1;
-		tf_side = "East";
+		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialog = "mr3000_radio_dialog";
 	};
 	#include "vehicles.hpp"
