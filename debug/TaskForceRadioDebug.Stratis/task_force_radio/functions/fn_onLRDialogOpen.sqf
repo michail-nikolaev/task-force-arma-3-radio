@@ -6,16 +6,8 @@ private ["_dialog_to_open"];
 		if !(dialog) then {
 			_dialog_to_open = "rt1523g_radio_dialog";
 
-			if ((TF_lr_dialog_radio select 0) isKindOf "Bag_Base") then {				
-				if (typeOf(TF_lr_dialog_radio select 0) == "tf_rt1523g") then {
-					_dialog_to_open = "rt1523g_radio_dialog";
-				};
-				if (typeOf(TF_lr_dialog_radio select 0) == "tf_anprc155") then {
-					_dialog_to_open = "anprc155_radio_dialog";
-				};
-				if (typeOf(TF_lr_dialog_radio select 0) == "tf_mr3000") then {
-					_dialog_to_open = "mr3000_radio_dialog";
-				};
+			if ((TF_lr_dialog_radio select 0) isKindOf "Bag_Base") then {
+				_dialog_to_open = getText(configFile >> "CfgVehicles" >> typeOf(TF_lr_dialog_radio select 0) >> "tf_dialog");
 			} else {
 				if (((TF_lr_dialog_radio select 0) call TFAR_fnc_getVehicleSide) == west) then {
 					_dialog_to_open = "rt1523g_radio_dialog";
