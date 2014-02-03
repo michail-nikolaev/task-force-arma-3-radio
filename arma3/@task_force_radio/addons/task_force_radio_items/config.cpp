@@ -15,7 +15,10 @@ class CfgPatches
 };
 
 class CfgVehicles {
-	class Bag_Base;
+	class Bag_Base
+	{
+		tf_hasLRradio = 0;
+	};
 	class B_Kitbag_mcamo;
 	class B_Kitbag_cbr;
 	class B_Kitbag_sgg;
@@ -27,6 +30,7 @@ class CfgVehicles {
 		scope = 2;
 		maximumLoad = 60;
 		mass = 15;		
+		tf_hasLRradio = 1;
 	};	
 	class tf_anprc155: B_Kitbag_sgg
 	{
@@ -36,6 +40,7 @@ class CfgVehicles {
 		scope = 2;
 		maximumLoad = 60;
 		mass = 15;
+		tf_hasLRradio = 1;
 	};	
 	class tf_mr3000: B_Kitbag_cbr
 	{
@@ -45,7 +50,9 @@ class CfgVehicles {
 		scope = 2;
 		maximumLoad = 60;
 		mass = 15;
+		tf_hasLRradio = 1;
 	};
+	#include "vehicles.hpp"
 };
 
 #define ANPRC_152(X,Y) class tf_anprc152_##X :  ItemRadio \
