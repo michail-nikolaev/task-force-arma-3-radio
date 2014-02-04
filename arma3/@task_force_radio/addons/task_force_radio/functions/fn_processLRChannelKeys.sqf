@@ -8,7 +8,7 @@ if ((call TFAR_fnc_haveLRRadio) and {alive player}) then {
 	_hintText = format[localize "STR_active_lr_channel", _lr_channel_number + 1];
 	hint parseText (_hintText);
 	if (dialog) then {
-		call TFAR_fnc_updateLRDialogToChannel;
+		call compile getText(configFile >> "CfgVehicles" >> typeOf (_active_lr  select 0) >> "tf_dialogUpdate");
 	};
 	_result = true;
 };
