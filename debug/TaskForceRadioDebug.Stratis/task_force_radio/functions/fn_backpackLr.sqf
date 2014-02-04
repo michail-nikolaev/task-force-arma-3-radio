@@ -1,6 +1,8 @@
-private ["_result"];
+private ["_result", "_backpack"];
 _result = [];
-if ((backpack player == "tf_rt1523g") or {backpack player == "tf_anprc155"} or {backpack player == "tf_mr3000"}) then {
+_backpack = backpack player;
+if (getNumber(ConfigFile >> "CfgVehicles" >> _backpack >> "tf_hasLRradio") == 1) then
+{
 	_result = [unitBackpack player, "radio_settings"];
 };
 _result

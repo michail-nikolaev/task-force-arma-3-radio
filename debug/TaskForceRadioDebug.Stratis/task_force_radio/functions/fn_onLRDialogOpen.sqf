@@ -1,21 +1,14 @@
-private ["_dialog_to_open"];
+private ["_dialog_to_open", "_radio"];
 [] spawn {
 	sleep 0.1;
 
 	if ((alive player) and {call TFAR_fnc_haveLRRadio}) then {
 		if !(dialog) then {
 			_dialog_to_open = "rt1523g_radio_dialog";
+			_radio = (TF_lr_dialog_radio select 0);
 
-			if ((TF_lr_dialog_radio select 0) isKindOf "Bag_Base") then {				
-				if (typeOf(TF_lr_dialog_radio select 0) == "tf_rt1523g") then {
-					_dialog_to_open = "rt1523g_radio_dialog";
-				};
-				if (typeOf(TF_lr_dialog_radio select 0) == "tf_anprc155") then {
-					_dialog_to_open = "anprc155_radio_dialog";
-				};
-				if (typeOf(TF_lr_dialog_radio select 0) == "tf_mr3000") then {
-					_dialog_to_open = "mr3000_radio_dialog";
-				};
+			if (_radio isKindOf "Bag_Base") then {
+				_dialog_to_open = getText(configFile >> "CfgVehicles" >> (typeOf _radio) >> "tf_dialog");
 			} else {
 				if (((TF_lr_dialog_radio select 0) call TFAR_fnc_getVehicleSide) == west) then {
 					_dialog_to_open = "rt1523g_radio_dialog";
@@ -30,8 +23,8 @@ private ["_dialog_to_open"];
 			
 			createDialog _dialog_to_open;
 			player playAction "Gear";
-			call TFAR_fnc_updateLRDialogToChannel;
-		}
+			call compile getText(configFile >> "CfgVehicles" >> (typeOf _radio) >> "tf_dialogUpdate");
+		};
 	};
 };
 true
