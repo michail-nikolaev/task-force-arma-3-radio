@@ -75,7 +75,7 @@ if !(isNull player) then {
 			tf_lastFarFrameTick = diag_tickTime;
 		};
 	};
-	if (diag_tickTime - tf_lastFrequencyInfoTick > 1) then {
+	if (diag_tickTime - tf_lastFrequencyInfoTick > 0.5) then {
 		call TFAR_fnc_sendFrequencyInfo;
 		tf_lastFrequencyInfoTick = diag_tickTime;
 	};
