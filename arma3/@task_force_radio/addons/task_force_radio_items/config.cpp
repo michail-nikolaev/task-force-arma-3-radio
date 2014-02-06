@@ -77,11 +77,11 @@ class CfgWeapons
 		scope = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\anprc152\152_icon.paa";
-		tf_prototype = 1;		
+		tf_prototype = 1;
 		tf_range = 3000;
 		tf_dialog = "anprc152_radio_dialog";
 		tf_encryptionCode = "tf_west_radio_code";
-		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";		
+		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
 	};
 	
 	class tf_anprc148jem: ItemRadio
@@ -91,11 +91,11 @@ class CfgWeapons
 		scope = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\anprc148jem\148_icon.paa";
-		tf_prototype = 1;		
+		tf_prototype = 1;
 		tf_range = 3000;
 		tf_dialog = "anprc148jem_radio_dialog";
 		tf_encryptionCode = "tf_guer_radio_code";
-		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";		
+		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
 	};
 	
 	class tf_fadak: ItemRadio
@@ -105,15 +105,14 @@ class CfgWeapons
 		scope = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\fadak\fadak_icon.paa";
-		tf_prototype = 1;		
+		tf_prototype = 1;
 		tf_range = 3000;
 		tf_dialog = "fadak_radio_dialog";
 		tf_encryptionCode = "tf_east_radio_code";
-		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";		
+		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";	
 	};
 	
 	TF_RADIO_IDS(tf_anprc152,AN/PRC-152)
 	TF_RADIO_IDS(tf_anprc148jem,AN/PRC-148 JEM)
 	TF_RADIO_IDS(tf_fadak,FADAK)
-
 };
