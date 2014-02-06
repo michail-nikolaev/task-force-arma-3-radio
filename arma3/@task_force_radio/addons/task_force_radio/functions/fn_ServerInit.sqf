@@ -90,13 +90,13 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 		{
 			if (isPlayer _x) then 
 			{
-				_variableName = "radio_request_" + (getPlayerUID _x);
+				_variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
 				_radio_request = missionNamespace getVariable (_variableName);
 				if !(isNil "_radio_request") then
 				{
 					missionNamespace setVariable [_variableName, nil];
 					(owner (_x)) publicVariableClient (_variableName);
-					_responseVariableName = "radio_response_" + (getPlayerUID _x);
+					_responseVariableName = "radio_response_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
 					_response = [];
 					{
 						private ["_radio", "_count"];
