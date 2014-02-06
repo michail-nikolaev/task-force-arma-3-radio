@@ -1,7 +1,9 @@
 /*
  	Name: TFAR_fnc_getConfigProperty
  	
- 	Author: NKey
+ 	Author(s):
+		NKey
+		L-H
  	
  	Description:
 	Gets a config property (getNumber)
