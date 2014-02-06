@@ -99,6 +99,7 @@ class CfgFunctions
 			class getTeamSpeakChannelName{};
 			class isTeamSpeakPluginEnabled{};
 			class getConfigProperty{};
+			class getLrRadioProperty{};
 		};
 	};
 };
