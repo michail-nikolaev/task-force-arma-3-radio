@@ -11,7 +11,7 @@ if ((_radio_object) isKindOf "Bag_Base") then {
 			_result = missionNamespace getVariable [getText(configFile >> "CfgVehicles" >> TF_defaultEastBackpack >> "tf_encryptionCode"), ""];
 		} else {
 			_result = missionNamespace getVariable [getText(configFile >> "CfgVehicles" >> TF_defaultGuerBackpack >> "tf_encryptionCode"), ""];
-		}
+		};
 	};
 };
 _result
