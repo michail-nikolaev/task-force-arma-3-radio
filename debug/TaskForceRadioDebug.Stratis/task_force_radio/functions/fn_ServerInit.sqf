@@ -44,16 +44,11 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 	if (isNil "tf_freq_guer_lr") then {
 		tf_freq_guer_lr = call TFAR_fnc_generateLrSettings;
 	};
-
 	
 	waitUntil {time > 0};
 	TF_server_addon_version = TF_ADDON_VERSION;
 	publicVariable "TF_server_addon_version";
 
-	TF_anprc152_count = 1;
-	TF_anprc148jem_count = 1;
-	TF_fadak_count = 1;
-	
 	TF_Radio_Count = [];
 
 	while {true} do {
