@@ -6,12 +6,12 @@ waitUntil {
 };
 if (time - TF_last_request_time > 3) then {
 	TF_last_request_time = time;
-	_variableName = "radio_request_" + (getPlayerUID player);
+	_variableName = "radio_request_" + (getPlayerUID player) + str (_x call BIS_fnc_objectSide);
 	_radiosToRequest = _this call TFAR_fnc_radioToRequestCount;
 
 	if ((count _radiosToRequest) > 0) then {
 		missionNamespace setVariable [_variableName, _radiosToRequest];
-		_responseVariableName = "radio_response_" + (getPlayerUID player);
+		_responseVariableName = "radio_response_" + (getPlayerUID player) + str (_x call BIS_fnc_objectSide);
 		missionNamespace setVariable [_responseVariableName, nil];
 		publicVariableServer _variableName;
 		titleText [localize ("STR_wait_radio"), "PLAIN"];
