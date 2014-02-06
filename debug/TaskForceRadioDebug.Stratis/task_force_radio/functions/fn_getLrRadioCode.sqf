@@ -5,13 +5,13 @@ if ((_radio_object) isKindOf "Bag_Base") then {
 	_result = missionNamespace getVariable [getText(configFile >> "CfgVehicles" >> typeOf(_radio_object) >> "tf_encryptionCode"), ""];
 } else {
 	if (((_radio_object) call TFAR_fnc_getVehicleSide) == west) then {
-		_result = tf_west_radio_code;
+		_result = missionNamespace getVariable [getText(configFile >> "CfgVehicles" >> TF_defaultWestBackpack >> "tf_encryptionCode"), ""];
 	} else {
 		if (((_radio_object) call TFAR_fnc_getVehicleSide) == east) then {
-			_result = tf_east_radio_code;
+			_result = missionNamespace getVariable [getText(configFile >> "CfgVehicles" >> TF_defaultEastBackpack >> "tf_encryptionCode"), ""];
 		} else {
-			_result = tf_guer_radio_code;
-		}
+			_result = missionNamespace getVariable [getText(configFile >> "CfgVehicles" >> TF_defaultGuerBackpack >> "tf_encryptionCode"), ""];
+		};
 	};
 };
 _result
