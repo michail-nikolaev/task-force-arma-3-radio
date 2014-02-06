@@ -1,6 +1,4 @@
-#define MAX_ANPRC152_COUNT 1000
-#define MAX_ANPRC148JEM_COUNT 1000
-#define MAX_FADAK_COUNT 1000
+#define MAX_RADIO_COUNT 1000
 
 if (isNil "tf_same_sw_frequencies_for_side") then {
 	tf_same_sw_frequencies_for_side = false;
@@ -10,7 +8,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 };
 
 [] spawn {
-	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_new_radio_id", "_task_force_radio_used", "_last_check", "_group_freq"];
+	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_task_force_radio_used", "_last_check", "_group_freq"];
 	
 	if (isNil "tf_freq_west") then {
 		tf_freq_west = call TFAR_fnc_generateSwSettings;
@@ -55,6 +53,8 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 	TF_anprc152_count = 1;
 	TF_anprc148jem_count = 1;
 	TF_fadak_count = 1;
+	
+	TF_Radio_Count = [];
 
 	while {true} do {
 		{		
@@ -95,50 +95,40 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 		{
 			if (isPlayer _x) then 
 			{
-
-				_variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
+				_variableName = "radio_request_" + (getPlayerUID _x);
 				_radio_request = missionNamespace getVariable (_variableName);
 				if !(isNil "_radio_request") then
 				{
 					missionNamespace setVariable [_variableName, nil];
 					(owner (_x)) publicVariableClient (_variableName);
-					_responseVariableName = "radio_response_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
+					_responseVariableName = "radio_response_" + (getPlayerUID _x);
 					_response = [];
-					_response resize _radio_request;
-					for "_next_radio" from 1 to _radio_request do
 					{
-						if ((_x call BIS_fnc_objectSide) == west) then {
-							_new_radio_id = format["tf_anprc152_%1", TF_anprc152_count];					
-							_response set [(_next_radio - 1), _new_radio_id];
-		
-							TF_anprc152_count = TF_anprc152_count + 1;
-							if (TF_anprc152_count > MAX_ANPRC152_COUNT) then 
+						private "_radio";
+						_radio = _x;
+						if (isClass (ConfigFile >> "CfgWeapons" >> _radio)) then
+						{
+							private "_count";
+							_count = -1;
 							{
-								TF_anprc152_count = 1;
-							};
-						} else {
-							if ((_x call BIS_fnc_objectSide) == east) then {
-								_new_radio_id = format["tf_fadak_%1", TF_fadak_count];					
-								_response set [(_next_radio - 1), _new_radio_id];
-			
-								TF_fadak_count = TF_fadak_count + 1;
-								if (TF_fadak_count > MAX_FADAK_COUNT) then 
+								if ((_x select 0) == _radio) exitWith
 								{
-									TF_fadak_count = 1;
+									_x set [1, (_x select 1) + 1];
+									if ((_x select 1) > MAX_RADIO_COUNT) then 
+									{
+										_x set [1, 1];
+									};
+									_count = (_x select 1);
 								};
-							} else {	
-								_new_radio_id = format["tf_anprc148jem_%1", TF_anprc148jem_count];					
-								_response set [(_next_radio - 1), _new_radio_id];
-			
-								TF_anprc148jem_count = TF_anprc148jem_count + 1;
-								if (TF_anprc148jem_count > MAX_ANPRC148JEM_COUNT) then 
-								{
-									TF_anprc148jem_count = 1;
-								};
+							} count TF_Radio_Count;
+							if (_count == -1) then
+							{
+								TF_Radio_Count set [(count TF_Radio_Count), [_x,1]];
+								_count = 1;
 							};
+							_response set [(count _response), format["%1_%2", _radio, _count]];
 						};
-	
-					};
+					} count _radio_request;
 					missionNamespace setVariable [_responseVariableName, _response];
 					(owner (_x)) publicVariableClient (_responseVariableName);
 				};

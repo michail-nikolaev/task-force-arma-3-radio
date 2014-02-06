@@ -1,4 +1,5 @@
-private ["_menuDef", "_positions", "_active_radio", "_submenu", "_command"];
+private ["_menuDef", "_positions", "_active_radio", "_submenu", "_command", "_menu"];
+_menu = [];
 if ((count (call TFAR_fnc_radiosList) > 1) or {(count (call TFAR_fnc_radiosList) == 1) and !(call TFAR_fnc_haveSWRadio) }) then
 {
 	_menuDef = ["main", localize "STR_select_radio", "buttonList", "", false];
@@ -29,11 +30,10 @@ if ((count (call TFAR_fnc_radiosList) > 1) or {(count (call TFAR_fnc_radiosList)
 		_menuDef,
 		_positions	
 	];
-	_menu
 } else {
 	if (call TFAR_fnc_haveSWRadio) then {
 		TF_sw_dialog_radio = call TFAR_fnc_activeSwRadio;
 		call TFAR_fnc_onSwDialogOpen;
 	};
-	nil
 };
+_menu

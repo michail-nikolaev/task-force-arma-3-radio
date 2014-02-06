@@ -26,6 +26,16 @@ if (isNil "tf_guer_radio_code") then {
 	};
 };
 
+if (isNil "TF_defaultWestPersonalRadio") then {
+	TF_defaultWestPersonalRadio = "tf_anprc152";
+};
+if (isNil "TF_defaultEastPersonalRadio") then {
+	TF_defaultEastPersonalRadio = "tf_anprc148jem";
+};
+if (isNil "TF_defaultGuerPersonalRadio") then {
+	TF_defaultGuerPersonalRadio = "tf_fadak";
+};
+
 disableSerialization;
 #include "diary.sqf"
 
