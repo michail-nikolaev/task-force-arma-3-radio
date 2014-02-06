@@ -99,30 +99,30 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 					_responseVariableName = "radio_response_" + (getPlayerUID _x);
 					_response = [];
 					{
-						private "_radio";
+						private ["_radio", "_count"];
 						_radio = _x;
-						if (isClass (ConfigFile >> "CfgWeapons" >> _radio)) then
+						if !(_radio call TFAR_fnc_isPrototypeRadio) then
 						{
-							private "_count";
-							_count = -1;
-							{
-								if ((_x select 0) == _radio) exitWith
-								{
-									_x set [1, (_x select 1) + 1];
-									if ((_x select 1) > MAX_RADIO_COUNT) then 
-									{
-										_x set [1, 1];
-									};
-									_count = (_x select 1);
-								};
-							} count TF_Radio_Count;
-							if (_count == -1) then
-							{
-								TF_Radio_Count set [(count TF_Radio_Count), [_x,1]];
-								_count = 1;
-							};
-							_response set [(count _response), format["%1_%2", _radio, _count]];
+							_radio = inheritsFrom (configFile >> "CfgWeapons" >> _radio);
 						};
+						_count = -1;
+						{
+							if ((_x select 0) == _radio) exitWith
+							{
+								_x set [1, (_x select 1) + 1];
+								if ((_x select 1) > MAX_RADIO_COUNT) then 
+								{
+									_x set [1, 1];
+								};
+								_count = (_x select 1);
+							};
+						} count TF_Radio_Count;
+						if (_count == -1) then
+						{
+							TF_Radio_Count set [(count TF_Radio_Count), [_x,1]];
+							_count = 1;
+						};
+						_response set [(count _response), format["%1_%2", _radio, _count]];
 					} count _radio_request;
 					missionNamespace setVariable [_responseVariableName, _response];
 					(owner (_x)) publicVariableClient (_responseVariableName);
