@@ -26,6 +26,9 @@ if (!(_radio isKindOf "Bag_Base")) then
 	_actualRadio = _radio getVariable "TF_RadioType";
 	if (isNil "_actualRadio") then
 	{
+		_actualRadio = [typeof _radio, _property] call TFAR_fnc_getConfigProperty;
+		if (!isNil "_actualRadio" AND {_actualRadio != ""}) exitWith { _actualRadio };
+		
 		if ((_radio call TFAR_fnc_getVehicleSide) == west) then {
 			_actualRadio = TF_defaultWestBackpack;
 		} else {
