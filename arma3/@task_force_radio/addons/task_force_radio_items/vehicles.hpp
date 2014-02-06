@@ -2,38 +2,71 @@ class All;
 class AllVehicles:All
 {
 	tf_hasLRradio = 0;
+	tf_isolatedAmount = 0;
 };
 class LandVehicle;
 class Tank:LandVehicle
 {
 	tf_hasLRradio = 1;
+	tf_isolatedAmount = 1;
 };
 class Air:AllVehicles
 {
 	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.1;
 };
 class Helicopter;
 class ParachuteBase:Helicopter
 {
 	tf_hasLRradio = 0;
+	tf_isolatedAmount = 0;
 };
-class Car;
+class Helicopter_Base_F;
+class Helicopter_Base_H;
+class Heli_Light_02_base_F:Helicopter_Base_H
+{
+	tf_isolatedAmount = 0.7;
+};
+class Heli_Attack_02_base_F:Helicopter_Base_F
+{
+	tf_isolatedAmount = 0.7;
+};
+class Heli_Attack_01_base_F:Helicopter_Base_F
+{
+	tf_isolatedAmount = 0.7;
+};
+class Heli_Transport_01_base_F:Helicopter_Base_H
+{
+	tf_isolatedAmount = 0.3;
+};
+class Heli_Transport_02_base_F:Helicopter_Base_H
+{
+	tf_isolatedAmount = 0.8;
+};
+class Car:LandVehicle
+{
+	tf_isolatedAmount = 0.1;
+};
 class Wheeled_Apc:Car
 {
 	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.6;
 };
 class Car_F;
 class MRAP_01_base_F: Car_F
 {
 	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.51;
 };
 class MRAP_02_base_F: Car_F
 {
 	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.51;
 };
 class MRAP_03_base_F: Car_F
 {
 	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.51;
 };
 class Truck_F;
 class Truck_01_base_F:Truck_F
