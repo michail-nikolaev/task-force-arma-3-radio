@@ -1,4 +1,4 @@
-private ["_radio_count", "_variableName", "_responseVariableName", "_response"];
+private ["_radiosToRequest", "_variableName", "_responseVariableName", "_response"];
 
 waitUntil {
 	if (!TF_radio_request_mutex) exitWith {TF_radio_request_mutex = true; true};
@@ -6,13 +6,13 @@ waitUntil {
 };
 if (time - TF_last_request_time > 3) then {
 	TF_last_request_time = time;
-	_variableName = "radio_request_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
-	_radio_count = _this call TFAR_fnc_radioToRequestCount;
+	_variableName = "radio_request_" + (getPlayerUID player) + str (_x call BIS_fnc_objectSide);
+	_radiosToRequest = _this call TFAR_fnc_radioToRequestCount;
 
-	if (_radio_count > 0) then {
-		missionNamespace setVariable [_variableName, _radio_count];
-		_responseVariableName = "radio_response_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
-		 missionNamespace setVariable [_responseVariableName, nil];
+	if ((count _radiosToRequest) > 0) then {
+		missionNamespace setVariable [_variableName, _radiosToRequest];
+		_responseVariableName = "radio_response_" + (getPlayerUID player) + str (_x call BIS_fnc_objectSide);
+		missionNamespace setVariable [_responseVariableName, nil];
 		publicVariableServer _variableName;
 		titleText [localize ("STR_wait_radio"), "PLAIN"];
 		waitUntil {!(isNil _responseVariableName)};
