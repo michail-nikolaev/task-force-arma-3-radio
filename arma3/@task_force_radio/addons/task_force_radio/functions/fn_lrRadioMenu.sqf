@@ -1,4 +1,5 @@
-private ["_menuDef", "_positions", "_active_radio", "_submenu", "_command", "_pos"];
+private ["_menuDef", "_positions", "_active_radio", "_submenu", "_command", "_pos", "_menu"];
+_menu = [];
 if (count (call TFAR_fnc_lrRadiosList) > 1) then
 {
 	_menuDef = ["main", localize "STR_select_lr_radio", "buttonList", "", false];
@@ -31,11 +32,10 @@ if (count (call TFAR_fnc_lrRadiosList) > 1) then
 		_menuDef,
 		_positions	
 	];
-	_menu
 } else {
 	if (call TFAR_fnc_haveLRRadio) then {
 		TF_lr_dialog_radio = call TFAR_fnc_activeLrRadio;
 		call TFAR_fnc_onLrDialogOpen;
 	};
-	nil
 };
+_menu
