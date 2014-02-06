@@ -1,17 +1,11 @@
 [] spawn {
 	sleep 0.1;
 	if ((alive player) and {!(isNil "TF_sw_dialog_radio")} and {!dialog}) then {
-		if (([TF_sw_dialog_radio, "tf_anprc152_"] call CBA_fnc_find) == 0) then {
-			createDialog "anprc152_radio_dialog";
-		};
-		if (([TF_sw_dialog_radio, "tf_anprc148jem_"] call CBA_fnc_find) == 0) then {
-			createDialog "anprc148jem_radio_dialog";
-		};
-		if (([TF_sw_dialog_radio, "tf_fadak_"] call CBA_fnc_find) == 0) then {
-			createDialog "fadak_radio_dialog";
-		};
+		private ["_dialog_to_open"];
+		_dialog_to_open = getText(configFile >> "CfgWeapons" >> TF_sw_dialog_radio >> "tf_dialog");
+		createDialog _dialog_to_open;
 		player playAction "Gear";
-		call TFAR_fnc_updateSWDialogToChannel;
+		call compile getText(configFile >> "CfgWeapons" >> TF_sw_dialog_radio >> "tf_dialogUpdate");
 	};
 };
 true

@@ -74,7 +74,7 @@ class CfgWeapons
 	{
 		displayName = "AN/PRC-152";
 		descriptionShort = "AN/PRC-152";
-		scope = "1";
+		scope = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\anprc152\152_icon.paa";
 		tf_prototype = 1;		
@@ -88,7 +88,7 @@ class CfgWeapons
 	{
 		displayName = "AN/PRC-148 JEM";
 		descriptionShort = "AN/PRC-148 JEM";
-		scope = "1";
+		scope = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\anprc148jem\148_icon.paa";
 		tf_prototype = 1;		
@@ -102,7 +102,7 @@ class CfgWeapons
 	{
 		displayName = "FADAK";
 		descriptionShort = "FADAK";
-		scope = "1";
+		scope = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\fadak\fadak_icon.paa";
 		tf_prototype = 1;		
