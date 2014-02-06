@@ -2,6 +2,7 @@
 	{ \
 		displayName = Y Z; \
 		descriptionShort = Y Z; \
+		scope = 1; \
 		tf_prototype = 0; \
 		tf_radio = 1; \
 	};	
