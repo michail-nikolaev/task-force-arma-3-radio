@@ -22,6 +22,7 @@ class CfgFunctions
 			class getLrChannel{};
 			class setSwStereo{};
 			class setLrChannel{};
+			class setSwChannel{};
 			class getSwStereo{};
 			class getSwFrequency{};
 			class getLrFrequency{};
