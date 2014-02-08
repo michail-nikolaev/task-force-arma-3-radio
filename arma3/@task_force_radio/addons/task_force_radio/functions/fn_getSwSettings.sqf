@@ -1,9 +1,9 @@
 #include "script.h"
-private ["_variableName", "_value", "_preset"];
+private ["_variableName", "_value"];
 _variableName = format["%1_settings", _this];
 _value = missionNamespace getVariable _variableName;
 if (isNil "_value") then {
-	if (!(TF_use_saved_sw_setting) or (isNil "TF_saved_active_sw_settings")) then {		
+	if (!(TF_use_saved_sw_setting) or (isNil "TF_saved_active_sw_settings")) then {
 		_value = (group player) getVariable "tf_sw_frequency";
 		if (isNil "_value") then {
 			_value = call TFAR_fnc_generateSwSettings;
