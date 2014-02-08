@@ -1,6 +1,8 @@
 //#define DEBUG_MODE_FULL
 
-//tf_no_auto_long_range_radio = true;
+if (isNil "tf_no_auto_long_range_radio") then {
+	tf_no_auto_long_range_radio = false;
+};
 
 if (isNil "tf_radio_channel_name") then {
 	tf_radio_channel_name = "TaskForceRadio";
@@ -24,6 +26,15 @@ if (isNil "tf_guer_radio_code") then {
 	if (([east, resistance] call BIS_fnc_areFriendly) and {!([west, resistance] call BIS_fnc_areFriendly)}) then {
 		tf_guer_radio_code = "_opfor";
 	};
+};
+if (isNil "TF_defaultWestBackpack") then {
+	TF_defaultWestBackpack = "tf_rt1523g";
+};
+if (isNil "TF_defaultEastBackpack") then {
+	TF_defaultEastBackpack = "tf_mr3000";
+};
+if (isNil "TF_defaultGuerBackpack") then {
+	TF_defaultGuerBackpack = "tf_anprc155";
 };
 
 if (isNil "TF_defaultWestPersonalRadio") then {
