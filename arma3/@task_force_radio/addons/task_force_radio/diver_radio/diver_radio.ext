@@ -50,7 +50,7 @@ class diver_enter: HiddenButton
 	w = 0.031875 * safezoneW;
 	h = 0.042502 * safezoneH;
 	tooltip = $STR_set_frequency;
-	action = "_f = parseNumber(ctrlText IDC_DIVER_RADIO_EDIT_ID);  if ((_f >= MIN_DD_FREQ) and (_f <= MAX_DD_FREQ)) then {dd_frequency = str (round (_f * FREQ_ROUND_POWER) / FREQ_ROUND_POWER); hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', MIN_DD_FREQ, MAX_DD_FREQ]}; call TFAR_fnc_updateDDDialog;";
+	action = "_f = parseNumber(ctrlText IDC_DIVER_RADIO_EDIT_ID);  if ((_f >= TF_MIN_DD_FREQ) and (_f <= TF_MAX_DD_FREQ)) then {TF_dd_frequency = str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER); hintSilent '';} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_DD_FREQ, TF_MAX_DD_FREQ]}; call TFAR_fnc_updateDDDialog;";
 };
 class diver_clear: HiddenButton
 {
@@ -81,7 +81,7 @@ class increase_volume: HiddenButton
 	y = 0.423497 * safezoneH + safezoneY;
 	w = 0.0119531 * safezoneW;
 	h = 0.0561026 * safezoneH;
-	action = "dd_volume_level = (dd_volume_level + 1) mod MAX_DD_VOLUME; hint formatText [localize 'STR_radio_volume', ((dd_volume_level + 1) * 10)];";
+	action = "TF_dd_volume_level = (TF_dd_volume_level + 1) mod TF_MAX_DD_VOLUME; hint formatText [localize 'STR_radio_volume', ((TF_dd_volume_level + 1) * 10)];";
 	tooltip = $STR_volume;
 };
 class diver_depth_edit: RscEditLCD
