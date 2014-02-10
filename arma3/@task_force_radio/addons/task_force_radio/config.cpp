@@ -40,3 +40,4 @@ class CfgMarkers
 #include "\task_force_radio\CfgFunctions.h"
 #include "\userconfig\task_force_radio\radio_keys.hpp"
 #include "\task_force_radio\description.h"
+#include "\task_force_radio\RscTitles.hpp"
