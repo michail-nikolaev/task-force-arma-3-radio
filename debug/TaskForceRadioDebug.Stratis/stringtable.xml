@@ -420,26 +420,15 @@
 					Selectionner la radio longue portée
 				</French>
 			</Key>
-			<Key ID="STR_transmit_sw">
+			<Key ID="STR_transmit">
 				<Original>
-					Transmiting SW on &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...
+					&lt;t color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
 				</Original>
 				<Russian>
-					Передача на частоте &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...
+					&lt;t color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
 				</Russian>
 				<French>
-					Transmission courte portée sur &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;...
-				</French>
-			</Key>
-			<Key ID="STR_transmit_lr">
-				<Original>
-					Transmiting LR on &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
-				</Original>
-				<Russian>
-					Дальняя передача: &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
-				</Russian>
-				<French>
-					Transmission longue portée sur &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;...
+					&lt;t color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
 				</French>
 			</Key>
 			<Key ID="STR_transmit_dd">

@@ -6,7 +6,7 @@ if ((call TFAR_fnc_haveSWRadio) and {alive player}) then
 {
 	[call TFAR_fnc_activeSwRadio, _sw_channel_number] call TFAR_fnc_setSwChannel;
 	_hintText = format[localize "STR_active_sw_channel", _sw_channel_number + 1];
-	hint parseText (_hintText);
+	[parseText (_hintText), 5] call TFAR_fnc_showHint;
 	if (dialog) then {
 		call compile getText(configFile >> "CfgWeapons" >> (call TFAR_fnc_activeSwRadio) >> "tf_dialogUpdate");
 	};
