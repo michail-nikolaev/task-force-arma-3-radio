@@ -15,6 +15,6 @@ if (alive player) then
 		}
 	};
 	_hintText = format[localize "STR_voice_volume", _localName];
-	hintSilent parseText (_hintText);
+	[parseText (_hintText), 5] call TFAR_fnc_showHint;
 };
 true
