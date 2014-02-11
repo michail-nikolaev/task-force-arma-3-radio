@@ -4,11 +4,11 @@ _result = "task_force_radio_pipe" callExtension _request;
 
 if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"}) then 
 {
-	hintSilent _result;
+	[parseText (_result), 10] call TFAR_fnc_showHint;
 	tf_lastError = true;
 } else {
 	if (tf_lastError) then {
-		hintSilent "";
+		call TFAR_fnc_hideHint;
 		tf_lastError = false;
 	};
 };
