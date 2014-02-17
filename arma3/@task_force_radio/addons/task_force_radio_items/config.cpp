@@ -227,7 +227,7 @@ class CfgVehicles {
 		class ModuleDescription: ModuleDescription
 		{
 			description = "Allows setting of default frequencies for sides.";
-			sync[] = {};
+			sync[] = {"AnyPerson"};
 		};
 	};
 };
