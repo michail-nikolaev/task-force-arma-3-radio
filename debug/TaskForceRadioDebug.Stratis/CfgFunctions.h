@@ -102,9 +102,10 @@ class CfgFunctions
 			class getConfigProperty{};
 			class getLrRadioProperty{};
 			class isPrototypeRadio{};
-			class isPrototypeRadio{};
 			class showHint{};
 			class hideHint{};
+			class initialiseBaseModule{};
+			class initialiseFreqModule{};
 		};
 	};
 };
