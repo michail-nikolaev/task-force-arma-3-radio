@@ -15,6 +15,6 @@ if (isNil "TF_lr_active_radio") then {
 		} else {
 			TF_lr_active_radio = nil;
 		};
-	}
+	};
 };
 TF_lr_active_radio

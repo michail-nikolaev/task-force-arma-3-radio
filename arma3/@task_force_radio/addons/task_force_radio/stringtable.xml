@@ -310,6 +310,17 @@
 					Canal courte portée actif : &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</French>
 			</Key>
+			<Key ID="STR_active_frequency">
+				<Original>
+					Current frequency: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Original>
+				<Russian>
+					Текущая частота: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Russian>
+				<French>
+					Fréquence actuelle: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</French>
+			</Key>
 			<Key ID="STR_active_lr_channel">
 				<Original>
 					Active LR channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
