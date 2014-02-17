@@ -249,7 +249,7 @@ class Mission
 					position[]={4378.3574,227.21738,3823.8506};
 					id=7;
 					side="EAST";
-					vehicle="O_Soldier_F";
+					vehicle="O_Soldier_A_F";
 					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;

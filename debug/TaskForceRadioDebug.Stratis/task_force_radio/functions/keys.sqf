@@ -35,7 +35,7 @@ TF_tangent_lr_modifiers = [false, true, false];
 TF_dialog_lr_scancode = 25;
 TF_dialog_lr_modifiers = [false, false, true];
 
-TF_lr_channel_1_scancode = 79
+TF_lr_channel_1_scancode = 79;
 TF_lr_channel_1_modifiers = [false, true, false];
 
 TF_lr_channel_2_scancode = 80;
@@ -59,7 +59,7 @@ TF_lr_channel_7_modifiers = [false, true, false];
 TF_lr_channel_8_scancode = 72;
 TF_lr_channel_8_modifiers = [false, true, false];
 
-TF_lr_channel_9_scancode = 73
+TF_lr_channel_9_scancode = 73;
 TF_lr_channel_9_modifiers = [false, true, false];
 
 

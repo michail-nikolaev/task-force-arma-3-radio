@@ -100,8 +100,7 @@ class CfgFunctions
 			class getTeamSpeakChannelName{};
 			class isTeamSpeakPluginEnabled{};
 			class getConfigProperty{};
-			class getLrRadioProperty{};
-			class isPrototypeRadio{};
+			class getLrRadioProperty{};			
 			class isPrototypeRadio{};
 			class showHint{};
 			class hideHint{};
