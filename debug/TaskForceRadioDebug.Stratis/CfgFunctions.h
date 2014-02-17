@@ -100,10 +100,12 @@ class CfgFunctions
 			class getTeamSpeakChannelName{};
 			class isTeamSpeakPluginEnabled{};
 			class getConfigProperty{};
-			class getLrRadioProperty{};			
+			class getLrRadioProperty{};
 			class isPrototypeRadio{};
 			class showHint{};
 			class hideHint{};
+			class initialiseBaseModule{};
+			class initialiseFreqModule{};
 		};
 	};
 };
