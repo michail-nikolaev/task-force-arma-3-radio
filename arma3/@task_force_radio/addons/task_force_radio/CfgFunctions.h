@@ -104,6 +104,8 @@ class CfgFunctions
 			class isPrototypeRadio{};
 			class showHint{};
 			class hideHint{};
+			class initialiseBaseModule{};
+			class initialiseFreqModule{};
 		};
 	};
 };
