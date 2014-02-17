@@ -436,10 +436,10 @@
 					&lt;t color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
 				</Original>
 				<Russian>
-					&lt;t color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
+					&lt;t color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;Рация: %1&lt;br /&gt;Канал: %2&lt;br /&gt;Частота: %3
 				</Russian>
 				<French>
-					&lt;t color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
+					&lt;t color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canal: %2&lt;br /&gt;Fréquence: %3
 				</French>
 			</Key>
 			<Key ID="STR_transmit_end">
@@ -447,10 +447,10 @@
 					&lt;t color='#FF9900'&gt;Transmitted with&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
 				</Original>
 				<Russian>
-					&lt;t color='#FF9900'&gt;Transmitted with&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
+					&lt;t color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;Рация: %1&lt;br /&gt;Канал: %2&lt;br /&gt;Частота: %3
 				</Russian>
 				<French>
-					&lt;t color='##FF9900'&gt;Transmitted with&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
+					&lt;t color='##FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canal: %2&lt;br /&gt;Fréquence: %3
 				</French>
 			</Key>
 			<Key ID="STR_waiting">
