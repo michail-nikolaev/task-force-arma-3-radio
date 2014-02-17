@@ -4,11 +4,16 @@ _result = false;
 
 if ((call TFAR_fnc_haveSWRadio) and {alive player}) then
 {
-	[call TFAR_fnc_activeSwRadio, _sw_channel_number] call TFAR_fnc_setSwChannel;
-	_hintText = format[localize "STR_active_sw_channel", _sw_channel_number + 1];
+	private "_radio";
+	_radio = call TFAR_fnc_activeSwRadio;
+	[_radio, _sw_channel_number] call TFAR_fnc_setSwChannel;
+	_hintText = format ["%1<br />%2<br />%3<br />%4", getText(configFile >> "CfgWeapons" >> _radio >> "displayName"),
+		format[localize "STR_active_sw_channel", _sw_channel_number + 1],
+		format[localize "STR_active_frequency", _radio call TFAR_fnc_getSwFrequency],
+		localize format ["STR_stereo_settings_%1", _radio call TFAR_fnc_getSwStereo]];
 	[parseText (_hintText), 5] call TFAR_fnc_showHint;
 	if (dialog) then {
-		call compile getText(configFile >> "CfgWeapons" >> (call TFAR_fnc_activeSwRadio) >> "tf_dialogUpdate");
+		call compile getText(configFile >> "CfgWeapons" >> _radio >> "tf_dialogUpdate");
 	};
 	_result = true;
 };
