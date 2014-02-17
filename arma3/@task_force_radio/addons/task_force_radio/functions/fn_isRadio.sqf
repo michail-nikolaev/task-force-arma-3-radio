@@ -1,1 +1,8 @@
-[configFile >> "CfgWeapons"  >> _this, configFile >> "CfgWeapons" >>"ItemRadio"] call CBA_fnc_inheritsFrom
+private "_result";
+_result = getNumber (configFile >> "CfgWeapons" >> _this >> "tf_radio");
+if (isNil "_result") then
+{
+	_result = 0;
+};
+
+(_result == 1)
