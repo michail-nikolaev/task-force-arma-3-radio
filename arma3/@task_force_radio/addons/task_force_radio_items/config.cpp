@@ -31,7 +31,7 @@ class CfgVehicles {
 		descriptionShort = "RT-1523G (ASIP)";
 		picture = "\task_force_radio_items\rt1523g\rt1523g_icon.paa";
 		scope = 2;
-		maximumLoad = 60;
+		maximumLoad = 100;
 		mass = 15;		
 		tf_hasLRradio = 1;
 		tf_encryptionCode = "tf_west_radio_code";
@@ -43,7 +43,7 @@ class CfgVehicles {
 		descriptionShort = "AN/PRC 155";
 		picture = "\task_force_radio_items\anprc155\155_icon.paa";
 		scope = 2;
-		maximumLoad = 60;
+		maximumLoad = 100;
 		mass = 15;
 		tf_hasLRradio = 1;
 		tf_encryptionCode = "tf_guer_radio_code";
@@ -55,7 +55,7 @@ class CfgVehicles {
 		descriptionShort = "MR3000";
 		picture = "\task_force_radio_items\mr3000\mr3000_icon.paa";
 		scope = 2;
-		maximumLoad = 60;
+		maximumLoad = 100;
 		mass = 15;
 		tf_hasLRradio = 1;
 		tf_encryptionCode = "tf_east_radio_code";
