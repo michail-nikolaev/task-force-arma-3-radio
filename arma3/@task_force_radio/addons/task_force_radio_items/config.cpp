@@ -2,10 +2,10 @@ class CfgPatches
 {
 	class task_force_radio_items
 	{
-		units[] = {};
+		units[] = {"tfar_ModuleTaskForceRadio", "tfar_ModuleTaskForceRadioFrequencies"};
 		weapons[] = {};
 		requiredVersion = 1.0;
-		requiredAddons[] = {"A3_Structures_F_Items_Electronics"};
+		requiredAddons[] = {"A3_Modules_F", "A3_Structures_F_Items_Electronics"};
 		author[] = {"[TF]Nkey"};
 		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
 		version = 0.8.3;
@@ -62,6 +62,174 @@ class CfgVehicles {
 		tf_dialog = "mr3000_radio_dialog";
 	};
 	#include "vehicles.hpp"
+	
+	class Logic;
+	class Module_F: Logic
+	{
+		class ArgumentsBaseUnits
+		{
+			class Units;
+		};
+		class ModuleDescription
+		{
+			class AnyBrain;
+		};
+	};
+	class tfar_ModuleTaskForceRadio: Module_F
+	{
+		scope = 2;
+		author = "Task Force Arrowhead Radio";
+		displayName = "TFAR - Radios";
+		category = "Intel";
+		
+		function = "TFAR_fnc_initialiseBaseModule";
+		functionPriority = 1;
+		
+		isGlobal = 1;
+		//isDisposable = 1;
+		
+		class Arguments: ArgumentsBaseUnits
+		{
+			class Units: Units {};
+			class WestEncryption
+			{
+				displayName = "West Encryption";
+				description = "West's Encryption";
+				typeName = "TEXT";
+				defaultValue = "_blufor";
+			};
+			class WestLRradio
+			{
+				displayName = "West LR";
+				description = "West's LR radio";
+				typeName = "TEXT";
+				defaultValue = "tf_rt1523g";
+			};
+			class WestRadio
+			{
+				displayName = "West PR";
+				description = "West's personal radio";
+				typeName = "TEXT";
+				defaultValue = "tf_anprc152";
+			};
+			class EastEncryption
+			{
+				displayName = "East Encryption";
+				description = "East's Encryption";
+				typeName = "TEXT";
+				defaultValue = "_opfor";
+			};
+			class EastLRradio
+			{
+				displayName = "East LR";
+				description = "East's LR radio";
+				typeName = "TEXT";
+				defaultValue = "tf_mr3000";
+			};
+			class EastRadio
+			{
+				displayName = "East PR";
+				description = "East's personal radio";
+				typeName = "TEXT";
+				defaultValue = "tf_fadak";
+			};
+			class GuerEncryption
+			{
+				displayName = "Guer Encryption";
+				description = "Resistance's Encryption";
+				typeName = "TEXT";
+				defaultValue = "_independent";
+			};
+			class GuerLRradio
+			{
+				displayName = "Guer LR";
+				description = "Resistance's LR radio";
+				typeName = "TEXT";
+				defaultValue = "tf_anprc155";
+			};
+			class GuerRadio
+			{
+				displayName = "Guer PR";
+				description = "Resistance's personal radio";
+				typeName = "TEXT";
+				defaultValue = "tf_anprc148jem";
+			};
+		};
+		
+		class ModuleDescription: ModuleDescription
+		{
+			description = "Allows setting of default radios and encryption for sides.";
+			sync[] = {};
+		};
+	};
+	
+	class tfar_ModuleTaskForceRadioFrequencies: Module_F
+	{
+		scope = 2;
+		author = "Task Force Arrowhead Radio";
+		displayName = "TFAR - Frequencies";
+		category = "Intel";
+		
+		function = "TFAR_fnc_initialiseFreqModule";
+		functionPriority = 1;
+		
+		isGlobal = 1;
+		//isDisposable = 1;
+		isTriggerActivated = 1;
+		
+		class Arguments: ArgumentsBaseUnits
+		{
+			class Units: Units {};
+			class WestFreq
+			{
+				displayName = "West SW Freq.";
+				description = "West's SW default frequency";
+				typeName = "NUMBER";
+				defaultValue = 70.2;
+			};
+			class WestLrFreq
+			{
+				displayName = "West LR Freq.";
+				description = "West's LR default frequency";
+				typeName = "NUMBER";
+				defaultValue = 57.2;
+			};
+			class EastFreq
+			{
+				displayName = "East SW Freq.";
+				description = "East's SW default frequency";
+				typeName = "NUMBER";
+				defaultValue = 83.8;
+			};
+			class EastLrFreq
+			{
+				displayName = "East LR Freq.";
+				description = "East's LR default frequency";
+				typeName = "NUMBER";
+				defaultValue = 48.5;
+			};
+			class GuerFreq
+			{
+				displayName = "Guer SW Freq.";
+				description = "Resistance's SW default frequency";
+				typeName = "NUMBER";
+				defaultValue = 62.5;
+			};
+			class GuerLrFreq
+			{
+				displayName = "Guer LR Freq.";
+				description = "Resistance's LR default frequency";
+				typeName = "NUMBER";
+				defaultValue = 59.4;
+			};
+		};
+		
+		class ModuleDescription: ModuleDescription
+		{
+			description = "Allows setting of default frequencies for sides.";
+			sync[] = {};
+		};
+	};
 };
 	
 #include "radio_ids.hpp"
