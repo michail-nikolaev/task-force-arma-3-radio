@@ -1197,10 +1197,8 @@ std::string processGameCommand(std::string command)
 				else if (diverRadio) playWavFile("radio-sounds/dd/local_end", false, 0);
 				else playWavFile("radio-sounds/sw/local_end", false, 0);				
 			}
-			// broadcast info about tangent pressed over all client			
-			std::string replaced = command;
-			std::replace( replaced.begin(), replaced.end(), '\t', '@');
-			std::string commandToBroadcast = replaced + "@" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
+			// broadcast info about tangent pressed over all client						
+			std::string commandToBroadcast = command + "\t" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
 			log_string(commandToBroadcast, LogLevel_DEVEL);
 			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
 
@@ -1213,8 +1211,7 @@ std::string processGameCommand(std::string command)
 			}
 		}
 		return "OK";
-	} 
-	//_request = format["FREQ@%1@%2@%3@%4@%5@%6@%7@%8@", str(_freq), str(_freq_lr), _freq_dd, _alive, speak_volume_level, dd_volume_level, _nickname, waves];
+	} 	
 	else if (tokens.size() == 9 && tokens[0] == "FREQ")
 	{				
 		EnterCriticalSection(&serverDataCriticalSection);	
@@ -2174,7 +2171,7 @@ void ts3plugin_onClientSelfVariableUpdateEvent(uint64 serverConnectionHandlerID,
 			uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 			std::string myNickname = getMyNickname(serverId);
 			EnterCriticalSection(&serverDataCriticalSection);
-			std::string command = "VOLUME@" + myNickname + "@" + serverIdToData[serverId].myVoiceVolume;			
+			std::string command = "VOLUME\t" + myNickname + "\t" + serverIdToData[serverId].myVoiceVolume;			
 			LeaveCriticalSection(&serverDataCriticalSection);
 			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, command.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
 		}
@@ -2315,7 +2312,7 @@ void ts3plugin_onClientServerQueryLoginPasswordEvent(uint64 serverConnectionHand
 void processPluginCommand(std::string command)
 {
 	DWORD currentTime = GetTickCount();
-	std::vector<std::string> tokens = split(command, '@'); // may not be used in nickname
+	std::vector<std::string> tokens = split(command, '\t'); // may not be used in nickname
 	uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 	DWORD time =  GetTickCount();
 	if (tokens.size() == 4 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" ||  tokens[0] == "TANGENT_DD"))
