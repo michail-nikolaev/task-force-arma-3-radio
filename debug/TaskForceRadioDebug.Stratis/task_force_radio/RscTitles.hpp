@@ -1,4 +1,10 @@
-class RscStructuredText;
+class myRscStructuredText
+{
+	type = 13;
+	style = 0;
+	shadow = 1;
+	size = "( ( ( ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) *1)";
+};
 
 class RscTitles
 {
@@ -14,7 +20,7 @@ class RscTitles
 		name = "RscTaskForceHint"; 
 		class controls
 		{
-			class InformationText: RscStructuredText
+			class InformationText: myRscStructuredText
 			{
 				idc = 1100;
 				text = "";
