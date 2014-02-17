@@ -442,15 +442,15 @@
 					&lt;t color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
 				</French>
 			</Key>
-			<Key ID="STR_transmit_dd">
+			<Key ID="STR_transmit_end">
 				<Original>
-					Transmiting Diver Radio on &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
+					&lt;t color='#FF9900'&gt;Transmitted with&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
 				</Original>
 				<Russian>
-					Подводная передача: &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
+					&lt;t color='#FF9900'&gt;Transmitted with&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
 				</Russian>
 				<French>
-					Transmission sous-marine sur &lt;t color=&apos;#993300&apos;&gt;%1&lt;/t&gt;...
+					&lt;t color='##FF9900'&gt;Transmitted with&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
 				</French>
 			</Key>
 			<Key ID="STR_waiting">
