@@ -1,4 +1,4 @@
-private["_result", "_request"];
+private ["_result","_request","_hintText"];
 if ((TF_tangent_dd_pressed) and {alive player}) then {
 	_hintText = format[localize "STR_transmit_end", "DD", "1", TF_dd_frequency];
 	[parseText (_hintText), 2.5] call TFAR_fnc_showHint;

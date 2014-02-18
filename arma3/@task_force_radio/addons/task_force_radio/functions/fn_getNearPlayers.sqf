@@ -1,4 +1,4 @@
-private ["_result", "_index", "_players_in_group", "_add_to_near"];
+private ["_result","_index","_players_in_group","_add_to_near","_was_speaking"];
 _players_in_group = count (units (group player));
 _result = [];
 if (alive player) then {

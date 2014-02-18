@@ -1,6 +1,6 @@
-private ["_dialog_to_open", "_radio", "_dialog_update"];
-[] spawn {
-	sleep 0.1;
+[] spawn {	
+    private ["_radio","_dialog_to_open","_dialog_update"];
+    sleep 0.1;
 
 	if ((alive player) and {call TFAR_fnc_haveLRRadio}) then {
 		if !(dialog) then {
