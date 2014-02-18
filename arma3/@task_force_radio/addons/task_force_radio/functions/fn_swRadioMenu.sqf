@@ -1,4 +1,4 @@
-private ["_menuDef", "_positions", "_active_radio", "_submenu", "_command", "_menu"];
+private ["_menuDef","_positions","_active_radio","_submenu","_command","_menu","_position"];
 _menu = [];
 if ((count (call TFAR_fnc_radiosList) > 1) or {(count (call TFAR_fnc_radiosList) == 1) and !(call TFAR_fnc_haveSWRadio) }) then
 {
