@@ -1,4 +1,4 @@
-private["_result", "_request"];
+private ["_result","_request","_hintText"];
 if ((TF_tangent_sw_pressed) and {alive player}) then {
 	private "_radio";
 	_radio = call TFAR_fnc_activeSwRadio;

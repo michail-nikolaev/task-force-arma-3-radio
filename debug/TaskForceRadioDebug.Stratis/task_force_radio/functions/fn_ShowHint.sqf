@@ -18,7 +18,7 @@
 	["Hello", 3] call TFAR_fnc_ShowHint;
 	["Hello", -1] call TFAR_fnc_ShowHint;
  */
-private ["_text", "_time", "_display"];
+private ["_text","_time"];
 _text = _this select 0;
 _time = _this select 1;
 
