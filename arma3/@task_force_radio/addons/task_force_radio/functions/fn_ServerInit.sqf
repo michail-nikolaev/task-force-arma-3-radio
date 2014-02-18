@@ -138,7 +138,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 						missionNamespace setVariable [_variableName, time];
 					} else {
 						if (time - _last_check > 30) then {
-							[[format ["LOOKS LIKE TASK FORCE RADIO ADDON NOT ENABLED OR VERSION LESS THAN %1", TF_server_addon_version]],"BIS_fnc_guiMessage",(owner _x), false] spawn BIS_fnc_MP;
+							[["LOOKS LIKE TASK FORCE RADIO ADDON NOT ENABLED OR VERSION LESS THAN 0.8.1"],"BIS_fnc_guiMessage",(owner _x), false] spawn BIS_fnc_MP;
 							_x setVariable ["tf_force_radio_active", "error_shown", true];
 						};
 					};
