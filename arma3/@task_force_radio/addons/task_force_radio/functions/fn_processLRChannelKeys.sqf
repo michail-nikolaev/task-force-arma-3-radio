@@ -1,4 +1,4 @@
-private ["_lr_channel_number", "_hintText", "_result"];
+private ["_lr_channel_number","_hintText","_result","_active_lr"];
 _lr_channel_number = _this select 0;
 _result = false;
 

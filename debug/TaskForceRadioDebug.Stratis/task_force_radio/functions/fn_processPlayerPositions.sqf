@@ -1,4 +1,4 @@
-private ["_request", "_result", "_elemsNearToProcess", "_elemsFarToProcess", "_other_units", "_xplayer"];
+private ["_elemsNearToProcess","_elemsFarToProcess","_other_units"];
 if !(isNull player) then {
 	if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {
 		tf_nearPlayersIndex = 0;
