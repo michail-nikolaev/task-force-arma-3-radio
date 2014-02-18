@@ -1,4 +1,4 @@
-private ["_player", "_isolated_and_inside", "_result", "_depth"];
+private ["_player","_result","_depth"];
 
 _result = false;
 _player = _this select 0;

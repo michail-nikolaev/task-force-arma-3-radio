@@ -1,4 +1,4 @@
-private ["_request", "_result", "_freq", "_freq_lr", "_freq_dd", "_alive", "_nickname", "_isolated_and_inside", "_can_speak", "_elemsToProcess"];
+private ["_request","_result","_freq","_freq_lr","_freq_dd","_alive","_nickname","_isolated_and_inside","_can_speak"];
 
 // send frequencies
 _freq = ["No_SW_Radio"];

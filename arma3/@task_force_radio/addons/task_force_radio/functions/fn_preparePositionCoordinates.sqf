@@ -1,4 +1,4 @@
-private ["_x_player", "_current_eyepos", "_x_playername", "_current_x", "_current_y", "_current_z", "_current_look_at_x", "_current_look_at_y", "_current_look_at_z", "_current_hyp_horizontal", "_current_rotation_horizontal", "_player_pos", "_isolated_and_inside", "_can_speak"];
+private ["_x_player","_current_eyepos","_x_playername","_current_x","_current_y","_current_z","_current_look_at_x","_current_look_at_y","_current_look_at_z","_current_hyp_horizontal","_current_rotation_horizontal","_player_pos","_isolated_and_inside","_can_speak","_current_look_at"];
 _x_player = _this;
 _current_eyepos = eyepos _x_player;
 _x_playername = name _x_player;
