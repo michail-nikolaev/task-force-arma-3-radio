@@ -50,6 +50,8 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 	publicVariable "TF_server_addon_version";
 
 	TF_Radio_Count = [];
+	private "_allUnits";
+	_allUnits = (if(isMultiplayer)then{playableUnits}else{switchableUnits});
 
 	while {true} do {
 		{		
@@ -86,7 +88,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 				};
 			};		
 		} forEach allGroups;
-
+	
 		{
 			if (isPlayer _x) then 
 			{
@@ -136,17 +138,15 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 						missionNamespace setVariable [_variableName, time];
 					} else {
 						if (time - _last_check > 30) then {
-							[["LOOKS LIKE TASK FORCE RADIO ADDON NOT ENABLED OR VERSION LESS THAN 0.8.1"],"BIS_fnc_guiMessage",(owner _x), false] spawn BIS_fnc_MP;
+							[[format ["LOOKS LIKE TASK FORCE RADIO ADDON NOT ENABLED OR VERSION LESS THAN %1", TF_server_addon_version]],"BIS_fnc_guiMessage",(owner _x), false] spawn BIS_fnc_MP;
 							_x setVariable ["tf_force_radio_active", "error_shown", true];
-							
 						};
-					};					
-
+					};
 				} else {
 					missionNamespace setVariable [_variableName, nil];
 				};
 			};
-		} forEach allUnits;		
+		} count _allUnits;		
 		sleep 1;
 	};
 };

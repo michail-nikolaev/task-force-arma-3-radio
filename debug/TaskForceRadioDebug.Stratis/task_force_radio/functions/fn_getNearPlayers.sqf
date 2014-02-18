@@ -2,6 +2,8 @@ private ["_result","_index","_players_in_group","_add_to_near","_was_speaking"];
 _players_in_group = count (units (group player));
 _result = [];
 if (alive player) then {
+	private "_allUnits";
+	_allUnits = (if(isMultiplayer)then{playableUnits}else{switchableUnits});
 	_index = 0;
 	{			
 		if (isPlayer _x) then {
@@ -15,11 +17,11 @@ if (alive player) then {
 				_add_to_near = true;
 			};
 
-			if ((player distance _x < 60) or {_add_to_near}) then {				
+			if (_add_to_near or {(player distance _x < 60)}) then {				
 				_result set[_index, _x];
 				_index = _index + 1;
 			} 
 		};
-	} count allUnits;
+	} count _allUnits;
 };
 _result
