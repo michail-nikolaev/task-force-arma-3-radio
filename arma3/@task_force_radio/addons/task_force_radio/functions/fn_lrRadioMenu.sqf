@@ -1,4 +1,4 @@
-private ["_menuDef", "_positions", "_active_radio", "_submenu", "_command", "_pos", "_menu"];
+private ["_menuDef","_positions","_active_radio","_submenu","_command","_pos","_menu","_position"];
 _menu = [];
 if (count (call TFAR_fnc_lrRadiosList) > 1) then
 {

@@ -1,4 +1,4 @@
-private ["_radio_object", "_result", "_encryptionCode"];
+private ["_radio_object","_result"];
 _radio_object = _this select 0;
 _result = "";
 if ((_radio_object) isKindOf "Bag_Base") then {

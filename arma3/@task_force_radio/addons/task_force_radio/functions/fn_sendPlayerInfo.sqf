@@ -1,4 +1,4 @@
-private ["_request", "_result", "_listener"];
+private ["_request","_result"];
 _request = _this call TFAR_fnc_preparePositionCoordinates;
 _result = "task_force_radio_pipe" callExtension _request;
 
