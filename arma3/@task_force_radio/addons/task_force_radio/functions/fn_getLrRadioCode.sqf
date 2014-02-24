@@ -1,5 +1,9 @@
 private ["_radio_object","_result"];
 _radio_object = _this select 0;
+
+_result = (_this call TFAR_fnc_getLrSettings) select TF_CODE_OFFSET;
+if !(isNil "_result") exitWith { _result };
+
 _result = "";
 if ((_radio_object) isKindOf "Bag_Base") then {
 	_result = missionNamespace getVariable [getText(configFile >> "CfgVehicles" >> typeOf(_radio_object) >> "tf_encryptionCode"), ""];
