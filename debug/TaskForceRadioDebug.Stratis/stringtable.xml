@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Project ID="Arma2">
 	<Package ID="Missions">
 		<Container ID="A3RU_MissionInformation">
@@ -12,6 +12,9 @@
 				<French>
 					Différentes versions de Task Force Radio sont utilisées. Version du serveur : %1, Votre version : %2
 				</French>
+				<Italian>
+					Versioni differenti di Task Force Radio utilizzate. Versione del server : %1, La tua versione : %2
+				</Italian>
 			</Key>
 			<Key ID="STR_stereo_settings">
 				<Original>
@@ -23,6 +26,9 @@
 				<French>
 					Configurations stéréo
 				</French>
+				<Italian>
+					Configurazione stereo
+				</Italian>				
 			</Key>
 			<Key ID="STR_stereo_settings_0">
 				<Original>
@@ -34,6 +40,9 @@
 				<French>
 					Gauche et droite
 				</French>
+				<Italian>
+					Sinistra e destra
+				</Italian>					
 			</Key>
 			<Key ID="STR_stereo_settings_1">
 				<Original>
@@ -45,6 +54,9 @@
 				<French>
 					Gauche seulement
 				</French>
+				<Italian>
+					Solo sinistra
+				</Italian>					
 			</Key>
 			<Key ID="STR_stereo_settings_2">
 				<Original>
@@ -56,6 +68,9 @@
 				<French>
 					Droite seulement
 				</French>
+				<Italian>
+					Solo destra
+				</Italian>					
 			</Key>
 			<Key ID="STR_no_server">
 				<Original>
@@ -67,6 +82,9 @@
 				<French>
 					Il n'y a pas de Task Force Radio déployé sur le serveur !
 				</French>
+				<Italian>
+					Task Force Radio non è in esecuzione sul server!
+				</Italian>					
 			</Key>
 			<Key ID="STR_current_freq">
 				<Original>
@@ -78,6 +96,9 @@
 				<French>
 					Fréquence actuelle
 				</French>
+				<Italian>
+					Frequenza attuale
+				</Italian>					
 			</Key>
 			<Key ID="STR_current_channel">
 				<Original>
@@ -89,6 +110,9 @@
 				<French>
 					Canal actuel
 				</French>
+				<Italian>
+					Canale attuale
+				</Italian>					
 			</Key>
 			<Key ID="STR_set_frequency">
 				<Original>
@@ -100,6 +124,9 @@
 				<French>
 					Valider la fréquence
 				</French>
+				<Italian>
+					Imposta frequenza
+				</Italian>					
 			</Key>
 			<Key ID="STR_clear_frequency">
 				<Original>
@@ -111,6 +138,9 @@
 				<French>
 					Effacer la fréquence
 				</French>
+				<Italian>
+					Cancella frequenza
+				</Italian>					
 			</Key>
 			<Key ID="STR_previous_channel">
 				<Original>
@@ -122,6 +152,9 @@
 				<French>
 					Canal précédent
 				</French>
+				<Italian>
+					Canale precedente
+				</Italian>					
 			</Key>
 			<Key ID="STR_next_channel">
 				<Original>
@@ -133,6 +166,9 @@
 				<French>
 					Canal suivant
 				</French>
+				<Italian>
+					Canale successivo
+				</Italian>					
 			</Key>
 			<Key ID="STR_increase_volume">
 				<Original>
@@ -144,6 +180,9 @@
 				<French>
 					Augmenter le volume
 				</French>
+				<Italian>
+					Aumenta volume
+				</Italian>					
 			</Key>
 			<Key ID="STR_decrease_volume">
 				<Original>
@@ -155,6 +194,9 @@
 				<French>
 					Réduire le volume
 				</French>
+				<Italian>
+					Diminuisce volume
+				</Italian>					
 			</Key>
 			<Key ID="STR_volume">
 				<Original>
@@ -166,6 +208,9 @@
 				<French>
 					Changer le volume
 				</French>
+				<Italian>
+					Cambia il volume
+				</Italian>					
 			</Key>
 			<Key ID="STR_incorrect_frequency">
 				<Original>
@@ -177,6 +222,9 @@
 				<French>
 					Valeur de fréquence incorrecte, la plage est de %1-%2
 				</French>
+				<Italian>
+					Campo di frequenza non corretto; Campi possibili sono %1-%2
+				</Italian>					
 			</Key>
 			<Key ID="STR_radio_volume">
 				<Original>
@@ -188,6 +236,9 @@
 				<French>
 					Volume de la radio : %1
 				</French>
+				<Italian>
+					Volume della radio : %1
+				</Italian>	
 			</Key>
 			<Key ID="STR_radio_channel_1">
 				<Original>
@@ -199,6 +250,9 @@
 				<French>
 					Canal 1
 				</French>
+				<Italian>
+					Canale 1
+				</Italian>	
 			</Key>
 			<Key ID="STR_radio_channel_2">
 				<Original>
@@ -210,6 +264,9 @@
 				<French>
 					Canal 2
 				</French>
+				<Italian>
+					Canale 2
+				</Italian>	
 			</Key>
 			<Key ID="STR_radio_channel_3">
 				<Original>
@@ -221,6 +278,9 @@
 				<French>
 					Canal 3
 				</French>
+				<Italian>
+					Canale 3
+				</Italian>	
 			</Key>
 			<Key ID="STR_radio_channel_4">
 				<Original>
@@ -232,6 +292,9 @@
 				<French>
 					Canal 4
 				</French>
+				<Italian>
+					Canale 4
+				</Italian>	
 			</Key>
 			<Key ID="STR_radio_channel_5">
 				<Original>
@@ -243,6 +306,9 @@
 				<French>
 					Canal 5
 				</French>
+				<Italian>
+					Canale 5
+				</Italian>	
 			</Key>
 			<Key ID="STR_radio_channel_6">
 				<Original>
@@ -254,6 +320,9 @@
 				<French>
 					Canal 6
 				</French>
+				<Italian>
+					Canale 6
+				</Italian>	
 			</Key>
 			<Key ID="STR_radio_channel_7">
 				<Original>
@@ -265,6 +334,9 @@
 				<French>
 					Canal 7
 				</French>
+				<Italian>
+					Canale 7
+				</Italian>	
 			</Key>
 			<Key ID="STR_radio_channel_8">
 				<Original>
@@ -276,6 +348,9 @@
 				<French>
 					Canal 8
 				</French>
+				<Italian>
+					Canale 8
+				</Italian>	
 			</Key>
 			<Key ID="STR_radio_channel_9">
 				<Original>
@@ -287,6 +362,9 @@
 				<French>
 					Canal 9
 				</French>
+				<Italian>
+					Canale 9
+				</Italian>	
 			</Key>
 			<Key ID="STR_depth">
 				<Original>
@@ -298,6 +376,9 @@
 				<French>
 					Current depth
 				</French>
+				<Italian>
+					Profondità attuale
+				</Italian>	
 			</Key>
 			<Key ID="STR_active_sw_channel">
 				<Original>
@@ -309,6 +390,9 @@
 				<French>
 					Canal courte portée actif : &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</French>
+				<Italian>
+					Canale onde corte attivo: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Italian>	
 			</Key>
 			<Key ID="STR_active_frequency">
 				<Original>
@@ -320,6 +404,9 @@
 				<French>
 					Fréquence actuelle: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</French>
+				<Italian>
+					Frequenza attuale: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Italian>	
 			</Key>
 			<Key ID="STR_active_lr_channel">
 				<Original>
@@ -331,6 +418,9 @@
 				<French>
 					Canal longue portée actif : &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</French>
+				<Italian>
+					Canale onde lunghe attivo: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Italian>	
 			</Key>
 			<Key ID="STR_in_water_hint">
 				<Original>
@@ -342,6 +432,9 @@
 				<French>
 					&lt;t color=&apos;#33ccff&apos;&gt;Vous ne pouvez pas utiliser de radio sous l'eau !&lt;/t&gt;
 				</French>
+				<Italian>
+					&lt;t color=&apos;#33ccff&apos;&gt;Non puoi usare la radio sott'acqua&lt;/t&gt;
+				</Italian>	
 			</Key>
 			<Key ID="STR_on_ground_hint">
 				<Original>
@@ -353,6 +446,9 @@
 				<French>
 					&lt;t color=&apos;#993300&apos;&gt;Vous ne pouvez pas utiliser la radio du véhicule dans les airs !&lt;/t&gt;
 				</French>
+				<Italian>
+					&lt;t color=&apos;#993300&apos;&gt;Non puoi usare la radio del veicolo in aria!&lt;/t&gt;
+				</Italian>
 			</Key>
 			<Key ID="STR_select_action">
 				<Original>
@@ -364,6 +460,9 @@
 				<French>
 					Sélectionner l'action
 				</French>
+				<Italian>
+					Seleziona l'azione
+				</Italian>
 			</Key>
 			<Key ID="STR_select_action_setup">
 				<Original>
@@ -375,6 +474,9 @@
 				<French>
 					Options
 				</French>
+				<Italian>
+					Opzioni
+				</Italian>
 			</Key>
 			<Key ID="STR_select_action_setup_tooltip">
 				<Original>
@@ -386,6 +488,9 @@
 				<French>
 					Ouvrir la fenêtre des options
 				</French>
+				<Italian>
+					Apri finestra opzioni
+				</Italian>
 			</Key>
 			<Key ID="STR_select_action_use">
 				<Original>
@@ -397,6 +502,9 @@
 				<French>
 					Mettre dans le slot de radio
 				</French>
+				<Italian>
+					Seleziona come in uso
+				</Italian>
 			</Key>
 			<Key ID="STR_select_action_use_tooltip">
 				<Original>
@@ -408,6 +516,9 @@
 				<French>
 					Choisir comme radio active
 				</French>
+				<Italian>
+					Usa come radio per trasmissioni
+				</Italian>
 			</Key>
 			<Key ID="STR_select_radio">
 				<Original>
@@ -419,6 +530,9 @@
 				<French>
 					Selectionner la radio courte portée
 				</French>
+				<Italian>
+					Seleziona radio onde corte
+				</Italian>
 			</Key>
 			<Key ID="STR_select_lr_radio">
 				<Original>
@@ -430,6 +544,9 @@
 				<French>
 					Selectionner la radio longue portée
 				</French>
+				<Italian>
+					Seleziona radio onde lunghe
+				</Italian>
 			</Key>
 			<Key ID="STR_transmit">
 				<Original>
@@ -441,6 +558,9 @@
 				<French>
 					&lt;t color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canal: %2&lt;br /&gt;Fréquence: %3
 				</French>
+				<Italian>
+					&lt;t color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canale: %2&lt;br /&gt;Freq: %3
+				</Italian>
 			</Key>
 			<Key ID="STR_transmit_end">
 				<Original>
@@ -452,6 +572,9 @@
 				<French>
 					&lt;t color='##FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canal: %2&lt;br /&gt;Fréquence: %3
 				</French>
+				<Italian>
+					&lt;t color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canale: %2&lt;br /&gt;Freq: %3
+				</Italian>
 			</Key>
 			<Key ID="STR_waiting">
 				<Original>
@@ -463,6 +586,9 @@
 				<French>
 					En attente...
 				</French>
+				<Italian>
+					In attesa...
+				</Italian>
 			</Key>
 			<Key ID="STR_voice_volume">
 				<Original>
@@ -474,6 +600,9 @@
 				<French>
 					&lt;t color=&apos;#66ff33&apos;&gt;Volume de la voix : %1&lt;/t&gt;
 				</French>
+				<Italian>
+					&lt;t color=&apos;#66ff33&apos;&gt;Volume voce: %1&lt;/t&gt;
+				</Italian>
 			</Key>
 			<Key ID="STR_voice_normal">
 				<Original>
@@ -485,6 +614,9 @@
 				<French>
 					Normal
 				</French>
+				<Italian>
+					Normale
+				</Italian>
 			</Key>
 			<Key ID="STR_voice_yelling">
 				<Original>
@@ -496,6 +628,9 @@
 				<French>
 					Forte
 				</French>
+				<Italian>
+					Gridare
+				</Italian>
 			</Key>
 			<Key ID="STR_voice_whispering">
 				<Original>
@@ -507,6 +642,9 @@
 				<French>
 					Faible
 				</French>
+				<Italian>
+					Bassa voce
+				</Italian>
 			</Key>
 			<Key ID="STR_init">
 				<Original>
@@ -518,6 +656,9 @@
 				<French>
 					Initialization...
 				</French>
+				<Italian>
+					Inizializzazione...
+				</Italian>
 			</Key>
 			<Key ID="STR_subject_name">
 				<Original>
@@ -529,6 +670,9 @@
 				<French>
 					Radio
 				</French>
+				<Italian>
+					Radio
+				</Italian>
 			</Key>
 			<Key ID="STR_radio_control">
 				<Original>
@@ -540,6 +684,9 @@
 				<French>
 					Contrôles
 				</French>
+				<Italian>
+					Controlli
+				</Italian>
 			</Key>
 			<Key ID="STR_wait_radio">
 				<Original>
@@ -551,6 +698,9 @@
 				<French>
 					En attente de l'unique radio du serveur...
 				</French>
+				<Italian>
+					In attesa della radio unica dal server...
+				</Italian>
 			</Key>
 
 
@@ -593,6 +743,19 @@
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Pour parler à la radio sous-marine.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Pour fermer l'interface de la radio.	
 				</French>
+				<Italian>
+&lt;font color=&quot;#67ED24&quot;&gt;Bottone Push-to-talk in TeamSpeak&lt;/font&gt;	Voce diretta.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Per parlare in radio onde corte.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Per parlare in radio onde lunghe.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Per aprire l'interfaccia della radio onde corte(la radio deve essere nello slot inventario). Nel caso si abbia il numero della radio - si può selezionare la radio di cui si ha bisogno. E' anche possibile selezionare la radio come attiva ( utilizzata per trasmettere ).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Cambio rapido canali radio onde corte.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Per aprire l'interfaccia della radio onde lunghe (devi indossare una radio ad onde lunghe, o dovresti essere in un veicolo nella posizione di guida, tiratore o copilota). Se un numero di radio è disponibile – ti sarà possibile sceglierne una. Sarà anche possibile quale scegliere come radio attiva ( utilizzata per trasmettere ).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Cambio rapido canali radio onde corte.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Per cambiare il volume con cui si parla. Puoi parlare: bassa voce, normale o gridare. Non cambia il volume di trasmissione in radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Per aprire l'interfaccia della radio subacquea (devi indossare un respiratore).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Per parlare con la radio subacquea.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Per uscire dalla interfaccia radio.
+				</Italian>
 			</Key>
 			<Key ID="STR_radios">
 				<Original>
@@ -604,6 +767,9 @@
 				<French>
 					Radios
 				</French>
+				<Italian>
+					Lista radio
+				</Italian>
 			</Key>
 			<Key ID="STR_radios_text">
 				<Original>
@@ -725,6 +891,42 @@ TOUTES LES FACTIONS&lt;br/&gt;
 32-41kHz / 70-300 m. (Dépent des vagues)&lt;br/&gt;
 Pour entrer une fréquence, cliquer sur MODE, entrer une valeur et cliquer sur ADV, pour changer le volume de réception cliquer sur la partie droite de l'appareil.
 				</French>
+				<Italian>
+&lt;font color=&quot;#0000FF&quot;&gt;Radio AN/PRC-152 (onde corte)&lt;br/&gt;
+BLUFOR	&lt;br/&gt;
+30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
+Per immettere la frequenza, premere CLR, immettere un valore e premere ENT. Puoi anche spostarti tra i canali della radio premendo i tasti delle frecce (per un totale di 8 canali). Puoi cambiare il volume di ricezione radio premendo i tasti PRE+ e PRE- . Puoi anche cambiare le impostazioni stereo premendo il tasto 0.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#0000FF&quot;&gt;Radio RT-1523G (ASIP) (onde lunghe)&lt;br/&gt;
+BLUFOR	&lt;br/&gt;
+30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
+Per immettere la frequenza, premere MENU CLR, immettere un valore e premere FREQ. Puoi anche spostarti tra i canali della radio premendo i tasti dei numeri (per un totale di 9 canali). Puoi cambiare il volume di ricezione radio premendo i tasti TIME e BATT CALL . Puoi anche cambiare le impostazioni stereo premendo il tasto STO.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC148-JEM (onde corte)&lt;br/&gt;
+INDEPENDENT&lt;br/&gt;
+30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
+Per immettere la frequenza, premere ESC, immettere un valore e premere ENT. Puoi anche spostarti tra i canali della radio premendo i tasti delle frecce (per un totale di 8 canali). Puoi cambiare il volume di ricezione radio premendo i tasti MOD e GR . Puoi anche cambiare le impostazioni stereo premendo il tasto ALT.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC-155 (onde lunghe)&lt;br/&gt;
+INDEPENDENT&lt;br/&gt;
+30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
+Per immettere la frequenza, premere ESC, immettere un valore e premere MENU. Puoi anche spostarti tra i canali della radio premendo i tasti delle frecce (su e giu). Puoi cambiare il volume di ricezione radio premendo il tasto dell'altoparlante. Puoi anche cambiare le impostazioni stereo premendo il tasto PRE. &lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#8B0000&quot;&gt;Radio FADAK (onde corte)&lt;br/&gt;
+OPFOR&lt;br/&gt;
+30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
+Per immettere la frequenza, premere CLR, immettere un valore e premere ENT.  Puoi anche spostarti tra i canali della radio premendo i tasti SET e PWR (per un totale di 8 canali). Puoi cambiare il volume di ricezione radio premendo i tasti DATA e SEND . Puoi anche cambiare le impostazioni stereo premendo il tasto 0.&lt;br/&gt;
+&lt;br/&gt;
+&lt;font color=&quot;#8B0000&quot;&gt;Radio MR3000 (onde lunghe)&lt;br/&gt;
+OPFOR&lt;br/&gt;
+30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
+Per immettere la frequenza, premere CLR ESC, immettere un valore e premere ENT. Puoi anche spostarti trai i canali della radio premendo i tasti dei numeri o le frecce orizzontali(per un totale di 8 canali). Puoi anche cambiare il volume il volume di ricezione radio premendo le frecce verticali. Puoi anche cambiare le impostazioni stereo premendo il tasto 0.&lt;br/&gt;
+&lt;br/&gt;
+Ricetrasmittente subacquea&lt;br/&gt;
+All&lt;br/&gt;
+32-41kHz / 70-300 m. (dipende dalle onde)&lt;br/&gt;
+Per immettere la frequenza, premere MODE, immettere un valore e premere ADV. Puoi cambiare il volume di ricezione radio premendo il bottone sulla parte destra del dispositivo.
+				</Italian>
 			</Key>
 			<Key ID="STR_radio_diver">
 				<Original>
@@ -736,6 +938,9 @@ Pour entrer une fréquence, cliquer sur MODE, entrer une valeur et cliquer sur A
 				<French>
 					Pour les plongeurs
 				</French>
+				<Italian>
+					Per i sommozzatori
+				</Italian>
 			</Key>
 			<Key ID="STR_radio_diver_text">
 				<Original>
@@ -756,6 +961,12 @@ En étant sous l'eau, Being underwater, vous pouvez entendre faiblement des voix
 Utiliser une radio sous-marine pour la communications entre plongeurs.&lt;br/&gt;
 Vous ne pouvez pas utiliser de radio sous l'eau (ni recevoir ni transmettre). Si vous voulez passer un message à la surface ou sur terre. &lt;br/&gt;Exception - les sous-marins à profondeur de périscope (les plongeurs peuvent utiliser une radio longue portée à ce moment la).					
 				</French>
+				<Italian>
+Non puoi parlare sott'acqua (anche se indossi una muta). Comunque, se sei vicino al tuo gregario puoi sentire sulle brevi distanze la propria voce distorta (ad eccezione se siete sott'acquea in un veicolo isolato).&lt;br/&gt;
+Essendo sott'acqua, non potrai capire le comunicazioni sulla terra ferma.&lt;br/&gt;
+Usa il ricetrasmettitore subacqueo per comunicare con gli altri sommozzatori.&lt;br/&gt;
+Non puoi usare le normali radio sott'acqua (nè trasmettere nè ricevere). Se vuoi usare la normale radio emergi in superfice. &lt;br/&gt;Eccezione - sottomarino a quota periscopio (i sommozzatori possono usare una radio ad onde lunghe).
+				</Italian>
 			</Key>
 			<Key ID="STR_radio_intercept">
 				<Original>
@@ -767,6 +978,9 @@ Vous ne pouvez pas utiliser de radio sous l'eau (ni recevoir ni transmettre). Si
 				<French>
 					Interception Radio 
 				</French>
+				<Italian>
+					Intercettazioni radio
+				</Italian>
 			</Key>
 			<Key ID="STR_radio_intercept_text">
 				<Original>
@@ -786,6 +1000,11 @@ Les radios peuvent être prises sur les joueurs tués, et utilisé par n'importe
 Les radios des véhicules gardent aussi leurs configurations.&lt;/br&gt;
 Par défaut, les radios de chaque faction utilise leurs propres codes de cryptage, donc vous n'entendrez pas les communications ennemis même si la fréquence est la même. Pour espionner leurs transmissions il est primordiale de capturer par tout les moyens necessaires une station radio ennemi.
 				</French>
+				<Italian>
+Le radio possono essere prese dai giocatori uccisi ed essere scambiate. Esse conservano tutti i dati (canali, frequenze, volume).&lt;br/&gt;
+Anche le radio dei veicoli vengono salvate.&lt;/br&gt;
+Di default, le radio di ogni fazione usano i rispettivi codici di criptaggio, quindi non sentirai le comunicazioni nemiche, perfino settando la frequenza nemica. Per ascoltarle (e anche trasmettere) - è necessario catturare una stazione radio nemica.
+				</Italian>
 			</Key>
 			<Key ID="STR_radio_vehicle">
 				<Original>
@@ -797,6 +1016,9 @@ Par défaut, les radios de chaque faction utilise leurs propres codes de cryptag
 				<French>
 					Vehicules
 				</French>
+				<Italian>
+					Veicoli
+				</Italian>
 			</Key>
 			<Key ID="STR_radio_vehicle_text">
 				<Original>
@@ -820,6 +1042,13 @@ Chaque place de véhicule à sa propre radio devant être configuré séparémen
 &lt;br/&gt;
 Les vehicules sont classé dans la catégorie "Ouvert" et "Fermé" (isolé). Si vous êtes dans un véhicule fermé, vous n'entendrez pas les voix provenant de l'exterieur (et vice versa). Par contre, si vous sortez la tête du véhicule vous entendrez les voix de l'interieur et exterieur.
 				</French>
+				<Italian>
+La radio ad onde lunghe è disponibile per autista, comandante, tiratore e copilota. Non tutti i veicoli hanno radio incorporate.
+&lt;br/&gt;
+Ogni posizione del veicolo ha il proprio slot radio che deve essere configurato separatamente. Se hai in mente di cambiare posizione assicurati di modificare di conseguenza la radio( per esempio autista e tiratore).
+&lt;br/&gt;
+I veicoli sono classificati in aperti e chiusi (isolati). Se sei dentro ad un veicolo isolato, non sentirai le comunicazioni dirette esterne (e viceversa). Comunque, se ti sporti fuori dal veicolo, potrai sentire le comunicazioni dirette e rispondere di conseguenza.
+				</Italian>
 			</Key>
 		</Container>
 	</Package>
