@@ -7,6 +7,11 @@
  *
 */
 private ["_result"];
-_result = missionNamespace getVariable [getText(configFile >> "CfgWeapons" >> _this >> "tf_encryptionCode"), ""];
+_result = (_this call TFAR_fnc_getSwSettings) select TF_CODE_OFFSET;
+
+if (isNil "_result") then
+{
+	_result = missionNamespace getVariable [getText(configFile >> "CfgWeapons" >> _this >> "tf_encryptionCode"), ""];
+};
 
 _result

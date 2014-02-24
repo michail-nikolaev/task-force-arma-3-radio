@@ -106,6 +106,8 @@ class CfgFunctions
 			class hideHint{};
 			class initialiseBaseModule{};
 			class initialiseFreqModule{};
+			class setSwRadioCode{};
+			class setLrRadioCode{};
 		};
 	};
 };
