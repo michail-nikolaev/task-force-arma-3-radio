@@ -15,7 +15,7 @@
 		Nothing
  	
  	Example:
-		[call TFAR_fnc_activeSwRadio, "NewEncryptionCode"] call TFAR_fnc_setSwChannel;
+		[call TFAR_fnc_activeSwRadio, "NewEncryptionCode"] call TFAR_fnc_setSwRadioCode;
 */
 private ["_settings", "_radio_id", "_code_to_set"];
 _radio_id = _this select 0;
