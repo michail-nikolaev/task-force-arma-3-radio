@@ -420,7 +420,7 @@ bool isSeriousModeEnabled(uint64 serverConnectionHandlerID, anyID clientId)
 		serious_mod_channel_name = serverIdToData[serverConnectionHandlerID].serious_mod_channel_name;
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
-	return (serious_mod_channel_name) != "" && isInChannel(serverConnectionHandlerID, clientId, serious_mod_channel_name.c_str());
+	return (serious_mod_channel_name != "") && isInChannel(serverConnectionHandlerID, clientId, serious_mod_channel_name.c_str());
 }
 
 bool isOtherRadioPluginEnabled(uint64 serverConnectionHandlerID, anyID clientId)
@@ -1922,19 +1922,31 @@ void processFilterStereo(short * samples, int channels, int sampleCount, float g
 	}
 }
 
-void stereoToMonoDSP(short * samples, int channels, int sampleCount)
+void stereoToMonoDSP(short * samples, int channels, int sampleCount, unsigned int channelFillMask)
 {
 	// 3d sound to mono
 	for (int i = 0; i < sampleCount * channels; i+= channels)
 	{
 		long long no3D = 0;
-		for (int j = 0; j < 2; j++)
+		int mask = 1;
+		int realChannels = 0;
+		for (int j = 0; j < channels; j++)
 		{
-			no3D += samples[i + j];
+			if (channelFillMask & mask)
+			{
+				no3D += samples[i + j];
+				realChannels++;
+			}			
+			mask <<= 1;
 		}
-		for (int j = 0; j < 2; j++)
+		mask = 1;
+		for (int j = 0; j < channels; j++)
 		{
-			samples[i + j] = (short) (no3D / channels);
+			if (channelFillMask & mask)
+			{
+				samples[i + j] = (short) (no3D / realChannels);
+				mask <<= 1;
+			}			
 		}		
 	}
 }
@@ -2130,12 +2142,12 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 		{		
 			if (!isSeriousModeEnabled(serverConnectionHandlerID, clientID)) 
 			{
-				stereoToMonoDSP(samples, channels, sampleCount); // mono for clients without information about positions
+				stereoToMonoDSP(samples, channels, sampleCount, *channelFillMask); // mono for clients without information about positions
 			}
 			else 
 			{
 				if (!alive & inGame & isPluginEnabledForUser(serverConnectionHandlerID, clientID))
-					stereoToMonoDSP(samples, channels, sampleCount); // dead player hears other dead players in serious mode			
+					stereoToMonoDSP(samples, channels, sampleCount, *channelFillMask); // dead player hears other dead players in serious mode			
 				else 
 					applyGain(samples, channels, sampleCount, 0.0f); // alive player hears only alive players in serious mode
 			}
