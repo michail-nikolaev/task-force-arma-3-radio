@@ -36,6 +36,7 @@ THE SOFTWARE.
 #include "DspFilters/Common.h"
 #include "DspFilters/RootFinder.h"
 #include <stdexcept>
+#include <algorithm>
 
 namespace Dsp {
 

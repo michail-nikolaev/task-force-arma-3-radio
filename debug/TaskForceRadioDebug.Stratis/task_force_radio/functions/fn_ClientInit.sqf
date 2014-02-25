@@ -41,10 +41,10 @@ if (isNil "TF_defaultWestPersonalRadio") then {
 	TF_defaultWestPersonalRadio = "tf_anprc152";
 };
 if (isNil "TF_defaultEastPersonalRadio") then {
-	TF_defaultEastPersonalRadio = "tf_anprc148jem";
+	TF_defaultEastPersonalRadio = "tf_fadak";
 };
 if (isNil "TF_defaultGuerPersonalRadio") then {
-	TF_defaultGuerPersonalRadio = "tf_fadak";
+	TF_defaultGuerPersonalRadio = "tf_anprc148jem";
 };
 
 disableSerialization;

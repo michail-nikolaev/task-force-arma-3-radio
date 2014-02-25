@@ -40,4 +40,4 @@ if (alive player) then
 	_current_z = _current_z - (_player_pos select 2);
 };
 _can_speak = [_x_player, _isolated_and_inside] call TFAR_fnc_canSpeak;
-(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11", _x_playername, _current_x, _current_y, _current_z, _current_rotation_horizontal, _can_speak, [_x_player, _isolated_and_inside, _can_speak] call TFAR_fnc_canUseSWRadio, [_x_player, _isolated_and_inside] call TFAR_fnc_canUseLRRadio, [_x_player, _isolated_and_inside] call canUseDDRadio,  _x_player call TFAR_fnc_vehicleId, _x_player call TFAR_calcTerrainInterception])
+(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11", _x_playername, _current_x, _current_y, _current_z, _current_rotation_horizontal, _can_speak, [_x_player, _isolated_and_inside, _can_speak] call TFAR_fnc_canUseSWRadio, [_x_player, _isolated_and_inside] call TFAR_fnc_canUseLRRadio, [_x_player, _isolated_and_inside] call TFAR_fnc_canUseDDRadio,  _x_player call TFAR_fnc_vehicleId, _x_player call TFAR_fnc_calcTerrainInterception])

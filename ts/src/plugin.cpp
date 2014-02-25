@@ -38,8 +38,8 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -115,7 +115,7 @@ struct CLIENT_DATA
 	bool canUseDDRadio;
 
 	std::string vehicleId;
-	float terrainInterception;
+	int terrainInterception;
 	PersonalRadioEffect swEffect;	
 	LongRangeRadioffect lrEffect;
 	UnderWaterRadioEffect ddEffect;
@@ -149,7 +149,7 @@ struct CLIENT_DATA
 		canSpeak = true;
 		canUseLRRadio = canUseSWRadio = canUseDDRadio = false;		
 		range = 0;
-		terrainInterception = 0.0f;
+		terrainInterception = 0;
 
 		filterCantSpeak.setup(4, 48000, 100);
 
@@ -420,7 +420,7 @@ bool isSeriousModeEnabled(uint64 serverConnectionHandlerID, anyID clientId)
 		serious_mod_channel_name = serverIdToData[serverConnectionHandlerID].serious_mod_channel_name;
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
-	return isInChannel(serverConnectionHandlerID, clientId, serious_mod_channel_name.c_str());
+	return (serious_mod_channel_name) != "" && isInChannel(serverConnectionHandlerID, clientId, serious_mod_channel_name.c_str());
 }
 
 bool isOtherRadioPluginEnabled(uint64 serverConnectionHandlerID, anyID clientId)
@@ -1067,7 +1067,7 @@ std::string processGameCommand(std::string command)
 		bool canUseLRRadio = isTrue(tokens[8]);
 		bool canUseDDRadio = isTrue(tokens[9]);
 		std::string vehicleId = tokens[10];
-		float terrainInterception = std::stof(tokens[11]);
+		int terrainInterception = std::stoi(tokens[11]);
 
 		TS3_VECTOR position;
 		position.x = x;
@@ -2032,7 +2032,7 @@ void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples,
 
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {	
 	static DWORD last_no_info;
-	EnterCriticalSection(&serverDataCriticalSection);
+ 	EnterCriticalSection(&serverDataCriticalSection);
 	bool alive = serverIdToData[serverConnectionHandlerID].alive;
 	bool canSpeak = serverIdToData[serverConnectionHandlerID].canSpeak;
 	anyID myId = getMyId(serverConnectionHandlerID);
