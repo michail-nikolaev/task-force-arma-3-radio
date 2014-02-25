@@ -1,12 +1,20 @@
-/**
- * TFAR_fnc_getSwRadioCode
- * Returns side of vehicle, based on model of vehicle, not on who is captured
- * Used for radio model
- * @param vehicle
- * @return side
- *
+/*
+ 	Name: TFAR_fnc_getSwRadioCode
+ 	
+ 	Author(s):
+		NKey
+		L-H
+ 	
+ 	Description:
+		Returns the encryption code for the passed SW radio.
+ 	
+ 	Parameters: 
+ 	0: STRING - Radio classname
+ 	
+ 	Returns:
+	STRING - Encryption code
+ 	
+ 	Example:
+	(call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwRadioCode;
 */
-private ["_result"];
-_result = missionNamespace getVariable [getText(configFile >> "CfgWeapons" >> _this >> "tf_encryptionCode"), ""];
-
-_result
+((_this call TFAR_fnc_getSwSettings) select TF_CODE_OFFSET)
