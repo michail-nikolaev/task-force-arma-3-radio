@@ -224,7 +224,7 @@ class rt1523g_stereo: HiddenButton
 	y = 0.627078 * safezoneH + safezoneY;
 	w = 0.030975 * safezoneW;
 	h = 0.0318571 * safezoneH;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo; hint (localize str(formatText ['STR_stereo_settings_%1', TF_lr_dialog_radio call TFAR_fnc_getLrStereo]))";
+	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 	tooltip = $STR_stereo_settings;
 };
 ////////////////////////////////////////////////////////
