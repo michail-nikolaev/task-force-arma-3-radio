@@ -55,7 +55,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.0_ALPHA"
+#define PLUGIN_VERSION "0.8.4a"
 #define WHISPER_VOLUME "whispering"
 #define NORMAL_VOLUME "normal"
 #define YELLING_VOLUME "yelling"
@@ -63,6 +63,23 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 
 #define UPDATE_URL L"raw.github.com"
 #define UPDATE_FILE L"/michail-nikolaev/task-force-arma-3-radio/master/current_version.txt"
+
+int versionNumber(std::string versionString)
+{
+	int number = 0;
+	for (int q = 0; q < versionString.length(); q++) {
+		char ch = versionString.at(q);
+		if (isdigit(ch))
+		{
+			number += (ch - 48);
+		}
+		if (ch == '.')
+		{
+			number *= 10;
+		}
+	}
+	return number;
+}
 
 bool isUpdateAvaible() {	
 	DWORD dwBytes;
@@ -73,7 +90,7 @@ bool isUpdateAvaible() {
 	if (!InternetGetConnectedState(&r, 0)) return false;
 	if (r & INTERNET_CONNECTION_OFFLINE) return false;
 
-	HINTERNET Initialize = InternetOpen(L"FTAR", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+	HINTERNET Initialize = InternetOpen(L"TFAR", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
 	HINTERNET Connection = InternetConnect(Initialize,UPDATE_URL,INTERNET_DEFAULT_HTTP_PORT, NULL,NULL,INTERNET_SERVICE_HTTP,0,0);
 	HINTERNET File = HttpOpenRequest(Connection,NULL,UPDATE_FILE,NULL,NULL,NULL,0,0);
 
@@ -89,7 +106,16 @@ bool isUpdateAvaible() {
 	InternetCloseHandle(Connection);
 	InternetCloseHandle(Initialize);
 	std::string currentVersion = PLUGIN_VERSION;
-	return pluginVersion != currentVersion;
+	if (pluginVersion.length() < 10)
+	{		
+		int pluginVersionI = versionNumber(pluginVersion);
+		int currentVersionI = versionNumber(currentVersion);
+		return currentVersionI > currentVersionI;
+	} 
+	else
+	{
+		return false;
+	}	
 }
 
 struct CLIENT_DATA
