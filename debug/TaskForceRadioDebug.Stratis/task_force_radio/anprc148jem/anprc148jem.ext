@@ -142,7 +142,7 @@ class stereo148: HiddenButton
 	y = 0.536408 * safezoneH + safezoneY;
 	w = 0.018375 * safezoneW;
 	h = 0.0294066 * safezoneH;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo; hint (localize str(formatText ['STR_stereo_settings_%1', TF_sw_dialog_radio call TFAR_fnc_getSwStereo]))";
+	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 	tooltip = $STR_stereo_settings;
 };
 ////////////////////////////////////////////////////////
