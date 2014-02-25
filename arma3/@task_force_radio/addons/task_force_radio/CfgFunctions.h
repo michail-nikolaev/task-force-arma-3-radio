@@ -107,6 +107,8 @@ class CfgFunctions
 			class initialiseBaseModule{};
 			class initialiseFreqModule{};
 			class ShowRadioInfo{};
+			class setSwRadioCode{};
+			class setLrRadioCode{};
 		};
 	};
 };
