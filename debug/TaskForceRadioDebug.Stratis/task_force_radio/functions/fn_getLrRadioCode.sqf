@@ -1,21 +1,20 @@
-private ["_radio_object","_result"];
-_radio_object = _this select 0;
-
-_result = (_this call TFAR_fnc_getLrSettings) select TF_CODE_OFFSET;
-if !(isNil "_result") exitWith { _result };
-
-_result = "";
-if ((_radio_object) isKindOf "Bag_Base") then {
-	_result = missionNamespace getVariable [getText(configFile >> "CfgVehicles" >> typeOf(_radio_object) >> "tf_encryptionCode"), ""];
-} else {
-	if (((_radio_object) call TFAR_fnc_getVehicleSide) == west) then {
-		_result = missionNamespace getVariable [getText(configFile >> "CfgVehicles" >> TF_defaultWestBackpack >> "tf_encryptionCode"), ""];
-	} else {
-		if (((_radio_object) call TFAR_fnc_getVehicleSide) == east) then {
-			_result = missionNamespace getVariable [getText(configFile >> "CfgVehicles" >> TF_defaultEastBackpack >> "tf_encryptionCode"), ""];
-		} else {
-			_result = missionNamespace getVariable [getText(configFile >> "CfgVehicles" >> TF_defaultGuerBackpack >> "tf_encryptionCode"), ""];
-		};
-	};
-};
-_result
+/*
+ 	Name: TFAR_fnc_getLrRadioCode
+ 	
+ 	Author(s):
+		NKey
+		L-H
+ 	
+ 	Description:
+		Returns the encryption code for the passed LR radio.
+ 	
+ 	Parameters: 
+ 	0: OBJECT - Radio
+ 	
+ 	Returns:
+	STRING - Encryption code
+ 	
+ 	Example:
+	(call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrRadioCode;
+*/
+((_this call TFAR_fnc_getLrSettings) select TF_CODE_OFFSET)

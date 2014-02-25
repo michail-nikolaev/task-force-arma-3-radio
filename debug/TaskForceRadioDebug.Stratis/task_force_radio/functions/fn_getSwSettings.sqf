@@ -1,5 +1,24 @@
+/*
+ 	Name: TFAR_fnc_getSwSettings
+ 	
+ 	Author(s):
+		NKey
+		L-H
+ 	
+ 	Description:
+		Returns the current settings for the passed radio.
+ 	
+ 	Parameters: 
+ 	0: String - Radio classname
+ 	
+ 	Returns:
+	ARRAY - settings.
+ 	
+ 	Example:
+	(call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings;
+*/
 #include "script.h"
-private ["_variableName", "_value"];
+private ["_variableName", "_value", "_rc"];
 _variableName = format["%1_settings", _this];
 _value = missionNamespace getVariable _variableName;
 if (isNil "_value") then {
@@ -14,6 +33,13 @@ if (isNil "_value") then {
 	if (TF_use_saved_sw_setting) then {
 		TF_use_saved_sw_setting = false;
 	};
+	[_this, + _value] call TFAR_fnc_setSwSettings;
+};
+_rc = _value select TF_CODE_OFFSET;
+if (isNil "_rc") then
+{
+	_rc = missionNamespace getVariable [getText(configFile >> "CfgWeapons" >> _this >> "tf_encryptionCode"), ""];
+	_value set [TF_CODE_OFFSET, _rc];
 	[_this, + _value] call TFAR_fnc_setSwSettings;
 };
 _value
