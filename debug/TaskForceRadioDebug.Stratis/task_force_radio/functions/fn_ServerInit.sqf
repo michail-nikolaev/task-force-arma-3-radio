@@ -8,7 +8,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 };
 
 [] spawn {
-	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_task_force_radio_used", "_last_check", "_group_freq"];
+	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_task_force_radio_used", "_last_check", "_group_freq", "_allUnits"];
 	
 	if (isNil "tf_freq_west") then {
 		tf_freq_west = call TFAR_fnc_generateSwSettings;
@@ -49,9 +49,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 	TF_server_addon_version = TF_ADDON_VERSION;
 	publicVariable "TF_server_addon_version";
 
-	TF_Radio_Count = [];
-	private "_allUnits";
-	_allUnits = (if(isMultiplayer)then{playableUnits}else{switchableUnits});
+	TF_Radio_Count = [];		
 
 	while {true} do {
 		{		
@@ -89,6 +87,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 			};		
 		} forEach allGroups;
 	
+		_allUnits = (if(isMultiplayer)then{playableUnits}else{switchableUnits});
 		{
 			if (isPlayer _x) then 
 			{
