@@ -44,10 +44,7 @@ class Mission
 		"a3_characters_f_beta",
 		"a3_air_f_epb_heli_light_03",
 		"a3_armor_f_epb_mbt_03",
-		"a3_armor_f_epb_apc_tracked_03",
-		"jsrs2_amv7_marshal",
-		"jsrs2_mse3_marid",
-		"jsrs2_afv4_gorgon"
+		"a3_armor_f_epb_apc_tracked_03"		
 	};
 	addOnsAuto[]=
 	{
@@ -56,8 +53,7 @@ class Mission
 		"a3_characters_f_beta",
 		"A3_Characters_F_INDEP",
 		"A3_Soft_F_MRAP_01",
-		"A3_Armor_F_AMV",
-		"jsrs2_amv7_marshal",
+		"A3_Armor_F_AMV",		
 		"A3_Boat_F_SDV_01",
 		"A3_Soft_F_Car",
 		"A3_Air_F_Heli_Light_01",
@@ -74,8 +70,7 @@ class Mission
 		"A3_Soft_F_MRAP_02",
 		"A3_Armor_F_T100K",
 		"A3_armor_f_beta_APC_Tracked_02",
-		"A3_Armor_F_Marid",
-		"jsrs2_mse3_marid",
+		"A3_Armor_F_Marid",	
 		"A3_Air_F_Beta_Heli_Attack_02",
 		"A3_Air_F_Heli_Light_02",
 		"A3_Soft_F_Offroad_01",
@@ -84,8 +79,7 @@ class Mission
 		"A3_Soft_F_SUV",
 		"A3_Soft_F_Truck",
 		"A3_Soft_F_TruckHeavy",
-		"A3_Armor_F_APC_Wheeled_03",
-		"jsrs2_afv4_gorgon",
+		"A3_Armor_F_APC_Wheeled_03",		
 		"A3_Air_F_Gamma_Plane_Fighter_03",
 		"A3_Air_F_Beta_Heli_Transport_02",
 		"a3_boat_f_beta_boat_transport_01",
