@@ -1,19 +1,19 @@
 /*
  	Name: TFAR_fnc_initialiseFreqModule
- 	
+
  	Author(s):
 		L-H
- 	
+
  	Description:
 		Initialises variables based on module settings.
- 	
+
  	Parameters:
- 	
+
  	Returns:
 		Nothing
- 	
+
  	Example:
-	
+
  */
 #include "common.sqf"
 private ["_logic", "_activated", "_units"];
@@ -30,14 +30,14 @@ if (_activated) then
 	_east set [2,STR (_logic getVariable "EastFreq")];
 	_guer = call TFAR_fnc_generateSwSettings;
 	_guer set [2,STR (_logic getVariable "GuerFreq")];
-	
+
 	_westLR = call TFAR_fnc_generateLrSettings;
 	_westLR set [2,STR (_logic getVariable "WestLrFreq")];
 	_eastLR = call TFAR_fnc_generateLrSettings;
 	_eastLR set [2,STR (_logic getVariable "EastLrFreq")];
 	_guerLR = call TFAR_fnc_generateLrSettings;
 	_guerLR set [2,STR (_logic getVariable "GuerLrFreq")];
-	
+
 	if (count _units == 0) then
 	{
 		TF_use_saved_sw_setting = false;
@@ -45,7 +45,7 @@ if (_activated) then
 		tf_freq_west = _west;
 		tf_freq_east = _east;
 		tf_freq_guer = _guer;
-		
+
 		TF_use_saved_lr_setting = false;
 		tf_same_lr_frequencies_for_side = true;
 		tf_freq_west_lr = _westLR;
@@ -60,20 +60,17 @@ if (_activated) then
 			{
 				private "_side";
 				_side = _x call BIS_fnc_objectSide;
-				if (_side == west) then
-				{
-					(group _x) setVariable ["tf_sw_frequency", _west, true];
-					(group _x) setVariable ["tf_lr_frequency", _westLR, true];
-				}
-				else
-				{
-					if(_side == east) then
-					{
+
+				switch (_side) do {
+					case west: {
+						(group _x) setVariable ["tf_sw_frequency", _west, true];
+						(group _x) setVariable ["tf_lr_frequency", _westLR, true];
+					};
+					case east: {
 						(group _x) setVariable ["tf_sw_frequency", _east, true];
 						(group _x) setVariable ["tf_lr_frequency", _eastLR, true];
-					}
-					else
-					{
+					};
+					case resistance: {
 						(group _x) setVariable ["tf_sw_frequency", _guer, true];
 						(group _x) setVariable ["tf_lr_frequency", _guerLR, true];
 					};
