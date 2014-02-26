@@ -65,7 +65,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 						case east: {
 							_x setVariable ["tf_sw_frequency", tf_freq_east, true];
 						};
-						case resistance: {
+						default {
 							_x setVariable ["tf_sw_frequency", tf_freq_guer, true];
 						};
 					};
@@ -83,7 +83,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 						case east: {
 							_x setVariable ["tf_lr_frequency", tf_freq_east_lr, true];
 						};
-						case resistance: {
+						default {
 							_x setVariable ["tf_lr_frequency", tf_freq_guer_lr, true];
 						};
 					};
