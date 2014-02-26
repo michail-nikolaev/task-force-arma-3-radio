@@ -7,12 +7,14 @@
 private ["_result", "_side"];
 _side = _this getVariable "tf_side";
 if !(isNil "_side") then {
-	if (_side == "west") then {
-		_result = west;
-	} else {
-		if (_side == "east") then {
+	switch(_side) do {
+		case "west": {
+			_result = west;
+		};
+		case "east": {
 			_result = east;
-		} else {
+		};
+		default {
 			_result = resistance;
 		};
 	};
