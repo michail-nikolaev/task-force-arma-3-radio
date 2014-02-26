@@ -70,7 +70,7 @@ if (_activated) then
 						(group _x) setVariable ["tf_sw_frequency", _east, true];
 						(group _x) setVariable ["tf_lr_frequency", _eastLR, true];
 					};
-					case resistance: {
+					default {
 						(group _x) setVariable ["tf_sw_frequency", _guer, true];
 						(group _x) setVariable ["tf_lr_frequency", _guerLR, true];
 					};
