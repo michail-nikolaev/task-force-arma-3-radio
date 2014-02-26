@@ -54,7 +54,7 @@ waitUntil {sleep 0.1;time > 0};
 waitUntil {sleep 0.1;!(isNull player)};
 titleText [localize ("STR_init"), "PLAIN"];
 
-#include "\task_force_radio\define.h"
+#include "define.h"
 
 #include "script.h"
 
