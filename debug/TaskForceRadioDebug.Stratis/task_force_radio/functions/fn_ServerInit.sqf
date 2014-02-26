@@ -9,7 +9,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 
 [] spawn {
 	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_task_force_radio_used", "_last_check", "_group_freq", "_allUnits"];
-	
+
 	if (isNil "tf_freq_west") then {
 		tf_freq_west = call TFAR_fnc_generateSwSettings;
 	};
@@ -44,26 +44,28 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 	if (isNil "tf_freq_guer_lr") then {
 		tf_freq_guer_lr = call TFAR_fnc_generateLrSettings;
 	};
-	
+
 	waitUntil {time > 0};
 	TF_server_addon_version = TF_ADDON_VERSION;
 	publicVariable "TF_server_addon_version";
 
-	TF_Radio_Count = [];		
+	TF_Radio_Count = [];
 
 	while {true} do {
-		{		
+		{
 			_group_freq = _x getVariable "tf_sw_frequency";
 			if (isNil "_group_freq") then {
 				if !(tf_same_sw_frequencies_for_side) then {
 					_x setVariable ["tf_sw_frequency", call TFAR_fnc_generateSwSettings, true];
-				} else {		
-					if (side _x == west) then {
-						_x setVariable ["tf_sw_frequency", tf_freq_west, true];
-					} else {
-						if (side _x == east) then {
-							_x setVariable ["tf_sw_frequency", TF_freq_east, true];
-						} else {
+				} else {
+					switch (side _x) do {
+						case west: {
+							_x setVariable ["tf_sw_frequency", tf_freq_west, true];
+						};
+						case east: {
+							_x setVariable ["tf_sw_frequency", tf_freq_east, true];
+						};
+						default {
 							_x setVariable ["tf_sw_frequency", tf_freq_guer, true];
 						};
 					};
@@ -73,23 +75,25 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 			if (isNil "_group_freq") then {
 				if !(tf_same_lr_frequencies_for_side) then {
 					_x setVariable ["tf_lr_frequency", call TFAR_fnc_generateLrSettings, true];
-				} else {		
-					if (side _x == west) then {
-						_x setVariable ["tf_lr_frequency", tf_freq_west_lr, true];
-					} else {
-						if (side _x == east) then {
-							_x setVariable ["tf_lr_frequency", TF_freq_east_lr, true];
-						} else {
+				} else {
+					switch (side _x) do {
+						case west: {
+							_x setVariable ["tf_lr_frequency", tf_freq_west_lr, true];
+						};
+						case east: {
+							_x setVariable ["tf_lr_frequency", tf_freq_east_lr, true];
+						};
+						default {
 							_x setVariable ["tf_lr_frequency", tf_freq_guer_lr, true];
 						};
 					};
 				};
-			};		
+			};
 		} forEach allGroups;
-	
+
 		_allUnits = (if(isMultiplayer)then{playableUnits}else{switchableUnits});
 		{
-			if (isPlayer _x) then 
+			if (isPlayer _x) then
 			{
 				_variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
 				_radio_request = missionNamespace getVariable (_variableName);
@@ -111,7 +115,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 							if ((_x select 0) == _radio) exitWith
 							{
 								_x set [1, (_x select 1) + 1];
-								if ((_x select 1) > MAX_RADIO_COUNT) then 
+								if ((_x select 1) > MAX_RADIO_COUNT) then
 								{
 									_x set [1, 1];
 								};
@@ -145,7 +149,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 					missionNamespace setVariable [_variableName, nil];
 				};
 			};
-		} count _allUnits;		
+		} count _allUnits;
 		sleep 1;
 	};
 };

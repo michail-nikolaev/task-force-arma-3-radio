@@ -50,11 +50,11 @@ if (isNil "TF_defaultGuerPersonalRadio") then {
 disableSerialization;
 #include "diary.sqf"
 
-waitUntil {time > 0};
-waitUntil {!(isNull player)};
+waitUntil {sleep 0.1;time > 0};
+waitUntil {sleep 0.1;!(isNull player)};
 titleText [localize ("STR_init"), "PLAIN"];
 
-#include "define.h"
+#include "\task_force_radio\define.h"
 
 #include "script.h"
 
@@ -144,7 +144,7 @@ tf_lastError = false;
 tf_msSpectatorPerStepMax = 0.035;
 
 [] spawn {
-	waituntil {!(IsNull (findDisplay 46))};
+	waituntil {sleep 0.1;!(IsNull (findDisplay 46))};
 
 	["player", [[TF_dialog_sw_scancode, TF_dialog_sw_modifiers]], -3, '_this call TFAR_fnc_swRadioMenu'] call CBA_fnc_flexiMenu_Add;
 
@@ -158,7 +158,7 @@ tf_msSpectatorPerStepMax = 0.035;
 	[TF_sw_channel_5_scancode, TF_sw_channel_5_modifiers, {[4] call TFAR_fnc_processSWChannelKeys}, "keydown", "7"] call CBA_fnc_addKeyHandler;
 	[TF_sw_channel_6_scancode, TF_sw_channel_6_modifiers, {[5] call TFAR_fnc_processSWChannelKeys}, "keydown", "8"] call CBA_fnc_addKeyHandler;
 	[TF_sw_channel_7_scancode, TF_sw_channel_7_modifiers, {[6] call TFAR_fnc_processSWChannelKeys}, "keydown", "9"] call CBA_fnc_addKeyHandler;
-	[TF_sw_channel_8_scancode, TF_sw_channel_8_modifiers, {[7] call TFAR_fnc_processSWChannelKeys}, "keydown", "10"] call CBA_fnc_addKeyHandler;	
+	[TF_sw_channel_8_scancode, TF_sw_channel_8_modifiers, {[7] call TFAR_fnc_processSWChannelKeys}, "keydown", "10"] call CBA_fnc_addKeyHandler;
 
 	[TF_tangent_lr_scancode, TF_tangent_lr_modifiers, {call TFAR_fnc_onLRTangentPressed}, "keydown", "11"] call CBA_fnc_addKeyHandler;
 	[TF_tangent_lr_scancode, TF_tangent_lr_modifiers, {call TFAR_fnc_onLRTangentReleased}, "keyup", "_11"] call CBA_fnc_addKeyHandler;
@@ -172,20 +172,20 @@ tf_msSpectatorPerStepMax = 0.035;
 	[TF_lr_channel_5_scancode, TF_lr_channel_5_modifiers, {[4] call TFAR_fnc_processLRChannelKeys}, "keydown", "17"] call CBA_fnc_addKeyHandler;
 	[TF_lr_channel_6_scancode, TF_lr_channel_6_modifiers, {[5] call TFAR_fnc_processLRChannelKeys}, "keydown", "18"] call CBA_fnc_addKeyHandler;
 	[TF_lr_channel_7_scancode, TF_lr_channel_7_modifiers, {[6] call TFAR_fnc_processLRChannelKeys}, "keydown", "19"] call CBA_fnc_addKeyHandler;
-	[TF_lr_channel_8_scancode, TF_lr_channel_8_modifiers, {[7] call TFAR_fnc_processLRChannelKeys}, "keydown", "20"] call CBA_fnc_addKeyHandler;	
-	[TF_lr_channel_9_scancode, TF_lr_channel_9_modifiers, {[8] call TFAR_fnc_processLRChannelKeys}, "keydown", "21"] call CBA_fnc_addKeyHandler;	
+	[TF_lr_channel_8_scancode, TF_lr_channel_8_modifiers, {[7] call TFAR_fnc_processLRChannelKeys}, "keydown", "20"] call CBA_fnc_addKeyHandler;
+	[TF_lr_channel_9_scancode, TF_lr_channel_9_modifiers, {[8] call TFAR_fnc_processLRChannelKeys}, "keydown", "21"] call CBA_fnc_addKeyHandler;
 
 	[TF_tangent_dd_scancode, TF_tangent_dd_modifiers, {call TFAR_fnc_onDDTangentReleased}, "keyup", "_22"] call CBA_fnc_addKeyHandler;
 	[TF_tangent_dd_scancode, TF_tangent_dd_modifiers, {call TFAR_fnc_onDDTangentPressed}, "keydown", "22"] call CBA_fnc_addKeyHandler;
 	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
 	[TF_dialog_dd_scancode, TF_dialog_dd_modifiers, {call TFAR_fnc_onDDDialogOpen}, "keydown", "23"] call CBA_fnc_addKeyHandler;
 
-	[TF_speak_volume_scancode, TF_speak_volume_modifiers, {call TFAR_fnc_onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;	
+	[TF_speak_volume_scancode, TF_speak_volume_modifiers, {call TFAR_fnc_onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;
 
 	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
-		
+
 		player addMPEventHandler ["MPKilled", {(_this select 0) call TFAR_fnc_sendPlayerKilled}];
 	};
 };
@@ -200,13 +200,13 @@ call TFAR_fnc_processRespawn;
 TF_respawnedAt = time;
 
 [] spawn {
-	waitUntil {!(isNull player)};
+	waitUntil {sleep 0.1;!(isNull player)};
 	sleep 5;
 	call TFAR_fnc_radioReplaceProcess;
 };
 
 [] spawn {
-	waitUntil {!((isNil "TF_server_addon_version") and (time < 20))};
+	waitUntil {sleep 0.1;!((isNil "TF_server_addon_version") and (time < 20))};
 	if (isNil "TF_server_addon_version") then {
 		hintC (localize "STR_no_server");
 	} else {
