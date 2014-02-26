@@ -121,14 +121,14 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 								};
 								_count = (_x select 1);
 							};
-						} forEach TF_Radio_Count;
+						} count TF_Radio_Count;
 						if (_count == -1) then
 						{
 							TF_Radio_Count set [(count TF_Radio_Count), [_x,1]];
 							_count = 1;
 						};
 						_response set [(count _response), format["%1_%2", _radio, _count]];
-					} forEach _radio_request;
+					} count _radio_request;
 					missionNamespace setVariable [_responseVariableName, _response];
 					(owner (_x)) publicVariableClient (_responseVariableName);
 				};
@@ -149,7 +149,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 					missionNamespace setVariable [_variableName, nil];
 				};
 			};
-		} forEach _allUnits;
+		} count _allUnits;
 		sleep 1;
 	};
 };
