@@ -31,7 +31,7 @@ if (isNil "tf_same_lr_frequencies_for_side") then {
 	};
 	if (isNil "ft_freq_east_lr") then {
 		if (isNil "tf_freq_east_lr") then {
-			TF_freq_east_lr = call TFAR_fnc_generateSwSettings;
+			TF_freq_east_lr = call TFAR_fnc_generateLrSettings;
 		};
 	}
 	else
