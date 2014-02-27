@@ -20,7 +20,7 @@ _current_hyp_horizontal = sqrt(_current_look_at_x * _current_look_at_x + _curren
 if (_current_hyp_horizontal > 0) then {
 
 	if (_current_look_at_x < 0) then {
-		_current_rotation_horizontal = round -acos(_current_look_at_y / _current_hyp_horizontal);
+		_current_rotation_horizontal = round - acos(_current_look_at_y / _current_hyp_horizontal);
 	}
 	else
 	{
@@ -34,7 +34,7 @@ while{_current_rotation_horizontal < 0} do {
 };
 if (alive player) then 
 {
-	_player_pos = eyepos player;
+	_player_pos = eyePos player;
 	_current_x = _current_x - (_player_pos select 0);
 	_current_y = _current_y - (_player_pos select 1);
 	_current_z = _current_z - (_player_pos select 2);

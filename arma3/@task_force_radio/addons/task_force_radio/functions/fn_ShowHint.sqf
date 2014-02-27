@@ -33,8 +33,8 @@ if !(isNil "TF_HintFnc") then
 	terminate TF_HintFnc;
 };
 if (_time == -1) exitWith {};
-TF_HintFnc = [_time] spawn
-{
+
+TF_HintFnc = [_time] spawn {
 	sleep (_this select 0);
 	call TFAR_fnc_HideHint;
 };
