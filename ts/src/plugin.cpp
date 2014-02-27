@@ -67,7 +67,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 int versionNumber(std::string versionString)
 {
 	int number = 0;
-	for (int q = 0; q < versionString.length(); q++) {
+	for (unsigned int q = 0; q < versionString.length(); q++) {
 		char ch = versionString.at(q);
 		if (isdigit(ch))
 		{
@@ -527,9 +527,9 @@ float effectErrorFromDistance(OVER_RADIO_TYPE radioType, float d, uint64 serverC
 		case LISTEN_TO_LR: maxD = (float) data->range;
 		default: break;
 	};				
-	float half = maxD * 0.5f;
+	float half = maxD * 0.2f;
 	if (d < half) return 0.0f;
-	else return (d - half) / half;
+	else return (d - half) / (maxD - half);
 }
 
 float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLIENT_DATA* myData)
@@ -1165,6 +1165,7 @@ std::string processGameCommand(std::string command)
 						clientData->canUseLRRadio = canUseLRRadio;
 						clientData->canUseDDRadio = canUseDDRadio;						
 						clientData->vehicleId = vehicleId;
+						clientData->terrainInterception = terrainInterception;
 						clientData->dataFrame = serverIdToData[currentServerConnectionHandlerID].currentDataFrame;
 						LeaveCriticalSection(&serverDataCriticalSection);							
 						if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &position)) != ERROR_ok)
@@ -2411,11 +2412,8 @@ void processPluginCommand(std::string command)
 					if (longRange) clientData->tangentLrPressed = pressed;
 					else if (diverRadio) clientData->tangentDdPressed = pressed;
 					else clientData->tangentSwPressed = pressed;					
-					clientData->frequency = frequency;
-					if (pressed)
-						clientData->range = range;
-					else 
-						clientData->range = 0;
+					clientData->frequency = frequency;					
+					clientData->range = range;					
 				}
 				else 
 				{
