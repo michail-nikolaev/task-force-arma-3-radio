@@ -56,13 +56,25 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 }
 
 #define PLUGIN_VERSION "0.8.4a"
-#define WHISPER_VOLUME "whispering"
-#define NORMAL_VOLUME "normal"
-#define YELLING_VOLUME "yelling"
 #define CANT_SPEAK_DISTANCE 5
 
 #define UPDATE_URL L"raw.github.com"
 #define UPDATE_FILE L"/michail-nikolaev/task-force-arma-3-radio/master/current_version.txt"
+
+enum OVER_RADIO_TYPE
+{
+	LISTEN_TO_SW,
+	LISTEN_TO_LR,
+	LISTEN_TO_DD,
+	LISTEN_NONE
+};
+
+enum LISTED_ON {
+	LISTED_ON_SW,
+	LISTED_ON_LR,
+	LISTED_ON_DD,
+	LISTED_ON_NONE
+};
 
 int versionNumber(std::string versionString)
 {
@@ -123,14 +135,12 @@ struct CLIENT_DATA
 	bool pluginEnabled;
 	DWORD pluginEnabledCheck;
 	anyID clientId;
-	bool tangentSwPressed;
-	bool tangentLrPressed;
-	bool tangentDdPressed;
+	OVER_RADIO_TYPE tangentOverType;
 	TS3_VECTOR clientPosition;
 	uint64 positionTime;
 
 	std::string frequency;	
-	std::string	voiceVolume;
+	int voiceVolume;
 	int range;
 
 	bool canSpeak;
@@ -167,11 +177,11 @@ struct CLIENT_DATA
 	CLIENT_DATA() 
 	{
 		positionTime = 0;
-		tangentSwPressed = tangentLrPressed = tangentDdPressed = false;		
+		tangentOverType = LISTEN_NONE;
 		dataFrame = 0;
 		clientPosition.x = clientPosition.y = clientPosition.z = 0;
 		clientId = -1;
-		voiceVolume = NORMAL_VOLUME;
+		voiceVolume = 0;
 		canSpeak = true;
 		canUseLRRadio = canUseSWRadio = canUseDDRadio = false;		
 		range = 0;
@@ -211,7 +221,7 @@ struct SERVER_RADIO_DATA
 	std::map<std::string, FREQ_SETTINGS> myLrFrequencies;
 	std::string myDdFrequency;
 	int ddVolumeLevel;
-	std::string myVoiceVolume;
+	int myVoiceVolume;
 	bool alive;
 	bool canSpeak;	
 	float wavesLevel;
@@ -339,13 +349,6 @@ void playWavFile(const char* fileNameWithoutExtension, bool withGain, int gainLe
 	}
 }
 
-float distanceFromVoice(std::string voiceLevel)
-{
-	if (voiceLevel == WHISPER_VOLUME) return 5.0;
-	if (voiceLevel == NORMAL_VOLUME) return 20.0;	
-	if (voiceLevel == YELLING_VOLUME) return 50.0;
-	return 0.0;
-}
 
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) 
 {
@@ -486,21 +489,6 @@ void setClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId, bool 
 	}
 }
 
-enum OVER_RADIO_TYPE
-{
-	LISTEN_TO_SW,
-	LISTEN_TO_LR,
-	LISTEN_TO_DD,	
-	LISTEN_NONE
-};
-
-enum LISTED_ON {
-	LISTED_ON_SW,
-	LISTED_ON_LR,
-	LISTED_ON_DD,
-	LISTED_ON_NONE
-};
-
 struct LISTED_INFO {
 	OVER_RADIO_TYPE over;
 	LISTED_ON on;
@@ -538,7 +526,7 @@ float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 	TS3_VECTOR clientPosition = data->clientPosition;
 	float d = distance(myPosition, clientPosition);
 	// (bob distance player) + (bob call TFAR_fnc_calcTerrainInterception) * ((bob distance player) / 130)
-	return d + data->terrainInterception * (d / 130.f);
+	return d + data->terrainInterception * (d / 110.f);
 }
 
 
@@ -556,7 +544,7 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 
 	float d = effectiveDistance(serverConnectionHandlerID, data, myData);
 
-	if ((data->tangentSwPressed || ignoreSwTangent)
+	if ((data->tangentOverType == LISTEN_TO_SW || ignoreSwTangent)
 		&& serverIdToData[serverConnectionHandlerID].myLrFrequencies.count(data->frequency))
 	{
 		if (data->canUseSWRadio && myData->canUseLRRadio && d < data->range)
@@ -568,7 +556,7 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 		}		
 	}
 	
-	if ((data->tangentSwPressed || ignoreSwTangent)
+	if ((data->tangentOverType == LISTEN_TO_SW || ignoreSwTangent)
 		&& serverIdToData[serverConnectionHandlerID].mySwFrequencies.count(data->frequency))
 	{
 		if (data->canUseSWRadio && myData->canUseSWRadio && d < data->range)
@@ -580,7 +568,7 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 		}		
 	}
 	
-	if ((data->tangentLrPressed || ignoreLrTangent)
+	if ((data->tangentOverType == LISTEN_TO_LR || ignoreLrTangent)
 		&& serverIdToData[serverConnectionHandlerID].mySwFrequencies.count(data->frequency))
 	{
 		if (data->canUseLRRadio && myData->canUseSWRadio && d < data->range)
@@ -592,7 +580,7 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 		}		
 	}
 
-	if ((data->tangentLrPressed || ignoreLrTangent)
+	if ((data->tangentOverType == LISTEN_TO_LR || ignoreLrTangent)
 		&& serverIdToData[serverConnectionHandlerID].myLrFrequencies.count(data->frequency))
 	{
 		if (data->canUseLRRadio && myData->canUseLRRadio && d < data->range)
@@ -604,7 +592,7 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 		}		
 	}
 	
-	if ((data->tangentDdPressed || ignoreDdTangent)
+	if ((data->tangentOverType == LISTEN_TO_DD || ignoreDdTangent)
 		&& (serverIdToData[serverConnectionHandlerID].myDdFrequency == data->frequency))
 	{
 		if (data->canUseDDRadio && myData->canUseDDRadio && d < distanceForDiverRadio(d, serverConnectionHandlerID))
@@ -676,8 +664,7 @@ bool hasClientData(uint64 serverConnectionHandlerID, anyID clientID)
 float distanceFromClient(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 {
 	EnterCriticalSection(&serverDataCriticalSection);
-	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;	
-	std::string clientVolume = data->voiceVolume;	
+	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;		
 	TS3_VECTOR clientPosition = data->clientPosition;
 	float d = distance(myPosition, clientPosition);
 	LeaveCriticalSection(&serverDataCriticalSection);
@@ -687,12 +674,12 @@ float distanceFromClient(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, float d, bool shouldPlayerHear)
 {	
 	EnterCriticalSection(&serverDataCriticalSection);
-	std::string clientVolume = data->voiceVolume;
+	int clientVolume = data->voiceVolume;
 	bool canSpeak = data->canSpeak;
 	LeaveCriticalSection(&serverDataCriticalSection);
 		
 	if (d <= 1.0) return 1.0;
-	float maxDistance = shouldPlayerHear ? distanceFromVoice(clientVolume) : CANT_SPEAK_DISTANCE; 
+	float maxDistance = shouldPlayerHear ? (float) clientVolume : CANT_SPEAK_DISTANCE;
 	float gain = 1.0f - log10((d / maxDistance) * 10.0f);
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);	
 }
@@ -725,7 +712,7 @@ void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId)
 			LISTED_INFO listedInfo = isOverRadio(serverConnectionHandlerID, data, myData, false, false, false);
 			if (listedInfo.over == LISTEN_NONE)
 			{
-				mute = (distanceFromClient(serverConnectionHandlerID, data) > distanceFromVoice(YELLING_VOLUME));
+				mute = (distanceFromClient(serverConnectionHandlerID, data) > data->voiceVolume);
 			}
 		} else mute = true;
 		LeaveCriticalSection(&serverDataCriticalSection);
@@ -1264,7 +1251,7 @@ std::string processGameCommand(std::string command)
 			serverIdToData[currentServerConnectionHandlerID].myLrFrequencies = parseFrequencies(tokens[2]);
 			serverIdToData[currentServerConnectionHandlerID].myDdFrequency = tokens[3];
 			serverIdToData[currentServerConnectionHandlerID].alive = tokens[4] == "true";		
-			serverIdToData[currentServerConnectionHandlerID].myVoiceVolume = tokens[5];			
+			serverIdToData[currentServerConnectionHandlerID].myVoiceVolume = std::atoi(tokens[5].c_str());
 			serverIdToData[currentServerConnectionHandlerID].ddVolumeLevel = (int) std::atof(tokens[6].c_str());
 			serverIdToData[currentServerConnectionHandlerID].wavesLevel = (float) std::atof(tokens[8].c_str());
 		}
@@ -2226,7 +2213,7 @@ void ts3plugin_onClientSelfVariableUpdateEvent(uint64 serverConnectionHandlerID,
 			uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 			std::string myNickname = getMyNickname(serverId);
 			EnterCriticalSection(&serverDataCriticalSection);
-			std::string command = "VOLUME\t" + myNickname + "\t" + serverIdToData[serverId].myVoiceVolume;			
+			std::string command = "VOLUME\t" + myNickname + "\t" + std::to_string(serverIdToData[serverId].myVoiceVolume);
 			LeaveCriticalSection(&serverDataCriticalSection);
 			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, command.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
 		}
@@ -2393,7 +2380,7 @@ void processPluginCommand(std::string command)
 			{	
 				clientData->positionTime = time;
 				clientData->pluginEnabled = true;
-				clientData->pluginEnabledCheck = currentTime;
+				clientData->pluginEnabledCheck = currentTime;				
 
 				if (longRange) clientData->canUseLRRadio = true;
 				else if (diverRadio) clientData->canUseDDRadio = true;
@@ -2403,15 +2390,21 @@ void processPluginCommand(std::string command)
 				if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
 				{					
 					log_string(std::string("REMOTE COMMAND ") +  command, LogLevel_DEVEL);
-					if ((clientData->tangentSwPressed || clientData->tangentDdPressed || clientData->tangentLrPressed) != pressed)
+					if ((clientData->tangentOverType == LISTEN_NONE) != pressed)
 					{
 						playPressed = pressed;
 						playReleased = !pressed;
+					}					
+					if (pressed)
+					{
+						if (longRange) clientData->tangentOverType = LISTEN_TO_LR;
+						else if (diverRadio) clientData->tangentOverType = LISTEN_TO_DD;
+						else clientData->tangentOverType = LISTEN_TO_SW;
 					}
-					clientData->tangentLrPressed = clientData->tangentSwPressed = clientData->tangentDdPressed = false;
-					if (longRange) clientData->tangentLrPressed = pressed;
-					else if (diverRadio) clientData->tangentDdPressed = pressed;
-					else clientData->tangentSwPressed = pressed;					
+					else
+					{
+						clientData->tangentOverType = LISTEN_NONE;
+					}					
 					clientData->frequency = frequency;					
 					clientData->range = range;					
 				}
@@ -2466,9 +2459,12 @@ void processPluginCommand(std::string command)
 		std::string volume = tokens[2];
 		if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(nickname) && serverIdToData[serverId].nicknameToClientData[nickname]) 
 		{
-			serverIdToData[serverId].nicknameToClientData[nickname]->voiceVolume = volume;
+			serverIdToData[serverId].nicknameToClientData[nickname]->voiceVolume = std::stoi(volume.c_str());
 			serverIdToData[serverId].nicknameToClientData[nickname]->pluginEnabled = true;
 			serverIdToData[serverId].nicknameToClientData[nickname]->pluginEnabledCheck = currentTime;
+			LeaveCriticalSection(&serverDataCriticalSection);
+			setGameClientMuteStatus(serverId, serverIdToData[serverId].nicknameToClientData[nickname]->clientId);
+			EnterCriticalSection(&serverDataCriticalSection);
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);		
 	}

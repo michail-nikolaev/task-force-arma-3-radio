@@ -108,6 +108,7 @@ TF_tangent_dd_pressed = false;
 TF_dd_frequency = str (round (((random (TF_MAX_DD_FREQ - TF_MIN_DD_FREQ)) + TF_MIN_DD_FREQ) * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER);
 
 TF_speak_volume_level = "normal";
+TF_speak_volume_meters = 20;
 TF_sw_dialog_radio = nil;
 
 TF_lr_dialog_radio = nil;
