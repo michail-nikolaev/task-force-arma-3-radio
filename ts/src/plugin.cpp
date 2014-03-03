@@ -514,10 +514,8 @@ float effectErrorFromDistance(OVER_RADIO_TYPE radioType, float d, uint64 serverC
 		case LISTEN_TO_DD: maxD = distanceForDiverRadio(d, serverConnectionHandlerID); break;
 		case LISTEN_TO_LR: maxD = (float) data->range;
 		default: break;
-	};				
-	float half = maxD * 0.2f;
-	if (d < half) return 0.0f;
-	else return (d - half) / (maxD - half);
+	};	
+	return d / maxD;	
 }
 
 float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLIENT_DATA* myData)
@@ -697,6 +695,23 @@ anyID getMyId(uint64 serverConnectionHandlerID)
 	return myID;
 }
 
+bool isTalking(uint64 currentServerConnectionHandlerID, anyID myId, anyID playerId) {
+	int result = 0;
+	DWORD error;
+	if (playerId == myId) {
+		if ((error = ts3Functions.getClientSelfVariableAsInt(currentServerConnectionHandlerID, CLIENT_FLAG_TALKING, &result)) != ERROR_ok) {
+			log("Can't get talking status", error);
+		}
+	}
+	else {
+		if ((error = ts3Functions.getClientVariableAsInt(currentServerConnectionHandlerID, playerId, CLIENT_FLAG_TALKING, &result)) != ERROR_ok) {
+			log("Can't get talking status", error);
+		}
+	}
+	return result != 0;
+}
+
+
 void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId)
 {	
 	bool mute = false;
@@ -712,7 +727,7 @@ void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId)
 			LISTED_INFO listedInfo = isOverRadio(serverConnectionHandlerID, data, myData, false, false, false);
 			if (listedInfo.over == LISTEN_NONE)
 			{
-				mute = (distanceFromClient(serverConnectionHandlerID, data) > data->voiceVolume);
+				mute = (distanceFromClient(serverConnectionHandlerID, data) > data->voiceVolume) || (!isTalking(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), clientId) && data->tangentOverType == LISTEN_NONE);
 			}
 		} else mute = true;
 		LeaveCriticalSection(&serverDataCriticalSection);
@@ -1090,6 +1105,7 @@ std::string processGameCommand(std::string command)
 		anyID myId = getMyId(currentServerConnectionHandlerID);
 		EnterCriticalSection(&serverDataCriticalSection); 
 		anyID playerId = anyID(-1);
+		bool clientTalingOnRadio = false;
 		if (serverIdToData.count(currentServerConnectionHandlerID))
 		{		
 			if (nickname == serverIdToData[currentServerConnectionHandlerID].myNickname) 
@@ -1117,6 +1133,7 @@ std::string processGameCommand(std::string command)
 					clientData->vehicleId = vehicleId;
 					clientData->terrainInterception = terrainInterception;
 					clientData->dataFrame = serverIdToData[currentServerConnectionHandlerID].currentDataFrame;
+					clientTalingOnRadio == clientData->tangentOverType != LISTEN_NONE;
 				}
 				serverIdToData[currentServerConnectionHandlerID].myPosition = position;
 				serverIdToData[currentServerConnectionHandlerID].canSpeak = canSpeak;
@@ -1154,6 +1171,7 @@ std::string processGameCommand(std::string command)
 						clientData->vehicleId = vehicleId;
 						clientData->terrainInterception = terrainInterception;
 						clientData->dataFrame = serverIdToData[currentServerConnectionHandlerID].currentDataFrame;
+						clientTalingOnRadio == clientData->tangentOverType != LISTEN_NONE;
 						LeaveCriticalSection(&serverDataCriticalSection);							
 						if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &position)) != ERROR_ok)
 						{
@@ -1170,18 +1188,8 @@ std::string processGameCommand(std::string command)
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);		
 		
-		if (playerId != anyID(-1)) {
-			int result = 0;
-			if (playerId == myId) {
-				if ((error = ts3Functions.getClientSelfVariableAsInt(currentServerConnectionHandlerID, CLIENT_FLAG_TALKING, &result)) != ERROR_ok) {
-					log("Can't get talking status", error);
-				} 
-			} else {
-				if ((error = ts3Functions.getClientVariableAsInt(currentServerConnectionHandlerID, playerId, CLIENT_FLAG_TALKING, &result)) != ERROR_ok) {
-					log("Can't get talking status", error);
-				} 
-			}
-			if (result) {
+		if (playerId != anyID(-1)) {			
+			if (isTalking(currentServerConnectionHandlerID, myId, playerId) || clientTalingOnRadio) {
 				return "SPEAKING";
 			}			
 		}
@@ -1229,16 +1237,16 @@ std::string processGameCommand(std::string command)
 			}
 			// broadcast info about tangent pressed over all client						
 			std::string commandToBroadcast = command + "\t" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
-			log_string(commandToBroadcast, LogLevel_DEVEL);
-			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
+			log_string(commandToBroadcast, LogLevel_DEVEL);			
 
 			if((error = ts3Functions.setClientSelfVariableAsInt(currentServerConnectionHandlerID, CLIENT_INPUT_DEACTIVATED, pressed || vadEnabled ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
 				log("Can't active talking by tangent", error);
 			}
-			DWORD error = ts3Functions.flushClientSelfUpdates(currentServerConnectionHandlerID, NULL); 
+			DWORD error = ts3Functions.flushClientSelfUpdates(currentServerConnectionHandlerID, NULL); 			
 			if(error != ERROR_ok && error != ERROR_ok_no_update) {
 				log("Can't flush self updates", error);
 			}
+			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
 		}
 		return "OK";
 	} 	
@@ -2058,6 +2066,7 @@ void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples,
 
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {	
 	static DWORD last_no_info;
+	setGameClientMuteStatus(serverConnectionHandlerID, clientID);
  	EnterCriticalSection(&serverDataCriticalSection);
 	bool alive = serverIdToData[serverConnectionHandlerID].alive;
 	bool canSpeak = serverIdToData[serverConnectionHandlerID].canSpeak;
@@ -2390,7 +2399,7 @@ void processPluginCommand(std::string command)
 				if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
 				{					
 					log_string(std::string("REMOTE COMMAND ") +  command, LogLevel_DEVEL);
-					if ((clientData->tangentOverType == LISTEN_NONE) != pressed)
+					if ((clientData->tangentOverType != LISTEN_NONE) != pressed)
 					{
 						playPressed = pressed;
 						playReleased = !pressed;
