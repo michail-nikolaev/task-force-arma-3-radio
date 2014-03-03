@@ -20,7 +20,7 @@ if ((call TFAR_fnc_haveLRRadio) and {[player, _isolated_and_inside] call TFAR_fn
 		_freq_lr set[count _freq_lr, format ["%1%2|%3|%4", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode, _x call TFAR_fnc_getLrVolume, _x call TFAR_fnc_getLrStereo]];
 	} forEach (call TFAR_fnc_lrRadiosList);				
 };
-if ((call haveDDRadio) and {[player, _isolated_and_inside] call TFAR_fnc_canUseDDRadio}) then {
+if ((call TFAR_fnc_haveLRRadio) and {[player, _isolated_and_inside] call TFAR_fnc_canUseDDRadio}) then {
 	_freq_dd = TF_dd_frequency;
 };
 _alive = alive player;
