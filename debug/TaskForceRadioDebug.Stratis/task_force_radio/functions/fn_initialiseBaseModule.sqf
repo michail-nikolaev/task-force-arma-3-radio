@@ -15,81 +15,83 @@
  	Example:
 	
  */
+ #include "common.sqf"
 private ["_logic", "_activated"];
 _logic = [_this,0,objNull,[objNull]] call BIS_fnc_param;
+_units = [_this,1,[],[[]]] call BIS_fnc_param;
 _activated = [_this,2,true,[true]] call BIS_fnc_param;
 
-if (_activated) then
-{
-	private "_radio";
-	tf_west_radio_code = _logic getVariable "WestEncryption";
-	tf_east_radio_code = _logic getVariable "EastEncryption";
-	tf_guer_radio_code = _logic getVariable "GuerEncryption";
+if (_activated) then {
+	private ["_LRradio","_radio", "_currentSide", "_swFreq", "_lrFreq"];
 	
-	// Begin LR radios
-	_radio = _logic getVariable "WestLRradio";
-	if (([_radio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then
+	_swFreq = call TFAR_fnc_generateSwSettings;
+	(_swFreq select 2) set [0,STR (_logic getVariable "PrFreq")];
+	_lrFreq = call TFAR_fnc_generateLrSettings;
+	(_lrFreq select 2) set [0,STR (_logic getVariable "LrFreq")];
+	
+	_LRradio = _logic getVariable "LRradio";
+	_radio = _logic getVariable "Radio";
+	_currentSide = "North";
+	
 	{
-		TF_defaultWestBackpack = _radio;
-	}
-	else
-	{
-		diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _radio];
-		hint format ["TFAR ERROR: %1 is not a valid LR radio", _radio];
-	};
-	_radio = _logic getVariable "EastLRradio";
-	if (([_radio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then
-	{
-		TF_defaultEastBackpack = _radio;
-	}
-	else
-	{
-		diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _radio];
-		hint format ["TFAR ERROR: %1 is not a valid LR radio", _radio];
-	};
-	_radio = _logic getVariable "GuerLRradio";
-	if (([_radio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then
-	{
-		TF_defaultGuerBackpack = _radio;
-	}
-	else
-	{
-		diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _radio];
-		hint format ["TFAR ERROR: %1 is not a valid LR radio", _radio];
-	};
-	// end LR radios
-	// Begin Personal radios
-	_radio = _logic getVariable "WestRadio";
-	if (getNumber (ConfigFile >> "CfgWeapons" >> _radio >> "tf_prototype") == 1) then
-	{
-		TF_defaultWestPersonalRadio = _radio;
-	}
-	else
-	{
-		diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
-		hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
-	};
-	_radio = _logic getVariable "EastRadio";
-	if (getNumber (ConfigFile >> "CfgWeapons" >> _radio >> "tf_prototype") == 1) then
-	{
-		TF_defaultEastPersonalRadio = _radio;
-	}
-	else
-	{
-		diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
-		hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
-	};
-	_radio = _logic getVariable "GuerRadio";
-	if (getNumber (ConfigFile >> "CfgWeapons" >> _radio >> "tf_prototype") == 1) then
-	{
-		TF_defaultGuerPersonalRadio = _radio;
-	}
-	else
-	{
-		diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
-		hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
-	};
-	// end personal radios
+		if ((str _currentSide) != (str side _x)) then {
+			_currentSide = side _x;
+
+			switch (_currentSide) do {
+				case west: {
+					tf_west_radio_code = _logic getVariable "Encryption";
+					if (([_LRradio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then {
+						TF_defaultWestBackpack = _LRradio;
+					} else {
+						diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
+						hint format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
+					};
+					if (getNumber (ConfigFile >> "CfgWeapons" >> _radio >> "tf_prototype") == 1) then {
+						TF_defaultWestPersonalRadio = _radio;
+					} else {
+						diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
+						hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
+					};
+					tf_freq_west = _swFreq;
+					tf_freq_west_lr = _lrFreq;
+				};
+				case east: {
+					tf_east_radio_code = _logic getVariable "Encryption";
+					if (([_LRradio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then {
+						TF_defaultEastBackpack = _LRradio;
+					} else {
+						diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
+						hint format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
+					};
+					if (getNumber (ConfigFile >> "CfgWeapons" >> _radio >> "tf_prototype") == 1) then {
+						TF_defaultEastPersonalRadio = _radio;
+					} else {
+						diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
+						hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
+					};
+					tf_freq_east = _swFreq;
+					tf_freq_east_lr = _lrFreq;
+				};
+				default	{
+					tf_guer_radio_code = _logic getVariable "Encryption";
+					if (([_LRradio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then {
+						TF_defaultGuerBackpack = _LRradio;
+					} else {
+						diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
+						hint format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
+					};
+					if (getNumber (ConfigFile >> "CfgWeapons" >> _radio >> "tf_prototype") == 1) then {
+						TF_defaultGuerPersonalRadio = _radio;
+					} else {
+						diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
+						hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
+					};
+					tf_freq_guer = _swFreq;
+					tf_freq_guer_lr = _lrFreq;
+				};
+			};
+		};
+	} count _units;
 };
 
 true

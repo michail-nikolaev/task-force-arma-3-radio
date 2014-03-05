@@ -116,87 +116,58 @@ class CfgVehicles {
 	{
 		scope = 2;
 		author = "Task Force Arrowhead Radio";
-		displayName = "TFAR - Radios";
+		displayName = "TFAR - Side Radio";
 		category = "TFAR";
 		
 		function = "TFAR_fnc_initialiseBaseModule";
-		functionPriority = 1;
+		functionPriority = 2;
 		
 		isGlobal = 1;
-		//isDisposable = 1;
 		
 		class Arguments: ArgumentsBaseUnits
 		{
 			class Units: Units {};
-			class WestEncryption
+			class Encryption
 			{
-				displayName = "West Encryption";
-				description = "West's Encryption";
+				displayName = "Encryption Code";
+				description = "Encryption Code";
 				typeName = "TEXT";
-				defaultValue = "_blufor";
+				defaultValue = "DSH&G^G";
 			};
-			class WestLRradio
+			class LRradio
 			{
-				displayName = "West LR";
-				description = "West's LR radio";
+				displayName = "LR Radio";
+				description = "LR radio";
 				typeName = "TEXT";
 				defaultValue = "tf_rt1523g";
 			};
-			class WestRadio
+			class Radio
 			{
-				displayName = "West PR";
-				description = "West's personal radio";
+				displayName = "PR Radio";
+				description = "Personal radio";
 				typeName = "TEXT";
 				defaultValue = "tf_anprc152";
 			};
-			class EastEncryption
+			class PrFreq
 			{
-				displayName = "East Encryption";
-				description = "East's Encryption";
-				typeName = "TEXT";
-				defaultValue = "_opfor";
+				displayName = "PR Freq.";
+				description = "PR default frequency";
+				typeName = "NUMBER";
+				defaultValue = 70.2;
 			};
-			class EastLRradio
+			class LrFreq
 			{
-				displayName = "East LR";
-				description = "East's LR radio";
-				typeName = "TEXT";
-				defaultValue = "tf_mr3000";
-			};
-			class EastRadio
-			{
-				displayName = "East PR";
-				description = "East's personal radio";
-				typeName = "TEXT";
-				defaultValue = "tf_fadak";
-			};
-			class GuerEncryption
-			{
-				displayName = "Guer Encryption";
-				description = "Resistance's Encryption";
-				typeName = "TEXT";
-				defaultValue = "_independent";
-			};
-			class GuerLRradio
-			{
-				displayName = "Guer LR";
-				description = "Resistance's LR radio";
-				typeName = "TEXT";
-				defaultValue = "tf_anprc155";
-			};
-			class GuerRadio
-			{
-				displayName = "Guer PR";
-				description = "Resistance's personal radio";
-				typeName = "TEXT";
-				defaultValue = "tf_anprc148jem";
+				displayName = "LR Freq.";
+				description = "LR default frequency";
+				typeName = "NUMBER";
+				defaultValue = 57.2;
 			};
 		};
 		
 		class ModuleDescription: ModuleDescription
 		{
-			description = "Allows setting of default radios and encryption for sides.";
-			sync[] = {};
+			description = "Allows setting of default radios, encryption and frequencies for synced side.";
+			sync[] = {"AnyPerson"};
 		};
 	};
 	
@@ -208,56 +179,27 @@ class CfgVehicles {
 		category = "TFAR";
 		
 		function = "TFAR_fnc_initialiseFreqModule";
-		functionPriority = 1;
+		functionPriority = 3;
 		
 		isGlobal = 1;
-		//isDisposable = 1;
 		isTriggerActivated = 1;
 		
 		class Arguments: ArgumentsBaseUnits
 		{
 			class Units: Units {};
-			class WestFreq
+			class PrFreq
 			{
-				displayName = "West SW Freq.";
-				description = "West's SW default frequency";
+				displayName = "PR Freq.";
+				description = "PR default frequency";
 				typeName = "NUMBER";
 				defaultValue = 70.2;
 			};
-			class WestLrFreq
+			class LrFreq
 			{
-				displayName = "West LR Freq.";
-				description = "West's LR default frequency";
+				displayName = "LR Freq.";
+				description = "LR default frequency";
 				typeName = "NUMBER";
 				defaultValue = 57.2;
-			};
-			class EastFreq
-			{
-				displayName = "East SW Freq.";
-				description = "East's SW default frequency";
-				typeName = "NUMBER";
-				defaultValue = 83.8;
-			};
-			class EastLrFreq
-			{
-				displayName = "East LR Freq.";
-				description = "East's LR default frequency";
-				typeName = "NUMBER";
-				defaultValue = 48.5;
-			};
-			class GuerFreq
-			{
-				displayName = "Guer SW Freq.";
-				description = "Resistance's SW default frequency";
-				typeName = "NUMBER";
-				defaultValue = 62.5;
-			};
-			class GuerLrFreq
-			{
-				displayName = "Guer LR Freq.";
-				description = "Resistance's LR default frequency";
-				typeName = "NUMBER";
-				defaultValue = 59.4;
 			};
 		};
 		
