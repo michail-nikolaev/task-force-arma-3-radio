@@ -279,8 +279,24 @@ class CfgWeapons
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";	
 	};
+
+	class tf_anprc154: ItemRadio
+	{
+		displayName = "AN/PRC-154";
+		descriptionShort = "AN/PRC-154";
+		scope = 2;
+		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
+		picture = "\task_force_radio_items\anprc154\154_icon.paa";
+		tf_prototype = 1;
+		tf_range = 1500;
+		tf_dialog = "anprc154_radio_dialog";
+		tf_encryptionCode = "tf_west_radio_code";
+		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";	
+	};
 	
 	TF_RADIO_IDS(tf_anprc152,AN/PRC-152)
 	TF_RADIO_IDS(tf_anprc148jem,AN/PRC-148 JEM)
 	TF_RADIO_IDS(tf_fadak,FADAK)
+	TF_RADIO_IDS(tf_anprc154,AN/PRC-154)
+
 };

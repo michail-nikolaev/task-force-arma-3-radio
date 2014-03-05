@@ -1,0 +1,109 @@
+/* #Vosera
+$[
+	1.063,
+	["anprc154",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
+	[1200,"background154",[1,"/task_force_radio/anprc154/anprc154.paa",["-0.0269687 * safezoneW + safezoneX","-0.0251171 * safezoneH + safezoneY","0.555188 * safezoneW","1.00402 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1602,"prev_channel154",[1,"",["0.208672 * safezoneW + safezoneX","0.6034 * safezoneH + safezoneY","0.023625 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
+	[1603,"next_channel154",[1,"",["0.208156 * safezoneW + safezoneX","0.5198 * safezoneH + safezoneY","0.0249375 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
+	[1604,"increase_volume154",[1,"",["0.259203 * safezoneW + safezoneX","0.5242 * safezoneH + safezoneY","0.0242813 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
+	[1605,"decrease_volume154",[1,"",["0.254562 * safezoneW + safezoneX","0.6045 * safezoneH + safezoneY","0.0269063 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
+	[1606,"stereo154",[1,"",["0.212797 * safezoneW + safezoneX","0.676 * safezoneH + safezoneY","0.0255 * safezoneW","0.03 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]],
+	[1600,"reset_channel154",[1,"",["0.236 * safezoneW + safezoneX","0.566 * safezoneH + safezoneY","0.02 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]]
+]
+*/
+
+class anprc154_radio_dialog
+{
+	idd = IDC_ANPRC154_DIALOG;
+	movingEnable = 1;
+	controlsBackground[] = { };
+	objects[] = { };
+	controls[]=
+	{
+		background154,
+		prev_channel154,
+		next_channel154,
+		increase_volume154,
+		decrease_volume154,
+		stereo154,
+		reset_channel154
+	};
+	////////////////////////////////////////////////////////
+	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Vosera)
+	////////////////////////////////////////////////////////
+
+	class background154: RscBackPicture
+	{
+		idc = IDC_ANPRC154_BACKGROUND154;
+		text = "\task_force_radio\anprc154\anprc154.paa";
+		x = -0.0269687 * safezoneW + safezoneX;
+		y = -0.0251171 * safezoneH + safezoneY;
+		w = 0.555188 * safezoneW;
+		h = 1.00402 * safezoneH;
+		moving = 1;
+	};
+	class prev_channel154: HiddenButton
+	{
+		idc = IDC_ANPRC154_PREV_CHANNEL154;
+		x = 0.208672 * safezoneW + safezoneX;
+		y = 0.6034 * safezoneH + safezoneY;
+		w = 0.023625 * safezoneW;
+		h = 0.04 * safezoneH;
+		tooltip = $STR_previous_channel;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class next_channel154: HiddenButton
+	{
+		idc = IDC_ANPRC154_NEXT_CHANNEL154;
+		x = 0.208156 * safezoneW + safezoneX;
+		y = 0.5198 * safezoneH + safezoneY;
+		w = 0.0249375 * safezoneW;
+		h = 0.04 * safezoneH;
+		tooltip = $STR_next_channel;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class increase_volume154: HiddenButton
+	{
+		idc = IDC_ANPRC154_INCREASE_VOLUME154;
+		x = 0.259203 * safezoneW + safezoneX;
+		y = 0.5242 * safezoneH + safezoneY;
+		w = 0.0242813 * safezoneW;
+		h = 0.04 * safezoneH;
+		tooltip = $STR_increase_volume;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)+ 1) * 10)];";
+	};
+	class decrease_volume154: HiddenButton
+	{
+		idc = IDC_ANPRC154_DECREASE_VOLUME154;
+		x = 0.254562 * safezoneW + safezoneX;
+		y = 0.6045 * safezoneH + safezoneY;
+		w = 0.0269063 * safezoneW;
+		h = 0.04 * safezoneH;
+		tooltip = $STR_decrease_volume;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) * 10)];";
+	};
+	class stereo154: HiddenButton
+	{
+		idc = IDC_ANPRC154_STEREO154;
+		x = 0.212797 * safezoneW + safezoneX;
+		y = 0.676 * safezoneH + safezoneY;
+		w = 0.0255 * safezoneW;
+		h = 0.03 * safezoneH;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+		tooltip = $STR_stereo_settings;
+
+	};
+	class reset_channel154: HiddenButton
+	{
+		idc = IDC_ANPRC154_RESET_CHANNEL154;
+		x = 0.236 * safezoneW + safezoneX;
+		y = 0.566 * safezoneH + safezoneY;
+		w = 0.02 * safezoneW;
+		h = 0.0294066 * safezoneH;
+		tooltip = "Reset current channel";
+		action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	};
+	////////////////////////////////////////////////////////
+	// GUI EDITOR OUTPUT END
+	////////////////////////////////////////////////////////
+};

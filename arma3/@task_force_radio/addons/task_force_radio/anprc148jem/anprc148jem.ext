@@ -18,7 +18,7 @@ $[
 
 
 
-class anprc148jem_radio_dialog 
+class anprc148jem_radio_dialog
 {
 	idd = IDC_ANPRC148JEM_DIALOG;
 	movingEnable = 1;
@@ -78,7 +78,7 @@ class edit148: RscEditLCD
 	x = 0.238813 * safezoneW + safezoneX;
 	y = 0.351567 * safezoneH + safezoneY;
 	w = 0.0623438 * safezoneW;
-	h = 0.067215 * safezoneH;	
+	h = 0.067215 * safezoneH;
 	tooltip = $STR_current_freq;
 	canModify = 1;
 	moving = 1;
@@ -90,7 +90,7 @@ class channel_edit148: RscEditLCD
 	x = 0.207312 * safezoneW + safezoneX;
 	y = 0.351567 * safezoneH + safezoneY;
 	w = 0.0301875 * safezoneW;
-	h = 0.067215 * safezoneH;	
+	h = 0.067215 * safezoneH;
 	tooltip = $STR_current_channel;
 	canModify = 0;
 	moving = 1;
@@ -102,7 +102,7 @@ class prev_channel148: HiddenButton
 	y = 0.495799 * safezoneH + safezoneY;
 	w = 0.023625 * safezoneW;
 	h = 0.0280062 * safezoneH;
-	tooltip = $STR_previous_channel;	
+	tooltip = $STR_previous_channel;
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;";
 };
 class next_channel148: HiddenButton
@@ -112,7 +112,7 @@ class next_channel148: HiddenButton
 	y = 0.497199 * safezoneH + safezoneY;
 	w = 0.0249375 * safezoneW;
 	h = 0.0280062 * safezoneH;
-	tooltip = $STR_next_channel;	
+	tooltip = $STR_next_channel;
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;";
 };
 class increase_volume148: HiddenButton
