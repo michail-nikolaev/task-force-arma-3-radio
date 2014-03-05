@@ -100,7 +100,7 @@ class anprc154_radio_dialog
 		y = 0.566 * safezoneH + safezoneY;
 		w = 0.02 * safezoneW;
 		h = 0.0294066 * safezoneH;
-		tooltip = "Reset current channel";
+		tooltip = $STR_reset_channel;
 		action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 	};
 	////////////////////////////////////////////////////////
