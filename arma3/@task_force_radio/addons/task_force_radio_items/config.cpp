@@ -291,7 +291,6 @@ class CfgWeapons
 		tf_range = 1500;
 		tf_dialog = "anprc154_radio_dialog";
 		tf_encryptionCode = "tf_guer_radio_code";
-		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";	
 	};
 	
 	TF_RADIO_IDS(tf_anprc152,AN/PRC-152)
