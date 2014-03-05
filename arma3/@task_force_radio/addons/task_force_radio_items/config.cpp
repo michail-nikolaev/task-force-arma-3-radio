@@ -2,7 +2,7 @@ class CfgPatches
 {
 	class task_force_radio_items
 	{
-		units[] = {"tfar_ModuleTaskForceRadio", "tfar_ModuleTaskForceRadioFrequencies"};
+		units[] = {"tfar_ModuleTaskForceRadioEnforceUsage", "tfar_ModuleTaskForceRadio", "tfar_ModuleTaskForceRadioFrequencies"};
 		weapons[] = {};
 		requiredVersion = 1.0;
 		requiredAddons[] = {"A3_Modules_F", "A3_Structures_F_Items_Electronics"};
@@ -11,6 +11,16 @@ class CfgPatches
 		version = 0.8.3;
 		versionStr = "0.8.3";
 		versionAr[] = {0,8,3};
+	};
+};
+
+class CfgFactionClasses
+{
+	class TFAR
+	{
+		displayName = "TFAR";
+		priority = 10;
+		side = 7;
 	};
 };
 
@@ -75,12 +85,39 @@ class CfgVehicles {
 			class AnyBrain;
 		};
 	};
+	class tfar_ModuleTaskForceRadioEnforceUsage: Module_F
+	{
+		scope = 2;
+		author = "Task Force Arrowhead Radio";
+		displayName = "TFAR - Enforce Usage";
+		category = "TFAR";
+		
+		function = "TFAR_fnc_initialiseEnforceUsageModule";
+		functionPriority = 1;
+		isGlobal = 1;
+		isTriggerActivated = 0;
+		
+		class Arguments
+		{
+			class TeamLeaderRadio
+			{
+				displayName = "Give team leaders a long range radio";
+				description = "Give each team leader the appropriate long range radio";
+				typeName = "BOOL";
+			};
+		};
+		
+		class ModuleDescription: ModuleDescription
+		{
+			description = "Enforces usage of TFAR in mission.";
+		};
+	};
 	class tfar_ModuleTaskForceRadio: Module_F
 	{
 		scope = 2;
 		author = "Task Force Arrowhead Radio";
 		displayName = "TFAR - Radios";
-		category = "Intel";
+		category = "TFAR";
 		
 		function = "TFAR_fnc_initialiseBaseModule";
 		functionPriority = 1;
@@ -168,7 +205,7 @@ class CfgVehicles {
 		scope = 2;
 		author = "Task Force Arrowhead Radio";
 		displayName = "TFAR - Frequencies";
-		category = "Intel";
+		category = "TFAR";
 		
 		function = "TFAR_fnc_initialiseFreqModule";
 		functionPriority = 1;
