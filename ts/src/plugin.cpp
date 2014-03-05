@@ -66,7 +66,7 @@ enum OVER_RADIO_TYPE
 	LISTEN_TO_SW,
 	LISTEN_TO_LR,
 	LISTEN_TO_DD,
-	LISTEN_NONE
+	LISTEN_TO_NONE
 };
 
 enum LISTED_ON {
@@ -177,7 +177,7 @@ struct CLIENT_DATA
 	CLIENT_DATA() 
 	{
 		positionTime = 0;
-		tangentOverType = LISTEN_NONE;
+		tangentOverType = LISTEN_TO_NONE;
 		dataFrame = 0;
 		clientPosition.x = clientPosition.y = clientPosition.z = 0;
 		clientId = -1;
@@ -524,14 +524,14 @@ float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 	TS3_VECTOR clientPosition = data->clientPosition;
 	float d = distance(myPosition, clientPosition);
 	// (bob distance player) + (bob call TFAR_fnc_calcTerrainInterception) * ((bob distance player) / 130)
-	return d + data->terrainInterception * (d / 110.f);
+	return d + data->terrainInterception * (d / 130.f);
 }
 
 
 LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLIENT_DATA* myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent)
 {		
 	LISTED_INFO result;
-	result.over = LISTEN_NONE;
+	result.over = LISTEN_TO_NONE;
 	result.volume = 0;
 	result.on = LISTED_ON_NONE;
 	if (data == NULL || myData == NULL) return result;
@@ -712,7 +712,7 @@ bool isTalking(uint64 currentServerConnectionHandlerID, anyID myId, anyID player
 }
 
 
-void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId)
+void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId, bool forceIsTalking)
 {	
 	bool mute = false;
 	if (isSeriousModeEnabled(serverConnectionHandlerID, clientId))
@@ -725,11 +725,23 @@ void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId)
 		if (data && myData && serverIdToData[serverConnectionHandlerID].alive)
 		{
 			LISTED_INFO listedInfo = isOverRadio(serverConnectionHandlerID, data, myData, false, false, false);
-			if (listedInfo.over == LISTEN_NONE)
+			if (listedInfo.on == LISTEN_TO_NONE)
 			{
-				mute = (distanceFromClient(serverConnectionHandlerID, data) > data->voiceVolume) || (!isTalking(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), clientId) && data->tangentOverType == LISTEN_NONE);
+				bool isTalk = forceIsTalking || isTalking(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), clientId);
+				if (isTalk) 
+				{
+					int a = 3;
+				}
+				mute = (distanceFromClient(serverConnectionHandlerID, data) > data->voiceVolume) || (!isTalk/* && data->tangentOverType == LISTEN_TO_NONE*/);
 			}
-		} else mute = true;
+			else {
+				mute = false;
+			}
+		} 
+		else
+		{
+			mute = true;
+		}			
 		LeaveCriticalSection(&serverDataCriticalSection);
 	}
 	setClientMuteStatus(serverConnectionHandlerID, clientId, mute);	
@@ -1059,7 +1071,7 @@ std::string processGameCommand(std::string command)
 	else if (tokens.size() == 2 && tokens[0] == "KILLED") 
 	{
 		std::string nickname = tokens[1];
-		EnterCriticalSection(&serverDataCriticalSection);
+		EnterCriticalSection(&serverDataCriticalSection);		
 		if (serverIdToData.count(currentServerConnectionHandlerID))
 		{
 			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname))
@@ -1072,6 +1084,7 @@ std::string processGameCommand(std::string command)
 			}
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);
+		setMuteForDeadPlayers(currentServerConnectionHandlerID, isSeriousModeEnabled(currentServerConnectionHandlerID, getMyId(currentServerConnectionHandlerID)));
 	}
 	else if (tokens.size() == 4 && tokens[0] == "VERSION") 
 	{
@@ -1133,7 +1146,7 @@ std::string processGameCommand(std::string command)
 					clientData->vehicleId = vehicleId;
 					clientData->terrainInterception = terrainInterception;
 					clientData->dataFrame = serverIdToData[currentServerConnectionHandlerID].currentDataFrame;
-					clientTalingOnRadio == clientData->tangentOverType != LISTEN_NONE;
+					clientTalingOnRadio == clientData->tangentOverType != LISTEN_TO_NONE;
 				}
 				serverIdToData[currentServerConnectionHandlerID].myPosition = position;
 				serverIdToData[currentServerConnectionHandlerID].canSpeak = canSpeak;
@@ -1171,7 +1184,7 @@ std::string processGameCommand(std::string command)
 						clientData->vehicleId = vehicleId;
 						clientData->terrainInterception = terrainInterception;
 						clientData->dataFrame = serverIdToData[currentServerConnectionHandlerID].currentDataFrame;
-						clientTalingOnRadio == clientData->tangentOverType != LISTEN_NONE;
+						clientTalingOnRadio == clientData->tangentOverType != LISTEN_TO_NONE;
 						LeaveCriticalSection(&serverDataCriticalSection);							
 						if ((error = ts3Functions.channelset3DAttributes(currentServerConnectionHandlerID, clientData->clientId, &position)) != ERROR_ok)
 						{
@@ -1182,7 +1195,7 @@ std::string processGameCommand(std::string command)
 				
 				}
 				LeaveCriticalSection(&serverDataCriticalSection);
-				if (isConnected(currentServerConnectionHandlerID)) setGameClientMuteStatus(currentServerConnectionHandlerID, getClientId(currentServerConnectionHandlerID, nickname));
+				if (isConnected(currentServerConnectionHandlerID)) setGameClientMuteStatus(currentServerConnectionHandlerID, getClientId(currentServerConnectionHandlerID, nickname), false);
 				EnterCriticalSection(&serverDataCriticalSection);
 			}	
 		}
@@ -2066,7 +2079,7 @@ void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples,
 
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {	
 	static DWORD last_no_info;
-	setGameClientMuteStatus(serverConnectionHandlerID, clientID);
+	setGameClientMuteStatus(serverConnectionHandlerID, clientID, true);
  	EnterCriticalSection(&serverDataCriticalSection);
 	bool alive = serverIdToData[serverConnectionHandlerID].alive;
 	bool canSpeak = serverIdToData[serverConnectionHandlerID].canSpeak;
@@ -2095,7 +2108,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 				bool vehicleCheck = (myVehicleDesriptor.first == hisVehicleDesriptor.first) || (myVehicleDesriptor.second && hisVehicleDesriptor.second);
 				float d = distanceFromClient(serverConnectionHandlerID, data);
 
-				if (listed_info.over != LISTEN_NONE)
+				if (listed_info.over != LISTEN_TO_NONE)
 				{					
 					float radioDistance = effectiveDistance(serverConnectionHandlerID, data, myData);
 					short* sw_buffer = NULL;
@@ -2399,7 +2412,7 @@ void processPluginCommand(std::string command)
 				if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
 				{					
 					log_string(std::string("REMOTE COMMAND ") +  command, LogLevel_DEVEL);
-					if ((clientData->tangentOverType != LISTEN_NONE) != pressed)
+					if ((clientData->tangentOverType != LISTEN_TO_NONE) != pressed)
 					{
 						playPressed = pressed;
 						playReleased = !pressed;
@@ -2412,43 +2425,45 @@ void processPluginCommand(std::string command)
 					}
 					else
 					{
-						clientData->tangentOverType = LISTEN_NONE;
+						clientData->tangentOverType = LISTEN_TO_NONE;
 					}					
 					clientData->frequency = frequency;					
-					clientData->range = range;					
+					clientData->range = range;
+
+					anyID clientId = clientData->clientId;
+					LISTED_INFO listedInfo = isOverRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
+					LeaveCriticalSection(&serverDataCriticalSection);
+					setGameClientMuteStatus(serverId, clientId, pressed);
+					if (alive) {
+						if (listedInfo.on == LISTED_ON_SW)
+						{
+							if (playPressed) playWavFile("radio-sounds/sw/remote_start", true, listedInfo.volume + 1);
+							if (playReleased) playWavFile("radio-sounds/sw/remote_end", true, listedInfo.volume + 1);
+						}
+						if (listedInfo.on == LISTED_ON_LR)
+						{
+							if (playPressed) playWavFile("radio-sounds/lr/remote_start", true, listedInfo.volume + 1);
+							if (playReleased) playWavFile("radio-sounds/lr/remote_end", true, listedInfo.volume + 1);
+						}
+						if (listedInfo.on == LISTED_ON_DD)
+						{
+							if (playPressed) playWavFile("radio-sounds/dd/remote_start", true, listedInfo.volume + 1);
+							if (playReleased) playWavFile("radio-sounds/dd/remote_end", true, listedInfo.volume + 1);
+						}
+					}
+					EnterCriticalSection(&serverDataCriticalSection);
+					if (playReleased && alive)
+					{
+						clientData->resetPersonalRadioEffect();
+						clientData->resetLongRangeRadioEffect();
+						clientData->resetUnderwaterRadioEffect();
+					}
+
 				}
 				else 
 				{
 					log_string(std::string("MY COMMAND ") +  command, LogLevel_DEVEL);
-				}								
-				anyID clientId = clientData->clientId;
-				LISTED_INFO listedInfo = isOverRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
-				LeaveCriticalSection(&serverDataCriticalSection);
-				setGameClientMuteStatus(serverId, clientId);				
-				if (alive) {
-					if (listedInfo.on == LISTED_ON_SW)
-					{					
-						if (playPressed) playWavFile("radio-sounds/sw/remote_start", true, listedInfo.volume + 1);
-						if (playReleased) playWavFile("radio-sounds/sw/remote_end", true, listedInfo.volume + 1);												
-					}			
-					if (listedInfo.on == LISTED_ON_LR)
-					{
-						if (playPressed) playWavFile("radio-sounds/lr/remote_start", true, listedInfo.volume + 1);
-						if (playReleased) playWavFile("radio-sounds/lr/remote_end", true, listedInfo.volume + 1);	
-					}				
-					if (listedInfo.on == LISTED_ON_DD)
-					{
-						if (playPressed) playWavFile("radio-sounds/dd/remote_start", true, listedInfo.volume + 1);
-						if (playReleased) playWavFile("radio-sounds/dd/remote_end", true, listedInfo.volume + 1);
-					}
-				}
-				EnterCriticalSection(&serverDataCriticalSection);
-				if (playReleased && alive)
-				{
-					clientData->resetPersonalRadioEffect(); 
-					clientData->resetLongRangeRadioEffect();
-					clientData->resetUnderwaterRadioEffect();
-				}				
+				}												
 			}
 			else 
 			{
@@ -2466,13 +2481,17 @@ void processPluginCommand(std::string command)
 		EnterCriticalSection(&serverDataCriticalSection);
 		std::string nickname = tokens[1];
 		std::string volume = tokens[2];
+		bool myCommand = (nickname == serverIdToData[serverId].myNickname);
 		if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(nickname) && serverIdToData[serverId].nicknameToClientData[nickname]) 
 		{
 			serverIdToData[serverId].nicknameToClientData[nickname]->voiceVolume = std::stoi(volume.c_str());
 			serverIdToData[serverId].nicknameToClientData[nickname]->pluginEnabled = true;
 			serverIdToData[serverId].nicknameToClientData[nickname]->pluginEnabledCheck = currentTime;
 			LeaveCriticalSection(&serverDataCriticalSection);
-			setGameClientMuteStatus(serverId, serverIdToData[serverId].nicknameToClientData[nickname]->clientId);
+			if (!myCommand) 
+			{
+				setGameClientMuteStatus(serverId, serverIdToData[serverId].nicknameToClientData[nickname]->clientId, true);
+			}
 			EnterCriticalSection(&serverDataCriticalSection);
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);		
