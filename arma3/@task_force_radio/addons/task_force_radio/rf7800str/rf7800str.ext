@@ -23,7 +23,7 @@ class rf7800str_radio_dialog
 	controls[]=
 	{
 		background_rf7800str,
-		prev_channe_lrf7800str,
+		prev_channel_rf7800str,
 		next_channel_rf7800str,
 		increase_volume_rf7800str,
 		decrease_volume_rf7800str,
@@ -62,6 +62,7 @@ class rf7800str_radio_dialog
 		y = 0.434 * safezoneH + safezoneY;
 		w = 0.015 * safezoneW;
 		h = 0.035 * safezoneH;
+		tooltip = $STR_next_channel;
 		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 	};
 	class increase_volume_rf7800str: HiddenButton
@@ -94,21 +95,25 @@ class rf7800str_radio_dialog
 		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 		tooltip = $STR_stereo_settings;
 	};
-	class next_channel_alt_rf7800str: next_channel_rf7800str
+	class next_channel_alt_rf7800str: HiddenButton
 	{
 		idc = IDC_RF7800STR_NEXT_CHANNEL_ALT_RF7800STR;
 		x = 0.212797 * safezoneW + safezoneX;
 		y = 0.236 * safezoneH + safezoneY;
 		w = 0.02 * safezoneW;
 		h = 0.049 * safezoneH;
+		tooltip = $STR_next_channel;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 	};
-	class prev_channel_alt_rf7800str: prev_channe_lrf7800str
+	class prev_channel_alt_rf7800str: HiddenButton
 	{
 		idc = IDC_RF7800STR_PREV_CHANNEL_ALT_RF7800STR;
 		x = 0.192172 * safezoneW + safezoneX;
 		y = 0.236 * safezoneH + safezoneY;
 		w = 0.02 * safezoneW;
 		h = 0.049 * safezoneH;
+		tooltip = $STR_previous_channel;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT END
