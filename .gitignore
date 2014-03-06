@@ -43,3 +43,4 @@
 
 /ts/src/Release
 /ts/*.suo
+/arma3/@task_force_radio/addons/*.pbo
