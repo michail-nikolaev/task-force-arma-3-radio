@@ -156,7 +156,4 @@ class HiddenButton
 #include "\task_force_radio\diver_radio\diver_radio.ext"
 #include "\task_force_radio\mr3000\mr3000.ext"
 #include "\task_force_radio\anprc154\anprc154.ext"
-
-
-
-
+#include "\task_force_radio\rf7800str\rf7800str.ext"
