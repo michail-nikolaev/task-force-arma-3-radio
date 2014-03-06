@@ -2,7 +2,7 @@ private ["_lr_stereo_number", "_result"];
 _lr_stereo_number = _this select 0;
 _result = false;
 
-if ((call TFAR_fnc_haveLRRadio) and {alive player}) then
+if ((alive player) and (call TFAR_fnc_haveLRRadio)) then
 {
 	private "_radio";
 	_radio = call TFAR_fnc_activeLrRadio;
