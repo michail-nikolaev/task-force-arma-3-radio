@@ -159,6 +159,7 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [NorX_Aengell](http://forums.bistudio.com/member.php?99450-NorX_Aengell) for French translation.
 * [lukrop] (http://forums.bistudio.com/member.php?78022-lukrop) for code changes.
 * [nikolauska] (http://forums.bistudio.com/member.php?75014-nikolauska) ([GitHub](https://github.com/nikolauska)) for sqf code improvements.
+* [JonBons] (http://forums.bistudio.com/member.php?81374-JonBons) for code changes.
 * Everyone, who made video and articles with review.
 * Everyone user (especially who report bugs).
 * Sorry guys if I’ve forgot someone by chance.
