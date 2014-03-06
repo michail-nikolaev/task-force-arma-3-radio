@@ -293,10 +293,25 @@ class CfgWeapons
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialogUpdate = "";	
 	};
+
+	class tf_rf7800str: ItemRadio
+	{
+		displayName = "RF-7800S-TR";
+		descriptionShort = "RF-7800S-TR";
+		scope = 2;
+		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
+		picture = "\task_force_radio_items\rf7800str\rf7800str_icon.paa";
+		tf_prototype = 1;
+		tf_range = 1500;
+		tf_dialog = "rf7800str_radio_dialog";
+		tf_encryptionCode = "tf_west_radio_code";
+		tf_dialogUpdate = "";	
+	};
 	
 	TF_RADIO_IDS(tf_anprc152,AN/PRC-152)
 	TF_RADIO_IDS(tf_anprc148jem,AN/PRC-148 JEM)
 	TF_RADIO_IDS(tf_fadak,FADAK)
 	TF_RADIO_IDS(tf_anprc154,AN/PRC-154)
+	TF_RADIO_IDS(tf_rf7800str,RF-7800S-TR)
 
 };
