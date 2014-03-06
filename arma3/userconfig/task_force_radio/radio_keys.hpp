@@ -108,21 +108,21 @@
 
 	class lr_stereo_both {
 		key = 200;
-		ctrl = 1;
+		ctrl = 0;
 		shift = 0;
 		alt = 1;
 	};
 
 	class lr_stereo_left {
 		key = 203;
-		ctrl = 1;
+		ctrl = 0;
 		shift = 0;
 		alt = 1;
 	};
 
 	class lr_stereo_right {
 		key = 205;
-		ctrl = 1;
+		ctrl = 0;
 		shift = 0;
 		alt = 1;
 	};
