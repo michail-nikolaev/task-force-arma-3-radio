@@ -8,6 +8,16 @@ TF_dialog_sw_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "
 	getNumber (configFile >> "task_force_radio_keys" >>  "dialog_sw"  >> "ctrl") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "dialog_sw"  >> "alt") == 1];
 
+TF_sw_cycle_next_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "sw_cycle_next"  >> "key");
+TF_sw_cycle_next_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "sw_cycle_next"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "sw_cycle_next"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "sw_cycle_next"  >> "alt") == 1];
+
+TF_sw_cycle_prev_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "sw_cycle_prev"  >> "key");
+TF_sw_cycle_prev_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "sw_cycle_prev"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "sw_cycle_prev"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "sw_cycle_prev"  >> "alt") == 1];
+
 TF_sw_channel_1_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_1"  >> "key");
 TF_sw_channel_1_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_1"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_1"  >> "ctrl") == 1,
@@ -32,7 +42,7 @@ TF_sw_channel_5_scancode = getNumber (configFile >> "task_force_radio_keys" >>  
 TF_sw_channel_5_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_5"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_5"  >> "ctrl") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_5"  >> "alt") == 1];
-	
+
 TF_sw_channel_6_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_6"  >> "key");
 TF_sw_channel_6_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_6"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_6"  >> "ctrl") == 1,
@@ -59,6 +69,16 @@ TF_dialog_lr_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "
 	getNumber (configFile >> "task_force_radio_keys" >>  "dialog_lr"  >> "ctrl") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "dialog_lr"  >> "alt") == 1];
 
+TF_lr_cycle_next_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "lr_cycle_next"  >> "key");
+TF_lr_cycle_next_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "lr_cycle_next"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "lr_cycle_next"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "lr_cycle_next"  >> "alt") == 1];
+
+TF_lr_cycle_prev_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "lr_cycle_prev"  >> "key");
+TF_lr_cycle_prev_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "lr_cycle_prev"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "lr_cycle_prev"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "lr_cycle_prev"  >> "alt") == 1];
+
 TF_lr_channel_1_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_1"  >> "key");
 TF_lr_channel_1_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_1"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_1"  >> "ctrl") == 1,
@@ -68,7 +88,7 @@ TF_lr_channel_2_scancode = getNumber (configFile >> "task_force_radio_keys" >>  
 TF_lr_channel_2_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_2"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_2"  >> "ctrl") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_2"  >> "alt") == 1];
-	
+
 TF_lr_channel_3_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_3"  >> "key");
 TF_lr_channel_3_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_3"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_3"  >> "ctrl") == 1,
