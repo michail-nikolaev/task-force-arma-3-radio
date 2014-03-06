@@ -35,7 +35,7 @@ class anprc154_radio_dialog
 	class background154: RscBackPicture
 	{
 		idc = IDC_ANPRC154_BACKGROUND154;
-		text = "\task_force_radio\anprc154\anprc154.paa";
+		text = "task_force_radio\anprc154\anprc154.paa";
 		x = -0.0269687 * safezoneW + safezoneX;
 		y = -0.0251171 * safezoneH + safezoneY;
 		w = 0.555188 * safezoneW;
