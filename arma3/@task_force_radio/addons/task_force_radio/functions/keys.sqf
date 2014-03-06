@@ -8,6 +8,21 @@ TF_dialog_sw_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "
 	getNumber (configFile >> "task_force_radio_keys" >>  "dialog_sw"  >> "ctrl") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "dialog_sw"  >> "alt") == 1];
 
+TF_sw_stereo_both_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_both"  >> "key");
+TF_sw_stereo_both_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_both"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_both"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_both"  >> "alt") == 1];
+
+TF_sw_stereo_left_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_left"  >> "key");
+TF_sw_stereo_left_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_left"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_left"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_left"  >> "alt") == 1];
+
+TF_sw_stereo_right_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_right"  >> "key");
+TF_sw_stereo_right_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_right"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_right"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "sw_stereo_right"  >> "alt") == 1];
+
 TF_sw_channel_1_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_1"  >> "key");
 TF_sw_channel_1_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_1"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_1"  >> "ctrl") == 1,
@@ -32,7 +47,7 @@ TF_sw_channel_5_scancode = getNumber (configFile >> "task_force_radio_keys" >>  
 TF_sw_channel_5_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_5"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_5"  >> "ctrl") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_5"  >> "alt") == 1];
-	
+
 TF_sw_channel_6_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_6"  >> "key");
 TF_sw_channel_6_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_6"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "sw_channel_6"  >> "ctrl") == 1,
@@ -59,6 +74,21 @@ TF_dialog_lr_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "
 	getNumber (configFile >> "task_force_radio_keys" >>  "dialog_lr"  >> "ctrl") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "dialog_lr"  >> "alt") == 1];
 
+TF_lr_stereo_both_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_both"  >> "key");
+TF_lr_stereo_both_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_both"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_both"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_both"  >> "alt") == 1];
+
+TF_lr_stereo_left_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_left"  >> "key");
+TF_lr_stereo_left_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_left"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_left"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_left"  >> "alt") == 1];
+
+TF_lr_stereo_right_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_right"  >> "key");
+TF_lr_stereo_right_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_right"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_right"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "lr_stereo_right"  >> "alt") == 1];
+
 TF_lr_channel_1_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_1"  >> "key");
 TF_lr_channel_1_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_1"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_1"  >> "ctrl") == 1,
@@ -68,7 +98,7 @@ TF_lr_channel_2_scancode = getNumber (configFile >> "task_force_radio_keys" >>  
 TF_lr_channel_2_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_2"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_2"  >> "ctrl") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_2"  >> "alt") == 1];
-	
+
 TF_lr_channel_3_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_3"  >> "key");
 TF_lr_channel_3_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_3"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "lr_channel_3"  >> "ctrl") == 1,
