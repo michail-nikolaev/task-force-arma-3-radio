@@ -183,6 +183,12 @@ tf_msSpectatorPerStepMax = 0.035;
 
 	[TF_speak_volume_scancode, TF_speak_volume_modifiers, {call TFAR_fnc_onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;
 
+	[TF_sw_cycle_next_scancode, TF_sw_cycle_next_modifiers, {["next"] call TFAR_fnc_processSWCycleKeys}, "keyup", "31"] call CBA_fnc_addKeyHandler;
+	[TF_sw_cycle_prev_scancode, TF_sw_cycle_prev_modifiers, {["prev"] call TFAR_fnc_processSWCycleKeys}, "keyup", "32"] call CBA_fnc_addKeyHandler;
+
+	[TF_lr_cycle_next_scancode, TF_lr_cycle_next_modifiers, {["next"] call TFAR_fnc_processLRCycleKeys}, "keyup", "33"] call CBA_fnc_addKeyHandler;
+	[TF_lr_cycle_prev_scancode, TF_lr_cycle_prev_modifiers, {["prev"] call TFAR_fnc_processLRCycleKeys}, "keyup", "34"] call CBA_fnc_addKeyHandler;
+
 	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
