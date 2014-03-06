@@ -45,13 +45,13 @@ TF_dialog_lr_scancode = 25;
 TF_dialog_lr_modifiers = [false, false, true];
 
 TF_lr_stereo_both_scancode = 200;
-TF_lr_stereo_both_modifiers = [false, true, true];
+TF_lr_stereo_both_modifiers = [false, false, true];
 
 TF_lr_stereo_left_scancode = 203;
-TF_lr_stereo_left_modifiers = [false, true, true];
+TF_lr_stereo_left_modifiers = [false, false, true];
 
 TF_lr_stereo_right_scancode = 205;
-TF_lr_stereo_right_modifiers = [false, true, true];
+TF_lr_stereo_right_modifiers = [false, false, true];
 
 TF_lr_channel_1_scancode = 79;
 TF_lr_channel_1_modifiers = [false, true, false];
