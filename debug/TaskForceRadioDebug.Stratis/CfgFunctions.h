@@ -72,8 +72,10 @@ class CfgFunctions
 			class lrRadioSubMenu{};
 			class lrRadioMenu{};
 			class radiosList{};
+			class radiosListSorted{};
 			class vehicleLr{};
 			class lrRadiosList{};
+			class lrRadiosListSorted{};
 			class backpackLr{};
 			class sendVersionInfo{};
 			class activeLrRadio{};
