@@ -4,20 +4,18 @@ _result = false;
 
 if ((call TFAR_fnc_haveSWRadio) and {alive player}) then
 {
-	private ["_radio", "_radio_list", "_active_radio", "_active_radio_index", "_new_radio_index", "_pos"];
+	private ["_radio", "_radio_list", "_active_radio_index", "_new_radio_index", "_pos"];
 	_radio = call TFAR_fnc_activeSwRadio;
 	_radio_list = call TFAR_fnc_radiosList;
 
 	_active_radio_index = 0;
 	_new_radio_index = 0;
 
-	_pos = 0;
 	{
-		if ((!isNil "_active_radio") or {_x == _radio}) then
+		if (_x == _radio) then
 		{
-			_active_radio_index = _pos;
+			_active_radio_index = _forEachIndex;
 		};
-		_pos = _pos + 1;
 	} forEach _radio_list;
 
 
