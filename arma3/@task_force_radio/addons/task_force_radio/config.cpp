@@ -50,7 +50,7 @@ class CfgFontFamilies
 			"\task_force_radio\fonts\dots\dots10",           
 			"\task_force_radio\fonts\dots\dots11",           
 			"\task_force_radio\fonts\dots\dots12",           
-			"\task_force_radio\fonts\dots\dots13",           
+			"\task_force_radio\fonts\dots\dots13",
 			"\task_force_radio\fonts\dots\dots14",           
 			"\task_force_radio\fonts\dots\dots15",           
 			"\task_force_radio\fonts\dots\dots16",           
