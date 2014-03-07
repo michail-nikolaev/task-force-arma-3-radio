@@ -18,7 +18,7 @@ $[
 
 
 
-class fadak_radio_dialog 
+class fadak_radio_dialog
 {
 	idd = IDC_FADAK_RADIO_DIALOG;
 	movingEnable = 1;
@@ -119,6 +119,7 @@ class edit_fadak: RscEditLCD
 	y = 0.36417 * safezoneH + safezoneY;
 	w = 0.0492188 * safezoneW;
 	h = 0.0560125 * safezoneH;
+	font = "tf_font_segments";
 	tooltip = $STR_current_freq;
 	canModify = 1;
 };
@@ -130,6 +131,7 @@ class channel_edit_fadak: RscEditLCD
 	y = 0.315159 * safezoneH + safezoneY;
 	w = 0.02625 * safezoneW;
 	h = 0.0630141 * safezoneH;
+	font = "tf_font_segments";
 	tooltip = $STR_current_channel;
 	canModify = 0;
 };
