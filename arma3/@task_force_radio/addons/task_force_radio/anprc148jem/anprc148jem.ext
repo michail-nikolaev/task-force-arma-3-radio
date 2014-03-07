@@ -79,6 +79,7 @@ class edit148: RscEditLCD
 	y = 0.351567 * safezoneH + safezoneY;
 	w = 0.0623438 * safezoneW;
 	h = 0.067215 * safezoneH;
+	font = "tf_font_segments";
 	tooltip = $STR_current_freq;
 	canModify = 1;
 	moving = 1;
@@ -91,6 +92,7 @@ class channel_edit148: RscEditLCD
 	y = 0.351567 * safezoneH + safezoneY;
 	w = 0.0301875 * safezoneW;
 	h = 0.067215 * safezoneH;
+	font = "tf_font_segments";
 	tooltip = $STR_current_channel;
 	canModify = 0;
 	moving = 1;

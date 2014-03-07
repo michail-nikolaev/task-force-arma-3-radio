@@ -13,7 +13,7 @@ $[
 
 
 
-class diver_radio_dialog 
+class diver_radio_dialog
 {
 	idd = IDC_DIVER_RADIO_DIALOG;
 	movingEnable = 1;
@@ -70,6 +70,7 @@ class diver_edit: RscEditLCD
 	y = 0.394595 * safezoneH + safezoneY;
 	w = 0.0613594 * safezoneW;
 	h = 0.0833038 * safezoneH;
+	font = "tf_font_dots";
 	moving = 1;
 	canModify = 1;
 	tooltip = $STR_current_freq;
