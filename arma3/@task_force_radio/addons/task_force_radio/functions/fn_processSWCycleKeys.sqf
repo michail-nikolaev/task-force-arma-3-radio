@@ -12,7 +12,7 @@ if ((call TFAR_fnc_haveSWRadio) and {alive player}) then
 	_new_radio_index = 0;
 
 	{
-		if (_x == _radio) then
+		if (_x == _radio) exitWith
 		{
 			_active_radio_index = _forEachIndex;
 		};
