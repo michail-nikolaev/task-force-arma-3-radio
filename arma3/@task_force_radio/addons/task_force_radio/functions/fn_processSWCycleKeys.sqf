@@ -4,7 +4,7 @@ _result = false;
 
 if ((call TFAR_fnc_haveSWRadio) and {alive player}) then
 {
-	private ["_radio", "_radio_list", "_active_radio_index", "_new_radio_index", "_pos"];
+	private ["_radio", "_radio_list", "_active_radio_index", "_new_radio_index"];
 	_radio = call TFAR_fnc_activeSwRadio;
 	_radio_list = call TFAR_fnc_radiosList;
 
@@ -35,8 +35,7 @@ if ((call TFAR_fnc_haveSWRadio) and {alive player}) then
 	    };
 	};
 
-	_new_radio = _radio_list select _new_radio_index;
-	_new_radio call TFAR_fnc_setActiveSwRadio;
+	(_radio_list select _new_radio_index) call TFAR_fnc_setActiveSwRadio;
 
 	[(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_ShowRadioInfo;
 
