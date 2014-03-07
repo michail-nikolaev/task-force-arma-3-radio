@@ -39,7 +39,11 @@ class CfgFunctions
 			class calcTerrainInterception{};
 			class haveSWRadio{};
 			class processSWChannelKeys{};
+			class processSWCycleKeys{};			
+			class processSWStereoKeys{};			
 			class processLRChannelKeys{};
+			class processLRCycleKeys{};			
+			class processLRStereoKeys{};			
 			class vehicleIsIsolatedAndInside{};
 			class canSpeak{};
 			class canUseSWRadio{};
@@ -70,8 +74,10 @@ class CfgFunctions
 			class lrRadioSubMenu{};
 			class lrRadioMenu{};
 			class radiosList{};
+			class radiosListSorted{};
 			class vehicleLr{};
 			class lrRadiosList{};
+			class lrRadiosListSorted{};
 			class backpackLr{};
 			class sendVersionInfo{};
 			class activeLrRadio{};
