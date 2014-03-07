@@ -6,7 +6,7 @@ if ((call TFAR_fnc_haveLRRadio) and {alive player}) then
 {
 	private ["_radio", "_radio_list", "_active_radio_index", "_new_radio_index"];
 	_radio = call TFAR_fnc_activeLrRadio;
-	_radio_list = call TFAR_fnc_lrRadiosList;
+	_radio_list = call TFAR_fnc_lrRadiosListSorted;
 
 	_active_radio_index = 0;
 	_new_radio_index = 0;
