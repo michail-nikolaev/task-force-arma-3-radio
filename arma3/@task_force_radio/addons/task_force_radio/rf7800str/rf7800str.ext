@@ -47,7 +47,7 @@ class rf7800str_radio_dialog
 	};
 	class prev_channel_rf7800str: HiddenButton
 	{
-		idc = IDC_RF7800STR_PREV_CHANNEL_LRF7800STR;
+		idc = IDC_RF7800STR_PREV_CHANNEL_RF7800STR;
 		x = 0.301175 * safezoneW + safezoneX;
 		y = 0.4769 * safezoneH + safezoneY;
 		w = 0.015 * safezoneW;
