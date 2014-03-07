@@ -60,6 +60,7 @@ class edit: RscEditLCD
 	h = 0.043352 * safezoneH;
 	tooltip = $STR_current_freq;
 	canModify = 1;
+	font = "tf_font_segments";
 };
 class channel_edit: RscEditLCD
 {
@@ -71,6 +72,7 @@ class channel_edit: RscEditLCD
 	h = 0.042927 * safezoneH;
 	tooltip = $STR_current_channel;
 	canModify = 0;
+	font = "tf_font_segments";
 };
 class enter: HiddenButton
 {
