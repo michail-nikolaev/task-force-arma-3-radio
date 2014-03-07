@@ -183,6 +183,14 @@ tf_msSpectatorPerStepMax = 0.035;
 
 	[TF_speak_volume_scancode, TF_speak_volume_modifiers, {call TFAR_fnc_onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;
 
+	[TF_sw_stereo_both_scancode, TF_sw_stereo_both_modifiers, {[0] call TFAR_fnc_processSWStereoKeys}, "keydown", "25"] call CBA_fnc_addKeyHandler;
+	[TF_sw_stereo_left_scancode, TF_sw_stereo_left_modifiers, {[1] call TFAR_fnc_processSWStereoKeys}, "keydown", "26"] call CBA_fnc_addKeyHandler;
+	[TF_sw_stereo_right_scancode, TF_sw_stereo_right_modifiers, {[2] call TFAR_fnc_processSWStereoKeys}, "keydown", "27"] call CBA_fnc_addKeyHandler;
+
+	[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers, {[0] call TFAR_fnc_processLRStereoKeys}, "keydown", "28"] call CBA_fnc_addKeyHandler;
+	[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers, {[1] call TFAR_fnc_processLRStereoKeys}, "keydown", "29"] call CBA_fnc_addKeyHandler;
+	[TF_lr_stereo_right_scancode, TF_lr_stereo_right_modifiers, {[2] call TFAR_fnc_processLRStereoKeys}, "keydown", "30"] call CBA_fnc_addKeyHandler;
+
 	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
