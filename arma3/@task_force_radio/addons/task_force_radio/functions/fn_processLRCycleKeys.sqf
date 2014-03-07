@@ -11,13 +11,11 @@ if ((call TFAR_fnc_haveLRRadio) and {alive player}) then
 	_active_radio_index = 0;
 	_new_radio_index = 0;
 
-	_pos = 0;
 	{
 		if (((_x select 0) == (_radio select 0)) or ((_x select 1) == (_radio select 1))) then
 		{
-			_active_radio_index = _pos;
+			_active_radio_index = _forEachIndex;
 		};
-		_pos = _pos + 1;
 	} forEach _radio_list;
 
 
