@@ -39,8 +39,12 @@ class CfgFunctions
 			class calcTerrainInterception{};
 			class haveSWRadio{};
 			class processSWChannelKeys{};
-			class processSWCycleKeys{};			class processSWStereoKeys{};			class processLRChannelKeys{};
-			class processLRCycleKeys{};			class processLRStereoKeys{};			class vehicleIsIsolatedAndInside{};
+			class processSWCycleKeys{};			
+			class processSWStereoKeys{};			
+			class processLRChannelKeys{};
+			class processLRCycleKeys{};			
+			class processLRStereoKeys{};			
+			class vehicleIsIsolatedAndInside{};
 			class canSpeak{};
 			class canUseSWRadio{};
 			class onSwTangentPressed{};
