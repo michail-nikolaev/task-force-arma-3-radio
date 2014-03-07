@@ -35,6 +35,20 @@
 		alt = 0;
 	};
 
+	class sw_cycle_next {
+		key = 32;
+		ctrl = 1;
+		shift = 1;
+		alt = 0;
+	};
+
+	class sw_cycle_prev {
+		key = 30;
+		ctrl = 1;
+		shift = 1;
+		alt = 0;
+	};
+
 	class sw_stereo_both {
 		key = 200;
 		ctrl = 1;
@@ -55,7 +69,6 @@
 		shift = 0;
 		alt = 0;
 	};
-
 	class sw_channel_1 {
 		key = 79;
 		ctrl = 0;
@@ -105,8 +118,23 @@
 		alt = 0;
 	};
 
+	class lr_cycle_next {
+		key = 32;
+		ctrl = 0;
+		shift = 1;
+		alt = 1;
+	};
 
-	class lr_stereo_both {
+
+
+	class lr_cycle_prev {
+		key = 30;
+		ctrl = 0;
+		shift = 1;
+		alt = 1;
+	};
+
+class lr_stereo_both {
 		key = 200;
 		ctrl = 0;
 		shift = 0;
@@ -126,7 +154,6 @@
 		shift = 0;
 		alt = 1;
 	};
-
 	class lr_channel_1 {
 		key = 79;
 		ctrl = 1;
