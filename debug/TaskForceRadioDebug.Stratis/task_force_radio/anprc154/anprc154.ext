@@ -1,16 +1,19 @@
-/* #Vosera
+/* #Piwoto
 $[
 	1.063,
 	["anprc154",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
-	[1200,"background154",[1,"/task_force_radio/anprc154/anprc154.paa",["-0.0269687 * safezoneW + safezoneX","-0.0251171 * safezoneH + safezoneY","0.555188 * safezoneW","1.00402 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1200,"background154",[1,"\task_force_radio\anprc154\anprc154.paa",["-0.0269687 * safezoneW + safezoneX","-0.0251171 * safezoneH + safezoneY","0.555188 * safezoneW","1.00402 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1602,"prev_channel154",[1,"",["0.208672 * safezoneW + safezoneX","0.6034 * safezoneH + safezoneY","0.023625 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1603,"next_channel154",[1,"",["0.208156 * safezoneW + safezoneX","0.5198 * safezoneH + safezoneY","0.0249375 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
 	[1604,"increase_volume154",[1,"",["0.259203 * safezoneW + safezoneX","0.5242 * safezoneH + safezoneY","0.0242813 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
 	[1605,"decrease_volume154",[1,"",["0.254562 * safezoneW + safezoneX","0.6045 * safezoneH + safezoneY","0.0269063 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
-	[1606,"stereo154",[1,"",["0.212797 * safezoneW + safezoneX","0.676 * safezoneH + safezoneY","0.0255 * safezoneW","0.03 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]],
-	[1600,"reset_channel154",[1,"",["0.236 * safezoneW + safezoneX","0.566 * safezoneH + safezoneY","0.02 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]]
+	[1606,"stereo154",[1,"",["0.213828 * safezoneW + safezoneX","0.6749 * safezoneH + safezoneY","0.0255 * safezoneW","0.03 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]],
+	[1600,"reset_channel154",[1,"",["0.236 * safezoneW + safezoneX","0.566 * safezoneH + safezoneY","0.02 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
+	[1601,"reset_channel_alt154",[1,"",["0.217437 * safezoneW + safezoneX","0.7992 * safezoneH + safezoneY","0.02 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]]
 ]
 */
+
+
 
 class anprc154_radio_dialog
 {
@@ -26,10 +29,11 @@ class anprc154_radio_dialog
 		increase_volume154,
 		decrease_volume154,
 		stereo154,
-		reset_channel154
+		reset_channel154,
+		reset_channel_alt154
 	};
 	////////////////////////////////////////////////////////
-	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Vosera)
+	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Piwoto)
 	////////////////////////////////////////////////////////
 
 	class background154: RscBackPicture
@@ -103,6 +107,16 @@ class anprc154_radio_dialog
 		tooltip = $STR_radio_channel_1;
 		action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 	};
+	class reset_channel_alt154: HiddenButton
+	{
+		idc = IDC_ANPRC154_RESET_CHANNEL_ALT154;
+		x = 0.217437 * safezoneW + safezoneX;
+		y = 0.7992 * safezoneH + safezoneY;
+		w = 0.02 * safezoneW;
+		h = 0.0294066 * safezoneH;
+		tooltip = $STR_radio_channel_1;
+	};
+
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT END
 	////////////////////////////////////////////////////////
