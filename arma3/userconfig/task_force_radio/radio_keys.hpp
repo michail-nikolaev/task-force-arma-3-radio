@@ -134,7 +134,7 @@
 		alt = 1;
 	};
 
-class lr_stereo_both {
+        class lr_stereo_both {
 		key = 200;
 		ctrl = 0;
 		shift = 0;
