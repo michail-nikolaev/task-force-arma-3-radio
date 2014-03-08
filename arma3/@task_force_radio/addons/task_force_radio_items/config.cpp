@@ -36,6 +36,7 @@ class CfgVehicles {
 		tf_hasLRradio = 1;
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialog = "rt1523g_radio_dialog";
+		tf_subtype = "digital";
 	};	
 	class tf_anprc155: B_Kitbag_sgg
 	{
@@ -48,6 +49,7 @@ class CfgVehicles {
 		tf_hasLRradio = 1;
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialog = "anprc155_radio_dialog";
+		tf_subtype = "digital";
 	};	
 	class tf_mr3000: B_Kitbag_cbr
 	{
@@ -60,6 +62,7 @@ class CfgVehicles {
 		tf_hasLRradio = 1;
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialog = "mr3000_radio_dialog";
+		tf_subtype = "digital";
 	};
 	#include "vehicles.hpp"
 	
@@ -250,6 +253,7 @@ class CfgWeapons
 		tf_dialog = "anprc152_radio_dialog";
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
+		tf_subtype = "digital";
 	};
 	
 	class tf_anprc148jem: ItemRadio
@@ -264,6 +268,7 @@ class CfgWeapons
 		tf_dialog = "anprc148jem_radio_dialog";
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
+		tf_subtype = "digital";
 	};
 	
 	class tf_fadak: ItemRadio
@@ -278,6 +283,7 @@ class CfgWeapons
 		tf_dialog = "fadak_radio_dialog";
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";	
+		tf_subtype = "digital";
 	};
 
 	class tf_anprc154: ItemRadio
@@ -292,6 +298,7 @@ class CfgWeapons
 		tf_dialog = "anprc154_radio_dialog";
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialogUpdate = "";	
+		tf_subtype = "digital";
 	};
 
 	class tf_rf7800str: ItemRadio
@@ -306,6 +313,7 @@ class CfgWeapons
 		tf_dialog = "rf7800str_radio_dialog";
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialogUpdate = "";	
+		tf_subtype = "digital";
 	};
 	
 	TF_RADIO_IDS(tf_anprc152,AN/PRC-152)
