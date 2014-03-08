@@ -162,4 +162,5 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [lukrop] (http://forums.bistudio.com/member.php?78022-lukrop) for code changes.
 * [nikolauska] (http://forums.bistudio.com/member.php?75014-nikolauska) ([GitHub](https://github.com/nikolauska)) for sqf code improvements.
 * [Kavinsky] ([GitHub](https://github.com/nikolauska)) for AN/PRC-154 and RF-7800S-TR.* [JonBons] (http://forums.bistudio.com/member.php?81374-JonBons) for code changes.* Everyone user (especially who report bugs).
+* [ramius86](https://github.com/ramius86) for Italian translation.
 * Sorry guys if I’ve forgot someone by chance.
