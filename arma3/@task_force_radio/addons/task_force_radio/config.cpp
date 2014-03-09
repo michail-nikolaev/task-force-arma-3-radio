@@ -115,8 +115,8 @@ class CfgFontFamilies
 			"\task_force_radio\fonts\segments\segments36"
 		};
 		
-		spaceWidth = 0.7;
-		spacing = 0.2;
+		spaceWidth = 0.8;
+		spacing = 0.3;
 	};
 };
 
