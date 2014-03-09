@@ -52,10 +52,13 @@ if (_activated) then {
 						diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
 						hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
 					};
-					if (!isNil "tf_freq_west") then {hint "TFAR - tf_freq_west already set, module overriding.";diag_log "TFAR - tf_freq_west already set, module overriding.";};
-					if (!isNil "tf_freq_west_lr") then {hint "TFAR - tf_freq_west_lr already set, module overriding.";diag_log "TFAR - tf_freq_west_lr already set, module overriding.";};
-					tf_freq_west = _swFreq;
-					tf_freq_west_lr = _lrFreq;
+					if (isServer) then
+					{
+						if (!isNil "tf_freq_west") then {hint "TFAR - tf_freq_west already set, module overriding.";diag_log "TFAR - tf_freq_west already set, module overriding.";};
+						if (!isNil "tf_freq_west_lr") then {hint "TFAR - tf_freq_west_lr already set, module overriding.";diag_log "TFAR - tf_freq_west_lr already set, module overriding.";};
+						tf_freq_west = _swFreq;
+						tf_freq_west_lr = _lrFreq;
+					};
 				};
 				case east: {
 					tf_east_radio_code = _logic getVariable "Encryption";
@@ -71,10 +74,13 @@ if (_activated) then {
 						diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
 						hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
 					};
-					if (!isNil "tf_freq_east") then {hint "TFAR - tf_freq_east already set, module overriding.";diag_log "TFAR - tf_freq_east already set, module overriding.";};
-					if (!isNil "tf_freq_east_lr") then {hint "TFAR - tf_freq_east_lr already set, module overriding.";diag_log "TFAR - tf_freq_east_lr already set, module overriding.";};
-					tf_freq_east = _swFreq;
-					tf_freq_east_lr = _lrFreq;
+					if (isServer) then
+					{
+						if (!isNil "tf_freq_east") then {hint "TFAR - tf_freq_east already set, module overriding.";diag_log "TFAR - tf_freq_east already set, module overriding.";};
+						if (!isNil "tf_freq_east_lr") then {hint "TFAR - tf_freq_east_lr already set, module overriding.";diag_log "TFAR - tf_freq_east_lr already set, module overriding.";};
+						tf_freq_east = _swFreq;
+						tf_freq_east_lr = _lrFreq;
+					};
 				};
 				default	{
 					tf_guer_radio_code = _logic getVariable "Encryption";
@@ -90,10 +96,13 @@ if (_activated) then {
 						diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
 						hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
 					};
-					if (!isNil "tf_freq_guer") then {hint "TFAR - tf_freq_guer already set, module overriding.";diag_log "TFAR - tf_freq_guer already set, module overriding.";};
-					if (!isNil "tf_freq_guer_lr") then {hint "TFAR - tf_freq_guer_lr already set, module overriding.";diag_log "TFAR - tf_freq_guer_lr already set, module overriding.";};
-					tf_freq_guer = _swFreq;
-					tf_freq_guer_lr = _lrFreq;
+					if (isServer) then
+					{
+						if (!isNil "tf_freq_guer") then {hint "TFAR - tf_freq_guer already set, module overriding.";diag_log "TFAR - tf_freq_guer already set, module overriding.";};
+						if (!isNil "tf_freq_guer_lr") then {hint "TFAR - tf_freq_guer_lr already set, module overriding.";diag_log "TFAR - tf_freq_guer_lr already set, module overriding.";};
+						tf_freq_guer = _swFreq;
+						tf_freq_guer_lr = _lrFreq;
+					};
 				};
 			};
 		};
