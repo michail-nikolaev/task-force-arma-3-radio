@@ -151,7 +151,10 @@ struct CLIENT_DATA
 	bool canUseLRRadio;
 	bool canUseDDRadio;
 
+
+	std::string subtype;
 	std::string vehicleId;
+
 	int terrainInterception;
 	PersonalRadioEffect swEffect;	
 	LongRangeRadioffect lrEffect;
@@ -1205,11 +1208,12 @@ std::string processGameCommand(std::string command)
 		}
 		return  "NOT_SPEAKING";
 	} 
-	else if (tokens.size() == 4 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD"))
+	else if (tokens.size() == 5 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD"))
 	{
 		bool pressed = (tokens[1] == "PRESSED");
 		bool longRange = (tokens[0] == "TANGENT_LR");		
-		bool diverRadio = (tokens[0] == "TANGENT_DD");		
+		bool diverRadio = (tokens[0] == "TANGENT_DD");
+		std::string subtype = tokens[4];
 
 		bool changed = false;		
 		EnterCriticalSection(&serverDataCriticalSection);
@@ -1223,6 +1227,7 @@ std::string processGameCommand(std::string command)
 				if (longRange) clientData->canUseLRRadio = true;
 				else if (diverRadio) clientData->canUseDDRadio = true;
 				else clientData->canUseSWRadio = true;
+				clientData->subtype = subtype;
 			}
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);		
@@ -1230,9 +1235,9 @@ std::string processGameCommand(std::string command)
 		{			
 			if (pressed)
 			{
-				if (longRange) playWavFile("radio-sounds/lr/local_start", false, 0);
-				else if (diverRadio) playWavFile("radio-sounds/dd/local_start", false, 0);
-				else playWavFile("radio-sounds/sw/local_start", false, 0);
+				if (subtype == "digital_lr") playWavFile("radio-sounds/lr/local_start", false, 0);
+				else if (subtype == "dd") playWavFile("radio-sounds/dd/local_start", false, 0);
+				else if (subtype == "digital") playWavFile("radio-sounds/sw/local_start", false, 0);
 
 				vadEnabled = hlp_checkVad();
 				if (vadEnabled) hlp_disableVad();
@@ -1241,9 +1246,9 @@ std::string processGameCommand(std::string command)
 			{
 				if (vadEnabled)	hlp_enableVad();	
 
-				if (longRange) playWavFile("radio-sounds/lr/local_end", false, 0);
-				else if (diverRadio) playWavFile("radio-sounds/dd/local_end", false, 0);
-				else playWavFile("radio-sounds/sw/local_end", false, 0);				
+				if (subtype == "digital_lr") playWavFile("radio-sounds/lr/local_end", false, 0);
+				else if (subtype == "dd") playWavFile("radio-sounds/dd/local_end", false, 0);
+				else if (subtype == "digital") playWavFile("radio-sounds/sw/local_end", false, 0);
 			}
 			// broadcast info about tangent pressed over all client						
 			std::string commandToBroadcast = command + "\t" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
@@ -2093,8 +2098,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 			CLIENT_DATA* myData = getClientData(serverConnectionHandlerID, myId);
 			if (data && myData) 
 			{		
-				EnterCriticalSection(&serverDataCriticalSection);				
-				data->clientTalkingNow = true;
+				EnterCriticalSection(&serverDataCriticalSection);								
 				LISTED_INFO listed_info = isOverRadio(serverConnectionHandlerID, data, myData, false, false, false);								
 				bool shouldPlayerHear = (data->canSpeak && canSpeak);
 				
@@ -2109,7 +2113,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 				{					
 					float radioDistance = effectiveDistance(serverConnectionHandlerID, data, myData);
 					short* sw_buffer = NULL;
-					if (listed_info.over == LISTEN_TO_SW)
+					if (data->subtype == "digital")
 					{
 						sw_buffer = allocatePool(sampleCount, channels, samples);
 						float volumeLevel = volumeMultiplifier((float) listed_info.volume);
@@ -2118,7 +2122,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						processRadioEffect(sw_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->swEffect, listed_info.stereoMode);
 					}
 					short* lr_buffer = NULL;
-					if (listed_info.over == LISTEN_TO_LR)
+					if (data->subtype == "digital_lr")
 					{
 						lr_buffer = allocatePool(sampleCount, channels, samples);
 						float volumeLevel = volumeMultiplifier((float) listed_info.volume);						
@@ -2127,7 +2131,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->lrEffect, listed_info.stereoMode);
 					}
 					short* dd_buffer = NULL;
-					if (listed_info.over == LISTEN_TO_DD)
+					if (data->subtype == "dd")
 					{
 						dd_buffer = allocatePool(sampleCount, channels, samples);
 						float volumeLevel = volumeMultiplifier((float) serverIdToData[serverConnectionHandlerID].ddVolumeLevel);
@@ -2232,7 +2236,7 @@ void ts3plugin_onClientSelfVariableUpdateEvent(uint64 serverConnectionHandlerID,
 		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 		std::string myNickname = getMyNickname(serverId);
 		EnterCriticalSection(&serverDataCriticalSection);
-		std::string command = "VOLUME\t" + myNickname + "\t" + std::to_string(serverIdToData[serverId].myVoiceVolume + '\t' + start);
+		std::string command = "VOLUME\t" + myNickname + "\t" + std::to_string(serverIdToData[serverId].myVoiceVolume) + "\t" + (start ? "true" : "false");
 		LeaveCriticalSection(&serverDataCriticalSection);
 		ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, command.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
 	}
@@ -2375,14 +2379,15 @@ void processPluginCommand(std::string command)
 	std::vector<std::string> tokens = split(command, '\t'); // may not be used in nickname
 	uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
 	DWORD time =  GetTickCount();
-	if (tokens.size() == 5 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" ||  tokens[0] == "TANGENT_DD"))
+	if (tokens.size() == 6 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" ||  tokens[0] == "TANGENT_DD"))
 	{
   		bool pressed = (tokens[1] == "PRESSED");
 		bool longRange = (tokens[0] == "TANGENT_LR");
 		bool diverRadio = (tokens[0] == "TANGENT_DD");
 		bool shortRange = !longRange && !diverRadio;
+		std::string subtype = tokens[4];
 		int range = std::atoi(tokens[3].c_str());
-		std::string nickname = tokens[4];
+		std::string nickname = tokens[5];
 		std::string frequency = tokens[2];		
 
 		boolean playPressed = false;
@@ -2399,6 +2404,7 @@ void processPluginCommand(std::string command)
 				clientData->positionTime = time;
 				clientData->pluginEnabled = true;
 				clientData->pluginEnabledCheck = currentTime;				
+				clientData->subtype = subtype;
 
 				if (longRange) clientData->canUseLRRadio = true;
 				else if (diverRadio) clientData->canUseDDRadio = true;
@@ -2430,18 +2436,18 @@ void processPluginCommand(std::string command)
 					LISTED_INFO listedInfo = isOverRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
 					LeaveCriticalSection(&serverDataCriticalSection);
 					setGameClientMuteStatus(serverId, clientId);
-					if (alive) {
-						if (listedInfo.on == LISTED_ON_SW)
+					if (alive && listedInfo.on != LISTED_ON_NONE) {
+						if (subtype == "digital")
 						{
 							if (playPressed) playWavFile("radio-sounds/sw/remote_start", true, listedInfo.volume + 1);
 							if (playReleased) playWavFile("radio-sounds/sw/remote_end", true, listedInfo.volume + 1);
 						}
-						if (listedInfo.on == LISTED_ON_LR)
+						if (subtype == "digital_lr")
 						{
 							if (playPressed) playWavFile("radio-sounds/lr/remote_start", true, listedInfo.volume + 1);
 							if (playReleased) playWavFile("radio-sounds/lr/remote_end", true, listedInfo.volume + 1);
 						}
-						if (listedInfo.on == LISTED_ON_DD)
+						if (subtype == "digital_dd")
 						{
 							if (playPressed) playWavFile("radio-sounds/dd/remote_start", true, listedInfo.volume + 1);
 							if (playReleased) playWavFile("radio-sounds/dd/remote_end", true, listedInfo.volume + 1);

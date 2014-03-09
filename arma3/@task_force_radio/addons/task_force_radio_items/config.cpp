@@ -36,7 +36,7 @@ class CfgVehicles {
 		tf_hasLRradio = 1;
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialog = "rt1523g_radio_dialog";
-		tf_subtype = "digital";
+		tf_subtype = "digital_lr";
 	};	
 	class tf_anprc155: B_Kitbag_sgg
 	{
@@ -49,7 +49,7 @@ class CfgVehicles {
 		tf_hasLRradio = 1;
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialog = "anprc155_radio_dialog";
-		tf_subtype = "digital";
+		tf_subtype = "digital_lr";
 	};	
 	class tf_mr3000: B_Kitbag_cbr
 	{
@@ -62,7 +62,7 @@ class CfgVehicles {
 		tf_hasLRradio = 1;
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialog = "mr3000_radio_dialog";
-		tf_subtype = "digital";
+		tf_subtype = "digital_lr";
 	};
 	#include "vehicles.hpp"
 	
