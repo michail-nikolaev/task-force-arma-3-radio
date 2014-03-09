@@ -76,8 +76,8 @@ class CfgFontFamilies
 			"\task_force_radio\fonts\dots\dots36"
 		};
 
-		spaceWidth = 0.7;
-		spacing = 0.2;
+		spaceWidth = 0.6;
+		spacing = 0.15;
 	};
 	class tf_font_segments
 	{
