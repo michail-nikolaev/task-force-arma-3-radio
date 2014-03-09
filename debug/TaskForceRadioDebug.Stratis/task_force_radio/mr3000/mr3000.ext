@@ -28,7 +28,7 @@ $[
 
 
 
-class mr3000_radio_dialog 
+class mr3000_radio_dialog
 {
 	idd = IDC_MR3000_RADIO_DIALOG;
 	movingEnable = 1;
@@ -240,7 +240,8 @@ class mr3000_edit: RscEditLCD
 	w = 0.0531563 * safezoneW;
 	h = 0.03 * safezoneH;
 	font = "tf_font_dots";
-	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 35) * 1.2)";
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 50) * 1.2)";
+	shadow = 0;
 	tooltip = $STR_current_freq;
 	canModify = 1;
 };
@@ -253,7 +254,8 @@ class mr3000_channel_edit: RscEditLCD
 	w = 0.0479062 * safezoneW;
 	h = 0.03 * safezoneH;
 	font = "tf_font_dots";
-	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 35) * 1.2)";
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 50) * 1.2)";
+	shadow = 0;
 	tooltip = $STR_current_channel;
 	canModify = 0;
 };

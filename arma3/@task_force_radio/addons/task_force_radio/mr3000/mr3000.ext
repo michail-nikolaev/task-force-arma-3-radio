@@ -240,7 +240,8 @@ class mr3000_edit: RscEditLCD
 	w = 0.0531563 * safezoneW;
 	h = 0.03 * safezoneH;
 	font = "tf_font_dots";
-	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 35) * 1.2)";
+	shadow = 2;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
 	tooltip = $STR_current_freq;
 	canModify = 1;
 };
@@ -253,7 +254,8 @@ class mr3000_channel_edit: RscEditLCD
 	w = 0.0479062 * safezoneW;
 	h = 0.03 * safezoneH;
 	font = "tf_font_dots";
-	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 35) * 1.2)";
+	shadow = 2;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
 	tooltip = $STR_current_channel;
 	canModify = 0;
 };
