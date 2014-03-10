@@ -152,7 +152,8 @@ protected:
 
 		double result = from + (from - to) * (errorLevel - part / 10.0);
 		return (float) result;
-	}	
+	}	
+
 
 	float foldback(float in, float threshold)
 	{
