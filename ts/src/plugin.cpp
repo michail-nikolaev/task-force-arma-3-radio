@@ -229,6 +229,7 @@ struct SERVER_RADIO_DATA
 	bool alive;
 	bool canSpeak;	
 	float wavesLevel;
+	float terrainIntersectionCoefficient;
 
 	std::string serious_mod_channel_name;
 	std::string serious_mod_channel_password;
@@ -241,6 +242,7 @@ struct SERVER_RADIO_DATA
 	{
 		tangentPressed = false;
 		currentDataFrame = INVALID_DATA_FRAME;
+		terrainIntersectionCoefficient = 130.0f;
 	}
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
@@ -526,9 +528,8 @@ float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 {
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
 	TS3_VECTOR clientPosition = data->clientPosition;
-	float d = distance(myPosition, clientPosition);
-	// (bob distance player) + (bob call TFAR_fnc_calcTerrainInterception) * ((bob distance player) / 130)
-	return d + data->terrainInterception * (d / 130.f);
+	float d = distance(myPosition, clientPosition);	
+	return d + data->terrainInterception * (d / serverIdToData[currentServerConnectionHandlerID].terrainIntersectionCoefficient);
 }
 
 
@@ -1265,7 +1266,7 @@ std::string processGameCommand(std::string command)
 		}
 		return "OK";
 	} 	
-	else if (tokens.size() == 9 && tokens[0] == "FREQ")
+	else if (tokens.size() == 10 && tokens[0] == "FREQ")
 	{				
 		EnterCriticalSection(&serverDataCriticalSection);	
 		if (serverIdToData.count(currentServerConnectionHandlerID))
@@ -1277,6 +1278,7 @@ std::string processGameCommand(std::string command)
 			serverIdToData[currentServerConnectionHandlerID].myVoiceVolume = std::atoi(tokens[5].c_str());
 			serverIdToData[currentServerConnectionHandlerID].ddVolumeLevel = (int) std::atof(tokens[6].c_str());
 			serverIdToData[currentServerConnectionHandlerID].wavesLevel = (float) std::atof(tokens[8].c_str());
+			serverIdToData[currentServerConnectionHandlerID].terrainIntersectionCoefficient = (float) std::atof(tokens[9].c_str());
 		}
 		std::string nickname =  tokens[7];
 		LeaveCriticalSection(&serverDataCriticalSection);		
