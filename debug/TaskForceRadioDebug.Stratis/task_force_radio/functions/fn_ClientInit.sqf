@@ -75,6 +75,8 @@ TF_dd_volume_level = 7;
 TF_MIN_DD_FREQ = 32;
 TF_MAX_DD_FREQ = 41;
 
+TF_terrain_interception_coefficient = 130.0;
+
 TF_HintFnc = nil;
 
 IDC_ANPRC152_RADIO_DIALOG_EDIT_ID = IDC_ANPRC152_RADIO_DIALOG_EDIT;
@@ -184,15 +186,16 @@ tf_msSpectatorPerStepMax = 0.035;
 	[TF_speak_volume_scancode, TF_speak_volume_modifiers, {call TFAR_fnc_onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;
 
 	[TF_sw_cycle_next_scancode, TF_sw_cycle_next_modifiers, {["next"] call TFAR_fnc_processSWCycleKeys}, "keyup", "31"] call CBA_fnc_addKeyHandler;
-	[TF_sw_cycle_prev_scancode, TF_sw_cycle_prev_modifiers, {["prev"] call TFAR_fnc_processSWCycleKeys}, "keyup", "32"] call CBA_fnc_addKeyHandler;
+	[TF_sw_cycle_prev_scancode, TF_sw_cycle_prev_modifiers, {["prev"] call TFAR_fnc_processSWCycleKeys}, "keyup", "32"] call CBA_fnc_addKeyHandler;	
 	[TF_lr_cycle_next_scancode, TF_lr_cycle_next_modifiers, {["next"] call TFAR_fnc_processLRCycleKeys}, "keyup", "33"] call CBA_fnc_addKeyHandler;
-	[TF_lr_cycle_prev_scancode, TF_lr_cycle_prev_modifiers, {["prev"] call TFAR_fnc_processLRCycleKeys}, "keyup", "34"] call CBA_fnc_addKeyHandler;
-	[TF_sw_stereo_both_scancode, TF_sw_stereo_both_modifiers, {[0] call TFAR_fnc_processSWStereoKeys}, "keydown", "25"] call CBA_fnc_addKeyHandler;
-	[TF_sw_stereo_left_scancode, TF_sw_stereo_left_modifiers, {[1] call TFAR_fnc_processSWStereoKeys}, "keydown", "26"] call CBA_fnc_addKeyHandler;
+	[TF_lr_cycle_prev_scancode, TF_lr_cycle_prev_modifiers, {["prev"] call TFAR_fnc_processLRCycleKeys}, "keyup", "34"] call CBA_fnc_addKeyHandler;	
+	[TF_sw_stereo_both_scancode, TF_sw_stereo_both_modifiers, {[0] call TFAR_fnc_processSWStereoKeys}, "keydown", "25"] call CBA_fnc_addKeyHandler;	
+	[TF_sw_stereo_left_scancode, TF_sw_stereo_left_modifiers, {[1] call TFAR_fnc_processSWStereoKeys}, "keydown", "26"] call CBA_fnc_addKeyHandler;	
 	[TF_sw_stereo_right_scancode, TF_sw_stereo_right_modifiers, {[2] call TFAR_fnc_processSWStereoKeys}, "keydown", "27"] call CBA_fnc_addKeyHandler;
 	[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers, {[0] call TFAR_fnc_processLRStereoKeys}, "keydown", "28"] call CBA_fnc_addKeyHandler;
 	[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers, {[1] call TFAR_fnc_processLRStereoKeys}, "keydown", "29"] call CBA_fnc_addKeyHandler;
-	[TF_lr_stereo_right_scancode, TF_lr_stereo_right_modifiers, {[2] call TFAR_fnc_processLRStereoKeys}, "keydown", "30"] call CBA_fnc_addKeyHandler;	if (isMultiplayer) then {
+	[TF_lr_stereo_right_scancode, TF_lr_stereo_right_modifiers, {[2] call TFAR_fnc_processLRStereoKeys}, "keydown", "30"] call CBA_fnc_addKeyHandler;
+	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
 
