@@ -529,7 +529,7 @@ float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
 	TS3_VECTOR clientPosition = data->clientPosition;
 	float d = distance(myPosition, clientPosition);	
-	return d + data->terrainInterception * (d / serverIdToData[currentServerConnectionHandlerID].terrainIntersectionCoefficient);
+	return d + data->terrainInterception * (d / serverIdToData[serverConnectionHandlerID].terrainIntersectionCoefficient);
 }
 
 
