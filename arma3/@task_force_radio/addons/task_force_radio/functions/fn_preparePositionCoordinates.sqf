@@ -1,37 +1,53 @@
-private ["_x_player","_current_eyepos","_x_playername","_current_x","_current_y","_current_z","_current_look_at_x","_current_look_at_y","_current_look_at_z","_current_hyp_horizontal","_current_rotation_horizontal","_player_pos","_isolated_and_inside","_can_speak","_current_look_at"];
-_x_player = _this;
+private ["_x_player","_current_eyepos","_x_playername","_current_x","_current_y","_current_z","_current_look_at_x","_current_look_at_y","_current_look_at_z","_current_hyp_horizontal","_current_rotation_horizontal","_player_pos","_isolated_and_inside","_can_speak","_current_look_at", "_isNearPlayer", "_renderAt", "_pos"];
+_x_player = _this select 0;
+_isNearPlayer = _this select 1;
 _current_eyepos = eyepos _x_player;
 _x_playername = name _x_player;
 
-_current_x = (_current_eyepos select 0);
-_current_y = (_current_eyepos select 1);
-_current_z = (_current_eyepos select 2);
+if !(_isNearPlayer) then {
+	_current_x = (_current_eyepos select 0);
+	_current_y = (_current_eyepos select 1);
+	_current_z = (_current_eyepos select 2);
+} else {
+	_renderAt = visiblePosition _x_player;
+	_pos = getPos _x_player;	
+	// add different between pos and eyepos to visiblePosition to get some kind of visiblePositionEyepos
+	_current_x =  (_renderAt select 0) + ((_current_eyepos select 0) - (_pos select 0));
+	_current_y =  (_renderAt select 1) + ((_current_eyepos select 1) - (_pos select 1));
+	_current_z =  (_renderAt select 2) + ((_current_eyepos select 2) - (_pos select 2));
+};
+// for now it used only for player
+if (_x_player == player) then {
+	_current_look_at = screenToWorld [0.5,0.5];
+	_current_look_at_x = (_current_look_at select 0) - _current_x;
+	_current_look_at_y = (_current_look_at select 1) - _current_y;
+	_current_look_at_z = (_current_look_at select 2) - _current_z;
 
-_current_look_at = screenToWorld [0.5,0.5];
-_current_look_at_x = (_current_look_at select 0) - _current_x;
-_current_look_at_y = (_current_look_at select 1) - _current_y;
-_current_look_at_z = (_current_look_at select 2) - _current_z;
 
-_isolated_and_inside = _x_player call TFAR_fnc_vehicleIsIsolatedAndInside;
+	_current_rotation_horizontal = 0;
+	_current_hyp_horizontal = sqrt(_current_look_at_x * _current_look_at_x + _current_look_at_y * _current_look_at_y);
 
-_current_rotation_horizontal = 0;
-_current_hyp_horizontal = sqrt(_current_look_at_x * _current_look_at_x + _current_look_at_y * _current_look_at_y);
+	if (_current_hyp_horizontal > 0) then {
 
-if (_current_hyp_horizontal > 0) then {
-
-	if (_current_look_at_x < 0) then {
-		_current_rotation_horizontal = round - acos(_current_look_at_y / _current_hyp_horizontal);
-	}
-	else
-	{
-		_current_rotation_horizontal = round acos(_current_look_at_y / _current_hyp_horizontal);
+		if (_current_look_at_x < 0) then {
+			_current_rotation_horizontal = round - acos(_current_look_at_y / _current_hyp_horizontal);
+		}
+		else
+		{
+			_current_rotation_horizontal = round acos(_current_look_at_y / _current_hyp_horizontal);
+		};
+	} else {
+		_current_rotation_horizontal = 0;
+	};
+	while{_current_rotation_horizontal < 0} do {
+		_current_rotation_horizontal = _current_rotation_horizontal + 360;
 	};
 } else {
 	_current_rotation_horizontal = 0;
 };
-while{_current_rotation_horizontal < 0} do {
-	_current_rotation_horizontal = _current_rotation_horizontal + 360;
-};
+
+_isolated_and_inside = _x_player call TFAR_fnc_vehicleIsIsolatedAndInside;
+
 if (alive player) then 
 {
 	_player_pos = eyePos player;

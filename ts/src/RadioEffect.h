@@ -109,6 +109,9 @@ public:
 
 	virtual void process(float* buffer, int samplesNumber)
 	{
+
+		for (int q = 0; q < samplesNumber; q++) buffer[q] *= 15;
+
 		for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);
 		for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], 1.0f - 0.6f * (1.0f - errorLevel));
 		for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], 0.5f * (1.0f - errorLevel));		
@@ -116,7 +119,7 @@ public:
 		processFilter(filterSpeakerHP, buffer, samplesNumber);
 		processFilter(filterSpeakerLP, buffer, samplesNumber);
 
-		for (int q = 0; q < samplesNumber; q++) buffer[q] *= 30;
+		for (int q = 0; q < samplesNumber; q++) buffer[q] *= 4;
 	}
 
 
