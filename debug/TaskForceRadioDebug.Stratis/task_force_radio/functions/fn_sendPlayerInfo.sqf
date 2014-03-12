@@ -1,4 +1,6 @@
-private ["_request","_result"];
+private ["_request","_result", "_player", "_isNearPlayer"];
+_player = _this select 0;
+
 _request = _this call TFAR_fnc_preparePositionCoordinates;
 _result = "task_force_radio_pipe" callExtension _request;
 
@@ -13,8 +15,8 @@ if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"
 	};
 };
 if (_result == "SPEAKING") then {
-	_this setRandomLip true;
-	_this setVariable ["tf_start_speaking", diag_tickTime];
+	_player setRandomLip true;
+	_player setVariable ["tf_start_speaking", diag_tickTime];
 } else {
-	_this setRandomLip false;
+	_player setRandomLip false;
 };
