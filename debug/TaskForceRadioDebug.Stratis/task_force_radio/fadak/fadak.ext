@@ -2,16 +2,16 @@
 $[
 	1.063,
 	["fadak",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
-	[1200,"background_fadak",[1,"task_force_radio\fadak\fadak.paa",["-0.00531252 * safezoneW + safezoneX","-0.158147 * safezoneH + safezoneY","0.586031 * safezoneW","1.03623 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1600,"enter_fadak",[1,"",["0.292625 * safezoneW + safezoneX","0.547611 * safezoneH + safezoneY","0.0170625 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1601,"clear_fadak",[1,"",["0.293281 * safezoneW + safezoneX","0.581218 * safezoneH + safezoneY","0.0150938 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1602,"next_channel_fadak",[1,"",["0.293281 * safezoneW + safezoneX","0.619027 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0238053 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1603,"previous_channel_fadak",[1,"",["0.293281 * safezoneW + safezoneX","0.654034 * safezoneH + safezoneY","0.0150938 * safezoneW","0.022405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1604,"increase_volume_fadak",[1,"",["0.27425 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1605,"decrease_volume_fadak",[1,"",["0.236188 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1400,"edit_fadak",[1,"444.8",["0.249969 * safezoneW + safezoneX","0.36417 * safezoneH + safezoneY","0.0492188 * safezoneW","0.0560125 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1401,"channel_edit_fadak",[1,"C8",["0.259813 * safezoneW + safezoneX","0.315159 * safezoneH + safezoneY","0.02625 * safezoneW","0.0630141 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1606,"fadak_stereo",[1,"",["0.255219 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1200,"background",[1,"task_force_radio\fadak\fadak.paa",["-0.00531252 * safezoneW + safezoneX","-0.158147 * safezoneH + safezoneY","0.586031 * safezoneW","1.03623 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1600,"enter",[1,"",["0.292625 * safezoneW + safezoneX","0.547611 * safezoneH + safezoneY","0.0170625 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1601,"clear",[1,"",["0.293281 * safezoneW + safezoneX","0.581218 * safezoneH + safezoneY","0.0150938 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1602,"next_channel",[1,"",["0.293281 * safezoneW + safezoneX","0.619027 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0238053 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1603,"previous_channel",[1,"",["0.293281 * safezoneW + safezoneX","0.654034 * safezoneH + safezoneY","0.0150938 * safezoneW","0.022405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1604,"increase_volume",[1,"",["0.27425 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1605,"decrease_volume",[1,"",["0.236188 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1400,"edit",[1,"444.8",["0.249969 * safezoneW + safezoneX","0.36417 * safezoneH + safezoneY","0.0492188 * safezoneW","0.0560125 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1401,"channel_edit",[1,"C8",["0.259813 * safezoneW + safezoneX","0.315159 * safezoneH + safezoneY","0.02625 * safezoneW","0.0630141 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1606,"stereo",[1,"",["0.255219 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
@@ -20,30 +20,30 @@ $[
 
 class fadak_radio_dialog 
 {
-	idd = IDC_FADAK_RADIO_DIALOG;
+	idd = IDD_FADAK_RADIO_DIALOG;
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
 controls[]=
 {
-	background_fadak,
-	enter_fadak,
-	clear_fadak,
-	next_channel_fadak,
-	previous_channel_fadak,
-	increase_volume_fadak,
-	decrease_volume_fadak,
-	edit_fadak,
-	channel_edit_fadak,
-	fadak_stereo
+	background,
+	enter,
+	clear,
+	next_channel,
+	previous_channel,
+	increase_volume,
+	decrease_volume,
+	edit,
+	channel_edit,
+	stereo
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Xyjiti)
 ////////////////////////////////////////////////////////
 
-class background_fadak: RscBackPicture
+class background: RscBackPicture
 {
-	idc = IDC_FADAK_BACKGROUND_FADAK;
+	idc = IDC_FADAK_BACKGROUND;
 	text = "task_force_radio\fadak\fadak.paa";
 	x = -0.00531252 * safezoneW + safezoneX;
 	y = -0.158147 * safezoneH + safezoneY;
@@ -51,7 +51,7 @@ class background_fadak: RscBackPicture
 	h = 1.03623 * safezoneH;
 	moving = 1;
 };
-class enter_fadak: HiddenButton
+class enter: HiddenButton
 {
 	idc = IDC_FADAK_ENTER_FADAK;
 	x = 0.292625 * safezoneW + safezoneX;
@@ -61,9 +61,9 @@ class enter_fadak: HiddenButton
 	tooltip = $STR_set_frequency;
 	action = "_f = parseNumber(ctrlText IDC_FADAK_RADIO_DIALOG_EDIT_ID);  if ((_f >= TF_MIN_SW_FREQ) and (_f <= TF_MAX_SW_FREQ)) then {[TF_sw_dialog_radio, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setSwFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_SW_FREQ, TF_MAX_SW_FREQ]}; call TFAR_fnc_updateSWDialogToChannel;";
 };
-class clear_fadak: HiddenButton
+class clear: HiddenButton
 {
-	idc = IDC_FADAK_CLEAR_FADAK;
+	idc = IDC_FADAK_CLEAR;
 	x = 0.293281 * safezoneW + safezoneX;
 	y = 0.581218 * safezoneH + safezoneY;
 	w = 0.0150938 * safezoneW;
@@ -71,9 +71,9 @@ class clear_fadak: HiddenButton
 	tooltip = $STR_clear_frequency;
 	action = "ctrlSetText [IDC_FADAK_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_FADAK_RADIO_DIALOG_ID) displayCtrl IDC_FADAK_RADIO_DIALOG_EDIT_ID);";
 };
-class next_channel_fadak: HiddenButton
+class next_channel: HiddenButton
 {
-	idc = IDC_FADAK_NEXT_CHANNEL_FADAK;
+	idc = IDC_FADAK_NEXT_CHANNEL;
 	x = 0.293281 * safezoneW + safezoneX;
 	y = 0.619027 * safezoneH + safezoneY;
 	w = 0.0164063 * safezoneW;
@@ -81,9 +81,9 @@ class next_channel_fadak: HiddenButton
 	tooltip = $STR_next_channel;
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;";
 };
-class previous_channel_fadak: HiddenButton
+class previous_channel: HiddenButton
 {
-	idc = IDC_FADAK_PREVIOUS_CHANNEL_FADAK;
+	idc = IDC_FADAK_PREVIOUS_CHANNEL;
 	x = 0.293281 * safezoneW + safezoneX;
 	y = 0.654034 * safezoneH + safezoneY;
 	w = 0.0150938 * safezoneW;
@@ -91,9 +91,9 @@ class previous_channel_fadak: HiddenButton
 	tooltip = $STR_previous_channel;
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;";
 };
-class increase_volume_fadak: HiddenButton
+class increase_volume: HiddenButton
 {
-	idc = IDC_FADAK_INCREASE_VOLUME_FADAK;
+	idc = IDC_FADAK_INCREASE_VOLUME;
 	x = 0.27425 * safezoneW + safezoneX;
 	y = 0.652634 * safezoneH + safezoneY;
 	w = 0.0164063 * safezoneW;
@@ -101,9 +101,9 @@ class increase_volume_fadak: HiddenButton
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)+ 1) * 10)];";
 	tooltip = $STR_increase_volume;
 };
-class decrease_volume_fadak: HiddenButton
+class decrease_volume: HiddenButton
 {
-	idc = IDC_FADAK_DECREASE_VOLUME_FADAK;
+	idc = IDC_FADAK_DECREASE_VOLUME;
 	x = 0.236188 * safezoneW + safezoneX;
 	y = 0.652634 * safezoneH + safezoneY;
 	w = 0.0164063 * safezoneW;
@@ -111,9 +111,9 @@ class decrease_volume_fadak: HiddenButton
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) * 10)];";
 	tooltip = $STR_decrease_volume;
 };
-class edit_fadak: RscEditLCD
+class edit: RscEditLCD
 {
-	idc = IDC_FADAK_EDIT_FADAK;
+	idc = IDC_FADAK_EDIT;
 	text = $STR_A3_fadak_edit_fadak;
 	x = 0.249969 * safezoneW + safezoneX;
 	y = 0.36417 * safezoneH + safezoneY;
@@ -122,9 +122,9 @@ class edit_fadak: RscEditLCD
 	tooltip = $STR_current_freq;
 	canModify = 1;
 };
-class channel_edit_fadak: RscEditLCD
+class channel_edit: RscEditLCD
 {
-	idc = IDC_FADAK_CHANNEL_EDIT_FADAK;
+	idc = IDC_FADAK_CHANNEL_EDIT;
 	text = $STR_A3_fadak_channel_edit_fadak;
 	x = 0.259813 * safezoneW + safezoneX;
 	y = 0.315159 * safezoneH + safezoneY;
@@ -133,9 +133,9 @@ class channel_edit_fadak: RscEditLCD
 	tooltip = $STR_current_channel;
 	canModify = 0;
 };
-class fadak_stereo: HiddenButton
+class stereo: HiddenButton
 {
-	idc = IDC_FADAK_FADAK_STEREO;
+	idc = IDC_FADAK_STEREO;
 	x = 0.255219 * safezoneW + safezoneX;
 	y = 0.652634 * safezoneH + safezoneY;
 	w = 0.0164063 * safezoneW;
