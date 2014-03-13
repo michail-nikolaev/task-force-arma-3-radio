@@ -108,18 +108,23 @@ public:
 	}
 
 	virtual void process(float* buffer, int samplesNumber)
-	{
+	{				
+		double acc = 0.0;
+		for (int q = 0; q < samplesNumber; q++) acc += fabs(buffer[q]);
+		double avg = acc / samplesNumber;		
+		static float base = 0.005;
 
-		for (int q = 0; q < samplesNumber; q++) buffer[q] *= 15;
+		float x = avg / base;
+
 
 		for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);
-		for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], 1.0f - 0.6f * (1.0f - errorLevel));
-		for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], 0.5f * (1.0f - errorLevel));		
+		for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], errorLevel);
+		for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], 0.3f * (1.0f - errorLevel) * x);	
 
 		processFilter(filterSpeakerHP, buffer, samplesNumber);
 		processFilter(filterSpeakerLP, buffer, samplesNumber);
-
-		for (int q = 0; q < samplesNumber; q++) buffer[q] *= 4;
+		
+		for (int q = 0; q < samplesNumber; q++) buffer[q] = buffer[q] *= 30;
 	}
 
 
@@ -148,19 +153,19 @@ protected:
 	float calcErrorLevel(float errorLevel)
 	{
 		double levels[] = { 0.0, 0.150000006, 0.300000012, 0.600000024, 0.899999976, 0.950000048, 0.960000038, 0.970000029, 0.980000019, 0.995000005, 0.997799993, 0.998799993, 0.999 };
-		
-		int part = (int) (errorLevel * 10.0);
+
+		int part = (int)(errorLevel * 10.0);
 		double from = levels[part];
 		double to = levels[part + 1];
 
 		double result = from + (from - to) * (errorLevel - part / 10.0);
-		return (float) result;
-	}	
+		return (float)result;
+	}
 
 
 	float foldback(float in, float threshold)
 	{
-		if (threshold < 0.001) return 0.0f;
+		if (threshold < 0.00001) return 0.0f;
 		if (in>threshold || in<-threshold)
 		{
 			in = fabs(fabs(fmod(in - threshold, threshold*4)) - threshold*2) - threshold;
