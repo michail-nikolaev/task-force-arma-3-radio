@@ -75,7 +75,7 @@ TF_dd_volume_level = 7;
 TF_MIN_DD_FREQ = 32;
 TF_MAX_DD_FREQ = 41;
 
-TF_terrain_interception_coefficient = 130.0;
+TF_terrain_interception_coefficient = 10.0;
 
 TF_HintFnc = nil;
 

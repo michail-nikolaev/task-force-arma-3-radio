@@ -38,8 +38,8 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -242,7 +242,7 @@ struct SERVER_RADIO_DATA
 	{
 		tangentPressed = false;
 		currentDataFrame = INVALID_DATA_FRAME;
-		terrainIntersectionCoefficient = 130.0f;
+		terrainIntersectionCoefficient = 10.0f;
 	}
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
@@ -529,7 +529,7 @@ float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
 	TS3_VECTOR clientPosition = data->clientPosition;
 	float d = distance(myPosition, clientPosition);	
-	return d + data->terrainInterception * (d / serverIdToData[serverConnectionHandlerID].terrainIntersectionCoefficient);
+	return d + data->terrainInterception *  serverIdToData[serverConnectionHandlerID].terrainIntersectionCoefficient;
 }
 
 
