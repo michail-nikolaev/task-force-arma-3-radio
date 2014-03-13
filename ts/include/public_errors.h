@@ -26,6 +26,10 @@ const unsigned int ERROR_client_not_logged_in                   = 0x0206;
 const unsigned int ERROR_client_could_not_validate_identity     = 0x0207;
 const unsigned int ERROR_client_version_outdated                = 0x020a;
 const unsigned int ERROR_client_is_flooding                     = 0x020c;
+const unsigned int ERROR_client_hacked                          = 0x020d;
+const unsigned int ERROR_client_cannot_verify_now               = 0x020e;
+const unsigned int ERROR_client_login_not_permitted             = 0x020f;
+const unsigned int ERROR_client_not_subscribed                  = 0x0210;
 
 //channel
 const unsigned int ERROR_channel_invalid_id                     = 0x0300;
@@ -42,6 +46,7 @@ const unsigned int ERROR_channel_maxfamily_reached              = 0x030a;
 const unsigned int ERROR_channel_invalid_order                  = 0x030b;
 const unsigned int ERROR_channel_no_filetransfer_supported      = 0x030c;
 const unsigned int ERROR_channel_invalid_password               = 0x030d;
+const unsigned int ERROR_channel_invalid_security_hash          = 0x030f; //note 0x030e is defined in public_rare_errors;
 
 //server
 const unsigned int ERROR_server_invalid_id                      = 0x0400;
@@ -53,6 +58,7 @@ const unsigned int ERROR_server_is_virtual                      = 0x0407;
 const unsigned int ERROR_server_is_not_running                  = 0x0409;
 const unsigned int ERROR_server_is_booting                      = 0x040a;
 const unsigned int ERROR_server_status_invalid                  = 0x040b;
+const unsigned int ERROR_server_version_outdated                = 0x040d;
 
 //parameter
 const unsigned int ERROR_parameter_quote                        = 0x0600;
@@ -106,6 +112,11 @@ const unsigned int ERROR_sound_device_busy                      = 0x0916; //for 
 const unsigned int ERROR_sound_no_data                          = 0x0917;
 const unsigned int ERROR_sound_channel_mask_mismatch            = 0x0918;
 
+
+//permissions
+const unsigned int ERROR_permissions_client_insufficient        = 0x0a08;
+const unsigned int ERROR_permissions                            = 0x0a0c;
+
 //accounting
 const unsigned int ERROR_accounting_virtualserver_limit_reached = 0x0b00;
 const unsigned int ERROR_accounting_slot_limit_reached          = 0x0b01;
@@ -142,4 +153,7 @@ const unsigned int ERROR_provisioning_connecting                = 0x1114;
 const unsigned int ERROR_provisioning_already_connected         = 0x1115;
 const unsigned int ERROR_provisioning_not_connected             = 0x1116;
 const unsigned int ERROR_provisioning_io_error                  = 0x1117;
+const unsigned int ERROR_provisioning_invalid_timeout           = 0x1118;
+const unsigned int ERROR_provisioning_ts3server_not_found       = 0x1119;
+const unsigned int ERROR_provisioning_no_permission             = 0x111A;
 #endif

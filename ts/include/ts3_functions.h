@@ -263,7 +263,7 @@ struct TS3Functions {
 	unsigned int (*getAvatar)(uint64 scHandlerID, anyID clientID, char* result, size_t maxLen);
 	void         (*setPluginMenuEnabled)(const char* pluginID, int menuID, int enabled);
 	void         (*showHotkeySetup)();
-	void         (*requestHotkeyInputDialog)(const char* pluginID, const char* keyword, void* qParentWindow);
+	void         (*requestHotkeyInputDialog)(const char* pluginID, const char* keyword, int isDown, void* qParentWindow);
 	unsigned int (*getHotkeyFromKeyword)(const char* pluginID, const char** keywords, char** hotkeys, size_t arrayLen, size_t hotkeyBufSize);
 	unsigned int (*getClientDisplayName)(uint64 scHandlerID, anyID clientID, char* result, size_t maxLen);
 	unsigned int (*getBookmarkList)(struct PluginBookmarkList** list);
