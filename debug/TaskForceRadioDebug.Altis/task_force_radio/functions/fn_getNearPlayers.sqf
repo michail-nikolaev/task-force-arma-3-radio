@@ -6,7 +6,7 @@ if (alive player) then {
 	_allUnits = (if(isMultiplayer)then{playableUnits}else{switchableUnits});
 	_index = 0;
 	{			
-		if (isPlayer _x) then {
+		//if (isPlayer _x) then {
 			_add_to_near = false;
 			if ((_players_in_group < 10) and {group player == group _x}) then {
 				_add_to_near = true; 
@@ -21,7 +21,7 @@ if (alive player) then {
 				_result set[_index, _x];
 				_index = _index + 1;
 			} 
-		};
+		//};
 	} count _allUnits;
 };
 _result
