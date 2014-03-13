@@ -10,6 +10,7 @@ const unsigned int ERROR_client_is_online                       = 0x020b;
 
 //channel
 const unsigned int ERROR_channel_is_private_channel             = 0x030e;
+//note 0x030f is defined in public_errors;
 
 //database
 const unsigned int ERROR_database                               = 0x0500;
@@ -54,10 +55,10 @@ const unsigned int ERROR_permission_default_group_forbidden     = 0x0a04;
 const unsigned int ERROR_permission_invalid_size                = 0x0a05;
 const unsigned int ERROR_permission_invalid_value               = 0x0a06;
 const unsigned int ERROR_permissions_group_not_empty            = 0x0a07;
-const unsigned int ERROR_permissions_client_insufficient        = 0x0a08;
 const unsigned int ERROR_permissions_insufficient_group_power   = 0x0a09;
 const unsigned int ERROR_permissions_insufficient_permission_power = 0x0a0a;
 const unsigned int ERROR_permission_template_group_is_used      = 0x0a0b;
+//0x0a0c is in public_errors.h
 
 //server
 const unsigned int ERROR_server_deployment_active               = 0x0405;
