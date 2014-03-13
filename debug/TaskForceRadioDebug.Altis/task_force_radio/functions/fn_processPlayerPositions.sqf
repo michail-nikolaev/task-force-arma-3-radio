@@ -13,10 +13,10 @@ if !(isNull player) then {
 		tf_farPlayers = [];
 		tf_farPlayersIndex = 0;	
 		{
-			if (isPlayer _x) then {
+			//if (isPlayer _x) then {
 				tf_farPlayers set[tf_farPlayersIndex, _x];
 				tf_farPlayersIndex = tf_farPlayersIndex + 1;
-			};
+			//};
 		} count _other_units;
 		
 		tf_farPlayersIndex = 0;	
