@@ -1428,7 +1428,7 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 #define _strcpy(dest, destSize, src) { strncpy(dest, src, destSize-1); (dest)[destSize-1] = '\0'; }
 #endif
 
-#define PLUGIN_API_VERSION 19
+#define PLUGIN_API_VERSION 20
 
 #define INFODATA_BUFSIZE 512
 
