@@ -2,7 +2,9 @@ Task Force Arma 3 radio
 =======================
 
 Arma 3 Team Speak Radio Plugin
-_v0.8.3 от 18.12.2013_
+_v0.8.3 от 13.03.2014_
+
+**<font color="green">TeamSpeak 3.0.14 поддерживается</font>**
 
 ###Установка
 
