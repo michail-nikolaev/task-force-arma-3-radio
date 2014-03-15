@@ -73,7 +73,8 @@ class rt1523g_edit: RscEditLCD
 	y = 0.363994 * safezoneH + safezoneY;
 	w = 0.0796875 * safezoneW;
 	h = 0.0510023 * safezoneH;
-	font = "tf_font_segments";
+	font = "tf_font_dots";
+	shadow = 2;
 	tooltip = $STR_current_freq;
 	canModify = 1;
 };
@@ -85,7 +86,8 @@ class rt1523g_channel_edit: RscEditLCD
 	y = 0.363994 * safezoneH + safezoneY;
 	w = 0.0870188 * safezoneW;
 	h = 0.0510023 * safezoneH;
-	font = "tf_font_segments";
+	font = "tf_font_dots";
+	shadow = 2;
 	tooltip = $STR_current_channel;
 	canModify = 0;
 };
