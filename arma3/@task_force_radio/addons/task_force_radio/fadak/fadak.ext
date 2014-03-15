@@ -120,6 +120,7 @@ class edit_fadak: RscEditLCD
 	w = 0.0492188 * safezoneW;
 	h = 0.0560125 * safezoneH;
 	font = "tf_font_segments";
+	shadow = 1;
 	tooltip = $STR_current_freq;
 	canModify = 1;
 };
@@ -132,6 +133,7 @@ class channel_edit_fadak: RscEditLCD
 	w = 0.02625 * safezoneW;
 	h = 0.0630141 * safezoneH;
 	font = "tf_font_segments";
+	shadow = 1;
 	tooltip = $STR_current_channel;
 	canModify = 0;
 };
