@@ -15,7 +15,7 @@ $[
 */
 
 
-class anprc155_radio_dialog 
+class anprc155_radio_dialog
 {
 	idd = IDC_ANPRC155_RADIO_DIALOG;
 	movingEnable = 1;
@@ -55,7 +55,8 @@ class channel_edit155: RscEditLCD
 	y = 0.341765 * safezoneH + safezoneY;
 	w = 0.0485625 * safezoneW;
 	h = 0.0658147 * safezoneH;
-	font = "tf_font_segments";
+	font = "tf_font_dots";
+	shadow = 2;
 	tooltip = $STR_current_channel;
 	moving = 1;
 	canModify = 0;
@@ -68,7 +69,8 @@ class edit155: RscEditLCD
 	y = 0.341765 * safezoneH + safezoneY;
 	w = 0.0452813 * safezoneW;
 	h = 0.0658147 * safezoneH;
-	font = "tf_font_segments";
+	font = "tf_font_dots";
+	shadow = 2;
 	tooltip = $STR_current_freq;
 	moving = 1;
 	canModify = 1;
