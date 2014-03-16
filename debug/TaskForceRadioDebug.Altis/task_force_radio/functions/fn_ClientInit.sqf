@@ -46,6 +46,9 @@ if (isNil "TF_defaultEastPersonalRadio") then {
 if (isNil "TF_defaultGuerPersonalRadio") then {
 	TF_defaultGuerPersonalRadio = "tf_anprc148jem";
 };
+if (isNil "TF_terrain_interception_coefficient") then {
+	TF_terrain_interception_coefficient = 10.0;
+};
 
 disableSerialization;
 #include "diary.sqf"
@@ -74,8 +77,6 @@ TF_dd_volume_level = 7;
 
 TF_MIN_DD_FREQ = 32;
 TF_MAX_DD_FREQ = 41;
-
-TF_terrain_interception_coefficient = 10.0;
 
 TF_HintFnc = nil;
 
@@ -111,6 +112,7 @@ TF_dd_frequency = str (round (((random (TF_MAX_DD_FREQ - TF_MIN_DD_FREQ)) + TF_M
 
 TF_speak_volume_level = "normal";
 TF_speak_volume_meters = 20;
+TF_max_voice_volume = 60;
 TF_sw_dialog_radio = nil;
 
 TF_lr_dialog_radio = nil;

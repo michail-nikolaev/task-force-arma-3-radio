@@ -6,6 +6,6 @@
  */
 private ["_isolated"];
 
-_isolated = [(typeof _this), "tf_isolatedAmount"] call TFAR_fnc_getConfigProperty;
+_isolated = [(typeof _this), "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty;
 
 _isolated > 0.5

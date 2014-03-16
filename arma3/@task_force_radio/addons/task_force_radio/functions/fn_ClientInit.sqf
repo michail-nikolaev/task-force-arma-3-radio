@@ -46,6 +46,9 @@ if (isNil "TF_defaultEastPersonalRadio") then {
 if (isNil "TF_defaultGuerPersonalRadio") then {
 	TF_defaultGuerPersonalRadio = "tf_anprc148jem";
 };
+if (isNil "TF_terrain_interception_coefficient") then {
+	TF_terrain_interception_coefficient = 10.0;
+};
 
 disableSerialization;
 #include "diary.sqf"
@@ -74,8 +77,6 @@ TF_dd_volume_level = 7;
 
 TF_MIN_DD_FREQ = 32;
 TF_MAX_DD_FREQ = 41;
-
-TF_terrain_interception_coefficient = 10.0;
 
 TF_HintFnc = nil;
 
@@ -111,6 +112,7 @@ TF_dd_frequency = str (round (((random (TF_MAX_DD_FREQ - TF_MIN_DD_FREQ)) + TF_M
 
 TF_speak_volume_level = "normal";
 TF_speak_volume_meters = 20;
+TF_max_voice_volume = 60;
 TF_sw_dialog_radio = nil;
 
 TF_lr_dialog_radio = nil;
@@ -194,7 +196,7 @@ tf_msSpectatorPerStepMax = 0.035;
 	[TF_sw_stereo_right_scancode, TF_sw_stereo_right_modifiers, {[2] call TFAR_fnc_processSWStereoKeys}, "keydown", "27"] call CBA_fnc_addKeyHandler;
 	[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers, {[0] call TFAR_fnc_processLRStereoKeys}, "keydown", "28"] call CBA_fnc_addKeyHandler;
 	[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers, {[1] call TFAR_fnc_processLRStereoKeys}, "keydown", "29"] call CBA_fnc_addKeyHandler;
-	[TF_lr_stereo_right_scancode, TF_lr_stereo_right_modifiers, {[2] call TFAR_fnc_processLRStereoKeys}, "keydown", "30"] call CBA_fnc_addKeyHandler;
+	[TF_lr_stereo_right_scancode, TF_lr_stereo_right_modifiers, {[2] call TFAR_fnc_processLRStereoKeys}, "keydown", "30"] call CBA_fnc_addKeyHandler;	
 	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;

@@ -28,7 +28,7 @@ if (_activated) then
 	
 	// Begin LR radios
 	_radio = _logic getVariable "WestLRradio";
-	if (([_radio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then
+	if (([_radio, "tf_hasLrRadio", 0] call TFAR_fnc_getConfigProperty) == 1) then
 	{
 		TF_defaultWestBackpack = _radio;
 	}
@@ -38,7 +38,7 @@ if (_activated) then
 		hint format ["TFAR ERROR: %1 is not a valid LR radio", _radio];
 	};
 	_radio = _logic getVariable "EastLRradio";
-	if (([_radio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then
+	if (([_radio, "tf_hasLrRadio", 0] call TFAR_fnc_getConfigProperty) == 1) then
 	{
 		TF_defaultEastBackpack = _radio;
 	}
@@ -48,7 +48,7 @@ if (_activated) then
 		hint format ["TFAR ERROR: %1 is not a valid LR radio", _radio];
 	};
 	_radio = _logic getVariable "GuerLRradio";
-	if (([_radio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then
+	if (([_radio, "tf_hasLrRadio", 0] call TFAR_fnc_getConfigProperty) == 1) then
 	{
 		TF_defaultGuerBackpack = _radio;
 	}
