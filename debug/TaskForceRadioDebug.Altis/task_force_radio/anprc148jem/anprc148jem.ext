@@ -2,16 +2,16 @@
 $[
 	1.063,
 	["anprc148jem",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
-	[1200,"",[1,"task_force_radio\anprc148jem\148.paa",["-0.0269687 * safezoneW + safezoneX","-0.0251171 * safezoneH + safezoneY","0.555188 * safezoneW","1.00402 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1600,"enter148",[1,"",["0.278844 * safezoneW + safezoneX","0.497199 * safezoneH + safezoneY","0.0275625 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
-	[1601,"clear148",[1,"",["0.280156 * safezoneW + safezoneX","0.457991 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Clear frequency","-1"],[]],
-	[1400,"edit148",[1,"188.8",["0.238813 * safezoneW + safezoneX","0.351567 * safezoneH + safezoneY","0.0623438 * safezoneW","0.067215 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current frequency","-1"],[]],
-	[1401,"channel_edit148",[1,"C3",["0.207312 * safezoneW + safezoneX","0.351567 * safezoneH + safezoneY","0.0301875 * safezoneW","0.067215 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current channel","-1"],[]],
-	[1602,"prev_channel148",[1,"",["0.204031 * safezoneW + safezoneX","0.495799 * safezoneH + safezoneY","0.023625 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
-	[1603,"next_channel148",[1,"",["0.242094 * safezoneW + safezoneX","0.497199 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
-	[1604,"increase_volume148",[1,"",["0.242094 * safezoneW + safezoneX","0.45659 * safezoneH + safezoneY","0.0242813 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
-	[1605,"decrease_volume148",[1,"",["0.202719 * safezoneW + safezoneX","0.457991 * safezoneH + safezoneY","0.0269063 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
-	[1606,"stereo148",[1,"",["0.201406 * safezoneW + safezoneX","0.536408 * safezoneH + safezoneY","0.018375 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]]
+	[1200,"background",[1,"task_force_radio\anprc148jem\148.paa",["-0.0269687 * safezoneW + safezoneX","-0.0251171 * safezoneH + safezoneY","0.555188 * safezoneW","1.00402 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1600,"enter",[1,"",["0.278844 * safezoneW + safezoneX","0.497199 * safezoneH + safezoneY","0.0275625 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
+	[1601,"clear",[1,"",["0.280156 * safezoneW + safezoneX","0.457991 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Clear frequency","-1"],[]],
+	[1400,"edit",[1,"188.8",["0.238813 * safezoneW + safezoneX","0.351567 * safezoneH + safezoneY","0.0623438 * safezoneW","0.067215 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current frequency","-1"],[]],
+	[1401,"channel_edit",[1,"C3",["0.207312 * safezoneW + safezoneX","0.351567 * safezoneH + safezoneY","0.0301875 * safezoneW","0.067215 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current channel","-1"],[]],
+	[1602,"prev_channel",[1,"",["0.204031 * safezoneW + safezoneX","0.495799 * safezoneH + safezoneY","0.023625 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
+	[1603,"next_channel",[1,"",["0.242094 * safezoneW + safezoneX","0.497199 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
+	[1604,"increase_volume",[1,"",["0.242094 * safezoneW + safezoneX","0.45659 * safezoneH + safezoneY","0.0242813 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
+	[1605,"decrease_volume",[1,"",["0.202719 * safezoneW + safezoneX","0.457991 * safezoneH + safezoneY","0.0269063 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
+	[1606,"stereo",[1,"",["0.201406 * safezoneW + safezoneX","0.536408 * safezoneH + safezoneY","0.018375 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]]
 ]
 */
 
@@ -20,30 +20,30 @@ $[
 
 class anprc148jem_radio_dialog
 {
-	idd = IDC_ANPRC148JEM_DIALOG;
+	idd = IDD_ANPRC148JEM_RADIO_DIALOG;
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
 	controls[]=
 {
-	background148,
-	enter148,
-	clear148,
-	edit148,
-	channel_edit148,
-	prev_channel148,
-	next_channel148,
-	increase_volume148,
-	decrease_volume148,
-	stereo148
+	background,
+	enter,
+	clear,
+	edit,
+	channel_edit,
+	prev_channel,
+	next_channel,
+	increase_volume,
+	decrease_volume,
+	stereo
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Horegy)
 ////////////////////////////////////////////////////////
 
-class background148: RscBackPicture
+class background: RscBackPicture
 {
-	idc = IDC_ANPRC148JEM_RSCPICTURE_1200;
+	idc = IDC_ANPRC148JEM_BACKGROUND;
 	text = "task_force_radio\anprc148jem\148.paa";
 	x = -0.0269687 * safezoneW + safezoneX;
 	y = -0.0251171 * safezoneH + safezoneY;
@@ -51,9 +51,9 @@ class background148: RscBackPicture
 	h = 1.00402 * safezoneH;
 	moving = 1;
 };
-class enter148: HiddenButton
+class enter: HiddenButton
 {
-	idc = IDC_ANPRC148JEM_ENTER148;
+	idc = IDC_ANPRC148JEM_ENTER;
 	x = 0.278844 * safezoneW + safezoneX;
 	y = 0.497199 * safezoneH + safezoneY;
 	w = 0.0275625 * safezoneW;
@@ -61,9 +61,9 @@ class enter148: HiddenButton
 	tooltip = $STR_set_frequency;
 	action = "_f = parseNumber(ctrlText IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID);  if ((_f >= TF_MIN_SW_FREQ) and (_f <= TF_MAX_SW_FREQ)) then {[TF_sw_dialog_radio, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setSwFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_SW_FREQ, TF_MAX_SW_FREQ]}; call TFAR_fnc_updateSWDialogToChannel;";
 };
-class clear148: HiddenButton
+class clear: HiddenButton
 {
-	idc = IDC_ANPRC148JEM_CLEAR148;
+	idc = IDC_ANPRC148JEM_CLEAR;
 	x = 0.280156 * safezoneW + safezoneX;
 	y = 0.457991 * safezoneH + safezoneY;
 	w = 0.0249375 * safezoneW;
@@ -71,9 +71,9 @@ class clear148: HiddenButton
 	tooltip = $STR_clear_frequency;
 	action = "ctrlSetText [IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANPRC148JEM_RADIO_DIALOG_ID) displayCtrl IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID);";
 };
-class edit148: RscEditLCD
+class edit: RscEditLCD
 {
-	idc = IDC_ANPRC148JEM_EDIT148;
+	idc = IDC_ANPRC148JEM_EDIT;
 	text = $STR_A3_anprc148jem_edit148;
 	x = 0.238813 * safezoneW + safezoneX;
 	y = 0.351567 * safezoneH + safezoneY;
@@ -85,9 +85,9 @@ class edit148: RscEditLCD
 	canModify = 1;
 	moving = 1;
 };
-class channel_edit148: RscEditLCD
+class channel_edit: RscEditLCD
 {
-	idc = IDC_ANPRC148JEM_CHANNEL_EDIT148;
+	idc = IDC_ANPRC148JEM_CHANNEL_EDIT;
 	text = $STR_A3_anprc148jem_channel_edit148;
 	x = 0.207312 * safezoneW + safezoneX;
 	y = 0.351567 * safezoneH + safezoneY;
@@ -99,9 +99,9 @@ class channel_edit148: RscEditLCD
 	canModify = 0;
 	moving = 1;
 };
-class prev_channel148: HiddenButton
+class prev_channel: HiddenButton
 {
-	idc = IDC_ANPRC148JEM_PREV_CHANNEL148;
+	idc = IDC_ANPRC148JEM_PREV_CHANNEL;
 	x = 0.204031 * safezoneW + safezoneX;
 	y = 0.495799 * safezoneH + safezoneY;
 	w = 0.023625 * safezoneW;
@@ -109,9 +109,9 @@ class prev_channel148: HiddenButton
 	tooltip = $STR_previous_channel;
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;";
 };
-class next_channel148: HiddenButton
+class next_channel: HiddenButton
 {
-	idc = IDC_ANPRC148JEM_NEXT_CHANNEL148;
+	idc = IDC_ANPRC148JEM_NEXT_CHANNEL;
 	x = 0.242094 * safezoneW + safezoneX;
 	y = 0.497199 * safezoneH + safezoneY;
 	w = 0.0249375 * safezoneW;
@@ -119,9 +119,9 @@ class next_channel148: HiddenButton
 	tooltip = $STR_next_channel;
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;";
 };
-class increase_volume148: HiddenButton
+class increase_volume: HiddenButton
 {
-	idc = IDC_ANPRC148JEM_INCREASE_VOLUME148;
+	idc = IDC_ANPRC148JEM_INCREASE_VOLUME;
 	x = 0.242094 * safezoneW + safezoneX;
 	y = 0.45659 * safezoneH + safezoneY;
 	w = 0.0242813 * safezoneW;
@@ -129,9 +129,9 @@ class increase_volume148: HiddenButton
 	tooltip = $STR_increase_volume;
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)+ 1) * 10)];";
 };
-class decrease_volume148: HiddenButton
+class decrease_volume: HiddenButton
 {
-	idc = IDC_ANPRC148JEM_DECREASE_VOLUME148;
+	idc = IDC_ANPRC148JEM_DECREASE_VOLUME;
 	x = 0.202719 * safezoneW + safezoneX;
 	y = 0.457991 * safezoneH + safezoneY;
 	w = 0.0269063 * safezoneW;
@@ -139,9 +139,9 @@ class decrease_volume148: HiddenButton
 	tooltip = $STR_decrease_volume;
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) * 10)];";
 };
-class stereo148: HiddenButton
+class stereo: HiddenButton
 {
-	idc = IDC_ANPRC148JEM_STEREO148;
+	idc = IDC_ANPRC148JEM_STEREO;
 	x = 0.201406 * safezoneW + safezoneX;
 	y = 0.536408 * safezoneH + safezoneY;
 	w = 0.018375 * safezoneW;

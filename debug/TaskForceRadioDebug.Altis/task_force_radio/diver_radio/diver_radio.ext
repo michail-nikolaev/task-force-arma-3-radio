@@ -15,24 +15,24 @@ $[
 
 class diver_radio_dialog
 {
-	idd = IDC_DIVER_RADIO_DIALOG;
+	idd = IDD_DIVER_RADIO_DIALOG;
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
 	controls[]=
 {
-	diver_background,
-	diver_enter,
-	diver_edit,
-	diver_depth_edit,
-	diver_clear,
+	background,
+	enter,
+	edit,
+	depth_edit,
+	clear,
 	increase_volume
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Nipifi)
 ////////////////////////////////////////////////////////
 
-class diver_background: RscBackPicture
+class background: RscBackPicture
 {
 	idc = IDC_DIVER_RADIO_BACKGROUND;
 	text = "task_force_radio\diver_radio\diver_radio.paa";
@@ -42,7 +42,7 @@ class diver_background: RscBackPicture
 	h = 0.4467 * safezoneH;
 	moving = 1;
 };
-class diver_enter: HiddenButton
+class enter: HiddenButton
 {
 	idc = IDC_DIVER_RADIO_ENTER;
 	x = 0.324688 * safezoneW + safezoneX;
@@ -52,7 +52,7 @@ class diver_enter: HiddenButton
 	tooltip = $STR_set_frequency;
 	action = "_f = parseNumber(ctrlText IDC_DIVER_RADIO_EDIT_ID);  if ((_f >= TF_MIN_DD_FREQ) and (_f <= TF_MAX_DD_FREQ)) then {TF_dd_frequency = str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER); call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_DD_FREQ, TF_MAX_DD_FREQ]}; call TFAR_fnc_updateDDDialog;";
 };
-class diver_clear: HiddenButton
+class clear: HiddenButton
 {
 	idc = IDC_DIVER_RADIO_CLEAR;
 	x = 0.254562 * safezoneW + safezoneX;
@@ -62,7 +62,7 @@ class diver_clear: HiddenButton
 	action = "ctrlSetText [IDC_DIVER_RADIO_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_DIDER_RADIO_DIALOG_ID) displayCtrl IDC_DIVER_RADIO_EDIT_ID);";
 	tooltip = $STR_clear_frequency;
 };
-class diver_edit: RscEditLCD
+class edit: RscEditLCD
 {
 	idc = IDC_DIVER_RADIO_EDIT;
 	text = "32.7"; //--- ToDo: Localize;
@@ -86,9 +86,9 @@ class increase_volume: HiddenButton
 	action = "TF_dd_volume_level = (TF_dd_volume_level + 1) mod TF_MAX_DD_VOLUME; hint formatText [localize 'STR_radio_volume', ((TF_dd_volume_level + 1) * 10)];";
 	tooltip = $STR_volume;
 };
-class diver_depth_edit: RscEditLCD
+class depth_edit: RscEditLCD
 {
-	idc = IDC_DIVER_RADIO_DEPTH;
+	idc = IDC_DIVER_RADIO_DEPTH_EDIT;
 	text = "24m"; //--- ToDo: Localize;
 	x = 0.253766 * safezoneW + safezoneX;
 	y = 0.488099 * safezoneH + safezoneY;
