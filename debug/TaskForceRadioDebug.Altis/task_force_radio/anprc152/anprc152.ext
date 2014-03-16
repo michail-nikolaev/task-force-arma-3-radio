@@ -17,7 +17,7 @@ $[
 
 
 
-class anprc152_radio_dialog 
+class anprc152_radio_dialog
 {
 	idd = IDC_ANPRC152_RADIO_DIALOG;
 	movingEnable = 1;
@@ -60,6 +60,8 @@ class edit: RscEditLCD
 	h = 0.043352 * safezoneH;
 	tooltip = $STR_current_freq;
 	canModify = 1;
+	font = "tf_font_dots";
+	shadow = 2;
 };
 class channel_edit: RscEditLCD
 {
@@ -71,6 +73,8 @@ class channel_edit: RscEditLCD
 	h = 0.042927 * safezoneH;
 	tooltip = $STR_current_channel;
 	canModify = 0;
+	font = "tf_font_dots";
+	shadow = 2;
 };
 class enter: HiddenButton
 {
@@ -144,6 +148,6 @@ class stereo152: HiddenButton
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
-////////////////////////////////////////////////////////	
+////////////////////////////////////////////////////////
 
 };
