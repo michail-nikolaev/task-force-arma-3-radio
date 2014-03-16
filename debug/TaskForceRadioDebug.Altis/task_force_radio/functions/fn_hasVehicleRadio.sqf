@@ -8,6 +8,6 @@ private "_result";
 _result = _this getVariable "tf_hasRadio";
 if (isNil "_result") then
 {
-	_result = ([(typeof _this), "tf_hasLRradio"] call TFAR_fnc_getConfigProperty == 1);
+	_result = ([(typeof _this), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1);
 };
 _result

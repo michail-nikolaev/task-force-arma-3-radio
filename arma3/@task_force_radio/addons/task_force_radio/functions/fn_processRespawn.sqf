@@ -7,7 +7,7 @@
 		if (leader player == player) then
 		{	
 			if (tf_no_auto_long_range_radio or {backpack player == "B_Parachute"}) exitWith {};
-			if ([(backpack player), "tf_hasLRradio"] call TFAR_fnc_getConfigProperty == 1) exitWith {};
+			if ([(backpack player), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1) exitWith {};
 			
 			private ["_items", "_backPack", "_newItems"];
 			_items = backpackItems player;

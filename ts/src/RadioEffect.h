@@ -112,9 +112,9 @@ public:
 		double acc = 0.0;
 		for (int q = 0; q < samplesNumber; q++) acc += fabs(buffer[q]);
 		double avg = acc / samplesNumber;		
-		static float base = 0.005;
+		static double base = 0.005f;
 
-		float x = avg / base;
+		float x = (float) (avg / base);
 
 
 		for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);

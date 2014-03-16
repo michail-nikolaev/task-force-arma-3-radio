@@ -115,6 +115,8 @@ class CfgFunctions
 			class ShowRadioInfo{};
 			class setSwRadioCode{};
 			class setLrRadioCode{};
+			class setVoiceVolume{};
+			class objectInterception{};
 		};
 	};
 };
