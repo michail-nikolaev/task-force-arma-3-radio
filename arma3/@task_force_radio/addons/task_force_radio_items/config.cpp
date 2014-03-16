@@ -376,7 +376,7 @@ class CfgWeapons
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\anprc154\154_icon.paa";
 		tf_prototype = 1;
-		tf_range = 1500;
+		tf_range = 2000;
 		tf_dialog = "anprc154_radio_dialog";
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialogUpdate = "";	
@@ -391,7 +391,7 @@ class CfgWeapons
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\rf7800str\rf7800str_icon.paa";
 		tf_prototype = 1;
-		tf_range = 1500;
+		tf_range = 2000;
 		tf_dialog = "rf7800str_radio_dialog";
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialogUpdate = "";	
