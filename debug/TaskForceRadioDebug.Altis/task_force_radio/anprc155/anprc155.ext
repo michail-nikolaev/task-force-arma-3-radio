@@ -2,44 +2,44 @@
 $[
 	1.063,
 	["anprc155",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
-	[1200,"background155",[1,"task_force_radio\anprc155\155.paa",["0.087875 * safezoneW + safezoneX","-0.167949 * safezoneH + safezoneY","0.634594 * safezoneW","1.10205 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1400,"channel_edit155",[1,"CH:3",["0.330031 * safezoneW + safezoneX","0.341765 * safezoneH + safezoneY","0.0485625 * safezoneW","0.0658147 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current channel","-1"],[]],
-	[1401,"edit155",[1,"88.8",["0.37925 * safezoneW + safezoneX","0.341765 * safezoneH + safezoneY","0.0452813 * safezoneW","0.0658147 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current frequency","-1"],[]],
-	[1600,"enter155",[1,"",["0.41075 * safezoneW + safezoneX","0.505601 * safezoneH + safezoneY","0.023625 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
-	[1601,"clear155",[1,"",["0.408781 * safezoneW + safezoneX","0.473394 * safezoneH + safezoneY","0.0216563 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Clear frequency","-1"],[]],
-	[1602,"prev_channel155",[1,"",["0.362844 * safezoneW + safezoneX","0.537808 * safezoneH + safezoneY","0.02625 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
-	[1603,"next_channel155",[1,"",["0.362844 * safezoneW + safezoneX","0.470593 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1604,"increase_volume155",[1,"",["0.408781 * safezoneW + safezoneX","0.540609 * safezoneH + safezoneY","0.021 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Change volume","-1"],[]],
-	[1605,"stereo155",[1,"",["0.317563 * safezoneW + safezoneX","0.54481 * safezoneH + safezoneY","0.0223125 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1200,"background",[1,"task_force_radio\anprc155\155.paa",["0.087875 * safezoneW + safezoneX","-0.167949 * safezoneH + safezoneY","0.634594 * safezoneW","1.10205 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1400,"channel_edit",[1,"CH:3",["0.330031 * safezoneW + safezoneX","0.341765 * safezoneH + safezoneY","0.0485625 * safezoneW","0.0658147 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current channel","-1"],[]],
+	[1401,"edit",[1,"88.8",["0.37925 * safezoneW + safezoneX","0.341765 * safezoneH + safezoneY","0.0452813 * safezoneW","0.0658147 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current frequency","-1"],[]],
+	[1600,"enter",[1,"",["0.41075 * safezoneW + safezoneX","0.505601 * safezoneH + safezoneY","0.023625 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
+	[1601,"clear",[1,"",["0.408781 * safezoneW + safezoneX","0.473394 * safezoneH + safezoneY","0.0216563 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Clear frequency","-1"],[]],
+	[1602,"prev_channel",[1,"",["0.362844 * safezoneW + safezoneX","0.537808 * safezoneH + safezoneY","0.02625 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
+	[1603,"next_channel",[1,"",["0.362844 * safezoneW + safezoneX","0.470593 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1604,"increase_volume",[1,"",["0.408781 * safezoneW + safezoneX","0.540609 * safezoneH + safezoneY","0.021 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Change volume","-1"],[]],
+	[1605,"stereo",[1,"",["0.317563 * safezoneW + safezoneX","0.54481 * safezoneH + safezoneY","0.0223125 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
 
 class anprc155_radio_dialog
 {
-	idd = IDC_ANPRC155_RADIO_DIALOG;
+	idd = IDD_ANPRC155_RADIO_DIALOG;
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
 controls[]=
 {
-	background155,
-	enter155,
-	channel_edit155,
-	edit155,
-	clear155,
-	prev_channel155,
-	next_channel155,
-	increase_volume155,
-	stereo155
+	background,
+	enter,
+	channel_edit,
+	edit,
+	clear,
+	prev_channel,
+	next_channel,
+	increase_volume,
+	stereo
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Telovy)
 ////////////////////////////////////////////////////////
 
-class background155: RscBackPicture
+class background: RscBackPicture
 {
-	idc = IDC_ANPRC155_BACKGROUND155;
+	idc = IDC_ANPRC155_BACKGROUND;
 	text = "task_force_radio\anprc155\155.paa";
 	x = 0.087875 * safezoneW + safezoneX;
 	y = -0.167949 * safezoneH + safezoneY;
@@ -47,9 +47,9 @@ class background155: RscBackPicture
 	h = 1.10205 * safezoneH;
 	moving = 1;
 };
-class channel_edit155: RscEditLCD
+class channel_edit: RscEditLCD
 {
-	idc = IDC_ANPRC155_CHANNEL_EDIT155;
+	idc = IDC_ANPRC155_CHANNEL_EDIT;
 	text = $STR_A3_anprc155_channel_edit155;
 	x = 0.330031 * safezoneW + safezoneX;
 	y = 0.341765 * safezoneH + safezoneY;
@@ -61,9 +61,9 @@ class channel_edit155: RscEditLCD
 	moving = 1;
 	canModify = 0;
 };
-class edit155: RscEditLCD
+class edit: RscEditLCD
 {
-	idc = IDC_ANPRC155_EDIT155;
+	idc = IDC_ANPRC155_EDIT;
 	text = $STR_A3_anprc155_edit155;
 	x = 0.37925 * safezoneW + safezoneX;
 	y = 0.341765 * safezoneH + safezoneY;
@@ -75,9 +75,9 @@ class edit155: RscEditLCD
 	moving = 1;
 	canModify = 1;
 };
-class enter155: HiddenButton
+class enter: HiddenButton
 {
-	idc = IDC_ANPRC155_ENTER155;
+	idc = IDC_ANPRC155_ENTER;
 	x = 0.41075 * safezoneW + safezoneX;
 	y = 0.505601 * safezoneH + safezoneY;
 	w = 0.023625 * safezoneW;
@@ -85,9 +85,9 @@ class enter155: HiddenButton
 	tooltip = $STR_set_frequency;
 	action = "_f = parseNumber(ctrlText IDC_ANPRC155_RADIO_DIALOG_EDIT_ID);if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setLrFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_ASIP_FREQ, TF_MAX_ASIP_FREQ]}; call TFAR_fnc_updateLRDialogToChannel;";
 };
-class clear155: HiddenButton
+class clear: HiddenButton
 {
-	idc = IDC_ANPRC155_CLEAR155;
+	idc = IDC_ANPRC155_CLEAR;
 	x = 0.408781 * safezoneW + safezoneX;
 	y = 0.473394 * safezoneH + safezoneY;
 	w = 0.0216563 * safezoneW;
@@ -95,9 +95,9 @@ class clear155: HiddenButton
 	tooltip = $STR_clear_frequency;
 	action = "ctrlSetText [IDC_ANPRC155_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANPRC155_RADIO_DIALOG_ID) displayCtrl IDC_ANPRC155_RADIO_DIALOG_EDIT_ID);";
 };
-class prev_channel155: HiddenButton
+class prev_channel: HiddenButton
 {
-	idc = IDC_ANPRC155_PREV_CHANNEL155;
+	idc = IDC_ANPRC155_PREV_CHANNEL;
 	x = 0.362844 * safezoneW + safezoneX;
 	y = 0.537808 * safezoneH + safezoneY;
 	w = 0.02625 * safezoneW;
@@ -105,9 +105,9 @@ class prev_channel155: HiddenButton
 	tooltip = $STR_previous_channel;
 	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1,  ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) - 1 + TF_MAX_LR_CHANNELS) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;";
 };
-class next_channel155: HiddenButton
+class next_channel: HiddenButton
 {
-	idc = IDC_ANPRC155_NEXT_CHANNEL155;
+	idc = IDC_ANPRC155_NEXT_CHANNEL;
 	x = 0.362844 * safezoneW + safezoneX;
 	y = 0.470593 * safezoneH + safezoneY;
 	w = 0.0249375 * safezoneW;
@@ -115,9 +115,9 @@ class next_channel155: HiddenButton
 	tooltip = $STR_next_channel;
 	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;";
 };
-class increase_volume155: HiddenButton
+class increase_volume: HiddenButton
 {
-	idc = IDC_ANPRC155_INCREASE_VOLUME155;
+	idc = IDC_ANPRC155_INCREASE_VOLUME;
 	x = 0.408781 * safezoneW + safezoneX;
 	y = 0.540609 * safezoneH + safezoneY;
 	w = 0.021 * safezoneW;
@@ -125,9 +125,9 @@ class increase_volume155: HiddenButton
 	tooltip = $STR_volume;
 	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;  hint formatText [localize 'STR_radio_volume', (((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) * 10)]";
 };
-class stereo155: HiddenButton
+class stereo: HiddenButton
 {
-	idc = IDC_ANPRC155_STEREO155;
+	idc = IDC_ANPRC155_STEREO;
 	x = 0.317563 * safezoneW + safezoneX;
 	y = 0.54481 * safezoneH + safezoneY;
 	w = 0.0223125 * safezoneW;
