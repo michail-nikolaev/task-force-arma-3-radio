@@ -64,7 +64,7 @@ controls[]=
 class mr3000_background: RscBackPicture
 {
 	idc = IDC_MR3000_MR3000_BACKGROUND;
-	text = "task_force_radio\mr3000\mr3000.paa";
+	text = "\task_force_radio\mr3000\mr3000.paa";
 	x = 0.139062 * safezoneW + safezoneX;
 	y = -0.130141 * safezoneH + safezoneY;
 	w = 0.610313 * safezoneW;
