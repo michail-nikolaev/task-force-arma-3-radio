@@ -331,7 +331,7 @@ class CfgWeapons
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\anprc152\152_icon.paa";
 		tf_prototype = 1;
-		tf_range = 3000;
+		tf_range = 5000;
 		tf_dialog = "anprc152_radio_dialog";
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
@@ -346,7 +346,7 @@ class CfgWeapons
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\anprc148jem\148_icon.paa";
 		tf_prototype = 1;
-		tf_range = 3000;
+		tf_range = 5000;
 		tf_dialog = "anprc148jem_radio_dialog";
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
@@ -361,7 +361,7 @@ class CfgWeapons
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\fadak\fadak_icon.paa";
 		tf_prototype = 1;
-		tf_range = 3000;
+		tf_range = 5000;
 		tf_dialog = "fadak_radio_dialog";
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";	
