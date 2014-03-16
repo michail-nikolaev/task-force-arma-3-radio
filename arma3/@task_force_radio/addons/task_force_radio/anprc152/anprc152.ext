@@ -11,7 +11,7 @@ $[
 	[1401,"channel_edit",[1,"",["0.141162 * safezoneW + safezoneX","0.368021 * safezoneH + safezoneY","0.0398438 * safezoneW","0.042927 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1604,"increase_volume",[1,"",["0.222275 * safezoneW + safezoneX","0.515404 * safezoneH + safezoneY","0.0191625 * safezoneW","0.0203045 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
 	[1605,"decrease_volume",[1,"",["0.222275 * safezoneW + safezoneX","0.54621 * safezoneH + safezoneY","0.0202125 * safezoneW","0.0245055 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
-	[1606,"stereo152",[1,"",["0.142737 * safezoneW + safezoneX","0.54866 * safezoneH + safezoneY","0.021 * safezoneW","0.0245055 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1606,"stereo",[1,"",["0.142737 * safezoneW + safezoneX","0.54866 * safezoneH + safezoneY","0.021 * safezoneW","0.0245055 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
@@ -19,7 +19,7 @@ $[
 
 class anprc152_radio_dialog
 {
-	idd = IDC_ANPRC152_RADIO_DIALOG;
+	idd = IDD_ANPRC152_RADIO_DIALOG;
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
@@ -34,7 +34,7 @@ class anprc152_radio_dialog
 	next_channel,
 	increase_volume,
 	decrease_volume,
-	stereo152
+	stereo
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.062, #Gicyfo)
@@ -42,7 +42,7 @@ class anprc152_radio_dialog
 
 class background: RscBackPicture
 {
-	idc = IDC_ANPRC152_RADIO_DIALOG_BACKGROUND;
+	idc = IDC_ANPRC152_BACKGROUND;
 	text = "\task_force_radio\anprc152\152.paa";
 	x = -0.089575 * safezoneW + safezoneX;
 	y = -0.0293181 * safezoneH + safezoneY;
@@ -53,7 +53,7 @@ class background: RscBackPicture
 class edit: RscEditLCD
 {
 	moving = 1;
-	idc = IDC_ANPRC152_RADIO_DIALOG_EDIT;
+	idc = IDC_ANPRC152_EDIT;
 	x = 0.181588 * safezoneW + safezoneX;
 	y = 0.368371 * safezoneH + safezoneY;
 	w = 0.0653438 * safezoneW;
@@ -67,7 +67,7 @@ class edit: RscEditLCD
 class channel_edit: RscEditLCD
 {
 	moving = 1;
-	idc = IDC_ANPRC152_RADIO_DIALOG_CHANNEL_EDIT;
+	idc = IDC_ANPRC152_CHANNEL_EDIT;
 	x = 0.141162 * safezoneW + safezoneX;
 	y = 0.368021 * safezoneH + safezoneY;
 	w = 0.0398438 * safezoneW;
@@ -80,7 +80,7 @@ class channel_edit: RscEditLCD
 };
 class enter: HiddenButton
 {
-	idc = IDC_ANPRC152_RADIO_DIALOG_ENTER;
+	idc = IDC_ANPRC152_ENTER;
 	x = 0.222275 * safezoneW + safezoneX;
 	y = 0.481096 * safezoneH + safezoneY;
 	w = 0.0191625 * safezoneW;
@@ -90,7 +90,7 @@ class enter: HiddenButton
 };
 class clear: HiddenButton
 {
-	idc = IDC_ANPRC152_RADIO_DIALOG_CLEAR;
+	idc = IDC_ANPRC152_CLEAR;
 	x = 0.222275 * safezoneW + safezoneX;
 	y = 0.447488 * safezoneH + safezoneY;
 	w = 0.019425 * safezoneW;
@@ -100,7 +100,7 @@ class clear: HiddenButton
 };
 class next_channel: HiddenButton
 {
-	idc = IDC_ANPRC152_RADIO_DIALOG_NEXT;
+	idc = IDC_ANPRC152_NEXT;
 	x = 0.16925 * safezoneW + safezoneX;
 	y = 0.547961 * safezoneH + safezoneY;
 	w = 0.0207375 * safezoneW;
@@ -110,7 +110,7 @@ class next_channel: HiddenButton
 };
 class prev_channel: HiddenButton
 {
-	idc = IDC_ANPRC152_RADIO_DIALOG_PREV;
+	idc = IDC_ANPRC152_PREV;
 	x = 0.1955 * safezoneW + safezoneX;
 	y = 0.547961 * safezoneH + safezoneY;
 	w = 0.0207375 * safezoneW;
@@ -120,7 +120,7 @@ class prev_channel: HiddenButton
 };
 class increase_volume: HiddenButton
 {
-	idc = IDC_ANPRC152_RADIO_DIALOG_RSCBUTTON_INCREASE;
+	idc = IDC_ANPRC152_INCREASE_VOLUME;
 	x = 0.222275 * safezoneW + safezoneX;
 	y = 0.515404 * safezoneH + safezoneY;
 	w = 0.0191625 * safezoneW;
@@ -130,7 +130,7 @@ class increase_volume: HiddenButton
 };
 class decrease_volume: HiddenButton
 {
-	idc = IDC_ANPRC152_RADIO_DIALOG_RSCBUTTON_DECREASE;
+	idc = IDC_ANPRC152_DECREASE_VOLUME;
 	x = 0.222275 * safezoneW + safezoneX;
 	y = 0.54621 * safezoneH + safezoneY;
 	w = 0.0202125 * safezoneW;
@@ -138,9 +138,9 @@ class decrease_volume: HiddenButton
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) * 10)];";
 	tooltip = $STR_decrease_volume;
 };
-class stereo152: HiddenButton
+class stereo: HiddenButton
 {
-	idc = IDC_ANPRC152_RADIO_DIALOG_STEREO152;
+	idc = IDC_ANPRC152_STEREO;
 	x = 0.142737 * safezoneW + safezoneX;
 	y = 0.54866 * safezoneH + safezoneY;
 	w = 0.021 * safezoneW;
