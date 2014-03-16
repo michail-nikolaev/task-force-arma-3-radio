@@ -74,8 +74,8 @@ class RscEditLCD
 	text = "";
 	size = 0.2;
 	style = "0x00 + 0x40 + 0x200";
-	font = "puristalight"; 
-	shadow = 2;
+	font = "tf_font_segments"; 
+	shadow = 1;
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
 };
 class HiddenButton

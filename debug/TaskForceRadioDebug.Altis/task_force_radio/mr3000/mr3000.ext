@@ -1,4 +1,4 @@
-/* #Rosaxy
+/* #Tekuda
 $[
 	1.063,
 	["mr3000",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -19,15 +19,16 @@ $[
 	[1613,"mr3000_channel_7",[1,"",["0.410094 * safezoneW + safezoneX","0.603623 * safezoneH + safezoneY","0.021 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1614,"mr3000_channel_8",[1,"",["0.440938 * safezoneW + safezoneX","0.602223 * safezoneH + safezoneY","0.021 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1615,"mr3000_channel_9",[1,"",["0.471125 * safezoneW + safezoneX","0.602223 * safezoneH + safezoneY","0.021 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1400,"mr3000_edit",[1,"47.8",["0.471781 * safezoneW + safezoneX","0.415981 * safezoneH + safezoneY","0.0531563 * safezoneW","0.0686153 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1401,"mr3000_channel_edit",[1,"CH: 4",["0.423219 * safezoneW + safezoneX","0.415981 * safezoneH + safezoneY","0.0479062 * safezoneW","0.0686153 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1400,"mr3000_edit",[1,"47.8",["0.472156 * safezoneW + safezoneX","0.43686 * safezoneH + safezoneY","0.0531563 * safezoneW","0.03 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1401,"mr3000_channel_edit",[1,"CH: 4",["0.411828 * safezoneW + safezoneX","0.4373 * safezoneH + safezoneY","0.0479062 * safezoneW","0.03 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1616,"mr3000_stereo",[1,"",["0.503281 * safezoneW + safezoneX","0.602223 * safezoneH + safezoneY","0.0216563 * safezoneW","0.0308069 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
 
 
-class mr3000_radio_dialog 
+
+class mr3000_radio_dialog
 {
 	idd = IDC_MR3000_RADIO_DIALOG;
 	movingEnable = 1;
@@ -234,10 +235,12 @@ class mr3000_edit: RscEditLCD
 {
 	idc = IDC_MR3000_MR3000_EDIT;
 	text = $STR_A3_mr3000_mr3000_edit;
-	x = 0.471781 * safezoneW + safezoneX;
-	y = 0.415981 * safezoneH + safezoneY;
+	x = 0.472156 * safezoneW + safezoneX;
+	y = 0.43686 * safezoneH + safezoneY;
 	w = 0.0531563 * safezoneW;
-	h = 0.0686153 * safezoneH;
+	h = 0.03 * safezoneH;
+	font = "tf_font_dots";
+	shadow = 2;
 	tooltip = $STR_current_freq;
 	canModify = 1;
 };
@@ -245,10 +248,12 @@ class mr3000_channel_edit: RscEditLCD
 {
 	idc = IDC_MR3000_MR3000_CHANNEL_EDIT;
 	text = $STR_A3_mr3000_mr3000_channel_edit;
-	x = 0.423219 * safezoneW + safezoneX;
-	y = 0.415981 * safezoneH + safezoneY;
+	x = 0.411828 * safezoneW + safezoneX;
+	y = 0.4373 * safezoneH + safezoneY;
 	w = 0.0479062 * safezoneW;
-	h = 0.0686153 * safezoneH;
+	h = 0.03 * safezoneH;
+	font = "tf_font_dots";
+	shadow = 2;
 	tooltip = $STR_current_channel;
 	canModify = 0;
 };
