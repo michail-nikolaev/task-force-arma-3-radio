@@ -61,8 +61,7 @@ class edit: RscEditLCD
 	font = "tf_font_dots";
 	shadow = 2;
 	tooltip = $STR_current_freq;
-	canModify = 1;
-	font = "tf_font_segments";
+	canModify = 1;	
 };
 class channel_edit: RscEditLCD
 {
@@ -76,7 +75,6 @@ class channel_edit: RscEditLCD
 	shadow = 2;
 	tooltip = $STR_current_channel;
 	canModify = 0;
-	font = "tf_font_segments";
 };
 class enter: HiddenButton
 {
