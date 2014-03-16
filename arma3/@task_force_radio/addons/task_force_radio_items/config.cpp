@@ -14,6 +14,88 @@ class CfgPatches
 	};
 };
 
+class CfgFontFamilies
+{
+	class tf_font_dots
+	{
+		fonts[] = {
+			"\task_force_radio_items\fonts\dots\dots6",            
+			"\task_force_radio_items\fonts\dots\dots7",            
+			"\task_force_radio_items\fonts\dots\dots8",            
+			"\task_force_radio_items\fonts\dots\dots9",            
+			"\task_force_radio_items\fonts\dots\dots10",           
+			"\task_force_radio_items\fonts\dots\dots11",           
+			"\task_force_radio_items\fonts\dots\dots12",           
+			"\task_force_radio_items\fonts\dots\dots13",
+			"\task_force_radio_items\fonts\dots\dots14",           
+			"\task_force_radio_items\fonts\dots\dots15",           
+			"\task_force_radio_items\fonts\dots\dots16",           
+			"\task_force_radio_items\fonts\dots\dots17",           
+			"\task_force_radio_items\fonts\dots\dots18",           
+			"\task_force_radio_items\fonts\dots\dots19",           
+			"\task_force_radio_items\fonts\dots\dots20",           
+			"\task_force_radio_items\fonts\dots\dots21",           
+			"\task_force_radio_items\fonts\dots\dots22",           
+			"\task_force_radio_items\fonts\dots\dots23",           
+			"\task_force_radio_items\fonts\dots\dots24",           
+			"\task_force_radio_items\fonts\dots\dots25",           
+			"\task_force_radio_items\fonts\dots\dots26",           
+			"\task_force_radio_items\fonts\dots\dots27",           
+			"\task_force_radio_items\fonts\dots\dots28",           
+			"\task_force_radio_items\fonts\dots\dots29",           
+			"\task_force_radio_items\fonts\dots\dots30",           
+			"\task_force_radio_items\fonts\dots\dots31",           
+			"\task_force_radio_items\fonts\dots\dots32",           
+			"\task_force_radio_items\fonts\dots\dots33",           
+			"\task_force_radio_items\fonts\dots\dots34",           
+			"\task_force_radio_items\fonts\dots\dots35",           
+			"\task_force_radio_items\fonts\dots\dots36"
+		};
+
+		spaceWidth = 0.6;
+		spacing = 0.15;
+	};
+	class tf_font_segments
+	{
+		fonts[] = {			
+			"\task_force_radio_items\fonts\segments\segments6",   
+			"\task_force_radio_items\fonts\segments\segments7",   
+			"\task_force_radio_items\fonts\segments\segments8",   
+			"\task_force_radio_items\fonts\segments\segments9",   
+			"\task_force_radio_items\fonts\segments\segments10",  
+			"\task_force_radio_items\fonts\segments\segments11",  
+			"\task_force_radio_items\fonts\segments\segments12",  
+			"\task_force_radio_items\fonts\segments\segments13",  
+			"\task_force_radio_items\fonts\segments\segments14",  
+			"\task_force_radio_items\fonts\segments\segments15",  
+			"\task_force_radio_items\fonts\segments\segments16",  
+			"\task_force_radio_items\fonts\segments\segments17",  
+			"\task_force_radio_items\fonts\segments\segments18",  
+			"\task_force_radio_items\fonts\segments\segments19",  
+			"\task_force_radio_items\fonts\segments\segments20",  
+			"\task_force_radio_items\fonts\segments\segments21",  
+			"\task_force_radio_items\fonts\segments\segments22",  
+			"\task_force_radio_items\fonts\segments\segments23",  
+			"\task_force_radio_items\fonts\segments\segments24",  
+			"\task_force_radio_items\fonts\segments\segments25",  
+			"\task_force_radio_items\fonts\segments\segments26",  
+			"\task_force_radio_items\fonts\segments\segments27",  
+			"\task_force_radio_items\fonts\segments\segments28",  
+			"\task_force_radio_items\fonts\segments\segments29",  
+			"\task_force_radio_items\fonts\segments\segments30",  
+			"\task_force_radio_items\fonts\segments\segments31",  
+			"\task_force_radio_items\fonts\segments\segments32",  
+			"\task_force_radio_items\fonts\segments\segments33",  
+			"\task_force_radio_items\fonts\segments\segments34",  
+			"\task_force_radio_items\fonts\segments\segments35",  
+			"\task_force_radio_items\fonts\segments\segments36"
+		};
+		
+		spaceWidth = 0.8;
+		spacing = 0.3;
+	};
+};
+
 class CfgVehicles {
 	class Bag_Base
 	{
