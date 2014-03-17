@@ -9,7 +9,7 @@ $[
 	[1605,"decrease_volume",[1,"",["0.300351 * safezoneW + safezoneX","0.3999 * safezoneH + safezoneY","0.015 * safezoneW","0.02 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
 	[1606,"stereo",[1,"",["0.300453 * safezoneW + safezoneX","0.3394 * safezoneH + safezoneY","0.015 * safezoneW","0.02 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]],
 	[1600,"next_channel_alt",[1,"",["0.212797 * safezoneW + safezoneX","0.236 * safezoneH + safezoneY","0.02 * safezoneW","0.049 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
-	[1601,"prev_channel_alt_rf7800str",[1,"",["0.192172 * safezoneW + safezoneX","0.236 * safezoneH + safezoneY","0.02 * safezoneW","0.049 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]]
+	[1601,"prev_channel_alt",[1,"",["0.192172 * safezoneW + safezoneX","0.236 * safezoneH + safezoneY","0.02 * safezoneW","0.049 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]]
 ]
 */
 
@@ -29,7 +29,7 @@ class rf7800str_radio_dialog
 		decrease_volume,
 		stereo,
 		next_channel_alt,
-		prev_channel_alt_rf7800str
+		prev_channel_alt
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Guwibu)
@@ -38,7 +38,7 @@ class rf7800str_radio_dialog
 	class background: RscBackPicture
 	{
 		idc = IDC_RF7800STR_BACKGROUND;
-		text = "\task_force_radio\rf7800str\rf7800str.paa";
+		text = "task_force_radio\rf7800str\rf7800str.paa";
 		x = -0.0269687 * safezoneW + safezoneX;
 		y = -0.0251171 * safezoneH + safezoneY;
 		w = 0.555188 * safezoneW;
@@ -73,7 +73,7 @@ class rf7800str_radio_dialog
 		w = 0.015 * safezoneW;
 		h = 0.02 * safezoneH;
 		tooltip = $STR_increase_volume;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)+ 1) * 10)];";
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 	};
 	class decrease_volume: HiddenButton
 	{
@@ -83,7 +83,7 @@ class rf7800str_radio_dialog
 		w = 0.015 * safezoneW;
 		h = 0.02 * safezoneH;
 		tooltip = $STR_decrease_volume;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) * 10)];";
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 	};
 	class stereo: HiddenButton
 	{
@@ -105,7 +105,7 @@ class rf7800str_radio_dialog
 		tooltip = $STR_next_channel;
 		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 	};
-	class prev_channel_alt_rf7800str: HiddenButton
+	class prev_channel_alt: HiddenButton
 	{
 		idc = IDC_RF7800STR_PREV_CHANNEL_ALT;
 		x = 0.192172 * safezoneW + safezoneX;
