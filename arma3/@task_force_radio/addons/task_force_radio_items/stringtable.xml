@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project ID="Arma2">
+	<Package ID="Missions">
+		<Container ID="A3RU_MissionInformation">
+			<Key ID="STR_TFAR_NATO_crate">
+				<Original>
+					TFAR Radio (NATO)
+				</Original>
+				<Russian>
+					TFAR Radio (NATO)
+				</Russian>
+				<French>
+					TFAR Radio (NATO)
+				</French>
+				<Italian>
+					TFAR Radio (NATO)
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_EAST_crate">
+				<Original>
+					TFAR Radio (CSAT)
+				</Original>
+				<Russian>
+					TFAR Radio (CSAT)
+				</Russian>
+				<French>
+					TFAR Radio (CSAT)
+				</French>
+				<Italian>
+					TFAR Radio (CSAT)
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_IND_crate">
+				<Original>
+					TFAR Radio (AAF)
+				</Original>
+				<Russian>
+					TFAR Radio (AAF)
+				</Russian>
+				<French>
+					TFAR Radio (AAF)
+				</French>
+				<Italian>
+					TFAR Radio (AAF)
+				</Italian>
+			</Key>
+		</Container>
+	</Package>
+</Project>
