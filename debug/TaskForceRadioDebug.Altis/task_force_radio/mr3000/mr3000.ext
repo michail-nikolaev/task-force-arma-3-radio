@@ -27,7 +27,6 @@ $[
 
 
 
-
 class mr3000_radio_dialog
 {
 	idd = IDD_MR3000_RADIO_DIALOG;
@@ -77,8 +76,8 @@ class enter: HiddenButton
 	x = 0.563 * safezoneW + safezoneX;
 	y = 0.471994 * safezoneH + safezoneY;
 	w = 0.0223125 * safezoneW;
-		h = 0.0308069 * safezoneH;
-tooltip = $STR_set_frequency;
+	h = 0.0308069 * safezoneH;
+	tooltip = $STR_set_frequency;
 	action = "_f = parseNumber(ctrlText IDC_MR3000_RADIO_DIALOG_EDIT_ID);if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setLrFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_ASIP_FREQ, TF_MAX_ASIP_FREQ]}; call TFAR_fnc_updateLRDialogToChannel;";
 };
 class clear: HiddenButton
@@ -119,7 +118,7 @@ class increase_volume: HiddenButton
 	w = 0.0190313 * safezoneW;
 	h = 0.0294066 * safezoneH;
 	tooltip = $STR_volume;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;  hint formatText [localize 'STR_radio_volume', (((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) * 10)]";
+	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 };
 class decrease_volume: HiddenButton
 {
@@ -128,7 +127,7 @@ class decrease_volume: HiddenButton
 	y = 0.612025 * safezoneH + safezoneY;
 	w = 0.021 * safezoneW;
 	h = 0.0266059 * safezoneH;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) - 1 + TF_MAX_LR_VOLUME) mod MAX_LR_VOLUME] call TFAR_fnc_setLrVolume; hint formatText [localize 'STR_radio_volume', (((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) * 10)]";
+	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) - 1 + TF_MAX_LR_VOLUME) mod MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 	tooltip = $STR_decrease_volume;
 };
 class increase_volume_2: HiddenButton
@@ -139,7 +138,7 @@ class increase_volume_2: HiddenButton
 	w = 0.0360938 * safezoneW;
 	h = 0.0728162 * safezoneH;
 	tooltip = $STR_volume;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;  hint formatText [localize 'STR_radio_volume', (((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) * 10)]";
+	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 };
 class channel_1: HiddenButton
 {
@@ -240,7 +239,8 @@ class edit: RscEditLCD
 	w = 0.0531563 * safezoneW;
 	h = 0.03 * safezoneH;
 	font = "tf_font_dots";
-	shadow = 2;
+	shadow = 1;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 30) * 1.2)";
 	tooltip = $STR_current_freq;
 	canModify = 1;
 };
@@ -253,7 +253,8 @@ class channel_edit: RscEditLCD
 	w = 0.0479062 * safezoneW;
 	h = 0.03 * safezoneH;
 	font = "tf_font_dots";
-	shadow = 2;
+	shadow = 1;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 30) * 1.2)";
 	tooltip = $STR_current_channel;
 	canModify = 0;
 };
