@@ -46,6 +46,9 @@ if (isNil "TF_defaultEastPersonalRadio") then {
 if (isNil "TF_defaultGuerPersonalRadio") then {
 	TF_defaultGuerPersonalRadio = "tf_anprc148jem";
 };
+if (isNil "TF_terrain_interception_coefficient") then {
+	TF_terrain_interception_coefficient = 10.0;
+};
 
 disableSerialization;
 #include "diary.sqf"
@@ -77,27 +80,27 @@ TF_MAX_DD_FREQ = 41;
 
 TF_HintFnc = nil;
 
-IDC_ANPRC152_RADIO_DIALOG_EDIT_ID = IDC_ANPRC152_RADIO_DIALOG_EDIT;
-IDC_ANPRC152_RADIO_DIALOG_ID = IDC_ANPRC152_RADIO_DIALOG;
+IDC_ANPRC152_RADIO_DIALOG_EDIT_ID = IDC_ANPRC152_EDIT;
+IDC_ANPRC152_RADIO_DIALOG_ID = IDD_ANPRC152_RADIO_DIALOG;
 
-IDC_ANPRC155_RADIO_DIALOG_EDIT_ID = IDC_ANPRC155_EDIT155;
-IDC_ANPRC155_RADIO_DIALOG_ID = IDC_ANPRC155_RADIO_DIALOG;
+IDC_ANPRC155_RADIO_DIALOG_EDIT_ID = IDC_ANPRC155_EDIT;
+IDC_ANPRC155_RADIO_DIALOG_ID = IDD_ANPRC155_RADIO_DIALOG;
 
-IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID = IDC_ANPRC148JEM_EDIT148;
-IDC_ANPRC148JEM_RADIO_DIALOG_ID = IDC_ANPRC148JEM_DIALOG;
+IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID = IDC_ANPRC148JEM_EDIT;
+IDC_ANPRC148JEM_RADIO_DIALOG_ID = IDD_ANPRC148JEM_RADIO_DIALOG;
 
-IDC_FADAK_RADIO_DIALOG_EDIT_ID = IDC_FADAK_EDIT_FADAK;
-IDC_FADAK_RADIO_DIALOG_ID = IDC_FADAK_RADIO_DIALOG;
+IDC_FADAK_RADIO_DIALOG_EDIT_ID = IDC_FADAK_EDIT;
+IDC_FADAK_RADIO_DIALOG_ID = IDD_FADAK_RADIO_DIALOG;
 
-IDC_RT1523G_RADIO_DIALOG_EDIT_ID = IDC_RT1523G_RADIO_DIALOG_EDIT;
-IDC_RT1523G_RADIO_DIALOG_ID = IDC_RT1523G_RADIO_DIALOG;
+IDC_RT1523G_RADIO_DIALOG_EDIT_ID = IDC_RT1523G_EDIT;
+IDC_RT1523G_RADIO_DIALOG_ID = IDD_RT1523G_RADIO_DIALOG;
 
-IDC_MR3000_RADIO_DIALOG_EDIT_ID = IDC_MR3000_MR3000_EDIT;
-IDC_MR3000_RADIO_DIALOG_ID = IDC_MR3000_RADIO_DIALOG;
+IDC_MR3000_RADIO_DIALOG_EDIT_ID = IDC_MR3000_EDIT;
+IDC_MR3000_RADIO_DIALOG_ID = IDD_MR3000_RADIO_DIALOG;
 
-IDC_DIDER_RADIO_DIALOG_ID = IDC_DIVER_RADIO_DIALOG;
+IDC_DIDER_RADIO_DIALOG_ID = IDD_DIVER_RADIO_DIALOG;
 IDC_DIVER_RADIO_EDIT_ID = IDC_DIVER_RADIO_EDIT;
-IDC_DIVER_RADIO_DEPTH_ID = IDC_DIVER_RADIO_DEPTH;
+IDC_DIVER_RADIO_DEPTH_ID = IDC_DIVER_RADIO_DEPTH_EDIT;
 
 #include "keys.sqf"
 
@@ -108,6 +111,8 @@ TF_tangent_dd_pressed = false;
 TF_dd_frequency = str (round (((random (TF_MAX_DD_FREQ - TF_MIN_DD_FREQ)) + TF_MIN_DD_FREQ) * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER);
 
 TF_speak_volume_level = "normal";
+TF_speak_volume_meters = 20;
+TF_max_voice_volume = 60;
 TF_sw_dialog_radio = nil;
 
 TF_lr_dialog_radio = nil;
@@ -182,6 +187,16 @@ tf_msSpectatorPerStepMax = 0.035;
 
 	[TF_speak_volume_scancode, TF_speak_volume_modifiers, {call TFAR_fnc_onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;
 
+	[TF_sw_cycle_next_scancode, TF_sw_cycle_next_modifiers, {["next"] call TFAR_fnc_processSWCycleKeys}, "keyup", "31"] call CBA_fnc_addKeyHandler;
+	[TF_sw_cycle_prev_scancode, TF_sw_cycle_prev_modifiers, {["prev"] call TFAR_fnc_processSWCycleKeys}, "keyup", "32"] call CBA_fnc_addKeyHandler;	
+	[TF_lr_cycle_next_scancode, TF_lr_cycle_next_modifiers, {["next"] call TFAR_fnc_processLRCycleKeys}, "keyup", "33"] call CBA_fnc_addKeyHandler;
+	[TF_lr_cycle_prev_scancode, TF_lr_cycle_prev_modifiers, {["prev"] call TFAR_fnc_processLRCycleKeys}, "keyup", "34"] call CBA_fnc_addKeyHandler;	
+	[TF_sw_stereo_both_scancode, TF_sw_stereo_both_modifiers, {[0] call TFAR_fnc_processSWStereoKeys}, "keydown", "25"] call CBA_fnc_addKeyHandler;	
+	[TF_sw_stereo_left_scancode, TF_sw_stereo_left_modifiers, {[1] call TFAR_fnc_processSWStereoKeys}, "keydown", "26"] call CBA_fnc_addKeyHandler;	
+	[TF_sw_stereo_right_scancode, TF_sw_stereo_right_modifiers, {[2] call TFAR_fnc_processSWStereoKeys}, "keydown", "27"] call CBA_fnc_addKeyHandler;
+	[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers, {[0] call TFAR_fnc_processLRStereoKeys}, "keydown", "28"] call CBA_fnc_addKeyHandler;
+	[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers, {[1] call TFAR_fnc_processLRStereoKeys}, "keydown", "29"] call CBA_fnc_addKeyHandler;
+	[TF_lr_stereo_right_scancode, TF_lr_stereo_right_modifiers, {[2] call TFAR_fnc_processLRStereoKeys}, "keydown", "30"] call CBA_fnc_addKeyHandler;	
 	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
