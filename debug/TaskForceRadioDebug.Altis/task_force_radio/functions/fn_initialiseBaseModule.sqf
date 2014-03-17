@@ -15,7 +15,7 @@
  	Example:
 	
  */
- #include "common.sqf"
+#include "common.sqf"
 private ["_logic", "_activated"];
 _logic = [_this,0,objNull,[objNull]] call BIS_fnc_param;
 _units = [_this,1,[],[[]]] call BIS_fnc_param;
@@ -40,7 +40,7 @@ if (_activated) then {
 			switch (_currentSide) do {
 				case west: {
 					tf_west_radio_code = _logic getVariable "Encryption";
-					if (([_LRradio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then {
+					if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getConfigProperty) == 1) then {
 						TF_defaultWestBackpack = _LRradio;
 					} else {
 						diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
@@ -62,7 +62,7 @@ if (_activated) then {
 				};
 				case east: {
 					tf_east_radio_code = _logic getVariable "Encryption";
-					if (([_LRradio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then {
+					if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getConfigProperty) == 1) then {
 						TF_defaultEastBackpack = _LRradio;
 					} else {
 						diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
@@ -84,7 +84,7 @@ if (_activated) then {
 				};
 				default	{
 					tf_guer_radio_code = _logic getVariable "Encryption";
-					if (([_LRradio, "tf_hasLrRadio"] call TFAR_fnc_getConfigProperty) == 1) then {
+					if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getConfigProperty) == 1) then {
 						TF_defaultGuerBackpack = _LRradio;
 					} else {
 						diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
