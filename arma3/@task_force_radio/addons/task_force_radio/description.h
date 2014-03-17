@@ -74,8 +74,8 @@ class RscEditLCD
 	text = "";
 	size = 0.2;
 	style = "0x00 + 0x40 + 0x200";
-	font = "puristalight"; 
-	shadow = 2;
+	font = "tf_font_segments"; 
+	shadow = 1;
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
 };
 class HiddenButton
@@ -155,7 +155,5 @@ class HiddenButton
 #include "\task_force_radio\fadak\fadak.ext"
 #include "\task_force_radio\diver_radio\diver_radio.ext"
 #include "\task_force_radio\mr3000\mr3000.ext"
-
-
-
-
+#include "\task_force_radio\anprc154\anprc154.ext"
+#include "\task_force_radio\rf7800str\rf7800str.ext"

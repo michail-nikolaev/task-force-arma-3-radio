@@ -2,7 +2,9 @@ Task Force Arma 3 radio
 =======================
 
 Arma 3 Team Speak Radio Plugin
-_v0.8.3 (12.18.2013)_
+_v0.8.3 (03-13-2014)_
+
+**<font color="green">TeamSpeak 3.0.14 is supported</font>**
 
 ###Installation
 
@@ -42,8 +44,12 @@ _v0.8.3 (12.18.2013)_
 | `Caps Lock` | To talk on a radio. |
 | `CTRL`&nbsp;+&nbsp;`Caps Lock` | To talk on a long range radio. |
 | `CTRL`&nbsp;+&nbsp;`P` | To open the personal radio interface (the radio must be in the inventory slot). In that case if you have a number of radios - you can select the one needed. It is also possible to set the radio as active (the one that will be used for transmission). |
+| `CTRL`&nbsp;+&nbsp;`SHIFT`&nbsp;+&nbsp;`A/D` | Cycle through available shortwave radios. | 
+| `CTRL`&nbsp;+&nbsp;`Up/Left/Right Arrow` | Rapid switching of shortwave stereo mode. |
 | `NUM[1-8]` | Rapid switching of shortwave radio channels. | 
 | `ALT`&nbsp;+&nbsp;`P` | To open a long range radio interface (a long range radio must be put on your back, or you should be in a vehicle in a position of a driver, shooter, or pilot assistant). If a number of radios are available – you’ll be offered to choose one. Besides, one of them can be set as active. |
+| `ALT`&nbsp;+&nbsp;`SHIFT`&nbsp;+&nbsp;`A/D` | Cycle through available long range radios. | 
+| `ALT`&nbsp;+&nbsp;`Up/Left/Right Arrow` | Rapid switching of long range stereo mode. |
 | `CTRL`&nbsp;+&nbsp;`NUM[1-9]` | Rapid switching of long range radio channels. |
 | `CTRL`&nbsp;+&nbsp;`TAB` | To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission. |
 | `SHIFT`&nbsp;+&nbsp;`P` | To open an underwater transceiver interface (you should be wearing a rebreather). | 
@@ -155,8 +161,10 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) for translating.
 * [L-H](http://forums.bistudio.com/member.php?87524-LordHeart) for code changes.
 * [NorX_Aengell](http://forums.bistudio.com/member.php?99450-NorX_Aengell) for French translation.
-* [lukrop] (http://forums.bistudio.com/member.php?78022-lukrop) for code changes.
-* [nikolauska] (http://forums.bistudio.com/member.php?75014-nikolauska) ([GitHub](https://github.com/nikolauska)) for sqf code improvements.
-* Everyone, who made video and articles with review.
+* [lukrop](http://forums.bistudio.com/member.php?78022-lukrop) for code changes.
+* [nikolauska](http://forums.bistudio.com/member.php?75014-nikolauska) ([GitHub](https://github.com/nikolauska)) for sqf code improvements.
+* [Kavinsky] ([GitHub](https://github.com/nikolauska)) for AN/PRC-154 and RF-7800S-TR.
+* [JonBons](http://forums.bistudio.com/member.php?81374-JonBons) for code changes.
 * Everyone user (especially who report bugs).
+* [ramius86](https://github.com/ramius86) for Italian translation.
 * Sorry guys if I’ve forgot someone by chance.

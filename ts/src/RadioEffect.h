@@ -108,87 +108,64 @@ public:
 	}
 
 	virtual void process(float* buffer, int samplesNumber)
-	{
+	{				
+		double acc = 0.0;
+		for (int q = 0; q < samplesNumber; q++) acc += fabs(buffer[q]);
+		double avg = acc / samplesNumber;		
+		static double base = 0.005f;
+
+		float x = (float) (avg / base);
+
+
 		for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);
-		for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], 1.0f - 0.6f * (1.0f - errorLevel));
-		for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], 0.5f * (1.0f - errorLevel));		
+		for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], errorLevel);
+		for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], 0.3f * (1.0f - errorLevel) * x);	
 
 		processFilter(filterSpeakerHP, buffer, samplesNumber);
 		processFilter(filterSpeakerLP, buffer, samplesNumber);
-
-		for (int q = 0; q < samplesNumber; q++) buffer[q] *= 30;
+		
+		for (int q = 0; q < samplesNumber; q++) buffer[q] = buffer[q] *= 30;
 	}
+
+
 
 	virtual void setErrorLeveL(float errorLevel)
 	{		
-		this->errorLevel = (float) Spline_evaluation(errorLevel);	
+		this->errorLevel = calcErrorLevel(errorLevel);
 	}
 
 
 protected:
-
-	double Spline_evaluation(double x_in)
+	
+	
+	/*	
+	0.0	0.0
+	0.1	0.150000006
+	0.2	0.300000012
+	0.3	0.600000024
+	0.4	0.899999976
+	0.5	0.950000048
+	0.6	0.960000038
+	0.7	0.970000029
+	0.8	0.980000019
+	0.9	0.995000005
+	1.0	0.997799993*/
+	float calcErrorLevel(float errorLevel)
 	{
-		double t [] = {0.0000000000000000E+00, 0.0000000000000000E+00, 0.0000000000000000E+00, 0.0000000000000000E+00, 1.0000000000000000E+00, 1.0000000000000000E+00, 1.0000000000000000E+00, 1.0000000000000000E+00};
-		double coeff [] = {3.8741258741258715E-02, 7.0793317793317823E-01, 9.6570318570318514E-01, 9.9853146853146868E-01, 0.0000000000000000E+00, 0.0000000000000000E+00, 0.0000000000000000E+00, 0.0000000000000000E+00};
-		int n = 8;
-		int k = 3;
-		double h [] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-		double hh [] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-		int i, j, li, lj, ll;
-		double f, temp;
+		double levels[] = { 0.0, 0.150000006, 0.300000012, 0.600000024, 0.899999976, 0.950000048, 0.960000038, 0.970000029, 0.980000019, 0.995000005, 0.997799993, 0.998799993, 0.999 };
 
-		int k1 = k+1;
-		int l = k1;
-		int l1 = l+1;
-		while ((x_in < t[l-1]) && (l1 != (k1+1)))
-		{
-			l1 = l;
-			l = l-1;
-		}
-		while ((x_in >= t[l1-1]) && (l != (n-k1)))
-		{
-			l = l1;
-			l1 += 1;
-		}
-		h[0] = 1.0;
-		for (j = 1; j < k+1; j++)
-		{
-			for (i = 0; i < j; i++)
-			{
-				hh[i] = h[i];
-			}
-			h[0] = 0.0;
-			for (i = 0; i < j; i++)
-			{
-				li = l+i;
-				lj = li-j;
-				if (t[li] != t[lj])
-				{
-					f = hh[i] / (t[li] - t[lj]);
-					h[i] = h[i] + f * (t[li] - x_in);
-					h[i+1] = f * (x_in - t[lj]);
-				}
-				else
-				{
-					h[i+1] = 0.0;
-				}
-			}
-		}
-		temp = 0.0;
-		ll = l - k1;
-		for (j = 0; j < k1; j++)
-		{
-			ll = ll + 1;
-			temp = temp + coeff[ll-1] * h[j];
-		}
+		int part = (int)(errorLevel * 10.0);
+		double from = levels[part];
+		double to = levels[part + 1];
 
-		return temp;
+		double result = from + (from - to) * (errorLevel - part / 10.0);
+		return (float)result;
 	}
+
 
 	float foldback(float in, float threshold)
 	{
-		if (threshold < 0.001) return 0.0f;
+		if (threshold < 0.00001) return 0.0f;
 		if (in>threshold || in<-threshold)
 		{
 			in = fabs(fabs(fmod(in - threshold, threshold*4)) - threshold*2) - threshold;
