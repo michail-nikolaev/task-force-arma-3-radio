@@ -57,12 +57,7 @@ KK_fnc_positionToString = {
         _arr = _arr - ['x'];
         toString (toArray str (_this - _this % 1) + _arr)
     };
-    format [
-        "[%1,%2,%3]",
-        _this select 0 call _f2s,
-        _this select 1 call _f2s,
-        _this select 2 call _f2s
-    ]
+	_this call _f2s    
 };
 
 if (alive player) then 
