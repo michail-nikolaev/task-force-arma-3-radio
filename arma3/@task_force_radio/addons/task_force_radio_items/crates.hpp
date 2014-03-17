@@ -3,7 +3,7 @@ class Box_NATO_Support_F;
 class TF_NATO_Radio_Crate: Box_NATO_Support_F
 {
 	author = "TFAR";
-	displayName = "TFAR Radio (NATO)";
+	displayName = "$STR_TFAR_NATO_crate";
 	class TransportItems
 	{
 		class _xx_tf_anprc152
@@ -19,6 +19,14 @@ class TF_NATO_Radio_Crate: Box_NATO_Support_F
 	};
 	class TransportMagazines{};
 	class TransportWeapons{};
+	class TransportBackpacks
+	{
+		class _xx_tf_rt1523g
+		{
+			count = 10;
+			backpack = "tf_rt1523g";
+		};
+	};
 };
 
 class Box_EAST_Support_F;
@@ -26,7 +34,7 @@ class Box_EAST_Support_F;
 class TF_EAST_Radio_Crate: Box_EAST_Support_F
 {
 	author = "TFAR";
-	displayName = "TFAR Radio (CSAT)";
+	displayName = "$STR_TFAR_EAST_crate";
 	class TransportItems
 	{
 		class _xx_tf_fadak
@@ -37,6 +45,14 @@ class TF_EAST_Radio_Crate: Box_EAST_Support_F
 	};
 	class TransportMagazines{};
 	class TransportWeapons{};
+	class TransportBackpacks
+	{
+		class _xx_tf_mr3000
+		{
+			count = 10;
+			backpack = "tf_mr3000";
+		};
+	};
 };
 
 class Box_IND_Support_F;
@@ -44,7 +60,7 @@ class Box_IND_Support_F;
 class TF_IND_Radio_Crate: Box_IND_Support_F
 {
 	author = "TFAR";
-	displayName = "TFAR Radio (AAF)";
+	displayName = "$STR_TFAR_IND_crate";
 	class TransportItems
 	{
 		class _xx_tf_anprc148jem
@@ -60,4 +76,12 @@ class TF_IND_Radio_Crate: Box_IND_Support_F
 	};
 	class TransportMagazines{};
 	class TransportWeapons{};
+	class TransportBackpacks
+	{
+		class _xx_tf_anprc155
+		{
+			count = 10;
+			backpack = "tf_anprc155";
+		};
+	};
 };
