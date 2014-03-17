@@ -45,7 +45,7 @@ if !(isNull player) then {
 		if (_elemsNearToProcess >= 1) then {
 			for "_y" from 0 to _elemsNearToProcess step 1 do {
 				if (tf_nearPlayersIndex < count tf_nearPlayers) then {
-					(tf_nearPlayers select tf_nearPlayersIndex) call TFAR_fnc_sendPlayerInfo;
+					[(tf_nearPlayers select tf_nearPlayersIndex), true] call TFAR_fnc_sendPlayerInfo;
 					tf_nearPlayersIndex = tf_nearPlayersIndex + 1;
 				} else {
 					tf_nearPlayersIndex = 0;
@@ -64,7 +64,7 @@ if !(isNull player) then {
 		if (_elemsFarToProcess >= 1) then {
 			for "_y" from 0 to _elemsFarToProcess step 1 do {
 				if (tf_farPlayersIndex < count tf_farPlayers) then {
-					(tf_farPlayers select tf_farPlayersIndex) call TFAR_fnc_sendPlayerInfo;
+					[(tf_farPlayers select tf_farPlayersIndex), false] call TFAR_fnc_sendPlayerInfo;
 					tf_farPlayersIndex = tf_farPlayersIndex + 1;
 				} else {
 					tf_farPlayersIndex = 0;

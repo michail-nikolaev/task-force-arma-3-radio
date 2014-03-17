@@ -120,6 +120,8 @@ enum ChannelProperties {
 	CHANNEL_FLAG_PASSWORD,                  //Available for all channels that are "in view", always up-to-date
 	CHANNEL_CODEC_LATENCY_FACTOR,           //Available for all channels that are "in view", always up-to-date
 	CHANNEL_CODEC_IS_UNENCRYPTED,           //Available for all channels that are "in view", always up-to-date
+	CHANNEL_SECURITY_SALT,                  //Not available client side, not used in teamspeak, only SDK. Sets the options+salt for security hash.
+	CHANNEL_DELETE_DELAY,                   //How many seconds to wait before deleting this channel
 	CHANNEL_ENDMARKER,
 };
 
@@ -143,6 +145,8 @@ enum ClientProperties {
 	CLIENT_IS_MUTED,                        //only make sense on the client side locally, "1" if this client is currently muted by us, "0" if he is not
 	CLIENT_IS_RECORDING,                    //automatically up-to-date for any client "in view"
 	CLIENT_VOLUME_MODIFICATOR,              //internal use
+	CLIENT_VERSION_SIGN,					//sign
+	CLIENT_SECURITY_HASH,                   //SDK use, not used by teamspeak. Hash is provided by an outside source. A channel will use the security salt + other client data to calculate a hash, which must be the same as the one provided here.
 	CLIENT_ENDMARKER,
 };
 
@@ -267,7 +271,56 @@ enum MonoSoundDestination{
   MONO_SOUND_DESTINATION_FRONT_LEFT_AND_RIGHT =2  /* Send mono sound to front left/right speakers if available */
 };
 
-//defines for speaker locations used by some sound callbacks
+enum SecuritySaltOptions {
+	SECURITY_SALT_CHECK_NICKNAME  = 1, /* put nickname into security hash */
+	SECURITY_SALT_CHECK_META_DATA = 2  /* put (game)meta data into security hash */
+};
+
+/*this enum is used to disable client commands on the server*/
+enum ClientCommand{
+	CLIENT_COMMAND_requestConnectionInfo        =  0,
+	CLIENT_COMMAND_requestClientMove            =  1,
+	CLIENT_COMMAND_requestXXMuteClients         =  2,
+	CLIENT_COMMAND_requestClientKickFromXXX     =  3,
+	CLIENT_COMMAND_flushChannelCreation         =  4,
+	CLIENT_COMMAND_flushChannelUpdates          =  5,
+	CLIENT_COMMAND_requestChannelMove           =  6,
+	CLIENT_COMMAND_requestChannelDelete         =  7,
+	CLIENT_COMMAND_requestChannelDescription    =  8,
+	CLIENT_COMMAND_requestChannelXXSubscribeXXX =  9,
+	CLIENT_COMMAND_requestServerConnectionInfo  = 10,
+	CLIENT_COMMAND_requestSendXXXTextMsg        = 11,
+	CLIENT_COMMAND_ENDMARKER                    = 11
+};
+
+/* Access Control List*/
+enum ACLType{
+	ACL_NONE       = 0,
+	ACL_WHITE_LIST = 1,
+	ACL_BLACK_LIST = 2
+};
+
+/* some structs to handle variables in callbacks */
+#define MAX_VARIABLES_EXPORT_COUNT 64
+struct VariablesExportItem{
+	unsigned char itemIsValid;    /* This item has valid values. ignore this item if 0 */
+	unsigned char proposedIsSet;  /* The value in proposed is set. if 0 ignore proposed */
+	const char* current;          /* current value (stored in memory) */
+	const char* proposed;         /* New value to change to (const, so no updates please) */
+};
+
+struct VariablesExport{
+	struct VariablesExportItem items[MAX_VARIABLES_EXPORT_COUNT];
+};
+
+struct ClientMiniExport{
+	anyID ID;
+	uint64 channel;
+	const char* ident;
+	const char* nickname;
+};
+
+/*defines for speaker locations used by some sound callbacks*/
 #ifndef SPEAKER_FRONT_LEFT
 #define SPEAKER_FRONT_LEFT              0x1
 #define SPEAKER_FRONT_RIGHT             0x2
@@ -292,4 +345,4 @@ enum MonoSoundDestination{
 #define SPEAKER_HEADPHONES_RIGHT        0x20000000
 #define SPEAKER_MONO                    0x40000000
 
-#endif //PUBLIC_DEFINITIONS_H
+#endif /*PUBLIC_DEFINITIONS_H*/
