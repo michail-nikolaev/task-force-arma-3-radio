@@ -167,4 +167,5 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [JonBons](http://forums.bistudio.com/member.php?81374-JonBons) for code changes.
 * Everyone user (especially who report bugs).
 * [ramius86](https://github.com/ramius86) for Italian translation.
+* KK for [tutorials](http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/)
 * Sorry guys if I’ve forgot someone by chance.
