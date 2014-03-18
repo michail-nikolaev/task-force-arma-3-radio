@@ -38,8 +38,8 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -929,7 +929,7 @@ void onGameStart(uint64 serverConnectionHandlerID, anyID clientId)
 	log("On Respawn");	
 	if (isConnected(serverConnectionHandlerID))
 	{
-			notSeriousChannelId = getCurrentChannel(serverConnectionHandlerID);
+		uint64 beforeGameChannelId = getCurrentChannel(serverConnectionHandlerID);		
 		uint64* result;
 		DWORD error;
 
@@ -973,6 +973,7 @@ void onGameStart(uint64 serverConnectionHandlerID, anyID clientId)
 					ts3Functions.freeMemory(channelName);
 				}
 			}
+			if (joined) notSeriousChannelId = beforeGameChannelId;
 			ts3Functions.freeMemory(result);
 		}
 	}
