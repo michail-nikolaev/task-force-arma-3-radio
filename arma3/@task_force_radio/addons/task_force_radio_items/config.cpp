@@ -147,6 +147,7 @@ class CfgVehicles {
 		tf_subtype = "digital_lr";
 	};
 	#include "vehicles.hpp"
+	#include "crates.hpp"
 	
 	class Logic;
 	class Module_F: Logic
