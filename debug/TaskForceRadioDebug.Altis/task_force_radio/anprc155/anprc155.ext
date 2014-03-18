@@ -55,8 +55,7 @@ class channel_edit: RscEditLCD
 	y = 0.341765 * safezoneH + safezoneY;
 	w = 0.0485625 * safezoneW;
 	h = 0.0658147 * safezoneH;
-	font = "tf_font_dots";
-	shadow = 2;
+	font = "tf_font_segments";
 	tooltip = $STR_current_channel;
 	moving = 1;
 	canModify = 0;
@@ -69,8 +68,7 @@ class edit: RscEditLCD
 	y = 0.341765 * safezoneH + safezoneY;
 	w = 0.0452813 * safezoneW;
 	h = 0.0658147 * safezoneH;
-	font = "tf_font_dots";
-	shadow = 2;
+	font = "tf_font_segments";
 	tooltip = $STR_current_freq;
 	moving = 1;
 	canModify = 1;
@@ -123,7 +121,7 @@ class increase_volume: HiddenButton
 	w = 0.021 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_volume;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;  hint formatText [localize 'STR_radio_volume', (((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) * 10)]";
+	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 };
 class stereo: HiddenButton
 {
