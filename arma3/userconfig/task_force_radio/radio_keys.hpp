@@ -36,16 +36,16 @@
 	};
 
 	class sw_cycle_next {
-		key = 32;
+		key = 27;
 		ctrl = 1;
-		shift = 1;
+		shift = 0;
 		alt = 0;
 	};
 
 	class sw_cycle_prev {
-		key = 30;
+		key = 26;
 		ctrl = 1;
-		shift = 1;
+		shift = 0;
 		alt = 0;
 	};
 
@@ -119,18 +119,16 @@
 	};
 
 	class lr_cycle_next {
-		key = 32;
-		ctrl = 0;
-		shift = 1;
+		key = 27;
+		ctrl = 1;
+		shift = 0;
 		alt = 1;
 	};
 
-
-
 	class lr_cycle_prev {
-		key = 30;
-		ctrl = 0;
-		shift = 1;
+		key = 26;
+		ctrl = 1;
+		shift = 0;
 		alt = 1;
 	};
 

@@ -46,6 +46,31 @@ if (isNil "TF_defaultEastPersonalRadio") then {
 if (isNil "TF_defaultGuerPersonalRadio") then {
 	TF_defaultGuerPersonalRadio = "tf_anprc148jem";
 };
+
+if (isNil "TF_defaultWestRiflemanRadio") then {
+	TF_defaultWestRiflemanRadio = "tf_rf7800str";
+};
+if (isNil "TF_defaultEastRiflemanRadio") then {
+	TF_defaultEastRiflemanRadio = "tf_fadak"; // TODO
+};
+if (isNil "TF_defaultGuerRiflemanRadio") then {
+	TF_defaultGuerRiflemanRadio = "tf_anprc154";
+};
+
+if (isNil "TF_defaultWestAirborneRadio") then {
+	TF_defaultWestAirborneRadio = "tf_anarc210";
+};
+if (isNil "TF_defaultEastAirborneRadio") then {
+	TF_defaultEastAirborneRadio = "tf_mr6000l";
+};
+if (isNil "TF_defaultGuerAirborneRadio") then {
+	TF_defaultGuerAirborneRadio = "tf_anarc164";
+};
+
+if (isNil "TF_give_personal_radio_to_regular_soldier") then {
+	TF_give_personal_radio_to_regular_soldier = false;
+};
+
 if (isNil "TF_terrain_interception_coefficient") then {
 	TF_terrain_interception_coefficient = 10.0;
 };
@@ -97,6 +122,15 @@ IDC_RT1523G_RADIO_DIALOG_ID = IDD_RT1523G_RADIO_DIALOG;
 
 IDC_MR3000_RADIO_DIALOG_EDIT_ID = IDC_MR3000_EDIT;
 IDC_MR3000_RADIO_DIALOG_ID = IDD_MR3000_RADIO_DIALOG;
+
+IDC_MR6000L_RADIO_DIALOG_EDIT_ID = IDC_MR6000L_EDIT;
+IDC_MR6000L_RADIO_DIALOG_ID = IDD_MR6000L_RADIO_DIALOG;
+
+IDC_ANARC164_RADIO_DIALOG_EDIT_ID = IDC_ANARC164_EDIT;
+IDC_ANARC164_RADIO_DIALOG_ID = IDD_ANARC164_RADIO_DIALOG;
+
+IDC_ANPRC210_RADIO_DIALOG_EDIT_ID = IDC_ANPRC210_EDIT;
+IDC_ANPRC210_RADIO_DIALOG_ID = IDD_ANPRC210_RADIO_DIALOG;
 
 IDC_DIDER_RADIO_DIALOG_ID = IDD_DIVER_RADIO_DIALOG;
 IDC_DIVER_RADIO_EDIT_ID = IDC_DIVER_RADIO_EDIT;
@@ -196,7 +230,8 @@ tf_msSpectatorPerStepMax = 0.035;
 	[TF_sw_stereo_right_scancode, TF_sw_stereo_right_modifiers, {[2] call TFAR_fnc_processSWStereoKeys}, "keydown", "27"] call CBA_fnc_addKeyHandler;
 	[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers, {[0] call TFAR_fnc_processLRStereoKeys}, "keydown", "28"] call CBA_fnc_addKeyHandler;
 	[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers, {[1] call TFAR_fnc_processLRStereoKeys}, "keydown", "29"] call CBA_fnc_addKeyHandler;
-	[TF_lr_stereo_right_scancode, TF_lr_stereo_right_modifiers, {[2] call TFAR_fnc_processLRStereoKeys}, "keydown", "30"] call CBA_fnc_addKeyHandler;	
+	[TF_lr_stereo_right_scancode, TF_lr_stereo_right_modifiers, {[2] call TFAR_fnc_processLRStereoKeys}, "keydown", "30"] call CBA_fnc_addKeyHandler;
+	
 	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;

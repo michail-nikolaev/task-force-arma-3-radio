@@ -10,14 +10,14 @@ class RscBackPicture
 	type = 0;
 	idc = -1;
 	style = 48;
-	colorBackground[] = 
+	colorBackground[] =
 	{
 		0,
 		0,
 		0,
 		0
 	};
-	colorText[] = 
+	colorText[] =
 	{
 		1,
 		1,
@@ -43,28 +43,28 @@ class RscEditLCD
 	y = 0;
 	h = 0.04;
 	w = 0.2;
-	colorBackground[] = 
+	colorBackground[] =
 	{
 		0,
 		0,
 		0,
 		1
 	};
-	colorText[] = 
+	colorText[] =
 	{
 		0,
 		0,
 		0,
 		1
 	};
-	colorDisabled[] = 
+	colorDisabled[] =
 	{
 		1,
 		1,
 		1,
 		0.25
 	};
-	colorSelection[] = 
+	colorSelection[] =
 	{
 		"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.69])",
 		"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.75])",
@@ -75,7 +75,7 @@ class RscEditLCD
 	text = "";
 	size = 0.2;
 	style = "0x00 + 0x40 + 0x200";
-	font = "puristalight"; 
+	font = "puristalight";
 	shadow = 2;
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
 };
@@ -109,25 +109,25 @@ class HiddenButton
 			0, 0, 0, 0
 	};
 
-	soundEnter[] = 
+	soundEnter[] =
 	{
 		"\A3\ui_f\data\sound\RscButton\soundEnter",
 		0.09,
 		1
 	};
-	soundPush[] = 
+	soundPush[] =
 	{
 		"\A3\ui_f\data\sound\RscButton\soundPush",
 		0.09,
 		1
 	};
-	soundClick[] = 
+	soundClick[] =
 	{
 		"\A3\ui_f\data\sound\RscButton\soundClick",
 		0.09,
 		1
 	};
-	soundEscape[] = 
+	soundEscape[] =
 	{
 		"\A3\ui_f\data\sound\RscButton\soundEscape",
 		0.09,
@@ -158,4 +158,7 @@ class HiddenButton
 #include "task_force_radio\fadak\fadak.ext"
 #include "task_force_radio\diver_radio\diver_radio.ext"
 #include "task_force_radio\mr3000\mr3000.ext"
+#include "task_force_radio\anarc210\anarc210.ext"
+#include "task_force_radio\anarc164\anarc164.ext"
+#include "task_force_radio\mr6000l\mr6000l.ext"
 #include "task_force_radio\RscTitles.hpp"
