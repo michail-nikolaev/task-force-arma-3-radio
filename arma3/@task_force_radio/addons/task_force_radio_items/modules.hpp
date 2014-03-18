@@ -30,6 +30,12 @@ class tfar_ModuleTaskForceRadioEnforceUsage: Module_F
 			description = "$STR_TFAR_Mod_GiveTLradioTT";
 			typeName = "BOOL";
 		};
+		class RiflemanRadio
+		{
+			displayName = "$STR_TFAR_Mod_GiveRiflemanRadio";
+			description = "$STR_TFAR_Mod_GiveRiflemanRadioTT";
+			typeName = "BOOL";
+		};
 	};
 	
 	class ModuleDescription: ModuleDescription
@@ -72,6 +78,13 @@ class tfar_ModuleTaskForceRadio: Module_F
 			description = "$STR_TFAR_Mod_PR_RadioTT";
 			typeName = "TEXT";
 			defaultValue = "tf_anprc152";
+		};
+		class RiflemanRadio
+		{
+			displayName = "$STR_TFAR_Mod_Rifle_Radio";
+			description = "$STR_TFAR_Mod_Rifle_RadioTT";
+			typeName = "TEXT";
+			defaultValue = "tf_rf7800str";
 		};
 		class PrFreq
 		{
