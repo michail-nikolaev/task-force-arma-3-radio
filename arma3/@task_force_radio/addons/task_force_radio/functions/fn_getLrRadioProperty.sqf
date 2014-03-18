@@ -22,13 +22,12 @@ _property = _this select 1;
 _found = false;
 _result = nil;
 
-if (!(_radio isKindOf "Bag_Base")) then
-{
+if (!(_radio isKindOf "Bag_Base")) then {
 	_result = _radio getVariable "TF_RadioType";
-	if (isNil "_result") then
-	{
-		_result = [typeof _radio, _property] call TFAR_fnc_getConfigProperty;
-		if (!isNil "_result" AND {_result != ""}) exitWith {_found = true; };
+	if (isNil "_result") then {
+		_result = [typeof _radio, "tf_RadioType"] call TFAR_fnc_getConfigProperty;
+		
+		if (!isNil "_result" AND {_result != ""}) exitWith {_found = true;};
 		
 		if ((_radio call TFAR_fnc_getVehicleSide) == west) then {
 			_result = TF_defaultWestBackpack;
@@ -41,9 +40,7 @@ if (!(_radio isKindOf "Bag_Base")) then
 		};
 	};
 	_radio = _result;
-}
-else
-{
+} else {
 	_radio = typeof _radio;
 };
 if (_found) exitWith { _result };
