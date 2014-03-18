@@ -1,1 +1,0 @@
-(call TFAR_fnc_lrRadiosList) call BIS_fnc_sortAlphabetically
