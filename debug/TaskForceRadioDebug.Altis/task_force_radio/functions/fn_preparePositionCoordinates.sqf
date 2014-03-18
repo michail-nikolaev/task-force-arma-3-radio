@@ -48,6 +48,18 @@ if (_x_player == player) then {
 
 _isolated_and_inside = _x_player call TFAR_fnc_vehicleIsIsolatedAndInside;
 
+// copied from http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/
+KK_fnc_positionToString = {
+    private ["_f2s","_arr"];
+    _f2s = {
+        _arr = toArray str (_this % 1);
+        _arr set [0, 'x'];
+        _arr = _arr - ['x'];
+        toString (toArray str (_this - _this % 1) + _arr)
+    };
+	_this call _f2s    
+};
+
 if (alive player) then 
 {
 	_player_pos = eyePos player;
@@ -56,4 +68,4 @@ if (alive player) then
 	_current_z = _current_z - (_player_pos select 2);
 };
 _can_speak = [_x_player, _isolated_and_inside] call TFAR_fnc_canSpeak;
-(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11", _x_playername, _current_x, _current_y, _current_z, _current_rotation_horizontal, _can_speak, [_x_player, _isolated_and_inside, _can_speak] call TFAR_fnc_canUseSWRadio, [_x_player, _isolated_and_inside] call TFAR_fnc_canUseLRRadio, [_x_player, _isolated_and_inside] call TFAR_fnc_canUseDDRadio,  _x_player call TFAR_fnc_vehicleId, _x_player call TFAR_fnc_calcTerrainInterception])
+(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11", _x_playername, _current_x call KK_fnc_positionToString, _current_y call KK_fnc_positionToString, _current_z call KK_fnc_positionToString, _current_rotation_horizontal, _can_speak, [_x_player, _isolated_and_inside, _can_speak] call TFAR_fnc_canUseSWRadio, [_x_player, _isolated_and_inside] call TFAR_fnc_canUseLRRadio, [_x_player, _isolated_and_inside] call TFAR_fnc_canUseDDRadio,  _x_player call TFAR_fnc_vehicleId, _x_player call TFAR_fnc_calcTerrainInterception])

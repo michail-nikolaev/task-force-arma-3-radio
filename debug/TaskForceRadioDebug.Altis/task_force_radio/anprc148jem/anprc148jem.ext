@@ -2,7 +2,7 @@
 $[
 	1.063,
 	["anprc148jem",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
-	[1200,"background",[1,"task_force_radio\anprc148jem\148.paa",["-0.0269687 * safezoneW + safezoneX","-0.0251171 * safezoneH + safezoneY","0.555188 * safezoneW","1.00402 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1200,"",[1,"task_force_radio\anprc148jem\148.paa",["-0.0269687 * safezoneW + safezoneX","-0.0251171 * safezoneH + safezoneY","0.555188 * safezoneW","1.00402 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1600,"enter",[1,"",["0.278844 * safezoneW + safezoneX","0.497199 * safezoneH + safezoneY","0.0275625 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
 	[1601,"clear",[1,"",["0.280156 * safezoneW + safezoneX","0.457991 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Clear frequency","-1"],[]],
 	[1400,"edit",[1,"188.8",["0.238813 * safezoneW + safezoneX","0.351567 * safezoneH + safezoneY","0.0623438 * safezoneW","0.067215 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current frequency","-1"],[]],
@@ -127,7 +127,7 @@ class increase_volume: HiddenButton
 	w = 0.0242813 * safezoneW;
 	h = 0.0294066 * safezoneH;
 	tooltip = $STR_increase_volume;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)+ 1) * 10)];";
+	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 };
 class decrease_volume: HiddenButton
 {
@@ -137,7 +137,7 @@ class decrease_volume: HiddenButton
 	w = 0.0269063 * safezoneW;
 	h = 0.0266059 * safezoneH;
 	tooltip = $STR_decrease_volume;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) * 10)];";
+	action = "[TF_sw_dialog_radio,((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)-1+TF_MAX_SW_VOLUME)mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 };
 class stereo: HiddenButton
 {
