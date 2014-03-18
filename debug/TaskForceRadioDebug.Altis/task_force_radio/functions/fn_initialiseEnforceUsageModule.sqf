@@ -22,6 +22,7 @@ _activated = [_this,2,true,[true]] call BIS_fnc_param;
 if (_activated) then
 {
 	tf_no_auto_long_range_radio = !(_logic getVariable "TeamLeaderRadio");
+	TF_give_personal_radio_to_regular_soldier = !(_logic getVariable "RiflemanRadio");
 };
 
 true
