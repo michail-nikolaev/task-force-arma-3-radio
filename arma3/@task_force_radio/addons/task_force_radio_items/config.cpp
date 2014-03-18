@@ -160,6 +160,7 @@ class CfgVehicles {
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialog = "anarc210_radio_dialog";
 		tf_subtype = "airborne";
+		tf_dialogUpdate = "[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;";
 	};
 
 	class tf_anarc164: B_Kitbag_sgg
