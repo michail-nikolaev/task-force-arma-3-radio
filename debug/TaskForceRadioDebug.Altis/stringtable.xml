@@ -228,16 +228,16 @@
 			</Key>
 			<Key ID="STR_radio_volume">
 				<Original>
-					Radio volume level: %1
+					Volume: %1
 				</Original>
 				<Russian>
-					Громкость рации: %1
+					Громкость: %1
 				</Russian>
 				<French>
-					Volume de la radio : %1
+					Volume: %1
 				</French>
 				<Italian>
-					Volume della radio : %1
+					Volume: %1
 				</Italian>	
 			</Key>
 			<Key ID="STR_radio_channel_1">
@@ -382,44 +382,44 @@
 			</Key>
 			<Key ID="STR_active_sw_channel">
 				<Original>
-					Active SW channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					SW channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Original>
 				<Russian>
-					Текущий канал: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					Канал: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Russian>
 				<French>
-					Canal courte portée actif : &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					Canal courte portée: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</French>
 				<Italian>
-					Canale onde corte attivo: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					Canale onde corte: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Italian>	
 			</Key>
 			<Key ID="STR_active_frequency">
 				<Original>
-					Current frequency: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					Frequency: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Original>
 				<Russian>
-					Текущая частота: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					Частота: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Russian>
 				<French>
-					Fréquence actuelle: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					Fréquence: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</French>
 				<Italian>
-					Frequenza attuale: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					Frequenza: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Italian>	
 			</Key>
 			<Key ID="STR_active_lr_channel">
 				<Original>
-					Active LR channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					LR channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Original>
 				<Russian>
-					Текущий канал дальней связи: &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;
+					Kанал ДС: &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;
 				</Russian>
 				<French>
-					Canal longue portée actif : &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					Canal LP: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</French>
 				<Italian>
-					Canale onde lunghe attivo: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					Canale OL: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Italian>	
 			</Key>
 			<Key ID="STR_in_water_hint">
