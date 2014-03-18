@@ -27,7 +27,7 @@ $[
 
 class mr6000l_radio_dialog
 {
-	idd = IDD_ANPRC210_RADIO_DIALOG;
+	idd = IDD_MR6000L_RADIO_DIALOG;
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
