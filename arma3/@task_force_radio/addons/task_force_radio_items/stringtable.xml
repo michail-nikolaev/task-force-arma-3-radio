@@ -86,6 +86,34 @@
 					Give each team leader the appropriate long range radio
 				</Italian>
 			</Key>
+			<Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
+				<Original>
+					Give rifleman radio
+				</Original>
+				<Russian>
+					Give rifleman radio
+				</Russian>
+				<French>
+					Give rifleman radio
+				</French>
+				<Italian>
+					Give rifleman radio
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
+				<Original>
+					Give a rifleman radio
+				</Original>
+				<Russian>
+					Give a rifleman radio
+				</Russian>
+				<French>
+					Give a rifleman radio
+				</French>
+				<Italian>
+					Give a rifleman radio
+				</Italian>
+			</Key>
 			<Key ID="STR_TFAR_Mod_EnforceUsage_Description">
 				<Original>
 					Enforces usage of TFAR in mission.
@@ -182,6 +210,34 @@
 				</French>
 				<Italian>
 					Personal radio
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_Rifle_Radio">
+				<Original>
+					Rifleman Radio
+				</Original>
+				<Russian>
+					Rifleman Radio
+				</Russian>
+				<French>
+					Rifleman Radio
+				</French>
+				<Italian>
+					Rifleman Radio
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_Rifle_RadioTT">
+				<Original>
+					Rifleman Radio
+				</Original>
+				<Russian>
+					Rifleman Radio
+				</Russian>
+				<French>
+					Rifleman Radio
+				</French>
+				<Italian>
+					Rifleman Radio
 				</Italian>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PRFrequency">

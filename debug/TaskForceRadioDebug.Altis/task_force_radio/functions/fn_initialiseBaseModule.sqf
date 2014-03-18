@@ -39,6 +39,7 @@ if (_activated) then {
 
 			switch (_currentSide) do {
 				case west: {
+					TF_defaultWestRiflemanRadio = _logic getVariable "RiflemanRadio";
 					tf_west_radio_code = _logic getVariable "Encryption";
 					if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getConfigProperty) == 1) then {
 						TF_defaultWestBackpack = _LRradio;
@@ -61,6 +62,7 @@ if (_activated) then {
 					};
 				};
 				case east: {
+					TF_defaultEastRiflemanRadio = _logic getVariable "RiflemanRadio";
 					tf_east_radio_code = _logic getVariable "Encryption";
 					if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getConfigProperty) == 1) then {
 						TF_defaultEastBackpack = _LRradio;
@@ -83,6 +85,7 @@ if (_activated) then {
 					};
 				};
 				default	{
+					TF_defaultGuerRiflemanRadio = _logic getVariable "RiflemanRadio";
 					tf_guer_radio_code = _logic getVariable "Encryption";
 					if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getConfigProperty) == 1) then {
 						TF_defaultGuerBackpack = _LRradio;
