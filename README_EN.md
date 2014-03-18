@@ -44,11 +44,11 @@ _v0.8.3 (03-13-2014)_
 | `Caps Lock` | To talk on a radio. |
 | `CTRL`&nbsp;+&nbsp;`Caps Lock` | To talk on a long range radio. |
 | `CTRL`&nbsp;+&nbsp;`P` | To open the personal radio interface (the radio must be in the inventory slot). In that case if you have a number of radios - you can select the one needed. It is also possible to set the radio as active (the one that will be used for transmission). |
-| `CTRL`&nbsp;+&nbsp;`SHIFT`&nbsp;+&nbsp;`A/D` | Cycle through available shortwave radios. | 
+| `CTRL`&nbsp;+&nbsp;+&nbsp;`[/]` | Cycle through available shortwave radios. | 
 | `CTRL`&nbsp;+&nbsp;`Up/Left/Right Arrow` | Rapid switching of shortwave stereo mode. |
 | `NUM[1-8]` | Rapid switching of shortwave radio channels. | 
 | `ALT`&nbsp;+&nbsp;`P` | To open a long range radio interface (a long range radio must be put on your back, or you should be in a vehicle in a position of a driver, shooter, or pilot assistant). If a number of radios are available – you’ll be offered to choose one. Besides, one of them can be set as active. |
-| `ALT`&nbsp;+&nbsp;`SHIFT`&nbsp;+&nbsp;`A/D` | Cycle through available long range radios. | 
+| `CTRL`&nbsp;+&nbsp;`ALT`&nbsp;+&nbsp;`[/]` | Cycle through available long range radios. | 
 | `ALT`&nbsp;+&nbsp;`Up/Left/Right Arrow` | Rapid switching of long range stereo mode. |
 | `CTRL`&nbsp;+&nbsp;`NUM[1-9]` | Rapid switching of long range radio channels. |
 | `CTRL`&nbsp;+&nbsp;`TAB` | To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission. |
@@ -168,4 +168,5 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * Everyone user (especially who report bugs).
 * [ramius86](https://github.com/ramius86) for Italian translation.
 * KK for [tutorials](http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/)
+* [Krypto202](http://www.armaholic.com/users.php?m=details&id=45906&u=kripto202) for sounds.
 * Sorry guys if I’ve forgot someone by chance.
