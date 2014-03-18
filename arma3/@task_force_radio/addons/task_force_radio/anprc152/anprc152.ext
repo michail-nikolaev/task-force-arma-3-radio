@@ -123,7 +123,7 @@ class increase_volume: HiddenButton
 	y = 0.515404 * safezoneH + safezoneY;
 	w = 0.0191625 * safezoneW;
 	h = 0.0203045 * safezoneH;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)+ 1) * 10)];";
+	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 	tooltip = $STR_increase_volume;
 };
 class decrease_volume: HiddenButton
@@ -133,7 +133,7 @@ class decrease_volume: HiddenButton
 	y = 0.54621 * safezoneH + safezoneY;
 	w = 0.0202125 * safezoneW;
 	h = 0.0245055 * safezoneH;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume; hint formatText [localize 'STR_radio_volume', (((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) * 10)];";
+	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 	tooltip = $STR_decrease_volume;
 };
 class stereo: HiddenButton
