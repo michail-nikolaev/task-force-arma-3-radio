@@ -191,6 +191,7 @@ class CfgVehicles {
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialog = "mr6000l_radio_dialog";
 		tf_subtype = "airborne";
+		tf_dialogUpdate = "[""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;";
 	};
 
 	#include "vehicles.hpp"
