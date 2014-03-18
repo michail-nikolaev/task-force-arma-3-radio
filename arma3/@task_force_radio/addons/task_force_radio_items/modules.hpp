@@ -14,7 +14,7 @@ class tfar_ModuleTaskForceRadioEnforceUsage: Module_F
 {
 	scope = 2;
 	author = "Task Force Arrowhead Radio";
-	displayName = "TFAR - Enforce Usage";
+	displayName = "$STR_TFAR_Mod_EnforceUsage";
 	category = "TFAR";
 	
 	function = "TFAR_fnc_initialiseEnforceUsageModule";
@@ -26,22 +26,22 @@ class tfar_ModuleTaskForceRadioEnforceUsage: Module_F
 	{
 		class TeamLeaderRadio
 		{
-			displayName = "Give team leaders a long range radio";
-			description = "Give each team leader the appropriate long range radio";
+			displayName = "$STR_TFAR_Mod_GiveTLradio";
+			description = "$STR_TFAR_Mod_GiveTLradioTT";
 			typeName = "BOOL";
 		};
 	};
 	
 	class ModuleDescription: ModuleDescription
 	{
-		description = "Enforces usage of TFAR in mission.";
+		description = "$STR_TFAR_Mod_EnforceUsage_Description";
 	};
 };
 class tfar_ModuleTaskForceRadio: Module_F
 {
 	scope = 2;
 	author = "Task Force Arrowhead Radio";
-	displayName = "TFAR - Side Radio";
+	displayName = "$STR_TFAR_Mod_SideRadio";
 	category = "TFAR";
 	
 	function = "TFAR_fnc_initialiseBaseModule";
@@ -54,36 +54,36 @@ class tfar_ModuleTaskForceRadio: Module_F
 		class Units: Units {};
 		class Encryption
 		{
-			displayName = "Encryption Code";
-			description = "Encryption Code";
+			displayName = "$STR_TFAR_Mod_EncryptionCode";
+			description = "$STR_TFAR_Mod_EncryptionCode";
 			typeName = "TEXT";
 			defaultValue = "DSH&G^G";
 		};
 		class LRradio
 		{
-			displayName = "LR Radio";
-			description = "LR radio";
+			displayName = "$STR_TFAR_Mod_LR_Radio";
+			description = "$STR_TFAR_Mod_LR_RadioTT";
 			typeName = "TEXT";
 			defaultValue = "tf_rt1523g";
 		};
 		class Radio
 		{
-			displayName = "PR Radio";
-			description = "Personal radio";
+			displayName = "$STR_TFAR_Mod_PR_Radio";
+			description = "$STR_TFAR_Mod_PR_RadioTT";
 			typeName = "TEXT";
 			defaultValue = "tf_anprc152";
 		};
 		class PrFreq
 		{
-			displayName = "PR Freq.";
-			description = "PR default frequency";
+			displayName = "$STR_TFAR_Mod_PRFrequency";
+			description = "$STR_TFAR_Mod_PRFrequencyTT";
 			typeName = "NUMBER";
 			defaultValue = 70.2;
 		};
 		class LrFreq
 		{
-			displayName = "LR Freq.";
-			description = "LR default frequency";
+			displayName = "$STR_TFAR_Mod_LRFrequency";
+			description = "$STR_TFAR_Mod_LRFrequencyTT";
 			typeName = "NUMBER";
 			defaultValue = 57.2;
 		};
@@ -91,7 +91,7 @@ class tfar_ModuleTaskForceRadio: Module_F
 	
 	class ModuleDescription: ModuleDescription
 	{
-		description = "Allows setting of default radios, encryption and frequencies for synced side.";
+		description = "$STR_TFAR_Mod_SideRadio_Description";
 		sync[] = {"AnyPerson"};
 	};
 };
@@ -100,7 +100,7 @@ class tfar_ModuleTaskForceRadioFrequencies: Module_F
 {
 	scope = 2;
 	author = "Task Force Arrowhead Radio";
-	displayName = "TFAR - Frequencies";
+	displayName = "$STR_TFAR_Mod_Frequencies";
 	category = "TFAR";
 	
 	function = "TFAR_fnc_initialiseFreqModule";
@@ -114,15 +114,15 @@ class tfar_ModuleTaskForceRadioFrequencies: Module_F
 		class Units: Units {};
 		class PrFreq
 		{
-			displayName = "PR Freq.";
-			description = "PR default frequency";
+			displayName = "$STR_TFAR_Mod_PRFrequency";
+			description = "$STR_TFAR_Mod_PRFrequencyTT";
 			typeName = "NUMBER";
 			defaultValue = 70.2;
 		};
 		class LrFreq
 		{
-			displayName = "LR Freq.";
-			description = "LR default frequency";
+			displayName = "$STR_TFAR_Mod_LRFrequency";
+			description = "$STR_TFAR_Mod_LRFrequencyTT";
 			typeName = "NUMBER";
 			defaultValue = 57.2;
 		};
@@ -130,7 +130,7 @@ class tfar_ModuleTaskForceRadioFrequencies: Module_F
 	
 	class ModuleDescription: ModuleDescription
 	{
-		description = "Allows setting of default frequencies for sides.";
+		description = "$STR_TFAR_Mod_Frequencies_Description";
 		sync[] = {"AnyPerson"};
 	};
 };
