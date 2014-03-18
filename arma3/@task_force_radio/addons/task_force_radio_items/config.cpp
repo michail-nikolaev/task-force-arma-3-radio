@@ -156,6 +156,55 @@ class CfgVehicles {
 		tf_dialog = "mr3000_radio_dialog";
 		tf_subtype = "digital_lr";
 	};
+
+	class tf_anarc210: B_Kitbag_mcamo
+	{
+		displayName = "AN/ARC-210";
+		descriptionShort = "AN/ARC-210";
+		picture = "\task_force_radio_items\anarc210\anarc210_icon.paa";
+		scope = 2;
+		maximumLoad = 0;
+		mass = 15;
+		tf_hasLRradio = 1;
+		tf_range = 35000;
+		tf_encryptionCode = "tf_west_radio_code";
+		tf_dialog = "anarc210_radio_dialog";
+		tf_subtype = "airborne";
+		tf_dialogUpdate = "[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;";
+	};
+
+	class tf_anarc164: B_Kitbag_sgg
+	{
+		displayName = "AN/ARC-164";
+		descriptionShort = "AN/ARC-164";
+		picture = "\task_force_radio_items\anarc164\anarc164_icon.paa";
+		scope = 2;
+		maximumLoad = 0;
+		mass = 15;
+		tf_hasLRradio = 1;
+		tf_range = 35000;
+		tf_encryptionCode = "tf_guer_radio_code";
+		tf_dialog = "anarc164_radio_dialog";
+		tf_subtype = "airborne";
+		tf_dialogUpdate = "[""%1""] call TFAR_fnc_updateLRDialogToChannel;";
+	};
+
+	class tf_mr6000l: B_Kitbag_cbr
+	{
+		displayName = "MR6000L";
+		descriptionShort = "MR6000L";
+		picture = "\task_force_radio_items\mr6000l\mr6000l_icon.paa";
+		scope = 2;
+		maximumLoad = 0;
+		mass = 15;
+		tf_hasLRradio = 1;
+		tf_range = 35000;
+		tf_encryptionCode = "tf_east_radio_code";
+		tf_dialog = "mr6000l_radio_dialog";
+		tf_subtype = "airborne";
+		tf_dialogUpdate = "[""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;";
+	};
+
 	#include "vehicles.hpp"
 	#include "crates.hpp"
 	#include "modules.hpp"

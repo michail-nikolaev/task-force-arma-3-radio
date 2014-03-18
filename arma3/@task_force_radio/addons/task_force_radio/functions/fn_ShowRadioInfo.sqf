@@ -27,8 +27,7 @@ _name = if(_isLrRadio) then {getText (ConfigFile >> "CfgVehicles" >> typeof (_ra
 _picture = if(_isLrRadio) then {getText (ConfigFile >> "CfgVehicles" >> typeof (_radio select 0) >> "picture")} else {getText(configFile >> "CfgWeapons" >> _radio >> "picture")};
 _channel = if(_isLrRadio) then {format[localize "STR_active_lr_channel", (_radio call TFAR_fnc_getLrChannel) + 1]} else {format[localize "STR_active_sw_channel", (_radio call TFAR_fnc_getSwChannel) + 1]};
 
-_hintText = format ["%1<img size='1.5' image='%2'/><br />%3<br />%4<br />%5", _name,_picture,_channel,
-	format[localize "STR_active_frequency", if(_isLrRadio) then {_radio call TFAR_fnc_getLrFrequency} else {_radio call TFAR_fnc_getSwFrequency}],
-	localize format ["STR_stereo_settings_%1", if(_isLrRadio) then {_radio call TFAR_fnc_getLrStereo} else {_radio call TFAR_fnc_getSwStereo}]];
+_hintText = format ["<t size='1' align='center'>%1 <img size='1.5' image='%2'/></t><br /><t align='center'>%3</t><br /><t align='center'>%4</t>", _name,_picture,_channel,
+	format[localize "STR_active_frequency", if(_isLrRadio) then {_radio call TFAR_fnc_getLrFrequency} else {_radio call TFAR_fnc_getSwFrequency}]];
 	
 [parseText (_hintText), 5] call TFAR_fnc_showHint;

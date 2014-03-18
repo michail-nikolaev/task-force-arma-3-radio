@@ -16,7 +16,7 @@
  	Example:
 	[(vehicle player), "TF_hasLRradio"] call TFAR_fnc_getLrRadioProperty;
 */
-private ["_radio", "_property", "_found", "_result"];
+private ["_radio", "_property", "_found", "_result", "_air"];
 _radio = _this select 0;
 _property = _this select 1;
 _found = false;
@@ -28,14 +28,26 @@ if (!(_radio isKindOf "Bag_Base")) then {
 		_result = [typeof _radio, "tf_RadioType"] call TFAR_fnc_getConfigProperty;
 		
 		if (!isNil "_result" AND {_result != ""}) exitWith {_found = true;};
-		
-		if ((_radio call TFAR_fnc_getVehicleSide) == west) then {
-			_result = TF_defaultWestBackpack;
+		_air = (typeof(_radio) isKindOf "Air");
+		if ((_radio call TFAR_fnc_getVehicleSide) == west) then {			
+			if (_air) then {
+				_result = TF_defaultWestAirborneRadio;
+			} else {
+				_result = TF_defaultWestBackpack;
+			};
 		} else {
 			if ((_radio call TFAR_fnc_getVehicleSide) == east) then {
-				_result = TF_defaultEastBackpack;
+				if (_air) then {
+					_result = TF_defaultEastAirborneRadio;
+				} else {
+					_result = TF_defaultEastBackpack;
+				};				
 			} else {
-				_result = TF_defaultGuerBackpack;
+				if (_air) then {
+					_result = TF_defaultGuerAirborneRadio;
+				} else {
+					_result = TF_defaultGuerBackpack;
+				};				
 			};
 		};
 	};
