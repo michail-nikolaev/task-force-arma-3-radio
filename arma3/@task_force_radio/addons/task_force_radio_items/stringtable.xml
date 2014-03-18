@@ -44,6 +44,258 @@
 					TFAR Radio (AAF)
 				</Italian>
 			</Key>
+			<Key ID="STR_TFAR_Mod_EnforceUsage">
+				<Original>
+					TFAR - Enforce Usage
+				</Original>
+				<Russian>
+					TFAR - Enforce Usage
+				</Russian>
+				<French>
+					TFAR - Enforce Usage
+				</French>
+				<Italian>
+					TFAR - Enforce Usage
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_GiveTLradio">
+				<Original>
+					Give team leaders a long range radio
+				</Original>
+				<Russian>
+					Give team leaders a long range radio
+				</Russian>
+				<French>
+					Give team leaders a long range radio
+				</French>
+				<Italian>
+					Give team leaders a long range radio
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_GiveTLradioTT">
+				<Original>
+					Give each team leader the appropriate long range radio
+				</Original>
+				<Russian>
+					Give each team leader the appropriate long range radio
+				</Russian>
+				<French>
+					Give each team leader the appropriate long range radio
+				</French>
+				<Italian>
+					Give each team leader the appropriate long range radio
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_EnforceUsage_Description">
+				<Original>
+					Enforces usage of TFAR in mission.
+				</Original>
+				<Russian>
+					Enforces usage of TFAR in mission.
+				</Russian>
+				<French>
+					Enforces usage of TFAR in mission.
+				</French>
+				<Italian>
+					Enforces usage of TFAR in mission.
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_SideRadio">
+				<Original>
+					TFAR - Side Radio
+				</Original>
+				<Russian>
+					TFAR - Side Radio
+				</Russian>
+				<French>
+					TFAR - Side Radio
+				</French>
+				<Italian>
+					TFAR - Side Radio
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_EncryptionCode">
+				<Original>
+					Encryption Code
+				</Original>
+				<Russian>
+					Encryption Code
+				</Russian>
+				<French>
+					Encryption Code
+				</French>
+				<Italian>
+					Encryption Code
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_LR_Radio">
+				<Original>
+					LR Radio
+				</Original>
+				<Russian>
+					LR Radio
+				</Russian>
+				<French>
+					LR Radio
+				</French>
+				<Italian>
+					LR Radio
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_LR_RadioTT">
+				<Original>
+					Long Range radio
+				</Original>
+				<Russian>
+					Long Range radio
+				</Russian>
+				<French>
+					Long Range radio
+				</French>
+				<Italian>
+					Long Range radio
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_PR_Radio">
+				<Original>
+					PR Radio
+				</Original>
+				<Russian>
+					PR Radio
+				</Russian>
+				<French>
+					PR Radio
+				</French>
+				<Italian>
+					PR Radio
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_PR_RadioTT">
+				<Original>
+					Personal radio
+				</Original>
+				<Russian>
+					Personal radio
+				</Russian>
+				<French>
+					Personal radio
+				</French>
+				<Italian>
+					Personal radio
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_PRFrequency">
+				<Original>
+					PR Freq.
+				</Original>
+				<Russian>
+					PR Freq.
+				</Russian>
+				<French>
+					PR Freq.
+				</French>
+				<Italian>
+					PR Freq.
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_PRFrequencyTT">
+				<Original>
+					PR default frequency
+				</Original>
+				<Russian>
+					PR default frequency
+				</Russian>
+				<French>
+					PR default frequency
+				</French>
+				<Italian>
+					PR default frequency
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_LRFrequency">
+				<Original>
+					LR Freq.
+				</Original>
+				<Russian>
+					LR Freq.
+				</Russian>
+				<French>
+					LR Freq.
+				</French>
+				<Italian>
+					LR Freq.
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_LRFrequencyTT">
+				<Original>
+					LR default frequency
+				</Original>
+				<Russian>
+					LR default frequency
+				</Russian>
+				<French>
+					LR default frequency
+				</French>
+				<Italian>
+					LR default frequency
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_SideRadio">
+				<Original>
+					TFAR - Side Radio
+				</Original>
+				<Russian>
+					TFAR - Side Radio
+				</Russian>
+				<French>
+					TFAR - Side Radio
+				</French>
+				<Italian>
+					TFAR - Side Radio
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_SideRadio_Description">
+				<Original>
+					Allows setting of default radios, encryption and frequencies for synced side.
+				</Original>
+				<Russian>
+					Allows setting of default radios, encryption and frequencies for synced side.
+				</Russian>
+				<French>
+					Allows setting of default radios, encryption and frequencies for synced side.
+				</French>
+				<Italian>
+					Allows setting of default radios, encryption and frequencies for synced side.
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_Frequencies">
+				<Original>
+					TFAR - Frequencies
+				</Original>
+				<Russian>
+					TFAR - Frequencies
+				</Russian>
+				<French>
+					TFAR - Frequencies
+				</French>
+				<Italian>
+					TFAR - Frequencies
+				</Italian>
+			</Key>
+			<Key ID="STR_TFAR_Mod_Frequencies_Description">
+				<Original>
+					Allows setting of default frequencies for sides.
+				</Original>
+				<Russian>
+					Allows setting of default frequencies for sides.
+				</Russian>
+				<French>
+					Allows setting of default frequencies for sides.
+				</French>
+				<Italian>
+					Allows setting of default frequencies for sides.
+				</Italian>
+			</Key>
 		</Container>
 	</Package>
 </Project>
