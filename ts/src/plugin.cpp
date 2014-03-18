@@ -38,8 +38,8 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -929,7 +929,7 @@ void onGameStart(uint64 serverConnectionHandlerID, anyID clientId)
 	log("On Respawn");	
 	if (isConnected(serverConnectionHandlerID))
 	{
-			notSeriousChannelId = getCurrentChannel(serverConnectionHandlerID);
+		uint64 beforeGameChannelId = getCurrentChannel(serverConnectionHandlerID);		
 		uint64* result;
 		DWORD error;
 
@@ -973,6 +973,7 @@ void onGameStart(uint64 serverConnectionHandlerID, anyID clientId)
 					ts3Functions.freeMemory(channelName);
 				}
 			}
+			if (joined) notSeriousChannelId = beforeGameChannelId;
 			ts3Functions.freeMemory(result);
 		}
 	}
@@ -1239,6 +1240,7 @@ std::string processGameCommand(std::string command)
 				if (subtype == "digital_lr") playWavFile("radio-sounds/lr/local_start", false, 0);
 				else if (subtype == "dd") playWavFile("radio-sounds/dd/local_start", false, 0);
 				else if (subtype == "digital") playWavFile("radio-sounds/sw/local_start", false, 0);
+				else if (subtype == "airborne") playWavFile("radio-sounds/ab/local_start", false, 0);
 
 				vadEnabled = hlp_checkVad();
 				if (vadEnabled) hlp_disableVad();
@@ -1250,6 +1252,7 @@ std::string processGameCommand(std::string command)
 				if (subtype == "digital_lr") playWavFile("radio-sounds/lr/local_end", false, 0);
 				else if (subtype == "dd") playWavFile("radio-sounds/dd/local_end", false, 0);
 				else if (subtype == "digital") playWavFile("radio-sounds/sw/local_end", false, 0);
+				else if (subtype == "airborne") playWavFile("radio-sounds/ab/local_end", false, 0);
 			}
 			// broadcast info about tangent pressed over all client						
 			std::string commandToBroadcast = command + "\t" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
@@ -2124,7 +2127,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						processRadioEffect(sw_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->swEffect, listed_info.stereoMode);
 					}
 					short* lr_buffer = NULL;
-					if (data->subtype == "digital_lr")
+					if (data->subtype == "digital_lr" || data->subtype == "airborne")
 					{
 						lr_buffer = allocatePool(sampleCount, channels, samples);
 						float volumeLevel = volumeMultiplifier((float) listed_info.volume);						
@@ -2453,6 +2456,11 @@ void processPluginCommand(std::string command)
 						{
 							if (playPressed) playWavFile("radio-sounds/dd/remote_start", true, listedInfo.volume + 1);
 							if (playReleased) playWavFile("radio-sounds/dd/remote_end", true, listedInfo.volume + 1);
+						}
+						if (subtype == "airborne")
+						{
+							if (playPressed) playWavFile("radio-sounds/ab/remote_start", true, listedInfo.volume + 1);
+							if (playReleased) playWavFile("radio-sounds/ab/remote_end", true, listedInfo.volume + 1);
 						}
 					}
 					EnterCriticalSection(&serverDataCriticalSection);
