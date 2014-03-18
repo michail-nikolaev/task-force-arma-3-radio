@@ -1,4 +1,4 @@
-TF_ADDON_VERSION = "0.8.3";
+TF_ADDON_VERSION = "0.9.0";
 
 #include "common.sqf"
 
