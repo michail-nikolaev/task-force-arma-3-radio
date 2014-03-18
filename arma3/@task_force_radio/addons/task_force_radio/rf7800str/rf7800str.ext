@@ -92,7 +92,7 @@ class rf7800str_radio_dialog
 		y = 0.3394 * safezoneH + safezoneY;
 		w = 0.015 * safezoneW;
 		h = 0.02 * safezoneH;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 		tooltip = $STR_stereo_settings;
 	};
 	class next_channel_alt: HiddenButton
