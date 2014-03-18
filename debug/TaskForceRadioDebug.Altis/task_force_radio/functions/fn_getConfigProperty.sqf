@@ -12,6 +12,7 @@
  	Parameters: 
  	0: STRING - Item classname
 	1: STRING - property
+	2: ANYTHING - Default (Optional)
  	
  	Returns:
  	NUMBER - Result
@@ -24,13 +25,13 @@
 private ["_result", "_item", "_property", "_default"];
 _item = _this select 0;
 _property = _this select 1;
-_result = nil;
-_default = nil;
-if (count _this == 3) then {
+_result = "";
+_default = "";
+if (count _this > 2) then {
 	_default = _this select 2;
 };
 
-if (isNil "_item" or {_item == ""}) exitWith {0};
+if (isNil "_item" or {_item == ""}) exitWith {_default};
 if (isNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api")) then
 {
 	_result = getNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api");

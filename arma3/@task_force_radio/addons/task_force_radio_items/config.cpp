@@ -193,6 +193,7 @@ class CfgVehicles {
 	};
 
 	#include "vehicles.hpp"
+	#include "crates.hpp"
 	
 	class Logic;
 	class Module_F: Logic
