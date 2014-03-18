@@ -156,7 +156,7 @@ class CfgVehicles {
 		maximumLoad = 0;
 		mass = 15;
 		tf_hasLRradio = 1;
-		tf_range = 35000; // temporary
+		tf_range = 35000;
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialog = "anarc210_radio_dialog";
 		tf_subtype = "airborne";
@@ -171,6 +171,7 @@ class CfgVehicles {
 		maximumLoad = 0;
 		mass = 15;
 		tf_hasLRradio = 1;
+		tf_range = 35000;
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialog = "anarc164_radio_dialog";
 		tf_subtype = "airborne";
@@ -185,6 +186,7 @@ class CfgVehicles {
 		maximumLoad = 0;
 		mass = 15;
 		tf_hasLRradio = 1;
+		tf_range = 35000;
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialog = "mr6000l_radio_dialog";
 		tf_subtype = "airborne";
