@@ -42,6 +42,11 @@ class TF_EAST_Radio_Crate: Box_EAST_Support_F
 			count = 40;
 			name = "tf_fadak";
 		};
+		class _xx_tf_pnr1000a
+		{
+			count = 40;
+			name = "tf_pnr1000a";
+		};
 	};
 	class TransportMagazines{};
 	class TransportWeapons{};
