@@ -1,0 +1,109 @@
+/* #Ganiwo
+$[
+	1.063,
+	["pnr1000a",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
+	[1200,"background",[1,"task_force_radio\pnr1000a\pnr1000a.paa",["-0.0269687 * safezoneW + safezoneX","-0.0251171 * safezoneH + safezoneY","0.555188 * safezoneW","1.00402 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1602,"prev_channel",[1,"",["0.205578 * safezoneW + safezoneX","0.6397 * safezoneH + safezoneY","0.0154687 * safezoneW","0.0374 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
+	[1603,"next_channel",[1,"",["0.205062 * safezoneW + safezoneX","0.5902 * safezoneH + safezoneY","0.0195937 * safezoneW","0.0407 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
+	[1604,"increase_volume",[1,"",["0.171031 * safezoneW + safezoneX","0.5792 * safezoneH + safezoneY","0.0134062 * safezoneW","0.0407 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
+	[1605,"decrease_volume",[1,"",["0.169484 * safezoneW + safezoneX","0.6287 * safezoneH + safezoneY","0.0128906 * safezoneW","0.0319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
+	[1606,"stereo",[1,"",["0.1865 * safezoneW + safezoneX","0.6122 * safezoneH + safezoneY","0.0159844 * safezoneW","0.0374 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]],
+	[1600,"reset_channel",[1,"",["0.181344 * safezoneW + safezoneX","0.6595 * safezoneH + safezoneY","0.0226875 * safezoneW","0.0308 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]]
+]
+*/
+
+
+class pnr1000a_radio_dialog
+{
+	idd = IDD_PNR1000A_RADIO_DIALOG;
+	movingEnable = 1;
+	controlsBackground[] = { };
+	objects[] = { };
+	controls[]=
+	{
+		background,
+		prev_channel,
+		next_channel,
+		increase_volume,
+		decrease_volume,
+		stereo,
+		reset_channel
+	};
+	////////////////////////////////////////////////////////
+	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Jafaxu)
+	////////////////////////////////////////////////////////
+
+	class background: RscBackPicture
+	{
+		idc = IDC_PNR1000A_BACKGROUND;
+		text = "task_force_radio\pnr1000a\pnr1000a.paa";
+		x = -0.0269687 * safezoneW + safezoneX;
+		y = -0.0251171 * safezoneH + safezoneY;
+		w = 0.555188 * safezoneW;
+		h = 1.00402 * safezoneH;
+		moving = 1;
+	};
+	class prev_channel: HiddenButton
+	{
+		idc = IDC_PNR1000A_PREV_CHANNEL;
+		x = 0.205578 * safezoneW + safezoneX;
+		y = 0.6397 * safezoneH + safezoneY;
+		w = 0.0154687 * safezoneW;
+		h = 0.0374 * safezoneH;
+		tooltip = $STR_previous_channel;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class next_channel: HiddenButton
+	{
+		idc = IDC_PNR1000A_NEXT_CHANNEL;
+		x = 0.205062 * safezoneW + safezoneX;
+		y = 0.5902 * safezoneH + safezoneY;
+		w = 0.0195937 * safezoneW;
+		h = 0.0407 * safezoneH;
+		tooltip = $STR_next_channel;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class increase_volume: HiddenButton
+	{
+		idc = IDC_PNR1000A_INCREASE_VOLUME;
+		x = 0.171031 * safezoneW + safezoneX;
+		y = 0.5792 * safezoneH + safezoneY;
+		w = 0.0134062 * safezoneW;
+		h = 0.0407 * safezoneH;
+		tooltip = $STR_increase_volume;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	};
+	class decrease_volume: HiddenButton
+	{
+		idc = IDC_PNR1000A_DECREASE_VOLUME;
+		x = 0.169484 * safezoneW + safezoneX;
+		y = 0.6287 * safezoneH + safezoneY;
+		w = 0.0128906 * safezoneW;
+		h = 0.0319 * safezoneH;
+		tooltip = $STR_decrease_volume;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	};
+	class stereo: HiddenButton
+	{
+		idc = IDC_PNR1000A_STEREO;
+		x = 0.1865 * safezoneW + safezoneX;
+		y = 0.6122 * safezoneH + safezoneY;
+		w = 0.0159844 * safezoneW;
+		h = 0.0374 * safezoneH;
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		tooltip = $STR_stereo_settings;
+	};
+	class reset_channel: HiddenButton
+	{
+		idc = IDC_PNR1000A_RESET_CHANNEL;
+		x = 0.188047 * safezoneW + safezoneX;
+		y = 0.5704 * safezoneH + safezoneY;
+		w = 0.0128906 * safezoneW;
+		h = 0.0242 * safezoneH;
+		tooltip = $STR_radio_channel_1;
+		action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	};
+	////////////////////////////////////////////////////////
+	// GUI EDITOR OUTPUT END
+	////////////////////////////////////////////////////////
+};
