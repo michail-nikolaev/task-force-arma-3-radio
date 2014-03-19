@@ -23,60 +23,24 @@ _activated = [_this,2,true,[true]] call BIS_fnc_param;
 
 if (_activated) then
 {
-	private ["_west", "_westLR", "_east", "_eastLR", "_guer", "_guerLR"];
-	_west = call TFAR_fnc_generateSwSettings;
-	_west set [2,STR (_logic getVariable "WestFreq")];
-	_east = call TFAR_fnc_generateSwSettings;
-	_east set [2,STR (_logic getVariable "EastFreq")];
-	_guer = call TFAR_fnc_generateSwSettings;
-	_guer set [2,STR (_logic getVariable "GuerFreq")];
-
-	_westLR = call TFAR_fnc_generateLrSettings;
-	_westLR set [2,STR (_logic getVariable "WestLrFreq")];
-	_eastLR = call TFAR_fnc_generateLrSettings;
-	_eastLR set [2,STR (_logic getVariable "EastLrFreq")];
-	_guerLR = call TFAR_fnc_generateLrSettings;
-	_guerLR set [2,STR (_logic getVariable "GuerLrFreq")];
-
-	if (count _units == 0) then
+	if (count _units == 0) exitWith { hint "TFAR - No units set for Frequency Module";diag_log "TFAR - No units set for Frequency Module";};
+	if (isServer) then
 	{
-		TF_use_saved_sw_setting = false;
-		tf_same_sw_frequencies_for_side = true;
-		tf_freq_west = _west;
-		tf_freq_east = _east;
-		tf_freq_guer = _guer;
-
-		TF_use_saved_lr_setting = false;
-		tf_same_lr_frequencies_for_side = true;
-		tf_freq_west_lr = _westLR;
-		TF_freq_east_lr = _eastLR;
-		tf_freq_guer_lr = _guerLR;
-	}
-	else
-	{
-		if (isServer) then
+		private ["_swFreq", "_lrFreq", "_freqTest"];
+		_swFreq = call TFAR_fnc_generateSwSettings;
+		(_swFreq select 2) set [0,STR (_logic getVariable "PrFreq")];
+		_lrFreq = call TFAR_fnc_generateLrSettings;
+		(_lrFreq select 2) set [0,STR (_logic getVariable "LrFreq")];
 		{
-			tf_same_lr_frequencies_for_side = true;
-			{
-				private "_side";
-				_side = _x call BIS_fnc_objectSide;
-
-				switch (_side) do {
-					case west: {
-						(group _x) setVariable ["tf_sw_frequency", _west, true];
-						(group _x) setVariable ["tf_lr_frequency", _westLR, true];
-					};
-					case east: {
-						(group _x) setVariable ["tf_sw_frequency", _east, true];
-						(group _x) setVariable ["tf_lr_frequency", _eastLR, true];
-					};
-					default {
-						(group _x) setVariable ["tf_sw_frequency", _guer, true];
-						(group _x) setVariable ["tf_lr_frequency", _guerLR, true];
-					};
-				};
-			} count _units;
-		};
+			_freqTest = (group _x) getVariable "tf_sw_frequency";
+			if (!isNil "_freqTest") then {hint format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];diag_log format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];};
+			
+			_freqTest = (group _x) getVariable "tf_lr_frequency";
+			if (!isNil "_freqTest") then {hint format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];diag_log format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];};
+			
+			(group _x) setVariable ["tf_sw_frequency", _swFreq, true];
+			(group _x) setVariable ["tf_lr_frequency", _lrFreq, true];
+		} count _units;
 	};
 };
 
