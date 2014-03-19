@@ -111,6 +111,7 @@ class CfgFunctions
 			class hideHint{};
 			class initialiseBaseModule{};
 			class initialiseFreqModule{};
+			class initialiseEnforceUsageModule{};
 			class ShowRadioInfo{};
 			class setSwRadioCode{};
 			class setLrRadioCode{};
