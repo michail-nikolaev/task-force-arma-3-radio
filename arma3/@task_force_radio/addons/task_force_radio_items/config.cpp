@@ -447,11 +447,27 @@ class CfgWeapons
 		tf_dialogUpdate = "";	
 		tf_subtype = "digital";
 	};
+
+	class tf_pnr1000a: ItemRadio
+	{
+		displayName = "PNR-1000A";
+		descriptionShort = "PNR-1000A";
+		scope = 2;
+		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
+		picture = "\task_force_radio_items\pnr1000a\pnr1000a_icon.paa";
+		tf_prototype = 1;
+		tf_range = 2000;
+		tf_dialog = "pnr1000a_radio_dialog";
+		tf_encryptionCode = "tf_east_radio_code";
+		tf_dialogUpdate = "";	
+		tf_subtype = "digital";
+	};
 	
 	TF_RADIO_IDS(tf_anprc152,AN/PRC-152)
 	TF_RADIO_IDS(tf_anprc148jem,AN/PRC-148 JEM)
 	TF_RADIO_IDS(tf_fadak,FADAK)
 	TF_RADIO_IDS(tf_anprc154,AN/PRC-154)
 	TF_RADIO_IDS(tf_rf7800str,RF-7800S-TR)
+	TF_RADIO_IDS(tf_pnr1000a,PNR-1000A)
 
 };
