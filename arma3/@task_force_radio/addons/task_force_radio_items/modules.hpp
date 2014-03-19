@@ -35,6 +35,7 @@ class tfar_ModuleTaskForceRadioEnforceUsage: Module_F
 			displayName = "$STR_TFAR_Mod_GiveRiflemanRadio";
 			description = "$STR_TFAR_Mod_GiveRiflemanRadioTT";
 			typeName = "BOOL";
+			defaultValue = "True";
 		};
 	};
 	
