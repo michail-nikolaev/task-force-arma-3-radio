@@ -72,7 +72,7 @@ if (isNil "TF_give_personal_radio_to_regular_soldier") then {
 };
 
 if (isNil "TF_terrain_interception_coefficient") then {
-	TF_terrain_interception_coefficient = 10.0;
+	TF_terrain_interception_coefficient = 7.0;
 };
 
 disableSerialization;

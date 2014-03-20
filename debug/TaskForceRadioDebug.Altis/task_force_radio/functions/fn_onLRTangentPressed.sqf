@@ -1,6 +1,6 @@
 private["_result", "_request", "_hintText"];
-if (!(TF_tangent_lr_pressed) and {alive player} and {call TFAR_fnc_haveLRRadio}) then {
-	if ([player, player call TFAR_fnc_vehicleIsIsolatedAndInside] call TFAR_fnc_canUseLRRadio) then {
+if (!(TF_tangent_lr_pressed) and {alive player} and {call TFAR_fnc_haveLRRadio}) then {	
+	if ([player, player call TFAR_fnc_vehicleIsIsolatedAndInside, player call TFAR_fnc_eyeDepth] call TFAR_fnc_canUseLRRadio) then {
 		private "_radio";
 		_radio = call TFAR_fnc_activeLrRadio;
 		

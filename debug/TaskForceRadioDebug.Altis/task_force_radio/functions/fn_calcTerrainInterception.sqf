@@ -6,8 +6,8 @@ _p2 = eyePos _this;
 
 if (terrainIntersectASL[_p1, _p2]) then {
 	_l = 10.0;
-	_r = 300.0;
-	_m = 60.0;
+	_r = 250.0;
+	_m = 100.0;
 
 	_middle = [((_p1 select 0) + (_p2 select 0)) / 2.0, ((_p1 select 1) + (_p2 select 1)) / 2.0, ((_p1 select 2) + (_p2 select 2)) / 2.0];	
 	_base = _middle select 2;
