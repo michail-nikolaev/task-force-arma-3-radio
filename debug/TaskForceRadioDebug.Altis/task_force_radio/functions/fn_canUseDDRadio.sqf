@@ -1,6 +1,6 @@
-private ["_player", "_isolated_and_inside"];
+private ["_isolated_and_inside", "_depth"];
 
-_player = _this select 0;
+_depth = _this select 0;
 _isolated_and_inside = _this select 1;
 
-((_player call TFAR_fnc_eyeDepth) < 0) and !(_isolated_and_inside)
+(_depth < 0) and !(_isolated_and_inside)
