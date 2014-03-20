@@ -15,6 +15,9 @@
 				<Italian>
 					TFAR Radio (NATO)
 				</Italian>
+				<Spanish>
+					TFAR Radio (NATO)
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_EAST_crate">
 				<Original>
@@ -29,6 +32,9 @@
 				<Italian>
 					TFAR Radio (CSAT)
 				</Italian>
+				<Spanish>
+					TFAR Radio (CSAT)
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_IND_crate">
 				<Original>
@@ -43,6 +49,9 @@
 				<Italian>
 					TFAR Radio (AAF)
 				</Italian>
+				<Spanish>
+					TFAR Radio (AAF)
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_EnforceUsage">
 				<Original>
@@ -57,6 +66,9 @@
 				<Italian>
 					TFAR - Enforce Usage
 				</Italian>
+				<Spanish>
+					TFAR - Obligar su uso
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveTLradio">
 				<Original>
@@ -71,6 +83,9 @@
 				<Italian>
 					Give team leaders a long range radio
 				</Italian>
+				<Spanish>
+					Dar a los lideres de equipo una radio de largo alcance
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveTLradioTT">
 				<Original>
@@ -85,6 +100,9 @@
 				<Italian>
 					Give each team leader the appropriate long range radio
 				</Italian>
+				<Spanish>
+					Da a cada lider de equipo una radio de largo alcance apropiada
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
 				<Original>
@@ -99,6 +117,9 @@
 				<Italian>
 					Give rifleman radio
 				</Italian>
+				<Spanish>
+					Dar una radio personal
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
 				<Original>
@@ -113,6 +134,9 @@
 				<Italian>
 					Give a rifleman radio
 				</Italian>
+				<Spanish>
+					Dar una radio personal a cada miembro de equipo
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_EnforceUsage_Description">
 				<Original>
@@ -127,6 +151,9 @@
 				<Italian>
 					Enforces usage of TFAR in mission.
 				</Italian>
+				<Spanish>
+					Fuerza el uso de TFAR en la misión.
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SideRadio">
 				<Original>
@@ -141,6 +168,9 @@
 				<Italian>
 					TFAR - Side Radio
 				</Italian>
+				<Spanish>
+					TFAR - Radio del bando
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_EncryptionCode">
 				<Original>
@@ -155,6 +185,9 @@
 				<Italian>
 					Encryption Code
 				</Italian>
+				<Spanish>
+					Codigo de encriptación
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LR_Radio">
 				<Original>
@@ -169,6 +202,9 @@
 				<Italian>
 					LR Radio
 				</Italian>
+				<Spanish>
+					Radio LA
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LR_RadioTT">
 				<Original>
@@ -183,6 +219,9 @@
 				<Italian>
 					Long Range radio
 				</Italian>
+				<Spanish>
+					Radio de Largo Alcance
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PR_Radio">
 				<Original>
@@ -197,6 +236,9 @@
 				<Italian>
 					PR Radio
 				</Italian>
+				<Spanish>
+					Radio PR
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PR_RadioTT">
 				<Original>
@@ -211,6 +253,9 @@
 				<Italian>
 					Personal radio
 				</Italian>
+				<Spanish>
+					Radio Personal
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Rifle_Radio">
 				<Original>
@@ -225,6 +270,9 @@
 				<Italian>
 					Rifleman Radio
 				</Italian>
+				<Spanish>
+					Radio de fusilero
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Rifle_RadioTT">
 				<Original>
@@ -239,6 +287,9 @@
 				<Italian>
 					Rifleman Radio
 				</Italian>
+				<Spanish>
+					Radio de fusilero
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PRFrequency">
 				<Original>
@@ -253,6 +304,9 @@
 				<Italian>
 					PR Freq.
 				</Italian>
+				<Spanish>
+					Frec. PR
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PRFrequencyTT">
 				<Original>
@@ -267,6 +321,9 @@
 				<Italian>
 					PR default frequency
 				</Italian>
+				<Spanish>
+					Frecuencia por defecto para radios personales
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LRFrequency">
 				<Original>
@@ -281,6 +338,9 @@
 				<Italian>
 					LR Freq.
 				</Italian>
+				<Spanish>
+					LA Frec.
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LRFrequencyTT">
 				<Original>
@@ -295,6 +355,9 @@
 				<Italian>
 					LR default frequency
 				</Italian>
+				<Spanish>
+					Frecuencia por defecto de radios de largo alcance
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SideRadio">
 				<Original>
@@ -309,6 +372,9 @@
 				<Italian>
 					TFAR - Side Radio
 				</Italian>
+				<Spanish>
+					TFAR - Radio del bando
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SideRadio_Description">
 				<Original>
@@ -323,6 +389,9 @@
 				<Italian>
 					Allows setting of default radios, encryption and frequencies for synced side.
 				</Italian>
+				<Spanish>
+					Permite configurar las radios por defecto, la encriptacion y las frecuencias del bando sincronizado.
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Frequencies">
 				<Original>
@@ -337,6 +406,9 @@
 				<Italian>
 					TFAR - Frequencies
 				</Italian>
+				<Spanish>
+					TFAR - Frecuencias
+				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Frequencies_Description">
 				<Original>
@@ -351,6 +423,9 @@
 				<Italian>
 					Allows setting of default frequencies for sides.
 				</Italian>
+				<Spanish>
+					Permite configurar las frecuencias por defecto para los bandos.
+				</Spanish>
 			</Key>
 		</Container>
 	</Package>
