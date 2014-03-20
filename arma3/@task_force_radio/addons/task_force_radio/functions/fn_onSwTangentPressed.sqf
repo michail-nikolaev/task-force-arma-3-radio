@@ -1,6 +1,7 @@
-private["_result", "_request", "_hintText"];
+private["_result", "_request", "_hintText", "_depth"];
 if (!(TF_tangent_sw_pressed) and {alive player} and {call TFAR_fnc_haveSWRadio}) then {
-	if ([player, player call TFAR_fnc_vehicleIsIsolatedAndInside, [player, player call TFAR_fnc_vehicleIsIsolatedAndInside] call TFAR_fnc_canSpeak] call TFAR_fnc_canUseSWRadio) then {
+	_depth = player call TFAR_fnc_eyeDepth;
+	if ([player, player call TFAR_fnc_vehicleIsIsolatedAndInside, [player call TFAR_fnc_vehicleIsIsolatedAndInside, _depth] call TFAR_fnc_canSpeak, _depth] call TFAR_fnc_canUseSWRadio) then {
 		private "_radio";
 		_radio = call TFAR_fnc_activeSwRadio;
 		_hintText = format[localize "STR_transmit",format ["%1<img size='1.5' image='%2'/>", getText (ConfigFile >> "CfgWeapons" >> _radio >> "displayName"),
