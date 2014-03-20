@@ -51,7 +51,7 @@ if (isNil "TF_defaultWestRiflemanRadio") then {
 	TF_defaultWestRiflemanRadio = "tf_rf7800str";
 };
 if (isNil "TF_defaultEastRiflemanRadio") then {
-	TF_defaultEastRiflemanRadio = "tf_fadak"; // TODO
+	TF_defaultEastRiflemanRadio = "tf_pnr1000a";
 };
 if (isNil "TF_defaultGuerRiflemanRadio") then {
 	TF_defaultGuerRiflemanRadio = "tf_anprc154";
