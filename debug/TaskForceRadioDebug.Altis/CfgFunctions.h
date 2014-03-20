@@ -118,6 +118,8 @@ class CfgFunctions
 			class setVoiceVolume{};
 			class objectInterception{};
 			class showRadioVolume{};
+			class GetChannelFrequency{};
+			class SetChannelFrequency{};
 		};
 	};
 };
