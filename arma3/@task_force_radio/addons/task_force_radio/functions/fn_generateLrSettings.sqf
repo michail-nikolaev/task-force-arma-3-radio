@@ -1,3 +1,27 @@
+/*
+ 	Name: TFAR_fnc_generateLrSettings
+ 	
+ 	Author(s):
+		NKey
+		L-H
+
+ 	Description:
+		Generates settings for the LR radio
+	
+	Parameters:
+		Nothing
+ 	
+ 	Returns:
+		ARRAY: Settings
+			0: NUMBER - Active channel
+			1: NUMBER - Volume
+			2: ARRAY - Frequencies for channels
+			3: NUMBER - Stereo setting
+			4: STRING - Encryption code
+ 	
+ 	Example:
+		_settings = call TFAR_fnc_generateLrSettings;
+*/
 private ["_lr_frequencies", "_lr_settings"];
 _lr_settings = [0, 7, [], 0, nil];
 

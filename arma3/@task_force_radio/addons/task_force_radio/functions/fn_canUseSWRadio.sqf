@@ -9,7 +9,7 @@
 	
 	Parameters:
 		0: OBJECT - Unit
-		1: BOOLEAN -
+		1: BOOLEAN - Isolated and inside
 		2: BOOLEAN -
 		3: NUMBER - Depth
  	
