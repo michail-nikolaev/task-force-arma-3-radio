@@ -1,3 +1,21 @@
+/*
+ 	Name: TFAR_fnc_radioReplaceProcess
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Replaces a player's radios if there are any prototype radios.
+	
+	Parameters:
+		Nothing
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		[] spawn TFAR_fnc_radioReplaceProcess;
+*/
 private ["_currentPlayerFlag", "_active_sw_radio", "_active_lr_radio"];
 while {true} do {
 	if !(TF_use_saved_sw_setting) then {

@@ -1,3 +1,22 @@
+/*
+ 	Name: TFAR_fnc_setSwChannel
+ 	
+ 	Author(s):
+		NKey
+ 	
+ 	Description:
+		Sets the channel for the passed radio
+ 	
+ 	Parameters: 
+		0: STRING - Radio classname
+		1: NUMBER - Channel
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		[(call TFAR_fnc_activeSwRadio), 2] call TFAR_fnc_setSwChannel;
+*/
 #include "script.h"
 private ["_settings", "_radio_id", "_channel_to_set"];
 _radio_id = _this select 0;

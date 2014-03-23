@@ -1,3 +1,23 @@
+/*
+ 	Name: TFAR_fnc_swRadioMenu
+ 	
+ 	Author(s):
+		NKey
+		L-H
+ 	
+ 	Description:
+		Returns a list of SW radios if more than one is on the player.
+ 	
+ 	Parameters: 
+		Nothing
+ 	
+ 	Returns:
+		ARRAY:
+			CBA UI menu.
+ 	
+ 	Example:
+		Called internally by CBA UI
+*/
 private ["_menuDef","_positions","_active_radio","_submenu","_command","_menu","_position"];
 _menu = [];
 if ((count (call TFAR_fnc_radiosList) > 1) or {(count (call TFAR_fnc_radiosList) == 1) and !(call TFAR_fnc_haveSWRadio) }) then

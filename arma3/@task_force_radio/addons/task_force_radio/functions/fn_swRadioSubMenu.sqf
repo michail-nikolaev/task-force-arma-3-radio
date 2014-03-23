@@ -1,3 +1,23 @@
+/*
+ 	Name: TFAR_fnc_swRadioSubMenu
+ 	
+ 	Author(s):
+		NKey
+		L-H
+ 	
+ 	Description:
+		Returns a sub menu for a particular radio.
+ 	
+ 	Parameters: 
+		Nothing
+ 	
+ 	Returns:
+		ARRAY:
+			CBA UI menu.
+ 	
+ 	Example:
+		Called internally by CBA UI
+*/
 private ["_submenu"];
 _submenu = 
 [
