@@ -1,3 +1,21 @@
+/*
+ 	Name: TFAR_fnc_vehicleID
+ 	
+ 	Author(s):
+		NKey
+ 	
+ 	Description:
+		
+ 	
+ 	Parameters: 
+		0: OBJECT - The unit to check.
+ 	
+ 	Returns:
+		STRING - 
+ 	
+ 	Example:
+		_vehicleID = player call TFAR_fnc_vehicleID;
+*/
 private["_result"];
 _result = "no";
 if (((vehicle _this) != _this) and {(vehicle _this) call TFAR_fnc_isVehicleIsolated}) then {

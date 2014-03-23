@@ -1,3 +1,22 @@
+/*
+ 	Name: TFAR_fnc_sendFrequencyInfo
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Notifies the plugin about the radios currently being used by the player and various settings active on the radio.
+	
+	Parameters:
+		Nothing
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		call TFAR_fnc_sendFrequencyInfo;
+*/
+
 private ["_request","_result","_freq","_freq_lr","_freq_dd","_alive","_nickname","_isolated_and_inside","_can_speak","_depth"];
 
 // send frequencies

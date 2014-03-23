@@ -1,3 +1,22 @@
+/*
+ 	Name: TFAR_fnc_serverInit
+ 	
+ 	Author(s):
+		NKey
+		L-H
+
+ 	Description:
+		Initialises the server and the server loop.
+	
+	Parameters:
+		Nothing
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		call TFAR_fnc_serverInit;
+*/
 #define MAX_RADIO_COUNT 1000
 
 if (isNil "tf_same_sw_frequencies_for_side") then {

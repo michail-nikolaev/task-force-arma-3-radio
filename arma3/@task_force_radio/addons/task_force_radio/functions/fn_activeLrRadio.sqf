@@ -1,3 +1,21 @@
+/*
+ 	Name: TFAR_fnc_activeLrRadio
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Returns the active LR radio.
+	
+	Parameters:
+		Nothing
+ 	
+ 	Returns:
+		ARRAY: Active LR radio
+ 	
+ 	Example:
+		_radio = call TFAR_fnc_activeLRRadio;
+*/
 private ["_radios", "_found"];
 _radios = call TFAR_fnc_lrRadiosList;
 if (isNil "TF_lr_active_radio") then {		
