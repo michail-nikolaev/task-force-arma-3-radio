@@ -1,9 +1,22 @@
-/**
- * Returns side of vehicle, based on model of vehicle, not on who is captured
- * Used for radio model
- * @param vehicle
- * @return side
- */
+/*
+ 	Name: TFAR_fnc_getVehicleSide
+ 	
+ 	Author(s):
+		NKey
+ 	
+ 	Description:
+		Returns the side of the vehicle, based on the vehicle model and not who has captured it.
+		Also takes into account a variable on the vehicle (tf_side)
+ 	
+ 	Parameters:
+		OBJECT: vehicle
+ 	
+ 	Returns:
+		SIDE: side of vehicle
+ 	
+ 	Example:
+		_vehicleSide = (vehicle player) call TFAR_fnc_getVehicleSide;
+*/
 private ["_result", "_side"];
 _side = _this getVariable "tf_side";
 if !(isNil "_side") then {
