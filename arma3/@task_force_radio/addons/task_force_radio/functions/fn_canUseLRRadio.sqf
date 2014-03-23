@@ -1,3 +1,24 @@
+/*
+ 	Name: TFAR_fnc_canUseLrRadio
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Checks whether the LR radio would be able to be used at passed depth.
+	
+	Parameters:
+		0: OBJECT - Unit
+		1: BOOLEAN - Isolated and inside
+		2: BOOLEAN -
+		3: NUMBER - Depth
+ 	
+ 	Returns:
+		BOOLEAN
+ 	
+ 	Example:
+		_canUseSW = [player, false, false, 10] call TFAR_fnc_canUseLrRadio;
+*/
 private ["_player", "_isolated_and_inside", "_result", "_depth"];
 
 _depth = _this select 2;

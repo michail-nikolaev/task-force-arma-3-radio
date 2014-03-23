@@ -1,3 +1,27 @@
+/*
+ 	Name: TFAR_fnc_generateSwSettings
+ 	
+ 	Author(s):
+		NKey
+		L-H
+
+ 	Description:
+		Generates settings for the SW radio
+	
+	Parameters:
+		Nothing
+ 	
+ 	Returns:
+		ARRAY: Settings
+			0: NUMBER - Active channel
+			1: NUMBER - Volume
+			2: ARRAY - Frequencies for channels
+			3: NUMBER - Stereo setting
+			4: STRING - Encryption code
+ 	
+ 	Example:
+		_settings = call TFAR_fnc_generateSwSettings;
+*/
 private ["_sw_frequencies", "_sw_settings"];
 _sw_settings = [0, 7, [], 0, nil];
 
