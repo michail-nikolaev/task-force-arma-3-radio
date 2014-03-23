@@ -1,3 +1,22 @@
+/*
+ 	Name: TFAR_fnc_preparePositionCoordinates
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Prepares the position coordinates of the passed unit and then passes it along to the plugin.
+	
+	Parameters:
+		0: OBJECT - unit
+		1: BOOLEAN - Is near player
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		
+*/
 private ["_x_player","_current_eyepos","_current_x","_current_y","_current_z","_current_look_at_x","_current_look_at_y","_current_look_at_z","_current_hyp_horizontal","_current_rotation_horizontal","_player_pos","_isolated_and_inside","_can_speak","_current_look_at", "_isNearPlayer", "_renderAt", "_pos", "_depth", "_useSw", "_useLr", "_useDd"];
 _x_player = _this select 0;
 _isNearPlayer = _this select 1;

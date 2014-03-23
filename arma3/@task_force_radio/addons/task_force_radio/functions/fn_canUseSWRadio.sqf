@@ -1,3 +1,24 @@
+/*
+ 	Name: TFAR_fnc_canUseSWRadio
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Checks whether the SW radio would be able to be used at passed depth.
+	
+	Parameters:
+		0: OBJECT - Unit
+		1: BOOLEAN -
+		2: BOOLEAN -
+		3: NUMBER - Depth
+ 	
+ 	Returns:
+		BOOLEAN
+ 	
+ 	Example:
+		_canUseSW = [player, false, false, 10] call TFAR_fnc_canUseSwRadio;
+*/
 private ["_player","_result","_depth"];
 
 _result = false;
