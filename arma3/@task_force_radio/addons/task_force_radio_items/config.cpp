@@ -110,62 +110,65 @@ class CfgVehicles {
 	class Bag_Base
 	{
 		tf_hasLRradio = 0;
-		tf_encryptionCode = "";
-		tf_dialogUpdate = "call TFAR_fnc_updateLRDialogToChannel;";
+		tf_encryptionCode = "";		
 		tf_range = 20000;
 	};
-	class B_Kitbag_mcamo;
-	class B_Kitbag_cbr;
-	class B_Kitbag_sgg;
-	class tf_rt1523g: B_Kitbag_mcamo
+	class TFAR_Bag_Base: Bag_Base 
 	{
-		displayName = "RT-1523G (ASIP)";
-		descriptionShort = "RT-1523G (ASIP)";
-		picture = "\task_force_radio_items\rt1523g\rt1523g_icon.paa";
-		scope = 2;
+		tf_dialogUpdate = "call TFAR_fnc_updateLRDialogToChannel;";
 		maximumLoad = 100;
 		mass = 15;		
 		tf_hasLRradio = 1;
+		model = "\task_force_radio_items\models\TFR_BACKPACK";		
+	};
+
+	class tf_rt1523g: TFAR_Bag_Base
+	{
+		displayName = "RT-1523G (ASIP)";
+		descriptionShort = "RT-1523G (ASIP)";
+		picture = "\task_force_radio_items\rt1523g\rt1523g_icon.paa";					
+		hiddenSelections[] = {"camo"};
+		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_sage_co.paa"};				
+		scope = 2;
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialog = "rt1523g_radio_dialog";
 		tf_subtype = "digital_lr";
 	};	
-	class tf_anprc155: B_Kitbag_sgg
+	class tf_anprc155: TFAR_Bag_Base
 	{
 		displayName = "AN/PRC 155";
 		descriptionShort = "AN/PRC 155";
 		picture = "\task_force_radio_items\anprc155\155_icon.paa";
 		scope = 2;
-		maximumLoad = 100;
-		mass = 15;
-		tf_hasLRradio = 1;
+		hiddenSelections[] = {"camo"};
+		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_green_co.paa"};
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialog = "anprc155_radio_dialog";
 		tf_subtype = "digital_lr";
 	};	
-	class tf_mr3000: B_Kitbag_cbr
+	class tf_mr3000: TFAR_Bag_Base
 	{
 		displayName = "MR3000";
 		descriptionShort = "MR3000";
 		picture = "\task_force_radio_items\mr3000\mr3000_icon.paa";
 		scope = 2;
-		maximumLoad = 100;
-		mass = 15;
-		tf_hasLRradio = 1;
+		hiddenSelections[] = {"camo"};
+		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_black_co.paa"};
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialog = "mr3000_radio_dialog";
 		tf_subtype = "digital_lr";
 	};
 
-	class tf_anarc210: B_Kitbag_mcamo
+	class tf_anarc210: TFAR_Bag_Base
 	{
 		displayName = "AN/ARC-210";
 		descriptionShort = "AN/ARC-210";
-		picture = "\task_force_radio_items\anarc210\anarc210_icon.paa";
+		picture = "\task_force_radio_items\anarc210\anarc210_icon.paa";		
+		hiddenSelections[] = {"camo"};
+		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_mcam_co.paa"};
 		scope = 2;
 		maximumLoad = 0;
-		mass = 15;
-		tf_hasLRradio = 1;
+		mass = 15;		
 		tf_range = 35000;
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialog = "anarc210_radio_dialog";
@@ -173,15 +176,16 @@ class CfgVehicles {
 		tf_dialogUpdate = "[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;";
 	};
 
-	class tf_anarc164: B_Kitbag_sgg
+	class tf_anarc164: TFAR_Bag_Base
 	{
 		displayName = "AN/ARC-164";
 		descriptionShort = "AN/ARC-164";
 		picture = "\task_force_radio_items\anarc164\anarc164_icon.paa";
+		hiddenSelections[] = {"camo"};
+		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_dpcu_co.paa"};
 		scope = 2;
 		maximumLoad = 0;
-		mass = 15;
-		tf_hasLRradio = 1;
+		mass = 15;		
 		tf_range = 35000;
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialog = "anarc164_radio_dialog";
@@ -189,15 +193,14 @@ class CfgVehicles {
 		tf_dialogUpdate = "[""%1""] call TFAR_fnc_updateLRDialogToChannel;";
 	};
 
-	class tf_mr6000l: B_Kitbag_cbr
+	class tf_mr6000l: TFAR_Bag_Base
 	{
 		displayName = "MR6000L";
 		descriptionShort = "MR6000L";
 		picture = "\task_force_radio_items\mr6000l\mr6000l_icon.paa";
 		scope = 2;
 		maximumLoad = 0;
-		mass = 15;
-		tf_hasLRradio = 1;
+		mass = 15;		
 		tf_range = 35000;
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialog = "mr6000l_radio_dialog";
