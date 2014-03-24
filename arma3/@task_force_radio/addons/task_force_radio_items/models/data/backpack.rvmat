@@ -2,17 +2,17 @@ class StageTI
 {
 	texture="a3\weapons_f\rifles\trg20\data\tar21_ti_ca.paa";
 };
-ambient[] = {1.0,1.0,1.0,1.0};
-diffuse[] = {1.0,1.0,1.0,1.0};
-forcedDiffuse[] = {0.0,0.0,0.0,0.0};
-emmisive[] = {0.0,0.0,0.0,1.0};
-specular[] = {0.1,0.1,0.1,1.0};
-specularPower = 30;
-PixelShaderID = "Super";
-VertexShaderID = "Super";
+ambient[]={1,1,1,1};
+diffuse[]={1,1,1,1};
+forcedDiffuse[]={0,0,0,0};
+emmisive[]={0,0,0,1};
+specular[]={0.1,0.1,0.1,1};
+specularPower=30;
+PixelShaderID="Super";
+VertexShaderID="Super";
 class Stage1
 {
-	texture="TFR_BACKPACK\data\backpack_nohq.paa";
+	texture="task_force_radio_items\models\data\backpack_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -60,7 +60,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="TFR_BACKPACK\data\backpack_smdi.paa";
+	texture="task_force_radio_items\models\data\backpack_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{
