@@ -167,7 +167,7 @@ class CfgVehicles {
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_mcam_co.paa"};
 		scope = 2;
-		maximumLoad = 0;
+		maximumLoad = 20;
 		mass = 15;		
 		tf_range = 35000;
 		tf_encryptionCode = "tf_west_radio_code";
@@ -184,7 +184,7 @@ class CfgVehicles {
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_dpcu_co.paa"};
 		scope = 2;
-		maximumLoad = 0;
+		maximumLoad = 20;
 		mass = 15;		
 		tf_range = 35000;
 		tf_encryptionCode = "tf_guer_radio_code";
@@ -199,7 +199,7 @@ class CfgVehicles {
 		descriptionShort = "MR6000L";
 		picture = "\task_force_radio_items\mr6000l\mr6000l_icon.paa";
 		scope = 2;
-		maximumLoad = 0;
+		maximumLoad = 20;
 		mass = 15;		
 		tf_range = 35000;
 		tf_encryptionCode = "tf_east_radio_code";
