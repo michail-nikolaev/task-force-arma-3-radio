@@ -22,7 +22,7 @@ _x_player = _this select 0;
 _isNearPlayer = _this select 1;
 _current_eyepos = eyepos _x_player;
 
-// for now it used only for player
+
 if (_x_player != player) then {
 	
 	if !(_isNearPlayer) then {
@@ -38,6 +38,7 @@ if (_x_player != player) then {
 		_current_z =  (_renderAt select 2) + ((_current_eyepos select 2) - (_pos select 2));
 	};
 
+	// for now it used only for player
 	_current_rotation_horizontal = 0;
 	if (alive player) then 
 	{
@@ -75,6 +76,9 @@ if (_x_player != player) then {
 	while{_current_rotation_horizontal < 0} do {
 		_current_rotation_horizontal = _current_rotation_horizontal + 360;
 	};
+	_current_x = 0.0;
+	_current_y = 0.0;
+	_current_z = 0.0;
 };
 
 _isolated_and_inside = _x_player call TFAR_fnc_vehicleIsIsolatedAndInside;
