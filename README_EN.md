@@ -169,4 +169,5 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [ramius86](https://github.com/ramius86) for Italian translation.
 * KK for [tutorials](http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/)
 * [Krypto202](http://www.armaholic.com/users.php?m=details&id=45906&u=kripto202) for sounds.
+* [pastor399](http://forums.bistudio.com/member.php?128853-pastor399) for backpacks model and textures.
 * Sorry guys if I’ve forgot someone by chance.
