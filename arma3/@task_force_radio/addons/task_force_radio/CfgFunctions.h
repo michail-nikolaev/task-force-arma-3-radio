@@ -120,6 +120,7 @@ class CfgFunctions
 			class showRadioVolume{};
 			class GetChannelFrequency{};
 			class SetChannelFrequency{};
+			class CopySettings{};
 		};
 	};
 };
