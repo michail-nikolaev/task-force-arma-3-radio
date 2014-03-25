@@ -5,7 +5,7 @@
 		NKey
  	
  	Description:
-		Updates the DD dialog to the channel if switched.
+		Updates the DD dialog to the channel and depth if switched.
  	
  	Parameters: 
 		Nothing

@@ -5,7 +5,7 @@
 		NKey
 
  	Description:
-		Prepares the position coordinates of the passed unit and then passes it along to the plugin.
+		Prepares the position coordinates of the passed unit.
 	
 	Parameters:
 		0: OBJECT - unit
