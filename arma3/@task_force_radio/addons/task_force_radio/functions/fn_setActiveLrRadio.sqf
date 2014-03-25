@@ -8,12 +8,14 @@
 		Sets the active LR radio to the passed radio
  	
  	Parameters:
-		OBJECT - Radio
+		ARRAY:
+			0: OBJECT - Radio
+			1: STRING - Radio ID
  	
  	Returns:
 		Nothing
  	
  	Example:
-		(vehicle player) call TFAR_fnc_setActiveLrRadio;
+		TF_lr_dialog_radio call TFAR_fnc_setActiveLrRadio;
 */
 TF_lr_active_radio = _this;

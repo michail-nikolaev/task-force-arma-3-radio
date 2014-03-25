@@ -6,7 +6,7 @@
 		L-H
 
  	Description:
-		Gets the SW frequency for the active channel.
+		Gets the frequency for the active channel.
 	
 	Parameters:
 		STRING: Radio classname

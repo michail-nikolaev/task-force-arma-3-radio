@@ -5,7 +5,7 @@
 		NKey
 
  	Description:
-		Process all players position and sends it to the plugin.
+		Process some player positions on each call and sends it to the plugin.
 	
 	Parameters:
 		Nothing

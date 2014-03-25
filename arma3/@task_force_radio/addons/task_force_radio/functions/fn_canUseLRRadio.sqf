@@ -5,12 +5,12 @@
 		NKey
 
  	Description:
-		Checks whether the LR radio would be able to be used at passed depth.
+		Checks whether the radio would be able to be used at passed depth.
 	
 	Parameters:
 		0: OBJECT - Unit
 		1: BOOLEAN - Isolated and inside
-		2: BOOLEAN -
+		2: BOOLEAN - Can Speak
 		3: NUMBER - Depth
  	
  	Returns:

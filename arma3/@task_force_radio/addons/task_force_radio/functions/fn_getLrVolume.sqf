@@ -5,7 +5,7 @@
 		NKey
 
  	Description:
-		Gets the volume of the passed LR radio
+		Gets the volume of the passed radio
 	
 	Parameters:
 		Array: Radio

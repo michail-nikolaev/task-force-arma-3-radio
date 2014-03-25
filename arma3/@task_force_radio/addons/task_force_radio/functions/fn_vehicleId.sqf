@@ -5,13 +5,13 @@
 		NKey
  	
  	Description:
-		
+		Returns a string with information about the player vehicle, used at the plugin side.
  	
  	Parameters: 
 		0: OBJECT - The unit to check.
  	
  	Returns:
-		STRING - 
+		STRING - NetworkID, Turned out
  	
  	Example:
 		_vehicleID = player call TFAR_fnc_vehicleID;

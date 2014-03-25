@@ -5,7 +5,7 @@
 		NKey
 
  	Description:
-		Gets the volume of the passed SW radio
+		Gets the volume of the passed radio
 	
 	Parameters:
 		STRING: Radio classname

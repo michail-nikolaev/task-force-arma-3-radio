@@ -5,7 +5,7 @@
 		NKey
 
  	Description:
-		Gets the LR channel for the passed radio
+		Gets the channel for the passed radio
 	
 	Parameters:
 		Array: Radio

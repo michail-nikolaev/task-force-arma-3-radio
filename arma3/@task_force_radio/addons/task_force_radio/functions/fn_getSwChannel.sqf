@@ -5,7 +5,7 @@
 		NKey
 
  	Description:
-		Gets the SW channel for the passed radio
+		Gets the channel for the passed radio
 	
 	Parameters:
 		STRING: Radio classname
