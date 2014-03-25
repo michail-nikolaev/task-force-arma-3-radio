@@ -1,3 +1,23 @@
+/*
+ 	Name: TFAR_fnc_radioToRequestCount
+ 	
+ 	Author(s):
+		NKey
+		L-H
+
+ 	Description:
+		Searches through all the items assigned to and on the player and checks if it is a prototype radio
+		and then creates an array of all the classnames of the prototype radios and returns it.
+	
+	Parameters:
+		BOOLEAN - Regardless of whether the radio is prototype or not, return it as a radio to be replaced.
+ 	
+ 	Returns:
+		ARRAY - List of all radio classes to be replaced.
+ 	
+ 	Example:
+		_radios = false call TFAR_fnc_radioToRequestCount;
+*/
 private ["_to_remove", "_allRadios", "_personalRadio", "_riflemanRadio", "_defaultRadio"];
 _to_remove = [];
 _allRadios = _this;

@@ -1,3 +1,25 @@
+/*
+ 	Name: TFAR_fnc_setSwStereo
+ 	
+ 	Author(s):
+		NKey
+ 	
+ 	Description:
+		Sets the stereo setting for the SW radio
+ 	
+ 	Parameters: 
+ 	0: STRING - Radio
+	1: NUMBER - Stereo : Range (0,2)
+		0 - Both
+		1 - Left
+		2 - Right
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		[(call TFAR_fnc_ActiveSWRadio), 2] call TFAR_fnc_setSwStereo;
+ */
 #include "script.h"
 private ["_settings", "_radio_id", "_value_to_set"];
 _radio_id = _this select 0;
