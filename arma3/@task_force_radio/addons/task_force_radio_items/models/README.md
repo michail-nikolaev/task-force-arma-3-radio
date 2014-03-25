@@ -1,0 +1,1 @@
+Big textures files at dropbox - https://www.dropbox.com/s/w6w1a1zvy6lb8i1/Backpack%20Normal%20Map.7z and https://www.dropbox.com/s/5860wlc3py7jmo4/Backpack_Texture.7z
