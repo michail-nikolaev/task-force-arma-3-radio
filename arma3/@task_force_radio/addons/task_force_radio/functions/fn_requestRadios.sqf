@@ -1,3 +1,22 @@
+/*
+ 	Name: TFAR_fnc_requestRadios
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Checks whether the player needs to have radios converted to "instanced" versions,
+		handles waiting for response from server with radio classnames and applying them to the player.
+	
+	Parameters:
+		Nothing
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		spawn TFAR_fnc_requestRadios;
+*/
 private ["_radiosToRequest", "_variableName", "_responseVariableName", "_response"];
 
 waitUntil {

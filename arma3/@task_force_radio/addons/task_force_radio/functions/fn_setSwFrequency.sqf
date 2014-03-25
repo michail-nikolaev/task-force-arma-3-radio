@@ -1,3 +1,23 @@
+/*
+ 	Name: TFAR_fnc_setSwFrequency
+ 	
+ 	Author(s):
+		NKey
+		L-H
+ 	
+ 	Description:
+		Sets the frequency for the currently active channel
+ 	
+ 	Parameters: 
+		0: STRING - Radio classname
+		1: STRING - Frequency
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		[(call TFAR_fnc_activeSwRadio), "76.2"] call TFAR_fnc_setSwFrequency;
+*/
 #include "script.h"
 private ["_radio"];
 _radio = _this select 0;
