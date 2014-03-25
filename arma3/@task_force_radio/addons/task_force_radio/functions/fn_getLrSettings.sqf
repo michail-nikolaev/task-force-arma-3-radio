@@ -10,7 +10,7 @@
  	
  	Parameters: 
  	0: OBJECT - Radio
-	1: - Radio Qualifier
+	1: STRING - Radio Qualifier
  	
  	Returns:
 	ARRAY - settings.

@@ -6,7 +6,7 @@
 		L-H
  	
  	Description:
-		Returns the encryption code for the passed LR radio.
+		Returns the encryption code for the passed radio.
  	
  	Parameters: 
  	0: OBJECT - Radio

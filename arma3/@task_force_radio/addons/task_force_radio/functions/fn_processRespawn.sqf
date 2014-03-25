@@ -1,3 +1,22 @@
+/*
+ 	Name: TFAR_fnc_processRespawn
+ 	
+ 	Author(s):
+		NKey
+		L-H
+
+ 	Description:
+		Handles getting switching radios, handles whether a manpack must be added to the player or not.
+	
+	Parameters:
+		Nothing
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		call TFAR_fnc_processRespawn;
+*/
 [] spawn {	
 	waitUntil {!(isNull player)};	
 	
