@@ -231,6 +231,20 @@ tf_msSpectatorPerStepMax = 0.035;
 	[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers, {[0] call TFAR_fnc_processLRStereoKeys}, "keydown", "28"] call CBA_fnc_addKeyHandler;
 	[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers, {[1] call TFAR_fnc_processLRStereoKeys}, "keydown", "29"] call CBA_fnc_addKeyHandler;
 	[TF_lr_stereo_right_scancode, TF_lr_stereo_right_modifiers, {[2] call TFAR_fnc_processLRStereoKeys}, "keydown", "30"] call CBA_fnc_addKeyHandler;
+	
+	if (TF_tangent_sw_2_scancode != 0) then {
+		[TF_tangent_sw_2_scancode, TF_tangent_sw_2_modifiers, {call TFAR_fnc_onSwTangentPressed}, "keydown", "31"] call CBA_fnc_addKeyHandler;
+		[TF_tangent_sw_2_scancode, TF_tangent_sw_2_modifiers, {call TFAR_fnc_onSwTangentReleased}, "keyup", "_31"] call CBA_fnc_addKeyHandler;
+	};
+	if (TF_tangent_lr_2_scancode != 0) then {
+		[TF_tangent_lr_2_scancode, TF_tangent_lr_2_modifiers, {call TFAR_fnc_onLRTangentPressed}, "keydown", "32"] call CBA_fnc_addKeyHandler;
+		[TF_tangent_lr_2_scancode, TF_tangent_lr_2_modifiers, {call TFAR_fnc_onLRTangentReleased}, "keyup", "_32"] call CBA_fnc_addKeyHandler;
+	};	
+	if (TF_tangent_dd_2_scancode != 0) then {
+		[TF_tangent_dd_2_scancode, TF_tangent_dd_2_modifiers, {call TFAR_fnc_onDDTangentReleased}, "keyup", "33"] call CBA_fnc_addKeyHandler;
+		[TF_tangent_dd_2_scancode, TF_tangent_dd_2_modifiers, {call TFAR_fnc_onDDTangentPressed}, "keydown", "_33"] call CBA_fnc_addKeyHandler;		
+	};
+	
 	// used for test mission in editor
 	//if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;

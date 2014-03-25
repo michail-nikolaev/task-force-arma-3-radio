@@ -6,6 +6,13 @@
 		shift = 0;
 		alt = 0;
 	};
+	
+	class tanget_sw_2 {
+		key = 0;
+		ctrl = 0;
+		shift = 0;
+		alt = 0;
+	};
 
 	class dialog_sw {
 		key = 25;
@@ -16,6 +23,13 @@
 
 	class tanget_lr {
 		key = 58;
+		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+	
+	class tanget_lr_2 {
+		key = 0;
 		ctrl = 1;
 		shift = 0;
 		alt = 0;
@@ -132,7 +146,7 @@
 		alt = 1;
 	};
 
-        class lr_stereo_both {
+	class lr_stereo_both {
 		key = 200;
 		ctrl = 0;
 		shift = 0;
@@ -207,9 +221,15 @@
 		alt = 0;
 	};
 
-
 	class tanget_dd {
 		key = 58;
+		ctrl = 0;
+		shift = 0;
+		alt = 1;
+	};
+	
+	class tanget_dd_2 {
+		key = 0;
 		ctrl = 0;
 		shift = 0;
 		alt = 1;
