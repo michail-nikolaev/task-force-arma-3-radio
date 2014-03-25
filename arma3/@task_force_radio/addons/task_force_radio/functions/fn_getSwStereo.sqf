@@ -5,7 +5,7 @@
 		NKey
 
  	Description:
-		Gets the stereo setting of the passed SW radio
+		Gets the stereo setting of the passed radio
 	
 	Parameters:
 		STRING: Radio classname

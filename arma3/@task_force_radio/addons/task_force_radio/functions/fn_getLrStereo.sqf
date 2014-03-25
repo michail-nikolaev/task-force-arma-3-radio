@@ -5,7 +5,7 @@
 		NKey
 
  	Description:
-		Gets the stereo setting of the passed lr radio
+		Gets the stereo setting of the passed radio
 	
 	Parameters:
 		Array: Radio

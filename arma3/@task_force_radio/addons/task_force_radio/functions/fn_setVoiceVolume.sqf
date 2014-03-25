@@ -8,7 +8,7 @@
 		Sets the volume for the player's voice in game
  	
  	Parameters: 
-	0: NUMBER - Volume : Range (0,infinity)
+	0: NUMBER - Volume : Range (0,TF_max_voice_volume)
  	
  	Returns:
 		Nothing
