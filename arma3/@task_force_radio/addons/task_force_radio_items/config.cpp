@@ -232,6 +232,7 @@ class CfgWeapons
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
 		tf_subtype = "digital";
+		tf_parent = "tf_anprc152";
 	};
 	
 	class tf_anprc148jem: ItemRadio
@@ -247,6 +248,7 @@ class CfgWeapons
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
 		tf_subtype = "digital";
+		tf_parent = "tf_anprc148jem";
 	};
 	
 	class tf_fadak: ItemRadio
@@ -262,6 +264,7 @@ class CfgWeapons
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";	
 		tf_subtype = "digital";
+		tf_parent = "tf_fadak";
 	};
 
 	class tf_anprc154: ItemRadio
@@ -277,6 +280,7 @@ class CfgWeapons
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialogUpdate = "";	
 		tf_subtype = "digital";
+		tf_parent = "tf_anprc154";
 	};
 
 	class tf_rf7800str: ItemRadio
@@ -292,6 +296,7 @@ class CfgWeapons
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialogUpdate = "";	
 		tf_subtype = "digital";
+		tf_parent = "tf_rf7800str";
 	};
 
 	class tf_pnr1000a: ItemRadio
@@ -307,6 +312,7 @@ class CfgWeapons
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialogUpdate = "";	
 		tf_subtype = "digital";
+		tf_parent = "tf_pnr1000a";
 	};
 	
 	TF_RADIO_IDS(tf_anprc152,AN/PRC-152)
