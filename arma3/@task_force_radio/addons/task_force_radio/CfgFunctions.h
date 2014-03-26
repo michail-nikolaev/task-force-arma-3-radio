@@ -121,6 +121,7 @@ class CfgFunctions
 			class GetChannelFrequency{};
 			class SetChannelFrequency{};
 			class CopySettings{};
+			class getSideRadio{};
 		};
 	};
 };
