@@ -10,7 +10,7 @@
  	
  	Parameters: 
  	0: OBJECT - Radio
-	1: - Radio Qualifier
+	1: STRING - Radio Qualifier
  	
  	Returns:
 	ARRAY - settings.
@@ -25,7 +25,10 @@ _radio_qualifier = _this select 1;
 _value = _radio_object getVariable _radio_qualifier;
 if (isNil "_value") then {
 	if (!(TF_use_saved_lr_setting) or (isNil "TF_saved_active_lr_settings")) then {
-		_value = (group player) getVariable "tf_lr_frequency";
+		if (([side player, 0] call TFAR_fnc_getSideRadio) == (typeof _radio_object)) then
+		{
+			_value = (group player) getVariable "tf_lr_frequency";
+		};
 		if (isNil "_value") then {
 			_value = call TFAR_fnc_generateLrSettings;
 		};
