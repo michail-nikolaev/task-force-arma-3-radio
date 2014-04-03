@@ -170,4 +170,5 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * KK for [tutorials](http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/)
 * [Krypto202](http://www.armaholic.com/users.php?m=details&id=45906&u=kripto202) for sounds.
 * [pastor399](http://forums.bistudio.com/member.php?128853-pastor399) for backpacks model and textures.
+* [J0nes](http://forums.bistudio.com/member.php?96513-J0nes) for help with models.
 * Sorry guys if I’ve forgot someone by chance.
