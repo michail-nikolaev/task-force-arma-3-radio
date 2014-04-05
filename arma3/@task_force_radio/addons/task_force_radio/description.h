@@ -72,7 +72,7 @@ class RscEditLCD
 	};
 	autocomplete = "";
 	text = "";
-	size = 0.2;
+	size = "0.2 * (0.55 / (getResolution select 5))";
 	style = "0x00 + 0x40 + 0x200";
 	font = "tf_font_segments"; 
 	shadow = 1;

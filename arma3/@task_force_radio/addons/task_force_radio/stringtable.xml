@@ -667,36 +667,36 @@
 			</Key>
 			<Key ID="STR_transmit">
 				<Original>
-					&lt;t color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
+					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Original>
 				<Russian>
-					&lt;t color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;Рация: %1&lt;br /&gt;Канал: %2&lt;br /&gt;Частота: %3
+					&lt;t size='1' align='center' color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;				
 				</Russian>
 				<French>
-					&lt;t color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canal: %2&lt;br /&gt;Fréquence: %3
+					&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;
 				</French>
 				<Italian>
-					&lt;t color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canale: %2&lt;br /&gt;Freq: %3
+					&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
 				</Italian>
 				<Spanish>
-					&lt;t color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canal: %2&lt;br /&gt;Freq: %3
+					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
 				</Spanish>
 			</Key>
 			<Key ID="STR_transmit_end">
 				<Original>
-					&lt;t color='#FF9900'&gt;Transmitted with&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Channel: %2&lt;br /&gt;Freq: %3
+					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;						
 				</Original>
 				<Russian>
-					&lt;t color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;Рация: %1&lt;br /&gt;Канал: %2&lt;br /&gt;Частота: %3
+					&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;									
 				</Russian>
 				<French>
-					&lt;t color='##FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canal: %2&lt;br /&gt;Fréquence: %3
+					&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;					
 				</French>
 				<Italian>
-					&lt;t color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canale: %2&lt;br /&gt;Freq: %3
+					&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;										
 				</Italian>
 				<Spanish>
-					&lt;t color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;Radio: %1&lt;br /&gt;Canal: %2&lt;br /&gt;Freq: %3
+					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
 				</Spanish>
 			</Key>
 			<Key ID="STR_waiting">
@@ -718,19 +718,19 @@
 			</Key>
 			<Key ID="STR_voice_volume">
 				<Original>
-					&lt;t color=&apos;#66ff33&apos;&gt;Voice volume: %1&lt;/t&gt;
+					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Voice volume: %1&lt;/t&gt;
 				</Original>
 				<Russian>
-					&lt;t color=&apos;#66ff33&apos;&gt;Громкость голоса: %1&lt;/t&gt;
+					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Громкость голоса: %1&lt;/t&gt;
 				</Russian>
 				<French>
-					&lt;t color=&apos;#66ff33&apos;&gt;Volume de la voix : %1&lt;/t&gt;
+					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Volume de la voix : %1&lt;/t&gt;
 				</French>
 				<Italian>
-					&lt;t color=&apos;#66ff33&apos;&gt;Volume voce: %1&lt;/t&gt;
+					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Volume voce: %1&lt;/t&gt;
 				</Italian>
 				<Spanish>
-					&lt;t color=&apos;#66ff33&apos;&gt;Volumen de la voz: %1&lt;/t&gt;
+					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Volumen de la voz: %1&lt;/t&gt;
 				</Spanish>
 			</Key>
 			<Key ID="STR_voice_normal">
