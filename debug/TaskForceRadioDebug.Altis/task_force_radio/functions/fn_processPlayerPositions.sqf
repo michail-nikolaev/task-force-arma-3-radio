@@ -1,3 +1,21 @@
+/*
+ 	Name: TFAR_fnc_processPlayerPositions
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Process some player positions on each call and sends it to the plugin.
+	
+	Parameters:
+		Nothing
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		call TFAR_fnc_processPlayerPositions;
+*/
 private ["_elemsNearToProcess","_elemsFarToProcess","_other_units"];
 if !(isNull player) then {
 	if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {

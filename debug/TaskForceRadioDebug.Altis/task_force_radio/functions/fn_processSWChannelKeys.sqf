@@ -1,3 +1,21 @@
+/*
+ 	Name: TFAR_fnc_processSWChannelKeys
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Switches the active SW radio to the passed channel.
+	
+	Parameters:
+		0: NUMBER - Channel : Range (0,7)
+ 	
+ 	Returns:
+		BOOLEAN - If the event was handled by this function.
+ 	
+ 	Example:
+		Called by CBA.
+*/
 private ["_sw_channel_number", "_hintText", "_result"];
 _sw_channel_number = _this select 0;
 _result = false;

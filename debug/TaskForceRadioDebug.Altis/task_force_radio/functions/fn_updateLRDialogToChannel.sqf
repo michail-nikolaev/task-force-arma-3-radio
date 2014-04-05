@@ -1,3 +1,25 @@
+
+ 	Name: TFAR_fnc_updateLRDialogToChannel
+ 	
+ 	Author(s):
+		NKey
+		L-H
+ 	
+ 	Description:
+		Updates the LR dialog to the channel if switched.
+ 	
+ 	Parameters: 
+		0: STRING - Format to display channel with. Requires %1. (Optional)
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		// No custom format.
+		call TFAR_fnc_updateLRDialogToChannel;
+		// Custom format
+		["CH: %1"] call TFAR_fnc_updateLRDialogToChannel;
+*/
 #include "define.h"
 private ["_channelText", "_formatText"];
 _formatText = "CH:%1";

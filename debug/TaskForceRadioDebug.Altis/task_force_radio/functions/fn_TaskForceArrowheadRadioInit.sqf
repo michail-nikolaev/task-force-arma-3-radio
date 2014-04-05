@@ -1,3 +1,22 @@
+/*
+ 	Name: TFAR_fnc_TaskForceArrowheadRadioInit
+ 	
+ 	Author(s):
+		NKey
+		L-H
+ 	
+ 	Description:
+		Initialises TFAR, server and client.
+ 	
+ 	Parameters: 
+		Nothing
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		Called by ArmA via functions library.
+*/
 TF_ADDON_VERSION = "0.9.0";
 
 #include "common.sqf"

@@ -1,3 +1,21 @@
+/*
+ 	Name: TFAR_fnc_processLRCycleKeys
+ 	
+ 	Author(s):
+		
+
+ 	Description:
+		Allows rotating through the list of LR radios with keys.
+	
+	Parameters:
+		0: STRING - Direction to cycle : VALUES (next, prev)
+ 	
+ 	Returns:
+		BOOLEAN - If the event was handled or not.
+ 	
+ 	Example:
+		Handled via CBA's onKey eventhandler.
+*/
 private ["_lr_cycle_direction", "_result"];
 _lr_cycle_direction = _this select 0;
 _result = false;

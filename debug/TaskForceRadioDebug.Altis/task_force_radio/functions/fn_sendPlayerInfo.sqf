@@ -1,3 +1,21 @@
+/*
+ 	Name: TFAR_fnc_sendPlayerInfo
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Notifies the plugin about a player
+	
+	Parameters:
+		1: OBJECT - Unit
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		[player] call TFAR_fnc_sendPlayerInfo;
+*/
 private ["_request","_result", "_player", "_isNearPlayer"];
 _player = _this select 0;
 

@@ -1,3 +1,22 @@
+/*
+ 	Name: TFAR_fnc_updateDDDialog
+ 	
+ 	Author(s):
+		NKey
+ 	
+ 	Description:
+		Updates the DD dialog to the channel and depth if switched.
+ 	
+ 	Parameters: 
+		Nothing
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		call TFAR_fnc_updateDDDialog;
+*/
+
 #include "define.h"
 private ["_depth", "_depthText"];
 ctrlSetText [IDC_DIVER_RADIO_EDIT_ID, TF_dd_frequency];
