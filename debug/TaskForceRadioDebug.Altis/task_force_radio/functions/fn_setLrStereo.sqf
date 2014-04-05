@@ -1,3 +1,26 @@
+/*
+ 	Name: TFAR_fnc_setLrStereo
+ 	
+ 	Author(s):
+		NKey
+ 	
+ 	Description:
+		Sets the stereo setting for the passed radio
+ 	
+ 	Parameters:
+		0: OBJECT - Radio object
+		1: STRING - Radio ID
+		2: NUMBER - Stereo setting : Range (0,2)
+			0 - Both
+			1 - Left
+			2 - Right
+ 	
+ 	Returns:
+		Nothing
+ 	
+ 	Example:
+		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 1] call TFAR_fnc_setLrStereo;
+*/
 #include "script.h"
 private ["_radio_object", "_radio_qualifier", "_value", "_settings"];
 _radio_object = _this select 0;

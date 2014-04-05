@@ -1,3 +1,24 @@
+/*
+ 	Name: TFAR_fnc_processLRStereoKeys
+ 	
+ 	Author(s):
+		
+
+ 	Description:
+		Switches the LR stereo setting on the active LR radio.
+	
+	Parameters:
+		0: NUMBER - Stereo number : Range (0,2)
+			0 - Both
+			1 - left
+			2 - right
+ 	
+ 	Returns:
+		BOOLEAN - if handled or not.
+ 	
+ 	Example:
+		Called via CBA onKey EventHandler
+*/
 private ["_lr_stereo_number", "_result"];
 _lr_stereo_number = _this select 0;
 _result = false;

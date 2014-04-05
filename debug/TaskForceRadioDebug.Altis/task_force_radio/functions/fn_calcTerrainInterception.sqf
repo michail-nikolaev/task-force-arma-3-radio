@@ -1,3 +1,21 @@
+/*
+ 	Name: TFAR_fnc_calcTerrainInterception
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Calculates the terrain interception between the player and the passed unit.
+	
+	Parameters:
+		OBJECT - Unit to calculate terrain interception with.
+ 	
+ 	Returns:
+		NUMBER - Terrain Interception
+ 	
+ 	Example:
+		_interception = soldier2 call TFAR_fnc_calcTerrainInterception;
+*/
 private ["_result", "_l", "_r", "_m", "_p1", "_p2", "_middle"];
 
 _result = 0;

@@ -1,3 +1,21 @@
+/*
+ 	Name: TFAR_fnc_processLRChannelKeys
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Switches the active LR radio to the passed channel.
+	
+	Parameters:
+		0: NUMBER - Channel : Range (0,8)
+ 	
+ 	Returns:
+		BOOLEAN - If the event was handled by this function.
+ 	
+ 	Example:
+		Called by CBA.
+*/
 private ["_lr_channel_number","_hintText","_result","_active_lr"];
 _lr_channel_number = _this select 0;
 _result = false;

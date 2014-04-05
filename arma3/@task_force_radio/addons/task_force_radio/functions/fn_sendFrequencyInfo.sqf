@@ -45,5 +45,5 @@ if ((call TFAR_fnc_haveDDRadio) and {[_depth, _isolated_and_inside] call TFAR_fn
 };
 _alive = alive player;
 _nickname = name player;
-_request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9", str(_freq), str(_freq_lr), _freq_dd, _alive, TF_speak_volume_meters, TF_dd_volume_level, _nickname, waves, TF_terrain_interception_coefficient];
+_request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9", str(_freq), str(_freq_lr), _freq_dd, _alive, TF_speak_volume_meters min TF_max_voice_volume, TF_dd_volume_level, _nickname, waves, TF_terrain_interception_coefficient];
 _result = "task_force_radio_pipe" callExtension _request;
