@@ -4,7 +4,7 @@ $[
 	["anprc155",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
 	[1200,"background",[1,"task_force_radio\anprc155\155.paa",["0.087875 * safezoneW + safezoneX","-0.167949 * safezoneH + safezoneY","0.634594 * safezoneW","1.10205 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1400,"channel_edit",[1,"CH:3",["0.330031 * safezoneW + safezoneX","0.341765 * safezoneH + safezoneY","0.0485625 * safezoneW","0.0658147 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current channel","-1"],[]],
-	[1401,"edit",[1,"88.8",["0.37925 * safezoneW + safezoneX","0.341765 * safezoneH + safezoneY","0.0452813 * safezoneW","0.0658147 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current frequency","-1"],[]],
+	[1401,"edit",[1,"88.8",["0.36925 * safezoneW + safezoneX","0.341765 * safezoneH + safezoneY","0.0552813 * safezoneW","0.0658147 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current frequency","-1"],[]],
 	[1600,"enter",[1,"",["0.41075 * safezoneW + safezoneX","0.505601 * safezoneH + safezoneY","0.023625 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
 	[1601,"clear",[1,"",["0.408781 * safezoneW + safezoneX","0.473394 * safezoneH + safezoneY","0.0216563 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Clear frequency","-1"],[]],
 	[1602,"prev_channel",[1,"",["0.362844 * safezoneW + safezoneX","0.537808 * safezoneH + safezoneY","0.02625 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
@@ -64,9 +64,9 @@ class edit: RscEditLCD
 {
 	idc = IDC_ANPRC155_EDIT;
 	text = $STR_A3_anprc155_edit155;
-	x = 0.37925 * safezoneW + safezoneX;
+	x = 0.37225 * safezoneW + safezoneX;
 	y = 0.341765 * safezoneH + safezoneY;
-	w = 0.0452813 * safezoneW;
+	w = 0.0552813 * safezoneW;
 	h = 0.0658147 * safezoneH;
 	font = "tf_font_segments";
 	tooltip = $STR_current_freq;
