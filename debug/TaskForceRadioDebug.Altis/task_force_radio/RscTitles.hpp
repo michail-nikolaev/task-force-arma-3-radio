@@ -2,8 +2,7 @@ class myRscStructuredText
 {
 	type = 13;
 	style = 0;
-	shadow = 1;
-	size = "( ( ( ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) *1)";
+	shadow = 1;	
 };
 
 class RscTitles
@@ -31,6 +30,7 @@ class RscTitles
 				colorText[] = {1,1,1,1};
 				colorBackground[] = {0.1,0.1,0.1,0.5};
 				sizeEx = 1;
+				size = "( ( ( ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * (0.55 / (getResolution select 5)))";
 			};
 		};
 	};
