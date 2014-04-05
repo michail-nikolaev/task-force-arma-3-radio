@@ -100,3 +100,9 @@ class C_Boat_Civil_01_rescue_F:Boat_Civil_01_base_F
 {
 	tf_hasLRradio = 1;
 };
+
+// 3d-party
+class rc_hmmwv_base: Car_F
+{
+	tf_hasLRradio = 1;
+};
