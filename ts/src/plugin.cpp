@@ -38,8 +38,8 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -230,6 +230,7 @@ struct SERVER_RADIO_DATA
 	bool canSpeak;	
 	float wavesLevel;
 	float terrainIntersectionCoefficient;
+	float globalVolume;
 
 	std::string serious_mod_channel_name;
 	std::string serious_mod_channel_password;
@@ -242,7 +243,8 @@ struct SERVER_RADIO_DATA
 	{
 		tangentPressed = false;
 		currentDataFrame = INVALID_DATA_FRAME;
-		terrainIntersectionCoefficient = 10.0f;
+		terrainIntersectionCoefficient = 7.0f;
+		globalVolume = 1.0f;
 	}
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
@@ -1221,7 +1223,7 @@ std::string processGameCommand(std::string command)
 		std::string subtype = tokens[4];
 
 		bool changed = false;		
-		EnterCriticalSection(&serverDataCriticalSection);
+		EnterCriticalSection(&serverDataCriticalSection);		
 		if (serverIdToData.count(currentServerConnectionHandlerID))
 		{			
 			changed = (serverIdToData[currentServerConnectionHandlerID].tangentPressed != pressed);
@@ -1233,7 +1235,7 @@ std::string processGameCommand(std::string command)
 				else if (diverRadio) clientData->canUseDDRadio = true;
 				else clientData->canUseSWRadio = true;
 				clientData->subtype = subtype;
-			}
+			}			
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);		
 		if (changed)
@@ -1272,7 +1274,7 @@ std::string processGameCommand(std::string command)
 		}
 		return "OK";
 	} 	
-	else if (tokens.size() == 10 && tokens[0] == "FREQ")
+	else if (tokens.size() == 11 && tokens[0] == "FREQ")
 	{				
 		EnterCriticalSection(&serverDataCriticalSection);	
 		if (serverIdToData.count(currentServerConnectionHandlerID))
@@ -1285,6 +1287,8 @@ std::string processGameCommand(std::string command)
 			serverIdToData[currentServerConnectionHandlerID].ddVolumeLevel = (int) std::atof(tokens[6].c_str());
 			serverIdToData[currentServerConnectionHandlerID].wavesLevel = (float) std::atof(tokens[8].c_str());
 			serverIdToData[currentServerConnectionHandlerID].terrainIntersectionCoefficient = (float) std::atof(tokens[9].c_str());
+			serverIdToData[currentServerConnectionHandlerID].globalVolume = (float)std::atof(tokens[10].c_str());
+
 		}
 		std::string nickname =  tokens[7];
 		LeaveCriticalSection(&serverDataCriticalSection);		
@@ -2051,6 +2055,10 @@ void mix(short* to, short* from, int sampleCount, int channels)
 	}
 }
 
+float volumeToGain(float volume) {
+	return pow(volume, 5);
+}
+
 float volumeMultiplifier(float volumeValue)
 {
 	float normalized = (volumeValue + 1) / 10.0f;
@@ -2104,11 +2112,12 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 		{
 			CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);		
 			CLIENT_DATA* myData = getClientData(serverConnectionHandlerID, myId);
+			float globalGain = volumeToGain(serverIdToData[serverConnectionHandlerID].globalVolume);
 			if (data && myData) 
 			{		
 				EnterCriticalSection(&serverDataCriticalSection);								
 				LISTED_INFO listed_info = isOverRadio(serverConnectionHandlerID, data, myData, false, false, false);								
-				bool shouldPlayerHear = (data->canSpeak && canSpeak);
+				bool shouldPlayerHear = (data->canSpeak && canSpeak);				
 				
 				
 				std::pair<std::string, bool> myVehicleDesriptor = getVehicleDescriptor(myData->vehicleId);
@@ -2150,8 +2159,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 					if (!shouldPlayerHear && vehicleCheck)
 					{						
 						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * CANT_SPEAK_GAIN, &(data->filterCantSpeak));
-					}
-					applyGain(samples, channels, sampleCount, vehicleCheck ? volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) : 0.0f);
+					}					
 					if (sw_buffer)
 					{
 						mix(samples, sw_buffer, sampleCount, channels);
@@ -2166,7 +2174,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 					{
 						mix(samples, dd_buffer, sampleCount, channels);
 						delete dd_buffer;
-					}					
+					}										
 				} 
 				else 
 				{										
@@ -2177,6 +2185,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * CANT_SPEAK_GAIN, &(data->filterCantSpeak));
 					}						
 				}
+				applyGain(samples, channels, sampleCount, globalGain);
 				LeaveCriticalSection(&serverDataCriticalSection);
 			}
 		}
@@ -2442,28 +2451,31 @@ void processPluginCommand(std::string command)
 
 					anyID clientId = clientData->clientId;
 					LISTED_INFO listedInfo = isOverRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
+					float globalGain = serverIdToData[serverId].globalVolume;
 					LeaveCriticalSection(&serverDataCriticalSection);
 					setGameClientMuteStatus(serverId, clientId);
-					if (alive && listedInfo.on != LISTED_ON_NONE) {
+					if (alive && listedInfo.on != LISTED_ON_NONE) {						
+						int volume = (int) std::roundf(listedInfo.volume * globalGain);
+						if (volume > 9) volume = 9;
 						if (subtype == "digital")
 						{
-							if (playPressed) playWavFile("radio-sounds/sw/remote_start", true, listedInfo.volume + 1);
-							if (playReleased) playWavFile("radio-sounds/sw/remote_end", true, listedInfo.volume + 1);
+							if (playPressed) playWavFile("radio-sounds/sw/remote_start", true, volume + 1);
+							if (playReleased) playWavFile("radio-sounds/sw/remote_end", true, volume + 1);
 						}
 						if (subtype == "digital_lr")
 						{
-							if (playPressed) playWavFile("radio-sounds/lr/remote_start", true, listedInfo.volume + 1);
-							if (playReleased) playWavFile("radio-sounds/lr/remote_end", true, listedInfo.volume + 1);
+							if (playPressed) playWavFile("radio-sounds/lr/remote_start", true, volume + 1);
+							if (playReleased) playWavFile("radio-sounds/lr/remote_end", true, volume + 1);
 						}
 						if (subtype == "digital_dd")
 						{
-							if (playPressed) playWavFile("radio-sounds/dd/remote_start", true, listedInfo.volume + 1);
-							if (playReleased) playWavFile("radio-sounds/dd/remote_end", true, listedInfo.volume + 1);
+							if (playPressed) playWavFile("radio-sounds/dd/remote_start", true, volume + 1);
+							if (playReleased) playWavFile("radio-sounds/dd/remote_end", true, volume + 1);
 						}
 						if (subtype == "airborne")
 						{
-							if (playPressed) playWavFile("radio-sounds/ab/remote_start", true, listedInfo.volume + 1);
-							if (playReleased) playWavFile("radio-sounds/ab/remote_end", true, listedInfo.volume + 1);
+							if (playPressed) playWavFile("radio-sounds/ab/remote_start", true, volume + 1);
+							if (playReleased) playWavFile("radio-sounds/ab/remote_end", true, volume + 1);
 						}
 					}
 					EnterCriticalSection(&serverDataCriticalSection);
