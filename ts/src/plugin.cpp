@@ -231,6 +231,7 @@ struct SERVER_RADIO_DATA
 	float wavesLevel;
 	float terrainIntersectionCoefficient;
 	float globalVolume;
+	float voiceVolumeMultiplifier;
 
 	std::string serious_mod_channel_name;
 	std::string serious_mod_channel_password;
@@ -244,7 +245,7 @@ struct SERVER_RADIO_DATA
 		tangentPressed = false;
 		currentDataFrame = INVALID_DATA_FRAME;
 		terrainIntersectionCoefficient = 7.0f;
-		globalVolume = 1.0f;
+		globalVolume = voiceVolumeMultiplifier = 1.0f;
 	}
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
@@ -1274,7 +1275,7 @@ std::string processGameCommand(std::string command)
 		}
 		return "OK";
 	} 	
-	else if (tokens.size() == 11 && tokens[0] == "FREQ")
+	else if (tokens.size() == 12 && tokens[0] == "FREQ")
 	{				
 		EnterCriticalSection(&serverDataCriticalSection);	
 		if (serverIdToData.count(currentServerConnectionHandlerID))
@@ -1288,6 +1289,7 @@ std::string processGameCommand(std::string command)
 			serverIdToData[currentServerConnectionHandlerID].wavesLevel = (float) std::atof(tokens[8].c_str());
 			serverIdToData[currentServerConnectionHandlerID].terrainIntersectionCoefficient = (float) std::atof(tokens[9].c_str());
 			serverIdToData[currentServerConnectionHandlerID].globalVolume = (float)std::atof(tokens[10].c_str());
+			serverIdToData[currentServerConnectionHandlerID].voiceVolumeMultiplifier = (float)std::atof(tokens[11].c_str());
 
 		}
 		std::string nickname =  tokens[7];
@@ -2222,6 +2224,21 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 }
 
 void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, int* edited) {
+	if (*edited & 2)
+	{
+		anyID myId = getMyId(serverConnectionHandlerID);
+		EnterCriticalSection(&serverDataCriticalSection);
+		if (serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier != 1.0f)
+		{
+			bool alive = serverIdToData[serverConnectionHandlerID].alive;
+			if (hasClientData(serverConnectionHandlerID, myId) && alive)
+			{
+				applyGain(samples, channels, sampleCount, volumeToGain(serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier));
+			}			
+		}
+		LeaveCriticalSection(&serverDataCriticalSection);
+		*edited |= 1;
+	}
 }
 
 void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHandlerID, anyID clientID, float distance, float* volume) {	  	
