@@ -72,11 +72,11 @@ class RscEditLCD
 	};
 	autocomplete = "";
 	text = "";
-	size = "0.2 * (0.55 / (getResolution select 5))";
+	size = "0.2 * (0.7 / (getResolution select 5))";
 	style = "0x00 + 0x40 + 0x200";
 	font = "tf_font_segments"; 
 	shadow = 1;
-	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2) * (0.7 / (getResolution select 5))";
 };
 class HiddenButton
 {
