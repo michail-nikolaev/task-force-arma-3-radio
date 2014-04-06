@@ -1,4 +1,4 @@
-
+/*
  	Name: TFAR_fnc_updateLRDialogToChannel
  	
  	Author(s):
