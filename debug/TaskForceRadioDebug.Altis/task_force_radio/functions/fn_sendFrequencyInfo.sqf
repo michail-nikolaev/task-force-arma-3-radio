@@ -17,7 +17,7 @@
 		call TFAR_fnc_sendFrequencyInfo;
 */
 
-private ["_request","_result","_freq","_freq_lr","_freq_dd","_alive","_nickname","_isolated_and_inside","_can_speak","_depth"];
+private ["_request","_result","_freq","_freq_lr","_freq_dd","_alive","_nickname","_isolated_and_inside","_can_speak","_depth","_globalVolume"];
 
 // send frequencies
 _freq = ["No_SW_Radio"];
@@ -45,5 +45,10 @@ if ((call TFAR_fnc_haveDDRadio) and {[_depth, _isolated_and_inside] call TFAR_fn
 };
 _alive = alive player;
 _nickname = name player;
-_request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9", str(_freq), str(_freq_lr), _freq_dd, _alive, TF_speak_volume_meters min TF_max_voice_volume, TF_dd_volume_level, _nickname, waves, TF_terrain_interception_coefficient];
+_globalVolume = player getVariable "tf_globalVolume";
+if (isNil "_globalVolume") then {
+	_globalVolume = 1.0;
+};
+
+_request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10", str(_freq), str(_freq_lr), _freq_dd, _alive, TF_speak_volume_meters min TF_max_voice_volume, TF_dd_volume_level, _nickname, waves, TF_terrain_interception_coefficient, _globalVolume];
 _result = "task_force_radio_pipe" callExtension _request;
