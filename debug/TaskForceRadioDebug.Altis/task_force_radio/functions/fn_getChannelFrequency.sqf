@@ -20,6 +20,7 @@
 	// SW radio - channel 1
 	[(call TFAR_fnc_activeSwRadio), 1] call TFAR_fnc_GetChannelFrequency;
 */
+#include "script.h"
 private ["_radio", "_channel", "_settings"];
 _radio = _this select 0;
 _channel = (_this select 1) - 1;
