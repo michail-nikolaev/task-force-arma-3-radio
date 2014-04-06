@@ -546,6 +546,23 @@
 					&lt;t color=&apos;#993300&apos;&gt;No puedes utilizar la radio del conductor en el aire&lt;/t&gt;
 				</Spanish>
 			</Key>
+			<Key ID="STR_unable_to_use_hint">
+				<Original>
+					&lt;t color=&apos;#FF0000&apos;&gt;you are not able to use the radio&lt;/t&gt;
+				</Original>
+				<Russian>
+					&lt;t color=&apos;#FF0000&apos;&gt;Вы не способны пользоваться рацией&lt;/t&gt;
+				</Russian>
+				<French>
+					&lt;t color=&apos;#FF0000&apos;&gt;Vous n'êtes pas en mesure d'utiliser le radio&lt;/t&gt;
+				</French>
+				<Italian>
+					&lt;t color=&apos;#FF0000&apos;&gt;Non sono in grado di utilizzare il radio&lt;/t&gt;
+				</Italian>
+				<Spanish>
+					&lt;t color=&apos;#FF0000&apos;&gt;Usted no es capaz de usar el radio&lt;/t&gt;
+				</Spanish>
+			</Key>
 			<Key ID="STR_select_action">
 				<Original>
 					Select action
