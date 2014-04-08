@@ -2053,7 +2053,9 @@ void mix(short* to, short* from, int sampleCount, int channels)
 {
 	for (int q = 0; q < sampleCount * channels; q++)
 	{
-		to[q] += from[q];
+		int sum = to[q] + from[q];
+		if (sum > SHRT_MAX) sum = SHRT_MAX; else if (sum < SHRT_MIN) sum = SHRT_MIN;
+		to[q] = sum;
 	}
 }
 
