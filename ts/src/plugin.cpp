@@ -2059,10 +2059,6 @@ void mix(short* to, short* from, int sampleCount, int channels)
 	}
 }
 
-float volumeToGain(float volume) {
-	return pow(volume, 5);
-}
-
 float volumeMultiplifier(float volumeValue)
 {
 	float normalized = (volumeValue + 1) / 10.0f;
@@ -2116,7 +2112,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 		{
 			CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);		
 			CLIENT_DATA* myData = getClientData(serverConnectionHandlerID, myId);
-			float globalGain = volumeToGain(serverIdToData[serverConnectionHandlerID].globalVolume);
+			float globalGain = serverIdToData[serverConnectionHandlerID].globalVolume;
 			if (data && myData) 
 			{		
 				EnterCriticalSection(&serverDataCriticalSection);								
@@ -2235,7 +2231,7 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 			bool alive = serverIdToData[serverConnectionHandlerID].alive;
 			if (hasClientData(serverConnectionHandlerID, myId) && alive)
 			{
-				applyGain(samples, channels, sampleCount, volumeToGain(serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier));
+				applyGain(samples, channels, sampleCount, serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier);
 			}			
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);
@@ -2470,7 +2466,7 @@ void processPluginCommand(std::string command)
 
 					anyID clientId = clientData->clientId;
 					LISTED_INFO listedInfo = isOverRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
-					float globalGain = serverIdToData[serverId].globalVolume;
+					float globalGain = powf(serverIdToData[serverId].globalVolume, 0.25);
 					LeaveCriticalSection(&serverDataCriticalSection);
 					setGameClientMuteStatus(serverId, clientId);
 					if (alive && listedInfo.on != LISTED_ON_NONE) {						
