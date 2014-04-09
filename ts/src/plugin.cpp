@@ -772,6 +772,61 @@ void unmuteAll(uint64 serverConnectionHandlerID)
 	ts3Functions.freeMemory(ids);
 }
 
+#define START_DATA "<TFAR>"
+#define END_DATA "</TFAR>"
+
+std::string getMetaData()  {
+	std::string result;
+	char* clientInfo;
+	DWORD error;
+	if ((error = ts3Functions.getClientVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()), CLIENT_META_DATA, &clientInfo)) != ERROR_ok) {
+		log("Can't get client metadata", error);
+		return "";
+	}
+	else
+	{		
+		std::string sharedMsg = clientInfo;
+		if (sharedMsg.find(START_DATA) == std::string::npos || sharedMsg.find(END_DATA) == std::string::npos)
+		{
+			result = "";						
+		}
+		else
+		{			
+			result = sharedMsg.substr(sharedMsg.find(START_DATA) + strlen(START_DATA), sharedMsg.find(END_DATA) - sharedMsg.find(START_DATA) - strlen(START_DATA));
+		}
+		ts3Functions.freeMemory(clientInfo);
+		return result;
+	}
+}
+
+void setMetaData(std::string data)
+{		
+	char* clientInfo;
+	DWORD error;
+	if ((error = ts3Functions.getClientVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()), CLIENT_META_DATA, &clientInfo)) != ERROR_ok) {
+		log("setMetaData - Can't get client metadata", error);		
+	}
+	else
+	{
+		std::string to_set;
+		std::string sharedMsg = "123<TFAR>123123</TFAR>213123";
+		if (sharedMsg.find(START_DATA) == std::string::npos || sharedMsg.find(END_DATA) == std::string::npos)
+		{
+			to_set = to_set + START_DATA + data + END_DATA;
+		}
+		else
+		{
+			std::string before = sharedMsg.substr(0, sharedMsg.find(START_DATA));
+			std::string after = sharedMsg.substr(sharedMsg.find(END_DATA) + strlen(END_DATA), std::string::npos);
+			to_set = before + START_DATA + data + END_DATA + after;
+		}
+		if ((error = ts3Functions.setClientSelfVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_META_DATA, to_set.c_str())) != ERROR_ok) {
+			log("setMetaData - Can't set own META_DATA", error);
+		}
+		ts3Functions.freeMemory(clientInfo);		
+	}
+	ts3Functions.flushClientSelfUpdates(ts3Functions.getCurrentServerConnectionHandlerID(), NULL);
+}
 
 
 std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includeVersion)
@@ -791,17 +846,12 @@ std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includ
 
 void updateUserStatusInfo(bool pluginEnabled) {		
 	if (!isConnected(ts3Functions.getCurrentServerConnectionHandlerID())) return;
-	DWORD error;
 	std::string result;
 	if (pluginEnabled) 	
 		result = getConnectionStatusInfo(pipeConnected, inGame, true);	
 	else 
 		result = "[B]Task Force Radio Plugin Disabled[/B]";
-	if((error = ts3Functions.setClientSelfVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_META_DATA, result.c_str())) != ERROR_ok) {
-		log("Can't set own META_DATA", error);
-	}	
-		
-	ts3Functions.flushClientSelfUpdates(ts3Functions.getCurrentServerConnectionHandlerID(), NULL);
+	setMetaData(result);		
 }
 
 std::vector<std::string> split(const std::string &s, char delim) 
@@ -1669,23 +1719,17 @@ const char* ts3plugin_infoTitle() {
  * "data" to NULL to have the client ignore the info data.
  */
 void ts3plugin_infoData(uint64 serverConnectionHandlerID, uint64 id, enum PluginItemType type, char** data) {
-	char* name;
-	
-	switch(type) {
-		case PLUGIN_CLIENT:
-			if(ts3Functions.getClientVariableAsString(serverConnectionHandlerID, (anyID)id, CLIENT_META_DATA, &name) != ERROR_ok) {
-				log("Error getting client metadata");
-				return;
-			}
-			break;
-		default:			
-			data = NULL;  /* Ignore */
-			return;
-	}
 
-	*data = (char*)malloc(INFODATA_BUFSIZE * sizeof(char));  /* Must be allocated in the plugin! */
-	snprintf(*data, INFODATA_BUFSIZE, "%s", name);  /* bbCode is supported. HTML is not supported */
-	ts3Functions.freeMemory(name);
+	if (PLUGIN_CLIENT == type)
+	{
+		std::string metaData = getMetaData();
+		*data = (char*)malloc(INFODATA_BUFSIZE * sizeof(char));  /* Must be allocated in the plugin! */
+		snprintf(*data, INFODATA_BUFSIZE, "%s", metaData.c_str());  /* bbCode is supported. HTML is not supported */
+	}
+	else
+	{
+		*data = NULL;
+	}
 }
 
 /* Required to release the memory for parameter "data" allocated in ts3plugin_infoData and ts3plugin_initMenus */
@@ -2007,20 +2051,13 @@ void ts3plugin_onEditPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, an
 
 bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID)
 {
-	char* clientInfo;
+	std::string clientInfo = getMetaData();
 	bool result = false;
-	DWORD error;
-	if ((error = ts3Functions.getClientVariableAsString(serverConnectionHandlerID, clientID, CLIENT_META_DATA, &clientInfo)) != ERROR_ok) {
-		log("Can't get client metadata", error);
-		return false;
-	} 
-	else 
-	{
-		std::string shouldStartWith = getConnectionStatusInfo(true, true, false);
-		std::string clientStatus = std::string(clientInfo);
-		result = startWith(shouldStartWith, clientStatus);		
-		ts3Functions.freeMemory(clientInfo);
-	}
+
+	std::string shouldStartWith = getConnectionStatusInfo(true, true, false);
+	std::string clientStatus = std::string(clientInfo);
+	result = startWith(shouldStartWith, clientStatus);		
+
 	DWORD currentTime = GetTickCount();
 	EnterCriticalSection(&serverDataCriticalSection);
 	CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);
