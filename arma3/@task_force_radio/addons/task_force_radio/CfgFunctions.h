@@ -124,6 +124,7 @@ class CfgFunctions
 			class getSideRadio{};
 			class unableToUseHint{};
 			class isAbleToUseRadio{};
+			class forceSpectator{};
 		};
 	};
 };
