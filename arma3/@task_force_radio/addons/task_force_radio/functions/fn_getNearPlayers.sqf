@@ -7,7 +7,7 @@ if (alive player) then {
 	_index = 0;
 	{			
 		if (isPlayer _x) then {
-			_spectator = _x getVariable ["tf_forceSpectator"];
+			_spectator = _x getVariable "tf_forceSpectator";
 			if (isNil "_spectator") then {
 				_spectator = false;
 			};

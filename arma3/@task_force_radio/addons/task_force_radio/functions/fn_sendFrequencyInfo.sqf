@@ -17,7 +17,7 @@
 		call TFAR_fnc_sendFrequencyInfo;
 */
 
-private ["_request","_result","_freq","_freq_lr","_freq_dd","_alive","_nickname","_isolated_and_inside","_can_speak","_depth","_globalVolume", "_voiceVolume"];
+private ["_request","_result","_freq","_freq_lr","_freq_dd","_alive","_nickname","_isolated_and_inside","_can_speak","_depth","_globalVolume", "_voiceVolume", "_spectator"];
 
 // send frequencies
 _freq = ["No_SW_Radio"];
@@ -52,6 +52,13 @@ if (isNil "_globalVolume") then {
 _voiceVolume = player getVariable "tf_voiceVolume";
 if (isNil "_voiceVolume") then {
 	_voiceVolume = 1.0;
+};
+_spectator = player getVariable "tf_forceSpectator";
+if (isNil "_spectator") then {
+	_spectator = false;
+};
+if (_spectator) then {
+	_alive = false;
 };
 
 _request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11", str(_freq), str(_freq_lr), _freq_dd, _alive, TF_speak_volume_meters min TF_max_voice_volume, TF_dd_volume_level, _nickname, waves, TF_terrain_interception_coefficient, _globalVolume, _voiceVolume];
