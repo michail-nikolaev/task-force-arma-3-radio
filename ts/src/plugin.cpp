@@ -38,8 +38,8 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -2502,40 +2502,43 @@ void processPluginCommand(std::string command)
 					clientData->range = range;
 
 					anyID clientId = clientData->clientId;
-					LISTED_INFO listedInfo = isOverRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
-					float globalGain = powf(serverIdToData[serverId].globalVolume, 0.25);
-					LeaveCriticalSection(&serverDataCriticalSection);
-					setGameClientMuteStatus(serverId, clientId);
-					if (alive && listedInfo.on != LISTED_ON_NONE) {						
-						int volume = (int) std::roundf(listedInfo.volume * globalGain);
-						if (volume > 9) volume = 9;
-						if (subtype == "digital")
-						{
-							if (playPressed) playWavFile("radio-sounds/sw/remote_start", true, volume + 1);
-							if (playReleased) playWavFile("radio-sounds/sw/remote_end", true, volume + 1);
-						}
-						if (subtype == "digital_lr")
-						{
-							if (playPressed) playWavFile("radio-sounds/lr/remote_start", true, volume + 1);
-							if (playReleased) playWavFile("radio-sounds/lr/remote_end", true, volume + 1);
-						}
-						if (subtype == "digital_dd")
-						{
-							if (playPressed) playWavFile("radio-sounds/dd/remote_start", true, volume + 1);
-							if (playReleased) playWavFile("radio-sounds/dd/remote_end", true, volume + 1);
-						}
-						if (subtype == "airborne")
-						{
-							if (playPressed) playWavFile("radio-sounds/ab/remote_start", true, volume + 1);
-							if (playReleased) playWavFile("radio-sounds/ab/remote_end", true, volume + 1);
-						}
-					}
-					EnterCriticalSection(&serverDataCriticalSection);
-					if (playReleased && alive)
+					if (hasClientData(serverId, clientId)) 
 					{
-						clientData->resetPersonalRadioEffect();
-						clientData->resetLongRangeRadioEffect();
-						clientData->resetUnderwaterRadioEffect();
+						LISTED_INFO listedInfo = isOverRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
+						float globalGain = powf(serverIdToData[serverId].globalVolume, 0.25);
+						LeaveCriticalSection(&serverDataCriticalSection);
+						setGameClientMuteStatus(serverId, clientId);
+						if (alive && listedInfo.on != LISTED_ON_NONE) {
+							int volume = (int)std::roundf(listedInfo.volume * globalGain);
+							if (volume > 9) volume = 9;
+							if (subtype == "digital")
+							{
+								if (playPressed) playWavFile("radio-sounds/sw/remote_start", true, volume + 1);
+								if (playReleased) playWavFile("radio-sounds/sw/remote_end", true, volume + 1);
+							}
+							if (subtype == "digital_lr")
+							{
+								if (playPressed) playWavFile("radio-sounds/lr/remote_start", true, volume + 1);
+								if (playReleased) playWavFile("radio-sounds/lr/remote_end", true, volume + 1);
+							}
+							if (subtype == "digital_dd")
+							{
+								if (playPressed) playWavFile("radio-sounds/dd/remote_start", true, volume + 1);
+								if (playReleased) playWavFile("radio-sounds/dd/remote_end", true, volume + 1);
+							}
+							if (subtype == "airborne")
+							{
+								if (playPressed) playWavFile("radio-sounds/ab/remote_start", true, volume + 1);
+								if (playReleased) playWavFile("radio-sounds/ab/remote_end", true, volume + 1);
+							}
+						}
+						EnterCriticalSection(&serverDataCriticalSection);
+						if (playReleased && alive)
+						{
+							clientData->resetPersonalRadioEffect();
+							clientData->resetLongRangeRadioEffect();
+							clientData->resetUnderwaterRadioEffect();
+						}
 					}
 
 				}
@@ -2569,7 +2572,7 @@ void processPluginCommand(std::string command)
 			serverIdToData[serverId].nicknameToClientData[nickname]->pluginEnabledCheck = currentTime;
 			serverIdToData[serverId].nicknameToClientData[nickname]->clientTalkingNow = start;
 			LeaveCriticalSection(&serverDataCriticalSection);
-			if (!myCommand) 
+			if (!myCommand && hasClientData(serverId, serverIdToData[serverId].nicknameToClientData[nickname]->clientId))
 			{
 				setGameClientMuteStatus(serverId, serverIdToData[serverId].nicknameToClientData[nickname]->clientId);
 			}
