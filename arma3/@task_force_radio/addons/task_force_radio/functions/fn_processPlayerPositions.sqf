@@ -31,7 +31,7 @@ if !(isNull player) then {
 		tf_farPlayers = [];
 		tf_farPlayersIndex = 0;	
 		{
-			_spectator = _x getVariable ["tf_forceSpectator"];
+			_spectator = _x getVariable "tf_forceSpectator";
 			if (isNil "_spectator") then {
 				_spectator = false;
 			};
