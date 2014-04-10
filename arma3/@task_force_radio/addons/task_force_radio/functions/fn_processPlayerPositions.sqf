@@ -31,7 +31,11 @@ if !(isNull player) then {
 		tf_farPlayers = [];
 		tf_farPlayersIndex = 0;	
 		{
-			if (isPlayer _x) then {
+			_spectator = _x getVariable ["tf_forceSpectator"];
+			if (isNil "_spectator") then {
+				_spectator = false;
+			};
+			if ((isPlayer _x) and {!_spectator}) then {
 				tf_farPlayers set[tf_farPlayersIndex, _x];
 				tf_farPlayersIndex = tf_farPlayersIndex + 1;
 			};
