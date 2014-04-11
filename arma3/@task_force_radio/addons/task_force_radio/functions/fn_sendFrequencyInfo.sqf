@@ -17,7 +17,7 @@
 		call TFAR_fnc_sendFrequencyInfo;
 */
 
-private ["_request","_result","_freq","_freq_lr","_freq_dd","_alive","_nickname","_isolated_and_inside","_can_speak","_depth","_globalVolume", "_voiceVolume", "_spectator"];
+private ["_request","_result","_freq","_freq_lr","_freq_dd","_alive","_nickname","_isolated_and_inside","_can_speak","_depth","_globalVolume", "_voiceVolume", "_spectator", "_receivingDistanceMultiplicator"];
 
 // send frequencies
 _freq = ["No_SW_Radio"];
@@ -60,6 +60,10 @@ if (isNil "_spectator") then {
 if (_spectator) then {
 	_alive = false;
 };
+_receivingDistanceMultiplicator = player getVariable "tf_receivingDistanceMultiplicator";
+if (isNil "_receivingDistanceMultiplicator") then {
+	_receivingDistanceMultiplicator = 1.0;
+};
 
-_request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11", str(_freq), str(_freq_lr), _freq_dd, _alive, TF_speak_volume_meters min TF_max_voice_volume, TF_dd_volume_level, _nickname, waves, TF_terrain_interception_coefficient, _globalVolume, _voiceVolume];
+_request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12", str(_freq), str(_freq_lr), _freq_dd, _alive, TF_speak_volume_meters min TF_max_voice_volume, TF_dd_volume_level, _nickname, waves, TF_terrain_interception_coefficient, _globalVolume, _voiceVolume, _receivingDistanceMultiplicator];
 _result = "task_force_radio_pipe" callExtension _request;
