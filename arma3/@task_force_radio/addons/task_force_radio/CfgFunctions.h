@@ -125,6 +125,7 @@ class CfgFunctions
 			class unableToUseHint{};
 			class isAbleToUseRadio{};
 			class forceSpectator{};
+			class getTransmittingDistanceMultiplicator{};
 		};
 	};
 };
