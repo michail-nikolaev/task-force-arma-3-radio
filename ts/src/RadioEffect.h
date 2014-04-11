@@ -112,14 +112,14 @@ public:
 		double acc = 0.0;
 		for (int q = 0; q < samplesNumber; q++) acc += fabs(buffer[q]);
 		double avg = acc / samplesNumber;
-		static float base = 0.005;
+		double base = 0.005;
 
-		float x = avg / base;
+		double x = avg / base;
 
 
 		for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);
 		for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], errorLevel);
-		for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], 0.3f * (1.0f - errorLevel) * x);
+		for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], (float)(0.3f * (1.0f - errorLevel) * x));
 
 		processFilter(filterSpeakerHP, buffer, samplesNumber);
 		processFilter(filterSpeakerLP, buffer, samplesNumber);
