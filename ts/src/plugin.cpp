@@ -232,6 +232,7 @@ struct SERVER_RADIO_DATA
 	float terrainIntersectionCoefficient;
 	float globalVolume;
 	float voiceVolumeMultiplifier;
+	float receivingDistanceMultiplicator;
 
 	std::string serious_mod_channel_name;
 	std::string serious_mod_channel_password;
@@ -245,7 +246,7 @@ struct SERVER_RADIO_DATA
 		tangentPressed = false;
 		currentDataFrame = INVALID_DATA_FRAME;
 		terrainIntersectionCoefficient = 7.0f;
-		globalVolume = voiceVolumeMultiplifier = 1.0f;
+		globalVolume = voiceVolumeMultiplifier = receivingDistanceMultiplicator = 1.0f;
 	}
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
@@ -533,9 +534,11 @@ float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 	TS3_VECTOR clientPosition = data->clientPosition;
 	float d = distance(myPosition, clientPosition);	
 	// (bob distance player) + (bob call TFAR_fnc_calcTerrainInterception) * 7 + (bob call TFAR_fnc_calcTerrainInterception) * 7 * ((bob distance player) / 2000.0)
-	return d 
+	float result = d +
 		+ (data->terrainInterception * serverIdToData[serverConnectionHandlerID].terrainIntersectionCoefficient) 
 		+ (data->terrainInterception * serverIdToData[serverConnectionHandlerID].terrainIntersectionCoefficient * d / 2000.0f);
+	result *= serverIdToData[serverConnectionHandlerID].receivingDistanceMultiplicator;
+	return result;
 }
 
 
@@ -1325,7 +1328,7 @@ std::string processGameCommand(std::string command)
 		}
 		return "OK";
 	} 	
-	else if (tokens.size() == 12 && tokens[0] == "FREQ")
+	else if (tokens.size() == 13 && tokens[0] == "FREQ")
 	{				
 		EnterCriticalSection(&serverDataCriticalSection);	
 		if (serverIdToData.count(currentServerConnectionHandlerID))
@@ -1340,6 +1343,7 @@ std::string processGameCommand(std::string command)
 			serverIdToData[currentServerConnectionHandlerID].terrainIntersectionCoefficient = (float) std::atof(tokens[9].c_str());
 			serverIdToData[currentServerConnectionHandlerID].globalVolume = (float)std::atof(tokens[10].c_str());
 			serverIdToData[currentServerConnectionHandlerID].voiceVolumeMultiplifier = (float)std::atof(tokens[11].c_str());
+			serverIdToData[currentServerConnectionHandlerID].receivingDistanceMultiplicator = (float)std::atof(tokens[12].c_str());
 
 		}
 		std::string nickname =  tokens[7];
