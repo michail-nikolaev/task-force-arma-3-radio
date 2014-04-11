@@ -537,7 +537,7 @@ float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 	float result = d +
 		+ (data->terrainInterception * serverIdToData[serverConnectionHandlerID].terrainIntersectionCoefficient) 
 		+ (data->terrainInterception * serverIdToData[serverConnectionHandlerID].terrainIntersectionCoefficient * d / 2000.0f);
-	result *= serverIdToData[serverConnectionHandlerID].receivingDistanceMultiplicator;
+	result *= serverIdToData[serverConnectionHandlerID]	.receivingDistanceMultiplicator;
 	return result;
 }
 
@@ -1941,28 +1941,30 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 		endChannel = 2;
 		gain *= 1.5f;
 	}
-	for (int i = 0; i < sampleCount * channels; i+= channels)
-	{			
+	float* buffer = new float[sampleCount];
+	for (int i = 0; i < sampleCount * channels; i += channels)
+	{
 		// prepare mono for radio						
-		long long no3D = 0;				
+		long long no3D = 0;
 		for (int j = 0; j < channels; j++)
 		{
 			no3D += samples[i + j];
 		}
-		
-		short to_process = (short) (no3D / channels);		
-		float buffer  = ((float) to_process / (float) SHRT_MAX) * gain;
-		
-		EnterCriticalSection(&serverDataCriticalSection);				
-		effect->process(&buffer, 1);		
-		LeaveCriticalSection(&serverDataCriticalSection);								
 
+		short to_process = (short)(no3D / channels);
+		buffer[i / channels] = ((float)to_process / (float)SHRT_MAX) * gain;
+	}
+	EnterCriticalSection(&serverDataCriticalSection);
+	effect->process(buffer, sampleCount);
+	LeaveCriticalSection(&serverDataCriticalSection);
+	for (int i = 0; i < sampleCount * channels; i+= channels)
+	{					
 		// put mixed output to stream			
 		for (int j = 0; j < channels; j++) samples[i + j] = 0;		
 
 		for (int j = startChannel; j < endChannel; j++)
 		{
-			float sample = buffer;
+			float sample = buffer[i / channels];
 			short newValue;
 			if (sample > 1.0) newValue = SHRT_MAX;
 			else if (sample < -1.0) newValue = SHRT_MIN;
@@ -1970,6 +1972,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 			samples[i + j] = newValue;
 		}	
 	}
+	delete buffer;
 }
 
 template<class T>
@@ -2200,7 +2203,11 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 					if (!shouldPlayerHear && vehicleCheck)
 					{						
 						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * CANT_SPEAK_GAIN, &(data->filterCantSpeak));
-					}					
+					} 
+					else
+					{
+						applyGain(samples, channels, sampleCount, vehicleCheck ? volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) : 0.0f);
+					}
 					if (sw_buffer)
 					{
 						mix(samples, sw_buffer, sampleCount, channels);
