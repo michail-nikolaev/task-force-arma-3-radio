@@ -1,4 +1,4 @@
-/* #Mecaka
+/* #Quvuka
 $[
 	1.063,
 	["fadak",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -11,9 +11,11 @@ $[
 	[1605,"decrease_volume",[1,"",["0.236188 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1400,"edit",[1,"444.8",["0.249969 * safezoneW + safezoneX","0.36417 * safezoneH + safezoneY","0.0492188 * safezoneW","0.0560125 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1401,"channel_edit",[1,"C8",["0.259813 * safezoneW + safezoneX","0.315159 * safezoneH + safezoneY","0.02625 * safezoneW","0.0630141 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1606,"stereo",[1,"",["0.255219 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1606,"stereo",[1,"",["0.255219 * safezoneW + safezoneX","0.652634 * safezoneH + safezoneY","0.0164063 * safezoneW","0.0252056 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1607,"additional",[1,"",["0.261149 * safezoneW + safezoneX","0.18773 * safezoneH + safezoneY","0.0236227 * safezoneW","0.0518116 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"$STR_set_additional","-1"],[]]
 ]
 */
+
 
 
 
@@ -35,7 +37,8 @@ controls[]=
 	decrease_volume,
 	edit,
 	channel_edit,
-	stereo
+	stereo,
+	additional
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Xyjiti)
@@ -144,8 +147,18 @@ class stereo: HiddenButton
 	y = 0.652634 * safezoneH + safezoneY;
 	w = 0.0164063 * safezoneW;
 	h = 0.0252056 * safezoneH;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioVolume;";
+	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioVolume;";
 	tooltip = $STR_stereo_settings;
+};
+class additional: HiddenButton
+{
+	idc = IDC_FADAK_ADDITIONAL;
+	x = 0.261149 * safezoneW + safezoneX;
+	y = 0.18773 * safezoneH + safezoneY;
+	w = 0.0236227 * safezoneW;
+	h = 0.0518116 * safezoneH;
+	tooltip = $STR_set_additional;
+	action = "[TF_sw_dialog_radio, TF_sw_dialog_radio call TFAR_fnc_getSwChannel] call TFAR_fnc_setAdditionalSwChannel; call TFAR_fnc_updateSWDialogToChannel; [TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
