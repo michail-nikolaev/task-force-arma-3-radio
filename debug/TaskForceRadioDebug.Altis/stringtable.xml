@@ -835,6 +835,40 @@
 					Radio
 				</Spanish>
 			</Key>
+			<Key ID="STR_select_action_copy_settings_from">
+				<Original>
+					Copy settings from...
+				</Original>
+				<Russian>
+					Скопировать настройки из....
+				</Russian>
+				<French>
+					Copiez les r&eacute;glages d'...
+				</French>
+				<Italian>
+					Copia impostazioni da...
+				</Italian>
+				<Spanish>
+					Para copiar los ajustes de...
+				</Spanish>
+			</Key>
+			<Key ID="STR_select_action_settings_from_tooltip">
+				<Original>
+					Copy settings from another radio with same encryption code
+				</Original>
+				<Russian>
+					Скопировать настройки из другой рации с тем же кодом шифрования
+				</Russian>
+				<French>
+					Copiez les r&eacute;glages d'une autre radio ayant le m&ecirc;me code de cryptage
+				</French>
+				<Italian>
+					Copia impostazioni da un'altra radio con lo stesso codice di crittografia
+				</Italian>
+				<Spanish>
+					Para copiar los ajustes de otra radio con el mismo c&oacute;digo de cifrado
+				</Spanish>
+			</Key>				
 			<Key ID="STR_radio_control">
 				<Original>
 					Controls
