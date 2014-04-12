@@ -127,6 +127,7 @@ class CfgFunctions
 			class forceSpectator{};
 			class getTransmittingDistanceMultiplicator{};
 			class processGroupFrequencySettings{};
+			class copyRadioSettingMenu{};
 		};
 	};
 };
