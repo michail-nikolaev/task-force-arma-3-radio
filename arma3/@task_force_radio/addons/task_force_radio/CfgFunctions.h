@@ -128,6 +128,16 @@ class CfgFunctions
 			class getTransmittingDistanceMultiplicator{};
 			class processGroupFrequencySettings{};
 			class copyRadioSettingMenu{};
+			class getAdditionalLrStereo{};
+			class getAdditionalSwStereo{};
+			class setAdditionalLrStereo{};
+			class setAdditionalSwStereo{};
+			class getAdditionalLrChannel{};
+			class getAdditionalSwChannel{};
+			class setAdditionalLrChannel{};
+			class setAdditionalSwChannel{};
+			class getCurrentSwStereo{};
+			class getCurrentLrStereo{};
 		};
 	};
 };

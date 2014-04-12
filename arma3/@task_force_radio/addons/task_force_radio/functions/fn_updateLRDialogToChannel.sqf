@@ -28,6 +28,10 @@ if ((typename(_this) == typename ([])) and {count _this > 0} and  {typename (_th
 	_formatText = _this select 0;
 };
 
+if ((TF_lr_dialog_radio call TFAR_fnc_getAdditionalLrChannel) == (TF_lr_dialog_radio call TFAR_fnc_getLrChannel)) then {
+	_formatText = "CA:%1";
+};
+
 ctrlSetText [LR_EDIT, TF_lr_dialog_radio call TFAR_fnc_getLrFrequency];
 _channelText =  format[_formatText, (TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1];
 ctrlSetText [LR_CHANNEL, _channelText];
