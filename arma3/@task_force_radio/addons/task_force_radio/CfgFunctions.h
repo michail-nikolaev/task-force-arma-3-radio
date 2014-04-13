@@ -138,6 +138,10 @@ class CfgFunctions
 			class setAdditionalSwChannel{};
 			class getCurrentSwStereo{};
 			class getCurrentLrStereo{};
+			class onAdditionalSwTangentReleased{};
+			class onAdditionalSwTangentPressed{};
+			class onAdditionalLRTangentReleased{};
+			class onAdditionalLRTangentPressed{};
 		};
 	};
 };
