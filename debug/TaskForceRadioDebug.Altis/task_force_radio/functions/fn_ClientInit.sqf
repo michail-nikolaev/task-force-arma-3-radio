@@ -245,6 +245,12 @@ tf_msSpectatorPerStepMax = 0.035;
 		[TF_tangent_dd_2_scancode, TF_tangent_dd_2_modifiers, {call TFAR_fnc_onDDTangentPressed}, "keydown", "_33"] call CBA_fnc_addKeyHandler;		
 	};
 	
+	[TF_tangent_additional_sw_scancode, TF_tangent_additional_sw_modifiers, {call TFAR_fnc_onAdditionalSwTangentPressed}, "keydown", "34"] call CBA_fnc_addKeyHandler;
+	[TF_tangent_additional_sw_scancode, TF_tangent_additional_sw_modifiers, {call TFAR_fnc_onAdditionalSwTangentReleased}, "keyup", "_34"] call CBA_fnc_addKeyHandler;
+	
+	[TF_tangent_additional_lr_scancode, TF_tangent_additional_lr_modifiers, {call TFAR_fnc_onAdditionalLRTangentPressed}, "keydown", "35"] call CBA_fnc_addKeyHandler;
+	[TF_tangent_additional_lr_scancode, TF_tangent_additional_lr_modifiers, {call TFAR_fnc_onAdditionalLRTangentReleased}, "keyup", "_35"] call CBA_fnc_addKeyHandler;
+	
 	// used for test mission in editor
 	//if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
