@@ -1,4 +1,4 @@
-/* #Mitoho
+/* #Jahote
 $[
 	1.063,
 	["anprc210",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -19,7 +19,8 @@ $[
 	[1611,"channel_06",[1,"",["0.443281 * safezoneW + safezoneX","0.3999 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1612,"channel_07",[1,"",["0.353562 * safezoneW + safezoneX","0.4637 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1613,"channel_08",[1,"",["0.398422 * safezoneW + safezoneX","0.4659 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
-	[1614,"channel_09",[1,"",["0.442766 * safezoneW + safezoneX","0.4659 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]]
+	[1614,"channel_09",[1,"",["0.442766 * safezoneW + safezoneX","0.4659 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
+	[1615,"additional",[1,"",["0.396979 * safezoneW + safezoneX","0.526606 * safezoneH + safezoneY","0.0367463 * safezoneW","0.0462103 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
@@ -49,7 +50,8 @@ class anarc210_radio_dialog
 		channel_06,
 		channel_07,
 		channel_08,
-		channel_09
+		channel_09,
+		additional
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Xiduwa)
@@ -154,7 +156,7 @@ class anarc210_radio_dialog
 		y = 0.4626 * safezoneH + safezoneY;
 		w = 0.03 * safezoneW;
 		h = 0.05 * safezoneH;
-		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 		tooltip = $STR_stereo_settings;
 	};
 	class channel_01: HiddenButton
@@ -246,6 +248,16 @@ class anarc210_radio_dialog
 		h = 0.0484 * safezoneH;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 8] call TFAR_fnc_setLrChannel; [""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 		tooltip = $STR_radio_channel_9;
+	};
+	class additional: HiddenButton
+	{
+		idc = IDC_ANPRC210_ADDITIONAL;
+		x = 0.396979 * safezoneW + safezoneX;
+		y = 0.526606 * safezoneH + safezoneY;
+		w = 0.0367463 * safezoneW;
+		h = 0.0462103 * safezoneH;
+		tooltip = $STR_set_additional;
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT END

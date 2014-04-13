@@ -28,6 +28,10 @@ if ((typename(_this) == typename ([])) and {count _this > 0} and  {typename (_th
 	_formatText = _this select 0;
 };
 
+if ((TF_sw_dialog_radio call TFAR_fnc_getAdditionalSwChannel) == (TF_sw_dialog_radio call TFAR_fnc_getSwChannel)) then {
+	_formatText = "A%1";
+};
+
 ctrlSetText [SW_EDIT, TF_sw_dialog_radio call TFAR_fnc_getSwFrequency];
 _channelText =  format[_formatText, (TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1];
 ctrlSetText [SW_CHANNEL, _channelText];
