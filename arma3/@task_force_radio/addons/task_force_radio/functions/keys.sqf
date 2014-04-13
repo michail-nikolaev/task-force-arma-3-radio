@@ -7,6 +7,11 @@ TF_tangent_sw_2_scancode = getNumber (configFile >> "task_force_radio_keys" >>  
 TF_tangent_sw_2_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "tanget_sw_2"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "tanget_sw_2"  >> "ctrl") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "tanget_sw_2"  >> "alt") == 1];
+		
+TF_tangent_additional_sw_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "tanget_additional_sw"  >> "key");
+TF_tangent_additional_sw_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "tanget_additional_sw"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "tanget_additional_sw"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "tanget_additional_sw"  >> "alt") == 1];
 
 TF_dialog_sw_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "dialog_sw"  >> "key");
 TF_dialog_sw_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "dialog_sw"  >> "shift") == 1,
@@ -88,6 +93,11 @@ TF_tangent_lr_2_scancode = getNumber (configFile >> "task_force_radio_keys" >>  
 TF_tangent_lr_2_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "tanget_lr_2"  >> "shift") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "tanget_lr_2"  >> "ctrl") == 1,
 	getNumber (configFile >> "task_force_radio_keys" >>  "tanget_lr_2"  >> "alt") == 1];
+	
+TF_tangent_additional_lr_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "tanget_additional_lr"  >> "key");
+TF_tangent_additional_lr_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "tanget_additional_lr"  >> "shift") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "tanget_additional_lr"  >> "ctrl") == 1,
+	getNumber (configFile >> "task_force_radio_keys" >>  "tanget_additional_lr"  >> "alt") == 1];
 
 TF_dialog_lr_scancode = getNumber (configFile >> "task_force_radio_keys" >>  "dialog_lr"  >> "key");
 TF_dialog_lr_modifiers = [getNumber (configFile >> "task_force_radio_keys" >>  "dialog_lr"  >> "shift") == 1,

@@ -13,6 +13,13 @@
 		shift = 0;
 		alt = 0;
 	};
+	
+	class tanget_additional_sw {
+		key = 20;
+		ctrl = 0;
+		shift = 0;
+		alt = 0;
+	};
 
 	class dialog_sw {
 		key = 25;
@@ -31,6 +38,13 @@
 	class tanget_lr_2 {
 		key = 0;
 		ctrl = 1;
+		shift = 0;
+		alt = 0;
+	};
+	
+	class tanget_additional_lr {
+		key = 21;
+		ctrl = 0;
 		shift = 0;
 		alt = 0;
 	};
