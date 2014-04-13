@@ -87,6 +87,57 @@
 					Derecha solo
 				</Spanish>					
 			</Key>
+			<Key ID="STR_additional_stereo_settings_0">
+				<Original>
+					Additional: Left and right
+				</Original>
+				<Russian>
+					Дополнительный: Левый и правый
+				</Russian>
+				<French>
+					Supplémentaire: Gauche et droite
+				</French>
+				<Italian>
+					Addizionale: Sinistra e destra
+				</Italian>
+				<Spanish>
+					Adicional: Izquierda y derecha
+				</Spanish>			
+			</Key>
+			<Key ID="STR_additional_stereo_settings_1">
+				<Original>
+					Additional: Left only
+				</Original>
+				<Russian>
+					Дополнительный: Только левый
+				</Russian>
+				<French>
+					Supplémentaire: Gauche seulement
+				</French>
+				<Italian>
+					Addizionale: Solo sinistra
+				</Italian>
+				<Spanish>
+					Adicional: Izquierda solo
+				</Spanish>					
+			</Key>
+			<Key ID="STR_additional_stereo_settings_2">
+				<Original>
+					Additional: Right only
+				</Original>
+				<Russian>
+					Дополнительный: Только правый
+				</Russian>
+				<French>
+					Supplémentaire: Droite seulement
+				</French>
+				<Italian>
+					Addizionale: Solo destra
+				</Italian>
+				<Spanish>
+					Adicional: Derecha solo
+				</Spanish>					
+			</Key>
 			<Key ID="STR_no_server">
 				<Original>
 					No Task Force Radio deployed on server!
@@ -153,6 +204,23 @@
 				</Italian>
 				<Spanish>
 					Establecer frecuencia
+				</Spanish>						
+			</Key>
+			<Key ID="STR_set_additional">
+				<Original>
+					Set additional channel
+				</Original>
+				<Russian>
+					Настроить дополнительный канал 
+				</Russian>
+				<French>
+					Canal supplémentaire prévue					
+				</French>
+				<Italian>
+					Impostare canale aggiuntivo
+				</Italian>
+				<Spanish>
+					Ajuste el canal adicional
 				</Spanish>						
 			</Key>
 			<Key ID="STR_clear_frequency">
@@ -463,7 +531,7 @@
 			</Key>
 			<Key ID="STR_active_sw_channel">
 				<Original>
-					SW channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					Channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Original>
 				<Russian>
 					Канал: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
@@ -476,6 +544,23 @@
 				</Italian>
 				<Spanish>
 					Canal onda corta:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Spanish>	
+			</Key>
+			<Key ID="STR_active_additional_sw_channel">
+				<Original>
+					Additional channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Original>
+				<Russian>
+					Дополнительный канал: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Russian>
+				<French>
+					Canal supplémentaire: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</French>
+				<Italian>
+					Canale aggiuntivo: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Italian>
+				<Spanish>
+					Canal adicional:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Spanish>	
 			</Key>
 			<Key ID="STR_active_frequency">
@@ -510,6 +595,23 @@
 				</Italian>
 				<Spanish>
 					Canal RL:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Spanish>	
+			</Key>
+			<Key ID="STR_active_additional_lr_channel">
+				<Original>
+					Additional LR channel: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Original>
+				<Russian>
+					Дополнительный канал ДС: &lt;t color=&apos;#ff00ff&apos;&gt;%1&lt;/t&gt;
+				</Russian>
+				<French>
+					Canal supplémentaire LP: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</French>
+				<Italian>
+					Canale aggiuntivo OL: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Italian>
+				<Spanish>
+					Canal adicional RL:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Spanish>	
 			</Key>
 			<Key ID="STR_in_water_hint">
@@ -843,7 +945,7 @@
 					Скопировать настройки из....
 				</Russian>
 				<French>
-					Copiez les r&eacute;glages d'...
+					Copiez les réglages d'...
 				</French>
 				<Italian>
 					Copia impostazioni da...
@@ -860,13 +962,13 @@
 					Скопировать настройки из другой рации с тем же кодом шифрования
 				</Russian>
 				<French>
-					Copiez les r&eacute;glages d'une autre radio ayant le m&ecirc;me code de cryptage
+					Copiez les réglages d'une autre radio ayant le même code de cryptage
 				</French>
 				<Italian>
 					Copia impostazioni da un'altra radio con lo stesso codice di crittografia
 				</Italian>
 				<Spanish>
-					Para copiar los ajustes de otra radio con el mismo c&oacute;digo de cifrado
+					Para copiar los ajustes de otra radio con el mismo código de cifrado
 				</Spanish>
 			</Key>				
 			<Key ID="STR_radio_control">
