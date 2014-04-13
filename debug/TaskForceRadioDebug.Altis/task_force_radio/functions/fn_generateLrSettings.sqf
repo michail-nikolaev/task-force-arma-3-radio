@@ -18,12 +18,14 @@
 			2: ARRAY - Frequencies for channels
 			3: NUMBER - Stereo setting
 			4: STRING - Encryption code
+			5: NUMBER - Additional active channel			
+			6: NUMBER - Additional active channel stereo mode
  	
  	Example:
 		_settings = call TFAR_fnc_generateLrSettings;
 */
 private ["_lr_frequencies", "_lr_settings"];
-_lr_settings = [0, 7, [], 0, nil];
+_lr_settings = [0, 7, [], 0, nil, -1, 0];
 
 _lr_frequencies = [];
 for "_i" from 0 to TF_MAX_LR_CHANNELS step 1 do {
