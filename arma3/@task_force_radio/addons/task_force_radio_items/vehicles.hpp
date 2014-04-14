@@ -4,7 +4,11 @@ class AllVehicles:All
 	tf_hasLRradio = 0;
 	tf_isolatedAmount = 0;
 };
-class LandVehicle;
+class Land;
+class LandVehicle: Land
+{
+	tf_range = 30000;
+};
 class Tank:LandVehicle
 {
 	tf_hasLRradio = 1;
