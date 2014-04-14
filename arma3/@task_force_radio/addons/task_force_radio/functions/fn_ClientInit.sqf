@@ -266,6 +266,7 @@ player addEventHandler ["killed", {TF_use_saved_sw_setting = true; TF_use_saved_
 	sleep 1;
 	call TFAR_fnc_processRespawn;
 };
+TF_respawnedAt = time;
 
 [] spawn {
 	waitUntil {sleep 0.1;!(isNull player)};
