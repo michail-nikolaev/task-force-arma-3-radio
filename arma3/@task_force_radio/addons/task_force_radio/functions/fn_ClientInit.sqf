@@ -1,9 +1,5 @@
 //#define DEBUG_MODE_FULL
 
-if (isNil "tf_no_auto_long_range_radio") then {
-	tf_no_auto_long_range_radio = false;
-};
-
 if (isNil "tf_radio_channel_name") then {
 	tf_radio_channel_name = "TaskForceRadio";
 };
@@ -78,7 +74,7 @@ if (isNil "TF_terrain_interception_coefficient") then {
 disableSerialization;
 #include "diary.sqf"
 
-waitUntil {sleep 0.1;time > 0};
+waitUntil {sleep 0.2;time > 0};
 waitUntil {sleep 0.1;!(isNull player)};
 titleText [localize ("STR_init"), "PLAIN"];
 
@@ -265,9 +261,11 @@ TF_last_request_time = 0;
 
 player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 player addEventHandler ["killed", {TF_use_saved_sw_setting = true; TF_use_saved_lr_setting = true; TF_first_radio_request = true;}];
-call TFAR_fnc_processRespawn;
 
-TF_respawnedAt = time;
+[] spawn {
+	sleep 1;
+	call TFAR_fnc_processRespawn;
+};
 
 [] spawn {
 	waitUntil {sleep 0.1;!(isNull player)};

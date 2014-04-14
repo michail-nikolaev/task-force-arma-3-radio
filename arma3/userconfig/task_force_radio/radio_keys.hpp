@@ -1,4 +1,7 @@
-﻿class task_force_radio_keys {
+﻿class task_force_radio_settings {
+	tf_no_auto_long_range_radio = 0;
+};
+class task_force_radio_keys {
 
 	class tanget_sw {
 		key = 58;
