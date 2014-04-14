@@ -25,6 +25,15 @@
 	waitUntil {time > 0};
 	TF_server_addon_version = TF_ADDON_VERSION;
 	publicVariable "TF_server_addon_version";
+	
+	if (isNil "tf_no_auto_long_range_radio") then {
+		if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_no_auto_long_range_radio")) then {
+			tf_no_auto_long_range_radio = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_no_auto_long_range_radio") == 1;
+		} else {
+			tf_no_auto_long_range_radio = false;
+		};
+		publicVariable "tf_no_auto_long_range_radio";
+	};
 
 	TF_Radio_Count = [];
 
