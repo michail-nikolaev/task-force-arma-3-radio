@@ -33,17 +33,7 @@
 			_backPack = unitBackpack player;
 			player action ["putbag", player];
 			sleep 3;
-			if ((player call BIS_fnc_objectSide) == west) then
-			{
-				player addBackpack TF_defaultWestBackpack;
-			} else {
-				if ((player call BIS_fnc_objectSide) == east) then
-				{
-					player addBackpack TF_defaultEastBackpack;
-				} else {
-					player addBackpack TF_defaultGuerBackpack;
-				};
-			};
+			player addBackpack ((call TFAR_fnc_getDefaultRadioClasses) select 0);			
 			_newItems = [];
 			{
 				if (player canAddItemToBackpack _x) then

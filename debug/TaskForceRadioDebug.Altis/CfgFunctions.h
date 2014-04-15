@@ -143,6 +143,7 @@ class CfgFunctions
 			class onAdditionalLRTangentReleased{};
 			class onAdditionalLRTangentPressed{};
 			class ProcessTangent{};
+			class getDefaultRadioClasses{};			
 		};
 	};
 };
