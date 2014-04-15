@@ -142,6 +142,7 @@ class CfgFunctions
 			class onAdditionalSwTangentPressed{};
 			class onAdditionalLRTangentReleased{};
 			class onAdditionalLRTangentPressed{};
+			class ProcessTangent{};
 		};
 	};
 };
