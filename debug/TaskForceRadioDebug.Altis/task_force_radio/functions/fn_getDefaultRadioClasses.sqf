@@ -35,8 +35,8 @@ TFAR_tryResolveFactionClass =
 		if (isText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"))) then {
 			 _result = getText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"));
 		} else {
-			if (isText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio"))) then {
-				_result = getText (configFile >> "CfgFactionClasses" >> (_faction >> (_prefix + "_tf_faction_radio"));
+			if (isText (configFile >> "CfgFactionClasses" >> _faction >> _prefix + "_tf_faction_radio")) then {
+				_result = getText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio"));
 			} else {
 				_result = _default;
 			};
