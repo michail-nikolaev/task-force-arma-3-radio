@@ -18,18 +18,16 @@
  	Example:
 		_radios = false call TFAR_fnc_radioToRequestCount;
 */
-private ["_to_remove", "_allRadios", "_personalRadio", "_riflemanRadio", "_defaultRadio"];
+private ["_to_remove", "_allRadios", "_personalRadio", "_riflemanRadio", "_defaultRadio", "_classes"];
 _to_remove = [];
 _allRadios = _this;
 
 _personalRadio = nil;
 _riflemanRadio = nil;
 
-switch (player call BIS_fnc_objectSide) do {
-	case west: {_personalRadio = TF_defaultWestPersonalRadio; _riflemanRadio = TF_defaultWestRiflemanRadio;};
-	case east: {_personalRadio = TF_defaultEastPersonalRadio; _riflemanRadio = TF_defaultEastRiflemanRadio;};
-	default {_personalRadio = TF_defaultGuerPersonalRadio; _riflemanRadio = TF_defaultGuerRiflemanRadio;};
-};
+_classes = call TFAR_fnc_getDefaultRadioClasses;
+_personalRadio = _classes select 1;
+_riflemanRadio = _classes select 2;
 
 if ((TF_give_personal_radio_to_regular_soldier) or {leader player == player}) then {
 	_defaultRadio = _personalRadio;
