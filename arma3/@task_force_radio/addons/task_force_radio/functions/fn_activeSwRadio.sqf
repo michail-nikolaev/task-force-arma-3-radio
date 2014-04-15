@@ -21,5 +21,5 @@ _result = nil;
 {	
 	if (_x call TFAR_fnc_isRadio) exitWith {_result = _x};
 	
-} forEach (assignedItems player);
+} count (assignedItems player);
 _result
