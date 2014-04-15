@@ -43,14 +43,14 @@ if ((TF_give_personal_radio_to_regular_soldier) or {leader player == player}) th
 		_to_remove set[(count _to_remove), _x];
 		TF_first_radio_request = true;
 	};
-} forEach (assignedItems player);
+} count (assignedItems player);
 
 {
 	if ((_x call TFAR_fnc_isPrototypeRadio) or ((_x call TFAR_fnc_isRadio) and _allRadios)) then 
 	{
 		_to_remove set[(count _to_remove), _x];
 	};
-} forEach (items player);
+} count (items player);
 
 {
 	player unassignItem _x;
