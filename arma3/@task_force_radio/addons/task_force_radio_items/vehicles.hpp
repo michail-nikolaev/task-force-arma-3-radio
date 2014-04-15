@@ -105,8 +105,63 @@ class C_Boat_Civil_01_rescue_F:Boat_Civil_01_base_F
 	tf_hasLRradio = 1;
 };
 
-// 3d-party
+// ---------------------------------------------------------
+// Default 3d-party Mod Support
+// ---------------------------------------------------------
 class rc_hmmwv_base: Car_F
 {
 	tf_hasLRradio = 1;
+};
+
+class Plane;
+// C-130J Port Release - http://forums.bistudio.com/showthread.php?173431-C-130J-Port-Release
+class C130J_Base: Plane
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.8;
+};
+
+// HAFM - ArmA 2 HMMWVs import - http://forums.bistudio.com/showthread.php?172647-HAFM-ArmA-2-HMMWVs-import
+class HMMWV_Base: Car_F
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.3;
+};
+// HAFM - ArmA 2 UK Wheeled - http://forums.bistudio.com/showthread.php?176138-HAFM-ArmA-2-UK-Wheeled-Import
+class BAF_Offroad_D: Car_F
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.1;
+};
+class BAF_Jackal2_BASE_D: Car_F
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0;
+};
+// HAFM UAZ Cars - http://forums.bistudio.com/showthread.php?175914-HAFM-UAZ-Cars
+class UAZ_Base:Car_F
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0;	
+};
+class UAZ_Unarmed:UAZ_Base
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.15;	
+};
+// HAFM -  ArmA 2 US Helicopters Import to A3 - http://forums.bistudio.com/showthread.php?173822-ArmA-2-US-Helicopters-Import-to-A3
+class CH_47F_base: Helicopter
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.4;
+};
+class AH64_Base: Helicopter
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.85;
+};
+class AH1_Base: Helicopter
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.85;
 };
