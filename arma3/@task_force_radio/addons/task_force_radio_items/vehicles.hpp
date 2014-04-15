@@ -127,6 +127,28 @@ class HMMWV_Base: Car_F
 	tf_hasLRradio = 1;
 	tf_isolatedAmount = 0.3;
 };
+// HAFM - ArmA 2 UK Wheeled - http://forums.bistudio.com/showthread.php?176138-HAFM-ArmA-2-UK-Wheeled-Import
+class BAF_Offroad_D: Car_F
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.1;
+};
+class BAF_Jackal2_BASE_D: Car_F
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0;
+};
+// HAFM UAZ Cars - http://forums.bistudio.com/showthread.php?175914-HAFM-UAZ-Cars
+class UAZ_Base:Car_F
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0;	
+};
+class UAZ_Unarmed:UAZ_Base
+{
+	tf_hasLRradio = 1;
+	tf_isolatedAmount = 0.15;	
+};
 // HAFM -  ArmA 2 US Helicopters Import to A3 - http://forums.bistudio.com/showthread.php?173822-ArmA-2-US-Helicopters-Import-to-A3
 class CH_47F_base: Helicopter
 {
