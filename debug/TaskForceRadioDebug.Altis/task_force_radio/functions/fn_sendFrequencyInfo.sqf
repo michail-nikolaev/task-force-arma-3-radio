@@ -40,7 +40,7 @@ if ((call TFAR_fnc_haveSWRadio) and {[player, _isolated_and_inside, _can_speak, 
 			};
 		};
 		
-	} forEach (call TFAR_fnc_radiosList);
+	} count (call TFAR_fnc_radiosList);
 };
 if ((call TFAR_fnc_haveLRRadio) and {[player, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio}) then {
 	_freq_lr = [];
@@ -53,7 +53,7 @@ if ((call TFAR_fnc_haveLRRadio) and {[player, _isolated_and_inside, _depth] call
 				_freq_lr set[count _freq_lr, format ["%1%2|%3|%4", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getLrRadioCode, _x call TFAR_fnc_getLrVolume, _x call TFAR_fnc_getAdditionalLrStereo]];
 			};
 		};		
-	} forEach (call TFAR_fnc_lrRadiosList);				
+	} count (call TFAR_fnc_lrRadiosList);				
 };
 if ((call TFAR_fnc_haveDDRadio) and {[_depth, _isolated_and_inside] call TFAR_fnc_canUseDDRadio}) then {
 	_freq_dd = TF_dd_frequency;

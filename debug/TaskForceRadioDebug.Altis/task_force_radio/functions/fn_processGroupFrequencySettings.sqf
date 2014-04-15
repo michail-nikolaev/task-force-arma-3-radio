@@ -95,4 +95,4 @@ if (isNil "tf_freq_guer_lr") then {
 			};
 		};
 	};
-} forEach allGroups;
+} count allGroups;
