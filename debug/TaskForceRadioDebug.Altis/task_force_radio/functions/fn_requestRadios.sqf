@@ -38,7 +38,7 @@ if (time - TF_last_request_time > 3) then {
 		_response = missionNamespace getVariable _responseVariableName;	
 		{
 			player addItem _x;
-		} forEach _response;
+		} count _response;
 		if ((count _response > 0) and (TF_first_radio_request)) then 
 		{
 			TF_first_radio_request = false;
