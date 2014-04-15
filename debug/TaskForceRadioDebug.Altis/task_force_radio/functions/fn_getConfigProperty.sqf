@@ -31,7 +31,7 @@ if (count _this > 2) then {
 	_default = _this select 2;
 };
 
-if (isNil "_item" or {_item == ""}) exitWith {_default};
+if ((isNil "_item") or {str(_item) == ""}) exitWith {_default};
 if (isNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api")) then
 {
 	_result = getNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api");
