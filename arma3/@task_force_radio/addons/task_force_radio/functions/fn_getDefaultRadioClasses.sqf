@@ -32,11 +32,11 @@ TFAR_tryResolveFactionClass =
 	_faction = str(faction player);
 	_result = missionNamespace getVariable (_faction + "_" + _prefix + "_tf_faction_radio");
 	if (isNil "_result") then {		
-		if (isText (configFile >> "CfgVehicles" >> (typeof player) >> (_prefix + "_tf_faction_radio_api"))) then {
-			 _result = getText (configFile >> "CfgVehicles" >> (typeof player) >> (_prefix + "_tf_faction_radio_api"));
+		if (isText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"))) then {
+			 _result = getText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"));
 		} else {
-			if (isText (configFile >> "CfgVehicles" >> (typeof player) >> (_prefix + "_tf_faction_radio"))) then {
-				_result = getText (configFile >> "CfgVehicles" >> (typeof player) >> (_prefix + "_tf_faction_radio"));
+			if (isText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio"))) then {
+				_result = getText (configFile >> "CfgFactionClasses" >> (_faction >> (_prefix + "_tf_faction_radio"));
 			} else {
 				_result = _default;
 			};
