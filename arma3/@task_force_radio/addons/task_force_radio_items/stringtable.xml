@@ -310,19 +310,19 @@
 			</Key>
 			<Key ID="STR_TFAR_Mod_PRFrequencyTT">
 				<Original>
-					PR default frequency
+					PR default frequencies (as an SQF array)
 				</Original>
 				<Russian>
-					PR default frequency
+					PR default frequencies (as an SQF array)
 				</Russian>
 				<French>
-					PR default frequency
+					PR default frequencies (as an SQF array)
 				</French>
 				<Italian>
-					PR default frequency
+					PR default frequencies (as an SQF array)
 				</Italian>
 				<Spanish>
-					Frecuencia por defecto para radios personales
+					PR default frequencies (as an SQF array)
 				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LRFrequency">
@@ -344,16 +344,16 @@
 			</Key>
 			<Key ID="STR_TFAR_Mod_LRFrequencyTT">
 				<Original>
-					LR default frequency
+					LR default frequencies (as an SQF array)
 				</Original>
 				<Russian>
-					LR default frequency
+					LR default frequencies (as an SQF array)
 				</Russian>
 				<French>
-					LR default frequency
+					LR default frequencies (as an SQF array)
 				</French>
 				<Italian>
-					LR default frequency
+					LR default frequencies (as an SQF array)
 				</Italian>
 				<Spanish>
 					Frecuencia por defecto de radios de largo alcance
