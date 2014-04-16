@@ -427,6 +427,181 @@
 					Permite configurar las frecuencias por defecto para los bandos.
 				</Spanish>
 			</Key>
+			
+			<Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
+				<Original>
+					Terrain Interception Coefficient
+				</Original>
+				<Russian>
+					Terrain Interception Coefficient
+				</Russian>
+				<French>
+					Terrain Interception Coefficient
+				</French>
+				<Italian>
+					Terrain Interception Coefficient
+				</Italian>
+				<Spanish>
+					Terrain Interception Coefficient
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
+				<Original>
+					Terrain Interception Coefficient
+				</Original>
+				<Russian>
+					Terrain Interception Coefficient
+				</Russian>
+				<French>
+					Terrain Interception Coefficient
+				</French>
+				<Italian>
+					Terrain Interception Coefficient
+				</Italian>
+				<Spanish>
+					Terrain Interception Coefficient
+				</Spanish>
+			</Key>
+			
+			<Key ID="STR_TFAR_Mod_ChannelName">
+				<Original>
+					Channel Name
+				</Original>
+				<Russian>
+					Channel Name
+				</Russian>
+				<French>
+					Channel Name
+				</French>
+				<Italian>
+					Channel Name
+				</Italian>
+				<Spanish>
+					Channel Name
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_ChannelNameTT">
+				<Original>
+					TeamSpeak Channel Name
+				</Original>
+				<Russian>
+					TeamSpeak Channel Name
+				</Russian>
+				<French>
+					TeamSpeak Channel Name
+				</French>
+				<Italian>
+					TeamSpeak Channel Name
+				</Italian>
+				<Spanish>
+					TeamSpeak Channel Name
+				</Spanish>
+			</Key>
+			
+			<Key ID="STR_TFAR_Mod_ChannelPassword">
+				<Original>
+					Channel Password
+				</Original>
+				<Russian>
+					Channel Password
+				</Russian>
+				<French>
+					Channel Password
+				</French>
+				<Italian>
+					Channel Password
+				</Italian>
+				<Spanish>
+					Channel Password
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_ChannelPasswordTT">
+				<Original>
+					TeamSpeak Channel Password
+				</Original>
+				<Russian>
+					TeamSpeak Channel Password
+				</Russian>
+				<French>
+					TeamSpeak Channel Password
+				</French>
+				<Italian>
+					TeamSpeak Channel Password
+				</Italian>
+				<Spanish>
+					TeamSpeak Channel Password
+				</Spanish>
+			</Key>
+			
+			<Key ID="STR_TFAR_Mod_SameSWFrequencies">
+				<Original>
+					Same SW Frequencies for side
+				</Original>
+				<Russian>
+					Same SW Frequencies for side
+				</Russian>
+				<French>
+					Same SW Frequencies for side
+				</French>
+				<Italian>
+					Same SW Frequencies for side
+				</Italian>
+				<Spanish>
+					Same SW Frequencies for side
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
+				<Original>
+					Same SW Frequencies for side
+				</Original>
+				<Russian>
+					Same SW Frequencies for side
+				</Russian>
+				<French>
+					Same SW Frequencies for side
+				</French>
+				<Italian>
+					Same SW Frequencies for side
+				</Italian>
+				<Spanish>
+					Same SW Frequencies for side
+				</Spanish>
+			</Key>
+			
+			<Key ID="STR_TFAR_Mod_SameLrFrequencies">
+				<Original>
+					Same LR Frequencies for side
+				</Original>
+				<Russian>
+					Same LR Frequencies for side
+				</Russian>
+				<French>
+					Same LR Frequencies for side
+				</French>
+				<Italian>
+					Same LR Frequencies for side
+				</Italian>
+				<Spanish>
+					Same LR Frequencies for side
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
+				<Original>
+					Same LR Frequencies for side
+				</Original>
+				<Russian>
+					Same LR Frequencies for side
+				</Russian>
+				<French>
+					Same LR Frequencies for side
+				</French>
+				<Italian>
+					Same LR Frequencies for side
+				</Italian>
+				<Spanish>
+					Same LR Frequencies for side
+				</Spanish>
+			</Key>
 		</Container>
 	</Package>
 </Project>
