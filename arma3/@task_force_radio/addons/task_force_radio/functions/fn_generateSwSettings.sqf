@@ -9,7 +9,7 @@
 		Generates settings for the SW radio
 	
 	Parameters:
-		Nothing
+		OPTIONAL: BOOLEAN - false to generate settings without generating frequencies.
  	
  	Returns:
 		ARRAY: Settings
@@ -24,12 +24,24 @@
  	Example:
 		_settings = call TFAR_fnc_generateSwSettings;
 */
-private ["_sw_frequencies", "_sw_settings"];
+private ["_sw_frequencies", "_sw_settings", "_set"];
 _sw_settings = [0, 7, [], 0, nil, -1, 0];
-
+_set = false;
 _sw_frequencies = [];
-for "_i" from 0 to TF_MAX_CHANNELS step 1 do {
-	_sw_frequencies set [_i, (str (round (((random (TF_MAX_SW_FREQ - TF_MIN_SW_FREQ)) + TF_MIN_SW_FREQ) * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER))];
+
+if (typename _this == "BOOLEAN") then
+{
+	if (!_this) then
+	{
+		for "_i" from 0 to TF_MAX_CHANNELS step 1 do {
+			_sw_frequencies set [_i, "50"];
+		};
+		_set = true;
+	};
+};
+if (!_set) then
+{
+	_sw_frequencies = [TF_MAX_CHANNELS,TF_MAX_SW_FREQ,TF_MIN_SW_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
 };
 _sw_settings set [2, _sw_frequencies];
 
