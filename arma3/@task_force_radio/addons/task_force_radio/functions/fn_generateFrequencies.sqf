@@ -6,7 +6,7 @@
 		L-H
 
  	Description:
-		Generates settings for a radio radio
+		Generates frequencies based on the passed parameters to be used in radio settings.
 	
 	Parameters:
 		0: NUMBER - Channels
