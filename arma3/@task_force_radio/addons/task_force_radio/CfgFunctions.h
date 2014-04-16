@@ -94,6 +94,7 @@ class CfgFunctions
 			class setActiveLrRadio{};
 			class generateLrSettings{};
 			class generateSwSettings{};
+			class generateFrequencies{};
 			class currentSWFrequency{};
 			class currentLRFrequency{};
 			class setLongRangeRadioFrequency{};

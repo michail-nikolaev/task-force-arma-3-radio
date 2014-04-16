@@ -22,12 +22,25 @@ _units = [_this,1,[],[[]]] call BIS_fnc_param;
 _activated = [_this,2,true,[true]] call BIS_fnc_param;
 
 if (_activated) then {
-	private ["_LRradio","_radio", "_currentSide", "_swFreq", "_lrFreq"];
+	private ["_LRradio","_radio", "_currentSide", "_swFreq", "_lrFreq", "_freqs","_randomFreqs"];
 	
-	_swFreq = call TFAR_fnc_generateSwSettings;
-	(_swFreq select 2) set [0,STR (_logic getVariable "PrFreq")];
-	_lrFreq = call TFAR_fnc_generateLrSettings;
-	(_lrFreq select 2) set [0,STR (_logic getVariable "LrFreq")];
+	_swFreq = false call TFAR_fnc_generateSwSettings;
+	_freqs = call compile (_logic getVariable "PrFreq");
+	_randomFreqs = [TF_MAX_CHANNELS,TF_MAX_SW_FREQ,TF_MIN_SW_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
+	while {count _freqs < TF_MAX_CHANNELS} do
+	{
+		_freqs set [count _freqs, _randomFreqs select (count _freqs)];
+	};
+	_swFreq set [2,_freqs];
+	
+	_lrFreq = false call TFAR_fnc_generateLrSettings;
+	_freqs = call compile (_logic getVariable "LrFreq");
+	_randomFreqs = [TF_MAX_LR_CHANNELS,TF_MAX_ASIP_FREQ,TF_MIN_ASIP_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
+	while {count _freqs < TF_MAX_LR_CHANNELS} do
+	{
+		_freqs set [count _freqs, _randomFreqs select (count _freqs)];
+	};
+	_lrFreq set [2,_freqs];
 	
 	_LRradio = _logic getVariable "LRradio";
 	_radio = _logic getVariable "Radio";

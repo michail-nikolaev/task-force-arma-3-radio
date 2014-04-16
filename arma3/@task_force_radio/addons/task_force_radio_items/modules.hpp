@@ -29,16 +29,53 @@ class tfar_ModuleTaskForceRadioEnforceUsage: Module_F
 			displayName = "$STR_TFAR_Mod_GiveTLradio";
 			description = "$STR_TFAR_Mod_GiveTLradioTT";
 			typeName = "BOOL";
+			defaultValue = 1;
 		};
 		class RiflemanRadio
 		{
 			displayName = "$STR_TFAR_Mod_GiveRiflemanRadio";
 			description = "$STR_TFAR_Mod_GiveRiflemanRadioTT";
 			typeName = "BOOL";
-			defaultValue = "True";
+			defaultValue = 1;
+		};
+		
+		class terrain_interception_coefficient
+		{
+			displayName = "$STR_TFAR_Mod_TerrainInterceptionCoefficient";
+			description = "$STR_TFAR_Mod_TerrainInterceptionCoefficientTT";
+			typeName = "NUMBER";
+			defaultValue = 7.0;
+		};
+		class radio_channel_name
+		{
+			displayName = "$STR_TFAR_Mod_ChannelName";
+			description = "$STR_TFAR_Mod_ChannelNameTT";
+			typeName = "TEXT";
+			defaultValue = "TaskForceRadio";
+		};
+		class radio_channel_password
+		{
+			displayName = "$STR_TFAR_Mod_ChannelPassword";
+			description = "$STR_TFAR_Mod_ChannelPasswordTT";
+			typeName = "TEXT";
+			defaultValue = "123";
+		};
+		
+		class same_sw_frequencies_for_side
+		{
+			displayName = "$STR_TFAR_Mod_SameSWFrequencies";
+			description = "$STR_TFAR_Mod_SameSWFrequenciesTT";
+			typeName = "BOOL";
+			defaultValue = 0;
+		};
+		class same_lr_frequencies_for_side
+		{
+			displayName = "$STR_TFAR_Mod_SameLrFrequencies";
+			description = "$STR_TFAR_Mod_SameLrFrequenciesTT";
+			typeName = "BOOL";
+			defaultValue = 1;
 		};
 	};
-	
 	class ModuleDescription: ModuleDescription
 	{
 		description = "$STR_TFAR_Mod_EnforceUsage_Description";
@@ -91,15 +128,15 @@ class tfar_ModuleTaskForceRadio: Module_F
 		{
 			displayName = "$STR_TFAR_Mod_PRFrequency";
 			description = "$STR_TFAR_Mod_PRFrequencyTT";
-			typeName = "NUMBER";
-			defaultValue = 70.2;
+			typeName = "TEXT";
+			defaultValue = "[""70.2"",""127.1""]";
 		};
 		class LrFreq
 		{
 			displayName = "$STR_TFAR_Mod_LRFrequency";
 			description = "$STR_TFAR_Mod_LRFrequencyTT";
-			typeName = "NUMBER";
-			defaultValue = 57.2;
+			typeName = "TEXT";
+			defaultValue = "[""54.2"",""73.1""]";
 		};
 	};
 	
@@ -130,15 +167,15 @@ class tfar_ModuleTaskForceRadioFrequencies: Module_F
 		{
 			displayName = "$STR_TFAR_Mod_PRFrequency";
 			description = "$STR_TFAR_Mod_PRFrequencyTT";
-			typeName = "NUMBER";
-			defaultValue = 70.2;
+			typeName = "TEXT";
+			defaultValue = "[""70.2"",""127.1""]";
 		};
 		class LrFreq
 		{
 			displayName = "$STR_TFAR_Mod_LRFrequency";
 			description = "$STR_TFAR_Mod_LRFrequencyTT";
-			typeName = "NUMBER";
-			defaultValue = 57.2;
+			typeName = "TEXT";
+			defaultValue = "[""54.2"",""73.1""]";
 		};
 	};
 	

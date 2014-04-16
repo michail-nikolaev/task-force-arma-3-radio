@@ -9,7 +9,7 @@
 		Generates settings for the LR radio
 	
 	Parameters:
-		Nothing
+		OPTIONAL: BOOLEAN - false to generate settings without generating frequencies.
  	
  	Returns:
 		ARRAY: Settings
@@ -24,12 +24,23 @@
  	Example:
 		_settings = call TFAR_fnc_generateLrSettings;
 */
-private ["_lr_frequencies", "_lr_settings"];
+private ["_lr_frequencies", "_lr_settings", "_set"];
 _lr_settings = [0, 7, [], 0, nil, -1, 0];
-
+_set = false;
 _lr_frequencies = [];
-for "_i" from 0 to TF_MAX_LR_CHANNELS step 1 do {
-	_lr_frequencies set [_i, (str (round (((random (TF_MAX_ASIP_FREQ - TF_MIN_ASIP_FREQ)) + TF_MIN_ASIP_FREQ) * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER))];
+if (typename _this == "BOOLEAN") then
+{
+	if (!_this) then
+	{
+		for "_i" from 0 to TF_MAX_LR_CHANNELS step 1 do {
+			_lr_frequencies set [_i, "50"];
+		};
+		_set = true;
+	};
+};
+if (!_set) then
+{
+	_lr_frequencies = [TF_MAX_LR_CHANNELS,TF_MAX_ASIP_FREQ,TF_MIN_ASIP_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
 };
 _lr_settings set [2, _lr_frequencies];
 
