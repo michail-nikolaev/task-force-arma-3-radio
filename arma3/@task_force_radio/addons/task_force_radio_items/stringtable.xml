@@ -7,14 +7,8 @@
 					TFAR Radio (NATO)
 				</Original>
 				<Russian>
-					TFAR Radio (NATO)
-				</Russian>
-				<French>
-					TFAR Radio (NATO)
-				</French>
-				<Italian>
-					TFAR Radio (NATO)
-				</Italian>
+					TFAR Рации (NATO)
+				</Russian>				
 				<Spanish>
 					TFAR Radio (NATO)
 				</Spanish>
@@ -24,14 +18,8 @@
 					TFAR Radio (CSAT)
 				</Original>
 				<Russian>
-					TFAR Radio (CSAT)
-				</Russian>
-				<French>
-					TFAR Radio (CSAT)
-				</French>
-				<Italian>
-					TFAR Radio (CSAT)
-				</Italian>
+					TFAR Рации (CSAT)
+				</Russian>			
 				<Spanish>
 					TFAR Radio (CSAT)
 				</Spanish>
@@ -41,14 +29,8 @@
 					TFAR Radio (AAF)
 				</Original>
 				<Russian>
-					TFAR Radio (AAF)
-				</Russian>
-				<French>
-					TFAR Radio (AAF)
-				</French>
-				<Italian>
-					TFAR Radio (AAF)
-				</Italian>
+					TFAR Рации (AAF)
+				</Russian>				
 				<Spanish>
 					TFAR Radio (AAF)
 				</Spanish>
@@ -58,14 +40,8 @@
 					TFAR - Enforce Usage
 				</Original>
 				<Russian>
-					TFAR - Enforce Usage
-				</Russian>
-				<French>
-					TFAR - Enforce Usage
-				</French>
-				<Italian>
-					TFAR - Enforce Usage
-				</Italian>
+					TFAR - Базовый модуль
+				</Russian>				
 				<Spanish>
 					TFAR - Obligar su uso
 				</Spanish>
@@ -75,14 +51,8 @@
 					Give team leaders a long range radio
 				</Original>
 				<Russian>
-					Give team leaders a long range radio
-				</Russian>
-				<French>
-					Give team leaders a long range radio
-				</French>
-				<Italian>
-					Give team leaders a long range radio
-				</Italian>
+					Выдавать лидерам групп дальнюю связь
+				</Russian>				
 				<Spanish>
 					Dar a los lideres de equipo una radio de largo alcance
 				</Spanish>
@@ -92,14 +62,8 @@
 					Give each team leader the appropriate long range radio
 				</Original>
 				<Russian>
-					Give each team leader the appropriate long range radio
-				</Russian>
-				<French>
-					Give each team leader the appropriate long range radio
-				</French>
-				<Italian>
-					Give each team leader the appropriate long range radio
-				</Italian>
+					Выдавать ли каждому лидеру групп рацию дальней связи
+				</Russian>				
 				<Spanish>
 					Da a cada lider de equipo una radio de largo alcance apropiada
 				</Spanish>
@@ -109,31 +73,19 @@
 					Give rifleman radio
 				</Original>
 				<Russian>
-					Give rifleman radio
-				</Russian>
-				<French>
-					Give rifleman radio
-				</French>
-				<Italian>
-					Give rifleman radio
-				</Italian>
+					Выдавать личную рацию бойца
+				</Russian>			
 				<Spanish>
 					Dar una radio personal
 				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
 				<Original>
-					Give a rifleman radio
+					Give a rifleman radio to regular soldiers
 				</Original>
 				<Russian>
-					Give a rifleman radio
+					Выдавать личную рацию бойца обычным солдатам
 				</Russian>
-				<French>
-					Give a rifleman radio
-				</French>
-				<Italian>
-					Give a rifleman radio
-				</Italian>
 				<Spanish>
 					Dar una radio personal a cada miembro de equipo
 				</Spanish>
@@ -143,14 +95,8 @@
 					Enforces usage of TFAR in mission.
 				</Original>
 				<Russian>
-					Enforces usage of TFAR in mission.
+					Обязует игроков использовать аддон
 				</Russian>
-				<French>
-					Enforces usage of TFAR in mission.
-				</French>
-				<Italian>
-					Enforces usage of TFAR in mission.
-				</Italian>
 				<Spanish>
 					Fuerza el uso de TFAR en la misión.
 				</Spanish>
@@ -160,14 +106,8 @@
 					TFAR - Side Radio
 				</Original>
 				<Russian>
-					TFAR - Side Radio
+					TFAR - Рации стороны
 				</Russian>
-				<French>
-					TFAR - Side Radio
-				</French>
-				<Italian>
-					TFAR - Side Radio
-				</Italian>
 				<Spanish>
 					TFAR - Radio del bando
 				</Spanish>
@@ -177,14 +117,8 @@
 					Encryption Code
 				</Original>
 				<Russian>
-					Encryption Code
-				</Russian>
-				<French>
-					Encryption Code
-				</French>
-				<Italian>
-					Encryption Code
-				</Italian>
+					Код шифрования
+				</Russian>				
 				<Spanish>
 					Codigo de encriptación
 				</Spanish>
@@ -194,14 +128,8 @@
 					LR Radio
 				</Original>
 				<Russian>
-					LR Radio
+					Рация дальней связи
 				</Russian>
-				<French>
-					LR Radio
-				</French>
-				<Italian>
-					LR Radio
-				</Italian>
 				<Spanish>
 					Radio LA
 				</Spanish>
@@ -211,14 +139,8 @@
 					Long Range radio
 				</Original>
 				<Russian>
-					Long Range radio
+					Рация дальней связи (рюкзак)
 				</Russian>
-				<French>
-					Long Range radio
-				</French>
-				<Italian>
-					Long Range radio
-				</Italian>
 				<Spanish>
 					Radio de Largo Alcance
 				</Spanish>
@@ -228,14 +150,8 @@
 					PR Radio
 				</Original>
 				<Russian>
-					PR Radio
+					Персональная рация командира
 				</Russian>
-				<French>
-					PR Radio
-				</French>
-				<Italian>
-					PR Radio
-				</Italian>
 				<Spanish>
 					Radio PR
 				</Spanish>
@@ -245,14 +161,8 @@
 					Personal radio
 				</Original>
 				<Russian>
-					Personal radio
+					Персональная рация командира группы
 				</Russian>
-				<French>
-					Personal radio
-				</French>
-				<Italian>
-					Personal radio
-				</Italian>
 				<Spanish>
 					Radio Personal
 				</Spanish>
@@ -262,14 +172,8 @@
 					Rifleman Radio
 				</Original>
 				<Russian>
-					Rifleman Radio
+					Личная рация бойца
 				</Russian>
-				<French>
-					Rifleman Radio
-				</French>
-				<Italian>
-					Rifleman Radio
-				</Italian>
 				<Spanish>
 					Radio de fusilero
 				</Spanish>
@@ -279,14 +183,8 @@
 					Rifleman Radio
 				</Original>
 				<Russian>
-					Rifleman Radio
+					Личная рация рядового бойца
 				</Russian>
-				<French>
-					Rifleman Radio
-				</French>
-				<Italian>
-					Rifleman Radio
-				</Italian>
 				<Spanish>
 					Radio de fusilero
 				</Spanish>
@@ -296,14 +194,8 @@
 					PR Freq.
 				</Original>
 				<Russian>
-					PR Freq.
+					Частоты ближней связи
 				</Russian>
-				<French>
-					PR Freq.
-				</French>
-				<Italian>
-					PR Freq.
-				</Italian>
 				<Spanish>
 					Frec. PR
 				</Spanish>
@@ -313,14 +205,8 @@
 					PR default frequencies (as an SQF array)
 				</Original>
 				<Russian>
-					PR default frequencies (as an SQF array)
+					Частоты по умолчанию для ближней связи (как SQF массив)
 				</Russian>
-				<French>
-					PR default frequencies (as an SQF array)
-				</French>
-				<Italian>
-					PR default frequencies (as an SQF array)
-				</Italian>
 				<Spanish>
 					PR default frequencies (as an SQF array)
 				</Spanish>
@@ -330,14 +216,8 @@
 					LR Freq.
 				</Original>
 				<Russian>
-					LR Freq.
+					Частота дальней связи.
 				</Russian>
-				<French>
-					LR Freq.
-				</French>
-				<Italian>
-					LR Freq.
-				</Italian>
 				<Spanish>
 					LA Frec.
 				</Spanish>
@@ -347,14 +227,8 @@
 					LR default frequencies (as an SQF array)
 				</Original>
 				<Russian>
-					LR default frequencies (as an SQF array)
+					Частоты по умолчанию для дальней связи (как SQF массив)
 				</Russian>
-				<French>
-					LR default frequencies (as an SQF array)
-				</French>
-				<Italian>
-					LR default frequencies (as an SQF array)
-				</Italian>
 				<Spanish>
 					LR default frequencies (as an SQF array)
 				</Spanish>
@@ -364,14 +238,8 @@
 					TFAR - Side Radio
 				</Original>
 				<Russian>
-					TFAR - Side Radio
+					TFAR - Рации стороны
 				</Russian>
-				<French>
-					TFAR - Side Radio
-				</French>
-				<Italian>
-					TFAR - Side Radio
-				</Italian>
 				<Spanish>
 					TFAR - Radio del bando
 				</Spanish>
@@ -381,14 +249,8 @@
 					Allows setting of default radios, encryption and frequencies for synced side.
 				</Original>
 				<Russian>
-					Allows setting of default radios, encryption and frequencies for synced side.
+					Позволяет выставить рации по умолчанию, коды шифрования и частоту для синхронизированной стороны.					
 				</Russian>
-				<French>
-					Allows setting of default radios, encryption and frequencies for synced side.
-				</French>
-				<Italian>
-					Allows setting of default radios, encryption and frequencies for synced side.
-				</Italian>
 				<Spanish>
 					Permite configurar las radios por defecto, la encriptacion y las frecuencias del bando sincronizado.
 				</Spanish>
@@ -398,14 +260,8 @@
 					TFAR - Frequencies
 				</Original>
 				<Russian>
-					TFAR - Frequencies
+					TFAR - Частоты
 				</Russian>
-				<French>
-					TFAR - Frequencies
-				</French>
-				<Italian>
-					TFAR - Frequencies
-				</Italian>
 				<Spanish>
 					TFAR - Frecuencias
 				</Spanish>
@@ -415,14 +271,8 @@
 					Allows setting of default frequencies for sides.
 				</Original>
 				<Russian>
-					Allows setting of default frequencies for sides.
+					Позволяет выставить частоты по умолчанию для сторон.
 				</Russian>
-				<French>
-					Allows setting of default frequencies for sides.
-				</French>
-				<Italian>
-					Allows setting of default frequencies for sides.
-				</Italian>
 				<Spanish>
 					Permite configurar las frecuencias por defecto para los bandos.
 				</Spanish>
@@ -433,14 +283,8 @@
 					Terrain Interception Coefficient
 				</Original>
 				<Russian>
-					Terrain Interception Coefficient
+					Коэффициент помех от рельефа
 				</Russian>
-				<French>
-					Terrain Interception Coefficient
-				</French>
-				<Italian>
-					Terrain Interception Coefficient
-				</Italian>
 				<Spanish>
 					Terrain Interception Coefficient
 				</Spanish>
@@ -450,14 +294,8 @@
 					Terrain Interception Coefficient
 				</Original>
 				<Russian>
-					Terrain Interception Coefficient
+					Коэффициент помех от рельефа
 				</Russian>
-				<French>
-					Terrain Interception Coefficient
-				</French>
-				<Italian>
-					Terrain Interception Coefficient
-				</Italian>
 				<Spanish>
 					Terrain Interception Coefficient
 				</Spanish>
@@ -468,14 +306,8 @@
 					Channel Name
 				</Original>
 				<Russian>
-					Channel Name
+					Название канала
 				</Russian>
-				<French>
-					Channel Name
-				</French>
-				<Italian>
-					Channel Name
-				</Italian>
 				<Spanish>
 					Channel Name
 				</Spanish>
@@ -485,14 +317,8 @@
 					TeamSpeak Channel Name
 				</Original>
 				<Russian>
-					TeamSpeak Channel Name
+					Название канала TeamSpeak
 				</Russian>
-				<French>
-					TeamSpeak Channel Name
-				</French>
-				<Italian>
-					TeamSpeak Channel Name
-				</Italian>
 				<Spanish>
 					TeamSpeak Channel Name
 				</Spanish>
@@ -503,14 +329,8 @@
 					Channel Password
 				</Original>
 				<Russian>
-					Channel Password
+					Пароль канала
 				</Russian>
-				<French>
-					Channel Password
-				</French>
-				<Italian>
-					Channel Password
-				</Italian>
 				<Spanish>
 					Channel Password
 				</Spanish>
@@ -520,14 +340,8 @@
 					TeamSpeak Channel Password
 				</Original>
 				<Russian>
-					TeamSpeak Channel Password
+					Пароль канала TeamSpeak
 				</Russian>
-				<French>
-					TeamSpeak Channel Password
-				</French>
-				<Italian>
-					TeamSpeak Channel Password
-				</Italian>
 				<Spanish>
 					TeamSpeak Channel Password
 				</Spanish>
@@ -538,14 +352,8 @@
 					Same SW Frequencies for side
 				</Original>
 				<Russian>
-					Same SW Frequencies for side
+					Одинаковые частоты ближней связи для стороны
 				</Russian>
-				<French>
-					Same SW Frequencies for side
-				</French>
-				<Italian>
-					Same SW Frequencies for side
-				</Italian>
 				<Spanish>
 					Same SW Frequencies for side
 				</Spanish>
@@ -555,32 +363,19 @@
 					Same SW Frequencies for side
 				</Original>
 				<Russian>
-					Same SW Frequencies for side
+					Одинаковые частоты ближней связи для стороны
 				</Russian>
-				<French>
-					Same SW Frequencies for side
-				</French>
-				<Italian>
-					Same SW Frequencies for side
-				</Italian>
 				<Spanish>
 					Same SW Frequencies for side
 				</Spanish>
-			</Key>
-			
+			</Key>			
 			<Key ID="STR_TFAR_Mod_SameLrFrequencies">
 				<Original>
 					Same LR Frequencies for side
 				</Original>
 				<Russian>
-					Same LR Frequencies for side
+					Одинаковые частоты дальней связи для стороны
 				</Russian>
-				<French>
-					Same LR Frequencies for side
-				</French>
-				<Italian>
-					Same LR Frequencies for side
-				</Italian>
 				<Spanish>
 					Same LR Frequencies for side
 				</Spanish>
@@ -590,14 +385,8 @@
 					Same LR Frequencies for side
 				</Original>
 				<Russian>
-					Same LR Frequencies for side
+					Одинаковые частоты дальней связи для стороны
 				</Russian>
-				<French>
-					Same LR Frequencies for side
-				</French>
-				<Italian>
-					Same LR Frequencies for side
-				</Italian>
 				<Spanish>
 					Same LR Frequencies for side
 				</Spanish>
