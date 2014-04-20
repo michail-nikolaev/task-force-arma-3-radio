@@ -22,8 +22,7 @@
 [] spawn {
 	private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_task_force_radio_used", "_last_check", "_allUnits"];
 
-	waitUntil {time > 0};
-	TF_server_addon_version = TF_ADDON_VERSION;
+        TF_server_addon_version = TF_ADDON_VERSION;
 	publicVariable "TF_server_addon_version";
 	
 	if (isNil "tf_no_auto_long_range_radio") then {
@@ -34,6 +33,7 @@
 		};
 		publicVariable "tf_no_auto_long_range_radio";
 	};
+	waitUntil {time > 0};
 
 	TF_Radio_Count = [];
 
