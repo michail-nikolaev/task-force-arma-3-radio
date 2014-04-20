@@ -263,7 +263,6 @@ player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 player addEventHandler ["killed", {TF_use_saved_sw_setting = true; TF_use_saved_lr_setting = true; TF_first_radio_request = true;}];
 
 [] spawn {
-	sleep 1;
 	call TFAR_fnc_processRespawn;
 };
 TF_respawnedAt = time;
