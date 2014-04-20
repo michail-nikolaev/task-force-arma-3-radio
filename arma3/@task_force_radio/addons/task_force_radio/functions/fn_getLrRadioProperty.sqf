@@ -23,10 +23,13 @@ _result = _radio getVariable _property;
 
 if (isNil "_result") then {
 	if (!(_radio isKindOf "Bag_Base")) then {
-		if (isNumber (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> _property) or {isText (configFile >> "CfgVehicles" >> (typeof _radio) >> _property)}) exitWith
-		{
+		if (isNumber (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> _property) 
+		    or {isText (configFile >> "CfgVehicles" >> (typeof _radio) >> _property)}
+		    or {isNumber (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> (_property + "_api")}
+		    or {isText (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> (_property + "_api")}
+		    ) exitWith {
 			_radio = typeof _radio;
-		};
+		    };
 		_result = _radio getVariable "TF_RadioType";
 		if (isNil "_result") then {
 			_result = [typeof _radio, "tf_RadioType"] call TFAR_fnc_getConfigProperty;
