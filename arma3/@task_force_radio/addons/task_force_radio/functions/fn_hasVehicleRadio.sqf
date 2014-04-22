@@ -1,9 +1,22 @@
-/**
- * Checks _this for LW radio presence
- * @example _present = (vehicle player) call TFAR_fnc_hasVehicleRadio;
- * @param vehicle
- * @return True|False
- */
+/*
+ 	Name: TFAR_fnc_hasVehicleRadio
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Checks _this for LW radio presence
+	
+	Parameters:
+		OBJECT: Vehicle to checl
+ 	
+ 	Returns:
+		BOOL: True|False
+ 	
+ 	Example:
+		_present = (vehicle player) call TFAR_fnc_hasVehicleRadio;;
+*/
+ 
 private "_result";
 _result = _this getVariable "tf_hasRadio";
 if (isNil "_result") then

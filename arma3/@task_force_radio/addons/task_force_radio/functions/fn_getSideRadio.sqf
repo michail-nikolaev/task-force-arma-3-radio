@@ -9,10 +9,7 @@
  	
  	Parameters:
 		0: SIDE - side
-		1: NUMBER - radio type : Range [0,2]
-			0 - LR
-			1 - SW
-			2 - Rifleman
+		1: NUMBER - radio type : Range [0,2] (0 - LR, 1 - SW, 2 - Rifleman)
  	
  	Returns:
 		STRING/OBJECT - Default Radio

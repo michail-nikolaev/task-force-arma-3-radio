@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()    
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+idea {
+  project {
+		jdkName = JavaVersion.VERSION_1_8
+		languageLevel = JavaVersion.VERSION_1_8
+	}
+}
+
+
+dependencies {    
+	compile 'com.google.guava:guava:16.0.1'
+    compile 'org.apache.commons:commons-lang3:3.3.2'
+}
+
+version = 1.0
