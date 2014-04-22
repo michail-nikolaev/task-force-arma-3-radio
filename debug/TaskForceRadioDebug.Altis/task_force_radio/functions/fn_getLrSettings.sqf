@@ -42,7 +42,15 @@ if (isNil "_value") then {
 };
 _rc = _value select TF_CODE_OFFSET;
 if (isNil "_rc") then {
-	_rc = missionNamespace getVariable [[_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty, ""];
+	if (getText (ConfigFile >>  "CfgVehicles" >> (typeof _radio_object) >> "tf_encryptionCode") != "") then {
+		if (([side player, 0] call TFAR_fnc_getSideRadio) == (typeof _radio_object)) then {
+			_rc = missionNamespace getVariable format ["tf_%1_radio_code",(side player)];
+		}else{
+			_rc = missionNamespace getVariable [[_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty, ""];
+		};
+	} else {
+		_rc = "";
+	};
 	_value set [TF_CODE_OFFSET, _rc];
 	[_radio_object, _radio_qualifier, + _value] call TFAR_fnc_setLrSettings;
 };
