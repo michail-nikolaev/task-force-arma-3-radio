@@ -10,10 +10,7 @@
  	Parameters:
 		0: OBJECT - Radio object
 		1: STRING - Radio ID
-		2: NUMBER - Stereo setting : Range (0,2)
-			0 - Both
-			1 - Left
-			2 - Right
+		2: NUMBER - Stereo setting : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
  	
  	Returns:
 		Nothing

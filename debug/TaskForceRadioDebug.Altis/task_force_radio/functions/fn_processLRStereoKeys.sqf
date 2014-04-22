@@ -8,10 +8,7 @@
 		Switches the LR stereo setting on the active LR radio.
 	
 	Parameters:
-		0: NUMBER - Stereo number : Range (0,2)
-			0 - Both
-			1 - left
-			2 - right
+		0: NUMBER - Stereo number : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
  	
  	Returns:
 		BOOLEAN - if handled or not.

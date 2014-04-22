@@ -11,10 +11,7 @@
 		STRING: Radio classname
  	
  	Returns:
-		NUMBER: Stereo setting : Range (0,2)
-			0 - Both
-			1 - Left
-			2 - Right
+		NUMBER: Stereo setting : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
  	
  	Example:
 		_stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getCurrentSwStereo;

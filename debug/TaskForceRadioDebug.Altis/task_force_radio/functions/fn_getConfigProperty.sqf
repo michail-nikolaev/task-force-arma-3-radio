@@ -15,12 +15,10 @@
 	2: ANYTHING - Default (Optional)
  	
  	Returns:
- 	NUMBER - Result
-	or
-	TEXT
+ 	NUMBER or TEXT - Result
  	
  	Example:
-	
+		[_LRradio, "tf_hasLrRadio", 0] call TFAR_fnc_getConfigProperty;
  */
 private ["_result", "_item", "_property", "_default"];
 _item = _this select 0;

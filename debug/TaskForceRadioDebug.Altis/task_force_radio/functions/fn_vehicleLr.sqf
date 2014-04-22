@@ -12,9 +12,7 @@
 		Nothing
  	
  	Returns:
-		ARRAY:
-			0 - Object - Vehicle
-			1 - String - Radio Settings ID
+		ARRAY: 0 - Object - Vehicle, 1 - String - Radio Settings ID
  	
  	Example:
 		_radio = call TFAR_fnc_VehicleLR;

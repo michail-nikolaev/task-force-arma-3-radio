@@ -12,14 +12,7 @@
 		OPTIONAL: BOOLEAN - false to generate settings without generating frequencies.
  	
  	Returns:
-		ARRAY: Settings
-			0: NUMBER - Active channel
-			1: NUMBER - Volume
-			2: ARRAY - Frequencies for channels
-			3: NUMBER - Stereo setting
-			4: STRING - Encryption code
-			5: NUMBER - Additional active channel			
-			6: NUMBER - Additional active channel stereo mode
+		ARRAY: Settings [0: NUMBER - Active channel, 1: NUMBER - Volume, 2: ARRAY - Frequencies for channels, 3: NUMBER - Stereo setting, 4: STRING - Encryption code, 5: NUMBER - Additional active channel, 6: NUMBER - Additional active channel stereo mode]
  	
  	Example:
 		_settings = call TFAR_fnc_generateLrSettings;
