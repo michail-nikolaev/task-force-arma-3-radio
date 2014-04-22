@@ -11,8 +11,7 @@
 		Nothing
  	
  	Returns:
-		ARRAY:
-			CBA UI menu.
+		ARRAY: CBA UI menu.
  	
  	Example:
 		Called internally by CBA UI

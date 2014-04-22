@@ -1,7 +1,7 @@
 /*
 	Name: TFAR_fnc_isPrototypeRadio
 	
-	Author: Garth de Wet (LH)
+	Author(s): Garth de Wet (LH)
 	
 	Description:
 	Returns if a radio is a prototype radio.

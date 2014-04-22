@@ -11,7 +11,7 @@
 	1: STRING - Property name
  	
  	Returns:
-	NUMBER - Value of property
+	NUMBER or TEXT- Value of property
  	
  	Example:
 	[(vehicle player), "TF_hasLRradio"] call TFAR_fnc_getLrRadioProperty;

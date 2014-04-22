@@ -9,10 +9,7 @@
  	
  	Parameters: 
  	0: STRING - Radio
-	1: NUMBER - Stereo : Range (0,2)
-		0 - Both
-		1 - Left
-		2 - Right
+	1: NUMBER - Stereo : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
  	
  	Returns:
 		Nothing
