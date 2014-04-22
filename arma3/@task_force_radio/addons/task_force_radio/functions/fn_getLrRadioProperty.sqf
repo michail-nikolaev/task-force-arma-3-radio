@@ -25,8 +25,8 @@ if (isNil "_result") then {
 	if (!(_radio isKindOf "Bag_Base")) then {
 		if (isNumber (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> _property) 
 		    or {isText (configFile >> "CfgVehicles" >> (typeof _radio) >> _property)}
-		    or {isNumber (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> (_property + "_api")}
-		    or {isText (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> (_property + "_api")}
+		    or {isNumber (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> (_property + "_api"))}
+		    or {isText (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> (_property + "_api"))}
 		    ) exitWith {
 			_radio = typeof _radio;
 		    };
