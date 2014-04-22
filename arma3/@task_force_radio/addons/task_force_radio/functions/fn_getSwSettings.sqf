@@ -43,7 +43,17 @@ if (isNil "_value") then {
 _rc = _value select TF_CODE_OFFSET;
 if (isNil "_rc") then
 {
-	_rc = missionNamespace getVariable [getText(configFile >> "CfgWeapons" >> _this >> "tf_encryptionCode"), ""];
+	private "_parent";
+	if (getText (ConfigFile >>  "CfgWeapons" >> _this >> "tf_encryptionCode") != "") then {
+		_parent = getText (ConfigFile >> "CfgWeapons" >> _this >> "tf_parent");
+		if (([side player, 1] call TFAR_fnc_getSideRadio) == _parent or {([side player, 2] call TFAR_fnc_getSideRadio) == _parent}) then {
+			_rc = missionNamespace getVariable format ["tf_%1_radio_code",(side player)];
+		}else{
+			_rc = missionNamespace getVariable [getText(configFile >> "CfgWeapons" >> _this >> "tf_encryptionCode"), ""];
+		};
+	} else {
+		_rc = "";
+	};
 	_value set [TF_CODE_OFFSET, _rc];
 	[_this, + _value] call TFAR_fnc_setSwSettings;
 };
