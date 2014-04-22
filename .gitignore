@@ -45,3 +45,8 @@
 /ts/*.suo
 /arma3/@task_force_radio/addons/*.pbo
 /debug/TaskForceRadioDebug.Altis/*.sqm_bk
+/misc/documentation-generator/*.iws
+/misc/documentation-generator/*.ipr
+/misc/documentation-generator/*.iml
+/misc/documentation-generator/out
+/misc/documentation-generator/.gradle

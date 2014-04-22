@@ -8,7 +8,7 @@
 		Checks _this for LW radio presence
 	
 	Parameters:
-		OBJECT: Vehicle to checl
+		OBJECT: Vehicle to check
  	
  	Returns:
 		BOOL: True|False
