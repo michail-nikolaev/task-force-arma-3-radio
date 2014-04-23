@@ -46,6 +46,9 @@ if (_activated) then {
 	_radio = _logic getVariable "Radio";
 	_currentSide = "North";
 	
+	tf_same_sw_frequencies_for_side = true;
+	tf_same_lr_frequencies_for_side = true;
+	
 	{
 		if ((str _currentSide) != (str side _x)) then {
 			_currentSide = side _x;
