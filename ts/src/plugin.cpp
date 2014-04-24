@@ -55,7 +55,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.8.4a"
+#define PLUGIN_VERSION "0.9.0"
 #define CANT_SPEAK_DISTANCE 5
 
 #define UPDATE_URL L"raw.github.com"
@@ -778,11 +778,11 @@ void unmuteAll(uint64 serverConnectionHandlerID)
 #define START_DATA "<TFAR>"
 #define END_DATA "</TFAR>"
 
-std::string getMetaData()  {
+std::string getMetaData(anyID clientId)  {
 	std::string result;
 	char* clientInfo;
 	DWORD error;
-	if ((error = ts3Functions.getClientVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()), CLIENT_META_DATA, &clientInfo)) != ERROR_ok) {
+	if ((error = ts3Functions.getClientVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), clientId, CLIENT_META_DATA, &clientInfo)) != ERROR_ok) {
 		log("Can't get client metadata", error);
 		return "";
 	}
@@ -1726,7 +1726,7 @@ void ts3plugin_infoData(uint64 serverConnectionHandlerID, uint64 id, enum Plugin
 
 	if (PLUGIN_CLIENT == type)
 	{
-		std::string metaData = getMetaData();
+		std::string metaData = getMetaData((anyID) id);
 		*data = (char*)malloc(INFODATA_BUFSIZE * sizeof(char));  /* Must be allocated in the plugin! */
 		snprintf(*data, INFODATA_BUFSIZE, "%s", metaData.c_str());  /* bbCode is supported. HTML is not supported */
 	}
@@ -2058,7 +2058,7 @@ void ts3plugin_onEditPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, an
 
 bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID)
 {
-	std::string clientInfo = getMetaData();
+	std::string clientInfo = getMetaData(getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
 	bool result = false;
 
 	std::string shouldStartWith = getConnectionStatusInfo(true, true, false);
