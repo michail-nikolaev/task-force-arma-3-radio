@@ -197,7 +197,7 @@
 					Частоты ближней связи
 				</Russian>
 				<Spanish>
-					Frec. PR
+					Frec. RP
 				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PRFrequencyTT">
@@ -208,7 +208,7 @@
 					Частоты по умолчанию для ближней связи (как SQF массив)
 				</Russian>
 				<Spanish>
-					PR default frequencies (as an SQF array)
+					Frecuencia por defecto PR (como array SQF)
 				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LRFrequency">
@@ -230,7 +230,7 @@
 					Частоты по умолчанию для дальней связи (как SQF массив)
 				</Russian>
 				<Spanish>
-					LR default frequencies (as an SQF array)
+					Frecuencia por defecto LA (como array SQF)
 				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SideRadio">
@@ -286,7 +286,7 @@
 					Коэффициент помех от рельефа
 				</Russian>
 				<Spanish>
-					Terrain Interception Coefficient
+					Coeficiente de intercepción del terreno
 				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
@@ -297,7 +297,7 @@
 					Коэффициент помех от рельефа
 				</Russian>
 				<Spanish>
-					Terrain Interception Coefficient
+					Coeficiente de intercepción del terreno
 				</Spanish>
 			</Key>
 			
@@ -309,7 +309,7 @@
 					Название канала
 				</Russian>
 				<Spanish>
-					Channel Name
+					Nombre del canal
 				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_ChannelNameTT">
@@ -320,7 +320,7 @@
 					Название канала TeamSpeak
 				</Russian>
 				<Spanish>
-					TeamSpeak Channel Name
+					Nombre del canal del TeamSpeak
 				</Spanish>
 			</Key>
 			
@@ -332,7 +332,7 @@
 					Пароль канала
 				</Russian>
 				<Spanish>
-					Channel Password
+					Contraseña del canal
 				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_ChannelPasswordTT">
@@ -343,7 +343,7 @@
 					Пароль канала TeamSpeak
 				</Russian>
 				<Spanish>
-					TeamSpeak Channel Password
+					Contraseña del canal del TeamSpeak
 				</Spanish>
 			</Key>
 			
@@ -355,7 +355,7 @@
 					Одинаковые частоты ближней связи для стороны
 				</Russian>
 				<Spanish>
-					Same SW Frequencies for side
+					Mismas frecuencias de onda corta para el bando
 				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
@@ -366,7 +366,7 @@
 					Одинаковые частоты ближней связи для стороны
 				</Russian>
 				<Spanish>
-					Same SW Frequencies for side
+					Mismas frecuencias de onda corta para el bando
 				</Spanish>
 			</Key>			
 			<Key ID="STR_TFAR_Mod_SameLrFrequencies">
@@ -377,7 +377,7 @@
 					Одинаковые частоты дальней связи для стороны
 				</Russian>
 				<Spanish>
-					Same LR Frequencies for side
+					Mismas frecuencias de onda larga para el bando
 				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
@@ -388,7 +388,7 @@
 					Одинаковые частоты дальней связи для стороны
 				</Russian>
 				<Spanish>
-					Same LR Frequencies for side
+					Mismas frecuencias de onda larga para el bando
 				</Spanish>
 			</Key>
 		</Container>
