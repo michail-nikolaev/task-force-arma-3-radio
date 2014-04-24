@@ -662,7 +662,7 @@
 					&lt;t color=&apos;#FF0000&apos;&gt;Non sono in grado di utilizzare il radio&lt;/t&gt;
 				</Italian>
 				<Spanish>
-					&lt;t color=&apos;#FF0000&apos;&gt;Usted no es capaz de usar el radio&lt;/t&gt;
+					&lt;t color=&apos;#FF0000&apos;&gt;Incapaz de usar la radio&lt;/t&gt;
 				</Spanish>
 			</Key>
 			<Key ID="STR_select_action">
@@ -1093,181 +1093,20 @@
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Per parlare con la radio subacquea.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Per uscire dalla interfaccia radio.
 				</Italian>
-			</Key>
-			<Key ID="STR_radios">
-				<Original>
-					Radios
-				</Original>
-				<Russian>
-					Радиостанции
-				</Russian>
-				<French>
-					Radios
-				</French>
-				<Italian>
-					Lista radio
-				</Italian>
 				<Spanish>
-					Radios
+&lt;font color=&quot;#67ED24&quot;&gt;Boton de Pulsar para hablar&lt;/font&gt;	Voz directa.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Block Mayus&lt;/font&gt;	Transmitir por la radio de onda corta.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Block Mayus&lt;/font&gt;	Transmitir por la radio de onda larga.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Para abrir el interfaz de la radio (la radio debe estar en el slot de radio del inventario). En el caso de que tengas mas de una radio - Puede seleccionar la radio que necesites. También es posible selecionar como radio activa (aquella con la que transmites).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; Cambiar a otra radio de onda corta.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Flecha Arriba/Izquierda/Derecha&lt;/font&gt; Cambio rapido del modo stereo.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Cambio rapido de canales de la radio de onda corta.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Para abrir el interfaz de la radio de onda larga (Debes tener una radio de onda larga como mochila o estar en un vehiculo en la posicion de conductor, artillero, comandante or piloto). Si hay varias radios disponibles podras elegir una. Ademas de poder ponerla como radio activa.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; Cambiar radio activa de onda larga.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + Flecha Arriba/Izquierda/Derecha&lt;/font&gt; Cambio rapido de modo stereo en la radio de onda larga.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Cambio rapido de canales de la radio de onda larga.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Para hablar en voz directa. Puedes hablar: Susurrando, Normal or Gritando. Esto no afecta al volumen de voz, si no a la distancia a la que te escuchan los demas jugadores.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Para abrir el interfaz del transmisor submarino (Debes de tener en el inventario un respirado).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Para transmitir por el transmisor submarino.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Para salir del interfaz de las radios.
 				</Spanish>
-			</Key>
-			<Key ID="STR_radios_text">
-				<Original>
-&lt;font color=&quot;#0000FF&quot;&gt;Radio AN/PRC-152 (personal)&lt;br/&gt;
-BLUEFOR	&lt;br/&gt;
-30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press CLR, enter a value and press ENT. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume pressing PRE+ and PRE- keys. You can also change stereo setting by pressing 0.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#0000FF&quot;&gt;Radio RT-1523G (ASIP) (long range)&lt;br/&gt;
-BLUEFOR	&lt;br/&gt;
-30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press MENU CLR, enter a value and press FREQ. You can also switch the active radio channel by pressing the radio number buttons (a total of 9 channels). You can change the reception volume by TIME and BATT CALL keys. You can also change stereo setting by pressing STO.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC148-JEM (personal)&lt;br/&gt;
-INDEPENDENT&lt;br/&gt;
-30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press ESC, enter a value and press ENT. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume by MOD and GR keys. You can also change stereo setting by pressing ALT.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC-155 (long range)&lt;br/&gt;
-INDEPENDENT&lt;br/&gt;
-30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press ESC, enter a value and press MENU. You can also switch the active radio channel by pressing the arrow keys (up and down). You can change the reception volume by the loudspeaker button. You can also change stereo setting by pressing PRE. &lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#8B0000&quot;&gt;Radio FADAK (personal)&lt;br/&gt;
-OPFOR&lt;br/&gt;
-30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press CLR, enter a value and press ENT. You can also switch the active radio channel by pressing SET and PWR (a total of 8 channels). You can change the reception volume by DATA and SEND keys. You can also change stereo setting by pressing 0.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#8B0000&quot;&gt;Radio MR3000 (long range)&lt;br/&gt;
-OPFOR&lt;br/&gt;
-30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-To enter the frequency, press CLR ESC, enter a value and press ENT. You can also switch the active radio channel by pressing the radio number buttons or horizontal arrow buttons (a total of 8 channels). You can change the reception volume by vertical arrow buttons. You can also change stereo setting by pressing 0.&lt;br/&gt;
-&lt;br/&gt;
-Underwater transceiver&lt;br/&gt;
-All&lt;br/&gt;
-32-41kHz / 70-300 m. (depending on waves)&lt;br/&gt;
-To enter the frequency, press MODE, enter a value and press ADV. You can change the reception volume by the button on the right side of the device.
-				</Original>
-				<Russian>
-&lt;font color=&quot;#0000FF&quot;&gt;
-Рация AN/PRC-152 (личная)&lt;br/&gt;
-BLUEFOR&lt;br/&gt;
-&lt;/font&gt;
-30-512Mhz / 3 км&lt;br/&gt;
-Для того чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками PRE+ и PRE-. Вы также можете изменять стерео настройки нажимая 0.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#0000FF&quot;&gt;
-Рация RT-1523G (ASIP) (дальняя связь)&lt;br/&gt;
-BLUEFOR&lt;br/&gt;
-&lt;/font&gt;
-30-87Mhz / 20 км&lt;br/&gt;
-Для того чтобы ввести частоту нажмите MENU CLR, введите значение и нажмите FREQ. Также вы можете переключать активный канал, нажимая цифровые кнопки на рации (всего 9 каналов). Возможно изменение громкости приема кнопками TIME и BATT CALL. Вы также можете изменять стерео настройки нажимая STO.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#006400&quot;&gt;
-Рация AN/PRC148-JEM (личная)&lt;br/&gt;
-INDEPENDENT&lt;br/&gt;
-&lt;/font&gt;
-30-512Mhz / 3 км&lt;br/&gt;
-Для того чтобы ввести частоту, нажмите ESC, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая на кнопки со стрелками (всего 8 каналов). Возможно изменение громкости приема кнопками MOD и GR. Вы также можете изменять стерео настройки нажимая ALT.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#006400&quot;&gt;
-Рация AN/PRC-155 (дальняя связь)&lt;br/&gt;
-INDEPENDENT&lt;br/&gt;
-&lt;/font&gt;
-30-87Mhz / 20 км&lt;br/&gt;
-Для того чтобы ввести частоту нажмите ESC, введите значение и нажмите MENU. Также вы можете переключать активный канал, нажимая на стрелки (вверх в вниз). Возможно изменение громкости приема кнопкой с изображением динамика. Вы также можете изменять стерео настройки нажимая PRE.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#8B0000&quot;&gt;
-Рация FADAK (личная)&lt;br/&gt;
-OPFOR&lt;br/&gt;
-&lt;/font&gt;
-30-512Mhz / 3 км&lt;br/&gt;
-Для того чтобы ввести частоту, нажмите CLR, введите значение и нажмите ENT. Также вы можете переключать активный канал рации, нажимая SET и PWR (всего 8 каналов). Возможно изменение громкости приема кнопками DATA и SEND. Вы также можете изменять стерео настройки нажимая 0.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#8B0000&quot;&gt;
-Рация MR3000 (дальняя связь)&lt;br/&gt;
-OPFOR&lt;br/&gt;
-&lt;/font&gt;
-30-87Mhz / 20 км&lt;br/&gt;
-Для того чтобы ввести частоту нажмите CLR ESC, введите значение и нажмите ENT. Также вы можете переключать активный канал, нажимая цифровые кнопки на рации, либо горизонтальными кнопками-стрелками (всего 9 каналов). Возможно изменение громкости приема вертикальными кнопками-стрелками. Вы также можете изменять стерео настройки нажимая 0.&lt;br/&gt;
-&lt;br/&gt;
-Переговорное устройство дайверов&lt;br/&gt;
-32-41kHz / 70-300 м. (в зависимости от уровня волн)&lt;br/&gt;
-Для того чтобы ввести частоту, нажмите MODE, введите значение и нажмите ADV. Возможно изменение громкости приема кнопкой с правой стороны устройства.
-				</Russian>
-				<French>
-&lt;font color=&quot;#0000FF&quot;&gt;Radio AN/PRC-152 (Courte portée)&lt;br/&gt;
-BLUEFOR	&lt;br/&gt;
-30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-Pour entrer une fréquence, cliquer sur CLR, entrer une valeur et cliquer sur ENT. Vous pouvez changer le canal actif en cliquant sur les touches fléchées gauche et droite (Pour un total de 8 canaux), pour changer le volume de réception cliquer sur les touches PRE+ et PRE-. Vous pouvez aussi changer les options stéréos en cliquant sur la touche 0.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#0000FF&quot;&gt;Radio RT-1523G (ASIP) (long range)&lt;br/&gt;
-BLUEFOR	&lt;br/&gt;
-30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-Pour entrer une fréquence, cliquer sur  MENU CLR, entrer une valeur et cliquer sur FREQ. Vous pouvez changer le canal actif en cliquant sur les touches numériques (Pour un total de 9 canaux), pour changer le volume de réception cliquer sur les touches TIME et BATT CALL. Vous pouvez aussi changer les options stéréos en cliquant sur la touche STO.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC148-JEM (Courte portée)&lt;br/&gt;
-INDEPENDENT&lt;br/&gt;
-30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-Pour entrer une fréquence, cliquer sur ESC, entrer une valeur et cliquer sur ENT. Vous pouvez changer le canal actif en cliquant sur les touches fléchées (Pour un total de 8 canaux), pour changer le volume de réception cliquer sur les touches MOD et GR. Vous pouvez aussi changer les options stéréos en cliquant sur la touche ALT.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC-155 (long range)&lt;br/&gt;
-INDEPENDENT&lt;br/&gt;
-30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-Pour entrer une fréquence, cliquer sur ESC, entrer une valeur et cliquer sur MENU. Vous pouvez changer le canal actif en cliquant sur les touches fléchées (Haut et bas), pour changer le volume de réception cliquer sur le bouton haut-parleur. Vous pouvez aussi changer les options stéréos en cliquant sur la touche PRE. &lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#8B0000&quot;&gt;Radio FADAK (Courte portée)&lt;br/&gt;
-OPFOR&lt;br/&gt;
-30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-Pour entrer une fréquence, cliquer sur CLR, entrer une valeur et cliquer sur ENT. Vous pouvez changer le canal actif en cliquant sur les touches SET et PWR (Pour un total de 8 canaux), pour changer le volume de réception cliquer sur les touches DATA et SEND. Vous pouvez aussi changer les options stéréos en cliquant sur la touche 0.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#8B0000&quot;&gt;Radio MR3000 (long range)&lt;br/&gt;
-OPFOR&lt;br/&gt;
-30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-Pour entrer une fréquence, cliquer sur CLR ESC, entrer une valeur et cliquer sur ENT. Vous pouvez changer le canal actif en cliquant sur les touches chiffrées ou sur les touches fléchées horizontales (Pour un total de 8 canaux), pour changer le volume de réception cliquer sur les touches fléchées verticales. Vous pouvez aussi changer les options stéréos en cliquant sur la touche 0.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#FFFF00&quot;&gt;Radio sous-marine&lt;br/&gt;
-TOUTES LES FACTIONS&lt;br/&gt;
-32-41kHz / 70-300 m. (Dépent des vagues)&lt;br/&gt;
-Pour entrer une fréquence, cliquer sur MODE, entrer une valeur et cliquer sur ADV, pour changer le volume de réception cliquer sur la partie droite de l'appareil.
-				</French>
-				<Italian>
-&lt;font color=&quot;#0000FF&quot;&gt;Radio AN/PRC-152 (onde corte)&lt;br/&gt;
-BLUFOR	&lt;br/&gt;
-30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-Per immettere la frequenza, premere CLR, immettere un valore e premere ENT. Puoi anche spostarti tra i canali della radio premendo i tasti delle frecce (per un totale di 8 canali). Puoi cambiare il volume di ricezione radio premendo i tasti PRE+ e PRE- . Puoi anche cambiare le impostazioni stereo premendo il tasto 0.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#0000FF&quot;&gt;Radio RT-1523G (ASIP) (onde lunghe)&lt;br/&gt;
-BLUFOR	&lt;br/&gt;
-30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-Per immettere la frequenza, premere MENU CLR, immettere un valore e premere FREQ. Puoi anche spostarti tra i canali della radio premendo i tasti dei numeri (per un totale di 9 canali). Puoi cambiare il volume di ricezione radio premendo i tasti TIME e BATT CALL . Puoi anche cambiare le impostazioni stereo premendo il tasto STO.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC148-JEM (onde corte)&lt;br/&gt;
-INDEPENDENT&lt;br/&gt;
-30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-Per immettere la frequenza, premere ESC, immettere un valore e premere ENT. Puoi anche spostarti tra i canali della radio premendo i tasti delle frecce (per un totale di 8 canali). Puoi cambiare il volume di ricezione radio premendo i tasti MOD e GR . Puoi anche cambiare le impostazioni stereo premendo il tasto ALT.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#006400&quot;&gt;Radio AN/PRC-155 (onde lunghe)&lt;br/&gt;
-INDEPENDENT&lt;br/&gt;
-30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-Per immettere la frequenza, premere ESC, immettere un valore e premere MENU. Puoi anche spostarti tra i canali della radio premendo i tasti delle frecce (su e giu). Puoi cambiare il volume di ricezione radio premendo il tasto dell'altoparlante. Puoi anche cambiare le impostazioni stereo premendo il tasto PRE. &lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#8B0000&quot;&gt;Radio FADAK (onde corte)&lt;br/&gt;
-OPFOR&lt;br/&gt;
-30-512Mhz / 3 km&lt;br/&gt;&lt;/font&gt;
-Per immettere la frequenza, premere CLR, immettere un valore e premere ENT.  Puoi anche spostarti tra i canali della radio premendo i tasti SET e PWR (per un totale di 8 canali). Puoi cambiare il volume di ricezione radio premendo i tasti DATA e SEND . Puoi anche cambiare le impostazioni stereo premendo il tasto 0.&lt;br/&gt;
-&lt;br/&gt;
-&lt;font color=&quot;#8B0000&quot;&gt;Radio MR3000 (onde lunghe)&lt;br/&gt;
-OPFOR&lt;br/&gt;
-30-87Mhz / 20 km&lt;br/&gt;&lt;/font&gt;
-Per immettere la frequenza, premere CLR ESC, immettere un valore e premere ENT. Puoi anche spostarti trai i canali della radio premendo i tasti dei numeri o le frecce orizzontali(per un totale di 8 canali). Puoi anche cambiare il volume il volume di ricezione radio premendo le frecce verticali. Puoi anche cambiare le impostazioni stereo premendo il tasto 0.&lt;br/&gt;
-&lt;br/&gt;
-Ricetrasmittente subacquea&lt;br/&gt;
-All&lt;br/&gt;
-32-41kHz / 70-300 m. (dipende dalle onde)&lt;br/&gt;
-Per immettere la frequenza, premere MODE, immettere un valore e premere ADV. Puoi cambiare il volume di ricezione radio premendo il bottone sulla parte destra del dispositivo.
-				</Italian>
-			</Key>
+			</Key>			
 			<Key ID="STR_radio_diver">
 				<Original>
 					For divers
@@ -1311,7 +1150,7 @@ Usa il ricetrasmettitore subacqueo per comunicare con gli altri sommozzatori.&lt
 Non puoi usare le normali radio sott'acqua (nè trasmettere nè ricevere). Se vuoi usare la normale radio emergi in superfice. &lt;br/&gt;Eccezione - sottomarino a quota periscopio (i sommozzatori possono usare una radio ad onde lunghe).
 				</Italian>
 				<Spanish>
-No puedes hablar bajo el agua (incluso llevando un traje de buceo). Sin embargo, a ciertas distancias tus compañeros podrían escuchar un indistinguible discurso (a excepción de si estas en un vehículo aislado).&lt;br/&gt;
+No puedes hablar bajo el agua (incluso llevando un traje de buceo). Sin embargo, a ciertas distancias tus compañeros podrían escuchar un discurso indistinguible (a excepción de si estas en un vehículo aislado).&lt;br/&gt;
 Estando bajo el agua, podrás escuchar débilmente voces sordas de tierra.lt;br/&gt;
 Usa un transceptor submarino para comunicarte con otros buceadores. Si deseas contactar con alguien que este en tierra, sube a la superficie. &lt;br/&gt;A excepción de los submarinos en profundidad de periscopio (los buceadores podrán utilizar la radio de largo alcance).
 				</Spanish>
