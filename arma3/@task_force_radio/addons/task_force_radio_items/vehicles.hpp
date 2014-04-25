@@ -84,7 +84,7 @@ class Truck_02_base_F:Truck_F
 class Truck_03_base_F: Truck_F
 {
 	tf_hasLRradio = 1;
-}:
+};
 class Offroad_01_base_f;
 class Offroad_01_armed_base_F:Offroad_01_base_f
 {
