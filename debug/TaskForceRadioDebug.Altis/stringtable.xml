@@ -1053,6 +1053,14 @@
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	To open an underwater transceiver interface (you should be wearing a rebreather).&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	To talk on underwater transceiver.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Select next personal radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Select previous personal radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Select next long range radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Select previous long range radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Change personal radio stereo mode.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Change long range radio stereo mode.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Transmit on additional channel of personal radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Transmit on additional channel of long range radio.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	To exit from the radio interface.
 				</Original>
 				<Russian>
@@ -1065,6 +1073,14 @@
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Изменить громкость прямой речи. Можно говорить шепотом (Whispering), нормально (Normal) и кричать (Yelling). Не влияет на кромкость сигнала в радио передаче.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Открыть интерфейс переговорного устройства для дайверов (на вас должен быть надет ребризер).&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Разговор по переговорному устройству для дайверов.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Следующая рация ближней связи.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Предыдущая рация ближней связи.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Следующая рация дальней связи.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Предыдущая рация дальней связи.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Изменение стерео режима рации ближней связи.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Изменение стерео режима рации дальней связи.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Передача на дополнительном канале персональной рации.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Передача на дополнительном канале рации дальней связи.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Выход из интерфейса рации.&lt;br/&gt;
 				</Russian>
 				<French>
@@ -1078,6 +1094,14 @@
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Pour changer le volume de la voix direct. Vous pouvez avoir 3 volumes de voix : Faible, Normale ou Forte. N'affecte pas le volume de la voix en transmission radio.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Pour ouvrir l'interface de la radio sous-marine (vous devez porter un recycleur).&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Pour parler à la radio sous-marine.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Sélectionnez prochaine radio personnelle.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Select previous personal radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Sélectionnez radio personnelle précédente.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Sélectionnez précédente radio longue portée..&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Changer le mode stéréo de radio personnelle.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Changer le mode stéréo radio longue portée.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Transmettre sur le canal supplémentaire de radio personnelle.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Transmettre sur le canal supplémentaire de radio longue portée.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Pour fermer l'interface de la radio.	
 				</French>
 				<Italian>
@@ -1091,6 +1115,14 @@
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Per cambiare il volume con cui si parla. Puoi parlare: bassa voce, normale o gridare. Non cambia il volume di trasmissione in radio.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Per aprire l'interfaccia della radio subacquea (devi indossare un respiratore).&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Per parlare con la radio subacquea.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Selezionare prossima radio personale.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Selezionare precedente radio personale.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Selezionare prossima lunga portata radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Selezionare precedente la radio a lungo raggio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Passare alla modalità radio stereo personale.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Passare alla modalità radio stereo lungo raggio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Trasmettere sul canale aggiuntivo di radio personale.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Trasmettere sul canale supplementare di lunga radiofonica gamma.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Per uscire dalla interfaccia radio.
 				</Italian>
 				<Spanish>
@@ -1104,6 +1136,14 @@
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Para hablar en voz directa. Puedes hablar: Susurrando, Normal or Gritando. Esto no afecta al volumen de voz, si no a la distancia a la que te escuchan los demas jugadores.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Para abrir el interfaz del transmisor submarino (Debes de tener en el inventario un respirado).&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Para transmitir por el transmisor submarino.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Seleccionar siguiente radio personal.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Seleccionar radio personal anterior.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Seleccionar siguiente de largo alcance.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Seleccionar radio de largo alcance anterior.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Cambiar modo stero de la radio personal.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Cambiar modo stero de la radio de largo alcance.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Transmitir por el el canal adicional de la radio personal.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Transmitir por el canal adicional de la radio de largo alcance.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Para salir del interfaz de las radios.
 				</Spanish>
 			</Key>			
