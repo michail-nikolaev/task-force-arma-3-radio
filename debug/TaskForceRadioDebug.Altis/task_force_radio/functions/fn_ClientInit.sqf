@@ -166,7 +166,7 @@ tf_msNearPerStepMin = 0.1;
 tf_msNearPerStep = tf_msNearPerStepMax;
 tf_nearUpdateTime = 0.3;
 
-tf_msFarPerStepMax = 0.035;
+tf_msFarPerStepMax = 0.025;
 tf_msFarPerStepMin = 1.00;
 tf_msFarPerStep = tf_msFarPerStepMax;
 tf_farUpdateTime = 3.5;
