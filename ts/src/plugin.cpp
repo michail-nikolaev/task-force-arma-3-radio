@@ -1297,7 +1297,7 @@ std::string processGameCommand(std::string command)
 			if (pressed)
 			{
 				if (subtype == "digital_lr") playWavFile("radio-sounds/lr/local_start", false, 0);
-				else if (subtype == "dd") playWavFile("radio-sounds/dd/local_start", false, 0);
+				else if (subtype == "DD") playWavFile("radio-sounds/dd/local_start", false, 0);
 				else if (subtype == "digital") playWavFile("radio-sounds/sw/local_start", false, 0);
 				else if (subtype == "airborne") playWavFile("radio-sounds/ab/local_start", false, 0);
 
@@ -1309,7 +1309,7 @@ std::string processGameCommand(std::string command)
 				if (vadEnabled)	hlp_enableVad();	
 
 				if (subtype == "digital_lr") playWavFile("radio-sounds/lr/local_end", false, 0);
-				else if (subtype == "dd") playWavFile("radio-sounds/dd/local_end", false, 0);
+				else if (subtype == "DD") playWavFile("radio-sounds/dd/local_end", false, 0);
 				else if (subtype == "digital") playWavFile("radio-sounds/sw/local_end", false, 0);
 				else if (subtype == "airborne") playWavFile("radio-sounds/ab/local_end", false, 0);
 			}
@@ -2192,7 +2192,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->lrEffect, listed_info.stereoMode);
 					}
 					short* dd_buffer = NULL;
-					if (data->subtype == "dd")
+					if (data->subtype == "DD")
 					{
 						dd_buffer = allocatePool(sampleCount, channels, samples);
 						float volumeLevel = volumeMultiplifier((float) serverIdToData[serverConnectionHandlerID].ddVolumeLevel);
