@@ -50,3 +50,5 @@
 /misc/documentation-generator/*.iml
 /misc/documentation-generator/out
 /misc/documentation-generator/.gradle
+/misc/documentation-generator/.idea
+/misc/documentation-generator/classes
