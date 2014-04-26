@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * @author nkey
  * @since 22.04.2014
  */
-public class ScriptDocumentatonGenerator {
+public class ScriptDocumentationGenerator {
 
     public static void main(String[] args) throws IOException {
         Map<String, String> descriptions = new TreeMap<>();
