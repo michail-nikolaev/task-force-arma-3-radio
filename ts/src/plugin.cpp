@@ -607,7 +607,8 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 	if ((data->tangentOverType == LISTEN_TO_DD || ignoreDdTangent)
 		&& (serverIdToData[serverConnectionHandlerID].myDdFrequency == data->frequency))
 	{
-		if (data->canUseDDRadio && myData->canUseDDRadio && d < distanceForDiverRadio(d, serverConnectionHandlerID))
+		float dUnderWater = distance(myPosition, clientPosition);
+		if (data->canUseDDRadio && myData->canUseDDRadio && dUnderWater < distanceForDiverRadio(dUnderWater, serverConnectionHandlerID))
 		{
 			result.over = LISTEN_TO_DD;			
 			result.on = LISTED_ON_DD;
@@ -1297,7 +1298,7 @@ std::string processGameCommand(std::string command)
 			if (pressed)
 			{
 				if (subtype == "digital_lr") playWavFile("radio-sounds/lr/local_start", false, 0);
-				else if (subtype == "DD") playWavFile("radio-sounds/dd/local_start", false, 0);
+				else if (subtype == "dd") playWavFile("radio-sounds/dd/local_start", false, 0);
 				else if (subtype == "digital") playWavFile("radio-sounds/sw/local_start", false, 0);
 				else if (subtype == "airborne") playWavFile("radio-sounds/ab/local_start", false, 0);
 
@@ -1309,7 +1310,7 @@ std::string processGameCommand(std::string command)
 				if (vadEnabled)	hlp_enableVad();	
 
 				if (subtype == "digital_lr") playWavFile("radio-sounds/lr/local_end", false, 0);
-				else if (subtype == "DD") playWavFile("radio-sounds/dd/local_end", false, 0);
+				else if (subtype == "dd") playWavFile("radio-sounds/dd/local_end", false, 0);
 				else if (subtype == "digital") playWavFile("radio-sounds/sw/local_end", false, 0);
 				else if (subtype == "airborne") playWavFile("radio-sounds/ab/local_end", false, 0);
 			}
@@ -2192,12 +2193,12 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->lrEffect, listed_info.stereoMode);
 					}
 					short* dd_buffer = NULL;
-					if (data->subtype == "DD")
+					if (data->subtype == "dd")
 					{
 						dd_buffer = allocatePool(sampleCount, channels, samples);
 						float volumeLevel = volumeMultiplifier((float) serverIdToData[serverConnectionHandlerID].ddVolumeLevel);
 						processCompressor(&data->compressor, dd_buffer, channels, sampleCount);
-						data->ddEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, radioDistance, serverConnectionHandlerID, data));
+						data->ddEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, distance(data->clientPosition, myData->clientPosition), serverConnectionHandlerID, data));
 						processRadioEffect(dd_buffer, channels, sampleCount, volumeLevel * 0.4f, &data->ddEffect, listed_info.stereoMode);
 					}							
 					if (!shouldPlayerHear && vehicleCheck)
@@ -2532,7 +2533,7 @@ void processPluginCommand(std::string command)
 								if (playPressed) playWavFile("radio-sounds/lr/remote_start", true, volume + 1);
 								if (playReleased) playWavFile("radio-sounds/lr/remote_end", true, volume + 1);
 							}
-							if (subtype == "digital_dd")
+							if (subtype == "dd")
 							{
 								if (playPressed) playWavFile("radio-sounds/dd/remote_start", true, volume + 1);
 								if (playReleased) playWavFile("radio-sounds/dd/remote_end", true, volume + 1);
@@ -2545,7 +2546,7 @@ void processPluginCommand(std::string command)
 						}
 						EnterCriticalSection(&serverDataCriticalSection);
 						if (playReleased && alive)
-						{
+						{							
 							clientData->resetPersonalRadioEffect();
 							clientData->resetLongRangeRadioEffect();
 							clientData->resetUnderwaterRadioEffect();

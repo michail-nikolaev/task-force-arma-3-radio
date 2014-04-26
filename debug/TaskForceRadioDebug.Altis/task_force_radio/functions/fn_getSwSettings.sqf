@@ -51,7 +51,7 @@ if (isNil "_rc") then
 		private "_default";
 		_default = call TFAR_fnc_getDefaultRadioClasses;
 		if ((_default select 1) == _parent or {(_default select 2) == _parent}) then {
-			_rc = missionNamespace getVariable format ["tf_%1_radio_code",(side player)];
+			_rc = missionNamespace getVariable format ["tf_%1_radio_code", (player call BIS_fnc_objectSide)];
 		}else{
 			_rc = missionNamespace getVariable [_code, ""];
 		};
