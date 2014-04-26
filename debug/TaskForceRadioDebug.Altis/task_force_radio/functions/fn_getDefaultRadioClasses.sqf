@@ -11,17 +11,17 @@
 		Nothing
  	
  	Returns:
-		ARRAY - [defaultLR, defaultPersonal, defaultRifleman]
+		ARRAY - [defaultLR, defaultPersonal, defaultRifleman, defaultAirborne]
  	
  	Example:
 		_classes = call TFAR_fnc_getDefaultRadioClasses;
 */
-private ["_personalRadio", "_riflemanRadio", "_lrRadio"];
+private ["_personalRadio", "_riflemanRadio", "_lrRadio", "_airborne"];
 
 switch (player call BIS_fnc_objectSide) do {
-	case west: {_personalRadio = TF_defaultWestPersonalRadio; _riflemanRadio = TF_defaultWestRiflemanRadio; _lrRadio = TF_defaultWestBackpack;};
-	case east: {_personalRadio = TF_defaultEastPersonalRadio; _riflemanRadio = TF_defaultEastRiflemanRadio;_lrRadio = TF_defaultEastBackpack;};
-	default {_personalRadio = TF_defaultGuerPersonalRadio; _riflemanRadio = TF_defaultGuerRiflemanRadio;_lrRadio = TF_defaultGuerBackpack;};
+	case west: {_personalRadio = TF_defaultWestPersonalRadio; _riflemanRadio = TF_defaultWestRiflemanRadio; _lrRadio = TF_defaultWestBackpack; _airborne = TF_defaultWestAirborneRadio;};
+	case east: {_personalRadio = TF_defaultEastPersonalRadio; _riflemanRadio = TF_defaultEastRiflemanRadio;_lrRadio = TF_defaultEastBackpack; _airborne = TF_defaultEastAirborneRadio;};
+	default {_personalRadio = TF_defaultGuerPersonalRadio; _riflemanRadio = TF_defaultGuerRiflemanRadio;_lrRadio = TF_defaultGuerBackpack; _airborne = TF_defaultGuerAirborneRadio;};
 };
 
 TFAR_tryResolveFactionClass = 
@@ -45,4 +45,4 @@ TFAR_tryResolveFactionClass =
 	_result
 };
 
-[["backpack", _lrRadio] call TFAR_tryResolveFactionClass , ["personal", _personalRadio] call TFAR_tryResolveFactionClass , ["rifleman", _riflemanRadio] call TFAR_tryResolveFactionClass];
+[["backpack", _lrRadio] call TFAR_tryResolveFactionClass , ["personal", _personalRadio] call TFAR_tryResolveFactionClass , ["rifleman", _riflemanRadio] call TFAR_tryResolveFactionClass, ["airborne", _airborne] call TFAR_tryResolveFactionClass];
