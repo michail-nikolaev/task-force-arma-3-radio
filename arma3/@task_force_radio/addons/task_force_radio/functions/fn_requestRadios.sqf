@@ -42,7 +42,7 @@ if (time - TF_last_request_time > 3) then {
 			player addItem _x;
 			if (count TF_settingsToCopy > _copyIndex) then {
 				if ([_x, TF_settingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
-					[_x,TF_settingsToCopy select _copyIndex] call TFAR_fnc_CopySettings;
+					[TF_settingsToCopy select _copyIndex,_x] call TFAR_fnc_CopySettings;
 					_copyIndex = _copyIndex + 1;
 				};
 			};
