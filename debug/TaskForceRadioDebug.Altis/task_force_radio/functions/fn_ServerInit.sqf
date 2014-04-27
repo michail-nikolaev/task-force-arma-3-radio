@@ -29,6 +29,13 @@ if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_no_auto_long_rang
 	tf_no_auto_long_range_radio_server = false;
 };
 publicVariable "tf_no_auto_long_range_radio_server";
+if (isNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_personal_radio_to_regular_soldier")) then {
+	TF_give_personal_radio_to_regular_soldier_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_personal_radio_to_regular_soldier") == 1;
+} else {
+	TF_give_personal_radio_to_regular_soldier_server = false;
+};
+publicVariable "TF_give_personal_radio_to_regular_soldier_server";
+
 
 waitUntil {sleep 0.1;time > 0};
 
@@ -48,32 +55,37 @@ while {true} do {
 				(owner (_x)) publicVariableClient (_variableName);
 				_responseVariableName = "radio_response_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
 				_response = [];
-				{
-					private ["_radio", "_count"];
-					_radio = _x;
-					if !(_radio call TFAR_fnc_isPrototypeRadio) then
+				if (typename _radio_request == "ARRAY") then {
 					{
-						_radio = inheritsFrom (configFile >> "CfgWeapons" >> _radio);
-					};
-					_count = -1;
-					{
-						if ((_x select 0) == _radio) exitWith
+						private ["_radio", "_count"];
+						_radio = _x;
+						if !(_radio call TFAR_fnc_isPrototypeRadio) then
 						{
-							_x set [1, (_x select 1) + 1];
-							if ((_x select 1) > MAX_RADIO_COUNT) then
-							{
-								_x set [1, 1];
-							};
-							_count = (_x select 1);
+							_radio = inheritsFrom (configFile >> "CfgWeapons" >> _radio);
 						};
-					} count TF_Radio_Count;
-					if (_count == -1) then
-					{
-						TF_Radio_Count set [(count TF_Radio_Count), [_x,1]];
-						_count = 1;
-					};
-					_response set [(count _response), format["%1_%2", _radio, _count]];
-				} count _radio_request;
+						_count = -1;
+						{
+							if ((_x select 0) == _radio) exitWith
+							{
+								_x set [1, (_x select 1) + 1];
+								if ((_x select 1) > MAX_RADIO_COUNT) then
+								{
+									_x set [1, 1];
+								};
+								_count = (_x select 1);
+							};
+						} count TF_Radio_Count;
+						if (_count == -1) then
+						{
+							TF_Radio_Count set [(count TF_Radio_Count), [_x,1]];
+							_count = 1;
+						};
+						_response set [(count _response), format["%1_%2", _radio, _count]];
+					} count _radio_request;
+				} else {
+					_response = "ERROR:47";
+					diag_log format ["TFAR - ERROR:47 - Request Content: %1; Requested By: %2", _radio_reqest, _x];
+				};
 				missionNamespace setVariable [_responseVariableName, _response];
 				(owner (_x)) publicVariableClient (_responseVariableName);
 			};
