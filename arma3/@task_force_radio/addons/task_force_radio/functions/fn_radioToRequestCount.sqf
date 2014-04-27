@@ -37,14 +37,12 @@ if ((TF_give_personal_radio_to_regular_soldier) or {leader player == player}) th
 
 TF_settingsToCopy = [];
 {
-    if (_x call TFAR_fnc_isPrototypeRadio) then 
-    {
+    if (_x call TFAR_fnc_isPrototypeRadio) then {
         _to_remove set[(count _to_remove), _x];
         TF_first_radio_request = true;
     };
-    if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != player) or _allRadios}) then
-    {
-		if ((_x call TFAR_fnc_getRadioOwner) == objNull) then {
+    if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != player) or _allRadios}) then {
+		if (isNull(_x call TFAR_fnc_getRadioOwner)) then {
 			[_x, player] call TFAR_fnc_setRadioOwner;
 		} else {
 			_to_remove set[(count _to_remove), _x];
@@ -54,13 +52,11 @@ TF_settingsToCopy = [];
     };
 } count (assignedItems player);
 {
-    if (_x call TFAR_fnc_isPrototypeRadio) then 
-    {
+    if (_x call TFAR_fnc_isPrototypeRadio) then {
         _to_remove set[(count _to_remove), _x];
     };
-    if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != player) or _allRadios}) then
-    {
-		if ((_x call TFAR_fnc_getRadioOwner) == objNull) then {
+    if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != player) or _allRadios}) then{
+		if (isNull(_x call TFAR_fnc_getRadioOwner)) then {
 			[_x, player] call TFAR_fnc_setRadioOwner;
 		} else {
 			_to_remove set[(count _to_remove), _x];
