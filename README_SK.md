@@ -2,13 +2,13 @@ Task Force Arma 3 radio
 =======================
 
 Arma 3 Team Speak Radio Plugin
-_v0.8.3 (2014-03-14)_
+_v0.9.0 (2014-04-27)_
 
 **<font color="green">TeamSpeak 3.0.14 je podprt</font>**
 
 ###Inštalácia
 
-* Stiahnite si a rozbaľte [0.8.3. radio archív](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.8.3.zip).
+* Stiahnite si a rozbaľte [0.9.0. radio archív](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.9.0.zip).
 * Skopírujte `TeamSpeak 3 Client` obsah adresára do hlavného adresára s nainštalovaným TeamSpeak klientom.
 * Skopírujte `Arma 3` obsah adresára do `...\SteamApps\common\Arma 3 adresára`.    
 
