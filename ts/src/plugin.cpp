@@ -1595,6 +1595,9 @@ void ts3plugin_setFunctionPointers(const struct TS3Functions funcs) {
  * If the function returns 1 on failure, the plugin will be unloaded again.
  */
 int ts3plugin_init() {    
+#ifdef _WIN64
+	_set_FMA3_enable(0);
+#endif
 	ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE);
 
 	InitializeCriticalSection(&serverDataCriticalSection);
