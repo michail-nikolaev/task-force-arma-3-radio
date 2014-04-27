@@ -29,6 +29,13 @@ if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_no_auto_long_rang
 	tf_no_auto_long_range_radio_server = false;
 };
 publicVariable "tf_no_auto_long_range_radio_server";
+if (isNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_personal_radio_to_regular_soldier")) then {
+	TF_give_personal_radio_to_regular_soldier_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_personal_radio_to_regular_soldier") == 1;
+} else {
+	TF_give_personal_radio_to_regular_soldier_server = false;
+};
+publicVariable "TF_give_personal_radio_to_regular_soldier_server";
+
 
 waitUntil {sleep 0.1;time > 0};
 
