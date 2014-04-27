@@ -30,7 +30,6 @@ if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_no_auto_long_rang
 };
 publicVariable "tf_no_auto_long_range_radio_server";
 
-call TFAR_fnc_processGroupFrequencySettings;
 waitUntil {sleep 0.1;time > 0};
 
 TF_Radio_Count = [];
