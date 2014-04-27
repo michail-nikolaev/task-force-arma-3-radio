@@ -72,10 +72,18 @@ disableSerialization;
 
 waitUntil {sleep 0.2;time > 0};
 if (isNil "tf_no_auto_long_range_radio") then {
-	tf_no_auto_long_range_radio = tf_no_auto_long_range_radio_server;
+	if (!isNil "tf_no_auto_long_range_radio_server") then {
+		tf_no_auto_long_range_radio = tf_no_auto_long_range_radio_server;
+	}else{
+		tf_no_auto_long_range_radio = true;
+	};
 };
 if (isNil "TF_give_personal_radio_to_regular_soldier") then {
-	TF_give_personal_radio_to_regular_soldier = TF_give_personal_radio_to_regular_soldier_server;
+	if (!isNil "TF_give_personal_radio_to_regular_soldier_server") then {
+		TF_give_personal_radio_to_regular_soldier = TF_give_personal_radio_to_regular_soldier_server;
+	}else{
+		TF_give_personal_radio_to_regular_soldier = false;
+	};
 };
 waitUntil {sleep 0.1;!(isNull player)};
 titleText [localize ("STR_init"), "PLAIN"];
