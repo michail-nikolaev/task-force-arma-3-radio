@@ -75,8 +75,7 @@ class clear: HiddenButton
 };
 class edit: RscEditLCD
 {
-	idc = IDC_ANPRC148JEM_EDIT;
-	text = $STR_A3_anprc148jem_edit148;
+	idc = IDC_ANPRC148JEM_EDIT;	
 	x = 0.238813 * safezoneW + safezoneX;
 	y = 0.351567 * safezoneH + safezoneY;
 	w = 0.0623438 * safezoneW;
@@ -89,8 +88,7 @@ class edit: RscEditLCD
 };
 class channel_edit: RscEditLCD
 {
-	idc = IDC_ANPRC148JEM_CHANNEL_EDIT;
-	text = $STR_A3_anprc148jem_channel_edit148;
+	idc = IDC_ANPRC148JEM_CHANNEL_EDIT;	
 	x = 0.207312 * safezoneW + safezoneX;
 	y = 0.351567 * safezoneH + safezoneY;
 	w = 0.0301875 * safezoneW;
