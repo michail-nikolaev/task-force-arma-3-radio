@@ -75,6 +75,9 @@ disableSerialization;
 #include "diary.sqf"
 
 waitUntil {sleep 0.2;time > 0};
+if (isNil "tf_no_auto_long_range_radio") then {
+	tf_no_auto_long_range_radio = tf_no_auto_long_range_radio_server;
+};
 waitUntil {sleep 0.1;!(isNull player)};
 titleText [localize ("STR_init"), "PLAIN"];
 
