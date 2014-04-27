@@ -35,14 +35,18 @@ if (time - TF_last_request_time > 3) then {
 		publicVariableServer _variableName;
 		titleText [localize ("STR_wait_radio"), "PLAIN"];
 		waitUntil {!(isNil _responseVariableName)};
-		_response = missionNamespace getVariable _responseVariableName;	
-		{
-			player addItem _x;
-		} count _response;
-		if ((count _response > 0) and (TF_first_radio_request)) then 
-		{
-			TF_first_radio_request = false;
-			player assignItem (_response select 0);
+		_response = missionNamespace getVariable _responseVariableName;
+		if (typename _response == "ARRAY") then {
+			{
+				player addItem _x;
+			} count _response;
+			if ((count _response > 0) and (TF_first_radio_request)) then 
+			{
+				TF_first_radio_request = false;
+				player assignItem (_response select 0);
+			};
+		}else{
+			hintC _response;
 		};
 		titleText ["", "PLAIN"];
 	};
