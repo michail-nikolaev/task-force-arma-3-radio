@@ -36,11 +36,20 @@ if (time - TF_last_request_time > 3) then {
 		titleText [localize ("STR_wait_radio"), "PLAIN"];
 		waitUntil {!(isNil _responseVariableName)};
 		_response = missionNamespace getVariable _responseVariableName;	
+		private "_copyIndex";
+		_copyIndex = 0;
 		{
 			player addItem _x;
+			if (count TF_settingsToCopy > _copyIndex) then {
+				if ([_x, TF_settingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
+					[_x,TF_settingsToCopy select _copyIndex] call TFAR_fnc_CopySettings;
+					_copyIndex = _copyIndex + 1;
+				};
+			};
+			[_x,player] call TFAR_fnc_setRadioOwner;
 		} count _response;
-		if ((count _response > 0) and (TF_first_radio_request)) then 
-		{
+		TF_settingsToCopy = [];
+		if ((count _response > 0) and (TF_first_radio_request)) then {
 			TF_first_radio_request = false;
 			player assignItem (_response select 0);
 		};
