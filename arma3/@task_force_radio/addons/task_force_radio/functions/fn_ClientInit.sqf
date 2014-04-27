@@ -264,6 +264,20 @@ TF_last_request_time = 0;
 
 player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 player addEventHandler ["killed", {TF_use_saved_sw_setting = true; TF_use_saved_lr_setting = true; TF_first_radio_request = true;}];
+player addEventHandler ["Take", {
+    private "_class";
+    _class = ConfigFile >> "CfgWeapons" >> (_this select 2);
+    if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+		[(_this select 2),player] call TFAR_fnc_setRadioOwner;
+    };
+}];
+player addEventHandler ["Put", {
+    private "_class";
+    _class = ConfigFile >> "CfgWeapons" >> (_this select 2);
+    if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+		[(_this select 2),objNull] call TFAR_fnc_setRadioOwner;
+    };
+}];
 
 [] spawn {
 	call TFAR_fnc_processRespawn;
