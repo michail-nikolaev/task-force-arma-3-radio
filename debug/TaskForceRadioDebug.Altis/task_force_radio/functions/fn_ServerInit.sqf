@@ -51,9 +51,8 @@ while {true} do {
 				{
 					private ["_radio", "_count"];
 					_radio = _x;
-					if !(_radio call TFAR_fnc_isPrototypeRadio) then
-					{
-						_radio = inheritsFrom (configFile >> "CfgWeapons" >> _radio);
+					if !(_radio call TFAR_fnc_isPrototypeRadio) then {
+						_radio = configName inheritsFrom (configFile >> "CfgWeapons" >> _radio);
 					};
 					_count = -1;
 					{
