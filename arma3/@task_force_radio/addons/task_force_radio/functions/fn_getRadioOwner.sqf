@@ -11,11 +11,17 @@
 		STRING - radio classname
  	
  	Returns:
-		Nothing
+		OBJECT - Owner of radio
  	
  	Example:
 		_owner = (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getRadioOwner;
 */
 #include "script.h"
+private "_settings";
+_settings = (_this call TFAR_fnc_getSwSettings);
+if (count _settings > RADIO_OWNER) exitWith
+{
+	((_this call TFAR_fnc_getSwSettings) select RADIO_OWNER)
+};
 
-((_this call TFAR_fnc_getSwSettings) select RADIO_OWNER)
+objNull
