@@ -48,6 +48,9 @@ static float* floatsSample[MAX_CHANNELS];
 #define DD_MIN_DISTANCE 70
 #define DD_MAX_DISTANCE 300
 
+#define ISOLATED_CUTOFF 0.75f
+#define ISOLATED_EFFECTS_START 0.5f
+
 inline float sq(float x) {return x * x;}
 
 float distance(TS3_VECTOR from, TS3_VECTOR to)
@@ -2181,7 +2184,11 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 				std::pair<std::string, float> hisVehicleDesriptor = getVehicleDescriptor(data->vehicleId);
 
 				const float vehicleVolumeLoss = clamp(myVehicleDesriptor.second + hisVehicleDesriptor.second, 0.0f, 1.0f);
-				bool vehicleCheck = (myVehicleDesriptor.first == hisVehicleDesriptor.first) || (vehicleVolumeLoss < 0.5f);
+				bool vehicleCheck = (myVehicleDesriptor.first == hisVehicleDesriptor.first) || (vehicleVolumeLoss < ISOLATED_CUTOFF);
+				// Will need to include filtering if (vehicleVolumeLoss > ISOLATED_EFFECTS_START && vehicleVolumeLoss < ISOLATED_CUTOFF)
+				// {
+				//		float isolatedEffectAmount = (vehicleVolumeLoss - ISOLATED_EFFECTS_START) / (ISOLATED_CUTOFF - ISOLATED_EFFECTS_START);
+				// }
 				float d = distanceFromClient(serverConnectionHandlerID, data);
 
 				if (listed_info.over != LISTEN_TO_NONE)
