@@ -2116,7 +2116,7 @@ float volumeMultiplifier(float volumeValue)
 std::pair<std::string, float> getVehicleDescriptor(std::string vechicleId) {
 	std::pair<std::string, float> result;
 	result.first == ""; // hear vehicle
-	result.second = 0.0; // hear 
+	result.second = 0.0f; // hear 
 
 	if (vechicleId.find("_turnout") != std::string::npos) {
 		result.first = vechicleId.substr(0, vechicleId.find("_turnout"));
@@ -2180,8 +2180,8 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 				std::pair<std::string, float> myVehicleDesriptor = getVehicleDescriptor(myData->vehicleId);
 				std::pair<std::string, float> hisVehicleDesriptor = getVehicleDescriptor(data->vehicleId);
 
-				const float vehicleVolumeLoss = clamp(myVehicleDesriptor.second + hisVehicleDesriptor.second, 0.0, 1.0);
-				bool vehicleCheck = (myVehicleDesriptor.first == hisVehicleDesriptor.first) || (vehicleVolumeLoss < 0.5);
+				const float vehicleVolumeLoss = clamp(myVehicleDesriptor.second + hisVehicleDesriptor.second, 0.0f, 1.0f);
+				bool vehicleCheck = (myVehicleDesriptor.first == hisVehicleDesriptor.first) || (vehicleVolumeLoss < 0.5f);
 				float d = distanceFromClient(serverConnectionHandlerID, data);
 
 				if (listed_info.over != LISTEN_TO_NONE)
@@ -2220,7 +2220,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 					} 
 					else
 					{
-						applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * (1.0 - vehicleVolumeLoss));
+						applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * (1.0f - vehicleVolumeLoss));
 					}
 					if (sw_buffer)
 					{
@@ -2241,7 +2241,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 				else 
 				{										
 					if (shouldPlayerHear)
-						applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * (1.0 - vehicleVolumeLoss));
+						applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * (1.0f - vehicleVolumeLoss));
 					else
 					{						
 						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * CANT_SPEAK_GAIN, &(data->filterCantSpeak));
