@@ -1386,7 +1386,7 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 			CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[*it];
 			serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);
 			log_string(std::string("Expire position of ") + *it + " time:" + std::to_string(time - data->positionTime), LogLevel_DEBUG);
-			delete data;			
+			delete data;
 		}
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
@@ -1976,7 +1976,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 			samples[i + j] = newValue;
 		}	
 	}
-	delete buffer;
+	delete[] buffer;
 }
 
 template<class T>
@@ -2252,7 +2252,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 			}
 			else 
 			{
-				if (!alive & inGame & isPluginEnabledForUser(serverConnectionHandlerID, clientID))
+				if (!alive && inGame && isPluginEnabledForUser(serverConnectionHandlerID, clientID))
 					stereoToMonoDSP(samples, channels, sampleCount, *channelFillMask); // dead player hears other dead players in serious mode			
 				else 
 					applyGain(samples, channels, sampleCount, 0.0f); // alive player hears only alive players in serious mode
