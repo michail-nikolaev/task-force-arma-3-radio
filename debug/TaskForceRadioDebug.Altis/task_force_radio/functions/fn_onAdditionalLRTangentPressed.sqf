@@ -18,4 +18,4 @@ if (!(TF_tangent_lr_pressed) and {alive player} and {call TFAR_fnc_haveLRRadio})
 		}
 	};
 };
-true
+false

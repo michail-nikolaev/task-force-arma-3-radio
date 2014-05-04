@@ -155,7 +155,7 @@ class tfar_ModuleTaskForceRadioFrequencies: Module_F
 	category = "TFAR";
 	
 	function = "TFAR_fnc_initialiseFreqModule";
-	functionPriority = 3;
+	functionPriority = 0; // only for server
 	
 	isGlobal = 1;
 	isTriggerActivated = 1;
