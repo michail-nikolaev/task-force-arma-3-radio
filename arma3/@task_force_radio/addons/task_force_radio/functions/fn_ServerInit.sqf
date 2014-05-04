@@ -43,7 +43,7 @@ TF_Radio_Count = [];
 
 while {true} do {		
 	call TFAR_fnc_processGroupFrequencySettings;
-	_allUnits = (if(isMultiplayer)then{playableUnits}else{switchableUnits});
+	_allUnits = allUnits;
 	{
 		if (isPlayer _x) then
 		{
