@@ -11,4 +11,4 @@ if ((TF_tangent_sw_pressed) and {alive player}) then {
 		TF_tangent_sw_pressed = false;
 	};
 };
-true
+false
