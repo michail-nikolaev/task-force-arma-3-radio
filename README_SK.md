@@ -8,7 +8,7 @@ _v0.9.1 (2014-05-05)_
 
 ###Inštalácia
 
-* Stiahnite si a rozbaľte [0.9.0. radio archív](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.9.0.zip).
+* Stiahnite si a rozbaľte [0.9.1. radio archív](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.9.1.zip).
 * Skopírujte `TeamSpeak 3 Client` obsah adresára do hlavného adresára s nainštalovaným TeamSpeak klientom.
 * Skopírujte `Arma 3` obsah adresára do `...\SteamApps\common\Arma 3 adresára`.    
 
