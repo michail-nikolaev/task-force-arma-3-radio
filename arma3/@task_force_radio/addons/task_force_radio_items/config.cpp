@@ -8,9 +8,9 @@ class CfgPatches
 		requiredAddons[] = {"A3_Modules_F", "A3_UI_F", "A3_Structures_F_Items_Electronics"};
 		author[] = {"[TF]Nkey"};
 		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
-		version = 0.9.1;
-		versionStr = "0.9.1";
-		versionAr[] = {0,9,1};
+		version = 0.9.2;
+		versionStr = "0.9.2;
+		versionAr[] = {0,9,2};
 	};
 };
 
@@ -126,7 +126,8 @@ class CfgFontFamilies
 };
 
 class CfgVehicles {
-	class Bag_Base
+	class ReammoBox;
+	class Bag_Base: ReammoBox
 	{
 		tf_hasLRradio = 0;
 		tf_encryptionCode = "";		

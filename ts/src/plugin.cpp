@@ -38,11 +38,11 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-#define PLUGIN_API_VERSION 20
-//#define PLUGIN_API_VERSION 19
+//#define PLUGIN_API_VERSION 20
+#define PLUGIN_API_VERSION 19
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -58,7 +58,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.1"
+#define PLUGIN_VERSION "0.9.2"
 #define CANT_SPEAK_DISTANCE 5
 
 #define UPDATE_URL L"raw.github.com"
@@ -816,7 +816,7 @@ void setMetaData(std::string data)
 	else
 	{
 		std::string to_set;
-		std::string sharedMsg = "123<TFAR>123123</TFAR>213123";
+		std::string sharedMsg = clientInfo;
 		if (sharedMsg.find(START_DATA) == std::string::npos || sharedMsg.find(END_DATA) == std::string::npos)
 		{
 			to_set = to_set + START_DATA + data + END_DATA;
@@ -2276,20 +2276,22 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 }
 
 void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, int* edited) {
-	if (*edited & 2)
-	{
-		anyID myId = getMyId(serverConnectionHandlerID);
-		EnterCriticalSection(&serverDataCriticalSection);
-		if (serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier != 1.0f)
+	if (inGame) {
+		if (*edited & 2)
 		{
-			bool alive = serverIdToData[serverConnectionHandlerID].alive;
-			if (hasClientData(serverConnectionHandlerID, myId) && alive)
+			anyID myId = getMyId(serverConnectionHandlerID);
+			EnterCriticalSection(&serverDataCriticalSection);
+			if (serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier != 1.0f)
 			{
-				applyGain(samples, channels, sampleCount, serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier);
-			}			
+				bool alive = serverIdToData[serverConnectionHandlerID].alive;
+				if (hasClientData(serverConnectionHandlerID, myId) && alive)
+				{
+					applyGain(samples, channels, sampleCount, serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier);
+				}
+			}
+			LeaveCriticalSection(&serverDataCriticalSection);
+			*edited |= 1;
 		}
-		LeaveCriticalSection(&serverDataCriticalSection);
-		*edited |= 1;
 	}
 }
 
