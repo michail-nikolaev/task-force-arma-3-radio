@@ -9,7 +9,7 @@ class CfgPatches
 		author[] = {"[TF]Nkey"};
 		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
 		version = 0.9.2;
-		versionStr = "0.9.2;
+		versionStr = "0.9.2";
 		versionAr[] = {0,9,2};
 	};
 };
