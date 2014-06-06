@@ -1366,6 +1366,30 @@ std::string processGameCommand(std::string command)
 		}
 		return "OK";
 	}
+	else if (tokens.size() == 2 && tokens[0] == "IS_SPEAKING")
+	{
+		std::string nickname = tokens[1];
+		EnterCriticalSection(&serverDataCriticalSection);
+		anyID playerId = anyID(-1);
+		bool clientTalkingOnRadio = false;
+		if (serverIdToData.count(currentServerConnectionHandlerID))
+		{
+			CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+			if (clientData)
+			{
+				playerId = clientData->clientId;
+				clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;
+			}
+		}
+		LeaveCriticalSection(&serverDataCriticalSection);
+
+		if (playerId != anyID(-1)) {
+			if (isTalking(currentServerConnectionHandlerID, getMyId(currentServerConnectionHandlerID), playerId) || clientTalkingOnRadio) {
+				return "SPEAKING";
+			}
+		}
+		return  "NOT_SPEAKING";
+	}
 	return "FAIL";
 }
 
