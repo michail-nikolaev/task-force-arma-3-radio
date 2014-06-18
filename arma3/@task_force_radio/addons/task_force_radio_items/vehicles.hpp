@@ -51,12 +51,12 @@ class Car:LandVehicle
 {
 	tf_isolatedAmount = 0.1;
 };
-class Wheeled_Apc:Car
+class Car_F;
+class Wheeled_Apc_F: Car_F
 {
 	tf_hasLRradio = 1;
 	tf_isolatedAmount = 0.6;
 };
-class Car_F;
 class MRAP_01_base_F: Car_F
 {
 	tf_hasLRradio = 1;
