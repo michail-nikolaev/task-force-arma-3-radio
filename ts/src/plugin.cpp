@@ -38,6 +38,9 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
+//#define PLUGIN_API_VERSION 20
+#define PLUGIN_API_VERSION 19
+
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
@@ -58,7 +61,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.0"
+#define PLUGIN_VERSION "0.9.2"
 #define CANT_SPEAK_DISTANCE 5
 
 #define UPDATE_URL L"raw.github.com"
@@ -816,7 +819,7 @@ void setMetaData(std::string data)
 	else
 	{
 		std::string to_set;
-		std::string sharedMsg = "123<TFAR>123123</TFAR>213123";
+		std::string sharedMsg = clientInfo;
 		if (sharedMsg.find(START_DATA) == std::string::npos || sharedMsg.find(END_DATA) == std::string::npos)
 		{
 			to_set = to_set + START_DATA + data + END_DATA;
@@ -1366,6 +1369,30 @@ std::string processGameCommand(std::string command)
 		}
 		return "OK";
 	}
+	else if (tokens.size() == 2 && tokens[0] == "IS_SPEAKING")
+	{
+		std::string nickname = tokens[1];
+		EnterCriticalSection(&serverDataCriticalSection);
+		anyID playerId = anyID(-1);
+		bool clientTalkingOnRadio = false;
+		if (serverIdToData.count(currentServerConnectionHandlerID))
+		{
+			CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+			if (clientData)
+			{
+				playerId = clientData->clientId;
+				clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;
+			}
+		}
+		LeaveCriticalSection(&serverDataCriticalSection);
+
+		if (playerId != anyID(-1)) {
+			if (isTalking(currentServerConnectionHandlerID, getMyId(currentServerConnectionHandlerID), playerId) || clientTalkingOnRadio) {
+				return "SPEAKING";
+			}
+		}
+		return  "NOT_SPEAKING";
+	}
 	return "FAIL";
 }
 
@@ -1389,7 +1416,7 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 			CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[*it];
 			serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);
 			log_string(std::string("Expire position of ") + *it + " time:" + std::to_string(time - data->positionTime), LogLevel_DEBUG);
-			delete data;			
+			delete data;
 		}
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
@@ -1551,7 +1578,6 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 #define _strcpy(dest, destSize, src) { strncpy(dest, src, destSize-1); (dest)[destSize-1] = '\0'; }
 #endif
 
-#define PLUGIN_API_VERSION 20
 
 #define INFODATA_BUFSIZE 512
 
@@ -1979,7 +2005,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 			samples[i + j] = newValue;
 		}	
 	}
-	delete buffer;
+	delete[] buffer;
 }
 
 template<class T>
@@ -2269,7 +2295,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 			}
 			else 
 			{
-				if (!alive & inGame & isPluginEnabledForUser(serverConnectionHandlerID, clientID))
+				if (!alive && inGame && isPluginEnabledForUser(serverConnectionHandlerID, clientID))
 					stereoToMonoDSP(samples, channels, sampleCount, *channelFillMask); // dead player hears other dead players in serious mode			
 				else 
 					applyGain(samples, channels, sampleCount, 0.0f); // alive player hears only alive players in serious mode
@@ -2291,20 +2317,22 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 }
 
 void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, int* edited) {
-	if (*edited & 2)
-	{
-		anyID myId = getMyId(serverConnectionHandlerID);
-		EnterCriticalSection(&serverDataCriticalSection);
-		if (serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier != 1.0f)
+	if (inGame) {
+		if (*edited & 2)
 		{
-			bool alive = serverIdToData[serverConnectionHandlerID].alive;
-			if (hasClientData(serverConnectionHandlerID, myId) && alive)
+			anyID myId = getMyId(serverConnectionHandlerID);
+			EnterCriticalSection(&serverDataCriticalSection);
+			if (serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier != 1.0f)
 			{
-				applyGain(samples, channels, sampleCount, serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier);
-			}			
+				bool alive = serverIdToData[serverConnectionHandlerID].alive;
+				if (hasClientData(serverConnectionHandlerID, myId) && alive)
+				{
+					applyGain(samples, channels, sampleCount, serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier);
+				}
+			}
+			LeaveCriticalSection(&serverDataCriticalSection);
+			*edited |= 1;
 		}
-		LeaveCriticalSection(&serverDataCriticalSection);
-		*edited |= 1;
 	}
 }
 

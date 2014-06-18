@@ -5,12 +5,31 @@ class CfgPatches
 		units[] = {"tfar_ModuleTaskForceRadioEnforceUsage", "tfar_ModuleTaskForceRadio", "tfar_ModuleTaskForceRadioFrequencies"};
 		weapons[] = {};
 		requiredVersion = 1.0;
-		requiredAddons[] = {"A3_Modules_F", "A3_Structures_F_Items_Electronics"};
+		requiredAddons[] = {"A3_Modules_F", "A3_UI_F", "A3_Structures_F_Items_Electronics"};
 		author[] = {"[TF]Nkey"};
 		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
-		version = 0.9.0;
-		versionStr = "0.9.0";
-		versionAr[] = {0,9,0};
+		version = 0.9.2;
+		versionStr = "0.9.2";
+		versionAr[] = {0,9,2};
+	};
+};
+
+class RscStandardDisplay;
+class RscControlsGroupNoScrollbars;
+class RscHTML;
+class RscDisplayMain: RscStandardDisplay {
+	onLoad = "[""onLoad"",_this,""RscDisplayMain"",'GUI'] call compile preprocessfilelinenumbers ""A3\ui_f\scripts\initDisplay.sqf"";_uriOffline = ""a3\Ui_f\data\news.html""; _uri = ""http://radio.task-force.ru/feed/index.php?language="" + language; _ctrlHTML = (_this select 0) displayCtrl 12314; _ctrlHTML htmlLoad _uri; _htmlLoaded = ctrlHTMLLoaded _ctrlHTML; if (!_htmlLoaded) then { _ctrlHTML htmlLoad _uriOffline; uinamespace setvariable [""BIS_fnc_guiNewsfeed_disable"",true]; };";
+	class controls {
+		class News: RscControlsGroupNoScrollbars
+		{
+			class controls
+			{
+				class NewsText: RscHTML
+				{
+					idc = 12314;
+				};
+			};
+		};
 	};
 };
 
@@ -107,7 +126,8 @@ class CfgFontFamilies
 };
 
 class CfgVehicles {
-	class Bag_Base
+	class ReammoBox;
+	class Bag_Base: ReammoBox
 	{
 		tf_hasLRradio = 0;
 		tf_encryptionCode = "";		

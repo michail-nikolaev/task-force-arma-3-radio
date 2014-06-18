@@ -43,7 +43,7 @@ TF_Radio_Count = [];
 
 while {true} do {		
 	call TFAR_fnc_processGroupFrequencySettings;
-	_allUnits = (if(isMultiplayer)then{playableUnits}else{switchableUnits});
+	_allUnits = allUnits;
 	{
 		if (isPlayer _x) then
 		{
@@ -61,7 +61,7 @@ while {true} do {
 						_radio = _x;
 						if !(_radio call TFAR_fnc_isPrototypeRadio) then
 						{
-							_radio = inheritsFrom (configFile >> "CfgWeapons" >> _radio);
+							_radio = configname inheritsFrom (configFile >> "CfgWeapons" >> _radio);
 						};
 						_count = -1;
 						{

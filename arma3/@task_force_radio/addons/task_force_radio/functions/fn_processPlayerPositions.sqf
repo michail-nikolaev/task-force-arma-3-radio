@@ -26,7 +26,7 @@ if !(isNull player) then {
 			tf_nearPlayers = call TFAR_fnc_getNearPlayers;
 		};
 
-		_other_units = (if(isMultiplayer)then{playableUnits}else{switchableUnits}) - tf_nearPlayers;
+		_other_units = allUnits - tf_nearPlayers;
 
 		tf_farPlayers = [];
 		tf_farPlayersIndex = 0;	

@@ -4,7 +4,7 @@
 		<Container ID="A3RU_MissionInformation">
 			<Key ID="STR_different_version">
 				<Original>
-					Different version of Task Force Radio are used. Server version: %1, Your version: %2
+					Different version of Task Force Radio detected. Server version: %1, Your version: %2
 				</Original>
 				<Russian>
 					Несовпадение версий Task Force Radio. Версия на сервере: %1, Ваша версия: %2
