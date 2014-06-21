@@ -2,7 +2,7 @@ class CfgPatches
 {
 	class task_force_radio_items
 	{
-		units[] = {"tfar_ModuleTaskForceRadioEnforceUsage", "tfar_ModuleTaskForceRadio", "tfar_ModuleTaskForceRadioFrequencies"};
+		units[] = {"tfar_ModuleTaskForceRadioEnforceUsage", "tfar_ModuleTaskForceRadio", "tfar_ModuleTaskForceRadioFrequencies", "TF_NATO_Radio_Crate", "TF_EAST_Radio_Crate", "TF_IND_Radio_Crate"};
 		weapons[] = {};
 		requiredVersion = 1.0;
 		requiredAddons[] = {"A3_Modules_F", "A3_UI_F", "A3_Structures_F_Items_Electronics"};
