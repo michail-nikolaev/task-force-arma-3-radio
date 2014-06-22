@@ -9,7 +9,7 @@
  	
  	Parameters:
 		0: STRING - radio classname
-		1: OBJECT - owner
+		1: STRING - UID of owner
  	
  	Returns:
 		Nothing

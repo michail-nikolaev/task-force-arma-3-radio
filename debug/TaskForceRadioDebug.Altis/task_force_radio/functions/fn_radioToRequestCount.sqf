@@ -41,9 +41,9 @@ TF_settingsToCopy = [];
         _to_remove set[(count _to_remove), _x];
         TF_first_radio_request = true;
     };
-    if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != player) or _allRadios}) then {
-		if (isNull(_x call TFAR_fnc_getRadioOwner)) then {
-			[_x, player] call TFAR_fnc_setRadioOwner;
+    if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios}) then {
+		if ((_x call TFAR_fnc_getRadioOwner) == "") then {
+			[_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
 		} else {
 			_to_remove set[(count _to_remove), _x];
 			TF_settingsToCopy set [0, _x];
@@ -55,9 +55,9 @@ TF_settingsToCopy = [];
     if (_x call TFAR_fnc_isPrototypeRadio) then {
         _to_remove set[(count _to_remove), _x];
     };
-    if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != player) or _allRadios}) then{
-		if (isNull(_x call TFAR_fnc_getRadioOwner)) then {
-			[_x, player] call TFAR_fnc_setRadioOwner;
+    if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios}) then{
+		if ((_x call TFAR_fnc_getRadioOwner) == "") then {
+			[_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
 		} else {
 			_to_remove set[(count _to_remove), _x];
 			TF_settingsToCopy set [count TF_settingsToCopy, _x];
