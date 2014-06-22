@@ -2253,7 +2253,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 					} 
 					else
 					{
-						applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * (1.0f - vehicleVolumeLoss));
+						applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * (1.0f - volumeMultiplifier(vehicleVolumeLoss)));
 					}
 					if (sw_buffer)
 					{
@@ -2274,7 +2274,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 				else 
 				{										
 					if (shouldPlayerHear)
-						applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * (1.0f - vehicleVolumeLoss));
+						applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * (1.0f - volumeMultiplifier(vehicleVolumeLoss)));
 					else
 					{						
 						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * CANT_SPEAK_GAIN, &(data->filterCantSpeak));
