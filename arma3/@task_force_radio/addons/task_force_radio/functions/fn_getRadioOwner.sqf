@@ -11,7 +11,7 @@
 		STRING - radio classname
  	
  	Returns:
-		OBJECT - Owner of radio
+		STRING - UID of owner of radio
  	
  	Example:
 		_owner = (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getRadioOwner;
