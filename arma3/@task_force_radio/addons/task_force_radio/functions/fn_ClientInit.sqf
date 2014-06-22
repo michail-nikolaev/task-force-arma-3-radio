@@ -268,14 +268,14 @@ player addEventHandler ["Take", {
     private "_class";
     _class = ConfigFile >> "CfgWeapons" >> (_this select 2);
     if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
-		[(_this select 2),player] call TFAR_fnc_setRadioOwner;
+		[(_this select 2),getPlayerUID player] call TFAR_fnc_setRadioOwner;
     };
 }];
 player addEventHandler ["Put", {
     private "_class";
     _class = ConfigFile >> "CfgWeapons" >> (_this select 2);
     if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
-		[(_this select 2),objNull] call TFAR_fnc_setRadioOwner;
+		[(_this select 2),""] call TFAR_fnc_setRadioOwner;
     };
 }];
 
