@@ -88,7 +88,7 @@ if (isNil "TF_give_personal_radio_to_regular_soldier") then {
 waitUntil {sleep 0.1;!(isNull player)};
 titleText [localize ("STR_init"), "PLAIN"];
 
-#include "define.h"
+#include "\task_force_radio\define.h"
 
 #include "script.h"
 
@@ -257,13 +257,13 @@ tf_msSpectatorPerStepMax = 0.035;
 	[TF_tangent_additional_lr_scancode, TF_tangent_additional_lr_modifiers, {call TFAR_fnc_onAdditionalLRTangentPressed}, "keydown", "35"] call CBA_fnc_addKeyHandler;
 	[TF_tangent_additional_lr_scancode, TF_tangent_additional_lr_modifiers, {call TFAR_fnc_onAdditionalLRTangentReleased}, "keyup", "_35"] call CBA_fnc_addKeyHandler;
 	
-	// Used for test mission in editor
-	//if (isMultiplayer) then {
+	
+	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
 
 		player addMPEventHandler ["MPKilled", {(_this select 0) call TFAR_fnc_sendPlayerKilled}];
-	//};
+	};
 };
 
 TF_first_radio_request = true;
@@ -271,6 +271,20 @@ TF_last_request_time = 0;
 
 player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 player addEventHandler ["killed", {TF_use_saved_sw_setting = true; TF_use_saved_lr_setting = true; TF_first_radio_request = true;}];
+player addEventHandler ["Take", {
+    private "_class";
+    _class = ConfigFile >> "CfgWeapons" >> (_this select 2);
+    if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+		[(_this select 2),getPlayerUID player] call TFAR_fnc_setRadioOwner;
+    };
+}];
+player addEventHandler ["Put", {
+    private "_class";
+    _class = ConfigFile >> "CfgWeapons" >> (_this select 2);
+    if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+		[(_this select 2),""] call TFAR_fnc_setRadioOwner;
+    };
+}];
 
 [] spawn {
 	call TFAR_fnc_processRespawn;
