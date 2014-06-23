@@ -18,12 +18,23 @@
  	Example:
 		spawn TFAR_fnc_requestRadios;
 */
-private ["_radiosToRequest", "_variableName", "_responseVariableName", "_response"];
+private ["_radiosToRequest", "_variableName", "_responseVariableName", "_response", "_fnc_CopySettings"];
+
+_fnc_CopySettings = {
+	if ((_this select 0) > (_this select 1)) then {
+		if ([(_this select 2), TF_settingsToCopy select (_this select 1)] call TFAR_fnc_isSameRadio) then {
+			[TF_settingsToCopy select (_this select 1),(_this select 2)] call TFAR_fnc_CopySettings;
+			_copyIndex = _copyIndex + 1;
+		};
+	};
+	((_this select 1) + 1)
+};
 
 waitUntil {
 	if (!TF_radio_request_mutex) exitWith {TF_radio_request_mutex = true; true};
 	false;
 };
+
 if (time - TF_last_request_time > 3) then {
 	TF_last_request_time = time;
 	_variableName = "radio_request_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
@@ -40,29 +51,22 @@ if (time - TF_last_request_time > 3) then {
 		private "_copyIndex";
 		_copyIndex = 0;
 		if ((typename _response) == "ARRAY") then {
-			private "_radioCount";
+			private ["_radioCount","_settingsCount", "_startIndex"];
 			_radioCount = count _response;
+			_settingsCount = count TF_SettingsToCopy;
+			_startIndex = 0;
 			if (_radioCount > 0) then {
 				if (TF_first_radio_request) then {
 					TF_first_radio_request = false;
 					player linkItem (_response select 0);
-					if (count TF_settingsToCopy > _copyIndex) then {
-						if ([(_response select 0), TF_settingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
-							[TF_settingsToCopy select _copyIndex,(_response select 0)] call TFAR_fnc_CopySettings;
-							_copyIndex = _copyIndex + 1;
-						};
-					};
+					_copyIndex = [_settingsCount, _copyIndex, (_response select 0)] call _fnc_CopySettings;
 					[(_response select 0),getPlayerUID player] call TFAR_fnc_setRadioOwner;
+					_startIndex = 1;
 				};
 				_radioCount = _radioCount - 1;
-				for "_index" from 1 to _radioCount do {
+				for "_index" from _startIndex to _radioCount do {
 					player addItem (_response select _index);
-					if (count TF_settingsToCopy > _copyIndex) then {
-						if ([(_response select _index), TF_settingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
-							[TF_settingsToCopy select _copyIndex,(_response select _index)] call TFAR_fnc_CopySettings;
-							_copyIndex = _copyIndex + 1;
-						};
-					};
+					_copyIndex = [_settingsCount, _copyIndex, (_response select _index)] call _fnc_CopySettings;
 					[(_response select _index),getPlayerUID player] call TFAR_fnc_setRadioOwner;
 				};
 				TF_settingsToCopy = [];

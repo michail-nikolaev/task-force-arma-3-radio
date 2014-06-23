@@ -40,29 +40,31 @@ TF_settingsToCopy = [];
     if (_x call TFAR_fnc_isPrototypeRadio) then {
         _to_remove set[(count _to_remove), _x];
         TF_first_radio_request = true;
-    };
-    if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios}) then {
-		if ((_x call TFAR_fnc_getRadioOwner) == "") then {
-			[_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
-		} else {
-			_to_remove set[(count _to_remove), _x];
-			TF_settingsToCopy set [0, _x];
-			TF_first_radio_request = true;
+    } else {
+		if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios}) then {
+			if ((_x call TFAR_fnc_getRadioOwner) == "") then {
+				[_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
+			} else {
+				_to_remove set[(count _to_remove), _x];
+				TF_settingsToCopy set [0, _x];
+				TF_first_radio_request = true;
+			};
 		};
-    };
+	};
 } count (assignedItems player);
 {
     if (_x call TFAR_fnc_isPrototypeRadio) then {
         _to_remove set[(count _to_remove), _x];
-    };
-    if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios}) then{
-		if ((_x call TFAR_fnc_getRadioOwner) == "") then {
-			[_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
-		} else {
-			_to_remove set[(count _to_remove), _x];
-			TF_settingsToCopy set [count TF_settingsToCopy, _x];
+    } else {
+		if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios}) then{
+			if ((_x call TFAR_fnc_getRadioOwner) == "") then {
+				[_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
+			} else {
+				_to_remove set[(count _to_remove), _x];
+				TF_settingsToCopy set [count TF_settingsToCopy, _x];
+			};
 		};
-    };
+	};
 } count (items player);
 
 {
