@@ -23,4 +23,4 @@ if (!(TF_tangent_sw_pressed) and {alive player} and {call TFAR_fnc_haveSWRadio})
 		};
 	};
 };
-true
+false

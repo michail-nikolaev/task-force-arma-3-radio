@@ -3,11 +3,10 @@ _players_in_group = count (units (group player));
 _result = [];
 if (alive player) then {
 	private "_allUnits";
-	_allUnits = (if(isMultiplayer)then{playableUnits}else{switchableUnits});
+	_allUnits = allUnits;
 	_index = 0;
 	{			
-		//if (isPlayer _x) then {
-		if (true) then {
+		if (isPlayer _x) then {
 			_spectator = _x getVariable "tf_forceSpectator";
 			if (isNil "_spectator") then {
 				_spectator = false;

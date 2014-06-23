@@ -51,8 +51,7 @@ class background: RscBackPicture
 };
 class channel_edit: RscEditLCD
 {
-	idc = IDC_ANPRC155_CHANNEL_EDIT;
-	text = $STR_A3_anprc155_channel_edit155;
+	idc = IDC_ANPRC155_CHANNEL_EDIT;	
 	x = 0.330031 * safezoneW + safezoneX;
 	y = 0.341765 * safezoneH + safezoneY;
 	w = 0.0485625 * safezoneW;
@@ -64,8 +63,7 @@ class channel_edit: RscEditLCD
 };
 class edit: RscEditLCD
 {
-	idc = IDC_ANPRC155_EDIT;
-	text = $STR_A3_anprc155_edit155;
+	idc = IDC_ANPRC155_EDIT;	
 	x = 0.37225 * safezoneW + safezoneX;
 	y = 0.341765 * safezoneH + safezoneY;
 	w = 0.0552813 * safezoneW;

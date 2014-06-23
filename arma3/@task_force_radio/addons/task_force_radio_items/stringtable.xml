@@ -101,17 +101,6 @@
 					Fuerza el uso de TFAR en la misión.
 				</Spanish>
 			</Key>
-			<Key ID="STR_TFAR_Mod_SideRadio">
-				<Original>
-					TFAR - Side Radio
-				</Original>
-				<Russian>
-					TFAR - Рации стороны
-				</Russian>
-				<Spanish>
-					TFAR - Radio del bando
-				</Spanish>
-			</Key>
 			<Key ID="STR_TFAR_Mod_EncryptionCode">
 				<Original>
 					Encryption Code
