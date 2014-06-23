@@ -146,6 +146,9 @@ class CfgFunctions
 			class ProcessTangent{};
 			class getDefaultRadioClasses{};
 			class isSpeaking{};
+			class setRadioOwner{};
+			class getRadioOwner{};
+			class isSameRadio{};
 		};
 	};
 };

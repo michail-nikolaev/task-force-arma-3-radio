@@ -12,13 +12,13 @@
 		OPTIONAL: BOOLEAN - false to generate settings without generating frequencies.
  	
  	Returns:
-		ARRAY: Settings [0: NUMBER - Active channel, 1: NUMBER - Volume, 2: ARRAY - Frequencies for channels, 3: NUMBER - Stereo setting, 4: STRING - Encryption code, 5: NUMBER - Additional active channel, 6: NUMBER - Additional active channel stereo mode]
+		ARRAY: Settings [0: NUMBER - Active channel, 1: NUMBER - Volume, 2: ARRAY - Frequencies for channels, 3: NUMBER - Stereo setting, 4: STRING - Encryption code, 5: NUMBER - Additional active channel, 6: NUMBER - Additional active channel stereo mode, 7: OBJECT - Owner]
  	
  	Example:
 		_settings = call TFAR_fnc_generateSwSettings;
 */
 private ["_sw_frequencies", "_sw_settings", "_set"];
-_sw_settings = [0, 7, [], 0, nil, -1, 0];
+_sw_settings = [0, 7, [], 0, nil, -1, 0, objNull];
 _set = false;
 _sw_frequencies = [];
 
