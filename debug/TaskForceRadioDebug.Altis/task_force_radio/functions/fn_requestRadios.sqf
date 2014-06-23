@@ -3,6 +3,7 @@
  	
  	Author(s):
 		NKey
+		L-H
 
  	Description:
 		Checks whether the player needs to have radios converted to "instanced" versions,
@@ -35,23 +36,39 @@ if (time - TF_last_request_time > 3) then {
 		publicVariableServer _variableName;
 		titleText [localize ("STR_wait_radio"), "PLAIN"];
 		waitUntil {!(isNil _responseVariableName)};
-		_response = missionNamespace getVariable _responseVariableName;	
+		_response = missionNamespace getVariable _responseVariableName;
 		private "_copyIndex";
 		_copyIndex = 0;
-		{
-			player addItem _x;
-			if (count TF_settingsToCopy > _copyIndex) then {
-				if ([_x, TF_settingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
-					[TF_settingsToCopy select _copyIndex,_x] call TFAR_fnc_CopySettings;
-					_copyIndex = _copyIndex + 1;
+		if ((typename _response) == "ARRAY") then {
+			private "_radioCount";
+			_radioCount = count _response;
+			if (_radioCount > 0) then {
+				if (TF_first_radio_request) then {
+					TF_first_radio_request = false;
+					player linkItem (_response select 0);
+					if (count TF_settingsToCopy > _copyIndex) then {
+						if ([(_response select 0), TF_settingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
+							[TF_settingsToCopy select _copyIndex,(_response select 0)] call TFAR_fnc_CopySettings;
+							_copyIndex = _copyIndex + 1;
+						};
+					};
+					[(_response select 0),getPlayerUID player] call TFAR_fnc_setRadioOwner;
 				};
+				_radioCount = _radioCount - 1;
+				for "_index" from 1 to _radioCount do {
+					player addItem (_response select _index);
+					if (count TF_settingsToCopy > _copyIndex) then {
+						if ([(_response select _index), TF_settingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
+							[TF_settingsToCopy select _copyIndex,(_response select _index)] call TFAR_fnc_CopySettings;
+							_copyIndex = _copyIndex + 1;
+						};
+					};
+					[(_response select _index),getPlayerUID player] call TFAR_fnc_setRadioOwner;
+				};
+				TF_settingsToCopy = [];
 			};
-			[_x,getPlayerUID player] call TFAR_fnc_setRadioOwner;
-		} count _response;
-		TF_settingsToCopy = [];
-		if ((count _response > 0) and (TF_first_radio_request)) then {
-			TF_first_radio_request = false;
-			player assignItem (_response select 0);
+		}else{
+			hintC _response;
 		};
 		titleText ["", "PLAIN"];
 	};

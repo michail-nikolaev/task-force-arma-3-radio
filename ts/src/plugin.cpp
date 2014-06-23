@@ -38,6 +38,9 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
+//#define PLUGIN_API_VERSION 20
+#define PLUGIN_API_VERSION 19
+
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
@@ -48,6 +51,9 @@ static float* floatsSample[MAX_CHANNELS];
 #define DD_MIN_DISTANCE 70
 #define DD_MAX_DISTANCE 300
 
+#define ISOLATED_CUTOFF 0.75f
+#define ISOLATED_EFFECTS_START 0.5f
+
 inline float sq(float x) {return x * x;}
 
 float distance(TS3_VECTOR from, TS3_VECTOR to)
@@ -55,7 +61,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.0"
+#define PLUGIN_VERSION "0.9.2"
 #define CANT_SPEAK_DISTANCE 5
 
 #define UPDATE_URL L"raw.github.com"
@@ -813,7 +819,7 @@ void setMetaData(std::string data)
 	else
 	{
 		std::string to_set;
-		std::string sharedMsg = "123<TFAR>123123</TFAR>213123";
+		std::string sharedMsg = clientInfo;
 		if (sharedMsg.find(START_DATA) == std::string::npos || sharedMsg.find(END_DATA) == std::string::npos)
 		{
 			to_set = to_set + START_DATA + data + END_DATA;
@@ -1363,6 +1369,30 @@ std::string processGameCommand(std::string command)
 		}
 		return "OK";
 	}
+	else if (tokens.size() == 2 && tokens[0] == "IS_SPEAKING")
+	{
+		std::string nickname = tokens[1];
+		EnterCriticalSection(&serverDataCriticalSection);
+		anyID playerId = anyID(-1);
+		bool clientTalkingOnRadio = false;
+		if (serverIdToData.count(currentServerConnectionHandlerID))
+		{
+			CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+			if (clientData)
+			{
+				playerId = clientData->clientId;
+				clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;
+			}
+		}
+		LeaveCriticalSection(&serverDataCriticalSection);
+
+		if (playerId != anyID(-1)) {
+			if (isTalking(currentServerConnectionHandlerID, getMyId(currentServerConnectionHandlerID), playerId) || clientTalkingOnRadio) {
+				return "SPEAKING";
+			}
+		}
+		return  "NOT_SPEAKING";
+	}
 	return "FAIL";
 }
 
@@ -1386,7 +1416,7 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 			CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[*it];
 			serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);
 			log_string(std::string("Expire position of ") + *it + " time:" + std::to_string(time - data->positionTime), LogLevel_DEBUG);
-			delete data;			
+			delete data;
 		}
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
@@ -1548,7 +1578,6 @@ DWORD WINAPI PipeThread( LPVOID lpParam )
 #define _strcpy(dest, destSize, src) { strncpy(dest, src, destSize-1); (dest)[destSize-1] = '\0'; }
 #endif
 
-#define PLUGIN_API_VERSION 20
 
 #define INFODATA_BUFSIZE 512
 
@@ -1595,6 +1624,9 @@ void ts3plugin_setFunctionPointers(const struct TS3Functions funcs) {
  * If the function returns 1 on failure, the plugin will be unloaded again.
  */
 int ts3plugin_init() {    
+#ifdef _WIN64
+	_set_FMA3_enable(0);
+#endif
 	ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE);
 
 	InitializeCriticalSection(&serverDataCriticalSection);
@@ -1973,7 +2005,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 			samples[i + j] = newValue;
 		}	
 	}
-	delete buffer;
+	delete[] buffer;
 }
 
 template<class T>
@@ -2110,18 +2142,23 @@ float volumeMultiplifier(float volumeValue)
 	return pow(normalized, 4);
 }
 
-std::pair<std::string, bool> getVehicleDescriptor(std::string vechicleId) {
-	std::pair<std::string, bool> result;
+std::pair<std::string, float> getVehicleDescriptor(std::string vechicleId) {
+	std::pair<std::string, float> result;
 	result.first == ""; // hear vehicle
-	result.second = false; // hear 
+	result.second = 0.0f; // hear 
 
-	if (vechicleId == "no" || (vechicleId.find("_turnout") != std::string::npos)) {
-		result.second = true; 
-	}
 	if (vechicleId.find("_turnout") != std::string::npos) {
 		result.first = vechicleId.substr(0, vechicleId.find("_turnout"));
 	} else {
-		result.first = vechicleId;
+		if (vechicleId.find_last_of("_") != std::string::npos)
+		{
+			result.first = vechicleId.substr(0,vechicleId.find_last_of("_"));
+			result.second = std::stof(vechicleId.substr(vechicleId.find_last_of("_")+1));
+		}
+		else
+		{
+			result.first = vechicleId;
+		}
 	}
 	return result;
 }
@@ -2138,6 +2175,11 @@ void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples,
 			samples[channels * q + 1] = (short) right;
 		}
 	}
+}
+
+inline float clamp(float x, float a, float b)
+{
+	return x < a ? a : (x > b ? b : x);
 }
 
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {	
@@ -2164,11 +2206,15 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 				LISTED_INFO listed_info = isOverRadio(serverConnectionHandlerID, data, myData, false, false, false);								
 				bool shouldPlayerHear = (data->canSpeak && canSpeak);				
 				
-				
-				std::pair<std::string, bool> myVehicleDesriptor = getVehicleDescriptor(myData->vehicleId);
-				std::pair<std::string, bool> hisVehicleDesriptor = getVehicleDescriptor(data->vehicleId);
+				std::pair<std::string, float> myVehicleDesriptor = getVehicleDescriptor(myData->vehicleId);
+				std::pair<std::string, float> hisVehicleDesriptor = getVehicleDescriptor(data->vehicleId);
 
-				bool vehicleCheck = (myVehicleDesriptor.first == hisVehicleDesriptor.first) || (myVehicleDesriptor.second && hisVehicleDesriptor.second);
+				const float vehicleVolumeLoss = clamp(myVehicleDesriptor.second + hisVehicleDesriptor.second, 0.0f, 1.0f);
+				bool vehicleCheck = (myVehicleDesriptor.first == hisVehicleDesriptor.first) || (vehicleVolumeLoss < ISOLATED_CUTOFF);
+				// Will need to include filtering if (vehicleVolumeLoss > ISOLATED_EFFECTS_START && vehicleVolumeLoss < ISOLATED_CUTOFF)
+				// {
+				//		float isolatedEffectAmount = (vehicleVolumeLoss - ISOLATED_EFFECTS_START) / (ISOLATED_CUTOFF - ISOLATED_EFFECTS_START);
+				// }
 				float d = distanceFromClient(serverConnectionHandlerID, data);
 
 				if (listed_info.over != LISTEN_TO_NONE)
@@ -2207,7 +2253,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 					} 
 					else
 					{
-						applyGain(samples, channels, sampleCount, vehicleCheck ? volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) : 0.0f);
+						applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * (1.0f - volumeMultiplifier(vehicleVolumeLoss)));
 					}
 					if (sw_buffer)
 					{
@@ -2228,7 +2274,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 				else 
 				{										
 					if (shouldPlayerHear)
-						applyGain(samples, channels, sampleCount, vehicleCheck ? volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) : 0.0f);
+						applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * (1.0f - volumeMultiplifier(vehicleVolumeLoss)));
 					else
 					{						
 						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * CANT_SPEAK_GAIN, &(data->filterCantSpeak));
@@ -2249,7 +2295,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 			}
 			else 
 			{
-				if (!alive & inGame & isPluginEnabledForUser(serverConnectionHandlerID, clientID))
+				if (!alive && inGame && isPluginEnabledForUser(serverConnectionHandlerID, clientID))
 					stereoToMonoDSP(samples, channels, sampleCount, *channelFillMask); // dead player hears other dead players in serious mode			
 				else 
 					applyGain(samples, channels, sampleCount, 0.0f); // alive player hears only alive players in serious mode
@@ -2271,20 +2317,22 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 }
 
 void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, int* edited) {
-	if (*edited & 2)
-	{
-		anyID myId = getMyId(serverConnectionHandlerID);
-		EnterCriticalSection(&serverDataCriticalSection);
-		if (serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier != 1.0f)
+	if (inGame) {
+		if (*edited & 2)
 		{
-			bool alive = serverIdToData[serverConnectionHandlerID].alive;
-			if (hasClientData(serverConnectionHandlerID, myId) && alive)
+			anyID myId = getMyId(serverConnectionHandlerID);
+			EnterCriticalSection(&serverDataCriticalSection);
+			if (serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier != 1.0f)
 			{
-				applyGain(samples, channels, sampleCount, serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier);
-			}			
+				bool alive = serverIdToData[serverConnectionHandlerID].alive;
+				if (hasClientData(serverConnectionHandlerID, myId) && alive)
+				{
+					applyGain(samples, channels, sampleCount, serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier);
+				}
+			}
+			LeaveCriticalSection(&serverDataCriticalSection);
+			*edited |= 1;
 		}
-		LeaveCriticalSection(&serverDataCriticalSection);
-		*edited |= 1;
 	}
 }
 

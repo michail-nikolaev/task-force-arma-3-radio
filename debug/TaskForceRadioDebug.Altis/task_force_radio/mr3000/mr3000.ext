@@ -233,8 +233,7 @@ class channel_9: HiddenButton
 };
 class edit: RscEditLCD
 {
-	idc = IDC_MR3000_EDIT;
-	text = $STR_A3_mr3000_mr3000_edit;
+	idc = IDC_MR3000_EDIT;	
 	x = 0.472156 * safezoneW + safezoneX;
 	y = 0.43686 * safezoneH + safezoneY;
 	w = 0.0531563 * safezoneW;
@@ -247,8 +246,7 @@ class edit: RscEditLCD
 };
 class channel_edit: RscEditLCD
 {
-	idc = IDC_MR3000_CHANNEL_EDIT;
-	text = $STR_A3_mr3000_mr3000_channel_edit;
+	idc = IDC_MR3000_CHANNEL_EDIT;	
 	x = 0.411828 * safezoneW + safezoneX;
 	y = 0.4373 * safezoneH + safezoneY;
 	w = 0.0479062 * safezoneW;
