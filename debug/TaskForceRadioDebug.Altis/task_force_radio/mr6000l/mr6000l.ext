@@ -86,8 +86,7 @@ class mr6000l_radio_dialog
 	};
 	class edit: RscEditLCD
 	{
-		idc = IDC_MR6000L_EDIT;
-		text = $STR_A3_mr6000l_edit;
+		idc = IDC_MR6000L_EDIT;		
 		x = 0.189421 * safezoneW + safezoneX;
 		y = 0.329491 * safezoneH + safezoneY;
 		w = 0.136717 * safezoneW;

@@ -29,7 +29,7 @@ TFAR_tryResolveFactionClass =
 	private ["_prefix", "_faction", "_result", "_default"];
 	_prefix = _this select 0;
 	_default = _this select 1;
-	_faction = str(faction player);
+	_faction = faction player;
 	_result = missionNamespace getVariable (_faction + "_" + _prefix + "_tf_faction_radio");
 	if (isNil "_result") then {		
 		if (isText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"))) then {

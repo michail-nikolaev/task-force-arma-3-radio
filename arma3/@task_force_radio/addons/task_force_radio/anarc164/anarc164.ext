@@ -50,8 +50,7 @@ class anarc164_radio_dialog
 	};
 	class channel_edit: RscEditLCD
 	{
-		idc = IDC_ANARC164_CHANNEL_EDIT;
-		text = $STR_A3_anarc164_channel_edit;
+		idc = IDC_ANARC164_CHANNEL_EDIT;		
 		x = 0.288078 * safezoneW + safezoneX;
 		y = 0.2382 * safezoneH + safezoneY;
 		w = 0.0324844 * safezoneW;
@@ -67,8 +66,7 @@ class anarc164_radio_dialog
 	};
 	class edit: RscEditLCD
 	{
-		idc = IDC_ANARC164_EDIT;
-		text = $STR_A3_anarc164_edit;
+		idc = IDC_ANARC164_EDIT;		
 		x = 0.201969 * safezoneW + safezoneX;
 		y = 0.3515 * safezoneH + safezoneY;
 		w = 0.0995156 * safezoneW;
