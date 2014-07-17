@@ -1,6 +1,10 @@
 ﻿class task_force_radio_settings {
+	// Server side only
 	tf_no_auto_long_range_radio = 0;
 	TF_give_personal_radio_to_regular_soldier = 0;
+	
+	// Client side
+	tf_default_radioVolume = 7;
 };
 class task_force_radio_keys {
 
