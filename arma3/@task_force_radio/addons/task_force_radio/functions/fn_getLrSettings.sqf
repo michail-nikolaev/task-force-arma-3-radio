@@ -78,7 +78,7 @@ if (isNil "_rc") then {
 	private ["_code", "_hasDefaultEncryption"];
 	_code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
 	_hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
-	if (_hasDefaultEncryption) then {
+	if (_hasDefaultEncryption and {((player call BIS_fnc_objectSide) != civilian)}) then {
 		if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType}) then {
 			_rc = missionNamespace getVariable format ["tf_%1_radio_code",(player call BIS_fnc_objectSide)];
 		}else{
