@@ -17,8 +17,13 @@
  	Example:
 		_settings = call TFAR_fnc_generateLrSettings;
 */
-private ["_lr_frequencies", "_lr_settings", "_set"];
-_lr_settings = [0, getNumber(ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume"), [], 0, nil, -1, 0];
+private ["_lr_frequencies", "_lr_settings", "_set", "_volume"];
+_volume = 7;
+if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")) then {
+	getNumber(ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")
+};
+
+_lr_settings = [0, _volume, [], 0, nil, -1, 0];
 _set = false;
 _lr_frequencies = [];
 if (typename _this == "BOOLEAN") then
