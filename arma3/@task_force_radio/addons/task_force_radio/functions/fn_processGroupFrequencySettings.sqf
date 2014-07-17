@@ -18,10 +18,18 @@
 */
 private ["_group_freq"];
 if (isNil "tf_same_sw_frequencies_for_side") then {
-	tf_same_sw_frequencies_for_side = false;
+	if (!isNil "tf_same_sw_frequencies_for_side_server") then {
+		tf_same_sw_frequencies_for_side = tf_same_sw_frequencies_for_side_server;
+	}else{
+		tf_same_sw_frequencies_for_side = false;
+	};
 };
 if (isNil "tf_same_lr_frequencies_for_side") then {
-	tf_same_lr_frequencies_for_side = true;
+	if (!isNil "tf_same_lr_frequencies_for_side_server") then {
+		tf_same_lr_frequencies_for_side = tf_same_lr_frequencies_for_side_server;
+	}else{
+		tf_same_lr_frequencies_for_side = true;
+	};
 };
 if (isNil "tf_freq_west") then {
 	tf_freq_west = call TFAR_fnc_generateSwSettings;
