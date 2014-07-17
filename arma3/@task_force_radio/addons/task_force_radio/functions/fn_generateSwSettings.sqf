@@ -18,7 +18,7 @@
 		_settings = call TFAR_fnc_generateSwSettings;
 */
 private ["_sw_frequencies", "_sw_settings", "_set"];
-_sw_settings = [0, 7, [], 0, nil, -1, 0, objNull];
+_sw_settings = [0, getNumber(ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume"), [], 0, nil, -1, 0, objNull];
 _set = false;
 _sw_frequencies = [];
 
