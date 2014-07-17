@@ -35,7 +35,18 @@ if (isNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_personal_rad
 	TF_give_personal_radio_to_regular_soldier_server = false;
 };
 publicVariable "TF_give_personal_radio_to_regular_soldier_server";
-
+if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_sw_frequencies_for_side")) then {
+	tf_same_sw_frequencies_for_side_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_sw_frequencies_for_side") == 1;
+} else {
+	tf_same_sw_frequencies_for_side_server = false;
+};
+publicVariable "tf_same_sw_frequencies_for_side_server";
+if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_lr_frequencies_for_side")) then {
+	tf_same_lr_frequencies_for_side_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_lr_frequencies_for_side") == 1;
+} else {
+	tf_same_lr_frequencies_for_side_server = false;
+};
+publicVariable "tf_same_lr_frequencies_for_side_server";
 
 waitUntil {sleep 0.1;time > 0};
 
