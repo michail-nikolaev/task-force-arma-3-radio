@@ -46,7 +46,7 @@ if (isNil "_rc") then
 	private ["_parent", "_code", "_hasDefaultEncryption"];
 	_code = getText (ConfigFile >>  "CfgWeapons" >> _this >> "tf_encryptionCode");
 	_hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
-	if (_hasDefaultEncryption) then {
+	if (_hasDefaultEncryption and {(player call BIS_fnc_objectSide) != civilian}) then {
 		_parent = getText (ConfigFile >> "CfgWeapons" >> _this >> "tf_parent");
 		private "_default";
 		_default = call TFAR_fnc_getDefaultRadioClasses;
