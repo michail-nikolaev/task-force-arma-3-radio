@@ -18,7 +18,7 @@
 		_settings = call TFAR_fnc_generateLrSettings;
 */
 private ["_lr_frequencies", "_lr_settings", "_set"];
-_lr_settings = [0, 7, [], 0, nil, -1, 0];
+_lr_settings = [0, getNumber(ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume"), [], 0, nil, -1, 0];
 _set = false;
 _lr_frequencies = [];
 if (typename _this == "BOOLEAN") then
