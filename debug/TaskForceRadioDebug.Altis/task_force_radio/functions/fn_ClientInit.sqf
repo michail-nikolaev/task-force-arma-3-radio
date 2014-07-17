@@ -270,7 +270,12 @@ TF_first_radio_request = true;
 TF_last_request_time = 0;
 
 player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
-player addEventHandler ["killed", {TF_use_saved_sw_setting = true; TF_use_saved_lr_setting = true; TF_first_radio_request = true;}];
+player addEventHandler ["killed", {
+	TF_use_saved_sw_setting = true;
+	TF_use_saved_lr_setting = true;
+	TF_first_radio_request = true;
+	call TFAR_fnc_HideHint;
+}];
 player addEventHandler ["Take", {
     private "_class";
     _class = ConfigFile >> "CfgWeapons" >> (_this select 2);
