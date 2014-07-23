@@ -4,7 +4,7 @@
 		<Container ID="A3RU_MissionInformation">
 			<Key ID="STR_different_version">
 				<Original>
-					Different version of Task Force Radio detected. Server version: %1, Your version: %2
+					Different version of Task Force Radio are used. Server version: %1, Your version: %2
 				</Original>
 				<Russian>
 					Несовпадение версий Task Force Radio. Версия на сервере: %1, Ваша версия: %2
@@ -18,6 +18,9 @@
 				<Spanish>
 					Estas usando diferentes versiones de Task Force Radio. Versión del servidor : %1, Tu versión : %2
 				</Spanish>
+				<German>
+					Abweichende Task Force Radio-Versionen in Benutzung. Serverversion %1, Deine Version %2
+				</German>
 			</Key>
 			<Key ID="STR_stereo_settings">
 				<Original>
@@ -34,7 +37,10 @@
 				</Italian>	
 				<Spanish>
 					Configuración de stereo
-				</Spanish>			
+				</Spanish>
+				<German>
+					Stereo-Einstellungen
+				</German>			
 			</Key>
 			<Key ID="STR_stereo_settings_0">
 				<Original>
@@ -51,7 +57,10 @@
 				</Italian>
 				<Spanish>
 					Izquierda y derecha
-				</Spanish>			
+				</Spanish>
+				<German>
+					Links und rechts
+				</German>			
 			</Key>
 			<Key ID="STR_stereo_settings_1">
 				<Original>
@@ -68,7 +77,10 @@
 				</Italian>
 				<Spanish>
 					Izquierda solo
-				</Spanish>					
+				</Spanish>
+				<German>
+					Nur links
+				</German>					
 			</Key>
 			<Key ID="STR_stereo_settings_2">
 				<Original>
@@ -85,7 +97,10 @@
 				</Italian>
 				<Spanish>
 					Derecha solo
-				</Spanish>					
+				</Spanish>
+				<German>
+					Nur rechts
+				</German>					
 			</Key>
 			<Key ID="STR_additional_stereo_settings_0">
 				<Original>
@@ -102,7 +117,10 @@
 				</Italian>
 				<Spanish>
 					Adicional: Izquierda y derecha
-				</Spanish>			
+				</Spanish>
+				<German>
+					Zusätzlich: Links und recht
+				</German>			
 			</Key>
 			<Key ID="STR_additional_stereo_settings_1">
 				<Original>
@@ -119,7 +137,10 @@
 				</Italian>
 				<Spanish>
 					Adicional: Izquierda solo
-				</Spanish>					
+				</Spanish>
+				<German>
+					Zusätzlich: Nur links
+				</German>					
 			</Key>
 			<Key ID="STR_additional_stereo_settings_2">
 				<Original>
@@ -136,7 +157,10 @@
 				</Italian>
 				<Spanish>
 					Adicional: Derecha solo
-				</Spanish>					
+				</Spanish>
+				<German>
+					Zusätzlich: Nur rechts
+				</German>					
 			</Key>
 			<Key ID="STR_no_server">
 				<Original>
@@ -153,7 +177,10 @@
 				</Italian>
 				<Spanish>
 					¡El servidor no dispone de Task Force Radio!
-				</Spanish>					
+				</Spanish>
+				<German>
+					Task Force Radio wird nicht auf dem Server ausgeführt!
+				</German>					
 			</Key>
 			<Key ID="STR_current_freq">
 				<Original>
@@ -170,7 +197,10 @@
 				</Italian>	
 				<Spanish>
 					Frecuencia actual
-				</Spanish>				
+				</Spanish>
+				<German>
+					Aktuelle Frequenz
+				</German>				
 			</Key>
 			<Key ID="STR_current_channel">
 				<Original>
@@ -187,7 +217,10 @@
 				</Italian>
 				<Spanish>
 					Canal actual
-				</Spanish>						
+				</Spanish>
+				<German>
+					Aktueller Kanal
+				</German>						
 			</Key>
 			<Key ID="STR_set_frequency">
 				<Original>
@@ -204,7 +237,10 @@
 				</Italian>
 				<Spanish>
 					Establecer frecuencia
-				</Spanish>						
+				</Spanish>
+				<German>
+					Frequenz bestätigen
+				</German>						
 			</Key>
 			<Key ID="STR_set_additional">
 				<Original>
@@ -221,7 +257,10 @@
 				</Italian>
 				<Spanish>
 					Ajuste el canal adicional
-				</Spanish>						
+				</Spanish>
+				<German>
+					Zusatzkanal festlegen
+				</German>						
 			</Key>
 			<Key ID="STR_clear_frequency">
 				<Original>
@@ -238,7 +277,10 @@
 				</Italian>
 				<Spanish>
 					Reiniciar frecuencia
-				</Spanish>					
+				</Spanish>
+				<German>
+					Frequenz löschen
+				</German>					
 			</Key>
 			<Key ID="STR_previous_channel">
 				<Original>
@@ -255,7 +297,10 @@
 				</Italian>
 				<Spanish>
 					Canal anterior
-				</Spanish>					
+				</Spanish>
+				<German>
+					Vorheriger Kanal
+				</German>					
 			</Key>
 			<Key ID="STR_next_channel">
 				<Original>
@@ -272,7 +317,10 @@
 				</Italian>
 				<Spanish>
 					Canal siguiente
-				</Spanish>					
+				</Spanish>
+				<German>
+					Nächster Kanal
+				</German>					
 			</Key>
 			<Key ID="STR_increase_volume">
 				<Original>
@@ -289,7 +337,10 @@
 				</Italian>
 				<Spanish>
 					Aumentar volumen
-				</Spanish>					
+				</Spanish>
+				<German>
+					Lautstärke erhöhen
+				</German>					
 			</Key>
 			<Key ID="STR_decrease_volume">
 				<Original>
@@ -306,7 +357,10 @@
 				</Italian>
 				<Spanish>
 					Reducir volumen
-				</Spanish>					
+				</Spanish>
+				<German>
+					Lautstärke verringern
+				</German>					
 			</Key>
 			<Key ID="STR_volume">
 				<Original>
@@ -323,7 +377,10 @@
 				</Italian>
 				<Spanish>
 					Cambiar volumen
-				</Spanish>					
+				</Spanish>
+				<German>
+					Lautstärke ändern
+				</German>					
 			</Key>
 			<Key ID="STR_incorrect_frequency">
 				<Original>
@@ -340,7 +397,10 @@
 				</Italian>
 				<Spanish>
 					Frecuencia incorrecta, el rango es %1-%2
-				</Spanish>					
+				</Spanish>
+				<German>
+					Inkorrekter Frequenzwert, Bereich zwischen %1-%2
+				</German>					
 			</Key>
 			<Key ID="STR_radio_volume">
 				<Original>
@@ -357,7 +417,10 @@
 				</Italian>
 				<Spanish>
 					Volumen: %1
-				</Spanish>	
+				</Spanish>
+				<German>
+					Lautstärke: %1
+				</German>	
 			</Key>
 			<Key ID="STR_radio_channel_1">
 				<Original>
@@ -374,7 +437,10 @@
 				</Italian>
 				<Spanish>
 					Canal 1
-				</Spanish>	
+				</Spanish>
+				<German>
+					Kanal 1
+				</German>	
 			</Key>
 			<Key ID="STR_radio_channel_2">
 				<Original>
@@ -391,7 +457,10 @@
 				</Italian>
 				<Spanish>
 					Canal 2
-				</Spanish>	
+				</Spanish>
+				<German>
+					Kanal 2
+				</German>	
 			</Key>
 			<Key ID="STR_radio_channel_3">
 				<Original>
@@ -408,7 +477,10 @@
 				</Italian>
 				<Spanish>
 					Canal 3
-				</Spanish>	
+				</Spanish>
+				<German>
+					Kanal 3
+				</German>	
 			</Key>
 			<Key ID="STR_radio_channel_4">
 				<Original>
@@ -425,7 +497,10 @@
 				</Italian>
 				<Spanish>
 					Canal 4
-				</Spanish>	
+				</Spanish>
+				<German>
+					Kanal 4
+				</German>	
 			</Key>
 			<Key ID="STR_radio_channel_5">
 				<Original>
@@ -442,7 +517,10 @@
 				</Italian>
 				<Spanish>
 					Canal 5
-				</Spanish>	
+				</Spanish>
+				<German>
+					Kanal 5
+				</German>	
 			</Key>
 			<Key ID="STR_radio_channel_6">
 				<Original>
@@ -459,7 +537,10 @@
 				</Italian>
 				<Spanish>
 					Canal 6
-				</Spanish>	
+				</Spanish>
+				<German>
+					Kanal 6
+				</German>	
 			</Key>
 			<Key ID="STR_radio_channel_7">
 				<Original>
@@ -477,6 +558,9 @@
 				<Spanish>
 					Canal 7
 				</Spanish>
+				<German>
+					Kanal 7
+				</German>
 			</Key>
 			<Key ID="STR_radio_channel_8">
 				<Original>
@@ -493,7 +577,10 @@
 				</Italian>
 				<Spanish>
 					Canal 8
-				</Spanish>	
+				</Spanish>
+				<German>
+					Kanal 8
+				</German>	
 			</Key>
 			<Key ID="STR_radio_channel_9">
 				<Original>
@@ -510,7 +597,10 @@
 				</Italian>
 				<Spanish>
 					Canal 9
-				</Spanish>	
+				</Spanish>
+				<German>
+					Kanal 9
+				</German>	
 			</Key>
 			<Key ID="STR_depth">
 				<Original>
@@ -527,7 +617,10 @@
 				</Italian>
 				<Spanish>
 					Profundidad actual
-				</Spanish>	
+				</Spanish>
+				<German>
+					Aktuelle Tiefe
+				</German>	
 			</Key>
 			<Key ID="STR_active_sw_channel">
 				<Original>
@@ -544,7 +637,10 @@
 				</Italian>
 				<Spanish>
 					Canal onda corta:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
-				</Spanish>	
+				</Spanish>
+				<German>
+					Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</German>	
 			</Key>
 			<Key ID="STR_active_additional_sw_channel">
 				<Original>
@@ -561,7 +657,10 @@
 				</Italian>
 				<Spanish>
 					Canal adicional:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
-				</Spanish>	
+				</Spanish>
+				<German>
+					Zusatzkanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</German>	
 			</Key>
 			<Key ID="STR_active_frequency">
 				<Original>
@@ -579,6 +678,9 @@
 				<Spanish>
 					Frecuencia:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Spanish>
+				<German>
+					Frequenz: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</German>
 			</Key>
 			<Key ID="STR_active_lr_channel">
 				<Original>
@@ -595,7 +697,10 @@
 				</Italian>
 				<Spanish>
 					Canal RL:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
-				</Spanish>	
+				</Spanish>
+				<German>
+					LS Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</German>	
 			</Key>
 			<Key ID="STR_active_additional_lr_channel">
 				<Original>
@@ -612,7 +717,10 @@
 				</Italian>
 				<Spanish>
 					Canal adicional RL:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
-				</Spanish>	
+				</Spanish>
+				<German>
+					LS Zusatzkanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</German>	
 			</Key>
 			<Key ID="STR_in_water_hint">
 				<Original>
@@ -629,7 +737,10 @@
 				</Italian>
 				<Spanish>
 					&lt;t color=&apos;#33ccff&apos;&gt;No puedes utilizar radios bajo el agua&lt;/t&gt;
-				</Spanish>	
+				</Spanish>
+				<German>
+					&lt;t color=&apos;#33ccff&apos;&gt;Funkgerät kann unter Wasser nicht benutzt werden&lt;/t&gt;
+				</German>	
 			</Key>
 			<Key ID="STR_on_ground_hint">
 				<Original>
@@ -647,6 +758,9 @@
 				<Spanish>
 					&lt;t color=&apos;#993300&apos;&gt;No puedes utilizar la radio del conductor en el aire&lt;/t&gt;
 				</Spanish>
+				<German>
+					&lt;t color=&apos;#993300&apos;&gt;Fahrzeugfunk kann in der Luft nicht benutzt werden&lt;/t&gt;
+				</German>
 			</Key>
 			<Key ID="STR_unable_to_use_hint">
 				<Original>
@@ -664,6 +778,9 @@
 				<Spanish>
 					&lt;t color=&apos;#FF0000&apos;&gt;Incapaz de usar la radio&lt;/t&gt;
 				</Spanish>
+				<German>
+					&lt;t color=&apos;#FF0000&apos;&gt;Du kannst das Funkgerät nicht benutzen&lt;/t&gt;
+				</German>
 			</Key>
 			<Key ID="STR_select_action">
 				<Original>
@@ -681,6 +798,9 @@
 				<Spanish>
 					Selecciona acción
 				</Spanish>
+				<German>
+					Aktion auswählen
+				</German>
 			</Key>
 			<Key ID="STR_select_action_setup">
 				<Original>
@@ -698,6 +818,9 @@
 				<Spanish>
 					Configuración
 				</Spanish>
+				<German>
+					Einstellungen...
+				</German>
 			</Key>
 			<Key ID="STR_select_action_setup_tooltip">
 				<Original>
@@ -715,6 +838,9 @@
 				<Spanish>
 					Abrir ventana de configuración
 				</Spanish>
+				<German>
+					Einstellungsfenster öffnen
+				</German>
 			</Key>
 			<Key ID="STR_select_action_use">
 				<Original>
@@ -732,10 +858,13 @@
 				<Spanish>
 					Seleccionar como activa
 				</Spanish>
+				<German>
+					Aktiv schalten
+				</German>
 			</Key>
 			<Key ID="STR_select_action_use_tooltip">
 				<Original>
-					Use for transmiting
+					Use for transmitting
 				</Original>
 				<Russian>
 					Использовать для передачи
@@ -749,6 +878,9 @@
 				<Spanish>
 					Usar para transmitir
 				</Spanish>
+				<German>
+					Für Übertragung nutzen
+				</German>
 			</Key>
 			<Key ID="STR_select_radio">
 				<Original>
@@ -766,6 +898,9 @@
 				<Spanish>
 					Seleccionar radio de corto alcance
 				</Spanish>
+				<German>
+					Kurzstreckenfunkgerät auswählen
+				</German>
 			</Key>
 			<Key ID="STR_select_lr_radio">
 				<Original>
@@ -783,6 +918,9 @@
 				<Spanish>
 					Seleccionar radio de largo alcance
 				</Spanish>
+				<German>
+					Langstreckenfunkgerät auswählen
+				</German>
 			</Key>			
 			<Key ID="STR_transmit">
 				<Original>
@@ -800,6 +938,9 @@
 				<Spanish>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
 				</Spanish>
+				<German>
+					&lt;t size='1' align='center' color='#00FF00'&gt;Übermittlung&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funk: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
+				</German>
 			</Key>
 			<Key ID="STR_transmit_end">
 				<Original>
@@ -817,6 +958,9 @@
 				<Spanish>
 					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
 				</Spanish>
+				<German>
+					&lt;t size='1' align='center' color='#FF9900'&gt;Übermittelt&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funk: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
+				</German>
 			</Key>
 			<Key ID="STR_additional_transmit">
 				<Original>
@@ -834,6 +978,9 @@
 				<Spanish>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
 				</Spanish>
+				<German>
+					&lt;t size='1' align='center' color='#00FF00'&gt;Übermittlung&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funk: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusatzkanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
+				</German>
 			</Key>
 			<Key ID="STR_additional_transmit_end">
 				<Original>
@@ -851,6 +998,9 @@
 				<Spanish>
 					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
 				</Spanish>
+				<German>
+					&lt;t size='1' align='center' color='#FF9900'&gt;Übermittelt&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funk: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusatzkanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
+				</German>
 			</Key>
 			<Key ID="STR_waiting">
 				<Original>
@@ -868,6 +1018,9 @@
 				<Spanish>
 					En espera...
 				</Spanish>
+				<German>
+					Warte...
+				</German>
 			</Key>
 			<Key ID="STR_voice_volume">
 				<Original>
@@ -885,6 +1038,9 @@
 				<Spanish>
 					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Volumen de la voz: %1&lt;/t&gt;
 				</Spanish>
+				<German>
+					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Sprachlautstärke: %1&lt;/t&gt;
+				</German>
 			</Key>
 			<Key ID="STR_voice_normal">
 				<Original>
@@ -902,6 +1058,9 @@
 				<Spanish>
 					Normal
 				</Spanish>
+				<German>
+					Normal
+				</German>
 			</Key>
 			<Key ID="STR_voice_yelling">
 				<Original>
@@ -919,6 +1078,9 @@
 				<Spanish>
 					Gritar
 				</Spanish>
+				<German>
+					Rufen
+				</German>
 			</Key>
 			<Key ID="STR_voice_whispering">
 				<Original>
@@ -936,6 +1098,9 @@
 				<Spanish>
 					Susurrar
 				</Spanish>
+				<German>
+					Flüstern
+				</German>
 			</Key>
 			<Key ID="STR_init">
 				<Original>
@@ -953,6 +1118,9 @@
 				<Spanish>
 					Inicializando...
 				</Spanish>
+				<German>
+					Initialisierung...
+				</German>
 			</Key>
 			<Key ID="STR_subject_name">
 				<Original>
@@ -970,6 +1138,9 @@
 				<Spanish>
 					Radio
 				</Spanish>
+				<German>
+					Funkgerät
+				</German>
 			</Key>
 			<Key ID="STR_select_action_copy_settings_from">
 				<Original>
@@ -987,6 +1158,9 @@
 				<Spanish>
 					Para copiar los ajustes de...
 				</Spanish>
+				<German>
+					Übernehme Einstellungen von...
+				</German>
 			</Key>
 			<Key ID="STR_select_action_settings_from_tooltip">
 				<Original>
@@ -1004,6 +1178,9 @@
 				<Spanish>
 					Para copiar los ajustes de otra radio con el mismo código de cifrado
 				</Spanish>
+				<German>
+					Übernehme Einstellungen eines anderen Funkgeräts mit gleicher Verschlüsselung
+				</German>
 			</Key>				
 			<Key ID="STR_radio_control">
 				<Original>
@@ -1021,6 +1198,9 @@
 				<Spanish>
 					Controles
 				</Spanish>
+				<German>
+					Steuerung
+				</German>
 			</Key>
 			<Key ID="STR_wait_radio">
 				<Original>
@@ -1038,6 +1218,9 @@
 				<Spanish>
 					Obteniendo una radio única del servidor...
 				</Spanish>
+				<German>
+					Warte auf persönliches Funkgerät vom Server...
+				</German>
 			</Key>
 
 
@@ -1146,6 +1329,27 @@
 &lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Transmitir por el canal adicional de la radio de largo alcance.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Para salir del interfaz de las radios.
 				</Spanish>
+				<German>
+&lt;font color=&quot;#67ED24&quot;&gt;Push-To-Talk-Taste im TeamSpeak&lt;/font&gt;	Direktes Sprechen.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Über ein Kurzstreckenfunkgerät senden.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + Caps Lock&lt;/font&gt;	Über ein Langstreckenfunkgerät senden.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + P&lt;/font&gt;	Benutzeroberfläche der Kurzstreckenfunkgeräte öffnen (Funkgerät muss in Inventarspalte sein). Falls mehrere Funkgeräte verfügbar sind, erhälst du eine Auswahlmöglichkeit. Das Funkgerät, auf dem gesendet werden soll, kann aktiv geschaltet werden.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + SHIFT + A/D&lt;/font&gt; Durch verfügbare Kurzstreckenfunkgeräte schalten.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + Pfeilhoch/Pfeillinks/Pfeilrechts&lt;/font&gt; Schnelles Durchschalten der Kurzstreckenfunkgerät-Stereomodi.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Schnelles Durchschalten der Kurzstreckenfunkgerätkanäle.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Benutzeroberfläche der Langstreckenfunkgeräte öffnen (Funkgerät muss auf dem Rücken sein oder du musst Fahrer,Schütze oder Co-Pilot in einem Fahrzeug sein). Falls mehrere Funkgeräte verfügbar sind, erhälst du eine Auswahlmöglichkeit. Eines der Funkgeräte kann aktiv geschaltet werden.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; Durch verfügbare Langstreckenfunkgeräte schalten.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + Pfeilhoch/Pfeillinks/Pfeilrechts&lt;/font&gt; Schnelles Durchschalten der Langstreckenfunkgerät-Stereomodi.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + NUM[1-9]&lt;/font&gt;	Schnelles Durchschalten der Langstreckenfunkgerätkanäle.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + TAB&lt;/font&gt;	Direkte Sprachlautstärke durchschalten. Optionen: Flüstern, Normal oder Schreien. Beeinflusst nicht die Funklautstärke.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Benutzeroberfläche vom Unterwassertransceifer öffnen (Rebreather tragen).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + Caps Lock&lt;/font&gt;	Über den Unterwassertransceifer senden.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + ]&lt;/font&gt;	Nächstes Kurzstreckenfunkgerät auswählen.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + [&lt;/font&gt;	Vorheriges Kurzstreckenfunkgerät auswählen.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + ]&lt;/font&gt;	Nächstes Langstreckenfunkgerät auswählen.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + [&lt;/font&gt;	Vorheriges Langstreckenfunkgerät auswählen.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + [←,↑,→]&lt;/font&gt;	Stereomodus des Kurzstreckenfungeräts ändern.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Stereomodus des Langstreckenfunkgeräts ändern.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Auf dem Zusatzkanal des Kurzstreckenfunkgeräts übermitteln.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Auf dem Zusatzkanal des Langstreckenfunkgeräts übermitteln.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Benutzeroberfläche schließen.
+				</German>
 			</Key>			
 			<Key ID="STR_radio_diver">
 				<Original>
@@ -1163,6 +1367,9 @@
 				<Spanish>
 					Para buceadores
 				</Spanish>
+				<German>
+					Für Taucher
+				</German>
 			</Key>
 			<Key ID="STR_radio_diver_text">
 				<Original>
@@ -1194,6 +1401,12 @@ No puedes hablar bajo el agua (incluso llevando un traje de buceo). Sin embargo,
 Estando bajo el agua, podrás escuchar débilmente voces sordas de tierra.lt;br/&gt;
 Usa un transceptor submarino para comunicarte con otros buceadores. Si deseas contactar con alguien que este en tierra, sube a la superficie. &lt;br/&gt;A excepción de los submarinos en profundidad de periscopio (los buceadores podrán utilizar la radio de largo alcance).
 				</Spanish>
+				<German>
+Du kannst nicht unter Wasser sprechen (auch nicht mit Taucheranzug). Im Nahbereich kann man dich undeutlich aufnehmen (Ausnahme - wenn du dich unter Wasser in einem isolierten Fahrzeug befindest).&lt;br/&gt;
+Unter Wasser kannst du gedämpfte Stimmen an Land wahrnehmen.&lt;br/&gt;
+Nutze einen Unterwassertransceiver zur Kommunikation mit unter Tauchern.&lt;br/&gt;
+Du kannst unter Wasser keine Funkkommunikation nutzen (weder zum sprechen, noch zum hören). Falls du Informationen an Land übermitteln möchtest, tauch auf. &lt;br/&gt;Ausnahme - Uboot in Periskoptiefe (Taucher können hier ein Langstreckenfunkgerät nutzen).
+				</German>
 			</Key>
 			<Key ID="STR_radio_intercept">
 				<Original>
@@ -1211,6 +1424,9 @@ Usa un transceptor submarino para comunicarte con otros buceadores. Si deseas co
 				<Spanish>
 					Intercepción de la radio
 				</Spanish>
+				<German>
+					Abhörmöglichkeit
+				</German>
 			</Key>
 			<Key ID="STR_radio_intercept_text">
 				<Original>
@@ -1240,6 +1456,11 @@ Las radios pueden obtenerse de jugadores muertos y ser dadas a otros jugadores. 
 En los vehículos las opciones también son conservadas.&lt;br/&gt;
 Por defecto, las radios de cada facción usan sus propios códigos de encriptación, así que no podrás escuchar al enemigo comunicarse, incluso estando en la misma frecuencia que el enemigo. Para poder escuchar la red del enemigo (y también hablar), es necesario capturar una radio enemiga.
 				</Spanish>
+				<German>
+Funkgeräte von toten Spielern können weitergegeben werden. Sämtliche Einstellungen bleiben erhalten (Kanäle, Frequenzen, Lautstärke).&lt;br/&gt;
+Die Einstellungen von Fahrzeugfunkgeräten werden ebenfalls gespeichert.&lt;/br&gt;
+Standardmäßig nutzen die Funkgeräte der verschiedenen Fraktionen ihre eigene Verschlüsselung, damit man sich nicht abhören kann, selbst wenn man die Feindfrequenz einstellt. Um den gegnerischen Funk abhören zu können (und in ihrem Netz zu senden) - ist es unbedingt von Nöten eine feindliche Funkstation einzunehmen.
+				</German>
 			</Key>
 			<Key ID="STR_radio_vehicle">
 				<Original>
@@ -1257,6 +1478,9 @@ Por defecto, las radios de cada facción usan sus propios códigos de encriptaci
 				<Spanish>
 					Vehículo
 				</Spanish>
+				<German>
+					Fahrzeuge
+				</German>
 			</Key>
 			<Key ID="STR_radio_vehicle_text">
 				<Original>
@@ -1294,6 +1518,13 @@ Cada vehículo tiene su propia radio, que debe ser configurada independientement
 &lt;br/&gt;
 Los vehículos están clasificados en abiertos y cerrados (aislados). si estas dentro de un vehículo aislado, no escucharas voces de los ocupantes del vehículo fuera del mismo y viceversa.
 				</Spanish>
+				<German>
+Langstreckenfunkgeräte sind für Fahrer, Kommandeure, Schützen und Co-Piloten verfügbar. Nicht alle Fahrzeuge haben ein Fahrzeugfunkgerät.
+&lt;br/&gt;
+Jede Fahrzeugposition hat ein eigenes Funkgerät, welches seperat eingestellt werden muss. Falls du die Sitzpositionen im Fahrzeug durchwechseln möchtest, konfiguriere vorher die Funkgeräte auf allen Positionen (zum Beispiel die des Fahrers oder des Schützen).
+&lt;br/&gt;
+Fahrzeuge sind klassifiziert als offen und geschlossen (isoliert). Falls du in einem geschlossenen Fahrzeug sitzt, wirst du keine Stimmen von außerhalb hören können (und umgekehrt). Falls du aus dem Fahrzeug schaust (Luke) wirst du Stimmen von innerhalb und außerhalb hören können.
+				</German>
 			</Key>
 		</Container>
 	</Package>
