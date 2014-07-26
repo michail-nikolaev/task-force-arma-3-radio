@@ -190,73 +190,74 @@ tf_msSpectatorPerStepMax = 0.035;
 
 [] spawn {
 	waituntil {sleep 0.1;!(IsNull (findDisplay 46))};
-
-	["player", [[TF_dialog_sw_scancode, TF_dialog_sw_modifiers]], -3, '_this call TFAR_fnc_swRadioMenu'] call CBA_fnc_flexiMenu_Add;
-
-	[TF_tangent_sw_scancode, TF_tangent_sw_modifiers, {call TFAR_fnc_onSwTangentPressed}, "keydown", "2"] call CBA_fnc_addKeyHandler;
-	[TF_tangent_sw_scancode, TF_tangent_sw_modifiers, {call TFAR_fnc_onSwTangentReleased}, "keyup", "_2"] call CBA_fnc_addKeyHandler;
-
-	[TF_sw_channel_1_scancode, TF_sw_channel_1_modifiers, {[0] call TFAR_fnc_processSWChannelKeys}, "keydown", "3"] call CBA_fnc_addKeyHandler;
-	[TF_sw_channel_2_scancode, TF_sw_channel_2_modifiers, {[1] call TFAR_fnc_processSWChannelKeys}, "keydown", "4"] call CBA_fnc_addKeyHandler;
-	[TF_sw_channel_3_scancode, TF_sw_channel_3_modifiers, {[2] call TFAR_fnc_processSWChannelKeys}, "keydown", "5"] call CBA_fnc_addKeyHandler;
-	[TF_sw_channel_4_scancode, TF_sw_channel_4_modifiers, {[3] call TFAR_fnc_processSWChannelKeys}, "keydown", "6"] call CBA_fnc_addKeyHandler;
-	[TF_sw_channel_5_scancode, TF_sw_channel_5_modifiers, {[4] call TFAR_fnc_processSWChannelKeys}, "keydown", "7"] call CBA_fnc_addKeyHandler;
-	[TF_sw_channel_6_scancode, TF_sw_channel_6_modifiers, {[5] call TFAR_fnc_processSWChannelKeys}, "keydown", "8"] call CBA_fnc_addKeyHandler;
-	[TF_sw_channel_7_scancode, TF_sw_channel_7_modifiers, {[6] call TFAR_fnc_processSWChannelKeys}, "keydown", "9"] call CBA_fnc_addKeyHandler;
-	[TF_sw_channel_8_scancode, TF_sw_channel_8_modifiers, {[7] call TFAR_fnc_processSWChannelKeys}, "keydown", "10"] call CBA_fnc_addKeyHandler;
-
-	[TF_tangent_lr_scancode, TF_tangent_lr_modifiers, {call TFAR_fnc_onLRTangentPressed}, "keydown", "11"] call CBA_fnc_addKeyHandler;
-	[TF_tangent_lr_scancode, TF_tangent_lr_modifiers, {call TFAR_fnc_onLRTangentReleased}, "keyup", "_11"] call CBA_fnc_addKeyHandler;
-	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
-	["player", [[TF_dialog_lr_scancode, TF_dialog_lr_modifiers]], -3, '_this call TFAR_fnc_lrRadioMenu'] call CBA_fnc_flexiMenu_Add;
-
-	[TF_lr_channel_1_scancode, TF_lr_channel_1_modifiers, {[0] call TFAR_fnc_processLRChannelKeys}, "keydown", "13"] call CBA_fnc_addKeyHandler;
-	[TF_lr_channel_2_scancode, TF_lr_channel_2_modifiers, {[1] call TFAR_fnc_processLRChannelKeys}, "keydown", "14"] call CBA_fnc_addKeyHandler;
-	[TF_lr_channel_3_scancode, TF_lr_channel_3_modifiers, {[2] call TFAR_fnc_processLRChannelKeys}, "keydown", "15"] call CBA_fnc_addKeyHandler;
-	[TF_lr_channel_4_scancode, TF_lr_channel_4_modifiers, {[3] call TFAR_fnc_processLRChannelKeys}, "keydown", "16"] call CBA_fnc_addKeyHandler;
-	[TF_lr_channel_5_scancode, TF_lr_channel_5_modifiers, {[4] call TFAR_fnc_processLRChannelKeys}, "keydown", "17"] call CBA_fnc_addKeyHandler;
-	[TF_lr_channel_6_scancode, TF_lr_channel_6_modifiers, {[5] call TFAR_fnc_processLRChannelKeys}, "keydown", "18"] call CBA_fnc_addKeyHandler;
-	[TF_lr_channel_7_scancode, TF_lr_channel_7_modifiers, {[6] call TFAR_fnc_processLRChannelKeys}, "keydown", "19"] call CBA_fnc_addKeyHandler;
-	[TF_lr_channel_8_scancode, TF_lr_channel_8_modifiers, {[7] call TFAR_fnc_processLRChannelKeys}, "keydown", "20"] call CBA_fnc_addKeyHandler;
-	[TF_lr_channel_9_scancode, TF_lr_channel_9_modifiers, {[8] call TFAR_fnc_processLRChannelKeys}, "keydown", "21"] call CBA_fnc_addKeyHandler;
-
-	[TF_tangent_dd_scancode, TF_tangent_dd_modifiers, {call TFAR_fnc_onDDTangentReleased}, "keyup", "_22"] call CBA_fnc_addKeyHandler;
-	[TF_tangent_dd_scancode, TF_tangent_dd_modifiers, {call TFAR_fnc_onDDTangentPressed}, "keydown", "22"] call CBA_fnc_addKeyHandler;
-	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
-	[TF_dialog_dd_scancode, TF_dialog_dd_modifiers, {call TFAR_fnc_onDDDialogOpen}, "keydown", "23"] call CBA_fnc_addKeyHandler;
-
-	[TF_speak_volume_scancode, TF_speak_volume_modifiers, {call TFAR_fnc_onSpeakVolumeChange}, "keydown", "24"] call CBA_fnc_addKeyHandler;
-
-	[TF_sw_cycle_next_scancode, TF_sw_cycle_next_modifiers, {["next"] call TFAR_fnc_processSWCycleKeys}, "keyup", "31"] call CBA_fnc_addKeyHandler;
-	[TF_sw_cycle_prev_scancode, TF_sw_cycle_prev_modifiers, {["prev"] call TFAR_fnc_processSWCycleKeys}, "keyup", "32"] call CBA_fnc_addKeyHandler;	
-	[TF_lr_cycle_next_scancode, TF_lr_cycle_next_modifiers, {["next"] call TFAR_fnc_processLRCycleKeys}, "keyup", "33"] call CBA_fnc_addKeyHandler;
-	[TF_lr_cycle_prev_scancode, TF_lr_cycle_prev_modifiers, {["prev"] call TFAR_fnc_processLRCycleKeys}, "keyup", "34"] call CBA_fnc_addKeyHandler;	
-	[TF_sw_stereo_both_scancode, TF_sw_stereo_both_modifiers, {[0] call TFAR_fnc_processSWStereoKeys}, "keydown", "25"] call CBA_fnc_addKeyHandler;	
-	[TF_sw_stereo_left_scancode, TF_sw_stereo_left_modifiers, {[1] call TFAR_fnc_processSWStereoKeys}, "keydown", "26"] call CBA_fnc_addKeyHandler;	
-	[TF_sw_stereo_right_scancode, TF_sw_stereo_right_modifiers, {[2] call TFAR_fnc_processSWStereoKeys}, "keydown", "27"] call CBA_fnc_addKeyHandler;
-	[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers, {[0] call TFAR_fnc_processLRStereoKeys}, "keydown", "28"] call CBA_fnc_addKeyHandler;
-	[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers, {[1] call TFAR_fnc_processLRStereoKeys}, "keydown", "29"] call CBA_fnc_addKeyHandler;
-	[TF_lr_stereo_right_scancode, TF_lr_stereo_right_modifiers, {[2] call TFAR_fnc_processLRStereoKeys}, "keydown", "30"] call CBA_fnc_addKeyHandler;
-	
+	// Menus
+	["TFAR", "Open SW Radio Menu", ["player", [], -3, "_this call TFAR_fnc_swRadioMenu"], [TF_dialog_sw_scancode] + TF_dialog_sw_modifiers] call CBA_fnc_registerKeybindToFleximenu;
+	["TFAR", "Open LR Radio Menu", ["player", [], -3, "_this call TFAR_fnc_lrRadioMenu"], [TF_dialog_lr_scancode] + TF_dialog_lr_modifiers] call CBA_fnc_registerKeybindToFleximenu;
+	// SW radio keys
+	["TFAR", "SW Transmit", {call TFAR_fnc_onSwTangentPressed}, [TF_tangent_sw_scancode] + TF_tangent_sw_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Transmit", {call TFAR_fnc_onSwTangentReleased}, [TF_tangent_sw_scancode] + TF_tangent_sw_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
 	if (TF_tangent_sw_2_scancode != 0) then {
-		[TF_tangent_sw_2_scancode, TF_tangent_sw_2_modifiers, {call TFAR_fnc_onSwTangentPressed}, "keydown", "31"] call CBA_fnc_addKeyHandler;
-		[TF_tangent_sw_2_scancode, TF_tangent_sw_2_modifiers, {call TFAR_fnc_onSwTangentReleased}, "keyup", "_31"] call CBA_fnc_addKeyHandler;
+		["TFAR", "SW Transmit Alt", {call TFAR_fnc_onSwTangentPressed}, [TF_tangent_sw_2_scancode] + TF_tangent_sw_2_modifiers] call cba_fnc_registerKeybind;
+		["TFAR", "SW Transmit Alt", {call TFAR_fnc_onSwTangentReleased}, [TF_tangent_sw_2_scancode] + TF_tangent_sw_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
 	};
+	["TFAR", "SW Transmit Additional", {call TFAR_fnc_onAdditionalSwTangentPressed}, [TF_tangent_additional_sw_scancode] + TF_tangent_additional_sw_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Transmit Additional", {call TFAR_fnc_onAdditionalSwTangentReleased}, [TF_tangent_additional_sw_scancode] + TF_tangent_additional_sw_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
+
+	["TFAR", "SW Channel 1", {[0] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_1_scancode] + TF_sw_channel_1_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Channel 2", {[1] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_2_scancode] + TF_sw_channel_2_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Channel 3", {[2] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_3_scancode] + TF_sw_channel_3_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Channel 4", {[3] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_4_scancode] + TF_sw_channel_4_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Channel 5", {[4] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_5_scancode] + TF_sw_channel_5_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Channel 6", {[5] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_6_scancode] + TF_sw_channel_6_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Channel 7", {[6] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_7_scancode] + TF_sw_channel_7_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Channel 8", {[7] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_8_scancode] + TF_sw_channel_8_modifiers] call cba_fnc_registerKeybind;
+	
+	// LR radio keys
+	["TFAR", "LR Transmit", {call TFAR_fnc_onLRTangentPressed}, [TF_tangent_lr_scancode] + TF_tangent_lr_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Transmit", {call TFAR_fnc_onLRTangentReleased}, [TF_tangent_lr_scancode] + TF_tangent_lr_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
+	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
 	if (TF_tangent_lr_2_scancode != 0) then {
-		[TF_tangent_lr_2_scancode, TF_tangent_lr_2_modifiers, {call TFAR_fnc_onLRTangentPressed}, "keydown", "32"] call CBA_fnc_addKeyHandler;
-		[TF_tangent_lr_2_scancode, TF_tangent_lr_2_modifiers, {call TFAR_fnc_onLRTangentReleased}, "keyup", "_32"] call CBA_fnc_addKeyHandler;
-	};	
-	if (TF_tangent_dd_2_scancode != 0) then {
-		[TF_tangent_dd_2_scancode, TF_tangent_dd_2_modifiers, {call TFAR_fnc_onDDTangentReleased}, "keyup", "33"] call CBA_fnc_addKeyHandler;
-		[TF_tangent_dd_2_scancode, TF_tangent_dd_2_modifiers, {call TFAR_fnc_onDDTangentPressed}, "keydown", "_33"] call CBA_fnc_addKeyHandler;		
+		["TFAR", "LR Transmit Alt", {call TFAR_fnc_onLRTangentPressed}, [TF_tangent_lr_2_scancode] + TF_tangent_lr_2_modifiers] call cba_fnc_registerKeybind;
+		["TFAR", "LR Transmit Alt", {call TFAR_fnc_onLRTangentReleased}, [TF_tangent_lr_2_scancode] + TF_tangent_lr_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
 	};
+	["TFAR", "LR Transmit Additional", {call TFAR_fnc_onAdditionalLRTangentPressed}, [TF_tangent_additional_lr_scancode] + TF_tangent_additional_lr_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Transmit Additional", {call TFAR_fnc_onAdditionalLRTangentReleased}, [TF_tangent_additional_lr_scancode] + TF_tangent_additional_lr_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
+
+	["TFAR", "LR Channel 1", {[0] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_1_scancode] + TF_lr_channel_1_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Channel 2", {[1] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_2_scancode] + TF_lr_channel_2_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Channel 3", {[2] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_3_scancode] + TF_lr_channel_3_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Channel 4", {[3] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_4_scancode] + TF_lr_channel_4_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Channel 5", {[4] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_5_scancode] + TF_lr_channel_5_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Channel 6", {[5] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_6_scancode] + TF_lr_channel_6_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Channel 7", {[6] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_7_scancode] + TF_lr_channel_7_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Channel 8", {[7] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_8_scancode] + TF_lr_channel_8_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Channel 9", {[8] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_9_scancode] + TF_lr_channel_9_modifiers] call cba_fnc_registerKeybind;
+
+	// DD radio keys
+	["TFAR", "DD Transmit", {call TFAR_fnc_onDDTangentReleased}, [TF_tangent_dd_scancode] + TF_tangent_dd_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "DD Transmit", {call TFAR_fnc_onDDTangentPressed}, [TF_tangent_dd_scancode] + TF_tangent_dd_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
+	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
+	if (TF_tangent_dd_2_scancode != 0) then {
+		["TFAR", "DD Transmit Alt", {call TFAR_fnc_onDDTangentReleased}, [TF_tangent_dd_2_scancode] + TF_tangent_dd_2_modifiers] call cba_fnc_registerKeybind;
+		["TFAR", "DD Transmit Alt", {call TFAR_fnc_onDDTangentPressed}, [TF_tangent_dd_2_scancode] + TF_tangent_dd_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
+	};
+	["TFAR", "DD Radio Settings", {call TFAR_fnc_onDDDialogOpen}, [TF_dialog_dd_scancode] + TF_dialog_dd_modifiers] call cba_fnc_registerKeybind;
 	
-	[TF_tangent_additional_sw_scancode, TF_tangent_additional_sw_modifiers, {call TFAR_fnc_onAdditionalSwTangentPressed}, "keydown", "34"] call CBA_fnc_addKeyHandler;
-	[TF_tangent_additional_sw_scancode, TF_tangent_additional_sw_modifiers, {call TFAR_fnc_onAdditionalSwTangentReleased}, "keyup", "_34"] call CBA_fnc_addKeyHandler;
+	// Volume and extra keys
+	["TFAR", "Change Speaking Volume", {call TFAR_fnc_onSpeakVolumeChange}, [TF_speak_volume_scancode] + TF_speak_volume_modifiers] call cba_fnc_registerKeybind;
 	
-	[TF_tangent_additional_lr_scancode, TF_tangent_additional_lr_modifiers, {call TFAR_fnc_onAdditionalLRTangentPressed}, "keydown", "35"] call CBA_fnc_addKeyHandler;
-	[TF_tangent_additional_lr_scancode, TF_tangent_additional_lr_modifiers, {call TFAR_fnc_onAdditionalLRTangentReleased}, "keyup", "_35"] call CBA_fnc_addKeyHandler;
+	["TFAR", "Cycle >> SW Radios", {["next"] call TFAR_fnc_processSWCycleKeys}, [TF_sw_cycle_next_scancode] + TF_sw_cycle_next_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
+	["TFAR", "Cycle << SW Radios", {["prev"] call TFAR_fnc_processSWCycleKeys}, [TF_sw_cycle_prev_scancode] + TF_sw_cycle_prev_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
+	["TFAR", "Cycle >> LR Radios", {["next"] call TFAR_fnc_processLRCycleKeys}, [TF_lr_cycle_next_scancode] + TF_lr_cycle_next_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
+	["TFAR", "Cycle << LR Radios", {["prev"] call TFAR_fnc_processLRCycleKeys}, [TF_lr_cycle_prev_scancode] + TF_lr_cycle_prev_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
 	
+	["TFAR", "SW Stereo: Both", {[0] call TFAR_fnc_processSWStereoKeys}, [TF_sw_stereo_both_scancode] + TF_sw_stereo_both_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Stereo: Left", {[1] call TFAR_fnc_processSWStereoKeys}, [TF_sw_stereo_left_scancode] + TF_sw_stereo_left_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Stereo: Right", {[2] call TFAR_fnc_processSWStereoKeys}, [TF_sw_stereo_right_scancode] + TF_sw_stereo_right_modifiers] call cba_fnc_registerKeybind;
+	
+	["TFAR", "LR Stereo: Both", {[0] call TFAR_fnc_processLRStereoKeys}, [TF_lr_stereo_both_scancode] + TF_lr_stereo_both_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Stereo: Left", {[1] call TFAR_fnc_processLRStereoKeys}, [TF_lr_stereo_left_scancode] + TF_lr_stereo_left_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Stereo: Right", {[2] call TFAR_fnc_processLRStereoKeys}, [TF_lr_stereo_right_scancode] + TF_lr_stereo_right_modifiers] call cba_fnc_registerKeybind;
 	
 	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
