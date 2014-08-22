@@ -1,4 +1,4 @@
-// dllmain.cpp: определяет точку входа для приложения DLL.
+// dllmain.cpp: Defines the entry point for the DLL application.
 #include "stdafx.h"
 
 HANDLE pipe = INVALID_HANDLE_VALUE;
