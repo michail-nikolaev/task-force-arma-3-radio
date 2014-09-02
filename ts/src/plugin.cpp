@@ -38,8 +38,8 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-//#define PLUGIN_API_VERSION 20
-#define PLUGIN_API_VERSION 19
+#define PLUGIN_API_VERSION 20
+//#define PLUGIN_API_VERSION 19
 
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
@@ -377,16 +377,9 @@ bool hlp_checkVad()
 	DWORD error;
 	if((error = ts3Functions.getPreProcessorConfigValue(ts3Functions.getCurrentServerConnectionHandlerID(), "vad", &vad)) == ERROR_ok)
 	{
-		if(strcmp(vad,"true") == 0)
-		{
-			ts3Functions.freeMemory(vad);
-			return true;
-		}
-		else
-		{
-			ts3Functions.freeMemory(vad);
-			return false;
-		}
+		bool result = strcmp(vad, "true") == 0;
+		ts3Functions.freeMemory(vad);
+		return result;
 	}
 	else
 	{
@@ -478,22 +471,21 @@ void setClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId, bool 
 	anyID clientIds[2];
 	clientIds[0] = clientId;
 	clientIds[1] = 0;
-	if (clientIds[0] > 0)
+	if (clientIds[0] <= 0)
+		return;
+	DWORD error;
+	if (status)
 	{
-		DWORD error;
-		if (status)
+		if ((error = ts3Functions.requestMuteClients(serverConnectionHandlerID, clientIds, NULL)) != ERROR_ok)
 		{
-			if ((error = ts3Functions.requestMuteClients(serverConnectionHandlerID, clientIds, NULL)) != ERROR_ok)
-			{
-				log("Can't mute client", error);
-			}
-		} 
-		else 
+			log("Can't mute client", error);
+		}
+	} 
+	else 
+	{
+		if ((error = ts3Functions.requestUnmuteClients(serverConnectionHandlerID, clientIds, NULL)) != ERROR_ok)
 		{
-			if ((error = ts3Functions.requestUnmuteClients(serverConnectionHandlerID, clientIds, NULL)) != ERROR_ok)
-			{
-				log("Can't unmute client", error);
-			}
+			log("Can't unmute client", error);
 		}
 	}
 }
@@ -723,7 +715,6 @@ bool isTalking(uint64 currentServerConnectionHandlerID, anyID myId, anyID player
 	}
 	return result != 0;
 }
-
 
 void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId)
 {	
@@ -2222,22 +2213,22 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 }
 
 void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, int* edited) {
-	if (inGame) {
-		if (*edited & 2)
+	if (!inGame)
+		return;
+	if (*edited & 2)
+	{
+		anyID myId = getMyId(serverConnectionHandlerID);
+		EnterCriticalSection(&serverDataCriticalSection);
+		if (serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier != 1.0f)
 		{
-			anyID myId = getMyId(serverConnectionHandlerID);
-			EnterCriticalSection(&serverDataCriticalSection);
-			if (serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier != 1.0f)
+			bool alive = serverIdToData[serverConnectionHandlerID].alive;
+			if (hasClientData(serverConnectionHandlerID, myId) && alive)
 			{
-				bool alive = serverIdToData[serverConnectionHandlerID].alive;
-				if (hasClientData(serverConnectionHandlerID, myId) && alive)
-				{
-					applyGain(samples, channels, sampleCount, serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier);
-				}
+				applyGain(samples, channels, sampleCount, serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier);
 			}
-			LeaveCriticalSection(&serverDataCriticalSection);
-			*edited |= 1;
 		}
+		LeaveCriticalSection(&serverDataCriticalSection);
+		*edited |= 1;
 	}
 }
 
