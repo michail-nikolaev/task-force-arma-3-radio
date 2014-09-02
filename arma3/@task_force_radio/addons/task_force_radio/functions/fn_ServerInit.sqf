@@ -56,12 +56,10 @@ while {true} do {
 	call TFAR_fnc_processGroupFrequencySettings;
 	_allUnits = allUnits;
 	{
-		if (isPlayer _x) then
-		{
+		if (isPlayer _x) then {
 			_variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
 			_radio_request = missionNamespace getVariable (_variableName);
-			if !(isNil "_radio_request") then
-			{
+			if !(isNil "_radio_request") then {
 				missionNamespace setVariable [_variableName, nil];
 				(owner (_x)) publicVariableClient (_variableName);
 				_responseVariableName = "radio_response_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
@@ -70,28 +68,24 @@ while {true} do {
 					{
 						private ["_radio", "_count"];
 						_radio = _x;
-						if !(_radio call TFAR_fnc_isPrototypeRadio) then
-						{
+						if !(_radio call TFAR_fnc_isPrototypeRadio) then {
 							_radio = configname inheritsFrom (configFile >> "CfgWeapons" >> _radio);
 						};
 						_count = -1;
 						{
-							if ((_x select 0) == _radio) exitWith
-							{
+							if ((_x select 0) == _radio) exitWith {
 								_x set [1, (_x select 1) + 1];
-								if ((_x select 1) > MAX_RADIO_COUNT) then
-								{
+								if ((_x select 1) > MAX_RADIO_COUNT) then {
 									_x set [1, 1];
 								};
 								_count = (_x select 1);
 							};
 						} count TF_Radio_Count;
-						if (_count == -1) then
-						{
-							TF_Radio_Count set [(count TF_Radio_Count), [_x,1]];
+						if (_count == -1) then {
+							TF_Radio_Count pushBack [_x,1];
 							_count = 1;
 						};
-						_response set [(count _response), format["%1_%2", _radio, _count]];
+						_response pushBack format["%1_%2", _radio, _count];
 					} count _radio_request;
 				} else {
 					_response = "ERROR:47";
