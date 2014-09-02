@@ -21,10 +21,8 @@
 	waitUntil {!(isNull player)};	
 	
 	TF_respawnedAt = time;
-	if (alive player) then
-	{
-		if (leader player == player) then
-		{	
+	if (alive player) then {
+		if (leader player == player) then {	
 			if (tf_no_auto_long_range_radio or {backpack player == "B_Parachute"}) exitWith {};
 			if ([(backpack player), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1) exitWith {};
 			
@@ -36,13 +34,10 @@
 			player addBackpack ((call TFAR_fnc_getDefaultRadioClasses) select 0);			
 			_newItems = [];
 			{
-				if (player canAddItemToBackpack _x) then
-				{
+				if (player canAddItemToBackpack _x) then {
 					player addItemToBackpack _x;
-				}
-				else
-				{
-					_newItems set [count _newItems, _x];
+				}else{
+					_newItems pushBack _x;
 				};
 			} count _items;
 			
@@ -50,12 +45,9 @@
 			clearMagazineCargoGlobal _backPack;
 			clearWeaponCargoGlobal _backPack;
 			{
-				if (isClass (configFile >> "CfgMagazines" >> _x)) then
-				{
+				if (isClass (configFile >> "CfgMagazines" >> _x)) then{
 					_backPack addMagazineCargoGlobal [_x, 1];
-				}
-				else
-				{
+				}else{
 					_backPack addItemCargoGlobal [_x, 1];
 					_backPack addWeaponCargoGlobal [_x, 1];
 				};

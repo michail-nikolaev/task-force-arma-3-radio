@@ -1,6 +1,5 @@
 private["_localName", "_hintText"];
-if (alive player) then
-{
+if (alive player) then {
 	_localName = "STR_voice_normal";
 	if (TF_speak_volume_level == "Whispering") then {
 		TF_speak_volume_level = "normal";
