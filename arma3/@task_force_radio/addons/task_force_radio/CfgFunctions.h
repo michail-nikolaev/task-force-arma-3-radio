@@ -149,6 +149,7 @@ class CfgFunctions
 			class setRadioOwner{};
 			class getRadioOwner{};
 			class isSameRadio{};
+			class defaultPositionCoordinates{};
 		};
 	};
 };
