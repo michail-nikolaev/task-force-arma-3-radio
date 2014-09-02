@@ -21,11 +21,9 @@ TF_ADDON_VERSION = "0.9.2";
 
 #include "common.sqf"
 
-if (isServer or isDedicated) then
-{
+if (isServer or isDedicated) then {
 	[] spawn TFAR_fnc_ServerInit;
 };
-if (hasInterface) then
-{
+if (hasInterface) then {
 	[] spawn TFAR_fnc_ClientInit;
 };

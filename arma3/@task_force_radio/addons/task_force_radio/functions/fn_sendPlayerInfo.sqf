@@ -22,8 +22,7 @@ _player = _this select 0;
 _request = _this call TFAR_fnc_preparePositionCoordinates;
 _result = "task_force_radio_pipe" callExtension _request;
 
-if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"}) then 
-{
+if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"}) then {
 	[parseText (_result), 10] call TFAR_fnc_showHint;
 	tf_lastError = true;
 } else {
