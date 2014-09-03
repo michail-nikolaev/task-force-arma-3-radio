@@ -60,4 +60,6 @@ if (_unit != player) then {
 	};
 	_current_eyepos = [0,0,0];
 };
-[_current_x,_current_y,_current_z, _current_rotation_horizontal]
+_current_eyepos pushBack _current_rotation_horizontal;
+
+_current_eyepos
