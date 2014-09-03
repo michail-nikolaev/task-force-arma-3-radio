@@ -41,8 +41,7 @@ if (isNil "_value") then {
 	[_this, + _value] call TFAR_fnc_setSwSettings;
 };
 _rc = _value select TF_CODE_OFFSET;
-if (isNil "_rc") then
-{
+if (isNil "_rc") then {
 	private ["_parent", "_code", "_hasDefaultEncryption"];
 	_code = getText (ConfigFile >>  "CfgWeapons" >> _this >> "tf_encryptionCode");
 	_hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
