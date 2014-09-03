@@ -26,18 +26,15 @@ if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolu
 _lr_settings = [0, _volume, [], 0, nil, -1, 0];
 _set = false;
 _lr_frequencies = [];
-if (typename _this == "BOOLEAN") then
-{
-	if (!_this) then
-	{
+if (typename _this == "BOOLEAN") then {
+	if (!_this) then {
 		for "_i" from 0 to TF_MAX_LR_CHANNELS step 1 do {
 			_lr_frequencies set [_i, "50"];
 		};
 		_set = true;
 	};
 };
-if (!_set) then
-{
+if (!_set) then {
 	_lr_frequencies = [TF_MAX_LR_CHANNELS,TF_MAX_ASIP_FREQ,TF_MIN_ASIP_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
 };
 _lr_settings set [2, _lr_frequencies];
