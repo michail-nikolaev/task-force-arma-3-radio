@@ -30,3 +30,6 @@ if ((_settings select TF_ADDITIONAL_CHANNEL_OFFSET) != _value) then {
 	_settings set [TF_ADDITIONAL_CHANNEL_OFFSET, -1];
 };
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
+
+//							unit, radio object,		radio ID			channel, additional
+["OnLRchannelSet", player, [player, _radio_object, _radio_qualifier, _value, true]] call TFAR_fnc_fireEventHandlers;
