@@ -29,4 +29,7 @@ if (([_radio_object, _radio_qualifier] call TFAR_fnc_getAdditionalLrChannel) == 
 	_settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
 	_settings set [TF_LR_STEREO_OFFSET, _value];
 	[_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
+	
+	//							unit, radio object,		radio ID			channel, additional
+	["OnLRstereoSet", player, [player, _radio_object, _radio_qualifier, _value, false]] call TFAR_fnc_fireEventHandlers;
 };

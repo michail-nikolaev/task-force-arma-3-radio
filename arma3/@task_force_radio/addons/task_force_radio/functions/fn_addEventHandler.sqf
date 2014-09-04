@@ -41,7 +41,7 @@ _alreadySet = -1;
 		_x set [1, _code];
 	};
 } foreach _handlers;
-if (_alreadySet != -1) then {
+if (_alreadySet == -1) then {
 	_handlers pushBack [_customID, _code];
 };
 

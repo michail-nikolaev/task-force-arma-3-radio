@@ -9,6 +9,8 @@ if ((TF_tangent_lr_pressed) and {alive player}) then {
 		format["TANGENT_LR	RELEASED	%1%2	%3	%4", _freq, (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrRadioCode, ([_radio select 0, "tf_range"] call TFAR_fnc_getLrRadioProperty) * (call TFAR_fnc_getTransmittingDistanceMultiplicator), [_radio select 0, "tf_subtype"] call TFAR_fnc_getLrRadioProperty]
 		] call TFAR_fnc_ProcessTangent;
 		TF_tangent_lr_pressed = false;
+		//						unit, radio, radioType, additional, buttonDown
+		["OnTangent", player, [player, _radio, 1, true, false]] call TFAR_fnc_fireEventHandlers;
 	};
 };
 false
