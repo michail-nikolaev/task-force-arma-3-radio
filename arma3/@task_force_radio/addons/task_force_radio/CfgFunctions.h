@@ -150,6 +150,10 @@ class CfgFunctions
 			class getRadioOwner{};
 			class isSameRadio{};
 			class defaultPositionCoordinates{};
+			
+			class addEventHandler{};
+			class removeEventHandler{};
+			class fireEventHandlers{};
 		};
 	};
 };
