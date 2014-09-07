@@ -33,7 +33,15 @@ if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"
 };
 if (_result == "SPEAKING") then {
 	_player setRandomLip true;
+	if (!(_player getVariable ["tf_isSpeaking", false])) then {
+		_player setVariable ["tf_isSpeaking", true];
+		["OnSpeak", _player, [_player, true]] call TFAR_fnc_fireEventHandlers;
+	};
 	_player setVariable ["tf_start_speaking", diag_tickTime];
 } else {
 	_player setRandomLip false;
+	if ((_player getVariable ["tf_isSpeaking", false])) then {
+		_player setVariable ["tf_isSpeaking", false];
+		["OnSpeak", _player, [_player, false]] call TFAR_fnc_fireEventHandlers;
+	};
 };

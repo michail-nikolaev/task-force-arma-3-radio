@@ -26,3 +26,6 @@ _value = _this select 2;
 _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
 _settings set [VOLUME_OFFSET, _value];
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
+
+//							Unit, radio object, radio ID, volume
+["OnLRvolumeSet", player, [player, _radio_object, _radio_qualifier, _value]] call TFAR_fnc_fireEventHandlers;
