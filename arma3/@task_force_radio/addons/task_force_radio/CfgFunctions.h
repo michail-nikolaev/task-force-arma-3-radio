@@ -150,6 +150,7 @@ class CfgFunctions
 			class getRadioOwner{};
 			class isSameRadio{};
 			class defaultPositionCoordinates{};
+			class useCameraToWorld{};
 			
 			class addEventHandler{};
 			class removeEventHandler{};
