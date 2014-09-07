@@ -27,4 +27,7 @@ if ((_radio_id call TFAR_fnc_getAdditionalSwChannel) == (_radio_id call TFAR_fnc
 	_settings = _radio_id call TFAR_fnc_getSwSettings;
 	_settings set [TF_SW_STEREO_OFFSET, _value_to_set];
 	[_radio_id, _settings] call TFAR_fnc_setSwSettings;
+	
+	//							unit, radio ID,	stero, additional
+	["OnSWstereoSet", player, [player, _radio_id, _value_to_set, false]] call TFAR_fnc_fireEventHandlers;
 };
