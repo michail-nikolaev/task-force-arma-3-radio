@@ -2,10 +2,36 @@ class CfgPatches
 {
 	class task_force_radio_items
 	{
-		units[] = {"tfar_ModuleTaskForceRadioEnforceUsage", "tfar_ModuleTaskForceRadio", "tfar_ModuleTaskForceRadioFrequencies", "TF_NATO_Radio_Crate", "TF_EAST_Radio_Crate", "TF_IND_Radio_Crate", "tf_rt1523g", "tf_anprc155", "tf_mr3000", "tf_anarc164", "tf_mr6000l", "tf_anarc210"};
-		weapons[] = {"tf_anprc152", "tf_anprc148jem", "tf_fadak", "tf_anprc154", "tf_rf7800str", "tf_pnr1000a"};
+		units[] = {
+			"tfar_ModuleTaskForceRadioEnforceUsage", 
+			"tfar_ModuleTaskForceRadio", 
+			"tfar_ModuleTaskForceRadioFrequencies", 
+			"TF_NATO_Radio_Crate", 
+			"TF_EAST_Radio_Crate",
+			"TF_IND_Radio_Crate", 
+			"tf_rt1523g", 
+			"tf_anprc155",
+			"tf_mr3000", 
+			"tf_anarc164", 
+			"tf_mr6000l", 
+			"tf_anarc210", 
+			"Item_tf_anprc152",
+			"Item_tf_pnr1000a",
+			"Item_tf_anprc148jem",
+			"Item_tf_fadak",
+			"Item_tf_anprc154",
+			"Item_tf_rf7800str"
+		};
+		weapons[] = {
+			"tf_anprc152", 
+			"tf_anprc148jem", 
+			"tf_fadak", 
+			"tf_anprc154", 
+			"tf_rf7800str", 
+			"tf_pnr1000a"
+		};
 		requiredVersion = 1.0;
-		requiredAddons[] = {"A3_Modules_F", "A3_UI_F", "A3_Structures_F_Items_Electronics"};
+		requiredAddons[] = {"A3_Modules_F", "A3_UI_F", "A3_Structures_F_Items_Electronics", "A3_Weapons_F_ItemHolders"};
 		author[] = {"[TF]Nkey"};
 		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
 		version = 0.9.2;
@@ -127,6 +153,8 @@ class CfgFontFamilies
 
 class CfgVehicles {
 	class ReammoBox;
+	class Item_Base_F;
+	
 	class Bag_Base: ReammoBox
 	{
 		tf_hasLRradio = 0;
@@ -150,6 +178,7 @@ class CfgVehicles {
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_sage_co.paa"};				
 		scope = 2;
+		scopeCurator = 2;
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialog = "rt1523g_radio_dialog";
 		tf_subtype = "digital_lr";
@@ -160,6 +189,7 @@ class CfgVehicles {
 		descriptionShort = "AN/PRC 155";
 		picture = "\task_force_radio_items\anprc155\155_icon.paa";
 		scope = 2;
+		scopeCurator = 2;
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_green_co.paa"};
 		tf_encryptionCode = "tf_guer_radio_code";
@@ -172,6 +202,7 @@ class CfgVehicles {
 		descriptionShort = "MR3000";
 		picture = "\task_force_radio_items\mr3000\mr3000_icon.paa";
 		scope = 2;
+		scopeCurator = 2;
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_black_co.paa"};
 		tf_encryptionCode = "tf_east_radio_code";
@@ -187,6 +218,7 @@ class CfgVehicles {
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_mcam_co.paa"};
 		scope = 2;
+		scopeCurator = 2;
 		maximumLoad = 20;
 		mass = 15;		
 		tf_range = 40000;
@@ -204,6 +236,7 @@ class CfgVehicles {
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_dpcu_co.paa"};
 		scope = 2;
+		scopeCurator = 2;
 		maximumLoad = 20;
 		mass = 15;		
 		tf_range = 40000;
@@ -219,6 +252,7 @@ class CfgVehicles {
 		descriptionShort = "MR6000L";
 		picture = "\task_force_radio_items\mr6000l\mr6000l_icon.paa";
 		scope = 2;
+		scopeCurator = 2;
 		maximumLoad = 20;
 		mass = 15;		
 		tf_range = 40000;
@@ -231,19 +265,124 @@ class CfgVehicles {
 	#include "vehicles.hpp"
 	#include "crates.hpp"
 	#include "modules.hpp"
+	
+	class Item_tf_anprc152: Item_Base_F
+	{
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "AN/PRC-152";
+		author = "Nkey";
+		vehicleClass = "Items";
+		class TransportItems
+		{
+			class tf_anprc152
+			{
+				name="tf_anprc152";
+				count=1;
+			};
+		};
+	};
+	
+	class Item_tf_anprc148jem: Item_Base_F
+	{
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "AN/PRC-148 JEM";
+		author = "Nkey";
+		vehicleClass = "Items";
+		class TransportItems
+		{
+			class tf_anprc148jem
+			{
+				name="tf_anprc148jem";
+				count=1;
+			};
+		};
+	};
+	
+	class Item_tf_fadak: Item_Base_F
+	{
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "FADAK";
+		author = "Nkey";
+		vehicleClass = "Items";
+		class TransportItems
+		{
+			class tf_fadak
+			{
+				name="tf_fadak";
+				count=1;
+			};
+		};
+	};
+	
+	class Item_tf_anprc154: Item_Base_F
+	{
+		scope = 2;
+		scopeCurator = 2;
+		displayName =  "AN/PRC-154";
+		author = "Nkey";
+		vehicleClass = "Items";
+		class TransportItems
+		{
+			class tf_anprc154
+			{
+				name="tf_anprc154";
+				count=1;
+			};
+		};
+	};
+	
+	class Item_tf_rf7800str: Item_Base_F
+	{
+		scope = 2;
+		scopeCurator = 2;
+		displayName =  "RF-7800S-TR";
+		author = "Nkey";
+		vehicleClass = "Items";
+		class TransportItems
+		{
+			class tf_rf7800str
+			{
+				name="tf_rf7800str";
+				count=1;
+			};
+		};
+	};
+	
+	class Item_tf_pnr1000a: Item_Base_F
+	{
+		scope = 2;
+		scopeCurator = 2;
+		displayName =  "PNR-1000A";
+		author = "Nkey";
+		vehicleClass = "Items";
+		class TransportItems
+		{
+			class tf_pnr1000a
+			{
+				name="tf_pnr1000a";
+				count=1;
+			};
+		};
+	};
+	
+	
 };
 	
 #include "radio_ids.hpp"
 	
 class CfgWeapons
 {
-	class ItemRadio;
+	class ItemRadio;	
 	
 	class tf_anprc152: ItemRadio
 	{
 		displayName = "AN/PRC-152";
 		descriptionShort = "AN/PRC-152";
 		scope = 2;
+		scopeCurator = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\anprc152\152_icon.paa";
 		tf_prototype = 1;
@@ -260,6 +399,7 @@ class CfgWeapons
 		displayName = "AN/PRC-148 JEM";
 		descriptionShort = "AN/PRC-148 JEM";
 		scope = 2;
+		scopeCurator = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\anprc148jem\148_icon.paa";
 		tf_prototype = 1;
@@ -276,6 +416,7 @@ class CfgWeapons
 		displayName = "FADAK";
 		descriptionShort = "FADAK";
 		scope = 2;
+		scopeCurator = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\fadak\fadak_icon.paa";
 		tf_prototype = 1;
@@ -292,6 +433,7 @@ class CfgWeapons
 		displayName = "AN/PRC-154";
 		descriptionShort = "AN/PRC-154";
 		scope = 2;
+		scopeCurator = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\anprc154\154_icon.paa";
 		tf_prototype = 1;
@@ -308,6 +450,7 @@ class CfgWeapons
 		displayName = "RF-7800S-TR";
 		descriptionShort = "RF-7800S-TR";
 		scope = 2;
+		scopeCurator = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\rf7800str\rf7800str_icon.paa";
 		tf_prototype = 1;
@@ -324,6 +467,7 @@ class CfgWeapons
 		displayName = "PNR-1000A";
 		descriptionShort = "PNR-1000A";
 		scope = 2;
+		scopeCurator = 2;
 		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
 		picture = "\task_force_radio_items\pnr1000a\pnr1000a_icon.paa";
 		tf_prototype = 1;
@@ -333,7 +477,7 @@ class CfgWeapons
 		tf_dialogUpdate = "";	
 		tf_subtype = "digital";
 		tf_parent = "tf_pnr1000a";
-	};
+	};	
 	
 	TF_RADIO_IDS(tf_anprc152,AN/PRC-152)
 	TF_RADIO_IDS(tf_anprc148jem,AN/PRC-148 JEM)
@@ -341,5 +485,6 @@ class CfgWeapons
 	TF_RADIO_IDS(tf_anprc154,AN/PRC-154)
 	TF_RADIO_IDS(tf_rf7800str,RF-7800S-TR)
 	TF_RADIO_IDS(tf_pnr1000a,PNR-1000A)
+	
 
 };
