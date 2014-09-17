@@ -19,7 +19,7 @@
 private ["_result", "_l", "_r", "_m", "_p1", "_p2", "_middle"];
 
 _result = 0;
-_p1 = eyePos player;
+_p1 = eyePos currentUnit;
 _p2 = eyePos _this;
 
 if (terrainIntersectASL[_p1, _p2]) then {

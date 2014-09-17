@@ -23,7 +23,7 @@ _isNearPlayer = _this select 1;
 _current_eyepos = eyepos _unit;
 _current_rotation_horizontal = 0;
 
-if (_unit != player) then {
+if (_unit != currentUnit) then {
 	if (_isNearPlayer) then {
 		// This portion of the code appears that it will be extremely slow
 		// It makes use of the 2 slower position functions.
@@ -34,8 +34,8 @@ if (_unit != player) then {
 	};
 	// for now it used only for player
 	_current_rotation_horizontal = 0;
-	if (alive player) then {
-		_current_eyepos = _current_eyepos vectorDiff (eyePos player);
+	if (alive currentUnit) then {
+		_current_eyepos = _current_eyepos vectorDiff (eyePos currentUnit);
 	};
 } else {
 	_current_look_at = (screenToWorld [0.5,0.5]) vectorDiff _current_eyePos;

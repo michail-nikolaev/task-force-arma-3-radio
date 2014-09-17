@@ -58,14 +58,14 @@ if (time - TF_last_request_time > 3) then {
 			if (_radioCount > 0) then {
 				if (TF_first_radio_request) then {
 					TF_first_radio_request = false;
-					player linkItem (_response select 0);
+					currentUnit linkItem (_response select 0);
 					_copyIndex = [_settingsCount, _copyIndex, (_response select 0)] call _fnc_CopySettings;
 					[(_response select 0),getPlayerUID player] call TFAR_fnc_setRadioOwner;
 					_startIndex = 1;
 				};
 				_radioCount = _radioCount - 1;
 				for "_index" from _startIndex to _radioCount do {
-					player addItem (_response select _index);
+					currentUnit addItem (_response select _index);
 					_copyIndex = [_settingsCount, _copyIndex, (_response select _index)] call _fnc_CopySettings;
 					[(_response select _index),getPlayerUID player] call TFAR_fnc_setRadioOwner;
 				};
@@ -76,7 +76,7 @@ if (time - TF_last_request_time > 3) then {
 		};
 		titleText ["", "PLAIN"];
 		//								unit, radios
-		["OnRadiosReceived", player, [player, _response]] call TFAR_fnc_fireEventHandlers;
+		["OnRadiosReceived", currentUnit, [currentUnit, _response]] call TFAR_fnc_fireEventHandlers;
 	};
 	TF_last_request_time = time;
 };

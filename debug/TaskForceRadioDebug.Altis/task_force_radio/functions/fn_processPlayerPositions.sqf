@@ -17,7 +17,7 @@
 		call TFAR_fnc_processPlayerPositions;
 */
 private ["_elemsNearToProcess","_elemsFarToProcess","_other_units"];
-if !(isNull player) then {
+if !(isNull currentUnit) then {
 	if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {
 		tf_nearPlayersIndex = 0;
 		tf_farPlayersIndex = 0;
