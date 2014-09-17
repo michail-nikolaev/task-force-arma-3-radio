@@ -21,21 +21,21 @@
 	waitUntil {!(isNull player)};	
 	
 	TF_respawnedAt = time;
-	if (alive player) then {
-		if (leader player == player) then {	
-			if (tf_no_auto_long_range_radio or {backpack player == "B_Parachute"}) exitWith {};
-			if ([(backpack player), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1) exitWith {};
+	if (alive currentUnit) then {
+		if (leader currentUnit == currentUnit) then {	
+			if (tf_no_auto_long_range_radio or {backpack currentUnit == "B_Parachute"}) exitWith {};
+			if ([(backpack currentUnit), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1) exitWith {};
 			
 			private ["_items", "_backPack", "_newItems"];
-			_items = backpackItems player;
-			_backPack = unitBackpack player;
-			player action ["putbag", player];
+			_items = backpackItems currentUnit;
+			_backPack = unitBackpack currentUnit;
+			currentUnit action ["putbag", currentUnit];
 			sleep 3;
-			player addBackpack ((call TFAR_fnc_getDefaultRadioClasses) select 0);			
+			currentUnit addBackpack ((call TFAR_fnc_getDefaultRadioClasses) select 0);			
 			_newItems = [];
 			{
-				if (player canAddItemToBackpack _x) then {
-					player addItemToBackpack _x;
+				if (currentUnit canAddItemToBackpack _x) then {
+					currentUnit addItemToBackpack _x;
 				}else{
 					_newItems pushBack _x;
 				};

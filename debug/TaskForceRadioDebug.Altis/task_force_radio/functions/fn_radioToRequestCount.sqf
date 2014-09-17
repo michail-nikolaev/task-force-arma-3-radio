@@ -29,7 +29,7 @@ _classes = call TFAR_fnc_getDefaultRadioClasses;
 _personalRadio = _classes select 1;
 _riflemanRadio = _classes select 2;
 
-if ((TF_give_personal_radio_to_regular_soldier) or {leader player == player}) then {
+if ((TF_give_personal_radio_to_regular_soldier) or {leader currentUnit == currentUnit}) then {
 	_defaultRadio = _personalRadio;
 } else {
 	_defaultRadio = _riflemanRadio;
@@ -51,7 +51,7 @@ TF_settingsToCopy = [];
 			};
 		};
 	};
-} count (assignedItems player);
+} count (assignedItems currentUnit);
 {
     if (_x call TFAR_fnc_isPrototypeRadio) then {
         _to_remove pushBack _x;
@@ -65,11 +65,11 @@ TF_settingsToCopy = [];
 			};
 		};
 	};
-} count (items player);
+} count (items currentUnit);
 
 {
-	player unassignItem _x;
-	player removeItem _x;
+	currentUnit unassignItem _x;
+	currentUnit removeItem _x;
 	if (_x == "ItemRadio") then {
 		_to_remove set [_forEachIndex, _defaultRadio];
 	};

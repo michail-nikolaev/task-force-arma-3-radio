@@ -24,11 +24,11 @@ _freq = ["No_SW_Radio"];
 _freq_lr = ["No_LR_Radio"];
 _freq_dd = "No_DD_Radio";
 
-_isolated_and_inside = player call TFAR_fnc_vehicleIsIsolatedAndInside;
-_depth = player call TFAR_fnc_eyeDepth;
+_isolated_and_inside = currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside;
+_depth = currentUnit call TFAR_fnc_eyeDepth;
 _can_speak = [_isolated_and_inside, _depth] call TFAR_fnc_canSpeak;
 
-if ((call TFAR_fnc_haveSWRadio) and {[player, _isolated_and_inside, _can_speak, _depth] call TFAR_fnc_canUseSWRadio}) then {
+if ((call TFAR_fnc_haveSWRadio) and {[currentUnit, _isolated_and_inside, _can_speak, _depth] call TFAR_fnc_canUseSWRadio}) then {
 	_freq = [];	
 	{
 		if ((_x call TFAR_fnc_getAdditionalSwChannel) == (_x call TFAR_fnc_getSwChannel)) then {
@@ -42,7 +42,7 @@ if ((call TFAR_fnc_haveSWRadio) and {[player, _isolated_and_inside, _can_speak, 
 		
 	} count (call TFAR_fnc_radiosList);
 };
-if ((call TFAR_fnc_haveLRRadio) and {[player, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio}) then {
+if ((call TFAR_fnc_haveLRRadio) and {[currentUnit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio}) then {
 	_freq_lr = [];
 	{
 		if ((_x call TFAR_fnc_getAdditionalLrChannel) == (_x call TFAR_fnc_getLrChannel)) then {
@@ -58,24 +58,24 @@ if ((call TFAR_fnc_haveLRRadio) and {[player, _isolated_and_inside, _depth] call
 if ((call TFAR_fnc_haveDDRadio) and {[_depth, _isolated_and_inside] call TFAR_fnc_canUseDDRadio}) then {
 	_freq_dd = TF_dd_frequency;
 };
-_alive = alive player;
+_alive = alive currentUnit;
 _nickname = name player;
-_globalVolume = player getVariable "tf_globalVolume";
+_globalVolume = currentUnit getVariable "tf_globalVolume";
 if (isNil "_globalVolume") then {
 	_globalVolume = 1.0;
 };
-_voiceVolume = player getVariable "tf_voiceVolume";
+_voiceVolume = currentUnit getVariable "tf_voiceVolume";
 if (isNil "_voiceVolume") then {
 	_voiceVolume = 1.0;
 };
-_spectator = player getVariable "tf_forceSpectator";
+_spectator = currentUnit getVariable "tf_forceSpectator";
 if (isNil "_spectator") then {
 	_spectator = false;
 };
 if (_spectator) then {
 	_alive = false;
 };
-_receivingDistanceMultiplicator = player getVariable "tf_receivingDistanceMultiplicator";
+_receivingDistanceMultiplicator = currentUnit getVariable "tf_receivingDistanceMultiplicator";
 if (isNil "_receivingDistanceMultiplicator") then {
 	_receivingDistanceMultiplicator = 1.0;
 };
