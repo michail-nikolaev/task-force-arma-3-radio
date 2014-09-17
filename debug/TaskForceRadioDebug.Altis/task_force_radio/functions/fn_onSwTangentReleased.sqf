@@ -8,5 +8,7 @@ if ((TF_tangent_sw_pressed) and {alive player}) then {
 	] call TFAR_fnc_ProcessTangent;
 	
 	TF_tangent_sw_pressed = false;
+	//						unit, radio, radioType, additional, buttonDown
+	["OnTangent", player, [player, _radio, 0, false, false]] call TFAR_fnc_fireEventHandlers;
 };
 true

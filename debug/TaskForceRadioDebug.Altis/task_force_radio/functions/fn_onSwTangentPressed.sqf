@@ -12,6 +12,8 @@ if (!(TF_tangent_sw_pressed) and {alive player} and {call TFAR_fnc_haveSWRadio})
 			-1
 			] call TFAR_fnc_ProcessTangent;
 			TF_tangent_sw_pressed = true;
+			//						unit, radio, radioType, additional, buttonDown
+			["OnTangent", player, [player, _radio, 0, false, true]] call TFAR_fnc_fireEventHandlers;
 		} else {
 			call TFAR_fnc_inWaterHint;
 		};

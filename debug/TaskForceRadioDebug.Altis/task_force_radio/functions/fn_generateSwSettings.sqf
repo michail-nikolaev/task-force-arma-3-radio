@@ -26,18 +26,15 @@ _sw_settings = [0, _volume, [], 0, nil, -1, 0, objNull];
 _set = false;
 _sw_frequencies = [];
 
-if (typename _this == "BOOLEAN") then
-{
-	if (!_this) then
-	{
+if (typename _this == "BOOLEAN") then {
+	if (!_this) then {
 		for "_i" from 0 to TF_MAX_CHANNELS step 1 do {
 			_sw_frequencies set [_i, "50"];
 		};
 		_set = true;
 	};
 };
-if (!_set) then
-{
+if (!_set) then {
 	_sw_frequencies = [TF_MAX_CHANNELS,TF_MAX_SW_FREQ,TF_MIN_SW_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
 };
 _sw_settings set [2, _sw_frequencies];

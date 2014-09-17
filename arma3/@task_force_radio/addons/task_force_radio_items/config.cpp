@@ -2,8 +2,8 @@ class CfgPatches
 {
 	class task_force_radio_items
 	{
-		units[] = {"tfar_ModuleTaskForceRadioEnforceUsage", "tfar_ModuleTaskForceRadio", "tfar_ModuleTaskForceRadioFrequencies", "TF_NATO_Radio_Crate", "TF_EAST_Radio_Crate", "TF_IND_Radio_Crate"};
-		weapons[] = {};
+		units[] = {"tfar_ModuleTaskForceRadioEnforceUsage", "tfar_ModuleTaskForceRadio", "tfar_ModuleTaskForceRadioFrequencies", "TF_NATO_Radio_Crate", "TF_EAST_Radio_Crate", "TF_IND_Radio_Crate", "tf_rt1523g", "tf_anprc155", "tf_mr3000", "tf_anarc164", "tf_mr6000l", "tf_anarc210"};
+		weapons[] = {"tf_anprc152", "tf_anprc148jem", "tf_fadak", "tf_anprc154", "tf_rf7800str", "tf_pnr1000a"};
 		requiredVersion = 1.0;
 		requiredAddons[] = {"A3_Modules_F", "A3_UI_F", "A3_Structures_F_Items_Electronics"};
 		author[] = {"[TF]Nkey"};

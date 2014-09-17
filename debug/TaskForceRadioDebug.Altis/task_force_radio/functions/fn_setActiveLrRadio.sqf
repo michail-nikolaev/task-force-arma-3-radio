@@ -18,4 +18,7 @@
  	Example:
 		TF_lr_dialog_radio call TFAR_fnc_setActiveLrRadio;
 */
+private "_old";
+_old = TF_lr_active_radio;
 TF_lr_active_radio = _this;
+["OnLRChange", player, [player, TF_lr_active_radio, _old]] call TFAR_fnc_fireEventHandlers;
