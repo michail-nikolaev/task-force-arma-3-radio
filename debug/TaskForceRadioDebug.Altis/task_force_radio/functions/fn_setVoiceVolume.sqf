@@ -18,3 +18,6 @@
  */
 #include "script.h"
 TF_speak_volume_meters = TF_max_voice_volume min _this;
+
+//							unit, range
+["OnSpeakVolume", player, [player, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;

@@ -19,16 +19,14 @@
 private ["_result"];
 _result = [];
 {	
-	if (_x call TFAR_fnc_isRadio) then 
-	{
-		_result set[count _result, _x];
+	if (_x call TFAR_fnc_isRadio) then {
+		_result pushBack _x;
 	};
 } count (assignedItems player);
 
 {
-	if (_x call TFAR_fnc_isRadio) then 
-	{
-		_result set[count _result, _x];
+	if (_x call TFAR_fnc_isRadio) then {
+		_result pushBack _x;
 	};
 } count (items player);
 _result

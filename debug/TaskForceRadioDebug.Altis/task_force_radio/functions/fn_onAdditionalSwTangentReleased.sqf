@@ -9,6 +9,8 @@ if ((TF_tangent_sw_pressed) and {alive player}) then {
 		format["TANGENT	RELEASED	%1%2	%3	%4", _freq, (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwRadioCode, getNumber(configFile >> "CfgWeapons" >> _radio >> "tf_range") * (call TFAR_fnc_getTransmittingDistanceMultiplicator), getText(configFile >> "CfgWeapons" >> _radio >> "tf_subtype")]
 		] call TFAR_fnc_ProcessTangent;
 		TF_tangent_sw_pressed = false;
+		//						unit, radio, radioType, additional, buttonDown
+		["OnTangent", player, [player, _radio, 0, true, false]] call TFAR_fnc_fireEventHandlers;
 	};
 };
 false

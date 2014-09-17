@@ -75,6 +75,8 @@ if (time - TF_last_request_time > 3) then {
 			hintC _response;
 		};
 		titleText ["", "PLAIN"];
+		//								unit, radios
+		["OnRadiosReceived", player, [player, _response]] call TFAR_fnc_fireEventHandlers;
 	};
 	TF_last_request_time = time;
 };

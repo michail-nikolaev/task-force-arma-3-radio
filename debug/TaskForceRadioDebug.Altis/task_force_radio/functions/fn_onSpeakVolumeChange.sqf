@@ -1,6 +1,5 @@
 private["_localName", "_hintText"];
-if (alive player) then
-{
+if (alive player) then {
 	_localName = "STR_voice_normal";
 	if (TF_speak_volume_level == "Whispering") then {
 		TF_speak_volume_level = "normal";
@@ -19,5 +18,7 @@ if (alive player) then
 	};
 	_hintText = format[localize "STR_voice_volume", _localName];
 	[parseText (_hintText), 5] call TFAR_fnc_showHint;
+	//							unit, range
+	["OnSpeakVolume", player, [player, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
 };
 true
