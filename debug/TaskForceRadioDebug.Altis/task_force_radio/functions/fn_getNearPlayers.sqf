@@ -1,7 +1,7 @@
 private ["_result","_index","_players_in_group","_add_to_near","_was_speaking", "_spectator"];
-_players_in_group = count (units (group player));
+_players_in_group = count (units (group currentUnit));
 _result = [];
-if (alive player) then {
+if (alive currentUnit) then {
 	private "_allUnits";
 	_allUnits = allUnits;
 	_index = 0;
@@ -13,7 +13,7 @@ if (alive player) then {
 			};
 			if (!_spectator) then {
 				_add_to_near = false;
-				if ((_players_in_group < 10) and {group player == group _x}) then {
+				if ((_players_in_group < 10) and {group currentUnit == group _x}) then {
 					_add_to_near = true; 
 				};
 
@@ -22,7 +22,7 @@ if (alive player) then {
 					_add_to_near = true;
 				};
 
-				if (_add_to_near or {(player distance _x < 60)}) then {				
+				if (_add_to_near or {(currentUnit distance _x < 60)}) then {				
 					_result set[_index, _x];
 					_index = _index + 1;
 				} 

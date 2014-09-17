@@ -28,4 +28,4 @@ _settings set [ACTIVE_CHANNEL_OFFSET, _value];
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 
 //							unit, radio object,		radio ID			channel, additional
-["OnLRchannelSet", player, [player, _radio_object, _radio_qualifier, _value, false]] call TFAR_fnc_fireEventHandlers;
+["OnLRchannelSet", currentUnit, [currentUnit, _radio_object, _radio_qualifier, _value, false]] call TFAR_fnc_fireEventHandlers;
