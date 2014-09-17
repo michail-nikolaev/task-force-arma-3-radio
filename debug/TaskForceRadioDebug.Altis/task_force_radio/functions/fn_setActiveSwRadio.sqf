@@ -16,5 +16,7 @@
  	Example:
 		"tf_anprc148jem_1" call TFAR_fnc_setActiveSwRadio;
 */
-player unassignItem (call TFAR_fnc_activeSwRadio);
+_old = (call TFAR_fnc_activeSwRadio);
+player unassignItem _old;
 player assignItem _this;
+["OnSWChange", player, [player, _this, _old]] call TFAR_fnc_fireEventHandlers;
