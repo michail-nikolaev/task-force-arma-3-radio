@@ -149,11 +149,12 @@ class CfgFunctions
 			class setRadioOwner{};
 			class getRadioOwner{};
 			class isSameRadio{};
-			class defaultPositionCoordinates{};
-			
+			class defaultPositionCoordinates{};		
 			class addEventHandler{};
 			class removeEventHandler{};
 			class fireEventHandlers{};
+			class currentUnit{};
+			class isForcedCurator{};
 		};
 	};
 };

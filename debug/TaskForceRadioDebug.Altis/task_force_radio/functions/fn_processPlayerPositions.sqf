@@ -27,7 +27,7 @@ if !(isNull currentUnit) then {
 		};
 
 		_other_units = allUnits - tf_nearPlayers;
-
+		
 		tf_farPlayers = [];
 		tf_farPlayersIndex = 0;	
 		{
