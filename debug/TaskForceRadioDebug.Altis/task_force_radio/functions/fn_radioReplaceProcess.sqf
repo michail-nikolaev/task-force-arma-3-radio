@@ -39,8 +39,15 @@ while {true} do {
 			}];			
 			currentUnit setVariable ["tf_handlers_set", true];
 		};
-
 	};
+	
+	// hide curator playes
+	{
+		if (_x call TFAR_fnc_isForcedCurator) then {
+			_x enableSimulation false;
+			_x hideObject true;
+		};
+	} count (call BIS_fnc_listCuratorPlayers);
 	
 	if !(TF_use_saved_sw_setting) then {
 		if ((alive currentUnit) and (call TFAR_fnc_haveSWRadio)) then {

@@ -286,7 +286,18 @@ previousCurrentUnit = nil;
 currentUnit = player;
 [] spawn {
 	waitUntil {sleep 0.1;!(isNull player)};
-	sleep 5;	
+	if (player call TFAR_fnc_isForcedCurator) then {
+		[] spawn {
+			while {true} do {
+				if !(isNull curatorCamera) then {
+					player setPosATL (getPosATL curatorCamera);
+					player setDir (getDir curatorCamera);
+				};
+				sleep 1;
+			};
+		};
+	};
+	sleep 2;	
 	call TFAR_fnc_radioReplaceProcess;
 };
 
