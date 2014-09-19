@@ -1,31 +1,39 @@
-private ["_result","_index","_players_in_group","_add_to_near","_was_speaking", "_spectator"];
+private ["_result","_index","_players_in_group","_spectator", "_v"];
 _players_in_group = count (units (group currentUnit));
 _result = [];
 if (alive currentUnit) then {
 	private "_allUnits";
-	_allUnits = allUnits;
-	_index = 0;
+	_allUnits = currentUnit nearEntities ["Man", TF_max_voice_volume];
+	
+	if (_players_in_group < 10) then {
+		{
+			if (_x != currentUnit) then {
+				_allUnits pushBack _x;
+			};
+		} count (units (group currentUnit));
+	};
+	
+	{
+		_v = _x;		
+		{ 			
+			_allUnits pushBack _x;
+		} forEach (crew _v);
+	} forEach  (currentUnit nearEntities [["LandVehicle", "Air"], TF_max_voice_volume]);
+	
+	{
+		if (_x call TFAR_fnc_isForcedCurator) then {
+			_allUnits pushBack _x;
+		};
+	} count (call BIS_fnc_listCuratorPlayers);
+		
 	{			
-		if (isPlayer _x) then {
+		if ((isPlayer _x) and {alive _x}) then {				
 			_spectator = _x getVariable "tf_forceSpectator";
 			if (isNil "_spectator") then {
 				_spectator = false;
 			};
 			if (!_spectator) then {
-				_add_to_near = false;
-				if ((_players_in_group < 10) and {group currentUnit == group _x}) then {
-					_add_to_near = true; 
-				};
-
-				_was_speaking = _x getVariable "tf_start_speaking";
-				if (!(isNil "_was_speaking") and {diag_tickTime - _was_speaking < 20}) then {
-					_add_to_near = true;
-				};
-
-				if (_add_to_near or {(currentUnit distance _x < 60)}) then {				
-					_result set[_index, _x];
-					_index = _index + 1;
-				} 
+				_result pushBack _x;	
 			};
 		};
 	} count _allUnits;
