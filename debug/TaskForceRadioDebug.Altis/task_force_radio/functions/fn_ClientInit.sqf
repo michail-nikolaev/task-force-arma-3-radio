@@ -311,3 +311,14 @@ currentUnit = player;
 		};
 	};
 };
+
+if (player in (call BIS_fnc_listCuratorPlayers)) then {
+	[] spawn {
+		while {true} do {
+			waitUntil {sleep 0.1;!(isNull (findDisplay 312))};
+			(findDisplay 312) displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call CBA_events_fnc_keyHandler"];
+			(findDisplay 312) displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call CBA_events_fnc_keyHandler"];
+			waitUntil {sleep 0.1;isNull (findDisplay 312)};
+		};
+	};
+};
