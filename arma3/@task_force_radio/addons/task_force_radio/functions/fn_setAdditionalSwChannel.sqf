@@ -30,4 +30,4 @@ if ((_settings select TF_ADDITIONAL_CHANNEL_OFFSET) != _channel_to_set) then {
 [_radio_id, _settings] call TFAR_fnc_setSwSettings;
 
 //							unit, radio ID,		channel, additional
-["OnSWchannelSet", player, [player, _radio_id, _channel_to_set, true]] call TFAR_fnc_fireEventHandlers;
+["OnSWchannelSet", currentUnit, [currentUnit, _radio_id, _channel_to_set, true]] call TFAR_fnc_fireEventHandlers;

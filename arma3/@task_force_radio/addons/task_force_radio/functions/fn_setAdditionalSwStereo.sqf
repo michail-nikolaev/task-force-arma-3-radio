@@ -26,4 +26,4 @@ _settings set [TF_ADDITIONAL_STEREO_OFFSET, _value_to_set];
 [_radio_id, _settings] call TFAR_fnc_setSwSettings;
 
 //							unit, radio ID,	stero, additional
-["OnSWstereoSet", player, [player, _radio_id, _value_to_set, true]] call TFAR_fnc_fireEventHandlers;
+["OnSWstereoSet", currentUnit, [currentUnit, _radio_id, _value_to_set, true]] call TFAR_fnc_fireEventHandlers;

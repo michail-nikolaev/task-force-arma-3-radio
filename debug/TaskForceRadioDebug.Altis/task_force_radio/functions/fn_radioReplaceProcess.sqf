@@ -16,7 +16,7 @@
  	Example:
 		[] spawn TFAR_fnc_radioReplaceProcess;
 */
-private ["_currentPlayerFlag", "_active_sw_radio", "_active_lr_radio", "_set"];
+private ["_currentPlayerFlag", "_active_sw_radio", "_active_lr_radio", "_set", "_controlled"];
 while {true} do {
 	currentUnit = call TFAR_fnc_currentUnit;	
 	if ((isNil "previousCurrentUnit") or {previousCurrentUnit != currentUnit}) then {
@@ -40,8 +40,25 @@ while {true} do {
 			currentUnit setVariable ["tf_handlers_set", true];
 		};
 	};
+	if (currentUnit != player) then {		
+		_controlled = player getVariable "tf_controlled_unit";
+		if (isNil "_controlled") then {
+			player setVariable ["tf_controlled_unit", currentUnit, true];
+			if (isMultiplayer) then {
+				"task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1", name player]);
+			};
+		};
+	} else {
+		_controlled = player getVariable "tf_controlled_unit";
+		if !(isNil "_controlled") then {
+			player setVariable ["tf_controlled_unit", nil, true];
+			if (isMultiplayer) then {
+				"task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1", name player]);
+			};
+		};
+	};
 	
-	// hide curator playes
+	// hide curator players
 	{
 		if (_x call TFAR_fnc_isForcedCurator) then {
 			_x enableSimulation false;

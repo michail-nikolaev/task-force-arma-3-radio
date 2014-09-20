@@ -21,4 +21,4 @@
 private "_old";
 _old = TF_lr_active_radio;
 TF_lr_active_radio = _this;
-["OnLRChange", player, [player, TF_lr_active_radio, _old]] call TFAR_fnc_fireEventHandlers;
+["OnLRChange", currentUnit, [currentUnit, TF_lr_active_radio, _old]] call TFAR_fnc_fireEventHandlers;

@@ -1240,6 +1240,10 @@ std::string processGameCommand(std::string command)
 		processUnitKilled(tokens[1], currentServerConnectionHandlerID);
 		return "DONE";
 	}
+	else if (tokens.size() == 2 && tokens[0] == "RELEASE_ALL_TANGENTS")
+	{
+		ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, command.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
+	}
 	if (tokens.size() == 4 && tokens[0] == "VERSION")
 	{
 		EnterCriticalSection(&serverDataCriticalSection);
@@ -2246,6 +2250,22 @@ int ts3plugin_onServerPermissionErrorEvent(uint64 serverConnectionHandlerID, con
 	return 0;  /* See onServerErrorEvent for return code description */
 }
 
+
+void processAllTangentRelease(uint64 serverId, std::vector<std::string> &tokens)
+{
+	std::string nickname = tokens[1];
+	EnterCriticalSection(&serverDataCriticalSection);
+	if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(nickname))
+	{
+		CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[nickname];
+		if (clientData)
+		{
+			clientData->tangentOverType = LISTEN_TO_NONE;
+		}
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
+}
+
 void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std::string &command)
 {
 	DWORD time = GetTickCount();
@@ -2365,6 +2385,10 @@ void processPluginCommand(std::string command)
 	if (tokens.size() == 6 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD"))
 	{
 		processTangentPress(serverId, tokens, command);
+	}
+	else if (tokens.size() == 2 && tokens[0] == "RELEASE_ALL_TANGENTS") 
+	{
+		processAllTangentRelease(serverId, tokens);
 	}
 	else if (tokens.size() == 4 && tokens[0] == "VOLUME")
 	{
