@@ -17,6 +17,6 @@
 		"tf_anprc148jem_1" call TFAR_fnc_setActiveSwRadio;
 */
 _old = (call TFAR_fnc_activeSwRadio);
-player unassignItem _old;
-player assignItem _this;
-["OnSWChange", player, [player, _this, _old]] call TFAR_fnc_fireEventHandlers;
+currentUnit unassignItem _old;
+currentUnit assignItem _this;
+["OnSWChange", currentUnit, [currentUnit, _this, _old]] call TFAR_fnc_fireEventHandlers;

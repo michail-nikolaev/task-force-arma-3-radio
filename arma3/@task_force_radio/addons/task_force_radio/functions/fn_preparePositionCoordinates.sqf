@@ -9,7 +9,8 @@
 	
 	Parameters:
 		0: OBJECT - unit
-		1: BOOLEAN - Is near player
+		1: BOOLEAN - Is near player		
+		3: STRING - Unit name
  	
  	Returns:
 		Nothing
@@ -37,4 +38,4 @@ if (count _pos != 4) then {
 	_pos pushBack 0;
 };
 
-(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11", name _unit, _pos select 0, _pos select 1, _pos select 2, _pos select 3, _can_speak, _useSw, _useLr, _useDd, _unit call TFAR_fnc_vehicleId, _unit call TFAR_fnc_calcTerrainInterception])
+(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11", _this select 2, _pos select 0, _pos select 1, _pos select 2, _pos select 3, _can_speak, _useSw, _useLr, _useDd, _unit call TFAR_fnc_vehicleId, _unit call TFAR_fnc_calcTerrainInterception])

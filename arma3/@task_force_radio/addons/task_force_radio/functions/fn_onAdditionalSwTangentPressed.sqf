@@ -1,10 +1,10 @@
 private["_depth", "_freq"];
-if (!(TF_tangent_sw_pressed) and {alive player} and {call TFAR_fnc_haveSWRadio}) then {	
+if (!(TF_tangent_sw_pressed) and {alive currentUnit} and {call TFAR_fnc_haveSWRadio}) then {	
 	if (call TFAR_fnc_isAbleToUseRadio) then {
 		call TFAR_fnc_unableToUseHint;
 	} else {
-		_depth = player call TFAR_fnc_eyeDepth;
-		if ([player, player call TFAR_fnc_vehicleIsIsolatedAndInside, [player call TFAR_fnc_vehicleIsIsolatedAndInside, _depth] call TFAR_fnc_canSpeak, _depth] call TFAR_fnc_canUseSWRadio) then {
+		_depth = currentUnit call TFAR_fnc_eyeDepth;
+		if ([currentUnit, currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, [currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, _depth] call TFAR_fnc_canSpeak, _depth] call TFAR_fnc_canUseSWRadio) then {
 			private "_radio";
 			_radio = call TFAR_fnc_activeSwRadio;
 			
@@ -17,7 +17,7 @@ if (!(TF_tangent_sw_pressed) and {alive player} and {call TFAR_fnc_haveSWRadio})
 				] call TFAR_fnc_ProcessTangent;
 				TF_tangent_sw_pressed = true;
 				//						unit, radio, radioType, additional, buttonDown
-				["OnTangent", player, [player, _radio, 0, true, true]] call TFAR_fnc_fireEventHandlers;
+				["OnTangent", currentUnit, [currentUnit, _radio, 0, true, true]] call TFAR_fnc_fireEventHandlers;
 			};
 		} else {
 			call TFAR_fnc_inWaterHint;

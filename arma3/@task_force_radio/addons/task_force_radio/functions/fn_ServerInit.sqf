@@ -54,7 +54,11 @@ TF_Radio_Count = [];
 
 while {true} do {		
 	call TFAR_fnc_processGroupFrequencySettings;
-	_allUnits = allUnits;
+	_allUnits = allUnits;	
+	{
+		_allUnits pushBack _x;
+	} count (call BIS_fnc_listCuratorPlayers);
+	
 	{
 		if (isPlayer _x) then {
 			_variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);

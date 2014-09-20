@@ -22,11 +22,11 @@ _result = [];
 	if (_x call TFAR_fnc_isRadio) then {
 		_result pushBack _x;
 	};
-} count (assignedItems player);
+} count (assignedItems currentUnit);
 
 {
 	if (_x call TFAR_fnc_isRadio) then {
 		_result pushBack _x;
 	};
-} count (items player);
+} count (items currentUnit);
 _result
