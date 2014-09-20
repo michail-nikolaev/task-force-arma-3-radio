@@ -18,8 +18,8 @@
 */
 private ["_result", "_backpack"];
 _result = [];
-_backpack = backpack player;
+_backpack = backpack currentUnit;
 if (([_backpack, "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty) == 1) then {
-	_result = [unitBackpack player, "radio_settings"];
+	_result = [unitBackpack currentUnit, "radio_settings"];
 };
 _result

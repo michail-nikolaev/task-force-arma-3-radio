@@ -9,6 +9,9 @@
 	
 	Parameters:
 		1: OBJECT - Unit
+		2: BOOLEAN - Is unit close to player
+		3: STRING - Unit name
+
  	
  	Returns:
 		Nothing

@@ -17,7 +17,7 @@
 		call TFAR_fnc_getTransmittingDistanceMultiplicator;
 */
 private ["_result"];
-_result = player getVariable "tf_sendingDistanceMultiplicator";
+_result = currentUnit getVariable "tf_sendingDistanceMultiplicator";
 if (isNil "_result") then {
 	_result = 1.0;
 };
