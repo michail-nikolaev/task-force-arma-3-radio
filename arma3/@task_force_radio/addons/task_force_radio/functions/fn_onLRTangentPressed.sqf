@@ -1,5 +1,7 @@
 private["_radio"];
+
 if (!(TF_tangent_lr_pressed) and {alive currentUnit} and {call TFAR_fnc_haveLRRadio}) then {
+
 	if (call TFAR_fnc_isAbleToUseRadio) then {
 		call TFAR_fnc_unableToUseHint;
 	} else {

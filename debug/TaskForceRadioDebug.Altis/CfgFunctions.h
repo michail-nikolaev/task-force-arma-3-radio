@@ -155,6 +155,7 @@ class CfgFunctions
 			class fireEventHandlers{};
 			class currentUnit{};
 			class isForcedCurator{};
+			class processCuratorKey{};
 		};
 	};
 };

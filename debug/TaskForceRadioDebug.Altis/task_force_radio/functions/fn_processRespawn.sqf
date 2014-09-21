@@ -23,7 +23,7 @@
 	TF_respawnedAt = time;
 	if (alive currentUnit) then {
 		if (leader currentUnit == currentUnit) then {	
-			if (tf_no_auto_long_range_radio or {backpack currentUnit == "B_Parachute"}) exitWith {};
+			if (tf_no_auto_long_range_radio or {backpack currentUnit == "B_Parachute"} or {player call TFAR_fnc_isForcedCurator}) exitWith {};
 			if ([(backpack currentUnit), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1) exitWith {};
 			
 			private ["_items", "_backPack", "_newItems"];
