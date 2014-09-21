@@ -100,6 +100,10 @@ TF_saved_active_sw_settings = nil;
 TF_use_saved_lr_setting = false;
 TF_saved_active_lr_settings = nil;
 
+TF_curator_backpack_1 = nil;
+TF_curator_backpack_2 = nil;
+TF_curator_backpack_3 = nil;
+
 TF_MAX_SW_VOLUME = 10;
 TF_MAX_LR_VOLUME = 10;
 TF_MAX_DD_VOLUME = 10;
@@ -284,9 +288,38 @@ player addEventHandler ["killed", {
 TF_respawnedAt = time;
 previousCurrentUnit = nil;
 currentUnit = player;
-[] spawn {
+[] spawn {	
 	waitUntil {sleep 0.1;!(isNull player)};
-	if (player call TFAR_fnc_isForcedCurator) then {
+	if (player call TFAR_fnc_isForcedCurator) then {		
+		player enableSimulation false;
+		player hideObject true;
+		
+		player unlinkItem "ItemRadio";
+		player addVest "V_Rangemaster_belt";
+		
+		switch (typeOf (player)) do {
+			case "B_VirtualCurator_F": {
+					player addItem TF_defaultWestPersonalRadio;
+					TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];				
+				};
+			case "O_VirtualCurator_F": {
+					player addItem TF_defaultEastPersonalRadio;
+					TF_curator_backpack_1 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];					
+				};
+			case "I_VirtualCurator_F": {
+					player addItem TF_defaultGuerPersonalRadio;
+					TF_curator_backpack_1 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];				
+				};
+			default {
+				player addItem TF_defaultWestPersonalRadio;
+				player addItem TF_defaultEastPersonalRadio;
+				player addItem TF_defaultGuerPersonalRadio;
+				TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];
+				TF_curator_backpack_2 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];
+				TF_curator_backpack_3 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];				
+			};
+		};
+		
 		[] spawn {
 			while {true} do {
 				if !(isNull curatorCamera) then {
@@ -312,12 +345,12 @@ currentUnit = player;
 	};
 };
 
-if (player in (call BIS_fnc_listCuratorPlayers)) then {
+if (player in (call BIS_fnc_listCuratorPlayers)) then {	
 	[] spawn {
 		while {true} do {
-			waitUntil {sleep 0.1;!(isNull (findDisplay 312))};
-			(findDisplay 312) displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call CBA_events_fnc_keyHandler"];
-			(findDisplay 312) displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call CBA_events_fnc_keyHandler"];
+			waitUntil {sleep 0.1;!(isNull (findDisplay 312))};			
+			(findDisplay 312) displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_processCuratorKey"];
+			(findDisplay 312) displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
 			waitUntil {sleep 0.1;isNull (findDisplay 312)};
 		};
 	};
