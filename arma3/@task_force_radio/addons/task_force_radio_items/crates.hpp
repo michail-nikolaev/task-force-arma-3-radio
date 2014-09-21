@@ -26,6 +26,18 @@ class TF_NATO_Radio_Crate: Box_NATO_Support_F
 			count = 10;
 			backpack = "tf_rt1523g";
 		};
+		class _xx_tf_rt1523g_sage {
+			count = 3;
+			backpack = "tf_rt1523g_sage";
+		};
+		class _xx_tf_rt1523g_green {
+			count = 3;
+			backpack = "tf_rt1523g_green";
+		};
+		class _xx_tf_rt1523g_black {
+			count = 3;
+			backpack = "tf_rt1523g_black";
+		};
 	};
 };
 
@@ -57,6 +69,11 @@ class TF_EAST_Radio_Crate: Box_EAST_Support_F
 			count = 10;
 			backpack = "tf_mr3000";
 		};
+		class _xx_tf_mr3000_multicam
+		{
+			count = 3;
+			backpack = "tf_mr3000_multicam";
+		};
 	};
 };
 
@@ -87,6 +104,11 @@ class TF_IND_Radio_Crate: Box_IND_Support_F
 		{
 			count = 10;
 			backpack = "tf_anprc155";
+		};
+		class _xx_tf_anprc155_coyote
+		{
+			count = 10;
+			backpack = "tf_anprc155_coyote";
 		};
 	};
 };
