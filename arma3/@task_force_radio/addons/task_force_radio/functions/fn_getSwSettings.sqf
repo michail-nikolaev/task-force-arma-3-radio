@@ -60,7 +60,7 @@ if (isNil "_rc") then {
 			_rc = missionNamespace getVariable [_code, ""];
 		};
 	};
-	_value set [TF_CODE_OFFSET, _rc];
+	_value set [TF_CODE_OFFSET, "_rc"];
 	[_this, + _value] call TFAR_fnc_setSwSettings;
 };
 _value
