@@ -53,7 +53,7 @@ _v0.9.1 (05-29-2014)_
 | `CTRL`&nbsp;+&nbsp;`NUM[1-9]` | Rapid switching of long range radio channels. |
 | `CTRL`&nbsp;+&nbsp;`TAB` | To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission. |
 | `SHIFT`&nbsp;+&nbsp;`P` | To open an underwater transceiver interface (you should be wearing a rebreather). | 
-| `ALT`&nbsp;+&nbsp;`Caps Lock` | To talk on underwater transceiver. |
+| `CTRL`&nbsp;+&nbsp;`~` | To talk on underwater transceiver. |
 | `CTRL`&nbsp;+&nbsp;`]`| Select next personal radio. |
 | `CTRL`&nbsp;+&nbsp;`[`| Select previous personal radio. |
 | `CTRL`&nbsp;+&nbsp;`ALT`&nbsp;+&nbsp;`]`| Select next long range radio. |
@@ -171,5 +171,8 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [Krypto202](http://www.armaholic.com/users.php?m=details&id=45906&u=kripto202) for sounds.
 * [pastor399](http://forums.bistudio.com/member.php?128853-pastor399) for backpacks model and textures.
 * [J0nes](http://forums.bistudio.com/member.php?96513-J0nes) for help with models.
+* [Raspu86](http://forums.bistudio.com/member.php?132083-Raspu86) for backpacks models.
+* [Gandi](http://forums.bistudio.com/member.php?111588-Gandi) for textures
+* [Pixinger] (https://github.com/Pixinger) for help with Zeus.
 * Everyone user (especially who report bugs).
 * Sorry guys if I’ve forgot someone by chance.

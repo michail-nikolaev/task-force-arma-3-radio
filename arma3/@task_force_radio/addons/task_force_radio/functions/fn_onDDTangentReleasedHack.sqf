@@ -1,9 +1,10 @@
 #include "script.h"
-private ["_scancode"];
+private ["_scancode", "_mods"];
 _scancode = _this select 1; 
-if (((_scancode == SHIFTL) and (TF_tangent_dd_modifiers select 0))
-   or ((_scancode == CTRLL) and (TF_tangent_dd_modifiers select 1))
-   or ((_scancode == ALTL) and (TF_tangent_dd_modifiers select 2)))
+_mods = (cba_keybinding_handlers select (["TFAR", "DD Transmit"] call cba_fnc_getKeybind)) select 2;
+if (((_scancode == SHIFTL) and (_mods select 1))
+   or ((_scancode == CTRLL) and (_mods select 2))
+   or ((_scancode == ALTL) and (_mods select 3)))
 then {
 	call TFAR_fnc_onDDTangentReleased;
 };

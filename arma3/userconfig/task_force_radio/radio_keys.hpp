@@ -254,10 +254,10 @@ class task_force_radio_keys {
 	};
 
 	class tanget_dd {
-		key = 58;
-		ctrl = 0;
+		key = 41;
+		ctrl = 1;
 		shift = 0;
-		alt = 1;
+		alt = 0;
 	};
 	
 	class tanget_dd_2 {

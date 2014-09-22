@@ -49,6 +49,8 @@ class CfgFunctions
 			class canUseSWRadio{};
 			class onSwTangentPressed{};
 			class onSwTangentReleased{};
+			class onSwTangentPressedHack{};
+			class onSwTangentReleasedHack{};
 			class canUseLRRadio{};
 			class onLRTangentPressed{};
 			class onLRTangentReleased{};
