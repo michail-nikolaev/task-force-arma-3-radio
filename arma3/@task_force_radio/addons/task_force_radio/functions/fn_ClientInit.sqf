@@ -110,6 +110,9 @@ TF_MAX_DD_VOLUME = 10;
 
 TF_dd_volume_level = 7;
 
+TF_last_lr_tangent_press = 0.0;
+TF_last_dd_tangent_press = 0.0;
+
 TF_MIN_DD_FREQ = 32;
 TF_MAX_DD_FREQ = 41;
 
@@ -199,11 +202,9 @@ tf_msSpectatorPerStepMax = 0.035;
 	["TFAR", "Open LR Radio Menu", ["player", [], -3, "_this call TFAR_fnc_lrRadioMenu"], [TF_dialog_lr_scancode] + TF_dialog_lr_modifiers] call CBA_fnc_registerKeybindToFleximenu;
 	// SW radio keys
 	["TFAR", "SW Transmit", {call TFAR_fnc_onSwTangentPressed}, [TF_tangent_sw_scancode] + TF_tangent_sw_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "SW Transmit", {call TFAR_fnc_onSwTangentReleased}, [TF_tangent_sw_scancode] + TF_tangent_sw_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	if (TF_tangent_sw_2_scancode != 0) then {
-		["TFAR", "SW Transmit Alt", {call TFAR_fnc_onSwTangentPressed}, [TF_tangent_sw_2_scancode] + TF_tangent_sw_2_modifiers] call cba_fnc_registerKeybind;
-		["TFAR", "SW Transmit Alt", {call TFAR_fnc_onSwTangentReleased}, [TF_tangent_sw_2_scancode] + TF_tangent_sw_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	};
+	["TFAR", "SW Transmit", {call TFAR_fnc_onSwTangentReleased}, [TF_tangent_sw_scancode] + TF_tangent_sw_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
+	["TFAR", "SW Transmit Alt", {call TFAR_fnc_onSwTangentPressed}, [TF_tangent_sw_2_scancode] + TF_tangent_sw_2_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "SW Transmit Alt", {call TFAR_fnc_onSwTangentReleased}, [TF_tangent_sw_2_scancode] + TF_tangent_sw_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
 	["TFAR", "SW Transmit Additional", {call TFAR_fnc_onAdditionalSwTangentPressed}, [TF_tangent_additional_sw_scancode] + TF_tangent_additional_sw_modifiers] call cba_fnc_registerKeybind;
 	["TFAR", "SW Transmit Additional", {call TFAR_fnc_onAdditionalSwTangentReleased}, [TF_tangent_additional_sw_scancode] + TF_tangent_additional_sw_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
 
@@ -218,12 +219,9 @@ tf_msSpectatorPerStepMax = 0.035;
 	
 	// LR radio keys
 	["TFAR", "LR Transmit", {call TFAR_fnc_onLRTangentPressed}, [TF_tangent_lr_scancode] + TF_tangent_lr_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "LR Transmit", {call TFAR_fnc_onLRTangentReleased}, [TF_tangent_lr_scancode] + TF_tangent_lr_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
-	if (TF_tangent_lr_2_scancode != 0) then {
-		["TFAR", "LR Transmit Alt", {call TFAR_fnc_onLRTangentPressed}, [TF_tangent_lr_2_scancode] + TF_tangent_lr_2_modifiers] call cba_fnc_registerKeybind;
-		["TFAR", "LR Transmit Alt", {call TFAR_fnc_onLRTangentReleased}, [TF_tangent_lr_2_scancode] + TF_tangent_lr_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	};
+	["TFAR", "LR Transmit", {call TFAR_fnc_onLRTangentReleased}, [TF_tangent_lr_scancode] + TF_tangent_lr_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
+	["TFAR", "LR Transmit Alt", {call TFAR_fnc_onLRTangentPressed}, [TF_tangent_lr_2_scancode] + TF_tangent_lr_2_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "LR Transmit Alt", {call TFAR_fnc_onLRTangentReleased}, [TF_tangent_lr_2_scancode] + TF_tangent_lr_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
 	["TFAR", "LR Transmit Additional", {call TFAR_fnc_onAdditionalLRTangentPressed}, [TF_tangent_additional_lr_scancode] + TF_tangent_additional_lr_modifiers] call cba_fnc_registerKeybind;
 	["TFAR", "LR Transmit Additional", {call TFAR_fnc_onAdditionalLRTangentReleased}, [TF_tangent_additional_lr_scancode] + TF_tangent_additional_lr_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
 
@@ -238,13 +236,10 @@ tf_msSpectatorPerStepMax = 0.035;
 	["TFAR", "LR Channel 9", {[8] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_9_scancode] + TF_lr_channel_9_modifiers] call cba_fnc_registerKeybind;
 
 	// DD radio keys
-	["TFAR", "DD Transmit", {call TFAR_fnc_onDDTangentReleased}, [TF_tangent_dd_scancode] + TF_tangent_dd_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "DD Transmit", {call TFAR_fnc_onDDTangentPressed}, [TF_tangent_dd_scancode] + TF_tangent_dd_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
-	if (TF_tangent_dd_2_scancode != 0) then {
-		["TFAR", "DD Transmit Alt", {call TFAR_fnc_onDDTangentReleased}, [TF_tangent_dd_2_scancode] + TF_tangent_dd_2_modifiers] call cba_fnc_registerKeybind;
-		["TFAR", "DD Transmit Alt", {call TFAR_fnc_onDDTangentPressed}, [TF_tangent_dd_2_scancode] + TF_tangent_dd_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	};
+	["TFAR", "DD Transmit", {call TFAR_fnc_onDDTangentPressed}, [TF_tangent_dd_scancode] + TF_tangent_dd_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "DD Transmit", {call TFAR_fnc_onDDTangentReleased}, [TF_tangent_dd_scancode] + TF_tangent_dd_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
+	["TFAR", "DD Transmit Alt", {call TFAR_fnc_onDDTangentPressed}, [TF_tangent_dd_2_scancode] + TF_tangent_dd_2_modifiers] call cba_fnc_registerKeybind;
+	["TFAR", "DD Transmit Alt", {call TFAR_fnc_onDDTangentReleased}, [TF_tangent_dd_2_scancode] + TF_tangent_dd_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
 	["TFAR", "DD Radio Settings", {call TFAR_fnc_onDDDialogOpen}, [TF_dialog_dd_scancode] + TF_dialog_dd_modifiers] call cba_fnc_registerKeybind;
 	
 	// Volume and extra keys
@@ -262,6 +257,11 @@ tf_msSpectatorPerStepMax = 0.035;
 	["TFAR", "LR Stereo: Both", {[0] call TFAR_fnc_processLRStereoKeys}, [TF_lr_stereo_both_scancode] + TF_lr_stereo_both_modifiers] call cba_fnc_registerKeybind;
 	["TFAR", "LR Stereo: Left", {[1] call TFAR_fnc_processLRStereoKeys}, [TF_lr_stereo_left_scancode] + TF_lr_stereo_left_modifiers] call cba_fnc_registerKeybind;
 	["TFAR", "LR Stereo: Right", {[2] call TFAR_fnc_processLRStereoKeys}, [TF_lr_stereo_right_scancode] + TF_lr_stereo_right_modifiers] call cba_fnc_registerKeybind;
+	
+	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];	
+	(findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];	
+	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];	
+	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
 	
 	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
