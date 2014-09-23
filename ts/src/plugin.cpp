@@ -2113,11 +2113,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 					data->filterVehicle.reset();
 					data->filterVehicle.setup(2, 48000, 20000 * (1.0 - vehicleVolumeLoss) / 4.0);
 					data->lastVehicleIsolation = vehicleVolumeLoss;
-				}
-				// Will need to include filtering if (vehicleVolumeLoss > ISOLATED_EFFECTS_START && vehicleVolumeLoss < ISOLATED_CUTOFF)
-				// {
-				//		float isolatedEffectAmount = (vehicleVolumeLoss - ISOLATED_EFFECTS_START) / (ISOLATED_CUTOFF - ISOLATED_EFFECTS_START);
-				// }
+				}				
 				float d = distanceFromClient(serverConnectionHandlerID, data);
 
 				if (listed_info.over != LISTEN_TO_NONE)
