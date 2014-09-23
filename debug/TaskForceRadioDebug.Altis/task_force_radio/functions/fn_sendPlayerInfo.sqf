@@ -19,7 +19,7 @@
  	Example:
 		[player] call TFAR_fnc_sendPlayerInfo;
 */
-private ["_request","_result", "_player", "_isNearPlayer"];
+private ["_request","_result", "_player", "_isNearPlayer", "_killSet"];
 _player = _this select 0;
 
 _request = _this call TFAR_fnc_preparePositionCoordinates;
@@ -47,4 +47,9 @@ if (_result == "SPEAKING") then {
 		_player setVariable ["tf_isSpeaking", false];
 		["OnSpeak", _player, [_player, false]] call TFAR_fnc_fireEventHandlers;
 	};
+};
+_killSet = _player getVariable "tf_killSet";
+if (isNil "_killSet") then {
+	_player addEventHandler ["Killed", {(_this select 0) call TFAR_fnc_sendPlayerKilled}];
+	_player setVariable ["tf_killSet", true];
 };
