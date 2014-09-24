@@ -27,16 +27,27 @@ while {true} do {
 				private "_class";				
 				_class = ConfigFile >> "CfgWeapons" >> (_this select 2);
 				if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
-					[(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;
+					[(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;					
 				};
 			}];
 			currentUnit addEventHandler ["Put", {
 				private "_class";				
 				_class = ConfigFile >> "CfgWeapons" >> (_this select 2);
-				if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+				if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {					
 					[(_this select 2), ""] call TFAR_fnc_setRadioOwner;
 				};
-			}];			
+			}];
+			currentUnit addEventHandler ["Killed", {
+				private ["_class", "_items", "_unit"];
+				_unit = _this select 0;				
+				_items = (assignedItems _unit) + (items _unit);
+				{
+					_class = ConfigFile >> "CfgWeapons" >> _x;
+					if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+						[_x, ""] call TFAR_fnc_setRadioOwner;
+					};				
+				} count _items;
+			}];		
 			currentUnit setVariable ["tf_handlers_set", true];
 		};
 	};

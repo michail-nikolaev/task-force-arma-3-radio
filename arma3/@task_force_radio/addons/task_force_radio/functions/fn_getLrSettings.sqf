@@ -71,27 +71,26 @@ if (isNil "_value") then {
 	if (TF_use_saved_lr_setting) then {
 		TF_use_saved_lr_setting = false;
 	};
-	[_radio_object, _radio_qualifier, + _value] call TFAR_fnc_setLrSettings;
-};
-_rc = _value select TF_CODE_OFFSET;
-if (isNil "_rc") then {
-	private ["_code", "_hasDefaultEncryption"];
-	_code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
-	_hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
-	if (_hasDefaultEncryption and {((currentUnit call BIS_fnc_objectSide) != civilian)}) then {
-		if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType}) then {
-			_rc = missionNamespace getVariable format ["tf_%1_radio_code",(currentUnit call BIS_fnc_objectSide)];
-		}else{
-			_rc = missionNamespace getVariable [_code, ""];
+	_rc = _value select TF_CODE_OFFSET;
+	if (isNil "_rc") then {
+		private ["_code", "_hasDefaultEncryption"];
+		_code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
+		_hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
+		if (_hasDefaultEncryption and {((currentUnit call BIS_fnc_objectSide) != civilian)}) then {
+			if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType}) then {
+				_rc = missionNamespace getVariable format ["tf_%1_radio_code",(currentUnit call BIS_fnc_objectSide)];
+			}else{
+				_rc = missionNamespace getVariable [_code, ""];
+			};
+		} else {
+			_rc = "";
+			if (_code != "") then {
+				_rc = missionNamespace getVariable [_code, ""];
+			};
 		};
-	} else {
-		_rc = "";
-		if (_code != "") then {
-			_rc = missionNamespace getVariable [_code, ""];
-		};
+		
+		_value set [TF_CODE_OFFSET, _rc];		
 	};
-	
-	_value set [TF_CODE_OFFSET, _rc];
 	[_radio_object, _radio_qualifier, + _value] call TFAR_fnc_setLrSettings;
 };
 _value
