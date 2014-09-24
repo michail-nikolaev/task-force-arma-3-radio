@@ -23,4 +23,4 @@ if (count _settings > RADIO_OWNER) exitWith {
 	((_this call TFAR_fnc_getSwSettings) select RADIO_OWNER)
 };
 
-objNull
+""
