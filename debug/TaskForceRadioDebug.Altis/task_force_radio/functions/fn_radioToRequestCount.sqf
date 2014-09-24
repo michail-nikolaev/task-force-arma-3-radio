@@ -41,25 +41,27 @@ TF_settingsToCopy = [];
 		_to_remove pushBack _x;
         TF_first_radio_request = true;
     } else {
-		if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios}) then {
+		if (_x call TFAR_fnc_isRadio) then {
 			if ((_x call TFAR_fnc_getRadioOwner) == "") then {
 				[_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
-			} else {
+			};
+			if (((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios) then {
 				_to_remove pushBack _x;
 				TF_settingsToCopy set [0, _x];
 				TF_first_radio_request = true;
 			};
 		};
-	};
+	};	
 } count (assignedItems currentUnit);
 {
     if (_x call TFAR_fnc_isPrototypeRadio) then {
         _to_remove pushBack _x;
-    } else {
-		if (_x call TFAR_fnc_isRadio and {((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios}) then{
+    } else {		
+		if (_x call TFAR_fnc_isRadio) then {
 			if ((_x call TFAR_fnc_getRadioOwner) == "") then {
 				[_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
-			} else {
+			};
+			if (((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios) then {
 				_to_remove pushBack _x;
 				TF_settingsToCopy pushBack _x;
 			};
