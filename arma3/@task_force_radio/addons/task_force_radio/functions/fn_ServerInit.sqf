@@ -47,6 +47,12 @@ if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_lr_frequenci
 	tf_same_lr_frequencies_for_side_server = false;
 };
 publicVariable "tf_same_lr_frequencies_for_side_server";
+if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_dd_frequencies_for_side")) then {
+	tf_same_dd_frequencies_for_side_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_dd_frequencies_for_side") == 1;
+} else {
+	tf_same_dd_frequencies_for_side_server = false;
+};
+publicVariable "tf_same_dd_frequencies_for_side_server";
 
 waitUntil {sleep 0.1;time > 0};
 
