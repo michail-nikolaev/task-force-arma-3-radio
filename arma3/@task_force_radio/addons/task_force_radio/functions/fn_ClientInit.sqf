@@ -113,9 +113,6 @@ TF_dd_volume_level = 7;
 TF_last_lr_tangent_press = 0.0;
 TF_last_dd_tangent_press = 0.0;
 
-TF_MIN_DD_FREQ = 32;
-TF_MAX_DD_FREQ = 41;
-
 TF_HintFnc = nil;
 
 IDC_ANPRC152_RADIO_DIALOG_EDIT_ID = IDC_ANPRC152_EDIT;
@@ -155,7 +152,7 @@ TF_tangent_sw_pressed = false;
 TF_tangent_lr_pressed = false;
 TF_tangent_dd_pressed = false;
 
-TF_dd_frequency = str (round (((random (TF_MAX_DD_FREQ - TF_MIN_DD_FREQ)) + TF_MIN_DD_FREQ) * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER);
+TF_dd_frequency = nil;
 
 TF_speak_volume_level = "normal";
 TF_speak_volume_meters = 20;

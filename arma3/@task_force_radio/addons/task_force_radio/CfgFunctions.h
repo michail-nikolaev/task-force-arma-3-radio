@@ -158,6 +158,7 @@ class CfgFunctions
 			class currentUnit{};
 			class isForcedCurator{};
 			class processCuratorKey{};
+			class generateDDFreq{};
 		};
 	};
 };
