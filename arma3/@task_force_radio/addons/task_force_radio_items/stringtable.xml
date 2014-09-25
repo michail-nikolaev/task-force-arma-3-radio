@@ -8,10 +8,13 @@
 				</Original>
 				<Russian>
 					TFAR Рации (NATO)
-				</Russian>				
+				</Russian>	
 				<Spanish>
 					TFAR Radio (NATO)
 				</Spanish>
+				<German>
+					TFAR Radio (NATO)
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_EAST_crate">
 				<Original>
@@ -19,10 +22,13 @@
 				</Original>
 				<Russian>
 					TFAR Рации (CSAT)
-				</Russian>			
+				</Russian>	
 				<Spanish>
 					TFAR Radio (CSAT)
 				</Spanish>
+				<German>
+					TFAR Radio (CSAT)
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_IND_crate">
 				<Original>
@@ -30,10 +36,13 @@
 				</Original>
 				<Russian>
 					TFAR Рации (AAF)
-				</Russian>				
+				</Russian>	
 				<Spanish>
 					TFAR Radio (AAF)
 				</Spanish>
+				<German>
+					TFAR Radio (AAF)
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_EnforceUsage">
 				<Original>
@@ -41,10 +50,13 @@
 				</Original>
 				<Russian>
 					TFAR - Базовый модуль
-				</Russian>				
+				</Russian>	
 				<Spanish>
 					TFAR - Obligar su uso
 				</Spanish>
+				<German>
+					TFAR - Erzwingt die Nutzung
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveTLradio">
 				<Original>
@@ -52,10 +64,13 @@
 				</Original>
 				<Russian>
 					Выдавать лидерам групп дальнюю связь
-				</Russian>				
+				</Russian>	
 				<Spanish>
 					Dar a los lideres de equipo una radio de largo alcance
 				</Spanish>
+				<German>
+					Weist dem Teamleiter ein Langstreckenfunkgerät zu
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveTLradioTT">
 				<Original>
@@ -63,10 +78,13 @@
 				</Original>
 				<Russian>
 					Выдавать ли каждому лидеру групп рацию дальней связи
-				</Russian>				
+				</Russian>	
 				<Spanish>
 					Da a cada lider de equipo una radio de largo alcance apropiada
 				</Spanish>
+				<German>
+					Weist jedem Teamleiter das entsprechende Langstreckenfunkgerät zu
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
 				<Original>
@@ -74,10 +92,13 @@
 				</Original>
 				<Russian>
 					Выдавать личную рацию бойца
-				</Russian>			
+				</Russian>	
 				<Spanish>
 					Dar una radio personal
 				</Spanish>
+				<German>
+					Weist ein Kurzstreckenfunkgerät zu
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
 				<Original>
@@ -89,6 +110,9 @@
 				<Spanish>
 					Dar una radio personal a cada miembro de equipo
 				</Spanish>
+				<German>
+					Weist jedem Teammitglied ein Kurzstreckenfunkgerät zu
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_EnforceUsage_Description">
 				<Original>
@@ -100,6 +124,9 @@
 				<Spanish>
 					Fuerza el uso de TFAR en la misión.
 				</Spanish>
+				<German>
+					Erzwingt den Gebrauch von TFAR in der Mission.
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_EncryptionCode">
 				<Original>
@@ -107,10 +134,13 @@
 				</Original>
 				<Russian>
 					Код шифрования
-				</Russian>				
+				</Russian>	
 				<Spanish>
 					Codigo de encriptación
 				</Spanish>
+				<German>
+					Code Verschlüsselung
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LR_Radio">
 				<Original>
@@ -122,6 +152,9 @@
 				<Spanish>
 					Radio LA
 				</Spanish>
+				<German>
+					Radio LS
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LR_RadioTT">
 				<Original>
@@ -133,6 +166,9 @@
 				<Spanish>
 					Radio de Largo Alcance
 				</Spanish>
+				<German>
+					Langstreckenfungerät
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PR_Radio">
 				<Original>
@@ -143,6 +179,9 @@
 				</Russian>
 				<Spanish>
 					Radio PR
+				</Spanish>
+				<Spanish>
+					PR Funkgerät
 				</Spanish>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PR_RadioTT">
@@ -155,6 +194,9 @@
 				<Spanish>
 					Radio Personal
 				</Spanish>
+				<German>
+					Personal radio
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Rifle_Radio">
 				<Original>
@@ -166,6 +208,9 @@
 				<Spanish>
 					Radio de fusilero
 				</Spanish>
+				<German>
+					Kurzstreckenfunkgerät
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Rifle_RadioTT">
 				<Original>
@@ -177,6 +222,9 @@
 				<Spanish>
 					Radio de fusilero
 				</Spanish>
+				<German>
+					Kurzstreckenfunkgerät
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PRFrequency">
 				<Original>
@@ -188,6 +236,9 @@
 				<Spanish>
 					Frec. RP
 				</Spanish>
+				<German>
+					Freq. KS
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PRFrequencyTT">
 				<Original>
@@ -199,6 +250,9 @@
 				<Spanish>
 					Frecuencia por defecto PR (como array SQF)
 				</Spanish>
+				<German>
+					KS Standardfrequenzen (als SQR-Array)
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LRFrequency">
 				<Original>
@@ -210,6 +264,9 @@
 				<Spanish>
 					LA Frec.
 				</Spanish>
+				<German>
+					Freq. LS
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LRFrequencyTT">
 				<Original>
@@ -221,6 +278,9 @@
 				<Spanish>
 					Frecuencia por defecto LA (como array SQF)
 				</Spanish>
+				<German>
+					LS Standardfrequenzen (als SQR-Array)
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SideRadio">
 				<Original>
@@ -232,17 +292,23 @@
 				<Spanish>
 					TFAR - Radio del bando
 				</Spanish>
+				<German>
+					TFAR - Funk Fraktionszuweisung
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SideRadio_Description">
 				<Original>
 					Allows setting of default radios, encryption and frequencies for synced side.
 				</Original>
 				<Russian>
-					Позволяет выставить рации по умолчанию, коды шифрования и частоту для синхронизированной стороны.					
+					Позволяет выставить рации по умолчанию, коды шифрования и частоту для синхронизированной стороны.
 				</Russian>
 				<Spanish>
 					Permite configurar las radios por defecto, la encriptacion y las frecuencias del bando sincronizado.
 				</Spanish>
+				<German>
+					Ermöglicht gleiche Einstellungen für Verschlüsselung und Frequenzen für alle Fraktionen
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Frequencies">
 				<Original>
@@ -254,6 +320,9 @@
 				<Spanish>
 					TFAR - Frecuencias
 				</Spanish>
+				<German>
+					TFAR - Frequenzen
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Frequencies_Description">
 				<Original>
@@ -265,8 +334,10 @@
 				<Spanish>
 					Permite configurar las frecuencias por defecto para los bandos.
 				</Spanish>
+				<German>
+					Ermöglicht die Einstellung der Standartfrequenzen für Fraktionen
+				</German>
 			</Key>
-			
 			<Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
 				<Original>
 					Terrain Interception Coefficient
@@ -277,6 +348,9 @@
 				<Spanish>
 					Coeficiente de intercepción del terreno
 				</Spanish>
+				<German>
+					Signalabschwächung Coefficient durch das Gelände
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
 				<Original>
@@ -288,8 +362,10 @@
 				<Spanish>
 					Coeficiente de intercepción del terreno
 				</Spanish>
+				<German>
+					Signalabschwächung Coefficient durch das Gelände
+				</German>
 			</Key>
-			
 			<Key ID="STR_TFAR_Mod_ChannelName">
 				<Original>
 					Channel Name
@@ -300,6 +376,9 @@
 				<Spanish>
 					Nombre del canal
 				</Spanish>
+				<German>
+					Kanal Name
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_ChannelNameTT">
 				<Original>
@@ -311,8 +390,10 @@
 				<Spanish>
 					Nombre del canal del TeamSpeak
 				</Spanish>
+				<German>
+					Teamspeak Kanal Name
+				</German>
 			</Key>
-			
 			<Key ID="STR_TFAR_Mod_ChannelPassword">
 				<Original>
 					Channel Password
@@ -323,6 +404,9 @@
 				<Spanish>
 					Contraseña del canal
 				</Spanish>
+				<German>
+					Kanal Passwort
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_ChannelPasswordTT">
 				<Original>
@@ -334,8 +418,10 @@
 				<Spanish>
 					Contraseña del canal del TeamSpeak
 				</Spanish>
+				<German>
+					Teamspeak Kanal Passwort
+				</German>
 			</Key>
-			
 			<Key ID="STR_TFAR_Mod_SameSWFrequencies">
 				<Original>
 					Same SW Frequencies for side
@@ -346,6 +432,9 @@
 				<Spanish>
 					Mismas frecuencias de onda corta para el bando
 				</Spanish>
+				<German>
+					Selbe KS Frequenzen für die Fraktionen
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
 				<Original>
@@ -357,7 +446,10 @@
 				<Spanish>
 					Mismas frecuencias de onda corta para el bando
 				</Spanish>
-			</Key>			
+				<German>
+					Selbe KS Frequenzen für die Fraktionen
+				</German>
+			</Key>	
 			<Key ID="STR_TFAR_Mod_SameLrFrequencies">
 				<Original>
 					Same LR Frequencies for side
@@ -368,6 +460,9 @@
 				<Spanish>
 					Mismas frecuencias de onda larga para el bando
 				</Spanish>
+				<German>
+					Selbe LS Frequenzen für die Fraktionen
+				</German>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
 				<Original>
@@ -379,6 +474,9 @@
 				<Spanish>
 					Mismas frecuencias de onda larga para el bando
 				</Spanish>
+				<German>
+					Selbe LS Frequenzen für die Fraktionen
+				</German>
 			</Key>
 		</Container>
 	</Package>
