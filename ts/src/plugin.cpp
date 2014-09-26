@@ -26,6 +26,7 @@
 #include "ts3_functions.h"
 #include "plugin.h"
 #include "DspFilters\Butterworth.h"
+#include "sqlite3\sqlite3.h"
 #include "simpleSource\SimpleComp.h"
 #include <wininet.h>
 
@@ -265,6 +266,9 @@ HANDLE threadService = INVALID_HANDLE_VALUE;
 volatile bool exitThread = FALSE;
 volatile bool pipeConnected = false;
 volatile bool inGame = false;
+
+volatile bool pttDelay = false;
+volatile long pttDelayMs = 0;
 
 volatile uint64 notSeriousChannelId = uint64(-1);
 volatile bool vadEnabled = false;
@@ -1232,6 +1236,38 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 	return "NOT_SPEAKING";
 }
 
+struct PTTDelayArguments
+{
+	std::string commandToBroadcast;
+	uint64 currentServerConnectionHandlerID;
+	std::string subtype;
+};
+
+PTTDelayArguments ptt_arguments;
+
+void disableVoiceAndSendCommand(std::string commandToBroadcast, uint64 currentServerConnectionHandlerID, boolean pressed)
+{
+	log_string(commandToBroadcast, LogLevel_DEVEL);
+	DWORD error;
+	if ((error = ts3Functions.setClientSelfVariableAsInt(currentServerConnectionHandlerID, CLIENT_INPUT_DEACTIVATED, pressed || vadEnabled ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
+		log("Can't active talking by tangent", error);
+	}
+	error = ts3Functions.flushClientSelfUpdates(currentServerConnectionHandlerID, NULL);
+	if (error != ERROR_ok && error != ERROR_ok_no_update) {
+		log("Can't flush self updates", error);
+	}
+	ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
+}
+
+DWORD WINAPI process_tangent_off(LPVOID lpParam)
+{
+	Sleep(pttDelayMs);
+	if (vadEnabled)	hlp_enableVad();
+	disableVoiceAndSendCommand(ptt_arguments.commandToBroadcast, ptt_arguments.currentServerConnectionHandlerID, false);
+	return 0;
+}
+
+
 std::string processGameCommand(std::string command)
 {
 	DWORD error;
@@ -1292,6 +1328,7 @@ std::string processGameCommand(std::string command)
 		LeaveCriticalSection(&serverDataCriticalSection);
 		if (changed)
 		{
+			std::string commandToBroadcast = command + "\t" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
 			if (pressed)
 			{
 				if (subtype == "digital_lr") playWavFile("radio-sounds/lr/local_start", false, 0);
@@ -1301,28 +1338,29 @@ std::string processGameCommand(std::string command)
 
 				vadEnabled = hlp_checkVad();
 				if (vadEnabled) hlp_disableVad();
+				// broadcast info about tangent pressed over all client										
+				disableVoiceAndSendCommand(commandToBroadcast, currentServerConnectionHandlerID, pressed);
 			}
 			else
 			{
-				if (vadEnabled)	hlp_enableVad();
+				if (ptt_arguments.subtype == "digital_lr") playWavFile("radio-sounds/lr/local_end", false, 0);
+				else if (ptt_arguments.subtype == "dd") playWavFile("radio-sounds/dd/local_end", false, 0);
+				else if (ptt_arguments.subtype == "digital") playWavFile("radio-sounds/sw/local_end", false, 0);
+				else if (ptt_arguments.subtype == "airborne") playWavFile("radio-sounds/ab/local_end", false, 0);
 
-				if (subtype == "digital_lr") playWavFile("radio-sounds/lr/local_end", false, 0);
-				else if (subtype == "dd") playWavFile("radio-sounds/dd/local_end", false, 0);
-				else if (subtype == "digital") playWavFile("radio-sounds/sw/local_end", false, 0);
-				else if (subtype == "airborne") playWavFile("radio-sounds/ab/local_end", false, 0);
-			}
-			// broadcast info about tangent pressed over all client						
-			std::string commandToBroadcast = command + "\t" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].myNickname;
-			log_string(commandToBroadcast, LogLevel_DEVEL);
-
-			if ((error = ts3Functions.setClientSelfVariableAsInt(currentServerConnectionHandlerID, CLIENT_INPUT_DEACTIVATED, pressed || vadEnabled ? INPUT_ACTIVE : INPUT_DEACTIVATED)) != ERROR_ok) {
-				log("Can't active talking by tangent", error);
-			}
-			DWORD error = ts3Functions.flushClientSelfUpdates(currentServerConnectionHandlerID, NULL);
-			if (error != ERROR_ok && error != ERROR_ok_no_update) {
-				log("Can't flush self updates", error);
-			}
-			ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
+				PTTDelayArguments args;
+				args.commandToBroadcast = commandToBroadcast;
+				args.currentServerConnectionHandlerID = currentServerConnectionHandlerID;
+				args.subtype = subtype;
+				ptt_arguments = args;
+				if (!pttDelay) 
+					process_tangent_off(NULL);
+				else
+				{
+					CreateThread(NULL, 0, process_tangent_off, NULL, 0, NULL);					
+				}
+					
+			}			
 		}
 		return "OK";
 	}
@@ -1610,6 +1648,28 @@ void ts3plugin_setFunctionPointers(const struct TS3Functions funcs) {
 	ts3Functions = funcs;
 }
 
+
+int pttCallback(void *arg, int argc, char **argv, char **azColName)
+{
+	if (argc != 1) return 1;
+
+	std::vector<std::string> v = split(argv[0], '\n');
+	
+	for (auto i = v.begin(); i != v.end(); i++)
+	{
+		if (*i == "delay_ptt=true")
+		{
+			pttDelay = true;
+		}
+		if (i->substr(0, strlen("delay_ptt_msecs")) == "delay_ptt_msecs")
+		{
+			std::vector<std::string> values = split(*i, '=');
+			pttDelayMs = std::stoi(values[1]);
+		}
+	}	
+	return 0;
+}
+
 /*
  * Custom code called right after loading the plugin. Returns 0 on success, 1 on failure.
  * If the function returns 1 on failure, the plugin will be unloaded again.
@@ -1636,6 +1696,18 @@ int ts3plugin_init() {
 	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);
 	threadService = CreateThread(NULL, 0, ServiceThread, NULL, 0, NULL);
 	CreateThread(NULL, 0, UpdateThread, NULL, 0, NULL);
+
+	char path[MAX_PATH];
+	ts3Functions.getConfigPath(path, MAX_PATH);
+	strcat_s(path, MAX_PATH, "settings.db");	
+
+	sqlite3 *db = 0;
+	char *err = 0;
+	if (!sqlite3_open(path, &db))
+	{
+		sqlite3_exec(db, "SELECT value FROM Profiles WHERE key='Capture/Default/PreProcessing'", pttCallback, NULL, &err);
+		sqlite3_close(db);
+	}	
 
 	return 0;
 }
@@ -2158,7 +2230,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						} 
 						else
 						{
-							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, 1.0 - vehicleVolumeLoss) * pow((1.0f - vehicleVolumeLoss), 2), &(data->filterVehicle));
+							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, 1.0f - vehicleVolumeLoss) * pow((1.0f - vehicleVolumeLoss), 2), &(data->filterVehicle));
 						}						
 					}
 					if (sw_buffer)
@@ -2186,7 +2258,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						}
 						else
 						{
-							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, 1.0 - vehicleVolumeLoss) * pow((1.0f - vehicleVolumeLoss), 2), &(data->filterVehicle));
+							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, 1.0f - vehicleVolumeLoss) * pow((1.0f - vehicleVolumeLoss), 2), &(data->filterVehicle));
 						}						
 					else
 					{
