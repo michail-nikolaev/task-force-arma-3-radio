@@ -55,7 +55,7 @@ TF_tangent_lr_modifiers = [false, true, false];
 TF_tangent_lr_2_scancode = 0;
 TF_tangent_lr_2_modifiers = [false, false, false];
 
-TF_tangent_additional_lr_scancode = 42;
+TF_tangent_additional_lr_scancode = 44;
 TF_tangent_additional_lr_modifiers = [false, false, false];
 
 TF_dialog_lr_scancode = 25;
