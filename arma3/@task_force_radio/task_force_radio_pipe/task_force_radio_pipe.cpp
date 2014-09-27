@@ -82,7 +82,12 @@ void __stdcall RVExtension(char *output, int outputSize, const char *input)
 			}
 			else 
 			{
-				answer = string("Pipe error ") + to_string((long long)error);
+				if (error == 230) 
+				{
+					answer = "Not connected to TeamSpeak";
+				} else {
+					answer = string("Pipe error ") + to_string((long long)error);
+				}
 				openPipe();
 			}
 		}
