@@ -182,6 +182,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\include\clunk\buffer.cpp" />
+    <ClCompile Include="..\include\clunk\clunk_ex.cpp" />
+    <ClCompile Include="..\include\clunk\hrtf.cpp" />
+    <ClCompile Include="..\include\clunk\kemar.c" />
+    <ClCompile Include="..\include\clunk\logger.cpp" />
     <ClCompile Include="..\include\dspfilters\source\Bessel.cpp" />
     <ClCompile Include="..\include\dspfilters\source\Biquad.cpp" />
     <ClCompile Include="..\include\dspfilters\source\Butterworth.cpp" />
@@ -207,7 +212,19 @@
     <ClCompile Include="plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\clunk\buffer.h" />
+    <ClInclude Include="..\include\clunk\clunk_assert.h" />
+    <ClInclude Include="..\include\clunk\clunk_ex.h" />
+    <ClInclude Include="..\include\clunk\export_clunk.h" />
+    <ClInclude Include="..\include\clunk\fft_context.h" />
+    <ClInclude Include="..\include\clunk\hrtf.h" />
+    <ClInclude Include="..\include\clunk\kemar.h" />
+    <ClInclude Include="..\include\clunk\logger.h" />
+    <ClInclude Include="..\include\clunk\mdct_context.h" />
+    <ClInclude Include="..\include\clunk\types.h" />
+    <ClInclude Include="..\include\clunk\v3.h" />
     <ClInclude Include="..\include\sqlite3\sqlite3.h" />
+    <ClInclude Include="Clunk.h" />
     <ClInclude Include="RadioEffect.h" />
     <ClInclude Include="plugin.h" />
   </ItemGroup>
