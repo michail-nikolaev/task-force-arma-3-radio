@@ -31,6 +31,7 @@
 #include <wininet.h>
 
 #include "RadioEffect.h"
+#include "Clunk.h"
 
 #define RADIO_GAIN_LR 5
 #define RADIO_GAIN_DD 15
@@ -170,6 +171,9 @@ struct CLIENT_DATA
 	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS> filterVehicle;
 
 	float lastVehicleIsolation;
+	float viewAngle;
+
+	Clunk clunk;
 
 	chunkware_simple::SimpleComp compressor;
 	void resetPersonalRadioEffect()
@@ -691,7 +695,7 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, fl
 
 	if (d <= 1.0) return 1.0;
 	float maxDistance = shouldPlayerHear ? clientVolume * multiplifer : CANT_SPEAK_DISTANCE;
-	float gain = 1.0f - log10((d / maxDistance) * 10.0f);
+	float gain = powf(d, -0.7) * (max(0, (maxDistance - d)) / maxDistance);
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
 }
 
@@ -748,7 +752,8 @@ void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId)
 		else
 		{
 			mute = true;
-		}
+		}		
+		if (mute) data->clunk.reset();
 		LeaveCriticalSection(&serverDataCriticalSection);
 	}
 	setClientMuteStatus(serverConnectionHandlerID, clientId, mute);
@@ -1142,7 +1147,6 @@ void processUnitKilled(std::string &name, uint64 &serverConnection)
 std::string processUnitPosition(std::string &nickname, uint64 &serverConnection, TS3_VECTOR position, float viewAngle, bool canSpeak,
 	bool canUseSWRadio, bool canUseLRRadio, bool canUseDDRadio, std::string vehicleID, int terrainInterception)
 {
-	DWORD error;
 	DWORD time = GetTickCount();
 	anyID myId = getMyId(serverConnection);
 	EnterCriticalSection(&serverDataCriticalSection);
@@ -1151,12 +1155,7 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 	if (serverIdToData.count(serverConnection))
 	{
 		if (nickname == serverIdToData[serverConnection].myNickname)
-		{
-			float radians = viewAngle * ((float)M_PI / 180.0f);
-			TS3_VECTOR look;
-			look.x = sin(radians);
-			look.z = cos(radians);
-			look.y = 0;
+		{			
 			CLIENT_DATA* clientData = NULL;
 			if (serverIdToData[serverConnection].nicknameToClientData.count(nickname))
 				clientData = serverIdToData[serverConnection].nicknameToClientData[nickname];
@@ -1174,20 +1173,11 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 				clientData->vehicleId = vehicleID;
 				clientData->terrainInterception = terrainInterception;
 				clientData->dataFrame = serverIdToData[serverConnection].currentDataFrame;
+				clientData->viewAngle = viewAngle;
 				clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;
 			}
 			serverIdToData[serverConnection].myPosition = position;
-			serverIdToData[serverConnection].canSpeak = canSpeak;
-
-			LeaveCriticalSection(&serverDataCriticalSection);
-			TS3_VECTOR zero;
-			zero.x = zero.y = zero.z = 0.0f;
-			DWORD error = ts3Functions.systemset3DListenerAttributes(serverConnection, &zero, &look, NULL);
-			EnterCriticalSection(&serverDataCriticalSection);
-			if (error != ERROR_ok)
-			{
-				log("Failed to set own 3d position", error);
-			}
+			serverIdToData[serverConnection].canSpeak = canSpeak;			
 		}
 		else
 		{
@@ -1212,13 +1202,7 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 					clientData->vehicleId = vehicleID;
 					clientData->terrainInterception = terrainInterception;
 					clientData->dataFrame = serverIdToData[serverConnection].currentDataFrame;
-					clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;
-					LeaveCriticalSection(&serverDataCriticalSection);
-					if ((error = ts3Functions.channelset3DAttributes(serverConnection, clientData->clientId, &position)) != ERROR_ok)
-					{
-						log("Can't set client 3D position", error);
-					}
-					EnterCriticalSection(&serverDataCriticalSection);
+					clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;					
 				}
 			}
 			LeaveCriticalSection(&serverDataCriticalSection);
@@ -1270,7 +1254,6 @@ DWORD WINAPI process_tangent_off(LPVOID lpParam)
 
 std::string processGameCommand(std::string command)
 {
-	DWORD error;
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
 	std::vector<std::string> tokens = split(command, '\t'); //may not be used in nickname	
 	if (tokens.size() == 2 && tokens[0] == "TS_INFO")
@@ -1298,8 +1281,8 @@ std::string processGameCommand(std::string command)
 	{
 		TS3_VECTOR position;
 		position.x = std::stof(tokens[2]); // x
-		position.y = std::stof(tokens[4]); // z - yes, it is correct
-		position.z = std::stof(tokens[3]); // y - yes, it is correct
+		position.y = std::stof(tokens[3]); // y
+		position.z = std::stof(tokens[4]); // z
 		return processUnitPosition(tokens[1], currentServerConnectionHandlerID, position, std::stof(tokens[5]),
 			isTrue(tokens[6]), isTrue(tokens[7]), isTrue(tokens[8]), isTrue(tokens[9]), tokens[10], std::stoi(tokens[11]));
 	}
@@ -2027,35 +2010,6 @@ void processFilterStereo(short * samples, int channels, int sampleCount, float g
 	}
 }
 
-void stereoToMonoDSP(short * samples, int channels, int sampleCount, unsigned int channelFillMask)
-{
-	// 3d sound to mono
-	for (int i = 0; i < sampleCount * channels; i += channels)
-	{
-		long long no3D = 0;
-		int mask = 1;
-		int realChannels = 0;
-		for (int j = 0; j < channels; j++)
-		{
-			if (channelFillMask & mask)
-			{
-				no3D += samples[i + j];
-				realChannels++;
-			}
-			mask <<= 1;
-		}
-		mask = 1;
-		for (int j = 0; j < channels; j++)
-		{
-			if (channelFillMask & mask)
-			{
-				samples[i + j] = (short)(no3D / realChannels);
-				mask <<= 1;
-			}
-		}
-	}
-}
-
 bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID)
 {
 	std::string clientInfo = getMetaData(getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
@@ -2233,6 +2187,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, 1.0f - vehicleVolumeLoss) * pow((1.0f - vehicleVolumeLoss), 2), &(data->filterVehicle));
 						}						
 					}
+					data->clunk.process(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);
 					if (sw_buffer)
 					{
 						mix(samples, sw_buffer, sampleCount, channels);
@@ -2251,6 +2206,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 				}
 				else
 				{
+					data->clunk.process(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);
 					if (shouldPlayerHear)
 						if (vehicleVolumeLoss < 0.01)
 						{
@@ -2274,15 +2230,9 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 	{
 		if (!isOtherRadioPluginEnabled(serverConnectionHandlerID, clientID))
 		{
-			if (!isSeriousModeEnabled(serverConnectionHandlerID, clientID))
+			if (isSeriousModeEnabled(serverConnectionHandlerID, clientID))			
 			{
-				stereoToMonoDSP(samples, channels, sampleCount, *channelFillMask); // mono for clients without information about positions
-			}
-			else
-			{
-				if (!alive && inGame && isPluginEnabledForUser(serverConnectionHandlerID, clientID))
-					stereoToMonoDSP(samples, channels, sampleCount, *channelFillMask); // dead player hears other dead players in serious mode			
-				else
+				if (alive || inGame || isPluginEnabledForUser(serverConnectionHandlerID, clientID))
 					applyGain(samples, channels, sampleCount, 0.0f); // alive player hears only alive players in serious mode
 			}
 			if (GetTickCount() - last_no_info > MILLIS_TO_EXPIRE)
