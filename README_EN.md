@@ -174,5 +174,6 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [Raspu86](http://forums.bistudio.com/member.php?132083-Raspu86) for backpacks models.
 * [Gandi](http://forums.bistudio.com/member.php?111588-Gandi) for textures
 * [Pixinger] (https://github.com/Pixinger) for help with Zeus.
+* [whoozle] (https://github.com/whoozle) for sound engine and help.
 * Everyone user (especially who report bugs).
 * Sorry guys if I’ve forgot someone by chance.
