@@ -159,6 +159,12 @@ class CfgFunctions
 			class isForcedCurator{};
 			class processCuratorKey{};
 			class generateDDFreq{};
+			class processSpeakerRadios{};
+			class getSwSpeakers{};
+			class setSwSpeakers{};
+			class getLrSpeakers{};
+			class setLrSpeakers{};
+			class showRadioSpeakers{};
 		};
 	};
 };

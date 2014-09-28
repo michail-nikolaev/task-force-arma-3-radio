@@ -21,6 +21,9 @@ TF_CODE_OFFSET = TF_SW_STEREO_OFFSET + 1;
 TF_ADDITIONAL_CHANNEL_OFFSET = TF_CODE_OFFSET + 1;
 TF_ADDITIONAL_STEREO_OFFSET = TF_ADDITIONAL_CHANNEL_OFFSET + 1;
 
+TF_LR_SPEAKER_OFFSET = 7;
+TF_SW_SPEAKER_OFFSET = 8;
+
 tf_getTeamSpeakServerName = {
 	diag_log "WARNING: depreciated function call: tf_getTeamSpeakServerName replace with TFAR_fnc_getTeamSpeakServerName";
 	call TFAR_fnc_getTeamSpeakServerName

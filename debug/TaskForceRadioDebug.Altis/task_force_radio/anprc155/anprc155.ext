@@ -1,4 +1,4 @@
-/* #Zydura
+/* #Dejusy
 $[
 	1.063,
 	["anprc155",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -11,7 +11,8 @@ $[
 	[1603,"next_channel",[1,"",["0.362844 * safezoneW + safezoneX","0.470593 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1604,"increase_volume",[1,"",["0.408781 * safezoneW + safezoneX","0.540609 * safezoneH + safezoneY","0.021 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Change volume","-1"],[]],
 	[1605,"stereo",[1,"",["0.317563 * safezoneW + safezoneX","0.54481 * safezoneH + safezoneY","0.0223125 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1606,"additional",[1,"",["0.317581 * safezoneW + safezoneX","0.473394 * safezoneH + safezoneY","0.0229665 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1606,"additional",[1,"",["0.317581 * safezoneW + safezoneX","0.473394 * safezoneH + safezoneY","0.0229665 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1607,"speakers",[1,"",["0.316013 * safezoneW + safezoneX","0.508799 * safezoneH + safezoneY","0.0180379 * safezoneW","0.0274971 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
@@ -33,7 +34,8 @@ controls[]=
 	next_channel,
 	increase_volume,
 	stereo,
-	additional
+	additional,
+	speakers
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Telovy)
@@ -142,6 +144,16 @@ class additional: HiddenButton
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_set_additional;
 	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+};
+class speakers: HiddenButton
+{
+	idc = IDC_ANPRC155_SPEAKERS;
+	x = 0.316013 * safezoneW + safezoneX;
+	y = 0.508799 * safezoneH + safezoneY;
+	w = 0.0180379 * safezoneW;
+	h = 0.0274971 * safezoneH;
+	tooltip = $STR_speakers_settings_true;
+	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1] call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END

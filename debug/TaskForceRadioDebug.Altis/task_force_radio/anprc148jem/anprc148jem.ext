@@ -1,4 +1,4 @@
-/* #Mibevy
+/* #Luvisi
 $[
 	1.063,
 	["anprc148jem",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -12,9 +12,11 @@ $[
 	[1604,"increase_volume",[1,"",["0.242094 * safezoneW + safezoneX","0.45659 * safezoneH + safezoneY","0.0242813 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
 	[1605,"decrease_volume",[1,"",["0.202719 * safezoneW + safezoneX","0.457991 * safezoneH + safezoneY","0.0269063 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
 	[1606,"stereo",[1,"",["0.201406 * safezoneW + safezoneX","0.536408 * safezoneH + safezoneY","0.018375 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]],
-	[1607,"additional",[1,"",["0.229652 * safezoneW + safezoneX","0.0687038 * safezoneH + safezoneY","0.0505262 * safezoneW","0.0504112 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1607,"additional",[1,"",["0.229652 * safezoneW + safezoneX","0.0687038 * safezoneH + safezoneY","0.0505262 * safezoneW","0.0504112 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1608,"speakers",[1,"",["0.177379 * safezoneW + safezoneX","0.0578463 * safezoneH + safezoneY","0.0412296 * safezoneW","0.0549942 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
+
 
 
 
@@ -37,7 +39,8 @@ class anprc148jem_radio_dialog
 	increase_volume,
 	decrease_volume,
 	stereo,
-	additional
+	additional,
+	speakers
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Horegy)
@@ -158,6 +161,16 @@ class additional: HiddenButton
 	h = 0.0504112 * safezoneH;
 	tooltip = $STR_set_additional;
 	action = "[TF_sw_dialog_radio, TF_sw_dialog_radio call TFAR_fnc_getSwChannel] call TFAR_fnc_setAdditionalSwChannel; call TFAR_fnc_updateSWDialogToChannel; [TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+};
+class speakers: HiddenButton
+{
+	idc = IDC_ANPRC148JEM_SPEAKERS;
+	x = 0.177379 * safezoneW + safezoneX;
+	y = 0.0578463 * safezoneH + safezoneY;
+	w = 0.0412296 * safezoneW;
+	h = 0.0549942 * safezoneH;
+	tooltip = $STR_speakers_settings_true;
+	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END

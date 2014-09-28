@@ -7,12 +7,12 @@
 		Sorts the SW radio list alphabetically.
 	
 	Parameters:
-		Nothing
+		0: OBJECT: Unit
  	
  	Returns:
 		ARRAY - Radio list sorted.
  	
  	Example:
-		_radios = call TFAR_fnc_radiosListSorted;
+		_radios = currentUnit call TFAR_fnc_radiosListSorted;
 */
-(call TFAR_fnc_radiosList) call BIS_fnc_sortAlphabetically
+(_this call TFAR_fnc_radiosList) call BIS_fnc_sortAlphabetically

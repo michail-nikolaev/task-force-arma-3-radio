@@ -117,6 +117,46 @@
 					Sadece sağ
 				</Turkish>
 			</Key>
+			<Key ID="STR_speakers_settings_false">
+				<Original>
+					Headphones
+				</Original>
+				<Russian>
+					Наушники
+				</Russian>
+				<French>
+					Écouteurs
+				</French>
+				<Italian>
+					Сuffia
+				</Italian>
+				<Spanish>
+					Auriculares
+				</Spanish>
+				<German>
+					Kopfhörer
+				</German>				    
+			</Key>
+			<Key ID="STR_speakers_settings_true">
+				<Original>
+					Speakers
+				</Original>
+				<Russian>
+					Динамики
+				</Russian>
+				<French>
+					Haut-parleurs
+				</French>
+				<Italian>
+					Altoparlanti
+				</Italian>
+				<Spanish>
+					Altavoces
+				</Spanish>
+				<German>
+					Lautsprecher
+				</German>				    
+			</Key>
 			<Key ID="STR_additional_stereo_settings_0">
 				<Original>
 					Additional: Left and right

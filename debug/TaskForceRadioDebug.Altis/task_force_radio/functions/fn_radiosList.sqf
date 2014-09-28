@@ -8,13 +8,13 @@
 		List of all the player's SW radios.
 	
 	Parameters:
-		Nothing
+		0: OBJECT: unit
  	
  	Returns:
 		ARRAY - List of all the player's SW radios.
  	
  	Example:
-		_radios = call TFAR_fnc_radiosList;
+		_radios = currentUnit call TFAR_fnc_radiosList;
 */
 private ["_result"];
 _result = [];
@@ -22,11 +22,11 @@ _result = [];
 	if (_x call TFAR_fnc_isRadio) then {
 		_result pushBack _x;
 	};
-} count (assignedItems currentUnit);
+} count (assignedItems _this);
 
 {
 	if (_x call TFAR_fnc_isRadio) then {
 		_result pushBack _x;
 	};
-} count (items currentUnit);
+} count (items _this);
 _result
