@@ -36,7 +36,7 @@ _positions = [];
 		];
 		_positions set [count _positions, _position];
 	};
-} forEach (call TFAR_fnc_radiosList);
+} forEach (currentUnit call TFAR_fnc_radiosList);
 _menu =
 [
 	_menuDef,

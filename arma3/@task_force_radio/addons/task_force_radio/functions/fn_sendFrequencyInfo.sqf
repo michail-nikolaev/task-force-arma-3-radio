@@ -40,7 +40,7 @@ if ((call TFAR_fnc_haveSWRadio) and {[currentUnit, _isolated_and_inside, _can_sp
 			};
 		};
 		
-	} count (call TFAR_fnc_radiosList);
+	} count (currentUnit call TFAR_fnc_radiosList);
 };
 if ((call TFAR_fnc_haveLRRadio) and {[currentUnit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio}) then {
 	_freq_lr = [];
@@ -53,7 +53,7 @@ if ((call TFAR_fnc_haveLRRadio) and {[currentUnit, _isolated_and_inside, _depth]
 				_freq_lr pushBack format ["%1%2|%3|%4", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getLrRadioCode, _x call TFAR_fnc_getLrVolume, _x call TFAR_fnc_getAdditionalLrStereo];
 			};
 		};
-	} count (call TFAR_fnc_lrRadiosList);
+	} count (currentUnit call TFAR_fnc_lrRadiosList);
 };
 if ((call TFAR_fnc_haveDDRadio) and {[_depth, _isolated_and_inside] call TFAR_fnc_canUseDDRadio}) then {
 	_freq_dd = TF_dd_frequency;

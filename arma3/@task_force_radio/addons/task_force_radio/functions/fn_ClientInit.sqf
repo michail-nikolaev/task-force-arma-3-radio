@@ -154,6 +154,7 @@ TF_tangent_dd_pressed = false;
 
 TF_dd_frequency = nil;
 
+TF_speakerDistance = 20;
 TF_speak_volume_level = "normal";
 TF_speak_volume_meters = 20;
 TF_max_voice_volume = 60;
@@ -166,6 +167,7 @@ tf_lastNearFrameTick = diag_tickTime;
 tf_lastFarFrameTick = diag_tickTime;
 tf_msPerStep = 0;
 
+tf_speakerRadios = [];
 tf_nearPlayers = [];
 tf_farPlayers = [];
 

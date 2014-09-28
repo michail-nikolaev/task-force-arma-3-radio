@@ -1,4 +1,4 @@
-/* #Vafure
+/* #Lirixu
 $[
 	1.063,
 	["anarc164",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -11,9 +11,12 @@ $[
 	[1603,"next_channel",[1,"",["0.361813 * safezoneW + safezoneX","0.4362 * safezoneH + safezoneY","0.0391875 * safezoneW","0.0693 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1604,"increase_volume",[1,"",["0.239094 * safezoneW + safezoneX","0.5451 * safezoneH + safezoneY","0.02475 * safezoneW","0.0462 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Change volume","-1"],[]],
 	[1605,"stereo",[1,"",["0.115344 * safezoneW + safezoneX","0.566 * safezoneH + safezoneY","0.0665527 * safezoneW","0.110006 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1606,"additional",[1,"",["0.103008 * safezoneW + safezoneX","0.434185 * safezoneH + safezoneY","0.0374025 * safezoneW","0.0700156 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1606,"additional",[1,"",["0.103008 * safezoneW + safezoneX","0.434185 * safezoneH + safezoneY","0.0374025 * safezoneW","0.0700156 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1607,"speakers",[1,"",["0.27633 * safezoneW + safezoneX","0.630886 * safezoneH + safezoneY","0.0293761 * safezoneW","0.0406957 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
+
+
 
 class anarc164_radio_dialog
 {
@@ -32,7 +35,8 @@ class anarc164_radio_dialog
 		next_channel,
 		increase_volume,
 		stereo,
-		additional
+		additional,
+		speakers
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Vyxuta)
@@ -149,6 +153,16 @@ class anarc164_radio_dialog
 		h = 0.0700156 * safezoneH;
 		tooltip = $STR_set_additional;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class speakers: HiddenButton
+	{
+		idc = IDC_ANARC164_SPEAKERS;		
+		x = 0.27633 * safezoneW + safezoneX;
+		y = 0.630886 * safezoneH + safezoneY;
+		w = 0.0293761 * safezoneW;
+		h = 0.0406957 * safezoneH;
+		tooltip = $STR_speakers_settings_true;
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1] call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT END

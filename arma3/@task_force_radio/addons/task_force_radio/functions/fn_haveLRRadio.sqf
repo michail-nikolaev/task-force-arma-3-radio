@@ -15,4 +15,4 @@
  	Example:
 	_hasLR = call TFAR_fnc_haveLRRadio;
  */
-count (call TFAR_fnc_lrRadiosList) > 0
+count (currentUnit call TFAR_fnc_lrRadiosList) > 0

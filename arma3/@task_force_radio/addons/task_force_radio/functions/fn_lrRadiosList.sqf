@@ -4,10 +4,10 @@ _active_lr = nil;
 if (!isNil "TF_lr_active_radio") then {
 	_active_lr = TF_lr_active_radio;
 };
-_vehicle_lr = call TFAR_fnc_vehicleLr;
+_vehicle_lr = _this call TFAR_fnc_vehicleLr;
 
 _backpack_check = {
-	_backpack_lr = call TFAR_fnc_backpackLr;
+	_backpack_lr = _this call TFAR_fnc_backpackLr;
 	if (count _backpack_lr > 0) then {
 		_result set [count _result, _backpack_lr];
 	};
