@@ -21,7 +21,9 @@ if (alive currentUnit) then {
 	} forEach  (currentUnit nearEntities [["LandVehicle", "Air"], TF_max_voice_volume]);
 	
 	{		
-		_allUnits pushBack _x;	
+		if !(_x in _allUnits) then {
+			_allUnits pushBack _x;	
+		};
 	} count (call BIS_fnc_listCuratorPlayers);
 		
 	{			

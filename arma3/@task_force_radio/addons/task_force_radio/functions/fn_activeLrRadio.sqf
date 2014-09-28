@@ -17,7 +17,7 @@
 		_radio = call TFAR_fnc_activeLRRadio;
 */
 private ["_radios", "_found"];
-_radios = call TFAR_fnc_lrRadiosList;
+_radios = currentUnit call TFAR_fnc_lrRadiosList;
 if (isNil "TF_lr_active_radio") then {		
 	if (count _radios > 0) then {
 		TF_lr_active_radio = _radios select 0;		

@@ -18,9 +18,9 @@
 */
 private ["_elemsNearToProcess","_elemsFarToProcess","_other_units", "_unit", "_controlled"];
 if !(isNull currentUnit) then {
-	if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {
+	if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {				
 		tf_nearPlayersIndex = 0;
-		tf_farPlayersIndex = 0;
+		tf_farPlayersIndex = 0;		
 
 		if (count tf_nearPlayers == 0) then {
 			tf_nearPlayers = call TFAR_fnc_getNearPlayers;
@@ -43,7 +43,7 @@ if !(isNull currentUnit) then {
 		
 		tf_farPlayersIndex = 0;	
 
-		if (count tf_nearPlayers > 0) then {
+		if (count tf_nearPlayers > 0) then {			
 			tf_nearPlayersProcessed = false;
 			tf_msNearPerStep = tf_msNearPerStepMax max (tf_nearUpdateTime / (count tf_nearPlayers));
 			tf_msNearPerStep = tf_msNearPerStep min tf_msNearPerStepMin;
@@ -77,11 +77,13 @@ if !(isNull currentUnit) then {
 					tf_nearPlayersIndex = tf_nearPlayersIndex + 1;
 				} else {
 					tf_nearPlayersIndex = 0;
-					tf_nearPlayersProcessed = true;
+					tf_nearPlayersProcessed = true;					
 
 					if (diag_tickTime - tf_lastNearPlayersUpdate > 0.5) then {	
-						tf_nearPlayers = call TFAR_fnc_getNearPlayers;
-						tf_lastNearPlayersUpdate = diag_tickTime;
+						tf_nearPlayers = call TFAR_fnc_getNearPlayers;						
+						tf_lastNearPlayersUpdate = diag_tickTime;						
+						// TODO: send speakers to the plugin
+						tf_speakerRadios = [];						
 					};
 				};
 			};

@@ -9,29 +9,29 @@
 		position within the vehicle
  	
  	Parameters: 
-		Nothing
+		0: Object - unit
  	
  	Returns:
 		ARRAY: 0 - Object - Vehicle, 1 - String - Radio Settings ID
  	
  	Example:
-		_radio = call TFAR_fnc_VehicleLR;
+		_radio = player call TFAR_fnc_VehicleLR;
  */
 private ["_result"];
 _result = [];
-if (((vehicle currentUnit) != currentUnit) and {(vehicle currentUnit) call TFAR_fnc_hasVehicleRadio}) then {
-	switch (currentUnit) do {
-		case (gunner (currentUnit)): {
-			_result = [vehicle currentUnit, "gunner_radio_settings"];
+if (((vehicle _this) != _this) and {(vehicle _this) call TFAR_fnc_hasVehicleRadio}) then {
+	switch (_this) do {
+		case (gunner (vehicle _this)): {
+			_result = [vehicle _this, "gunner_radio_settings"];
 		};
-		case (driver (vehicle currentUnit)): {
-			_result = [vehicle currentUnit, "driver_radio_settings"];
+		case (driver (vehicle _this)): {
+			_result = [vehicle _this, "driver_radio_settings"];
 		};
-		case (commander (vehicle currentUnit)): {
-			_result = [vehicle currentUnit, "commander_radio_settings"];
+		case (commander (vehicle _this)): {
+			_result = [vehicle _this, "commander_radio_settings"];
 		};
-		case ((vehicle currentUnit) turretUnit [0]): {
-			_result = [vehicle currentUnit, "turretUnit_0_radio_setting"];
+		case ((vehicle _this) turretUnit [0]): {
+			_result = [vehicle _this, "turretUnit_0_radio_setting"];
 		};
 	};
 };

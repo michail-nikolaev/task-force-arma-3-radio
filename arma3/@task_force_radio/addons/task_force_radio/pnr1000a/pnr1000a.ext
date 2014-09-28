@@ -1,4 +1,4 @@
-/* #Ganiwo
+/* #Taxene
 $[
 	1.063,
 	["pnr1000a",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -8,7 +8,8 @@ $[
 	[1604,"increase_volume",[1,"",["0.171031 * safezoneW + safezoneX","0.5792 * safezoneH + safezoneY","0.0134062 * safezoneW","0.0407 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
 	[1605,"decrease_volume",[1,"",["0.169484 * safezoneW + safezoneX","0.6287 * safezoneH + safezoneY","0.0128906 * safezoneW","0.0319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
 	[1606,"stereo",[1,"",["0.1865 * safezoneW + safezoneX","0.6122 * safezoneH + safezoneY","0.0159844 * safezoneW","0.0374 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]],
-	[1600,"reset_channel",[1,"",["0.181344 * safezoneW + safezoneX","0.6595 * safezoneH + safezoneY","0.0226875 * safezoneW","0.0308 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]]
+	[1600,"reset_channel",[1,"",["0.181344 * safezoneW + safezoneX","0.6595 * safezoneH + safezoneY","0.0226875 * safezoneW","0.0308 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
+	[1601,"speakers",[1,"",["0.208301 * safezoneW + safezoneX","0.381212 * safezoneH + safezoneY","0.0293761 * safezoneW","0.0538944 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
@@ -27,7 +28,8 @@ class pnr1000a_radio_dialog
 		increase_volume,
 		decrease_volume,
 		stereo,
-		reset_channel
+		reset_channel,
+		speakers
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Jafaxu)
@@ -90,7 +92,7 @@ class pnr1000a_radio_dialog
 		y = 0.6122 * safezoneH + safezoneY;
 		w = 0.0159844 * safezoneW;
 		h = 0.0374 * safezoneH;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 		tooltip = $STR_stereo_settings;
 	};
 	class reset_channel: HiddenButton
@@ -102,6 +104,16 @@ class pnr1000a_radio_dialog
 		h = 0.0242 * safezoneH;
 		tooltip = $STR_radio_channel_1;
 		action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class speakers: HiddenButton
+	{
+		idc = IDC_PNR1000A_SPEAKERS;
+		x = 0.208301 * safezoneW + safezoneX;
+		y = 0.381212 * safezoneH + safezoneY;
+		w = 0.0293761 * safezoneW;
+		h = 0.0538944 * safezoneH;
+		tooltip = $STR_speakers_settings_true;
+		action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT END

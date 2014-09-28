@@ -1,15 +1,16 @@
-/* #Piwoto
+/* #Punika
 $[
 	1.063,
 	["anprc154",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
-	[1200,"background",[1,"\task_force_radio\anprc154\anprc154.paa",["-0.0269687 * safezoneW + safezoneX","-0.0251171 * safezoneH + safezoneY","0.555188 * safezoneW","1.00402 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1200,"background",[1,"task_force_radio\anprc154\anprc154.paa",["-0.0269687 * safezoneW + safezoneX","-0.0251171 * safezoneH + safezoneY","0.555188 * safezoneW","1.00402 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1602,"prev_channel",[1,"",["0.208672 * safezoneW + safezoneX","0.6034 * safezoneH + safezoneY","0.023625 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1603,"next_channel",[1,"",["0.208156 * safezoneW + safezoneX","0.5198 * safezoneH + safezoneY","0.0249375 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
 	[1604,"increase_volume",[1,"",["0.259203 * safezoneW + safezoneX","0.5242 * safezoneH + safezoneY","0.0242813 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
 	[1605,"decrease_volume",[1,"",["0.254562 * safezoneW + safezoneX","0.6045 * safezoneH + safezoneY","0.0269063 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
 	[1606,"stereo",[1,"",["0.213828 * safezoneW + safezoneX","0.6749 * safezoneH + safezoneY","0.0255 * safezoneW","0.03 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]],
 	[1600,"reset_channel",[1,"",["0.236 * safezoneW + safezoneX","0.566 * safezoneH + safezoneY","0.02 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
-	[1601,"reset_channel_alt",[1,"",["0.217437 * safezoneW + safezoneX","0.7992 * safezoneH + safezoneY","0.02 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]]
+	[1601,"reset_channel_alt",[1,"",["0.217437 * safezoneW + safezoneX","0.7992 * safezoneH + safezoneY","0.02 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
+	[1607,"speakers",[1,"",["0.232008 * safezoneW + safezoneX","0.240427 * safezoneH + safezoneY","0.0329837 * safezoneW","0.0582939 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
@@ -30,7 +31,8 @@ class anprc154_radio_dialog
 		decrease_volume,
 		stereo,
 		reset_channel,
-		reset_channel_alt
+		reset_channel_alt,
+		speakers
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Piwoto)
@@ -93,7 +95,7 @@ class anprc154_radio_dialog
 		y = 0.676 * safezoneH + safezoneY;
 		w = 0.0255 * safezoneW;
 		h = 0.03 * safezoneH;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 		tooltip = $STR_stereo_settings;
 
 	};
@@ -116,6 +118,16 @@ class anprc154_radio_dialog
 		h = 0.0294066 * safezoneH;
 		tooltip = $STR_radio_channel_1;
 		action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class speakers: HiddenButton
+	{
+		idc = IDC_ANPRC154_SPEAKERS;
+		x = 0.232008 * safezoneW + safezoneX;
+		y = 0.240427 * safezoneH + safezoneY;
+		w = 0.0329837 * safezoneW;
+		h = 0.0582939 * safezoneH;
+		tooltip = $STR_speakers_settings_true;
+		action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 	};
 
 	////////////////////////////////////////////////////////

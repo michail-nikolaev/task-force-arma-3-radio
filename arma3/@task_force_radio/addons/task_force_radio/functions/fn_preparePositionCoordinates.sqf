@@ -18,7 +18,7 @@
  	Example:
 		
 */
-private ["_x_player","_isolated_and_inside","_can_speak", "_pos", "_depth", "_useSw", "_useLr", "_useDd"];
+private ["_x_player","_isolated_and_inside","_can_speak", "_pos", "_depth", "_useSw", "_useLr", "_useDd", "_freq", "_vehicle", "_radio_id"];
 _unit = _this select 0;
 _nearPlayer = _this select 1;
 
@@ -38,4 +38,34 @@ if (count _pos != 4) then {
 	_pos pushBack 0;
 };
 
-(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11", _this select 2, _pos select 0, _pos select 1, _pos select 2, _pos select 3, _can_speak, _useSw, _useLr, _useDd, _unit call TFAR_fnc_vehicleId, _unit call TFAR_fnc_calcTerrainInterception])
+_vehicle = _unit call TFAR_fnc_vehicleId;
+if (_nearPlayer) then {
+
+	if (_unit getVariable ["tf_lr_speakers", false]) then {
+		{
+			_freq = format ["%1%2", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode];
+			if ((_x call TFAR_fnc_getAdditionalLrChannel) > -1) then {
+				_freq = _freq + format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getLrRadioCode];
+			};
+			_radio_id = netId (_x select 0);
+			if (_radio_id == '') then {
+				_radio_id = str (_x select 0);
+			};
+
+			tf_speakerRadios pushBack (format ["%1	%2	%3	%4	%5	%6", _radio_id, _freq,  _this select 2, [], _x call TFAR_fnc_getLrVolume, _vehicle]);
+		} count (_unit call TFAR_fnc_lrRadiosList);
+	};
+	
+	if (_unit getVariable ["tf_sw_speakers", false]) then {
+		{
+			_freq = format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode];
+			if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
+				_freq = _freq + format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
+			};
+			_radio_id = _x;		
+			tf_speakerRadios pushBack (format ["%1	%2	%3	%4	%5	%6", _radio_id, _freq,  _this select 2, [], _x call TFAR_fnc_getSwVolume, _vehicle]);
+		} count (_unit call TFAR_fnc_radiosList);
+	};
+};
+
+(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11", _this select 2, _pos select 0, _pos select 1, _pos select 2, _pos select 3, _can_speak, _useSw, _useLr, _useDd, _vehicle, _unit call TFAR_fnc_calcTerrainInterception])
