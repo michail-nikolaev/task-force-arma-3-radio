@@ -26,7 +26,7 @@
 #endif
 
 #ifndef CLUNKAPI
-#	define CLUNKAPI
+#	define CLUNKAPI DLLIMPORT
 #endif
 
 #ifndef CLUNKCAPI
