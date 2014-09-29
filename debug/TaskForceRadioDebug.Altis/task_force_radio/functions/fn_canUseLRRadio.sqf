@@ -29,7 +29,7 @@ if (_depth > 0) then {
 } else {
 	_player = _this select 0;
 	_isolated_and_inside = _this select 1;
-	if ((vehicle _player != _player) and {_depth > -3}) then {
+	if ((vehicle _player != _player) and {_depth > TF_UNDERWATER_RADIO_DEPTH}) then {
 		if ((_isolated_and_inside) or {isAbleToBreathe _player}) then {
 			_result = true;
 		};

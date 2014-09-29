@@ -41,7 +41,7 @@ if (count _pos != 4) then {
 _vehicle = _unit call TFAR_fnc_vehicleId;
 if ((_nearPlayer) and {currentUnit distance _unit >= TF_speakerDistance}) then {
 
-	if (_unit getVariable ["tf_lr_speakers", false]) then {
+	if (_unit getVariable ["tf_lr_speakers", false] && _useLr) then {
 		{
 			_freq = format ["%1%2", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode];
 			if ((_x call TFAR_fnc_getAdditionalLrChannel) > -1) then {
@@ -56,7 +56,7 @@ if ((_nearPlayer) and {currentUnit distance _unit >= TF_speakerDistance}) then {
 		} count (_unit call TFAR_fnc_lrRadiosList);
 	};
 	
-	if (_unit getVariable ["tf_sw_speakers", false]) then {
+	if (_unit getVariable ["tf_sw_speakers", false] && _useSw) then {
 		{
 			_freq = format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode];
 			if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
