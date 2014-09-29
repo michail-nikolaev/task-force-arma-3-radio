@@ -32,7 +32,7 @@ public:
 		if (input_buffer.size() > clunk::Hrtf::WINDOW_SIZE * (unsigned int) channels)
 		{
 
-			const int to_process = input_buffer.size();
+			const int to_process = (int) input_buffer.size();
 
 			clunk::Buffer src(to_process * sizeof(short));
 			short* src_s = new short[input_buffer.size()];
@@ -89,6 +89,11 @@ public:
 		hrft = new clunk::Hrtf();
 		input_buffer.clear();
 		output_buffer.clear();
+	}
+
+	~Clunk()
+	{
+		if (hrft) delete hrft;
 	}
 	
 private:
