@@ -9,6 +9,7 @@
 #include <Windows.h>
 #endif
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -33,6 +34,7 @@
 #include "RadioEffect.h"
 #include "Clunk.h"
 
+
 #define RADIO_GAIN_LR 5
 #define RADIO_GAIN_DD 15
 #define CANT_SPEAK_GAIN 14
@@ -43,8 +45,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_API_VERSION 20
 //#define PLUGIN_API_VERSION 19
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -1251,6 +1253,67 @@ DWORD WINAPI process_tangent_off(LPVOID lpParam)
 	return 0;
 }
 
+std::pair<std::string, float> getVehicleDescriptor(std::string vechicleId) {
+	std::pair<std::string, float> result;
+	result.first == ""; // hear vehicle
+	result.second = 0.0f; // hear 
+
+	if (vechicleId.find("_turnout") != std::string::npos) {
+		result.first = vechicleId.substr(0, vechicleId.find("_turnout"));
+	}
+	else {
+		if (vechicleId.find_last_of("_") != std::string::npos)
+		{
+			result.first = vechicleId.substr(0, vechicleId.find_last_of("_"));
+			result.second = std::stof(vechicleId.substr(vechicleId.find_last_of("_") + 1));
+		}
+		else
+		{
+			result.first = vechicleId;
+		}
+	}
+	return result;
+}
+
+
+struct SPEAKER_DATA
+{
+	std::string radio_id;
+	std::string nickname;
+	std::vector<float> pos;
+	int volume;
+	std::pair<std::string, float> vehicle;
+};
+
+void processSpeakers(std::vector<std::string> tokens)
+{
+	if (tokens.size() == 2)
+	{		
+		std::vector<std::string> speakers = split(tokens[1], 0xB);
+		for (int q = 0; q < speakers.size(); q++)
+		{
+			if (speakers[q].length() > 0)
+			{
+				SPEAKER_DATA data;
+				std::vector<std::string> parts = split(speakers[q], 0xA);
+				data.radio_id = parts[0];
+				std::vector<std::string> freqs = split(parts[1], '|');
+				data.nickname = parts[2];
+				std::string coordinates = parts[3];				
+				if (coordinates.length() > 2)
+				{
+					std::vector<std::string> c = split(coordinates.substr(1, coordinates.length() - 2), ',');
+					for (int q = 0; q < 3; q++)
+						data.pos.push_back(std::atof(c[q].c_str()));
+					
+				}
+				data.volume = std::atoi(parts[4].c_str());
+				data.vehicle = getVehicleDescriptor(parts[5]);
+			}			
+		}
+	}
+	
+}
 
 std::string processGameCommand(std::string command)
 {
@@ -1258,10 +1321,15 @@ std::string processGameCommand(std::string command)
 	std::vector<std::string> tokens = split(command, '\t'); //may not be used in nickname	
 	if (tokens.size() == 2 && tokens[0] == "TS_INFO")
 		return ts_info(tokens[0]);
-	if (tokens.size() == 2 && tokens[0] == "KILLED")
+	if (tokens.size() > 2 && tokens[0] == "KILLED")
 	{
 		processUnitKilled(tokens[1], currentServerConnectionHandlerID);
 		return "DONE";
+	}
+	else if (tokens.size() >= 1 && tokens[0] == "SPEAKERS")
+	{
+		processSpeakers(tokens);
+		return "OK";
 	}
 	else if (tokens.size() == 2 && tokens[0] == "RELEASE_ALL_TANGENTS")
 	{
@@ -2064,27 +2132,6 @@ float volumeMultiplifier(float volumeValue)
 	return pow(normalized, 4);
 }
 
-std::pair<std::string, float> getVehicleDescriptor(std::string vechicleId) {
-	std::pair<std::string, float> result;
-	result.first == ""; // hear vehicle
-	result.second = 0.0f; // hear 
-
-	if (vechicleId.find("_turnout") != std::string::npos) {
-		result.first = vechicleId.substr(0, vechicleId.find("_turnout"));
-	}
-	else {
-		if (vechicleId.find_last_of("_") != std::string::npos)
-		{
-			result.first = vechicleId.substr(0, vechicleId.find_last_of("_"));
-			result.second = std::stof(vechicleId.substr(vechicleId.find_last_of("_") + 1));
-		}
-		else
-		{
-			result.first = vechicleId;
-		}
-	}
-	return result;
-}
 
 void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples, int channels, int sampleCount)
 {

@@ -16,7 +16,7 @@
  	Example:
 		call TFAR_fnc_processPlayerPositions;
 */
-private ["_elemsNearToProcess","_elemsFarToProcess","_other_units", "_unit", "_controlled"];
+private ["_elemsNearToProcess","_elemsFarToProcess","_other_units", "_unit", "_controlled", "_speakers"];
 if !(isNull currentUnit) then {
 	if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {				
 		tf_nearPlayersIndex = 0;
@@ -82,9 +82,17 @@ if !(isNull currentUnit) then {
 					if (diag_tickTime - tf_lastNearPlayersUpdate > 0.5) then {	
 						tf_nearPlayers = call TFAR_fnc_getNearPlayers;						
 						tf_lastNearPlayersUpdate = diag_tickTime;						
-						// TODO: send speakers to the plugin
-						tf_speakerRadios = [];						
 					};
+					
+					call TFAR_fnc_processSpeakerRadios;
+					
+					_speakers = "SPEAKERS	";
+					{
+						_speakers = _speakers + TF_vertical_tab + _x;
+					} count (tf_speakerRadios);
+					"task_force_radio_pipe" callExtension _speakers;
+
+					tf_speakerRadios = [];
 				};
 			};
 			tf_lastNearFrameTick = diag_tickTime;

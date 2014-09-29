@@ -2,6 +2,7 @@
 #include <clunk/buffer.h>
 #include <clunk/clunk_ex.h>
 #include <stddef.h>
+#include <algorithm>
 
 #include "kemar.h"
 
@@ -15,14 +16,8 @@ namespace clunk
 
 clunk_static_assert(Hrtf::WINDOW_BITS > 2);
 
-Hrtf::Hrtf()
-{
-	for(int i = 0; i < 2; ++i) {
-		for(int j = 0; j < WINDOW_SIZE / 2; ++j) {
-			overlap_data[i][j] = 0;
-		}
-	}
-}
+Hrtf::Hrtf(): overlap_data()
+{ }
 
 void Hrtf::idt_iit(const v3f &position, float &idt_offset, float &angle_gr, float &left_to_right_amp) {
 	float head_r = 0.093f;
@@ -82,7 +77,7 @@ void Hrtf::get_kemar_data(kemar_ptr & kemar_data, int & elev_n, const v3f &pos) 
 	}
 }
 
-void Hrtf::process(
+unsigned Hrtf::process(
 	unsigned sample_rate, clunk::Buffer &dst_buf, unsigned dst_ch,
 	const clunk::Buffer &src_buf, unsigned src_ch,
 	const v3f &delta_position, float fx_volume)
@@ -102,12 +97,12 @@ void Hrtf::process(
 		//2d stereo sound!
 		if (src_ch == dst_ch) {
 			memcpy(dst_buf.get_ptr(), src_buf.get_ptr(), dst_buf.get_size());
-			return;
+			return src_n;
 		}
 		else
 			throw_ex(("unsupported sample conversion"));
-		return;
 	}
+	assert(dst_ch == 2);
 	
 	//LOG_DEBUG(("data: %p, angles: %d", (void *) kemar_data, angles));
 
@@ -115,16 +110,28 @@ void Hrtf::process(
 	idt_iit(delta_position, t_idt, angle_gr, left_to_right_amp);
 
 	const int kemar_sector_size = 360 / angles;
-	const int kemar_idx_right = ((int)angle_gr + kemar_sector_size / 2) / kemar_sector_size;
-	const int kemar_idx_left = ((360 - (int)angle_gr + kemar_sector_size / 2) / kemar_sector_size) % angles;
+	const int kemar_idx[2] = {
+		((360 - (int)angle_gr + kemar_sector_size / 2) / kemar_sector_size) % angles,
+		((int)angle_gr + kemar_sector_size / 2) / kemar_sector_size
+	};
+
+	float amp[2] = {
+		left_to_right_amp > 1? 1: 1 / left_to_right_amp,
+		left_to_right_amp > 1? left_to_right_amp: 1
+	};
 	//LOG_DEBUG(("%g (of %d)-> left: %d, right: %d", angle_gr, angles, kemar_idx_left, kemar_idx_right));
 	
 	int idt_offset = (int)(t_idt * sample_rate);
 
 	int window = 0;
 	while(sample3d[0].get_size() < dst_n * 2 || sample3d[1].get_size() < dst_n * 2) {
-		hrtf(window, 0, sample3d[0], src, src_ch, src_n, idt_offset, kemar_data, kemar_idx_left, left_to_right_amp > 1? 1: 1 / left_to_right_amp);
-		hrtf(window, 1, sample3d[1], src, src_ch, src_n, idt_offset, kemar_data, kemar_idx_right, left_to_right_amp > 1? left_to_right_amp: 1);
+		size_t offset = window * WINDOW_SIZE / 2;
+		assert(offset + WINDOW_SIZE / 2 <= src_n);
+		for(unsigned c = 0; c < dst_ch; ++c) {
+			sample3d[c].reserve(WINDOW_SIZE);
+			s16 *dst = static_cast<s16 *>(static_cast<void *>((static_cast<u8 *>(sample3d[c].get_ptr()) + sample3d[c].get_size() - WINDOW_SIZE)));
+			hrtf(c, dst, src + offset * src_ch, src_ch, src_n - offset, idt_offset, kemar_data, kemar_idx[c], amp[c]);
+		}
 		++window;
 	}
 	assert(sample3d[0].get_size() >= dst_n * 2 && sample3d[1].get_size() >= dst_n * 2);
@@ -141,6 +148,7 @@ void Hrtf::process(
 		}
 	}
 	skip(dst_n);
+	return window * WINDOW_SIZE / 2;
 }
 
 void Hrtf::skip(unsigned samples) {
@@ -150,23 +158,10 @@ void Hrtf::skip(unsigned samples) {
 	}
 }
 
-template <typename T> inline T clunk_min(T a, T b) {
-	return a < b ? a : b;
-}
-
-template <typename T> inline T clunk_max(T a, T b) {
-	return a > b ? a : b;
-}
-
-void Hrtf::hrtf(int window, const unsigned channel_idx, clunk::Buffer &result, const s16 *src, int src_ch, int src_n, int idt_offset, const kemar_ptr& kemar_data, int kemar_idx, float freq_decay) {
+void Hrtf::hrtf(const unsigned channel_idx, s16 *dst, const s16 *src, int src_ch, int src_n, int idt_offset, const kemar_ptr& kemar_data, int kemar_idx, float freq_decay) {
 	assert(channel_idx < 2);
 
-	size_t result_start = result.get_size();
-	result.reserve(WINDOW_SIZE);
-
 	//LOG_DEBUG(("channel %d: window %d: adding %d, buffer size: %u, decay: %g", channel_idx, window, WINDOW_SIZE, (unsigned)result.get_size(), freq_decay));
-
-	mdct_type mdct __attribute__ ((aligned (16)));
 
 	if (channel_idx <= 1) {
 		bool left = channel_idx == 0;
@@ -180,66 +175,53 @@ void Hrtf::hrtf(int window, const unsigned channel_idx, clunk::Buffer &result, c
 	} else 
 		idt_offset = 0;
 
-	assert(clunk_min(0, idt_offset) + (window * WINDOW_SIZE / 2 + 0) >= 0);
-	assert(clunk_max(0, idt_offset) + (window * WINDOW_SIZE / 2 + WINDOW_SIZE) <= src_n);
+	assert(std::min(0, idt_offset) >= 0);
+	assert(std::max(0, idt_offset) + WINDOW_SIZE <= src_n);
 
 	for(int i = 0; i < WINDOW_SIZE; ++i) {
 		//-1 0 1 2 3
-		int p = idt_offset + (window * WINDOW_SIZE / 2 + i); //overlapping half
+		int p = idt_offset + i;
 		assert(p >= 0 && p < src_n);
 		//printf("%d of %d, ", p, src_n);
 		int v = src[p * src_ch];
-		mdct.data[i] = v / 32768.0f;
-		//fprintf(stderr, "%g ", mdct.data[i]);
+		_mdct.data[i] = v / 32768.0f;
+		//fprintf(stderr, "%g ", _mdct.data[i]);
 	}
 	
-	mdct.apply_window();
-	mdct.mdct();
+	_mdct.apply_window();
+	_mdct.mdct();
 	{
 		for(size_t i = 0; i < mdct_type::M; ++i)
 		{
 			const int kemar_sample = i * 257 / mdct_type::M;
 			std::complex<float> fir(kemar_data[kemar_idx][0][kemar_sample][0], kemar_data[kemar_idx][0][kemar_sample][1]);
-			mdct.data[i] *= std::abs(fir);
+			_mdct.data[i] *= std::abs(fir);
 		}
 	}
 
 	//LOG_DEBUG(("kemar angle index: %d\n", kemar_idx));
 	assert(freq_decay >= 1);
 	
-	mdct.imdct();
-	mdct.apply_window();
-
-	s16 *dst = static_cast<s16 *>(static_cast<void *>((static_cast<u8 *>(result.get_ptr()) + result_start)));
-
-	float max_v = 1.0f, min_v = -1.0f;
-	
-	for(int i = 0; i < WINDOW_SIZE / 2; ++i) {
-		float v = (mdct.data[i] + overlap_data[channel_idx][i]);
-
-		if (v < min_v)
-			min_v = v;
-		else if (v > max_v)
-			max_v = v;
-	}
+	_mdct.imdct();
+	_mdct.apply_window();
 
 	{
 		//stupid msvc
 		int i;
 		for(i = 0; i < WINDOW_SIZE / 2; ++i) {
-			float v = ((mdct.data[i] + overlap_data[channel_idx][i]) - min_v) / (max_v - min_v) * 2 - 1;
+			float v = _mdct.data[i] + overlap_data[channel_idx][i];
 			
 			if (v < -1) {
-				LOG_DEBUG(("clipping %f [%f-%f]", v, min_v, max_v));
+				LOG_DEBUG(("clipping %f", v));
 				v = -1;
 			} else if (v > 1) {
-				LOG_DEBUG(("clipping %f [%f-%f]", v, min_v, max_v));
+				LOG_DEBUG(("clipping %f", v));
 				v = 1;
 			}
 			*dst++ = (int)(v * 32767);
 		}
 		for(; i < WINDOW_SIZE; ++i) {
-			overlap_data[channel_idx][i - WINDOW_SIZE / 2] = mdct.data[i];
+			overlap_data[channel_idx][i - WINDOW_SIZE / 2] = _mdct.data[i];
 		}
 	}
 }
