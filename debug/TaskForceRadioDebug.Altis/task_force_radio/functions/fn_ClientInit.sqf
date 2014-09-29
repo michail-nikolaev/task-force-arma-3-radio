@@ -108,6 +108,8 @@ TF_MAX_SW_VOLUME = 10;
 TF_MAX_LR_VOLUME = 10;
 TF_MAX_DD_VOLUME = 10;
 
+TF_UNDERWATER_RADIO_DEPTH = -3;
+
 TF_new_line = toString [0xA];
 TF_vertical_tab = toString [0xB];
 
