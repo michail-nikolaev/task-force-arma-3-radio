@@ -165,7 +165,7 @@ const std::string Buffer::dump() const {
 }
 
 void Buffer::pop(size_t n) {
-	if (ptr == NULL)
+	if (ptr == NULL || n == 0)
 		return;
 	
 	if (n >= size) {

@@ -108,6 +108,9 @@ TF_MAX_SW_VOLUME = 10;
 TF_MAX_LR_VOLUME = 10;
 TF_MAX_DD_VOLUME = 10;
 
+TF_new_line = toString [0xA];
+TF_vertical_tab = toString [0xB];
+
 TF_dd_volume_level = 7;
 
 TF_last_lr_tangent_press = 0.0;

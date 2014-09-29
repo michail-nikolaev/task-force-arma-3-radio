@@ -18,7 +18,7 @@ public:
 		//| sin θ    cos θ   0 | | y | = | x sin θ + y cos θ | = | y'|
 		//| 0       0      1 | | z | | z | | z'|
 
-		float rad = -direction / 180.0f * M_PI;
+		float rad = -direction / 180.0f * (float) M_PI;
 
 		float x_ = x * cos(rad) - y * sin(rad);
 		float y_ = x * sin(rad) + y * cos(rad);
@@ -54,9 +54,9 @@ public:
 			clunk::Buffer dst(output_size * sizeof(short));
 			dst.set_data(dst_s, output_size * sizeof(short), true);
 
-			hrft->process(SAMPLE_RATE, dst, channels, src, channels, clunk::v3f(x_, y_, z_), 1.0f);
+			int processed = hrft->process(SAMPLE_RATE, dst, channels, src, channels, clunk::v3f(x_, y_, z_), 1.0f);
 
-			for (int q = output_size; q < to_process; q++)
+			for (int q = to_process - processed; q < to_process; q++)
 			{
 				input_buffer.push_back(src_s[q]);
 			}

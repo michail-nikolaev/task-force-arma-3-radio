@@ -9,7 +9,7 @@ _unit_pos = eyepos currentUnit;
 			if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
 				_freq = _freq + format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
 			};			
-			tf_speakerRadios pushBack (format ["%1	%2	%3	%4	%5	%6", _x, _freq,  "", _p, _x call TFAR_fnc_getSwVolume, "no"]);
+			tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11", _x, TF_new_line, _freq, TF_new_line,  "", TF_new_line, _p, TF_new_line, _x call TFAR_fnc_getSwVolume, TF_new_line, "no"]);
 		};		
 	} forEach ((getItemCargo _x) select 0);	
 		
@@ -27,7 +27,7 @@ _unit_pos = eyepos currentUnit;
 					_radio_id = str (_manpack select 0);
 				};
 
-				tf_speakerRadios pushBack (format ["%1	%2	%3	%4	%5	%6", _radio_id, _freq,  "", _p, _manpack call TFAR_fnc_getLrVolume, "no"]);		
+				tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11", _radio_id, TF_new_line, _freq, TF_new_line,  "", TF_new_line, _p, TF_new_line, _manpack call TFAR_fnc_getLrVolume, TF_new_line, "no"]);		
 			};
 		};
 	
@@ -71,7 +71,7 @@ _unit_pos = eyepos currentUnit;
 				};
 				_isolation = _isolation + "_" + str ([(typeof (_x select 0)), "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty);
 
-				tf_speakerRadios pushBack (format ["%1	%2	%3	%4	%5	%6", _radio_id, _freq,  "", _p, _x call TFAR_fnc_getLrVolume, _isolation]);		
+				tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11", _radio_id, TF_new_line, _freq, TF_new_line,  "", TF_new_line, _p, TF_new_line, _x call TFAR_fnc_getLrVolume, TF_new_line, _isolation]);		
 			};
 		}		
 		forEach (_lrs);
