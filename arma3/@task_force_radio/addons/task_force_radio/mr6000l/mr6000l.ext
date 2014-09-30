@@ -142,7 +142,7 @@ class mr6000l_radio_dialog
 		tooltip = $STR_next_channel;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 	};
-	class increase_volume: HiddenButton
+	class increase_volume: HiddenRotator
 	{
 		idc = IDC_MR6000L_INCREASE_VOLUME;
 		x = 0.117193 * safezoneW + safezoneX;
@@ -152,7 +152,7 @@ class mr6000l_radio_dialog
 		tooltip = $STR_volume;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume; [TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 	};
-	class stereo: HiddenButton
+	class stereo: HiddenRotator
 	{
 		idc = IDC_MR6000L_STEREO;
 		x = 0.114613 * safezoneW + safezoneX;
@@ -252,7 +252,7 @@ class mr6000l_radio_dialog
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 8] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 		tooltip = $STR_radio_channel_9;
 	};
-	class additional: HiddenButton
+	class additional: HiddenFlip
 	{
 		idc = IDC_MR6000L_RADIO_DIALOG_ADDITIONAL;
 		x = 0.127943 * safezoneW + safezoneX;

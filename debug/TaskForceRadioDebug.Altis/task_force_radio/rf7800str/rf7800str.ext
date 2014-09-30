@@ -48,7 +48,7 @@ class rf7800str_radio_dialog
 		h = 1.0076 * safezoneH;
 		moving = 1;
 	};
-	class prev_channel: HiddenButton
+	class prev_channel: HiddenRotator
 	{
 		idc = IDC_RF7800STR_PREV_CHANNEL;
 		x = 0.292719 * safezoneW + safezoneX;
@@ -58,7 +58,7 @@ class rf7800str_radio_dialog
 		tooltip = $STR_previous_channel;
 		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 	};
-	class next_channel: HiddenButton
+	class next_channel: HiddenRotator
 	{
 		idc = IDC_RF7800STR_NEXT_CHANNEL;
 		x = 0.292719 * safezoneW + safezoneX;
@@ -118,7 +118,7 @@ class rf7800str_radio_dialog
 		tooltip = $STR_previous_channel;
 		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 	};
-	class speakers: HiddenButton
+	class speakers: HiddenRotator
 	{
 		idc = IDC_RF7800STR_SPEAKERS;
 		x = 0.234069 * safezoneW + safezoneX;
