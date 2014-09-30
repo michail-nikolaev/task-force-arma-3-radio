@@ -105,7 +105,7 @@ class pnr1000a_radio_dialog
 		tooltip = $STR_radio_channel_1;
 		action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 	};
-	class speakers: HiddenButton
+	class speakers: HiddenRotator
 	{
 		idc = IDC_PNR1000A_SPEAKERS;
 		x = 0.208301 * safezoneW + safezoneX;
