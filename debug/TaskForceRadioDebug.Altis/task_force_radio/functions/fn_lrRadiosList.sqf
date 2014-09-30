@@ -27,7 +27,7 @@ if (!(isNil "_active_lr") and {count _vehicle_lr > 0} and {(_active_lr select 0)
 	_vehicle_lr call _vehicle_check;
 };
 
-if (player call TFAR_fnc_isForcedCurator) then {
+if ((player call TFAR_fnc_isForcedCurator) and {currentUnit == player}) then {
 	if !(isNil "TF_curator_backpack_1") then {
 		_result pushBack [TF_curator_backpack_1, "TF_curatorBackPack"];
 	};
