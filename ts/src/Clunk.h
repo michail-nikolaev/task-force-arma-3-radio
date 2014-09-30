@@ -54,9 +54,9 @@ public:
 			clunk::Buffer dst(output_size * sizeof(short));
 			dst.set_data(dst_s, output_size * sizeof(short), true);
 
-			int processed = hrft->process(SAMPLE_RATE, dst, channels, src, channels, clunk::v3f(x_, y_, z_), 1.0f);
+			int processed = hrft.process(SAMPLE_RATE, dst, channels, src, channels, clunk::v3f(x_, y_, z_), 1.0f);
 
-			for (int q = to_process - processed; q < to_process; q++)
+			for (int q = processed * channels; q < to_process; q++)
 			{
 				input_buffer.push_back(src_s[q]);
 			}
@@ -82,22 +82,10 @@ public:
 			q++;
 		}
 	}
-
-
-	void reset() {
-		delete hrft;
-		hrft = new clunk::Hrtf();
-		input_buffer.clear();
-		output_buffer.clear();
-	}
-
-	~Clunk()
-	{
-		if (hrft) delete hrft;
-	}
+	
 	
 private:
-	clunk::Hrtf* hrft = new clunk::Hrtf();
+	clunk::Hrtf hrft;
 	std::deque<short> input_buffer;
 	std::deque<short> output_buffer;	
 };
