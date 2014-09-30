@@ -45,8 +45,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_API_VERSION 20
 //#define PLUGIN_API_VERSION 19
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -71,6 +71,8 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 #define UPDATE_URL L"raw.github.com"
 #define UPDATE_FILE L"/michail-nikolaev/task-force-arma-3-radio/master/current_version.txt"
 
+#define INVALID_DATA_FRAME 9999
+
 enum OVER_RADIO_TYPE
 {
 	LISTEN_TO_SW,
@@ -83,7 +85,8 @@ enum LISTED_ON {
 	LISTED_ON_SW,
 	LISTED_ON_LR,
 	LISTED_ON_DD,
-	LISTED_ON_NONE
+	LISTED_ON_NONE,
+	LISTED_ON_GROUND
 };
 
 int versionNumber(std::string versionString)
@@ -165,30 +168,105 @@ struct CLIENT_DATA
 	std::string vehicleId;
 
 	int terrainInterception;
-	PersonalRadioEffect swEffect;
-	LongRangeRadioffect lrEffect;
-	UnderWaterRadioEffect ddEffect;
 
-	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS> filterCantSpeak;
-	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS> filterVehicle;
+	std::map<std::string, PersonalRadioEffect*> swEffects;
+	std::map<std::string, LongRangeRadioffect*> lrEffects;
+	std::map<std::string, UnderWaterRadioEffect*> ddEffects;
+	std::map<std::string, Clunk*> clunks;
 
-	float lastVehicleIsolation;
+	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>*> filtersCantSpeak;
+	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>*> filtersVehicle;
+	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>*> filtersSpeakers;
+	
 	float viewAngle;
+	
+	Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* getSpeakerFilter(std::string key)
+	{
+		if (!filtersSpeakers.count(key))
+		{
+			filtersSpeakers[key] = new Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>();
+			filtersSpeakers[key]->setup(2, 48000, 3000, 1500);
+		}
+		return filtersSpeakers[key];
+	}
 
-	Clunk clunk;
+	PersonalRadioEffect* getSwRadioEffect(std::string key)
+	{
+		if (!swEffects.count(key))
+		{
+			swEffects[key] = new PersonalRadioEffect();
+		}
+		return swEffects[key];
+	}
+
+	LongRangeRadioffect* getLrRadioEffect(std::string key)
+	{
+		if (!lrEffects.count(key))
+		{
+			lrEffects[key] = new LongRangeRadioffect();
+		}
+		return lrEffects[key];
+	}
+
+	UnderWaterRadioEffect* getUnderwaterRadioEffect(std::string key)
+	{
+		if (!ddEffects.count(key))
+		{
+			ddEffects[key] = new UnderWaterRadioEffect();
+		}
+		return ddEffects[key];
+	}
+
+	Clunk* getClunk(std::string key) {
+		if (!clunks.count(key))
+		{
+			clunks[key] = new Clunk();
+		}
+		return clunks[key];
+	}
+
+	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* getFilterCantSpeak(std::string key)
+	{
+		if (!filtersCantSpeak.count(key)) 
+		{
+			filtersCantSpeak[key] = new Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>();
+			filtersCantSpeak[key]->setup(4, 48000, 100);
+		}
+		return filtersCantSpeak[key];
+	}
+
+	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>* getFilterVehicle(std::string key, float vehicleVolumeLoss)
+	{
+		std::string byKey = key + std::to_string(vehicleVolumeLoss);
+		if (!filtersVehicle.count(byKey))
+		{
+			filtersVehicle[byKey] = new Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>();
+			filtersVehicle[byKey]->setup(2, 48000, 20000 * (1.0 - vehicleVolumeLoss) / 4.0);
+		}
+		return filtersVehicle[byKey];
+	}
 
 	chunkware_simple::SimpleComp compressor;
-	void resetPersonalRadioEffect()
+	void resetRadioEffect()
 	{
-		swEffect.reset();
+		for (auto it = swEffects.begin(); it != swEffects.end(); ++it) delete it->second;		
+		swEffects.clear();
+		for (auto it = lrEffects.begin(); it != lrEffects.end(); ++it) delete it->second;		
+		lrEffects.clear();
+		for (auto it = ddEffects.begin(); it != ddEffects.end(); ++it) delete it->second;
+		ddEffects.clear();
+		for (auto it = filtersSpeakers.begin(); it != filtersSpeakers.end(); ++it) delete it->second;
+		filtersSpeakers.clear();
 	}
-	void resetLongRangeRadioEffect()
+
+	void resetVoices() 
 	{
-		lrEffect.reset();
-	}
-	void resetUnderwaterRadioEffect()
-	{
-		ddEffect.reset();
+		for (auto it = clunks.begin(); it != clunks.end(); ++it) delete it->second;
+		clunks.clear();		
+		for (auto it = filtersCantSpeak.begin(); it != filtersCantSpeak.end(); ++it) delete it->second;
+		filtersCantSpeak.clear();
+		for (auto it = filtersVehicle.begin(); it != filtersVehicle.end(); ++it) delete it->second;
+		filtersVehicle.clear();
 	}
 
 	CLIENT_DATA()
@@ -202,10 +280,7 @@ struct CLIENT_DATA
 		canSpeak = true;
 		canUseLRRadio = canUseSWRadio = canUseDDRadio = clientTalkingNow = false;
 		range = 0;
-		terrainInterception = 0;		
-
-		filterCantSpeak.setup(4, 48000, 100);		
-		lastVehicleIsolation = 0;
+		terrainInterception = 0;
 
 		compressor.setSampleRate(48000);
 		compressor.setThresh(65);
@@ -214,19 +289,38 @@ struct CLIENT_DATA
 		compressor.setRatio(0.1);
 		compressor.initRuntime();
 
-		resetPersonalRadioEffect();
-		resetLongRangeRadioEffect();
-		resetUnderwaterRadioEffect();
+		resetRadioEffect();
 	}
 };
 
 typedef std::map<std::string, CLIENT_DATA*> STRING_TO_CLIENT_DATA_MAP;
+
 struct FREQ_SETTINGS
 {
 	int volume;
 	int stereoMode;
 };
-#define INVALID_DATA_FRAME 9999
+struct SPEAKER_DATA
+{
+	std::string radio_id;
+	std::string nickname;
+	std::vector<float> pos;
+	int volume;
+	std::pair<std::string, float> vehicle;
+	float waveZ;
+};
+
+struct LISTED_INFO {
+	OVER_RADIO_TYPE over;
+	LISTED_ON on;
+	int volume;
+	int stereoMode;
+	std::string radio_id;
+	TS3_VECTOR pos;
+	float waveZ;
+	std::pair<std::string, float> vehicle;	
+};
+
 struct SERVER_RADIO_DATA
 {
 	std::string myNickname;
@@ -236,6 +330,7 @@ struct SERVER_RADIO_DATA
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
 	std::map<std::string, FREQ_SETTINGS> mySwFrequencies;
 	std::map<std::string, FREQ_SETTINGS> myLrFrequencies;
+	std::multimap<std::string, SPEAKER_DATA> speakers;
 	std::string myDdFrequency;
 	int ddVolumeLevel;
 	int myVoiceVolume;
@@ -246,6 +341,7 @@ struct SERVER_RADIO_DATA
 	float globalVolume;
 	float voiceVolumeMultiplifier;
 	float receivingDistanceMultiplicator;
+	float speakerDistance;
 
 	std::string serious_mod_channel_name;
 	std::string serious_mod_channel_password;
@@ -259,6 +355,7 @@ struct SERVER_RADIO_DATA
 		currentDataFrame = INVALID_DATA_FRAME;
 		terrainIntersectionCoefficient = 7.0f;
 		globalVolume = voiceVolumeMultiplifier = receivingDistanceMultiplicator = 1.0f;
+		speakerDistance = 20.0f;
 	}
 };
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
@@ -504,13 +601,6 @@ void setClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId, bool 
 	}
 }
 
-struct LISTED_INFO {
-	OVER_RADIO_TYPE over;
-	LISTED_ON on;
-	int volume;
-	int stereoMode;
-};
-
 float distanceForDiverRadio(float d, uint64 serverConnectionHandlerID)
 {
 	float wavesLevel;
@@ -533,7 +623,7 @@ float effectErrorFromDistance(OVER_RADIO_TYPE radioType, float d, uint64 serverC
 	return d / maxD;
 }
 
-float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLIENT_DATA* myData)
+float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 {
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
 	TS3_VECTOR clientPosition = data->clientPosition;
@@ -546,19 +636,47 @@ float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 	return result;
 }
 
-LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLIENT_DATA* myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent)
+std::pair<std::string, float> getVehicleDescriptor(std::string vechicleId) {
+	std::pair<std::string, float> result;
+	result.first == ""; // hear vehicle
+	result.second = 0.0f; // hear 
+
+	if (vechicleId.find("_turnout") != std::string::npos) {
+		result.first = vechicleId.substr(0, vechicleId.find("_turnout"));
+	}
+	else {
+		if (vechicleId.find_last_of("_") != std::string::npos)
+		{
+			result.first = vechicleId.substr(0, vechicleId.find_last_of("_"));
+			result.second = std::stof(vechicleId.substr(vechicleId.find_last_of("_") + 1));
+		}
+		else
+		{
+			result.first = vechicleId;
+		}
+	}
+	return result;
+}
+
+LISTED_INFO isOverLocalRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLIENT_DATA* myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent)
 {
 	LISTED_INFO result;
 	result.over = LISTEN_TO_NONE;
 	result.volume = 0;
-	result.on = LISTED_ON_NONE;
+	result.on = LISTED_ON_NONE;	
+	result.waveZ = 1.0f;
 	if (data == NULL || myData == NULL) return result;
 
 	EnterCriticalSection(&serverDataCriticalSection);
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
 	TS3_VECTOR clientPosition = data->clientPosition;
 
-	float d = effectiveDistance(serverConnectionHandlerID, data, myData);
+	result.pos.x = result.pos.y = result.pos.z = 0.0f;	
+
+	result.radio_id = "local_radio";
+	result.vehicle = getVehicleDescriptor(myData->vehicleId);	
+
+	float d = effectiveDistance(serverConnectionHandlerID, data);
 
 	if ((data->tangentOverType == LISTEN_TO_SW || ignoreSwTangent)
 		&& serverIdToData[serverConnectionHandlerID].myLrFrequencies.count(data->frequency))
@@ -568,7 +686,7 @@ LISTED_INFO isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLI
 			result.over = LISTEN_TO_SW;
 			result.on = LISTED_ON_LR;
 			result.volume = serverIdToData[serverConnectionHandlerID].myLrFrequencies[data->frequency].volume;
-			result.stereoMode = serverIdToData[serverConnectionHandlerID].myLrFrequencies[data->frequency].stereoMode;
+			result.stereoMode = serverIdToData[serverConnectionHandlerID].myLrFrequencies[data->frequency].stereoMode;						
 		}
 	}
 
@@ -642,6 +760,74 @@ std::string getClientNickname(uint64 serverConnectionHandlerID, anyID clientID)
 	return nickname;
 }
 
+std::vector<LISTED_INFO> isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLIENT_DATA* myData)
+{
+	std::vector<LISTED_INFO> result;
+	LISTED_INFO local = isOverLocalRadio(serverConnectionHandlerID, data, myData, false, false, false);
+	if ((local.on != LISTED_ON_NONE) && (local.on != LISTEN_TO_NONE))
+	{
+		result.push_back(local);
+	}
+
+	if (data == NULL || myData == NULL) return result;
+
+	EnterCriticalSection(&serverDataCriticalSection);
+	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
+	TS3_VECTOR clientPosition = data->clientPosition;
+	float d = effectiveDistance(serverConnectionHandlerID, data);
+	std::string nickname = getClientNickname(serverConnectionHandlerID, data->clientId);
+	
+	if (d < data->range)
+	{
+		if ((data->canUseSWRadio && data->tangentOverType == LISTEN_TO_SW) || (data->canUseLRRadio && data->tangentOverType == LISTEN_TO_LR))
+		{
+			for (std::multimap<std::string, SPEAKER_DATA>::iterator itr = serverIdToData[serverConnectionHandlerID].speakers.begin(); itr != serverIdToData[serverConnectionHandlerID].speakers.end(); ++itr) {
+				if ((itr->first == data->frequency) && (itr->second.nickname != nickname))
+				{
+					SPEAKER_DATA speaker = itr->second;
+					LISTED_INFO info;
+					info.on = LISTED_ON_GROUND;
+					info.over = data->tangentOverType;
+					info.radio_id = speaker.radio_id;					
+					info.stereoMode = 0;					
+					info.vehicle = speaker.vehicle;
+					info.volume = speaker.volume;	
+					info.waveZ = speaker.waveZ;
+					bool posSet = false;
+					if (speaker.pos.size() == 3)
+					{
+						info.pos.x = speaker.pos[0];
+						info.pos.y = speaker.pos[1];
+						info.pos.z = speaker.pos[2];
+						posSet = true;
+					} 
+					else
+					{
+						int currentDataFrame = serverIdToData[serverConnectionHandlerID].currentDataFrame;
+						if (serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(speaker.nickname))
+						{							
+							CLIENT_DATA* clientData = serverIdToData[serverConnectionHandlerID].nicknameToClientData[speaker.nickname];
+							if (abs(currentDataFrame - clientData->dataFrame) <= 1)
+							{
+								info.pos = clientData->clientPosition;
+								posSet = true;
+							}
+						}						
+					}
+					if (posSet)
+					{
+						result.push_back(info);
+					}
+				}
+			}
+		}
+	}	
+
+	LeaveCriticalSection(&serverDataCriticalSection);
+	return result;
+}
+
+
 CLIENT_DATA* getClientData(uint64 serverConnectionHandlerID, anyID clientID)
 {
 	CLIENT_DATA* data = NULL;
@@ -688,16 +874,15 @@ float distanceFromClient(uint64 serverConnectionHandlerID, CLIENT_DATA* data)
 	return d;
 }
 
-float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, float d, bool shouldPlayerHear, float multiplifer = 1.0f)
+float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, float d, bool shouldPlayerHear, int clientDistance, float multiplifer = 1.0f)
 {
-	EnterCriticalSection(&serverDataCriticalSection);
-	int clientVolume = data->voiceVolume;
+	EnterCriticalSection(&serverDataCriticalSection);	
 	bool canSpeak = data->canSpeak;
 	LeaveCriticalSection(&serverDataCriticalSection);	
 
 	if (d <= 1.0) return 1.0;
-	float maxDistance = shouldPlayerHear ? clientVolume * multiplifer : CANT_SPEAK_DISTANCE;
-	float gain = powf(d, -0.7) * (max(0, (maxDistance - d)) / maxDistance);
+	float maxDistance = shouldPlayerHear ? clientDistance * multiplifer : CANT_SPEAK_DISTANCE;
+	float gain = powf(d, -0.7f) * (max(0, (maxDistance - d)) / maxDistance);
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
 }
 
@@ -741,8 +926,8 @@ void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId)
 		bool alive = false;
 		if (data && myData && serverIdToData[serverConnectionHandlerID].alive)
 		{
-			LISTED_INFO listedInfo = isOverRadio(serverConnectionHandlerID, data, myData, false, false, false);
-			if (listedInfo.on == LISTEN_TO_NONE)
+			std::vector<LISTED_INFO> listedInfo = isOverRadio(serverConnectionHandlerID, data, myData);
+			if (listedInfo.size() == 0)
 			{
 				bool isTalk = data->clientTalkingNow || isTalking(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), clientId);
 				mute = (distanceFromClient(serverConnectionHandlerID, data) > data->voiceVolume) || (!isTalk);
@@ -755,7 +940,7 @@ void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId)
 		{
 			mute = true;
 		}		
-		if (mute) data->clunk.reset();
+		if (mute) data->resetVoices();
 		LeaveCriticalSection(&serverDataCriticalSection);
 	}
 	setClientMuteStatus(serverConnectionHandlerID, clientId, mute);
@@ -1253,44 +1438,14 @@ DWORD WINAPI process_tangent_off(LPVOID lpParam)
 	return 0;
 }
 
-std::pair<std::string, float> getVehicleDescriptor(std::string vechicleId) {
-	std::pair<std::string, float> result;
-	result.first == ""; // hear vehicle
-	result.second = 0.0f; // hear 
-
-	if (vechicleId.find("_turnout") != std::string::npos) {
-		result.first = vechicleId.substr(0, vechicleId.find("_turnout"));
-	}
-	else {
-		if (vechicleId.find_last_of("_") != std::string::npos)
-		{
-			result.first = vechicleId.substr(0, vechicleId.find_last_of("_"));
-			result.second = std::stof(vechicleId.substr(vechicleId.find_last_of("_") + 1));
-		}
-		else
-		{
-			result.first = vechicleId;
-		}
-	}
-	return result;
-}
-
-
-struct SPEAKER_DATA
+void processSpeakers(std::vector<std::string> tokens, uint64 currentServerConnectionHandlerID)
 {
-	std::string radio_id;
-	std::string nickname;
-	std::vector<float> pos;
-	int volume;
-	std::pair<std::string, float> vehicle;
-};
-
-void processSpeakers(std::vector<std::string> tokens)
-{
+	EnterCriticalSection(&serverDataCriticalSection);
+	serverIdToData[currentServerConnectionHandlerID].speakers.clear();
 	if (tokens.size() == 2)
 	{		
 		std::vector<std::string> speakers = split(tokens[1], 0xB);
-		for (int q = 0; q < speakers.size(); q++)
+		for (size_t q = 0; q < speakers.size(); q++)
 		{
 			if (speakers[q].length() > 0)
 			{
@@ -1304,14 +1459,23 @@ void processSpeakers(std::vector<std::string> tokens)
 				{
 					std::vector<std::string> c = split(coordinates.substr(1, coordinates.length() - 2), ',');
 					for (int q = 0; q < 3; q++)
-						data.pos.push_back(std::atof(c[q].c_str()));
+						data.pos.push_back((float)std::atof(c[q].c_str()));
 					
 				}
 				data.volume = std::atoi(parts[4].c_str());
 				data.vehicle = getVehicleDescriptor(parts[5]);
+				if (parts.size() > 6)
+					data.waveZ = (float)std::atof(parts[6].c_str());
+				else
+					data.waveZ = 1;
+				for (size_t q = 0; q < freqs.size(); q++)
+				{
+					serverIdToData[currentServerConnectionHandlerID].speakers.insert(std::pair<std::string, SPEAKER_DATA>(freqs[q], data));
+				}
 			}			
 		}
 	}
+	LeaveCriticalSection(&serverDataCriticalSection);
 	
 }
 
@@ -1328,7 +1492,7 @@ std::string processGameCommand(std::string command)
 	}
 	else if (tokens.size() >= 1 && tokens[0] == "SPEAKERS")
 	{
-		processSpeakers(tokens);
+		processSpeakers(tokens, currentServerConnectionHandlerID);
 		return "OK";
 	}
 	else if (tokens.size() == 2 && tokens[0] == "RELEASE_ALL_TANGENTS")
@@ -1415,7 +1579,7 @@ std::string processGameCommand(std::string command)
 		}
 		return "OK";
 	}
-	else if (tokens.size() == 13 && tokens[0] == "FREQ")
+	else if (tokens.size() == 14 && tokens[0] == "FREQ")
 	{
 		EnterCriticalSection(&serverDataCriticalSection);
 		if (serverIdToData.count(currentServerConnectionHandlerID))
@@ -1431,6 +1595,7 @@ std::string processGameCommand(std::string command)
 			serverIdToData[currentServerConnectionHandlerID].globalVolume = (float)std::atof(tokens[10].c_str());
 			serverIdToData[currentServerConnectionHandlerID].voiceVolumeMultiplifier = (float)std::atof(tokens[11].c_str());
 			serverIdToData[currentServerConnectionHandlerID].receivingDistanceMultiplicator = (float)std::atof(tokens[12].c_str());
+			serverIdToData[currentServerConnectionHandlerID].speakerDistance = (float)std::atof(tokens[13].c_str());
 
 		}
 		std::string nickname = tokens[7];
@@ -2153,6 +2318,7 @@ inline float clamp(float x, float a, float b)
 }
 
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
+	_mm_setcsr(_mm_getcsr() | (1 << 15) | (1 << 6));
 	static DWORD last_no_info;
 	EnterCriticalSection(&serverDataCriticalSection);
 	bool alive = serverIdToData[serverConnectionHandlerID].alive;
@@ -2173,101 +2339,105 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 			if (data && myData)
 			{
 				EnterCriticalSection(&serverDataCriticalSection);
-				LISTED_INFO listed_info = isOverRadio(serverConnectionHandlerID, data, myData, false, false, false);
+				short* original_buffer = allocatePool(sampleCount, channels, samples);	
+
 				bool shouldPlayerHear = (data->canSpeak && canSpeak);
 
 				std::pair<std::string, float> myVehicleDesriptor = getVehicleDescriptor(myData->vehicleId);
 				std::pair<std::string, float> hisVehicleDesriptor = getVehicleDescriptor(data->vehicleId);
 
 				const float vehicleVolumeLoss = clamp(myVehicleDesriptor.second + hisVehicleDesriptor.second, 0.0f, 1.0f);
-				bool vehicleCheck = (myVehicleDesriptor.first == hisVehicleDesriptor.first) || (vehicleVolumeLoss < ISOLATED_CUTOFF);
-				if (data->lastVehicleIsolation != vehicleVolumeLoss) 
-				{
-					data->filterVehicle.reset();
-					data->filterVehicle.setup(2, 48000, 20000 * (1.0 - vehicleVolumeLoss) / 4.0);
-					data->lastVehicleIsolation = vehicleVolumeLoss;
-				}				
+				bool vehicleCheck = (myVehicleDesriptor.first == hisVehicleDesriptor.first);
 				float d = distanceFromClient(serverConnectionHandlerID, data);
 
-				if (listed_info.over != LISTEN_TO_NONE)
+				// process voice
+				data->getClunk("voice_clunk")->process(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);
+				if (shouldPlayerHear)
 				{
-					float radioDistance = effectiveDistance(serverConnectionHandlerID, data, myData);
-					short* sw_buffer = NULL;
-					if (data->subtype == "digital")
+					if (vehicleVolumeLoss < 0.01 || vehicleCheck)
 					{
-						sw_buffer = allocatePool(sampleCount, channels, samples);
-						float volumeLevel = volumeMultiplifier((float)listed_info.volume);
-						processCompressor(&data->compressor, sw_buffer, channels, sampleCount);
-						data->swEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, radioDistance, serverConnectionHandlerID, data));
-						processRadioEffect(sw_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->swEffect, listed_info.stereoMode);
-					}
-					short* lr_buffer = NULL;
-					if (data->subtype == "digital_lr" || data->subtype == "airborne")
-					{
-						lr_buffer = allocatePool(sampleCount, channels, samples);
-						float volumeLevel = volumeMultiplifier((float)listed_info.volume);
-						processCompressor(&data->compressor, lr_buffer, channels, sampleCount);
-						data->lrEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, radioDistance, serverConnectionHandlerID, data));
-						processRadioEffect(lr_buffer, channels, sampleCount, volumeLevel * 0.35f, &data->lrEffect, listed_info.stereoMode);
-					}
-					short* dd_buffer = NULL;
-					if (data->subtype == "dd")
-					{
-						dd_buffer = allocatePool(sampleCount, channels, samples);
-						float volumeLevel = volumeMultiplifier((float)serverIdToData[serverConnectionHandlerID].ddVolumeLevel);
-						processCompressor(&data->compressor, dd_buffer, channels, sampleCount);
-						data->ddEffect.setErrorLeveL(effectErrorFromDistance(listed_info.over, distance(data->clientPosition, myData->clientPosition), serverConnectionHandlerID, data));
-						processRadioEffect(dd_buffer, channels, sampleCount, volumeLevel * 0.6f, &data->ddEffect, listed_info.stereoMode);
-					}
-					if (!shouldPlayerHear && vehicleCheck)
-					{
-						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * CANT_SPEAK_GAIN, &(data->filterCantSpeak));
+						applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, data->voiceVolume));
 					}
 					else
 					{
-						if (vehicleVolumeLoss < 0.01)
-						{
-							applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear));
-						} 
-						else
-						{
-							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, 1.0f - vehicleVolumeLoss) * pow((1.0f - vehicleVolumeLoss), 2), &(data->filterVehicle));
-						}						
-					}
-					data->clunk.process(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);
-					if (sw_buffer)
-					{
-						mix(samples, sw_buffer, sampleCount, channels);
-						delete sw_buffer;
-					}
-					if (lr_buffer)
-					{
-						mix(samples, lr_buffer, sampleCount, channels);
-						delete lr_buffer;
-					}
-					if (dd_buffer)
-					{
-						mix(samples, dd_buffer, sampleCount, channels);
-						delete dd_buffer;
+						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, data->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.5), data->getFilterVehicle("local_vehicle", vehicleVolumeLoss));
 					}
 				}
 				else
 				{
-					data->clunk.process(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);
-					if (shouldPlayerHear)
-						if (vehicleVolumeLoss < 0.01)
+					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, data->voiceVolume) * CANT_SPEAK_GAIN, (data->getFilterCantSpeak("local_cantspeak")));
+				}
+
+				// process radio here
+				processCompressor(&data->compressor, original_buffer, channels, sampleCount);
+
+				std::vector<LISTED_INFO> listed_info = isOverRadio(serverConnectionHandlerID, data, myData);
+				float radioDistance = effectiveDistance(serverConnectionHandlerID, data);
+
+				for (size_t q = 0; q < listed_info.size(); q++)
+				{
+					LISTED_INFO& info = listed_info[q];
+					short* radio_buffer = allocatePool(sampleCount, channels, original_buffer);
+					float volumeLevel = volumeMultiplifier((float) info.volume);
+					if (data->subtype == "digital")
+					{
+						data->getSwRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, radioDistance, serverConnectionHandlerID, data));
+						processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, data->getSwRadioEffect(info.radio_id), info.stereoMode);
+					} 
+					else if (data->subtype == "digital_lr" || data->subtype == "airborne")
+					{
+						data->getLrRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, radioDistance, serverConnectionHandlerID, data));
+						processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, data->getLrRadioEffect(info.radio_id), info.stereoMode);
+					}
+					else if (data->subtype == "dd")
+					{
+						float ddVolumeLevel = volumeMultiplifier((float)serverIdToData[serverConnectionHandlerID].ddVolumeLevel);
+						data->getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, distance(data->clientPosition, myData->clientPosition), serverConnectionHandlerID, data));
+						processRadioEffect(radio_buffer, channels, sampleCount, ddVolumeLevel * 0.6f, data->getUnderwaterRadioEffect(info.radio_id), info.stereoMode);
+					}
+					else
+					{
+						applyGain(radio_buffer, channels, sampleCount, 0.0f);
+					}
+
+					
+					if (info.on == LISTED_ON_GROUND)
+					{
+						
+						TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;						
+						float distance_from_radio = distance(myPosition, info.pos);
+
+						const float radioVehicleVolumeLoss = clamp(myVehicleDesriptor.second + info.vehicle.second, 0.0f, 1.0f);
+						bool radioVehicleCheck = (myVehicleDesriptor.first == info.vehicle.first);
+						
+						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, 1, (data->getSpeakerFilter(info.radio_id)));
+
+						float speakerDistance = (info.volume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
+						if (radioVehicleVolumeLoss < 0.01 || radioVehicleCheck)
 						{
-							applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear));
+							applyGain(radio_buffer, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, distance_from_radio, shouldPlayerHear, speakerDistance) * volumeMultiplifier(info.volume));
 						}
 						else
 						{
-							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, 1.0f - vehicleVolumeLoss) * pow((1.0f - vehicleVolumeLoss), 2), &(data->filterVehicle));
-						}						
-					else
-					{
-						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear) * CANT_SPEAK_GAIN, &(data->filterCantSpeak));
+							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, distance_from_radio, shouldPlayerHear, speakerDistance, 1.0f - radioVehicleVolumeLoss) * pow((1.0f - radioVehicleVolumeLoss), 1.5), (data->getFilterVehicle(info.radio_id, radioVehicleVolumeLoss)));
+						
+						}
+						if (info.waveZ < 0)
+						{
+							// TODO: underwater
+							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, distance_from_radio, volumeMultiplifier(info.volume) * serverIdToData[serverConnectionHandlerID].speakerDistance, shouldPlayerHear) * CANT_SPEAK_GAIN, (data->getFilterCantSpeak(info.radio_id)));
+						}
+
+						data->getClunk(info.radio_id)->process(radio_buffer, channels, sampleCount, info.pos, myData->viewAngle);
 					}
+					mix(samples, radio_buffer, sampleCount, channels);
+					
+
+					delete radio_buffer;
 				}
+
+				delete original_buffer;
+
 				applyGain(samples, channels, sampleCount, globalGain);
 				LeaveCriticalSection(&serverDataCriticalSection);
 			}
@@ -2412,7 +2582,7 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 				anyID clientId = clientData->clientId;
 				if (hasClientData(serverId, clientId))
 				{
-					LISTED_INFO listedInfo = isOverRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
+					LISTED_INFO listedInfo = isOverLocalRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
 					float globalGain = powf(serverIdToData[serverId].globalVolume, 0.25);
 					LeaveCriticalSection(&serverDataCriticalSection);
 					setGameClientMuteStatus(serverId, clientId);
@@ -2443,9 +2613,7 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 					EnterCriticalSection(&serverDataCriticalSection);
 					if (playReleased && alive)
 					{
-						clientData->resetPersonalRadioEffect();
-						clientData->resetLongRangeRadioEffect();
-						clientData->resetUnderwaterRadioEffect();
+						clientData->resetRadioEffect();
 					}
 				}
 			}
