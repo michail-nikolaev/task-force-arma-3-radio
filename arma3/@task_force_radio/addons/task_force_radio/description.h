@@ -116,14 +116,14 @@ class HiddenButton
 	};
 	soundPush[] = 
 	{
-		"\A3\ui_f\data\sound\RscButton\soundPush",
-		0.09,
+		"\task_force_radio\sounds\softPush",
+		0.5,
 		1
 	};
 	soundClick[] = 
 	{
-		"\A3\ui_f\data\sound\RscButton\soundClick",
-		0.09,
+		"\task_force_radio\sounds\softClick",
+		0.5,
 		1
 	};
 	soundEscape[] = 
@@ -146,7 +146,34 @@ class HiddenButton
 	offsetPressedY = 0.002;
 	borderSize = 0;
 };
-
+class HiddenRotator:HiddenButton{
+	soundPush[] = 
+	{
+		"\task_force_radio\sounds\hardPush",
+		0.5,
+		1
+	};
+	soundClick[] = 
+	{
+		"\task_force_radio\sounds\hardClick",
+		0.5,
+		1
+	};
+};
+class HiddenFlip:HiddenButton{
+	soundPush[] = 
+	{
+		"\task_force_radio\sounds\switchPush",
+		0.5,
+		1
+	};
+	soundClick[] = 
+	{
+		"\task_force_radio\sounds\switchClick",
+		0.5,
+		1
+	};
+};
 
 #include "\task_force_radio\anprc152\anprc152.ext"
 #include "\task_force_radio\anprc148jem\anprc148jem.ext"
