@@ -134,7 +134,7 @@ class decrease_volume: HiddenButton
 	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) - 1 + TF_MAX_LR_VOLUME) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 	tooltip = $STR_decrease_volume;
 };
-class increase_volume_2: HiddenButton
+class increase_volume_2: HiddenRotator
 {
 	idc = IDC_MR3000_INCREASE_VOLUME_2;
 	x = 0.316906 * safezoneW + safezoneX;
@@ -270,7 +270,7 @@ class stereo: HiddenButton
 	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 	tooltip = $STR_stereo_settings;
 };
-class additional: HiddenButton
+class additional: HiddenRotator
 {
 	idc = IDC_MR3000_ADDITIONAL;
 	x = 0.318237 * safezoneW + safezoneX;
@@ -280,7 +280,7 @@ class additional: HiddenButton
 	tooltip = $STR_set_additional;
 	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 };
-class speakers: HiddenButton
+class speakers: HiddenRotator
 {
 	idc = IDC_MR3000_SPEAKERS;
 	x = 0.253653 * safezoneW + safezoneX;
