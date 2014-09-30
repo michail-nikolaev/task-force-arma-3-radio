@@ -84,7 +84,7 @@ class anarc164_radio_dialog
 		tooltip = $STR_current_freq;
 		canModify = 1;
 	};
-	class enter: HiddenButton
+	class enter: HiddenRotator
 	{
 		idc = IDC_ANARC164_ENTER;
 		x = 0.233422 * safezoneW + safezoneX;
@@ -94,7 +94,7 @@ class anarc164_radio_dialog
 		tooltip = $STR_set_frequency;
 		action = "_f = parseNumber(ctrlText IDC_ANARC164_RADIO_DIALOG_EDIT_ID);if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setLrFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_ASIP_FREQ, TF_MAX_ASIP_FREQ]}; [""%1""] call TFAR_fnc_updateLRDialogToChannel;";
 	};
-	class clear: HiddenButton
+	class clear: HiddenRotator
 	{
 		idc = IDC_ANARC164_CLEAR;
 		x = 0.168453 * safezoneW + safezoneX;
@@ -104,7 +104,7 @@ class anarc164_radio_dialog
 		tooltip = $STR_clear_frequency;
 		action = "ctrlSetText [IDC_ANARC164_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANARC164_RADIO_DIALOG_ID) displayCtrl IDC_ANARC164_RADIO_DIALOG_EDIT_ID);";
 	};
-	class prev_channel: HiddenButton
+	class prev_channel: HiddenRotator
 	{
 		idc = IDC_ANARC164_PREV_CHANNEL;
 		x = 0.297875 * safezoneW + safezoneX;
@@ -114,7 +114,7 @@ class anarc164_radio_dialog
 		tooltip = $STR_previous_channel;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1,  ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) - 1 + TF_MAX_LR_CHANNELS) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 	};
-	class next_channel: HiddenButton
+	class next_channel: HiddenRotator
 	{
 		idc = IDC_ANARC164_NEXT_CHANNEL;
 		x = 0.361813 * safezoneW + safezoneX;
@@ -124,7 +124,7 @@ class anarc164_radio_dialog
 		tooltip = $STR_next_channel;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 	};
-	class increase_volume: HiddenButton
+	class increase_volume: HiddenRotator
 	{
 		idc = IDC_ANARC164_INCREASE_VOLUME;
 		x = 0.239094 * safezoneW + safezoneX;
@@ -134,7 +134,7 @@ class anarc164_radio_dialog
 		tooltip = $STR_volume;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume; [TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 	};
-	class stereo: HiddenButton
+	class stereo: HiddenRotator
 	{
 		idc = IDC_ANARC164_STEREO;
 		x = 0.115344 * safezoneW + safezoneX;
@@ -144,7 +144,7 @@ class anarc164_radio_dialog
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 		tooltip = $STR_stereo_settings;
 	};
-	class additional: HiddenButton
+	class additional: HiddenRotator
 	{
 		idc = IDC_ANARC164_ADDITIONAL;
 		x = 0.103008 * safezoneW + safezoneX;
@@ -154,7 +154,7 @@ class anarc164_radio_dialog
 		tooltip = $STR_set_additional;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 	};
-	class speakers: HiddenButton
+	class speakers: HiddenFlip
 	{
 		idc = IDC_ANARC164_SPEAKERS;		
 		x = 0.27633 * safezoneW + safezoneX;
