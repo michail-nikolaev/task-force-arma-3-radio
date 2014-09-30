@@ -119,7 +119,7 @@ class anprc154_radio_dialog
 		tooltip = $STR_radio_channel_1;
 		action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 	};
-	class speakers: HiddenButton
+	class speakers: HiddenRotator
 	{
 		idc = IDC_ANPRC154_SPEAKERS;
 		x = 0.232008 * safezoneW + safezoneX;
