@@ -151,7 +151,7 @@ class stereo: HiddenButton
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioVolume;";
 	tooltip = $STR_stereo_settings;
 };
-class additional: HiddenButton
+class additional: HiddenRotator
 {
 	idc = IDC_FADAK_ADDITIONAL;
 	x = 0.261149 * safezoneW + safezoneX;
@@ -161,7 +161,7 @@ class additional: HiddenButton
 	tooltip = $STR_set_additional;
 	action = "[TF_sw_dialog_radio, TF_sw_dialog_radio call TFAR_fnc_getSwChannel] call TFAR_fnc_setAdditionalSwChannel; call TFAR_fnc_updateSWDialogToChannel; [TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 };
-class speakers: HiddenButton
+class speakers: HiddenRotator
 {
 	idc = IDC_FADAK_SPEAKERS;
 	x = 0.218093 * safezoneW + safezoneX;
