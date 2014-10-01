@@ -1102,32 +1102,6 @@ void setMuteForDeadPlayers(uint64 serverConnectionHandlerID, bool isSeriousModeE
 	}
 }
 
-void centerAll(uint64 serverConnectionId)
-{
-	std::vector<anyID> clientsIds = getChannelClients(serverConnectionId, getCurrentChannel(serverConnectionId));
-	anyID myId = getMyId(serverConnectionId);
-	DWORD error;
-	for (auto it = clientsIds.begin(); it != clientsIds.end(); it++)
-	{
-		TS3_VECTOR zero;
-		zero.x = zero.y = zero.z = 0.0f;
-		if (*it == getMyId(serverConnectionId))
-		{
-			if ((error = ts3Functions.systemset3DListenerAttributes(serverConnectionId, &zero, NULL, NULL)) != ERROR_ok)
-			{
-				log("can't center listener", error);
-			}
-		}
-		else
-		{
-			if ((error = ts3Functions.channelset3DAttributes(serverConnectionId, *it, &zero)) != ERROR_ok)
-			{
-				log("can't center client", error);
-			}
-		}
-	}
-}
-
 std::string getMyNickname(uint64 serverConnectionHandlerID)
 {
 	char* bufferForNickname;
@@ -1700,7 +1674,6 @@ DWORD WINAPI ServiceThread(LPVOID lpParam)
 		{
 			if (!isOtherRadioPluginEnabled(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID())))
 			{
-				centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 				unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
 			}
 			InterlockedExchange(&lastInGame, GetTickCount());
@@ -1901,7 +1874,6 @@ int ts3plugin_init() {
 	exitThread = FALSE;
 	if (isConnected(ts3Functions.getCurrentServerConnectionHandlerID()))
 	{
-		centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 		updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
 	}
 
@@ -1955,7 +1927,6 @@ void ts3plugin_shutdown() {
 	pipeConnected = inGame = false;
 	updateUserStatusInfo(false);
 	thread = threadService = INVALID_HANDLE_VALUE;
-	centerAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	exitThread = FALSE;
 
