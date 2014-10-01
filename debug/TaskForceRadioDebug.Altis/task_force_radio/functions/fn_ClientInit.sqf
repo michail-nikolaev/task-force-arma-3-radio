@@ -86,7 +86,7 @@ if (isNil "TF_give_personal_radio_to_regular_soldier") then {
 	};
 };
 waitUntil {sleep 0.1;!(isNull player)};
-titleText [localize ("STR_init"), "PLAIN"];
+[parseText(localize ("STR_init")), 5] call TFAR_fnc_ShowHint;
 
 #include "define.h"
 
