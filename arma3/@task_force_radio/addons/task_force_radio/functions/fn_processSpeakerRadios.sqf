@@ -10,7 +10,7 @@ _unit_pos = eyepos currentUnit;
 				if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
 					_freq = _freq + format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
 				};			
-				tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12$13", _x, TF_new_line, _freq, TF_new_line,  "", TF_new_line, _p, TF_new_line, _x call TFAR_fnc_getSwVolume, TF_new_line, "no", TF_new_line, _pos select 2]);
+				tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12%13", _x, TF_new_line, _freq, TF_new_line,  "", TF_new_line, _p, TF_new_line, _x call TFAR_fnc_getSwVolume, TF_new_line, "no", TF_new_line, _pos select 2]);
 			};		
 		} forEach ((getItemCargo _x) select 0);	
 			
