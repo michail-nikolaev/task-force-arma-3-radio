@@ -51,8 +51,9 @@ if (time - TF_last_request_time > 3) then {
 		missionNamespace setVariable [_variableName, _radiosToRequest];
 		_responseVariableName = "radio_response_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
 		missionNamespace setVariable [_responseVariableName, nil];
-		publicVariableServer _variableName;
-		titleText [localize ("STR_wait_radio"), "PLAIN"];
+		publicVariableServer _variableName;		
+		[parseText(localize ("STR_wait_radio")), 10] call TFAR_fnc_ShowHint;
+
 		waitUntil {!(isNil _responseVariableName)};
 		_response = missionNamespace getVariable _responseVariableName;
 		private "_copyIndex";
@@ -81,7 +82,7 @@ if (time - TF_last_request_time > 3) then {
 		}else{
 			hintC _response;
 		};
-		titleText ["", "PLAIN"];
+		call TFAR_fnc_HideHint;
 		//								unit, radios
 		["OnRadiosReceived", currentUnit, [currentUnit, _response]] call TFAR_fnc_fireEventHandlers;
 	};
