@@ -155,7 +155,7 @@ class HiddenRotator:HiddenButton{
 	};
 	soundClick[] = 
 	{
-		"\task_force_radio\sounds\hardClick",
+		"\A3\ui_f\data\sound\RscButton\soundEscape",
 		0.5,
 		1
 	};
