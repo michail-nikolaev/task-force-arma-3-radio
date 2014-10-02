@@ -175,5 +175,6 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [Gandi](http://forums.bistudio.com/member.php?111588-Gandi) for textures
 * [Pixinger] (https://github.com/Pixinger) for help with Zeus.
 * [whoozle] (https://github.com/whoozle) for sound engine and help.
+* [MastersDisaster] (https://www.freesound.org/people/MastersDisaster/) for [Rotator switch sound] (https://www.freesound.org/people/MastersDisaster/sounds/218115/)
 * Everyone user (especially who report bugs).
 * Sorry guys if I’ve forgot someone by chance.
