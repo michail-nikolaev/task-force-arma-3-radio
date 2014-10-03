@@ -60,6 +60,6 @@ if (isNil "_value") then {
 		};
 		_value set [TF_CODE_OFFSET, _rc];		
 	};
-	[_this, + _value, true] call TFAR_fnc_setSwSettings;
+	[_this, _value, true] call TFAR_fnc_setSwSettings;
 };
 _value

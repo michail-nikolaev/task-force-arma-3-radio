@@ -45,8 +45,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_API_VERSION 20
 //#define PLUGIN_API_VERSION 19
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -766,13 +766,15 @@ std::string getClientNickname(uint64 serverConnectionHandlerID, anyID clientID)
 std::vector<LISTED_INFO> isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* data, CLIENT_DATA* myData)
 {
 	std::vector<LISTED_INFO> result;
-	LISTED_INFO local = isOverLocalRadio(serverConnectionHandlerID, data, myData, false, false, false);
-	if ((local.on != LISTED_ON_NONE) && (local.on != LISTEN_TO_NONE))
-	{
-		result.push_back(local);
-	}
-
 	if (data == NULL || myData == NULL) return result;
+	if (data->clientId != myData->clientId)
+	{
+		LISTED_INFO local = isOverLocalRadio(serverConnectionHandlerID, data, myData, false, false, false);
+		if ((local.on != LISTED_ON_NONE) && (local.on != LISTEN_TO_NONE))
+		{
+			result.push_back(local);
+		}
+	}	
 
 	EnterCriticalSection(&serverDataCriticalSection);
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
@@ -2431,7 +2433,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						float speakerDistance = (info.volume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
 						if (radioVehicleVolumeLoss < 0.01 || radioVehicleCheck)
 						{
-							applyGain(radio_buffer, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, distance_from_radio, shouldPlayerHear, speakerDistance) * volumeMultiplifier(info.volume));
+							applyGain(radio_buffer, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, distance_from_radio, shouldPlayerHear, speakerDistance));
 						}
 						else
 						{
@@ -2441,7 +2443,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						if (info.waveZ < 0)
 						{
 							// TODO: underwater
-							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, distance_from_radio, volumeMultiplifier(info.volume) * serverIdToData[serverConnectionHandlerID].speakerDistance, shouldPlayerHear) * CANT_SPEAK_GAIN, (data->getFilterCantSpeak(info.radio_id)));
+							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, distance_from_radio, serverIdToData[serverConnectionHandlerID].speakerDistance, shouldPlayerHear) * CANT_SPEAK_GAIN, (data->getFilterCantSpeak(info.radio_id)));
 						}
 
 						data->getClunk(info.radio_id)->process(radio_buffer, channels, sampleCount, info.pos, myData->viewAngle);
