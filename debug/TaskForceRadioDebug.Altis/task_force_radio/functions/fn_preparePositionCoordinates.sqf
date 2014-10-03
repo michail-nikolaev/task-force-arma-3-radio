@@ -39,7 +39,7 @@ if (count _pos != 4) then {
 };
 
 _vehicle = _unit call TFAR_fnc_vehicleId;
-if ((_nearPlayer) and {currentUnit distance _unit >= TF_speakerDistance}) then {	
+if ((_nearPlayer) and {currentUnit distance _unit <= TF_speakerDistance}) then {	
 	if (_unit getVariable ["tf_lr_speakers", false] && _useLr) then {
 		{
 			if (_x call TFAR_fnc_getLrSpeakers) then {
