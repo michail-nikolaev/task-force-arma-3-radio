@@ -28,8 +28,8 @@ _local = false;
 if (count _this == 3) then {
 	_local = _this select 2;
 };
-missionNamespace setVariable [_variableName, _value];
-missionNamespace setVariable [_variableName + "_local", _value];
+missionNamespace setVariable [_variableName, + _value];
+missionNamespace setVariable [_variableName + "_local", + _value];
 if !(_local) then {		
 	publicVariable _variableName;
 }
