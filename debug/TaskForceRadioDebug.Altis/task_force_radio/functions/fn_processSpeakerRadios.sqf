@@ -2,38 +2,38 @@ private ["_item", "_freq", "_pos", "_unit_pos", "_p", "_manpack", "_lrs", "_isol
 _unit_pos = eyepos currentUnit;
 {
 	_pos = getPosASL _x;
-	
-	_p = [(_pos select 0) - (_unit_pos select 0), (_pos select 1) - (_unit_pos select 1), (_pos select 2) - (_unit_pos select 2)];
-	{
-		if ((_x call TFAR_fnc_isRadio) and {_x call TFAR_fnc_getSwSpeakers}) then {
-			_freq = format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode];
-			if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
-				_freq = _freq + format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
-			};			
-			tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12%13", _x, TF_new_line, _freq, TF_new_line,  "", TF_new_line, _p, TF_new_line, _x call TFAR_fnc_getSwVolume, TF_new_line, "no", TF_new_line, _pos select 2]);
-		};		
-	} forEach ((getItemCargo _x) select 0);	
+	if ((_pos select 2) > 0) then {
+		_p = [(_pos select 0) - (_unit_pos select 0), (_pos select 1) - (_unit_pos select 1), (_pos select 2) - (_unit_pos select 2)];
+		{
+			if ((_x call TFAR_fnc_isRadio) and {_x call TFAR_fnc_getSwSpeakers}) then {
+				_freq = format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode];
+				if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
+					_freq = _freq + format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
+				};			
+				tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12%13", _x, TF_new_line, _freq, TF_new_line,  "", TF_new_line, _p, TF_new_line, _x call TFAR_fnc_getSwVolume, TF_new_line, "no", TF_new_line, _pos select 2]);
+			};		
+		} forEach ((getItemCargo _x) select 0);	
+			
 		
-	
-	{		
-		if  ((_x getVariable ["tf_lr_speakers", false]) and {[typeof (_x), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1}) then {
-			_manpack = [_x, "radio_settings"];
-			if (_manpack call TFAR_fnc_getLrSpeakers) then {
-				_freq = format ["%1%2", _manpack call TFAR_fnc_getLrFrequency, _manpack call TFAR_fnc_getLrRadioCode];
-				if ((_manpack call TFAR_fnc_getAdditionalLrChannel) > -1) then {
-					_freq = _freq + format ["|%1%2", [_manpack, (_manpack call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _manpack call TFAR_fnc_getLrRadioCode];
-				};
-				_radio_id = netId (_manpack select 0);
-				if (_radio_id == '') then {
-					_radio_id = str (_manpack select 0);
-				};
+		{		
+			if  ((_x getVariable ["tf_lr_speakers", false]) and {[typeof (_x), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1}) then {
+				_manpack = [_x, "radio_settings"];
+				if (_manpack call TFAR_fnc_getLrSpeakers) then {
+					_freq = format ["%1%2", _manpack call TFAR_fnc_getLrFrequency, _manpack call TFAR_fnc_getLrRadioCode];
+					if ((_manpack call TFAR_fnc_getAdditionalLrChannel) > -1) then {
+						_freq = _freq + format ["|%1%2", [_manpack, (_manpack call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _manpack call TFAR_fnc_getLrRadioCode];
+					};
+					_radio_id = netId (_manpack select 0);
+					if (_radio_id == '') then {
+						_radio_id = str (_manpack select 0);
+					};
 
-				tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12%13", _radio_id, TF_new_line, _freq, TF_new_line,  "", TF_new_line, _p, TF_new_line, _manpack call TFAR_fnc_getLrVolume, TF_new_line, "no", TF_new_line, _pos select 2]);
+					tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12%13", _radio_id, TF_new_line, _freq, TF_new_line,  "", TF_new_line, _p, TF_new_line, _manpack call TFAR_fnc_getLrVolume, TF_new_line, "no", TF_new_line, _pos select 2]);
+				};
 			};
-		};
-	
-	} forEach (everyBackpack _x);
-	
+		
+		} forEach (everyBackpack _x);
+	};
 } forEach (nearestObjects [getPos currentUnit, ["WeaponHolder", "GroundWeaponHolder"], TF_speakerDistance]);
 
 {
