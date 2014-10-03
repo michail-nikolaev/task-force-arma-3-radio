@@ -2303,7 +2303,7 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 	for (auto it = serverIdToData[serverConnectionHandlerID].playback.begin(); it != serverIdToData[serverConnectionHandlerID].playback.end(); ++it)
 	{
 		int position = 0;
-		while (position < sampleCount * channels && it->second.size() > 9)
+		while (position < sampleCount * channels && it->second.size() > 0)
 		{
 			samples[position++] += it->second.at(0);
 			it->second.pop_front();			
@@ -2640,45 +2640,45 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 
 				anyID clientId = clientData->clientId;
 				
-				if (hasClientData(serverId, clientId))
-				{
-					LISTED_INFO listedInfo = isOverLocalRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
-					float globalGain = powf(serverIdToData[serverId].globalVolume, 0.25);
-					if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
+					if (hasClientData(serverId, clientId))
 					{
-						LeaveCriticalSection(&serverDataCriticalSection);
-						setGameClientMuteStatus(serverId, clientId);
-						if (alive && listedInfo.on != LISTED_ON_NONE) {
-							int volume = (int)std::roundf(listedInfo.volume * globalGain);
-							if (volume > 9) volume = 9;
-							if (subtype == "digital")
-							{
-								if (playPressed) playWavFile("radio-sounds/sw/remote_start", true, volume + 1);
-								if (playReleased) playWavFile("radio-sounds/sw/remote_end", true, volume + 1);
+						LISTED_INFO listedInfo = isOverLocalRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
+						float globalGain = powf(serverIdToData[serverId].globalVolume, 0.25);
+						if (nickname != serverIdToData[serverId].myNickname) // ignore command from yourself
+						{
+							LeaveCriticalSection(&serverDataCriticalSection);
+							setGameClientMuteStatus(serverId, clientId);
+							if (alive && listedInfo.on != LISTED_ON_NONE) {
+								int volume = (int)std::roundf(listedInfo.volume * globalGain);
+								if (volume > 9) volume = 9;
+								if (subtype == "digital")
+								{
+									if (playPressed) playWavFile("radio-sounds/sw/remote_start", true, volume + 1);
+									if (playReleased) playWavFile("radio-sounds/sw/remote_end", true, volume + 1);
+								}
+								if (subtype == "digital_lr")
+								{
+									if (playPressed) playWavFile("radio-sounds/lr/remote_start", true, volume + 1);
+									if (playReleased) playWavFile("radio-sounds/lr/remote_end", true, volume + 1);
+								}
+								if (subtype == "dd")
+								{
+									if (playPressed) playWavFile("radio-sounds/dd/remote_start", true, volume + 1);
+									if (playReleased) playWavFile("radio-sounds/dd/remote_end", true, volume + 1);
+								}
+								if (subtype == "airborne")
+								{
+									if (playPressed) playWavFile("radio-sounds/ab/remote_start", true, volume + 1);
+									if (playReleased) playWavFile("radio-sounds/ab/remote_end", true, volume + 1);
+								}
 							}
-							if (subtype == "digital_lr")
-							{
-								if (playPressed) playWavFile("radio-sounds/lr/remote_start", true, volume + 1);
-								if (playReleased) playWavFile("radio-sounds/lr/remote_end", true, volume + 1);
-							}
-							if (subtype == "dd")
-							{
-								if (playPressed) playWavFile("radio-sounds/dd/remote_start", true, volume + 1);
-								if (playReleased) playWavFile("radio-sounds/dd/remote_end", true, volume + 1);
-							}
-							if (subtype == "airborne")
-							{
-								if (playPressed) playWavFile("radio-sounds/ab/remote_start", true, volume + 1);
-								if (playReleased) playWavFile("radio-sounds/ab/remote_end", true, volume + 1);
-							}
+							EnterCriticalSection(&serverDataCriticalSection);
 						}
-						EnterCriticalSection(&serverDataCriticalSection);
-					}
-					if (playReleased && alive)
-					{
-						clientData->resetRadioEffect();
-					}
-				}			
+						if (playReleased && alive)
+						{
+							clientData->resetRadioEffect();
+						}
+					}			
 			else
 			{
 				log_string(std::string("MY COMMAND ") + command, LogLevel_DEVEL);
