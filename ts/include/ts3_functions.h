@@ -74,7 +74,7 @@ struct TS3Functions {
 	unsigned int (*systemset3DListenerAttributes) (uint64 serverConnectionHandlerID, const TS3_VECTOR* position, const TS3_VECTOR* forward, const TS3_VECTOR* up);
 	unsigned int (*set3DWaveAttributes) (uint64 serverConnectionHandlerID, uint64 waveHandle, const TS3_VECTOR* position);
 	unsigned int (*systemset3DSettings) (uint64 serverConnectionHandlerID, float distanceFactor, float rolloffScale);
-	unsigned int (*channelset3DAttributes) (uint64 serverConnectionHandlerID, anyID clientID, const TS3_VECTOR* position);
+	unsigned int (*channelset3DAttributes) (uint64 serverConnectionHandlerID, anyID clientID, const TS3_VECTOR* position);	
 
 	/* Interaction with the server */
 	unsigned int (*startConnection)(uint64 serverConnectionHandlerID, const char* identity, const char* ip, unsigned int port, const char* nickname,
