@@ -18,7 +18,7 @@ if (alive currentUnit) then {
 		{ 			
 			_allUnits pushBack _x;
 		} forEach (crew _v);
-	} forEach  (currentUnit nearEntities [["LandVehicle", "Air"], TF_max_voice_volume]);
+	} forEach  (currentUnit nearEntities [["LandVehicle", "Air", "Ship"], TF_max_voice_volume]);
 	
 	{		
 		if !(_x in _allUnits) then {
