@@ -29,7 +29,7 @@ public:
 			input_buffer.push_back(samples[q]);			
 		}
 
-		if (input_buffer.size() > clunk::Hrtf::WINDOW_SIZE * (unsigned int) channels)
+		if (input_buffer.size() > clunk::Hrtf::WINDOW_SIZE * (unsigned int) channels * 2)
 		{
 
 			const int to_process = (int) input_buffer.size();
@@ -46,7 +46,7 @@ public:
 
 
 			int output_size = to_process;
-			output_size -= clunk::Hrtf::WINDOW_SIZE * channels;
+			output_size -= clunk::Hrtf::WINDOW_SIZE * channels * 2;
 
 
 			short* dst_s = new short[output_size];

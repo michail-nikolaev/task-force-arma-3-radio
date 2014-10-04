@@ -167,6 +167,8 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExpandAttributedSource>true</ExpandAttributedSource>
       <BrowseInformation>true</BrowseInformation>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -184,10 +186,17 @@
   <ItemGroup>
     <ClCompile Include="..\include\clunk\buffer.cpp" />
     <ClCompile Include="..\include\clunk\clunk_ex.cpp" />
+    <ClCompile Include="..\include\clunk\context.cpp" />
+    <ClCompile Include="..\include\clunk\distance_model.cpp" />
     <ClCompile Include="..\include\clunk\hrtf.cpp" />
     <ClCompile Include="..\include\clunk\kemar.c" />
     <ClCompile Include="..\include\clunk\logger.cpp" />
+    <ClCompile Include="..\include\clunk\object.cpp" />
+    <ClCompile Include="..\include\clunk\sample.cpp" />
+    <ClCompile Include="..\include\clunk\source.cpp" />
     <ClCompile Include="..\include\clunk\sse_fft_context.cpp" />
+    <ClCompile Include="..\include\clunk\stream.cpp" />
+    <ClCompile Include="..\include\clunk\wav_file.cpp" />
     <ClCompile Include="..\include\dspfilters\source\Bessel.cpp" />
     <ClCompile Include="..\include\dspfilters\source\Biquad.cpp" />
     <ClCompile Include="..\include\dspfilters\source\Butterworth.cpp" />
@@ -216,14 +225,23 @@
     <ClInclude Include="..\include\clunk\buffer.h" />
     <ClInclude Include="..\include\clunk\clunk_assert.h" />
     <ClInclude Include="..\include\clunk\clunk_ex.h" />
+    <ClInclude Include="..\include\clunk\context.h" />
+    <ClInclude Include="..\include\clunk\distance_model.h" />
     <ClInclude Include="..\include\clunk\export_clunk.h" />
     <ClInclude Include="..\include\clunk\fft_context.h" />
     <ClInclude Include="..\include\clunk\hrtf.h" />
     <ClInclude Include="..\include\clunk\kemar.h" />
     <ClInclude Include="..\include\clunk\logger.h" />
     <ClInclude Include="..\include\clunk\mdct_context.h" />
+    <ClInclude Include="..\include\clunk\mixer.h" />
+    <ClInclude Include="..\include\clunk\object.h" />
+    <ClInclude Include="..\include\clunk\resample.h" />
+    <ClInclude Include="..\include\clunk\sample.h" />
+    <ClInclude Include="..\include\clunk\source.h" />
+    <ClInclude Include="..\include\clunk\stream.h" />
     <ClInclude Include="..\include\clunk\types.h" />
     <ClInclude Include="..\include\clunk\v3.h" />
+    <ClInclude Include="..\include\clunk\wav_file.h" />
     <ClInclude Include="..\include\sqlite3\sqlite3.h" />
     <ClInclude Include="Clunk.h" />
     <ClInclude Include="RadioEffect.h" />

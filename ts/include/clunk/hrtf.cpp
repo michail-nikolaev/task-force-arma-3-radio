@@ -97,7 +97,7 @@ unsigned Hrtf::process(
 		//2d stereo sound!
 		if (src_ch == dst_ch) {
 			memcpy(dst_buf.get_ptr(), src_buf.get_ptr(), dst_buf.get_size());
-			return src_n;
+			return dst_n;
 		}
 		else
 			throw_ex(("unsupported sample conversion"));

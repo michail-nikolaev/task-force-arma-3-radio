@@ -80,4 +80,4 @@ _unit_pos = eyepos currentUnit;
 		};
 
 	};
-} forEach  (currentUnit nearEntities [["LandVehicle", "Air"], TF_speakerDistance]);
+} forEach  (currentUnit nearEntities [["LandVehicle", "Air", "Ship"], TF_speakerDistance]);
