@@ -56,8 +56,7 @@ static float* floatsSample[MAX_CHANNELS];
 #define DD_MIN_DISTANCE 70
 #define DD_MAX_DISTANCE 300
 
-#define ISOLATED_CUTOFF 0.75f
-#define ISOLATED_EFFECTS_START 0.5f
+#define UNDERWATER_LEVEL -1.1f
 
 inline float sq(float x) { return x * x; }
 
@@ -322,6 +321,12 @@ struct LISTED_INFO {
 	std::pair<std::string, float> vehicle;	
 };
 
+
+struct SERVER_PLAYBACK
+{
+	std::map<std::string, std::deque<short>> playback;
+};
+
 struct SERVER_RADIO_DATA
 {
 	std::string myNickname;
@@ -331,10 +336,10 @@ struct SERVER_RADIO_DATA
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
 	std::map<std::string, FREQ_SETTINGS> mySwFrequencies;
 	std::map<std::string, FREQ_SETTINGS> myLrFrequencies;
-	std::multimap<std::string, SPEAKER_DATA> speakers;
+	
 	std::string myDdFrequency;
-
-	std::map<std::string, std::deque<short>> playback;
+	std::multimap<std::string, SPEAKER_DATA> speakers;
+	
 
 	int ddVolumeLevel;
 	int myVoiceVolume;
@@ -382,7 +387,9 @@ volatile bool vadEnabled = false;
 static char* pluginID = NULL;
 
 CRITICAL_SECTION serverDataCriticalSection;
+CRITICAL_SECTION playbackCriticalSection;
 SERVER_ID_TO_SERVER_DATA serverIdToData;
+std::map<uint64, SERVER_PLAYBACK> serverIdToPlayback;
 
 static struct TS3Functions ts3Functions;
 //#define DEBUG_MOD_ENABLED
@@ -459,29 +466,29 @@ bool isConnected(uint64 serverConnectionHandlerID)
 
 void appendPlayback(std::string name, uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels)
 {
-	EnterCriticalSection(&serverDataCriticalSection);
-	if (serverIdToData[serverConnectionHandlerID].playback.count(name) == 0)
+	EnterCriticalSection(&playbackCriticalSection);
+	if (serverIdToPlayback[serverConnectionHandlerID].playback.count(name) == 0)
 	{
 		std::deque<short> d;
-		serverIdToData[serverConnectionHandlerID].playback[name] = d;
+		serverIdToPlayback[serverConnectionHandlerID].playback[name] = d;
 	}
 	if (channels == 2)
 	{
 		for (int q = 0; q < sampleCount * channels; q++)
 		{
-			serverIdToData[serverConnectionHandlerID].playback[name].push_back(samples[q]);
+			serverIdToPlayback[serverConnectionHandlerID].playback[name].push_back(samples[q]);
 		}
 	}
 	else
 	{
 		for (int q = 0; q < sampleCount * channels; q++)
 		{
-			serverIdToData[serverConnectionHandlerID].playback[name].push_back(samples[q * 2]);
-			serverIdToData[serverConnectionHandlerID].playback[name].push_back(samples[q * 2 + 1]);
+			serverIdToPlayback[serverConnectionHandlerID].playback[name].push_back(samples[q * 2]);
+			serverIdToPlayback[serverConnectionHandlerID].playback[name].push_back(samples[q * 2 + 1]);
 		}
 	}
 
-	LeaveCriticalSection(&serverDataCriticalSection);
+	LeaveCriticalSection(&playbackCriticalSection);
 }
 
 
@@ -601,8 +608,10 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, fl
 }
 
 
-void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, TS3_VECTOR position, bool onGround, int radioVolume)
+void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, TS3_VECTOR position, bool onGround, int radioVolume, bool underwater)
 {
+	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
+	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	if (!isConnected(serverConnectionHandlerID)) return;
 	std::string path = std::string(pluginPath);	
 	std::string to_play = path + std::string(fileNameWithoutExtension) + ".wav";
@@ -632,7 +641,11 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 					float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
 					float distance_from_radio = distance(clientData->clientPosition, position);					
 					applyGain(input, wav._spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance));
-					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(input, wav._spec.channels, samples, 8, (clientData->getSpeakerFilter(id)));
+					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(input, wav._spec.channels, samples, 2, (clientData->getSpeakerFilter(id)));					
+					if (underwater)
+					{
+						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(input, wav._spec.channels, samples, CANT_SPEAK_GAIN * 50, (clientData->getFilterCantSpeak(id)));
+					}					
 				}
 				clientData->getClunk(id)->process(input, wav._spec.channels, samples, position, clientData->viewAngle);
 			}
@@ -1833,7 +1846,7 @@ DWORD WINAPI ServiceThread(LPVOID lpParam)
 	return NULL;
 }
 
-#define FAILS_TO_SLEEP 1000
+#define FAILS_TO_SLEEP 50
 DWORD WINAPI PipeThread(LPVOID lpParam)
 {
 	HANDLE pipe = INVALID_HANDLE_VALUE;
@@ -2004,6 +2017,7 @@ int ts3plugin_init() {
 	ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE);
 
 	InitializeCriticalSection(&serverDataCriticalSection);
+	InitializeCriticalSection(&playbackCriticalSection);
 
 	exitThread = FALSE;
 	if (isConnected(ts3Functions.getCurrentServerConnectionHandlerID()))
@@ -2178,9 +2192,12 @@ void ts3plugin_onConnectStatusChangeEvent(uint64 serverConnectionHandlerID, int 
 		anyID myId = getMyId(serverConnectionHandlerID);
 		EnterCriticalSection(&serverDataCriticalSection);
 		serverIdToData[serverConnectionHandlerID] = SERVER_RADIO_DATA();
-		serverIdToData[serverConnectionHandlerID].myNickname = myNickname;
+		serverIdToData[serverConnectionHandlerID].myNickname = myNickname;		
 		LeaveCriticalSection(&serverDataCriticalSection);
-
+		
+		EnterCriticalSection(&playbackCriticalSection);
+		serverIdToPlayback[serverConnectionHandlerID] = SERVER_PLAYBACK();
+		LeaveCriticalSection(&playbackCriticalSection);
 		updateNicknamesList(serverConnectionHandlerID);
 
 		// Set system 3d settings
@@ -2369,21 +2386,34 @@ inline float clamp(float x, float a, float b)
 }
 
 void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {	
-	EnterCriticalSection(&serverDataCriticalSection);
-	bool feel = false;
+	EnterCriticalSection(&playbackCriticalSection);
+	bool fill = false;
 	std::vector<std::string> to_remove;
 	if (!(*channelFillMask & 3))
 	{
 		memset(samples, 0, sampleCount * channels * sizeof(short));
 	}
-	for (auto it = serverIdToData[serverConnectionHandlerID].playback.begin(); it != serverIdToData[serverConnectionHandlerID].playback.end(); ++it)
+	for (auto it = serverIdToPlayback[serverConnectionHandlerID].playback.begin(); it != serverIdToPlayback[serverConnectionHandlerID].playback.end(); ++it)
 	{
 		int position = 0;
 		while (position < sampleCount * channels && it->second.size() > 0)
 		{
-			samples[position++] += it->second.at(0);
+			short s = it->second.at(0);
+			if (samples[position] + s > SHRT_MAX)
+			{
+				samples[position] = SHRT_MAX;
+			}
+			else if (samples[position] + s < SHRT_MIN)
+			{
+				samples[position] = SHRT_MIN;
+			} 
+			else
+			{
+				samples[position] += s;
+			}			
+			position++;
 			it->second.pop_front();			
-			feel = true;
+			fill = true;
 		}
 		if (it->second.size() == 0)
 		{
@@ -2393,11 +2423,11 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 
 	for (auto it = to_remove.begin(); it != to_remove.end(); ++it)
 	{
-		serverIdToData[serverConnectionHandlerID].playback.erase(*it);
+		serverIdToPlayback[serverConnectionHandlerID].playback.erase(*it);
 	}
 
-	if (feel) *channelFillMask |= 3;
-	LeaveCriticalSection(&serverDataCriticalSection);
+	if (fill) *channelFillMask |= 3;
+	LeaveCriticalSection(&playbackCriticalSection);
 	
 }
 
@@ -2502,7 +2532,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						const float radioVehicleVolumeLoss = clamp(myVehicleDesriptor.second + info.vehicle.second, 0.0f, 1.0f);
 						bool radioVehicleCheck = (myVehicleDesriptor.first == info.vehicle.first);
 						
-						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, 8, (data->getSpeakerFilter(info.radio_id)));
+						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, 2, (data->getSpeakerFilter(info.radio_id)));
 
 						float speakerDistance = (info.volume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
 						if (radioVehicleVolumeLoss < 0.01 || radioVehicleCheck)
@@ -2512,14 +2542,11 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						else
 						{
 							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, distance_from_radio, shouldPlayerHear, speakerDistance, 1.0f - radioVehicleVolumeLoss) * pow((1.0f - radioVehicleVolumeLoss), 1.2), (data->getFilterVehicle(info.radio_id, radioVehicleVolumeLoss)));
-						
 						}
-						if (info.waveZ < 0)
+						if (info.waveZ < UNDERWATER_LEVEL)
 						{
-							// TODO: underwater
-							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, CANT_SPEAK_GAIN, (data->getFilterCantSpeak(info.radio_id)));
+							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, CANT_SPEAK_GAIN * 50, (data->getFilterCantSpeak(info.radio_id)));
 						}
-
 						data->getClunk(info.radio_id)->process(radio_buffer, channels, sampleCount, info.pos, myData->viewAngle);
 					}
 					mix(samples, radio_buffer, sampleCount, channels);
@@ -2596,12 +2623,17 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 			}
 
 			ts3plugin_onEditPostProcessVoiceDataEvent(serverConnectionHandlerID, myId, voice, sampleCount, channels * m, NULL, NULL);
+			LeaveCriticalSection(&serverDataCriticalSection);
+			applyGain(voice, channels * m, sampleCount, 2.0f);
 			appendPlayback("my_radio_voice", serverConnectionHandlerID, voice, sampleCount, channels * m);
 			delete voice;
-
+		} 
+		else 
+		{
+			LeaveCriticalSection(&serverDataCriticalSection);
 		}
 		
-		LeaveCriticalSection(&serverDataCriticalSection);
+		
 		*edited |= 1;
 	}
 }
@@ -2713,23 +2745,23 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 							if (alive && listedInfo.on != LISTED_ON_NONE) {																
 								if (subtype == "digital")
 								{
-									if (playPressed) playWavFile(serverId, "radio-sounds/sw/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume);
-									if (playReleased) playWavFile(serverId, "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume);
+									if (playPressed) playWavFile(serverId, "radio-sounds/sw/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
+									if (playReleased) playWavFile(serverId, "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
 								}
 								if (subtype == "digital_lr")
 								{
-									if (playPressed) playWavFile(serverId, "radio-sounds/lr/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume);
-									if (playReleased) playWavFile(serverId, "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume);
+									if (playPressed) playWavFile(serverId, "radio-sounds/lr/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
+									if (playReleased) playWavFile(serverId, "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
 								}
 								if (subtype == "dd")
 								{
-									if (playPressed) playWavFile(serverId, "radio-sounds/dd/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume);
-									if (playReleased) playWavFile(serverId, "radio-sounds/dd/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume);
+									if (playPressed) playWavFile(serverId, "radio-sounds/dd/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
+									if (playReleased) playWavFile(serverId, "radio-sounds/dd/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
 								}
 								if (subtype == "airborne")
 								{
-									if (playPressed) playWavFile(serverId, "radio-sounds/ab/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume);
-									if (playReleased) playWavFile(serverId, "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume);
+									if (playPressed) playWavFile(serverId, "radio-sounds/ab/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
+									if (playReleased) playWavFile(serverId, "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
 								}
 							}
 							EnterCriticalSection(&serverDataCriticalSection);
