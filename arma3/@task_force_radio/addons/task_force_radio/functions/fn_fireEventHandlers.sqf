@@ -28,8 +28,8 @@ _handlers = missionNamespace getVariable [_eventID, []];
 {
 	_parameters call (_x select 1);
 } count _handlers;
-if (isNull _unit) exitWith {};
+if (isNil "_unit" || {isNull _unit}) exitWith {};
 _handlers = _unit getVariable [_eventID, []];
 {
 	_parameters call (_x select 1);
-} count _handlers;
+} foreach _handlers;
