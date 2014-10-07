@@ -179,6 +179,8 @@ struct CLIENT_DATA
 	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>*> filtersSpeakers;
 	
 	float viewAngle;
+
+	float voiceVolumeMultiplifier;
 	
 	Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* getSpeakerFilter(std::string key)
 	{
@@ -281,6 +283,7 @@ struct CLIENT_DATA
 		canUseLRRadio = canUseSWRadio = canUseDDRadio = clientTalkingNow = false;
 		range = 0;
 		terrainInterception = 0;
+		voiceVolumeMultiplifier = 1.0f;
 
 		compressor.setSampleRate(48000);
 		compressor.setThresh(65);
@@ -347,8 +350,7 @@ struct SERVER_RADIO_DATA
 	bool canSpeak;
 	float wavesLevel;
 	float terrainIntersectionCoefficient;
-	float globalVolume;
-	float voiceVolumeMultiplifier;
+	float globalVolume;	
 	float receivingDistanceMultiplicator;
 	float speakerDistance;
 
@@ -363,7 +365,7 @@ struct SERVER_RADIO_DATA
 		tangentPressed = false;
 		currentDataFrame = INVALID_DATA_FRAME;
 		terrainIntersectionCoefficient = 7.0f;
-		globalVolume = voiceVolumeMultiplifier = receivingDistanceMultiplicator = 1.0f;
+		globalVolume = receivingDistanceMultiplicator = 1.0f;
 		speakerDistance = 20.0f;
 	}
 };
@@ -1453,7 +1455,7 @@ void processUnitKilled(std::string &name, uint64 &serverConnection)
 }
 
 std::string processUnitPosition(std::string &nickname, uint64 &serverConnection, TS3_VECTOR position, float viewAngle, bool canSpeak,
-	bool canUseSWRadio, bool canUseLRRadio, bool canUseDDRadio, std::string vehicleID, int terrainInterception)
+	bool canUseSWRadio, bool canUseLRRadio, bool canUseDDRadio, std::string vehicleID, int terrainInterception, float voiceVolume)
 {
 	DWORD time = GetTickCount();
 	anyID myId = getMyId(serverConnection);
@@ -1482,7 +1484,8 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 				clientData->terrainInterception = terrainInterception;
 				clientData->dataFrame = serverIdToData[serverConnection].currentDataFrame;
 				clientData->viewAngle = viewAngle;
-				clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;
+				clientData->voiceVolumeMultiplifier = voiceVolume;
+				clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;			
 			}
 			serverIdToData[serverConnection].myPosition = position;
 			serverIdToData[serverConnection].canSpeak = canSpeak;			
@@ -1510,6 +1513,7 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 					clientData->vehicleId = vehicleID;
 					clientData->terrainInterception = terrainInterception;
 					clientData->dataFrame = serverIdToData[serverConnection].currentDataFrame;
+					clientData->voiceVolumeMultiplifier = voiceVolume;
 					clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;					
 				}
 			}
@@ -1630,14 +1634,14 @@ std::string processGameCommand(std::string command)
 		LeaveCriticalSection(&serverDataCriticalSection);
 		return "OK";
 	}
-	else if (tokens.size() == 12 && tokens[0] == "POS")
+	else if (tokens.size() == 13 && tokens[0] == "POS")
 	{
 		TS3_VECTOR position;
 		position.x = std::stof(tokens[2]); // x
 		position.y = std::stof(tokens[3]); // y
 		position.z = std::stof(tokens[4]); // z
 		return processUnitPosition(tokens[1], currentServerConnectionHandlerID, position, std::stof(tokens[5]),
-			isTrue(tokens[6]), isTrue(tokens[7]), isTrue(tokens[8]), isTrue(tokens[9]), tokens[10], std::stoi(tokens[11]));
+			isTrue(tokens[6]), isTrue(tokens[7]), isTrue(tokens[8]), isTrue(tokens[9]), tokens[10], std::stoi(tokens[11]), (float)std::atof(tokens[12].c_str()));
 	}
 	else if (tokens.size() == 5 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD"))
 	{
@@ -1713,8 +1717,7 @@ std::string processGameCommand(std::string command)
 			serverIdToData[currentServerConnectionHandlerID].ddVolumeLevel = (int)std::atof(tokens[6].c_str());
 			serverIdToData[currentServerConnectionHandlerID].wavesLevel = (float)std::atof(tokens[8].c_str());
 			serverIdToData[currentServerConnectionHandlerID].terrainIntersectionCoefficient = (float)std::atof(tokens[9].c_str());
-			serverIdToData[currentServerConnectionHandlerID].globalVolume = (float)std::atof(tokens[10].c_str());
-			serverIdToData[currentServerConnectionHandlerID].voiceVolumeMultiplifier = (float)std::atof(tokens[11].c_str());
+			serverIdToData[currentServerConnectionHandlerID].globalVolume = (float)std::atof(tokens[10].c_str());			
 			serverIdToData[currentServerConnectionHandlerID].receivingDistanceMultiplicator = (float)std::atof(tokens[12].c_str());
 			serverIdToData[currentServerConnectionHandlerID].speakerDistance = (float)std::atof(tokens[13].c_str());
 
@@ -2454,6 +2457,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 			if (data && myData)
 			{
 				EnterCriticalSection(&serverDataCriticalSection);
+				applyGain(samples, channels, sampleCount, data->voiceVolume);
 				short* original_buffer = allocatePool(sampleCount, channels, samples);	
 
 				bool shouldPlayerHear = (data->canSpeak && canSpeak);
@@ -2596,15 +2600,14 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, int* edited) {
 	if (!inGame)
 		return;
-	if (*edited & 2)
+	if ((*edited & 2))
 	{
-		anyID myId = getMyId(serverConnectionHandlerID);
+ 		anyID myId = getMyId(serverConnectionHandlerID);
 		EnterCriticalSection(&serverDataCriticalSection);
 				
 		bool alive = serverIdToData[serverConnectionHandlerID].alive;
 		if (hasClientData(serverConnectionHandlerID, myId) && alive)
 		{
-			applyGain(samples, channels, sampleCount, serverIdToData[serverConnectionHandlerID].voiceVolumeMultiplifier);
 			int m = 1;
 			if (channels == 1) m = 2;
 							
@@ -2632,9 +2635,6 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 		{
 			LeaveCriticalSection(&serverDataCriticalSection);
 		}
-		
-		
-		*edited |= 1;
 	}
 }
 
