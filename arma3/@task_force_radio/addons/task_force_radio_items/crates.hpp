@@ -38,6 +38,10 @@ class TF_NATO_Radio_Crate: Box_NATO_Support_F
 			count = 3;
 			backpack = "tf_rt1523g_black";
 		};
+		class _xx_tf_rt1523g_fabric {
+			count = 3;
+			backpack = "tf_rt1523g_fabric";
+		};		
 	};
 };
 
