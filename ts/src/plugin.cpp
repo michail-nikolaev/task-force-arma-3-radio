@@ -1593,11 +1593,23 @@ void disableVoiceAndSendCommand(std::string commandToBroadcast, uint64 currentSe
 	ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, commandToBroadcast.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
 }
 
+volatile bool skip_tangent_off = false;
+volatile bool waiting_tangent_off = false;
+
 DWORD WINAPI process_tangent_off(LPVOID lpParam)
 {
+	waiting_tangent_off = true;
 	Sleep(pttDelayMs);
-	if (vadEnabled)	hlp_enableVad();
-	disableVoiceAndSendCommand(ptt_arguments.commandToBroadcast, ptt_arguments.currentServerConnectionHandlerID, false);
+	if (!skip_tangent_off)
+	{
+		if (vadEnabled)	hlp_enableVad();
+		disableVoiceAndSendCommand(ptt_arguments.commandToBroadcast, ptt_arguments.currentServerConnectionHandlerID, false);
+	}
+	else
+	{
+		skip_tangent_off = false;
+	}
+	waiting_tangent_off = false;
 	return 0;
 }
 
@@ -1717,11 +1729,14 @@ std::string processGameCommand(std::string command)
 				else if (subtype == "dd") playWavFile("radio-sounds/dd/local_start");
 				else if (subtype == "digital") playWavFile("radio-sounds/sw/local_start");
 				else if (subtype == "airborne") playWavFile("radio-sounds/ab/local_start");
-
-				vadEnabled = hlp_checkVad();
-				if (vadEnabled) hlp_disableVad();
-				// broadcast info about tangent pressed over all client										
-				disableVoiceAndSendCommand(commandToBroadcast, currentServerConnectionHandlerID, pressed);
+				if (!waiting_tangent_off)
+				{
+					vadEnabled = hlp_checkVad();
+					if (vadEnabled) hlp_disableVad();
+					// broadcast info about tangent pressed over all client										
+					disableVoiceAndSendCommand(commandToBroadcast, currentServerConnectionHandlerID, pressed);
+				}
+				else skip_tangent_off = true;
 			}
 			else
 			{
