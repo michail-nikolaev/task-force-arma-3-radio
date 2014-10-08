@@ -2358,7 +2358,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 
 bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID)
 {
-	std::string clientInfo = getMetaData(getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
+	std::string clientInfo = getMetaData(clientID);
 	bool result = false;
 
 	std::string shouldStartWith = getConnectionStatusInfo(true, true, false);
