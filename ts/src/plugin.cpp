@@ -65,7 +65,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.2"
+#define PLUGIN_VERSION "0.9.3"
 #define CANT_SPEAK_DISTANCE 5
 
 #define PIWIK_URL L"nkey.piwik.pro"
@@ -168,7 +168,7 @@ bool isUpdateAvaible() {
 	{
 		int pluginVersionI = versionNumber(pluginVersion);
 		int currentVersionI = versionNumber(currentVersion);
-		return currentVersionI > currentVersionI;
+		return pluginVersionI > currentVersionI;
 	}
 	else
 	{
