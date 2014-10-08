@@ -77,6 +77,11 @@ class CfgFactionClasses
     {        
         backpack_tf_faction_radio_api = "tf_rt1523g_sage";        
     };
+	// support for BW
+	class BWA3_Faction
+	{
+		backpack_tf_faction_radio_api = "tf_mr3000_multicam";
+	};
 };
 
 class CfgFontFamilies

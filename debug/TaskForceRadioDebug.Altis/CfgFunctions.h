@@ -167,6 +167,7 @@ class CfgFunctions
 			class showRadioSpeakers{};
 			class currentDirection{};
 			class sessionTracker{};
+			class isTurnedOut{};
 		};
 	};
 };
