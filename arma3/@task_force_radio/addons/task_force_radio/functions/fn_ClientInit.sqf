@@ -374,3 +374,5 @@ if (player in (call BIS_fnc_listCuratorPlayers)) then {
 		};
 	};
 };
+
+call TFAR_fnc_sessionTracker;
