@@ -167,7 +167,8 @@ _v0.9.2 от 29.05.2014_
 * [Raspu86](http://forums.bistudio.com/member.php?132083-Raspu86) за модель рюкзаков.
 * [Gandi](http://forums.bistudio.com/member.php?111588-Gandi) за текстуры.
 * [Pixinger] (https://github.com/Pixinger) за помощь с Зевсом.
-* [whoozle] (https://github.com/whoozle) за звуковой движок и помош.
+* [whoozle] (https://github.com/whoozle) за звуковой движок и помошь.
+* [CptDavo](http://forums.bistudio.com/member.php?75211-CptDavo) за помощь с текстурами.
 * Всем, кто делал видео и статьм с обзорами.
 * Всем пользователям (особенно тем, что нашли баги).
 * Извините, если кого-то случайно забыл.

@@ -25,6 +25,7 @@ class CfgPatches
 			"Item_tf_rf7800str",
 			"tf_rt1523g_sage",
 			"tf_rt1523g_green",
+			"tf_rt1523g_fabric",
 			"tf_rt1523g_black"
 		};
 		weapons[] = {
@@ -210,6 +211,15 @@ class CfgVehicles {
 		mass = 16;		
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_green_co.paa"};		
+		model = "\task_force_radio_items\models\TFR_BACKPACK";
+	};
+	class tf_rt1523g_fabric: tf_rt1523g {
+		displayName = "RT-1523G (ASIP) Fabric";
+		descriptionShort = "RT-1523G (ASIP) Fabric";
+		maximumLoad = 100;
+		mass = 16;		
+		hiddenSelections[] = {"camo"};
+		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_fabric_co.paa"};		
 		model = "\task_force_radio_items\models\TFR_BACKPACK";
 	};
 	class tf_rt1523g_black: tf_rt1523g {
