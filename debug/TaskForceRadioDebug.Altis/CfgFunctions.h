@@ -165,6 +165,8 @@ class CfgFunctions
 			class getLrSpeakers{};
 			class setLrSpeakers{};
 			class showRadioSpeakers{};
+			class currentDirection{};
+			class sessionTracker{};
 		};
 	};
 };

@@ -68,6 +68,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 #define PLUGIN_VERSION "0.9.2"
 #define CANT_SPEAK_DISTANCE 5
 
+#define PIWIK_URL L"nkey.piwik.pro"
 #define UPDATE_URL L"raw.github.com"
 #define UPDATE_FILE L"/michail-nikolaev/task-force-arma-3-radio/master/current_version.txt"
 
@@ -105,6 +106,38 @@ int versionNumber(std::string versionString)
 	}
 	return number;
 }
+
+std::string piwikUrl;
+DWORD WINAPI trackPiwikThread(LPVOID lpParam)
+{
+	DWORD dwBytes;
+	DWORD r = 0;	
+	char ch;
+	if (!InternetGetConnectedState(&r, 0)) return -1;
+	if (r & INTERNET_CONNECTION_OFFLINE) return -1;
+
+	HINTERNET Initialize = InternetOpen(L"TFAR", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+	HINTERNET Connection = InternetConnect(Initialize, PIWIK_URL, INTERNET_DEFAULT_HTTP_PORT, NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0);
+	HINTERNET File = HttpOpenRequestA(Connection, NULL, piwikUrl.c_str(), NULL, NULL, NULL, 0, 0);
+	if (HttpSendRequest(File, NULL, 0, NULL, 0))
+	{
+		while (InternetReadFile(File, &ch, 1, &dwBytes))
+		{
+			if (dwBytes != 1) break;
+		}
+	}
+	InternetCloseHandle(File);
+	InternetCloseHandle(Connection);
+	InternetCloseHandle(Initialize);
+	return 0;
+}
+
+void trackPiwik(std::string url)
+{
+	piwikUrl = url;
+	CreateThread(NULL, 0, trackPiwikThread, NULL, 0, NULL);
+}
+
 
 bool isUpdateAvaible() {
 	DWORD dwBytes;
@@ -1455,7 +1488,7 @@ void processUnitKilled(std::string &name, uint64 &serverConnection)
 }
 
 std::string processUnitPosition(std::string &nickname, uint64 &serverConnection, TS3_VECTOR position, float viewAngle, bool canSpeak,
-	bool canUseSWRadio, bool canUseLRRadio, bool canUseDDRadio, std::string vehicleID, int terrainInterception, float voiceVolume)
+	bool canUseSWRadio, bool canUseLRRadio, bool canUseDDRadio, std::string vehicleID, int terrainInterception, float voiceVolume, float currentUnitDrection)
 {
 	DWORD time = GetTickCount();
 	anyID myId = getMyId(serverConnection);
@@ -1516,6 +1549,11 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 					clientData->voiceVolumeMultiplifier = voiceVolume;
 					clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;					
 				}
+			}
+			if (serverIdToData[serverConnection].nicknameToClientData.count(serverIdToData[serverConnection].myNickname))
+			{
+				CLIENT_DATA* myData = serverIdToData[serverConnection].nicknameToClientData[serverIdToData[serverConnection].myNickname];
+				myData->viewAngle = currentUnitDrection;
 			}
 			LeaveCriticalSection(&serverDataCriticalSection);
 			if (isConnected(serverConnection)) setGameClientMuteStatus(serverConnection, getClientId(serverConnection, nickname));
@@ -1634,14 +1672,18 @@ std::string processGameCommand(std::string command)
 		LeaveCriticalSection(&serverDataCriticalSection);
 		return "OK";
 	}
-	else if (tokens.size() == 13 && tokens[0] == "POS")
+	else if (tokens.size() == 2 && tokens[0] == "TRACK")
+	{
+		trackPiwik(tokens[1]);
+	}
+	else if (tokens.size() == 14 && tokens[0] == "POS")
 	{
 		TS3_VECTOR position;
 		position.x = std::stof(tokens[2]); // x
 		position.y = std::stof(tokens[3]); // y
 		position.z = std::stof(tokens[4]); // z
 		return processUnitPosition(tokens[1], currentServerConnectionHandlerID, position, std::stof(tokens[5]),
-			isTrue(tokens[6]), isTrue(tokens[7]), isTrue(tokens[8]), isTrue(tokens[9]), tokens[10], std::stoi(tokens[11]), (float)std::atof(tokens[12].c_str()));
+			isTrue(tokens[6]), isTrue(tokens[7]), isTrue(tokens[8]), isTrue(tokens[9]), tokens[10], std::stoi(tokens[11]), (float)std::atof(tokens[12].c_str()), (float)std::atof(tokens[13].c_str()));
 	}
 	else if (tokens.size() == 5 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD"))
 	{
