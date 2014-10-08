@@ -23,7 +23,7 @@ if ((vehicle _this) != _this) then {
 	if (_result == "") then {
 		_result = "singleplayer";
 	};
-	if ([_this] call CBA_fnc_isTurnedOut) then {
+	if ([_this] call TFAR_fnc_isTurnedOut) then {
 		_result = _result + "_turnout";
 	} else {
 		_result = _result + "_" + str ([(typeof (vehicle _this)), "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty);
