@@ -177,5 +177,6 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [whoozle] (https://github.com/whoozle) for sound engine and help.
 * [MastersDisaster] (https://www.freesound.org/people/MastersDisaster/) for [Rotator switch sound] (https://www.freesound.org/people/MastersDisaster/sounds/218115/)
 * [CptDavo](http://forums.bistudio.com/member.php?75211-CptDavo) for help with textures.
+* [KoffeinFlummi](https://github.com/KoffeinFlummi) for help with code.
 * Everyone user (especially who report bugs).
 * Sorry guys if I’ve forgot someone by chance.
