@@ -410,6 +410,52 @@
 					Sonraki kanal
 				</Turkish>
 			</Key>
+			<Key ID="STR_rotator_volume">
+				<Original>
+					Decrease volume | Increase volume
+				</Original>
+				<Russian>
+					Уменьшить громкость | Увеличить громкость
+				</Russian>
+				<French>
+					Réduire le volume | Augmenter le volume
+				</French>
+				<Italian>
+					Diminuisce volume | Aumenta volume
+				</Italian>
+				<Spanish>
+					Reducir volumen | Aumentar volumen
+				</Spanish>
+				<German>
+					Lautstärke verringern | Lautstärke erhöhen
+				</German>
+			    <Turkish>
+					Sesi azalt | Sesi yükselt
+				</Turkish>
+			</Key>
+			<Key ID="STR_rotator_channel">
+				<Original>
+					Previous channel | Next channel
+				</Original>
+				<Russian>
+					Следующий канал | Предыдущий канал
+				</Russian>
+				<French>
+					Canal précédent | Canal suivant
+				</French>
+				<Italian>
+					Canale precedente | Canale successivo
+				</Italian>
+				<Spanish>
+					Canal anterior | Canal siguiente
+				</Spanish>
+				<German>
+					Vorheriger Kanal | Nächster Kanal
+				</German>
+			    <Turkish>
+					Önceki kanal | Sonraki kanal
+				</Turkish>
+			</Key>
 			<Key ID="STR_increase_volume">
 				<Original>
 					Increase volume
