@@ -410,6 +410,16 @@
 					Sonraki kanal
 				</Turkish>
 			</Key>
+			<Key ID="STR_rotator_volume">
+				<Original>
+					Lower Volume | Raise Volume
+				</Original>
+			</Key>
+			<Key ID="STR_rotator_channel">
+				<Original>
+					Previous Channel | Next Channel
+				</Original>
+			</Key>
 			<Key ID="STR_increase_volume">
 				<Original>
 					Increase volume
