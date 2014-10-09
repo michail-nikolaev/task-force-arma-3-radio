@@ -9,11 +9,11 @@ $[
 	[1401,"channel_edit",[1,"C3",["0.134422 * safezoneW + safezoneX","0.402215 * safezoneH + safezoneY","0.0304219 * safezoneW","0.0682 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current channel","-1"],[]],
 	[1602,"prev_channel",[1,"",["0.131328 * safezoneW + safezoneX","0.5319 * safezoneH + safezoneY","0.023625 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1603,"next_channel",[1,"",["0.168453 * safezoneW + safezoneX","0.5341 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
-	[1604,"increase_volume",[1,"",["0.168969 * safezoneW + safezoneX","0.5011 * safezoneH + safezoneY","0.0242813 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
-	[1605,"decrease_volume",[1,"",["0.132359 * safezoneW + safezoneX","0.5022 * safezoneH + safezoneY","0.0269063 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
+	[1604,"additional",[1,"",["0.168969 * safezoneW + safezoneX","0.5011 * safezoneH + safezoneY","0.0242813 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
+	[1605,"speakers",[1,"",["0.132359 * safezoneW + safezoneX","0.5022 * safezoneH + safezoneY","0.0269063 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
 	[1606,"stereo",[1,"",["0.128234 * safezoneW + safezoneX","0.5726 * safezoneH + safezoneY","0.0201094 * safezoneW","0.0363 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]],
-	[1607,"additional",[1,"",["0.191656 * safezoneW + safezoneX","0.1139 * safezoneH + safezoneY","0.045375 * safezoneW","0.0539 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1608,"speakers",[1,"",["0.11225 * safezoneW + safezoneX","0.1458 * safezoneH + safezoneY","0.0293906 * safezoneW","0.0407 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1607,"volume_Switch",[1,"",["0.191656 * safezoneW + safezoneX","0.1139 * safezoneH + safezoneY","0.045375 * safezoneW","0.0539 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1608,"channel_Switch",[1,"",["0.11225 * safezoneW + safezoneX","0.1458 * safezoneH + safezoneY","0.0293906 * safezoneW","0.0407 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
@@ -170,7 +170,7 @@ class channel_Switch: HiddenRotator
 	w = 0.0293906 * safezoneW;
 	h = 0.0407 * safezoneH;
 	tooltip = $STR_rotator_channel;
-	onMouseButtonDown ="playSound 'TFAR_rotatorPush';_cChange = if((_this select 1) == 0)then{-1 + TF_MAX_CHANNELS}else{1};[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + _cChange) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;"
+	onMouseButtonDown ="playSound 'TFAR_rotatorPush';_cChange = if((_this select 1) == 0)then{-1 + TF_MAX_CHANNELS}else{1};[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + _cChange) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
