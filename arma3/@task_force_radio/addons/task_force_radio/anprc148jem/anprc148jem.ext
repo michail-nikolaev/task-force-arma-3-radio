@@ -36,11 +36,11 @@ class anprc148jem_radio_dialog
 	channel_edit,
 	prev_channel,
 	next_channel,
-	increase_volume,
-	decrease_volume,
-	stereo,
 	additional,
-	speakers
+	speakers,
+	stereo,
+	volume_Switch,
+	channel_Switch
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Horegy)
@@ -122,25 +122,25 @@ class next_channel: HiddenButton
 	tooltip = $STR_next_channel;
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 };
-class increase_volume: HiddenButton
+class additional: HiddenButton
 {
 	idc = IDC_ANPRC148JEM_INCREASE_VOLUME;
 	x = 0.168969 * safezoneW + safezoneX;
 	y = 0.5011 * safezoneH + safezoneY;
 	w = 0.0242813 * safezoneW;
 	h = 0.0294066 * safezoneH;
-	tooltip = $STR_increase_volume;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	tooltip = $STR_set_additional;
+	action = "[TF_sw_dialog_radio, TF_sw_dialog_radio call TFAR_fnc_getSwChannel] call TFAR_fnc_setAdditionalSwChannel; call TFAR_fnc_updateSWDialogToChannel; [TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 };
-class decrease_volume: HiddenButton
+class speakers: HiddenButton
 {
 	idc = IDC_ANPRC148JEM_DECREASE_VOLUME;
 	x = 0.132359 * safezoneW + safezoneX;
 	y = 0.5022 * safezoneH + safezoneY;
 	w = 0.0269063 * safezoneW;
 	h = 0.0266059 * safezoneH;
-	tooltip = $STR_decrease_volume;
-	action = "[TF_sw_dialog_radio,((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)-1+TF_MAX_SW_VOLUME)mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	tooltip = $STR_speakers_settings_true;
+	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 };
 class stereo: HiddenButton
 {
@@ -152,25 +152,25 @@ class stereo: HiddenButton
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 	tooltip = $STR_stereo_settings;
 };
-class additional: HiddenRotator
+class volume_Switch: HiddenRotator
 {
 	idc = IDC_ANPRC148JEM_ADDITIONAL;
 	x = 0.191656 * safezoneW + safezoneX;
 	y = 0.1139 * safezoneH + safezoneY;
 	w = 0.045375 * safezoneW;
 	h = 0.0539 * safezoneH;
-	tooltip = $STR_set_additional;
-	action = "[TF_sw_dialog_radio, TF_sw_dialog_radio call TFAR_fnc_getSwChannel] call TFAR_fnc_setAdditionalSwChannel; call TFAR_fnc_updateSWDialogToChannel; [TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	tooltip = $STR_rotator_volume;
+	onMouseButtonDown = "playSound 'TFAR_rotatorPush';_vChange = if((_this select 1) == 0)then{-1 + TF_MAX_SW_VOLUME}else{1};[TF_sw_dialog_radio,((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)+_vChange)mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 };
-class speakers: HiddenRotator
+class channel_Switch: HiddenRotator
 {
 	idc = IDC_ANPRC148JEM_SPEAKERS;
 	x = 0.11225 * safezoneW + safezoneX;
 	y = 0.1458 * safezoneH + safezoneY;
 	w = 0.0293906 * safezoneW;
 	h = 0.0407 * safezoneH;
-	tooltip = $STR_speakers_settings_true;
-	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
+	tooltip = $STR_rotator_channel;
+	onMouseButtonDown ="playSound 'TFAR_rotatorPush';_cChange = if((_this select 1) == 0)then{-1 + TF_MAX_CHANNELS}else{1};[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + _cChange) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;"
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
