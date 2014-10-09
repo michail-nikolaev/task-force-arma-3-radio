@@ -22,14 +22,15 @@ if (isNil "TF_lr_active_radio") then {
 	if (count _radios > 0) then {
 		TF_lr_active_radio = _radios select 0;		
 	};
-} else {
-	_found = false;
-	{
-		if (((_x select 0) == (TF_lr_active_radio select 0)) and ((_x select 1) == (TF_lr_active_radio select 1))) exitWith {_found = true};
-	} count _radios;
+} else {	
+	_found = _this in _radios;
 	if !(_found) then {
 		if (count _radios > 0) then {
-			TF_lr_active_radio = _radios select 0;		
+			if (!(isNil "TF_lr_active_curator_radio" ) and {TF_lr_active_curator_radio in _radios}) then {
+				TF_lr_active_radio = TF_lr_active_curator_radio;
+			} else {
+				TF_lr_active_radio = _radios select 0;		
+			};
 		} else {
 			TF_lr_active_radio = nil;
 		};
