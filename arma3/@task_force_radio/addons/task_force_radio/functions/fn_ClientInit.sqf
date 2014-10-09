@@ -169,6 +169,7 @@ TF_sw_dialog_radio = nil;
 
 TF_lr_dialog_radio = nil;
 TF_lr_active_radio = nil;
+TF_lr_active_curator_radio = nil;
 
 tf_lastNearFrameTick = diag_tickTime;
 tf_lastFarFrameTick = diag_tickTime;
