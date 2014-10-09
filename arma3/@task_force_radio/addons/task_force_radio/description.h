@@ -149,7 +149,7 @@ class HiddenButton
 class HiddenRotator:HiddenButton{
 	soundPush[] = 
 	{
-		"\task_force_radio\sounds\hardPush",
+		"\A3\ui_f\data\sound\RscButton\soundEscape",
 		0.5,
 		1
 	};
