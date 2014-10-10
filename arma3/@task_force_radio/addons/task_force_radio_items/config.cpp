@@ -26,6 +26,7 @@ class CfgPatches
 			"tf_rt1523g_sage",
 			"tf_rt1523g_green",
 			"tf_rt1523g_fabric",
+			"tf_rt1523g_big",
 			"tf_rt1523g_black"
 		};
 		weapons[] = {
@@ -199,6 +200,15 @@ class CfgVehicles {
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialog = "rt1523g_radio_dialog";
 		tf_subtype = "digital_lr";
+	};
+	class tf_rt1523g_big: tf_rt1523g {
+		displayName = "RT-1523G (ASIP) Big";
+		descriptionShort = "RT-1523G (ASIP) Big";
+		maximumLoad = 160;
+		mass = 30;		
+		hiddenSelections[] = {"camo"};
+        hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_nato_multi_co.paa"};
+		model="\task_force_radio_items\models\clf_nicecomm2";
 	};	
 	class tf_rt1523g_sage: tf_rt1523g {
 		displayName = "RT-1523G (ASIP) Sage";
