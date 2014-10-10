@@ -26,6 +26,10 @@ class TF_NATO_Radio_Crate: Box_NATO_Support_F
 			count = 10;
 			backpack = "tf_rt1523g";
 		};
+		class _xx_tf_rt1523g_big {
+			count = 3;
+			backpack = "tf_rt1523g_big";
+		};
 		class _xx_tf_rt1523g_sage {
 			count = 3;
 			backpack = "tf_rt1523g_sage";
@@ -41,7 +45,8 @@ class TF_NATO_Radio_Crate: Box_NATO_Support_F
 		class _xx_tf_rt1523g_fabric {
 			count = 3;
 			backpack = "tf_rt1523g_fabric";
-		};		
+		};
+			
 	};
 };
 
