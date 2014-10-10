@@ -179,5 +179,6 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [CptDavo](http://forums.bistudio.com/member.php?75211-CptDavo) for help with textures.
 * [KoffeinFlummi](https://github.com/KoffeinFlummi) for help with code.
 * [R.m.K Gandi](http://steamcommunity.com/profiles/76561197984744647/) for backpack textures.
+* [Pomigit](http://forums.bistudio.com/member.php?97133-pomigit) for texture patterns.
 * Everyone user (especially who report bugs).
 * Sorry guys if I’ve forgot someone by chance.

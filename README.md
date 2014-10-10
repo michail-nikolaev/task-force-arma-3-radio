@@ -171,6 +171,7 @@ _v0.9.2 от 29.05.2014_
 * [CptDavo](http://forums.bistudio.com/member.php?75211-CptDavo) за помощь с текстурами.
 * [KoffeinFlummi](https://github.com/KoffeinFlummi) за помощь с кодом.
 * [R.m.K Gandi](http://steamcommunity.com/profiles/76561197984744647/) за текстуры рюкзаков.
+* [Pomigit](http://forums.bistudio.com/member.php?97133-pomigit) за паттерны текстур.
 * Всем, кто делал видео и статьм с обзорами.
 * Всем пользователям (особенно тем, что нашли баги).
 * Извините, если кого-то случайно забыл.
