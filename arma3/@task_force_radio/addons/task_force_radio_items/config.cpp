@@ -282,7 +282,7 @@ class CfgVehicles {
 		mass = 30;
 		model = "\task_force_radio_items\models\clf_nicecomm2_prc117g";
 		hiddenSelections[] = {"camo"};
-        hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_coyote_co.paa"};
+        hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_csat_multi_co.paa"};
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialog = "mr3000_radio_dialog";
 		tf_subtype = "digital_lr";
