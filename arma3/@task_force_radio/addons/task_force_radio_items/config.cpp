@@ -259,7 +259,7 @@ class CfgVehicles {
 		mass = 30;
 		model="\task_force_radio_items\models\clf_nicecomm2";
 		hiddenSelections[] = {"camo"};
-        hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_co.paa"};
+        hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_aff_digital_co.paa"};
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialog = "anprc155_radio_dialog";
 		tf_subtype = "digital_lr";
