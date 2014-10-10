@@ -46,8 +46,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_API_VERSION 20
 //#define PLUGIN_API_VERSION 19
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -210,10 +210,22 @@ struct CLIENT_DATA
 	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>*> filtersCantSpeak;
 	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>*> filtersVehicle;
 	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>*> filtersSpeakers;
+	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>*> filtersPhone;
 	
 	float viewAngle;
 
 	float voiceVolumeMultiplifier;
+
+	Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* getSpeakerPhone(std::string key)
+	{
+		if (!filtersPhone.count(key))
+		{
+			filtersPhone[key] = new Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>();
+			filtersPhone[key]->setup(2, 48000, 1850, 1550);
+		}
+		return filtersPhone[key];
+	}
+
 	
 	Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* getSpeakerFilter(std::string key)
 	{
@@ -292,6 +304,8 @@ struct CLIENT_DATA
 		ddEffects.clear();
 		for (auto it = filtersSpeakers.begin(); it != filtersSpeakers.end(); ++it) delete it->second;
 		filtersSpeakers.clear();
+		for (auto it = filtersPhone.begin(); it != filtersPhone.end(); ++it) delete it->second;
+		filtersPhone.clear();		
 	}
 
 	void resetVoices() 
@@ -2561,7 +2575,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 				{
 					LISTED_INFO& info = listed_info[q];
 					short* radio_buffer = allocatePool(sampleCount, channels, original_buffer);
-					float volumeLevel = volumeMultiplifier((float) info.volume);
+					float volumeLevel = volumeMultiplifier((float) info.volume);					
 					if (data->subtype == "digital")
 					{
 						data->getSwRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, radioDistance, serverConnectionHandlerID, data));
@@ -2577,6 +2591,10 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 						float ddVolumeLevel = volumeMultiplifier((float)serverIdToData[serverConnectionHandlerID].ddVolumeLevel);
 						data->getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, distance(data->clientPosition, myData->clientPosition), serverConnectionHandlerID, data));
 						processRadioEffect(radio_buffer, channels, sampleCount, ddVolumeLevel * 0.6f, data->getUnderwaterRadioEffect(info.radio_id), info.stereoMode);
+					}
+					else if (data->subtype == "phone")
+					{
+						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, volumeLevel * 10.0f, (data->getSpeakerPhone(info.radio_id)));
 					}
 					else
 					{
