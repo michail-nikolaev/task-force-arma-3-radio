@@ -76,12 +76,12 @@ class CfgFactionClasses
 	};
 	class BLU_G_F
     {        
-        backpack_tf_faction_radio_api = "tf_rt1523g_sage";        
+        backpack_tf_faction_radio = "tf_rt1523g_sage";        
     };
 	// support for BW
 	class BWA3_Faction
 	{
-		backpack_tf_faction_radio_api = "tf_mr3000_multicam";
+		backpack_tf_faction_radio = "tf_mr3000_multicam";
 	};
 };
 
