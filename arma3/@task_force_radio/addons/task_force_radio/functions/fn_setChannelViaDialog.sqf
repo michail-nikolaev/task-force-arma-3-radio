@@ -10,6 +10,7 @@
   Parameters:
     0: NUMBER - Mouse button pressed (0,1)
     1: BOOL - LR radio
+    2: STRING - (OPTIONAL) Update formatting.
 
    Returns:
     NOTHING
@@ -20,9 +21,12 @@
     // SW radio
     [_this select 1, false] call TFAR_fnc_setChannelViaDialog;
 */
-private ["_cChange", "_radio", "_lr", "_maxChannels", "_currentChannel", "_fnc_GetChannel"];
+private ["_cChange", "_radio", "_lr", "_maxChannels", "_currentChannel", "_fnc_GetChannel", "_format"];
 playSound "TFAR_rotatorPush";
-
+_format = "";
+if (count _this > 2) then {
+  _format = _this select 2;
+};
 _lr = _this select 1;
 _maxChannels = 0;
 _radio = "";
@@ -41,9 +45,17 @@ _cChange = ((_radio call _fnc_GetChannel) + _cChange) mod _maxChannels;
 
 if (_lr) then {
   [_radio select 0, _radio select 1, _cChange] call TFAR_fnc_setLRChannel;
-  call TFAR_fnc_updateLRDialogToChannel;
+  if (_format != "") then {
+    _format call TFAR_fnc_updateLRDialogToChannel;
+  }else{
+    call TFAR_fnc_updateLRDialogToChannel;
+  };
 }else{
   [_radio, _cChange] call TFAR_fnc_setSwChannel;
-  call TFAR_fnc_updateSWDialogToChannel;
+  if (_format != "") then {
+    _format call TFAR_fnc_updateSWDialogToChannel;
+  }else{
+    call TFAR_fnc_updateSWDialogToChannel;
+  };
 };
 [_radio, _lr] call TFAR_fnc_ShowRadioInfo;
