@@ -78,7 +78,7 @@ class clear: HiddenButton
 };
 class edit: RscEditLCD
 {
-	idc = IDC_ANPRC148JEM_EDIT;	
+	idc = IDC_ANPRC148JEM_EDIT;
 	x = 0.163812 * safezoneW + safezoneX;
 	y = 0.4021 * safezoneH + safezoneY;
 	w = 0.0634219 * safezoneW;
@@ -91,7 +91,7 @@ class edit: RscEditLCD
 };
 class channel_edit: RscEditLCD
 {
-	idc = IDC_ANPRC148JEM_CHANNEL_EDIT;	
+	idc = IDC_ANPRC148JEM_CHANNEL_EDIT;
 	x = 0.134422 * safezoneW + safezoneX;
 	y = 0.402215 * safezoneH + safezoneY;
 	w = 0.0304219 * safezoneW;
@@ -160,7 +160,7 @@ class volume_Switch: HiddenRotator
 	w = 0.045375 * safezoneW;
 	h = 0.0539 * safezoneH;
 	tooltip = $STR_rotator_volume;
-	onMouseButtonDown = "playSound 'TFAR_rotatorPush';_vChange = if((_this select 1) == 0)then{-1 + TF_MAX_SW_VOLUME}else{1};[TF_sw_dialog_radio,((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)+_vChange)mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	onMouseButtonDown = "[_this select 1, false] call TFAR_fnc_setVolumeViaDialog;";
 };
 class channel_Switch: HiddenRotator
 {
@@ -170,7 +170,7 @@ class channel_Switch: HiddenRotator
 	w = 0.0293906 * safezoneW;
 	h = 0.0407 * safezoneH;
 	tooltip = $STR_rotator_channel;
-	onMouseButtonDown ="playSound 'TFAR_rotatorPush';_cChange = if((_this select 1) == 0)then{-1 + TF_MAX_CHANNELS}else{1};[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + _cChange) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	onMouseButtonDown ="[_this select 1, false] call TFAR_fnc_setChannelViaDialog;";
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
