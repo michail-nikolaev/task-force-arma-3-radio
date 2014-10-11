@@ -110,7 +110,7 @@ class prev_channel: HiddenButton
 	w = 0.023625 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
 };
 class next_channel: HiddenButton
 {
@@ -120,7 +120,7 @@ class next_channel: HiddenButton
 	w = 0.0249375 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_next_channel;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
 };
 class additional: HiddenButton
 {

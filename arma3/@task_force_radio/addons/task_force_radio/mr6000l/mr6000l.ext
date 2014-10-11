@@ -39,7 +39,7 @@ class mr6000l_radio_dialog
 		background,
 		enter,
 		channel_edit,
-		edit,		
+		edit,
 		clear,
 		prev_channel,
 		next_channel,
@@ -89,7 +89,7 @@ class mr6000l_radio_dialog
 	};
 	class edit: RscEditLCD
 	{
-		idc = IDC_MR6000L_EDIT;		
+		idc = IDC_MR6000L_EDIT;
 		x = 0.189421 * safezoneW + safezoneX;
 		y = 0.329491 * safezoneH + safezoneY;
 		w = 0.136717 * safezoneW;
@@ -130,7 +130,7 @@ class mr6000l_radio_dialog
 		w = 0.0495276 * safezoneW;
 		h = 0.0869047 * safezoneH;
 		tooltip = $STR_previous_channel;
-		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1,  ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) - 1 + TF_MAX_LR_CHANNELS) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+		action = "[0, true, 'PRE %1'] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class next_channel: HiddenButton
 	{
@@ -140,7 +140,7 @@ class mr6000l_radio_dialog
 		w = 0.0500435 * safezoneW;
 		h = 0.0880048 * safezoneH;
 		tooltip = $STR_next_channel;
-		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+		action = "[1, true, 'PRE %1'] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class increase_volume: HiddenRotator
 	{
@@ -150,7 +150,7 @@ class mr6000l_radio_dialog
 		w = 0.0495276 * safezoneW;
 		h = 0.0803044 * safezoneH;
 		tooltip = $STR_volume;
-		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume; [TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		action = "[1, true] call TFAR_fnc_setVolumeViaDialog;";
 	};
 	class stereo: HiddenRotator
 	{
