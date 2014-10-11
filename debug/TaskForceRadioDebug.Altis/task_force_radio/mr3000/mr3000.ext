@@ -102,7 +102,7 @@ class next_channel: HiddenButton
 	w = 0.0190313 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_next_channel;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+	action = "[1, true] call TFAR_fnc_setChannelViaDialog;";
 };
 class previous_channel: HiddenButton
 {
@@ -112,7 +112,7 @@ class previous_channel: HiddenButton
 	w = 0.0203438 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1,  ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) - 1 + TF_MAX_LR_CHANNELS) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+	action = "[0, true] call TFAR_fnc_setChannelViaDialog;";
 };
 class increase_volume: HiddenButton
 {
@@ -122,7 +122,7 @@ class increase_volume: HiddenButton
 	w = 0.0190313 * safezoneW;
 	h = 0.0294066 * safezoneH;
 	tooltip = $STR_increase_volume;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";	
+	action = "[1, true] call TFAR_fnc_setVolumeViaDialog;";
 };
 class decrease_volume: HiddenButton
 {
@@ -131,7 +131,7 @@ class decrease_volume: HiddenButton
 	y = 0.612025 * safezoneH + safezoneY;
 	w = 0.021 * safezoneW;
 	h = 0.0266059 * safezoneH;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) - 1 + TF_MAX_LR_VOLUME) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	action = "[0, true] call TFAR_fnc_setVolumeViaDialog;";
 	tooltip = $STR_decrease_volume;
 };
 class increase_volume_2: HiddenRotator
@@ -142,7 +142,7 @@ class increase_volume_2: HiddenRotator
 	w = 0.0360938 * safezoneW;
 	h = 0.0728162 * safezoneH;
 	tooltip = $STR_volume;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	action = "[1, true] call TFAR_fnc_setVolumeViaDialog;";
 };
 class channel_1: HiddenButton
 {
@@ -236,7 +236,7 @@ class channel_9: HiddenButton
 };
 class edit: RscEditLCD
 {
-	idc = IDC_MR3000_EDIT;	
+	idc = IDC_MR3000_EDIT;
 	x = 0.472156 * safezoneW + safezoneX;
 	y = 0.43686 * safezoneH + safezoneY;
 	w = 0.0531563 * safezoneW;
@@ -249,7 +249,7 @@ class edit: RscEditLCD
 };
 class channel_edit: RscEditLCD
 {
-	idc = IDC_MR3000_CHANNEL_EDIT;	
+	idc = IDC_MR3000_CHANNEL_EDIT;
 	x = 0.411828 * safezoneW + safezoneX;
 	y = 0.4373 * safezoneH + safezoneY;
 	w = 0.0479062 * safezoneW;
