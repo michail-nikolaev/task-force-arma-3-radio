@@ -83,7 +83,7 @@ class rf7800str_radio_dialog
 		w = 0.0144375 * safezoneW;
 		h = 0.0594 * safezoneH;
 		tooltip = $STR_next_channel;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+		action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class prev_channel_alt: HiddenButton
 	{
@@ -93,7 +93,7 @@ class rf7800str_radio_dialog
 		w = 0.0154687 * safezoneW;
 		h = 0.0605 * safezoneH;
 		tooltip = $STR_previous_channel;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+		action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class volume_Switch: HiddenRotator
 	{
