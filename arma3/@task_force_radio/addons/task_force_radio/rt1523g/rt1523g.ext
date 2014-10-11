@@ -213,7 +213,7 @@ class increase_volume: HiddenButton
 	y = 0.576079 * safezoneH + safezoneY;
 	w = 0.0312375 * safezoneW;
 	h = 0.0327265 * safezoneH;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	action = "[1, true] call TFAR_fnc_setVolumeViaDialog;";
 	tooltip = $STR_increase_volume;
 };
 class decrease_volume: HiddenButton
@@ -223,7 +223,7 @@ class decrease_volume: HiddenButton
 	y = 0.628356 * safezoneH + safezoneY;
 	w = 0.0302813 * safezoneW;
 	h = 0.0323015 * safezoneH;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) - 1 + TF_MAX_LR_VOLUME) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	action = "[0, true] call TFAR_fnc_setVolumeViaDialog;";
 	tooltip = $STR_decrease_volume;
 };
 class stereo: HiddenButton
@@ -260,6 +260,3 @@ class speakers: HiddenButton
 // GUI EDITOR OUTPUT END
 ////////////////////////////////////////////////////////
 };
-
-
-

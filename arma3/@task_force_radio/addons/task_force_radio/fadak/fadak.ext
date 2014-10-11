@@ -85,7 +85,7 @@ class next_channel: HiddenButton
 	w = 0.0164063 * safezoneW;
 	h = 0.0238053 * safezoneH;
 	tooltip = $STR_next_channel;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
 };
 class previous_channel: HiddenButton
 {
@@ -95,7 +95,7 @@ class previous_channel: HiddenButton
 	w = 0.0150938 * safezoneW;
 	h = 0.022405 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
 };
 class increase_volume: HiddenButton
 {
@@ -104,7 +104,7 @@ class increase_volume: HiddenButton
 	y = 0.652634 * safezoneH + safezoneY;
 	w = 0.0164063 * safezoneW;
 	h = 0.0252056 * safezoneH;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	action = "[1, false] call TFAR_fnc_setVolumeViaDialog;";
 	tooltip = $STR_increase_volume;
 };
 class decrease_volume: HiddenButton
@@ -114,7 +114,7 @@ class decrease_volume: HiddenButton
 	y = 0.652634 * safezoneH + safezoneY;
 	w = 0.0164063 * safezoneW;
 	h = 0.0252056 * safezoneH;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	action = "[0, false] call TFAR_fnc_setVolumeViaDialog;";
 	tooltip = $STR_decrease_volume;
 };
 class edit: RscEditLCD
@@ -131,7 +131,7 @@ class edit: RscEditLCD
 };
 class channel_edit: RscEditLCD
 {
-	idc = IDC_FADAK_CHANNEL_EDIT;	
+	idc = IDC_FADAK_CHANNEL_EDIT;
 	x = 0.259813 * safezoneW + safezoneX;
 	y = 0.315159 * safezoneH + safezoneY;
 	w = 0.02625 * safezoneW;
@@ -175,4 +175,3 @@ class speakers: HiddenRotator
 // GUI EDITOR OUTPUT END
 ////////////////////////////////////////////////////////
 };
-
