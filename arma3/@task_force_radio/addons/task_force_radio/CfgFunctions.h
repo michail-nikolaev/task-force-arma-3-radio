@@ -4,7 +4,7 @@ class CfgFunctions
 	{
 		class Radio
 		{
-			file="task_force_radio\functions";		
+			file="task_force_radio\functions";
 			class TaskForceArrowheadRadioInit
 			{
 				postInit = 1;
@@ -39,11 +39,11 @@ class CfgFunctions
 			class calcTerrainInterception{};
 			class haveSWRadio{};
 			class processSWChannelKeys{};
-			class processSWCycleKeys{};			
-			class processSWStereoKeys{};			
+			class processSWCycleKeys{};
+			class processSWStereoKeys{};
 			class processLRChannelKeys{};
-			class processLRCycleKeys{};			
-			class processLRStereoKeys{};			
+			class processLRCycleKeys{};
+			class processLRStereoKeys{};
 			class vehicleIsIsolatedAndInside{};
 			class canSpeak{};
 			class canUseSWRadio{};
@@ -78,7 +78,7 @@ class CfgFunctions
 			class radiosList{};
 			class radiosListSorted{};
 			class vehicleLr{};
-			class lrRadiosList{};			
+			class lrRadiosList{};
 			class backpackLr{};
 			class sendVersionInfo{};
 			class activeLrRadio{};
@@ -151,7 +151,7 @@ class CfgFunctions
 			class setRadioOwner{};
 			class getRadioOwner{};
 			class isSameRadio{};
-			class defaultPositionCoordinates{};		
+			class defaultPositionCoordinates{};
 			class addEventHandler{};
 			class removeEventHandler{};
 			class fireEventHandlers{};
@@ -168,6 +168,8 @@ class CfgFunctions
 			class currentDirection{};
 			class sessionTracker{};
 			class isTurnedOut{};
+			class setVolumeViaDialog{};
+			class setChannelViaDialog{};
 		};
 	};
 };

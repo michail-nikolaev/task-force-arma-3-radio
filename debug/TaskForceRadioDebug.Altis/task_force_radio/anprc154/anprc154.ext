@@ -56,7 +56,7 @@ class anprc154_radio_dialog
 		w = 0.023625 * safezoneW;
 		h = 0.04 * safezoneH;
 		tooltip = $STR_previous_channel;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+		action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class next_channel: HiddenButton
 	{
@@ -66,7 +66,7 @@ class anprc154_radio_dialog
 		w = 0.0249375 * safezoneW;
 		h = 0.04 * safezoneH;
 		tooltip = $STR_next_channel;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+		action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class increase_volume: HiddenButton
 	{
@@ -76,7 +76,7 @@ class anprc154_radio_dialog
 		w = 0.0242813 * safezoneW;
 		h = 0.04 * safezoneH;
 		tooltip = $STR_increase_volume;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		action = "[1, false] call TFAR_fnc_setVolumeViaDialog;";
 	};
 	class decrease_volume: HiddenButton
 	{
@@ -86,7 +86,7 @@ class anprc154_radio_dialog
 		w = 0.0269063 * safezoneW;
 		h = 0.04 * safezoneH;
 		tooltip = $STR_decrease_volume;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		action = "[0, false] call TFAR_fnc_setVolumeViaDialog;";
 	};
 	class stereo: HiddenButton
 	{

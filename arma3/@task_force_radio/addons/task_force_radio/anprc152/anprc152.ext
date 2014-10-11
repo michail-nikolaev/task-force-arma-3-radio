@@ -50,7 +50,7 @@ class background: RscBackPicture
 	x = 0.0138687 * safezoneW + safezoneX;
 	y = -1.28145 * safezoneH + safezoneY;
 	w = 0.335981 * safezoneW;
-	h = 2.2902 * safezoneH;	
+	h = 2.2902 * safezoneH;
 	moving = 1;
 };
 class edit: RscEditLCD
@@ -64,7 +64,7 @@ class edit: RscEditLCD
 	font = "tf_font_dots";
 	shadow = 2;
 	tooltip = $STR_current_freq;
-	canModify = 1;	
+	canModify = 1;
 };
 class channel_edit: RscEditLCD
 {
@@ -127,7 +127,7 @@ class next_channel: HiddenButton
 	w = 0.0154688 * safezoneW;
 	h = 0.020075 * safezoneH;
 	tooltip = $STR_next_channel;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
 };
 class prev_channel: HiddenButton
 {
@@ -137,7 +137,7 @@ class prev_channel: HiddenButton
 	w = 0.0154688 * safezoneW;
 	h = 0.023375 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
 };
 class stereo: HiddenButton
 {
@@ -157,7 +157,7 @@ class volume_Switch: HiddenRotator
 	w = 0.0400125 * safezoneW;
 	h = 0.201575 * safezoneH;
 	tooltip = $STR_rotator_volume;
-	onMouseButtonDown = "playSound 'TFAR_rotatorPush';_vChange = if((_this select 1) == 0)then{-1 + TF_MAX_SW_VOLUME}else{1};[TF_sw_dialog_radio,((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)+_vChange)mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	onMouseButtonDown = "[_this select 1, false] call TFAR_fnc_setVolumeViaDialog;";
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
