@@ -36,8 +36,8 @@ class anarc210_radio_dialog
 	{
 		background,
 		enter,
-		channel_edit,		
-		edit,		
+		channel_edit,
+		edit,
 		clear,
 		prev_channel,
 		next_channel,
@@ -129,7 +129,7 @@ class anarc210_radio_dialog
 		w = 0.0335156 * safezoneW;
 		h = 0.0484 * safezoneH;
 		tooltip = $STR_previous_channel;
-		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1,  ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) - 1 + TF_MAX_LR_CHANNELS) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+		action = "[0, true, 'CH%1'] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class next_channel: HiddenButton
 	{
@@ -139,7 +139,7 @@ class anarc210_radio_dialog
 		w = 0.03 * safezoneW;
 		h = 0.05 * safezoneH;
 		tooltip = $STR_next_channel;
-		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+		action = "[1, true, 'CH%1'] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class increase_volume: HiddenRotator
 	{
@@ -149,7 +149,7 @@ class anarc210_radio_dialog
 		w = 0.04 * safezoneW;
 		h = 0.06 * safezoneH;
 		tooltip = $STR_volume;
-		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume; [TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		action = "[1, true] call TFAR_fnc_setVolumeViaDialog;";
 	};
 	class stereo: HiddenButton
 	{

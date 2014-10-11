@@ -4,17 +4,14 @@ $[
 	1.063,
 	["rf7800str",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
 	[1200,"background",[1,"task_force_radio\rf7800str\rf7800str.paa",["-0.0207812 * safezoneW + safezoneX","-0.5373 * safezoneH + safezoneY","0.418172 * safezoneW","1.551 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1602,"prev_channel",[1,"",["0.265391 * safezoneW + safezoneX","0.6287 * safezoneH + safezoneY","0.0113437 * safezoneW","0.0319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
-	[1603,"next_channel",[1,"",["0.265906 * safezoneW + safezoneX","0.5814 * safezoneH + safezoneY","0.0113437 * safezoneW","0.0352 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
-	[1604,"increase_volume",[1,"",["0.267453 * safezoneW + safezoneX","0.4626 * safezoneH + safezoneY","0.0144375 * safezoneW","0.0319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
-	[1605,"decrease_volume",[1,"",["0.267453 * safezoneW + safezoneX","0.5022 * safezoneH + safezoneY","0.0144375 * safezoneW","0.0308 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
+	[1602,"channel_Switch",[1,"",["0.122047 * safezoneW + safezoneX","0.3053 * safezoneH + safezoneY","0.0288750 * safezoneW","0.0319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
+	[1604,"speakers",[1,"",["0.267453 * safezoneW + safezoneX","0.4626 * safezoneH + safezoneY","0.0144375 * safezoneW","0.0605 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
 	[1606,"stereo",[1,"",["0.265391 * safezoneW + safezoneX","0.4186 * safezoneH + safezoneY","0.015 * safezoneW","0.02 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]],
-	[1600,"next_channel_alt",[1,"",["0.138547 * safezoneW + safezoneX","0.3064 * safezoneH + safezoneY","0.0144375 * safezoneW","0.0594 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
-	[1601,"prev_channel_alt",[1,"",["0.122047 * safezoneW + safezoneX","0.3053 * safezoneH + safezoneY","0.0154687 * safezoneW","0.0605 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
-	[1607,"speakers",[1,"",["0.172578 * safezoneW + safezoneX","0.2899 * safezoneH + safezoneY","0.0314531 * safezoneW","0.0726 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1600,"next_channel",[1,"",["0.265906 * safezoneW + safezoneX","0.5814 * safezoneH + safezoneY","0.0113437 * safezoneW","0.0352 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
+	[1601,"prev_channel",[1,"",["0.265391 * safezoneW + safezoneX","0.6287 * safezoneH + safezoneY","0.0113437 * safezoneW","0.0319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
+	[1607,"volume_Switch",[1,"",["0.172578 * safezoneW + safezoneX","0.2899 * safezoneH + safezoneY","0.0314531 * safezoneW","0.0726 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
-
 
 class rf7800str_radio_dialog
 {
@@ -26,14 +23,12 @@ class rf7800str_radio_dialog
 	controls[]=
 	{
 		background,
-		prev_channel,
-		next_channel,
-		increase_volume,
-		decrease_volume,
+		channel_Switch,
 		stereo,
-		next_channel_alt,
-		prev_channel_alt,
-		speakers
+		next_channel,
+		prev_channel,
+		speakers,
+		volume_Switch
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Vogijo)
@@ -49,17 +44,17 @@ class rf7800str_radio_dialog
 		h = 1.551 * safezoneH;
 		moving = 1;
 	};
-	class prev_channel: HiddenRotator
+	class prev_channel: HiddenButton
 	{
 		idc = IDC_RF7800STR_PREV_CHANNEL;
 		x = 0.265391 * safezoneW + safezoneX;
 		y = 0.6287 * safezoneH + safezoneY;
 		w = 0.0113437 * safezoneW;
-		h = 0.0319 * safezoneH;	
+		h = 0.0319 * safezoneH;
 		tooltip = $STR_previous_channel;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+		action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
 	};
-	class next_channel: HiddenRotator
+	class next_channel: HiddenButton
 	{
 		idc = IDC_RF7800STR_NEXT_CHANNEL;
 		x = 0.265906 * safezoneW + safezoneX;
@@ -67,27 +62,17 @@ class rf7800str_radio_dialog
 		w = 0.0113437 * safezoneW;
 		h = 0.0352 * safezoneH;
 		tooltip = $STR_next_channel;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+		action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
 	};
-	class increase_volume: HiddenButton
+	class speakers: HiddenButton
 	{
 		idc = IDC_RF7800STR_INCREASE_VOLUME;
 		x = 0.267453 * safezoneW + safezoneX;
 		y = 0.4626 * safezoneH + safezoneY;
 		w = 0.0144375 * safezoneW;
 		h = 0.0319 * safezoneH;
-		tooltip = $STR_increase_volume;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
-	};
-	class decrease_volume: HiddenButton
-	{
-		idc = IDC_RF7800STR_DECREASE_VOLUME;
-		x = 0.267453 * safezoneW + safezoneX;
-		y = 0.5022 * safezoneH + safezoneY;
-		w = 0.0144375 * safezoneW;
-		h = 0.0308 * safezoneH;
-		tooltip = $STR_decrease_volume;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) - 1 + TF_MAX_SW_VOLUME) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		tooltip = $STR_speakers_settings_true;
+		action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 	};
 	class stereo: HiddenButton
 	{
@@ -99,35 +84,25 @@ class rf7800str_radio_dialog
 		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 		tooltip = $STR_stereo_settings;
 	};
-	class next_channel_alt: HiddenButton
+	class channel_Switch: HiddenRotator
 	{
-		idc = IDC_RF7800STR_NEXT_CHANNEL_ALT;
-		x = 0.138547 * safezoneW + safezoneX;
-		y = 0.3064 * safezoneH + safezoneY;
-		w = 0.0144375 * safezoneW;
-		h = 0.0594 * safezoneH;
-		tooltip = $STR_next_channel;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
-	};
-	class prev_channel_alt: HiddenButton
-	{
-		idc = IDC_RF7800STR_PREV_CHANNEL_ALT;
+		idc = IDC_RF7800STR_PREV_CHANNEL;
 		x = 0.122047 * safezoneW + safezoneX;
 		y = 0.3053 * safezoneH + safezoneY;
-		w = 0.0154687 * safezoneW;
+		w = 0.0288750 * safezoneW;
 		h = 0.0605 * safezoneH;
-		tooltip = $STR_previous_channel;
-		action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+		tooltip = $STR_rotator_channel;
+		onMouseButtonDown ="[_this select 1, false] call TFAR_fnc_setChannelViaDialog;";
 	};
-	class speakers: HiddenRotator
+	class volume_Switch: HiddenRotator
 	{
 		idc = IDC_RF7800STR_SPEAKERS;
 		x = 0.172578 * safezoneW + safezoneX;
 		y = 0.2899 * safezoneH + safezoneY;
 		w = 0.0314531 * safezoneW;
 		h = 0.0726 * safezoneH;
-		tooltip = $STR_speakers_settings_true;
-		action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
+		tooltip = $STR_rotator_volume;
+		onMouseButtonDown = "[_this select 1, false] call TFAR_fnc_setVolumeViaDialog;";
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT END
