@@ -29,7 +29,7 @@ class anarc164_radio_dialog
 		background,
 		enter,
 		channel_edit,
-		edit,		
+		edit,
 		clear,
 		prev_channel,
 		next_channel,
@@ -54,7 +54,7 @@ class anarc164_radio_dialog
 	};
 	class channel_edit: RscEditLCD
 	{
-		idc = IDC_ANARC164_CHANNEL_EDIT;		
+		idc = IDC_ANARC164_CHANNEL_EDIT;
 		x = 0.288078 * safezoneW + safezoneX;
 		y = 0.2382 * safezoneH + safezoneY;
 		w = 0.0324844 * safezoneW;
@@ -70,7 +70,7 @@ class anarc164_radio_dialog
 	};
 	class edit: RscEditLCD
 	{
-		idc = IDC_ANARC164_EDIT;		
+		idc = IDC_ANARC164_EDIT;
 		x = 0.201969 * safezoneW + safezoneX;
 		y = 0.3515 * safezoneH + safezoneY;
 		w = 0.0995156 * safezoneW;
@@ -112,7 +112,7 @@ class anarc164_radio_dialog
 		w = 0.0360937 * safezoneW;
 		h = 0.0671 * safezoneH;
 		tooltip = $STR_previous_channel;
-		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1,  ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) - 1 + TF_MAX_LR_CHANNELS) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+		action = "[0, true, '%1'] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class next_channel: HiddenRotator
 	{
@@ -122,7 +122,7 @@ class anarc164_radio_dialog
 		w = 0.0391875 * safezoneW;
 		h = 0.0693 * safezoneH;
 		tooltip = $STR_next_channel;
-		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+		action = "[1, true, '%1'] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class increase_volume: HiddenRotator
 	{
@@ -132,7 +132,7 @@ class anarc164_radio_dialog
 		w = 0.02475 * safezoneW;
 		h = 0.0462 * safezoneH;
 		tooltip = $STR_volume;
-		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume; [TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		action = "[1, true] call TFAR_fnc_setVolumeViaDialog;";
 	};
 	class stereo: HiddenRotator
 	{
@@ -156,7 +156,7 @@ class anarc164_radio_dialog
 	};
 	class speakers: HiddenFlip
 	{
-		idc = IDC_ANARC164_SPEAKERS;		
+		idc = IDC_ANARC164_SPEAKERS;
 		x = 0.27633 * safezoneW + safezoneX;
 		y = 0.630886 * safezoneH + safezoneY;
 		w = 0.0293761 * safezoneW;
