@@ -9,11 +9,11 @@ $[
 	[1401,"channel_edit",[1,"C3",["0.134422 * safezoneW + safezoneX","0.402215 * safezoneH + safezoneY","0.0304219 * safezoneW","0.0682 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current channel","-1"],[]],
 	[1602,"prev_channel",[1,"",["0.131328 * safezoneW + safezoneX","0.5319 * safezoneH + safezoneY","0.023625 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1603,"next_channel",[1,"",["0.168453 * safezoneW + safezoneX","0.5341 * safezoneH + safezoneY","0.0249375 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Next channel","-1"],[]],
-	[1604,"increase_volume",[1,"",["0.168969 * safezoneW + safezoneX","0.5011 * safezoneH + safezoneY","0.0242813 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
-	[1605,"decrease_volume",[1,"",["0.132359 * safezoneW + safezoneX","0.5022 * safezoneH + safezoneY","0.0269063 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
+	[1604,"additional",[1,"",["0.168969 * safezoneW + safezoneX","0.5011 * safezoneH + safezoneY","0.0242813 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Increase volume","-1"],[]],
+	[1605,"speakers",[1,"",["0.132359 * safezoneW + safezoneX","0.5022 * safezoneH + safezoneY","0.0269063 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Decrease volume","-1"],[]],
 	[1606,"stereo",[1,"",["0.128234 * safezoneW + safezoneX","0.5726 * safezoneH + safezoneY","0.0201094 * safezoneW","0.0363 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Stereo settings","-1"],[]],
-	[1607,"additional",[1,"",["0.191656 * safezoneW + safezoneX","0.1139 * safezoneH + safezoneY","0.045375 * safezoneW","0.0539 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1608,"speakers",[1,"",["0.11225 * safezoneW + safezoneX","0.1458 * safezoneH + safezoneY","0.0293906 * safezoneW","0.0407 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1607,"volume_Switch",[1,"",["0.191656 * safezoneW + safezoneX","0.1139 * safezoneH + safezoneY","0.045375 * safezoneW","0.0539 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1608,"channel_Switch",[1,"",["0.11225 * safezoneW + safezoneX","0.1458 * safezoneH + safezoneY","0.0293906 * safezoneW","0.0407 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
@@ -36,11 +36,11 @@ class anprc148jem_radio_dialog
 	channel_edit,
 	prev_channel,
 	next_channel,
-	increase_volume,
-	decrease_volume,
-	stereo,
 	additional,
-	speakers
+	speakers,
+	stereo,
+	volume_Switch,
+	channel_Switch
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Horegy)
@@ -78,7 +78,7 @@ class clear: HiddenButton
 };
 class edit: RscEditLCD
 {
-	idc = IDC_ANPRC148JEM_EDIT;	
+	idc = IDC_ANPRC148JEM_EDIT;
 	x = 0.163812 * safezoneW + safezoneX;
 	y = 0.4021 * safezoneH + safezoneY;
 	w = 0.0634219 * safezoneW;
@@ -91,7 +91,7 @@ class edit: RscEditLCD
 };
 class channel_edit: RscEditLCD
 {
-	idc = IDC_ANPRC148JEM_CHANNEL_EDIT;	
+	idc = IDC_ANPRC148JEM_CHANNEL_EDIT;
 	x = 0.134422 * safezoneW + safezoneX;
 	y = 0.402215 * safezoneH + safezoneY;
 	w = 0.0304219 * safezoneW;
@@ -110,7 +110,7 @@ class prev_channel: HiddenButton
 	w = 0.023625 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_previous_channel;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) - 1 + TF_MAX_CHANNELS) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
 };
 class next_channel: HiddenButton
 {
@@ -120,27 +120,27 @@ class next_channel: HiddenButton
 	w = 0.0249375 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_next_channel;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwChannel) + 1) mod TF_MAX_CHANNELS] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
 };
-class increase_volume: HiddenButton
+class additional: HiddenButton
 {
 	idc = IDC_ANPRC148JEM_INCREASE_VOLUME;
 	x = 0.168969 * safezoneW + safezoneX;
 	y = 0.5011 * safezoneH + safezoneY;
 	w = 0.0242813 * safezoneW;
 	h = 0.0294066 * safezoneH;
-	tooltip = $STR_increase_volume;
-	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getSwVolume) + 1) mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	tooltip = $STR_set_additional;
+	action = "[TF_sw_dialog_radio, TF_sw_dialog_radio call TFAR_fnc_getSwChannel] call TFAR_fnc_setAdditionalSwChannel; call TFAR_fnc_updateSWDialogToChannel; [TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
 };
-class decrease_volume: HiddenButton
+class speakers: HiddenButton
 {
 	idc = IDC_ANPRC148JEM_DECREASE_VOLUME;
 	x = 0.132359 * safezoneW + safezoneX;
 	y = 0.5022 * safezoneH + safezoneY;
 	w = 0.0269063 * safezoneW;
 	h = 0.0266059 * safezoneH;
-	tooltip = $STR_decrease_volume;
-	action = "[TF_sw_dialog_radio,((TF_sw_dialog_radio call TFAR_fnc_getSwVolume)-1+TF_MAX_SW_VOLUME)mod TF_MAX_SW_VOLUME] call TFAR_fnc_setSwVolume;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	tooltip = $STR_speakers_settings_true;
+	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 };
 class stereo: HiddenButton
 {
@@ -152,25 +152,25 @@ class stereo: HiddenButton
 	action = "[TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 	tooltip = $STR_stereo_settings;
 };
-class additional: HiddenRotator
+class volume_Switch: HiddenRotator
 {
 	idc = IDC_ANPRC148JEM_ADDITIONAL;
 	x = 0.191656 * safezoneW + safezoneX;
 	y = 0.1139 * safezoneH + safezoneY;
 	w = 0.045375 * safezoneW;
 	h = 0.0539 * safezoneH;
-	tooltip = $STR_set_additional;
-	action = "[TF_sw_dialog_radio, TF_sw_dialog_radio call TFAR_fnc_getSwChannel] call TFAR_fnc_setAdditionalSwChannel; call TFAR_fnc_updateSWDialogToChannel; [TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+	tooltip = $STR_rotator_volume;
+	onMouseButtonDown = "[_this select 1, false] call TFAR_fnc_setVolumeViaDialog;";
 };
-class speakers: HiddenRotator
+class channel_Switch: HiddenRotator
 {
 	idc = IDC_ANPRC148JEM_SPEAKERS;
 	x = 0.11225 * safezoneW + safezoneX;
 	y = 0.1458 * safezoneH + safezoneY;
 	w = 0.0293906 * safezoneW;
 	h = 0.0407 * safezoneH;
-	tooltip = $STR_speakers_settings_true;
-	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
+	tooltip = $STR_rotator_channel;
+	onMouseButtonDown ="[_this select 1, false] call TFAR_fnc_setChannelViaDialog;";
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
