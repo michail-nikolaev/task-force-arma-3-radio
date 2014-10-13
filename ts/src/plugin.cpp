@@ -2472,22 +2472,29 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 		int position = 0;
 		while (position < sampleCount * channels && it->second.size() > 0)
 		{
-			short s = it->second.at(0);
-			if (samples[position] + s > SHRT_MAX)
+			for (int q = 0; q < 2; q++)
 			{
-				samples[position] = SHRT_MAX;
+				short s = it->second.at(0);
+				if (samples[position] + s > SHRT_MAX)
+				{
+					samples[position] = SHRT_MAX;
+				}
+				else if (samples[position] + s < SHRT_MIN)
+				{
+					samples[position] = SHRT_MIN;
+				}
+				else
+				{
+					samples[position] += s;
+				}
+				position++;
+				it->second.pop_front();
+				fill = true;
 			}
-			else if (samples[position] + s < SHRT_MIN)
+			for (int q = 2; q < channels; q++)
 			{
-				samples[position] = SHRT_MIN;
-			} 
-			else
-			{
-				samples[position] += s;
-			}			
-			position++;
-			it->second.pop_front();			
-			fill = true;
+				samples[position++] = 0.0f;
+			}
 		}
 		if (it->second.size() == 0)
 		{
@@ -2505,7 +2512,7 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 	
 }
 
-void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
+void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	static DWORD last_no_info;
@@ -2671,6 +2678,26 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 }
 
 
+void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
+	short* stereo = new short[sampleCount * 2];
+	for (int q = 0; q < sampleCount; q++)
+	{
+		for (int g = 0; g < 2; g++)
+			stereo[q * 2 + g] = samples[q * channels + g];
+	}
+
+	ts3plugin_onEditPostProcessVoiceDataEventStereo(serverConnectionHandlerID, clientID, stereo, sampleCount, 2);
+
+	for (int q = 0; q < sampleCount; q++)
+	{
+		for (int g = 0; g < 2; g++)
+			samples[q * channels + g] = stereo[q * 2 + g];
+		for (int g = 2; g < channels; g++)
+			samples[q * channels + g] = 0.0f; 
+	}
+
+	delete stereo;
+}
 
 void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, int* edited) {
 	if (!inGame)
@@ -2700,9 +2727,8 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 					voice[q] = samples[q];
 			}
 
-			ts3plugin_onEditPostProcessVoiceDataEvent(serverConnectionHandlerID, myId, voice, sampleCount, channels * m, NULL, NULL);
-			LeaveCriticalSection(&serverDataCriticalSection);
-			applyGain(voice, channels * m, sampleCount, 2.0f);
+			ts3plugin_onEditPostProcessVoiceDataEventStereo(serverConnectionHandlerID, myId, voice, sampleCount, channels * m);
+			LeaveCriticalSection(&serverDataCriticalSection);			
 			appendPlayback("my_radio_voice", serverConnectionHandlerID, voice, sampleCount, channels * m);
 			delete voice;
 		} 
