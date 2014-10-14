@@ -46,6 +46,7 @@ while {true} do {
 					if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
 						[_x, ""] call TFAR_fnc_setRadioOwner;
 					};				
+					true;
 				} count _items;
 			}];		
 			currentUnit setVariable ["tf_handlers_set", true];
@@ -75,6 +76,7 @@ while {true} do {
 			_x enableSimulation false;
 			_x hideObject true;
 		};
+		true;
 	} count (call BIS_fnc_listCuratorPlayers);
 	
 	if !(TF_use_saved_sw_setting) then {

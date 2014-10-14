@@ -10,6 +10,7 @@ if (alive currentUnit) then {
 			if (_x != currentUnit) then {
 				_allUnits pushBack _x;
 			};
+			true;
 		} count (units (group currentUnit));
 	};
 	
@@ -24,6 +25,7 @@ if (alive currentUnit) then {
 		if !(_x in _allUnits) then {
 			_allUnits pushBack _x;	
 		};
+		true;
 	} count (call BIS_fnc_listCuratorPlayers);
 		
 	{			
@@ -36,6 +38,7 @@ if (alive currentUnit) then {
 				_result pushBack _x;	
 			};
 		};
+		true;
 	} count _allUnits;
 };
 _result
