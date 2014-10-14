@@ -51,6 +51,7 @@ if (_activated) then {
 			
 			(group _x) setVariable ["tf_sw_frequency", _swFreq, true];
 			(group _x) setVariable ["tf_lr_frequency", _lrFreq, true];
+			true;
 		} count _units;
 	};
 };

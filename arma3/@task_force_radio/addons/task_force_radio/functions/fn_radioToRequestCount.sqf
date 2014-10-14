@@ -52,6 +52,7 @@ TF_settingsToCopy = [];
 			};
 		};
 	};	
+	true;
 } count (assignedItems currentUnit);
 {
     if (_x call TFAR_fnc_isPrototypeRadio) then {
@@ -67,6 +68,7 @@ TF_settingsToCopy = [];
 			};
 		};
 	};
+	true;
 } count (items currentUnit);
 
 {

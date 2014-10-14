@@ -82,6 +82,7 @@ if (_activated) then {
 				missionNamespace setVariable [format ["tf_freq_%1_lr", _currentSide], _lrFreq];
 			};
 		};
+		true;
 	} count _units;
 };
 

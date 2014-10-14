@@ -32,6 +32,7 @@ _handlers = _unit getVariable [_eventID, []];
 	if (_customID == (_x select 0)) exitWith {
 		_handlers = _handlers - _x;
 	};
+	true;
 } count _handlers;
 
 _unit setVariable [_eventID, _handlers];

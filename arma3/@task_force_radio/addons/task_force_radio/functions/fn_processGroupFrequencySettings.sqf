@@ -122,4 +122,5 @@ if (isNil "tf_freq_guer_dd") then {
 			};
 		};
 	};
+	true;
 } count allGroups;

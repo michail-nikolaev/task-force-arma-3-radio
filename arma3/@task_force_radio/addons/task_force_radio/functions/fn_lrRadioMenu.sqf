@@ -24,6 +24,7 @@ if (count (currentUnit call TFAR_fnc_lrRadiosList) > 1) then {
 		];
 		_positions set [count _positions, _position];
 		_pos = _pos + 1;
+		true;
 	} count (currentUnit call TFAR_fnc_lrRadiosList);
 	_menu =
 	[
