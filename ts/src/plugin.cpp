@@ -46,8 +46,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_API_VERSION 20
 //#define PLUGIN_API_VERSION 19
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -652,12 +652,12 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, fl
 
 	if (d <= 1.0) return 1.0;
 	float maxDistance = shouldPlayerHear ? clientDistance * multiplifer : CANT_SPEAK_DISTANCE;
-	float gain = powf(d, -0.7f) * (max(0, (maxDistance - d)) / maxDistance);
+	float gain = powf(d, -0.5f) * (max(0, (maxDistance - d)) / maxDistance);
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
 }
 
 
-void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, TS3_VECTOR position, bool onGround, int radioVolume, bool underwater)
+void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, TS3_VECTOR position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck)
 {
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
@@ -685,6 +685,10 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 			CLIENT_DATA* clientData = getClientData(serverConnectionHandlerID, me);
 			if (clientData)
 			{
+				if (vehicleVolumeLoss > 0.01 && !vehicleCheck)
+				{
+					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(input, wav._spec.channels, samples, gain * pow(1.0f - vehicleVolumeLoss, 1.2), clientData->getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
+				}				
 				if (onGround)
 				{
 					float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
@@ -2656,7 +2660,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 			{
 				if (isSeriousModeEnabled(serverConnectionHandlerID, clientID))
 				{
-					if (alive || inGame || isPluginEnabledForUser(serverConnectionHandlerID, clientID))
+					if (alive && inGame && isPluginEnabledForUser(serverConnectionHandlerID, clientID))
 						applyGain(samples, channels, sampleCount, 0.0f); // alive player hears only alive players in serious mode
 				}
 				if (GetTickCount() - last_no_info > MILLIS_TO_EXPIRE)
@@ -2840,29 +2844,34 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 						for (auto it = listedInfos.begin(); it != listedInfos.end(); ++it)
 						{
 							LISTED_INFO listedInfo = *it;
+							CLIENT_DATA* myData = getClientData(serverId, myId);
+							std::pair<std::string, float> myVehicleDesriptor = getVehicleDescriptor(myData->vehicleId);
+							const float vehicleVolumeLoss = clamp(myVehicleDesriptor.second + listedInfo.vehicle.second, 0.0f, 1.0f);							
+							bool vehicleCheck = (myVehicleDesriptor.first == listedInfo.vehicle.first);
+
 							LeaveCriticalSection(&serverDataCriticalSection);
 							float gain = volumeMultiplifier((float)listedInfo.volume) * serverIdToData[serverId].globalVolume;
 							setGameClientMuteStatus(serverId, clientId);
 							if (alive && listedInfo.on != LISTED_ON_NONE) {																
 								if (subtype == "digital")
 								{
-									if (playPressed) playWavFile(serverId, "radio-sounds/sw/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
-									if (playReleased) playWavFile(serverId, "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
+									if (playPressed) playWavFile(serverId, "radio-sounds/sw/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
+									if (playReleased) playWavFile(serverId, "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
 								}
 								if (subtype == "digital_lr")
 								{
-									if (playPressed) playWavFile(serverId, "radio-sounds/lr/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
-									if (playReleased) playWavFile(serverId, "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
+									if (playPressed) playWavFile(serverId, "radio-sounds/lr/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
+									if (playReleased) playWavFile(serverId, "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
 								}
 								if (subtype == "dd")
 								{
-									if (playPressed) playWavFile(serverId, "radio-sounds/dd/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
-									if (playReleased) playWavFile(serverId, "radio-sounds/dd/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
+									if (playPressed) playWavFile(serverId, "radio-sounds/dd/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
+									if (playReleased) playWavFile(serverId, "radio-sounds/dd/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
 								}
 								if (subtype == "airborne")
 								{
-									if (playPressed) playWavFile(serverId, "radio-sounds/ab/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
-									if (playReleased) playWavFile(serverId, "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL);
+									if (playPressed) playWavFile(serverId, "radio-sounds/ab/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
+									if (playReleased) playWavFile(serverId, "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
 								}
 							}
 							EnterCriticalSection(&serverDataCriticalSection);
