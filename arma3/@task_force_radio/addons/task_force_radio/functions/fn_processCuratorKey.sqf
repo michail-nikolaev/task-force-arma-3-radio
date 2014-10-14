@@ -8,5 +8,6 @@ _result = false;
 			_result = _this call CBA_events_fnc_keyHandler;
 		};
 	};
+	true;
 } count cba_keybinding_handlers;
 _result;

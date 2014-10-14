@@ -37,6 +37,7 @@ _result = "";
 			//};
 		};
 	};
+	true;
 } count (lineIntersectsWith  [eyepos currentUnit, eyepos _this, currentUnit, _this]);
 
 _result;
