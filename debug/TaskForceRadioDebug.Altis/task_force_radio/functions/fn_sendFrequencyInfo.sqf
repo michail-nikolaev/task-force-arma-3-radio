@@ -45,6 +45,7 @@ if ((call TFAR_fnc_haveSWRadio) and {[currentUnit, _isolated_and_inside, _can_sp
 				};
 			};
 		};		
+		true;
 	} count (_radios);
 };
 if ((call TFAR_fnc_haveLRRadio) and {[currentUnit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio}) then {
@@ -64,6 +65,7 @@ if ((call TFAR_fnc_haveLRRadio) and {[currentUnit, _isolated_and_inside, _depth]
 				};
 			};
 		};
+		true;
 	} count (_radios);
 };
 if ((call TFAR_fnc_haveDDRadio) and {[_depth, _isolated_and_inside] call TFAR_fnc_canUseDDRadio}) then {
