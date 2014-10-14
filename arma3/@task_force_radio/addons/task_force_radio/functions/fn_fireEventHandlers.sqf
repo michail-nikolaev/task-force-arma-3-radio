@@ -27,6 +27,7 @@ _eventID = format ["TFAR_event_%1", _eventID];
 _handlers = missionNamespace getVariable [_eventID, []];
 {
 	_parameters call (_x select 1);
+	true;
 } count _handlers;
 if (isNil "_unit" || {isNull _unit}) exitWith {};
 _handlers = _unit getVariable [_eventID, []];

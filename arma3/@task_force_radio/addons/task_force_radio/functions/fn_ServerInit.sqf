@@ -63,6 +63,7 @@ while {true} do {
 	_allUnits = allUnits;	
 	{
 		_allUnits pushBack _x;
+		true;
 	} count (call BIS_fnc_listCuratorPlayers);
 	
 	{
@@ -96,6 +97,7 @@ while {true} do {
 							_count = 1;
 						};
 						_response pushBack format["%1_%2", _radio, _count];
+						true;
 					} count _radio_request;
 				} else {
 					_response = "ERROR:47";

@@ -54,6 +54,7 @@ if ((_nearPlayer) and {currentUnit distance _unit <= TF_speakerDistance}) then {
 
 				tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12%13", _radio_id, TF_new_line, _freq, TF_new_line, _this select 2, TF_new_line, [], TF_new_line, _x call TFAR_fnc_getLrVolume, TF_new_line, _vehicle, TF_new_line, (getPosASL _unit) select 2]);
 			};
+			true;
 		} count (_unit call TFAR_fnc_lrRadiosList);
 	};
 	
@@ -67,6 +68,7 @@ if ((_nearPlayer) and {currentUnit distance _unit <= TF_speakerDistance}) then {
 				_radio_id = _x;		
 				tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12%13", _radio_id, TF_new_line, _freq, TF_new_line, _this select 2, TF_new_line, [], TF_new_line, _x call TFAR_fnc_getSwVolume, TF_new_line, _vehicle, TF_new_line, (getPosASL _unit) select 2]);
 			};
+			true;
 		} count (_unit call TFAR_fnc_radiosList);
 	};	
 };
