@@ -39,6 +39,7 @@
 				}else{
 					_newItems pushBack _x;
 				};
+				true;
 			} count _items;
 			
 			clearItemCargoGlobal _backPack;
@@ -51,6 +52,7 @@
 					_backPack addItemCargoGlobal [_x, 1];
 					_backPack addWeaponCargoGlobal [_x, 1];
 				};
+				true;
 			} count _newItems;
 		};
 		true call TFAR_fnc_requestRadios;						

@@ -39,6 +39,7 @@ if !(isNull currentUnit) then {
 				tf_farPlayers set[tf_farPlayersIndex, _x];
 				tf_farPlayersIndex = tf_farPlayersIndex + 1;
 			};
+			true;
 		} count _other_units;
 		
 		tf_farPlayersIndex = 0;	
