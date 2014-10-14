@@ -1,14 +1,15 @@
 Task Force Arma 3 radio
 =======================
+# Please support TFAR on [MakeArmaNotWar](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)!
 
 Arma 3 Team Speak Radio Plugin ([documentation](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki))
-_v0.9.1 (05-29-2014)_
+_v0.9.3 (10-15-2014)_
 
-#####Not compatible with 0.8.3, compatible with 0.9.0
+#####Not compatible with 0.9.2
 
 ###Installation
 
-* Download and unzip [0.9.2 radio archive](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.9.2.zip).
+* Download and unzip [0.9.3 radio archive](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.9.3.zip).
 * Copy `TeamSpeak 3 Client` folder content to the TeamSpeak root folder.
 * Copy `Arma 3` folder content to the `...\SteamApps\common\Arma 3 folder`.
 
@@ -70,18 +71,21 @@ _v0.9.1 (05-29-2014)_
 
 #####Radios
 
-| Radio | Side | Range/Distance | How to use |
+| Radio | Side | Range/Distance | 
 | --- | --- | --- | --- | 
-| Radio [AN/PRC-152](http://en.wikipedia.org/wiki/AN/PRC-152) (personal) | <font color="blue">BLUEFOR<font> | 30-512Mhz / 5 km | To enter the frequency, press `CLR`, enter a value and press `ENT`. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume pressing `PRE+` and `PRE-` keys. You can also change stereo setting by pressing `0`. Use switch at top of radio to setup additional channel. |
-| Рация [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (rifleman) | <font color="blue">BLUEFOR<font> | 30-512Mhz / 2 км | Frequency setup not supported on this radio, You can switch the active radio channel by pressing keys at the bottom (a total of 8 channels). You can change the reception volume pressing `VOL` keys. You can also change stereo setting by pressing `OK`.  | 
-| Radio [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (long range) | <font color="blue">BLUEFOR<font> | 30-87Mhz / 20 km (30 for inbuilt) | To enter the frequency, press `MENU CLR`, enter a value and press `FREQ`. You can also switch the active radio channel by pressing the radio number buttons (a total of 9 channels). You can change the reception volume by `TIME` and `BATT CALL` keys. You can also change stereo setting by pressing `STO`. Use `ERF OFST` to setup additional channel.|
-| Radio [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (rifleman) | <font color="blue">BLUEFOR<font> | 30-512Mhz / 2 km |  Frequency setup not supported on this radio, You can switch the active radio channel by pressing keys `PRE FILL` and `PRE DIVE` (a total of 8 channels). You can change the reception volume pressing volume keys. You can also change stereo setting by pressing `STAT`. It is possible to select first channel by pressing `ZERO`. |
-| Radio [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (personal) | <font color="green">INDEPENDENT</font> | 30-512Mhz / 5 km | To enter the frequency, press `ESC`, enter a value and press `ENT`. You can also switch the active radio channel by pressing the arrow keys (a total of 8 channels). You can change the reception volume by `MOD` and `GR` keys. You can also change stereo setting by pressing `ALT`. Use switch at top of radio to setup additional channel. | 
-| Radio [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (long range)| <font color="green">INDEPENDENT</font> | 30-87Mhz / 20 km (30 for inbuilt) | To enter the frequency, press `ESC`, enter a value and press `MENU`. You can also switch the active radio channel by pressing the arrow keys (up & down). You can change the reception volume by the loudspeaker button. You can also change stereo setting by pressing `PRE`. Use sun button to setup additional channel.| 
-| Radio [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/) (personal) | <font color="red">OPFOR</font> | 30-512Mhz / 5 km | To enter the frequency, press `CLR`, enter a value and press `ENT`. You can also switch the active radio channel by pressing `SET` and `PWR` (a total of 8 channels). You can change the reception volume by `DATA` and `SEND` keys. You can also change stereo setting by pressing `0`. Use `ERF OFST` to setup additional channel.|
-| Radio [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf)  (rifleman) | <font color="blue">BLUEFOR<font> | 30-512Mhz / 2 km |  Frequency setup not supported on this radio, You can switch the active radio channel by pressing `CHAN` keys (a total of 8 channels). You can change the reception volume pressing `VOL` keys. You can also change stereo setting by pressing `MENU ENTR`. It is possible to select first channel by pressing button at the top. |
-| Radio [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (long range) | <font color="red">OPFOR</font> | 30-87Mhz / 20 km (30 for inbuilt) | To enter the frequency, press `CLR ESC`, enter a value and press `ENT`. You can also switch the active radio channel by pressing the radio number buttons or horizontal arrow buttons (a total of 8 channels). You can change the reception volume by vertical arrow buttons. You can also change stereo setting by pressing `0`. Use `RX/TX` switch to setup additional channel.| 
-| Underwater transceiver | All | 32-41kHz / 70-300 m. (depending on waves) | To enter the frequency, press `MODE`, enter a value and press `ADV`. You can change the reception volume by the button on the right side of the device. | 
+| Radio [AN/PRC-152](http://en.wikipedia.org/wiki/AN/PRC-152) (personal) | <font color="blue">BLUEFOR<font> | 30-512Mhz / 5 km |
+| Рация [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (rifleman) | <font color="blue">BLUEFOR<font> | 30-512Mhz / 2 км | 
+| Radio [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (long range) | <font color="blue">BLUEFOR<font> | 30-87Mhz / 20 km (30 for inbuilt) | 
+| Radio [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx) (airborne) | <font color="blue">BLUEFOR<font> | 30-87Mhz / 40 km |
+| Radio [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (rifleman) | <font color="blue">INDEPENDENT<font> | 30-512Mhz / 2 km | 
+| Radio [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (personal) | <font color="green">INDEPENDENT</font> | 30-512Mhz / 5 km | 
+| Radio [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (long range)| <font color="green">INDEPENDENT</font> | 30-87Mhz / 20 km (30 for inbuilt) | 
+| Radio [AN/ARC-164](https://ru.wikipedia.org/wiki/AN/ARC-164) (airborne) |  <font color="green">INDEPENDENT</font> | 30-87Mhz / 40 km |
+| Radio [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/) (personal) | <font color="red">OPFOR</font> | 30-512Mhz / 5 km | 
+| Radio [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf)  (rifleman) | <font color="blue">OPFOR<font> | 30-512Mhz / 2 km | 
+| Radio [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (long range) | <font color="red">OPFOR</font> | 30-87Mhz / 20 km (30 for inbuilt) | 
+| Radio [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html) (airborne) | <font color="red">OPFOR</font> | 30-87Mhz / 40 km | 
+| Underwater transceiver | All | 32-41kHz / 70-300 m. (depending on waves) | 
 
 > Not all radios presented here, also next airborne 40km radios are supported : "AN/ARC-201", "AN-ARC-164", "MR6000L"
 
@@ -101,7 +105,7 @@ _v0.9.1 (05-29-2014)_
 
 * Each vehicle slot has its own radio, which must be configured separately. If you plan to change the position in a vehicle – configure the radio in all the slots beforehand (for instance, on a driver or shooter slot).
 
-* Vehicles are classified into open and closed (isolated). If you are in an isolated vehicle, you will not hear voices from outside (and vice versa). However, if you turn out of the vehicle, you will hear voices both from inside and outside.
+* Vehicles are classified into open and closed (isolated). If you are in an isolated vehicle, you will almost not hear voices from outside (and vice versa). However, if you turn out of the vehicle, you will hear voices both from inside and outside.
 
 #####Radio interception
 
