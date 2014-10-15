@@ -269,7 +269,7 @@ class additional: HiddenRotator
 	w = 0.0367463 * safezoneW;
 	h = 0.0812181 * safezoneH;
 	tooltip = $STR_set_additional;
-	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+	action = "playSound 'TFAR_rotatorPush';[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 };
 class volume_switch: HiddenRotator
 {
