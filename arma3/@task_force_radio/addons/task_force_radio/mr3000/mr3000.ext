@@ -1,4 +1,4 @@
-/* #Dovuzi
+/* #Dewasa
 $[
 	1.063,
 	["mr3000",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -9,7 +9,7 @@ $[
 	[1603,"mr3000_previous_channel",[1,"",["0.529391 * safezoneW + safezoneX","0.5374 * safezoneH + safezoneY","0.0203438 * safezoneW","0.0280062 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1604,"mr3000_increase_volume",[1,"",["0.550531 * safezoneW + safezoneX","0.4989 * safezoneH + safezoneY","0.0190313 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1605,"mr3000_decrease_volume",[1,"",["0.548469 * safezoneW + safezoneX","0.5726 * safezoneH + safezoneY","0.021 * safezoneW","0.0266059 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1606,"mr3000_increase_volume_2",[1,"",["0.300453 * safezoneW + safezoneX","0.3218 * safezoneH + safezoneY","0.0360938 * safezoneW","0.0728162 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1606,"volume_switch",[1,"",["0.300453 * safezoneW + safezoneX","0.3218 * safezoneH + safezoneY","0.0360938 * safezoneW","0.0728162 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1607,"mr3000_channel_1",[1,"",["0.365422 * safezoneW + safezoneX","0.4989 * safezoneH + safezoneY","0.0190313 * safezoneW","0.0322072 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1608,"mr3000_channel_2",[1,"",["0.397906 * safezoneW + safezoneX","0.5011 * safezoneH + safezoneY","0.0223125 * safezoneW","0.0294066 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1609,"mr3000_channel_3",[1,"",["0.432453 * safezoneW + safezoneX","0.5 * safezoneH + safezoneY","0.0203438 * safezoneW","0.0322072 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
@@ -23,12 +23,10 @@ $[
 	[1401,"mr3000_channel_edit",[1,"CH: 4",["0.416469 * safezoneW + safezoneX","0.3768 * safezoneH + safezoneY","0.0427969 * safezoneW","0.0297 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1616,"mr3000_stereo",[1,"",["0.499484 * safezoneW + safezoneX","0.5572 * safezoneH + safezoneY","0.0216563 * safezoneW","0.0308069 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1617,"additional",[1,"",["0.295812 * safezoneW + safezoneX","0.4197 * safezoneH + safezoneY","0.0367463 * safezoneW","0.0812181 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1618,"speakers",[1,"",["0.292719 * safezoneW + safezoneX","0.5385 * safezoneH + safezoneY","0.033499 * safezoneW","0.0659931 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1618,"channel_switch",[1,"",["0.292203 * safezoneW + safezoneX","0.5407 * safezoneH + safezoneY","0.033499 * safezoneW","0.0659931 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1619,"speakers",[1,"",["0.603125 * safezoneW + safezoneX","0.5682 * safezoneH + safezoneY","0.0159844 * safezoneW","0.0715 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
-
-
-
 
 class mr3000_radio_dialog
 {
@@ -37,31 +35,32 @@ class mr3000_radio_dialog
 	controlsBackground[] = { };
 	objects[] = { };
 	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\task_force_radio\mr3000\mr3000_n.paa';};";
-controls[]=
-{
-	background,
-	enter,
-	clear,
-	next_channel,
-	previous_channel,
-	increase_volume,
-	decrease_volume,
-	increase_volume_2,
-	channel_1,
-	channel_2,
-	channel_3,
-	channel_4,
-	channel_5,
-	channel_6,
-	channel_7,
-	channel_8,
-	channel_9,
-	edit,
-	channel_edit,
-	stereo,
-	additional,
-	speakers
-};
+	controls[]=
+	{
+		background,
+		enter,
+		clear,
+		next_channel,
+		previous_channel,
+		increase_volume,
+		decrease_volume,
+		volume_switch,
+		channel_1,
+		channel_2,
+		channel_3,
+		channel_4,
+		channel_5,
+		channel_6,
+		channel_7,
+		channel_8,
+		channel_9,
+		edit,
+		channel_edit,
+		stereo,
+		additional,
+		channel_switch,
+		speakers
+	};
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by [TF]Nkey, v1.063, #Zozaci)
 ////////////////////////////////////////////////////////
@@ -135,16 +134,6 @@ class decrease_volume: HiddenButton
 	h = 0.0266059 * safezoneH;
 	action = "[0, true] call TFAR_fnc_setVolumeViaDialog;";
 	tooltip = $STR_decrease_volume;
-};
-class increase_volume_2: HiddenRotator
-{
-	idc = IDC_MR3000_INCREASE_VOLUME_2;
-	x = 0.300453 * safezoneW + safezoneX;
-	y = 0.3218 * safezoneH + safezoneY;
-	w = 0.0360938 * safezoneW;
-	h = 0.0728162 * safezoneH;
-	tooltip = $STR_volume;
-	action = "[1, true] call TFAR_fnc_setVolumeViaDialog;";
 };
 class channel_1: HiddenButton
 {
@@ -282,13 +271,33 @@ class additional: HiddenRotator
 	tooltip = $STR_set_additional;
 	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 };
-class speakers: HiddenRotator
+class volume_switch: HiddenRotator
 {
-	idc = IDC_MR3000_SPEAKERS;
-	x = 0.292719 * safezoneW + safezoneX;
-	y = 0.5385 * safezoneH + safezoneY;
+	idc = IDC_MR3000_VOLUME_SWITCH;
+	x = 0.300453 * safezoneW + safezoneX;
+	y = 0.3218 * safezoneH + safezoneY;
+	w = 0.0360938 * safezoneW;
+	h = 0.0728162 * safezoneH;
+	tooltip = $STR_rotator_volume;
+	onMouseButtonDown = "[_this select 1, true] call TFAR_fnc_setVolumeViaDialog;";
+};
+class channel_switch: HiddenRotator
+{
+	idc = IDC_MR3000_CHANNEL_SWITCH;
+	x = 0.292203 * safezoneW + safezoneX;
+	y = 0.5407 * safezoneH + safezoneY;
 	w = 0.033499 * safezoneW;
 	h = 0.0659931 * safezoneH;
+	tooltip = $STR_rotator_channel;
+	onMouseButtonDown ="[_this select 1, true] call TFAR_fnc_setChannelViaDialog;";
+};
+class speakers: HiddenButton
+{
+	idc = IDC_MR3000_SPEAKERS;
+	x = 0.603125 * safezoneW + safezoneX;
+	y = 0.5682 * safezoneH + safezoneY;
+	w = 0.0159844 * safezoneW;
+	h = 0.0715 * safezoneH;
 	tooltip = $STR_speakers_settings_true;
 	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1] call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 };
