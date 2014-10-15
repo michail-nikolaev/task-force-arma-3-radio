@@ -149,8 +149,8 @@ class mr6000l_radio_dialog
 		y = 0.326191 * safezoneH + safezoneY;
 		w = 0.0495276 * safezoneW;
 		h = 0.0803044 * safezoneH;
-		tooltip = $STR_volume;
-		action = "[1, true] call TFAR_fnc_setVolumeViaDialog;";
+		tooltip = $STR_rotator_volume;
+		onMouseButtonDown = "[_this select 1, true] call TFAR_fnc_setVolumeViaDialog;";
 	};
 	class stereo: HiddenRotator
 	{
@@ -159,7 +159,7 @@ class mr6000l_radio_dialog
 		y = 0.572604 * safezoneH + safezoneY;
 		w = 0.0665527 * safezoneW;
 		h = 0.110006 * safezoneH;
-		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		action = "playSound 'TFAR_rotatorPush';[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 		tooltip = $STR_stereo_settings;
 	};
 	class channel_01: HiddenButton
