@@ -65,7 +65,6 @@ _v0.9.3 (10-15-2014)_
 | `Y` | Transmit on additional channel of long range radio. |
 | `ESC` | To exit from the radio interface. |
 
-> You can reconfigure the keys in the configuration file, which can be found in the game folder `...\Arma 3\userconfig\task_force_radio\radio_keys.hpp`. The file is edited in Notepad.
 
 ###Information
 
