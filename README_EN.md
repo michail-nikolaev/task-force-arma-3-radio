@@ -28,9 +28,9 @@ _v0.9.3 (10-15-2014)_
 * Start the game with `@CBA_A3` & `@task_force_radio` add-ons (Community Base Addons: A3 Beta & Task Force Arrowhead Radio). It can be done by adding the mod names to the game shortcut after the EXE file `…\arma3.exe -mod=@CBA_A3;@task_force_radio`, however, it is recommended to enable the necessary mods in the game settings (`Settings -> Expansions`).
 * Join the same channel with other players using the radio, or you will be navigated to the `TaskForceRadio` channel, if there is one at the start of a mission.
 
-> If you’ve got the same nick both in the game profile and TeamSpeak - plugin will change your nickname in TS during the game.
+> You will get the same nick both in the game profile and TeamSpeak - plugin will change your nickname in TS during the game.
 
-> Make sure your game nickname contains at least 3 characters and doesn't contain `@`.
+> Make sure your game nickname contains at least 3 characters.
 
 > It is not recommended to use the plugin with simultaneous connection to multiple servers in TeamSpeak.
 
