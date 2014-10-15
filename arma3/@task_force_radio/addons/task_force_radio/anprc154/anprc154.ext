@@ -128,7 +128,7 @@ class anprc154_radio_dialog
 		w = 0.0324844 * safezoneW;
 		h = 0.1089 * safezoneH;
 		tooltip = $STR_speakers_settings_true;
-		action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
+		action = "playSound 'TFAR_rotatorPush';[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 	};
 
 	////////////////////////////////////////////////////////
