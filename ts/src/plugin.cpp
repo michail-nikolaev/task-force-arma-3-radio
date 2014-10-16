@@ -65,7 +65,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.4"
+#define PLUGIN_VERSION "0.9.4h"
 #define CANT_SPEAK_DISTANCE 5
 
 #define PIWIK_URL L"nkey.piwik.pro"
@@ -652,7 +652,7 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, fl
 
 	if (d <= 1.0) return 1.0;
 	float maxDistance = shouldPlayerHear ? clientDistance * multiplifer : CANT_SPEAK_DISTANCE;
-	float gain = powf(d, -0.8f) * (max(0, (maxDistance - d)) / maxDistance);
+	float gain = powf(d, -0.3f) * (max(0, (maxDistance - d)) / maxDistance);
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
 }
 
