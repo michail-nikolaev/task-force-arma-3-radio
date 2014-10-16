@@ -10,7 +10,7 @@ public:
 
 	void process(short * samples, int channels, int sampleCount, TS3_VECTOR pos, float direction)
 	{
-		float x = -pos.x;
+		float x = pos.x;
 		float y = pos.y;
 		float z = pos.z;
 

@@ -1,3 +1,21 @@
+/* clunk - cross-platform 3D audio API built on top SDL library
+ * Copyright (C) 2007-2014 Netive Media Group
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+*/
+
 #include <clunk/hrtf.h>
 #include <clunk/buffer.h>
 #include <clunk/clunk_ex.h>
@@ -195,7 +213,7 @@ void Hrtf::hrtf(const unsigned channel_idx, s16 *dst, const s16 *src, int src_ch
 		{
 			const int kemar_sample = i * 257 / mdct_type::M;
 			std::complex<float> fir(kemar_data[kemar_idx][0][kemar_sample][0], kemar_data[kemar_idx][0][kemar_sample][1]);
-			_mdct.data[i] *= std::abs(fir);
+			//_mdct.data[i] *= std::abs(fir); TODO: fix HRTF
 		}
 	}
 
