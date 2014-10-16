@@ -18,7 +18,7 @@ public:
 		//| sin θ    cos θ   0 | | y | = | x sin θ + y cos θ | = | y'|
 		//| 0       0      1 | | z | | z | | z'|
 
-		float rad = -direction / 180.0f * (float) M_PI;
+		float rad = direction / 180.0f * (float) M_PI;
 
 		float x_ = x * cos(rad) - y * sin(rad);
 		float y_ = x * sin(rad) + y * cos(rad);
