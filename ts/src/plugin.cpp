@@ -1515,6 +1515,8 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 	bool clientTalkingOnRadio = false;
 	if (serverIdToData.count(serverConnection))
 	{
+		TS3_VECTOR zero;
+		zero.x = zero.y = zero.z = 0.0f;		
 		if (nickname == serverIdToData[serverConnection].myNickname)
 		{			
 			CLIENT_DATA* clientData = NULL;
@@ -1540,6 +1542,13 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 			}
 			serverIdToData[serverConnection].myPosition = position;
 			serverIdToData[serverConnection].canSpeak = canSpeak;			
+			LeaveCriticalSection(&serverDataCriticalSection);
+			DWORD error;
+			if ((error = ts3Functions.systemset3DListenerAttributes(serverConnection, &zero, NULL, NULL)) != ERROR_ok)
+			{
+				log("can't center listener", error);
+			}
+			EnterCriticalSection(&serverDataCriticalSection);
 		}
 		else
 		{
@@ -1575,6 +1584,11 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 			}
 			LeaveCriticalSection(&serverDataCriticalSection);
 			if (isConnected(serverConnection)) setGameClientMuteStatus(serverConnection, getClientId(serverConnection, nickname));
+			DWORD error;
+			if ((error = ts3Functions.channelset3DAttributes(serverConnection, getClientId(serverConnection, nickname), &zero)) != ERROR_ok)
+			{
+				log("can't center client", error);
+			}			
 			EnterCriticalSection(&serverDataCriticalSection);
 		}
 	}
