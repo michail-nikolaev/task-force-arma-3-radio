@@ -65,7 +65,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.3"
+#define PLUGIN_VERSION "0.9.4"
 #define CANT_SPEAK_DISTANCE 5
 
 #define PIWIK_URL L"nkey.piwik.pro"
@@ -652,7 +652,7 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, fl
 
 	if (d <= 1.0) return 1.0;
 	float maxDistance = shouldPlayerHear ? clientDistance * multiplifer : CANT_SPEAK_DISTANCE;
-	float gain = powf(d, -0.5f) * (max(0, (maxDistance - d)) / maxDistance);
+	float gain = powf(d, -0.8f) * (max(0, (maxDistance - d)) / maxDistance);
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
 }
 
@@ -669,7 +669,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 
 	clunk::WavFile wav(f);
 	wav.read();
-	if (wav.ok())
+	if (wav.ok() && wav._spec.channels == 2 && wav._spec.sample_rate == 48000)
 	{
 		short* data = (short*)wav._data.get_ptr();
 		int samples = (wav._data.get_size() / sizeof(short)) / wav._spec.channels;
@@ -1617,7 +1617,10 @@ volatile bool waiting_tangent_off = false;
 DWORD WINAPI process_tangent_off(LPVOID lpParam)
 {
 	waiting_tangent_off = true;
-	Sleep(pttDelayMs);
+	if (pttDelay) 
+	{
+		Sleep(pttDelayMs);
+	}
 	if (!skip_tangent_off)
 	{
 		if (vadEnabled)	hlp_enableVad();
@@ -1767,13 +1770,8 @@ std::string processGameCommand(std::string command)
 				args.commandToBroadcast = commandToBroadcast;
 				args.currentServerConnectionHandlerID = currentServerConnectionHandlerID;
 				args.subtype = subtype;
-				ptt_arguments = args;
-				if (!pttDelay) 
-					process_tangent_off(NULL);
-				else
-				{
-					CreateThread(NULL, 0, process_tangent_off, NULL, 0, NULL);					
-				}
+				ptt_arguments = args;				
+				CreateThread(NULL, 0, process_tangent_off, NULL, 0, NULL);
 					
 			}			
 		}
@@ -2855,8 +2853,8 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 							if (alive && listedInfo.on != LISTED_ON_NONE) {																
 								if (subtype == "digital")
 								{
-									if (playPressed) playWavFile(serverId, "radio-sounds/sw/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
-									if (playReleased) playWavFile(serverId, "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
+									if (playPressed) playWavFile(serverId, "radio-sounds/sw/remote_start", gain * 0.5, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
+									if (playReleased) playWavFile(serverId, "radio-sounds/sw/remote_end", gain * 0.5, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
 								}
 								if (subtype == "digital_lr")
 								{
