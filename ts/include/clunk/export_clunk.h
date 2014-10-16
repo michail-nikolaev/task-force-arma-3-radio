@@ -1,6 +1,8 @@
 #ifndef CLUNK_EXPORT_H__
 #define CLUNK_EXPORT_H__
 
+#include <clunk/config.h>
+
 /* Shared library support */
 #ifdef _MSC_VER
 #	pragma warning(disable:4251)  /* needs to have dll-interface used by client */
