@@ -34,7 +34,8 @@ namespace clunk {
 		FILE *		_f;
 		AudioSpec	_spec;
 		Buffer		_data;
-	
+
+	public:
 		WavFile(FILE *f);
 		~WavFile();
 

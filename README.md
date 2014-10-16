@@ -3,13 +3,13 @@ Task Force Arma 3 radio
 #Поддержите рацию на конкурсе [MakeArmaNotWar](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)!
 
 Arma 3 Team Speak Radio Plugin ([документация](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki))
-_v0.9.3 от 15.10.2014_
+_v0.9.4 от 16.10.2014_
 
-#####Не совместима с 0.9.2
+#####СОвместима с 0.9.3, не совместима с 0.9.2
 
 ###Установка
 
-* Скачайте [архив с рацией 0.9.3](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.9.3.zip) и распакуйте его.
+* Скачайте [архив с рацией 0.9.3](https://github.com/michail-nikolaev/task-force-arma-3-radio/raw/master/releases/0.9.4.zip) и распакуйте его.
 * Cкопируйте содержимое папки `TeamSpeak 3 Client` в корневую папку TeamSpeak.
 * Скопируйте содержимое папки `Arma 3` в папку с игрой `...\SteamApps\common\Arma 3`.
 

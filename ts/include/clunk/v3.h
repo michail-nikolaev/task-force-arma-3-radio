@@ -1,8 +1,8 @@
 #ifndef CLUNK_V3_H__
 #define CLUNK_V3_H__
 
-/* libClunk - cross-platform 3D audio API built on top SDL library
- * Copyright (C) 2007-2008 Netive Media Group
+/* clunk - cross-platform 3D audio API built on top SDL library
+ * Copyright (C) 2007-2014 Netive Media Group
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
