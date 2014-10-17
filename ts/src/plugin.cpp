@@ -2559,7 +2559,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 				std::pair<std::string, float> myVehicleDesriptor = getVehicleDescriptor(myData->vehicleId);
 				std::pair<std::string, float> hisVehicleDesriptor = getVehicleDescriptor(data->vehicleId);
 
-				const float vehicleVolumeLoss = clamp(myVehicleDesriptor.second + hisVehicleDesriptor.second, 0.0f, 1.0f);
+				const float vehicleVolumeLoss = clamp(myVehicleDesriptor.second + hisVehicleDesriptor.second, 0.0f, 0.99f);
 				bool vehicleCheck = (myVehicleDesriptor.first == hisVehicleDesriptor.first);
 				float d = distanceFromClient(serverConnectionHandlerID, data);
 
@@ -2631,7 +2631,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 						TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;						
 						float distance_from_radio = distance(myPosition, info.pos);
 
-						const float radioVehicleVolumeLoss = clamp(myVehicleDesriptor.second + info.vehicle.second, 0.0f, 1.0f);
+						const float radioVehicleVolumeLoss = clamp(myVehicleDesriptor.second + info.vehicle.second, 0.0f, 0.99f);
 						bool radioVehicleCheck = (myVehicleDesriptor.first == info.vehicle.first);
 						
 						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, 2, (data->getSpeakerFilter(info.radio_id)));
@@ -2858,7 +2858,7 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 							LISTED_INFO listedInfo = *it;
 							CLIENT_DATA* myData = getClientData(serverId, myId);
 							std::pair<std::string, float> myVehicleDesriptor = getVehicleDescriptor(myData->vehicleId);
-							const float vehicleVolumeLoss = clamp(myVehicleDesriptor.second + listedInfo.vehicle.second, 0.0f, 1.0f);							
+							const float vehicleVolumeLoss = clamp(myVehicleDesriptor.second + listedInfo.vehicle.second, 0.0f, 0.99f);
 							bool vehicleCheck = (myVehicleDesriptor.first == listedInfo.vehicle.first);
 
 							LeaveCriticalSection(&serverDataCriticalSection);
