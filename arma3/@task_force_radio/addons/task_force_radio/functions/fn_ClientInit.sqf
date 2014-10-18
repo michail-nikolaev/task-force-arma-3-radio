@@ -86,6 +86,7 @@ if (isNil "TF_give_personal_radio_to_regular_soldier") then {
 	};
 };
 waitUntil {sleep 0.1;!(isNull player)};
+currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_ShowHint;
 
 #include "\task_force_radio\define.h"
