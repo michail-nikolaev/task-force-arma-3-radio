@@ -180,10 +180,10 @@ class B_MBT_01_cannon_F;
 // BWMOD
 class BWA3_Leopard2A6M_Fleck: B_MBT_01_cannon_F
 {
-	tf_RadioType_api  = "tf_mr3000";
+	tf_RadioType  = "tf_mr3000";
 };
 class O_APC_Tracked_02_cannon_F;
 class BWA3_Puma_Fleck: O_APC_Tracked_02_cannon_F
 {
-	tf_RadioType_api = "tf_mr3000";
+	tf_RadioType = "tf_mr3000";
 };
