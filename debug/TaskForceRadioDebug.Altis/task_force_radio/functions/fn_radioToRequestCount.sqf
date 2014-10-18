@@ -29,7 +29,7 @@ _classes = call TFAR_fnc_getDefaultRadioClasses;
 _personalRadio = _classes select 1;
 _riflemanRadio = _classes select 2;
 
-if ((TF_give_personal_radio_to_regular_soldier) or {leader currentUnit == currentUnit}) then {
+if ((TF_give_personal_radio_to_regular_soldier) or {leader currentUnit == currentUnit} or {rank currentUnit >= 2}) then {
 	_defaultRadio = _personalRadio;
 } else {
 	_defaultRadio = _riflemanRadio;
