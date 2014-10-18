@@ -19,6 +19,7 @@
 */
 [] spawn {	
 	waitUntil {!(isNull player)};	
+	waitUntil {!(isNull currentUnit)};		
 	
 	TF_respawnedAt = time;
 	if (alive currentUnit) then {
