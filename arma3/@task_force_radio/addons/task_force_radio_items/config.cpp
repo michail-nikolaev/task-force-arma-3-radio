@@ -27,7 +27,10 @@ class CfgPatches
 			"tf_rt1523g_green",
 			"tf_rt1523g_fabric",
 			"tf_rt1523g_big",
-			"tf_rt1523g_black"
+			"tf_rt1523g_black",
+			"tf_rt1523g_big_bwmod",
+			"tf_mr3000_bwmod",
+			"tf_rt1523g_bwmod"
 		};
 		weapons[] = {
 			"tf_anprc152", 
@@ -81,7 +84,7 @@ class CfgFactionClasses
 	// support for BW
 	class BWA3_Faction
 	{
-		backpack_tf_faction_radio = "tf_mr3000_multicam";
+		backpack_tf_faction_radio = "tf_mr3000_bwmod";
 	};
 };
 
@@ -201,6 +204,13 @@ class CfgVehicles {
 		tf_dialog = "rt1523g_radio_dialog";
 		tf_subtype = "digital_lr";
 	};
+	class tf_rt1523g_bwmod: tf_rt1523g
+	{
+		displayName = "RT-1523G (ASIP) BWMOD";
+		descriptionShort = "RT-1523G (ASIP) BWMOD";
+		hiddenSelections[] = {"camo"};
+		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_prc117g_bwmod_co.paa"};
+	};
 	class tf_rt1523g_big: tf_rt1523g {
 		displayName = "RT-1523G (ASIP) Big";
 		descriptionShort = "RT-1523G (ASIP) Big";
@@ -208,6 +218,15 @@ class CfgVehicles {
 		mass = 30;		
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_nato_multi_co.paa"};
+		model="\task_force_radio_items\models\clf_nicecomm2";
+	};	
+	class tf_rt1523g_big_bwmod: tf_rt1523g {
+		displayName = "RT-1523G (ASIP) Big BWMOD";
+		descriptionShort = "RT-1523G (ASIP) Big BWMOD";
+		maximumLoad = 160;
+		mass = 30;		
+		hiddenSelections[] = {"camo"};
+        hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_bwmod_co.paa"};
 		model="\task_force_radio_items\models\clf_nicecomm2";
 	};	
 	class tf_rt1523g_sage: tf_rt1523g {
@@ -293,6 +312,13 @@ class CfgVehicles {
 		descriptionShort = "MR3000 Multicam";
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_co.paa"};		
+	};
+	class tf_mr3000_bwmod: tf_mr3000
+	{
+		displayName = "MR3000 BWMOD";
+		descriptionShort = "MR3000 BWMOD";
+		hiddenSelections[] = {"camo"};
+        hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_bwmod_co.paa"};		
 	};
 
 	class tf_anarc210: TFAR_Bag_Base
