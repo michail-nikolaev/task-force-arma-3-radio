@@ -65,7 +65,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.5d"
+#define PLUGIN_VERSION "0.9.5gh"
 #define CANT_SPEAK_DISTANCE 5
 
 #define PIWIK_URL L"nkey.piwik.pro"
@@ -666,6 +666,9 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 	std::string to_play = path + std::string(fileNameWithoutExtension) + ".wav";
 
 	FILE *f = fopen(to_play.c_str(), "rb");
+	if (!f) {
+		return;
+	}
 
 	clunk::WavFile wav(f);
 	wav.read();
