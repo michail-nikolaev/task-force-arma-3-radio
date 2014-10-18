@@ -15,7 +15,9 @@ class CfgPatches
 };
 
 #include "\task_force_radio\CfgFunctions.h"
-#include "\userconfig\task_force_radio\radio_keys.hpp"
+class task_force_radio_settings {
+	#include "\userconfig\task_force_radio\radio_settings.hpp"
+};
 #include "\task_force_radio\description.h"
 #include "\task_force_radio\RscTitles.hpp"
 
