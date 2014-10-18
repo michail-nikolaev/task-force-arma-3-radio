@@ -19,7 +19,7 @@
 */
 [] spawn {	
 	waitUntil {!(isNull player)};	
-	waitUntil {!(isNull currentUnit)};		
+	currentUnit = call TFAR_fnc_currentUnit;
 	
 	TF_respawnedAt = time;
 	if (alive currentUnit) then {
