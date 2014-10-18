@@ -46,7 +46,14 @@ class TF_NATO_Radio_Crate: Box_NATO_Support_F
 			count = 3;
 			backpack = "tf_rt1523g_fabric";
 		};
-			
+		class _xx_tf_rt1523g_bwmod {
+			count = 1;
+			backpack = "tf_rt1523g_bwmod";
+		};
+		class _xx_tf_rt1523g_big_bwmod {
+			count = 1;
+			backpack = "tf_rt1523g_big_bwmod";
+		};			
 	};
 };
 
@@ -82,6 +89,11 @@ class TF_EAST_Radio_Crate: Box_EAST_Support_F
 		{
 			count = 3;
 			backpack = "tf_mr3000_multicam";
+		};
+		class _xx_tf_mr3000_bwmod
+		{
+			count = 1;
+			backpack = "tf_mr3000_bwmod";
 		};
 	};
 };
