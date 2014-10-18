@@ -1586,12 +1586,15 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 				myData->viewAngle = currentUnitDrection;
 			}
 			LeaveCriticalSection(&serverDataCriticalSection);
-			if (isConnected(serverConnection)) setGameClientMuteStatus(serverConnection, getClientId(serverConnection, nickname));
-			DWORD error;
-			if ((error = ts3Functions.channelset3DAttributes(serverConnection, getClientId(serverConnection, nickname), &zero)) != ERROR_ok)
+			if (isConnected(serverConnection))
 			{
-				log("can't center client", error);
-			}			
+				setGameClientMuteStatus(serverConnection, getClientId(serverConnection, nickname));
+				DWORD error;
+				if ((error = ts3Functions.channelset3DAttributes(serverConnection, getClientId(serverConnection, nickname), &zero)) != ERROR_ok)
+				{
+					log("can't center client", error);
+				}
+			}
 			EnterCriticalSection(&serverDataCriticalSection);
 		}
 	}
