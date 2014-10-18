@@ -28,7 +28,7 @@ _isolated_and_inside = currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside;
 _depth = currentUnit call TFAR_fnc_eyeDepth;
 _can_speak = [_isolated_and_inside, _depth] call TFAR_fnc_canSpeak;
 
-if ((call TFAR_fnc_haveSWRadio) and {[currentUnit, _isolated_and_inside, _can_speak, _depth] call TFAR_fnc_canUseSWRadio}) then {
+if (((call TFAR_fnc_haveSWRadio) or (currentUnit != player)) and {[currentUnit, _isolated_and_inside, _can_speak, _depth] call TFAR_fnc_canUseSWRadio}) then {
 	_freq = [];	
 	_radios = currentUnit call TFAR_fnc_radiosList;
 	if (currentUnit != player) then {
@@ -48,7 +48,7 @@ if ((call TFAR_fnc_haveSWRadio) and {[currentUnit, _isolated_and_inside, _can_sp
 		true;
 	} count (_radios);
 };
-if ((call TFAR_fnc_haveLRRadio) and {[currentUnit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio}) then {
+if (((call TFAR_fnc_haveLRRadio) or (currentUnit != player)) and {[currentUnit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio}) then {
 	_freq_lr = [];
 	_radios = currentUnit call TFAR_fnc_lrRadiosList;
 	if (currentUnit != player) then {
