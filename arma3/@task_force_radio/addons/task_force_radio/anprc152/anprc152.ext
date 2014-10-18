@@ -3,7 +3,7 @@ $[
 	1.063,
 	["anprc152_radio_dialog",[["0","0","1","1"],"0.001","0.001","GUI_GRID"],0,1,0],
 	[1200,"background",[1,"task_force_radio\anprc152\152.paa",["0.0138687 * safezoneW + safezoneX","-1.28145 * safezoneH + safezoneY","0.335981 * safezoneW","2.2902 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1400,"edit",[1,"",["0.168556 * safezoneW + safezoneX","0.4824 * safezoneH + safezoneY","0.0589875 * safezoneW","0.043175 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1400,"edit",[1,"",["0.168556 * safezoneW + safezoneX","0.4824 * safezoneH + safezoneY","0.0599875 * safezoneW","0.043175 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1600,"enter",[1,"",["0.205887 * safezoneW + safezoneX","0.56985 * safezoneH + safezoneY","0.0146438 * safezoneW","0.0198 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1601,"clear",[1,"",["0.205269 * safezoneW + safezoneX","0.60285 * safezoneH + safezoneY","0.0144375 * safezoneW","0.017875 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1602,"speakers",[1,"",["0.161956 * safezoneW + safezoneX","0.658675 * safezoneH + safezoneY","0.0169125 * safezoneW","0.023925 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
@@ -59,7 +59,7 @@ class edit: RscEditLCD
 	idc = IDC_ANPRC152_EDIT;
 	x = 0.168556 * safezoneW + safezoneX;
 	y = 0.4824 * safezoneH + safezoneY;
-	w = 0.0589875 * safezoneW;
+	w = 0.0599875 * safezoneW;
 	h = 0.043175 * safezoneH;
 	font = "tf_font_dots";
 	shadow = 2;
