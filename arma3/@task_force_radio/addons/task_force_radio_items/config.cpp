@@ -190,6 +190,7 @@ class CfgVehicles {
 
 	class tf_rt1523g: TFAR_Bag_Base
 	{
+		author = "Raspu, Gandi, Nkey";
 		displayName = "RT-1523G (ASIP)";
 		descriptionShort = "RT-1523G (ASIP)";
 		picture = "\task_force_radio_items\rt1523g\rt1523g_icon.paa";
@@ -212,6 +213,7 @@ class CfgVehicles {
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_prc117g_bwmod_co.paa"};
 	};
 	class tf_rt1523g_big: tf_rt1523g {
+		author = "Raspu, Gandi, Nkey";
 		displayName = "RT-1523G (ASIP) Big";
 		descriptionShort = "RT-1523G (ASIP) Big";
 		maximumLoad = 160;
@@ -269,6 +271,7 @@ class CfgVehicles {
 	
 	class tf_anprc155: TFAR_Bag_Base
 	{
+		author = "Raspu, Gandi, Nkey";
 		displayName = "AN/PRC 155";
 		descriptionShort = "AN/PRC 155";
 		picture = "\task_force_radio_items\anprc155\155_icon.paa";
@@ -284,6 +287,7 @@ class CfgVehicles {
 		tf_subtype = "digital_lr";
 	};	
 	class tf_anprc155_coyote: tf_anprc155 {
+		author = "Raspu, Gandi, Nkey";
 		displayName = "AN/PRC 155 Coyote";
 		descriptionShort = "AN/PRC 155 Coyote";
 		hiddenSelections[] = {"camo"};
@@ -292,6 +296,7 @@ class CfgVehicles {
 	
 	class tf_mr3000: TFAR_Bag_Base
 	{
+		author = "Raspu, Gandi, Nkey";
 		displayName = "MR3000";
 		descriptionShort = "MR3000";
 		picture = "\task_force_radio_items\mr3000\mr3000_icon.paa";
@@ -308,6 +313,7 @@ class CfgVehicles {
 	};
 	class tf_mr3000_multicam: tf_mr3000
 	{
+		author = "Raspu, Gandi, Nkey";
 		displayName = "MR3000 Multicam";
 		descriptionShort = "MR3000 Multicam";
 		hiddenSelections[] = {"camo"};
@@ -493,11 +499,12 @@ class CfgWeapons
 	
 	class tf_anprc152: ItemRadio
 	{
+		author = "Raspu";
 		displayName = "AN/PRC-152";
 		descriptionShort = "AN/PRC-152";
 		scope = 2;
 		scopeCurator = 2;
-		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
+		model = "\task_force_radio_items\models\tfr_anprc152";
 		picture = "\task_force_radio_items\anprc152\152_icon.paa";
 		tf_prototype = 1;
 		tf_range = 5000;
@@ -511,11 +518,12 @@ class CfgWeapons
 	
 	class tf_anprc148jem: ItemRadio
 	{
+		author = "Raspu";
 		displayName = "AN/PRC-148 JEM";
 		descriptionShort = "AN/PRC-148 JEM";
 		scope = 2;
 		scopeCurator = 2;
-		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
+		model = "\task_force_radio_items\models\tfr_anprc148";
 		picture = "\task_force_radio_items\anprc148jem\148_icon.paa";
 		tf_prototype = 1;
 		tf_range = 5000;
@@ -533,7 +541,7 @@ class CfgWeapons
 		descriptionShort = "FADAK";
 		scope = 2;
 		scopeCurator = 2;
-		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
+		model = "\task_force_radio_items\models\tfr_fadak";
 		picture = "\task_force_radio_items\fadak\fadak_icon.paa";
 		tf_prototype = 1;
 		tf_range = 5000;
@@ -547,11 +555,12 @@ class CfgWeapons
 
 	class tf_anprc154: ItemRadio
 	{
+		author = "Raspu";
 		displayName = "AN/PRC-154";
 		descriptionShort = "AN/PRC-154";
 		scope = 2;
 		scopeCurator = 2;
-		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
+		model = "\task_force_radio_items\models\tfr_anprc154";
 		picture = "\task_force_radio_items\anprc154\154_icon.paa";
 		tf_prototype = 1;
 		tf_range = 2000;
@@ -565,11 +574,12 @@ class CfgWeapons
 
 	class tf_rf7800str: ItemRadio
 	{
+		author = "Raspu";
 		displayName = "RF-7800S-TR";
 		descriptionShort = "RF-7800S-TR";
 		scope = 2;
 		scopeCurator = 2;
-		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
+		model = "\task_force_radio_items\models\tfr_rf7800";
 		picture = "\task_force_radio_items\rf7800str\rf7800str_icon.paa";
 		tf_prototype = 1;
 		tf_range = 2000;
@@ -587,7 +597,7 @@ class CfgWeapons
 		descriptionShort = "PNR-1000A";
 		scope = 2;
 		scopeCurator = 2;
-		model = "\A3\Structures_F\Items\Electronics\PortableLongRangeRadio_F";
+		model = "\task_force_radio_items\models\tfr_pnr1000a";
 		picture = "\task_force_radio_items\pnr1000a\pnr1000a_icon.paa";
 		tf_prototype = 1;
 		tf_range = 2000;
