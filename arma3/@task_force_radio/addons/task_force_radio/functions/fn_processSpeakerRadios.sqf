@@ -34,7 +34,7 @@ _unit_pos = eyepos currentUnit;
 		
 		} forEach (everyBackpack _x);
 	};
-} forEach (nearestObjects [getPos currentUnit, ["WeaponHolder", "GroundWeaponHolder"], TF_speakerDistance]);
+} forEach (nearestObjects [getPos currentUnit, ["WeaponHolder", "GroundWeaponHolder", "WeaponHolderSimulated"], TF_speakerDistance]);
 
 {
 	if ((_x getVariable ["tf_lr_speakers", false]) and {_x call TFAR_fnc_hasVehicleRadio}) then {
