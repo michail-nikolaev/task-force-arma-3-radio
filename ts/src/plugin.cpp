@@ -46,8 +46,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_API_VERSION 20
 //#define PLUGIN_API_VERSION 19
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -437,6 +437,7 @@ volatile bool vadEnabled = false;
 static char* pluginID = NULL;
 
 CRITICAL_SECTION serverDataCriticalSection;
+CRITICAL_SECTION tangentCriticalSection;
 CRITICAL_SECTION playbackCriticalSection;
 SERVER_ID_TO_SERVER_DATA serverIdToData;
 std::map<uint64, SERVER_PLAYBACK> serverIdToPlayback;
@@ -1643,16 +1644,18 @@ DWORD WINAPI process_tangent_off(LPVOID lpParam)
 	{
 		Sleep(pttDelayMs);
 	}
+	EnterCriticalSection(&tangentCriticalSection);
 	if (!skip_tangent_off)
 	{
 		if (vadEnabled)	hlp_enableVad();
 		disableVoiceAndSendCommand(ptt_arguments.commandToBroadcast, ptt_arguments.currentServerConnectionHandlerID, false);
+		waiting_tangent_off = false;
 	}
 	else
 	{
-		skip_tangent_off = false;
-	}
-	waiting_tangent_off = false;
+		skip_tangent_off = false;		
+	}	
+	LeaveCriticalSection(&tangentCriticalSection);
 	return 0;
 }
 
@@ -1772,6 +1775,7 @@ std::string processGameCommand(std::string command)
 				else if (subtype == "dd") playWavFile("radio-sounds/dd/local_start");
 				else if (subtype == "digital") playWavFile("radio-sounds/sw/local_start");
 				else if (subtype == "airborne") playWavFile("radio-sounds/ab/local_start");
+				EnterCriticalSection(&tangentCriticalSection);
 				if (!waiting_tangent_off)
 				{
 					vadEnabled = hlp_checkVad();
@@ -1780,6 +1784,7 @@ std::string processGameCommand(std::string command)
 					disableVoiceAndSendCommand(commandToBroadcast, currentServerConnectionHandlerID, pressed);
 				}
 				else skip_tangent_off = true;
+				LeaveCriticalSection(&tangentCriticalSection);
 			}
 			else
 			{
@@ -2116,6 +2121,7 @@ int ts3plugin_init() {
 
 	InitializeCriticalSection(&serverDataCriticalSection);
 	InitializeCriticalSection(&playbackCriticalSection);
+	InitializeCriticalSection(&tangentCriticalSection);	
 
 	exitThread = FALSE;
 	if (isConnected(ts3Functions.getCurrentServerConnectionHandlerID()))
