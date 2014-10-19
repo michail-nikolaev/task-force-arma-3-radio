@@ -390,7 +390,7 @@ struct SERVER_RADIO_DATA
 	
 	std::string myDdFrequency;
 	std::multimap<std::string, SPEAKER_DATA> speakers;
-	
+	std::map<std::string, clunk::WavFile*> waves;
 
 	int ddVolumeLevel;
 	int myVoiceVolume;
@@ -667,56 +667,72 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 	std::string path = std::string(pluginPath);	
 	std::string to_play = path + std::string(fileNameWithoutExtension) + ".wav";
 
-	FILE *f = fopen(to_play.c_str(), "rb");
-	if (!f) {
-		return;
-	}
-
-	clunk::WavFile wav(f);
-	wav.read();
-	if (wav.ok() && wav._spec.channels == 2 && wav._spec.sample_rate == 48000)
+	clunk::WavFile* wave = NULL;
+	EnterCriticalSection(&serverDataCriticalSection);
+	if (serverIdToData[serverConnectionHandlerID].waves.count(to_play) == 0) 
 	{
-		short* data = (short*)wav._data.get_ptr();
-		int samples = (wav._data.get_size() / sizeof(short)) / wav._spec.channels;
-		short* input = new short[samples * wav._spec.channels];
-		memcpy(input, data, wav._data.get_size());
-		applyGain(input, wav._spec.channels, samples, gain);
-
-		std::string id = to_play + std::to_string(rand());
-		anyID me = getMyId(serverConnectionHandlerID);
-		EnterCriticalSection(&serverDataCriticalSection);
-
-		if (hasClientData(serverConnectionHandlerID, me)) {
-			CLIENT_DATA* clientData = getClientData(serverConnectionHandlerID, me);
-			if (clientData)
+		FILE *f = fopen(to_play.c_str(), "rb");
+		if (f) {
+			clunk::WavFile* wav = new clunk::WavFile(f);
+			wav->read();
+			if (wav->ok() && wav->_spec.channels == 2 && wav->_spec.sample_rate == 48000)
 			{
-				float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
-				float distance_from_radio = distance(clientData->clientPosition, position);
-
-				if (vehicleVolumeLoss > 0.01 && !vehicleCheck)
-				{					
-					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(input, wav._spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2), clientData->getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
-				}				
-				if (onGround)
-				{					
-					applyGain(input, wav._spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance));					
-					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(input, wav._spec.channels, samples, SPEAKER_GAIN, (clientData->getSpeakerFilter(id)));
-					if (underwater)
-					{
-						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(input, wav._spec.channels, samples, CANT_SPEAK_GAIN * 50, (clientData->getFilterCantSpeak(id)));
-					}					
-				}
-				clientData->getClunk(id)->process(input, wav._spec.channels, samples, position, clientData->viewAngle);
-			}
-
+				serverIdToData[serverConnectionHandlerID].waves[to_play] = wav;
+				wave = serverIdToData[serverConnectionHandlerID].waves[to_play];
+			}	
+			fclose(f);
 		}
-		LeaveCriticalSection(&serverDataCriticalSection);
 
-		appendPlayback(id, serverConnectionHandlerID, input, samples, wav._spec.channels);
-		delete input;
-	}	
+	}
+	else
+	{
+		wave = serverIdToData[serverConnectionHandlerID].waves[to_play];
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
 
-	fclose(f);
+			
+	short* data = (short*)wave->_data.get_ptr();
+	int samples = (wave->_data.get_size() / sizeof(short)) / wave->_spec.channels;
+	short* input = new short[samples * wave->_spec.channels];
+
+	memcpy(input, data, wave->_data.get_size());
+	applyGain(input, wave->_spec.channels, samples, gain);
+
+	std::string id = to_play + std::to_string(rand());
+	anyID me = getMyId(serverConnectionHandlerID);
+	EnterCriticalSection(&serverDataCriticalSection);
+
+	if (hasClientData(serverConnectionHandlerID, me)) {
+		CLIENT_DATA* clientData = getClientData(serverConnectionHandlerID, me);
+		if (clientData)
+		{
+			float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
+			float distance_from_radio = distance(clientData->clientPosition, position);
+
+			if (vehicleVolumeLoss > 0.01 && !vehicleCheck)
+			{					
+				processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2), clientData->getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
+			}				
+			if (onGround)
+			{					
+				applyGain(input, wave->_spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance));					
+				processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, SPEAKER_GAIN, (clientData->getSpeakerFilter(id)));
+				if (underwater)
+				{
+					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, CANT_SPEAK_GAIN * 50, (clientData->getFilterCantSpeak(id)));
+				}					
+			}
+			clientData->getClunk(id)->process(input, wave->_spec.channels, samples, position, clientData->viewAngle);
+		}
+
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
+
+	appendPlayback(id, serverConnectionHandlerID, input, samples, wave->_spec.channels);
+	delete input;
+	
+
+	
 }
 
 void playWavFile(const char* fileNameWithoutExtension)
