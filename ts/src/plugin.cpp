@@ -689,15 +689,16 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 			CLIENT_DATA* clientData = getClientData(serverConnectionHandlerID, me);
 			if (clientData)
 			{
+				float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
+				float distance_from_radio = distance(clientData->clientPosition, position);
+
 				if (vehicleVolumeLoss > 0.01 && !vehicleCheck)
-				{
-					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(input, wav._spec.channels, samples, gain * pow(1.0f - vehicleVolumeLoss, 1.2), clientData->getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
+				{					
+					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(input, wav._spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2), clientData->getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
 				}				
 				if (onGround)
-				{
-					float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
-					float distance_from_radio = distance(clientData->clientPosition, position);					
-					applyGain(input, wav._spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance));
+				{					
+					applyGain(input, wav._spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance));					
 					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(input, wav._spec.channels, samples, SPEAKER_GAIN, (clientData->getSpeakerFilter(id)));
 					if (underwater)
 					{
@@ -2869,7 +2870,7 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 							bool vehicleCheck = (myVehicleDesriptor.first == listedInfo.vehicle.first);
 
 							LeaveCriticalSection(&serverDataCriticalSection);
-							float gain = volumeMultiplifier((float)listedInfo.volume) * serverIdToData[serverId].globalVolume;
+							float gain = volumeMultiplifier((float)listedInfo.volume) * serverIdToData[serverId].globalVolume;							
 							setGameClientMuteStatus(serverId, clientId);
 							if (alive && listedInfo.on != LISTED_ON_NONE) {																
 								if (subtype == "digital")
