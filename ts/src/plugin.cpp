@@ -46,8 +46,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_API_VERSION 20
 //#define PLUGIN_API_VERSION 19
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -67,6 +67,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 
 #define PLUGIN_VERSION "0.9.5gh"
 #define CANT_SPEAK_DISTANCE 5
+#define SPEAKER_GAIN 4
 
 #define PIWIK_URL L"nkey.piwik.pro"
 #define UPDATE_URL L"raw.github.com"
@@ -209,7 +210,7 @@ struct CLIENT_DATA
 
 	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>*> filtersCantSpeak;
 	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>*> filtersVehicle;
-	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>*> filtersSpeakers;
+	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>*> filtersSpeakers;
 	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>*> filtersPhone;
 	
 	float viewAngle;
@@ -227,12 +228,12 @@ struct CLIENT_DATA
 	}
 
 	
-	Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* getSpeakerFilter(std::string key)
+	Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>* getSpeakerFilter(std::string key)
 	{
 		if (!filtersSpeakers.count(key))
 		{
-			filtersSpeakers[key] = new Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>();
-			filtersSpeakers[key]->setup(2, 48000, 3000, 1500);
+			filtersSpeakers[key] = new Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>();
+			filtersSpeakers[key]->setup(1, 48000, 2000, 1000);
 		}
 		return filtersSpeakers[key];
 	}
@@ -697,7 +698,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 					float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
 					float distance_from_radio = distance(clientData->clientPosition, position);					
 					applyGain(input, wav._spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance));
-					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(input, wav._spec.channels, samples, 2, (clientData->getSpeakerFilter(id)));					
+					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(input, wav._spec.channels, samples, SPEAKER_GAIN, (clientData->getSpeakerFilter(id)));
 					if (underwater)
 					{
 						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(input, wav._spec.channels, samples, CANT_SPEAK_GAIN * 50, (clientData->getFilterCantSpeak(id)));
@@ -2640,7 +2641,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 						const float radioVehicleVolumeLoss = clamp(myVehicleDesriptor.second + info.vehicle.second, 0.0f, 0.99f);
 						bool radioVehicleCheck = (myVehicleDesriptor.first == info.vehicle.first);
 						
-						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, 2, (data->getSpeakerFilter(info.radio_id)));
+						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, SPEAKER_GAIN, (data->getSpeakerFilter(info.radio_id)));
 
 						float speakerDistance = (info.volume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
 						if (radioVehicleVolumeLoss < 0.01 || radioVehicleCheck)
