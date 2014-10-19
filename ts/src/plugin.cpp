@@ -65,7 +65,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.5gh"
+#define PLUGIN_VERSION "0.9.5rc"
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 
@@ -682,7 +682,6 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 			}	
 			fclose(f);
 		}
-
 	}
 	else
 	{
@@ -690,49 +689,48 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
 
-			
-	short* data = (short*)wave->_data.get_ptr();
-	int samples = (wave->_data.get_size() / sizeof(short)) / wave->_spec.channels;
-	short* input = new short[samples * wave->_spec.channels];
+	if (wave)
+	{
+		short* data = (short*)wave->_data.get_ptr();
+		int samples = (wave->_data.get_size() / sizeof(short)) / wave->_spec.channels;
+		short* input = new short[samples * wave->_spec.channels];
 
-	memcpy(input, data, wave->_data.get_size());
-	applyGain(input, wave->_spec.channels, samples, gain);
+		memcpy(input, data, wave->_data.get_size());
+		applyGain(input, wave->_spec.channels, samples, gain);
 
-	std::string id = to_play + std::to_string(rand());
-	anyID me = getMyId(serverConnectionHandlerID);
-	EnterCriticalSection(&serverDataCriticalSection);
+		std::string id = to_play + std::to_string(rand());
+		anyID me = getMyId(serverConnectionHandlerID);
+		EnterCriticalSection(&serverDataCriticalSection);
 
-	if (hasClientData(serverConnectionHandlerID, me)) {
-		CLIENT_DATA* clientData = getClientData(serverConnectionHandlerID, me);
-		if (clientData)
-		{
-			float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
-			float distance_from_radio = distance(clientData->clientPosition, position);
+		if (hasClientData(serverConnectionHandlerID, me)) {
+			CLIENT_DATA* clientData = getClientData(serverConnectionHandlerID, me);
+			if (clientData)
+			{
+				float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
+				float distance_from_radio = distance(clientData->clientPosition, position);
 
-			if (vehicleVolumeLoss > 0.01 && !vehicleCheck)
-			{					
-				processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2), clientData->getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
-			}				
-			if (onGround)
-			{					
-				applyGain(input, wave->_spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance));					
-				processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, SPEAKER_GAIN, (clientData->getSpeakerFilter(id)));
-				if (underwater)
+				if (vehicleVolumeLoss > 0.01 && !vehicleCheck)
 				{
-					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, CANT_SPEAK_GAIN * 50, (clientData->getFilterCantSpeak(id)));
-				}					
+					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2), clientData->getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
+				}
+				if (onGround)
+				{
+					applyGain(input, wave->_spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance));
+					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, SPEAKER_GAIN, (clientData->getSpeakerFilter(id)));
+					if (underwater)
+					{
+						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, CANT_SPEAK_GAIN * 50, (clientData->getFilterCantSpeak(id)));
+					}
+				}
+				clientData->getClunk(id)->process(input, wave->_spec.channels, samples, position, clientData->viewAngle);
 			}
-			clientData->getClunk(id)->process(input, wave->_spec.channels, samples, position, clientData->viewAngle);
+
 		}
+		LeaveCriticalSection(&serverDataCriticalSection);
 
+		appendPlayback(id, serverConnectionHandlerID, input, samples, wave->_spec.channels);
+		delete input;
 	}
-	LeaveCriticalSection(&serverDataCriticalSection);
-
-	appendPlayback(id, serverConnectionHandlerID, input, samples, wave->_spec.channels);
-	delete input;
-	
-
-	
 }
 
 void playWavFile(const char* fileNameWithoutExtension)
@@ -2802,6 +2800,29 @@ void ts3plugin_onClientSelfVariableUpdateEvent(uint64 serverConnectionHandlerID,
 		std::string command = "VOLUME\t" + myNickname + "\t" + std::to_string(serverIdToData[serverId].myVoiceVolume) + "\t" + (start ? "true" : "false");
 		LeaveCriticalSection(&serverDataCriticalSection);
 		ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, command.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
+	}
+	if (flag == CLIENT_FLAG_TALKING && *newValue == '0' && inGame)
+	{
+		uint64 serverId = ts3Functions.getCurrentServerConnectionHandlerID();
+		bool set_talk_to_true = false;
+		EnterCriticalSection(&serverDataCriticalSection);		
+		if (serverIdToData[serverConnectionHandlerID].tangentPressed)
+		{
+			set_talk_to_true = true;
+		}
+		LeaveCriticalSection(&serverDataCriticalSection);
+		if (set_talk_to_true)
+		{
+			//TODO:
+			/*DWORD error;
+			if ((error = ts3Functions.setClientSelfVariableAsInt(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_INPUT_DEACTIVATED, INPUT_ACTIVE)) != ERROR_ok) {
+				log("Can't active talking by tangent", error);
+			}
+			error = ts3Functions.flushClientSelfUpdates(ts3Functions.getCurrentServerConnectionHandlerID(), NULL);
+			if (error != ERROR_ok && error != ERROR_ok_no_update) {
+				log("Can't flush self updates", error);
+			};*/
+		}
 	}
 }
 
