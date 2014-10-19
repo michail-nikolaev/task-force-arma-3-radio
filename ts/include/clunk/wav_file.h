@@ -36,6 +36,9 @@ namespace clunk {
 		Buffer		_data;
 
 	public:
+		WavFile()
+		{
+		}
 		WavFile(FILE *f);
 		~WavFile();
 
