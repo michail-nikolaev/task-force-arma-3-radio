@@ -1900,7 +1900,7 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 			CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[*it];
 			serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);
 			log_string(std::string("Expire position of ") + *it + " time:" + std::to_string(time - data->positionTime), LogLevel_DEBUG);
-			delete data;
+			//delete data; leave it for now to avoid memory corruption
 		}
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
@@ -2560,11 +2560,21 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	static DWORD last_no_info;
-	EnterCriticalSection(&serverDataCriticalSection);
-	bool alive = serverIdToData[serverConnectionHandlerID].alive;
-	bool canSpeak = serverIdToData[serverConnectionHandlerID].canSpeak;
 	anyID myId = getMyId(serverConnectionHandlerID);
-	LeaveCriticalSection(&serverDataCriticalSection);
+	std::string myNickname = getMyNickname(serverConnectionHandlerID);
+	EnterCriticalSection(&serverDataCriticalSection);
+
+	if (serverIdToData.count(serverConnectionHandlerID) == 0)
+	{
+		serverIdToData[serverConnectionHandlerID] = SERVER_RADIO_DATA();
+		serverIdToData[serverConnectionHandlerID].myNickname = myNickname;
+	}	
+
+	bool alive = serverIdToData[serverConnectionHandlerID].alive;
+	bool canSpeak = serverIdToData[serverConnectionHandlerID].canSpeak;	
+
+	LeaveCriticalSection(&serverDataCriticalSection);	
+
 	if (hasClientData(serverConnectionHandlerID, clientID) && hasClientData(serverConnectionHandlerID, myId) && isPluginEnabledForUser(serverConnectionHandlerID, clientID))
 	{
 		if (isSeriousModeEnabled(serverConnectionHandlerID, clientID) && !alive)
