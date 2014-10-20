@@ -596,6 +596,7 @@ class CfgWeapons
 		tf_subtype = "digital";
 		tf_parent = "tf_anprc154";
 		tf_additional_channel = 0;
+		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
 	};
 
 	class tf_rf7800str: ItemRadio
@@ -615,6 +616,7 @@ class CfgWeapons
 		tf_subtype = "digital";
 		tf_parent = "tf_rf7800str";
 		tf_additional_channel = 0;
+		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
 	};
 
 	class tf_pnr1000a: ItemRadio
@@ -633,6 +635,7 @@ class CfgWeapons
 		tf_subtype = "digital";
 		tf_parent = "tf_pnr1000a";
 		tf_additional_channel = 0;
+		tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
 	};	
 	
 	TF_RADIO_IDS(tf_anprc152,AN/PRC-152)
