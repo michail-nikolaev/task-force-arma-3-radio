@@ -23,6 +23,7 @@ class CfgPatches
 			"Item_tf_fadak",
 			"Item_tf_anprc154",
 			"Item_tf_rf7800str",
+			"Item_tf_microdagr",
 			"tf_rt1523g_sage",
 			"tf_rt1523g_green",
 			"tf_rt1523g_fabric",
@@ -33,7 +34,8 @@ class CfgPatches
 			"tf_rt1523g_bwmod",
 			"tf_rt1523g_big_rhs",
 			"tf_rt1523g_rhs",
-			"tf_mr3000_rhs"
+			"tf_mr3000_rhs",
+			"tf_microdagr"
 		};
 		weapons[] = {
 			"tf_anprc152", 
@@ -515,6 +517,23 @@ class CfgVehicles {
 	};
 	
 	
+	class Item_tf_microdagr: Item_Base_F
+	{
+		scope = 2;
+		scopeCurator = 2;
+		displayName =  "MicroDAGR Radio Programmer";
+		author = "Nkey";
+		vehicleClass = "Items";
+		class TransportItems
+		{
+			class tf_microdagr
+			{
+				name="tf_microdagr";
+				count=1;
+			};
+		};
+	};
+	
 };
 	
 #include "radio_ids.hpp"
@@ -522,6 +541,17 @@ class CfgVehicles {
 class CfgWeapons
 {
 	class ItemRadio;	
+	class ItemWatch;
+	
+	class tf_microdagr: ItemWatch
+	{
+		author = "Raspu, Nkey";
+		displayName = "MicroDAGR Radio Programmer";
+		descriptionShort = "MicroDAGR Radio Programmer";
+		picture = "\task_force_radio_items\microdagr\microdagr_icon.paa";
+		scope = 2;
+		scopeCurator = 2;
+	};
 	
 	class tf_anprc152: ItemRadio
 	{
@@ -591,8 +621,7 @@ class CfgWeapons
 		tf_prototype = 1;
 		tf_range = 2000;
 		tf_dialog = "anprc154_radio_dialog";
-		tf_encryptionCode = "tf_guer_radio_code";
-		tf_dialogUpdate = "";	
+		tf_encryptionCode = "tf_guer_radio_code";		
 		tf_subtype = "digital";
 		tf_parent = "tf_anprc154";
 		tf_additional_channel = 0;
@@ -611,8 +640,7 @@ class CfgWeapons
 		tf_prototype = 1;
 		tf_range = 2000;
 		tf_dialog = "rf7800str_radio_dialog";
-		tf_encryptionCode = "tf_west_radio_code";
-		tf_dialogUpdate = "";	
+		tf_encryptionCode = "tf_west_radio_code";		
 		tf_subtype = "digital";
 		tf_parent = "tf_rf7800str";
 		tf_additional_channel = 0;
@@ -630,8 +658,7 @@ class CfgWeapons
 		tf_prototype = 1;
 		tf_range = 2000;
 		tf_dialog = "pnr1000a_radio_dialog";
-		tf_encryptionCode = "tf_east_radio_code";
-		tf_dialogUpdate = "";	
+		tf_encryptionCode = "tf_east_radio_code";		
 		tf_subtype = "digital";
 		tf_parent = "tf_pnr1000a";
 		tf_additional_channel = 0;
