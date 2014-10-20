@@ -65,7 +65,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.5rc"
+#define PLUGIN_VERSION "0.9.5rc2"
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 
