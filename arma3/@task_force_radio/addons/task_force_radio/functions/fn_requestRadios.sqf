@@ -29,7 +29,7 @@ _fnc_CopySettings = {
 			_localSettings = missionNamespace getVariable _variableName;			
 			if !(isNil "_variableName") then {
 				_destination = (_this select 2);
-				[_localSettings, _destination, true] call TFAR_fnc_setSwSettings;
+				[_destination, _localSettings, true] call TFAR_fnc_setSwSettings;
 			};
 			_copyIndex = _copyIndex + 1;
 		};
@@ -42,7 +42,7 @@ waitUntil {
 	false;
 };
 
-if (time - TF_last_request_time > 3) then {
+if ((time - TF_last_request_time > 3) or {_this}) then {
 	TF_last_request_time = time;
 	_variableName = "radio_request_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
 	_radiosToRequest = _this call TFAR_fnc_radioToRequestCount;
