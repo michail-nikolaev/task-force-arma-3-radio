@@ -30,7 +30,10 @@ class CfgPatches
 			"tf_rt1523g_black",
 			"tf_rt1523g_big_bwmod",
 			"tf_mr3000_bwmod",
-			"tf_rt1523g_bwmod"
+			"tf_rt1523g_bwmod",
+			"tf_rt1523g_big_rhs",
+			"tf_rt1523g_rhs",
+			"tf_mr3000_rhs"
 		};
 		weapons[] = {
 			"tf_anprc152", 
@@ -212,6 +215,13 @@ class CfgVehicles {
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_prc117g_bwmod_co.paa"};
 	};
+	class tf_rt1523g_rhs: tf_rt1523g
+	{
+		displayName = "RT-1523G (ASIP) RHS";
+		descriptionShort = "RT-1523G (ASIP) RHS";
+		hiddenSelections[] = {"camo"};
+		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_prc117g_rhs_co.paa.paa"};
+	};
 	class tf_rt1523g_big: tf_rt1523g {
 		author = "Raspu, Gandi, Nkey";
 		displayName = "RT-1523G (ASIP) Big";
@@ -229,6 +239,15 @@ class CfgVehicles {
 		mass = 30;		
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_bwmod_co.paa"};
+		model="\task_force_radio_items\models\clf_nicecomm2";
+	};	
+	class tf_rt1523g_big_rhs: tf_rt1523g {
+		displayName = "RT-1523G (ASIP) Big RHS";
+		descriptionShort = "RT-1523G (ASIP) Big RHS";
+		maximumLoad = 160;
+		mass = 30;		
+		hiddenSelections[] = {"camo"};
+        hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_rhs_co.paa"};
 		model="\task_force_radio_items\models\clf_nicecomm2";
 	};	
 	class tf_rt1523g_sage: tf_rt1523g {
@@ -325,6 +344,13 @@ class CfgVehicles {
 		descriptionShort = "MR3000 BWMOD";
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_bwmod_co.paa"};		
+	};
+	class tf_mr3000_rhs: tf_mr3000
+	{
+		displayName = "MR3000 RHS";
+		descriptionShort = "MR3000 RHS";
+		hiddenSelections[] = {"camo"};
+        hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_rhs_digital_co.paa"};		
 	};
 
 	class tf_anarc210: TFAR_Bag_Base
