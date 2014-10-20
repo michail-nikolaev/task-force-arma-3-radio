@@ -132,7 +132,7 @@
 					Dar una radio personal a cada miembro de equipo
 				</Spanish>
 				<German>
-					Weist jedem Teammitglied ein Kurzstreckenfunkgerät zu
+					Weist jedem Gruppenmitglied ein Kurzstreckenfunkgerät zu
 				</German>
 			    <Turkish>
 					Tüfekçi(rifleman) radyosunu askerlere ver
@@ -149,7 +149,7 @@
 					Fuerza el uso de TFAR en la misión.
 				</Spanish>
 				<German>
-					Erzwingt den Gebrauch von TFAR in der Mission.
+					Erzwingt den Gebrauch von TFAR während der Mission.
 				</German>
 			    <Turkish>
 					TFAR görevde kullanmaya zorlama.
@@ -166,7 +166,7 @@
 					Codigo de encriptación
 				</Spanish>
 				<German>
-					Code Verschlüsselung
+					Verschlüsselungscode
 				</German>
 			    <Turkish>
 					Şifreleme kodu
@@ -370,7 +370,7 @@
 					Permite configurar las radios por defecto, la encriptacion y las frecuencias del bando sincronizado.
 				</Spanish>
 				<German>
-					Ermöglicht gleiche Einstellungen für Verschlüsselung und Frequenzen für alle Fraktionen
+					Ermöglicht gleiche Einstellungen der Verschlüsselung und Frequenzen für alle Fraktionen
 				</German>
 			    <Turkish>
 					Radyoları varsayılan ayarlarına izin ver, şifreleme ve senkronize için frekanslar.
