@@ -85,7 +85,7 @@ class HiddenButton
 	type = 1;
 	text = "";
 	colorText[] = {
-			0, 0, 0, 0
+			0, 0, 0, 1
 	};
 	colorDisabled[] = {
 			0, 0, 0, 0
