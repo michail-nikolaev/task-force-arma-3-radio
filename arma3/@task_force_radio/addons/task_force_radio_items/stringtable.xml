@@ -13,7 +13,7 @@
 					TFAR Radio (NATO)
 				</Spanish>
 				<German>
-					TFAR Radio (NATO)
+					TFAR Funkgeräte (NATO)
 				</German>
 			    <Turkish>
 					TFAR Radyo (NATO)
@@ -30,7 +30,7 @@
 					TFAR Radio (CSAT)
 				</Spanish>
 				<German>
-					TFAR Radio (CSAT)
+					TFAR Funkgeräte (CSAT)
 				</German>
 			    <Turkish>
 					TFAR Radyo (CSAT)
@@ -47,7 +47,7 @@
 					TFAR Radio (AAF)
 				</Spanish>
 				<German>
-					TFAR Radio (AAF)
+					TFAR Funkgeräte (AAF)
 				</German>
 			    <Turkish>
 					TFAR Radyo (AAF)
@@ -81,7 +81,7 @@
 					Dar a los lideres de equipo una radio de largo alcance
 				</Spanish>
 				<German>
-					Weist dem Teamleiter ein Langstreckenfunkgerät zu
+					Weist dem Gruppenführer ein Langstreckenfunkgerät zu
 				</German>
 			    <Turkish>
 					Takım liderine uzun menzil radyo ver
@@ -98,7 +98,7 @@
 					Da a cada lider de equipo una radio de largo alcance apropiada
 				</Spanish>
 				<German>
-					Weist jedem Teamleiter das entsprechende Langstreckenfunkgerät zu
+					Weist jedem Gruppenführer das entsprechende Langstreckenfunkgerät zu
 				</German>
 			    <Turkish>
 					Her takım liderine uygun uzun menzilli radyo ver
@@ -183,7 +183,7 @@
 					Radio LA
 				</Spanish>
 				<German>
-					Radio LS
+					LS-Funkgerät
 				</German>
 			    <Turkish>
 					UM(Uzun Menzilli) Radyo
@@ -216,9 +216,9 @@
 				<Spanish>
 					Radio PR
 				</Spanish>
-				<Spanish>
-					PR Funkgerät
-				</Spanish>
+				<German>
+					Pers. Funkgerät
+				</German>
 			    <Turkish>
 					KR(Kişisel Radyo) Radyo
 				</Turkish>
@@ -234,7 +234,7 @@
 					Radio Personal
 				</Spanish>
 				<German>
-					Personal radio
+					Persönliches Funkgerät
 				</German>
 			    <Turkish>
 					Kişisel Radyo
@@ -285,7 +285,7 @@
 					Frec. RP
 				</Spanish>
 				<German>
-					Freq. KS
+					Pers. Freq.
 				</German>
 			    <Turkish>
 					KR(Kişisel Radyo) Senkronize.
@@ -302,7 +302,7 @@
 					Frecuencia por defecto PR (como array SQF)
 				</Spanish>
 				<German>
-					KS Standardfrequenzen (als SQR-Array)
+					Pers. Standardfrequenzen (als SQF-Array)
 				</German>
 			    <Turkish>
 					KR varsayılar senkronize (SQF dizisi olarak)
@@ -319,7 +319,7 @@
 					LA Frec.
 				</Spanish>
 				<German>
-					Freq. LS
+					LS Freq.
 				</German>
 			    <Turkish>
 					UM(Uzun Menzilli) Senkronize.
@@ -336,7 +336,7 @@
 					Frecuencia por defecto LA (como array SQF)
 				</Spanish>
 				<German>
-					LS Standardfrequenzen (als SQR-Array)
+					LS Standardfrequenzen (als SQF-Array)
 				</German>
 			    <Turkish>
 					UM(Uzun Menzilli) varsayılan senkronize (SQF dizisi olarak)
@@ -404,7 +404,7 @@
 					Permite configurar las frecuencias por defecto para los bandos.
 				</Spanish>
 				<German>
-					Ermöglicht die Einstellung der Standartfrequenzen für Fraktionen
+					Ermöglicht die Einstellung der Standardfrequenzen für Fraktionen
 				</German>
 			    <Turkish>
 					Taraflar için varsayılan frekans ayarları.
@@ -422,7 +422,7 @@
 					Coeficiente de intercepción del terreno
 				</Spanish>
 				<German>
-					Signalabschwächung Coefficient durch das Gelände
+					Koeffizient für Signalabschwächung durch das Gelände
 				</German>
 			    <Turkish>
 					Kesişme Alan Katsayısı
@@ -439,7 +439,7 @@
 					Coeficiente de intercepción del terreno
 				</Spanish>
 				<German>
-					Signalabschwächung Coefficient durch das Gelände
+					Koeffizient für Signalabschwächung durch das Gelände
 				</German>
 			    <Turkish>
 					Kesişme Alan Katsayısı
@@ -457,7 +457,7 @@
 					Nombre del canal
 				</Spanish>
 				<German>
-					Kanal Name
+					Kanalname
 				</German>
 			    <Turkish>
 					Kanal Adı
@@ -474,7 +474,7 @@
 					Nombre del canal del TeamSpeak
 				</Spanish>
 				<German>
-					Teamspeak Kanal Name
+					Teamspeak-Kanalname
 				</German>
 			    <Turkish>
 					TeamSpeak Kanal Adı
@@ -492,7 +492,7 @@
 					Contraseña del canal
 				</Spanish>
 				<German>
-					Kanal Passwort
+					Kanalpasswort
 				</German>
 			    <Turkish>
 					Kanal Şifresi
@@ -509,7 +509,7 @@
 					Contraseña del canal del TeamSpeak
 				</Spanish>
 				<German>
-					Teamspeak Kanal Passwort
+					Teamspeak-Kanalpasswort
 				</German>
 			    <Turkish>
 					TeamSpeak Kanal Şifresi
