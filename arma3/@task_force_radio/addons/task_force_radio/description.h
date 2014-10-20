@@ -1,4 +1,5 @@
-﻿#include "\task_force_radio\define.h"
+﻿#include "task_force_radio\functions\define.h"
+#include "CfgFunctions.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// Base Classes
@@ -9,14 +10,14 @@ class RscBackPicture
 	type = 0;
 	idc = -1;
 	style = 48;
-	colorBackground[] = 
+	colorBackground[] =
 	{
 		0,
 		0,
 		0,
 		0
 	};
-	colorText[] = 
+	colorText[] =
 	{
 		1,
 		1,
@@ -42,28 +43,28 @@ class RscEditLCD
 	y = 0;
 	h = 0.04;
 	w = 0.2;
-	colorBackground[] = 
+	colorBackground[] =
 	{
 		0,
 		0,
 		0,
 		1
 	};
-	colorText[] = 
+	colorText[] =
 	{
 		0,
 		0,
 		0,
 		1
 	};
-	colorDisabled[] = 
+	colorDisabled[] =
 	{
 		1,
 		1,
 		1,
 		0.25
 	};
-	colorSelection[] = 
+	colorSelection[] =
 	{
 		"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.69])",
 		"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.75])",
@@ -72,19 +73,18 @@ class RscEditLCD
 	};
 	autocomplete = "";
 	text = "";
-	size = "0.2 * (0.7 / (getResolution select 5))";
+	size = "0.2 * (0.7 / (getResolution select 5))";	
 	style = "0x00 + 0x40 + 0x200";
 	font = "tf_font_segments"; 
 	shadow = 1;
-	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2) * (0.7 / (getResolution select 5))";
-};
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2) * (0.7 / (getResolution select 5))";};
 class HiddenButton
 {
 	access = 0;
 	type = 1;
 	text = "";
 	colorText[] = {
-			0, 0, 0, 0
+			0, 0, 0, 1
 	};
 	colorDisabled[] = {
 			0, 0, 0, 0
@@ -163,17 +163,18 @@ class HiddenRotator:HiddenButton{
 class HiddenFlip:HiddenButton{
 	soundPush[] = 
 	{
-		"\task_force_radio\sounds\switchPush",
+		"task_force_radio\sounds\switchPush",
 		0.5,
 		1
 	};
 	soundClick[] = 
 	{
-		"\task_force_radio\sounds\switchClick",
+		"task_force_radio\sounds\switchClick",
 		0.5,
 		1
 	};
 };
+
 
 #include "\task_force_radio\anprc152\anprc152.ext"
 #include "\task_force_radio\anprc148jem\anprc148jem.ext"
