@@ -54,6 +54,14 @@ if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_dd_frequenci
 };
 publicVariable "tf_same_dd_frequencies_for_side_server";
 
+
+if (isNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_microdagr_to_soldier")) then {
+	TF_give_microdagr_to_soldier_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_microdagr_to_soldier") == 1;
+} else {
+	TF_give_microdagr_to_soldier_server = true;
+};
+publicVariable "TF_give_microdagr_to_soldier_server";
+
 waitUntil {sleep 0.1;time > 0};
 
 TF_Radio_Count = [];

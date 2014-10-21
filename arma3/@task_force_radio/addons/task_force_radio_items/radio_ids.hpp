@@ -1,7 +1,6 @@
 #define TF_RADIO_ID(X,Y,Z) class X##_##Z : X \
 	{ \
 		displayName = Y Z; \
-		descriptionShort = Y Z; \
 		scope = 1; \
 		scopeCurator = 1; \
 		tf_prototype = 0; \

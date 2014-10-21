@@ -27,7 +27,7 @@ class anprc154_radio_dialog
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
-	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText 'task_force_radio\anprc154\anprc154_n.paa';};";
+	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\task_force_radio\anprc154\anprc154_n.paa';((_this select 0) displayCtrl TF_MICRODAGR_BACKGROUND_ID) ctrlSetText '\task_force_radio\microdagr\microdagr_n.paa';}; _this call TFAR_fnc_updateProgrammatorDialog;";
 	controls[]=
 	{
 		background,
@@ -138,11 +138,11 @@ class anprc154_radio_dialog
 		w = 0.0324844 * safezoneW;
 		h = 0.1089 * safezoneH;
 		tooltip = $STR_speakers_settings_true;
-		action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
+		action = "playSound 'TFAR_rotatorPush';[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 	};
 	class microdagr_background: RscBackPicture
 	{
-		idc = IDC_ANPRC154_MICRODAGR_BACKGROUND;
+		idc = IDC_MICRODAGR_BACKGROUND;
 		text = "\task_force_radio\microdagr\microdagr.paa";
 		x = 0.217953 * safezoneW + safezoneX;
 		y = -0.1611 * safezoneH + safezoneY;
@@ -152,7 +152,7 @@ class anprc154_radio_dialog
 	};
 	class channel_edit: RscEditLCD
 	{
-		idc = IDC_ANPRC152_CHANNEL_EDIT;
+		idc = IDC_MICRODAGR_CHANNEL_EDIT;
 		text = "CH1";
 		x = 0.437609 * safezoneW + safezoneX;
 		y = 0.3504 * safezoneH + safezoneY;
@@ -166,7 +166,7 @@ class anprc154_radio_dialog
 	};
 	class edit: RscEditLCD
 	{
-		idc = IDC_ANPRC152_EDIT;
+		idc = IDC_MICRODAGR_EDIT;
 		text = $STR_A3_anprc154_edit;
 		x = 0.476281 * safezoneW + safezoneX;
 		y = 0.3504 * safezoneH + safezoneY;
@@ -180,7 +180,7 @@ class anprc154_radio_dialog
 	};
 	class clear: HiddenButton
 	{
-		idc = IDC_ANPRC154_CLEAR;
+		idc = IDC_MICRODAGR_CLEAR;
 		text = "CLR";
 		x = 0.435547 * safezoneW + safezoneX;
 		y = 0.4329 * safezoneH + safezoneY;
@@ -189,11 +189,11 @@ class anprc154_radio_dialog
 		tooltip = $STR_clear_frequency;
 		font = "tf_font_dots";
 		shadow = 2;
-		action = "ctrlSetText [IDC_ANPRC152_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANPRC152_RADIO_DIALOG_ID) displayCtrl IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);";
+		action = "ctrlSetText [TF_MICRODAGR_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANPRC152_RADIO_DIALOG_ID) displayCtrl TF_MICRODAGR_EDIT_ID);";
 	};
 	class enter: HiddenButton
 	{
-		idc = IDC_ANPRC154_ENTER;
+		idc = IDC_MICRODAGR_ENTER;
 		text = "ENT";
 		x = 0.498453 * safezoneW + safezoneX;
 		y = 0.4318 * safezoneH + safezoneY;

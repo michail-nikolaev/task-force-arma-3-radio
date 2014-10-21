@@ -19,7 +19,7 @@
 					Estas usando diferentes versiones de Task Force Radio. Versión del servidor : %1, Tu versión : %2
 				</Spanish>
 				<German>
-					Es werden verschiedene Versionen von Task Force Radio verwendet. Server version: %1, deine Version: %2
+					Es werden unterschiedliche Versionen von Task Force Radio verwendet. Server version: %1, deine Version: %2
 				</German>
 			    <Turkish>
 					Versiyon uyuşmazlığı. Server versiyonu: %1, Senin versiyonun: %2
@@ -1416,7 +1416,7 @@
 					Para copiar los ajustes de...
 				</Spanish>
 				<German>
-					Einstellungen kopieren von...
+					Einstellungen kopieren aus...
 				</German>
 			    <Turkish>
 					Ayarları kopyala...
@@ -1439,7 +1439,7 @@
 					Para copiar los ajustes de otra radio con el mismo código de cifrado
 				</Spanish>
 				<German>
-					Einstellungen von einem anderen Funkgerät mit derselben Verschlüsselung kopieren
+					Einstellungen aus einem anderen Funkgerät derselben Verschlüsselung kopieren
 				</German>
 			    <Turkish>
 					Aynı şifreleme kodu ile başka bir radyo ayarlarını kopyala
@@ -1599,9 +1599,11 @@
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Para salir del interfaz de las radios.
 				</Spanish>
 				<German>
-&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk Taste in TeamSpeak&lt;/font&gt;	Direktes Sprechen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;Feststelltaste&lt;/font&gt;	Kurzstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + Feststelltaste&lt;/font&gt;	Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + P&lt;/font&gt;	Kurzstreckenfunk-Interface öffnen. Das Funkgerät muss sich im Inventar befinden. Sollten mehrere Funkgerät im Inventar vorhanden sein, wird ein Auswahlmenü angezeigt. Es kann ein Funkgerät als aktiv gesetzt werden, welches dann zum Funken benutzt wird.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + SHIFT + A/D&lt;/font&gt; Kurzstreckenfunkgeräte durschalten.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellung für Kurzstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Kanalwahl für Kurzstreckenfunk.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Langstreckenfunk-Interface öffnen. Das Funkgerät muss im Rucksackslot sein oder Sie befinden sich in einem Fahrzeug. Sollten mehrere Funkgerät ansteuerbar sein, wird ein Auswahlmenü angezeigt. Es kann ein Funkgerät als aktiv gesetzt werden, welches dann zum Funken benutzt wird.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; Langstreckenfunkgeräte durchschalten.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; Stereoeinstellungen für Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + NUM[1-9]&lt;/font&gt;	Kanalwahl für Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + TAB&lt;/font&gt;	Lautstärkewahl für das Direkte Sprechen. Sie können leise, normal und laut sprechen (betrifft nicht die Lautstärke beim Funken).&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Unterwasser-Transceiver-Interface öffnen (benötigt Kreislauftauchgerät).&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Auf Unterwasser-Transceiver funken.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + ]&lt;/font&gt;	Nächstes Personal Radio wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + [&lt;/font&gt;	Vorheriges Personal Radio wählen.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + ]&lt;/font&gt;	Nächstes Langstreckenfunkgerät wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + [&lt;/font&gt;	Vorheriges Langstreckenfunkgerät wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + [←,↑,→]&lt;/font&gt;	Stereoeinstellungen für das Personal Radio ändern.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Stereoeinstellungen für das Langstreckenfunkgerät ändern.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Auf dem zusätzlichen Kanal des Personal Radio senden.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Auf dem zusätzlichen Kanal des Langstreckenfunkgerätes senden.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Funkinterface verlassen.
+&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk Taste im TeamSpeak&lt;/font&gt;	Direktes Sprechen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;Feststelltaste&lt;/font&gt;	Kurzstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + Feststelltaste&lt;/font&gt;	Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + P&lt;/font&gt;	Oberfläche des Kurzstreckenfunks öffnen. Das Funkgerät muss sich im Inventar befinden. Sollten mehrere Funkgerät im Inventar vorhanden sein, wird ein Auswahlmenü angezeigt. Es kann ein Funkgerät als aktiv gesetzt werden, welches dann zum Funken benutzt wird.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + SHIFT + A/D&lt;/font&gt; Kurzstreckenfunkgeräte durschalten.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellung für Kurzstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Kanalwahl für Kurzstreckenfunk.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Oberfläche des Langstreckenfunks öffnen. Sie müsssen sich in einem Fahrzeug befinden oder das Funkgerät als Rucksack einordnen.. Sollten mehrere Funkgerät ansteuerbar sein, wird ein Auswahlmenü angezeigt. Es kann lediglich ein Funkgerät gleichzeitig zum Funken verwendet werden.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + UMSCHALT + A/D&lt;/font&gt; Langstreckenfunkgeräte durchschalten.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellungen für Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + NUM[1-9]&lt;/font&gt;	Kanalauswahl für Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + TAB&lt;/font&gt;	Lautstärkenregelung für das Direkte Sprechen. Es ist möglich leise, normal oder laut sprechen (Unabhänig der Funklautstärke).&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Oberfläche des Unterwasser-Sendeempfängers öffnen(benötigt Kreislauftauchgerät).&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Auf Unterwasser-Sendeempfänger funken.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + ]&lt;/font&gt;	Nächstes Funkgerät wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + [&lt;/font&gt;	Vorheriges Funkgerät wählen.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + ]&lt;/font&gt;	Nächstes Langstreckenfunkgerät wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + [&lt;/font&gt;	Vorheriges Langstreckenfunkgerät wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + [?,?,?]&lt;/font&gt;	Stereoeinstellungen für das Funkgerät ändern.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + [?,?,?]&lt;/font&gt;	Stereoeinstellungen für das Langstreckenfunkgerät ändern.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Auf dem zusätzlichen Kanal des Funkgerätes senden.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Auf dem zusätzlichen Kanal des Langstreckenfunkgerätes senden.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Funkoberfläche verlassen.
+
+		
 				</German>
 			    <Turkish>
 &lt;font color=&quot;#67ED24&quot;&gt;Bas konuş ayarı Teamspeak&lt;/font&gt;	Oyun içi Direct channeldan ses verir.&lt;br/&gt;
