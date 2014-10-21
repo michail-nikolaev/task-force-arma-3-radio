@@ -1720,7 +1720,7 @@ std::string processGameCommand(std::string command)
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
 	std::vector<std::string> tokens = split(command, '\t'); //may not be used in nickname	
 	if (tokens.size() == 2 && tokens[0] == "TS_INFO")
-		return ts_info(tokens[0]);
+		return ts_info(tokens[1]);
 	if (tokens.size() > 2 && tokens[0] == "KILLED")
 	{
 		processUnitKilled(tokens[1], currentServerConnectionHandlerID);
