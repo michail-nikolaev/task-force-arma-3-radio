@@ -197,7 +197,7 @@ class CfgVehicles {
 	{
 		author = "Raspu, Gandi, Nkey";
 		displayName = "RT-1523G (ASIP)";
-		descriptionShort = "RT-1523G (ASIP)";
+		descriptionShort = "RT-1523G (ASIP) long range radio 20km";
 		picture = "\task_force_radio_items\rt1523g\rt1523g_icon.paa";
 		model="\task_force_radio_items\models\clf_prc117g_ap";
 		hiddenSelections[] = {"camo"};
@@ -213,21 +213,21 @@ class CfgVehicles {
 	class tf_rt1523g_bwmod: tf_rt1523g
 	{
 		displayName = "RT-1523G (ASIP) BWMOD";
-		descriptionShort = "RT-1523G (ASIP) BWMOD";
+		descriptionShort = "RT-1523G (ASIP) BWMOD long range radio 20km";
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_prc117g_bwmod_co.paa"};
 	};
 	class tf_rt1523g_rhs: tf_rt1523g
 	{
 		displayName = "RT-1523G (ASIP) RHS";
-		descriptionShort = "RT-1523G (ASIP) RHS";
+		descriptionShort = "RT-1523G (ASIP) RHS long range radio 20km";
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_prc117g_rhs_co.paa.paa"};
 	};
 	class tf_rt1523g_big: tf_rt1523g {
 		author = "Raspu, Gandi, Nkey";
 		displayName = "RT-1523G (ASIP) Big";
-		descriptionShort = "RT-1523G (ASIP) Big";
+		descriptionShort = "RT-1523G (ASIP) Big long range radio 20km";
 		maximumLoad = 160;
 		mass = 30;		
 		hiddenSelections[] = {"camo"};
@@ -236,7 +236,7 @@ class CfgVehicles {
 	};	
 	class tf_rt1523g_big_bwmod: tf_rt1523g {
 		displayName = "RT-1523G (ASIP) Big BWMOD";
-		descriptionShort = "RT-1523G (ASIP) Big BWMOD";
+		descriptionShort = "RT-1523G (ASIP) Big BWMOD long range radio 20km";
 		maximumLoad = 160;
 		mass = 30;		
 		hiddenSelections[] = {"camo"};
@@ -245,7 +245,7 @@ class CfgVehicles {
 	};	
 	class tf_rt1523g_big_rhs: tf_rt1523g {
 		displayName = "RT-1523G (ASIP) Big RHS";
-		descriptionShort = "RT-1523G (ASIP) Big RHS";
+		descriptionShort = "RT-1523G (ASIP) Big RHS long range radio 20km";
 		maximumLoad = 160;
 		mass = 30;		
 		hiddenSelections[] = {"camo"};
@@ -254,7 +254,7 @@ class CfgVehicles {
 	};	
 	class tf_rt1523g_sage: tf_rt1523g {
 		displayName = "RT-1523G (ASIP) Sage";
-		descriptionShort = "RT-1523G (ASIP) Sage";
+		descriptionShort = "RT-1523G (ASIP) Sage long range radio 20km";
 		maximumLoad = 100;
 		mass = 16;		
 		hiddenSelections[] = {"camo"};
@@ -263,7 +263,7 @@ class CfgVehicles {
 	};
 	class tf_rt1523g_green: tf_rt1523g {
 		displayName = "RT-1523G (ASIP) Green";
-		descriptionShort = "RT-1523G (ASIP) Green";
+		descriptionShort = "RT-1523G (ASIP) Green long range radio 20km";
 		maximumLoad = 100;
 		mass = 16;		
 		hiddenSelections[] = {"camo"};
@@ -272,7 +272,7 @@ class CfgVehicles {
 	};
 	class tf_rt1523g_fabric: tf_rt1523g {
 		displayName = "RT-1523G (ASIP) Fabric";
-		descriptionShort = "RT-1523G (ASIP) Fabric";
+		descriptionShort = "RT-1523G (ASIP) Fabric long range radio 20km";
 		maximumLoad = 100;
 		mass = 16;		
 		hiddenSelections[] = {"camo"};
@@ -281,7 +281,7 @@ class CfgVehicles {
 	};
 	class tf_rt1523g_black: tf_rt1523g {
 		displayName = "RT-1523G (ASIP) Black";
-		descriptionShort = "RT-1523G (ASIP) Black";
+		descriptionShort = "RT-1523G (ASIP) Black long range radio 20km";
 		maximumLoad = 100;
 		mass = 16;
 		hiddenSelections[] = {"camo"};
@@ -294,7 +294,7 @@ class CfgVehicles {
 	{
 		author = "Raspu, Gandi, Nkey";
 		displayName = "AN/PRC 155";
-		descriptionShort = "AN/PRC 155";
+		descriptionShort = "AN/PRC 155 long range radio 20km";
 		picture = "\task_force_radio_items\anprc155\155_icon.paa";
 		scope = 2;
 		scopeCurator = 2;
@@ -310,7 +310,7 @@ class CfgVehicles {
 	class tf_anprc155_coyote: tf_anprc155 {
 		author = "Raspu, Gandi, Nkey";
 		displayName = "AN/PRC 155 Coyote";
-		descriptionShort = "AN/PRC 155 Coyote";
+		descriptionShort = "AN/PRC 155 Coyote long range radio 20km";
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_coyote_co.paa"};
 	};	
@@ -319,7 +319,7 @@ class CfgVehicles {
 	{
 		author = "Raspu, Gandi, Nkey";
 		displayName = "MR3000";
-		descriptionShort = "MR3000";
+		descriptionShort = "MR3000 long range radio 20km";
 		picture = "\task_force_radio_items\mr3000\mr3000_icon.paa";
 		scope = 2;
 		scopeCurator = 2;
@@ -336,21 +336,21 @@ class CfgVehicles {
 	{
 		author = "Raspu, Gandi, Nkey";
 		displayName = "MR3000 Multicam";
-		descriptionShort = "MR3000 Multicam";
+		descriptionShort = "MR3000 Multicam long range radio 20km";
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_co.paa"};		
 	};
 	class tf_mr3000_bwmod: tf_mr3000
 	{
 		displayName = "MR3000 BWMOD";
-		descriptionShort = "MR3000 BWMOD";
+		descriptionShort = "MR3000 BWMOD long range radio 20km";
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_bwmod_co.paa"};		
 	};
 	class tf_mr3000_rhs: tf_mr3000
 	{
 		displayName = "MR3000 RHS";
-		descriptionShort = "MR3000 RHS";
+		descriptionShort = "MR3000 RHS long range radio 20km";
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_rhs_digital_co.paa"};		
 	};
@@ -358,7 +358,7 @@ class CfgVehicles {
 	class tf_anarc210: TFAR_Bag_Base
 	{
 		displayName = "AN/ARC-210";
-		descriptionShort = "AN/ARC-210";
+		descriptionShort = "AN/ARC-210 airborne radio 40km";
 		picture = "\task_force_radio_items\anarc210\anarc210_icon.paa";		
 		model = "\task_force_radio_items\models\TFR_BACKPACK";
 		hiddenSelections[] = {"camo"};
@@ -377,7 +377,7 @@ class CfgVehicles {
 	class tf_anarc164: TFAR_Bag_Base
 	{
 		displayName = "AN/ARC-164";
-		descriptionShort = "AN/ARC-164";
+		descriptionShort = "AN/ARC-164 airborne radio 40km";
 		picture = "\task_force_radio_items\anarc164\anarc164_icon.paa";
 		model = "\task_force_radio_items\models\TFR_BACKPACK";
 		hiddenSelections[] = {"camo"};
@@ -396,7 +396,7 @@ class CfgVehicles {
 	class tf_mr6000l: TFAR_Bag_Base
 	{
 		displayName = "MR6000L";
-		descriptionShort = "MR6000L";
+		descriptionShort = "MR6000L airborne radio 40km";
 		model = "\task_force_radio_items\models\TFR_BACKPACK";
 		picture = "\task_force_radio_items\mr6000l\mr6000l_icon.paa";
 		scope = 2;
@@ -547,7 +547,7 @@ class CfgWeapons
 	{
 		author = "Raspu, Nkey";
 		displayName = "MicroDAGR Radio Programmer";
-		descriptionShort = "MicroDAGR Radio Programmer";
+		descriptionShort = "Provides ability to program rifleman radios in the field";
 		picture = "\task_force_radio_items\microdagr\microdagr_icon.paa";
 		scope = 2;
 		scopeCurator = 2;
@@ -557,7 +557,7 @@ class CfgWeapons
 	{
 		author = "Raspu";
 		displayName = "AN/PRC-152";
-		descriptionShort = "AN/PRC-152";
+		descriptionShort = "AN/PRC-152 personal radio 5km";
 		scope = 2;
 		scopeCurator = 2;
 		model = "\task_force_radio_items\models\tfr_anprc152";
@@ -576,7 +576,7 @@ class CfgWeapons
 	{
 		author = "Raspu";
 		displayName = "AN/PRC-148 JEM";
-		descriptionShort = "AN/PRC-148 JEM";
+		descriptionShort = "AN/PRC-148 JEM personal radio 5km";
 		scope = 2;
 		scopeCurator = 2;
 		model = "\task_force_radio_items\models\tfr_anprc148";
@@ -594,7 +594,7 @@ class CfgWeapons
 	class tf_fadak: ItemRadio
 	{
 		displayName = "FADAK";
-		descriptionShort = "FADAK";
+		descriptionShort = "FADAK personal radio 5km";
 		scope = 2;
 		scopeCurator = 2;
 		model = "\task_force_radio_items\models\tfr_fadak";
@@ -613,7 +613,7 @@ class CfgWeapons
 	{
 		author = "Raspu";
 		displayName = "AN/PRC-154";
-		descriptionShort = "AN/PRC-154";
+		descriptionShort = "AN/PRC-154 rifleman radio 2km";
 		scope = 2;
 		scopeCurator = 2;
 		model = "\task_force_radio_items\models\tfr_anprc154";
@@ -632,7 +632,7 @@ class CfgWeapons
 	{
 		author = "Raspu";
 		displayName = "RF-7800S-TR";
-		descriptionShort = "RF-7800S-TR";
+		descriptionShort = "RF-7800S-TR rifleman radio 2km";
 		scope = 2;
 		scopeCurator = 2;
 		model = "\task_force_radio_items\models\tfr_rf7800";
@@ -650,7 +650,7 @@ class CfgWeapons
 	class tf_pnr1000a: ItemRadio
 	{
 		displayName = "PNR-1000A";
-		descriptionShort = "PNR-1000A";
+		descriptionShort = "PNR-1000A rifleman radio 2km";
 		scope = 2;
 		scopeCurator = 2;
 		model = "\task_force_radio_items\models\tfr_pnr1000a";

@@ -85,6 +85,13 @@ if (isNil "TF_give_personal_radio_to_regular_soldier") then {
 		TF_give_personal_radio_to_regular_soldier = false;
 	};
 };
+if (isNil "TF_give_microdagr_to_soldier") then {
+	if (!isNil "TF_give_microdagr_to_soldier_server") then {
+		TF_give_microdagr_to_soldier = TF_give_microdagr_to_soldier_server;
+	}else{
+		TF_give_microdagr_to_soldier = true;
+	};
+};
 waitUntil {sleep 0.1;!(isNull player)};
 currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_ShowHint;
@@ -127,6 +134,10 @@ IDC_ANPRC152_RADIO_DIALOG_ID = IDD_ANPRC152_RADIO_DIALOG;
 IDC_ANPRC155_RADIO_DIALOG_EDIT_ID = IDC_ANPRC155_EDIT;
 IDC_ANPRC155_RADIO_DIALOG_ID = IDD_ANPRC155_RADIO_DIALOG;
 
+IDC_PRN1000A_RADIO_DIALOG_ID = IDC_PNR1000A_RADIO_DIALOG;
+
+IDC_RF7800STR_RADIO_DIALOG_ID =IDD_RF7800STR_RADIO_DIALOG;
+
 IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID = IDC_ANPRC148JEM_EDIT;
 IDC_ANPRC148JEM_RADIO_DIALOG_ID = IDD_ANPRC148JEM_RADIO_DIALOG;
 
@@ -153,6 +164,11 @@ IDC_DIVER_RADIO_EDIT_ID = IDC_DIVER_RADIO_EDIT;
 IDC_DIVER_RADIO_DEPTH_ID = IDC_DIVER_RADIO_DEPTH_EDIT;
 
 TF_BACKGROUND_ID = IDD_BACKGROUND;
+TF_MICRODAGR_BACKGROUND_ID = IDC_MICRODAGR_BACKGROUND;
+TF_MICRODAGR_CLEAR_ID = IDC_MICRODAGR_CLEAR;
+TF_MICRODAGR_ENTER_ID = IDC_MICRODAGR_ENTER;
+TF_MICRODAGR_EDIT_ID = IDC_MICRODAGR_EDIT;
+TF_MICRODAGR_CHANNEL_EDIT_ID = IDC_MICRODAGR_CHANNEL_EDIT;
 
 #include "keys.sqf"
 

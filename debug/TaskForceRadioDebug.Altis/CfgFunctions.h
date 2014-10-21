@@ -170,6 +170,8 @@ class CfgFunctions
 			class isTurnedOut{};
 			class setVolumeViaDialog{};
 			class setChannelViaDialog{};
+			class haveProgrammator{};
+			class updateProgrammatorDialog{};
 		};
 	};
 };

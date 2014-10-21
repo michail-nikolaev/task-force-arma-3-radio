@@ -23,6 +23,9 @@
 	
 	TF_respawnedAt = time;
 	if (alive currentUnit) then {
+		if (TF_give_microdagr_to_soldier)  then {
+			currentUnit linkItem "tf_microdagr";
+		};
 		if (leader currentUnit == currentUnit) then {	
 			if (tf_no_auto_long_range_radio or {backpack currentUnit == "B_Parachute"} or {player call TFAR_fnc_isForcedCurator}) exitWith {};
 			if ([(backpack currentUnit), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1) exitWith {};
