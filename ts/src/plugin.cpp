@@ -65,7 +65,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.5rc2"
+#define PLUGIN_VERSION "0.9.6rcd"
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 
@@ -1446,7 +1446,8 @@ void updateNicknamesList(uint64 serverConnectionHandlerID) {
 				{
 					serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname] = new CLIENT_DATA();
 				}
-				serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname]->clientId = clientId;
+				CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname];
+				data->clientId = clientId;
 			}
 			LeaveCriticalSection(&serverDataCriticalSection);
 
@@ -1861,11 +1862,13 @@ std::string processGameCommand(std::string command)
 		bool clientTalkingOnRadio = false;
 		if (serverIdToData.count(currentServerConnectionHandlerID))
 		{
-			CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
-			if (clientData)
-			{
-				playerId = clientData->clientId;
-				clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;
+			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname)) {
+				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+				if (clientData)
+				{
+					playerId = clientData->clientId;
+					clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;
+				}
 			}
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);
