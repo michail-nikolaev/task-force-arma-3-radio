@@ -1802,17 +1802,18 @@ std::string processGameCommand(std::string command)
 				LeaveCriticalSection(&tangentCriticalSection);
 			}
 			else
-			{
-				if (ptt_arguments.subtype == "digital_lr") playWavFile("radio-sounds/lr/local_end");
-				else if (ptt_arguments.subtype == "dd") playWavFile("radio-sounds/dd/local_end");
-				else if (ptt_arguments.subtype == "digital") playWavFile("radio-sounds/sw/local_end");
-				else if (ptt_arguments.subtype == "airborne") playWavFile("radio-sounds/ab/local_end");
-
+			{				
 				PTTDelayArguments args;
 				args.commandToBroadcast = commandToBroadcast;
 				args.currentServerConnectionHandlerID = currentServerConnectionHandlerID;
 				args.subtype = subtype;
 				ptt_arguments = args;				
+
+				if (ptt_arguments.subtype == "digital_lr") playWavFile("radio-sounds/lr/local_end");
+				else if (ptt_arguments.subtype == "dd") playWavFile("radio-sounds/dd/local_end");
+				else if (ptt_arguments.subtype == "digital") playWavFile("radio-sounds/sw/local_end");
+				else if (ptt_arguments.subtype == "airborne") playWavFile("radio-sounds/ab/local_end");
+
 				CreateThread(NULL, 0, process_tangent_off, NULL, 0, NULL);
 					
 			}			
