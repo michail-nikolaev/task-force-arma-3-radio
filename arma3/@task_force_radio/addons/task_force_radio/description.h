@@ -1,5 +1,4 @@
-﻿#include "task_force_radio\functions\define.h"
-#include "CfgFunctions.h"
+﻿#include "task_force_radio\define.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// Base Classes

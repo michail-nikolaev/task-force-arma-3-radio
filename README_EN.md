@@ -184,6 +184,7 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [R.m.K Gandi](http://steamcommunity.com/profiles/76561197984744647/) for backpack textures.
 * [Pomigit](http://forums.bistudio.com/member.php?97133-pomigit) for texture patterns.
 * [Priestylive](https://plus.google.com/u/0/113553519889377947218/posts) for BWMOD textures.
+* [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) for radio sounds.
 * RHS developers for help in integration.
 * Everyone user (especially who report bugs).
 * Sorry guys if I’ve forgot someone by chance.
