@@ -6,13 +6,19 @@
 class Clunk
 {
 public:
-	
+
 
 	void process(short * samples, int channels, int sampleCount, TS3_VECTOR pos, float direction)
 	{
 		float x = pos.x;
 		float y = pos.y;
 		float z = pos.z;
+
+		float zero = 0.01;
+		if (abs(x) <= zero && abs(y) <= zero && abs(z) <= zero)
+		{
+			z = 0.02;
+		}
 
 		//| cos θ - sin θ   0 | | x | | x cos θ - y sin θ | | x'|
 		//| sin θ    cos θ   0 | | y | = | x sin θ + y cos θ | = | y'|
@@ -23,6 +29,7 @@ public:
 		float x_ = x * cos(rad) - y * sin(rad);
 		float y_ = x * sin(rad) + y * cos(rad);
 		float z_ = z;
+
 
 		for (int q = 0; q < channels * sampleCount; q++)
 		{
