@@ -185,6 +185,7 @@ If this implementation ever becomes popular, it’d be great to avoid piles of i
 * [Pomigit](http://forums.bistudio.com/member.php?97133-pomigit) for texture patterns.
 * [Priestylive](https://plus.google.com/u/0/113553519889377947218/posts) for BWMOD textures.
 * [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) for radio sounds.
+* [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) for Czech translation.
 * RHS developers for help in integration.
 * Everyone user (especially who report bugs).
 * Sorry guys if I’ve forgot someone by chance.
