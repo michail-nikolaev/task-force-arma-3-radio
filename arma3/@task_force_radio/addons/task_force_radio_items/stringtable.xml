@@ -18,6 +18,9 @@
 			    <Turkish>
 					TFAR Radyo (NATO)
 				</Turkish>
+                <Czech>
+                    TFAR Vysílačky (NATO)
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_EAST_crate">
 				<Original>
@@ -35,6 +38,9 @@
 			    <Turkish>
 					TFAR Radyo (CSAT)
 				</Turkish>
+                <Czech>
+                    TFAR Vysílačky (CSAT)
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_IND_crate">
 				<Original>
@@ -52,6 +58,9 @@
 			    <Turkish>
 					TFAR Radyo (AAF)
 				</Turkish>
+                <Czech>
+                    TFAR Vysílačky (AAF)
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_EnforceUsage">
 				<Original>
@@ -69,6 +78,9 @@
 			    <Turkish>
 					TFAR - Kullanıma Zorlamak
 				</Turkish>
+                <Czech>
+                    TFAR - Vynutit použití
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveTLradio">
 				<Original>
@@ -86,6 +98,9 @@
 			    <Turkish>
 					Takım liderine uzun menzil radyo ver
 				</Turkish>
+                <Czech>
+                    Dát velitelům týmů vysílačku pro dlouhou vzdálenost
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveTLradioTT">
 				<Original>
@@ -103,6 +118,9 @@
 			    <Turkish>
 					Her takım liderine uygun uzun menzilli radyo ver
 				</Turkish>
+                <Czech>
+                    Dá každému veliteli týmu vhodnou vysílačku pro dlouhou vzdálenost
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
 				<Original>
@@ -120,6 +138,9 @@
 			    <Turkish>
 					Tüfekçi(rifleman) radyosu ver
 				</Turkish>
+                <Czech>
+                    Dát malou vysílačku vojákům
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
 				<Original>
@@ -137,6 +158,9 @@
 			    <Turkish>
 					Tüfekçi(rifleman) radyosunu askerlere ver
 				</Turkish>
+                <Czech>
+                    Dá malou vysílačku klasickým vojákům
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_EnforceUsage_Description">
 				<Original>
@@ -154,6 +178,9 @@
 			    <Turkish>
 					TFAR görevde kullanmaya zorlama.
 				</Turkish>
+                <Czech>
+                    Vynutí použití TFARU v misi
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_EncryptionCode">
 				<Original>
@@ -171,6 +198,9 @@
 			    <Turkish>
 					Şifreleme kodu
 				</Turkish>
+                <Czech>
+                    Šifrovací kód
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LR_Radio">
 				<Original>
@@ -188,6 +218,9 @@
 			    <Turkish>
 					UM(Uzun Menzilli) Radyo
 				</Turkish>
+                <Czech>
+                    LR Vysílačka
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LR_RadioTT">
 				<Original>
@@ -205,6 +238,9 @@
 			    <Turkish>
 					Uzun Menzilli radyo
 				</Turkish>
+                <Czech>
+                    Vysílačka na dlouhou vzdálenost
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PR_Radio">
 				<Original>
@@ -222,6 +258,9 @@
 			    <Turkish>
 					KR(Kişisel Radyo) Radyo
 				</Turkish>
+                <Czech>
+                    PR Vysílačka
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PR_RadioTT">
 				<Original>
@@ -239,6 +278,9 @@
 			    <Turkish>
 					Kişisel Radyo
 				</Turkish>
+                <Czech>
+                    Osobní vysílačka
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Rifle_Radio">
 				<Original>
@@ -256,6 +298,9 @@
 			    <Turkish>
 					Tüfekçi(rifleman) Radyosu
 				</Turkish>
+                <Czech>
+                    Klasická (malá) vysílačka
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Rifle_RadioTT">
 				<Original>
@@ -273,6 +318,9 @@
 			    <Turkish>
 					Tüfekçi(rifleman) Radyosu
 				</Turkish>
+                <Czech>
+                    Klasická (malá) vysílačka
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PRFrequency">
 				<Original>
@@ -290,6 +338,9 @@
 			    <Turkish>
 					KR(Kişisel Radyo) Senkronize.
 				</Turkish>
+                <Czech>
+                    PR Frek.
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_PRFrequencyTT">
 				<Original>
@@ -307,6 +358,9 @@
 			    <Turkish>
 					KR varsayılar senkronize (SQF dizisi olarak)
 				</Turkish>
+                <Czech>
+                    Výchozí frekvence osobní vysílačky (jako SQF pole)
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LRFrequency">
 				<Original>
@@ -324,6 +378,9 @@
 			    <Turkish>
 					UM(Uzun Menzilli) Senkronize.
 				</Turkish>
+                <Czech>
+                    LR Frek.
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_LRFrequencyTT">
 				<Original>
@@ -341,6 +398,9 @@
 			    <Turkish>
 					UM(Uzun Menzilli) varsayılan senkronize (SQF dizisi olarak)
 				</Turkish>
+                <Czech>
+                    Výchozí frekvence vysílačky pro dlouhou vzdálenost (jako SQF pole)
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SideRadio">
 				<Original>
@@ -358,6 +418,9 @@
 			    <Turkish>
 					TFAR - Yan(ikincil) Radyo
 				</Turkish>
+                <Czech>
+                    TFAR - Vysílačky strany
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SideRadio_Description">
 				<Original>
@@ -375,6 +438,9 @@
 			    <Turkish>
 					Radyoları varsayılan ayarlarına izin ver, şifreleme ve senkronize için frekanslar.
 				</Turkish>
+                <Czech>
+                    Umožňuje nastavení výchozích vysílaček, šifrování a frekvencí pro určitou stranu.
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Frequencies">
 				<Original>
@@ -392,6 +458,9 @@
 			    <Turkish>
 					TFAR - Frekansları
 				</Turkish>
+                <Czech>
+                    TFAR - Frekvence
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_Frequencies_Description">
 				<Original>
@@ -409,6 +478,9 @@
 			    <Turkish>
 					Taraflar için varsayılan frekans ayarları.
 				</Turkish>
+                <Czech>
+                    Umožňuje nastavit výchozí frekvence pro určité strany.
+                </Czech>
 			</Key>
 			
 			<Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
@@ -427,6 +499,9 @@
 			    <Turkish>
 					Kesişme Alan Katsayısı
 				</Turkish>
+                <Czech>
+                    Koeficient rušení terénem
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
 				<Original>
@@ -444,6 +519,9 @@
 			    <Turkish>
 					Kesişme Alan Katsayısı
 				</Turkish>
+                <Czech>
+                    Koeficient rušení způsobené terénem
+                </Czech>
 			</Key>
 			
 			<Key ID="STR_TFAR_Mod_ChannelName">
@@ -462,6 +540,9 @@
 			    <Turkish>
 					Kanal Adı
 				</Turkish>
+                <Czech>
+                    Název kanálu
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_ChannelNameTT">
 				<Original>
@@ -479,6 +560,9 @@
 			    <Turkish>
 					TeamSpeak Kanal Adı
 				</Turkish>
+                <Czech>
+                    Název kanálu na TeamSpeaku
+                </Czech>
 			</Key>
 			
 			<Key ID="STR_TFAR_Mod_ChannelPassword">
@@ -497,6 +581,9 @@
 			    <Turkish>
 					Kanal Şifresi
 				</Turkish>
+                <Czech>
+                    Heslo kanálu
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_ChannelPasswordTT">
 				<Original>
@@ -514,6 +601,9 @@
 			    <Turkish>
 					TeamSpeak Kanal Şifresi
 				</Turkish>
+                <Czech>
+                    Heslo kanálu na TeamSpeaku
+                </Czech>
 			</Key>
 			
 			<Key ID="STR_TFAR_Mod_SameSWFrequencies">
@@ -532,6 +622,9 @@
 			    <Turkish>
 					Taraflar için SW frekansları
 				</Turkish>
+                <Czech>
+                    Stejné SW frekvence pro stranu
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
 				<Original>
@@ -549,6 +642,9 @@
 			    <Turkish>
 					Taraflar için SW frekansları
 				</Turkish>
+                <Czech>
+                    Stejné SW frekvence vysílačky pro stranu
+                </Czech>
 			</Key>			
 			<Key ID="STR_TFAR_Mod_SameLrFrequencies">
 				<Original>
@@ -566,6 +662,9 @@
 			    <Turkish>
 					Taraflar için SW UM(Uzun Menzilli) frekansları
 				</Turkish>
+                <Czech>
+                    Stejné LR frekvence pro stranu
+                </Czech>
 			</Key>
 			<Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
 				<Original>
@@ -583,6 +682,9 @@
 			    <Turkish>
 					Taraflar için SW UM(Uzun Menzilli) frekansları
 				</Turkish>
+                <Czech>
+                    Stejné LR frekvence vysílačky pro dlouhou vzdálenost pro stranu
+                </Czech>
 			</Key>
 		</Container>
 	</Package>
