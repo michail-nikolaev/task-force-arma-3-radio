@@ -273,6 +273,15 @@ struct CLIENT_DATA
 		return clunks[key];
 	}
 
+	void removeClunk(std::string key)
+	{
+		if (clunks.count(key))
+		{
+			delete clunks[key];
+		}
+		clunks.erase(key);
+	}
+
 	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* getFilterCantSpeak(std::string key)
 	{
 		if (!filtersCantSpeak.count(key)) 
@@ -723,6 +732,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 					}
 				}
 				clientData->getClunk(id)->process(input, wave->_spec.channels, samples, position, clientData->viewAngle);
+				clientData->removeClunk(id);
 			}
 
 		}

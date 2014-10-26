@@ -65,9 +65,7 @@ public:
 			for (int q = 0; q < output_size; q++)
 			{
 				output_buffer.push_back(dst_s[q]);
-			}
-			delete src_s;
-			delete dst_s;
+			}			
 		}
 
 		int q = 0;
@@ -84,6 +82,12 @@ public:
 			}
 			q++;
 		}
+	}
+
+	~Clunk()
+	{
+		input_buffer.clear();
+		output_buffer.clear();		
 	}
 	
 	
