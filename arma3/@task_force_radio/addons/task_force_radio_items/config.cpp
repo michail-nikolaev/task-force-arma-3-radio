@@ -203,7 +203,7 @@ class CfgVehicles {
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_prc117g_ap_co.paa"};
 		maximumLoad = 50;
-		mass = 8;
+		mass = 188;
 		scope = 2;
 		scopeCurator = 2;
 		tf_encryptionCode = "tf_west_radio_code";
@@ -229,7 +229,7 @@ class CfgVehicles {
 		displayName = "RT-1523G (ASIP) Big";
 		descriptionShort = "RT-1523G (ASIP) Big long range radio 20km";
 		maximumLoad = 160;
-		mass = 30;		
+		mass = 600;		
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_nato_multi_co.paa"};
 		model="\task_force_radio_items\models\clf_nicecomm2";
@@ -238,7 +238,7 @@ class CfgVehicles {
 		displayName = "RT-1523G (ASIP) Big BWMOD";
 		descriptionShort = "RT-1523G (ASIP) Big BWMOD long range radio 20km";
 		maximumLoad = 160;
-		mass = 30;		
+		mass = 600;		
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_bwmod_co.paa"};
 		model="\task_force_radio_items\models\clf_nicecomm2";
@@ -247,7 +247,7 @@ class CfgVehicles {
 		displayName = "RT-1523G (ASIP) Big RHS";
 		descriptionShort = "RT-1523G (ASIP) Big RHS long range radio 20km";
 		maximumLoad = 160;
-		mass = 30;		
+		mass = 600;		
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_rhs_co.paa"};
 		model="\task_force_radio_items\models\clf_nicecomm2";
@@ -256,7 +256,7 @@ class CfgVehicles {
 		displayName = "RT-1523G (ASIP) Sage";
 		descriptionShort = "RT-1523G (ASIP) Sage long range radio 20km";
 		maximumLoad = 100;
-		mass = 16;		
+		mass = 350;		
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_sage_co.paa"};		
 		model = "\task_force_radio_items\models\TFR_BACKPACK";
@@ -265,7 +265,7 @@ class CfgVehicles {
 		displayName = "RT-1523G (ASIP) Green";
 		descriptionShort = "RT-1523G (ASIP) Green long range radio 20km";
 		maximumLoad = 100;
-		mass = 16;		
+		mass = 350;		
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_green_co.paa"};		
 		model = "\task_force_radio_items\models\TFR_BACKPACK";
@@ -274,7 +274,7 @@ class CfgVehicles {
 		displayName = "RT-1523G (ASIP) Fabric";
 		descriptionShort = "RT-1523G (ASIP) Fabric long range radio 20km";
 		maximumLoad = 100;
-		mass = 16;		
+		mass = 350;		
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_fabric_co.paa"};		
 		model = "\task_force_radio_items\models\TFR_BACKPACK";
@@ -283,7 +283,7 @@ class CfgVehicles {
 		displayName = "RT-1523G (ASIP) Black";
 		descriptionShort = "RT-1523G (ASIP) Black long range radio 20km";
 		maximumLoad = 100;
-		mass = 16;
+		mass = 350;
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_black_co.paa"};		
 		model = "\task_force_radio_items\models\TFR_BACKPACK";
@@ -299,7 +299,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		maximumLoad = 160;
-		mass = 30;
+		mass = 600;
 		model="\task_force_radio_items\models\clf_nicecomm2";
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_aff_digital_co.paa"};
@@ -324,7 +324,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		maximumLoad = 160;
-		mass = 30;
+		mass = 600;
 		model = "\task_force_radio_items\models\clf_nicecomm2_prc117g";
 		hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_csat_multi_co.paa"};
@@ -366,7 +366,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		maximumLoad = 20;
-		mass = 30;		
+		mass = 600;		
 		tf_range = 40000;
 		tf_encryptionCode = "tf_west_radio_code";
 		tf_dialog = "anarc210_radio_dialog";
@@ -385,7 +385,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		maximumLoad = 20;
-		mass = 30;		
+		mass = 600;		
 		tf_range = 40000;
 		tf_encryptionCode = "tf_guer_radio_code";
 		tf_dialog = "anarc164_radio_dialog";
@@ -402,7 +402,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		maximumLoad = 20;
-		mass = 30;		
+		mass = 600;		
 		tf_range = 40000;
 		tf_encryptionCode = "tf_east_radio_code";
 		tf_dialog = "mr6000l_radio_dialog";
