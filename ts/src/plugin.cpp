@@ -43,8 +43,8 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-//#define PLUGIN_API_VERSION 20
-#define PLUGIN_API_VERSION 19
+#define PLUGIN_API_VERSION 20
+//#define PLUGIN_API_VERSION 19
 
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
@@ -65,7 +65,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.6"
+#define PLUGIN_VERSION "0.9.6ml"
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 
@@ -1904,7 +1904,7 @@ void removeExpiredPositions(uint64 serverConnectionHandlerID)
 			CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[*it];
 			serverIdToData[serverConnectionHandlerID].nicknameToClientData.erase(*it);
 			log_string(std::string("Expire position of ") + *it + " time:" + std::to_string(time - data->positionTime), LogLevel_DEBUG);
-			//delete data; leave it for now to avoid memory corruption
+			delete data;
 		}
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);

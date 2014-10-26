@@ -66,6 +66,8 @@ public:
 			{
 				output_buffer.push_back(dst_s[q]);
 			}
+			delete src_s;
+			delete dst_s;
 		}
 
 		int q = 0;
