@@ -1,15 +1,14 @@
 Task Force Arma 3 radio
 =======================
-#Поддержите рацию на конкурсе [MakeArmaNotWar](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)!
 
 Arma 3 Team Speak Radio Plugin ([документация](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki))
-_v0.9.7 от 21.10.2014_
+_v0.9.7 от 26.10.2014_
 
-#####Частично совместима с 0.9.5, не совместима с 0.9.2
+#Поддержите рацию на конкурсе [MakeArmaNotWar](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)!
 
 ###Установка
 
-* Скачайте [архив с рацией 0.9.6](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.6/0.9.6.zip) и распакуйте его.
+* Скачайте [архив с рацией 0.9.7](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip) и распакуйте его.
 * Cкопируйте содержимое папки `TeamSpeak 3 Client` в корневую папку TeamSpeak.
 * Скопируйте содержимое папки `Arma 3` в папку с игрой `...\SteamApps\common\Arma 3`.
 
@@ -176,6 +175,7 @@ _v0.9.7 от 21.10.2014_
 * [Pomigit](http://forums.bistudio.com/member.php?97133-pomigit) за паттерны текстур.
 * [Priestylive](https://plus.google.com/u/0/113553519889377947218/posts) за текстуры для BWMOD.
 * [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) за звуки раций.
+* [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) за перевод.
 * Разработчикам RHS за помошь в интеграции.
 * Всем, кто делал видео и статьи с обзорами.
 * Всем пользователям (особенно тем, что нашли баги).
