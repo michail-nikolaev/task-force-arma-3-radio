@@ -1370,9 +1370,9 @@
 			    <Turkish>
 					&lt;t size='1' align='center' color='#00FF00'&gt;İletiliyor&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
 				</Turkish>
-                <Original>
+                <Czech>
                     &lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
-                </Original>
+                </Czech>
 			</Key>
 			<Key ID="STR_additional_transmit_end">
 				<Original>
