@@ -21,12 +21,12 @@
 				<German>
 					Es werden unterschiedliche Versionen von Task Force Radio verwendet. Server version: %1, deine Version: %2
 				</German>
-			    <Turkish>
+				 <Turkish>
 					Versiyon uyuşmazlığı. Server versiyonu: %1, Senin versiyonun: %2
 				</Turkish>
-                <Czech>
-                    Je používaná jiná verze Task Force Radio. Verze serveru: %1, Vaše verze: %2
-                </Czech>
+				<Czech>
+					Je používaná jiná verze Task Force Radio. Verze serveru: %1, Vaše verze: %2
+				</Czech>
 			</Key>
 			<Key ID="STR_stereo_settings">
 				<Original>
@@ -47,12 +47,12 @@
 				<German>
 					Stereo Einstellungen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Ses ayarları
 				</Turkish>
-                <Czech>
-                    Stereo nastavení
-                </Czech>
+				<Czech>
+					Stereo nastavení
+				</Czech>
 			</Key>
 			<Key ID="STR_stereo_settings_0">
 				<Original>
@@ -73,12 +73,12 @@
 				<German>
 					Links und rechts
 				</German>	
-			    <Turkish>
+				<Turkish>
 					Sol ve sağ
 				</Turkish>
-                <Czech>
-                    Vlevo a vpravo
-                </Czech>
+				<Czech>
+					Vlevo a vpravo
+				</Czech>
 			</Key>
 			<Key ID="STR_stereo_settings_1">
 				<Original>
@@ -99,12 +99,12 @@
 				<German>
 					Nur links
 				</German>				
-			    <Turkish>
+				<Turkish>
 					Sadece sol
 				</Turkish>
-                <Czech>
-                    Pouze vlevo
-                </Czech>
+				<Czech>
+					Pouze vlevo
+				</Czech>
 			</Key>
 			<Key ID="STR_stereo_settings_2">
 				<Original>
@@ -125,12 +125,12 @@
 				<German>
 					Nur rechts
 				</German>					
-			    <Turkish>
+				<Turkish>
 					Sadece sağ
 				</Turkish>
-                <Czech>
-                    Pouze vpravo
-                </Czech>
+				<Czech>
+					Pouze vpravo
+				</Czech>
 			</Key>
 			<Key ID="STR_speakers_settings_false">
 				<Original>
@@ -151,9 +151,9 @@
 				<German>
 					Kopfhörer
 				</German>
-                <Czech>
-                    Sluchátka
-                </Czech>
+				<Czech>
+					Sluchátka
+				</Czech>
 			</Key>
 			<Key ID="STR_speakers_settings_true">
 				<Original>
@@ -174,9 +174,9 @@
 				<German>
 					Lautsprecher
 				</German>
-                <Czech>
-                    Reproduktory
-                </Czech>
+				<Czech>
+					Reproduktory
+				</Czech>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_0">
 				<Original>
@@ -197,12 +197,12 @@
 				<German>
 					Zusätzlich: Links und rechts
 				</German>	
-			    <Turkish>
+				<Turkish>
 					Ek: Sol ve sağ
 				</Turkish>
-                <Czech>
-                    Dodatečný: Vlevo a vpravo
-                </Czech>
+				<Czech>
+					Dodatečný: Vlevo a vpravo
+				</Czech>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_1">
 				<Original>
@@ -223,12 +223,12 @@
 				<German>
 					Zusätzlich: Nur links
 				</German>				
-			    <Turkish>
+				<Turkish>
 					Ek: Sadece sol
 				</Turkish>
-                <Czech>
-                    Dodatečný: Pouze vlevo
-                </Czech>
+				<Czech>
+					Dodatečný: Pouze vlevo
+				</Czech>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_2">
 				<Original>
@@ -249,12 +249,12 @@
 				<German>
 					Zusätzlich: Nur rechts
 				</German>	
-			    <Turkish>
+				<Turkish>
 					Ek: Sadece sağ
 				</Turkish>
-                <Czech>
-                    Dodatečný: Pouze vpravo
-                </Czech>
+				<Czech>
+					Dodatečný: Pouze vpravo
+				</Czech>
 			</Key>
 			<Key ID="STR_no_server">
 				<Original>
@@ -275,12 +275,12 @@
 				<German>
 					Task Force Radio wird nicht auf dem Server ausgeführt!
 				</German>
-			    <Turkish>
+				<Turkish>
 					Radyo serverda oluşturulamadı!
 				</Turkish>
-                <Czech>
-                    Task Force Radio není na serveru!
-                </Czech>
+				<Czech>
+					Task Force Radio není na serveru!
+				</Czech>
 			</Key>
 			<Key ID="STR_current_freq">
 				<Original>
@@ -301,12 +301,12 @@
 				<German>
 					Derzeitige Frequenz
 				</German>	
-			    <Turkish>
+				<Turkish>
 					Mevcut frekans
 				</Turkish>
-                <Czech>
-                    Aktuální frekvence
-                </Czech>
+				<Czech>
+					Aktuální frekvence
+				</Czech>
 			</Key>
 			<Key ID="STR_current_channel">
 				<Original>
@@ -327,12 +327,12 @@
 				<German>
 					Derzeitiger Kanal
 				</German>
-			    <Turkish>
+				<Turkish>
 					Mevcut kanal
 				</Turkish>
-                <Czech>
-                    Aktuální kanál
-                </Czech>
+				<Czech>
+					Aktuální kanál
+				</Czech>
 			</Key>
 			<Key ID="STR_set_frequency">
 				<Original>
@@ -353,12 +353,12 @@
 				<German>
 					Frequenz festlegen
 				</German>
-			    <Turkish>
+					<Turkish>
 					Frekansı ayarla
 				</Turkish>
-                <Czech>
-                    Nastavit frekvenci
-                </Czech>
+				<Czech>
+					Nastavit frekvenci
+				</Czech>
 			</Key>
 			<Key ID="STR_set_additional">
 				<Original>
@@ -379,12 +379,12 @@
 				<German>
 					Zusätzlichen Kanal festlegen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Ek kanal olarak ayarla
 				</Turkish>
-                <Czech>
-                    Nastavit dodatečný kanál
-                </Czech>
+				<Czech>
+					Nastavit dodatečný kanál
+				</Czech>
 			</Key>
 			<Key ID="STR_clear_frequency">
 				<Original>
@@ -405,12 +405,12 @@
 				<German>
 					Frequenz löschen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Frekansı temizle
 				</Turkish>
-                <Czech>
-                    Vymazat frekvenci
-                </Czech>
+				<Czech>
+					Vymazat frekvenci
+				</Czech>
 			</Key>
 			<Key ID="STR_previous_channel">
 				<Original>
@@ -431,12 +431,12 @@
 				<German>
 					Vorheriger Kanal
 				</German>
-			    <Turkish>
+				<Turkish>
 					Önceki kanal
 				</Turkish>
-                <Czech>
-                    Předchozí kanál
-                </Czech>
+				<Czech>
+					Předchozí kanál
+				</Czech>
 			</Key>
 			<Key ID="STR_next_channel">
 				<Original>
@@ -457,12 +457,12 @@
 				<German>
 					Nächster Kanal
 				</German>
-			    <Turkish>
+				<Turkish>
 					Sonraki kanal
 				</Turkish>
-                <Czech>
-                    Následující kanál
-                </Czech>
+				<Czech>
+					Následující kanál
+				</Czech>
 			</Key>
 			<Key ID="STR_rotator_volume">
 				<Original>
@@ -483,12 +483,12 @@
 				<German>
 					Lautstärke verringern | Lautstärke erhöhen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Sesi azalt | Sesi yükselt
 				</Turkish>
-                <Czech>
-                    Zvýšit hlasitost | Snížit hlasitost
-                </Czech>
+				<Czech>
+					Zvýšit hlasitost | Snížit hlasitost
+				</Czech>
 			</Key>
 			<Key ID="STR_rotator_channel">
 				<Original>
@@ -509,12 +509,12 @@
 				<German>
 					Vorheriger Kanal | Nächster Kanal
 				</German>
-			    <Turkish>
+				<Turkish>
 					Önceki kanal | Sonraki kanal
 				</Turkish>
-                <Czech>
-                    Předchozí kanál | Následující kanál
-                </Czech>
+				<Czech>
+					Předchozí kanál | Následující kanál
+				</Czech>
 			</Key>
 			<Key ID="STR_increase_volume">
 				<Original>
@@ -535,12 +535,12 @@
 				<German>
 					Lautstärke erhöhen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Sesi yükselt
 				</Turkish>
-                <Czech>
-                    Zvýšit hlasitost
-                </Czech>
+				<Czech>
+					Zvýšit hlasitost
+				</Czech>
 			</Key>
 			<Key ID="STR_decrease_volume">
 				<Original>
@@ -561,12 +561,12 @@
 				<German>
 					Lautstärke verringern
 				</German>
-			    <Turkish>
+				<Turkish>
 					Sesi azalt
 				</Turkish>
-                <Czech>
-                    Snížit hlasitost
-                </Czech>
+				<Czech>
+					Snížit hlasitost
+				</Czech>
 			</Key>
 			<Key ID="STR_volume">
 				<Original>
@@ -587,12 +587,12 @@
 				<German>
 					Lautstärke anpassen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Sesi değiştirme
 				</Turkish>
-                <Czech>
-                    Změnit hlasitost
-                </Czech>
+				<Czech>
+					Změnit hlasitost
+				</Czech>
 			</Key>
 			<Key ID="STR_incorrect_frequency">
 				<Original>
@@ -613,12 +613,12 @@
 				<German>
 					Falsche Frequenz, Frequenzbereich ist %1-%2
 				</German>
-			    <Turkish>
+				<Turkish>
 					Yanlış frekans değeri, Menzil %1-%2
 				</Turkish>
-                <Czech>
-                    Nesprávná hodnota pro frekvenci, rozsah je %1-%2
-                </Czech>
+				<Czech>
+					Nesprávná hodnota pro frekvenci, rozsah je %1-%2
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_volume">
 				<Original>
@@ -639,12 +639,12 @@
 				<German>
 					Lautstärke: %1
 				</German>
-			    <Turkish>
+				<Turkish>
 					Ses: %1
 				</Turkish>
-                <Czech>
-                    Hlasitost: %1
-                </Czech>
+				<Czech>
+					Hlasitost: %1
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_channel_1">
 				<Original>
@@ -665,12 +665,12 @@
 				<German>
 					Kanal 1
 				</German>
-			    <Turkish>
+				<Turkish>
 					Kanal 1
 				</Turkish>
-                <Czech>
-                    Kanál 1
-                </Czech>
+				<Czech>
+					Kanál 1
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_channel_2">
 				<Original>
@@ -691,12 +691,12 @@
 				<German>
 					Kanal 2
 				</German>
-			    <Turkish>
+				<Turkish>
 					Kanal 2
 				</Turkish>
-                <Czech>
-                    Kanál 2
-                </Czech>
+				<Czech>
+					Kanál 2
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_channel_3">
 				<Original>
@@ -717,12 +717,12 @@
 				<German>
 					Kanal 3
 				</German>
-			    <Turkish>
+				<Turkish>
 					Kanal 3
 				</Turkish>
-                <Czech>
-                    Kanál 3
-                </Czech>
+				<Czech>
+					Kanál 3
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_channel_4">
 				<Original>
@@ -743,12 +743,12 @@
 				<German>
 					Kanal 4
 				</German>
-			    <Turkish>
+				<Turkish>
 					Kanal 4
 				</Turkish>
-                <Czech>
-                    Kanál 4
-                </Czech>
+				<Czech>
+					Kanál 4
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_channel_5">
 				<Original>
@@ -769,12 +769,12 @@
 				<German>
 					Kanal 5
 				</German>
-			    <Turkish>
+				<Turkish>
 					Kanal 5
 				</Turkish>
-                <Czech>
-                    Kanál 5
-                </Czech>
+				<Czech>
+					Kanál 5
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_channel_6">
 				<Original>
@@ -795,12 +795,12 @@
 				<German>
 					Kanal 6
 				</German>
-			    <Turkish>
+				<Turkish>
 					Kanal 6
 				</Turkish>
-                <Czech>
-                    Kanál 6
-                </Czech>
+				<Czech>
+					Kanál 6
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_channel_7">
 				<Original>
@@ -821,12 +821,12 @@
 				<German>
 					Kanal 7
 				</German>
-			    <Turkish>
+				<Turkish>
 					Kanal 7
 				</Turkish>
-                <Czech>
-                    Kanál 7
-                </Czech>
+				<Czech>
+					Kanál 7
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_channel_8">
 				<Original>
@@ -847,12 +847,12 @@
 				<German>
 					Kanal 8
 				</German>
-			    <Turkish>
+				<Turkish>
 					Kanal 8
 				</Turkish>
-                <Czech>
-                    Kanál 8
-                </Czech>
+				<Czech>
+					Kanál 8
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_channel_9">
 				<Original>
@@ -873,12 +873,12 @@
 				<German>
 					Kanal 9
 				</German>
-			    <Turkish>
+				<Turkish>
 					Kanal 9
 				</Turkish>
-                <Czech>
-                    Kanál 9
-                </Czech>
+				<Czech>
+					Kanál 9
+				</Czech>
 			</Key>
 			<Key ID="STR_depth">
 				<Original>
@@ -899,12 +899,12 @@
 				<German>
 					Derzeitige Tiefe
 				</German>	
-			    <Turkish>
+				<Turkish>
 					Mevcut derinlik
 				</Turkish>
-                <Czech>
-                    Aktuální hloubka
-                </Czech>
+				<Czech>
+					Aktuální hloubka
+				</Czech>
 			</Key>
 			<Key ID="STR_active_sw_channel">
 				<Original>
@@ -925,12 +925,12 @@
 				<German>
 					Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</German>	
-			    <Turkish>
+				<Turkish>
 					Mevcut derinlik: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    Kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
-                </Czech>
+				<Czech>
+					Kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_active_additional_sw_channel">
 				<Original>
@@ -951,12 +951,12 @@
 				<German>
 					Zusätzlicher Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</German>
-			    <Turkish>
+				<Turkish>
 					Ek kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    Dodatečný kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
-                </Czech>
+				<Czech>
+					Dodatečný kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_active_frequency">
 				<Original>
@@ -977,12 +977,12 @@
 				<German>
 					Frequenz: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</German>
-			    <Turkish>
+				<Turkish>
 					Frekans: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    Frekvence: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
-                </Czech>
+				<Czech>
+					Frekvence: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_active_lr_channel">
 				<Original>
@@ -1003,12 +1003,12 @@
 				<German>
 					LS Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</German>
-			    <Turkish>
+				<Turkish>
 					UM(Uzun Menzil) kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    LR kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
-                </Czech>
+				<Czech>
+					LR kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_active_additional_lr_channel">
 				<Original>
@@ -1029,12 +1029,12 @@
 				<German>
 					Zusätzlicher LS Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</German>
-			    <Turkish>
+				<Turkish>
 					Ek UM(Uzun Menzil) kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    Dodatečný LR kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
-                </Czech>
+				<Czech>
+					Dodatečný LR kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_in_water_hint">
 				<Original>
@@ -1055,12 +1055,12 @@
 				<German>
 					&lt;t color=&apos;#33ccff&apos;&gt;Das Funkgerät kann unter Wasser nicht verwendet werden&lt;/t&gt;
 				</German>
-			    <Turkish>
+				<Turkish>
 					&lt;t color=&apos;#33ccff&apos;&gt;Bu radyo su altında çalışmaz&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    &lt;t color=&apos;#33ccff&apos;&gt;Není možné použít vysílačku pod VODOU&lt;/t&gt;
-                </Czech>
+				<Czech>
+					&lt;t color=&apos;#33ccff&apos;&gt;Není možné použít vysílačku pod VODOU&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_on_ground_hint">
 				<Original>
@@ -1081,12 +1081,12 @@
 				<German>
 					&lt;t color=&apos;#993300&apos;&gt; Fahrzeugfunk kann nicht in der Luft verwendet werden&lt;/t&gt;
 				</German>
-			    <Turkish>
+				<Turkish>
 					&lt;t color=&apos;#993300&apos;&gt;Bu radyo sadece su altında çalışır&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    &lt;t color=&apos;#993300&apos;&gt;Can&apos;Není možné použít vysílačku ve vzduchu&lt;/t&gt;
-                </Czech>
+				<Czech>
+					&lt;t color=&apos;#993300&apos;&gt;Can&apos;Není možné použít vysílačku ve vzduchu&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_unable_to_use_hint">
 				<Original>
@@ -1107,12 +1107,12 @@
 				<German>
 					&lt;t color=&apos;#FF0000&apos;&gt;Funkgerät kann nicht benutzt werden&lt;/t&gt;
 				</German>
-			    <Turkish>
+				<Turkish>
 					&lt;t color=&apos;#FF0000&apos;&gt;Radyoyu kullanamazsın&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    &lt;t color=&apos;#FF0000&apos;&gt;není možné použít vysílačku&lt;/t&gt;
-                </Czech>
+				<Czech>
+					&lt;t color=&apos;#FF0000&apos;&gt;není možné použít vysílačku&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_select_action">
 				<Original>
@@ -1133,12 +1133,12 @@
 				<German>
 					Aktion wählen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Eylem seç
 				</Turkish>
-                <Czech>
-                    Zvolit akci
-                </Czech>
+				<Czech>
+					Zvolit akci
+				</Czech>
 			</Key>
 			<Key ID="STR_select_action_setup">
 				<Original>
@@ -1159,12 +1159,12 @@
 				<German>
 					Tastenbelegung
 				</German>
-			    <Turkish>
+				<Turkish>
 					Ayarlar...
 				</Turkish>
-                <Czech>
-                    Nastavení...
-                </Czech>
+				<Czech>
+					Nastavení...
+				</Czech>
 			</Key>
 			<Key ID="STR_select_action_setup_tooltip">
 				<Original>
@@ -1185,12 +1185,12 @@
 				<German>
 					Einstellungen öffnen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Ayarlar diyaloğunu aç
 				</Turkish>
-                <Czech>
-                    Otevřít nastavení
-                </Czech>
+				<Czech>
+					Otevřít nastavení
+				</Czech>
 			</Key>
 			<Key ID="STR_select_action_use">
 				<Original>
@@ -1211,12 +1211,12 @@
 				<German>
 					Als aktiv setzen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Aktif olarak ayarla
 				</Turkish>
-                <Czech>
-                    Nastavit jako aktivní
-                </Czech>
+				<Czech>
+					Nastavit jako aktivní
+				</Czech>
 			</Key>
 			<Key ID="STR_select_action_use_tooltip">
 				<Original>
@@ -1237,12 +1237,12 @@
 				<German>
 					Zum Senden wählen
 				</German>
-			    <Turkish>
+				<Turkish>
 					İletmek için kullan
 				</Turkish>
-                <Czech>
-                    Používané pro vysílání
-                </Czech>
+				<Czech>
+					Používané pro vysílání
+				</Czech>
 			</Key>
 			<Key ID="STR_select_radio">
 				<Original>
@@ -1263,12 +1263,12 @@
 				<German>
 					Kurzstreckenfunkgerät wählen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Kısa menzilli radyo seç
 				</Turkish>
-                <Czech>
-                    Zvolit vysílačku na krátkou vzdálenost
-                </Czech>
+				<Czech>
+					Zvolit vysílačku na krátkou vzdálenost
+				</Czech>
 			</Key>
 			<Key ID="STR_select_lr_radio">
 				<Original>
@@ -1289,12 +1289,12 @@
 				<German>
 					Langstreckenfungerät wählen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Uzun menzilli radyo seç
 				</Turkish>
-                <Czech>
-                    Zvolit vysílačku na dlouhou vzdálenost
-                </Czech>
+				<Czech>
+					Zvolit vysílačku na dlouhou vzdálenost
+				</Czech>
 			</Key>			
 			<Key ID="STR_transmit">
 				<Original>
@@ -1315,12 +1315,12 @@
 				<German>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</German>
-			    <Turkish>
+				<Turkish>
 					&lt;t size='1' align='center' color='#00FF00'&gt;İletiliyor&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    &lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
-                </Czech>
+				<Czech>
+					&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_transmit_end">
 				<Original>
@@ -1341,12 +1341,12 @@
 				<German>
 					&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;	
 				</German>
-			    <Turkish>
+				<Turkish>
 					&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    &lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
-                </Czech>
+				<Czech>
+					&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_additional_transmit">
 				<Original>
@@ -1367,12 +1367,12 @@
 				<German>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</German>
-			    <Turkish>
+				<Turkish>
 					&lt;t size='1' align='center' color='#00FF00'&gt;İletiliyor&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    &lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
-                </Czech>
+				<Czech>
+					&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_additional_transmit_end">
 				<Original>
@@ -1393,12 +1393,12 @@
 				<German>
 					&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;						
 				</German>
-			    <Turkish>
+				<Turkish>
 					&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    &lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
-                </Czech>
+				<Czech>
+					&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_waiting">
 				<Original>
@@ -1419,12 +1419,12 @@
 				<German>
 					Warten...
 				</German>
-			    <Turkish>
+				<Turkish>
 					Bekleniyor...
 				</Turkish>
-                <Czech>
-                    Čekám...
-                </Czech>
+				<Czech>
+					Čekám...
+ 				</Czech>
 			</Key>
 			<Key ID="STR_voice_volume">
 				<Original>
@@ -1445,12 +1445,12 @@
 				<German>
 					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Lautstärke Stimme: %1&lt;/t&gt;
 				</German>
-			    <Turkish>
+				<Turkish>
 					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Ses seviyesi: %1&lt;/t&gt;
 				</Turkish>
-                <Czech>
-                    &lt;t align='center' color=&apos;#66ff33&apos;&gt;Hlasitost hlasu: %1&lt;/t&gt;
-                </Czech>
+				<Czech>
+					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Hlasitost hlasu: %1&lt;/t&gt;
+				</Czech>
 			</Key>
 			<Key ID="STR_voice_normal">
 				<Original>
@@ -1471,12 +1471,12 @@
 				<German>
 					Normal
 				</German>
-			    <Turkish>
+				<Turkish>
 					Normal
 				</Turkish>
-                <Czech>
-                    normální
-                </Czech>
+				<Czech>
+					normální
+				</Czech>
 			</Key>
 			<Key ID="STR_voice_yelling">
 				<Original>
@@ -1497,12 +1497,12 @@
 				<German>
 					Laut
 				</German>
-			    <Turkish>
+				<Turkish>
 					Bağırma
 				</Turkish>
-                <Czech>
-                    křičení
-                </Czech>
+				<Czech>
+					křičení
+				</Czech>
 			</Key>
 			<Key ID="STR_voice_whispering">
 				<Original>
@@ -1523,12 +1523,12 @@
 				<German>
 					Leise
 				</German>
-			    <Turkish>
+				<Turkish>
 					Fısıldama
 				</Turkish>
-                <Czech>
-                    šeptání
-                </Czech>
+				<Czech>
+					šeptání
+				</Czech>
 			</Key>
 			<Key ID="STR_init">
 				<Original>
@@ -1549,12 +1549,12 @@
 				<German>
 					Initialisiere...
 				</German>
-			    <Turkish>
+				<Turkish>
 					Başlatılıyor...
 				</Turkish>
-                <Czech>
-                    Inicializace...
-                </Czech>
+				<Czech>
+					Inicializace...
+				</Czech>
 			</Key>
 			<Key ID="STR_subject_name">
 				<Original>
@@ -1575,12 +1575,12 @@
 				<German>
 					Funkgerät
 				</German>
-			    <Turkish>
+				<Turkish>
 					Radyo
 				</Turkish>
-                <Czech>
-                    Vysílačka
-                </Czech>
+				<Czech>
+					Vysílačka
+				</Czech>
 			</Key>
 			<Key ID="STR_select_action_copy_settings_from">
 				<Original>
@@ -1601,12 +1601,12 @@
 				<German>
 					Einstellungen kopieren aus...
 				</German>
-			    <Turkish>
+				<Turkish>
 					Ayarları kopyala...
 				</Turkish>
-                <Czech>
-                    Okopírovat nastavení od...
-                </Czech>
+				<Czech>
+					Okopírovat nastavení od...
+				</Czech>
 			</Key>
 			<Key ID="STR_select_action_settings_from_tooltip">
 				<Original>
@@ -1627,12 +1627,12 @@
 				<German>
 					Einstellungen aus einem anderen Funkgerät derselben Verschlüsselung kopieren
 				</German>
-			    <Turkish>
+				<Turkish>
 					Aynı şifreleme kodu ile başka bir radyo ayarlarını kopyala
 				</Turkish>
-                <Czech>
-                    Kopíruje nastavení z jiné vysílačky se stejným šifrovacím kódem
-                </Czech>
+				<Czech>
+					Kopíruje nastavení z jiné vysílačky se stejným šifrovacím kódem
+				</Czech>
 			</Key>				
 			<Key ID="STR_radio_control">
 				<Original>
@@ -1653,12 +1653,12 @@
 				<German>
 					Einstellungen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Kontroller
 				</Turkish>
-                <Czech>
-                    Ovládání
-                </Czech>
+				<Czech>
+					Ovládání
+				</Czech>
 			</Key>
 			<Key ID="STR_wait_radio">
 				<Original>
@@ -1679,15 +1679,13 @@
 				<German>
 					Warte auf einzigartiges Funkgerät vom Server...
 				</German>
-			    <Turkish>
-			    	Sunucu radyoyu kuruyor...
+				<Turkish>
+					Sunucu radyoyu kuruyor...
 				</Turkish>
-                <Czech>
-                    Čekání na unikátní vysílačku od serveru...
-                </Czech>
+				<Czech>
+					Čekání na unikátní vysílačku od serveru...
+				</Czech>
 			</Key>
-
-
 			<Key ID="STR_radio_control_text">
 				<Original>
 &lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	Direct Speech.&lt;br/&gt;
@@ -1797,10 +1795,8 @@
 &lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk Taste im TeamSpeak&lt;/font&gt;	Direktes Sprechen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;Feststelltaste&lt;/font&gt;	Kurzstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + Feststelltaste&lt;/font&gt;	Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + P&lt;/font&gt;	Oberfläche des Kurzstreckenfunks öffnen. Das Funkgerät muss sich im Inventar befinden. Sollten mehrere Funkgerät im Inventar vorhanden sein, wird ein Auswahlmenü angezeigt. Es kann ein Funkgerät als aktiv gesetzt werden, welches dann zum Funken benutzt wird.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + SHIFT + A/D&lt;/font&gt; Kurzstreckenfunkgeräte durschalten.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellung für Kurzstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Kanalwahl für Kurzstreckenfunk.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Oberfläche des Langstreckenfunks öffnen. Sie müsssen sich in einem Fahrzeug befinden oder das Funkgerät als Rucksack einordnen.. Sollten mehrere Funkgerät ansteuerbar sein, wird ein Auswahlmenü angezeigt. Es kann lediglich ein Funkgerät gleichzeitig zum Funken verwendet werden.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + UMSCHALT + A/D&lt;/font&gt; Langstreckenfunkgeräte durchschalten.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellungen für Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + NUM[1-9]&lt;/font&gt;	Kanalauswahl für Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + TAB&lt;/font&gt;	Lautstärkenregelung für das Direkte Sprechen. Es ist möglich leise, normal oder laut sprechen (Unabhänig der Funklautstärke).&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Oberfläche des Unterwasser-Sendeempfängers öffnen(benötigt Kreislauftauchgerät).&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Auf Unterwasser-Sendeempfänger funken.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + ]&lt;/font&gt;	Nächstes Funkgerät wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + [&lt;/font&gt;	Vorheriges Funkgerät wählen.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + ]&lt;/font&gt;	Nächstes Langstreckenfunkgerät wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + [&lt;/font&gt;	Vorheriges Langstreckenfunkgerät wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + [?,?,?]&lt;/font&gt;	Stereoeinstellungen für das Funkgerät ändern.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + [?,?,?]&lt;/font&gt;	Stereoeinstellungen für das Langstreckenfunkgerät ändern.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Auf dem zusätzlichen Kanal des Funkgerätes senden.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Auf dem zusätzlichen Kanal des Langstreckenfunkgerätes senden.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Funkoberfläche verlassen.
-
-		
 				</German>
-			    <Turkish>
+				<Turkish>
 &lt;font color=&quot;#67ED24&quot;&gt;Bas konuş ayarı Teamspeak&lt;/font&gt;	Oyun içi Direct channeldan ses verir.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Radyo ile konuşma.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Uzun menzilli radyo ile konuşma.&lt;br/&gt;
@@ -1821,7 +1817,7 @@
 &lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Uzun menzilli radyonda ek kanal üzerinden iletme.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Radyo arayüzünden çıkma.
 				</Turkish>
-                <Czech>
+				<Czech>
 &lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk klávesa v TeamSpeaku&lt;/font&gt;	Přímá řeč.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Mluvení do vysílačky.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Mluvení do vysílačky na dlouhou vzdálenost.&lt;br/&gt;
@@ -1841,14 +1837,14 @@
 &lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Vysílání na dodatečném kanálu osobní vysílačky.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Vysílání na dodatečném kanálu vysílačky pro dlouhou vzdálenost.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Opuštění rozhraní vysílačky.
-                </Czech>
+				</Czech>
 			</Key>			
 			<Key ID="STR_radio_diver">
 				<Original>
 					For divers
 				</Original>
 				<Russian>
-					Подводникам
+					Водолазам
 				</Russian>
 				<French>
 					Pour les plongeurs
@@ -1865,22 +1861,22 @@
 				<Turkish>
 					Dalgıçlar için
 				</Turkish>
-                <Czech>
-                    Pro potápeče
-                </Czech>
+				<Czech>
+					Pro potápeče
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_diver_text">
 				<Original>
 You can not talk underwater (even wearing a diving suit). However, at close distance your companion can hear some indistinct speech (exception - if you are underwater in an isolated vehicle).&lt;br/&gt;
 Being underwater, you can faintly hear muffled voices on land.&lt;br/&gt;
 Use an underwater transceiver for communication among divers.&lt;br/&gt;
-You can not use radio communication underwater (neither to talk nor to hear). If you want to pass some message on land - surface. &lt;br/&gt;Exception - submarine in the periscope depth (divers can use a long range radio there).
+You can not use radio communication underwater (neither to talk nor to hear). If you want to pass some message on land - surface. &lt;br/&gt;Exception - submersible at the periscope depth (divers can use a long range radio there).
 				</Original>
 				<Russian>
 Вы не можете говорить голосом находясь под водой (даже в водолазном костюме). Однако на близком расстоянии ваш собеседник сможет расслышать что-либо очень невнятное (исключение - если вы под водой в изолированной технике).&lt;br/&gt;
 Находясь под водой, вы невнятно и слабо слышите голоса на суше.&lt;br/&gt;
 Для связи между дайверами используйте Переговорное устройство.&lt;br/&gt;
-Вы не можете пользоваться радио связью под водой (ни говорить, ни слышать). Если нужно что-то передать на сушу - всплывайте. Исключение - субмарина на перископной глубине (в ней водолазам можно использовать рацию дальней связи).&lt;br/&gt;
+Вы не можете пользоваться радио связью под водой (ни говорить, ни слышать). Если нужно что-то передать на сушу - всплывайте. Исключение - подводный аппарат на перископной глубине (в нем водолазам можно использовать рацию дальней связи).&lt;br/&gt;
 				</Russian>
 				<French>
 Vous ne pouvez pas parler sous l'eau (même en portant une combinaison de plongée). Cependant, à courte distance vos coéquipiers peuvent entendre des paroles indistinctes (excéption - si vous êtes dans un véhicule sous-marin isolé).&lt;br/&gt;
@@ -1902,18 +1898,18 @@ Usa un transceptor submarino para comunicarte con otros buceadores. Si deseas co
 				<German>
 Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen. Auf nahe Distanz kann ihr Partner allerdings undeutliche Töne wahrnehmen (Ausnahme: Sie befinden sich in einem Fahrzeug).&lt;br/&gt;Wenn Sie sich unter Wasser befinden, können sie Unterhaltungen an Land gedämpft wahrnehmen.&lt;br/&gt;Nutzen Sie den Unterwasser-Transceiver, um sich mit anderen Tauchern zu unterhalten.&lt;br/&gt;Sie können normale Funkgeräte unter Wasser nicht nutzen (weder Senden noch Empfangen).&lt;br/&gt;Ausnahme: U-Boot auf Periskoptiefe. Hier kann der Langstreckenfunk verwendet werden.
 				</German>
-			    <Turkish>
+				<Turkish>
 Su altında konuşamazsınız (dalgıç kıyafeti giyseniz bile). Ancak, yakınında olduğunuz arkadaşınızın sesi belirsiz olarak duyulabilir (istisna - izole bir su altı aracında iseniz).&lt;br/&gt;
 Su altında iken karada ki kişiler boğuk ses duyabilir.&lt;br/&gt;
 Dalgıçlar arası iletişim kullanmak için su altı radyosuna ihtiyaç vardır.&lt;br/&gt;
 Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Dalgıçlar karadakilerle iletişim kurmak istiyorsa karaya çıkmalıdırlar. &lt;br/&gt;İstisna - periskop derinliğindeki bir su altı (dalgıçlar bu derinlikte uzun menzilli radyo kullanabilirler).
 				</Turkish>
-                <Czech>
+				<Czech>
 Nemůže mluvit pod vodou (ikdyž máš potápečský oblek). Nicméně, na krátkou vzdálenost vás může váš spoluhráč slyšet, ale jen nezřetelně. (vyjímka - pokud jste pod vodou např. v ponorce).&lt;br/&gt;
 Když jste pod vodou, můžete slyšet nezřetelné hlasy na pevnině.&lt;br/&gt;
 Používejte podvodní vysílačky pro komunikaci mezi potápeči.&lt;br/&gt;
 Není možné použít klasickou vysílačku pod vodou (ani pro vysílání nebo příjímání). Pokud chcete vyslat zprávu nad vodu - na pevninu. &lt;br/&gt;Vyjímka - ponorka v periskopické hloubce (potápěči zde můžou použít vysílačku pro dlouhou vzdálenost).
-                </Czech>
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_intercept">
 				<Original>
@@ -1934,12 +1930,12 @@ Není možné použít klasickou vysílačku pod vodou (ani pro vysílání nebo
 				<German>
 					Abhören von Funksprüchen
 				</German>
-			    <Turkish>
+				<Turkish>
 					Radyo kesişmesi
 				</Turkish>
-                <Czech>
-                    Odposlouchávání vysílačky
-                </Czech>
+				<Czech>
+					Odposlouchávání vysílačky
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_intercept_text">
 				<Original>
@@ -1972,16 +1968,16 @@ Por defecto, las radios de cada facción usan sus propios códigos de encriptaci
 				<German>
 Funkgeräte können sowohl von getöteten Spielern aufgenommen als auch untereinander ausgetauscht werden. Alle Einstellungen (Kanäle, Frequenzen, Lautstärke) bleiben dabei erhalten.&lt;br/&gt;In Fahrzeugen werden die Einstellungen ebenfalls gespeichert.&lt;/br&gt;Standardmäßig verwendet jede Fraktion ihren eigenen Verschlüsselungscode. Sie können also gegnerischen Sprechfunk selbst dann nicht aufnehmen, wenn Sie sich auf derselben Frequenz befinden. Um Sprechfunk abzuhören, muss ein feindliches Funkgerät in ihren Besitz gelangen.
 				</German>
-			    <Turkish>
+				<Turkish>
 Radyo ölü oyunculardan alınabilir, ve verebilirler. Böylece ayarları korunmuş olur (kanallar, frekans ve ses değeri).&lt;br/&gt;
 Araçlarda radyo ayarlarıda kaydedilebilir.&lt;/br&gt;
 Varsayılan olarak, her ülke kendi şifreleme kodunu kullanır, yani düşman konuşmalarını duyamazın, hatta düşmanın frekans ayarı dahi olsa. Düşmanı net dinlemek için (ve havada) - düşman radyo istasyonunu ele geçirmek zorunludur.
 				</Turkish>
-                <Czech>
+				<Czech>
 Vysílačku lze vzít od mrtvých hráčů, a předávat si jí mezi sebou. S tím, že jsou zachována veškerá nastavení (kanály, frekvence, hlasitost).&lt;br/&gt;
 Ve vozidlech je nastavení vysílačky také uloženo.&lt;/br&gt;
 Standartně, vysílačky každé frakce používají své vlastní šifrovací kódy, takže neuslyšíš nepřítele mluvit, ani když nastavíš frekvenci nepřítele. Pro poslouchání nepřátelské komunikace (a mluvit ve vzduchu) - je nutné jakýmkoli způsobem zajistit nepřátelskou rádiovou stanici.
-                </Czech>
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_vehicle">
 				<Original>
@@ -2002,12 +1998,12 @@ Standartně, vysílačky každé frakce používají své vlastní šifrovací k
 				<German>
 					Fahrzeuge
 				</German>
-			    <Turkish>
+				<Turkish>
 					Araçlar
 				</Turkish>
-                <Czech>
-                    Vozidla
-                </Czech>
+				<Czech>
+					Vozidla
+				</Czech>
 			</Key>
 			<Key ID="STR_radio_vehicle_text">
 				<Original>
@@ -2018,7 +2014,7 @@ Each vehicle slot has its own radio, which must be configured separately. If you
 Vehicles are classified into open and closed (isolated). If you are in an isolated vehicle, you will not hear voices from outside (and vice versa). However, if you turn out of the vehicle, you will hear voices both from inside and outside.
 				</Original>
 				<Russian>
-Рация дальней доступна в технике водителю, командиру, стрелку и помощнику пилота. Не вся техника имеет встроенные рации.&lt;br/&gt;
+Рация дальней связи доступна в технике водителю, командиру, стрелку и помощнику пилота. Не вся техника имеет встроенные рации.&lt;br/&gt;
 
 У каждого слота техники своя рация, которая должна быть настроена отдельно. Если вы планируете пересаживаться с места на места в технике - предварительно настройте рацию на всех слотах (например на слоте водителя и на слоте стрелка).&lt;br/&gt;
 
@@ -2048,20 +2044,20 @@ Los vehículos están clasificados en abiertos y cerrados (aislados). si estas d
 				<German>
 In Fahrzeugen kann ein eingebautes Langstreckenfungerät jeweils vom Fahrer, Schützen, Kommandanten oder Piloten verwendet werden. Allerdings verfügen nicht alle Fahrzeuge über ein Fahrzeugfunkgerät.&lt;br/&gt;Es gibt geschlossene (isolierte) und offene Fahrzeuge. Sollten Sie sich in einem geschlossenen Fahrzeug befinden, sind Sie nicht in der Lage Stimmen von außen zu hören und vice versa. Sollten Sie sich allerdings Überluke befinden, können Sie Stimmen von außen und aus dem Innenraum des Fahrzeuges aufnehmen.
 				</German>
-			    <Turkish>
+				<Turkish>
 Araçta olan herkes uzun menzilli radyoyu kullanabilir. Her araçta radyo olmayabilir.
 &lt;br/&gt;
 Her aracın kendine özgü radyosu var, her biri ayrı olarak ayarlanması gerekir. Eğer bir araçla karadan konuşmak istiyorsanız onun frekans ayarlarını yada o sizin frekans ayarlarınızı yapmak zorunda.
 &lt;br/&gt;
 Araçlar iki türlü sınıflandırılmıştır açık veya kapalı (izole). Eğer izole bir aracın içindeyseniz, dışarıdan gelen sesleri duyamazsınız (veya tersini). Ancak araçtan çıkılması halinde hem içeriden gelen sesleri hem de dışarıdan gelen sesleri duyarsınız.
 				</Turkish>
-                <Czech>
+				<Czech>
 Vysílačka pro dlouhou vzdálenost je k dispozici pro řidiče, velitele, střelce a kopilota. Některé vozidla nepodporují zabudované vysílačky.
 &lt;br/&gt;
 Každé místo ve vozdile má vlastní vysílačku, která musí být nakonfigurována samostatně. Pokud plánuješ změnit pozici ve vozidle – nastav si předem vysílačku na všech místech ve vozidle (například,na místě řidiče nebo střelce).
 &lt;br/&gt;
 Vozidla jsou rozděleny na uzavřené nebo zavřené (izolované). Pokud si v izolovaném vozidle, neuslyšíš hlasy z venku (a naopak). Nicméně, pokud vylezeš z vozidla, uslyšíš zvuky ze vnitř i z venku.
-                </Czech>
+				</Czech>
 			</Key>
 		</Container>
 	</Package>
