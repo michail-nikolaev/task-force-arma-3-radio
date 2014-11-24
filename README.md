@@ -55,7 +55,7 @@ Task Force Arma 3 Radio
 
 ###Рации
 | Рация | Сторона | Диапазон/Дальность | 
-| :--- | :--- | :--- | :--- | 
+| :--- | :--- | :--- |
 | :radio: [AN/PRC-152](http://ru.wikipedia.org/wiki/AN/PRC-152) (персональная рация командира) | <span style="color:blue">Синие</span> | 30-512Mhz / 5 км |
 | :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (личная рация бойца) | <span style="color:blue">Синие</span> | 30-512Mhz / 2 км |
 | :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (дальняя связь) | <span style="color:blue">Синие</span> | 30-87Mhz / 20 км (30 для встроенной) |
@@ -119,7 +119,7 @@ Task Force Arma 3 Radio
 * Если что-то поломалось - попробуйте перезапустить плагин.
 * Не работают действия на `Caps Lock` - возможно из-за геймерской клавиатуры, где код `Caps Lock` отличается. Попробуйте изменить используемые клавиши (путем редактирования `userconfig`).
 * Если из-за ошибки или еще чего-то вы перестали слышать других игроков даже вне игры, откройте `Setup 3D Sound` в TeamSpeak и кликните `Center All`.
-* Для устранения возможных ошибок с плагином разработчикам может потребоваться лог TeamSpeak, чтобы его скопировать выберите `Tools` -> `Client Log`, поставьте все галочки сверху и, выделив весь текст на `CTRL + A` Скопируйте его в буфер обмена
+* Для устранения возможных ошибок с плагином разработчикам может потребоваться лог TeamSpeak, чтобы его скопировать выберите `Tools` -> `Client Log`, поставьте все галочки сверху и, выделив весь текст на `CTRL` + `A` Скопируйте его в буфер обмена
 * Если TeamSpeak (тьфу-тьфу-тьфу) упал при использовании плагина - он показывает окошко с описанием того, где можно найти дамп (путь к файлу). Буду очень благодарен за этот файлик. 
 
 ###Администраторам TeamSpeak серверов
@@ -152,7 +152,7 @@ Task Force Arma 3 Radio
 * [Kavinsky](https://github.com/kavinsky) за AN/PRC-154, RF-7800S-TR и другие рации.
 * [JonBons](http://forums.bistudio.com/member.php?81374-JonBons) ([GitHub](https://github.com/JonBons)) за помощь с кодом.
 * [ramius86](https://github.com/ramius86) за перевод на итальянский.
-* Killzone Kid за [статьи](http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/)
+* Killzone Kid за [статьи](http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/).
 * [Krypto202](http://www.armaholic.com/users.php?m=details&id=45906&u=kripto202) ([GitHub](https://github.com/kripto202)) за звуки.
 * [pastor399](http://forums.bistudio.com/member.php?128853-pastor399) ([GitHub](https://github.com/pastor399)) за модель рюкзаков и текстуры.
 * [J0nes](http://forums.bistudio.com/member.php?96513-J0nes) за помощь с моделями.
