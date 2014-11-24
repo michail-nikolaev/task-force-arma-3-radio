@@ -56,18 +56,18 @@ Task Force Arma 3 Radio
 ###Рации
 | Рация | Сторона | Диапазон/Дальность | 
 | :--- | :--- | :--- | :--- | 
-| :radio: [AN/PRC-152](http://ru.wikipedia.org/wiki/AN/PRC-152) (персональная рация командира) | Синие | 30-512Mhz / 5 км |
-| :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (личная рация бойца) | Синие | 30-512Mhz / 2 км |
-| :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (дальняя связь) | Синие | 30-87Mhz / 20 км (30 для встроенной) |
-| :radio: [AN/ARC-210)](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx) (авиационная) | Синие | 30-87Mhz / 40 км |
-| :radio: [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (персональная рация командира) | Независимые | 30-512Mhz / 5 км | 
-| :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (личная рация бойца) | Независимые | 30-512Mhz / 2 км | 
-| :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (дальняя связь)| Независимые | 30-87Mhz / 20 км (30 для встроенной) | 
-| :radio: [AN/ARC-164](https://ru.wikipedia.org/wiki/AN/ARC-164) (авиационная) | Независимые | 30-87Mhz / 40 км |
-| :radio: [FADAK](http://www.iran.ru/news/politics/87228/Iran_prodemonstriroval_tri_novyh_obrazca_voennogo_naznacheniya) (персональная рация командира) | Красные | 30-512Mhz / 5 км | 
-| :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf) (личная рация бойца) | Красные | 30-512Mhz / 2 км | 
-| :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (дальняя связь) | Красные | 30-87Mhz / 20 км (30 для встроенной) | 
-| :radio: [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html) (авиационная) | Красные | 30-87Mhz / 40 км | 
+| :radio: [AN/PRC-152](http://ru.wikipedia.org/wiki/AN/PRC-152) (персональная рация командира) | <span style="color:blue">Синие</span> | 30-512Mhz / 5 км |
+| :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (личная рация бойца) | <span style="color:blue">Синие</span> | 30-512Mhz / 2 км |
+| :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (дальняя связь) | <span style="color:blue">Синие</span> | 30-87Mhz / 20 км (30 для встроенной) |
+| :radio: [AN/ARC-210)](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx) (авиационная) | <span style="color:blue">Синие</span> | 30-87Mhz / 40 км |
+| :radio: [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (персональная рация командира) | <span style="color:green">Независимые</span> | 30-512Mhz / 5 км | 
+| :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (личная рация бойца) | <span style="color:green">Независимые</span> | 30-512Mhz / 2 км | 
+| :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (дальняя связь)| <span style="color:green">Независимые</span> | 30-87Mhz / 20 км (30 для встроенной) | 
+| :radio: [AN/ARC-164](https://ru.wikipedia.org/wiki/AN/ARC-164) (авиационная) | <span style="color:green">Независимые</span> | 30-87Mhz / 40 км |
+| :radio: [FADAK](http://www.iran.ru/news/politics/87228/Iran_prodemonstriroval_tri_novyh_obrazca_voennogo_naznacheniya) (персональная рация командира) | <span style="color:red">Красные</span> | 30-512Mhz / 5 км | 
+| :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf) (личная рация бойца) | <span style="color:red">Красные</span> | 30-512Mhz / 2 км | 
+| :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (дальняя связь) | <span style="color:red">Красные</span> | 30-87Mhz / 20 км (30 для встроенной) | 
+| :radio: [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html) (авиационная) | <span style="color:red">Красные</span> | 30-87Mhz / 40 км | 
 | Переговорное устройство водолазов | Все | 32-41kHz / 70-300 м. (в зависимости от уровня волн) |
 
 > В списке перечислены не все рации, дополнительно представлены следующие авиационные радиостанции (дальность - 40 км): «AN/ARC-201», «AN-ARC-164», «MR6000L»
@@ -138,25 +138,25 @@ Task Force Arma 3 Radio
 * [WOG](http://wogames.info/) и лично [TRUE](http://wogames.info/profile/TRUE/) за помощь в тестировании.
 * [Music DSP Collection](https://github.com/music-dsp-collection) за компрессор.
 * [Avi](http://arma3.ru/forums/index.php/user/715-avi/) за инспекцию кода.
-* [andrey-zakharov](https://github.com/andrey-zakharov) за помощь в разработке.
+* [Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/) ([GitHub](https://github.com/andrey-zakharov)) за помощь в разработке.
 * Дине за перевод.
-* [Zealot](https://github.com/Zealot111) за помощь в разработке и полезные скрипты.
+* [Zealot](http://forums.bistudio.com/member.php?125460-zealot111) ([GitHub](https://github.com/Zealot111)) за помощь в разработке и полезные скрипты.
 * [NouberNou](http://forums.bistudio.com/member.php?56560-NouberNou) за советы и конкуренцию.
 * [Megagoth1702](http://forums.unitedoperations.net/index.php/user/2271-megagoth1702/) за свою давнюю работу по эмуляции звучания рации.
 * [Naught](http://forums.unitedoperations.net/index.php/user/6555-naught/) за инспекцию кода.
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) за перевод.
 * [L-H](http://forums.bistudio.com/member.php?87524-LordHeart) за помощь с кодом.
 * [NorX_Aengell](http://forums.bistudio.com/member.php?99450-NorX_Aengell) за перевод на французский.
-* [lukrop](https://github.com/lukrop) за помощь с кодом.
-* [nikolauska](https://github.com/nikolauska) за помощь с SQF кодом.
+* [lukrop](http://forums.bistudio.com/member.php?78022-lukrop) ([GitHub](https://github.com/lukrop)) за помощь с кодом.
+* [nikolauska](http://forums.bistudio.com/member.php?75014-nikolauska) ([GitHub](https://github.com/nikolauska)) за помощь с SQF кодом.
 * [Kavinsky](https://github.com/kavinsky) за AN/PRC-154, RF-7800S-TR и другие рации.
-* [JonBons](https://github.com/JonBons) за помощь с кодом.
+* [JonBons](http://forums.bistudio.com/member.php?81374-JonBons) ([GitHub](https://github.com/JonBons)) за помощь с кодом.
 * [ramius86](https://github.com/ramius86) за перевод на итальянский.
 * Killzone Kid за [статьи](http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/)
-* [Krypto202](https://github.com/kripto202) за звуки.
-* [pastor399](https://github.com/pastor399) за модель рюкзаков и текстуры.
+* [Krypto202](http://www.armaholic.com/users.php?m=details&id=45906&u=kripto202) ([GitHub](https://github.com/kripto202)) за звуки.
+* [pastor399](http://forums.bistudio.com/member.php?128853-pastor399) ([GitHub](https://github.com/pastor399)) за модель рюкзаков и текстуры.
 * [J0nes](http://forums.bistudio.com/member.php?96513-J0nes) за помощь с моделями.
-* [Raspu86](https://github.com/Raspu86) за модель рюкзаков.
+* [Raspu86](http://forums.bistudio.com/member.php?132083-Raspu86) ([GitHub](https://github.com/Raspu86)) за модель рюкзаков.
 * [Gandi](http://forums.bistudio.com/member.php?111588-Gandi) за текстуры.
 * [Pixinger](https://github.com/Pixinger) за помощь с [Зевсом](http://arma3.com/dlc/zeus).
 * [whoozle](https://github.com/whoozle) за звуковой движок и помощь.
@@ -165,8 +165,9 @@ Task Force Arma 3 Radio
 * [R.m.K Gandi](http://steamcommunity.com/profiles/76561197984744647/) за текстуры рюкзаков.
 * [Pomigit](http://forums.bistudio.com/member.php?97133-pomigit) за паттерны текстур.
 * [Priestylive](https://plus.google.com/u/0/113553519889377947218/posts) за текстуры для [BWMOD](http://bwmod.de/).
-* [Audiocustoms](https://soundcloud.com/audiocustoms) за звуки раций.
-* [EvroMalarkey](https://github.com/evromalarkey) за перевод.
+* [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) ([SoundCloud](https://soundcloud.com/audiocustoms)) за звуки раций.
+* [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) ([GitHub](https://github.com/evromalarkey)) за перевод.
+* [Tourorist](https://github.com/Tourorist) за помощь с документацией.
 * Разработчикам [RHS](http://www.rhsmods.org/) за помощь в интеграции.
 * Всем, кто делал видео и статьи с обзорами.
 * Всем пользователям (особенно тем, что нашли баги).
