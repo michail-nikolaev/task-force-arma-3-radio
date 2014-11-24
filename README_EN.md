@@ -105,7 +105,7 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3
 
 > To listen to your enemy’s long range radio (backpack) it is preferable to remain inside your own vehicle. This way, you'd be able to listen to the comms of your enemy using backpack, while at the same time being able to broadcast to your allies using the vehicle radio as the active one.
 
-####As divers
+####Divers
 * You can not talk underwater (even while wearing a diving suit). However, at close distance your companion can hear some indistinct speech (exception - if you are underwater in an isolated vehicle).
 * Being underwater, you can faintly hear muffled voices on land.
 * Use an underwater transceiver for communication among divers.
@@ -157,7 +157,7 @@ If this plugin ever becomes popular, it would be great if we could avoid having 
 * [Kavinsky](https://github.com/kavinsky) for AN/PRC-154, RF-7800S-TR and other radios.
 * [JonBons](http://forums.bistudio.com/member.php?81374-JonBons) ([GitHub](https://github.com/JonBons)) for changes to the code.
 * [ramius86](https://github.com/ramius86) for translation into Italian.
-* Killzone Kid for [tutorials](http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/)
+* Killzone Kid for [tutorials](http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/).
 * [Krypto202](http://www.armaholic.com/users.php?m=details&id=45906&u=kripto202) ([GitHub](https://github.com/kripto202)) for sounds.
 * [pastor399](http://forums.bistudio.com/member.php?128853-pastor399) ([GitHub](https://github.com/pastor399)) for backpack models and textures.
 * [J0nes](http://forums.bistudio.com/member.php?96513-J0nes) for help with the models.
@@ -176,5 +176,5 @@ If this plugin ever becomes popular, it would be great if we could avoid having 
 * [Tourorist](https://github.com/Tourorist) for help with documentation.
 * The development team of [RHS](http://www.rhsmods.org/), for their help with integration.
 * Everyone who made videos or wrote articles reviewing TFAR.
-* All the players who use TFAR, especially those that take out their time to report bugs.
+* All the players who use TFAR, especially those taking out their time to report bugs.
 * Sorry if I missed anyone out (let me know)!
