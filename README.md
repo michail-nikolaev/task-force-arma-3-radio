@@ -4,7 +4,7 @@ Task Force Arma 3 Radio
 
 ####[Документация](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki)&nbsp;&nbsp;&nbsp;&nbsp;[![](http://img.shields.io/badge/Версия-0.9.7 от 26.10.2014-blue.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases)&nbsp;[![](http://img.shields.io/badge/Лицензия-APL--SA-red.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md)
 
-##Поддержите нас на [Make Arma Not War](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)!
+##Поддержите нас на [Make Arma Not War](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)
 
 ###Установка
 * Скачайте [архив с рацией 0.9.7](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip) и распакуйте его.
