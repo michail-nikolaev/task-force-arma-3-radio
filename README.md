@@ -166,7 +166,7 @@ Task Force Arma 3 Radio
 * [Pomigit](http://forums.bistudio.com/member.php?97133-pomigit) за паттерны текстур.
 * [Priestylive](https://plus.google.com/u/0/113553519889377947218/posts) за текстуры для [BWMOD](http://bwmod.de/).
 * [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) ([SoundCloud](https://soundcloud.com/audiocustoms)) за звуки раций.
-* [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) ([GitHub](https://github.com/evromalarkey)) за перевод.
+* [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) ([GitHub](https://github.com/evromalarkey)) за перевод на чешский.
 * [Tourorist](https://github.com/Tourorist) за помощь с документацией.
 * Разработчикам [RHS](http://www.rhsmods.org/) за помощь в интеграции.
 * Всем, кто делал видео и статьи с обзорами.
