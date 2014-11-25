@@ -63,15 +63,15 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 | :--- | :--- | :--- |
 | :radio: [AN/PRC-152](http://en.wikipedia.org/wiki/AN/PRC-152) (handheld) | <span style="color:blue">BLUFOR</span> | 30-512Mhz / 5 km |
 | :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (handheld) | <span style="color:blue">BLUFOR</span> | 30-512Mhz / 2 km |
-| :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (long range) | <span style="color:blue">BLUFOR</span> | 30-87Mhz / 20 km (30 for built-in) |
+| :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (long range) | <span style="color:blue">BLUFOR</span> | 30-87Mhz / 20 km (30 for [vehicle-mounted](http://en.wikipedia.org/wiki/Mobile_radio)) |
 | :radio: [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx) (airborne) | <span style="color:blue">BLUFOR</span> | 30-87Mhz / 40 km |
 | :radio: [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (handheld) | <span style="color:green">Independent</span> | 30-512Mhz / 5 km |
 | :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (handheld) | <span style="color:green">Independent</span> | 30-512Mhz / 2 km |
-| :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (long range)| <span style="color:green">Independent</span> | 30-87Mhz / 20 km (30 for built-in) |
+| :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (long range)| <span style="color:green">Independent</span> | 30-87Mhz / 20 km (30 for vehicle-mounted) |
 | :radio: [AN/ARC-164](https://en.wikipedia.org/wiki/AN/ARC-164) (airborne) |  <span style="color:green">Independent</span> | 30-87Mhz / 40 km |
 | :radio: [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/) (handheld) | <span style="color:red">OPFOR</span> | 30-512Mhz / 5 km | 
 | :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf)  (handheld) | <span style="color:red">OPFOR</span> | 30-512Mhz / 2 km | 
-| :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (long range) | <span style="color:red">OPFOR</span> | 30-87Mhz / 20 km (30 for built-in) | 
+| :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (long range) | <span style="color:red">OPFOR</span> | 30-87Mhz / 20 km (30 for vehicle-mounted) | 
 | :radio: [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html) (airborne) | <span style="color:red">OPFOR</span> | 30-87Mhz / 40 km | 
 | Underwater transceiver | All | 32-41kHz / 70-300 m (depending on waves) | 
 
@@ -89,7 +89,7 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 * A short range radio is given to players who have `ItemRadio` in their inventory. At mission start, distribution of radios may take a few seconds to complete (follow the instructions appearing at the center of your screen).
 
 ####In vehicles
-* A long range radio is available to driver, commander, gunner, and co-pilot. Not all vehicles support the built-in radios.
+* A long range radio is available to driver, commander, gunner, and co-pilot. Not all vehicles support mounted radios.
 
 * Every vehicle slot has its own radio, which has to be configured separately. If you plan to switch seats in a vehicle – configure the radio on each seat beforehand (for instance, at the driver and gunner positions).
 
