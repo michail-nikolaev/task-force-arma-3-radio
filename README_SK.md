@@ -1,20 +1,18 @@
-Task Force Arma 3 radio
+Task Force Arma 3 Radio
 =======================
+[TeamSpeak](http://www.teamspeak.com/) radio plugin pre Arma 3
+####[Dokumentácia](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki)&nbsp;&nbsp;&nbsp;&nbsp;[![](http://img.shields.io/badge/Verzia-0.9.7 od 26.10.2014-blue.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases)&nbsp;[![](http://img.shields.io/badge/Licencie-APL--SA-red.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md)
 
-Arma 3 Team Speak Radio Plugin
-_v0.9.6 (2014-21-10)_
+##Podporte nás na [Make Arma Not War](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)
 
 ###Inštalácia
-
-* Stiahnite si a rozbaľte [0.9.6 radio archív](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.6/0.9.6.zip).
+* Stiahnite si a rozbaľte [0.9.7 radio archív](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip).
 * Skopírujte `TeamSpeak 3 Client` obsah adresára do hlavného adresára s nainštalovaným TeamSpeak klientom.
 * Skopírujte `Arma 3` obsah adresára do `...\SteamApps\common\Arma 3 adresára`.    
 
-> Task Force radio využíva CBA (Community Base Addons), ak už máte nainštalované CBA, Windows sa vás pri kopírovaní spýta na prepísanie adresára CBA.
-
+> [TFAR](http://radio.task-force.ru/sk/) využíva [СBA](http://www.armaholic.com/page.php?id=18767) (Community Base Addons), ak už máte nainštalované CBA, Windows sa vás pri kopírovaní spýta na prepísanie adresára CBA.
 
 ###Konfigurácia
-
 * Uistite sa že `Caps Lock` klávesu nepoužívate v TS3 klientovi ako "push-to-talk"      
 * Vypnite si v hre Arma 3 "voice over network" (VON), prípadne si zmeňte na niečo iné ako `Caps Lock` (aby ste sa vyvarovali duplicitnému prenosu hlasu).       
 * Otvorte si zoznam pluginov v TeamSpeak 3 klientovi:`Settings > Plugins`.
@@ -33,11 +31,9 @@ _v0.9.6 (2014-21-10)_
 
 > Doporučuje sa vypnúť v TS3 klientovi výstražné zvuky: `Options> Notifications> Sound Pack: "Sounds Deactivated"`. Aby sa zmeny prejavili je potrebné reštartovať TS3 klienta.
 
-
 ###Používanie
-
 | Klávesy | Akcia |
-| --- | --- |
+| :--- | :--- |
 | Push-to-talk klávesa v TS3 klientovi | Priame hovorenie. |
 | `Caps Lock` | Hovorenie do vysielačky. |
 | `CTRL`&nbsp;+&nbsp;`Caps Lock` | Hovorenie do vysielačky s dlhým dosahom. |
@@ -51,38 +47,33 @@ _v0.9.6 (2014-21-10)_
 | `ESC` | Odísť z rozhrania vysielačky. |
 
 > Môžete si nakonfigurovať klávesy v konfiguračnom súbore, ktorý možno nájsť v priečinku hry `...\Arma 3\userconfig\task_force_radio\radio_keys.hpp`. Tento súbor je editovateľný v Notepad-e.
-  
-###Informácie
 
-#####Vysielačky
-
+###Vysielačky
 | Vysielačka | Strana | Rozsah/Dosah | Návod na používanie |
-| --- | --- | --- | --- | 
-| Vysielačka [AN/PRC-152](http://en.wikipedia.org/wiki/AN/PRC-152) (osobná) | <font color="blue">BLUEFOR<font> | 30-512Mhz / 3 km | Ak chcete zmeniť frekvenciu, stlačte `CLR`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šipkami (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `PRE+` a `PRE-` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.| 
-| Vysielačka [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (s dlhým dosahom) | <font color="blue">BLUEFOR<font> | 30-87Mhz / 20 km | 20 km	Ak chcete zmeniť frekvenciu, stlačte `MENU CLR`, zadajte hodnotu (na klávesnici) a potvrďte `FREQ`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel jednotlivých kanálov na vysielačke (celkovo 9 kanálov). Hlasitosť vysielačky môžete meniť pomocou `TIME` a `BATT CALL` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `STO`.|
-| Vysielačka [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (osobná) | <font color="green">INDEPENDENT</font> | 30-512Mhz / 3 km | Ak chcete zmeniť frekvenciu, stlačte `ESC`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šipkami (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `MOD` a `GR` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `ALT`.| 
-| Vysielačka [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (s dlhým dosahom)| <font color="green">INDEPENDENT</font>  | 30-87Mhz / 20 km | Ak chcete zmeniť frekvenciu, stlačte `ESC`, zadajte hodnotu (na klávesnici) a potvrďte `MENU`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šípkami (hore & dole). Hlasitosť vysielačky môžete meniť pomocou tlačidla reproduktora. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `PRE`.|
-| Vysielačka [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/) (osobná) |  <font color="red">OPFOR</font> | 30-512Mhz / 3 km | Ak chcete zmeniť frekvenciu, stlačte `CLR`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel `SET` a `PWR` (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `DATA` a `SEND` tlačidiel. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.| 
-| Vysielačka [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (s dlhým dosahom) | <font color="red">OPFOR</font> | 30-87Mhz / 20 km | Ak chcete zmeniť frekvenciu, stlačte `CLR ESC`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel jednotlivých kanálov alebo horizontálnych šípok (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou vertikálne umiestnených šipok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.| 
-| Pod vodou použiteľná vysielačka | Všetky | 32-41kHz / 70-300 m. (závislá od veľkosti vĺn) | Ak chcete zmeniť frekvenciu, stlačte `MODE`, zadajte hodnotu (na klávesnici) a potvrďte `ADV`. Hlasitosť vysielačky môžete meniť pomocou tlačidiel umiestných na pravej strane vysielačky. | 
-
+| :--- | :--- | :--- | :--- |
+| :radio: [AN/PRC-152](http://en.wikipedia.org/wiki/AN/PRC-152) (osobná) | <span style="color:blue">BLUFOR</span> | 30-512Mhz / 3 km | Ak chcete zmeniť frekvenciu, stlačte `CLR`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šipkami (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `PRE+` a `PRE-` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.| 
+| :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (s dlhým dosahom) | <span style="color:blue">BLUFOR</span> | 30-87Mhz / 20 km | 20 km	Ak chcete zmeniť frekvenciu, stlačte `MENU CLR`, zadajte hodnotu (na klávesnici) a potvrďte `FREQ`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel jednotlivých kanálov na vysielačke (celkovo 9 kanálov). Hlasitosť vysielačky môžete meniť pomocou `TIME` a `BATT CALL` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `STO`.|
+| :radio: [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (osobná) | <span style="color:green">Nezávislé</span> | 30-512Mhz / 3 km | Ak chcete zmeniť frekvenciu, stlačte `ESC`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šipkami (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `MOD` a `GR` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `ALT`.| 
+| :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (s dlhým dosahom)| <span style="color:green">Nezávislé</span>  | 30-87Mhz / 20 km | Ak chcete zmeniť frekvenciu, stlačte `ESC`, zadajte hodnotu (na klávesnici) a potvrďte `MENU`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šípkami (hore & dole). Hlasitosť vysielačky môžete meniť pomocou tlačidla reproduktora. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `PRE`.|
+| :radio: [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/) (osobná) | <span style="color:red">OPFOR</span> | 30-512Mhz / 3 km | Ak chcete zmeniť frekvenciu, stlačte `CLR`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel `SET` a `PWR` (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `DATA` a `SEND` tlačidiel. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.| 
+| :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (s dlhým dosahom) | <span style="color:red">OPFOR</span> | 30-87Mhz / 20 km | Ak chcete zmeniť frekvenciu, stlačte `CLR ESC`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel jednotlivých kanálov alebo horizontálnych šípok (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou vertikálne umiestnených šipok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.| 
+| Pod vodou použiteľná vysielačka | Všetky | 32-41kHz / 70-300 m (závislá od veľkosti vĺn) | Ak chcete zmeniť frekvenciu, stlačte `MODE`, zadajte hodnotu (na klávesnici) a potvrďte `ADV`. Hlasitosť vysielačky môžete meniť pomocou tlačidiel umiestných na pravej strane vysielačky. | 
 
 > Vysielačky krátkeho a dlhého dosahu jednotlivej frakcie podporujú rovnaký protokol, takže dokážu spolu komunikovať. Ak je prenos vysielaný z vysielačky s krátkym dosahom, zvuk je prenášaný na vysokej frekvencii. V prípade prenosu z vysielačky s dlhým prenosom, bude zvuk nízkofrekvenčný.
 
-#####Distribúcia vysielačiek
+####Distribúcia
 * Štandardne je vysielačka dlhého dosahu automaticky pridelená vedúcim družstiev namiesto batohu (squad leaderom). Ak má hráč na sebe batoh – ten je automaticky hodený na zem.
 
 * Osobná vysielačka krátkeho dosahu je daná hráčom do výbavy ak majú `ItemRadio` v inventári. Distribúcia vysielačiek môže trvať niekoľko sekúnd (sledujte správy v strede obrazovky).
 
-#####Vozidlá
+####Vozidlá
 * Vysielačka s dlhým dosahom je k dispozícii pre vodiča, veliteľa, strelca, pilota a kopilota. Nie však všetky vozidlá podporujú zabudované vysielačky.
 
 * Každý slot vo vozidle má vlastnú vysielačku, ktorá musí byť nakonfigurovaná samostatne. Ak plánujete meniť pozície vo vozidle - treba nakonfigurovať všetky vysielačky vo všetkých pozíciách dopredu (napr. na pozícii vodiča alebo strelca).
 
 * Vozidlá sa delia na skupiny otovrené a uzavreté (izolované). Ak ste v izolovanom vozidle, nebudete počuť žiadne hlasy z vonku (a naopak). Avšak ak vystúpite z vozidla, budete počuť hlasy vonku a takisto aj z vozidla.
 
-#####Odpočúvanie vysielačiek
-
+####Odpočúvanie
 * Vysielačka môže byť zobratá a použitá z mŕtvol iných spoluhráčov. Všetky nastavenia na nej ostávajú uložené (kanály, frekvencie, hlasitosť) tak ako boli nastavené predtým iným spoluhráčom.
 
 > Je doporučené nastavovať si vysielačky pri bedni kde sa nachádzajú (aby sa nestalo, že vám kvoli chybe hry zmizne z inventára).
@@ -92,20 +83,20 @@ _v0.9.6 (2014-21-10)_
 
 > Ak chcete odpočúvať vysielanie nepriateľa na zobratej vysielačke dlhého dosahu (batoh),  je doporučené byť vo vlastnom vozidle. V takomto prípade môžete odpočúvať nepriateľské vysielanie pomocou zabratej vysielačky (batoh) a zároveň používať svoju vlastnú vysielačku vo vozidle a komunikovať so svojimi spoluháčmi.
 
-#####Potápači
+####Potápači
 * Pod vodou nemôžete rozprávať (okre iného máte na sebe aj potápačský oblek). Avšak, v tesnej blízkosti váš spoločník môže počuť nejakú nezreteľnú reč (výnimka je - ak ste pod vodou v izolovanom vozidle - ponorke).
 * Ak ste pod vodou, môžete slabo počuť tlmené hlasy zo súše.
 * Použite vysielačky určené na použitie pod vodou pre komunikáciu medzi potápačmi.
 * Pod vodou nie je možné používať štandardnú rádiovú komunikáciu (ani počúvať ani hovoriť). Ak chcete odvysielať nejakú správu na povrch - musíte tak spraviť nad hladinou. Výnimka je ponorka v hĺbke periskopu (potápači môžu použiť vysielačku s dlhým dosahom tam).
 
-#####Prevádzkové režimy pluginu
+###Prevádzkové režimy
 Plugin podporuje dva prevádzkové režimy - **reálny** a **jednoduchý režim**.
 
 * **Jednoduchý režim** — je predvolený režim. Je určený predovšetkým pre kooperatívne hry. Jeho zvláštnosťou je, že použitím pluginu v tomto režime hráči počujú tých ktorí sú mŕtvi, používateľov ktorí nehrajú, tých ktorí hrajú na inom serveri a takisto tých ktorí hrajú bez pluginu prípadne nechcú použivať vysielačky (používanie je rovnaké ako TeamSpeak). To robí hry proti ľuďom menej pohodlné, ale umožňuje vašim priateľom ľahko zistiť, kde hráte, aká je vaša frekvencia, atď. Samozrejme, že tí, ktorí hrajú na rovnakom serveri s aktivovanými addonmi a pluginom sa počujú navzájom v súlade s "rádioprotokolom"  - s prihliadnutím na frekvenciu a vzdialenosti.
 
 * **Reálny režim** — určené pre hry, kde hráči vystupujú proti ostatným hráčom. Ak ho chcete aktivovať, musíte vytvoriť TeamSpeak kanál s názvom `TaskForceRadio` (heslo do kanálu – `123`). Hráči si musia zapnúť a povoliť plugin v TS3 klientovi tak ako bolo spomenuté vyššie v tomto návode. Na začiatku eventu alebo akcie na serveri sa dohodnú čo budú hrať a podobne a hneď po pripojení na herný server a zapojenia sa do hry budú pluginom automaticky prehodení do `TaskForceRadio` kanálu na TS. V prípade použitia tohoto režimu, bude počuť iba "živých" hráčov s povoleným pluginom a hrajúcich na rovnakom serveri. Mŕtvi hráči, naopak, môžu vzájomne komunikovať. V prípade respawnu mŕtveho hráča - bude tento počuť len živých hráčov znova. Po skončení hry budú automaticky hráči prehodení pluginom do kanálu na TeamSpeaku tak ako boli pred začatím misie.
 
-#####Riešenie problémov
+###Riešenie problémov
 * `Pipe error 230` - s najväčšou pravdepodobnosťou ste zabudli povoliť plugin v TeamSpeaku.
 * V TS je plugin červený a nie je aktivovaný - je potrebné aktualizovať TeamSpeak klienta.
 * Skúste znovu načítať (reload) plugin.
@@ -114,7 +105,7 @@ Plugin podporuje dva prevádzkové režimy - **reálny** a **jednoduchý režim*
 * Pre elimináciu možných chýb s pluginom, vývojári môžu potrebovať súbor logov z TeamSpeak klienta. Na to aby ste skopírovali súbor s logmi vyberte si v TS3 klientovi `Tools -> Client Log`, zaškrtnite všetky políčka vyššie a vyberte všetko pomocou `CTRL A` a skopírujte to do schránky.
 * Ak TeamSpeak prestane pracovať (Bože chráň!) pri používaní pluginu - zobrazí sa vo Windowse okno s popisom chyby a cestou ku dump súboru TS3 klienta. Boli by sme veľmi vďační za zaslanie tohoto súboru aby sme mohli pracovať na odstránení prípadných problémov.
 
-#####Pre tvorcov misií
+###Pre tvorcov misií
 * Triedy vysielačiek s dlhým dosahom: `tf_rt1523g`,`tf_mr3000`,`tf_anprc155`. Je možné pridať hráčom v editore týmto spôsobom: `this addBackpack "tf_rt1523g";`
 * Ak chcete zakázať automatickú dostribúciu vysielačiek s dlhým dosahom, pridajte nasledujúci riadok do `init.sqf`: `tf_no_auto_long_range_radio = true`
 * Ak chcete zmeniť šifrovacie kódy používané frakciami (aby viaceré frakcie mohli hovoriť), pridajte nasledujúci kód: `tf_west_radio_code = "_bluefor";tf_east_radio_code = "_opfor"; tf_guer_radio_code = "_independent"; `. Ak chcete povoliť dvom frakciám kontaktovať jeden druhého rádiom, musia mať rovnaký šifrovací kód (budete musieť zmeniť hodnoty).
@@ -129,14 +120,13 @@ Plugin podporuje dva prevádzkové režimy - **reálny** a **jednoduchý režim*
 * `tf_radio_channel_name` a `tf_radio_channel_password` - zmena hesla a názvu kanálu pre použite pluginu v reálnom móde.
 * Ak chcete vynútiť stranu pre vozidlo: `_vehicle setVariable ["tf_side", _value, true]`. Možné hodnoty: `"west"`, `"east"`, `"guer".
 
-#####Pre administrátorov TeamSpeak serverov
+###Pre administrátorov TeamSpeak
 Ak chcete bezpečne používať plugin na TS3 serveri nastavte flood protection: `Klik pravým tlačítkom myši na server> Edit Virtual Server> More> Anti Flood`, nastavte hodnoty 30, 300, 3000 (od hora dole).
 
+###Pre vývojárov
+Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa dokázalo zamedziť nekompatibilite. Z tohto dôvodu ak by niekto chcel prispieť do tohto projektu, kľudne ma kontaktujte - je veľmi pravdepodobné, že vaša implementácia bude začlenená spolu s ostatnými vylepšeniami. Tešíme na [prípadnú spoluprácu](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed). :smile:
 
-#####Pre vývojárov
-Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa dokázalo zamedziť nekompatibilite. Z tohto dôvodu ak by niekto chcel prispieť do tohto projektu, kľudne ma kontaktujte - je veľmi pravdepodobné, že vaša implementácia bude začlenená spolu s ostatnými vylepšeniami. Teším na prípadnú spoluprácu. :)
-
-#####Veľká vďaka patrí
+###Veľká vďaka patrí
 * [Task Force Arrowhead](http://forum.task-force.ru/) squad za testovanie, podporu, trpezlivosť a všetku pomoc.
 * [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) za pomoc s grafikou a dokumentáciou.
 * [Hardckor ](http://forum.task-force.ru/index.php?action=profile;u=14) za pomoc s grafikou.
@@ -146,13 +136,14 @@ Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa doká
 * [WOG](http://wogames.info/) a [TRUE](http://wogames.info/profile/TRUE/) osobne za pomoc pri testovaní.
 * [Music DSP Collection](https://github.com/music-dsp-collection) za kompresor.
 * [Avi](http://arma3.ru/forums/index.php/user/715-avi/) za preskúmanie kódu.
-* [andrey-zakharov](https://github.com/andrey-zakharov) ([Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/)) za pomoc pri vývoji.
+* [Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/) ([GitHub](https://github.com/andrey-zakharov)) za pomoc pri vývoji.
 * Dina za preklad.
-* [Zealot](http://forums.bistudio.com/member.php?125460-zealot111) za pomoc pri vývoji a užitočné skripty.
+* [Zealot](http://forums.bistudio.com/member.php?125460-zealot111) ([GitHub](https://github.com/Zealot111)) za pomoc pri vývoji a užitočné skripty.
 * [NouberNou](http://forums.bistudio.com/member.php?56560-NouberNou) za rady a súťaživosť.
 * [Megagoth1702](http://forums.unitedoperations.net/index.php/user/2271-megagoth1702/) za jeho predchádzajúcu prácu - emuláciu zvukov z vysielačiek.
 * [Naught](http://forums.unitedoperations.net/index.php/user/6555-naught/) za preskúmanie kódu.
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) za preklad.
+* [Tourorist](https://github.com/Tourorist) za pomoc s dokumentáciou.
 * Každému kto robil video alebo článok s recenziou modu.
 * Všetkým užívateľom (hlavne tým, ktorí hlásia chyby modu).
 * Ospravedlňte ma, ak som niekho náhodou zabudol.
