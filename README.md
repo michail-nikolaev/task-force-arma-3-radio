@@ -21,7 +21,7 @@ Task Force Arma 3 Radio
  2. Отключите `ACRE` и `radio ts ARMA3.ru version`, если они есть, чтобы избежать конфликтов.
  3. На всякий случай внизу слева можно нажать кнопку Reload All для перезагрузки всех плагинов.
 * Убедитесь, что громкость оповещений в Team Speak не отключена: `Options > Payback > Sound Pack Volume` установите в положительное значение.
-* Запустите игру с аддонами `@CBA_A3` и `@task_force_radio` (Community Base Addons: A3 Beta и Task Force Arrowhead Radio). Это можно сделать, прописав в ярлыке игры имена модов после EXE файла `…\arma3.exe -mod=@CBA_A3;@task_force_radio`, но рекомендуется включить необходимые моды в настройках игры (Настройки - Дополнения, Settings -> Expansions).
+* Запустите игру с аддонами `@CBA_A3` и `@task_force_radio` (Community Base Addons: A3 Beta и Task Force Arrowhead Radio). Это можно сделать, прописав в ярлыке игры имена модов после EXE файла `…\arma3.exe -mod=@CBA_A3;@task_force_radio`, но рекомендуется включить необходимые моды в настройках игры (Настройки - Дополнения, Settings > Expansions).
 * Зайдите в тот же канал, где находятся другие игроки, играющие с данной рацией, либо вас перебросит в канал `TaskForceRadio` в случае его наличия при старте миссии.
 
 > Если ник в профиле игры и TeamSpeak совпадает - плагин изменит ваш ник в TS в процессе игры.
@@ -58,17 +58,17 @@ Task Force Arma 3 Radio
 | :--- | :--- | :--- |
 | :radio: [AN/PRC-152](http://ru.wikipedia.org/wiki/AN/PRC-152) (ручная) | <span style="color:blue">Синие</span> | 30-512Mhz / 5 км |
 | :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (ручная) | <span style="color:blue">Синие</span> | 30-512Mhz / 2 км |
-| :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (дальняя связь) | <span style="color:blue">Синие</span> | 30-87Mhz / 20 км (30 для встроенной) |
-| :radio: [AN/ARC-210)](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx) (авиационная) | <span style="color:blue">Синие</span> | 30-87Mhz / 40 км |
+| :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (дальняя связь) | <span style="color:blue">Синие</span> | 30-87Mhz / 20 км<br />(30 км для встроенной) |
+| :radio: [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx) (авиационная) | <span style="color:blue">Синие</span> | 30-87Mhz / 40 км |
 | :radio: [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (ручная) | <span style="color:green">Независимые</span> | 30-512Mhz / 5 км | 
 | :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (ручная) | <span style="color:green">Независимые</span> | 30-512Mhz / 2 км | 
-| :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (дальняя связь)| <span style="color:green">Независимые</span> | 30-87Mhz / 20 км (30 для встроенной) | 
+| :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (дальняя связь)| <span style="color:green">Независимые</span> | 30-87Mhz / 20 км<br />(30 км для встроенной) | 
 | :radio: [AN/ARC-164](https://ru.wikipedia.org/wiki/AN/ARC-164) (авиационная) | <span style="color:green">Независимые</span> | 30-87Mhz / 40 км |
 | :radio: [FADAK](http://www.iran.ru/news/politics/87228/Iran_prodemonstriroval_tri_novyh_obrazca_voennogo_naznacheniya) (ручная) | <span style="color:red">Красные</span> | 30-512Mhz / 5 км | 
 | :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf) (ручная) | <span style="color:red">Красные</span> | 30-512Mhz / 2 км | 
-| :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (дальняя связь) | <span style="color:red">Красные</span> | 30-87Mhz / 20 км (30 для встроенной) | 
+| :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (дальняя связь) | <span style="color:red">Красные</span> | 30-87Mhz / 20 км<br />(30 км для встроенной) | 
 | :radio: [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html) (авиационная) | <span style="color:red">Красные</span> | 30-87Mhz / 40 км | 
-| Переговорное устройство водолазов | Все | 32-41kHz / 70-300 м. (в зависимости от уровня волн) |
+| Переговорное устройство водолазов | Все | 32-41kHz / 70-300 м<br />(в&nbsp;зависимости&nbsp;от&nbsp;уровня&nbsp;волн) |
 
 > В списке перечислены не все рации, дополнительно представлены следующие авиационные радиостанции (дальность - 40 км): «AN/ARC-201», «AN-ARC-164», «MR6000L»
 
@@ -119,7 +119,7 @@ Task Force Arma 3 Radio
 * Если что-то поломалось - попробуйте перезапустить плагин.
 * Не работают действия на `Caps Lock` - возможно из-за геймерской клавиатуры, где код `Caps Lock` отличается. Попробуйте изменить используемые клавиши (путем редактирования `userconfig`).
 * Если из-за ошибки или еще чего-то вы перестали слышать других игроков даже вне игры, откройте `Setup 3D Sound` в TeamSpeak и кликните `Center All`.
-* Для устранения возможных ошибок с плагином разработчикам может потребоваться лог TeamSpeak, чтобы его скопировать выберите `Tools` -> `Client Log`, поставьте все галочки сверху и, выделив весь текст на `CTRL` + `A` Скопируйте его в буфер обмена
+* Для устранения возможных ошибок с плагином разработчикам может потребоваться лог TeamSpeak, чтобы его скопировать выберите `Tools` > `Client Log`, поставьте все галочки сверху и, выделив весь текст на `CTRL` + `A` Скопируйте его в буфер обмена
 * Если TeamSpeak (тьфу-тьфу-тьфу) упал при использовании плагина - он показывает окошко с описанием того, где можно найти дамп (путь к файлу). Буду очень благодарен за этот файлик. 
 
 ###Администраторам TeamSpeak серверов
