@@ -98,7 +98,7 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 ####Interception
 * Radios can be picked up from dead players, and exchanged between players. In doing so, they retain all their settings (channels, frequency, volume).
 
-> It is recommended to pick up radios by opening the inventory at the place where it lies (so it doesn't disappear by chance of some game bug).
+> To bypass the well-known game bug with disappearing world items and pick up a radio safely, we recommend you do so through the inventory screen while standing directly over its position on the ground.
 
 * Radio settings configured for vehicles are saved as well.
 * By default, radios of each faction use unique encryption codes, so you would not be able hear enemy chatter, even by switching to a known enemy frequency. To intercept enemy communication (and be able to talk on their frequency) - first you have to capture an enemy radiotower, by any means available. 
