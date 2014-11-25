@@ -61,10 +61,10 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 ###Radios
 | Radio | Side | Range/Distance | 
 | :--- | :--- | :--- |
-| :radio: [AN/PRC-152](http://en.wikipedia.org/wiki/AN/PRC-152) (personal) | <span style="color:blue">BLUEFOR</span> | 30-512Mhz / 5 km |
-| :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (rifleman) | <span style="color:blue">BLUEFOR</span> | 30-512Mhz / 2 km | 
-| :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (long range) | <span style="color:blue">BLUEFOR</span> | 30-87Mhz / 20 km (30 for built-in) | 
-| :radio: [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx) (airborne) | <span style="color:blue">BLUEFOR</span> | 30-87Mhz / 40 km |
+| :radio: [AN/PRC-152](http://en.wikipedia.org/wiki/AN/PRC-152) (personal) | <span style="color:blue">BLUFOR</span> | 30-512Mhz / 5 km |
+| :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (rifleman) | <span style="color:blue">BLUFOR</span> | 30-512Mhz / 2 km | 
+| :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (long range) | <span style="color:blue">BLUFOR</span> | 30-87Mhz / 20 km (30 for built-in) | 
+| :radio: [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx) (airborne) | <span style="color:blue">BLUFOR</span> | 30-87Mhz / 40 km |
 | :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (rifleman) | <span style="color:green">Independent</span> | 30-512Mhz / 2 km | 
 | :radio: [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (personal) | <span style="color:green">Independent</span> | 30-512Mhz / 5 km | 
 | :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (long range)| <span style="color:green">Independent</span> | 30-87Mhz / 20 km (30 for built-in) | 
