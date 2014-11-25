@@ -56,16 +56,16 @@ Task Force Arma 3 Radio
 ###Рации
 | Рация | Сторона | Диапазон/Дальность | 
 | :--- | :--- | :--- |
-| :radio: [AN/PRC-152](http://ru.wikipedia.org/wiki/AN/PRC-152) (персональная рация командира) | <span style="color:blue">Синие</span> | 30-512Mhz / 5 км |
-| :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (личная рация бойца) | <span style="color:blue">Синие</span> | 30-512Mhz / 2 км |
+| :radio: [AN/PRC-152](http://ru.wikipedia.org/wiki/AN/PRC-152) (ручная) | <span style="color:blue">Синие</span> | 30-512Mhz / 5 км |
+| :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (ручная) | <span style="color:blue">Синие</span> | 30-512Mhz / 2 км |
 | :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (дальняя связь) | <span style="color:blue">Синие</span> | 30-87Mhz / 20 км (30 для встроенной) |
 | :radio: [AN/ARC-210)](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx) (авиационная) | <span style="color:blue">Синие</span> | 30-87Mhz / 40 км |
-| :radio: [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (персональная рация командира) | <span style="color:green">Независимые</span> | 30-512Mhz / 5 км | 
-| :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (личная рация бойца) | <span style="color:green">Независимые</span> | 30-512Mhz / 2 км | 
+| :radio: [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (ручная) | <span style="color:green">Независимые</span> | 30-512Mhz / 5 км | 
+| :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (ручная) | <span style="color:green">Независимые</span> | 30-512Mhz / 2 км | 
 | :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (дальняя связь)| <span style="color:green">Независимые</span> | 30-87Mhz / 20 км (30 для встроенной) | 
 | :radio: [AN/ARC-164](https://ru.wikipedia.org/wiki/AN/ARC-164) (авиационная) | <span style="color:green">Независимые</span> | 30-87Mhz / 40 км |
-| :radio: [FADAK](http://www.iran.ru/news/politics/87228/Iran_prodemonstriroval_tri_novyh_obrazca_voennogo_naznacheniya) (персональная рация командира) | <span style="color:red">Красные</span> | 30-512Mhz / 5 км | 
-| :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf) (личная рация бойца) | <span style="color:red">Красные</span> | 30-512Mhz / 2 км | 
+| :radio: [FADAK](http://www.iran.ru/news/politics/87228/Iran_prodemonstriroval_tri_novyh_obrazca_voennogo_naznacheniya) (ручная) | <span style="color:red">Красные</span> | 30-512Mhz / 5 км | 
+| :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf) (ручная) | <span style="color:red">Красные</span> | 30-512Mhz / 2 км | 
 | :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (дальняя связь) | <span style="color:red">Красные</span> | 30-87Mhz / 20 км (30 для встроенной) | 
 | :radio: [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html) (авиационная) | <span style="color:red">Красные</span> | 30-87Mhz / 40 км | 
 | Переговорное устройство водолазов | Все | 32-41kHz / 70-300 м. (в зависимости от уровня волн) |
