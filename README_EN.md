@@ -73,7 +73,7 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 | :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf)  (handheld) | <span style="color:red">OPFOR</span> | 30-512Mhz / 2 km | 
 | :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (long range) | <span style="color:red">OPFOR</span> | 30-87Mhz / 20 km (30 for vehicle-mounted) | 
 | :radio: [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html) (airborne) | <span style="color:red">OPFOR</span> | 30-87Mhz / 40 km | 
-| Underwater transceiver | All | 32-41kHz / 70-300 m (depending on waves) | 
+| :radio: Underwater transceiver | All | 32-41kHz / 70-300 m (depending on waves) | 
 
 > Not all radios presented here, also next airborne 40km radios are supported : "AN/ARC-201", "AN-ARC-164", "MR6000L"
 
@@ -91,7 +91,7 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 ####In vehicles
 * A long range radio is available to driver, commander, gunner, and co-pilot. Not all vehicles support mounted radios.
 
-* Every vehicle slot has its own radio, which has to be configured separately. If you plan to switch seats in a vehicle – configure the radio on each seat beforehand (for instance, at the driver and gunner positions).
+* Every vehicle slot has its own radio, which has to be configured separately. If you plan to switch seats in a vehicle – configure the radio for each seat beforehand (e.g., at the driver and gunner positions).
 
 * Vehicles are classified into open and closed (isolated) types. If you are in an isolated vehicle, you will barely hear any voices from the outside (and vice versa). However, when turned out, you will be able to hear voices from both, inside and outside of your vehicle.
 
@@ -127,8 +127,8 @@ The plugin supports two operation modes - **serious** and a **lightweight mode**
 * To eliminate possible errors with the plugin, developers may require your TeamSpeak logs. To copy it, select `Tools -> Client Log`, check all checkboxes at the top and, by selecting all of the text with `CTRL`&nbsp;+&nbsp;`A`, copy it to the clipboard.
 * If TeamSpeak stopped working (Heaven forbid!) while using the plugin - it will show a dialog with instructions on where you can find the dump file (information about an error). I'd appreciate if you attached this file in your bug reports.
 
-###For TeamSpeak admins
-To be on the safe side, reduce the level of protection from flood: `Right-click on the server> Edit Virtual Server> More> Anti Flood`, set the values at 30, 300 and 3000 (from the top).
+###For TS admins
+To be on the safe side, reduce the level of flood protection: `Right-click on the server> Edit Virtual Server> More> Anti Flood`, set the values at 30, 300 and 3000 (from the top).
 
 ###For developers
 If this plugin ever becomes popular, it would be great if we could avoid having piles of incompatible community forks. For this reason, if you’d like to contribute to the project, contact me - it is very likely that your improvements will be merged into the main branch. Looking forward to your [pull requests](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed). :smile:
