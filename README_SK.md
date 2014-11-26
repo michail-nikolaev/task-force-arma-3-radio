@@ -63,7 +63,7 @@ Task Force Arma 3 Radio
 | :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf) (osobná) | <span style="color:red">OPFOR</span> | 30-512Mhz /&nbsp;2&nbsp;km | [inštrukcie] |
 | :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (s&nbsp;dlhým&nbsp;dosahom) | <span style="color:red">OPFOR</span> | 30-87Mhz /&nbsp;20&nbsp;km (30&nbsp;pre&nbsp;autorádiá) | Ak chcete zmeniť frekvenciu, stlačte `CLR ESC`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel jednotlivých kanálov alebo horizontálnych šípok (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou vertikálne umiestnených šipok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.|
 | :radio: [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html) (palubné rádio) | <span style="color:red">OPFOR</span> | 30-87Mhz /&nbsp;40&nbsp;km | [inštrukcie] |
-| Pod&nbsp;vodou&nbsp;použiteľná vysielačka | Všetky | 32-41kHz /&nbsp;70&nbsp;-&nbsp;300&nbsp;m (závislá od veľkosti vĺn) | Ak chcete zmeniť frekvenciu, stlačte `MODE`, zadajte hodnotu (na klávesnici) a potvrďte `ADV`. Hlasitosť vysielačky môžete meniť pomocou tlačidiel umiestných na pravej strane vysielačky. |
+| :radio:&nbsp;Podvodné&nbsp;vysielač | Všetky | 32-41kHz /&nbsp;70&nbsp;-&nbsp;300&nbsp;m (závislá od veľkosti vĺn) | Ak chcete zmeniť frekvenciu, stlačte `MODE`, zadajte hodnotu (na klávesnici) a potvrďte `ADV`. Hlasitosť vysielačky môžete meniť pomocou tlačidiel umiestných na pravej strane vysielačky. |
 
 > Vysielačky krátkeho a dlhého dosahu jednotlivej frakcie podporujú rovnaký protokol, takže dokážu spolu komunikovať. Ak je prenos vysielaný z vysielačky s krátkym dosahom, zvuk je prenášaný na vysokej frekvencii. V prípade prenosu z vysielačky s dlhým prenosom, bude zvuk nízkofrekvenčný.
 
@@ -126,7 +126,7 @@ Plugin podporuje dva prevádzkové režimy - **reálny** a **jednoduchý režim*
 * `tf_radio_channel_name` a `tf_radio_channel_password` - zmena hesla a názvu kanálu pre použite pluginu v reálnom móde.
 * Ak chcete vynútiť stranu pre vozidlo: `_vehicle setVariable ["tf_side", _value, true]`. Možné hodnoty: `"west"`, `"east"`, `"guer".
 
-###Pre administrátorov TeamSpeak
+###Pre administrátorov TS
 Ak chcete bezpečne používať plugin na TS3 serveri nastavte flood protection: `Klik pravým tlačítkom myši na server> Edit Virtual Server> More> Anti Flood`, nastavte hodnoty 30, 300, 3000 (od hora dole).
 
 ###Pre vývojárov
