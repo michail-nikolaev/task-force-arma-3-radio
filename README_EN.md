@@ -34,27 +34,23 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 ###Controls
 | Keys | Action |
 | :--- | :--- |
-| Push-to-talk button in TeamSpeak | Direct Speech. |
+| Push&#8288;-&#8288;to&#8288;-&#8288;talk&nbsp;hotkey&nbsp;in&nbsp;TS&nbsp;&nbsp;&nbsp; | Direct Speech. |
 | `Caps Lock` | To talk on a radio. |
-| `CTRL`&nbsp;+&nbsp;`Caps Lock` | To talk on a long range radio. |
-| `CTRL`&nbsp;+&nbsp;`P` | To open the personal radio interface (the radio must be in the inventory slot). In that case, if you have a number of radios - you can select the one needed. It is also possible to set the radio as active (the one that will be used for transmission). Also it is possible to load radio settings from another radio with same encryption code. |
-| `CTRL`&nbsp;+&nbsp;+&nbsp;`[/]` | Cycle through available shortwave radios. | 
-| `CTRL`&nbsp;+&nbsp;`Up/Left/Right Arrow` | Rapid switching of shortwave stereo mode. |
+| `CTRL` + `Caps Lock` | To talk on a long range radio. |
+| `CTRL` + `P` | To open the handheld radio interface (the radio must be in the inventory slot). In that case, if you have a number of radios - you can select the one needed. It is also possible to set the radio as active (the one that will be used for transmission). Also it is possible to load radio settings from another radio with same encryption code. |
 | `NUM[1-8]` | Rapid switching of shortwave radio channels. | 
-| `ALT`&nbsp;+&nbsp;`P` | Opens the long range radio interface - for this action to work, you either have to have long range radio on you, or you have to be in a vehicle as a driver, gunner, or co-pilot. If a number of radios are available – you’ll be asked to choose one. Also, one of them can be set as active. Furthermore, it is possible to load radio settings from another radio with same encryption code. |
-| `CTRL`&nbsp;+&nbsp;`ALT`&nbsp;+&nbsp;`[/]` | Cycle through available long range radios. | 
-| `ALT`&nbsp;+&nbsp;`Up/Left/Right Arrow` | Rapid switching of long range stereo mode. |
-| `CTRL`&nbsp;+&nbsp;`NUM[1-9]` | Rapid switching of long range radio channels. |
-| `CTRL`&nbsp;+&nbsp;`TAB` | To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission. |
-| `SHIFT`&nbsp;+&nbsp;`P` | To open an underwater transceiver interface (you should be wearing a rebreather). | 
-| `CTRL`&nbsp;+&nbsp;`~` | To talk on underwater transceiver. |
-| `CTRL`&nbsp;+&nbsp;`]`| Select next personal radio. |
-| `CTRL`&nbsp;+&nbsp;`[`| Select previous personal radio. |
-| `CTRL`&nbsp;+&nbsp;`ALT`&nbsp;+&nbsp;`]`| Select next long range radio. |
-| `CTRL`&nbsp;+&nbsp;`ALT`&nbsp;+&nbsp;`[`| Select previous long range radio. |
-| `CTRL`&nbsp;+&nbsp;`[←,↑,→]`| Change personal radio stereo mode. |
-| `ALT`&nbsp;+&nbsp;`[←,↑,→]`| Change long range radio stereo mode. |
-| `T` | Transmit on additional channel of personal radio. |
+| `ALT` + `P` | Opens the long range radio interface - for this action to work, you either have to have long range radio on you, or you have to be in a vehicle as a driver, gunner, or co-pilot. If a number of radios are available – you’ll be asked to choose one. Also, one of them can be set as active. Furthermore, it is possible to load radio settings from another radio with same encryption code. |
+| `CTRL` + `NUM[1-9]` | Rapid switching of long range radio channels. |
+| `CTRL` + `TAB` | To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission. |
+| `SHIFT` + `P` | To open an underwater transceiver interface (you should be wearing a rebreather). | 
+| `CTRL` + `~` | To talk on underwater transceiver. |
+| `CTRL` + `]`| Select next handheld radio. |
+| `CTRL` + `[`| Select previous handheld radio. |
+| `CTRL` + `ALT` + `]`| Select next long range radio. |
+| `CTRL` + `ALT` + `[`| Select previous long range radio. |
+| `CTRL` + `[←,↑,→]`| Change the stereo mode of handheld radio. |
+| `ALT` + `[←,↑,→]`| Change the stereo mode of long range radio. |
+| `T` | Transmit on additional channel of handheld radio. |
 | `Y` | Transmit on additional channel of long range radio. |
 | `ESC` | To exit from the radio interface. |
 
@@ -63,25 +59,23 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 | :--- | :--- | :--- |
 | :radio: [AN/PRC-152](http://en.wikipedia.org/wiki/AN/PRC-152) (handheld) | <span style="color:blue">BLUFOR</span> | 30-512Mhz / 5 km |
 | :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (handheld) | <span style="color:blue">BLUFOR</span> | 30-512Mhz / 2 km |
-| :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (long range) | <span style="color:blue">BLUFOR</span> | 30-87Mhz / 20 km (30 for [vehicle-mounted](http://en.wikipedia.org/wiki/Mobile_radio)) |
+| :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (long range) | <span style="color:blue">BLUFOR</span> | 30-87Mhz / 20 km<br />(30 km for [vehicle-mounted](http://en.wikipedia.org/wiki/Mobile_radio)) |
 | :radio: [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx) (airborne) | <span style="color:blue">BLUFOR</span> | 30-87Mhz / 40 km |
 | :radio: [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (handheld) | <span style="color:green">Independent</span> | 30-512Mhz / 5 km |
 | :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (handheld) | <span style="color:green">Independent</span> | 30-512Mhz / 2 km |
-| :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (long range)| <span style="color:green">Independent</span> | 30-87Mhz / 20 km (30 for vehicle-mounted) |
+| :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (long range)| <span style="color:green">Independent</span> | 30-87Mhz / 20 km<br />(30 km for vehicle-mounted) |
 | :radio: [AN/ARC-164](https://en.wikipedia.org/wiki/AN/ARC-164) (airborne) |  <span style="color:green">Independent</span> | 30-87Mhz / 40 km |
 | :radio: [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/) (handheld) | <span style="color:red">OPFOR</span> | 30-512Mhz / 5 km | 
 | :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf)  (handheld) | <span style="color:red">OPFOR</span> | 30-512Mhz / 2 km | 
-| :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (long range) | <span style="color:red">OPFOR</span> | 30-87Mhz / 20 km (30 for vehicle-mounted) | 
+| :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (long range) | <span style="color:red">OPFOR</span> | 30-87Mhz / 20 km<br />(30 km for vehicle-mounted) | 
 | :radio: [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html) (airborne) | <span style="color:red">OPFOR</span> | 30-87Mhz / 40 km | 
-| :radio: Underwater transceiver | All | 32-41kHz / 70-300 m (depending on waves) | 
+| :radio: Underwater transceiver | All | 32-41kHz / 70-300 m<br />(depending on waves) |
 
-> Not all radios presented here, also next airborne 40km radios are supported : "AN/ARC-201", "AN-ARC-164", "MR6000L"
-
-> Personal and long range radios of one faction support a single protocol, therefore they can communicate with each other. If the transmission is carried out from the personal one – the sound will be high-frequency. In the case of long range transmission – it’ll be low-frequency.
+> Handheld and long range radios of one faction support a single protocol, therefore they can communicate with each other. If the transmission is carried out from the handheld radio – the sound will be high-frequency. In the case of long range transmission – it will be low-frequency.
 
 > Radio propagation is affected by terrain. Worst case scenario - you are at the edge of a steep hill. If you start moving away from the hill's edge, in direction opposite the transmitting player, you will start getting better signal reception. Best case scenario - a direct line of sight to the transmitter.
 
-> Personal and long range radios support transmitting and receiving on two channels simultaneously. Pressing the "Setup additional channel" switch will mark the currently selected radio channel as additional. After switching to another channel you will hear both - active and additional channels. It is possible to set up different stereo modes for active and additional channels. Use 'T' to transmit on additional channel of personal radio, 'Y' - for long range radio.
+> Handheld and long range radios support transmitting and receiving on two channels simultaneously. Pressing the "Setup additional channel" switch will mark the currently selected radio channel as additional. After switching to another channel you will hear both - active and additional channels.
 
 ####Distribution
 * By default, a long range radio is given to squad leaders. If a player is wearing a backpack – he will automatically put it on the ground.
