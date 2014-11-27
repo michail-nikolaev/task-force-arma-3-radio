@@ -34,16 +34,16 @@ Task Force Arma 3 Radio
 ###Používanie
 | Klávesy | Akcia |
 | :--- | :--- |
-| Push-to-talk klávesa v TS3 klientovi | Priame hovorenie. |
+| Push&#8288;-&#8288;to&#8288;-&#8288;talk&nbsp;klávesa&nbsp;v&nbsp;TS | Priame hovorenie. |
 | `Caps Lock` | Hovorenie do vysielačky. |
-| `CTRL`&nbsp;+&nbsp;`Caps Lock` | Hovorenie do vysielačky s dlhým dosahom. |
-| `CTRL`&nbsp;+&nbsp;`P` | Otvorí rozhranie osobnej vysielačky (vysielačka musí byť v inventári). V prípade, že máte niekoľko vysielačiek v inventári - môžete si vybrať to ktoré potrebujete. Je tiež možné nastaviť vysielačku ako aktívnu (tú, ktorú budete používať). |
+| `CTRL` + `Caps Lock` | Hovorenie do vysielačky s dlhým dosahom. |
+| `CTRL` + `P` | Otvorí rozhranie osobnej vysielačky (vysielačka musí byť v inventári). V prípade, že máte niekoľko vysielačiek v inventári - môžete si vybrať to ktoré potrebujete. Je tiež možné nastaviť vysielačku ako aktívnu (tú, ktorú budete používať). |
 | `NUM[1-8]` | Rýchle prepínanie kanálov na osobnej vysielačke. | 
-| `ALT`&nbsp;+&nbsp;`P` | Otvorí rozhranie vysielačky s dlhým dosahom (vysielačku s dlhým dosahom musíte mať na na chrbte namiesto batohu, alebo by ste mali byť vo vozidle v pozícii vodiča, strelca, pilota alebo pilota asistenta).  Ak je k dispozícii viacero vysielačiek - otvorí sa vám ponuka na výber jednej z nich, ktorú budete používať ako aktívnu. |
-| `CTRL`&nbsp;+&nbsp;`NUM[1-9]` | Rýchle prepínanie kanálov na vysielačke dlhého dosahu. |
-| `CTRL`&nbsp;+&nbsp;`TAB` | Zmena hlasitosti priamej reči. Môžete hovoriť: šepkať, normálne alebo kričať. Nemá vplyv na hlasitosť signálu v rádiovom prenose. |
-| `SHIFT`&nbsp;+&nbsp;`P` | Ak chcete otvoriť rozhranie vysielačky použiteľnej pod vodou (mali by ste mať na sebe dýchací prístroj). | 
-| `ALT`&nbsp;+&nbsp;`Caps Lock` | Hovorenie do vysielačky použiteľnej pod vodou. |
+| `ALT` + `P` | Otvorí rozhranie vysielačky s dlhým dosahom (vysielačku s dlhým dosahom musíte mať na na chrbte namiesto batohu, alebo by ste mali byť vo vozidle v pozícii vodiča, strelca, pilota alebo pilota asistenta).  Ak je k dispozícii viacero vysielačiek - otvorí sa vám ponuka na výber jednej z nich, ktorú budete používať ako aktívnu. |
+| `CTRL` + `NUM[1-9]` | Rýchle prepínanie kanálov na vysielačke dlhého dosahu. |
+| `CTRL` + `TAB` | Zmena hlasitosti priamej reči. Môžete hovoriť: šepkať, normálne alebo kričať. Nemá vplyv na hlasitosť signálu v rádiovom prenose. |
+| `SHIFT` + `P` | Ak chcete otvoriť rozhranie vysielačky použiteľnej pod vodou (mali by ste mať na sebe dýchací prístroj). | 
+| `ALT` + `Caps Lock` | Hovorenie do vysielačky použiteľnej pod vodou. |
 | `ESC` | Odísť z rozhrania vysielačky. |
 
 > Môžete si nakonfigurovať klávesy v konfiguračnom súbore, ktorý možno nájsť v priečinku hry `...\Arma 3\userconfig\task_force_radio\radio_keys.hpp`. Tento súbor je editovateľný v Notepad-e.
