@@ -50,23 +50,23 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 | `CTRL` + `ALT` + `[`| Select previous long range radio. |
 | `CTRL` + `[←,↑,→]`| Change the stereo mode of handheld radio. |
 | `ALT` + `[←,↑,→]`| Change the stereo mode of long range radio. |
-| `T` | Transmit on additional channel of handheld radio. |
+| `T` | Transmit on additional channel of commander radio. |
 | `Y` | Transmit on additional channel of long range radio. |
 | `ESC` | To exit from the radio interface. |
 
 ###Radios
 | Radio | Side | Range/Distance | 
 | :--- | :--- | :--- |
-| :radio: [AN/PRC-152](http://en.wikipedia.org/wiki/AN/PRC-152) (handheld) | <span style="color:blue">BLUFOR</span> | 30-512Mhz / 5 km |
-| :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (handheld) | <span style="color:blue">BLUFOR</span> | 30-512Mhz / 2 km |
+| :radio: [AN/PRC-152](http://en.wikipedia.org/wiki/AN/PRC-152) (commander) | <span style="color:blue">BLUFOR</span> | 30-512Mhz / 5 km |
+| :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp) (squadmate) | <span style="color:blue">BLUFOR</span> | 30-512Mhz / 2 km |
 | :radio: [RT-1523G (ASIP)](http://en.wikipedia.org/wiki/SINCGARS#Models) (long range) | <span style="color:blue">BLUFOR</span> | 30-87Mhz / 20 km<br />(30 km for [vehicle-mounted](http://en.wikipedia.org/wiki/Mobile_radio)) |
 | :radio: [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx) (airborne) | <span style="color:blue">BLUFOR</span> | 30-87Mhz / 40 km |
-| :radio: [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (handheld) | <span style="color:green">Independent</span> | 30-512Mhz / 5 km |
-| :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (handheld) | <span style="color:green">Independent</span> | 30-512Mhz / 2 km |
+| :radio: [AN/PRC148-JEM](https://www.thalescomminc.com/ground/anprc148-jem.asp) (commander) | <span style="color:green">Independent</span> | 30-512Mhz / 5 km |
+| :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html) (squadmate) | <span style="color:green">Independent</span> | 30-512Mhz / 2 km |
 | :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html) (long range)| <span style="color:green">Independent</span> | 30-87Mhz / 20 km<br />(30 km for vehicle-mounted) |
 | :radio: [AN/ARC-164](https://en.wikipedia.org/wiki/AN/ARC-164) (airborne) |  <span style="color:green">Independent</span> | 30-87Mhz / 40 km |
-| :radio: [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/) (handheld) | <span style="color:red">OPFOR</span> | 30-512Mhz / 5 km | 
-| :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf)  (handheld) | <span style="color:red">OPFOR</span> | 30-512Mhz / 2 km | 
+| :radio: [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/) (commander) | <span style="color:red">OPFOR</span> | 30-512Mhz / 5 km | 
+| :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%2520PNR1000A_2012.pdf)  (squadmate) | <span style="color:red">OPFOR</span> | 30-512Mhz / 2 km | 
 | :radio: [MR3000](http://www.railce.com/cw/casc/rohde/m3tr.htm) (long range) | <span style="color:red">OPFOR</span> | 30-87Mhz / 20 km<br />(30 km for vehicle-mounted) | 
 | :radio: [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html) (airborne) | <span style="color:red">OPFOR</span> | 30-87Mhz / 40 km | 
 | :radio: Underwater transceiver | All | 32-41kHz / 70-300 m<br />(depending on waves) |
@@ -75,7 +75,7 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 
 > Radio propagation is affected by terrain. Worst case scenario - you are at the edge of a steep hill. If you start moving away from the hill's edge, in direction opposite the transmitting player, you will start getting better signal reception. Best case scenario - a direct line of sight to the transmitter.
 
-> Handheld and long range radios support transmitting and receiving on two channels simultaneously. Pressing the "Setup additional channel" switch will mark the currently selected radio channel as additional. After switching to another channel you will hear both - active and additional channels.
+> Commander and long range radios support transmitting and receiving on two channels simultaneously. Pressing the "Setup additional channel" switch will mark the currently selected radio channel as additional. After switching to another channel you will hear both - active and additional channels.
 
 ####Distribution
 * By default, a long range radio is given to squad leaders. If a player is wearing a backpack – he will automatically put it on the ground.
