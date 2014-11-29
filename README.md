@@ -3,6 +3,7 @@ Task Force Arma 3 Radio
 [TeamSpeak](http://www.teamspeak.com/) радио плагин для Arma 3.
 
 ####[Документация](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki)&nbsp;&nbsp;&nbsp;&nbsp;[![](http://img.shields.io/badge/Версия-0.9.7 от 26.10.2014-blue.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases)&nbsp;[![](http://img.shields.io/badge/Лицензия-APL--SA-red.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md)
+[![Task Force Arma 3 Radio](https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg)](https://github.com/michail-nikolaev/task-force-arma-3-radio)
 
 ##Поддержите нас на [Make Arma Not War](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)
 
