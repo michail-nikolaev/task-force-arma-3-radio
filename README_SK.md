@@ -1,12 +1,12 @@
 Task Force Arma 3 Radio
 =======================
 [TeamSpeak](http://www.teamspeak.com/) radio plugin pre Arma 3
-###[Wiki](/michail-nikolaev/task-force-arma-3-radio/wiki)&nbsp;&nbsp;[![](http://img.shields.io/badge/Verzia-0.9.7 od 26.10.2014-blue.svg?style=flat)](/michail-nikolaev/task-force-arma-3-radio/releases)&nbsp;[![](http://img.shields.io/badge/Licencie-APL--SA-red.svg?style=flat)](/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md)
-[![Task Force Arma 3 Radio](https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg)](/michail-nikolaev/task-force-arma-3-radio)
+###[Wiki](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki)&nbsp;&nbsp;[![](http://img.shields.io/badge/Verzia-0.9.7 od 26.10.2014-blue.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases)&nbsp;[![](http://img.shields.io/badge/Licencie-APL--SA-red.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md)
+[![Task Force Arma 3 Radio](https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg)](https://github.com/michail-nikolaev/task-force-arma-3-radio)
 ##Podporte nás na [Make Arma Not War](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)
 
 ###Inštalácia
-* Stiahnite si a rozbaľte [0.9.7 radio archív](/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip).
+* Stiahnite si a rozbaľte [0.9.7 radio archív](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip).
 * Skopírujte `TeamSpeak 3 Client` obsah adresára do hlavného adresára s nainštalovaným TeamSpeak klientom.
 * Skopírujte `Arma 3` obsah adresára do – `...\SteamApps\common\Arma 3 adresára`.    
 
@@ -51,14 +51,14 @@ Task Force Arma 3 Radio
 ###Vysielačky
 | Vysielačka&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Strana | Rozsah /Dosah | Návod na používanie |
 | :--- | :--- | :--- | :--- |
-| :radio: [AN/PRC-152](//en.wikipedia.org/wiki/AN/PRC-152)<br><sup>(osobná)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/5&nbsp;km | Ak chcete zmeniť frekvenciu, stlačte `CLR`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šipkami (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `PRE+` a `PRE-` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.|
+| :radio: [AN/PRC-152](https://en.wikipedia.org/wiki/AN/PRC-152)<br><sup>(osobná)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/5&nbsp;km | Ak chcete zmeniť frekvenciu, stlačte `CLR`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šipkami (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `PRE+` a `PRE-` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.|
 | :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)<br><sup>(osobná)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/2&nbsp;km | [inštrukcie] |
-| :radio: [RT-1523G (ASIP)](//en.wikipedia.org/wiki/SINCGARS#Models)<br><sup>(s dlhým dosahom)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/20&nbsp;km<br><sup>(30&nbsp;pre&nbsp;[autorádiá](//en.wikipedia.org/wiki/Mobile_radio))</sup> | 20 km Ak chcete zmeniť frekvenciu, stlačte `MENU CLR`, zadajte hodnotu (na klávesnici) a potvrďte `FREQ`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel jednotlivých kanálov na vysielačke (celkovo 9 kanálov). Hlasitosť vysielačky môžete meniť pomocou `TIME` a `BATT CALL` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `STO`.|
+| :radio: [RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)<br><sup>(s dlhým dosahom)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/20&nbsp;km<br><sup>(30&nbsp;pre&nbsp;[autorádiá](https://en.wikipedia.org/wiki/Mobile_radio))</sup> | 20 km Ak chcete zmeniť frekvenciu, stlačte `MENU CLR`, zadajte hodnotu (na klávesnici) a potvrďte `FREQ`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel jednotlivých kanálov na vysielačke (celkovo 9 kanálov). Hlasitosť vysielačky môžete meniť pomocou `TIME` a `BATT CALL` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `STO`.|
 | :radio: [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx)<br><sup>(palubné rádio)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/40&nbsp;km | [inštrukcie] |
-| :radio: [AN/PRC148-JEM](//en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)<br><sup>(osobná)</sup> | <span style="color:green">Nezávislé</span> | 30-512 MHz<br>/5&nbsp;km | Ak chcete zmeniť frekvenciu, stlačte `ESC`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šipkami (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `MOD` a `GR` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `ALT`.|
+| :radio: [AN/PRC148-JEM](https://en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)<br><sup>(osobná)</sup> | <span style="color:green">Nezávislé</span> | 30-512 MHz<br>/5&nbsp;km | Ak chcete zmeniť frekvenciu, stlačte `ESC`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šipkami (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `MOD` a `GR` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `ALT`.|
 | :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html)<br><sup>(osobná)</sup> | <span style="color:green">Nezávislé</span> | 30-512 MHz<br>/2&nbsp;km | [inštrukcie] |
 | :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html)<br><sup>(s dlhým dosahom)</sup> | <span style="color:green">Nezávislé</span>  | 30-87 MHz<br>/20&nbsp;km<br><sup>(30&nbsp;pre&nbsp;autorádiá)</sup> | Ak chcete zmeniť frekvenciu, stlačte `ESC`, zadajte hodnotu (na klávesnici) a potvrďte `MENU`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šípkami (hore & dole). Hlasitosť vysielačky môžete meniť pomocou tlačidla reproduktora. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `PRE`.|
-| :radio: [AN/ARC-164](//en.wikipedia.org/wiki/AN/ARC-164)<br><sup>(palubné rádio)</sup> |  <span style="color:green">Nezávislé</span> | 30-87 MHz<br>/40&nbsp;km | [inštrukcie] |
+| :radio: [AN/ARC-164](https://en.wikipedia.org/wiki/AN/ARC-164)<br><sup>(palubné rádio)</sup> |  <span style="color:green">Nezávislé</span> | 30-87 MHz<br>/40&nbsp;km | [inštrukcie] |
 | :radio: [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/)<br><sup>(osobná)</sup> | <span style="color:red">OPFOR</span> | 30-512 MHz<br>/5&nbsp;km | Ak chcete zmeniť frekvenciu, stlačte `CLR`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel `SET` a `PWR` (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `DATA` a `SEND` tlačidiel. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.|
 | :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%20PNR1000A_2012.pdf)<br><sup>(osobná)</sup> | <span style="color:red">OPFOR</span> | 30-512 MHz<br>/2&nbsp;km | [inštrukcie] |
 | :radio: [MR3000](http://www.rohde-schwarz.com/en/product/mr300xh-u-productstartpage_63493-10291.html)<br><sup>(s dlhým dosahom)</sup> | <span style="color:red">OPFOR</span> | 30-87 MHz<br>/20&nbsp;km<br><sup>(30&nbsp;pre&nbsp;autorádiá)</sup> | Ak chcete zmeniť frekvenciu, stlačte `CLR ESC`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel jednotlivých kanálov alebo horizontálnych šípok (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou vertikálne umiestnených šipok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.|
@@ -130,26 +130,26 @@ Plugin podporuje dva prevádzkové režimy — **reálny** a **jednoduchý reži
 Ak chcete bezpečne používať plugin na TS3 serveri nastavte flood protection — `klik pravým tlačítkom myši na server> Edit Virtual Server> More> Anti Flood`, nastavte hodnoty `30`, `300`, `3000` (od hora dole).
 
 ###Pre vývojárov
-Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa dokázalo zamedziť nekompatibilite. Z tohto dôvodu ak by niekto chcel prispieť do tohto projektu, kľudne ma kontaktujte — je veľmi pravdepodobné, že vaša implementácia bude začlenená spolu s ostatnými vylepšeniami. Tešíme na [prípadnú spoluprácu](/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed). :smile:
+Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa dokázalo zamedziť nekompatibilite. Z tohto dôvodu ak by niekto chcel prispieť do tohto projektu, kľudne ma kontaktujte — je veľmi pravdepodobné, že vaša implementácia bude začlenená spolu s ostatnými vylepšeniami. Tešíme na [prípadnú spoluprácu](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed). :smile:
 
 ###Veľká vďaka patrí
 * [Task Force Arrowhead](http://forum.task-force.ru/) squad za testovanie, podporu, trpezlivosť a všetku pomoc.
-* [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](/varzin)) za pomoc s grafikou a dokumentáciou.
+* [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) za pomoc s grafikou a dokumentáciou.
 * [Hardckor ](http://forum.task-force.ru/index.php?action=profile;u=14) za pomoc s grafikou.
 * [Shogun](http://forum.task-force.ru/index.php?action=profile;u=13) za pomoc s grafikou.
 * [Blender](http://arma3.ru/forums/index.php/user/41-blender/) za písma.
-* [vinniefalco](/vinniefalco) za  [DSP Filter](/vinniefalco/DSPFilters).
+* [vinniefalco](https://github.com/vinniefalco) za  [DSP Filter](https://github.com/vinniefalco/DSPFilters).
 * [WOG](http://wogames.info/) a [TRUE](http://wogames.info/profile/TRUE/) osobne za pomoc pri testovaní.
-* [Music DSP Collection](/music-dsp-collection) za kompresor.
+* [Music DSP Collection](https://github.com/music-dsp-collection) za kompresor.
 * [Avi](http://arma3.ru/forums/index.php/user/715-avi/) za preskúmanie kódu.
-* [Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/) ([GitHub](/andrey-zakharov)) za pomoc pri vývoji.
+* [Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/) ([GitHub](https://github.com/andrey-zakharov)) za pomoc pri vývoji.
 * Dina za preklad.
-* [Zealot](http://forums.bistudio.com/member.php?125460-zealot111) ([GitHub](/Zealot111)) za pomoc pri vývoji a užitočné skripty.
+* [Zealot](http://forums.bistudio.com/member.php?125460-zealot111) ([GitHub](https://github.com/Zealot111)) za pomoc pri vývoji a užitočné skripty.
 * [NouberNou](http://forums.bistudio.com/member.php?56560-NouberNou) za rady a súťaživosť.
 * [Megagoth1702](http://forums.unitedoperations.net/index.php/user/2271-megagoth1702/) za jeho predchádzajúcu prácu - emuláciu zvukov z vysielačiek.
 * [Naught](http://forums.unitedoperations.net/index.php/user/6555-naught/) za preskúmanie kódu.
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) za preklad.
-* [Tourorist](/Tourorist) za pomoc s dokumentáciou.
+* [Tourorist](https://github.com/Tourorist) za pomoc s dokumentáciou.
 * Každému kto robil video alebo článok s recenziou modu.
 * Všetkým užívateľom (hlavne tým, ktorí hlásia chyby modu).
 * Ospravedlňte ma, ak som niekho náhodou zabudol.
