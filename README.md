@@ -2,13 +2,13 @@ Task Force Arma 3 Radio
 =======================
 [TeamSpeak](http://www.teamspeak.com/) радио плагин для Arma 3.
 
-###[Вики](/michail-nikolaev/task-force-arma-3-radio/wiki)&nbsp;&nbsp;[![](http://img.shields.io/badge/Версия-0.9.7 от 26.10.2014-blue.svg?style=flat)](/michail-nikolaev/task-force-arma-3-radio/releases)&nbsp;[![](http://img.shields.io/badge/Лицензия-APL--SA-red.svg?style=flat)](/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md)
+###[Вики](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki)&nbsp;&nbsp;[![](http://img.shields.io/badge/Версия-0.9.7 от 26.10.2014-blue.svg?style=flat)](/michail-nikolaev/task-force-arma-3-radio/releases)&nbsp;[![](http://img.shields.io/badge/Лицензия-APL--SA-red.svg?style=flat)](/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md)
 [![Task Force Arma 3 Radio](https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg)](/michail-nikolaev/task-force-arma-3-radio)
 
 ##Поддержите нас на [Make Arma Not War](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)
 
 ###Установка
-* Скачайте [архив с рацией 0.9.7](/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip) и распакуйте его.
+* Скачайте [архив с рацией 0.9.7](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip) и распакуйте его.
 * Скопируйте содержимое папки `TeamSpeak 3 Client` в корневую папку TeamSpeak.
 * Скопируйте содержимое папки `Arma 3` в папку с игрой – `...\SteamApps\common\Arma 3`.
 
@@ -57,14 +57,14 @@ Task Force Arma 3 Radio
 ###Рации
 | Рация | Сторона | Диапазон /Дальность | 
 | :--- | :--- | :--- |
-| :radio: [AN/PRC-152](http://ru.wikipedia.org/wiki/AN/PRC-152)<br><sup>(командира)</sup>  | <span style="color:blue">Синие</span> | 30-512 МГц<br>/5 км |
+| :radio: [AN/PRC-152](https://ru.wikipedia.org/wiki/AN/PRC-152)<br><sup>(командира)</sup>  | <span style="color:blue">Синие</span> | 30-512 МГц<br>/5 км |
 | :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)<br /><sup>(бойца)</sup> | <span style="color:blue">Синие</span> | 30-512 МГц<br>/2 км |
-| :radio: [RT-1523G (ASIP)](//en.wikipedia.org/wiki/SINCGARS#Models)<br><sup>(ранцевая)</sup> | <span style="color:blue">Синие</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> |
+| :radio: [RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)<br><sup>(ранцевая)</sup> | <span style="color:blue">Синие</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> |
 | :radio: [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx)<br><sup>(авиационная)</sup> | <span style="color:blue">Синие</span> | 30-87 МГц<br>/40 км |
-| :radio: [AN/PRC148-JEM](//en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)<br><sup>(командира)</sup> | <span style="color:green">Независимые</span> | 30-512 МГц<br>/5 км | 
+| :radio: [AN/PRC148-JEM](https://en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)<br><sup>(командира)</sup> | <span style="color:green">Независимые</span> | 30-512 МГц<br>/5 км | 
 | :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html)<br><sup>(бойца)</sup> | <span style="color:green">Независимые</span> | 30-512 МГц<br>/2 км | 
 | :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html)<br><sup>(ранцевая)</sup> | <span style="color:green">Независимые</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> | 
-| :radio: [AN/ARC-164](//ru.wikipedia.org/wiki/AN/ARC-164)<br><sup>(авиационная)</sup> | <span style="color:green">Независимые</span> | 30-87 МГц<br>/40 км |
+| :radio: [AN/ARC-164](https://ru.wikipedia.org/wiki/AN/ARC-164)<br><sup>(авиационная)</sup> | <span style="color:green">Независимые</span> | 30-87 МГц<br>/40 км |
 | :radio: [FADAK](http://www.iran.ru/news/politics/87228/Iran_prodemonstriroval_tri_novyh_obrazca_voennogo_naznacheniya)<br><sup>(командира)</sup> | <span style="color:red">Красные</span> | 30-512 МГц<br>/5 км | 
 | :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%20PNR1000A_2012.pdf)<br><sup>(бойца)</sup> | <span style="color:red">Красные</span> | 30-512 МГц<br>/2 км | 
 | :radio: [MR3000](http://www.rohde-schwarz.com/en/product/mr300xh-u-productstartpage_63493-10291.html)<br><sup>(ранцевая)</sup> | <span style="color:red">Красные</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> | 
@@ -125,49 +125,49 @@ Task Force Arma 3 Radio
 На всякий случай уменьшите уровень защиты от флуда — `правый клик по серверу> Edit Virtual Server> More> Anti Flood` — поставьте значения `30`, `300`, `3000` (сверху вниз).
 
 ###Разработчикам
-Если данная разработка будет как-либо популярна, то хотелось бы избежать кучи несовместимых форков. По этой причине, в случае желания внесения изменений связывайтесь со мной - велика вероятность, что ваши разработки будут включены в главную ветку. Ждем [запросов на включение](/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed) ваших изменений. :smile:
+Если данная разработка будет как-либо популярна, то хотелось бы избежать кучи несовместимых форков. По этой причине, в случае желания внесения изменений связывайтесь со мной - велика вероятность, что ваши разработки будут включены в главную ветку. Ждем [запросов на включение](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed) ваших изменений. :smile:
 
 ###Спасибки
 * Отряду [Task Force Arrowhead](http://forum.task-force.ru/) за тестирование, поддержку, терпение и всяческую помощь.
-* [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](/varzin)) за помощь с графикой и документацией.
+* [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) за помощь с графикой и документацией.
 * [Hardckor](http://forum.task-force.ru/index.php?action=profile;u=14) за помощь с графикой.
 * [Shogun](http://forum.task-force.ru/index.php?action=profile;u=13) за помощь с графикой.
 * [Блендеру](http://arma3.ru/forums/index.php/user/41-blender/) за шрифт.
-* [vinniefalco](/vinniefalco) за [DSP фильтры](/vinniefalco/DSPFilters).
+* [vinniefalco](https://github.com/vinniefalco) за [DSP фильтры](https://github.com/vinniefalco/DSPFilters).
 * [WOG](http://wogames.info/) и лично [TRUE](http://wogames.info/profile/TRUE/) за помощь в тестировании.
-* [Music DSP Collection](/music-dsp-collection) за компрессор.
+* [Music DSP Collection](https://github.com/music-dsp-collection) за компрессор.
 * [Avi](http://arma3.ru/forums/index.php/user/715-avi/) за инспекцию кода.
-* [Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/) ([GitHub](/andrey-zakharov)) за помощь в разработке.
+* [Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/) ([GitHub](https://github.com/andrey-zakharov)) за помощь в разработке.
 * Дине за перевод.
-* [Zealot](http://forums.bistudio.com/member.php?125460-zealot111) ([GitHub](/Zealot111)) за помощь в разработке и полезные скрипты.
+* [Zealot](http://forums.bistudio.com/member.php?125460-zealot111) ([GitHub](https://github.com/Zealot111)) за помощь в разработке и полезные скрипты.
 * [NouberNou](http://forums.bistudio.com/member.php?56560-NouberNou) за советы и конкуренцию.
 * [Megagoth1702](http://forums.unitedoperations.net/index.php/user/2271-megagoth1702/) за свою давнюю работу по эмуляции звучания рации.
 * [Naught](http://forums.unitedoperations.net/index.php/user/6555-naught/) за инспекцию кода.
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) за перевод.
-* [L-H](http://forums.bistudio.com/member.php?87524-LordHeart) ([GitHub](/CorruptedHeart)) за помощь с кодом.
+* [L-H](http://forums.bistudio.com/member.php?87524-LordHeart) ([GitHub](https://github.com/CorruptedHeart)) за помощь с кодом.
 * [NorX_Aengell](http://forums.bistudio.com/member.php?99450-NorX_Aengell) за перевод на французский.
-* [lukrop](http://forums.bistudio.com/member.php?78022-lukrop) ([GitHub](/lukrop)) за помощь с кодом.
-* [nikolauska](http://forums.bistudio.com/member.php?75014-nikolauska) ([GitHub](/nikolauska)) за помощь с SQF кодом.
-* [Kavinsky](/kavinsky) за AN/PRC-154, RF-7800S-TR и другие рации.
-* [JonBons](http://forums.bistudio.com/member.php?81374-JonBons) ([GitHub](/JonBons)) за помощь с кодом.
-* [ramius86](/ramius86) за перевод на итальянский.
+* [lukrop](http://forums.bistudio.com/member.php?78022-lukrop) ([GitHub](https://github.com/lukrop)) за помощь с кодом.
+* [nikolauska](http://forums.bistudio.com/member.php?75014-nikolauska) ([GitHub](https://github.com/nikolauska)) за помощь с SQF кодом.
+* [Kavinsky](https://github.com/kavinsky) за AN/PRC-154, RF-7800S-TR и другие рации.
+* [JonBons](http://forums.bistudio.com/member.php?81374-JonBons) ([GitHub](https://github.com/JonBons)) за помощь с кодом.
+* [ramius86](https://github.com/ramius86) за перевод на итальянский.
 * Killzone Kid за [статьи](http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/).
-* [Krypto202](http://www.armaholic.com/users.php?m=details&id=45906&u=kripto202) ([GitHub](/kripto202)) за звуки.
-* [pastor399](http://forums.bistudio.com/member.php?128853-pastor399) ([GitHub](/pastor399)) за модель рюкзаков и текстуры.
+* [Krypto202](http://www.armaholic.com/users.php?m=details&id=45906&u=kripto202) ([GitHub](https://github.com/kripto202)) за звуки.
+* [pastor399](http://forums.bistudio.com/member.php?128853-pastor399) ([GitHub](https://github.com/pastor399)) за модель рюкзаков и текстуры.
 * [J0nes](http://forums.bistudio.com/member.php?96513-J0nes) за помощь с моделями.
-* [Raspu86](http://forums.bistudio.com/member.php?132083-Raspu86) ([GitHub](/Raspu86)) за модель рюкзаков.
+* [Raspu86](http://forums.bistudio.com/member.php?132083-Raspu86) ([GitHub](https://github.com/Raspu86)) за модель рюкзаков.
 * [Gandi](http://forums.bistudio.com/member.php?111588-Gandi) за текстуры.
-* [Pixinger](/Pixinger) за помощь с [Зевсом](http://arma3.com/dlc/zeus).
-* [whoozle](/whoozle) за звуковой движок и помощь.
-* [MastersDisaster](//www.freesound.org/people/MastersDisaster/) за [звук переключателя](//www.freesound.org/people/MastersDisaster/sounds/218115/).
+* [Pixinger](https://github.com/Pixinger) за помощь с [Зевсом](http://arma3.com/dlc/zeus).
+* [whoozle](https://github.com/whoozle) за звуковой движок и помощь.
+* [MastersDisaster](https://www.freesound.org/people/MastersDisaster/) за [звук переключателя](https://www.freesound.org/people/MastersDisaster/sounds/218115/).
 * [CptDavo](http://forums.bistudio.com/member.php?75211-CptDavo) за помощь с текстурами.
-* [KoffeinFlummi](/KoffeinFlummi) за помощь с кодом.
+* [KoffeinFlummi](https://github.com/KoffeinFlummi) за помощь с кодом.
 * [R.m.K Gandi](http://steamcommunity.com/profiles/76561197984744647/) за текстуры рюкзаков.
 * [Pomigit](http://forums.bistudio.com/member.php?97133-pomigit) за паттерны текстур.
-* [Priestylive](//plus.google.com/u/0/113553519889377947218/posts) за текстуры для [BWMOD](http://bwmod.de/).
-* [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) ([SoundCloud](//soundcloud.com/audiocustoms)) за звуки раций.
-* [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) ([GitHub](/evromalarkey)) за перевод на чешский.
-* [Tourorist](/Tourorist) за помощь с документацией.
+* [Priestylive](https://plus.google.com/u/0/113553519889377947218/posts) за текстуры для [BWMOD](http://bwmod.de/).
+* [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) ([SoundCloud](https://soundcloud.com/audiocustoms)) за звуки раций.
+* [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) ([GitHub](https://github.com/evromalarkey)) за перевод на чешский.
+* [Tourorist](https://github.com/Tourorist) за помощь с документацией.
 * Разработчикам [RHS](http://www.rhsmods.org/) за помощь в интеграции.
 * Всем, кто делал видео и статьи с обзорами.
 * Всем пользователям (особенно тем, что нашли баги).
