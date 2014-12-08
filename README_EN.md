@@ -1,7 +1,7 @@
 Task Force Arma 3 Radio
 =======================
 A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
-###[Wiki](/michail-nikolaev/task-force-arma-3-radio/wiki)&nbsp;&nbsp;[![](http://img.shields.io/badge/Version-0.9.7 from 26.10.2014-blue.svg?style=flat)](/michail-nikolaev/task-force-arma-3-radio/releases)&nbsp;[![](http://img.shields.io/badge/License-APL--SA-red.svg?style=flat)](/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md)
+###[Wiki](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki)&nbsp;&nbsp;[![](http://img.shields.io/badge/Version-0.9.7 from 26.10.2014-blue.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases)&nbsp;[![](http://img.shields.io/badge/License-APL--SA-red.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md)
 [![Task Force Arma 3 Radio](https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg)](/michail-nikolaev/task-force-arma-3-radio)
 ##Please support us on [Make Arma Not War](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)
 
@@ -55,14 +55,14 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 ###Radios
 | Radio | Side | Range /Distance | 
 | :--- | :--- | :--- |
-| :radio: [AN/PRC-152](//en.wikipedia.org/wiki/AN/PRC-152)<br><sup>(commander)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/5 km |
+| :radio: [AN/PRC-152](https://en.wikipedia.org/wiki/AN/PRC-152)<br><sup>(commander)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/5 km |
 | :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)<br><sup>(squadmate)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/2 km |
-| :radio: [RT-1523G (ASIP)](//en.wikipedia.org/wiki/SINCGARS#Models)<br><sup>(manpack)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for [vehicle-mounted](//en.wikipedia.org/wiki/Mobile_radio))</sup> |
+| :radio: [RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)<br><sup>(manpack)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for [vehicle-mounted](https://en.wikipedia.org/wiki/Mobile_radio))</sup> |
 | :radio: [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx)<br><sup>(airborne)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/40 km |
-| :radio: [AN/PRC148-JEM](//en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)<br><sup>(commander)</sup> | <span style="color:green">Independent</span> | 30-512 MHz<br>/5 km |
+| :radio: [AN/PRC148-JEM](https://en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)<br><sup>(commander)</sup> | <span style="color:green">Independent</span> | 30-512 MHz<br>/5 km |
 | :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html)<br><sup>(squadmate)</sup> | <span style="color:green">Independent</span> | 30-512 MHz<br>/2 km |
 | :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html)<br><sup>(manpack)</sup> | <span style="color:green">Independent</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for vehicle-mounted)</sup> |
-| :radio: [AN/ARC-164](//en.wikipedia.org/wiki/AN/ARC-164)<br><sup>(airborne)</sup> | <span style="color:green">Independent</span> | 30-87 MHz<br>/40 km |
+| :radio: [AN/ARC-164](https://en.wikipedia.org/wiki/AN/ARC-164)<br><sup>(airborne)</sup> | <span style="color:green">Independent</span> | 30-87 MHz<br>/40 km |
 | :radio: [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/)<br><sup>(commander)</sup> | <span style="color:red">OPFOR</span> | 30-512 MHz<br>/5 km | 
 | :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%20PNR1000A_2012.pdf)<br><sup>(squadmate)</sup> | <span style="color:red">OPFOR</span> | 30-512 MHz<br>/2 km | 
 | :radio: [MR3000](http://www.rohde-schwarz.com/en/product/mr300xh-u-productstartpage_63493-10291.html)<br><sup>(manpack)</sup> | <span style="color:red">OPFOR</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for vehicle-mounted)</sup> | 
@@ -123,49 +123,49 @@ The plugin supports two operation modes – **serious** and a **lightweight mode
 To be on the safe side, reduce the level of flood protection — `right-click on server> Edit Virtual Server> More> Anti Flood` — set the values at <code>30</code>, <code>300</code> and <code>3000</code> (from the top).
 
 ###For developers
-If this plugin ever becomes popular, it would be great if we could avoid having piles of incompatible community forks. For this reason, if you’d like to contribute to the project, contact me – it is very likely that your improvements will be merged into the main branch. Looking forward to your [pull requests](/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed). :smile:
+If this plugin ever becomes popular, it would be great if we could avoid having piles of incompatible community forks. For this reason, if you’d like to contribute to the project, contact me – it is very likely that your improvements will be merged into the main branch. Looking forward to your [pull requests](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed). :smile:
 
 ###Special Thanks
 * [Task Force Arrowhead](http://forum.task-force.ru/) squad for testing, support, patience and all the help.
-* [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](/varzin)) for help with graphics and documentation.
+* [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) for help with graphics and documentation.
 * [Hardckor ](http://forum.task-force.ru/index.php?action=profile;u=14) for help with graphics.
 * [Shogun](http://forum.task-force.ru/index.php?action=profile;u=13) for help with graphics.
 * [Blender](http://arma3.ru/forums/index.php/user/41-blender/) for the fonts.
-* [vinniefalco](/vinniefalco) for [DSP Filter](/vinniefalco/DSPFilters).
+* [vinniefalco](https://github.com/vinniefalco) for [DSP Filter](https://github.com/vinniefalco/DSPFilters).
 * [WOG](http://wogames.info/) and [TRUE](http://wogames.info/profile/TRUE/) personally, for helping with the QA.
-* [Music DSP Collection](/music-dsp-collection) for the compressor.
+* [Music DSP Collection](https://github.com/music-dsp-collection) for the compressor.
 * [Avi](http://arma3.ru/forums/index.php/user/715-avi/) for the code review.
-* [Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/) ([GutHub](/andrey-zakharov)) for the development help.
+* [Vaulter](http://arma3.ru/forums/index.php/user/1328-vaulter/) ([GutHub](https://github.com/andrey-zakharov)) for the development help.
 * Dina for translations.
-* [Zealot](http://forums.bistudio.com/member.php?125460-zealot111) ([GitHub](/Zealot111)) for the development help and useful scripts.
+* [Zealot](http://forums.bistudio.com/member.php?125460-zealot111) ([GitHub](https://github.com/Zealot111)) for the development help and useful scripts.
 * [NouberNou](http://forums.bistudio.com/member.php?56560-NouberNou) for advice and friendly competition.
 * [Megagoth1702](http://forums.unitedoperations.net/index.php/user/2271-megagoth1702/) for his old work on emulation of radio sounds.
 * [Naught](http://forums.unitedoperations.net/index.php/user/6555-naught/) for the code review.
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) for translations.
-* [L-H](http://forums.bistudio.com/member.php?87524-LordHeart) ([GitHub](/CorruptedHeart)) for changes to the code.
+* [L-H](http://forums.bistudio.com/member.php?87524-LordHeart) ([GitHub](https://github.com/CorruptedHeart)) for changes to the code.
 * [NorX_Aengell](http://forums.bistudio.com/member.php?99450-NorX_Aengell) for translation into French.
-* [lukrop](http://forums.bistudio.com/member.php?78022-lukrop) ([GitHub](/lukrop)) for changes to the code.
-* [nikolauska](http://forums.bistudio.com/member.php?75014-nikolauska) ([GitHub](/nikolauska)) for improvements to SQF code.
-* [Kavinsky](/kavinsky) for AN/PRC-154, RF-7800S-TR and other radios.
-* [JonBons](http://forums.bistudio.com/member.php?81374-JonBons) ([GitHub](/JonBons)) for changes to the code.
-* [ramius86](/ramius86) for translation into Italian.
+* [lukrop](http://forums.bistudio.com/member.php?78022-lukrop) ([GitHub](https://github.com/lukrop)) for changes to the code.
+* [nikolauska](http://forums.bistudio.com/member.php?75014-nikolauska) ([GitHub](https://github.com/nikolauska)) for improvements to SQF code.
+* [Kavinsky](https://github.com/kavinsky) for AN/PRC-154, RF-7800S-TR and other radios.
+* [JonBons](http://forums.bistudio.com/member.php?81374-JonBons) ([GitHub](https://github.com/JonBons)) for changes to the code.
+* [ramius86](https://github.com/ramius86) for translation into Italian.
 * Killzone Kid for [tutorials](http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/).
-* [Krypto202](http://www.armaholic.com/users.php?m=details&id=45906&u=kripto202) ([GitHub](/kripto202)) for sounds.
-* [pastor399](http://forums.bistudio.com/member.php?128853-pastor399) ([GitHub](/pastor399)) for backpack models and textures.
+* [Krypto202](http://www.armaholic.com/users.php?m=details&id=45906&u=kripto202) ([GitHub](https://github.com/kripto202)) for sounds.
+* [pastor399](http://forums.bistudio.com/member.php?128853-pastor399) ([GitHub](https://github.com/pastor399)) for backpack models and textures.
 * [J0nes](http://forums.bistudio.com/member.php?96513-J0nes) for help with the models.
-* [Raspu86](http://forums.bistudio.com/member.php?132083-Raspu86) ([GitHub](/Raspu86)) for backpack models.
+* [Raspu86](http://forums.bistudio.com/member.php?132083-Raspu86) ([GitHub](https://github.com/Raspu86)) for backpack models.
 * [Gandi](http://forums.bistudio.com/member.php?111588-Gandi) for textures.
-* [Pixinger](/Pixinger) for help with [Zeus](http://arma3.com/dlc/zeus).
-* [whoozle](/whoozle) for sound engine and help.
-* [MastersDisaster](//www.freesound.org/people/MastersDisaster/) for the [Rotator switch sound](//www.freesound.org/people/MastersDisaster/sounds/218115/).
+* [Pixinger](https://github.com/Pixinger) for help with [Zeus](http://arma3.com/dlc/zeus).
+* [whoozle](https://github.com/whoozle) for sound engine and help.
+* [MastersDisaster](https://www.freesound.org/people/MastersDisaster/) for the [Rotator switch sound](https://www.freesound.org/people/MastersDisaster/sounds/218115/).
 * [CptDavo](http://forums.bistudio.com/member.php?75211-CptDavo) for help with textures.
-* [KoffeinFlummi](/KoffeinFlummi) for help with the code.
+* [KoffeinFlummi](https://github.com/KoffeinFlummi) for help with the code.
 * [R.m.K Gandi](http://steamcommunity.com/profiles/76561197984744647/) for backpack textures.
 * [Pomigit](http://forums.bistudio.com/member.php?97133-pomigit) for texture patterns.
-* [Priestylive](//plus.google.com/u/0/113553519889377947218/posts) for [BWMOD](http://bwmod.de/) textures.
-* [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) ([SoundCloud](//soundcloud.com/audiocustoms)) for radio sounds.
-* [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) ([GitHub](/evromalarkey)) for translation into Czech.
-* [Tourorist](/Tourorist) for help with documentation.
+* [Priestylive](https://plus.google.com/u/0/113553519889377947218/posts) for [BWMOD](http://bwmod.de/) textures.
+* [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) ([SoundCloud](https://soundcloud.com/audiocustoms)) for radio sounds.
+* [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) ([GitHub](https://github.com/evromalarkey)) for translation into Czech.
+* [Tourorist](https://github.com/Tourorist) for help with documentation.
 * The development team of [RHS](http://www.rhsmods.org/), for their help with integration.
 * Everyone who made videos or wrote review articles.
 * All the players who use TFAR, especially those taking out their time to report bugs.
