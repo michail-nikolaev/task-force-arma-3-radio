@@ -49,7 +49,7 @@ Task Force Arma 3 Radio
 > Môžete si nakonfigurovať klávesy v konfiguračnom súbore, ktorý možno nájsť v priečinku hry `...\Arma 3\userconfig\task_force_radio\radio_keys.hpp`. Tento súbor je editovateľný v Notepad-e.
 
 ###Vysielačky
-| Vysielačka&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Strana | Rozsah /Dosah | Návod na používanie |
+| Vysielačka&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Strana | Rozsah /Dosah | Návod na používanie |
 | :--- | :--- | :--- | :--- |
 | <kbd>[AN/PRC-152](https://en.wikipedia.org/wiki/AN/PRC-152)</kbd><br><sup>(osobná)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/5&nbsp;km | Ak chcete zmeniť frekvenciu, stlačte `CLR`, zadajte hodnotu (na klávesnici) a potvrďte `ENT`. Takisto si môžete prepínať kanály na vysielačke pomocou tlačidiel so šipkami (celkovo 8 kanálov). Hlasitosť vysielačky môžete meniť pomocou `PRE+` a `PRE-` tlačítok. Môžete tiež zmeniť stereo nastavenie stlačením tlačidla `0`.|
 | <kbd>[RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)</kbd><br><sup>(osobná)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/2&nbsp;km | [inštrukcie] |
