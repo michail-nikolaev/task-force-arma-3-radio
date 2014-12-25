@@ -57,19 +57,19 @@ Task Force Arma 3 Radio
 ###Рации
 | Рация | Сторона | Диапазон /Дальность | 
 | :--- | :--- | :--- |
-| :radio: [AN/PRC-152](https://ru.wikipedia.org/wiki/AN/PRC-152)<br><sup>(командира)</sup>  | <span style="color:blue">Синие</span> | 30-512 МГц<br>/5 км |
-| :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)<br /><sup>(бойца)</sup> | <span style="color:blue">Синие</span> | 30-512 МГц<br>/2 км |
-| :radio: [RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)<br><sup>(ранцевая)</sup> | <span style="color:blue">Синие</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> |
-| :radio: [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx)<br><sup>(авиационная)</sup> | <span style="color:blue">Синие</span> | 30-87 МГц<br>/40 км |
-| :radio: [AN/PRC148-JEM](https://en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)<br><sup>(командира)</sup> | <span style="color:green">Независимые</span> | 30-512 МГц<br>/5 км | 
-| :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html)<br><sup>(бойца)</sup> | <span style="color:green">Независимые</span> | 30-512 МГц<br>/2 км | 
-| :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html)<br><sup>(ранцевая)</sup> | <span style="color:green">Независимые</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> | 
-| :radio: [AN/ARC-164](https://ru.wikipedia.org/wiki/AN/ARC-164)<br><sup>(авиационная)</sup> | <span style="color:green">Независимые</span> | 30-87 МГц<br>/40 км |
-| :radio: [FADAK](http://www.iran.ru/news/politics/87228/Iran_prodemonstriroval_tri_novyh_obrazca_voennogo_naznacheniya)<br><sup>(командира)</sup> | <span style="color:red">Красные</span> | 30-512 МГц<br>/5 км | 
-| :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%20PNR1000A_2012.pdf)<br><sup>(бойца)</sup> | <span style="color:red">Красные</span> | 30-512 МГц<br>/2 км | 
-| :radio: [MR3000](http://www.rohde-schwarz.com/en/product/mr300xh-u-productstartpage_63493-10291.html)<br><sup>(ранцевая)</sup> | <span style="color:red">Красные</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> | 
-| :radio: [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html)<br><sup>(авиационная)</sup> | <span style="color:red">Красные</span> | 30-87 МГц<br>/40 км | 
-| :radio: Приемопередатчик<br><sup>(подводный)</sup> | Все | 32-41 кГц<br>/70-300 м<br><sup>(в&nbsp;зависимости&nbsp;от&nbsp;уровня&nbsp;волн)</sup> |
+| <kbd>[AN/PRC-152](https://ru.wikipedia.org/wiki/AN/PRC-152)</kbd><br><sup>(командира)</sup>  | <span style="color:blue">Синие</span> | 30-512 МГц<br>/5 км |
+| <kbd>[RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)</kbd><br /><sup>(бойца)</sup> | <span style="color:blue">Синие</span> | 30-512 МГц<br>/2 км |
+| <kbd>[RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)</kbd><br><sup>(ранцевая)</sup> | <span style="color:blue">Синие</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> |
+| <kbd>[AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx)</kbd><br><sup>(авиационная)</sup> | <span style="color:blue">Синие</span> | 30-87 МГц<br>/40 км |
+| <kbd>[AN/PRC148-JEM](https://en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)</kbd><br><sup>(командира)</sup> | <span style="color:green">Независимые</span> | 30-512 МГц<br>/5 км | 
+| <kbd>[AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html)</kbd><br><sup>(бойца)</sup> | <span style="color:green">Независимые</span> | 30-512 МГц<br>/2 км | 
+| <kbd>[AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html)</kbd><br><sup>(ранцевая)</sup> | <span style="color:green">Независимые</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> | 
+| <kbd>[AN/ARC-164](https://ru.wikipedia.org/wiki/AN/ARC-164)</kbd><br><sup>(авиационная)</sup> | <span style="color:green">Независимые</span> | 30-87 МГц<br>/40 км |
+| <kbd>[FADAK](http://www.iran.ru/news/politics/87228/Iran_prodemonstriroval_tri_novyh_obrazca_voennogo_naznacheniya)</kbd><br><sup>(командира)</sup> | <span style="color:red">Красные</span> | 30-512 МГц<br>/5 км | 
+| <kbd>[PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%20PNR1000A_2012.pdf)</kbd><br><sup>(бойца)</sup> | <span style="color:red">Красные</span> | 30-512 МГц<br>/2 км | 
+| <kbd>[MR3000](http://www.rohde-schwarz.com/en/product/mr300xh-u-productstartpage_63493-10291.html)</kbd><br><sup>(ранцевая)</sup> | <span style="color:red">Красные</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> | 
+| <kbd>[MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html)</kbd><br><sup>(авиационная)</sup> | <span style="color:red">Красные</span> | 30-87 МГц<br>/40 км | 
+| <kbd>Приемопередатчик</kbd><br><sup>(подводный)</sup> | Все | 32-41 кГц<br>/70-300 м<br><sup>(в&nbsp;зависимости&nbsp;от&nbsp;уровня&nbsp;волн)</sup> |
 
 > Рации ближней связи (ручные, класса командира или бояца) и радиостанции дальнего вещания (ранцевые, бортовые, авиационные) одной фракции поддерживают единый протокол, поэтому могут связываться друг с другом. В случае если передача осуществляется по ближней – сигнал будет высокочастотным. В случае передачи по дальней – низкочастотным. 
 
@@ -125,7 +125,7 @@ Task Force Arma 3 Radio
 На всякий случай уменьшите уровень защиты от флуда — `правый клик по серверу> Edit Virtual Server> More> Anti Flood` — поставьте значения `30`, `300`, `3000` (сверху вниз).
 
 ###Разработчикам
-Если данная разработка будет как-либо популярна, то хотелось бы избежать кучи несовместимых форков. По этой причине, в случае желания внесения изменений связывайтесь со мной - велика вероятность, что ваши разработки будут включены в главную ветку. Ждем [запросов на включение](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed) ваших изменений. :smile:
+Если данная разработка будет как-либо популярна, то хотелось бы избежать кучи несовместимых форков. По этой причине, в случае желания внесения изменений связывайтесь со мной - велика вероятность, что ваши разработки будут включены в главную ветку. Ждем [запросов на включение](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed) ваших изменений.
 
 ###Спасибки
 * Отряду [Task Force Arrowhead](http://forum.task-force.ru/) за тестирование, поддержку, терпение и всяческую помощь.
