@@ -55,19 +55,19 @@ A [TeamSpeak](http://www.teamspeak.com/) radio plugin for Arma 3.
 ###Radios
 | Radio | Side | Range /Distance | 
 | :--- | :--- | :--- |
-| :radio: [AN/PRC-152](https://en.wikipedia.org/wiki/AN/PRC-152)<br><sup>(commander)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/5 km |
-| :radio: [RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)<br><sup>(squadmate)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/2 km |
-| :radio: [RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)<br><sup>(manpack)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for [vehicle-mounted](https://en.wikipedia.org/wiki/Mobile_radio))</sup> |
-| :radio: [AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx)<br><sup>(airborne)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/40 km |
-| :radio: [AN/PRC148-JEM](https://en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)<br><sup>(commander)</sup> | <span style="color:green">Independent</span> | 30-512 MHz<br>/5 km |
-| :radio: [AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html)<br><sup>(squadmate)</sup> | <span style="color:green">Independent</span> | 30-512 MHz<br>/2 km |
-| :radio: [AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html)<br><sup>(manpack)</sup> | <span style="color:green">Independent</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for vehicle-mounted)</sup> |
-| :radio: [AN/ARC-164](https://en.wikipedia.org/wiki/AN/ARC-164)<br><sup>(airborne)</sup> | <span style="color:green">Independent</span> | 30-87 MHz<br>/40 km |
-| :radio: [FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/)<br><sup>(commander)</sup> | <span style="color:red">OPFOR</span> | 30-512 MHz<br>/5 km | 
-| :radio: [PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%20PNR1000A_2012.pdf)<br><sup>(squadmate)</sup> | <span style="color:red">OPFOR</span> | 30-512 MHz<br>/2 km | 
-| :radio: [MR3000](http://www.rohde-schwarz.com/en/product/mr300xh-u-productstartpage_63493-10291.html)<br><sup>(manpack)</sup> | <span style="color:red">OPFOR</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for vehicle-mounted)</sup> | 
-| :radio: [MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html)<br><sup>(airborne)</sup> | <span style="color:red">OPFOR</span> | 30-87 MHz<br>/40 km | 
-| :radio: Transceiver<br><sup>(underwater)</sup> | All | 32-41 kHz<br>/70-300 m<br><sup>(depending on waves)</sup> |
+| <kbd>[AN/PRC-152](https://en.wikipedia.org/wiki/AN/PRC-152)</kbd><br><sup>(commander)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/5 km |
+| <kbd>[RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)</kbd><br><sup>(squadmate)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/2 km |
+| <kbd>[RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)</kbd><br><sup>(manpack)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for [vehicle-mounted](https://en.wikipedia.org/wiki/Mobile_radio))</sup> |
+| <kbd>[AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx)</kbd><br><sup>(airborne)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/40 km |
+| <kbd>[AN/PRC148-JEM](https://en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)</kbd><br><sup>(commander)</sup> | <span style="color:green">Independent</span> | 30-512 MHz<br>/5 km |
+| <kbd>[AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html)</kbd><br><sup>(squadmate)</sup> | <span style="color:green">Independent</span> | 30-512 MHz<br>/2 km |
+| <kbd>[AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html)</kbd><br><sup>(manpack)</sup> | <span style="color:green">Independent</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for vehicle-mounted)</sup> |
+| <kbd>[AN/ARC-164](https://en.wikipedia.org/wiki/AN/ARC-164)</kbd><br><sup>(airborne)</sup> | <span style="color:green">Independent</span> | 30-87 MHz<br>/40 km |
+| <kbd>[FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/)</kbd><br><sup>(commander)</sup> | <span style="color:red">OPFOR</span> | 30-512 MHz<br>/5 km | 
+| <kbd>[PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%20PNR1000A_2012.pdf)</kbd><br><sup>(squadmate)</sup> | <span style="color:red">OPFOR</span> | 30-512 MHz<br>/2 km | 
+| <kbd>[MR3000](http://www.rohde-schwarz.com/en/product/mr300xh-u-productstartpage_63493-10291.html)</kbd><br><sup>(manpack)</sup> | <span style="color:red">OPFOR</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for vehicle-mounted)</sup> | 
+| <kbd>[MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html)</kbd><br><sup>(airborne)</sup> | <span style="color:red">OPFOR</span> | 30-87 MHz<br>/40 km | 
+| <kbd>Transceiver</kbd><br><sup>(underwater)</sup> | All | 32-41 kHz<br>/70-300 m<br><sup>(depending on waves)</sup> |
 
 > Short range (handheld, of commander or squadmate class) and long range radios (manpack, airborne, vehicle-mounted) of same faction are configured using a common protocol, allowing them to communicate with each other. If the transmission is carried out using a short range radio – the sound will be of high-frequency. In the case of a long range transmission – it will be of low-frequency.
 
@@ -123,7 +123,7 @@ The plugin supports two operation modes – **serious** and a **lightweight mode
 To be on the safe side, reduce the level of flood protection — `right-click on server> Edit Virtual Server> More> Anti Flood` — set the values at <code>30</code>, <code>300</code> and <code>3000</code> (from the top).
 
 ###For developers
-If this plugin ever becomes popular, it would be great if we could avoid having piles of incompatible community forks. For this reason, if you’d like to contribute to the project, contact me – it is very likely that your improvements will be merged into the main branch. Looking forward to your [pull requests](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed). :smile:
+If this plugin ever becomes popular, it would be great if we could avoid having piles of incompatible community forks. For this reason, if you’d like to contribute to the project, contact me – it is very likely that your improvements will be merged into the main branch. Looking forward to your [pull requests](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed).
 
 ###Special Thanks
 * [Task Force Arrowhead](http://forum.task-force.ru/) squad for testing, support, patience and all the help.
