@@ -1,9 +1,25 @@
-Task Force Arma 3 Radio
-=======================
-[TeamSpeak](http://www.teamspeak.com/) radio plugin pre Arma 3
-###[Wiki](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki)&nbsp;&nbsp;[![](http://img.shields.io/badge/Verzia-0.9.7 od 26.10.2014-blue.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases)&nbsp;[![](http://img.shields.io/badge/Stiahnuť-120_MB-green.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip)&nbsp;[![](http://img.shields.io/badge/Licencie-APL--SA-red.svg?style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md)&nbsp;[![](http://img.shields.io/github/issues/michail-nikolaev/task-force-arma-3-radio.svg?label=Problémy&style=flat)](https://github.com/michail-nikolaev/task-force-arma-3-radio/issues)
-[![Task Force Arma 3 Radio](https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg)](https://github.com/michail-nikolaev/task-force-arma-3-radio)
-##Podporte nás na [Make Arma Not War](http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD)
+<h1 align="center">Task Force Arma 3 Radio</h1>
+<p align="center">
+<img src="https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg" width=512 /><br />
+  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki">
+    <img src="https://img.shields.io/badge/TFAR-Wiki-orange.svg?style=flat" alt="Wiki">
+  </a>
+  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases">
+    <img src="http://img.shields.io/badge/Verzia-0.9.7-blue.svg?style=flat" alt="Verzia">
+  </a>
+  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip">
+    <img src="http://img.shields.io/badge/Stiahnuť-120_MB-green.svg?style=flat" alt="Stiahnuť">
+  </a>
+  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md">
+    <img src="http://img.shields.io/badge/Licencie-APL--SA-red.svg?style=flat" alt="Licencie">
+  </a>
+  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/issues">
+    <img src="http://img.shields.io/github/issues/michail-nikolaev/task-force-arma-3-radio.svg?label=Problémy&style=flat" alt="Problémy">
+  </a>
+  </p>
+<p align="center">
+<sup><strong>A <a href="http://www.teamspeak.com/">TeamSpeak</a> radio plugin pre Arma 3. Podporte nás na <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Nake Arma Not War</a> súťaže.</strong></sup>
+</p>
 
 ###Inštalácia
 * Stiahnite si a rozbaľte [0.9.7 radio archív](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip).
