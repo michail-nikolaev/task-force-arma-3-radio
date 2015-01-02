@@ -14,7 +14,7 @@
     <img src="http://img.shields.io/badge/License-APL--SA-red.svg?style=flat" alt="LLicense">
   </a>
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/issues">
-    <img src="http://img.shields.io/github/issues/michail-nikolaev/task-force-arma-3-radio.svg?label=Issues&style=flat" alt="Issues">
+    <img src="http://img.shields.io/github/issues-raw/michail-nikolaev/task-force-arma-3-radio.svg?label=Issues&style=flat" alt="Issues">
   </a>
   </p>
 <p align="center">
