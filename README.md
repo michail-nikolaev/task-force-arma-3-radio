@@ -18,7 +18,7 @@
   </a>
   </p>
 <p align="center">
-<sup><strong><a href="http://www.teamspeak.com/">TeamSpeak</a> радио плагин для Arma 3. Поддержите нас на конкурсе <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Nake Arma Not War</a>.</strong></sup>
+<sup><strong>Arma 3 <a href="http://www.teamspeak.com/">TeamSpeak</a> радио плагин. Поддержите нас на конкурсе <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Nake Arma Not War</a>.</strong></sup>
 </p>
 
 ###Установка
