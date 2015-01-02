@@ -1,6 +1,6 @@
 <h1 align="center">Task Force Arma 3 Radio</h1>
 <p align="center">
-<img src="https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg" width=528 /><br />
+<img src="https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg" width=504 /><br />
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki">
     <img src="https://img.shields.io/badge/TFAR-Вики-orange.svg?style=flat" alt="Вики">
   </a>
