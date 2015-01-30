@@ -28,7 +28,7 @@
   </a>
   </p>
 <p align="center">
-<sup><strong>Радио плагин <a href="http://www.teamspeak.com/">Тимспика</a> для Arma 3. TFAR уже одни из финалистов конкурса <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Nake Arma Not War</a>.</strong></sup>
+<sup><strong>Радио плагин <a href="http://www.teamspeak.com/">Тимспика</a> для Arma 3. TFAR уже одни из финалистов конкурса <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Make Arma Not War</a>.</strong></sup>
 </p>
 
 ###Установка
