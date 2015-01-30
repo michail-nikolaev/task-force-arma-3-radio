@@ -79,23 +79,23 @@
 | <kbd>Esc</kbd> | Выход из интерфейса рации. |
 
 ###Рации
-| Рация | Сторона | Диапазон /Дальность | 
+| Рация | Сторона | Диапазон /Дальность |
 | :--- | :--- | :--- |
-| <kbd>[AN/PRC-152](https://ru.wikipedia.org/wiki/AN/PRC-152)</kbd><br><sup>(командира)</sup>  | <span style="color:blue">Синие</span> | 30-512 МГц<br>/5 км |
-| <kbd>[RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)</kbd><br /><sup>(бойца)</sup> | <span style="color:blue">Синие</span> | 30-512 МГц<br>/2 км |
-| <kbd>[RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)</kbd><br><sup>(ранцевая)</sup> | <span style="color:blue">Синие</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> |
-| <kbd>[AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx)</kbd><br><sup>(авиационная)</sup> | <span style="color:blue">Синие</span> | 30-87 МГц<br>/40 км |
-| <kbd>[AN/PRC148-JEM](https://en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)</kbd><br><sup>(командира)</sup> | <span style="color:green">Независимые</span> | 30-512 МГц<br>/5 км | 
-| <kbd>[AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html)</kbd><br><sup>(бойца)</sup> | <span style="color:green">Независимые</span> | 30-512 МГц<br>/2 км |
-| <kbd>[AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html)</kbd><br><sup>(ранцевая)</sup> | <span style="color:green">Независимые</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> |
-| <kbd>[AN/ARC-164](https://ru.wikipedia.org/wiki/AN/ARC-164)</kbd><br><sup>(авиационная)</sup> | <span style="color:green">Независимые</span> | 30-87 МГц<br>/40 км |
-| <kbd>[FADAK](http://www.iran.ru/news/politics/87228/Iran_prodemonstriroval_tri_novyh_obrazca_voennogo_naznacheniya)</kbd><br><sup>(командира)</sup> | <span style="color:red">Красные</span> | 30-512 МГц<br>/5 км |
-| <kbd>[PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%20PNR1000A_2012.pdf)</kbd><br><sup>(бойца)</sup> | <span style="color:red">Красные</span> | 30-512 МГц<br>/2 км |
-| <kbd>[MR3000](http://www.rohde-schwarz.com/en/product/mr300xh-u-productstartpage_63493-10291.html)</kbd><br><sup>(ранцевая)</sup> | <span style="color:red">Красные</span> | 30-87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> |
-| <kbd>[MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html)</kbd><br><sup>(авиационная)</sup> | <span style="color:red">Красные</span> | 30-87 МГц<br>/40 км |
-| <kbd>Приемопередатчик</kbd><br><sup>(подводный)</sup> | Все | 32-41 кГц<br>/70-300 м<br><sup>(в&nbsp;зависимости&nbsp;от&nbsp;уровня&nbsp;волн)</sup> |
+| <kbd>[AN/PRC-152](https://ru.wikipedia.org/wiki/AN/PRC-152)</kbd><br><sup>(командира)</sup>  | <span style="color:blue">Синие</span> | 30—512 МГц<br>/5 км |
+| <kbd>[RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)</kbd><br /><sup>(бойца)</sup> | <span style="color:blue">Синие</span> | 30—512 МГц<br>/2 км |
+| <kbd>[RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)</kbd><br><sup>(ранцевая)</sup> | <span style="color:blue">Синие</span> | 30—87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> |
+| <kbd>[AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx)</kbd><br><sup>(авиационная)</sup> | <span style="color:blue">Синие</span> | 30—87 МГц<br>/40 км |
+| <kbd>[AN/PRC148-JEM](https://en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)</kbd><br><sup>(командира)</sup> | <span style="color:green">Независимые</span> | 30—512 МГц<br>/5 км |
+| <kbd>[AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html)</kbd><br><sup>(бойца)</sup> | <span style="color:green">Независимые</span> | 30—512 МГц<br>/2 км |
+| <kbd>[AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html)</kbd><br><sup>(ранцевая)</sup> | <span style="color:green">Независимые</span> | 30—87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> |
+| <kbd>[AN/ARC-164](https://ru.wikipedia.org/wiki/AN/ARC-164)</kbd><br><sup>(авиационная)</sup> | <span style="color:green">Независимые</span> | 30—87 МГц<br>/40 км |
+| <kbd>[FADAK](http://www.iran.ru/news/politics/87228/Iran_prodemonstriroval_tri_novyh_obrazca_voennogo_naznacheniya)</kbd><br><sup>(командира)</sup> | <span style="color:red">Красные</span> | 30—512 МГц<br>/5 км |
+| <kbd>[PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%20PNR1000A_2012.pdf)</kbd><br><sup>(бойца)</sup> | <span style="color:red">Красные</span> | 30—512 МГц<br>/2 км |
+| <kbd>[MR3000](http://www.rohde-schwarz.com/en/product/mr300xh-u-productstartpage_63493-10291.html)</kbd><br><sup>(ранцевая)</sup> | <span style="color:red">Красные</span> | 30—87 МГц<br>/20 км<br><sup>(30 км для бортовой)</sup> |
+| <kbd>[MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html)</kbd><br><sup>(авиационная)</sup> | <span style="color:red">Красные</span> | 30—87 МГц<br>/40 км |
+| <kbd>Приемопередатчик</kbd><br><sup>(подводный)</sup> | Все | 32—41 кГц<br>/70—300 м<br><sup>(в&nbsp;зависимости&nbsp;от&nbsp;уровня&nbsp;волн)</sup> |
 
-> Рации ближней связи (ручные, класса командира или бояца) и радиостанции дальнего вещания (ранцевые, бортовые, авиационные) одной фракции поддерживают единый протокол, поэтому могут связываться друг с другом. В случае если передача осуществляется по ближней – сигнал будет высокочастотным. В случае передачи по дальней – низкочастотным. 
+> Рации ближней связи (ручные, класса командира или бояца) и радиостанции дальнего вещания (ранцевые, бортовые, авиационные) одной фракции поддерживают единый протокол, поэтому могут связываться друг с другом. В случае если передача осуществляется по ближней – сигнал будет высокочастотным. В случае передачи по дальней – низкочастотным.
 
 > На качество радио сигнала также влияет ландшафт местности. Наименее благоприятное положение – вы находитесь прямо за крутым холмом. Если вы начнете двигаться от края холма в направлении противоположном вещающему игроку – сигнал будет улучшаться. Наиболее благоприятная позиция – прямая видимость до или от объекта вещания.
 
@@ -137,7 +137,7 @@
 * **Серьезный** предназначен для проведения игр, где игроки играют против других игроков. Для его активации в Тимспике необходимо создать канал с названием `TaskForceRadio` и паролем `123`. Игроки должны включить плагин рации, зайти на сервер и, разойдясь по каналам сторон, проходить инструктаж. После загрузки миссии, через несколько секунд игроки будут переброшены в канал `TaskForceRadio`. В данном случае игроки будут слышать только живых игроков, со включенным плагином, играющих на этом же сервере. Мертвые игроки, в свою очередь, могут общаться друг с другом. Если мертвый игрок респавниться — он снова будет слышать только живых. После того, как игра заканчивается, игроки перебрасываются в канал, в котором они проходили инструктаж до игры.
 
 ###Решение проблем
-* `Pipe error 230` – вы скорее всего вы забыли включить плагин в Тимспике.
+* `Pipe error 230` — вы скорее всего вы забыли включить плагин в Тимспике.
 * Плагин в TS показываться красным и не загружается - скорее всего вам нужно обновить Тимспик.
 * Если что-то поломалось – попробуйте перезапустить плагин.
 * Функция по нажатию <kbd>Caps Lock</kbd> не работает — возможная причина в геймерской клавиатуре, где код данной клавишы отличается от стандартного. Попробуйте изменить используемые клавиши (путем редактирования <code>userconfig</code>).
