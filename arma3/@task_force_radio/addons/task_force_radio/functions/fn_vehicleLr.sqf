@@ -30,7 +30,7 @@ if (((vehicle _this) != _this) and {(vehicle _this) call TFAR_fnc_hasVehicleRadi
 		case (commander (vehicle _this)): {
 			_result = [vehicle _this, "commander_radio_settings"];
 		};
-		case ((vehicle _this) turretUnit [0]): {
+		case ((vehicle _this) call TFAR_fnc_getCopilot): {
 			_result = [vehicle _this, "turretUnit_0_radio_setting"];
 		};
 	};
