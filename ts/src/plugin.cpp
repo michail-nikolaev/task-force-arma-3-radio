@@ -762,6 +762,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 				}
 				clientData->getClunk(id)->process(input, wave->_spec.channels, samples, position, clientData->viewAngle);
 				clientData->removeClunk(id);
+				applyILD(input, wave->_spec.channels, samples, position, clientData->viewAngle);
 			}
 
 		}
@@ -2648,6 +2649,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 				{					
 					// process voice
 					data->getClunk("voice_clunk")->process(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);
+					applyILD(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);
 					if (shouldPlayerHear)
 					{
 						if (vehicleVolumeLoss < 0.01 || vehicleCheck)
@@ -2731,6 +2733,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, CANT_SPEAK_GAIN, (data->getFilterCantSpeak(info.radio_id)));
 						}
 						data->getClunk(info.radio_id)->process(radio_buffer, channels, sampleCount, info.pos, myData->viewAngle);
+						applyILD(radio_buffer, channels, sampleCount, info.pos, myData->viewAngle);
 					}
 					mix(samples, radio_buffer, sampleCount, channels);
 					
