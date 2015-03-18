@@ -15,6 +15,7 @@
 #include <string.h>
 #include <string>
 #include <assert.h>
+#include <math.h>
 #include <iostream>
 #include <sstream>
 #include <map>
@@ -65,7 +66,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.7"
+#define PLUGIN_VERSION "0.9.7.2"
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 
@@ -593,6 +594,34 @@ void applyGain(short * samples, int channels, int sampleCount, float directTalki
 	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short)(samples[i] * directTalkingVolume);
 }
 
+void applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle)
+{
+	if (channels == 2){
+		viewAngle = viewAngle * M_PI / 180;
+		float dir = atan2(position.y, position.x) + viewAngle;
+		while (dir > M_PI)
+		{
+			dir = dir - 2*M_PI;
+		}
+
+		float gainLeft = 1.0;
+		float gainRight = 1.0;
+
+		gainLeft = -0.375 * cos(dir) + 0.625;
+		gainRight = 0.375 * cos(dir) + 0.625;
+
+		for (int i = 0; i < sampleCount * channels; i++) {
+			if (i % 2 == 0)
+			{
+				samples[i] = (short)(samples[i] * gainLeft);
+			}
+			else
+			{
+				samples[i] = (short)(samples[i] * gainRight);
+			}
+		}
+	}
+}
 
 anyID getMyId(uint64 serverConnectionHandlerID)
 {
@@ -1259,7 +1288,7 @@ std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includ
 	std::string result = std::string("[I]Connected[/I] [B]")
 		+ (pipeConnected ? "Y" : "N") + "[/B] [I]Play[/I] [B]"
 		+ (inGame ? "Y" : "N")
-		+ (includeVersion ? std::string("[/B] [I]P:[/I][B]") + PLUGIN_VERSION + "[/B]" : "")
+		+ (includeVersion ? std::string("[/B] [I]P:[/I][B]") + PLUGIN_VERSION + ", Blue Branch[/B]" : "")
 		+ (includeVersion ? std::string("[I] A: [/I][B]") + addon + "[/B]" : "");
 	return result;
 }
@@ -2107,7 +2136,7 @@ const char* ts3plugin_author() {
 /* Plugin description */
 const char* ts3plugin_description() {
 	/* If you want to use wchar_t, see ts3plugin_name() on how to use */
-	return "Radio Addon for Arma 3";
+	return "Radio Addon for Arma 3, Blue Branch";
 }
 
 /* Set TeamSpeak 3 callback functions */
