@@ -18,7 +18,7 @@
   </a>
   </p>
 <p align="center">
-<sup><strong>Arma 3 <a href="http://www.teamspeak.com/">TeamSpeak</a> radio plugin. Podporte nás na <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Make Arma Not War</a> súťaže.</strong></sup>
+<sup><strong>Arma 3 <a href="http://www.teamspeak.com/">TeamSpeak</a> radio plugin. TFAR zvíťazil vo svojej kategórii v súťaži <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Make Arma Not War</a>.</strong></sup>
 </p>
 
 ###Inštalácia
