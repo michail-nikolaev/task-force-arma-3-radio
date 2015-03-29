@@ -192,6 +192,8 @@
 * [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) ([SoundCloud](https://soundcloud.com/audiocustoms)) за звуки раций.
 * [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) ([GitHub](https://github.com/evromalarkey)) за перевод на чешский.
 * [Tourorist](https://github.com/Tourorist) за помощь с документацией.
+* [ViperMaul](http://forums.bistudio.com/member.php?45090-ViperMaul) за помощь с CBA.
+* [Armatech](http://forums.bistudio.com/member.php?48510-armatech) за помощь с CBA.
 * Разработчикам [RHS](http://www.rhsmods.org/) за помощь в интеграции.
 * Всем, кто делал видео и статьи с обзорами.
 * Всем пользователям (особенно тем, что нашли баги).
