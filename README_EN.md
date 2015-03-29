@@ -28,7 +28,7 @@
   </a>
   </p>
 <p align="center">
-<sup><strong><a href="http://www.teamspeak.com/">TeamSpeak</a> radio plugin for Arma 3. TFAR won the 1st place (Addon) in <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Make Arma Not War</a> contest.</strong></sup>
+<sup><strong><a href="http://www.teamspeak.com/">TeamSpeak</a> integration for Arma 3. TFAR won the 1st place (Addon) in <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Make Arma Not War</a> contest.</strong></sup>
 </p>
 
 ###Installation
