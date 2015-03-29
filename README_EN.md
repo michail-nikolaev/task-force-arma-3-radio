@@ -192,6 +192,8 @@ If this plugin ever becomes popular, it would be great if we could avoid having 
 * [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) ([SoundCloud](https://soundcloud.com/audiocustoms)) for radio sounds.
 * [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) ([GitHub](https://github.com/evromalarkey)) for translation into Czech.
 * [Tourorist](https://github.com/Tourorist) for help with documentation.
+* [ViperMaul](http://forums.bistudio.com/member.php?45090-ViperMaul) for help with CBA.
+* [Armatech](http://forums.bistudio.com/member.php?48510-armatech) for help with CBA.
 * The development team of [RHS](http://www.rhsmods.org/), for their help with integration.
 * Everyone who made videos or wrote review articles.
 * All the players who use TFAR, especially those taking out their time to report bugs.
