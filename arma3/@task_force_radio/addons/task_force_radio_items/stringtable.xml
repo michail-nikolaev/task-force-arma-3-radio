@@ -207,7 +207,7 @@
           LR Radio
         </Original>
         <Russian>
-          Рация ДВ
+          Рация дальней связи
         </Russian>
         <Spanish>
           Radio LA
@@ -327,7 +327,7 @@
           PR Freq.
         </Original>
         <Russian>
-          Частота КВ.
+          Частоты ближней связи
         </Russian>
         <Spanish>
           Frec. RP
@@ -347,7 +347,7 @@
           PR default frequencies (as an SQF array)
         </Original>
         <Russian>
-          Стандартные частоты КВ (как SQF массив)
+          Стандартные частоты ближней связи (как SQF массив)
         </Russian>
         <Spanish>
           Frecuencia por defecto PR (como array SQF)
@@ -367,7 +367,7 @@
           LR Freq.
         </Original>
         <Russian>
-          Частота ДВ.
+          Частота дальней связи
         </Russian>
         <Spanish>
           LA Frec.
