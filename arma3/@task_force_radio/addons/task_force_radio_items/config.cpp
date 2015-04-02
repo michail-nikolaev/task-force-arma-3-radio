@@ -32,6 +32,8 @@ class CfgPatches
       "tf_rt1523g_big_bwmod",
       "tf_mr3000_bwmod",
       "tf_rt1523g_bwmod",
+	  "tf_mr3000_bwmod_tropen",
+	  "tf_rt1523g_big_bwmod_tropen";
       "tf_rt1523g_big_rhs",
       "tf_rt1523g_rhs",
       "tf_mr3000_rhs",
@@ -239,13 +241,18 @@ class CfgVehicles {
   };
   class tf_rt1523g_big_bwmod: tf_rt1523g
   {
-    displayName = "RT-1523G (ASIP) Big BWMOD";
+    displayName = "RT-1523G (ASIP) Big BWMOD [Flecktarn]";
     descriptionShort = "RT-1523G (ASIP) Big BWMOD long range radio 20km";
     maximumLoad = 160;
     mass = 160;
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_bwmod_co.paa"};
     model="\task_force_radio_items\models\clf_nicecomm2";
+  };
+  class tf_rt1523g_big_bwmod_tropen: tf_rt1523g_big_bwmod {
+	displayName = "RT-1523G (ASIP) Big BWMOD [Tropentarn]";
+	hiddenSelections[] = {"camo"};
+	hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\jgbtl14_marcbook_bwmod_tropen_co.paa"};
   };
   class tf_rt1523g_big_rhs: tf_rt1523g
   {
@@ -351,10 +358,15 @@ class CfgVehicles {
   };
   class tf_mr3000_bwmod: tf_mr3000
   {
-    displayName = "MR3000 BWMOD";
+    displayName = "MR3000 BWMOD [Flecktarn]";
     descriptionShort = "MR3000 BWMOD long range radio 20km";
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\clf_nicecomm2_bwmod_co.paa"};
+  };
+  class tf_mr3000_bwmod_tropen: tf_mr3000_bwmod {
+	displayName = "MR3000 BWMOD [Tropentarn]";
+	hiddenSelections[] = {"camo"};
+	hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\jgbtl14_marcbook_bwmod_tropen_co.paa"};
   };
   class tf_mr3000_rhs: tf_mr3000
   {
