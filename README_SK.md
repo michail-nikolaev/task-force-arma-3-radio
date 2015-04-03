@@ -166,6 +166,7 @@ Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa doká
 * [Naught](http://forums.unitedoperations.net/index.php/user/6555-naught/) za preskúmanie kódu.
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) za preklad.
 * [Tourorist](https://github.com/Tourorist) za pomoc s dokumentáciou.
+* [marc_book] (https://github.com/MarcBook)
 * Každému kto robil video alebo článok s recenziou modu.
 * Všetkým užívateľom (hlavne tým, ktorí hlásia chyby modu).
 * Ospravedlňte ma, ak som niekho náhodou zabudol.
