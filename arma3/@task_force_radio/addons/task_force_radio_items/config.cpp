@@ -251,7 +251,6 @@ class CfgVehicles {
   };
   class tf_rt1523g_big_bwmod_tropen: tf_rt1523g_big_bwmod {
 	displayName = "RT-1523G (ASIP) Big BWMOD [Tropentarn]";
-	hiddenSelections[] = {"camo"};
 	hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\jgbtl14_marcbook_bwmod_tropen_co.paa"};
   };
   class tf_rt1523g_big_rhs: tf_rt1523g
@@ -365,7 +364,6 @@ class CfgVehicles {
   };
   class tf_mr3000_bwmod_tropen: tf_mr3000_bwmod {
 	displayName = "MR3000 BWMOD [Tropentarn]";
-	hiddenSelections[] = {"camo"};
 	hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\jgbtl14_marcbook_bwmod_tropen_co.paa"};
   };
   class tf_mr3000_rhs: tf_mr3000
