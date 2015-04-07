@@ -1,58 +1,58 @@
 /*
  	Name: TFAR_fnc_radioReplaceProcess
- 	
+
  	Author(s):
 		NKey
 
  	Description:
 		Replaces a player's radios if there are any prototype radios.
-	
+
 	Parameters:
 		Nothing
- 	
+
  	Returns:
 		Nothing
- 	
+
  	Example:
 		[] spawn TFAR_fnc_radioReplaceProcess;
 */
 private ["_currentPlayerFlag", "_active_sw_radio", "_active_lr_radio", "_set", "_controlled"];
 while {true} do {
-	TFAR_currentUnit = call TFAR_fnc_currentUnit;	
-	if ((isNil "previousTFAR_currentUnit") or {previousTFAR_currentUnit != TFAR_currentUnit}) then {
-		previousTFAR_currentUnit = TFAR_currentUnit;		
+	TFAR_currentUnit = call TFAR_fnc_currentUnit;
+	if ((isNil "TFAR_previouscurrentUnit") or {TFAR_previouscurrentUnit != TFAR_currentUnit}) then {
+		TFAR_previouscurrentUnit = TFAR_currentUnit;
 		_set = (TFAR_currentUnit getVariable "tf_handlers_set");
-		if (isNil "_set") then {			
+		if (isNil "_set") then {
 			TFAR_currentUnit addEventHandler ["Take", {
-				private "_class";				
+				private "_class";
 				_class = ConfigFile >> "CfgWeapons" >> (_this select 2);
 				if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
-					[(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;					
+					[(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;
 				};
 			}];
 			TFAR_currentUnit addEventHandler ["Put", {
-				private "_class";				
+				private "_class";
 				_class = ConfigFile >> "CfgWeapons" >> (_this select 2);
-				if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {					
+				if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
 					[(_this select 2), ""] call TFAR_fnc_setRadioOwner;
 				};
 			}];
 			TFAR_currentUnit addEventHandler ["Killed", {
 				private ["_class", "_items", "_unit"];
-				_unit = _this select 0;				
+				_unit = _this select 0;
 				_items = (assignedItems _unit) + (items _unit);
 				{
 					_class = ConfigFile >> "CfgWeapons" >> _x;
 					if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
 						[_x, ""] call TFAR_fnc_setRadioOwner;
-					};				
+					};
 					true;
 				} count _items;
-			}];		
+			}];
 			TFAR_currentUnit setVariable ["tf_handlers_set", true];
 		};
 	};
-	if (TFAR_currentUnit != player) then {		
+	if (TFAR_currentUnit != player) then {
 		_controlled = player getVariable "tf_controlled_unit";
 		if (isNil "_controlled") then {
 			player setVariable ["tf_controlled_unit", TFAR_currentUnit, true];
@@ -69,7 +69,7 @@ while {true} do {
 			};
 		};
 	};
-	
+
 	// hide curator players
 	{
 		if (_x call TFAR_fnc_isForcedCurator) then {
@@ -78,17 +78,17 @@ while {true} do {
 		};
 		true;
 	} count (call BIS_fnc_listCuratorPlayers);
-	
+
 	if !(TF_use_saved_sw_setting) then {
 		if ((alive TFAR_currentUnit) and (call TFAR_fnc_haveSWRadio)) then {
 			_active_sw_radio = call TFAR_fnc_activeSwRadio;
 			if !(isNil "_active_sw_radio") then {
 				TF_saved_active_sw_settings = _active_sw_radio call TFAR_fnc_getSwSettings;
 			} else {
-				TF_saved_active_sw_settings = nil;	
+				TF_saved_active_sw_settings = nil;
 			};
 		} else {
-			TF_saved_active_sw_settings = nil;	
+			TF_saved_active_sw_settings = nil;
 		};
 	};
 
@@ -98,10 +98,10 @@ while {true} do {
 			if !(isNil "_active_lr_radio") then {
 				TF_saved_active_lr_settings = _active_lr_radio call TFAR_fnc_getLrSettings;
 			} else {
-				TF_saved_active_lr_settings = nil;	
+				TF_saved_active_lr_settings = nil;
 			};
 		} else {
-			TF_saved_active_lr_settings = nil;	
+			TF_saved_active_lr_settings = nil;
 		};
 	};
 
