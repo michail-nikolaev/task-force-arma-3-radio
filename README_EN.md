@@ -1,45 +1,55 @@
 <h1 align="center">Task Force Arma 3 Radio</h1>
 <p align="center">
-<img src="https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg" width=480 /><br />
+<img src="https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg"
+     width="564px" /><br />
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki">
-    <img src="https://img.shields.io/badge/TFAR-Wiki-orange.svg?style=flat" alt="Wiki">
+    <img src="https://img.shields.io/badge/TFAR-Wiki-orange.svg?style=flat"
+         alt="Wiki" />
   </a>
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases">
-    <img src="http://img.shields.io/badge/Version-0.9.7-blue.svg?style=flat" alt="Version">
+    <img src="http://img.shields.io/badge/Version-0.9.7-blue.svg?style=flat"
+         alt="Version" />
   </a>
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip">
-    <img src="http://img.shields.io/badge/Download-120_MB-green.svg?style=flat" alt="Download">
-  </a>
-  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md">
-    <img src="http://img.shields.io/badge/License-APL--SA-red.svg?style=flat" alt="LLicense">
+    <img src="http://img.shields.io/badge/Download-120_MB-green.svg?style=flat"
+         alt="Download" />
   </a>
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/issues">
-    <img src="http://img.shields.io/github/issues-raw/michail-nikolaev/task-force-arma-3-radio.svg?label=Issues&style=flat" alt="Issues">
+    <img src="http://img.shields.io/github/issues-raw/michail-nikolaev/task-force-arma-3-radio.svg?label=Issues&style=flat"
+         alt="Issues" />
+  </a>
+  <a href="http://forums.bistudio.com/showthread.php?169029-Task-Force-Arrowhead-Radio">
+    <img src="https://img.shields.io/badge/BIF-Thread-lightgrey.svg?style=flat"
+         alt="BIF Thread" />
+  </a>
+  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md">
+    <img src="http://img.shields.io/badge/License-APL--SA-red.svg?style=flat"
+         alt="LLicense">
   </a>
   </p>
 <p align="center">
-<sup><strong>Arma 3 <a href="http://www.teamspeak.com/">TeamSpeak</a> radio plugin. Please support us on <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Nake Arma Not War</a> contest.</strong></sup>
+<sup><strong><a href="http://www.teamspeak.com/">TeamSpeak</a> integration for Arma 3. TFAR won the 1st place (Addon) in <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Make Arma Not War</a> contest.</strong></sup>
 </p>
 
 ###Installation
-* Download and unzip the [0.9.7 radio archive](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip).
-* Copy the contents of `TeamSpeak 3 Client` folder into the root folder of TeamSpeak.
-* Copy the contents of `Arma 3` folder into game folder – `...\SteamApps\common\Arma 3`.
+ 1. Download and unzip the [0.9.7 radio archive](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip).
+ 2. Copy the contents of `TeamSpeak 3 Client` folder into the root folder of TeamSpeak.
+ 4. Copy the contents of `Arma 3` folder into game folder – `...\SteamApps\common\Arma 3`.
 
-> [TFAR](http://radio.task-force.ru/en/) uses the latest version of [СBA](http://www.armaholic.com/page.php?id=18767) (Community Base Addons). Therefore, if you already have this mod installed, Windows will prompt you to overwrite its folder.
+> Every release of [TFAR](http://radio.task-force.ru/en/) contains the latest version of [СBA](http://www.armaholic.com/page.php?id=18767) (Community Base Addons) as part of the archive. If you already have CBA installed, but uncertain about its version, then it's better to let Windows replace the existing folder.
 
 ###Configuration
-* Make sure <kbd>Caps Lock</kbd> key is not used for talking in TeamSpeak.
-* Turn off voice over network (VON) in game, or change its assgined key to something other than <kbd>Caps Lock</kbd> (to avoid voice doubling).
-* Open the plugin list in TeamSpeak – `Settings> Plugins`.
+ 1. Make sure that <kbd>Caps Lock</kbd> is not used as the push-to-talk key in TeamSpeak.
+ 2. In the game settings, to avoid voice doubling, turn off Voice Over Network (VON), or change its assgined key to something other than <kbd>Caps Lock</kbd>.
+ 3. Open the plugin list in TeamSpeak – `Settings> Plugins`.
   1. Enable `Task Force Arma 3 Radio`.
-  2. Disable `ACRE` and `radio ts ARMA3.ru` plugins, if they are installed, to avoid conflicts.
-  3. Just in case – there is a `Reload All` button at the bottom left to restart all the plugins.
-* Make sure the volume of alerts is not turned off in TeamSpeak – `Options> Payback> Sound Pack Volume` – set a positive value.
-* Start the game with `@CBA_A3` & `@task_force_radio` add-ons (Community Base Addons: A3 Beta & Task Force Arrowhead Radio). It can be done by adding the associated mod names to your game shortcut, right after the EXE file `…\arma3.exe -mod=@CBA_A3;@task_force_radio`, though, it's always more preferable to configure mods from within game (`Settings> Expansions`).
-* Join the same channel with other players using the radio, or you will be navigated to the `TaskForceRadio` channel, if there is one at the start of a mission.
+  2. Disable `ACRE` and other similar radio plugins, if you have them, to avoid possible conflicts.
+  3. Press the `Reload All` (bottom left) to restart all of the current plugins.
+ 4. Make sure the volume of alerts is not turned off in TeamSpeak – `Options> Payback> Sound Pack Volume` – set a positive value.
+ 5. Start the game with both `@CBA_A3` &amp; `@task_force_radio` addons enabled. You can do this by adding their names to the game shortcut, following the EXE file – `…\arma3.exe -mod=@CBA_A3;@task_force_radio`. However, the game's own menu is a more preferable place to do this (`Settings> Expansions`).
+ 6. Join the same TeamSpeak channel as other players using the radio. While playing in serious mode, the server will have a channel named `TaskForceRadio`, where all participating players will be navigated automatically at the start of a shared mission.
 
-> You will get the same nick both in the game profile and TeamSpeak – plugin will change your nickname in TS during the game. Make sure your game nickname contains at least 3 characters.
+> During the game, TFAR will change your TeamSpeak nickname to match the one from your current game profile. Make sure your in-game nick is at least 3 characters long.
 >
 > We do not recommend using the plugin with simultaneous connections to multiple TeamSpeak servers.
 >
@@ -52,11 +62,11 @@
 | <kbd>Caps Lock</kbd> | To talk on a radio. |
 | <kbd>Ctrl</kbd>+<kbd>Caps Lock</kbd> | To talk on a long range radio. |
 | <kbd>Ctrl</kbd>+<kbd>P</kbd> | To open the handheld radio interface (the radio must be in the inventory slot). In that case, if you have a number of radios – you can select the one needed. It is also possible to set the radio as active (the one that will be used for transmission). Also it is possible to load radio settings from another radio with same encryption code. |
-| <kbd>Num [1-8]</kbd> | Rapid switching of shortwave radio channels. | 
+| <kbd>Num [1-8]</kbd> | Rapid switching of shortwave radio channels. |
 | <kbd>Alt</kbd>+<kbd>P</kbd> | Opens the long range radio interface – for this action to work, you either have to have long range radio on you, or you have to be in a vehicle as a driver, gunner, or co-pilot. If a number of radios are available – you’ll be asked to choose one. Also, one of them can be set as active. Furthermore, it is possible to load radio settings from another radio with same encryption code. |
 | <kbd>Ctrl</kbd>+<kbd>Num [1-9]</kbd> | Rapid switching of long range radio channels. |
 | <kbd>Ctrl</kbd>+<kbd>Tab</kbd | To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission. |
-| <kbd>Shift</kbd>+<kbd>P</kbd> | To open an underwater transceiver interface (you should be wearing a rebreather). | 
+| <kbd>Shift</kbd>+<kbd>P</kbd> | To open an underwater transceiver interface (you should be wearing a rebreather). |
 | <kbd>Ctrl</kbd>+<kbd>~</kbd> | To talk on underwater transceiver. |
 | <kbd>Ctrl</kbd>+<kbd>]</kbd> | Select next handheld radio. |
 | <kbd>Ctrl</kbd>+<kbd>[</kbd> | Select previous handheld radio. |
@@ -69,21 +79,21 @@
 | <kbd>Esc</kbd> | To exit from the radio interface. |
 
 ###Radios
-| Radio | Side | Range /Distance | 
+| Radio | Side | Range /Distance |
 | :--- | :--- | :--- |
-| <kbd>[AN/PRC-152](https://en.wikipedia.org/wiki/AN/PRC-152)</kbd><br><sup>(commander)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/5 km |
-| <kbd>[RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)</kbd><br><sup>(squadmate)</sup> | <span style="color:blue">BLUFOR</span> | 30-512 MHz<br>/2 km |
-| <kbd>[RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)</kbd><br><sup>(manpack)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for [vehicle-mounted](https://en.wikipedia.org/wiki/Mobile_radio))</sup> |
-| <kbd>[AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx)</kbd><br><sup>(airborne)</sup> | <span style="color:blue">BLUFOR</span> | 30-87 MHz<br>/40 km |
-| <kbd>[AN/PRC148-JEM](https://en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)</kbd><br><sup>(commander)</sup> | <span style="color:green">Independent</span> | 30-512 MHz<br>/5 km |
-| <kbd>[AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html)</kbd><br><sup>(squadmate)</sup> | <span style="color:green">Independent</span> | 30-512 MHz<br>/2 km |
-| <kbd>[AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html)</kbd><br><sup>(manpack)</sup> | <span style="color:green">Independent</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for vehicle-mounted)</sup> |
-| <kbd>[AN/ARC-164](https://en.wikipedia.org/wiki/AN/ARC-164)</kbd><br><sup>(airborne)</sup> | <span style="color:green">Independent</span> | 30-87 MHz<br>/40 km |
-| <kbd>[FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/)</kbd><br><sup>(commander)</sup> | <span style="color:red">OPFOR</span> | 30-512 MHz<br>/5 km | 
-| <kbd>[PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%20PNR1000A_2012.pdf)</kbd><br><sup>(squadmate)</sup> | <span style="color:red">OPFOR</span> | 30-512 MHz<br>/2 km | 
-| <kbd>[MR3000](http://www.rohde-schwarz.com/en/product/mr300xh-u-productstartpage_63493-10291.html)</kbd><br><sup>(manpack)</sup> | <span style="color:red">OPFOR</span> | 30-87 MHz<br>/20 km<br><sup>(30 km for vehicle-mounted)</sup> | 
-| <kbd>[MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html)</kbd><br><sup>(airborne)</sup> | <span style="color:red">OPFOR</span> | 30-87 MHz<br>/40 km | 
-| <kbd>Transceiver</kbd><br><sup>(underwater)</sup> | All | 32-41 kHz<br>/70-300 m<br><sup>(depending on waves)</sup> |
+| <kbd>[AN/PRC-152](https://en.wikipedia.org/wiki/AN/PRC-152)</kbd><br><sup>(commander)</sup> | <span style="color:blue">BLUFOR</span> | 30–512 MHz<br>/5 km |
+| <kbd>[RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)</kbd><br><sup>(squadmate)</sup> | <span style="color:blue">BLUFOR</span> | 30–512 MHz<br>/2 km |
+| <kbd>[RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)</kbd><br><sup>(manpack)</sup> | <span style="color:blue">BLUFOR</span> | 30–87 MHz<br>/20 km<br><sup>(30 km for [vehicle-mounted](https://en.wikipedia.org/wiki/Mobile_radio))</sup> |
+| <kbd>[AN/ARC-210](http://www.rockwellcollins.com/~/media/Files/Unsecure/Products/Product%20Brochures/Communcation%20and%20Networks/Communication%20Radios/ARC-210%20Integrated%20Comm%20Systems%20white%20paper.aspx)</kbd><br><sup>(airborne)</sup> | <span style="color:blue">BLUFOR</span> | 30–87 MHz<br>/40 km |
+| <kbd>[AN/PRC148-JEM](https://en.wikipedia.org/wiki/AN/PRC-148#AN.2FPRC-148_JTRS_Enhanced_MBITR_.28JEM.29)</kbd><br><sup>(commander)</sup> | <span style="color:green">Independent</span> | 30–512 MHz<br>/5 km |
+| <kbd>[AN/PRC-154](http://www.gdc4s.com/anprc-154a-rifleman-radio.html)</kbd><br><sup>(squadmate)</sup> | <span style="color:green">Independent</span> | 30–512 MHz<br>/2 km |
+| <kbd>[AN/PRC-155](http://www.gdc4s.com/anprc-155-2-channel-manpack.html)</kbd><br><sup>(manpack)</sup> | <span style="color:green">Independent</span> | 30–87 MHz<br>/20 km<br><sup>(30 km for vehicle-mounted)</sup> |
+| <kbd>[AN/ARC-164](https://en.wikipedia.org/wiki/AN/ARC-164)</kbd><br><sup>(airborne)</sup> | <span style="color:green">Independent</span> | 30–87 MHz<br>/40 km |
+| <kbd>[FADAK](http://www.military.com/video/forces/military-foreign-forces/iran-unveils-3-new-military-products/2363087176001/)</kbd><br><sup>(commander)</sup> | <span style="color:red">OPFOR</span> | 30–512 MHz<br>/5 km |
+| <kbd>[PNR-1000A](http://elbitsystems.com/Elbitmain/files/Tadiran%20PNR1000A_2012.pdf)</kbd><br><sup>(squadmate)</sup> | <span style="color:red">OPFOR</span> | 30–512 MHz<br>/2 km |
+| <kbd>[MR3000](http://www.rohde-schwarz.com/en/product/mr300xh-u-productstartpage_63493-10291.html)</kbd><br><sup>(manpack)</sup> | <span style="color:red">OPFOR</span> | 30–87 MHz<br>/20 km<br><sup>(30 km for vehicle-mounted)</sup> |
+| <kbd>[MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html)</kbd><br><sup>(airborne)</sup> | <span style="color:red">OPFOR</span> | 30–87 MHz<br>/40 km |
+| <kbd>Transceiver</kbd><br><sup>(underwater)</sup> | All | 32–41 kHz<br>/70–300 m<br><sup>(depending on waves)</sup> |
 
 > Short range (handheld, of commander or squadmate class) and long range radios (manpack, airborne, vehicle-mounted) of same faction are configured using a common protocol, allowing them to communicate with each other. If the transmission is carried out using a short range radio – the sound will be of high-frequency. In the case of a long range transmission – it will be of low-frequency.
 
@@ -94,12 +104,12 @@
 ####Distribution
 * By default, a long range radio is given out to squad leaders. If a given player is initialy wearing a backpack, it will be automatically discarded on the ground in exchange for a distributed radio.
 
-* Short range radios are given out to players who have `ItemRadio` in their inventory. At mission start, the process of radio distribution may take up to a few seconds to fully complete — note the game messages appearing at the center of your screen.
+* Short range radios are given out to players who have `ItemRadio` in their inventory. At mission start, the process of radio distribution may take up to a few seconds to fully complete – note the game messages appearing at the center of your screen.
 
 ####In vehicles
 * A long range radio is available to driver, commander, gunner, and co-pilot. Not all vehicles support mounted radios.
 
-* Every vehicle slot has its own radio, which has to be configured separately. If you plan to switch seats in a vehicle, then configure the radio for each seat beforehand — for example, at the driver and gunner positions.
+* Every vehicle slot has its own radio, which has to be configured separately. If you plan to switch seats in a vehicle, then configure the radio for each seat beforehand – for example, at the driver and gunner positions.
 
 * Vehicles are classified into open and closed (isolated) types. If you are in an isolated vehicle, you will barely hear any voices from the outside (and vice versa). However, when turned out, you will be able to hear voices from both, inside and outside of your vehicle.
 
@@ -122,7 +132,7 @@
 ###Operation modes
 The plugin supports two operation modes – **serious** and a **lightweight mode**.
 
-* **Lightweight mode** is the default mode. It is designed mainly for cooperative games. Its special feature is that using the plugin players can hear the dead, users not playing, users playing on a different server and users playing without the plugin avoiding the radio (just like with TeamSpeak). This makes games against people less convenient, but allows your friends to easily find out where you play, what's your frequency, etc. Naturally, those who play on the same server with activated add-ons and plugins will hear each other according to "radio laws": taking into account the radio frequency and distance.
+* **Lightweight mode** is the default mode. It is designed mainly for cooperative games. Its special feature is that using the plugin players can hear the dead, users not playing, users playing on a different server and users playing without the plugin avoiding the radio (just like with TeamSpeak). This makes games against people less convenient, but allows your friends to easily find out where you play, what's your frequency, etc. Naturally, those who play on the same server with activated addons and plugins will hear each other according to "radio laws": taking into account the radio frequency and distance.
 
 * **Serious mode** is designed for games played in player versus player (PvP) modes. To enable it, you need to create a TeamSpeak channel called `TaskForceRadio` (password – `123`). Players enable the radio plugin, join a server and plan their game tactics on the channel of their side. At the start of a mission, in a few seconds time, players will be forwarded to `TaskForceRadio` channel. In this way, players can hear only other live players that have plugin enabled and are on the same server. Dead players, in turn, can communicate only with each other. After a dead player respawns – he will hear only live players again. After the game ends, the players are transferred to the channel they used for game tactics before mission start.
 
@@ -136,7 +146,7 @@ The plugin supports two operation modes – **serious** and a **lightweight mode
 * If TeamSpeak stopped working (Heaven forbid!) while using the plugin – it will show a dialog with instructions on where you can find the dump file (information about an error). I'd appreciate if you attached this file in your bug reports.
 
 ###For TS admins
-To be on the safe side, reduce the level of flood protection — `right-click on server> Edit Virtual Server> More> Anti Flood` — set the values at <code>30</code>, <code>300</code> and <code>3000</code> (from the top).
+To be on the safe side, reduce the level of flood protection – `right-click on server> Edit Virtual Server> More> Anti Flood` – set the values at <code>30</code>, <code>300</code> and <code>3000</code> (from the top).
 
 ###For developers
 If this plugin ever becomes popular, it would be great if we could avoid having piles of incompatible community forks. For this reason, if you’d like to contribute to the project, contact me – it is very likely that your improvements will be merged into the main branch. Looking forward to your [pull requests](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed).
@@ -182,6 +192,9 @@ If this plugin ever becomes popular, it would be great if we could avoid having 
 * [Audiocustoms](http://forums.bistudio.com/member.php?98703-audiocustoms) ([SoundCloud](https://soundcloud.com/audiocustoms)) for radio sounds.
 * [EvroMalarkey](http://forums.bistudio.com/member.php?104272-EvroMalarkey) ([GitHub](https://github.com/evromalarkey)) for translation into Czech.
 * [Tourorist](https://github.com/Tourorist) for help with documentation.
+* [ViperMaul](http://forums.bistudio.com/member.php?45090-ViperMaul) for help with CBA.
+* [Armatech](http://forums.bistudio.com/member.php?48510-armatech) for help with CBA.
+* [marc_book] (https://github.com/MarcBook) for [BWMOD](http://bwmod.de/) textures.
 * The development team of [RHS](http://www.rhsmods.org/), for their help with integration.
 * Everyone who made videos or wrote review articles.
 * All the players who use TFAR, especially those taking out their time to report bugs.

@@ -18,7 +18,7 @@
   </a>
   </p>
 <p align="center">
-<sup><strong>Arma 3 <a href="http://www.teamspeak.com/">TeamSpeak</a> radio plugin. Podporte nás na <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Nake Arma Not War</a> súťaže.</strong></sup>
+<sup><strong>Arma 3 <a href="http://www.teamspeak.com/">TeamSpeak</a> radio plugin. TFAR zvíťazil vo svojej kategórii v súťaži <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Make Arma Not War</a>.</strong></sup>
 </p>
 
 ###Inštalácia
@@ -166,6 +166,7 @@ Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa doká
 * [Naught](http://forums.unitedoperations.net/index.php/user/6555-naught/) za preskúmanie kódu.
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) za preklad.
 * [Tourorist](https://github.com/Tourorist) za pomoc s dokumentáciou.
+* [marc_book] (https://github.com/MarcBook)
 * Každému kto robil video alebo článok s recenziou modu.
 * Všetkým užívateľom (hlavne tým, ktorí hlásia chyby modu).
 * Ospravedlňte ma, ak som niekho náhodou zabudol.

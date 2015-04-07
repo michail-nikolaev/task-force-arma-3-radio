@@ -64,22 +64,22 @@
       </Key>
       <Key ID="STR_TFAR_Mod_EnforceUsage">
         <Original>
-          TFAR - Enforce Usage
+          TFAR – Enforce Usage
         </Original>
         <Russian>
-          TFAR - Базовый модуль
+          TFAR – Базовый модуль
         </Russian>
         <Spanish>
-          TFAR - Obligar su uso
+          TFAR – Obligar su uso
         </Spanish>
         <German>
-          TFAR - Erzwingt die Nutzung
+          TFAR – Erzwingt die Nutzung
         </German>
         <Turkish>
-          TFAR - Kullanıma Zorlamak
+          TFAR – Kullanıma Zorlamak
         </Turkish>
         <Czech>
-          TFAR - Vynutit použití
+          TFAR – Vynutit použití
         </Czech>
       </Key>
       <Key ID="STR_TFAR_Mod_GiveTLradio">
@@ -107,7 +107,7 @@
           Give each team leader the appropriate long range radio
         </Original>
         <Russian>
-          Выдавать ли каждому лидеру групп рацию дальней связи
+          Выдавать каждому лидеру группы рацию дальней связи
         </Russian>
         <Spanish>
           Da a cada lider de equipo una radio de largo alcance apropiada
@@ -147,7 +147,7 @@
           Give a rifleman radio to regular soldiers
         </Original>
         <Russian>
-          Выдавать личную рацию бойца обычным солдатам
+          Выдавать личную рацию рядовым бойцам
         </Russian>
         <Spanish>
           Dar una radio personal a cada miembro de equipo
@@ -167,7 +167,7 @@
           Enforces usage of TFAR in mission.
         </Original>
         <Russian>
-          Обязует игроков использовать аддон
+          Обязует игроков использовать аддон.
         </Russian>
         <Spanish>
           Fuerza el uso de TFAR en la misión.
@@ -179,7 +179,7 @@
           TFAR görevde kullanmaya zorlama.
         </Turkish>
         <Czech>
-          Vynutí použití TFARU v misi
+          Vynutí použití TFARU v misi.
         </Czech>
       </Key>
       <Key ID="STR_TFAR_Mod_EncryptionCode">
@@ -287,7 +287,7 @@
           Rifleman Radio
         </Original>
         <Russian>
-          Личная рация бойца
+          Рация рядового бойца
         </Russian>
         <Spanish>
           Radio de fusilero
@@ -307,7 +307,7 @@
           Rifleman Radio
         </Original>
         <Russian>
-          Личная рация рядового бойца
+          Рация рядового бойца
         </Russian>
         <Spanish>
           Radio de fusilero
@@ -347,7 +347,7 @@
           PR default frequencies (as an SQF array)
         </Original>
         <Russian>
-          Стандартные частоты близней связи (как SQF массив)
+          Стандартные частоты ближней связи (как SQF массив)
         </Russian>
         <Spanish>
           Frecuencia por defecto PR (como array SQF)
@@ -367,7 +367,7 @@
           LR Freq.
         </Original>
         <Russian>
-          Частота дальней связи.
+          Частота дальней связи
         </Russian>
         <Spanish>
           LA Frec.
@@ -404,22 +404,22 @@
       </Key>
       <Key ID="STR_TFAR_Mod_SideRadio">
         <Original>
-          TFAR - Side Radio
+          TFAR – Side Radio
         </Original>
         <Russian>
-          TFAR - Рации стороны
+          TFAR – Рации стороны
         </Russian>
         <Spanish>
-          TFAR - Radio del bando
+          TFAR – Radio del bando
         </Spanish>
         <German>
-          TFAR - Funk Fraktionszuweisung
+          TFAR – Funk Fraktionszuweisung
         </German>
         <Turkish>
-          TFAR - Yan(ikincil) Radyo
+          TFAR – Yan(ikincil) Radyo
         </Turkish>
         <Czech>
-          TFAR - Vysílačky strany
+          TFAR – Vysílačky strany
         </Czech>
       </Key>
       <Key ID="STR_TFAR_Mod_SideRadio_Description">
@@ -433,7 +433,7 @@
           Permite configurar las radios por defecto, la encriptacion y las frecuencias del bando sincronizado.
         </Spanish>
         <German>
-          Ermöglicht gleiche Einstellungen der Verschlüsselung und Frequenzen für alle Fraktionen
+          Ermöglicht gleiche Einstellungen der Verschlüsselung und Frequenzen für alle Fraktionen.
         </German>
         <Turkish>
           Radyoları varsayılan ayarlarına izin ver, şifreleme ve senkronize için frekanslar.
@@ -444,22 +444,22 @@
       </Key>
       <Key ID="STR_TFAR_Mod_Frequencies">
         <Original>
-          TFAR - Frequencies
+          TFAR – Frequencies
         </Original>
         <Russian>
-          TFAR - Частоты
+          TFAR – Частоты
         </Russian>
         <Spanish>
-          TFAR - Frecuencias
+          TFAR – Frecuencias
         </Spanish>
         <German>
-          TFAR - Frequenzen
+          TFAR – Frequenzen
         </German>
         <Turkish>
-          TFAR - Frekansları
+          TFAR – Frekansları
         </Turkish>
         <Czech>
-          TFAR - Frekvence
+          TFAR – Frekvence
         </Czech>
       </Key>
       <Key ID="STR_TFAR_Mod_Frequencies_Description">
@@ -473,7 +473,7 @@
           Permite configurar las frecuencias por defecto para los bandos.
         </Spanish>
         <German>
-          Ermöglicht die Einstellung der Standardfrequenzen für Fraktionen
+          Ermöglicht die Einstellung der Standardfrequenzen für Fraktionen.
         </German>
         <Turkish>
           Taraflar için varsayılan frekans ayarları.
