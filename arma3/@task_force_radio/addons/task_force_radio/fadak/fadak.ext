@@ -26,6 +26,7 @@ class fadak_radio_dialog
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
+	onUnload = "['OnRadioOpen', player, [player, TF_sw_dialog_radio, false, 'fadak_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
 	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\task_force_radio\fadak\fadak_n.paa';};";
 controls[]=
 {
