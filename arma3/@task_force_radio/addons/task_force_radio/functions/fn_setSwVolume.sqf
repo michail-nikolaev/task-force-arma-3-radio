@@ -26,4 +26,4 @@ _settings set [VOLUME_OFFSET, _value];
 [_radio_id, _settings] call TFAR_fnc_setSwSettings;
 
 //							Unit, radio ID, volume
-["OnSWvolumeSet", currentUnit, [currentUnit, _radio_id, _value]] call TFAR_fnc_fireEventHandlers;
+["OnSWvolumeSet", TFAR_currentUnit, [TFAR_currentUnit, _radio_id, _value]] call TFAR_fnc_fireEventHandlers;

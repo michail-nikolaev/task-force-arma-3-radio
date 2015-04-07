@@ -21,5 +21,5 @@ _result = nil;
 {	
 	if (_x call TFAR_fnc_isRadio) exitWith {_result = _x};
 	true;
-} count (assignedItems currentUnit);
+} count (assignedItems TFAR_currentUnit);
 _result
