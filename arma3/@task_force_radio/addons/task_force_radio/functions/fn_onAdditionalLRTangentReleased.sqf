@@ -1,5 +1,5 @@
 private ["_freq"];	
-if ((TF_tangent_lr_pressed) and {alive currentUnit}) then {
+if ((TF_tangent_lr_pressed) and {alive TFAR_currentUnit}) then {
 	private "_radio";
 	_radio = call TFAR_fnc_activeLrRadio;
 	if ((_radio call TFAR_fnc_getAdditionalLrChannel) > -1) then {
@@ -10,7 +10,7 @@ if ((TF_tangent_lr_pressed) and {alive currentUnit}) then {
 		] call TFAR_fnc_ProcessTangent;
 		TF_tangent_lr_pressed = false;
 		//						unit, radio, radioType, additional, buttonDown
-		["OnTangent", currentUnit, [currentUnit, _radio, 1, true, false]] call TFAR_fnc_fireEventHandlers;
+		["OnTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 1, true, false]] call TFAR_fnc_fireEventHandlers;
 	};
 };
 false

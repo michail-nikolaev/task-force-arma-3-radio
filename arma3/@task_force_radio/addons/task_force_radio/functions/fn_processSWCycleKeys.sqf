@@ -20,10 +20,10 @@ private ["_sw_cycle_direction", "_result"];
 _sw_cycle_direction = _this select 0;
 _result = false;
 
-if ((call TFAR_fnc_haveSWRadio) and {alive currentUnit}) then{
+if ((call TFAR_fnc_haveSWRadio) and {alive TFAR_currentUnit}) then{
 	private ["_radio", "_radio_list", "_active_radio_index", "_new_radio_index"];
 	_radio = call TFAR_fnc_activeSwRadio;
-	_radio_list = currentUnit call TFAR_fnc_radiosListSorted;
+	_radio_list = TFAR_currentUnit call TFAR_fnc_radiosListSorted;
 
 	_active_radio_index = 0;
 	_new_radio_index = 0;

@@ -1,5 +1,5 @@
 private ["_radio"];	
-if ((TF_tangent_lr_pressed) and {alive currentUnit}) then {
+if ((TF_tangent_lr_pressed) and {alive TFAR_currentUnit}) then {
 	_radio = call TFAR_fnc_activeLrRadio;
 	
 	[format[localize "STR_transmit_end",format ["%1<img size='1.5' image='%2'/>",[_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty,
@@ -8,7 +8,7 @@ if ((TF_tangent_lr_pressed) and {alive currentUnit}) then {
 	] call TFAR_fnc_ProcessTangent;
 	TF_tangent_lr_pressed = false;
 	//						unit, radio, radioType, additional, buttonDown
-	["OnTangent", currentUnit, [currentUnit, _radio, 1, false, false]] call TFAR_fnc_fireEventHandlers;
+	["OnTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 1, false, false]] call TFAR_fnc_fireEventHandlers;
 };
 
 true
