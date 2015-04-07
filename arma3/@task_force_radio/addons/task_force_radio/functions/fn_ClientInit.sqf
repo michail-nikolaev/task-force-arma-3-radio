@@ -222,75 +222,88 @@ tf_msSpectatorPerStepMax = 0.035;
 [] spawn {
 	waituntil {sleep 0.1;!(IsNull (findDisplay 46))};
 	// Menus
-	["TFAR", "Open SW Radio Menu", ["player", [], -3, "_this call TFAR_fnc_swRadioMenu"], [TF_dialog_sw_scancode] + TF_dialog_sw_modifiers] call CBA_fnc_registerKeybindToFleximenu;
-	["TFAR", "Open LR Radio Menu", ["player", [], -3, "_this call TFAR_fnc_lrRadioMenu"], [TF_dialog_lr_scancode] + TF_dialog_lr_modifiers] call CBA_fnc_registerKeybindToFleximenu;
-	["TFAR", "DD Radio Settings", {call TFAR_fnc_onDDDialogOpen}, [TF_dialog_dd_scancode] + TF_dialog_dd_modifiers] call cba_fnc_registerKeybind;
+	private ["_code", "_fleximenu"];
+	_fleximenu = ["player", [], -3, "_this call TFAR_fnc_swRadioMenu"];
+	_fleximenu call CBA_fnc_flexiMenu_add;
+	_code = compile format ["%1 call cba_fnc_fleximenu_openMenuByDef;", _fleximenu];
+	["TFAR", "TFAR_OpenSWRadioMenu", "Open SW Radio Menu",_code,{},
+		[TF_dialog_sw_scancode, TF_dialog_sw_modifiers], false] call cba_fnc_addKeybind;
+	_fleximenu = ["player", [], -3, "_this call TFAR_fnc_LRRadioMenu"];
+	_fleximenu call CBA_fnc_flexiMenu_add;
+	_code = compile format ["%1 call cba_fnc_fleximenu_openMenuByDef;", _fleximenu];
+	["TFAR", "TFAR_OpenLRRadioMenu", "Open LR Radio Menu",_code,{},
+		[TF_dialog_LR_scancode, TF_dialog_LR_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_DDRadioSettings", "DD Radio Settings",{call TFAR_fnc_onDDDialogOpen},{},
+		[TF_dialog_dd_scancode, TF_dialog_dd_modifiers], false] call cba_fnc_addKeybind;
 
-	["TFAR", "SW Channel 1", {[0] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_1_scancode] + TF_sw_channel_1_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "SW Channel 2", {[1] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_2_scancode] + TF_sw_channel_2_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "SW Channel 3", {[2] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_3_scancode] + TF_sw_channel_3_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "SW Channel 4", {[3] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_4_scancode] + TF_sw_channel_4_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "SW Channel 5", {[4] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_5_scancode] + TF_sw_channel_5_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "SW Channel 6", {[5] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_6_scancode] + TF_sw_channel_6_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "SW Channel 7", {[6] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_7_scancode] + TF_sw_channel_7_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "SW Channel 8", {[7] call TFAR_fnc_processSWChannelKeys}, [TF_sw_channel_8_scancode] + TF_sw_channel_8_modifiers] call cba_fnc_registerKeybind;
-		
+	for "_i" from 0 to 7 do {
+		["TFAR", format ["TFAR_SWChannel%1",_i+1], format ["SW Channel %1",_i+1], compile (format ["[%1] call TFAR_fnc_processSWChannelKeys",_i]),{},
+			[missionNamespace getVariable (format ["TF_sw_channel_%1_scancode",_i+1]),
+			missionNamespace getVariable (format ["TF_sw_channel_%1_modifiers",_i+1])], false] call cba_fnc_addKeybind;
+	};
 
-	["TFAR", "LR Channel 1", {[0] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_1_scancode] + TF_lr_channel_1_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "LR Channel 2", {[1] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_2_scancode] + TF_lr_channel_2_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "LR Channel 3", {[2] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_3_scancode] + TF_lr_channel_3_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "LR Channel 4", {[3] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_4_scancode] + TF_lr_channel_4_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "LR Channel 5", {[4] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_5_scancode] + TF_lr_channel_5_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "LR Channel 6", {[5] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_6_scancode] + TF_lr_channel_6_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "LR Channel 7", {[6] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_7_scancode] + TF_lr_channel_7_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "LR Channel 8", {[7] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_8_scancode] + TF_lr_channel_8_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "LR Channel 9", {[8] call TFAR_fnc_processLRChannelKeys}, [TF_lr_channel_9_scancode] + TF_lr_channel_9_modifiers] call cba_fnc_registerKeybind;
-	
+	for "_i" from 0 to 8 do {
+		["TFAR", format ["TFAR_LRChannel%1",_i+1], format ["LR Channel %1",_i+1], compile (format ["[%1] call TFAR_fnc_processLRChannelKeys",_i]),{},
+			[missionNamespace getVariable (format ["TF_LR_channel_%1_scancode",_i+1]),
+			missionNamespace getVariable (format ["TF_LR_channel_%1_modifiers",_i+1])], false] call cba_fnc_addKeybind;
+	};
+
 	// Volume and extra keys
-	["TFAR", "Change Speaking Volume", {call TFAR_fnc_onSpeakVolumeChange}, [TF_speak_volume_scancode] + TF_speak_volume_modifiers] call cba_fnc_registerKeybind;
-	
-	["TFAR", "Cycle >> SW Radios", {["next"] call TFAR_fnc_processSWCycleKeys}, [TF_sw_cycle_next_scancode] + TF_sw_cycle_next_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	["TFAR", "Cycle << SW Radios", {["prev"] call TFAR_fnc_processSWCycleKeys}, [TF_sw_cycle_prev_scancode] + TF_sw_cycle_prev_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	["TFAR", "Cycle >> LR Radios", {["next"] call TFAR_fnc_processLRCycleKeys}, [TF_lr_cycle_next_scancode] + TF_lr_cycle_next_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	["TFAR", "Cycle << LR Radios", {["prev"] call TFAR_fnc_processLRCycleKeys}, [TF_lr_cycle_prev_scancode] + TF_lr_cycle_prev_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	
-	["TFAR", "SW Stereo: Both", {[0] call TFAR_fnc_processSWStereoKeys}, [TF_sw_stereo_both_scancode] + TF_sw_stereo_both_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "SW Stereo: Left", {[1] call TFAR_fnc_processSWStereoKeys}, [TF_sw_stereo_left_scancode] + TF_sw_stereo_left_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "SW Stereo: Right", {[2] call TFAR_fnc_processSWStereoKeys}, [TF_sw_stereo_right_scancode] + TF_sw_stereo_right_modifiers] call cba_fnc_registerKeybind;
-	
-	["TFAR", "LR Stereo: Both", {[0] call TFAR_fnc_processLRStereoKeys}, [TF_lr_stereo_both_scancode] + TF_lr_stereo_both_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "LR Stereo: Left", {[1] call TFAR_fnc_processLRStereoKeys}, [TF_lr_stereo_left_scancode] + TF_lr_stereo_left_modifiers] call cba_fnc_registerKeybind;
-	["TFAR", "LR Stereo: Right", {[2] call TFAR_fnc_processLRStereoKeys}, [TF_lr_stereo_right_scancode] + TF_lr_stereo_right_modifiers] call cba_fnc_registerKeybind;
-	
-	// SW radio keys		
-	["TFAR", "SW Transmit", {call TFAR_fnc_onSwTangentPressed}, [TF_tangent_sw_scancode] + TF_tangent_sw_modifiers] call cba_fnc_registerKeybind;	
-	["TFAR", "SW Transmit Alt", {call TFAR_fnc_onSwTangentPressed}, [TF_tangent_sw_2_scancode] + TF_tangent_sw_2_modifiers] call cba_fnc_registerKeybind;	
-	["TFAR", "SW Transmit Additional", {call TFAR_fnc_onAdditionalSwTangentPressed}, [TF_tangent_additional_sw_scancode] + TF_tangent_additional_sw_modifiers] call cba_fnc_registerKeybind;	
-	
+	["TFAR", "TFAR_ChangeSpeakingVolume", "Change Speaking Volume",{call TFAR_fnc_onSpeakVolumeChange},{},
+		[TF_speak_volume_scancode, TF_speak_volume_modifiers], false] call cba_fnc_addKeybind;
+
+	["TFAR", "TFAR_CycleNextSWRadio", "Cycle >> SW Radios",{},{["next"] call TFAR_fnc_processSWCycleKeys},
+		[TF_sw_cycle_next_scancode, TF_sw_cycle_next_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_CyclePreviousSWRadio", "Cycle << SW Radios",{},{["prev"] call TFAR_fnc_processSWCycleKeys},
+		[TF_sw_cycle_prev_scancode, TF_sw_cycle_prev_modifiers], false] call cba_fnc_addKeybind;
+
+	["TFAR", "TFAR_CycleNextLRRadio", "Cycle >> LR Radios",{},{["next"] call TFAR_fnc_processLRCycleKeys},
+		[TF_lr_cycle_next_scancode, TF_lr_cycle_next_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_CyclePreviousLRRadio", "Cycle << LR Radios",{},{["prev"] call TFAR_fnc_processLRCycleKeys},
+		[TF_lr_cycle_prev_scancode, TF_lr_cycle_prev_modifiers], false] call cba_fnc_addKeybind;
+
+
+	["TFAR", "TFAR_SWStereo_Both", "SW Stereo: Both",{[0] call TFAR_fnc_processSWStereoKeys},{},
+		[TF_sw_stereo_both_scancode, TF_sw_stereo_both_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_SWStereo_Left", "SW Stereo: Left",{[1] call TFAR_fnc_processSWStereoKeys},{},
+		[TF_sw_stereo_left_scancode, TF_sw_stereo_left_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_SWStereo_Right", "SW Stereo: Right",{[2] call TFAR_fnc_processSWStereoKeys},{},
+		[TF_sw_stereo_right_scancode, TF_sw_stereo_right_modifiers], false] call cba_fnc_addKeybind;
+
+	["TFAR", "TFAR_LRStereo_Both", "LR Stereo: Both",{[0] call TFAR_fnc_processLRStereoKeys},{},
+		[TF_LR_stereo_both_scancode, TF_LR_stereo_both_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_LRStereo_Left", "LR Stereo: Left",{[1] call TFAR_fnc_processLRStereoKeys},{},
+		[TF_LR_stereo_left_scancode, TF_LR_stereo_left_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_LRStereo_Right", "LR Stereo: Right",{[2] call TFAR_fnc_processLRStereoKeys},{},
+		[TF_LR_stereo_right_scancode, TF_LR_stereo_right_modifiers], false] call cba_fnc_addKeybind;
+
+	// SW radio keys
+	["TFAR", "TFAR_SWTransmit", "SW Transmit",{call TFAR_fnc_onSwTangentPressed},{call TFAR_fnc_onSwTangentReleased},
+		[TF_tangent_sw_scancode, TF_tangent_sw_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_SWTransmitAlt", "SW Transmit Alt",{call TFAR_fnc_onSwTangentPressed},{call TFAR_fnc_onSwTangentReleased},
+		[TF_tangent_sw_2_scancode, TF_tangent_sw_2_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_SWTransmitAdditional", "SW Transmit Additional",{call TFAR_fnc_onAdditionalSwTangentPressed},{call TFAR_fnc_onAdditionalSwTangentReleased},
+		[TF_tangent_additional_sw_scancode, TF_tangent_additional_sw_modifiers], false] call cba_fnc_addKeybind;
+
 	// LR radio keys
-	["TFAR", "LR Transmit", {call TFAR_fnc_onLRTangentPressed}, [TF_tangent_lr_scancode] + TF_tangent_lr_modifiers] call cba_fnc_registerKeybind;	
-	["TFAR", "LR Transmit Alt", {call TFAR_fnc_onLRTangentPressed}, [TF_tangent_lr_2_scancode] + TF_tangent_lr_2_modifiers] call cba_fnc_registerKeybind;	
-	["TFAR", "LR Transmit Additional", {call TFAR_fnc_onAdditionalLRTangentPressed}, [TF_tangent_additional_lr_scancode] + TF_tangent_additional_lr_modifiers] call cba_fnc_registerKeybind;	
-	
+	["TFAR", "TFAR_LRTransmit", "LR Transmit",{call TFAR_fnc_onLRTangentPressed},{call TFAR_fnc_onLRTangentReleased},
+		[TF_tangent_LR_scancode, TF_tangent_LR_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_LRTransmitAlt", "LR Transmit Alt",{call TFAR_fnc_onLRTangentPressed},{call TFAR_fnc_onLRTangentReleased},
+		[TF_tangent_LR_2_scancode, TF_tangent_LR_2_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_LRTransmitAdditional", "LR Transmit Additional",{call TFAR_fnc_onAdditionalLRTangentPressed},{call TFAR_fnc_onAdditionalLRTangentReleased},
+		[TF_tangent_additional_LR_scancode, TF_tangent_additional_LR_modifiers], false] call cba_fnc_addKeybind;
+
 	// DD radio keys
-	["TFAR", "DD Transmit", {call TFAR_fnc_onDDTangentPressed}, [TF_tangent_dd_scancode] + TF_tangent_dd_modifiers] call cba_fnc_registerKeybind;	
-	["TFAR", "DD Transmit Alt", {call TFAR_fnc_onDDTangentPressed}, [TF_tangent_dd_2_scancode] + TF_tangent_dd_2_modifiers] call cba_fnc_registerKeybind;		
-	
-	
-	["TFAR", "SW Transmit", {call TFAR_fnc_onSwTangentReleased}, [TF_tangent_sw_scancode] + TF_tangent_sw_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
-	["TFAR", "SW Transmit Alt", {call TFAR_fnc_onSwTangentReleased}, [TF_tangent_sw_2_scancode] + TF_tangent_sw_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
-	["TFAR", "SW Transmit Additional", {call TFAR_fnc_onAdditionalSwTangentReleased}, [TF_tangent_additional_sw_scancode] + TF_tangent_additional_sw_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	["TFAR", "LR Transmit", {call TFAR_fnc_onLRTangentReleased}, [TF_tangent_lr_scancode] + TF_tangent_lr_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
-	["TFAR", "LR Transmit Alt", {call TFAR_fnc_onLRTangentReleased}, [TF_tangent_lr_2_scancode] + TF_tangent_lr_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
-	["TFAR", "LR Transmit Additional", {call TFAR_fnc_onAdditionalLRTangentReleased}, [TF_tangent_additional_lr_scancode] + TF_tangent_additional_lr_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;
-	["TFAR", "DD Transmit", {call TFAR_fnc_onDDTangentReleased}, [TF_tangent_dd_scancode] + TF_tangent_dd_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
-	["TFAR", "DD Transmit Alt", {call TFAR_fnc_onDDTangentReleased}, [TF_tangent_dd_2_scancode] + TF_tangent_dd_2_modifiers, false, "KeyUp"] call cba_fnc_registerKeybind;	
-	
-	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];	
-	(findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];	
-	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];	
+	["TFAR", "TFAR_DDTransmit", "DD Transmit",{call TFAR_fnc_onDDTangentPressed},{call TFAR_fnc_onDDTangentReleased},
+		[TF_tangent_dd_scancode, TF_tangent_dd_modifiers], false] call cba_fnc_addKeybind;
+	["TFAR", "TFAR_DDTransmitAlt", "DD Transmit Alt",{call TFAR_fnc_onDDTangentPressed},{call TFAR_fnc_onDDTangentReleased},
+		[TF_tangent_dd_2_scancode, TF_tangent_dd_2_modifiers], false] call cba_fnc_addKeybind;
+
+	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
+	(findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
+	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
 	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
-	
+
 	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
 		["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
@@ -314,27 +327,27 @@ player addEventHandler ["killed", {
 TF_respawnedAt = time;
 previousCurrentUnit = nil;
 currentUnit = player;
-[] spawn {	
+[] spawn {
 	waitUntil {sleep 0.1;!(isNull player)};
-	if (player call TFAR_fnc_isForcedCurator) then {		
+	if (player call TFAR_fnc_isForcedCurator) then {
 		player enableSimulation false;
 		player hideObject true;
-		
+
 		player unlinkItem "ItemRadio";
 		player addVest "V_Rangemaster_belt";
-		
+
 		switch (typeOf (player)) do {
 			case "B_VirtualCurator_F": {
 					player addItem TF_defaultWestPersonalRadio;
-					TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];				
+					TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];
 				};
 			case "O_VirtualCurator_F": {
 					player addItem TF_defaultEastPersonalRadio;
-					TF_curator_backpack_1 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];					
+					TF_curator_backpack_1 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];
 				};
 			case "I_VirtualCurator_F": {
 					player addItem TF_defaultGuerPersonalRadio;
-					TF_curator_backpack_1 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];				
+					TF_curator_backpack_1 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];
 				};
 			default {
 				player addItem TF_defaultWestPersonalRadio;
@@ -342,10 +355,10 @@ currentUnit = player;
 				player addItem TF_defaultGuerPersonalRadio;
 				TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];
 				TF_curator_backpack_2 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];
-				TF_curator_backpack_3 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];				
+				TF_curator_backpack_3 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];
 			};
 		};
-		
+
 		[] spawn {
 			while {true} do {
 				if !(isNull curatorCamera) then {
@@ -357,17 +370,17 @@ currentUnit = player;
 		};
 	};
 	sleep 2;
-	if (player in (call BIS_fnc_listCuratorPlayers)) then {	
+	if (player in (call BIS_fnc_listCuratorPlayers)) then {
 		[] spawn {
 			while {true} do {
-				waitUntil {sleep 0.1;!(isNull (findDisplay 312))};			
+				waitUntil {sleep 0.1;!(isNull (findDisplay 312))};
 				(findDisplay 312) displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_processCuratorKey"];
 				(findDisplay 312) displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
 				waitUntil {sleep 0.1;isNull (findDisplay 312)};
 			};
 		};
 	};
-	
+
 	call TFAR_fnc_radioReplaceProcess;
 };
 
@@ -382,15 +395,15 @@ currentUnit = player;
 	};
 };
 
-if (player in (call BIS_fnc_listCuratorPlayers)) then {	
+if (player in (call BIS_fnc_listCuratorPlayers)) then {
 	[] spawn {
 		while {true} do {
-			waitUntil {sleep 0.1;!(isNull (findDisplay 312))};			
+			waitUntil {sleep 0.1;!(isNull (findDisplay 312))};
 			(findDisplay 312) displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_processCuratorKey"];
 			(findDisplay 312) displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
-			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];	
-			(findDisplay 312) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];	
-			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];	
+			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
+			(findDisplay 312) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
+			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
 			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
 			waitUntil {sleep 0.1;isNull (findDisplay 312)};
 		};
