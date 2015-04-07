@@ -28,4 +28,4 @@ _settings set [VOLUME_OFFSET, _value];
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 
 //							Unit, radio object, radio ID, volume
-["OnLRvolumeSet", currentUnit, [currentUnit, _radio_object, _radio_qualifier, _value]] call TFAR_fnc_fireEventHandlers;
+["OnLRvolumeSet", TFAR_currentUnit, [TFAR_currentUnit, _radio_object, _radio_qualifier, _value]] call TFAR_fnc_fireEventHandlers;

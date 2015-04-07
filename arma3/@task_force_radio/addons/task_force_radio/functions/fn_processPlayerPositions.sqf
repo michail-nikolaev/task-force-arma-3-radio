@@ -18,7 +18,7 @@
 */
 private ["_elemsNearToProcess","_elemsFarToProcess","_other_units", "_unit", "_controlled", "_speakers"];
 if !(isNull (findDisplay 46)) then {
-	if !(isNull currentUnit) then {
+	if !(isNull TFAR_currentUnit) then {
 		if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {				
 			tf_nearPlayersIndex = 0;
 			tf_farPlayersIndex = 0;		

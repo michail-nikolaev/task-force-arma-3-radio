@@ -27,9 +27,9 @@ if (_settings select TF_LR_SPEAKER_OFFSET) then {
 	_settings set [TF_LR_SPEAKER_OFFSET, false];
 } else {
 	_settings set [TF_LR_SPEAKER_OFFSET, true];
-	_flag = currentUnit getVariable "tf_lr_speakers";
+	_flag = TFAR_currentUnit getVariable "tf_lr_speakers";
 	if (isNil "_flag") then {
-		currentUnit setVariable ["tf_lr_speakers", true, true];
+		TFAR_currentUnit setVariable ["tf_lr_speakers", true, true];
 	};
 	_flag = _radio_object getVariable "tf_lr_speakers";
 	if (isNil "_flag") then {
@@ -39,4 +39,4 @@ if (_settings select TF_LR_SPEAKER_OFFSET) then {
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 
 //							unit, radio object,		radio ID			speakers
-["OnLRspeakersSet", currentUnit, [currentUnit, _radio_object, _radio_qualifier, _settings select TF_LR_SPEAKER_OFFSET]] call TFAR_fnc_fireEventHandlers;
+["OnLRspeakersSet", TFAR_currentUnit, [TFAR_currentUnit, _radio_object, _radio_qualifier, _settings select TF_LR_SPEAKER_OFFSET]] call TFAR_fnc_fireEventHandlers;
