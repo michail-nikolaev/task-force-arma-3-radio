@@ -1,7 +1,7 @@
-if ((alive currentUnit) and {call TFAR_fnc_haveDDRadio}) then {
+if ((alive TFAR_currentUnit) and {call TFAR_fnc_haveDDRadio}) then {
 	if !(dialog) then {
 		createDialog "diver_radio_dialog";
-		currentUnit playAction "Gear";
+		TFAR_currentUnit playAction "Gear";
 		call TFAR_fnc_updateDDDialog;
 	};
 };

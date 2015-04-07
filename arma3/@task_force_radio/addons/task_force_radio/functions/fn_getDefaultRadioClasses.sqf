@@ -18,7 +18,7 @@
 */
 private ["_personalRadio", "_riflemanRadio", "_lrRadio", "_airborne"];
 
-switch (currentUnit call BIS_fnc_objectSide) do {
+switch (TFAR_currentUnit call BIS_fnc_objectSide) do {
 	case west: {_personalRadio = TF_defaultWestPersonalRadio; _riflemanRadio = TF_defaultWestRiflemanRadio; _lrRadio = TF_defaultWestBackpack; _airborne = TF_defaultWestAirborneRadio;};
 	case east: {_personalRadio = TF_defaultEastPersonalRadio; _riflemanRadio = TF_defaultEastRiflemanRadio;_lrRadio = TF_defaultEastBackpack; _airborne = TF_defaultEastAirborneRadio;};
 	default {_personalRadio = TF_defaultGuerPersonalRadio; _riflemanRadio = TF_defaultGuerRiflemanRadio;_lrRadio = TF_defaultGuerBackpack; _airborne = TF_defaultGuerAirborneRadio;};
@@ -29,7 +29,7 @@ TFAR_tryResolveFactionClass =
 	private ["_prefix", "_faction", "_result", "_default"];
 	_prefix = _this select 0;
 	_default = _this select 1;
-	_faction = faction currentUnit;
+	_faction = faction TFAR_currentUnit;
 	_result = missionNamespace getVariable (_faction + "_" + _prefix + "_tf_faction_radio");
 	if (isNil "_result") then {		
 		if (isText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"))) then {

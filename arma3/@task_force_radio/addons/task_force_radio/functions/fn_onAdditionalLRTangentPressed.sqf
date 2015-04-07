@@ -1,9 +1,9 @@
 private["_freq","_radio"];
-if (!(TF_tangent_lr_pressed) and {alive currentUnit} and {call TFAR_fnc_haveLRRadio}) then {
+if (!(TF_tangent_lr_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_haveLRRadio}) then {
 	if (call TFAR_fnc_isAbleToUseRadio) then {
 		call TFAR_fnc_unableToUseHint;
 	} else {
-		if ([currentUnit, currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, currentUnit call TFAR_fnc_eyeDepth] call TFAR_fnc_canUseLRRadio) then {
+		if ([TFAR_currentUnit, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, TFAR_currentUnit call TFAR_fnc_eyeDepth] call TFAR_fnc_canUseLRRadio) then {
 			_radio = call TFAR_fnc_activeLrRadio;			
 			if ((_radio call TFAR_fnc_getAdditionalLrChannel) > -1) then {
 				_freq = [_radio, (_radio call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency;
@@ -13,7 +13,7 @@ if (!(TF_tangent_lr_pressed) and {alive currentUnit} and {call TFAR_fnc_haveLRRa
 				] call TFAR_fnc_ProcessTangent;
 				TF_tangent_lr_pressed = true;
 				//						unit, radio, radioType, additional, buttonDown
-				["OnTangent", currentUnit, [currentUnit, _radio, 1, true, true]] call TFAR_fnc_fireEventHandlers;
+				["OnTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 1, true, true]] call TFAR_fnc_fireEventHandlers;
 			};
 		} else {
 			call TFAR_fnc_inWaterHint;
