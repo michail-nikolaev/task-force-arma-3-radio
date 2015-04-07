@@ -19,6 +19,7 @@ class diver_radio_dialog
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
+	onUnload = "['OnRadioOpen', player, [player, 'DDRadio', false, 'diver_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
 	controls[]=
 {
 	background,
@@ -104,5 +105,3 @@ class depth_edit: RscEditLCD
 // GUI EDITOR OUTPUT END
 ////////////////////////////////////////////////////////
 };
-
-
