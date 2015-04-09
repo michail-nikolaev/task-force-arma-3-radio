@@ -66,7 +66,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.7.2"
+#define PLUGIN_VERSION "0.9.7"
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 
@@ -1289,7 +1289,7 @@ std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includ
 	std::string result = std::string("[I]Connected[/I] [B]")
 		+ (pipeConnected ? "Y" : "N") + "[/B] [I]Play[/I] [B]"
 		+ (inGame ? "Y" : "N")
-		+ (includeVersion ? std::string("[/B] [I]P:[/I][B]") + PLUGIN_VERSION + ", Blue Branch[/B]" : "")
+		+ (includeVersion ? std::string("[/B] [I]P:[/I][B]") + PLUGIN_VERSION + "[/B]" : "")
 		+ (includeVersion ? std::string("[I] A: [/I][B]") + addon + "[/B]" : "");
 	return result;
 }
@@ -2137,7 +2137,7 @@ const char* ts3plugin_author() {
 /* Plugin description */
 const char* ts3plugin_description() {
 	/* If you want to use wchar_t, see ts3plugin_name() on how to use */
-	return "Radio Addon for Arma 3, Blue Branch";
+	return "Radio Addon for Arma 3";
 }
 
 /* Set TeamSpeak 3 callback functions */
