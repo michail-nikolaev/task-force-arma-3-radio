@@ -7,11 +7,11 @@
          alt="Вики" />
   </a>
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases">
-    <img src="http://img.shields.io/badge/Версия-0.9.7-blue.svg?style=flat"
+    <img src="http://img.shields.io/badge/Версия-0.9.7.1-blue.svg?style=flat"
          alt="Версия" />
   </a>
-  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip">
-    <img src="http://img.shields.io/badge/Скачать-120_МБ-green.svg?style=flat"
+  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7.1/0.9.7.1.zip">
+    <img src="http://img.shields.io/badge/Скачать-126_МБ-green.svg?style=flat"
          alt="Скачать" />
   </a>
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md">
@@ -22,7 +22,7 @@
     <img src="http://img.shields.io/github/issues-raw/michail-nikolaev/task-force-arma-3-radio.svg?label=Задачи&style=flat"
          alt="Задачи" />
   </a>
-  <a href="http://forums.bistudio.com/showthread.php?169029-Task-Force-Arrowhead-Radio">
+  <a href="http://forums.bistudio.com/showthread.php?169029-Task-Force-Arrowhead-Radio&p=2563136&viewfull=1#post2563136">
     <img src="https://img.shields.io/badge/BIF-Тема-lightgrey.svg?style=flat"
          alt="BIF Тема" />
   </a>
@@ -32,7 +32,7 @@
 </p>
 
 ###Установка
-1. Скачайте [архив с рацией 0.9.7](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7/0.9.7.zip) и распакуйте его.
+1. Скачайте [архив с рацией 0.9.7](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7.1/0.9.7.1.zip) и распакуйте его.
 2. Скопируйте содержимое папки `TeamSpeak 3 Client` в корневую папку Тимспика.
 3. Скопируйте содержимое папки `Arma 3` в папку с игрой — `...\SteamApps\common\Arma 3`.
 
