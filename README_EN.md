@@ -65,7 +65,7 @@
 | <kbd>Num [1-8]</kbd> | Rapid switching of shortwave radio channels. |
 | <kbd>Alt</kbd>+<kbd>P</kbd> | Opens the long range radio interface – for this action to work, you either have to have long range radio on you, or you have to be in a vehicle as a driver, gunner, or co-pilot. If a number of radios are available – you’ll be asked to choose one. Also, one of them can be set as active. Furthermore, it is possible to load radio settings from another radio with same encryption code. |
 | <kbd>Ctrl</kbd>+<kbd>Num [1-9]</kbd> | Rapid switching of long range radio channels. |
-| <kbd>Ctrl</kbd>+<kbd>Tab</kbd | To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission. |
+| <kbd>Ctrl</kbd>+<kbd>Tab</kbd> | To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission. |
 | <kbd>Shift</kbd>+<kbd>P</kbd> | To open an underwater transceiver interface (you should be wearing a rebreather). |
 | <kbd>Ctrl</kbd>+<kbd>~</kbd> | To talk on underwater transceiver. |
 | <kbd>Ctrl</kbd>+<kbd>]</kbd> | Select next handheld radio. |
@@ -119,22 +119,22 @@
 > To bypass the well-known game bug with disappearing world items and pick up a radio safely, we recommend you do so through the inventory screen while standing directly over its position on the ground.
 
 * Settings configured for vehicle-mounted radios are also persistently stored.
-* By default, all radios use an embedded faction-specific encryption code for transmission. In practice, this means that even if you somehow found out the radio frequency of your opponent you would still not be able to intercept their communication by simply switching to it on your own radio. To be able to listen and talk on their frequency, you have to first capture one of their radios.
+* By default, all radios use an embedded faction-specific encryption code for transmission. In practice, this means that even if you somehow found out the radio frequency of your opponent you would still not be able to intercept their communication by simply switching to it on your own radio. To be able to listen and talk on enemy frequency, you have also need a captured enemy radios.
 
 > While intercepting your opponent's communication using a captured manpack radio, it is preferable to get in and remain inside a friendly vehicle. This way, you'll be able to listen to the enemy chatter using manpack, while at the same time being able to broadcast to your allies using the vehicle-mounted radio as the active one.
 
 ####Divers
-* You can not talk underwater (even while wearing a diving suit). However, at close distance your communication partner can hear some indistinct speech (exception – if you are underwater in an isolated vehicle).
+* You can not talk underwater (even while wearing a diving suit). However, at close distance your communication partner can hear some indistinct speech (exception: if you are underwater in an isolated vehicle).
 * Being underwater, you can faintly hear muffled voices on land.
 * Use an underwater transceiver for communication among divers.
-* You can not use radio communication underwater (neither to talk nor to hear). If you want to pass some message – surface first. Exception – submersible at the periscope depth (divers can use a long range radio there).
+* You can not use radio communication underwater (neither to talk nor to hear). If you want to pass some message – surface first. Exception: submersible at the periscope depth (divers can use a long range radio there).
 
 ###Operation modes
 The plugin supports two operation modes – **serious** and a **lightweight mode**.
 
 * **Lightweight mode** is the default mode. It is designed mainly for cooperative games. Its special feature is that using the plugin players can hear the dead, users not playing, users playing on a different server and users playing without the plugin avoiding the radio (just like with TeamSpeak). This makes games against people less convenient, but allows your friends to easily find out where you play, what's your frequency, etc. Naturally, those who play on the same server with activated addons and plugins will hear each other according to "radio laws": taking into account the radio frequency and distance.
 
-* **Serious mode** is designed for games played in player versus player (PvP) modes. To enable it, you need to create a TeamSpeak channel called `TaskForceRadio` (password – `123`). Players enable the radio plugin, join a server and plan their game tactics on the channel of their side. At the start of a mission, in a few seconds time, players will be forwarded to `TaskForceRadio` channel. In this way, players can hear only other live players that have plugin enabled and are on the same server. Dead players, in turn, can communicate only with each other. After a dead player respawns – he will hear only live players again. After the game ends, the players are transferred to the channel they used for game tactics before mission start.
+* **Serious mode** is designed for organized games played in player versus player (PvP) modes. To enable it, TeamSpeak administrator has to create a channel called `TaskForceRadio` with the password of `123`. Before the game, players upon launching TS, enable the radio plugin, split into teams with each occupying its own side channel and then, after joining the agreed upon game server comence a briefing on their forthcoming missiong. As the mission loads, in a few seconds time, players will be forwarded to `TaskForceRadio` channel. Therein, players can hear only other live players that have TFAR enabled, are on the same server and the same team. Dead players can communicate only among themselves, but once respawned will again adhere to the aforementioned restrictions. After the played mission concludes, the participants are transferred back to the TS channel they used for game tactics before mission start.
 
 ###Problem solving
 * `Pipe error 230` – most likely, it means you forgot to enable the plugin in TeamSpeak.
@@ -145,10 +145,10 @@ The plugin supports two operation modes – **serious** and a **lightweight mode
 * To eliminate possible errors with the plugin, developers may require your TeamSpeak logs. To copy it, select `Tools> Client Log`, tick all checkboxes at the top and, by selecting all of the text with <kbd>Ctrl</kbd>+<kbd>A</kbd>, copy it to the clipboard.
 * If TeamSpeak stopped working (Heaven forbid!) while using the plugin – it will show a dialog with instructions on where you can find the dump file (information about an error). I'd appreciate if you attached this file in your bug reports.
 
-###For TS admins
+####For TS admins
 To be on the safe side, reduce the level of flood protection – `right-click on server> Edit Virtual Server> More> Anti Flood` – set the values at <code>30</code>, <code>300</code> and <code>3000</code> (from the top).
 
-###For developers
+####For developers
 If this plugin ever becomes popular, it would be great if we could avoid having piles of incompatible community forks. For this reason, if you’d like to contribute to the project, contact me – it is very likely that your improvements will be merged into the main branch. Looking forward to your [pull requests](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed).
 
 ###Special Thanks
@@ -194,7 +194,7 @@ If this plugin ever becomes popular, it would be great if we could avoid having 
 * [Tourorist](https://github.com/Tourorist) for help with documentation.
 * [ViperMaul](http://forums.bistudio.com/member.php?45090-ViperMaul) for help with CBA.
 * [Armatech](http://forums.bistudio.com/member.php?48510-armatech) for help with CBA.
-* [marc_book] (https://github.com/MarcBook) for [BWMOD](http://bwmod.de/) textures.
+* [marc_book](https://github.com/MarcBook) for BWMOD textures.
 * The development team of [RHS](http://www.rhsmods.org/), for their help with integration.
 * Everyone who made videos or wrote review articles.
 * All the players who use TFAR, especially those taking out their time to report bugs.
