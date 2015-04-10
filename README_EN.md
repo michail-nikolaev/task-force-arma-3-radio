@@ -119,7 +119,7 @@
 > To bypass the well-known game bug with disappearing world items and pick up a radio safely, we recommend you do so through the inventory screen while standing directly over its position on the ground.
 
 * Settings configured for vehicle-mounted radios are also persistently stored.
-* By default, all radios use an embedded faction-specific encryption code for transmission. In practice, this means that even if you somehow found out the radio frequency of your opponent you would still not be able to intercept their communication by simply switching to it on your own radio. To be able to listen and talk on enemy frequency, you have also need a captured enemy radios.
+* By default, all radios use an embedded faction-specific encryption code for transmission. In practice, this means that even if you somehow found out the radio frequency of your opponent you would still not be able to intercept their communication by simply switching to it on your own radio. To be able to listen and talk on enemy frequency, you will also need to have a captured enemy radio.
 
 > While intercepting your opponent's communication using a captured manpack radio, it is preferable to get in and remain inside a friendly vehicle. This way, you'll be able to listen to the enemy chatter using manpack, while at the same time being able to broadcast to your allies using the vehicle-mounted radio as the active one.
 
