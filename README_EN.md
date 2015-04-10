@@ -34,9 +34,9 @@
 ###Installation
  1. Download and unzip the [0.9.7.1 radio archive](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7.1/0.9.7.1.zip).
  2. Copy the contents of `TeamSpeak 3 Client` folder into the root folder of TeamSpeak.
- 4. Copy the contents of `Arma 3` folder into game folder – `...\SteamApps\common\Arma 3`.
+ 3. Copy the contents of `Arma 3` folder into game folder – `...\SteamApps\common\Arma 3`.
 
-> Every release of [TFAR](http://radio.task-force.ru/en/) contains the latest version of [СBA](http://www.armaholic.com/page.php?id=18767) (Community Base Addons) as part of the archive. If you already have CBA installed, but uncertain about its version, then it's better to let Windows replace the existing folder.
+> Every release of [TFAR](http://radio.task-force.ru/en/) includes the most recent version of [СBA](http://www.armaholic.com/page.php?id=18767) – Community Base Addons. If you already have CBA installed, but uncertain about its version, then it's better to let Windows replace the existing folder.
 
 ###Configuration
  1. Make sure that <kbd>Caps Lock</kbd> is not used as the push-to-talk key in TeamSpeak.
@@ -46,7 +46,7 @@
   2. Disable `ACRE` and other similar radio plugins, if you have them, to avoid possible conflicts.
   3. Press the `Reload All` (bottom left) to restart all of the current plugins.
  4. Make sure the volume of alerts is not turned off in TeamSpeak – `Options> Payback> Sound Pack Volume` – set a positive value.
- 5. Start the game with both `@CBA_A3` &amp; `@task_force_radio` addons enabled. You can do this by adding their names to the game shortcut, following the EXE file – `…\arma3.exe -mod=@CBA_A3;@task_force_radio`. However, the game's own menu is a more preferable place to do this (`Settings> Expansions`).
+ 5. Start the game with both `@CBA_A3` &amp; `@task_force_radio` addons enabled. You can do this by adding their names to the game shortcut, or right after the `exe` file – `…\arma3.exe -mod=@CBA_A3;@task_force_radio`. However, the game's own menu (`Settings> Expansions`) is a more preferable method of setup.
  6. Join the same TeamSpeak channel as other players using the radio. While playing in serious mode, the server will have a channel named `TaskForceRadio`, where all participating players will be navigated automatically at the start of a shared mission.
 
 > During the game, TFAR will change your TeamSpeak nickname to match the one from your current game profile. Make sure your in-game nick is at least 3 characters long.
