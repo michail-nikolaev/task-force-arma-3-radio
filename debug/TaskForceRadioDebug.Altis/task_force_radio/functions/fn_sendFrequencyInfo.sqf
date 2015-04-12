@@ -72,7 +72,11 @@ if ((call TFAR_fnc_haveDDRadio) and {[_depth, _isolated_and_inside] call TFAR_fn
 	_freq_dd = TF_dd_frequency;
 };
 _alive = alive TFAR_currentUnit;
-_nickname = name player;
+if (_alive) then {
+	TFAR_player_name = name player;
+};
+
+_nickname = TFAR_player_name;
 _globalVolume = TFAR_currentUnit getVariable "tf_globalVolume";
 if (isNil "_globalVolume") then {
 	_globalVolume = 1.0;
