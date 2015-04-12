@@ -20,7 +20,7 @@
 */
 private ["_menuDef","_positions","_active_radio","_submenu","_command","_menu","_position"];
 _menu = [];
-if ((count (currentUnit call TFAR_fnc_radiosList) > 1) or {(count (currentUnit call TFAR_fnc_radiosList) == 1) and !(call TFAR_fnc_haveSWRadio)}) then {
+if ((count (TFAR_currentUnit call TFAR_fnc_radiosList) > 1) or {(count (TFAR_currentUnit call TFAR_fnc_radiosList) == 1) and !(call TFAR_fnc_haveSWRadio)}) then {
 	_menuDef = ["main", localize "STR_select_radio", "buttonList", "", false];
 	_positions = [];
 	{
@@ -42,7 +42,7 @@ if ((count (currentUnit call TFAR_fnc_radiosList) > 1) or {(count (currentUnit c
 			true
 		];
 		_positions pushBack _position;
-	} forEach (currentUnit call TFAR_fnc_radiosList);
+	} forEach (TFAR_currentUnit call TFAR_fnc_radiosList);
 	_menu =
 	[
 		_menuDef,

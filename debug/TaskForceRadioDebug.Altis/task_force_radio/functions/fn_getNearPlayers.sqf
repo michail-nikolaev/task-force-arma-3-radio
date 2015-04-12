@@ -1,17 +1,17 @@
 private ["_result","_index","_players_in_group","_spectator", "_v"];
-_players_in_group = count (units (group currentUnit));
+_players_in_group = count (units (group TFAR_currentUnit));
 _result = [];
-if (alive currentUnit) then {
+if (alive TFAR_currentUnit) then {
 	private "_allUnits";
-	_allUnits = currentUnit nearEntities ["Man", TF_max_voice_volume];
+	_allUnits = TFAR_currentUnit nearEntities ["Man", TF_max_voice_volume];
 	
 	if (_players_in_group < 10) then {
 		{
-			if (_x != currentUnit) then {
+			if (_x != TFAR_currentUnit) then {
 				_allUnits pushBack _x;
 			};
 			true;
-		} count (units (group currentUnit));
+		} count (units (group TFAR_currentUnit));
 	};
 	
 	{
@@ -19,7 +19,7 @@ if (alive currentUnit) then {
 		{ 			
 			_allUnits pushBack _x;
 		} forEach (crew _v);
-	} forEach  (currentUnit nearEntities [["LandVehicle", "Air", "Ship"], TF_max_voice_volume]);
+	} forEach  (TFAR_currentUnit nearEntities [["LandVehicle", "Air", "Ship"], TF_max_voice_volume]);
 	
 	{		
 		if !(_x in _allUnits) then {
