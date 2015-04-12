@@ -32,8 +32,8 @@ class CfgPatches
       "tf_rt1523g_big_bwmod",
       "tf_mr3000_bwmod",
       "tf_rt1523g_bwmod",
-	  "tf_mr3000_bwmod_tropen",
-	  "tf_rt1523g_big_bwmod_tropen";
+      "tf_mr3000_bwmod_tropen",
+      "tf_rt1523g_big_bwmod_tropen",
       "tf_rt1523g_big_rhs",
       "tf_rt1523g_rhs",
       "tf_mr3000_rhs",
