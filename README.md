@@ -7,10 +7,10 @@
          alt="Вики" />
   </a>
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases">
-    <img src="http://img.shields.io/badge/Версия-0.9.7.1-blue.svg?style=flat"
+    <img src="http://img.shields.io/badge/Версия-0.9.7.3-blue.svg?style=flat"
          alt="Версия" />
   </a>
-  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7.1/0.9.7.1.zip">
+  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7.3/0.9.7.3.zip">
     <img src="http://img.shields.io/badge/Скачать-126_МБ-green.svg?style=flat"
          alt="Скачать" />
   </a>
@@ -32,7 +32,7 @@
 </p>
 
 ###Установка
-1. Скачайте [архив с рацией 0.9.7.1](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7.1/0.9.7.1.zip) и распакуйте его.
+1. Скачайте [архив с рацией 0.9.7.3](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7.3/0.9.7.3.zip) и распакуйте его.
 2. Скопируйте содержимое папки `TeamSpeak 3 Client` в корневую папку Тимспика.
 3. Скопируйте содержимое папки `Arma 3` в папку с игрой — `...\SteamApps\common\Arma 3`.
 
