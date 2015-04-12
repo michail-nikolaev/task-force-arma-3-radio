@@ -32,4 +32,4 @@ _settings set [RADIO_OWNER, _this select 1];
 [_radio, _settings, _local] call TFAR_fnc_setSwSettings;
 
 //							owner, radio ID
-["OnRadioOwnerSet", currentUnit, [currentUnit, _radio]] call TFAR_fnc_fireEventHandlers;
+["OnRadioOwnerSet", TFAR_currentUnit, [TFAR_currentUnit, _radio]] call TFAR_fnc_fireEventHandlers;

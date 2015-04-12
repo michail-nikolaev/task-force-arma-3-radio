@@ -1,18 +1,19 @@
 /*
  	Name: TFAR_fnc_haveLRRadio
- 	
+
  	Author(s):
- 	
+
  	Description:
 		Returns whether the player has a LR radio
- 	
+
  	Parameters:
 	Nothing
- 	
+
  	Returns:
 	BOOLEAN
- 	
+
  	Example:
 	_hasLR = call TFAR_fnc_haveLRRadio;
  */
-count (currentUnit call TFAR_fnc_lrRadiosList) > 0
+if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith{false};
+count (TFAR_currentUnit call TFAR_fnc_lrRadiosList) > 0

@@ -38,6 +38,6 @@ _result = "";
 		};
 	};
 	true;
-} count (lineIntersectsWith  [eyepos currentUnit, eyepos _this, currentUnit, _this]);
+} count (lineIntersectsWith  [eyepos TFAR_currentUnit, eyepos _this, TFAR_currentUnit, _this]);
 
 _result;

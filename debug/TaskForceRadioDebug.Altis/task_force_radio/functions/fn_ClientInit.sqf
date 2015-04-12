@@ -93,7 +93,7 @@ if (isNil "TF_give_microdagr_to_soldier") then {
 	};
 };
 waitUntil {sleep 0.1;!(isNull player)};
-currentUnit = call TFAR_fnc_currentUnit;
+TFAR_currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_ShowHint;
 
 #include "define.h"
@@ -249,7 +249,7 @@ tf_msSpectatorPerStepMax = 0.035;
 	
 	
 	["TFAR","ChangeSpeakingVolume",["Change Speaking Volume","Change Speaking Volume"],{call TFAR_fnc_onSpeakVolumeChange},{true},[TF_speak_volume_scancode, TF_speak_volume_modifiers],false] call cba_fnc_addKeybind;
-	
+
 	["TFAR","CycleSWRadios",["Cycle >> SW Radios","Cycle >> SW Radios"],{true},{["next"] call TFAR_fnc_processSWCycleKeys},[TF_sw_cycle_next_scancode, TF_sw_cycle_next_modifiers],false] call cba_fnc_addKeybind;
 	["TFAR","CycleSWRadios",["Cycle << SW Radios","Cycle << SW Radios"],{true},{["prev"] call TFAR_fnc_processSWCycleKeys},[TF_sw_cycle_prev_scancode, TF_sw_cycle_prev_modifiers],false] call cba_fnc_addKeybind;
 	["TFAR","CycleLRRadios",["Cycle >> LR Radios","Cycle >> LR Radios"],{true},{["next"] call TFAR_fnc_processLRCycleKeys},[TF_lr_cycle_next_scancode, TF_lr_cycle_next_modifiers],false] call cba_fnc_addKeybind;
@@ -303,29 +303,29 @@ player addEventHandler ["killed", {
 	call TFAR_fnc_processRespawn;
 };
 TF_respawnedAt = time;
-previousCurrentUnit = nil;
-currentUnit = player;
-[] spawn {	
+TFAR_previouscurrentUnit = nil;
+TFAR_currentUnit = player;
+[] spawn {
 	waitUntil {sleep 0.1;!(isNull player)};
-	if (player call TFAR_fnc_isForcedCurator) then {		
+	if (player call TFAR_fnc_isForcedCurator) then {
 		player enableSimulation false;
 		player hideObject true;
-		
+
 		player unlinkItem "ItemRadio";
 		player addVest "V_Rangemaster_belt";
-		
+
 		switch (typeOf (player)) do {
 			case "B_VirtualCurator_F": {
 					player addItem TF_defaultWestPersonalRadio;
-					TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];				
+					TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];
 				};
 			case "O_VirtualCurator_F": {
 					player addItem TF_defaultEastPersonalRadio;
-					TF_curator_backpack_1 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];					
+					TF_curator_backpack_1 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];
 				};
 			case "I_VirtualCurator_F": {
 					player addItem TF_defaultGuerPersonalRadio;
-					TF_curator_backpack_1 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];				
+					TF_curator_backpack_1 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];
 				};
 			default {
 				player addItem TF_defaultWestPersonalRadio;
@@ -333,10 +333,10 @@ currentUnit = player;
 				player addItem TF_defaultGuerPersonalRadio;
 				TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];
 				TF_curator_backpack_2 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];
-				TF_curator_backpack_3 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];				
+				TF_curator_backpack_3 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];
 			};
 		};
-		
+
 		[] spawn {
 			while {true} do {
 				if !(isNull curatorCamera) then {
@@ -348,17 +348,17 @@ currentUnit = player;
 		};
 	};
 	sleep 2;
-	if (player in (call BIS_fnc_listCuratorPlayers)) then {	
+	if (player in (call BIS_fnc_listCuratorPlayers)) then {
 		[] spawn {
 			while {true} do {
-				waitUntil {sleep 0.1;!(isNull (findDisplay 312))};			
+				waitUntil {sleep 0.1;!(isNull (findDisplay 312))};
 				(findDisplay 312) displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_processCuratorKey"];
 				(findDisplay 312) displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
 				waitUntil {sleep 0.1;isNull (findDisplay 312)};
 			};
 		};
 	};
-	
+
 	call TFAR_fnc_radioReplaceProcess;
 };
 
@@ -373,15 +373,15 @@ currentUnit = player;
 	};
 };
 
-if (player in (call BIS_fnc_listCuratorPlayers)) then {	
+if (player in (call BIS_fnc_listCuratorPlayers)) then {
 	[] spawn {
 		while {true} do {
-			waitUntil {sleep 0.1;!(isNull (findDisplay 312))};			
+			waitUntil {sleep 0.1;!(isNull (findDisplay 312))};
 			(findDisplay 312) displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_processCuratorKey"];
 			(findDisplay 312) displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
-			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];	
-			(findDisplay 312) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];	
-			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];	
+			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
+			(findDisplay 312) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
+			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
 			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
 			waitUntil {sleep 0.1;isNull (findDisplay 312)};
 		};
