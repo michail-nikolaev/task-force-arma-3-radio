@@ -108,6 +108,10 @@ class TF_EAST_Radio_Crate: Box_EAST_Support_F
 			count = 1;
 			backpack = "tf_mr3000_rhs";
 		};		
+		class _xx_tf_bussole {
+			count = 3;
+			backpack = "tf_bussole";		
+		};
 	};
 };
 
