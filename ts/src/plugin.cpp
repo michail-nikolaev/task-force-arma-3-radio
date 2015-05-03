@@ -3031,7 +3031,7 @@ void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char
 	log_string(std::string("ON PLUGIN COMMAND ") + pluginName + " " + pluginCommand, LogLevel_DEVEL);
 	if (serverConnectionHandlerID == ts3Functions.getCurrentServerConnectionHandlerID())
 	{
-		if ((strcmp(pluginName, PLUGIN_NAME) == 0) || (strcmp(pluginName, PLUGIN_NAME_x64) == 0) || (strcmp(pluginName, PLUGIN_NAME_x32) == 0))
+		if (strncmp(pluginName, PLUGIN_NAME, strlen(PLUGIN_NAME)) == 0)
 		{
 			processPluginCommand(std::string(pluginCommand));
 		}
