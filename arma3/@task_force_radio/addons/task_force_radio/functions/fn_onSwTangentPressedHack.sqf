@@ -61,15 +61,15 @@
         _mods_pressed = [_this select 2, _this select 3, _this select 4];
         
         // Get the current keybind for SWTransmit
-        _sw_keybind = ["TFAR", "SWTransmit"] call cba_fnc_getKeybind;
+        _keybind_sw = ["TFAR", "SWTransmit"] call cba_fnc_getKeybind;
         
-        if (!(isNil "_sw_keybind")) then {
+        if (!(isNil "_keybind_sw")) then {
         
             // Get the DIK code for the SWTransmit key bind
-            _scancode_sw = ((_sw_keybind) select 5) select 0;
+            _scancode_sw = ((_keybind_sw) select 5) select 0;
             
             // Get the modifier keys for the SWTransmit key bind
-            _mods_sw = ((_sw_keybind) select 5) select 1;
+            _mods_sw = ((_keybind_sw) select 5) select 1;
             
             // If the DIK code AND the modifier keys of the keybind
             // match those of the current key event, then the user
