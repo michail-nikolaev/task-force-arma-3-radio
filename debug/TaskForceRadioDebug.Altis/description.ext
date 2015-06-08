@@ -190,4 +190,5 @@ class HiddenFlip:HiddenButton{
 #include "task_force_radio\anarc164\anarc164.ext"
 #include "task_force_radio\mr6000l\mr6000l.ext"
 #include "task_force_radio\pnr1000a\pnr1000a.ext"
+#include "task_force_radio\bussole\bussole.ext"
 #include "task_force_radio\RscTitles.hpp"

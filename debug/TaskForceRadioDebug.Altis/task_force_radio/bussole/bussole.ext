@@ -32,7 +32,7 @@ class bussole_radio_dialog
 	controlsBackground[] = { };
 	objects[] = { };
 	onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'bussole_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\task_force_radio\bussole\bussole_n.paa';};";
+	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText 'task_force_radio\bussole\bussole_n.paa';};";
 	controls[]=
 {
 	background,

@@ -1851,7 +1851,7 @@ std::string processGameCommand(std::string command)
 		std::string nickname = tokens[7];
 		LeaveCriticalSection(&serverDataCriticalSection);
 		std::string myNickname = getMyNickname(currentServerConnectionHandlerID);
-		if (myNickname != nickname && myNickname.length() > 0 && (nickname != "Error: No unit" && nickname != "Error: No vehicle"))
+		if (myNickname != nickname && myNickname.length() > 0 && (nickname != "Error: No unit" && nickname != "Error: No vehicle" && nickname != "any"))
 		{
 			DWORD error;
 			if ((error = ts3Functions.setClientSelfVariableAsString(currentServerConnectionHandlerID, CLIENT_NICKNAME, nickname.c_str())) != ERROR_ok) {
