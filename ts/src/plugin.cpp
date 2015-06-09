@@ -47,8 +47,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_API_VERSION 20
 //#define PLUGIN_API_VERSION 19
 
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -66,7 +66,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.7"
+#define PLUGIN_VERSION "0.9.8"
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 
