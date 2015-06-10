@@ -211,7 +211,7 @@ class channel_04: HiddenButton
 	w = 0.0221719 * safezoneW;
 	h = 0.0308 * safezoneH;
 	action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 3] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
-	tooltip = $STR_radio_channel_4
+	tooltip = $STR_radio_channel_4;
 };
 class channel_05: HiddenButton
 {
