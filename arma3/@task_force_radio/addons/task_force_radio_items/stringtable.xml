@@ -13,7 +13,7 @@
           TFAR Radio (NATO)
         </Spanish>
         <German>
-          TFAR Funkgeräte (NATO)
+          TFAR-Funkgeräte (NATO)
         </German>
         <Turkish>
           TFAR Radyo (NATO)
@@ -33,7 +33,7 @@
           TFAR Radio (CSAT)
         </Spanish>
         <German>
-          TFAR Funkgeräte (CSAT)
+          TFAR-Funkgeräte (CSAT)
         </German>
         <Turkish>
           TFAR Radyo (CSAT)
@@ -53,7 +53,7 @@
           TFAR Radio (AAF)
         </Spanish>
         <German>
-          TFAR Funkgeräte (AAF)
+          TFAR-Funkgeräte (AAF)
         </German>
         <Turkish>
           TFAR Radyo (AAF)
@@ -373,7 +373,7 @@
           LA Frec.
         </Spanish>
         <German>
-          LS Freq.
+          LS-Freq.
         </German>
         <Turkish>
           UM(Uzun Menzilli) Senkronize.
@@ -393,7 +393,7 @@
           Frecuencia por defecto LA (como array SQF)
         </Spanish>
         <German>
-          LS Standardfrequenzen (als SQF-Array)
+          LS-Standardfrequenzen (als SQF-Array)
         </German>
         <Turkish>
           UM(Uzun Menzilli) varsayılan senkronize (SQF dizisi olarak)
@@ -413,7 +413,7 @@
           TFAR – Radio del bando
         </Spanish>
         <German>
-          TFAR – Funk Fraktionszuweisung
+          TFAR – Funk-Fraktionszuweisung
         </German>
         <Turkish>
           TFAR – Yan(ikincil) Radyo
@@ -553,7 +553,7 @@
           Nombre del canal del TeamSpeak
         </Spanish>
         <German>
-          Teamspeak-Kanalname
+          TeamSpeak-Kanalname
         </German>
         <Turkish>
           TeamSpeak Kanal Adı
@@ -593,7 +593,7 @@
           Contraseña del canal del TeamSpeak
         </Spanish>
         <German>
-          Teamspeak-Kanalpasswort
+          TeamSpeak-Kanalpasswort
         </German>
         <Turkish>
           TeamSpeak Kanal Şifresi
@@ -613,7 +613,7 @@
           Mismas frecuencias de onda corta para el bando
         </Spanish>
         <German>
-          Selbe KS Frequenzen für die Fraktionen
+          Gleiche KS-Frequenzen für die Fraktionen
         </German>
         <Turkish>
           Taraflar için SW frekansları
@@ -633,7 +633,7 @@
           Mismas frecuencias de onda corta para el bando
         </Spanish>
         <German>
-          Selbe KS Frequenzen für die Fraktionen
+          Gleiche KS-Frequenzen für die Fraktionen
         </German>
         <Turkish>
           Taraflar için SW frekansları
@@ -653,7 +653,7 @@
           Mismas frecuencias de onda larga para el bando
         </Spanish>
         <German>
-          Selbe LS Frequenzen für die Fraktionen
+          Gleiche LS-Frequenzen für die Fraktionen
         </German>
         <Turkish>
           Taraflar için SW UM(Uzun Menzilli) frekansları
@@ -673,7 +673,7 @@
           Mismas frecuencias de onda larga para el bando
         </Spanish>
         <German>
-          Selbe LS Frequenzen für die Fraktionen
+          Gleiche LS-Frequenzen für die Fraktionen
         </German>
         <Turkish>
           Taraflar için SW UM(Uzun Menzilli) frekansları
