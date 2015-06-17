@@ -1,687 +1,687 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ID="Arma2">
-  <Package ID="Missions">
-    <Container ID="A3RU_MissionInformation">
-      <Key ID="STR_TFAR_NATO_crate">
-        <Original>
+    <Package ID="Missions">
+        <Container ID="A3RU_MissionInformation">
+            <Key ID="STR_TFAR_NATO_crate">
+                <Original>
           TFAR Radio (NATO)
         </Original>
-        <Russian>
+                <Russian>
           TFAR Рации (НАТО)
         </Russian>
-        <Spanish>
+                <Spanish>
           TFAR Radio (NATO)
         </Spanish>
-        <German>
-          TFAR Funkgeräte (NATO)
+                <German>
+          TFAR-Funkgeräte (NATO)
         </German>
-        <Turkish>
+                <Turkish>
           TFAR Radyo (NATO)
         </Turkish>
-        <Czech>
+                <Czech>
           TFAR Vysílačky (NATO)
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_EAST_crate">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_EAST_crate">
+                <Original>
           TFAR Radio (CSAT)
         </Original>
-        <Russian>
+                <Russian>
           TFAR Рации (CSAT)
         </Russian>
-        <Spanish>
+                <Spanish>
           TFAR Radio (CSAT)
         </Spanish>
-        <German>
-          TFAR Funkgeräte (CSAT)
+                <German>
+          TFAR-Funkgeräte (CSAT)
         </German>
-        <Turkish>
+                <Turkish>
           TFAR Radyo (CSAT)
         </Turkish>
-        <Czech>
+                <Czech>
           TFAR Vysílačky (CSAT)
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_IND_crate">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_IND_crate">
+                <Original>
           TFAR Radio (AAF)
         </Original>
-        <Russian>
+                <Russian>
           TFAR Рации (AAF)
         </Russian>
-        <Spanish>
+                <Spanish>
           TFAR Radio (AAF)
         </Spanish>
-        <German>
-          TFAR Funkgeräte (AAF)
+                <German>
+          TFAR-Funkgeräte (AAF)
         </German>
-        <Turkish>
+                <Turkish>
           TFAR Radyo (AAF)
         </Turkish>
-        <Czech>
+                <Czech>
           TFAR Vysílačky (AAF)
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_EnforceUsage">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_EnforceUsage">
+                <Original>
           TFAR – Enforce Usage
         </Original>
-        <Russian>
+                <Russian>
           TFAR – Базовый модуль
         </Russian>
-        <Spanish>
+                <Spanish>
           TFAR – Obligar su uso
         </Spanish>
-        <German>
+                <German>
           TFAR – Erzwingt die Nutzung
         </German>
-        <Turkish>
+                <Turkish>
           TFAR – Kullanıma Zorlamak
         </Turkish>
-        <Czech>
+                <Czech>
           TFAR – Vynutit použití
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_GiveTLradio">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_GiveTLradio">
+                <Original>
           Give team leaders a long range radio
         </Original>
-        <Russian>
+                <Russian>
           Выдавать лидерам групп рацию дальней связи
         </Russian>
-        <Spanish>
+                <Spanish>
           Dar a los lideres de equipo una radio de largo alcance
         </Spanish>
-        <German>
+                <German>
           Weist dem Gruppenführer ein Langstreckenfunkgerät zu
         </German>
-        <Turkish>
+                <Turkish>
           Takım liderine uzun menzil radyo ver
         </Turkish>
-        <Czech>
+                <Czech>
           Dát velitelům týmů vysílačku pro dlouhou vzdálenost
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_GiveTLradioTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_GiveTLradioTT">
+                <Original>
           Give each team leader the appropriate long range radio
         </Original>
-        <Russian>
+                <Russian>
           Выдавать каждому лидеру группы рацию дальней связи
         </Russian>
-        <Spanish>
+                <Spanish>
           Da a cada lider de equipo una radio de largo alcance apropiada
         </Spanish>
-        <German>
+                <German>
           Weist jedem Gruppenführer das entsprechende Langstreckenfunkgerät zu
         </German>
-        <Turkish>
+                <Turkish>
           Her takım liderine uygun uzun menzilli radyo ver
         </Turkish>
-        <Czech>
+                <Czech>
           Dá každému veliteli týmu vhodnou vysílačku pro dlouhou vzdálenost
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
+                <Original>
           Give rifleman radio
         </Original>
-        <Russian>
+                <Russian>
           Выдавать личную рацию бойца
         </Russian>
-        <Spanish>
+                <Spanish>
           Dar una radio personal
         </Spanish>
-        <German>
+                <German>
           Weist ein Kurzstreckenfunkgerät zu
         </German>
-        <Turkish>
+                <Turkish>
           Tüfekçi(rifleman) radyosu ver
         </Turkish>
-        <Czech>
+                <Czech>
           Dát malou vysílačku vojákům
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
+                <Original>
           Give a rifleman radio to regular soldiers
         </Original>
-        <Russian>
+                <Russian>
           Выдавать личную рацию рядовым бойцам
         </Russian>
-        <Spanish>
+                <Spanish>
           Dar una radio personal a cada miembro de equipo
         </Spanish>
-        <German>
+                <German>
           Weist jedem Gruppenmitglied ein Kurzstreckenfunkgerät zu
         </German>
-        <Turkish>
+                <Turkish>
           Tüfekçi(rifleman) radyosunu askerlere ver
         </Turkish>
-        <Czech>
+                <Czech>
           Dá malou vysílačku klasickým vojákům
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_EnforceUsage_Description">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_EnforceUsage_Description">
+                <Original>
           Enforces usage of TFAR in mission.
         </Original>
-        <Russian>
+                <Russian>
           Обязует игроков использовать аддон.
         </Russian>
-        <Spanish>
+                <Spanish>
           Fuerza el uso de TFAR en la misión.
         </Spanish>
-        <German>
+                <German>
           Erzwingt den Gebrauch von TFAR während der Mission.
         </German>
-        <Turkish>
+                <Turkish>
           TFAR görevde kullanmaya zorlama.
         </Turkish>
-        <Czech>
+                <Czech>
           Vynutí použití TFARU v misi.
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_EncryptionCode">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_EncryptionCode">
+                <Original>
           Encryption Code
         </Original>
-        <Russian>
+                <Russian>
           Код шифрования
         </Russian>
-        <Spanish>
+                <Spanish>
           Codigo de encriptación
         </Spanish>
-        <German>
+                <German>
           Verschlüsselungscode
         </German>
-        <Turkish>
+                <Turkish>
           Şifreleme kodu
         </Turkish>
-        <Czech>
+                <Czech>
           Šifrovací kód
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_LR_Radio">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_LR_Radio">
+                <Original>
           LR Radio
         </Original>
-        <Russian>
+                <Russian>
           Рация дальней связи
         </Russian>
-        <Spanish>
+                <Spanish>
           Radio LA
         </Spanish>
-        <German>
+                <German>
           LS-Funkgerät
         </German>
-        <Turkish>
+                <Turkish>
           UM(Uzun Menzilli) Radyo
         </Turkish>
-        <Czech>
+                <Czech>
           LR Vysílačka
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_LR_RadioTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_LR_RadioTT">
+                <Original>
           Long Range radio
         </Original>
-        <Russian>
+                <Russian>
           Рация дальней связи
         </Russian>
-        <Spanish>
+                <Spanish>
           Radio de Largo Alcance
         </Spanish>
-        <German>
+                <German>
           Langstreckenfungerät
         </German>
-        <Turkish>
+                <Turkish>
           Uzun Menzilli radyo
         </Turkish>
-        <Czech>
+                <Czech>
           Vysílačka na dlouhou vzdálenost
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_PR_Radio">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_PR_Radio">
+                <Original>
           PR Radio
         </Original>
-        <Russian>
+                <Russian>
           Рация командира
         </Russian>
-        <Spanish>
+                <Spanish>
           Radio PR
         </Spanish>
-        <German>
+                <German>
           Pers. Funkgerät
         </German>
-        <Turkish>
+                <Turkish>
           KR(Kişisel Radyo) Radyo
         </Turkish>
-        <Czech>
+                <Czech>
           PR Vysílačka
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_PR_RadioTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_PR_RadioTT">
+                <Original>
           Personal radio
         </Original>
-        <Russian>
+                <Russian>
           Рация командира группы
         </Russian>
-        <Spanish>
+                <Spanish>
           Radio Personal
         </Spanish>
-        <German>
+                <German>
           Persönliches Funkgerät
         </German>
-        <Turkish>
+                <Turkish>
           Kişisel Radyo
         </Turkish>
-        <Czech>
+                <Czech>
           Osobní vysílačka
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_Rifle_Radio">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_Rifle_Radio">
+                <Original>
           Rifleman Radio
         </Original>
-        <Russian>
+                <Russian>
           Рация рядового бойца
         </Russian>
-        <Spanish>
+                <Spanish>
           Radio de fusilero
         </Spanish>
-        <German>
+                <German>
           Kurzstreckenfunkgerät
         </German>
-        <Turkish>
+                <Turkish>
           Tüfekçi(rifleman) Radyosu
         </Turkish>
-        <Czech>
+                <Czech>
           Klasická (malá) vysílačka
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_Rifle_RadioTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_Rifle_RadioTT">
+                <Original>
           Rifleman Radio
         </Original>
-        <Russian>
+                <Russian>
           Рация рядового бойца
         </Russian>
-        <Spanish>
+                <Spanish>
           Radio de fusilero
         </Spanish>
-        <German>
+                <German>
           Kurzstreckenfunkgerät
         </German>
-        <Turkish>
+                <Turkish>
           Tüfekçi(rifleman) Radyosu
         </Turkish>
-        <Czech>
+                <Czech>
           Klasická (malá) vysílačka
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_PRFrequency">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_PRFrequency">
+                <Original>
           PR Freq.
         </Original>
-        <Russian>
+                <Russian>
           Частоты ближней связи
         </Russian>
-        <Spanish>
+                <Spanish>
           Frec. RP
         </Spanish>
-        <German>
+                <German>
           Pers. Freq.
         </German>
-        <Turkish>
+                <Turkish>
           KR(Kişisel Radyo) Senkronize.
         </Turkish>
-        <Czech>
+                <Czech>
           PR Frek.
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_PRFrequencyTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_PRFrequencyTT">
+                <Original>
           PR default frequencies (as an SQF array)
         </Original>
-        <Russian>
+                <Russian>
           Стандартные частоты ближней связи (как SQF массив)
         </Russian>
-        <Spanish>
+                <Spanish>
           Frecuencia por defecto PR (como array SQF)
         </Spanish>
-        <German>
+                <German>
           Pers. Standardfrequenzen (als SQF-Array)
         </German>
-        <Turkish>
+                <Turkish>
           KR varsayılar senkronize (SQF dizisi olarak)
         </Turkish>
-        <Czech>
+                <Czech>
           Výchozí frekvence osobní vysílačky (jako SQF pole)
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_LRFrequency">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_LRFrequency">
+                <Original>
           LR Freq.
         </Original>
-        <Russian>
+                <Russian>
           Частота дальней связи
         </Russian>
-        <Spanish>
+                <Spanish>
           LA Frec.
         </Spanish>
-        <German>
+                <German>
           LS Freq.
         </German>
-        <Turkish>
+                <Turkish>
           UM(Uzun Menzilli) Senkronize.
         </Turkish>
-        <Czech>
+                <Czech>
           LR Frek.
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_LRFrequencyTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_LRFrequencyTT">
+                <Original>
           LR default frequencies (as an SQF array)
         </Original>
-        <Russian>
+                <Russian>
           Стандартные частоты дальней связи (как SQF массив)
         </Russian>
-        <Spanish>
+                <Spanish>
           Frecuencia por defecto LA (como array SQF)
         </Spanish>
-        <German>
+                <German>
           LS Standardfrequenzen (als SQF-Array)
         </German>
-        <Turkish>
+                <Turkish>
           UM(Uzun Menzilli) varsayılan senkronize (SQF dizisi olarak)
         </Turkish>
-        <Czech>
+                <Czech>
           Výchozí frekvence vysílačky pro dlouhou vzdálenost (jako SQF pole)
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_SideRadio">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_SideRadio">
+                <Original>
           TFAR – Side Radio
         </Original>
-        <Russian>
+                <Russian>
           TFAR – Рации стороны
         </Russian>
-        <Spanish>
+                <Spanish>
           TFAR – Radio del bando
         </Spanish>
-        <German>
-          TFAR – Funk Fraktionszuweisung
+                <German>
+          TFAR – Funk-Fraktionszuweisung
         </German>
-        <Turkish>
+                <Turkish>
           TFAR – Yan(ikincil) Radyo
         </Turkish>
-        <Czech>
+                <Czech>
           TFAR – Vysílačky strany
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_SideRadio_Description">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_SideRadio_Description">
+                <Original>
           Allows setting of default radios, encryption and frequencies for synced side.
         </Original>
-        <Russian>
+                <Russian>
           Позволяет определить стандартные рации, коды шифрования и частоту для синхронизированной стороны.
         </Russian>
-        <Spanish>
+                <Spanish>
           Permite configurar las radios por defecto, la encriptacion y las frecuencias del bando sincronizado.
         </Spanish>
-        <German>
+                <German>
           Ermöglicht gleiche Einstellungen der Verschlüsselung und Frequenzen für alle Fraktionen.
         </German>
-        <Turkish>
+                <Turkish>
           Radyoları varsayılan ayarlarına izin ver, şifreleme ve senkronize için frekanslar.
         </Turkish>
-        <Czech>
+                <Czech>
           Umožňuje nastavení výchozích vysílaček, šifrování a frekvencí pro určitou stranu.
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_Frequencies">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_Frequencies">
+                <Original>
           TFAR – Frequencies
         </Original>
-        <Russian>
+                <Russian>
           TFAR – Частоты
         </Russian>
-        <Spanish>
+                <Spanish>
           TFAR – Frecuencias
         </Spanish>
-        <German>
+                <German>
           TFAR – Frequenzen
         </German>
-        <Turkish>
+                <Turkish>
           TFAR – Frekansları
         </Turkish>
-        <Czech>
+                <Czech>
           TFAR – Frekvence
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_Frequencies_Description">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_Frequencies_Description">
+                <Original>
           Allows setting of default frequencies for sides.
         </Original>
-        <Russian>
+                <Russian>
           Позволяет определить стандартные частоты для сторон.
         </Russian>
-        <Spanish>
+                <Spanish>
           Permite configurar las frecuencias por defecto para los bandos.
         </Spanish>
-        <German>
+                <German>
           Ermöglicht die Einstellung der Standardfrequenzen für Fraktionen.
         </German>
-        <Turkish>
+                <Turkish>
           Taraflar için varsayılan frekans ayarları.
         </Turkish>
-        <Czech>
+                <Czech>
           Umožňuje nastavit výchozí frekvence pro určité strany.
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
+                <Original>
           Terrain Interception Coefficient
         </Original>
-        <Russian>
+                <Russian>
           Коэффициент помех от рельефа
         </Russian>
-        <Spanish>
+                <Spanish>
           Coeficiente de intercepción del terreno
         </Spanish>
-        <German>
+                <German>
           Koeffizient für Signalabschwächung durch das Gelände
         </German>
-        <Turkish>
+                <Turkish>
           Kesişme Alan Katsayısı
         </Turkish>
-        <Czech>
+                <Czech>
           Koeficient rušení terénem
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
+                <Original>
           Terrain Interception Coefficient
         </Original>
-        <Russian>
+                <Russian>
           Коэффициент помех от рельефа
         </Russian>
-        <Spanish>
+                <Spanish>
           Coeficiente de intercepción del terreno
         </Spanish>
-        <German>
+                <German>
           Koeffizient für Signalabschwächung durch das Gelände
         </German>
-        <Turkish>
+                <Turkish>
           Kesişme Alan Katsayısı
         </Turkish>
-        <Czech>
+                <Czech>
           Koeficient rušení způsobené terénem
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_ChannelName">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_ChannelName">
+                <Original>
           Channel Name
         </Original>
-        <Russian>
+                <Russian>
           Название канала
         </Russian>
-        <Spanish>
+                <Spanish>
           Nombre del canal
         </Spanish>
-        <German>
+                <German>
           Kanalname
         </German>
-        <Turkish>
+                <Turkish>
           Kanal Adı
         </Turkish>
-        <Czech>
+                <Czech>
           Název kanálu
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_ChannelNameTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_ChannelNameTT">
+                <Original>
           TeamSpeak Channel Name
         </Original>
-        <Russian>
+                <Russian>
           Название канала TeamSpeak
         </Russian>
-        <Spanish>
+                <Spanish>
           Nombre del canal del TeamSpeak
         </Spanish>
-        <German>
+                <German>
           Teamspeak-Kanalname
         </German>
-        <Turkish>
+                <Turkish>
           TeamSpeak Kanal Adı
         </Turkish>
-        <Czech>
+                <Czech>
           Název kanálu na TeamSpeaku
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_ChannelPassword">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_ChannelPassword">
+                <Original>
           Channel Password
         </Original>
-        <Russian>
+                <Russian>
           Пароль канала
         </Russian>
-        <Spanish>
+                <Spanish>
           Contraseña del canal
         </Spanish>
-        <German>
+                <German>
           Kanalpasswort
         </German>
-        <Turkish>
+                <Turkish>
           Kanal Şifresi
         </Turkish>
-        <Czech>
+                <Czech>
           Heslo kanálu
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_ChannelPasswordTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_ChannelPasswordTT">
+                <Original>
           TeamSpeak Channel Password
         </Original>
-        <Russian>
+                <Russian>
           Пароль канала TeamSpeak
         </Russian>
-        <Spanish>
+                <Spanish>
           Contraseña del canal del TeamSpeak
         </Spanish>
-        <German>
+                <German>
           Teamspeak-Kanalpasswort
         </German>
-        <Turkish>
+                <Turkish>
           TeamSpeak Kanal Şifresi
         </Turkish>
-        <Czech>
+                <Czech>
           Heslo kanálu na TeamSpeaku
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_SameSWFrequencies">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_SameSWFrequencies">
+                <Original>
           Same SW Frequencies for side
         </Original>
-        <Russian>
+                <Russian>
           Одинаковые частоты ближней связи для стороны
         </Russian>
-        <Spanish>
+                <Spanish>
           Mismas frecuencias de onda corta para el bando
         </Spanish>
-        <German>
-          Selbe KS Frequenzen für die Fraktionen
+                <German>
+          Selbe KS-Frequenzen für die Fraktionen
         </German>
-        <Turkish>
+                <Turkish>
           Taraflar için SW frekansları
         </Turkish>
-        <Czech>
+                <Czech>
           Stejné SW frekvence pro stranu
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
+                <Original>
           Same SW Frequencies for side
         </Original>
-        <Russian>
+                <Russian>
           Одинаковые частоты ближней связи для стороны
         </Russian>
-        <Spanish>
+                <Spanish>
           Mismas frecuencias de onda corta para el bando
         </Spanish>
-        <German>
-          Selbe KS Frequenzen für die Fraktionen
+                <German>
+          Selbe KS-Frequenzen für die Fraktionen
         </German>
-        <Turkish>
+                <Turkish>
           Taraflar için SW frekansları
         </Turkish>
-        <Czech>
+                <Czech>
           Stejné SW frekvence vysílačky pro stranu
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_SameLrFrequencies">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_SameLrFrequencies">
+                <Original>
           Same LR Frequencies for side
         </Original>
-        <Russian>
+                <Russian>
           Одинаковые частоты дальней связи для стороны
         </Russian>
-        <Spanish>
+                <Spanish>
           Mismas frecuencias de onda larga para el bando
         </Spanish>
-        <German>
-          Selbe LS Frequenzen für die Fraktionen
+                <German>
+          Selbe LS-Frequenzen für die Fraktionen
         </German>
-        <Turkish>
+                <Turkish>
           Taraflar için SW UM(Uzun Menzilli) frekansları
         </Turkish>
-        <Czech>
+                <Czech>
           Stejné LR frekvence pro stranu
         </Czech>
-      </Key>
-      <Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
-        <Original>
+            </Key>
+            <Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
+                <Original>
           Same LR Frequencies for side
         </Original>
-        <Russian>
+                <Russian>
           Одинаковые частоты дальней связи для стороны
         </Russian>
-        <Spanish>
+                <Spanish>
           Mismas frecuencias de onda larga para el bando
         </Spanish>
-        <German>
-          Selbe LS Frequenzen für die Fraktionen
+                <German>
+          Selbe LS-Frequenzen für die Fraktionen
         </German>
-        <Turkish>
+                <Turkish>
           Taraflar için SW UM(Uzun Menzilli) frekansları
         </Turkish>
-        <Czech>
+                <Czech>
           Stejné LR frekvence vysílačky pro dlouhou vzdálenost pro stranu
         </Czech>
-      </Key>
-    </Container>
-  </Package>
+            </Key>
+        </Container>
+    </Package>
 </Project>
