@@ -47,8 +47,8 @@ static float* floatsSample[MAX_CHANNELS];
 #define PLUGIN_API_VERSION 20
 //#define PLUGIN_API_VERSION 19
 
-//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
-#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
+#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
+//#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
@@ -2149,21 +2149,22 @@ void ts3plugin_setFunctionPointers(const struct TS3Functions funcs) {
 int pttCallback(void *arg, int argc, char **argv, char **azColName)
 {
 	if (argc != 1) return 1;
-
-	std::vector<std::string> v = split(argv[0], '\n');
-	
-	for (auto i = v.begin(); i != v.end(); i++)
+	if (argv[0] != NULL)
 	{
-		if (*i == "delay_ptt=true")
+		std::vector<std::string> v = split(argv[0], '\n');
+		for (auto i = v.begin(); i != v.end(); i++)
 		{
-			pttDelay = true;
+			if (*i == "delay_ptt=true")
+			{
+				pttDelay = true;
+			}
+			if (i->substr(0, strlen("delay_ptt_msecs")) == "delay_ptt_msecs")
+			{
+				std::vector<std::string> values = split(*i, '=');
+				pttDelayMs = std::stoi(values[1]);
+			}
 		}
-		if (i->substr(0, strlen("delay_ptt_msecs")) == "delay_ptt_msecs")
-		{
-			std::vector<std::string> values = split(*i, '=');
-			pttDelayMs = std::stoi(values[1]);
-		}
-	}	
+	}
 	return 0;
 }
 
