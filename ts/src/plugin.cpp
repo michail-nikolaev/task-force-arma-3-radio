@@ -15,6 +15,7 @@
 #include <string.h>
 #include <string>
 #include <assert.h>
+#include <math.h>
 #include <iostream>
 #include <sstream>
 #include <map>
@@ -65,7 +66,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.7"
+#define PLUGIN_VERSION "0.9.8"
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 
@@ -593,6 +594,34 @@ void applyGain(short * samples, int channels, int sampleCount, float directTalki
 	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short)(samples[i] * directTalkingVolume);
 }
 
+void applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle)
+{
+	if (channels == 2){
+		viewAngle = viewAngle * M_PI / 180;
+		float dir = atan2(position.y, position.x) + viewAngle;
+		while (dir > M_PI)
+		{
+			dir = dir - 2*M_PI;
+		}
+
+		float gainLeft = 1.0;
+		float gainRight = 1.0;
+
+		gainLeft = -0.375 * cos(dir) + 0.625;
+		gainRight = 0.375 * cos(dir) + 0.625;
+
+		for (int i = 0; i < sampleCount * channels; i++) {
+			if (i % 2 == 0)
+			{
+				samples[i] = (short)(samples[i] * gainLeft);
+			}
+			else
+			{
+				samples[i] = (short)(samples[i] * gainRight);
+			}
+		}
+	}
+}
 
 anyID getMyId(uint64 serverConnectionHandlerID)
 {
@@ -733,6 +762,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 				}
 				clientData->getClunk(id)->process(input, wave->_spec.channels, samples, position, clientData->viewAngle);
 				clientData->removeClunk(id);
+				applyILD(input, wave->_spec.channels, samples, position, clientData->viewAngle);
 			}
 
 		}
@@ -1851,7 +1881,7 @@ std::string processGameCommand(std::string command)
 		std::string nickname = tokens[7];
 		LeaveCriticalSection(&serverDataCriticalSection);
 		std::string myNickname = getMyNickname(currentServerConnectionHandlerID);
-		if (myNickname != nickname && myNickname.length() > 0 && (nickname != "Error: No unit" && nickname != "Error: No vehicle"))
+		if (myNickname != nickname && myNickname.length() > 0 && (nickname != "Error: No unit" && nickname != "Error: No vehicle" && nickname != "any"))
 		{
 			DWORD error;
 			if ((error = ts3Functions.setClientSelfVariableAsString(currentServerConnectionHandlerID, CLIENT_NICKNAME, nickname.c_str())) != ERROR_ok) {
@@ -2119,21 +2149,22 @@ void ts3plugin_setFunctionPointers(const struct TS3Functions funcs) {
 int pttCallback(void *arg, int argc, char **argv, char **azColName)
 {
 	if (argc != 1) return 1;
-
-	std::vector<std::string> v = split(argv[0], '\n');
-	
-	for (auto i = v.begin(); i != v.end(); i++)
+	if (argv[0] != NULL)
 	{
-		if (*i == "delay_ptt=true")
+		std::vector<std::string> v = split(argv[0], '\n');
+		for (auto i = v.begin(); i != v.end(); i++)
 		{
-			pttDelay = true;
+			if (*i == "delay_ptt=true")
+			{
+				pttDelay = true;
+			}
+			if (i->substr(0, strlen("delay_ptt_msecs")) == "delay_ptt_msecs")
+			{
+				std::vector<std::string> values = split(*i, '=');
+				pttDelayMs = std::stoi(values[1]);
+			}
 		}
-		if (i->substr(0, strlen("delay_ptt_msecs")) == "delay_ptt_msecs")
-		{
-			std::vector<std::string> values = split(*i, '=');
-			pttDelayMs = std::stoi(values[1]);
-		}
-	}	
+	}
 	return 0;
 }
 
@@ -2619,6 +2650,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 				{					
 					// process voice
 					data->getClunk("voice_clunk")->process(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);
+					applyILD(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);
 					if (shouldPlayerHear)
 					{
 						if (vehicleVolumeLoss < 0.01 || vehicleCheck)
@@ -2702,6 +2734,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, CANT_SPEAK_GAIN, (data->getFilterCantSpeak(info.radio_id)));
 						}
 						data->getClunk(info.radio_id)->process(radio_buffer, channels, sampleCount, info.pos, myData->viewAngle);
+						applyILD(radio_buffer, channels, sampleCount, info.pos, myData->viewAngle);
 					}
 					mix(samples, radio_buffer, sampleCount, channels);
 					

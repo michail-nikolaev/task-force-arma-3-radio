@@ -19,7 +19,7 @@
 					Estas usando diferentes versiones de Task Force Radio. Versión del servidor : %1, Tu versión : %2
 				</Spanish>
 				<German>
-					Es werden unterschiedliche Versionen von Task Force Radio verwendet. Server version: %1, deine Version: %2
+					Es werden unterschiedliche Versionen von Task Force Radio verwendet. Server-Version: %1, deine Version: %2
 				</German>
 				 <Turkish>
 					Versiyon uyuşmazlığı. Server versiyonu: %1, Senin versiyonun: %2
@@ -45,7 +45,7 @@
 					Configuración de stereo
 				</Spanish>
 				<German>
-					Stereo Einstellungen
+					Stereo-Einstellungen
 				</German>
 				<Turkish>
 					Ses ayarları
@@ -1001,7 +1001,7 @@
 					Canal RL:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Spanish>
 				<German>
-					LS Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					LS-Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</German>
 				<Turkish>
 					UM(Uzun Menzil) kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
@@ -1027,7 +1027,7 @@
 					Canal adicional RL:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Spanish>	
 				<German>
-					Zusätzlicher LS Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+					Zusätzlicher LS-Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</German>
 				<Turkish>
 					Ek UM(Uzun Menzil) kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
@@ -1079,7 +1079,7 @@
 					&lt;t color=&apos;#993300&apos;&gt;No puedes utilizar la radio del conductor en el aire&lt;/t&gt;
 				</Spanish>
 				<German>
-					&lt;t color=&apos;#993300&apos;&gt; Fahrzeugfunk kann nicht in der Luft verwendet werden&lt;/t&gt;
+					&lt;t color=&apos;#993300&apos;&gt;Fahrzeugfunk kann nicht in der Luft verwendet werden&lt;/t&gt;
 				</German>
 				<Turkish>
 					&lt;t color=&apos;#993300&apos;&gt;Bu radyo sadece su altında çalışır&lt;/t&gt;
@@ -1896,7 +1896,7 @@ Estando bajo el agua, podrás escuchar débilmente voces sordas de tierra.lt;br/
 Usa un transceptor submarino para comunicarte con otros buceadores. Si deseas contactar con alguien que este en tierra, sube a la superficie. &lt;br/&gt;A excepción de los submarinos en profundidad de periscopio (los buceadores podrán utilizar la radio de largo alcance).
 				</Spanish>
 				<German>
-Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen. Auf nahe Distanz kann ihr Partner allerdings undeutliche Töne wahrnehmen (Ausnahme: Sie befinden sich in einem Fahrzeug).&lt;br/&gt;Wenn Sie sich unter Wasser befinden, können sie Unterhaltungen an Land gedämpft wahrnehmen.&lt;br/&gt;Nutzen Sie den Unterwasser-Transceiver, um sich mit anderen Tauchern zu unterhalten.&lt;br/&gt;Sie können normale Funkgeräte unter Wasser nicht nutzen (weder Senden noch Empfangen).&lt;br/&gt;Ausnahme: U-Boot auf Periskoptiefe. Hier kann der Langstreckenfunk verwendet werden.
+Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen. Auf nahe Distanz kann Ihr Partner allerdings undeutliche Töne wahrnehmen (Ausnahme: Sie befinden sich in einem Fahrzeug).&lt;br/&gt;Wenn Sie sich unter Wasser befinden, können Sie Unterhaltungen an Land gedämpft wahrnehmen.&lt;br/&gt;Nutzen Sie den Unterwasser-Transceiver, um sich mit anderen Tauchern zu unterhalten.&lt;br/&gt;Sie können normale Funkgeräte unter Wasser nicht nutzen (weder Senden noch Empfangen).&lt;br/&gt;Ausnahme: U-Boot auf Periskoptiefe. Hier kann der Langstreckenfunk verwendet werden.
 				</German>
 				<Turkish>
 Su altında konuşamazsınız (dalgıç kıyafeti giyseniz bile). Ancak, yakınında olduğunuz arkadaşınızın sesi belirsiz olarak duyulabilir (istisna - izole bir su altı aracında iseniz).&lt;br/&gt;
@@ -1966,7 +1966,7 @@ En los vehículos las opciones también son conservadas.&lt;br/&gt;
 Por defecto, las radios de cada facción usan sus propios códigos de encriptación, así que no podrás escuchar al enemigo comunicarse, incluso estando en la misma frecuencia que el enemigo. Para poder escuchar la red del enemigo (y también hablar), es necesario capturar una radio enemiga.
 				</Spanish>
 				<German>
-Funkgeräte können sowohl von getöteten Spielern aufgenommen als auch untereinander ausgetauscht werden. Alle Einstellungen (Kanäle, Frequenzen, Lautstärke) bleiben dabei erhalten.&lt;br/&gt;In Fahrzeugen werden die Einstellungen ebenfalls gespeichert.&lt;/br&gt;Standardmäßig verwendet jede Fraktion ihren eigenen Verschlüsselungscode. Sie können also gegnerischen Sprechfunk selbst dann nicht aufnehmen, wenn Sie sich auf derselben Frequenz befinden. Um Sprechfunk abzuhören, muss ein feindliches Funkgerät in ihren Besitz gelangen.
+Funkgeräte können sowohl von getöteten Spielern aufgenommen, als auch untereinander ausgetauscht werden. Alle Einstellungen (Kanäle, Frequenzen, Lautstärke) bleiben dabei erhalten.&lt;br/&gt;In Fahrzeugen werden die Einstellungen ebenfalls gespeichert.&lt;/br&gt;Standardmäßig verwendet jede Fraktion ihren eigenen Verschlüsselungscode. Sie können also gegnerischen Sprechfunk selbst dann nicht aufnehmen, wenn Sie sich auf derselben Frequenz befinden. Um Sprechfunk abzuhören, muss ein feindliches Funkgerät in Ihren Besitz gelangen.
 				</German>
 				<Turkish>
 Radyo ölü oyunculardan alınabilir, ve verebilirler. Böylece ayarları korunmuş olur (kanallar, frekans ve ses değeri).&lt;br/&gt;
