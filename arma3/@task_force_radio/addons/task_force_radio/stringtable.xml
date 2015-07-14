@@ -27,6 +27,9 @@
 				<Czech>
 					Je používaná jiná verze Task Force Radio. Verze serveru: %1, Vaše verze: %2
 				</Czech>
+				<Polish>
+					Niewłaściwa wersja Task Force Radio. Wersja serwerowa: %1, Twoja wersja: %2
+				</Polish>
 			</Key>
 			<Key ID="STR_stereo_settings">
 				<Original>
@@ -40,7 +43,7 @@
 				</French>
 				<Italian>
 					Configurazione stereo
-				</Italian>	
+				</Italian>
 				<Spanish>
 					Configuración de stereo
 				</Spanish>
@@ -53,6 +56,9 @@
 				<Czech>
 					Stereo nastavení
 				</Czech>
+				<Polish>
+					Ustawienia stereo
+				</Polish>	
 			</Key>
 			<Key ID="STR_stereo_settings_0">
 				<Original>
@@ -72,13 +78,16 @@
 				</Spanish>
 				<German>
 					Links und rechts
-				</German>	
+				</German>
 				<Turkish>
 					Sol ve sağ
 				</Turkish>
 				<Czech>
 					Vlevo a vpravo
 				</Czech>
+				<Polish>
+					Lewy i prawy
+				</Polish>
 			</Key>
 			<Key ID="STR_stereo_settings_1">
 				<Original>
@@ -98,13 +107,16 @@
 				</Spanish>
 				<German>
 					Nur links
-				</German>				
+				</German>
 				<Turkish>
 					Sadece sol
 				</Turkish>
 				<Czech>
 					Pouze vlevo
 				</Czech>
+				<Polish>
+					Tylko lewy
+				</Polish>	
 			</Key>
 			<Key ID="STR_stereo_settings_2">
 				<Original>
@@ -124,13 +136,16 @@
 				</Spanish>
 				<German>
 					Nur rechts
-				</German>					
+				</German>
 				<Turkish>
 					Sadece sağ
 				</Turkish>
 				<Czech>
 					Pouze vpravo
 				</Czech>
+				<Polish>
+					Tylko prawy
+				</Polish>
 			</Key>
 			<Key ID="STR_speakers_settings_false">
 				<Original>
@@ -154,6 +169,9 @@
 				<Czech>
 					Sluchátka
 				</Czech>
+				<Polish>
+					Słuchawki
+				</Polish>
 			</Key>
 			<Key ID="STR_speakers_settings_true">
 				<Original>
@@ -177,6 +195,9 @@
 				<Czech>
 					Reproduktory
 				</Czech>
+				<Polish>
+					Głośniki
+				</Polish>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_0">
 				<Original>
@@ -196,13 +217,16 @@
 				</Spanish>
 				<German>
 					Zusätzlich: Links und rechts
-				</German>	
+				</German>
 				<Turkish>
 					Ek: Sol ve sağ
 				</Turkish>
 				<Czech>
 					Dodatečný: Vlevo a vpravo
 				</Czech>
+				<Polish>
+					Dodatkowy: Lewy oraz prawy
+				</Polish>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_1">
 				<Original>
@@ -222,13 +246,16 @@
 				</Spanish>
 				<German>
 					Zusätzlich: Nur links
-				</German>				
+				</German>
 				<Turkish>
 					Ek: Sadece sol
 				</Turkish>
 				<Czech>
 					Dodatečný: Pouze vlevo
 				</Czech>
+				<Polish>
+					Dodatkowy: Tylko lewy
+				</Polish>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_2">
 				<Original>
@@ -248,13 +275,16 @@
 				</Spanish>
 				<German>
 					Zusätzlich: Nur rechts
-				</German>	
+				</German>
 				<Turkish>
 					Ek: Sadece sağ
 				</Turkish>
 				<Czech>
 					Dodatečný: Pouze vpravo
 				</Czech>
+				<Polish>
+					Dodatkowy: Tylko prawy
+				</Polish>
 			</Key>
 			<Key ID="STR_no_server">
 				<Original>
@@ -281,6 +311,9 @@
 				<Czech>
 					Task Force Radio není na serveru!
 				</Czech>
+				<Polish>
+					Na serwerze nie ma Task Force Radio!
+				</Polish>
 			</Key>
 			<Key ID="STR_current_freq">
 				<Original>
@@ -294,19 +327,22 @@
 				</French>
 				<Italian>
 					Frequenza attuale
-				</Italian>	
+				</Italian>
 				<Spanish>
 					Frecuencia actual
 				</Spanish>
 				<German>
 					Derzeitige Frequenz
-				</German>	
+				</German>
 				<Turkish>
 					Mevcut frekans
 				</Turkish>
 				<Czech>
 					Aktuální frekvence
 				</Czech>
+				<Polish>
+					Obecna częstotliwość
+				</Polish>
 			</Key>
 			<Key ID="STR_current_channel">
 				<Original>
@@ -333,6 +369,9 @@
 				<Czech>
 					Aktuální kanál
 				</Czech>
+				<Polish>
+					Obecny kanał
+				</Polish>
 			</Key>
 			<Key ID="STR_set_frequency">
 				<Original>
@@ -359,16 +398,19 @@
 				<Czech>
 					Nastavit frekvenci
 				</Czech>
+				<Polish>
+					Ustaw częstotliwość
+				</Polish>
 			</Key>
 			<Key ID="STR_set_additional">
 				<Original>
 					Set additional channel
 				</Original>
 				<Russian>
-					Настроить дополнительный канал 
+					Настроить дополнительный канал
 				</Russian>
 				<French>
-					Canal supplémentaire prévue					
+					Canal supplémentaire prévue
 				</French>
 				<Italian>
 					Impostare canale aggiuntivo
@@ -385,6 +427,9 @@
 				<Czech>
 					Nastavit dodatečný kanál
 				</Czech>
+				<Polish>
+					Ustaw dodatkowy kanał
+				</Polish>
 			</Key>
 			<Key ID="STR_clear_frequency">
 				<Original>
@@ -411,6 +456,9 @@
 				<Czech>
 					Vymazat frekvenci
 				</Czech>
+				<Polish>
+					Wyczyść częstotliwość
+				</Polish>
 			</Key>
 			<Key ID="STR_previous_channel">
 				<Original>
@@ -437,6 +485,9 @@
 				<Czech>
 					Předchozí kanál
 				</Czech>
+				<Polish>
+					Poprzedni kanał
+				</Polish>
 			</Key>
 			<Key ID="STR_next_channel">
 				<Original>
@@ -463,6 +514,9 @@
 				<Czech>
 					Následující kanál
 				</Czech>
+				<Polish>
+					Następny kanał
+				</Polish>
 			</Key>
 			<Key ID="STR_rotator_volume">
 				<Original>
@@ -489,6 +543,9 @@
 				<Czech>
 					Zvýšit hlasitost | Snížit hlasitost
 				</Czech>
+				<Polish>
+					Zmniejsz głośność | Zwiększ głośność
+				</Polish>
 			</Key>
 			<Key ID="STR_rotator_channel">
 				<Original>
@@ -515,6 +572,9 @@
 				<Czech>
 					Předchozí kanál | Následující kanál
 				</Czech>
+				<Polish>
+					Poprzedni kanał | Następny kanał
+				</Polish>
 			</Key>
 			<Key ID="STR_increase_volume">
 				<Original>
@@ -541,6 +601,9 @@
 				<Czech>
 					Zvýšit hlasitost
 				</Czech>
+				<Polish>
+					Zwiększ głośność
+				</Polish>
 			</Key>
 			<Key ID="STR_decrease_volume">
 				<Original>
@@ -567,6 +630,9 @@
 				<Czech>
 					Snížit hlasitost
 				</Czech>
+				<Polish>
+					Zmniejsz głośność
+				</Polish>
 			</Key>
 			<Key ID="STR_volume">
 				<Original>
@@ -593,6 +659,9 @@
 				<Czech>
 					Změnit hlasitost
 				</Czech>
+				<Polish>
+					Ustaw głośność
+				</Polish>
 			</Key>
 			<Key ID="STR_incorrect_frequency">
 				<Original>
@@ -619,6 +688,9 @@
 				<Czech>
 					Nesprávná hodnota pro frekvenci, rozsah je %1-%2
 				</Czech>
+				<Polish>
+					Niepoprawna częstotliwość, skala %1-%2
+				</Polish>	
 			</Key>
 			<Key ID="STR_radio_volume">
 				<Original>
@@ -635,7 +707,7 @@
 				</Italian>
 				<Spanish>
 					Volumen: %1
-				</Spanish>	
+				</Spanish>
 				<German>
 					Lautstärke: %1
 				</German>
@@ -645,6 +717,9 @@
 				<Czech>
 					Hlasitost: %1
 				</Czech>
+				<Polish>
+					Głośność: %1
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_channel_1">
 				<Original>
@@ -671,6 +746,9 @@
 				<Czech>
 					Kanál 1
 				</Czech>
+				<Polish>
+					Kanał 1
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_channel_2">
 				<Original>
@@ -697,6 +775,9 @@
 				<Czech>
 					Kanál 2
 				</Czech>
+				<Polish>
+					Kanał 2
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_channel_3">
 				<Original>
@@ -723,6 +804,9 @@
 				<Czech>
 					Kanál 3
 				</Czech>
+				<Polish>
+					Kanał 3
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_channel_4">
 				<Original>
@@ -749,6 +833,9 @@
 				<Czech>
 					Kanál 4
 				</Czech>
+				<Polish>
+					Kanał 4
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_channel_5">
 				<Original>
@@ -775,6 +862,9 @@
 				<Czech>
 					Kanál 5
 				</Czech>
+				<Polish>
+					Kanał 5
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_channel_6">
 				<Original>
@@ -801,6 +891,9 @@
 				<Czech>
 					Kanál 6
 				</Czech>
+				<Polish>
+					Kanał 6
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_channel_7">
 				<Original>
@@ -827,6 +920,9 @@
 				<Czech>
 					Kanál 7
 				</Czech>
+				<Polish>
+					Kanał 7
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_channel_8">
 				<Original>
@@ -853,6 +949,9 @@
 				<Czech>
 					Kanál 8
 				</Czech>
+				<Polish>
+					Kanał 8
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_channel_9">
 				<Original>
@@ -879,6 +978,9 @@
 				<Czech>
 					Kanál 9
 				</Czech>
+				<Polish>
+					Kanał 9
+				</Polish>
 			</Key>
 			<Key ID="STR_depth">
 				<Original>
@@ -898,13 +1000,16 @@
 				</Spanish>
 				<German>
 					Derzeitige Tiefe
-				</German>	
+				</German>
 				<Turkish>
 					Mevcut derinlik
 				</Turkish>
 				<Czech>
 					Aktuální hloubka
 				</Czech>
+				<Polish>
+					Aktualna głębokość 
+				</Polish>
 			</Key>
 			<Key ID="STR_active_sw_channel">
 				<Original>
@@ -924,13 +1029,16 @@
 				</Spanish>
 				<German>
 					Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
-				</German>	
+				</German>
 				<Turkish>
 					Mevcut derinlik: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Turkish>
 				<Czech>
 					Kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Czech>
+				<Polish>
+					Kanał: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_active_additional_sw_channel">
 				<Original>
@@ -957,6 +1065,9 @@
 				<Czech>
 					Dodatečný kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Czech>
+				<Polish>
+					Dodatkowy kanał: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_active_frequency">
 				<Original>
@@ -983,6 +1094,9 @@
 				<Czech>
 					Frekvence: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Czech>
+				<Polish>
+					Częstotliwość: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_active_lr_channel">
 				<Original>
@@ -1009,6 +1123,9 @@
 				<Czech>
 					LR kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Czech>
+				<Polish>
+					LR kanał: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_active_additional_lr_channel">
 				<Original>
@@ -1025,7 +1142,7 @@
 				</Italian>
 				<Spanish>
 					Canal adicional RL:  &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
-				</Spanish>	
+				</Spanish>
 				<German>
 					Zusätzlicher LS-Kanal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</German>
@@ -1035,6 +1152,9 @@
 				<Czech>
 					Dodatečný LR kanál: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Czech>
+				<Polish>
+					Dodatkowy kanał LR: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_in_water_hint">
 				<Original>
@@ -1051,7 +1171,7 @@
 				</Italian>
 				<Spanish>
 					&lt;t color=&apos;#33ccff&apos;&gt;No puedes utilizar radios bajo el agua&lt;/t&gt;
-				</Spanish>	
+				</Spanish>
 				<German>
 					&lt;t color=&apos;#33ccff&apos;&gt;Das Funkgerät kann unter Wasser nicht verwendet werden&lt;/t&gt;
 				</German>
@@ -1061,6 +1181,9 @@
 				<Czech>
 					&lt;t color=&apos;#33ccff&apos;&gt;Není možné použít vysílačku pod VODOU&lt;/t&gt;
 				</Czech>
+				<Polish>
+					&lt;t color=&apos;#33ccff&apos;&gt;Nie możesz używać radia pod wodą&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_on_ground_hint">
 				<Original>
@@ -1087,6 +1210,9 @@
 				<Czech>
 					&lt;t color=&apos;#993300&apos;&gt;Can&apos;Není možné použít vysílačku ve vzduchu&lt;/t&gt;
 				</Czech>
+				<Polish>
+					&lt;t color=&apos;#993300&apos;&gt;Nie możesz używać radia w powietrzu&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_unable_to_use_hint">
 				<Original>
@@ -1113,6 +1239,9 @@
 				<Czech>
 					&lt;t color=&apos;#FF0000&apos;&gt;není možné použít vysílačku&lt;/t&gt;
 				</Czech>
+				<Polish>
+					&lt;t color=&apos;#FF0000&apos;&gt;Nie możesz używać tego radia&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_select_action">
 				<Original>
@@ -1139,6 +1268,9 @@
 				<Czech>
 					Zvolit akci
 				</Czech>
+				<Polish>
+					Wybierz akcję
+				</Polish>
 			</Key>
 			<Key ID="STR_select_action_setup">
 				<Original>
@@ -1165,6 +1297,9 @@
 				<Czech>
 					Nastavení...
 				</Czech>
+				<Polish>
+					Ustawienia...
+				</Polish>
 			</Key>
 			<Key ID="STR_select_action_setup_tooltip">
 				<Original>
@@ -1191,6 +1326,9 @@
 				<Czech>
 					Otevřít nastavení
 				</Czech>
+				<Polish>
+					Otwórz ustawienia
+				</Polish>
 			</Key>
 			<Key ID="STR_select_action_use">
 				<Original>
@@ -1217,6 +1355,9 @@
 				<Czech>
 					Nastavit jako aktivní
 				</Czech>
+				<Polish>
+					Wybierz jako aktywne
+				</Polish>
 			</Key>
 			<Key ID="STR_select_action_use_tooltip">
 				<Original>
@@ -1243,6 +1384,9 @@
 				<Czech>
 					Používané pro vysílání
 				</Czech>
+				<Polish>
+					Użyj do transmisji
+				</Polish>
 			</Key>
 			<Key ID="STR_select_radio">
 				<Original>
@@ -1269,6 +1413,9 @@
 				<Czech>
 					Zvolit vysílačku na krátkou vzdálenost
 				</Czech>
+				<Polish>
+					Wybierz radio krótkiego zasięgu
+				</Polish>
 			</Key>
 			<Key ID="STR_select_lr_radio">
 				<Original>
@@ -1295,22 +1442,25 @@
 				<Czech>
 					Zvolit vysílačku na dlouhou vzdálenost
 				</Czech>
-			</Key>			
+				<Polish>
+					Wybierz radio dalekiego zasięgu
+				</Polish>
+			</Key>
 			<Key ID="STR_transmit">
 				<Original>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Original>
 				<Russian>
-					&lt;t size='1' align='center' color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;				
+					&lt;t size='1' align='center' color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;
 				</Russian>
 				<French>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;
 				</French>
 				<Italian>
-					&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
+					&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Italian>
 				<Spanish>
-					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
+					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Spanish>
 				<German>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
@@ -1321,25 +1471,28 @@
 				<Czech>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
 				</Czech>
+				<Polish>
+					&lt;t size='1' align='center' color='#00FF00'&gt;Transmisja&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_transmit_end">
 				<Original>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;						
+					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Original>
 				<Russian>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;									
+					&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;
 				</Russian>
 				<French>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;					
+					&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;
 				</French>
 				<Italian>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;										
+					&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Italian>
 				<Spanish>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
+					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Spanish>
 				<German>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;	
+					&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</German>
 				<Turkish>
 					&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
@@ -1347,22 +1500,25 @@
 				<Czech>
 					&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
 				</Czech>
+				<Polish>
+					&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_additional_transmit">
 				<Original>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Original>
 				<Russian>
-					&lt;t size='1' align='center' color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Дополнительный канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;				
+					&lt;t size='1' align='center' color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Дополнительный канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;
 				</Russian>
 				<French>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;
 				</French>
 				<Italian>
-					&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
+					&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Italian>
 				<Spanish>
-					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
+					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Spanish>
 				<German>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
@@ -1373,25 +1529,28 @@
 				<Czech>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
 				</Czech>
+				<Polish>
+					&lt;t size='1' align='center' color='#00FF00'&gt;Transmisja&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_additional_transmit_end">
 				<Original>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional сhannel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;						
+					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional сhannel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Original>
 				<Russian>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Дополнительный канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;									
+					&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Дополнительный канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;
 				</Russian>
 				<French>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;					
+					&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;
 				</French>
 				<Italian>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;										
+					&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Italian>
 				<Spanish>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;					
+					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</Spanish>
 				<German>
-					&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;						
+					&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
 				</German>
 				<Turkish>
 					&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
@@ -1399,6 +1558,9 @@
 				<Czech>
 					&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;
 				</Czech>
+				<Polish>
+					&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;						
+				</Polish>
 			</Key>
 			<Key ID="STR_waiting">
 				<Original>
@@ -1425,6 +1587,9 @@
 				<Czech>
 					Čekám...
  				</Czech>
+				<Polish>
+					Oczekuję...
+				</Polish>
 			</Key>
 			<Key ID="STR_voice_volume">
 				<Original>
@@ -1451,6 +1616,9 @@
 				<Czech>
 					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Hlasitost hlasu: %1&lt;/t&gt;
 				</Czech>
+				<Polish>
+					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Głośność głosu: %1&lt;/t&gt;
+				</Polish>
 			</Key>
 			<Key ID="STR_voice_normal">
 				<Original>
@@ -1477,6 +1645,9 @@
 				<Czech>
 					normální
 				</Czech>
+				<Polish>
+					Normalny
+				</Polish>
 			</Key>
 			<Key ID="STR_voice_yelling">
 				<Original>
@@ -1503,6 +1674,9 @@
 				<Czech>
 					křičení
 				</Czech>
+				<Polish>
+					krzyk
+				</Polish>
 			</Key>
 			<Key ID="STR_voice_whispering">
 				<Original>
@@ -1529,6 +1703,9 @@
 				<Czech>
 					šeptání
 				</Czech>
+				<Polish>
+					szept
+				</Polish>
 			</Key>
 			<Key ID="STR_init">
 				<Original>
@@ -1555,6 +1732,9 @@
 				<Czech>
 					Inicializace...
 				</Czech>
+				<Polish>
+					Inicjalizacja...
+				</Polish>
 			</Key>
 			<Key ID="STR_subject_name">
 				<Original>
@@ -1581,6 +1761,9 @@
 				<Czech>
 					Vysílačka
 				</Czech>
+				<Polish>
+					Radio
+				</Polish>
 			</Key>
 			<Key ID="STR_select_action_copy_settings_from">
 				<Original>
@@ -1607,6 +1790,9 @@
 				<Czech>
 					Okopírovat nastavení od...
 				</Czech>
+				<Polish>
+					Kopiuj ustawienia od...
+				</Polish>
 			</Key>
 			<Key ID="STR_select_action_settings_from_tooltip">
 				<Original>
@@ -1633,7 +1819,10 @@
 				<Czech>
 					Kopíruje nastavení z jiné vysílačky se stejným šifrovacím kódem
 				</Czech>
-			</Key>				
+				<Polish>
+					Skopiuj ustawienia z innego radia z tym samym kodem
+				</Polish>
+			</Key>
 			<Key ID="STR_radio_control">
 				<Original>
 					Controls
@@ -1659,6 +1848,9 @@
 				<Czech>
 					Ovládání
 				</Czech>
+				<Polish>
+					Klawiszologia
+				</Polish>
 			</Key>
 			<Key ID="STR_wait_radio">
 				<Original>
@@ -1685,6 +1877,9 @@
 				<Czech>
 					Čekání na unikátní vysílačku od serveru...
 				</Czech>
+				<Polish>
+					Oczekiwanie na unikalne radio z serwera...
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_control_text">
 				<Original>
@@ -1747,7 +1942,7 @@
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Changer le mode stéréo radio longue portée.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Transmettre sur le canal supplémentaire de radio personnelle.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Transmettre sur le canal supplémentaire de radio longue portée.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Pour fermer l'interface de la radio.	
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Pour fermer l'interface de la radio.
 				</French>
 				<Italian>
 &lt;font color=&quot;#67ED24&quot;&gt;Bottone Push-to-talk in TeamSpeak&lt;/font&gt;	Voce diretta.&lt;br/&gt;
@@ -1838,7 +2033,25 @@
 &lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Vysílání na dodatečném kanálu vysílačky pro dlouhou vzdálenost.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Opuštění rozhraní vysílačky.
 				</Czech>
-			</Key>			
+				<Polish>
+&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk w TeamSpeak&lt;/font&gt;	Bezpośrednia mowa.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Mowa na radiu.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Mowa na radiu dalekiego zasięgu.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Konfiguracja radia.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Zmiana ustawień poziomu głośności mowy bezpośredniej.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Ustawienia radia podwodnego.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Mowa na radiu podwodnym.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Wybierz następne radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Wybierz poprzednie radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Wybierz następne radio dalekiego zasięgu.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Wybierz poprzednie radio dalekiego zasięgu.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Ustaw radio w tryb Stereo.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Ustaw radio dalekiego zasięgu w tryb Stereo.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Nadawaj na dodatkowym kanale radia.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Nadawaj na dodatkowym kanale radia dalekiego zasięgu.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Wyłącz interfejs radia
+				</Polish>
+			</Key>
 			<Key ID="STR_radio_diver">
 				<Original>
 					For divers
@@ -1864,6 +2077,9 @@
 				<Czech>
 					Pro potápeče
 				</Czech>
+				<Polish>
+					Dla nurków
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_diver_text">
 				<Original>
@@ -1882,7 +2098,7 @@ You can not use radio communication underwater (neither to talk nor to hear). If
 Vous ne pouvez pas parler sous l'eau (même en portant une combinaison de plongée). Cependant, à courte distance vos coéquipiers peuvent entendre des paroles indistinctes (excéption - si vous êtes dans un véhicule sous-marin isolé).&lt;br/&gt;
 En étant sous l'eau, Being underwater, vous pouvez entendre faiblement des voix assourdies sur la terre.&lt;br/&gt;
 Utiliser une radio sous-marine pour la communications entre plongeurs.&lt;br/&gt;
-Vous ne pouvez pas utiliser de radio sous l'eau (ni recevoir ni transmettre). Si vous voulez passer un message à la surface ou sur terre. &lt;br/&gt;Exception - les sous-marins à profondeur de périscope (les plongeurs peuvent utiliser une radio longue portée à ce moment la).					
+Vous ne pouvez pas utiliser de radio sous l'eau (ni recevoir ni transmettre). Si vous voulez passer un message à la surface ou sur terre. &lt;br/&gt;Exception - les sous-marins à profondeur de périscope (les plongeurs peuvent utiliser une radio longue portée à ce moment la).
 				</French>
 				<Italian>
 Non puoi parlare sott'acqua (anche se indossi una muta). Comunque, se sei vicino al tuo gregario puoi sentire sulle brevi distanze la propria voce distorta (ad eccezione se siete sott'acquea in un veicolo isolato).&lt;br/&gt;
@@ -1910,6 +2126,13 @@ Když jste pod vodou, můžete slyšet nezřetelné hlasy na pevnině.&lt;br/&gt
 Používejte podvodní vysílačky pro komunikaci mezi potápeči.&lt;br/&gt;
 Není možné použít klasickou vysílačku pod vodou (ani pro vysílání nebo příjímání). Pokud chcete vyslat zprávu nad vodu - na pevninu. &lt;br/&gt;Vyjímka - ponorka v periskopické hloubce (potápěči zde můžou použít vysílačku pro dlouhou vzdálenost).
 				</Czech>
+				<Polish>
+Nie możesz mówić pod wodą (nawet w stroju nurka). Jednak, z bliskiej odległości twój towarzysz może usłyszeć niewyraźną mowę (wyjątekiem jest, jeśli jesteś pod wodą w izolowanym pojeździe).&lt;br/&gt;
+Będąc pod wodą, można usłyszeć stłumione głosy z powieszchni.&lt;br/&gt;
+Użyj podwodnego nadajnika do komunikacji wśród nurków .&lt;br/&gt;
+Nie możesz używać komunikacji radiowej pod wodą (ani do nadawania, ani do odbierania). Jeśli chcesz przekazać jakąś wiadomość na powieszchnię - wynurz się. &lt;br/&gt;
+Wyjątek - możesz użyć długiego radia będąc kierowcą łodzi podwodnej znajdując się na głębokości peryskopowej.
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_intercept">
 				<Original>
@@ -1919,7 +2142,7 @@ Není možné použít klasickou vysílačku pod vodou (ani pro vysílání nebo
 					Радиоперехват
 				</Russian>
 				<French>
-					Interception Radio 
+					Interception Radio
 				</French>
 				<Italian>
 					Intercettazioni radio
@@ -1936,6 +2159,9 @@ Není možné použít klasickou vysílačku pod vodou (ani pro vysílání nebo
 				<Czech>
 					Odposlouchávání vysílačky
 				</Czech>
+				<Polish>
+					Przechwytywanie sygnału
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_intercept_text">
 				<Original>
@@ -1978,6 +2204,11 @@ Vysílačku lze vzít od mrtvých hráčů, a předávat si jí mezi sebou. S t�
 Ve vozidlech je nastavení vysílačky také uloženo.&lt;/br&gt;
 Standartně, vysílačky každé frakce používají své vlastní šifrovací kódy, takže neuslyšíš nepřítele mluvit, ani když nastavíš frekvenci nepřítele. Pro poslouchání nepřátelské komunikace (a mluvit ve vzduchu) - je nutné jakýmkoli způsobem zajistit nepřátelskou rádiovou stanici.
 				</Czech>
+				<Polish>
+Radio można zabierać od zabitych graczy i przekazywać sobie nawzajem. Radio zachowa wszystkie ustawienia (kanały, częstotliwość i poziom głośności).&lt;br/&gt;
+W pojazdach ustawienia radia również pozostaną niezmienione.&lt;/br&gt;
+Domyślnie radia wszystkich frakcji mają swoje kody szyfrujące, więc nie usłyszysz rozmów przeciwnika, nawet na tej samej częstotliwości. Aby przechwycić komunikaty przeciwnika (lub nadawać własne) musisz zdobyć ich radiostację.
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_vehicle">
 				<Original>
@@ -2004,6 +2235,9 @@ Standartně, vysílačky každé frakce používají své vlastní šifrovací k
 				<Czech>
 					Vozidla
 				</Czech>
+				<Polish>
+					Pojazdy
+				</Polish>
 			</Key>
 			<Key ID="STR_radio_vehicle_text">
 				<Original>
@@ -2058,6 +2292,13 @@ Každé místo ve vozdile má vlastní vysílačku, která musí být nakonfigur
 &lt;br/&gt;
 Vozidla jsou rozděleny na uzavřené nebo zavřené (izolované). Pokud si v izolovaném vozidle, neuslyšíš hlasy z venku (a naopak). Nicméně, pokud vylezeš z vozidla, uslyšíš zvuky ze vnitř i z venku.
 				</Czech>
+				<Polish>
+Radio dalekiego zasięgu jest dostępne dla kierowcy, dowódcy, strzleca oraz co-pilota. Nie wszystkie pojazdy mają wbudowane radia. 
+&lt;br/&gt;
+Każdy slot w pojeździe ma swoje radio, które musi być skonfigurowane oddzielnie. Jeśli planujesz zmieniać sloty, musisz wcześniej skofigurować radio (Na przykład na slocie kierowcy i strzelca pojazdu).
+&lt;br/&gt;
+Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkniętym pojeździe, nie będziesz słyszał głosów z zewnątrz (i vice versa). Jeśli jednak wychylisz się z pojazdu, będziesz słyszał wszystko, zarówno z zewnątrz jak i z wewnątrz.
+				</Polish>
 			</Key>
 		</Container>
 	</Package>
