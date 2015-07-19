@@ -2094,8 +2094,28 @@ const char* ts3plugin_version() {
 }
 
 /* Plugin API version. Must be the same as the clients API major version, else the plugin fails to load. */
+#pragma comment (lib, "version.lib")
 int ts3plugin_apiVersion() {
-	return PLUGIN_API_VERSION;
+
+	WCHAR fileName[_MAX_PATH];
+	DWORD size = GetModuleFileName(0, fileName, _MAX_PATH);
+	fileName[size] = NULL;
+	DWORD handle = 0;
+	size = GetFileVersionInfoSize(fileName, &handle);
+	BYTE* versionInfo = new BYTE[size];
+	if (!GetFileVersionInfo(fileName, handle, size, versionInfo)) {
+		delete[] versionInfo;
+		return PLUGIN_API_VERSION;
+	}
+	UINT    			len = 0;
+	VS_FIXEDFILEINFO*   vsfi = NULL;
+	VerQueryValue(versionInfo, L"\\", (void**) &vsfi, &len);
+	short version = HIWORD(vsfi->dwFileVersionLS);
+	delete[] versionInfo;
+	if (version < 16)
+		return 19;
+	else
+		return PLUGIN_API_VERSION;
 }
 
 /* Plugin author */
