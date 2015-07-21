@@ -196,6 +196,7 @@
 * [Armatech](http://forums.bistudio.com/member.php?48510-armatech) за помощь с CBA.
 * Разработчикам [RHS](http://www.rhsmods.org/) за помощь в интеграции.
 * [marc_book](https://github.com/MarcBook) за текстуры для BWMOD.
+* * [Dedmen](https://github.com/dedmen) для улучшения плагина TeamSpeak-Plugin
 * Всем, кто делал видео и статьи с обзорами.
 * Всем пользователям (особенно тем, что нашли баги).
 * Извините, если кого-то случайно забыл.
