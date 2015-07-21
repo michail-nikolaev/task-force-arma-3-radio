@@ -2112,10 +2112,17 @@ int ts3plugin_apiVersion() {
 	VerQueryValue(versionInfo, L"\\", (void**) &vsfi, &len);
 	short version = HIWORD(vsfi->dwFileVersionLS);
 	delete[] versionInfo;
-	if (version < 16)
-		return 19;
-	else
-		return PLUGIN_API_VERSION;
+	switch(version){
+		case 9 : return 19;
+		case 10 : return 19;
+		case 11 : return 19;
+		case 12 : return 19;
+		case 13 : return 19;
+		case 14 : return 20;
+    		case 15 : return 20;
+    		case 16 : return 20;
+    		default : return PLUGIN_API_VERSION;
+	}
 }
 
 /* Plugin author */
