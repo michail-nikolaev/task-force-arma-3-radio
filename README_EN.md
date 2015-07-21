@@ -196,6 +196,7 @@ If this plugin ever becomes popular, it would be great if we could avoid having 
 * [Armatech](http://forums.bistudio.com/member.php?48510-armatech) for help with CBA.
 * [marc_book](https://github.com/MarcBook) for BWMOD textures.
 * [SzwedzikPL] (http://arma3coop.pl) or translation into Polish.
+* [SniperOne] (http://steamcommunity.com/groups/SniperAliens-M18X/) for French translation.
 * The development team of [RHS](http://www.rhsmods.org/), for their help with integration.
 * Everyone who made videos or wrote review articles.
 * All the players who use TFAR, especially those taking out their time to report bugs.
