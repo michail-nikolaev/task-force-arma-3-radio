@@ -177,6 +177,7 @@ Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa doká
 * [Andy230](http://forums.bistudio.com/member.php?100692-Andy230) za preklad.
 * [Tourorist](https://github.com/Tourorist) za pomoc s dokumentáciou.
 * [marc_book](https://github.com/MarcBook)
+* [Dedmen](https://github.com/dedmen) pre zlepšenie Teamspeak-Plugin
 * Každému kto robil video alebo článok s recenziou modu.
 * Všetkým užívateľom (hlavne tým, ktorí hlásia chyby modu).
 * Ospravedlňte ma, ak som niekho náhodou zabudol.
