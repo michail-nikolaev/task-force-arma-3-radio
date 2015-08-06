@@ -16,12 +16,12 @@ class tfar_ModuleTaskForceRadioEnforceUsage: Module_F
 	author = "Task Force Arrowhead Radio";
 	displayName = "$STR_TFAR_Mod_EnforceUsage";
 	category = "TFAR";
-	
+
 	function = "TFAR_fnc_initialiseEnforceUsageModule";
 	functionPriority = 1;
 	isGlobal = 1;
 	isTriggerActivated = 0;
-	
+
 	class Arguments
 	{
 		class TeamLeaderRadio
@@ -38,7 +38,13 @@ class tfar_ModuleTaskForceRadioEnforceUsage: Module_F
 			typeName = "BOOL";
 			defaultValue = 1;
 		};
-		
+		class give_microdagr_to_soldier
+		{
+			displayName = "$STR_TFAR_Mod_GiveMicrodagrToSoldier";
+			description = "$STR_TFAR_Mod_GiveMicrodagrToSoldierTT";
+			typeName = "BOOL";
+			defaultValue = 1;
+		};
 		class terrain_interception_coefficient
 		{
 			displayName = "$STR_TFAR_Mod_TerrainInterceptionCoefficient";
@@ -60,7 +66,7 @@ class tfar_ModuleTaskForceRadioEnforceUsage: Module_F
 			typeName = "TEXT";
 			defaultValue = "123";
 		};
-		
+
 		class same_sw_frequencies_for_side
 		{
 			displayName = "$STR_TFAR_Mod_SameSWFrequencies";
@@ -75,6 +81,13 @@ class tfar_ModuleTaskForceRadioEnforceUsage: Module_F
 			typeName = "BOOL";
 			defaultValue = 1;
 		};
+		class same_dd_frequencies_for_side
+		{
+			displayName = "$STR_TFAR_Mod_SameDdFrequencies";
+			description = "$STR_TFAR_Mod_SameDdFrequenciesTT";
+			typeName = "BOOL";
+			defaultValue = 0;
+		};
 	};
 	class ModuleDescription: ModuleDescription
 	{
@@ -87,12 +100,12 @@ class tfar_ModuleTaskForceRadio: Module_F
 	author = "Task Force Arrowhead Radio";
 	displayName = "$STR_TFAR_Mod_SideRadio";
 	category = "TFAR";
-	
+
 	function = "TFAR_fnc_initialiseBaseModule";
 	functionPriority = 2;
-	
+
 	isGlobal = 1;
-	
+
 	class Arguments: ArgumentsBaseUnits
 	{
 		class Units: Units {};
@@ -139,7 +152,7 @@ class tfar_ModuleTaskForceRadio: Module_F
 			defaultValue = "[""54.2"",""73.1""]";
 		};
 	};
-	
+
 	class ModuleDescription: ModuleDescription
 	{
 		description = "$STR_TFAR_Mod_SideRadio_Description";
@@ -153,13 +166,13 @@ class tfar_ModuleTaskForceRadioFrequencies: Module_F
 	author = "Task Force Arrowhead Radio";
 	displayName = "$STR_TFAR_Mod_Frequencies";
 	category = "TFAR";
-	
+
 	function = "TFAR_fnc_initialiseFreqModule";
 	functionPriority = 0; // only for server
-	
+
 	isGlobal = 1;
 	isTriggerActivated = 1;
-	
+
 	class Arguments: ArgumentsBaseUnits
 	{
 		class Units: Units {};
@@ -178,7 +191,7 @@ class tfar_ModuleTaskForceRadioFrequencies: Module_F
 			defaultValue = "[""54.2"",""73.1""]";
 		};
 	};
-	
+
 	class ModuleDescription: ModuleDescription
 	{
 		description = "$STR_TFAR_Mod_Frequencies_Description";

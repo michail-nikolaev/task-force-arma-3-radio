@@ -162,6 +162,22 @@
           Dá malou vysílačku klasickým vojákům
         </Czech>
       </Key>
+      <Key ID="STR_TFAR_Mod_GiveMicrodagrToSoldier">
+        <Original>
+          Give a MicroDAGR to regular soldiers
+        </Original>
+        <Spanish>
+          Dar MicroDAGR a los soldados regulares
+        </Spanish>
+      </Key>
+      <Key ID="STR_TFAR_Mod_GiveMicrodagrToSoldierTT">
+        <Original>
+          Give a MicroDAGR programmer to regular soldiers
+        </Original>
+        <Spanish>
+          Dar el programador MicroDAGR a los soldados regulares
+        </Spanish>
+      </Key>
       <Key ID="STR_TFAR_Mod_EnforceUsage_Description">
         <Original>
           Enforces usage of TFAR in mission.
@@ -681,6 +697,22 @@
         <Czech>
           Stejné LR frekvence vysílačky pro dlouhou vzdálenost pro stranu
         </Czech>
+      </Key>
+      <Key ID="STR_TFAR_Mod_SameDdFrequencies">
+        <Original>
+          Same DD Frequencies for side
+        </Original>
+        <Spanish>
+          Mismas frecuencias de comunicador submarino para el bando
+        </Spanish>
+      </Key>
+      <Key ID="STR_TFAR_Mod_SameDdFrequenciesTT">
+        <Original>
+          Same DD Frequencies for side
+        </Original>
+        <Spanish>
+          Mismas frecuencias de comunicador submarino para el bando
+        </Spanish>
       </Key>
     </Container>
   </Package>
