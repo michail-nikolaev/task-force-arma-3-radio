@@ -23,7 +23,8 @@
 private ["_vChange", "_radio", "_lr", "_maxVolume", "_currentVolume", "_fnc_GetVolume"];
 playSound "TFAR_rotatorPush";
 
-_lr = _this select 1;
+params ["_btn", "_lr"];
+
 _maxVolume = 0;
 _radio = "";
 _fnc_GetVolume = {};
@@ -36,7 +37,7 @@ if (_lr) then {
   _radio = TF_sw_dialog_radio;
   _fnc_GetVolume = TFAR_fnc_getSwVolume;
 };
-_vChange = if((_this select 0) == 0)then{-1 + _maxVolume}else{1};
+_vChange = if(_btn == 0)then{-1 + _maxVolume}else{1};
 _vChange = ((_radio call _fnc_GetVolume) + _vChange) mod _maxVolume;
 
 if (_lr) then {

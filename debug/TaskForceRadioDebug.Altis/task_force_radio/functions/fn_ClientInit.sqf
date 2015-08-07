@@ -155,7 +155,7 @@ waitUntil {sleep 0.1;!(isNull player)};
 TFAR_currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_ShowHint;
 
-#include "define.h"
+#include "\task_force_radio\define.h"
 
 #include "script.h"
 

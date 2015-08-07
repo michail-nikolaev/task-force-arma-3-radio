@@ -1,20 +1,20 @@
 /*
  	Name: TFAR_fnc_SetChannelFrequency
- 	
+
  	Author(s):
 		L-H
- 	
+
  	Description:
 		Sets the frequency for the channel on the passed radio.
- 	
- 	Parameters: 
+
+ 	Parameters:
  	0: OBJECT/String - Radio
 	1: NUMBER - Channel
 	2: STRING - Frequency
- 	
+
  	Returns:
 	Nothing
- 	
+
  	Example:
 	// LR radio - channel 1
 	[(call TFAR_fnc_activeLrRadio), 1, "56.2"] call TFAR_fnc_SetChannelFrequency;
@@ -22,10 +22,9 @@
 	[(call TFAR_fnc_activeSwRadio), 1, "84.3"] call TFAR_fnc_SetChannelFrequency;
 */
 #include "script.h"
-private ["_radio", "_channel", "_settings", "_frequency", "_lr"];
-_radio = _this select 0;
-_channel = (_this select 1) - 1;
-_frequency = _this select 2;
+private ["_settings", "_lr"];
+params ["_radio", "_channel", "_frequency"];
+_channel = _channel - 1;
 
 _lr = if (typename _radio == "STRING") then { false }else{true};
 

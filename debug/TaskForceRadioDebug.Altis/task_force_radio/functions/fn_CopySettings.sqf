@@ -1,19 +1,19 @@
 /*
  	Name: TFAR_fnc_copySettings
- 	
+
  	Author(s):
 		L-H
- 	
+
  	Description:
 		Copies the settings from a radio to another.
- 	
+
  	Parameters:
 		0:ARRAY/STRING - Source Radio (SW/LR)
 		1:ARRAY/STRING - Destination Radio (SW/LR)
- 	
+
  	Returns:
 		Nothing
- 	
+
  	Example:
 	// LR - LR
 	[(call TFAR_fnc_activeLrRadio),[(vehicle player), "driver"]] call TFAR_fnc_CopySettings;
@@ -21,9 +21,9 @@
 	[(call TFAR_fnc_activeSwRadio),"tf_anprc148jem_20"] call TFAR_fnc_CopySettings;
 */
 #include "script.h"
-private ["_source", "_destination", "_settings", "_isDLR", "_isSLR", "_support_additional"];
-_source = _this select 0;
-_destination = _this select 1;
+private ["_settings", "_isDLR", "_isSLR", "_support_additional"];
+
+params ["_source", "_destination"];
 
 _isDLR = if (typename _destination == typename []) then {true}else{false};
 _isSLR = if (typename _source == typename []) then {true}else{false};

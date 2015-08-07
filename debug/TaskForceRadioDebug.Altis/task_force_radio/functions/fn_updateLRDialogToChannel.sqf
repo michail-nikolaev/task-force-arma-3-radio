@@ -20,7 +20,7 @@
 		// Custom format
 		["CH: %1"] call TFAR_fnc_updateLRDialogToChannel;
 */
-#include "define.h"
+#include "\task_force_radio\define.h"
 private ["_channelText", "_formatText"];
 _formatText = "CH:%1";
 

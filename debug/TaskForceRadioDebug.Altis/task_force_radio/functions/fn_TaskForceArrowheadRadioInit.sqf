@@ -17,7 +17,7 @@
  	Example:
 		Called by ArmA via functions library.
 */
-TF_ADDON_VERSION = "0.9.7.3";
+TF_ADDON_VERSION = "0.9.8";
 
 #include "common.sqf"
 
