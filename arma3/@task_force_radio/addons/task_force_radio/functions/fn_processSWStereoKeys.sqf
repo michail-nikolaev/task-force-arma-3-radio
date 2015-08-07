@@ -1,23 +1,24 @@
 /*
  	Name: TFAR_fnc_processSWStereoKeys
- 	
+
  	Author(s):
-		
+
 
  	Description:
 		Switches the SW stereo setting on the active SW radio.
-	
+
 	Parameters:
 		0: NUMBER - Stereo number : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
- 	
+
  	Returns:
 		BOOLEAN - if handled or not.
- 	
+
  	Example:
 		Called via CBA onKey EventHandler
 */
 private ["_sw_stereo_number", "_result"];
-_sw_stereo_number = _this select 0;
+params ["_sw_stereo_number"];
+
 _result = false;
 
 if ((alive TFAR_currentUnit) and {call TFAR_fnc_haveSWRadio}) then {

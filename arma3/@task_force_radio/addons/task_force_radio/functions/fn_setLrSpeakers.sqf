@@ -1,26 +1,26 @@
 /*
  	Name: TFAR_fnc_setLrSpeakers
- 	
+
  	Author(s):
 		NKey
- 	
+
  	Description:
 		Sets the speakers setting for the passed radio
- 	
+
  	Parameters:
 		0: OBJECT - Radio object
-		1: STRING - Radio ID		
- 	
+		1: STRING - Radio ID
+
  	Returns:
 		Nothing
- 	
+
  	Example:
 		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1] call TFAR_fnc_setLrSpeakers;
 */
 #include "script.h"
-private ["_radio_object", "_radio_qualifier", "_flag", "_settings"];
-_radio_object = _this select 0;
-_radio_qualifier = _this select 1;
+private ["_flag", "_settings"];
+
+params ["_radio_object", "_radio_qualifier"];
 
 _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
 if (_settings select TF_LR_SPEAKER_OFFSET) then {

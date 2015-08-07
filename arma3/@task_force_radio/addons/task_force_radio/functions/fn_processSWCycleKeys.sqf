@@ -1,23 +1,25 @@
 /*
  	Name: TFAR_fnc_processSWCycleKeys
- 	
+
  	Author(s):
-		
+
 
  	Description:
 		Allows rotating through the list of SW radios with keys.
-	
+
 	Parameters:
 		0: STRING - Direction to cycle : VALUES (next, prev)
- 	
+
  	Returns:
 		BOOLEAN - If the event was handled or not.
- 	
+
  	Example:
 		Handled via CBA's onKey eventhandler.
 */
 private ["_sw_cycle_direction", "_result"];
-_sw_cycle_direction = _this select 0;
+
+params ["_sw_cycle_direction"];
+
 _result = false;
 
 if ((call TFAR_fnc_haveSWRadio) and {alive TFAR_currentUnit}) then{

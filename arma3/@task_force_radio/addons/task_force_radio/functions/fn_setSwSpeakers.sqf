@@ -1,24 +1,25 @@
 /*
  	Name: TFAR_fnc_setSwSpeakers
- 	
+
  	Author(s):
 		NKey
- 	
+
  	Description:
 		Sets the speakers setting for the SW radio
- 	
- 	Parameters: 
- 	0: STRING - Radio	
- 	
+
+ 	Parameters:
+ 	0: STRING - Radio
+
  	Returns:
 		Nothing
- 	
+
  	Example:
 		[call TFAR_fnc_ActiveSWRadio] call TFAR_fnc_setSwSpeakers;
  */
 #include "script.h"
-private ["_settings", "_radio_id", "_flag"];
-_radio_id = _this select 0;
+private ["_settings", "_flag"];
+
+prams ["_radio_id"];
 
 _settings = _radio_id call TFAR_fnc_getSwSettings;
 if (_settings select TF_SW_SPEAKER_OFFSET) then {
