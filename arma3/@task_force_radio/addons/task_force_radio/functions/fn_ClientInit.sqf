@@ -238,7 +238,6 @@ TF_MICRODAGR_CHANNEL_EDIT_ID = IDC_MICRODAGR_CHANNEL_EDIT;
 TF_tangent_sw_pressed = false;
 TF_tangent_lr_pressed = false;
 TF_tangent_dd_pressed = false;
-TF_speak_volume_modifier_pressed = true;
 
 TF_dd_frequency = nil;
 
