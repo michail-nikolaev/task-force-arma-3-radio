@@ -100,6 +100,9 @@ disableSerialization;
 
 ["TFAR","ChangeSpeakingVolume",["Change Speaking Volume","Change Speaking Volume"],{call TFAR_fnc_onSpeakVolumeChange},{true},[TF_speak_volume_scancode, TF_speak_volume_modifiers],false] call cba_fnc_addKeybind;
 
+["TFAR", "YellingModifier", ["Yelling Modifier", "Yelling Modifier"], {["yelling"] call TFAR_fnc_onSpeakVolumeModifierPressed}, {call TFAR_fnc_onSpeakVolumeModifierReleased}, [TF_speak_volume_modifier_yelling_scancode, TF_speak_volume_modifier_yelling_modifiers], false] call cba_fnc_addKeybind;
+["TFAR", "WhisperingModifier", ["Whispering Modifier", "Whispering Modifier"], {["whispering"] call TFAR_fnc_onSpeakVolumeModifierPressed}, {call TFAR_fnc_onSpeakVolumeModifierReleased}, [TF_speak_volume_modifier_whispering_scancode, TF_speak_volume_modifier_whispering_modifiers], false] call cba_fnc_addKeybind;
+
 ["TFAR","CycleSWRadios",["Cycle >> SW Radios","Cycle >> SW Radios"],{true},{["next"] call TFAR_fnc_processSWCycleKeys},[TF_sw_cycle_next_scancode, TF_sw_cycle_next_modifiers],false] call cba_fnc_addKeybind;
 ["TFAR","CycleSWRadios",["Cycle << SW Radios","Cycle << SW Radios"],{true},{["prev"] call TFAR_fnc_processSWCycleKeys},[TF_sw_cycle_prev_scancode, TF_sw_cycle_prev_modifiers],false] call cba_fnc_addKeybind;
 ["TFAR","CycleLRRadios",["Cycle >> LR Radios","Cycle >> LR Radios"],{true},{["next"] call TFAR_fnc_processLRCycleKeys},[TF_lr_cycle_next_scancode, TF_lr_cycle_next_modifiers],false] call cba_fnc_addKeybind;
@@ -235,14 +238,19 @@ TF_MICRODAGR_CHANNEL_EDIT_ID = IDC_MICRODAGR_CHANNEL_EDIT;
 TF_tangent_sw_pressed = false;
 TF_tangent_lr_pressed = false;
 TF_tangent_dd_pressed = false;
+TF_speak_volume_modifier_pressed = true;
 
 TF_dd_frequency = nil;
 
 TF_speakerDistance = 20;
 TF_speak_volume_level = "normal";
 TF_speak_volume_meters = 20;
+TF_min_voice_volume = 5;
 TF_max_voice_volume = 60;
 TF_sw_dialog_radio = nil;
+
+TF_last_speak_volume_level = TF_speak_volume_level;
+TF_last_speak_volume_meters = TF_speak_volume_meters;
 
 TF_lr_dialog_radio = nil;
 TF_lr_active_radio = nil;
