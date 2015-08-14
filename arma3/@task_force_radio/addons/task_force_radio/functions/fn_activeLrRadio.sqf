@@ -1,4 +1,5 @@
 /*
+<<<<<<< HEAD
     Name: TFAR_fnc_activeLrRadio
 
     Author(s):
@@ -21,6 +22,30 @@ _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
 if (isNil "TF_lr_active_radio") then {
 	if (count _radios > 0) then {
 		TF_lr_active_radio = _radios select 0;
+=======
+ 	Name: TFAR_fnc_activeLrRadio
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Returns the active LR radio.
+	
+	Parameters:
+		Nothing
+ 	
+ 	Returns:
+		ARRAY: Active LR radio
+ 	
+ 	Example:
+		_radio = call TFAR_fnc_activeLRRadio;
+*/
+private ["_radios", "_found"];
+_radios = call TFAR_fnc_lrRadiosList;
+if (isNil "TF_lr_active_radio") then {		
+	if (count _radios > 0) then {
+		TF_lr_active_radio = _radios select 0;		
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	};
 } else {
 	_found = false;
@@ -29,10 +54,18 @@ if (isNil "TF_lr_active_radio") then {
 	} count _radios;
 	if !(_found) then {
 		if (count _radios > 0) then {
+<<<<<<< HEAD
 			TF_lr_active_radio = _radios select 0;
+=======
+			TF_lr_active_radio = _radios select 0;		
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		} else {
 			TF_lr_active_radio = nil;
 		};
 	};
 };
+<<<<<<< HEAD
 TF_lr_active_radio
+=======
+TF_lr_active_radio
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086

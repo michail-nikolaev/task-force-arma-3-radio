@@ -35,6 +35,7 @@ if (isNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_personal_rad
 	TF_give_personal_radio_to_regular_soldier_server = false;
 };
 publicVariable "TF_give_personal_radio_to_regular_soldier_server";
+<<<<<<< HEAD
 if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_sw_frequencies_for_side")) then {
 	tf_same_sw_frequencies_for_side_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_sw_frequencies_for_side") == 1;
 } else {
@@ -62,12 +63,17 @@ if (isNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_microdagr_to
 };
 publicVariable "TF_give_microdagr_to_soldier_server";
 
+=======
+
+
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 waitUntil {sleep 0.1;time > 0};
 
 TF_Radio_Count = [];
 
 while {true} do {		
 	call TFAR_fnc_processGroupFrequencySettings;
+<<<<<<< HEAD
 	_allUnits = allUnits;	
 	{
 		_allUnits pushBack _x;
@@ -79,6 +85,16 @@ while {true} do {
 			_variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
 			_radio_request = missionNamespace getVariable (_variableName);
 			if !(isNil "_radio_request") then {
+=======
+	_allUnits = allUnits;
+	{
+		if (isPlayer _x) then
+		{
+			_variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
+			_radio_request = missionNamespace getVariable (_variableName);
+			if !(isNil "_radio_request") then
+			{
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 				missionNamespace setVariable [_variableName, nil];
 				(owner (_x)) publicVariableClient (_variableName);
 				_responseVariableName = "radio_response_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
@@ -87,25 +103,47 @@ while {true} do {
 					{
 						private ["_radio", "_count"];
 						_radio = _x;
+<<<<<<< HEAD
 						if !(_radio call TFAR_fnc_isPrototypeRadio) then {
+=======
+						if !(_radio call TFAR_fnc_isPrototypeRadio) then
+						{
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 							_radio = configname inheritsFrom (configFile >> "CfgWeapons" >> _radio);
 						};
 						_count = -1;
 						{
+<<<<<<< HEAD
 							if ((_x select 0) == _radio) exitWith {
 								_x set [1, (_x select 1) + 1];
 								if ((_x select 1) > MAX_RADIO_COUNT) then {
+=======
+							if ((_x select 0) == _radio) exitWith
+							{
+								_x set [1, (_x select 1) + 1];
+								if ((_x select 1) > MAX_RADIO_COUNT) then
+								{
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 									_x set [1, 1];
 								};
 								_count = (_x select 1);
 							};
 						} count TF_Radio_Count;
+<<<<<<< HEAD
 						if (_count == -1) then {
 							TF_Radio_Count pushBack [_x,1];
 							_count = 1;
 						};
 						_response pushBack format["%1_%2", _radio, _count];
 						true;
+=======
+						if (_count == -1) then
+						{
+							TF_Radio_Count set [(count TF_Radio_Count), [_x,1]];
+							_count = 1;
+						};
+						_response set [(count _response), format["%1_%2", _radio, _count]];
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 					} count _radio_request;
 				} else {
 					_response = "ERROR:47";

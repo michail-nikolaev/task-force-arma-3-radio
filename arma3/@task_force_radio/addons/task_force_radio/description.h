@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿#include "define.h"
+=======
+﻿#include "\task_force_radio\define.h"
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 
 ///////////////////////////////////////////////////////////////////////////
 /// Base Classes
@@ -9,14 +13,22 @@ class RscBackPicture
 	type = 0;
 	idc = -1;
 	style = 48;
+<<<<<<< HEAD
 	colorBackground[] =
+=======
+	colorBackground[] = 
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		0,
 		0,
 		0,
 		0
 	};
+<<<<<<< HEAD
 	colorText[] =
+=======
+	colorText[] = 
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		1,
 		1,
@@ -42,28 +54,46 @@ class RscEditLCD
 	y = 0;
 	h = 0.04;
 	w = 0.2;
+<<<<<<< HEAD
 	colorBackground[] =
+=======
+	colorBackground[] = 
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		0,
 		0,
 		0,
+<<<<<<< HEAD
 		0
 	};
 	colorText[] =
+=======
+		1
+	};
+	colorText[] = 
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		0,
 		0,
 		0,
 		1
 	};
+<<<<<<< HEAD
 	colorDisabled[] =
+=======
+	colorDisabled[] = 
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		1,
 		1,
 		1,
 		0.25
 	};
+<<<<<<< HEAD
 	colorSelection[] =
+=======
+	colorSelection[] = 
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.69])",
 		"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.75])",
@@ -72,18 +102,31 @@ class RscEditLCD
 	};
 	autocomplete = "";
 	text = "";
+<<<<<<< HEAD
 	size = "0.2 * (0.7 / (getResolution select 5))";	
 	style = "0x00 + 0x40 + 0x200";
 	font = "tf_font_segments"; 
 	shadow = 1;
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2) * (0.7 / (getResolution select 5))";};
+=======
+	size = "0.2 * (0.7 / (getResolution select 5))";
+	style = "0x00 + 0x40 + 0x200";
+	font = "tf_font_segments"; 
+	shadow = 1;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2) * (0.7 / (getResolution select 5))";
+};
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 class HiddenButton
 {
 	access = 0;
 	type = 1;
 	text = "";
 	colorText[] = {
+<<<<<<< HEAD
 			0, 0, 0, 1
+=======
+			0, 0, 0, 0
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	};
 	colorDisabled[] = {
 			0, 0, 0, 0
@@ -115,14 +158,24 @@ class HiddenButton
 	};
 	soundPush[] = 
 	{
+<<<<<<< HEAD
 		"\task_force_radio\sounds\softPush",
 		0.5,
+=======
+		"\A3\ui_f\data\sound\RscButton\soundPush",
+		0.09,
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		1
 	};
 	soundClick[] = 
 	{
+<<<<<<< HEAD
 		"\task_force_radio\sounds\softClick",
 		0.5,
+=======
+		"\A3\ui_f\data\sound\RscButton\soundClick",
+		0.09,
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		1
 	};
 	soundEscape[] = 
@@ -145,6 +198,7 @@ class HiddenButton
 	offsetPressedY = 0.002;
 	borderSize = 0;
 };
+<<<<<<< HEAD
 class HiddenRotator:HiddenButton{
 	soundPush[] = 
 	{
@@ -173,6 +227,8 @@ class HiddenFlip:HiddenButton{
 		1
 	};
 };
+=======
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 
 
 #include "\task_force_radio\anprc152\anprc152.ext"
@@ -187,5 +243,9 @@ class HiddenFlip:HiddenButton{
 #include "\task_force_radio\pnr1000a\pnr1000a.ext"
 #include "\task_force_radio\anarc210\anarc210.ext"
 #include "\task_force_radio\anarc164\anarc164.ext"
+<<<<<<< HEAD
 #include "\task_force_radio\mr6000l\mr6000l.ext"
 #include "\task_force_radio\bussole\bussole.ext"
+=======
+#include "\task_force_radio\mr6000l\mr6000l.ext"
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086

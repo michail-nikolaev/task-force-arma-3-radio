@@ -21,7 +21,11 @@
 	[(call TFAR_fnc_activeSwRadio),"tf_anprc148jem_20"] call TFAR_fnc_CopySettings;
 */
 #include "script.h"
+<<<<<<< HEAD
 private ["_source", "_destination", "_settings", "_isDLR", "_isSLR", "_support_additional"];
+=======
+private ["_source", "_destination", "_settings", "_isDLR", "_isSLR"];
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 _source = _this select 0;
 _destination = _this select 1;
 
@@ -39,12 +43,16 @@ if (_isSLR) then {
 } else {
 	_settings = _source call TFAR_fnc_GetSwSettings;
 	if (!_isDLR) then {
+<<<<<<< HEAD
 		_settings = []+_settings;
 		_support_additional = getNumber (configFile >> "CfgWeapons" >> _destination >> "tf_additional_channel");
 		if ((isNil "_support_additional") or {_support_additional == 0}) then {
 			_settings set [TF_ADDITIONAL_CHANNEL_OFFSET, -1];
 		};
 		[_destination, _settings] call TFAR_fnc_SetSwSettings;
+=======
+		[_destination, []+_settings] call TFAR_fnc_SetSwSettings;
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	} else {
 		diag_log "TFAR - unable to copy from SW to LR";
 		hint "TFAR - unable to copy from SW to LR";

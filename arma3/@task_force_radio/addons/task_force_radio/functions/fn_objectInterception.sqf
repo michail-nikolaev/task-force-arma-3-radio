@@ -37,7 +37,11 @@ _result = "";
 			//};
 		};
 	};
+<<<<<<< HEAD
 	true;
 } count (lineIntersectsWith  [eyepos TFAR_currentUnit, eyepos _this, TFAR_currentUnit, _this]);
+=======
+} count (lineIntersectsWith  [eyepos player, eyepos _this, player, _this]);
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 
 _result;

@@ -1,14 +1,27 @@
+<<<<<<< HEAD
 /* #Cycyve
+=======
+/* #Jahote
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 $[
 	1.063,
 	["anprc210",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
 	[1200,"background",[1,"task_force_radio\anarc210\anarc210.paa",["0.0880156 * safezoneW + safezoneX","-0.1677 * safezoneH + safezoneY","0.634594 * safezoneW","1.10205 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1400,"channel_edit",[1,"CH:3",["0.360781 * safezoneW + safezoneX","0.2305 * safezoneH + safezoneY","0.0485625 * safezoneW","0.0658147 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current channel","-1"],[]],
 	[1401,"edit",[1,"88.8",["0.410797 * safezoneW + safezoneX","0.2305 * safezoneH + safezoneY","0.0452813 * safezoneW","0.0658147 * safezoneH"],[0,0,0,1],[0,0,0,1],[0,0,0,1],"Current frequency","-1"],[]],
+<<<<<<< HEAD
 	[1600,"enter",[1,"",["0.490203 * safezoneW + safezoneX","0.3394 * safezoneH + safezoneY","0.03 * safezoneW","0.05 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
 	[1601,"clear",[1,"",["0.354078 * safezoneW + safezoneX","0.522 * safezoneH + safezoneY","0.03 * safezoneW","0.05 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Clear frequency","-1"],[]],
 	[1604,"increase_volume",[1,"",["0.539187 * safezoneW + safezoneX","0.5176 * safezoneH + safezoneY","0.04 * safezoneW","0.06 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Change volume","-1"],[]],
 	[1605,"stereo",[1,"",["0.444828 * safezoneW + safezoneX","0.5253 * safezoneH + safezoneY","0.03 * safezoneW","0.05 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+=======
+	[1600,"enter",[1,"",["0.444312 * safezoneW + safezoneX","0.5242 * safezoneH + safezoneY","0.03 * safezoneW","0.05 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
+	[1601,"clear",[1,"",["0.354078 * safezoneW + safezoneX","0.522 * safezoneH + safezoneY","0.03 * safezoneW","0.05 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Clear frequency","-1"],[]],
+	[1602,"prev_channel",[1,"",["0.487109 * safezoneW + safezoneX","0.401 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
+	[1603,"next_channel",[1,"",["0.489687 * safezoneW + safezoneX","0.3394 * safezoneH + safezoneY","0.03 * safezoneW","0.05 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1604,"increase_volume",[1,"",["0.537641 * safezoneW + safezoneX","0.5121 * safezoneH + safezoneY","0.04 * safezoneW","0.06 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Change volume","-1"],[]],
+	[1605,"stereo",[1,"",["0.487109 * safezoneW + safezoneX","0.4626 * safezoneH + safezoneY","0.03 * safezoneW","0.05 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	[1606,"channel_01",[1,"",["0.353562 * safezoneW + safezoneX","0.3394 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1607,"channel_02",[1,"",["0.399453 * safezoneW + safezoneX","0.3416 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1608,"channel_03",[1,"",["0.443797 * safezoneW + safezoneX","0.3416 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
@@ -18,18 +31,27 @@ $[
 	[1612,"channel_07",[1,"",["0.353562 * safezoneW + safezoneX","0.4637 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1613,"channel_08",[1,"",["0.398422 * safezoneW + safezoneX","0.4659 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1614,"channel_09",[1,"",["0.442766 * safezoneW + safezoneX","0.4659 * safezoneH + safezoneY","0.0335156 * safezoneW","0.0484 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
+<<<<<<< HEAD
 	[1615,"additional",[1,"",["0.486594 * safezoneW + safezoneX","0.4021 * safezoneH + safezoneY","0.0367463 * safezoneW","0.0462103 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1616,"speakers",[1,"",["0.398422 * safezoneW + safezoneX","0.5231 * safezoneH + safezoneY","0.0304219 * safezoneW","0.0495 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1602,"channel_Switch",[1,"",["0.245797 * safezoneW + safezoneX","0.2547 * safezoneH + safezoneY","0.0510469 * safezoneW","0.0957 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
+=======
+	[1615,"additional",[1,"",["0.396979 * safezoneW + safezoneX","0.526606 * safezoneH + safezoneY","0.0367463 * safezoneW","0.0462103 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+]
+*/
+
+
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 class anarc210_radio_dialog
 {
 	idd = IDD_ANPRC210_RADIO_DIALOG;
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
+<<<<<<< HEAD
 
 	controls[]=
 {
@@ -53,6 +75,30 @@ class anarc210_radio_dialog
 	speakers,
 	channel_Switch
 };
+=======
+	controls[]=
+	{
+		background,
+		enter,
+		channel_edit,		
+		edit,		
+		clear,
+		prev_channel,
+		next_channel,
+		increase_volume,
+		stereo,
+		channel_01,
+		channel_02,
+		channel_03,
+		channel_04,
+		channel_05,
+		channel_06,
+		channel_07,
+		channel_08,
+		channel_09,
+		additional
+	};
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Xiduwa)
 	////////////////////////////////////////////////////////
@@ -102,8 +148,13 @@ class anarc210_radio_dialog
 	class enter: HiddenButton
 	{
 		idc = IDC_ANPRC210_ENTER;
+<<<<<<< HEAD
 		x = 0.490203 * safezoneW + safezoneX;
 		y = 0.3394 * safezoneH + safezoneY;
+=======
+		x = 0.444312 * safezoneW + safezoneX;
+		y = 0.5242 * safezoneH + safezoneY;
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		w = 0.03 * safezoneW;
 		h = 0.05 * safezoneH;
 		tooltip = $STR_set_frequency;
@@ -119,6 +170,7 @@ class anarc210_radio_dialog
 		tooltip = $STR_clear_frequency;
 		action = "ctrlSetText [IDC_ANPRC210_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANPRC210_RADIO_DIALOG_ID) displayCtrl IDC_ANPRC210_RADIO_DIALOG_EDIT_ID);";
 	};
+<<<<<<< HEAD
 	class increase_volume: HiddenRotator
 	{
 		idc = IDC_ANPRC210_INCREASE_VOLUME;
@@ -128,12 +180,48 @@ class anarc210_radio_dialog
 		h = 0.06 * safezoneH;
 		tooltip = $STR_rotator_volume;
 		onMouseButtonDown = "[_this select 1, true] call TFAR_fnc_setVolumeViaDialog;";
+=======
+	class prev_channel: HiddenButton
+	{
+		idc = IDC_ANPRC210_PREV_CHANNEL;
+		x = 0.487109 * safezoneW + safezoneX;
+		y = 0.401 * safezoneH + safezoneY;
+		w = 0.0335156 * safezoneW;
+		h = 0.0484 * safezoneH;
+		tooltip = $STR_previous_channel;
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1,  ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) - 1 + TF_MAX_LR_CHANNELS) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class next_channel: HiddenButton
+	{
+		idc = IDC_ANPRC210_NEXT_CHANNEL;
+		x = 0.489687 * safezoneW + safezoneX;
+		y = 0.3394 * safezoneH + safezoneY;
+		w = 0.03 * safezoneW;
+		h = 0.05 * safezoneH;
+		tooltip = $STR_next_channel;
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class increase_volume: HiddenButton
+	{
+		idc = IDC_ANPRC210_INCREASE_VOLUME;
+		x = 0.537641 * safezoneW + safezoneX;
+		y = 0.5121 * safezoneH + safezoneY;
+		w = 0.04 * safezoneW;
+		h = 0.06 * safezoneH;
+		tooltip = $STR_volume;
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume; [TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	};
 	class stereo: HiddenButton
 	{
 		idc = IDC_ANPRC210_STEREO;
+<<<<<<< HEAD
 		x = 0.444828 * safezoneW + safezoneX;
 		y = 0.5253 * safezoneH + safezoneY;
+=======
+		x = 0.487109 * safezoneW + safezoneX;
+		y = 0.4626 * safezoneH + safezoneY;
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		w = 0.03 * safezoneW;
 		h = 0.05 * safezoneH;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
@@ -229,6 +317,7 @@ class anarc210_radio_dialog
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 8] call TFAR_fnc_setLrChannel; [""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 		tooltip = $STR_radio_channel_9;
 	};
+<<<<<<< HEAD
 
 	class channel_Switch: HiddenRotator
 	{
@@ -245,11 +334,19 @@ class anarc210_radio_dialog
 		idc = IDC_ANPRC210_ADDITIONAL;
 		x = 0.486594 * safezoneW + safezoneX;
 		y = 0.4021 * safezoneH + safezoneY;
+=======
+	class additional: HiddenButton
+	{
+		idc = IDC_ANPRC210_ADDITIONAL;
+		x = 0.396979 * safezoneW + safezoneX;
+		y = 0.526606 * safezoneH + safezoneY;
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		w = 0.0367463 * safezoneW;
 		h = 0.0462103 * safezoneH;
 		tooltip = $STR_set_additional;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 	};
+<<<<<<< HEAD
 	class speakers: HiddenButton
 	{
 		idc = IDC_ANPRC210_SPEAKERS;
@@ -264,3 +361,9 @@ class anarc210_radio_dialog
 	// GUI EDITOR OUTPUT END
 	////////////////////////////////////////////////////////
 };
+=======
+	////////////////////////////////////////////////////////
+	// GUI EDITOR OUTPUT END
+	////////////////////////////////////////////////////////
+};
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086

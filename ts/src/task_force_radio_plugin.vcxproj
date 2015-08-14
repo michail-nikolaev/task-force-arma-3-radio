@@ -65,14 +65,24 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+<<<<<<< HEAD
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files (x86)\TeamSpeak 3 Client\plugins\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\TeamSpeak 3 Client\plugins\</OutDir>
+=======
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\Program Files (x86)\TeamSpeak 3 Client\plugins\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">F:\Program Files\TeamSpeak 3 Client\plugins\</OutDir>
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+<<<<<<< HEAD
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files (x86)\TeamSpeak 3 Client\plugins</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\TeamSpeak 3 Client\plugins</OutDir>
+=======
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">F:\Program Files (x86)\TeamSpeak 3 Client\plugins</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">F:\Program Files\TeamSpeak 3 Client\plugins</OutDir>
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
@@ -97,7 +107,10 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <BrowseInformation>true</BrowseInformation>
       <ExpandAttributedSource>true</ExpandAttributedSource>
+<<<<<<< HEAD
       <FloatingPointModel>Fast</FloatingPointModel>
+=======
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -140,10 +153,17 @@
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+<<<<<<< HEAD
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExpandAttributedSource>true</ExpandAttributedSource>
       <BrowseInformation>true</BrowseInformation>
       <FloatingPointModel>Fast</FloatingPointModel>
+=======
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ExpandAttributedSource>true</ExpandAttributedSource>
+      <BrowseInformation>true</BrowseInformation>
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -168,8 +188,11 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExpandAttributedSource>true</ExpandAttributedSource>
       <BrowseInformation>true</BrowseInformation>
+<<<<<<< HEAD
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
+=======
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -219,6 +242,7 @@
     <ClCompile Include="..\include\simpleSource\SimpleEnvelope.cpp" />
     <ClCompile Include="..\include\simpleSource\SimpleGate.cpp" />
     <ClCompile Include="..\include\simpleSource\SimpleLimit.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="..\include\sqlite3\sqlite3.c" />
     <ClCompile Include="plugin.cpp" />
   </ItemGroup>
@@ -245,6 +269,11 @@
     <ClInclude Include="..\include\clunk\wav_file.h" />
     <ClInclude Include="..\include\sqlite3\sqlite3.h" />
     <ClInclude Include="Clunk.h" />
+=======
+    <ClCompile Include="plugin.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
     <ClInclude Include="RadioEffect.h" />
     <ClInclude Include="plugin.h" />
   </ItemGroup>

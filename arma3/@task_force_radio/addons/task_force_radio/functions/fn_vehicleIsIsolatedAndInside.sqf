@@ -20,7 +20,11 @@ private ["_result"];
 _result = false;
 if (vehicle _this != _this) then {
 	if ((vehicle _this) call TFAR_fnc_isVehicleIsolated) then {
+<<<<<<< HEAD
 		if !([_this] call TFAR_fnc_isTurnedOut) then {
+=======
+		if !([_this] call CBA_fnc_isTurnedOut) then {
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 			_result = true;
 		};
 	};

@@ -19,6 +19,7 @@
 */
 [] spawn {	
 	waitUntil {!(isNull player)};	
+<<<<<<< HEAD
 	TFAR_currentUnit = call TFAR_fnc_currentUnit;
 	
 	TF_respawnedAt = time;
@@ -44,12 +45,40 @@
 					_newItems pushBack _x;
 				};
 				true;
+=======
+	
+	TF_respawnedAt = time;
+	if (alive player) then
+	{
+		if (leader player == player) then
+		{	
+			if (tf_no_auto_long_range_radio or {backpack player == "B_Parachute"}) exitWith {};
+			if ([(backpack player), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1) exitWith {};
+			
+			private ["_items", "_backPack", "_newItems"];
+			_items = backpackItems player;
+			_backPack = unitBackpack player;
+			player action ["putbag", player];
+			sleep 3;
+			player addBackpack ((call TFAR_fnc_getDefaultRadioClasses) select 0);			
+			_newItems = [];
+			{
+				if (player canAddItemToBackpack _x) then
+				{
+					player addItemToBackpack _x;
+				}
+				else
+				{
+					_newItems set [count _newItems, _x];
+				};
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 			} count _items;
 			
 			clearItemCargoGlobal _backPack;
 			clearMagazineCargoGlobal _backPack;
 			clearWeaponCargoGlobal _backPack;
 			{
+<<<<<<< HEAD
 				if (isClass (configFile >> "CfgMagazines" >> _x)) then{
 					_backPack addMagazineCargoGlobal [_x, 1];
 				}else{
@@ -57,6 +86,17 @@
 					_backPack addWeaponCargoGlobal [_x, 1];
 				};
 				true;
+=======
+				if (isClass (configFile >> "CfgMagazines" >> _x)) then
+				{
+					_backPack addMagazineCargoGlobal [_x, 1];
+				}
+				else
+				{
+					_backPack addItemCargoGlobal [_x, 1];
+					_backPack addWeaponCargoGlobal [_x, 1];
+				};
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 			} count _newItems;
 		};
 		true call TFAR_fnc_requestRadios;						

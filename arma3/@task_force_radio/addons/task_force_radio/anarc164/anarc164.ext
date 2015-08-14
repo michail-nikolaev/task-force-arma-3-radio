@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* #Lirixu
+=======
+/* #Vafure
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 $[
 	1.063,
 	["anarc164",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -8,6 +12,7 @@ $[
 	[1600,"enter",[1,"",["0.233422 * safezoneW + safezoneX","0.4373 * safezoneH + safezoneY","0.037125 * safezoneW","0.0693 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Set frequency","-1"],[]],
 	[1601,"clear",[1,"",["0.168453 * safezoneW + safezoneX","0.4362 * safezoneH + safezoneY","0.0376406 * safezoneW","0.0715 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Clear frequency","-1"],[]],
 	[1602,"prev_channel",[1,"",["0.297875 * safezoneW + safezoneX","0.4384 * safezoneH + safezoneY","0.0360937 * safezoneW","0.0671 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
+<<<<<<< HEAD
 	[1604,"increase_volume",[1,"",["0.239094 * safezoneW + safezoneX","0.5451 * safezoneH + safezoneY","0.02475 * safezoneW","0.0462 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Change volume","-1"],[]],
 	[1605,"stereo",[1,"",["0.115344 * safezoneW + safezoneX","0.566 * safezoneH + safezoneY","0.0665527 * safezoneW","0.110006 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1606,"additional",[1,"",["0.103008 * safezoneW + safezoneX","0.434185 * safezoneH + safezoneY","0.0374025 * safezoneW","0.0700156 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
@@ -17,18 +22,31 @@ $[
 
 
 
+=======
+	[1603,"next_channel",[1,"",["0.361813 * safezoneW + safezoneX","0.4362 * safezoneH + safezoneY","0.0391875 * safezoneW","0.0693 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1604,"increase_volume",[1,"",["0.239094 * safezoneW + safezoneX","0.5451 * safezoneH + safezoneY","0.02475 * safezoneW","0.0462 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Change volume","-1"],[]],
+	[1605,"stereo",[1,"",["0.115344 * safezoneW + safezoneX","0.566 * safezoneH + safezoneY","0.0665527 * safezoneW","0.110006 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1606,"additional",[1,"",["0.103008 * safezoneW + safezoneX","0.434185 * safezoneH + safezoneY","0.0374025 * safezoneW","0.0700156 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+]
+*/
+
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 class anarc164_radio_dialog
 {
 	idd = IDD_ANARC164_RADIO_DIALOG;
 	movingEnable = 1;
 	controlsBackground[] = { };
+<<<<<<< HEAD
 	onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'anarc164_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
+=======
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	objects[] = { };
 	controls[]=
 	{
 		background,
 		enter,
 		channel_edit,
+<<<<<<< HEAD
 		edit,
 		clear,
 		prev_channel,
@@ -36,6 +54,15 @@ class anarc164_radio_dialog
 		stereo,
 		additional,
 		speakers
+=======
+		edit,		
+		clear,
+		prev_channel,
+		next_channel,
+		increase_volume,
+		stereo,
+		additional
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Vyxuta)
@@ -53,13 +80,21 @@ class anarc164_radio_dialog
 	};
 	class channel_edit: RscEditLCD
 	{
+<<<<<<< HEAD
 		idc = IDC_ANARC164_CHANNEL_EDIT;
+=======
+		idc = IDC_ANARC164_CHANNEL_EDIT;		
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		x = 0.288078 * safezoneW + safezoneX;
 		y = 0.2382 * safezoneH + safezoneY;
 		w = 0.0324844 * safezoneW;
 		h = 0.0374 * safezoneH;
 		colorText[] = {1,0.5,0,1};
+<<<<<<< HEAD
 		colorBackground[] = {0,0,0,0};
+=======
+		colorBackground[] = {1,0.5,0,1};
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		colorActive[] = {0,1,0,1};
 		font = "tf_font_segments";
 		shadow = 1;
@@ -69,13 +104,21 @@ class anarc164_radio_dialog
 	};
 	class edit: RscEditLCD
 	{
+<<<<<<< HEAD
 		idc = IDC_ANARC164_EDIT;
+=======
+		idc = IDC_ANARC164_EDIT;		
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		x = 0.201969 * safezoneW + safezoneX;
 		y = 0.3515 * safezoneH + safezoneY;
 		w = 0.0995156 * safezoneW;
 		h = 0.0352 * safezoneH;
 		colorText[] = {1,0.5,0,1};
+<<<<<<< HEAD
 		colorBackground[] = {0,0,0,0};
+=======
+		colorBackground[] = {1,0.5,0,1};
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		colorActive[] = {0,0,0,1};
 		font = "tf_font_segments";
 		shadow = 1;
@@ -83,7 +126,11 @@ class anarc164_radio_dialog
 		tooltip = $STR_current_freq;
 		canModify = 1;
 	};
+<<<<<<< HEAD
 	class enter: HiddenRotator
+=======
+	class enter: HiddenButton
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		idc = IDC_ANARC164_ENTER;
 		x = 0.233422 * safezoneW + safezoneX;
@@ -91,9 +138,15 @@ class anarc164_radio_dialog
 		w = 0.037125 * safezoneW;
 		h = 0.0693 * safezoneH;
 		tooltip = $STR_set_frequency;
+<<<<<<< HEAD
 		action = "playSound 'TFAR_rotatorPush';_f = parseNumber(ctrlText IDC_ANARC164_RADIO_DIALOG_EDIT_ID);if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setLrFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_ASIP_FREQ, TF_MAX_ASIP_FREQ]}; [""%1""] call TFAR_fnc_updateLRDialogToChannel;";
 	};
 	class clear: HiddenRotator
+=======
+		action = "_f = parseNumber(ctrlText IDC_ANARC164_RADIO_DIALOG_EDIT_ID);if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setLrFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_ASIP_FREQ, TF_MAX_ASIP_FREQ]}; [""%1""] call TFAR_fnc_updateLRDialogToChannel;";
+	};
+	class clear: HiddenButton
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		idc = IDC_ANARC164_CLEAR;
 		x = 0.168453 * safezoneW + safezoneX;
@@ -101,39 +154,76 @@ class anarc164_radio_dialog
 		w = 0.0376406 * safezoneW;
 		h = 0.0715 * safezoneH;
 		tooltip = $STR_clear_frequency;
+<<<<<<< HEAD
 		action = "playSound 'TFAR_rotatorPush';ctrlSetText [IDC_ANARC164_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANARC164_RADIO_DIALOG_ID) displayCtrl IDC_ANARC164_RADIO_DIALOG_EDIT_ID);";
 	};
 	class prev_channel: HiddenRotator
+=======
+		action = "ctrlSetText [IDC_ANARC164_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANARC164_RADIO_DIALOG_ID) displayCtrl IDC_ANARC164_RADIO_DIALOG_EDIT_ID);";
+	};
+	class prev_channel: HiddenButton
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		idc = IDC_ANARC164_PREV_CHANNEL;
 		x = 0.297875 * safezoneW + safezoneX;
 		y = 0.4384 * safezoneH + safezoneY;
 		w = 0.0360937 * safezoneW;
 		h = 0.0671 * safezoneH;
+<<<<<<< HEAD
 		tooltip = $STR_rotator_channel;
 		onMouseButtonDown = "[_this select 1, true, '%1'] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class increase_volume: HiddenRotator
+=======
+		tooltip = $STR_previous_channel;
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1,  ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) - 1 + TF_MAX_LR_CHANNELS) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class next_channel: HiddenButton
+	{
+		idc = IDC_ANARC164_NEXT_CHANNEL;
+		x = 0.361813 * safezoneW + safezoneX;
+		y = 0.4362 * safezoneH + safezoneY;
+		w = 0.0391875 * safezoneW;
+		h = 0.0693 * safezoneH;
+		tooltip = $STR_next_channel;
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class increase_volume: HiddenButton
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		idc = IDC_ANARC164_INCREASE_VOLUME;
 		x = 0.239094 * safezoneW + safezoneX;
 		y = 0.5451 * safezoneH + safezoneY;
 		w = 0.02475 * safezoneW;
 		h = 0.0462 * safezoneH;
+<<<<<<< HEAD
 		tooltip = $STR_rotator_volume;
 		onMouseButtonDown = "[_this select 1, true] call TFAR_fnc_setVolumeViaDialog;";
 	};
 	class stereo: HiddenRotator
+=======
+		tooltip = $STR_volume;
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume; [TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	};
+	class stereo: HiddenButton
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		idc = IDC_ANARC164_STEREO;
 		x = 0.115344 * safezoneW + safezoneX;
 		y = 0.566 * safezoneH + safezoneY;
 		w = 0.0665527 * safezoneW;
 		h = 0.110006 * safezoneH;
+<<<<<<< HEAD
 		action = "playSound 'TFAR_rotatorPush';[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
 		tooltip = $STR_stereo_settings;
 	};
 	class additional: HiddenRotator
+=======
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+		tooltip = $STR_stereo_settings;
+	};
+	class additional: HiddenButton
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		idc = IDC_ANARC164_ADDITIONAL;
 		x = 0.103008 * safezoneW + safezoneX;
@@ -141,6 +231,7 @@ class anarc164_radio_dialog
 		w = 0.0374025 * safezoneW;
 		h = 0.0700156 * safezoneH;
 		tooltip = $STR_set_additional;
+<<<<<<< HEAD
 		action = "playSound 'TFAR_rotatorPush';[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 	};
 	class speakers: HiddenFlip
@@ -152,9 +243,16 @@ class anarc164_radio_dialog
 		h = 0.0406957 * safezoneH;
 		tooltip = $STR_speakers_settings_true;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1] call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
+=======
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT END
 	////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086

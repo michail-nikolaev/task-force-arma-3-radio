@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* #Cyciky
+=======
+/* #Xiwywo
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 $[
 	1.063,
 	["mr6000l_radio_dialog",[["0","0","1","1"],"0.0025","0.004","GUI_GRID"],0,1,1],
@@ -20,14 +24,21 @@ $[
 	[1612,"channel_07",[1,"",["0.347806 * safezoneW + safezoneX","0.509901 * safezoneH + safezoneY","0.0479799 * safezoneW","0.0891049 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1613,"channel_08",[1,"",["0.407652 * safezoneW + safezoneX","0.511001 * safezoneH + safezoneY","0.0479799 * safezoneW","0.0880048 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
 	[1614,"channel_09",[1,"",["0.462338 * safezoneW + safezoneX","0.512101 * safezoneH + safezoneY","0.053139 * safezoneW","0.0880048 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Previous channel","-1"],[]],
+<<<<<<< HEAD
 	[1615,"additional",[1,"",["0.127943 * safezoneW + safezoneX","0.464992 * safezoneH + safezoneY","0.0334654 * safezoneW","0.0560125 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1616,"speakers",[1,"",["0.195417 * safezoneW + safezoneX","0.584691 * safezoneH + safezoneY","0.0520523 * safezoneW","0.085791 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+=======
+	[1615,"additional",[1,"",["0.127943 * safezoneW + safezoneX","0.464992 * safezoneH + safezoneY","0.0334654 * safezoneW","0.0560125 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 ]
 */
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 class mr6000l_radio_dialog
 {
 	idd = IDD_MR6000L_RADIO_DIALOG;
@@ -39,7 +50,11 @@ class mr6000l_radio_dialog
 		background,
 		enter,
 		channel_edit,
+<<<<<<< HEAD
 		edit,
+=======
+		edit,		
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		clear,
 		prev_channel,
 		next_channel,
@@ -54,8 +69,12 @@ class mr6000l_radio_dialog
 		channel_07,
 		channel_08,
 		channel_09,
+<<<<<<< HEAD
 		additional,
 		speakers
+=======
+		additional
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Vuviro)
@@ -89,7 +108,11 @@ class mr6000l_radio_dialog
 	};
 	class edit: RscEditLCD
 	{
+<<<<<<< HEAD
 		idc = IDC_MR6000L_EDIT;
+=======
+		idc = IDC_MR6000L_EDIT;		
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		x = 0.189421 * safezoneW + safezoneX;
 		y = 0.329491 * safezoneH + safezoneY;
 		w = 0.136717 * safezoneW;
@@ -130,7 +153,11 @@ class mr6000l_radio_dialog
 		w = 0.0495276 * safezoneW;
 		h = 0.0869047 * safezoneH;
 		tooltip = $STR_previous_channel;
+<<<<<<< HEAD
 		action = "[0, true, 'PRE %1'] call TFAR_fnc_setChannelViaDialog;";
+=======
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1,  ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) - 1 + TF_MAX_LR_CHANNELS) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	};
 	class next_channel: HiddenButton
 	{
@@ -140,26 +167,43 @@ class mr6000l_radio_dialog
 		w = 0.0500435 * safezoneW;
 		h = 0.0880048 * safezoneH;
 		tooltip = $STR_next_channel;
+<<<<<<< HEAD
 		action = "[1, true, 'PRE %1'] call TFAR_fnc_setChannelViaDialog;";
 	};
 	class increase_volume: HiddenRotator
+=======
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1) mod TF_MAX_LR_CHANNELS] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+	};
+	class increase_volume: HiddenButton
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		idc = IDC_MR6000L_INCREASE_VOLUME;
 		x = 0.117193 * safezoneW + safezoneX;
 		y = 0.326191 * safezoneH + safezoneY;
 		w = 0.0495276 * safezoneW;
 		h = 0.0803044 * safezoneH;
+<<<<<<< HEAD
 		tooltip = $STR_rotator_volume;
 		onMouseButtonDown = "[_this select 1, true] call TFAR_fnc_setVolumeViaDialog;";
 	};
 	class stereo: HiddenRotator
+=======
+		tooltip = $STR_volume;
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getLrVolume) + 1) mod TF_MAX_LR_VOLUME] call TFAR_fnc_setLrVolume; [TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+	};
+	class stereo: HiddenButton
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		idc = IDC_MR6000L_STEREO;
 		x = 0.114613 * safezoneW + safezoneX;
 		y = 0.572604 * safezoneH + safezoneY;
 		w = 0.0665527 * safezoneW;
 		h = 0.110006 * safezoneH;
+<<<<<<< HEAD
 		action = "playSound 'TFAR_rotatorPush';[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+=======
+		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;";
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		tooltip = $STR_stereo_settings;
 	};
 	class channel_01: HiddenButton
@@ -252,7 +296,11 @@ class mr6000l_radio_dialog
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 8] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 		tooltip = $STR_radio_channel_9;
 	};
+<<<<<<< HEAD
 	class additional: HiddenFlip
+=======
+	class additional: HiddenButton
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		idc = IDC_MR6000L_RADIO_DIALOG_ADDITIONAL;
 		x = 0.127943 * safezoneW + safezoneX;
@@ -262,6 +310,7 @@ class mr6000l_radio_dialog
 		tooltip = $STR_set_additional;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
 	};
+<<<<<<< HEAD
 	class speakers: HiddenButton
 	{
 		idc = IDC_MR6000L_RADIO_DIALOG_SPEAKERS;
@@ -272,8 +321,14 @@ class mr6000l_radio_dialog
 		tooltip = $STR_speakers_settings_true;
 		action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1] call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
 	};
+=======
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT END
 	////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086

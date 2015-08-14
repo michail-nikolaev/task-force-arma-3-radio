@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name = "Task Force Arrowhead Radio 0.9.8";
 picture = "task_force_arrowhead_logo.paa";
 actionName = "Website";
@@ -12,3 +13,10 @@ author = "TFAR Team";
 overviewPicture = "task_force_arrowhead_logo.paa";
 overviewText = "Task Force Arrowhead Radio";
 overviewFootnote = "<br /><br /><t color='#999999'>This content is under APL-SA License.<t />";
+=======
+name = "Task Force Arrowhead Radio";
+picture = "task_force_arrowhead_logo.paa";
+actionName = "Website";
+action = "http://radio.task-force.ru/";
+description = "Task Force Arrowhead TeamSpeak Radio Plugin";
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086

@@ -1,4 +1,5 @@
 #include "script.h"
+<<<<<<< HEAD
 private ["_scancode", "_mods", "_keybind", "_scancode_lr"];
 _scancode = _this select 1; 
 _keybind = ["TFAR", "LRTransmit"] call cba_fnc_getKeybind;
@@ -13,5 +14,14 @@ if !(isNil "_keybind") then {
 	 then {	
 		call TFAR_fnc_onLRTangentReleased;
 	};
+=======
+private ["_scancode"];
+_scancode = _this select 1; 
+if (((_scancode == SHIFTL) and (TF_tangent_lr_modifiers select 0))
+   or ((_scancode == CTRLL) and (TF_tangent_lr_modifiers select 1))
+   or ((_scancode == ALTL) and (TF_tangent_lr_modifiers select 2)))
+ then {
+	call TFAR_fnc_onLRTangentReleased;
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 false

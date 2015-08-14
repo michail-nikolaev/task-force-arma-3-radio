@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  	Name: TFAR_fnc_haveDDRadio
 
@@ -24,3 +25,10 @@ if ((vest TFAR_currentUnit) == "V_RebreatherB") exitWith {true};
 _rebreather = configFile >> "CfgWeapons" >> "V_RebreatherB";
 _currentVest = configFile >> "CfgWeapons" >> (vest TFAR_currentUnit);
 [_currentVest, _rebreather] call CBA_fnc_inheritsFrom
+=======
+private ["_currentVest", "_rebreather"];
+if ((vest player) == "V_RebreatherB") exitWith {true};
+_rebreather = configFile >> "CfgWeapons" >> "V_RebreatherB";
+_currentVest = configFile >> "CfgWeapons" >> (vest player);
+[_currentVest, _rebreather] call CBA_fnc_inheritsFrom
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086

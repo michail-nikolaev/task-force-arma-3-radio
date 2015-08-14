@@ -48,7 +48,11 @@ class RscEditLCD
 		0,
 		0,
 		0,
+<<<<<<< HEAD
 		0
+=======
+		1
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	};
 	colorText[] =
 	{
@@ -85,7 +89,11 @@ class HiddenButton
 	type = 1;
 	text = "";
 	colorText[] = {
+<<<<<<< HEAD
 			0, 0, 0, 1
+=======
+			0, 0, 0, 0
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	};
 	colorDisabled[] = {
 			0, 0, 0, 0
@@ -109,12 +117,17 @@ class HiddenButton
 			0, 0, 0, 0
 	};
 
+<<<<<<< HEAD
 	soundEnter[] = 
+=======
+	soundEnter[] =
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		"\A3\ui_f\data\sound\RscButton\soundEnter",
 		0.09,
 		1
 	};
+<<<<<<< HEAD
 	soundPush[] = 
 	{
 		"task_force_radio\sounds\softPush",
@@ -128,6 +141,21 @@ class HiddenButton
 		1
 	};
 	soundEscape[] = 
+=======
+	soundPush[] =
+	{
+		"\A3\ui_f\data\sound\RscButton\soundPush",
+		0.09,
+		1
+	};
+	soundClick[] =
+	{
+		"\A3\ui_f\data\sound\RscButton\soundClick",
+		0.09,
+		1
+	};
+	soundEscape[] =
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	{
 		"\A3\ui_f\data\sound\RscButton\soundEscape",
 		0.09,
@@ -147,6 +175,7 @@ class HiddenButton
 	offsetPressedY = 0.002;
 	borderSize = 0;
 };
+<<<<<<< HEAD
 class HiddenRotator:HiddenButton{
 	soundPush[] = 
 	{
@@ -175,6 +204,8 @@ class HiddenFlip:HiddenButton{
 		1
 	};
 };
+=======
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 
 
 #include "task_force_radio\anprc152\anprc152.ext"
@@ -190,5 +221,8 @@ class HiddenFlip:HiddenButton{
 #include "task_force_radio\anarc164\anarc164.ext"
 #include "task_force_radio\mr6000l\mr6000l.ext"
 #include "task_force_radio\pnr1000a\pnr1000a.ext"
+<<<<<<< HEAD
 #include "task_force_radio\bussole\bussole.ext"
+=======
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 #include "task_force_radio\RscTitles.hpp"

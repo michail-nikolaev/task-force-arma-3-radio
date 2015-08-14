@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project ID="Arma2">
+<<<<<<< HEAD
   <Package ID="Missions">
     <Container ID="A3RU_MissionInformation">
       <Key ID="STR_TFAR_NATO_crate">
@@ -684,4 +685,388 @@
       </Key>
     </Container>
   </Package>
+=======
+	<Package ID="Missions">
+		<Container ID="A3RU_MissionInformation">
+			<Key ID="STR_TFAR_NATO_crate">
+				<Original>
+					TFAR Radio (NATO)
+				</Original>
+				<Russian>
+					TFAR Рации (NATO)
+				</Russian>				
+				<Spanish>
+					TFAR Radio (NATO)
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_EAST_crate">
+				<Original>
+					TFAR Radio (CSAT)
+				</Original>
+				<Russian>
+					TFAR Рации (CSAT)
+				</Russian>			
+				<Spanish>
+					TFAR Radio (CSAT)
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_IND_crate">
+				<Original>
+					TFAR Radio (AAF)
+				</Original>
+				<Russian>
+					TFAR Рации (AAF)
+				</Russian>				
+				<Spanish>
+					TFAR Radio (AAF)
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_EnforceUsage">
+				<Original>
+					TFAR - Enforce Usage
+				</Original>
+				<Russian>
+					TFAR - Базовый модуль
+				</Russian>				
+				<Spanish>
+					TFAR - Obligar su uso
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_GiveTLradio">
+				<Original>
+					Give team leaders a long range radio
+				</Original>
+				<Russian>
+					Выдавать лидерам групп дальнюю связь
+				</Russian>				
+				<Spanish>
+					Dar a los lideres de equipo una radio de largo alcance
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_GiveTLradioTT">
+				<Original>
+					Give each team leader the appropriate long range radio
+				</Original>
+				<Russian>
+					Выдавать ли каждому лидеру групп рацию дальней связи
+				</Russian>				
+				<Spanish>
+					Da a cada lider de equipo una radio de largo alcance apropiada
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
+				<Original>
+					Give rifleman radio
+				</Original>
+				<Russian>
+					Выдавать личную рацию бойца
+				</Russian>			
+				<Spanish>
+					Dar una radio personal
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
+				<Original>
+					Give a rifleman radio to regular soldiers
+				</Original>
+				<Russian>
+					Выдавать личную рацию бойца обычным солдатам
+				</Russian>
+				<Spanish>
+					Dar una radio personal a cada miembro de equipo
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_EnforceUsage_Description">
+				<Original>
+					Enforces usage of TFAR in mission.
+				</Original>
+				<Russian>
+					Обязует игроков использовать аддон
+				</Russian>
+				<Spanish>
+					Fuerza el uso de TFAR en la misión.
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_EncryptionCode">
+				<Original>
+					Encryption Code
+				</Original>
+				<Russian>
+					Код шифрования
+				</Russian>				
+				<Spanish>
+					Codigo de encriptación
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_LR_Radio">
+				<Original>
+					LR Radio
+				</Original>
+				<Russian>
+					Рация дальней связи
+				</Russian>
+				<Spanish>
+					Radio LA
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_LR_RadioTT">
+				<Original>
+					Long Range radio
+				</Original>
+				<Russian>
+					Рация дальней связи (рюкзак)
+				</Russian>
+				<Spanish>
+					Radio de Largo Alcance
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_PR_Radio">
+				<Original>
+					PR Radio
+				</Original>
+				<Russian>
+					Персональная рация командира
+				</Russian>
+				<Spanish>
+					Radio PR
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_PR_RadioTT">
+				<Original>
+					Personal radio
+				</Original>
+				<Russian>
+					Персональная рация командира группы
+				</Russian>
+				<Spanish>
+					Radio Personal
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_Rifle_Radio">
+				<Original>
+					Rifleman Radio
+				</Original>
+				<Russian>
+					Личная рация бойца
+				</Russian>
+				<Spanish>
+					Radio de fusilero
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_Rifle_RadioTT">
+				<Original>
+					Rifleman Radio
+				</Original>
+				<Russian>
+					Личная рация рядового бойца
+				</Russian>
+				<Spanish>
+					Radio de fusilero
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_PRFrequency">
+				<Original>
+					PR Freq.
+				</Original>
+				<Russian>
+					Частоты ближней связи
+				</Russian>
+				<Spanish>
+					Frec. RP
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_PRFrequencyTT">
+				<Original>
+					PR default frequencies (as an SQF array)
+				</Original>
+				<Russian>
+					Частоты по умолчанию для ближней связи (как SQF массив)
+				</Russian>
+				<Spanish>
+					Frecuencia por defecto PR (como array SQF)
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_LRFrequency">
+				<Original>
+					LR Freq.
+				</Original>
+				<Russian>
+					Частота дальней связи.
+				</Russian>
+				<Spanish>
+					LA Frec.
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_LRFrequencyTT">
+				<Original>
+					LR default frequencies (as an SQF array)
+				</Original>
+				<Russian>
+					Частоты по умолчанию для дальней связи (как SQF массив)
+				</Russian>
+				<Spanish>
+					Frecuencia por defecto LA (como array SQF)
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_SideRadio">
+				<Original>
+					TFAR - Side Radio
+				</Original>
+				<Russian>
+					TFAR - Рации стороны
+				</Russian>
+				<Spanish>
+					TFAR - Radio del bando
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_SideRadio_Description">
+				<Original>
+					Allows setting of default radios, encryption and frequencies for synced side.
+				</Original>
+				<Russian>
+					Позволяет выставить рации по умолчанию, коды шифрования и частоту для синхронизированной стороны.					
+				</Russian>
+				<Spanish>
+					Permite configurar las radios por defecto, la encriptacion y las frecuencias del bando sincronizado.
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_Frequencies">
+				<Original>
+					TFAR - Frequencies
+				</Original>
+				<Russian>
+					TFAR - Частоты
+				</Russian>
+				<Spanish>
+					TFAR - Frecuencias
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_Frequencies_Description">
+				<Original>
+					Allows setting of default frequencies for sides.
+				</Original>
+				<Russian>
+					Позволяет выставить частоты по умолчанию для сторон.
+				</Russian>
+				<Spanish>
+					Permite configurar las frecuencias por defecto para los bandos.
+				</Spanish>
+			</Key>
+			
+			<Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
+				<Original>
+					Terrain Interception Coefficient
+				</Original>
+				<Russian>
+					Коэффициент помех от рельефа
+				</Russian>
+				<Spanish>
+					Coeficiente de intercepción del terreno
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
+				<Original>
+					Terrain Interception Coefficient
+				</Original>
+				<Russian>
+					Коэффициент помех от рельефа
+				</Russian>
+				<Spanish>
+					Coeficiente de intercepción del terreno
+				</Spanish>
+			</Key>
+			
+			<Key ID="STR_TFAR_Mod_ChannelName">
+				<Original>
+					Channel Name
+				</Original>
+				<Russian>
+					Название канала
+				</Russian>
+				<Spanish>
+					Nombre del canal
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_ChannelNameTT">
+				<Original>
+					TeamSpeak Channel Name
+				</Original>
+				<Russian>
+					Название канала TeamSpeak
+				</Russian>
+				<Spanish>
+					Nombre del canal del TeamSpeak
+				</Spanish>
+			</Key>
+			
+			<Key ID="STR_TFAR_Mod_ChannelPassword">
+				<Original>
+					Channel Password
+				</Original>
+				<Russian>
+					Пароль канала
+				</Russian>
+				<Spanish>
+					Contraseña del canal
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_ChannelPasswordTT">
+				<Original>
+					TeamSpeak Channel Password
+				</Original>
+				<Russian>
+					Пароль канала TeamSpeak
+				</Russian>
+				<Spanish>
+					Contraseña del canal del TeamSpeak
+				</Spanish>
+			</Key>
+			
+			<Key ID="STR_TFAR_Mod_SameSWFrequencies">
+				<Original>
+					Same SW Frequencies for side
+				</Original>
+				<Russian>
+					Одинаковые частоты ближней связи для стороны
+				</Russian>
+				<Spanish>
+					Mismas frecuencias de onda corta para el bando
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
+				<Original>
+					Same SW Frequencies for side
+				</Original>
+				<Russian>
+					Одинаковые частоты ближней связи для стороны
+				</Russian>
+				<Spanish>
+					Mismas frecuencias de onda corta para el bando
+				</Spanish>
+			</Key>			
+			<Key ID="STR_TFAR_Mod_SameLrFrequencies">
+				<Original>
+					Same LR Frequencies for side
+				</Original>
+				<Russian>
+					Одинаковые частоты дальней связи для стороны
+				</Russian>
+				<Spanish>
+					Mismas frecuencias de onda larga para el bando
+				</Spanish>
+			</Key>
+			<Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
+				<Original>
+					Same LR Frequencies for side
+				</Original>
+				<Russian>
+					Одинаковые частоты дальней связи для стороны
+				</Russian>
+				<Spanish>
+					Mismas frecuencias de onda larga para el bando
+				</Spanish>
+			</Key>
+		</Container>
+	</Package>
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 </Project>

@@ -30,6 +30,7 @@ if (count _this > 2) then {
 };
 
 if ((isNil "_item") or {str(_item) == ""}) exitWith {_default};
+<<<<<<< HEAD
 if (isNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api")) then {
 	_result = getNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api");
 }else{
@@ -39,6 +40,26 @@ if (isNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api")) then 
 		if (isText (configFile >> "CfgVehicles" >> _item >> _property + "_api")) then{
 			_result = getText (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api");
 		}else{
+=======
+if (isNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api")) then
+{
+	_result = getNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api");
+}
+else
+{
+	if (isNumber (ConfigFile >> "CfgVehicles" >> _item >> _property)) then
+	{
+		_result = getNumber (ConfigFile >> "CfgVehicles" >> _item >> _property);
+	}
+	else
+	{
+		if (isText (configFile >> "CfgVehicles" >> _item >> _property + "_api")) then
+		{
+			_result = getText (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api");
+		}
+		else
+		{
+>>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 			if (isText (configFile >> "CfgVehicles" >> _item >> _property)) then {
 				_result = getText (ConfigFile >> "CfgVehicles" >> _item >> _property);
 			} else {
