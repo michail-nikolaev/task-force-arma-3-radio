@@ -4,17 +4,10 @@ _active_lr = nil;
 if (!isNil "TF_lr_active_radio") then {
 	_active_lr = TF_lr_active_radio;
 };
-<<<<<<< HEAD
 _vehicle_lr = _this call TFAR_fnc_vehicleLr;
 
 _backpack_check = {
 	_backpack_lr = _this call TFAR_fnc_backpackLr;
-=======
-_vehicle_lr = call TFAR_fnc_vehicleLr;
-
-_backpack_check = {
-	_backpack_lr = call TFAR_fnc_backpackLr;
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	if (count _backpack_lr > 0) then {
 		_result set [count _result, _backpack_lr];
 	};
@@ -34,7 +27,6 @@ if (!(isNil "_active_lr") and {count _vehicle_lr > 0} and {(_active_lr select 0)
 	_vehicle_lr call _vehicle_check;
 };
 
-<<<<<<< HEAD
 if ((player call TFAR_fnc_isForcedCurator) and {TFAR_currentUnit == player}) then {
 	if !(isNil "TF_curator_backpack_1") then {
 		_result pushBack [TF_curator_backpack_1, "TF_curatorBackPack"];
@@ -47,6 +39,4 @@ if ((player call TFAR_fnc_isForcedCurator) and {TFAR_currentUnit == player}) the
 	};
 };
 
-=======
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 _result

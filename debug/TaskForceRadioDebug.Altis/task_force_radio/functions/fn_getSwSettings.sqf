@@ -27,11 +27,7 @@ if (isNil "_value") then {
 		_defaultRadios = call TFAR_fnc_getDefaultRadioClasses;
 		_parent = getText (ConfigFile >> "CfgWeapons" >> _this >> "tf_parent");
 		if ((_defaultRadios select 1) == _parent or {(_defaultRadios select 2) == _parent}) then {
-<<<<<<< HEAD
 			_value = (group TFAR_currentUnit) getVariable "tf_sw_frequency";
-=======
-			_value = (group player) getVariable "tf_sw_frequency";
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		};
 		if (isNil "_value") then {
 			_value = call TFAR_fnc_generateSwSettings;
@@ -42,7 +38,6 @@ if (isNil "_value") then {
 	if (TF_use_saved_sw_setting) then {
 		TF_use_saved_sw_setting = false;
 	};
-<<<<<<< HEAD
 	_rc = _value select TF_CODE_OFFSET;
 	if (isNil "_rc") then {
 		private ["_parent", "_code", "_hasDefaultEncryption"];
@@ -66,32 +61,5 @@ if (isNil "_value") then {
 		_value set [TF_CODE_OFFSET, _rc];		
 	};
 	[_this, _value, true] call TFAR_fnc_setSwSettings;
-=======
-	[_this, + _value] call TFAR_fnc_setSwSettings;
-};
-_rc = _value select TF_CODE_OFFSET;
-if (isNil "_rc") then
-{
-	private ["_parent", "_code", "_hasDefaultEncryption"];
-	_code = getText (ConfigFile >>  "CfgWeapons" >> _this >> "tf_encryptionCode");
-	_hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
-	if (_hasDefaultEncryption) then {
-		_parent = getText (ConfigFile >> "CfgWeapons" >> _this >> "tf_parent");
-		private "_default";
-		_default = call TFAR_fnc_getDefaultRadioClasses;
-		if ((_default select 1) == _parent or {(_default select 2) == _parent}) then {
-			_rc = missionNamespace getVariable format ["tf_%1_radio_code", (player call BIS_fnc_objectSide)];
-		}else{
-			_rc = missionNamespace getVariable [_code, ""];
-		};
-	} else {
-		_rc = "";
-		if (_code != "") then {
-			_rc = missionNamespace getVariable [_code, ""];
-		};
-	};
-	_value set [TF_CODE_OFFSET, _rc];
-	[_this, + _value] call TFAR_fnc_setSwSettings;
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 _value

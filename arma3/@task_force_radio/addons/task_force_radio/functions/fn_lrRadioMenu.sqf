@@ -1,29 +1,15 @@
 private ["_menuDef","_positions","_active_radio","_submenu","_command","_pos","_menu","_position"];
 _menu = [];
-<<<<<<< HEAD
 if (count (TFAR_currentUnit call TFAR_fnc_lrRadiosList) > 1) then {
-=======
-if (count (call TFAR_fnc_lrRadiosList) > 1) then
-{
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	_menuDef = ["main", localize "STR_select_lr_radio", "buttonList", "", false];
 	_positions = [];
 	_pos = 0;
 	{
-<<<<<<< HEAD
 		_command = format["TF_lr_dialog_radio = (TFAR_currentUnit call TFAR_fnc_lrRadiosList) select %1;call TFAR_fnc_onLrDialogOpen;", _pos];
 		_submenu = "";
 		_active_radio = call TFAR_fnc_activeLrRadio;
 		if (((_x select 0) != (_active_radio select 0)) or ((_x select 1) != (_active_radio select 1))) then {
 			_command = format["TF_lr_dialog_radio = (TFAR_currentUnit call TFAR_fnc_lrRadiosList) select %1;", _pos];
-=======
-		_command = format["TF_lr_dialog_radio = (call TFAR_fnc_lrRadiosList) select %1;call TFAR_fnc_onLrDialogOpen;", _pos];
-		_submenu = "";
-		_active_radio = call TFAR_fnc_activeLrRadio;
-		if (((_x select 0) != (_active_radio select 0)) or ((_x select 1) != (_active_radio select 1))) then
-		{
-			_command = format["TF_lr_dialog_radio = (call TFAR_fnc_lrRadiosList) select %1;", _pos];
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 			_submenu = "_this call TFAR_fnc_lrRadioSubMenu";
 		};
 		_position = [
@@ -38,12 +24,8 @@ if (count (call TFAR_fnc_lrRadiosList) > 1) then
 		];
 		_positions set [count _positions, _position];
 		_pos = _pos + 1;
-<<<<<<< HEAD
 		true;
 	} count (TFAR_currentUnit call TFAR_fnc_lrRadiosList);
-=======
-	} count (call TFAR_fnc_lrRadiosList);
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	_menu =
 	[
 		_menuDef,

@@ -24,8 +24,4 @@ private ["_radio_object", "_radio_qualifier", "_value"];
 _radio_object = _this select 0;
 _radio_qualifier = _this select 1;
 _value = _this select 2;
-<<<<<<< HEAD
 _radio_object setVariable [_radio_qualifier, + _value, true];
-=======
-_radio_object setVariable [_radio_qualifier, _value, true];
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086

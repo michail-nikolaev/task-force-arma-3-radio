@@ -26,12 +26,7 @@
 */
 private "_timer";
 _timer = 2.5;
-<<<<<<< HEAD
 if ((count _this) == 3) then{
-=======
-if ((count _this) == 3) then
-{
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	_timer = _this select 2;
 };
 [parseText (_this select 0), _timer] call TFAR_fnc_showHint;

@@ -14,29 +14,15 @@ public:
 	RadioEffect()
 	{
 		floatsSample[0] = new float[1];
-<<<<<<< HEAD
 		for (int q = 0; q < DELAY_SAMPLES; q++) delayLine[q] = 0.0f;
 		delayPosition = 0;
 	}
 	
-=======
-	}
-
-	virtual void reset()
-	{
-		for (int q = 0; q < DELAY_SAMPLES; q++) delayLine[q] = 0.0f;
-		delayPosition = 0;
-	}
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	virtual void process(float* buffer, int samplesNumber) = 0;
 
 	float delay(float input)
 	{
-<<<<<<< HEAD
 		delayLine[delayPosition] = input;
-=======
-		delayLine[delayPosition] = input;		
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		int position = (delayPosition + 1) % DELAY_SAMPLES;
 		float value = delayLine[position];
 		delayPosition++;
@@ -49,26 +35,18 @@ public:
 	{
 		for (int q = 0; q < samplesNumber; q++)
 		{
-<<<<<<< HEAD
 			*floatsSample[0] = buffer[q];
 			filter.process<float>(1, floatsSample);
-=======
-			*floatsSample[0]= buffer[q];
-			filter.process<float>(1, floatsSample);			
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 			buffer[q] = *floatsSample[0];
 		}
 	}
 
 	virtual void setErrorLeveL(float errorLevel) = 0;
-<<<<<<< HEAD
 
 	~RadioEffect()
 	{
 		delete floatsSample[0];
 	}
-=======
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 private:
 	float* floatsSample[1];
 	float delayLine[DELAY_SAMPLES];
@@ -96,19 +74,7 @@ public:
 		}		
 		processFilter(filterDD, buffer, samplesNumber);
 		for (int q = 0; q < samplesNumber; q++) buffer[q] *= 30;
-<<<<<<< HEAD
 	}	
-=======
-	}
-
-	virtual void reset()
-	{
-		RadioEffect::reset();
-		filterDD.reset();
-		errorLevel = 0.0f;
-		errorLessThan = 0;
-	}
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 
 	virtual void setErrorLeveL(float errorLevel)
 	{
@@ -126,16 +92,8 @@ private:
 class SimpleRadioEffect: public RadioEffect
 {
 public:
-<<<<<<< HEAD
 	SimpleRadioEffect()
 	{						
-=======
-	virtual void reset()
-	{		
-		RadioEffect::reset();
-		filterSpeakerHP.reset();
-		filterSpeakerLP.reset();
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		phase = 0;
 		errorLevel = 0;	
 	}
@@ -243,18 +201,7 @@ public:
 
 		filterMicHP.setup(SAMPLE_RATE, 900, 0.85);
 		filterMicLP.setup(SAMPLE_RATE, 3000, 2.0);		
-<<<<<<< HEAD
 	}	
-=======
-	}
-
-	virtual void reset()
-	{
-		filterMicHP.reset();
-		filterMicLP.reset();
-		SimpleRadioEffect::reset();
-	}
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 
 	virtual void process(float* buffer, int samplesNumber)
 	{

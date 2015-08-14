@@ -52,10 +52,7 @@
 /misc/documentation-generator/.gradle
 /misc/documentation-generator/.idea
 /misc/documentation-generator/classes
-<<<<<<< HEAD
 /arma3/@task_force_radio/task_force_radio_pipe/*.suo
 /arma3/@task_force_radio/addons/DSSignFile.exe
 /arma3/@task_force_radio/keys/DSCreateKey.exe
 *.suo
-=======
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086

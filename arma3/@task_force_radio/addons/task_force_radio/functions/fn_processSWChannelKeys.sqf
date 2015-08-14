@@ -20,12 +20,7 @@ private ["_sw_channel_number", "_hintText", "_result"];
 _sw_channel_number = _this select 0;
 _result = false;
 
-<<<<<<< HEAD
 if ((call TFAR_fnc_haveSWRadio) and {alive TFAR_currentUnit}) then {
-=======
-if ((call TFAR_fnc_haveSWRadio) and {alive player}) then
-{
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	private "_radio";
 	_radio = call TFAR_fnc_activeSwRadio;
 	[_radio, _sw_channel_number] call TFAR_fnc_setSwChannel;

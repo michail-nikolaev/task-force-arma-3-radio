@@ -60,80 +60,50 @@ class Wheeled_Apc_F: Car_F
 class MRAP_01_base_F: Car_F
 {
 	tf_hasLRradio = 1;
-<<<<<<< HEAD
 	tf_isolatedAmount = 0.7;
-=======
-	tf_isolatedAmount = 0.51;
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 class MRAP_02_base_F: Car_F
 {
 	tf_hasLRradio = 1;
-<<<<<<< HEAD
 	tf_isolatedAmount = 0.7;
-=======
-	tf_isolatedAmount = 0.51;
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 class MRAP_03_base_F: Car_F
 {
 	tf_hasLRradio = 1;
-<<<<<<< HEAD
 	tf_isolatedAmount = 0.7;
-=======
-	tf_isolatedAmount = 0.51;
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 class Truck_F;
 class Truck_01_base_F:Truck_F
 {
 	tf_hasLRradio = 1;
-<<<<<<< HEAD
 	tf_isolatedAmount = 0.4;
-=======
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 class Truck_02_base_F:Truck_F
 {
 	tf_hasLRradio = 1;
-<<<<<<< HEAD
 	tf_isolatedAmount = 0.4;
-=======
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 class Truck_03_base_F: Truck_F
 {
 	tf_hasLRradio = 1;
-<<<<<<< HEAD
 	tf_isolatedAmount = 0.4;
-=======
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 class Offroad_01_base_f;
 class Offroad_01_armed_base_F:Offroad_01_base_f
 {
 	tf_hasLRradio = 1;
-<<<<<<< HEAD
 	tf_isolatedAmount = 0.25;
-=======
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 class Boat_F;
 class SDV_01_base_F: Boat_F
 {
 	tf_hasLRradio = 1;
-<<<<<<< HEAD
 	tf_isolatedAmount = 0.1;
-=======
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 class Boat_Armed_01_base_F:Boat_F
 {
 	tf_hasLRradio = 1;
-<<<<<<< HEAD
 	tf_isolatedAmount = 0.1;
-=======
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 class Boat_Civil_01_base_F;
 class C_Boat_Civil_01_police_F:Boat_Civil_01_base_F
@@ -151,10 +121,7 @@ class C_Boat_Civil_01_rescue_F:Boat_Civil_01_base_F
 class rc_hmmwv_base: Car_F
 {
 	tf_hasLRradio = 1;
-<<<<<<< HEAD
 	tf_isolatedAmount = 0.3;
-=======
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };
 
 class Plane;
@@ -208,7 +175,6 @@ class AH1_Base: Helicopter
 {
 	tf_hasLRradio = 1;
 	tf_isolatedAmount = 0.85;
-<<<<<<< HEAD
 };
 class B_MBT_01_cannon_F;
 // BWMOD
@@ -220,6 +186,4 @@ class O_APC_Tracked_02_cannon_F;
 class BWA3_Puma_Fleck: O_APC_Tracked_02_cannon_F
 {
 	tf_RadioType = "tf_mr3000_bwmod";
-=======
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 };

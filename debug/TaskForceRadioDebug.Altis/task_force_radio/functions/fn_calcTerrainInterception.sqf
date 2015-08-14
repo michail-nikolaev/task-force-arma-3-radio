@@ -19,11 +19,7 @@
 private ["_result", "_l", "_r", "_m", "_p1", "_p2", "_middle"];
 
 _result = 0;
-<<<<<<< HEAD
 _p1 = eyePos TFAR_currentUnit;
-=======
-_p1 = eyePos player;
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 _p2 = eyePos _this;
 
 if (terrainIntersectASL[_p1, _p2]) then {

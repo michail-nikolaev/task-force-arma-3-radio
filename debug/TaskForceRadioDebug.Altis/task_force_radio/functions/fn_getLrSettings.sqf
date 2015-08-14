@@ -59,13 +59,8 @@ if (_radio_object isKindOf "Bag_Base") then {
 
 if (isNil "_value") then {
 	if (!(TF_use_saved_lr_setting) or (isNil "TF_saved_active_lr_settings")) then {		
-<<<<<<< HEAD
 		if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType} or {getText(configFile >> "CfgVehicles" >> _radioType >> "tf_encryptionCode") == toLower (format ["tf_%1_radio_code",(TFAR_currentUnit call BIS_fnc_objectSide)])}) then {
 			_value = (group TFAR_currentUnit) getVariable "tf_lr_frequency";
-=======
-		if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType}) then {
-			_value = (group player) getVariable "tf_lr_frequency";
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 		};
 		if (isNil "_value") then {
 			_value = call TFAR_fnc_generateLrSettings;
@@ -76,7 +71,6 @@ if (isNil "_value") then {
 	if (TF_use_saved_lr_setting) then {
 		TF_use_saved_lr_setting = false;
 	};
-<<<<<<< HEAD
 	_rc = _value select TF_CODE_OFFSET;
 	if (isNil "_rc") then {
 		private ["_code", "_hasDefaultEncryption"];
@@ -97,29 +91,6 @@ if (isNil "_value") then {
 		
 		_value set [TF_CODE_OFFSET, _rc];		
 	};
-=======
-	[_radio_object, _radio_qualifier, + _value] call TFAR_fnc_setLrSettings;
-};
-_rc = _value select TF_CODE_OFFSET;
-if (isNil "_rc") then {
-	private ["_code", "_hasDefaultEncryption"];
-	_code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
-	_hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
-	if (_hasDefaultEncryption) then {
-		if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType}) then {
-			_rc = missionNamespace getVariable format ["tf_%1_radio_code",(player call BIS_fnc_objectSide)];
-		}else{
-			_rc = missionNamespace getVariable [_code, ""];
-		};
-	} else {
-		_rc = "";
-		if (_code != "") then {
-			_rc = missionNamespace getVariable [_code, ""];
-		};
-	};
-	
-	_value set [TF_CODE_OFFSET, _rc];
->>>>>>> 0a485c21ade41821aa82f1e93070454dd2f7f086
 	[_radio_object, _radio_qualifier, + _value] call TFAR_fnc_setLrSettings;
 };
 _value
