@@ -68,14 +68,11 @@ TF_Radio_Count = [];
 
 while {true} do {		
 	call TFAR_fnc_processGroupFrequencySettings;
-	_allUnits = allUnits;	
+	_allUnits = allPlayers;
+	_allUnits append (call BIS_fnc_listCuratorPlayers);
+
 	{
-		_allUnits pushBack _x;
-		true;
-	} count (call BIS_fnc_listCuratorPlayers);
-	
-	{
-		if (isPlayer _x) then {
+		if (alive _x) then {
 			_variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
 			_radio_request = missionNamespace getVariable (_variableName);
 			if !(isNil "_radio_request") then {
