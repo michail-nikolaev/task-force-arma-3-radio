@@ -54,6 +54,8 @@ void openPipe()
 
 void __stdcall RVExtension(char *output, int outputSize, const char *input)
 {
+	if(input[0] == '\0')
+		return;
 	DWORD written = 0;	
 	string answer;
 	
