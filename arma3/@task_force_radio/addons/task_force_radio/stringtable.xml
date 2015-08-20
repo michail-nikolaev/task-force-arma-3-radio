@@ -1434,7 +1434,7 @@
 					Seleccionar radio de largo alcance
 				</Spanish>
 				<German>
-					Langstreckenfungerät wählen
+					Langstreckenfunkgerät wählen
 				</German>
 				<Turkish>
 					Uzun menzilli radyo seç
@@ -1869,7 +1869,7 @@
 					Obteniendo una radio única del servidor...
 				</Spanish>
 				<German>
-					Warte auf einzigartiges Funkgerät vom Server...
+					Warte auf persönliches Funkgerät vom Server...
 				</German>
 				<Turkish>
 					Sunucu radyoyu kuruyor...
@@ -1986,10 +1986,26 @@
 &lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Transmitir por el canal adicional de la radio de largo alcance.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Para salir del interfaz de las radios.
 				</Spanish>
-				<German>
-&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk Taste im TeamSpeak&lt;/font&gt;	Direktes Sprechen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;Feststelltaste&lt;/font&gt;	Kurzstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + Feststelltaste&lt;/font&gt;	Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + P&lt;/font&gt;	Oberfläche des Kurzstreckenfunks öffnen. Das Funkgerät muss sich im Inventar befinden. Sollten mehrere Funkgerät im Inventar vorhanden sein, wird ein Auswahlmenü angezeigt. Es kann ein Funkgerät als aktiv gesetzt werden, welches dann zum Funken benutzt wird.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + SHIFT + A/D&lt;/font&gt; Kurzstreckenfunkgeräte durschalten.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellung für Kurzstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Kanalwahl für Kurzstreckenfunk.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Oberfläche des Langstreckenfunks öffnen. Sie müsssen sich in einem Fahrzeug befinden oder das Funkgerät als Rucksack einordnen.. Sollten mehrere Funkgerät ansteuerbar sein, wird ein Auswahlmenü angezeigt. Es kann lediglich ein Funkgerät gleichzeitig zum Funken verwendet werden.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + UMSCHALT + A/D&lt;/font&gt; Langstreckenfunkgeräte durchschalten.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellungen für Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + NUM[1-9]&lt;/font&gt;	Kanalauswahl für Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + TAB&lt;/font&gt;	Lautstärkenregelung für das Direkte Sprechen. Es ist möglich leise, normal oder laut sprechen (Unabhänig der Funklautstärke).&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Oberfläche des Unterwasser-Sendeempfängers öffnen(benötigt Kreislauftauchgerät).&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Auf Unterwasser-Sendeempfänger funken.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + ]&lt;/font&gt;	Nächstes Funkgerät wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + [&lt;/font&gt;	Vorheriges Funkgerät wählen.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + ]&lt;/font&gt;	Nächstes Langstreckenfunkgerät wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + [&lt;/font&gt;	Vorheriges Langstreckenfunkgerät wählen.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + [?,?,?]&lt;/font&gt;	Stereoeinstellungen für das Funkgerät ändern.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ALT + [?,?,?]&lt;/font&gt;	Stereoeinstellungen für das Langstreckenfunkgerät ändern.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Auf dem zusätzlichen Kanal des Funkgerätes senden.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Auf dem zusätzlichen Kanal des Langstreckenfunkgerätes senden.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Funkoberfläche verlassen.
+								<German>
+&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk Taste im TeamSpeak&lt;/font&gt;	Direktes Sprechen.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Feststelltaste&lt;/font&gt;	Kurzstreckenfunk.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + Feststelltaste&lt;/font&gt;	Langstreckenfunk.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + P&lt;/font&gt;	Oberfläche des Kurzstreckenfunks öffnen. Das Funkgerät muss sich im Inventar befinden. Sollten mehrere Funkgerät im Inventar vorhanden sein, wird ein Auswahlmenü angezeigt. Es kann ein Funkgerät als aktiv gesetzt werden, welches dann zum Funken benutzt wird.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + UMSCHALT + A/D&lt;/font&gt; Kurzstreckenfunkgeräte durschalten.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellung für Kurzstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Kanalwahl für Kurzstreckenfunk.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Oberfläche des Langstreckenfunks öffnen. Sie müsssen sich in einem Fahrzeug befinden oder das Funkgerät als Rucksack einordnen.. Sollten mehrere Funkgerät ansteuerbar sein, wird ein Auswahlmenü angezeigt. Es kann lediglich ein Funkgerät gleichzeitig zum Funken verwendet werden.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + UMSCHALT + A/D&lt;/font&gt; Langstreckenfunkgeräte durchschalten.&lt;br/&gt; &lt;font color=&quot;#67ED24&quot;&gt;ALT + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellungen für Langstreckenfunk.&lt;br/&gt;&lt;font color=&quot;#67ED24&quot;&gt;STRG + NUM[1-9]&lt;/font&gt;	Kanalauswahl für Langstreckenfunk.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + TAB&lt;/font&gt;	Lautstärkenregelung für das Direkte Sprechen. Es ist möglich leise, normal oder laut sprechen (Unabhänig der Funklautstärke).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;UMSCHALT + P&lt;/font&gt;	Oberfläche des Unterwasser-Sendeempfängers öffnen(benötigt Kreislauftauchgerät).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + ~&lt;/font&gt;	Auf Unterwasser-Sendeempfänger funken.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + ]&lt;/font&gt;	Nächstes Funkgerät wählen.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + [&lt;/font&gt;	Vorheriges Funkgerät wählen.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + ]&lt;/font&gt;	Nächstes Langstreckenfunkgerät wählen.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + [&lt;/font&gt;	Vorheriges Langstreckenfunkgerät wählen.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;STRG + [←,↑,→]&lt;/font&gt;	Stereoeinstellungen für das Funkgerät ändern.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Stereoeinstellungen für das Langstreckenfunkgerät ändern.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Auf dem zusätzlichen Kanal des Funkgerätes senden.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Auf dem zusätzlichen Kanal des Langstreckenfunkgerätes senden.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Funkoberfläche verlassen.
 				</German>
 				<Turkish>
 &lt;font color=&quot;#67ED24&quot;&gt;Bas konuş ayarı Teamspeak&lt;/font&gt;	Oyun içi Direct channeldan ses verir.&lt;br/&gt;
@@ -2112,7 +2128,9 @@ Estando bajo el agua, podrás escuchar débilmente voces sordas de tierra.lt;br/
 Usa un transceptor submarino para comunicarte con otros buceadores. Si deseas contactar con alguien que este en tierra, sube a la superficie. &lt;br/&gt;A excepción de los submarinos en profundidad de periscopio (los buceadores podrán utilizar la radio de largo alcance).
 				</Spanish>
 				<German>
-Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen. Auf nahe Distanz kann Ihr Partner allerdings undeutliche Töne wahrnehmen (Ausnahme: Sie befinden sich in einem Fahrzeug).&lt;br/&gt;Wenn Sie sich unter Wasser befinden, können Sie Unterhaltungen an Land gedämpft wahrnehmen.&lt;br/&gt;Nutzen Sie den Unterwasser-Transceiver, um sich mit anderen Tauchern zu unterhalten.&lt;br/&gt;Sie können normale Funkgeräte unter Wasser nicht nutzen (weder Senden noch Empfangen).&lt;br/&gt;Ausnahme: U-Boot auf Periskoptiefe. Hier kann der Langstreckenfunk verwendet werden.
+Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen. Auf nahe Distanz kann Ihr Partner allerdings undeutliche Töne wahrnehmen (Ausnahme: Sie befinden sich in einem Fahrzeug).&lt;br/&gt;
+Wenn Sie sich unter Wasser befinden, können Sie Unterhaltungen an Land gedämpft wahrnehmen.&lt;br/&gt;
+Nutzen Sie den Unterwasser-Transceiver, um sich mit anderen Tauchern zu unterhalten.&lt;br/&gt;Sie können normale Funkgeräte unter Wasser nicht nutzen (weder Senden noch Empfangen).&lt;br/&gt;Ausnahme: U-Boot auf Periskoptiefe. Hier kann der Langstreckenfunk verwendet werden.
 				</German>
 				<Turkish>
 Su altında konuşamazsınız (dalgıç kıyafeti giyseniz bile). Ancak, yakınında olduğunuz arkadaşınızın sesi belirsiz olarak duyulabilir (istisna - izole bir su altı aracında iseniz).&lt;br/&gt;
@@ -2192,7 +2210,9 @@ En los vehículos las opciones también son conservadas.&lt;br/&gt;
 Por defecto, las radios de cada facción usan sus propios códigos de encriptación, así que no podrás escuchar al enemigo comunicarse, incluso estando en la misma frecuencia que el enemigo. Para poder escuchar la red del enemigo (y también hablar), es necesario capturar una radio enemiga.
 				</Spanish>
 				<German>
-Funkgeräte können sowohl von getöteten Spielern aufgenommen, als auch untereinander ausgetauscht werden. Alle Einstellungen (Kanäle, Frequenzen, Lautstärke) bleiben dabei erhalten.&lt;br/&gt;In Fahrzeugen werden die Einstellungen ebenfalls gespeichert.&lt;/br&gt;Standardmäßig verwendet jede Fraktion ihren eigenen Verschlüsselungscode. Sie können also gegnerischen Sprechfunk selbst dann nicht aufnehmen, wenn Sie sich auf derselben Frequenz befinden. Um Sprechfunk abzuhören, muss ein feindliches Funkgerät in Ihren Besitz gelangen.
+Funkgeräte können sowohl von getöteten Spielern aufgenommen, als auch untereinander ausgetauscht werden. Alle Einstellungen (Kanäle, Frequenzen, Lautstärke) bleiben dabei erhalten.&lt;br/&gt;
+In Fahrzeugen werden die Einstellungen ebenfalls gespeichert.&lt;/br&gt;
+Standardmäßig verwendet jede Fraktion ihren eigenen Verschlüsselungscode. Sie können also gegnerischen Sprechfunk selbst dann nicht aufnehmen, wenn Sie sich auf derselben Frequenz befinden. Um Sprechfunk abzuhören, muss ein feindliches Funkgerät in Ihren Besitz gelangen.
 				</German>
 				<Turkish>
 Radyo ölü oyunculardan alınabilir, ve verebilirler. Böylece ayarları korunmuş olur (kanallar, frekans ve ses değeri).&lt;br/&gt;
@@ -2276,7 +2296,11 @@ Cada vehículo tiene su propia radio, que debe ser configurada independientement
 Los vehículos están clasificados en abiertos y cerrados (aislados). si estas dentro de un vehículo aislado, no escucharas voces de los ocupantes del vehículo fuera del mismo y viceversa.
 				</Spanish>
 				<German>
-In Fahrzeugen kann ein eingebautes Langstreckenfungerät jeweils vom Fahrer, Schützen, Kommandanten oder Piloten verwendet werden. Allerdings verfügen nicht alle Fahrzeuge über ein Fahrzeugfunkgerät.&lt;br/&gt;Es gibt geschlossene (isolierte) und offene Fahrzeuge. Sollten Sie sich in einem geschlossenen Fahrzeug befinden, sind Sie nicht in der Lage Stimmen von außen zu hören und vice versa. Sollten Sie sich allerdings Überluke befinden, können Sie Stimmen von außen und aus dem Innenraum des Fahrzeuges aufnehmen.
+In Fahrzeugen kann ein eingebautes Langstreckenfungerät jeweils vom Fahrer, Schützen, Kommandanten oder Piloten verwendet werden. Allerdings verfügen nicht alle Fahrzeuge über ein Fahrzeugfunkgerät.
+&lt;br/&gt;
+Jede Fahrzeugposition verfügt über ein eigenes Funkgerät, welches seperat konfiguriert werden muss. Falls du vorhast, die Fahrzeugposition zu wechseln, konfiguriere die Funkgeräte im Vorhinein (beispielweise auf der Fahrer- und Schützenposition).
+&lt;br/&gt;
+Es gibt geschlossene (isolierte) und offene Fahrzeuge. Sollten Sie sich in einem geschlossenen Fahrzeug befinden, sind Sie nicht in der Lage Stimmen von außen zu hören und vice versa. Sollten Sie sich allerdings Überluke befinden, können Sie Stimmen von außen und aus dem Innenraum des Fahrzeuges aufnehmen.
 				</German>
 				<Turkish>
 Araçta olan herkes uzun menzilli radyoyu kullanabilir. Her araçta radyo olmayabilir.
