@@ -25,8 +25,8 @@ private ["_source", "_destination", "_settings", "_isDLR", "_isSLR", "_support_a
 _source = _this select 0;
 _destination = _this select 1;
 
-_isDLR = if (typename _destination == typename []) then {true}else{false};
-_isSLR = if (typename _source == typename []) then {true}else{false};
+_isDLR = if ( _destination isEqualType  []) then {true}else{false};
+_isSLR = if ( _source isEqualType  []) then {true}else{false};
 
 if (_isSLR) then {
 	_settings = _source call TFAR_fnc_GetLRSettings;

@@ -24,7 +24,7 @@
 private ["_channelText", "_formatText"];
 _formatText = "C%1";
 
-if ((typename(_this) == typename ([])) and {count _this > 0} and  {typename (_this select 0) == (typename "")}) then {	
+if ((_this isEqualType []) and {count _this > 0} and  {(_this select 0) isEqualType ""}) then {	
 	_formatText = _this select 0;
 };
 

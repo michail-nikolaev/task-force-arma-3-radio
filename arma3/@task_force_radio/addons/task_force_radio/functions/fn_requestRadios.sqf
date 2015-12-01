@@ -58,7 +58,7 @@ if ((time - TF_last_request_time > 3) or {_this}) then {
 		_response = missionNamespace getVariable _responseVariableName;
 		private "_copyIndex";
 		_copyIndex = 0;
-		if ((typename _response) == "ARRAY") then {
+		if ( _response isEqualType []) then {
 			private ["_radioCount","_settingsCount", "_startIndex"];
 			_radioCount = count _response;
 			_settingsCount = count TF_SettingsToCopy;

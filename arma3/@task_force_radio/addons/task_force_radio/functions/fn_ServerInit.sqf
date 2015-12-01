@@ -83,7 +83,7 @@ while {true} do {
 				(owner (_x)) publicVariableClient (_variableName);
 				_responseVariableName = "radio_response_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
 				_response = [];
-				if (typename _radio_request == "ARRAY") then {
+				if (_radio_request isEqualType []) then {
 					{
 						private ["_radio", "_count"];
 						_radio = _x;

@@ -26,7 +26,7 @@ if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolu
 _lr_settings = [0, _volume, [], 0, nil, -1, 0, false];
 _set = false;
 _lr_frequencies = [];
-if (typename _this == "BOOLEAN") then {
+if (_this isEqualType true) then {
 	if (!_this) then {
 		for "_i" from 0 to TF_MAX_LR_CHANNELS step 1 do {
 			_lr_frequencies set [_i, "50"];

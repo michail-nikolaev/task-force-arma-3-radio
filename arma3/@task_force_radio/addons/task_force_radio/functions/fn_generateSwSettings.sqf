@@ -26,7 +26,7 @@ _sw_settings = [0, _volume, [], 0, nil, -1, 0, getPlayerUID player, false];
 _set = false;
 _sw_frequencies = [];
 
-if (typename _this == "BOOLEAN") then {
+if (_this isEqualType true) then {
 	if (!_this) then {
 		for "_i" from 0 to TF_MAX_CHANNELS step 1 do {
 			_sw_frequencies set [_i, "50"];

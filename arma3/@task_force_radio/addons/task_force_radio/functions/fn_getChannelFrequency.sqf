@@ -25,7 +25,7 @@ private ["_radio", "_channel", "_settings"];
 _radio = _this select 0;
 _channel = (_this select 1) - 1;
 
-if (typename _radio == "STRING") then {
+if (typename isEqualType "STRING") then {
 	_settings = _radio call TFAR_fnc_getSwSettings;
 } else {
 	_settings = _radio call TFAR_fnc_getLrSettings;

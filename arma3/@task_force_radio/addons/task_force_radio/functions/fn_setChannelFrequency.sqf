@@ -27,7 +27,7 @@ _radio = _this select 0;
 _channel = (_this select 1) - 1;
 _frequency = _this select 2;
 
-_lr = if (typename _radio == "STRING") then { false }else{true};
+_lr = if (_radio isEqualType "STRING") then { false }else{true};
 
 if (_lr) then {
 	_settings = _radio call TFAR_fnc_getLrSettings;

@@ -25,7 +25,7 @@
 private ["_hintText", "_radio", "_isLrRadio", "_name", "_picture", "_volume", "_speakers", "_imagesize"];
 _radio = _this select 0;
 _isDDRadio = [_this,1,false,[true]] call BIS_fnc_param;
-_isLrRadio = if (typename _radio == "STRING")then{false}else{true};
+_isLrRadio = if (_radio isEqualType "STRING")then{false}else{true};
 
 if !(_isDDRadio) then {
 	_name = if(_isLrRadio) then {getText (ConfigFile >> "CfgVehicles" >> typeof (_radio select 0) >> "displayName")} else {getText(configFile >> "CfgWeapons" >> _radio >> "displayName")};
