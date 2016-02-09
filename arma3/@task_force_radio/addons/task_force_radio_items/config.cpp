@@ -58,6 +58,12 @@ class CfgPatches
   };
 };
 
+class CfgCommands {
+ allowedHTMLLoadURIs[] += { 
+	"http://radio.task-force.ru/feed/index.php?language=*"
+ }; 
+};
+
 class RscStandardDisplay;
 class RscControlsGroupNoScrollbars;
 class RscHTML;
