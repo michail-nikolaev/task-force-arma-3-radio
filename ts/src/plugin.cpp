@@ -769,7 +769,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 		LeaveCriticalSection(&serverDataCriticalSection);
 
 		appendPlayback(id, serverConnectionHandlerID, input, samples, wave->_spec.channels);
-		delete input;
+		delete [] input;
 	}
 }
 
@@ -1315,12 +1315,12 @@ std::vector<anyID> getChannelClients(uint64 serverConnectionHandlerID, uint64 ch
 {
 	std::vector<anyID> result;
 	anyID* clients = NULL;
-	int i = 0;
-	anyID* clientsCopy = clients;
+	//int i = 0;
+	//anyID* clientsCopy = clients;
 	if (ts3Functions.getChannelClientList(serverConnectionHandlerID, channelId, &clients) == ERROR_ok)
 	{
 		int i = 0;
-		anyID* clientsCopy = clients;
+		//anyID* clientsCopy = clients;
 		while (clients[i])
 		{
 			result.push_back(clients[i]);
@@ -2739,10 +2739,10 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 					mix(samples, radio_buffer, sampleCount, channels);
 					
 
-					delete radio_buffer;
+					delete [] radio_buffer;
 				}
 
-				delete original_buffer;
+				delete [] original_buffer;
 
 				applyGain(samples, channels, sampleCount, globalGain);
 				LeaveCriticalSection(&serverDataCriticalSection);
@@ -2797,15 +2797,15 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 			samples[q * channels + g] = 0.0f; 
 	}
 
-	delete stereo;
+	delete [] stereo;
 }
 
 void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, int* edited) {
 	if (!inGame)
 		return;
-	if ((*edited & 2))
+	if (*edited & 2)
 	{
- 		anyID myId = getMyId(serverConnectionHandlerID);
+		anyID myId = getMyId(serverConnectionHandlerID);
 		EnterCriticalSection(&serverDataCriticalSection);
 				
 		bool alive = serverIdToData[serverConnectionHandlerID].alive;
@@ -2831,7 +2831,7 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 			ts3plugin_onEditPostProcessVoiceDataEventStereo(serverConnectionHandlerID, myId, voice, sampleCount, channels * m);
 			LeaveCriticalSection(&serverDataCriticalSection);			
 			appendPlayback("my_radio_voice", serverConnectionHandlerID, voice, sampleCount, channels * m);
-			delete voice;
+			delete [] voice;
 		} 
 		else 
 		{
