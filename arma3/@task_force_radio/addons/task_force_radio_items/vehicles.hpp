@@ -176,14 +176,3 @@ class AH1_Base: Helicopter
 	tf_hasLRradio = 1;
 	tf_isolatedAmount = 0.85;
 };
-class B_MBT_01_cannon_F;
-// BWMOD
-class BWA3_Leopard2A6M_Fleck: B_MBT_01_cannon_F
-{
-	tf_RadioType  = "tf_mr3000_bwmod";
-};
-class O_APC_Tracked_02_cannon_F;
-class BWA3_Puma_Fleck: O_APC_Tracked_02_cannon_F
-{
-	tf_RadioType = "tf_mr3000_bwmod";
-};
