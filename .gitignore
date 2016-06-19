@@ -55,3 +55,4 @@
 /arma3/@task_force_radio/task_force_radio_pipe/*.suo
 /arma3/@task_force_radio/addons/DSSignFile.exe
 /arma3/@task_force_radio/keys/DSCreateKey.exe
+*.suo
