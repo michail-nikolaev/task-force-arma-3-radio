@@ -6,8 +6,9 @@ class CfgPatches
 		weapons[] = {};
 		requiredVersion = 1.0;
 		requiredAddons[] = { "CBA_Main", "task_force_radio_items"};
-		author[] = {"[TF]Nkey"};
+		author = "[TF]Nkey";
 		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
+		url="https://github.com/michail-nikolaev/task-force-arma-3-radio";
 		version = 0.9.8;
 		versionStr = "0.9.8";
 		versionAr[] = {0,9,8};
