@@ -197,6 +197,7 @@
 * Разработчикам [RHS](http://www.rhsmods.org/) за помощь в интеграции.
 * [marc_book](https://github.com/MarcBook) за текстуры для BWMOD.
 * [Macusercom](https://github.com/Macusercom)
+* [Dedmen](https://github.com/dedmen) for improvements with the Teamspeak-Plugin and other help.
 * Всем, кто делал видео и статьи с обзорами.
 * Всем пользователям (особенно тем, что нашли баги).
 * Извините, если кого-то случайно забыл.
