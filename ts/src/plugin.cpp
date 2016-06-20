@@ -2152,6 +2152,8 @@ int ts3plugin_apiVersion() {
     		case 15 : return 20;
     		case 16 : return 20;
     		case 17 : return 20;
+    		case 18 : return 20;
+    		case 19 : return 20;
     		default : return PLUGIN_API_VERSION;
 	}
 }
