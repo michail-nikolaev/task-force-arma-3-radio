@@ -109,6 +109,17 @@ int versionNumber(std::string versionString)
 	return number;
 }
 
+inline float parseArmaNumber(std::string &armaNumber) 
+{
+	return std::atof(armaNumber.c_str());
+}
+
+inline int parseArmaNumberToInt(std::string &armaNumber)
+{
+	return (int)std::round(parseArmaNumber(armaNumber));
+}
+	
+
 std::string piwikUrl;
 DWORD WINAPI trackPiwikThread(LPVOID lpParam)
 {
@@ -1512,8 +1523,8 @@ std::map<std::string, FREQ_SETTINGS> parseFrequencies(std::string string) {
 		std::vector<std::string> parts = split(xs, '|');
 		if (parts.size() == 3) {
 			FREQ_SETTINGS settings;
-			settings.volume = std::atoi(parts[1].c_str());
-			settings.stereoMode = std::atoi(parts[2].c_str());
+			settings.volume = parseArmaNumberToInt(parts[1]);
+			settings.stereoMode = parseArmaNumberToInt(parts[2]);
 			result[parts[0]] = settings;
 		}
 	}
@@ -1738,7 +1749,7 @@ void processSpeakers(std::vector<std::string> tokens, uint64 currentServerConnec
 						data.pos.push_back((float)std::atof(c[q].c_str()));
 					
 				}
-				data.volume = std::atoi(parts[4].c_str());
+				data.volume = parseArmaNumberToInt(parts[4]);
 				data.vehicle = getVehicleDescriptor(parts[5]);
 				if (parts.size() > 6)
 					data.waveZ = (float)std::atof(parts[6].c_str());
@@ -1869,7 +1880,7 @@ std::string processGameCommand(std::string command)
 			serverIdToData[currentServerConnectionHandlerID].myLrFrequencies = parseFrequencies(tokens[2]);
 			serverIdToData[currentServerConnectionHandlerID].myDdFrequency = tokens[3];
 			serverIdToData[currentServerConnectionHandlerID].alive = tokens[4] == "true";
-			serverIdToData[currentServerConnectionHandlerID].myVoiceVolume = std::atoi(tokens[5].c_str());
+			serverIdToData[currentServerConnectionHandlerID].myVoiceVolume = parseArmaNumberToInt(tokens[5]);
 			serverIdToData[currentServerConnectionHandlerID].ddVolumeLevel = (int)std::atof(tokens[6].c_str());
 			serverIdToData[currentServerConnectionHandlerID].wavesLevel = (float)std::atof(tokens[8].c_str());
 			serverIdToData[currentServerConnectionHandlerID].terrainIntersectionCoefficient = (float)std::atof(tokens[9].c_str());
@@ -2941,7 +2952,7 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 	bool diverRadio = (tokens[0] == "TANGENT_DD");
 	bool shortRange = !longRange && !diverRadio;
 	std::string subtype = tokens[4];
-	int range = std::atoi(tokens[3].c_str());
+	int range = parseArmaNumberToInt(tokens[3]);
 	std::string nickname = tokens[5];
 	std::string frequency = tokens[2];
 
