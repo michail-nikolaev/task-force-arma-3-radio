@@ -2377,7 +2377,7 @@ void ts3plugin_freeMemory(void* data) {
  * This function is optional. If missing, no autoload is assumed.
  */
 int ts3plugin_requestAutoload() {
-	return 0;  /* 1 = request autoloaded, 0 = do not request autoload */
+	return 1;  /* 1 = request autoloaded, 0 = do not request autoload */
 }
 
 /************************** TeamSpeak callbacks ***************************/
