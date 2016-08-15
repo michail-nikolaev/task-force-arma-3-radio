@@ -27,9 +27,7 @@ if !(isNull (findDisplay 46)) then {
 				tf_nearPlayers = call TFAR_fnc_getNearPlayers;
 			};
 
-			_other_units = allUnits - allPlayers; // non player units
-			_other_units = _other_units + allPlayers; // add player units
-			_other_units = _other_units - tf_nearPlayers; // remove near players
+			_other_units = allUnits - tf_nearPlayers;
 			
 			tf_farPlayers = [];
 			tf_farPlayersIndex = 0;	
