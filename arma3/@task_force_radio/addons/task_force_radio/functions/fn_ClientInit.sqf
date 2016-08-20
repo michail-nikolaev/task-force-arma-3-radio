@@ -1,5 +1,8 @@
 //#define DEBUG_MODE_FULL
 
+// cba settings
+#include "cba_settings.sqf"
+
 if (isNil "tf_radio_channel_name") then {
 	tf_radio_channel_name = "TaskForceRadio";
 };
@@ -130,27 +133,6 @@ disableSerialization;
 #include "diary.sqf"
 
 waitUntil {sleep 0.2;time > 0};
-if (isNil "tf_no_auto_long_range_radio") then {
-	if (!isNil "tf_no_auto_long_range_radio_server") then {
-		tf_no_auto_long_range_radio = tf_no_auto_long_range_radio_server;
-	}else{
-		tf_no_auto_long_range_radio = true;
-	};
-};
-if (isNil "TF_give_personal_radio_to_regular_soldier") then {
-	if (!isNil "TF_give_personal_radio_to_regular_soldier_server") then {
-		TF_give_personal_radio_to_regular_soldier = TF_give_personal_radio_to_regular_soldier_server;
-	}else{
-		TF_give_personal_radio_to_regular_soldier = false;
-	};
-};
-if (isNil "TF_give_microdagr_to_soldier") then {
-	if (!isNil "TF_give_microdagr_to_soldier_server") then {
-		TF_give_microdagr_to_soldier = TF_give_microdagr_to_soldier_server;
-	}else{
-		TF_give_microdagr_to_soldier = true;
-	};
-};
 waitUntil {sleep 0.1;!(isNull player)};
 TFAR_currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_ShowHint;
