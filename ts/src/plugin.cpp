@@ -2207,7 +2207,7 @@ int ts3plugin_init() {
 #ifdef _WIN64
 	_set_FMA3_enable(0);
 #endif
-	ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE);
+	ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE,pluginID);
 
 	InitializeCriticalSection(&serverDataCriticalSection);
 	InitializeCriticalSection(&playbackCriticalSection);
