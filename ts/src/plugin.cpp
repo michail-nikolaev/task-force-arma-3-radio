@@ -2154,6 +2154,7 @@ int ts3plugin_apiVersion() {
     		case 17 : return 20;
     		case 18 : return 20;
     		case 19 : return 20;
+		case 20: return 21;//Teamspeak 3.1
     		default : return PLUGIN_API_VERSION;
 	}
 }
