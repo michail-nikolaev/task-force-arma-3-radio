@@ -2207,7 +2207,14 @@ int ts3plugin_init() {
 #ifdef _WIN64
 	_set_FMA3_enable(0);
 #endif
-	ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE,pluginID);
+	 if (ts3plugin_apiVersion() > 20) {
+		 ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE, pluginID);
+	 } else {	//Compatibility hack for API version < 21
+		 typedef  void(*getPluginPath_20)(char* path, size_t maxLen);
+		 static_cast<getPluginPath_20>(static_cast<void*>(ts3Functions.getPluginPath))(pluginPath, PATH_BUFSIZE); //This is ugly but keeps compatibility
+	 }
+
+	
 
 	InitializeCriticalSection(&serverDataCriticalSection);
 	InitializeCriticalSection(&playbackCriticalSection);
