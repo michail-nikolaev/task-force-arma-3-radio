@@ -2385,203 +2385,98 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Original>
 					Don't automatically give long range radio
 				</Original>
-				<Russian>
-					na
-				</Russian>
 				<French>
 					Ne pas automatiquement donner de radio longue portée
 				</French>
-				<Italian>
-					na
-				</Italian>
-				<Spanish>
-					na
-				</Spanish>
 				<German>
-					na
+					Langstrecken-Funkgeräte nicht automatisch vergeben
 				</German>
-				<Turkish>
-					na
-				</Turkish>
-				<Czech>
-					na
-				</Czech>
 				<Polish>
-					na
+					Nie przydzielaj automatycznie długiego radia
 				</Polish>
 			</Key>
 			<Key ID="STR_radio_give_personal_radio_to_regular_soldier">
 				<Original>
 					Give personal radio to regular soldier
 				</Original>
-				<Russian>
-					na
-				</Russian>
 				<French>
 					Donner une radio personnelle aux soldats de base
 				</French>
-				<Italian>
-					na
-				</Italian>
-				<Spanish>
-					na
-				</Spanish>
 				<German>
-					na
+					Persönliches Funkgerät an Soldaten vergeben
 				</German>
-				<Turkish>
-					na
-				</Turkish>
-				<Czech>
-					na
-				</Czech>
 				<Polish>
-					na
+					Przydziel PMR
 				</Polish>
 			</Key>
 			<Key ID="STR_radio_give_microdagr_to_soldier">
 				<Original>
 					Give MicroDAGR to soldier
 				</Original>
-				<Russian>
-					na
-				</Russian>
 				<French>
 					Donner un MicroDAGR aux soldats
 				</French>
-				<Italian>
-					na
-				</Italian>
-				<Spanish>
-					nas
-				</Spanish>
 				<German>
-					na
+					MicroDAGR an Soldaten vergeben
 				</German>
-				<Turkish>
-					na
-				</Turkish>
-				<Czech>
-					na
-				</Czech>
 				<Polish>
-					na
+					Przydziel MicroDAGR
 				</Polish>
 			</Key>
 			<Key ID="STR_radio_same_sw_frequencies_for_side">
 				<Original>
 					Same SW frequencies for side
 				</Original>
-				<Russian>
-					na
-				</Russian>
 				<French>
 					Mêmes fréquences SW pour l'équipe
 				</French>
-				<Italian>
-					na
-				</Italian>
-				<Spanish>
-					na
-				</Spanish>
 				<German>
-					na
+					Gleiche kurzstrecken-Frequenzen für unterschiedlichen Fraktionen
 				</German>
-				<Turkish>
-					na
-				</Turkish>
-				<Czech>
-					na
-				</Czech>
 				<Polish>
-					na
+					Takie same częstotliwości SW dla strony
 				</Polish>
 			</Key>
 			<Key ID="STR_radio_same_lr_frequencies_for_side">
 				<Original>
 					Same LR frequencies for side
 				</Original>
-				<Russian>
-					na
-				</Russian>
 				<French>
 					Mêmes fréquences LP pour l'équipe
 				</French>
-				<Italian>
-					na
-				</Italian>
-				<Spanish>
-					na
-				</Spanish>
 				<German>
-					na
+					Gleiche langstrecken-Frequenzen für unterschiedlichen Fraktionen
 				</German>
-				<Turkish>
-					na
-				</Turkish>
-				<Czech>
-					na
-				</Czech>
 				<Polish>
-					na
+					Takie same częstotliwości LR dla strony
 				</Polish>
 			</Key>
 			<Key ID="STR_radio_same_dd_frequencies_for_side">
 				<Original>
 					Same DD frequencies for side
 				</Original>
-				<Russian>
-					na
-				</Russian>
 				<French>
 					Mêmes fréquences DD pour l'équipe
 				</French>
-				<Italian>
-					na
-				</Italian>
-				<Spanish>
-					na
-				</Spanish>
 				<German>
-					na
+					Gleiche unterwasser-Frequenzen für unterschiedlichen Fraktionen
 				</German>
-				<Turkish>
-					na
-				</Turkish>
-				<Czech>
-					na
-				</Czech>
 				<Polish>
-					na
+					Takie same częstotliwości DD dla strony
 				</Polish>
 			</Key>
 			<Key ID="STR_radio_default_radioVolume">
 				<Original>
 					Default radio volume
 				</Original>
-				<Russian>
-					na
-				</Russian>
 				<French>
 					Volume par défaut de la radio
 				</French>
-				<Italian>
-					na
-				</Italian>
-				<Spanish>
-					na
-				</Spanish>
 				<German>
-					na
+					Standard Funklautstärke
 				</German>
-				<Turkish>
-					na
-				</Turkish>
-				<Czech>
-					na
-				</Czech>
 				<Polish>
-					na
+					Domyślna głośność radia
 				</Polish>
 			</Key>
 		</Container>
