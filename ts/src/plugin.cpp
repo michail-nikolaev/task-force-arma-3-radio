@@ -2142,20 +2142,20 @@ int ts3plugin_apiVersion() {
 	VerQueryValue(versionInfo, L"\\", (void**) &vsfi, &len);
 	short version = HIWORD(vsfi->dwFileVersionLS);
 	delete[] versionInfo;
-	switch(version){
-		case 9 : return 19;
-		case 10 : return 19;
-		case 11 : return 19;
-		case 12 : return 19;
-		case 13 : return 19;
-		case 14 : return 20;
-    		case 15 : return 20;
-    		case 16 : return 20;
-    		case 17 : return 20;
-    		case 18 : return 20;
-    		case 19 : return 20;
+	switch (version) {
+		case 9: return 19;
+		case 10: return 19;
+		case 11: return 19;
+		case 12: return 19;
+		case 13: return 19;
+		case 14: return 20;
+		case 15: return 20;
+		case 16: return 20;
+		case 17: return 20;
+		case 18: return 20;
+		case 19: return 20;
 		case 20: return 21;//Teamspeak 3.1
-    		default : return PLUGIN_API_VERSION;
+		default: return PLUGIN_API_VERSION;
 	}
 }
 
