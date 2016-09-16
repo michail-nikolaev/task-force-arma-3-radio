@@ -26,7 +26,7 @@ publicVariable "TF_server_addon_version";
 if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_no_auto_long_range_radio")) then {
 	tf_no_auto_long_range_radio_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_no_auto_long_range_radio") == 1;
 } else {
-	tf_no_auto_long_range_radio_server = false;
+	tf_no_auto_long_range_radio_server = true;
 };
 publicVariable "tf_no_auto_long_range_radio_server";
 if (isNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_personal_radio_to_regular_soldier")) then {
