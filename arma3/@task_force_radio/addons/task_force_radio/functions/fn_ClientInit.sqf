@@ -111,9 +111,9 @@ disableSerialization;
 ["TFAR","SWStereoRight",["SW Stereo: Right","SW Stereo: Right"],{[2] call TFAR_fnc_processSWStereoKeys},{true},[TF_sw_stereo_right_scancode,TF_sw_stereo_right_modifiers],false] call cba_fnc_addKeybind;
 
 
-["TFAR","LRStereoBoth",	["SW Stereo: Both","SW Stereo: Both"],{[0] call TFAR_fnc_processLRStereoKeys},	{true},[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRStereoLeft",	["SW Stereo: Left","SW Stereo: Left"],{[1] call TFAR_fnc_processLRStereoKeys},	{true},[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRStereoRight",["SW Stereo: Right","SW Stereo: Right"],{[2] call TFAR_fnc_processLRStereoKeys},{true},[TF_lr_stereo_right_scancode,TF_lr_stereo_right_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRStereoBoth",	["LR Stereo: Both","LR Stereo: Both"],{[0] call TFAR_fnc_processLRStereoKeys},	{true},[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRStereoLeft",	["LR Stereo: Left","LR Stereo: Left"],{[1] call TFAR_fnc_processLRStereoKeys},	{true},[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRStereoRight",	["LR Stereo: Right","LR Stereo: Right"],{[2] call TFAR_fnc_processLRStereoKeys},{true},[TF_lr_stereo_right_scancode,TF_lr_stereo_right_modifiers],false] call cba_fnc_addKeybind;
 
 		
 ["TFAR","SWTransmit",["SW Transmit","SW Transmit"],{call TFAR_fnc_onSwTangentPressed},{call TFAR_fnc_onSwTangentReleased},[TF_tangent_sw_scancode, TF_tangent_sw_modifiers],false] call cba_fnc_addKeybind;
