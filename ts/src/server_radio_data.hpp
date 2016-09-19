@@ -1,5 +1,7 @@
 #pragma once
 #include "client_data.hpp"
+#include <Windows.h>
+extern CRITICAL_SECTION serverDataCriticalSection;
 struct FREQ_SETTINGS {
 	int volume;
 	int stereoMode;
@@ -14,18 +16,36 @@ struct SPEAKER_DATA {
 	float waveZ;
 };
 
-struct SERVER_RADIO_DATA
-{
+struct SERVER_RADIO_DATA {
 	std::string getMyNickname() const { return myNickname; }
-	void setMyNickname(std::string val) { myNickname = CLIENT_DATA::convertNickname(val); }
+	void setMyNickname(std::string val) {
+		EnterCriticalSection(&serverDataCriticalSection);
+		myNickname = CLIENT_DATA::convertNickname(val);
+		LeaveCriticalSection(&serverDataCriticalSection);
+	}
+
+
+
+
+
+
+	void setFreqInfos(const std::vector<std::string>& tokens);
+
+
 	std::string myOriginalNickname;
+	std::string getMyOriginalNickname() const { return myOriginalNickname; }
+	void setMyOriginalNickname(std::string val) {
+		EnterCriticalSection(&serverDataCriticalSection);
+		myOriginalNickname = val;
+		LeaveCriticalSection(&serverDataCriticalSection);
+	}
 	bool tangentPressed;
 	TS3_VECTOR myPosition;
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
 
 	std::map<std::string, FREQ_SETTINGS> mySwFrequencies;
 	std::map<std::string, FREQ_SETTINGS> myLrFrequencies;
-	
+
 	std::string myDdFrequency;
 	std::multimap<std::string, SPEAKER_DATA> speakers;
 	std::map<std::string, clunk::WavFile*> waves;
@@ -34,11 +54,11 @@ struct SERVER_RADIO_DATA
 	int myVoiceVolume;
 	bool alive;
 	bool canSpeak;
-	float wavesLevel;
-	float terrainIntersectionCoefficient;
-	float globalVolume;	
-	float receivingDistanceMultiplicator;
-	float speakerDistance;
+	double wavesLevel;
+	double terrainIntersectionCoefficient;
+	double globalVolume;
+	double receivingDistanceMultiplicator;
+	double speakerDistance;
 
 	std::string serious_mod_channel_name;
 	std::string serious_mod_channel_password;
@@ -46,8 +66,7 @@ struct SERVER_RADIO_DATA
 
 	int currentDataFrame;
 
-	SERVER_RADIO_DATA()
-	{
+	SERVER_RADIO_DATA() {
 		tangentPressed = false;
 		currentDataFrame = INVALID_DATA_FRAME;
 		terrainIntersectionCoefficient = 7.0f;
@@ -57,5 +76,7 @@ struct SERVER_RADIO_DATA
 private:
 	std::string myNickname;
 };
+
+
 typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
 

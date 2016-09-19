@@ -39,4 +39,13 @@ static float* floatsSample[MAX_CHANNELS];
 #define START_DATA "<TFAR>"
 #define END_DATA "</TFAR>"
 
+#ifdef _WIN32
+#define _strcpy(dest, destSize, src) strcpy_s(dest, destSize, src)
+#define snprintf sprintf_s
+#else
+#define _strcpy(dest, destSize, src) { strncpy(dest, src, destSize-1); (dest)[destSize-1] = '\0'; }
+#endif
+
+#define INFODATA_BUFSIZE 512
 extern void log_string(std::string message, LogLevel level = LogLevel_DEVEL);
+extern void log(const char* message, LogLevel level = LogLevel_DEVEL);
