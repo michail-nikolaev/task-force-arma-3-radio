@@ -66,7 +66,7 @@ float distance(TS3_VECTOR from, TS3_VECTOR to)
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-#define PLUGIN_VERSION "0.9.8"
+#define PLUGIN_VERSION "1.0"
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 
@@ -406,6 +406,19 @@ struct SERVER_RADIO_DATA
 	bool tangentPressed;
 	TS3_VECTOR myPosition;
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
+	static std::string convertNickname(std::string const& nickname) {
+		if (nickname.front() == ' ' || nickname.back() == ' ') {
+			std::string newName(nickname);
+			if (nickname.front() == ' ') {
+				newName.replace(0, nickname.find_first_not_of(' '), nickname.find_first_not_of(' '), '.');
+			}
+			if (nickname.back() == ' ') {
+				newName.replace(nickname.find_last_not_of(' ') + 1, newName.length() - nickname.find_last_not_of(' ') - 1, newName.length() - nickname.find_last_not_of(' ') - 1, '.');
+			}
+			return newName;
+		}
+		return nickname;
+	}
 	std::map<std::string, FREQ_SETTINGS> mySwFrequencies;
 	std::map<std::string, FREQ_SETTINGS> myLrFrequencies;
 	
@@ -848,10 +861,10 @@ void hlp_disableVad()
 anyID getClientId(uint64 serverConnectionHandlerID, std::string nickname)
 {
 	anyID clienId = -1;
-	EnterCriticalSection(&serverDataCriticalSection);
-	if (serverIdToData.count(serverConnectionHandlerID) && serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(nickname) && serverIdToData[serverConnectionHandlerID].nicknameToClientData[nickname])
+	EnterCriticalSection(&serverDataCriticalSection);		
+	if (serverIdToData.count(serverConnectionHandlerID) && serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(nickname)) && serverIdToData[serverConnectionHandlerID].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)])
 	{
-		clienId = serverIdToData[serverConnectionHandlerID].nicknameToClientData[nickname]->clientId;
+		clienId = serverIdToData[serverConnectionHandlerID].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)]->clientId;
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
 	return clienId;
@@ -1134,9 +1147,9 @@ std::vector<LISTED_INFO> isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DA
 					else
 					{
 						int currentDataFrame = serverIdToData[serverConnectionHandlerID].currentDataFrame;
-						if (serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(speaker.nickname))
+						if (serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(speaker.nickname)))
 						{							
-							CLIENT_DATA* clientData = serverIdToData[serverConnectionHandlerID].nicknameToClientData[speaker.nickname];
+							CLIENT_DATA* clientData = serverIdToData[serverConnectionHandlerID].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(speaker.nickname)];
 							if (abs(currentDataFrame - clientData->dataFrame) <= 1)
 							{
 								info.pos = clientData->clientPosition;
@@ -1493,11 +1506,11 @@ void updateNicknamesList(uint64 serverConnectionHandlerID) {
 			if (serverIdToData.count(serverConnectionHandlerID))
 			{
 				std::string clientNickname(name);
-				if (!serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(clientNickname))
+				if (!serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(clientNickname)))
 				{
-					serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname] = new CLIENT_DATA();
+					serverIdToData[serverConnectionHandlerID].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(clientNickname)] = new CLIENT_DATA();
 				}
-				CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname];
+				CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(clientNickname)];
 				data->clientId = clientId;
 			}
 			LeaveCriticalSection(&serverDataCriticalSection);
@@ -1564,9 +1577,9 @@ void processUnitKilled(std::string &name, uint64 &serverConnection)
 	EnterCriticalSection(&serverDataCriticalSection);
 	if (serverIdToData.count(serverConnection))
 	{
-		if (serverIdToData[serverConnection].nicknameToClientData.count(name))
+		if (serverIdToData[serverConnection].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(name)))
 		{
-			CLIENT_DATA* clientData = serverIdToData[serverConnection].nicknameToClientData[name];
+			CLIENT_DATA* clientData = serverIdToData[serverConnection].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(name)];
 			if (clientData)
 			{
 				clientData->dataFrame = INVALID_DATA_FRAME;
@@ -1592,8 +1605,8 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 		if (nickname == serverIdToData[serverConnection].myNickname)
 		{			
 			CLIENT_DATA* clientData = NULL;
-			if (serverIdToData[serverConnection].nicknameToClientData.count(nickname))
-				clientData = serverIdToData[serverConnection].nicknameToClientData[nickname];
+			if (serverIdToData[serverConnection].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(nickname)))
+				clientData = serverIdToData[serverConnection].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)];
 
 			if (clientData)
 			{
@@ -1624,15 +1637,15 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 		}
 		else
 		{
-			if (!serverIdToData[serverConnection].nicknameToClientData.count(nickname))
+			if (!serverIdToData[serverConnection].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(nickname)))
 			{
 				LeaveCriticalSection(&serverDataCriticalSection);
 				if (isConnected(serverConnection)) updateNicknamesList(serverConnection);
 				EnterCriticalSection(&serverDataCriticalSection);
 			}
-			if (serverIdToData[serverConnection].nicknameToClientData.count(nickname))
+			if (serverIdToData[serverConnection].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(nickname)))
 			{
-				CLIENT_DATA* clientData = serverIdToData[serverConnection].nicknameToClientData[nickname];
+				CLIENT_DATA* clientData = serverIdToData[serverConnection].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)];
 				if (clientData)
 				{
 					playerId = clientData->clientId;
@@ -1649,9 +1662,9 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 					clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;					
 				}
 			}
-			if (serverIdToData[serverConnection].nicknameToClientData.count(serverIdToData[serverConnection].myNickname))
+			if (serverIdToData[serverConnection].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(serverIdToData[serverConnection].myNickname)))
 			{
-				CLIENT_DATA* myData = serverIdToData[serverConnection].nicknameToClientData[serverIdToData[serverConnection].myNickname];
+				CLIENT_DATA* myData = serverIdToData[serverConnection].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(serverIdToData[serverConnection].myNickname)];
 				myData->viewAngle = currentUnitDrection;
 			}
 			LeaveCriticalSection(&serverDataCriticalSection);
@@ -1822,9 +1835,9 @@ std::string processGameCommand(std::string command)
 		{
 			changed = (serverIdToData[currentServerConnectionHandlerID].tangentPressed != pressed);
 			serverIdToData[currentServerConnectionHandlerID].tangentPressed = pressed;
-			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(serverIdToData[currentServerConnectionHandlerID].myNickname))
+			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(serverIdToData[currentServerConnectionHandlerID].myNickname)))
 			{
-				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[serverIdToData[currentServerConnectionHandlerID].myNickname];
+				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(serverIdToData[currentServerConnectionHandlerID].myNickname)];
 				if (longRange) clientData->canUseLRRadio = true;
 				else if (diverRadio) clientData->canUseDDRadio = true;
 				else clientData->canUseSWRadio = true;
@@ -1914,8 +1927,8 @@ std::string processGameCommand(std::string command)
 		bool clientTalkingOnRadio = false;
 		if (serverIdToData.count(currentServerConnectionHandlerID))
 		{
-			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname)) {
-				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(nickname))) {
+				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)];
 				if (clientData)
 				{
 					playerId = clientData->clientId;
@@ -2933,9 +2946,9 @@ void processAllTangentRelease(uint64 serverId, std::vector<std::string> &tokens)
 {
 	std::string nickname = tokens[1];
 	EnterCriticalSection(&serverDataCriticalSection);
-	if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(nickname))
+	if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(nickname)))
 	{
-		CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[nickname];
+		CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)];
 		if (clientData)
 		{
 			clientData->tangentOverType = LISTEN_TO_NONE;
@@ -2962,9 +2975,9 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 	EnterCriticalSection(&serverDataCriticalSection);
 	bool alive = serverIdToData[serverId].alive;
 
-	if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(nickname))
+	if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(nickname)))
 	{
-		CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[nickname];
+		CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)];
 		if (clientData)
 		{
 			clientData->positionTime = time;
@@ -3080,16 +3093,17 @@ void processPluginCommand(std::string command)
 		std::string volume = tokens[2];
 		bool start = isTrue(tokens[3]);
 		bool myCommand = (nickname == serverIdToData[serverId].myNickname);
-		if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(nickname) && serverIdToData[serverId].nicknameToClientData[nickname])
+		if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(SERVER_RADIO_DATA::convertNickname(nickname)) && serverIdToData[serverId].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)])
 		{
-			serverIdToData[serverId].nicknameToClientData[nickname]->voiceVolume = std::stoi(volume.c_str());
-			serverIdToData[serverId].nicknameToClientData[nickname]->pluginEnabled = true;
-			serverIdToData[serverId].nicknameToClientData[nickname]->pluginEnabledCheck = currentTime;
-			serverIdToData[serverId].nicknameToClientData[nickname]->clientTalkingNow = start;
+			//#TODO only get iterator once
+			serverIdToData[serverId].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)]->voiceVolume = std::stoi(volume.c_str());
+			serverIdToData[serverId].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)]->pluginEnabled = true;
+			serverIdToData[serverId].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)]->pluginEnabledCheck = currentTime;
+			serverIdToData[serverId].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)]->clientTalkingNow = start;
 			LeaveCriticalSection(&serverDataCriticalSection);
-			if (!myCommand && hasClientData(serverId, serverIdToData[serverId].nicknameToClientData[nickname]->clientId))
+			if (!myCommand && hasClientData(serverId, serverIdToData[serverId].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)]->clientId))
 			{
-				setGameClientMuteStatus(serverId, serverIdToData[serverId].nicknameToClientData[nickname]->clientId);
+				setGameClientMuteStatus(serverId, serverIdToData[serverId].nicknameToClientData[SERVER_RADIO_DATA::convertNickname(nickname)]->clientId);
 			}
 			EnterCriticalSection(&serverDataCriticalSection);
 		}
