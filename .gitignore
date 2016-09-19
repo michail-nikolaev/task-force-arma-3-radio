@@ -56,3 +56,4 @@
 /arma3/@task_force_radio/addons/DSSignFile.exe
 /arma3/@task_force_radio/keys/DSCreateKey.exe
 *.suo
+ts/src/task_force_radio_plugin.VC.opendb
