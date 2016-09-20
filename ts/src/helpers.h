@@ -13,7 +13,7 @@ public:
 	static void applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle);
 	static float sq(float x);
 	static float distance(TS3_VECTOR from, TS3_VECTOR to) ;
-	static double parseArmaNumber(const std::string& armaNumber);
+	static float parseArmaNumber(const std::string& armaNumber);
 	static int parseArmaNumberToInt(const std::string& armaNumber);
 	static bool startsWith(const std::string& shouldStartWith, const std::string& startIn);
 	static std::vector<std::string>& split(const std::string& s, char delim, std::vector<std::string>& elems);

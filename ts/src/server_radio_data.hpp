@@ -61,11 +61,11 @@ struct SERVER_RADIO_DATA {
 	int myVoiceVolume;
 	bool alive;
 	bool canSpeak;
-	double wavesLevel;
-	double terrainIntersectionCoefficient;
-	double globalVolume;
-	double receivingDistanceMultiplicator;
-	double speakerDistance;
+	float wavesLevel;
+	float terrainIntersectionCoefficient;
+	float globalVolume;
+	float receivingDistanceMultiplicator;
+	float speakerDistance;
 
 	std::string serious_mod_channel_name;
 	std::string serious_mod_channel_password;
