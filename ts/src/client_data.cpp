@@ -5,7 +5,7 @@ std::map<std::string, CLIENT_DATA*>::iterator STRING_TO_CLIENT_DATA_MAP::end() {
 	return data.end();
 }
 
-uint32_t STRING_TO_CLIENT_DATA_MAP::count(std::string const& key) const {
+size_t STRING_TO_CLIENT_DATA_MAP::count(std::string const& key) const {
 	return data.count(CLIENT_DATA::convertNickname(key));
 }
 

@@ -92,8 +92,8 @@ void Context::process(void *stream, size_t size) {
 	for(objects_type::iterator i = objects.begin(); i != objects.end(); ) {
 		Object *o = *i;
 		//bool _process_object(Object *o, Sources &sset, std::vector<source_t> &lsources, unsigned max_sources, const DistanceModel &distance_model, Object *listener, unsigned n) {
-		bool ok_1 = process_object<Object::NamedSources>(o, o->named_sources, lsources, n),
-			ok_2 = process_object<Object::IndexedSources>(o, o->indexed_sources, lsources, n);
+		bool ok_1 = process_object<Object::NamedSources>(o, o->named_sources, lsources, static_cast<unsigned int>(n)),
+			ok_2 = process_object<Object::IndexedSources>(o, o->indexed_sources, lsources, static_cast<unsigned int>(n));
 		if (ok_1 || ok_2) 
 			++i;
 		else {
@@ -109,7 +109,7 @@ void Context::process(void *stream, size_t size) {
 		stream_info &stream_info = i->second;
 		while (stream_info.buffer.get_size() < size) {
 			clunk::Buffer data;
-			bool eos = !stream_info.stream->read(data, size);
+			bool eos = !stream_info.stream->read(data, static_cast<unsigned int>(size));
 			if (!data.empty() && stream_info.stream->_spec.sample_rate != _spec.sample_rate) {
 				Resample::resample(_spec, data, stream_info.stream->_spec, data);
 			}

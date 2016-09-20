@@ -113,7 +113,7 @@ namespace clunk {
 				if (dst_size == 0)
 					return;
 
-				int error = dst_size / 2;
+				size_t error = dst_size / 2;
 				for(size_t i = 0; i < dst_size; ++i) {
 					ChannelResampler::resample(dst, src);
 					error -= src_size;
