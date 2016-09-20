@@ -79,7 +79,6 @@ struct SERVER_RADIO_DATA {
 		terrainIntersectionCoefficient = 7.0f;
 		globalVolume = receivingDistanceMultiplicator = 1.0f;
 		speakerDistance = 20.0f;
-		InitializeCriticalSection(&mutedClientsCriticalSection);
 	}
 private:
 	std::string myNickname;

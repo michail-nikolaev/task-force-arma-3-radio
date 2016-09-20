@@ -23,7 +23,8 @@
 #include <clunk/logger.h>
 #include <clunk/resample.h>
 #include <stdexcept>
-
+#pragma warning( push )
+#pragma warning( disable : 4101 ) // unreferenced local variable
 using namespace clunk;
 
 Sample::Sample(Context *context) : gain(1.0f), pitch(1.0f), _context(context) {}
@@ -63,3 +64,4 @@ void Sample::init(const clunk::Buffer &src_data, const AudioSpec &spec) {
 }
 
 Sample::~Sample() { }
+#pragma warning( pop )

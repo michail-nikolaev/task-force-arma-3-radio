@@ -15,10 +15,10 @@ void helpers::applyGain(short * samples, int channels, int sampleCount, float di
 void helpers::applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle)
 {
 	if (channels == 2) {
-		viewAngle = viewAngle * M_PI / 180.0f;
+		viewAngle = viewAngle * static_cast<float>((M_PI)) / 180.0f;
 		float dir = atan2(position.y, position.x) + viewAngle;
-		while (dir > M_PI) {
-			dir = dir - 2 * M_PI;
+		while (dir >  static_cast<float>((M_PI))) {
+			dir = dir - 2 * static_cast<float>((M_PI));
 		}
 
 		float gainLeft = 1.0;
@@ -29,9 +29,9 @@ void helpers::applyILD(short * samples, int channels, int sampleCount, TS3_VECTO
 
 		for (int i = 0; i < sampleCount * channels; i++) {
 			if (i % 2 == 0) {
-				samples[i] = (short) (samples[i] * gainLeft);
+				samples[i] = static_cast<short>(samples[i] * gainLeft);
 			} else {
-				samples[i] = (short) (samples[i] * gainRight);
+				samples[i] = static_cast<short>(samples[i] * gainRight);
 			}
 		}
 	}
@@ -107,7 +107,7 @@ std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(std::string strin
 	std::map<std::string, FREQ_SETTINGS> result;
 	std::string sub = string.substr(1, string.length() - 2);
 	std::vector<std::string> v = split(sub, ',');
-	for (auto i = v.begin(); i != v.end(); i++) {
+	for (auto i = v.begin(); i != v.end(); i++) { //#FOREACH
 		std::string xs = *i;
 		xs = xs.substr(1, xs.length() - 2);
 		std::vector<std::string> parts = split(xs, '|');
