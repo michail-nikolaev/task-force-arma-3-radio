@@ -267,7 +267,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 
 	if (wave) {
 		short* data = static_cast<short*>(wave->_data.get_ptr());
-		int samples = (wave->_data.get_size() / sizeof(short)) / wave->_spec.channels;
+		int samples = static_cast<int>((wave->_data.get_size() / sizeof(short)) / wave->_spec.channels);
 		short* input = new short[samples * wave->_spec.channels];
 
 		memcpy(input, data, wave->_data.get_size());

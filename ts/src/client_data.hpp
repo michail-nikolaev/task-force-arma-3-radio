@@ -215,7 +215,7 @@ public:
 	STRING_TO_CLIENT_DATA_MAP() {};//#TODO delete content of data
 	std::map<std::string, CLIENT_DATA*>::iterator begin();
 	std::map<std::string, CLIENT_DATA*>::iterator end();
-	uint32_t count(std::string const& key) const;
+	size_t count(std::string const& key) const;
 	CLIENT_DATA*& operator[](std::string const& key);
 	void removeExpiredPositions(const int &curDataFrame);
 private:
