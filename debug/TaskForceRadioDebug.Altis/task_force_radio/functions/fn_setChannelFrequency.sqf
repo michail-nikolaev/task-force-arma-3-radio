@@ -26,7 +26,7 @@ private ["_settings", "_lr"];
 params ["_radio", "_channel", "_frequency"];
 _channel = _channel - 1;
 
-_lr = if (typename _radio == "STRING") then { false }else{true};
+_lr = if (_radio isEqualType "") then { false }else{true};
 
 if (_lr) then {
 	_settings = _radio call TFAR_fnc_getLrSettings;

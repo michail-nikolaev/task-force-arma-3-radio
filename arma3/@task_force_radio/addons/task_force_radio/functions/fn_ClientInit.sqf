@@ -1,5 +1,8 @@
 //#define DEBUG_MODE_FULL
 
+// cba settings
+#include "cba_settings.sqf"
+
 if (isNil "tf_radio_channel_name") then {
 	tf_radio_channel_name = "TaskForceRadio";
 };
@@ -111,9 +114,9 @@ disableSerialization;
 ["TFAR","SWStereoRight",["SW Stereo: Right","SW Stereo: Right"],{[2] call TFAR_fnc_processSWStereoKeys},{true},[TF_sw_stereo_right_scancode,TF_sw_stereo_right_modifiers],false] call cba_fnc_addKeybind;
 
 
-["TFAR","LRStereoBoth",	["SW Stereo: Both","SW Stereo: Both"],{[0] call TFAR_fnc_processLRStereoKeys},	{true},[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRStereoLeft",	["SW Stereo: Left","SW Stereo: Left"],{[1] call TFAR_fnc_processLRStereoKeys},	{true},[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRStereoRight",["SW Stereo: Right","SW Stereo: Right"],{[2] call TFAR_fnc_processLRStereoKeys},{true},[TF_lr_stereo_right_scancode,TF_lr_stereo_right_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRStereoBoth",	["LR Stereo: Both","LR Stereo: Both"],{[0] call TFAR_fnc_processLRStereoKeys},	{true},[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRStereoLeft",	["LR Stereo: Left","LR Stereo: Left"],{[1] call TFAR_fnc_processLRStereoKeys},	{true},[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRStereoRight",	["LR Stereo: Right","LR Stereo: Right"],{[2] call TFAR_fnc_processLRStereoKeys},{true},[TF_lr_stereo_right_scancode,TF_lr_stereo_right_modifiers],false] call cba_fnc_addKeybind;
 
 		
 ["TFAR","SWTransmit",["SW Transmit","SW Transmit"],{call TFAR_fnc_onSwTangentPressed},{call TFAR_fnc_onSwTangentReleased},[TF_tangent_sw_scancode, TF_tangent_sw_modifiers],false] call cba_fnc_addKeybind;
@@ -130,27 +133,6 @@ disableSerialization;
 #include "diary.sqf"
 
 waitUntil {sleep 0.2;time > 0};
-if (isNil "tf_no_auto_long_range_radio") then {
-	if (!isNil "tf_no_auto_long_range_radio_server") then {
-		tf_no_auto_long_range_radio = tf_no_auto_long_range_radio_server;
-	}else{
-		tf_no_auto_long_range_radio = true;
-	};
-};
-if (isNil "TF_give_personal_radio_to_regular_soldier") then {
-	if (!isNil "TF_give_personal_radio_to_regular_soldier_server") then {
-		TF_give_personal_radio_to_regular_soldier = TF_give_personal_radio_to_regular_soldier_server;
-	}else{
-		TF_give_personal_radio_to_regular_soldier = false;
-	};
-};
-if (isNil "TF_give_microdagr_to_soldier") then {
-	if (!isNil "TF_give_microdagr_to_soldier_server") then {
-		TF_give_microdagr_to_soldier = TF_give_microdagr_to_soldier_server;
-	}else{
-		TF_give_microdagr_to_soldier = true;
-	};
-};
 waitUntil {sleep 0.1;!(isNull player)};
 TFAR_currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_ShowHint;

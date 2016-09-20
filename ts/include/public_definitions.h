@@ -1,6 +1,8 @@
 #ifndef PUBLIC_DEFINITIONS_H
 #define PUBLIC_DEFINITIONS_H
 
+#include "teamlog/logtypes.h"
+
 //limited length, measured in characters
 #define TS3_MAX_SIZE_CHANNEL_NAME 40
 #define TS3_MAX_SIZE_VIRTUALSERVER_NAME 64
@@ -222,24 +224,6 @@ enum ConnectionProperties {
 	CONNECTION_ENDMARKER,
 };
 
-enum LogTypes {
-	LogType_NONE          = 0x0000,
-	LogType_FILE          = 0x0001,
-	LogType_CONSOLE       = 0x0002,
-	LogType_USERLOGGING   = 0x0004,
-	LogType_NO_NETLOGGING = 0x0008,
-	LogType_DATABASE      = 0x0010,
-};
-
-enum LogLevel {
-	LogLevel_CRITICAL = 0, //these messages stop the program
-	LogLevel_ERROR,        //everything that is really bad, but not so bad we need to shut down
-	LogLevel_WARNING,      //everything that *might* be bad
-	LogLevel_DEBUG,        //output that might help find a problem
-	LogLevel_INFO,         //informational output, like "starting database version x.y.z"
-	LogLevel_DEVEL         //developer only output (will not be displayed in release mode)
-};
-
 typedef struct {
     float x;        /* X co-ordinate in 3D space. */
     float y;        /* Y co-ordinate in 3D space. */
@@ -290,7 +274,8 @@ enum ClientCommand{
 	CLIENT_COMMAND_requestChannelXXSubscribeXXX =  9,
 	CLIENT_COMMAND_requestServerConnectionInfo  = 10,
 	CLIENT_COMMAND_requestSendXXXTextMsg        = 11,
-	CLIENT_COMMAND_ENDMARKER                    = 11
+	CLIENT_COMMAND_filetransfers                = 12,
+	CLIENT_COMMAND_ENDMARKER
 };
 
 /* Access Control List*/
@@ -298,6 +283,32 @@ enum ACLType{
 	ACL_NONE       = 0,
 	ACL_WHITE_LIST = 1,
 	ACL_BLACK_LIST = 2
+};
+
+/* file transfer actions*/
+enum FTAction{
+	FT_INIT_SERVER  = 0,
+	FT_INIT_CHANNEL = 1,
+	FT_UPLOAD       = 2,
+	FT_DOWNLOAD     = 3,
+	FT_DELETE       = 4,
+	FT_CREATEDIR    = 5,
+	FT_RENAME       = 6,
+	FT_FILELIST     = 7,
+	FT_FILEINFO     = 8
+};
+
+/* file transfer status */
+enum FileTransferState {
+	FILETRANSFER_INITIALISING = 0,
+	FILETRANSFER_ACTIVE,
+	FILETRANSFER_FINISHED,
+};
+
+/* file transfer types */
+enum {
+	FileListType_Directory = 0,
+	FileListType_File,
 };
 
 /* some structs to handle variables in callbacks */
@@ -319,6 +330,35 @@ struct ClientMiniExport{
 	const char* ident;
 	const char* nickname;
 };
+
+struct TransformFilePathExport{
+	uint64 channel;
+	const char* filename;
+	int action;
+	int transformedFileNameMaxSize;
+	int channelPathMaxSize;
+};
+
+struct TransformFilePathExportReturns{
+	char* transformedFileName;
+	char* channelPath;
+	int logFileAction;
+};
+
+struct FileTransferCallbackExport{
+	anyID clientID;
+	anyID transferID;
+	anyID remoteTransferID;
+	unsigned int status;
+	const char* statusMessage;
+	uint64 remotefileSize;
+	uint64 bytes;
+	int isSender;
+};
+
+/*define for file transfer bandwith limits*/
+#define BANDWIDTH_LIMIT_UNLIMITED 0xFFFFFFFFFFFFFFFFll
+
 
 /*defines for speaker locations used by some sound callbacks*/
 #ifndef SPEAKER_FRONT_LEFT

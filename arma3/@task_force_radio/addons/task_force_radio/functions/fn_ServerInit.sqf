@@ -1,79 +1,43 @@
 /*
  	Name: TFAR_fnc_serverInit
- 	
+
  	Author(s):
 		NKey
 		L-H
 
  	Description:
 		Initialises the server and the server loop.
-	
+
 	Parameters:
 		Nothing
- 	
+
  	Returns:
 		Nothing
- 	
+
  	Example:
 		call TFAR_fnc_serverInit;
 */
 #define MAX_RADIO_COUNT 1000
 private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_task_force_radio_used", "_last_check", "_allUnits"];
 
+// cba settings
+#include "cba_settings.sqf"
+
 TF_server_addon_version = TF_ADDON_VERSION;
 publicVariable "TF_server_addon_version";
-	
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_no_auto_long_range_radio")) then {
-	tf_no_auto_long_range_radio_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_no_auto_long_range_radio") == 1;
-} else {
-	tf_no_auto_long_range_radio_server = false;
-};
-publicVariable "tf_no_auto_long_range_radio_server";
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_personal_radio_to_regular_soldier")) then {
-	TF_give_personal_radio_to_regular_soldier_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_personal_radio_to_regular_soldier") == 1;
-} else {
-	TF_give_personal_radio_to_regular_soldier_server = false;
-};
-publicVariable "TF_give_personal_radio_to_regular_soldier_server";
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_sw_frequencies_for_side")) then {
-	tf_same_sw_frequencies_for_side_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_sw_frequencies_for_side") == 1;
-} else {
-	tf_same_sw_frequencies_for_side_server = false;
-};
-publicVariable "tf_same_sw_frequencies_for_side_server";
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_lr_frequencies_for_side")) then {
-	tf_same_lr_frequencies_for_side_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_lr_frequencies_for_side") == 1;
-} else {
-	tf_same_lr_frequencies_for_side_server = false;
-};
-publicVariable "tf_same_lr_frequencies_for_side_server";
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_dd_frequencies_for_side")) then {
-	tf_same_dd_frequencies_for_side_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_dd_frequencies_for_side") == 1;
-} else {
-	tf_same_dd_frequencies_for_side_server = false;
-};
-publicVariable "tf_same_dd_frequencies_for_side_server";
-
-
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_microdagr_to_soldier")) then {
-	TF_give_microdagr_to_soldier_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_microdagr_to_soldier") == 1;
-} else {
-	TF_give_microdagr_to_soldier_server = true;
-};
-publicVariable "TF_give_microdagr_to_soldier_server";
 
 waitUntil {sleep 0.1;time > 0};
 
 TF_Radio_Count = [];
 
-while {true} do {		
+while {true} do {
 	call TFAR_fnc_processGroupFrequencySettings;
-	_allUnits = allUnits;	
+	_allUnits = allUnits;
 	{
 		_allUnits pushBack _x;
 		true;
 	} count (call BIS_fnc_listCuratorPlayers);
-	
+
 	{
 		if (isPlayer _x) then {
 			_variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
@@ -83,7 +47,7 @@ while {true} do {
 				(owner (_x)) publicVariableClient (_variableName);
 				_responseVariableName = "radio_response_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
 				_response = [];
-				if (typename _radio_request == "ARRAY") then {
+				if (_radio_request isEqualType []) then {
 					{
 						private ["_radio", "_count"];
 						_radio = _x;

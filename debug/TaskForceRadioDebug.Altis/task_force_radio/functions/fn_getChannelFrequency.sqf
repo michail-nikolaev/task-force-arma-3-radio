@@ -26,7 +26,7 @@ params ["_radio", "_channel"];
 
 _channel = _channel - 1;
 
-if (typename _radio == "STRING") then {
+if (_radio isEqualType "") then {
 	_settings = _radio call TFAR_fnc_getSwSettings;
 } else {
 	_settings = _radio call TFAR_fnc_getLrSettings;
