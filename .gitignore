@@ -58,3 +58,4 @@
 *.suo
 ts/src/task_force_radio_plugin.VC.opendb
 /ts/src/build
+*.opendb
