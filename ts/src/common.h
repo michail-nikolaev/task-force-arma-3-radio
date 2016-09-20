@@ -9,7 +9,7 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-#define PLUGIN_API_VERSION 20
+#define PLUGIN_API_VERSION 21
 //#define PLUGIN_API_VERSION 19
 
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
@@ -25,7 +25,7 @@ static float* floatsSample[MAX_CHANNELS];
 #define UNDERWATER_LEVEL -1.1f
 
 
-#define PLUGIN_VERSION "1.0"
+#define PLUGIN_VERSION "1.0.0.1"
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 
