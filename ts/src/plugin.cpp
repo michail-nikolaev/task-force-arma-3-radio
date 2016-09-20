@@ -44,7 +44,7 @@
 #define MAX_CHANNELS  8
 static float* floatsSample[MAX_CHANNELS];
 
-#define PLUGIN_API_VERSION 21
+#define PLUGIN_API_VERSION 20
 //#define PLUGIN_API_VERSION 19
 
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
@@ -2153,20 +2153,19 @@ int ts3plugin_apiVersion() {
 	VerQueryValue(versionInfo, L"\\", (void**) &vsfi, &len);
 	short version = HIWORD(vsfi->dwFileVersionLS);
 	delete[] versionInfo;
-	switch (version) {
-		case 9: return 19;
-		case 10: return 19;
-		case 11: return 19;
-		case 12: return 19;
-		case 13: return 19;
-		case 14: return 20;
-		case 15: return 20;
-		case 16: return 20;
-		case 17: return 20;
-		case 18: return 20;
-		case 19: return 20;
-		case 20: return 21;//Teamspeak 3.1
-		default: return PLUGIN_API_VERSION;
+	switch(version){
+		case 9 : return 19;
+		case 10 : return 19;
+		case 11 : return 19;
+		case 12 : return 19;
+		case 13 : return 19;
+		case 14 : return 20;
+    		case 15 : return 20;
+    		case 16 : return 20;
+    		case 17 : return 20;
+    		case 18 : return 20;
+    		case 19 : return 20;
+    		default : return PLUGIN_API_VERSION;
 	}
 }
 
@@ -2218,14 +2217,7 @@ int ts3plugin_init() {
 #ifdef _WIN64
 	_set_FMA3_enable(0);
 #endif
-	 if (ts3plugin_apiVersion() > 20) {
-		 ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE, pluginID);
-	 } else {	//Compatibility hack for API version < 21
-		 typedef  void(*getPluginPath_20)(char* path, size_t maxLen);
-		 static_cast<getPluginPath_20>(static_cast<void*>(ts3Functions.getPluginPath))(pluginPath, PATH_BUFSIZE); //This is ugly but keeps compatibility
-	 }
-
-	
+	ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE);
 
 	InitializeCriticalSection(&serverDataCriticalSection);
 	InitializeCriticalSection(&playbackCriticalSection);
