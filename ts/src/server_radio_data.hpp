@@ -42,6 +42,13 @@ struct SERVER_RADIO_DATA {
 	bool tangentPressed;
 	TS3_VECTOR myPosition;
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
+#ifndef unmuteAllClients
+	std::vector<anyID> mutedClients; //Access is guarded by serverDataCriticalSection 
+	void sortMutedClients() {
+		std::sort(mutedClients.begin(), mutedClients.end());
+		mutedClients.erase(std::unique(mutedClients.begin(), mutedClients.end()), mutedClients.end());
+	}
+#endif
 
 	std::map<std::string, FREQ_SETTINGS> mySwFrequencies;
 	std::map<std::string, FREQ_SETTINGS> myLrFrequencies;
@@ -72,9 +79,11 @@ struct SERVER_RADIO_DATA {
 		terrainIntersectionCoefficient = 7.0f;
 		globalVolume = receivingDistanceMultiplicator = 1.0f;
 		speakerDistance = 20.0f;
+		InitializeCriticalSection(&mutedClientsCriticalSection);
 	}
 private:
 	std::string myNickname;
+
 };
 
 

@@ -225,7 +225,7 @@ void processFilterStereo(short * samples, int channels, int sampleCount, float g
 		}
 	}
 }
-  //#TODO remove data parameter and move to helpers
+//#TODO remove data parameter and move to helpers
 float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, float d, bool shouldPlayerHear, int clientDistance, float multiplifer = 1.0f) {
 	EnterCriticalSection(&serverDataCriticalSection);
 	bool canSpeak = data->canSpeak;
@@ -389,11 +389,18 @@ bool isSeriousModeEnabled(uint64 serverConnectionHandlerID, anyID clientId) {
 }
 
 void setClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId, bool status) {
-	anyID clientIds[2];	 //#TODO add to muted clients list in serverIdToData or something.. server_radio_data thingy
+	if (clientId <= 0)
+		return;
+	anyID clientIds[2];
 	clientIds[0] = clientId;
 	clientIds[1] = 0;
-	if (clientIds[0] <= 0)
-		return;
+
+#ifndef unmuteAllClients
+	EnterCriticalSection(&serverDataCriticalSection);
+	serverIdToData[serverConnectionHandlerID].mutedClients.push_back(clientId);
+	LeaveCriticalSection(&serverDataCriticalSection);
+#endif
+
 	DWORD error;
 	if (status) {
 		if ((error = ts3Functions.requestMuteClients(serverConnectionHandlerID, clientIds, NULL)) != ERROR_ok) {
@@ -636,16 +643,28 @@ void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId) {
 void unmuteAll(uint64 serverConnectionHandlerID) {
 	anyID* ids;
 	DWORD error;
+
+#ifdef unmuteAllClients
 	if ((error = ts3Functions.getClientList(serverConnectionHandlerID, &ids)) != ERROR_ok) {
 		log("Error getting all clients from server", error);
 		return;
 	}
-	//#TODO only unmute clients that are running TFAR plugin.
+#else
+	EnterCriticalSection(&serverDataCriticalSection);
+	//copying to keep CriticalSection locked for short time
+	//and i have to	copy anyway because the IDArray has to be null-terminated
+	std::vector<anyID> mutedClients = serverIdToData[serverConnectionHandlerID].mutedClients;
+	LeaveCriticalSection(&serverDataCriticalSection);
+	mutedClients.push_back(0);//Null-terminate so we can send it to requestUnmuteClients
+	ids = mutedClients.data();
+#endif
 	//Or add a list of muted clients to server_radio_data and only unmute them and also call unmuteAll as soon as Arma disconnects from TS
 	if ((error = ts3Functions.requestUnmuteClients(serverConnectionHandlerID, ids, NULL)) != ERROR_ok) {
 		log("Can't unmute all clients", error);
 	}
+#ifdef unmuteAllClients
 	ts3Functions.freeMemory(ids);
+#endif
 }
 
 
@@ -1053,34 +1072,34 @@ void processSpeakers(std::vector<std::string> tokens, uint64 currentServerConnec
 	serverIdToData[currentServerConnectionHandlerID].speakers.clear();
 	if (tokens.size() == 2) {
 		std::vector<std::string> speakers = helpers::split(tokens[1], 0xB);
-		for (size_t q = 0; q < speakers.size(); q++) {
-			if (speakers[q].length() > 0) {
+		for (const std::string& speaker : speakers) {
+			if (speaker.length() > 0) {
 				SPEAKER_DATA data;
-				std::vector<std::string> parts = helpers::split(speakers[q], 0xA);
+				std::vector<std::string> parts = helpers::split(speaker, 0xA);
 				data.radio_id = parts[0];
 				std::vector<std::string> freqs = helpers::split(parts[1], '|');
 				data.nickname = parts[2];
 				std::string coordinates = parts[3];
+				//convert coords string to TS3_VECTOR
+				//#TODO add helperFunction CoordStringToVector
 				if (coordinates.length() > 2) {
-					std::vector<std::string> c = helpers::split(coordinates.substr(1, coordinates.length() - 2), ',');
-					for (int q = 0; q < 3; q++)
-						data.pos.push_back((float) std::atof(c[q].c_str()));
-
+					std::vector<std::string> coords = helpers::split(coordinates.substr(1, coordinates.length() - 2), ',');
+					for (const std::string& coord : coords)
+						data.pos.push_back(static_cast<float>(std::atof(coord.c_str())));
 				}
 				data.volume = helpers::parseArmaNumberToInt(parts[4]);
 				data.vehicle = helpers::getVehicleDescriptor(parts[5]);
 				if (parts.size() > 6)
-					data.waveZ = (float) std::atof(parts[6].c_str());
+					data.waveZ = static_cast<float>(std::atof(parts[6].c_str()));
 				else
 					data.waveZ = 1;
-				for (size_t q = 0; q < freqs.size(); q++) {
-					serverIdToData[currentServerConnectionHandlerID].speakers.insert(std::pair<std::string, SPEAKER_DATA>(freqs[q], data));
+				for (const std::string & freq : freqs) {
+					serverIdToData[currentServerConnectionHandlerID].speakers.insert(std::pair<std::string, SPEAKER_DATA>(freq, data));
 				}
 			}
 		}
 	}
 	LeaveCriticalSection(&serverDataCriticalSection);
-
 }
 
 std::string processGameCommand(std::string command) {
@@ -1236,6 +1255,11 @@ DWORD WINAPI ServiceThread(LPVOID lpParam) {
 				if (inGame) setMuteForDeadPlayers(ts3Functions.getCurrentServerConnectionHandlerID(), isSerious);
 				updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
 			}
+#ifndef unmuteAllClients
+			EnterCriticalSection(&serverDataCriticalSection);
+			serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].sortMutedClients();//Removes duplicates from MutedClients
+			LeaveCriticalSection(&serverDataCriticalSection);
+#endif
 			lastCheckForExpire = GetTickCount();
 		}
 		if (GetTickCount() - lastInGame > MILLIS_TO_EXPIRE) {
@@ -1368,14 +1392,12 @@ int ts3plugin_init() {
 #ifdef _WIN64
 	_set_FMA3_enable(0);
 #endif
-	 if (ts3plugin_apiVersion() > 20) {
-		 ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE, pluginID);
-	 } else {	//Compatibility hack for API version < 21
-		 typedef  void(*getPluginPath_20)(char* path, size_t maxLen);
-		 static_cast<getPluginPath_20>(static_cast<void*>(ts3Functions.getPluginPath))(pluginPath, PATH_BUFSIZE); //This is ugly but keeps compatibility
-	 }
-
-	
+	if (ts3plugin_apiVersion() > 20) {
+		ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE, pluginID);
+} else {	//Compatibility hack for API version < 21
+		typedef  void(*getPluginPath_20)(char* path, size_t maxLen);
+		static_cast<getPluginPath_20>(static_cast<void*>(ts3Functions.getPluginPath))(pluginPath, PATH_BUFSIZE); //This is ugly but keeps compatibility
+	}
 
 	InitializeCriticalSection(&serverDataCriticalSection);
 	InitializeCriticalSection(&playbackCriticalSection);
@@ -1736,18 +1758,18 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 		}
 	} else {
 		if (clientID != myId) {
-				if (isSeriousModeEnabled(serverConnectionHandlerID, clientID)) {
-					if (alive && inGame && isPluginEnabledForUser(serverConnectionHandlerID, clientID))
-						helpers::applyGain(samples, channels, sampleCount, 0.0f); // alive player hears only alive players in serious mode
-				}
-				if (GetTickCount() - last_no_info > MILLIS_TO_EXPIRE) {
-					std::string nickname = getClientNickname(serverConnectionHandlerID, clientID);
-					if (!hasClientData(serverConnectionHandlerID, clientID))
-						log_string(std::string("No info about ") + std::to_string((long long) clientID) + " " + nickname, LogLevel_DEBUG);
-					if (!isPluginEnabledForUser(serverConnectionHandlerID, clientID))
-						log_string(std::string("No plugin enabled for ") + std::to_string((long long) clientID) + " " + nickname, LogLevel_DEBUG);
-					last_no_info = GetTickCount();
-				}
+			if (isSeriousModeEnabled(serverConnectionHandlerID, clientID)) {
+				if (alive && inGame && isPluginEnabledForUser(serverConnectionHandlerID, clientID))
+					helpers::applyGain(samples, channels, sampleCount, 0.0f); // alive player hears only alive players in serious mode
+			}
+			if (GetTickCount() - last_no_info > MILLIS_TO_EXPIRE) {
+				std::string nickname = getClientNickname(serverConnectionHandlerID, clientID);
+				if (!hasClientData(serverConnectionHandlerID, clientID))
+					log_string(std::string("No info about ") + std::to_string((long long) clientID) + " " + nickname, LogLevel_DEBUG);
+				if (!isPluginEnabledForUser(serverConnectionHandlerID, clientID))
+					log_string(std::string("No plugin enabled for ") + std::to_string((long long) clientID) + " " + nickname, LogLevel_DEBUG);
+				last_no_info = GetTickCount();
+			}
 		} else {
 			memset(samples, 0, channels * sampleCount * sizeof(short));
 		}
