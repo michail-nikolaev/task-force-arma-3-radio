@@ -5,13 +5,13 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 1.0;
-		requiredAddons[] = { "CBA_Main", "task_force_radio_items"};
+		requiredAddons[] = { "CBA_Main", "cba_settings", "task_force_radio_items"};
 		author = "[TF]Nkey";
 		authorUrl = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
 		url="https://github.com/michail-nikolaev/task-force-arma-3-radio";
-		version = 0.9.11;
-		versionStr = "0.9.11";
-		versionAr[] = {0,9,11};
+		version = 0.9.12;
+		versionStr = "0.9.12";
+		versionAr[] = {0,9,12};
 	};
 };
 

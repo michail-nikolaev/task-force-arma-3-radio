@@ -52,9 +52,9 @@ class CfgPatches
     requiredAddons[] = {"A3_Modules_F", "A3_UI_F", "A3_Structures_F_Items_Electronics", "A3_Weapons_F_ItemHolders"};
     author = "[TF]Nkey";
     Url = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
-    version = 0.9.11;
-    versionStr = "0.9.11";
-    versionAr[] = {0,9,11};
+    version = 0.9.12;
+    versionStr = "0.9.12";
+    versionAr[] = {0,9,12};
   };
 };
 
