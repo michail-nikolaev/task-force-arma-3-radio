@@ -20,47 +20,11 @@
 #define MAX_RADIO_COUNT 1000
 private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_task_force_radio_used", "_last_check", "_allUnits"];
 
+// cba settings
+#include "cba_settings.sqf"
+
 TF_server_addon_version = TF_ADDON_VERSION;
 publicVariable "TF_server_addon_version";
-	
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_no_auto_long_range_radio")) then {
-	tf_no_auto_long_range_radio_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_no_auto_long_range_radio") == 1;
-} else {
-	tf_no_auto_long_range_radio_server = true;
-};
-publicVariable "tf_no_auto_long_range_radio_server";
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_personal_radio_to_regular_soldier")) then {
-	TF_give_personal_radio_to_regular_soldier_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_personal_radio_to_regular_soldier") == 1;
-} else {
-	TF_give_personal_radio_to_regular_soldier_server = false;
-};
-publicVariable "TF_give_personal_radio_to_regular_soldier_server";
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_sw_frequencies_for_side")) then {
-	tf_same_sw_frequencies_for_side_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_sw_frequencies_for_side") == 1;
-} else {
-	tf_same_sw_frequencies_for_side_server = false;
-};
-publicVariable "tf_same_sw_frequencies_for_side_server";
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_lr_frequencies_for_side")) then {
-	tf_same_lr_frequencies_for_side_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_lr_frequencies_for_side") == 1;
-} else {
-	tf_same_lr_frequencies_for_side_server = false;
-};
-publicVariable "tf_same_lr_frequencies_for_side_server";
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_dd_frequencies_for_side")) then {
-	tf_same_dd_frequencies_for_side_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "tf_same_dd_frequencies_for_side") == 1;
-} else {
-	tf_same_dd_frequencies_for_side_server = false;
-};
-publicVariable "tf_same_dd_frequencies_for_side_server";
-
-
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_microdagr_to_soldier")) then {
-	TF_give_microdagr_to_soldier_server = getNumber (ConfigFile >> "task_force_radio_settings" >> "TF_give_microdagr_to_soldier") == 1;
-} else {
-	TF_give_microdagr_to_soldier_server = true;
-};
-publicVariable "TF_give_microdagr_to_soldier_server";
 
 waitUntil {sleep 0.1;time > 0};
 
