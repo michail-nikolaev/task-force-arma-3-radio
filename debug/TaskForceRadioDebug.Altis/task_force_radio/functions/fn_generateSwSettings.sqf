@@ -1,19 +1,19 @@
 /*
  	Name: TFAR_fnc_generateSwSettings
-
+ 	
  	Author(s):
 		NKey
 		L-H
 
  	Description:
 		Generates settings for the SW radio
-
+	
 	Parameters:
 		OPTIONAL: BOOLEAN - false to generate settings without generating frequencies.
-
+ 	
  	Returns:
 		ARRAY: Settings [0: NUMBER - Active channel, 1: NUMBER - Volume, 2: ARRAY - Frequencies for channels, 3: NUMBER - Stereo setting, 4: STRING - Encryption code, 5: NUMBER - Additional active channel, 6: NUMBER - Additional active channel stereo mode, 7: OBJECT - Owner; 8: NUMBER - Speaker mode]
-
+ 	
  	Example:
 		_settings = call TFAR_fnc_generateSwSettings;
 */
@@ -26,7 +26,7 @@ _sw_settings = [0, _volume, [], 0, nil, -1, 0, getPlayerUID player, false];
 _set = false;
 _sw_frequencies = [];
 
-if (_this isEqualType true) then {
+if (typename _this == "BOOL") then {
 	if (!_this) then {
 		for "_i" from 0 to TF_MAX_CHANNELS step 1 do {
 			_sw_frequencies set [_i, "50"];
