@@ -226,7 +226,7 @@ void processFilterStereo(short * samples, int channels, int sampleCount, float g
 	}
 }
 //#TODO remove data parameter and move to helpers
-float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, float d, bool shouldPlayerHear, int clientDistance, float multiplifer = 1.0f) {
+float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, float d, bool shouldPlayerHear, float clientDistance, float multiplifer = 1.0f) {
 	EnterCriticalSection(&serverDataCriticalSection);
 	bool canSpeak = data->canSpeak;
 	LeaveCriticalSection(&serverDataCriticalSection);
@@ -236,7 +236,9 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, fl
 	float gain = powf(d, -0.3f) * (max(0, (maxDistance - d)) / maxDistance);
 	if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
 }
-
+float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, float d, bool shouldPlayerHear, int clientDistance, float multiplifer = 1.0f) {
+	return volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, static_cast<float>(clientDistance), multiplifer);
+}
 
 void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, TS3_VECTOR position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck) {
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
@@ -281,8 +283,8 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 				float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
 				float distance_from_radio = helpers::distance(clientData->clientPosition, position);
 
-				if (vehicleVolumeLoss > 0.01 && !vehicleCheck) {
-					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2), clientData->getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
+				if (vehicleVolumeLoss > 0.01f && !vehicleCheck) {
+					processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), clientData->getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
 				}
 				if (onGround) {
 					helpers::applyGain(input, wave->_spec.channels, samples, volumeFromDistance(serverConnectionHandlerID, clientData, distance_from_radio, true, speakerDistance));
@@ -1427,7 +1429,7 @@ int ts3plugin_init() {
 	}
 
 	return 0;
-}
+	}
 
 /* Custom code called right before the plugin is unloaded */
 void ts3plugin_shutdown() {
@@ -1615,7 +1617,7 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 				fill = true;
 			}
 			for (int q = 2; q < channels; q++) {
-				samples[position++] = 0.0f;
+				samples[position++] = 0;
 			}
 		}
 		if (it->second.size() == 0) {
@@ -1679,7 +1681,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 						if (vehicleVolumeLoss < 0.01 || vehicleCheck) {
 							helpers::applyGain(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, data->voiceVolume));
 						} else {
-							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, data->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2), data->getFilterVehicle("local_vehicle", vehicleVolumeLoss));
+							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, data->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), data->getFilterVehicle("local_vehicle", vehicleVolumeLoss));
 						}
 					} else {
 						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, d, shouldPlayerHear, data->voiceVolume) * CANT_SPEAK_GAIN, (data->getFilterCantSpeak("local_cantspeak")));
@@ -1733,10 +1735,10 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 						processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, SPEAKER_GAIN, (data->getSpeakerFilter(info.radio_id)));
 
 						float speakerDistance = (info.volume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
-						if (radioVehicleVolumeLoss < 0.01 || radioVehicleCheck) {
+						if (radioVehicleVolumeLoss < 0.01f || radioVehicleCheck) {
 							helpers::applyGain(radio_buffer, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, distance_from_radio, shouldPlayerHear, speakerDistance));
 						} else {
-							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, distance_from_radio, shouldPlayerHear, speakerDistance, 1.0f - radioVehicleVolumeLoss) * pow((1.0f - radioVehicleVolumeLoss), 1.2), (data->getFilterVehicle(info.radio_id, radioVehicleVolumeLoss)));
+							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, volumeFromDistance(serverConnectionHandlerID, data, distance_from_radio, shouldPlayerHear, speakerDistance, 1.0f - radioVehicleVolumeLoss) * pow((1.0f - radioVehicleVolumeLoss), 1.2f), (data->getFilterVehicle(info.radio_id, radioVehicleVolumeLoss)));
 						}
 						if (info.waveZ < UNDERWATER_LEVEL) {
 							processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, CANT_SPEAK_GAIN, (data->getFilterCantSpeak(info.radio_id)));
@@ -1790,7 +1792,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 		for (int g = 0; g < 2; g++)
 			samples[q * channels + g] = stereo[q * 2 + g];
 		for (int g = 2; g < channels; g++)
-			samples[q * channels + g] = 0.0f;
+			samples[q * channels + g] = 0;
 	}
 
 	delete[] stereo;

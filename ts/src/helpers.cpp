@@ -45,8 +45,8 @@ float helpers::distance(TS3_VECTOR from, TS3_VECTOR to) {
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
-inline double helpers::parseArmaNumber(const std::string& armaNumber) {
-	return std::atof(armaNumber.c_str());
+inline float helpers::parseArmaNumber(const std::string& armaNumber) {
+	return static_cast<float>(std::atof(armaNumber.c_str()));
 }
 
 inline int helpers::parseArmaNumberToInt(const std::string& armaNumber) {
