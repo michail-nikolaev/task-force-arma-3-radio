@@ -22,6 +22,9 @@
 #include <clunk/locker.h>
 #include <clunk/source.h>
 #include <stdexcept>
+#pragma warning( push )
+#pragma warning( disable : 4101 ) // unreferenced local variable
+
 
 using namespace clunk;
 
@@ -229,3 +232,4 @@ void ListenerObject::set_up(const v3f &up) {
 v3f ListenerObject::transform(v3f v) {
 	return v - _position;
 }
+#pragma warning( pop )

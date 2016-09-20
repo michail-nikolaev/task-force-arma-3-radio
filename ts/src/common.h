@@ -24,8 +24,12 @@ static float* floatsSample[MAX_CHANNELS];
 
 #define UNDERWATER_LEVEL -1.1f
 
-
+#ifdef AppVeyorBuild
+#define PLUGIN_VERSION AppVeyorBuild
+#else
 #define PLUGIN_VERSION "1.0.0.1"
+#endif
+
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 

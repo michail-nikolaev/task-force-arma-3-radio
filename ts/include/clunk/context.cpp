@@ -33,7 +33,8 @@
 #include <algorithm>
 #include <vector>
 #include <stdexcept>
-
+#pragma warning( push )
+#pragma warning( disable : 4101 ) // unreferenced local variable
 using namespace clunk;
 
 Context::Context() : _listener(NULL), max_sources(8), fx_volume(1), distance_model(DistanceModel::Exponent, false), _fdump(NULL) {
@@ -454,3 +455,4 @@ void Context::set_max_sources(int sources) {
 	Hope all this code will be useful for someone. Good luck! We're waiting for your feedback!
 	
 */
+#pragma warning( pop )
