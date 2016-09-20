@@ -15,8 +15,5 @@
 **Where did the issue occur?**
 - Dedicated / Self-Hosted Multiplayer
 
-**Placed Modules:**
-- Add the list of Task Force Radio modules you have placed on the map. Use 'None' if the error occurs without any modules.
-
 **RPT log file:**
 - Add a link ([gist](https://gist.github.com) or [pastebin](http://pastebin.com)) to the client and/or server RPT file. An instruction to find your RPT files can be found [here](https://community.bistudio.com/wiki/Crash_Files#Arma_3).
