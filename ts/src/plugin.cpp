@@ -40,6 +40,7 @@
 #include "common.h"
 #include "pipe_handler.h"
 #include "helpers.h"
+#include "playback_handler.h"
 
 enum LISTED_ON {
 	LISTED_ON_SW,
@@ -60,15 +61,10 @@ struct LISTED_INFO {
 	std::pair<std::string, float> vehicle;
 };
 
-
-struct SERVER_PLAYBACK {
-	std::map<std::string, std::deque<short>> playback;
-};
-
 #define PATH_BUFSIZE 512
 char pluginPath[PATH_BUFSIZE];
 
-HANDLE thread = INVALID_HANDLE_VALUE;
+HANDLE threadPipeHandle = INVALID_HANDLE_VALUE;
 HANDLE threadService = INVALID_HANDLE_VALUE;
 
 volatile bool exitThread = FALSE;
@@ -84,9 +80,9 @@ char* pluginID = NULL;
 
 CRITICAL_SECTION serverDataCriticalSection;
 CRITICAL_SECTION tangentCriticalSection;
-CRITICAL_SECTION playbackCriticalSection;
+
 SERVER_ID_TO_SERVER_DATA serverIdToData;
-std::map<uint64, SERVER_PLAYBACK> serverIdToPlayback;
+playback_handler playbackHandler;
 
 struct TS3Functions ts3Functions;
 //#define DEBUG_MOD_ENABLED
@@ -121,27 +117,6 @@ bool isConnected(uint64 serverConnectionHandlerID) {
 	}
 	return result != 0;
 }
-
-void appendPlayback(std::string name, uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels) {
-	EnterCriticalSection(&playbackCriticalSection);
-	if (serverIdToPlayback[serverConnectionHandlerID].playback.count(name) == 0) {
-		std::deque<short> d;
-		serverIdToPlayback[serverConnectionHandlerID].playback[name] = d;
-	}
-	if (channels == 2) {
-		for (int q = 0; q < sampleCount * channels; q++) {
-			serverIdToPlayback[serverConnectionHandlerID].playback[name].push_back(samples[q]);
-		}
-	} else {
-		for (int q = 0; q < sampleCount * channels; q++) {
-			serverIdToPlayback[serverConnectionHandlerID].playback[name].push_back(samples[q * 2]);
-			serverIdToPlayback[serverConnectionHandlerID].playback[name].push_back(samples[q * 2 + 1]);
-		}
-	}
-
-	LeaveCriticalSection(&playbackCriticalSection);
-}
-
 
 CLIENT_DATA* getClientData(uint64 serverConnectionHandlerID, anyID clientID) {
 	auto foundClientDatas = serverIdToData.getClientDataByClientID(serverConnectionHandlerID, clientID);
@@ -240,8 +215,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);
-
-		appendPlayback(id, serverConnectionHandlerID, input, samples, wave->_spec.channels);
+		playbackHandler.appendPlayback(id, serverConnectionHandlerID, input, samples, wave->_spec.channels);
 		delete[] input;
 	}
 }
@@ -979,32 +953,31 @@ DWORD WINAPI process_tangent_off(LPVOID lpParam) {
 }
 
 void processSpeakers(std::vector<std::string> tokens, uint64 currentServerConnectionHandlerID) {
-	EnterCriticalSection(&serverDataCriticalSection);
+	CriticalSectionLock lock(&serverDataCriticalSection);
 	serverIdToData[currentServerConnectionHandlerID].speakers.clear();
-	if (tokens.size() == 2) {
-		std::vector<std::string> speakers = helpers::split(tokens[1], 0xB);
-		for (const std::string& speaker : speakers) {
-			if (speaker.length() > 0) {
-				SPEAKER_DATA data;
-				std::vector<std::string> parts = helpers::split(speaker, 0xA);
-				data.radio_id = parts[0];
-				std::vector<std::string> freqs = helpers::split(parts[1], '|');
-				data.nickname = parts[2];
-				std::string coordinates = parts[3];
-				data.pos = helpers::coordStringToVector(coordinates);
-				data.volume = helpers::parseArmaNumberToInt(parts[4]);
-				data.vehicle = helpers::getVehicleDescriptor(parts[5]);
-				if (parts.size() > 6)
-					data.waveZ = static_cast<float>(std::atof(parts[6].c_str()));
-				else
-					data.waveZ = 1;
-				for (const std::string & freq : freqs) {
-					serverIdToData[currentServerConnectionHandlerID].speakers.insert(std::pair<std::string, SPEAKER_DATA>(freq, data));
-				}
-			}
+	if (tokens.size() != 2)
+		return;
+	std::vector<std::string> speakers = helpers::split(tokens[1], 0xB);
+	for (const std::string& speaker : speakers) {
+		if (speaker.length() == 0)
+			continue;
+		SPEAKER_DATA data;
+		std::vector<std::string> parts = helpers::split(speaker, 0xA);
+		data.radio_id = parts[0];
+		std::vector<std::string> freqs = helpers::split(parts[1], '|');
+		data.nickname = parts[2];
+		std::string coordinates = parts[3];
+		data.pos = helpers::coordStringToVector(coordinates);
+		data.volume = helpers::parseArmaNumberToInt(parts[4]);
+		data.vehicle = helpers::getVehicleDescriptor(parts[5]);
+		if (parts.size() > 6)
+			data.waveZ = static_cast<float>(std::atof(parts[6].c_str()));
+		else
+			data.waveZ = 1;
+		for (const std::string & freq : freqs) {
+			serverIdToData[currentServerConnectionHandlerID].speakers.insert(std::pair<std::string, SPEAKER_DATA>(freq, data));
 		}
 	}
-	LeaveCriticalSection(&serverDataCriticalSection);
 }
 
 std::string processGameCommand(std::string command) {
@@ -1032,10 +1005,8 @@ std::string processGameCommand(std::string command) {
 	} else if (tokens.size() == 2 && tokens[0] == "TRACK") { //#async
 		task_force_radio::trackPiwik(tokens[1]);
 	} else if (tokens.size() == 14 && tokens[0] == "POS") {
-		TS3_VECTOR position;
-		position.x = std::stof(tokens[2]); // x
-		position.y = std::stof(tokens[3]); // y
-		position.z = std::stof(tokens[4]); // z
+		//POS nickname x y z viewangle canSpeak canUseSWRadio canUseLRRadio canUseDDRadio vehicleID terrainInterception voiceVolume currentDirection
+		TS3_VECTOR position { std::stof(tokens[2]) ,std::stof(tokens[3]) ,std::stof(tokens[4]) };
 		return processUnitPosition(tokens[1], currentServerConnectionHandlerID, position, std::stof(tokens[5]),
 			helpers::isTrue(tokens[6]), helpers::isTrue(tokens[7]), helpers::isTrue(tokens[8]), helpers::isTrue(tokens[9]), tokens[10], std::stoi(tokens[11]), (float) std::atof(tokens[12].c_str()), (float) std::atof(tokens[13].c_str()));
 	} else if (tokens.size() == 5 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD")) {	//#async does only return OK
@@ -1095,11 +1066,7 @@ std::string processGameCommand(std::string command) {
 		return "OK";
 	} else if (tokens.size() == 14 && tokens[0] == "FREQ") { //#async
 		//#async add async send to plugin to radio_pipe and sqf
-		EnterCriticalSection(&serverDataCriticalSection); //#TODO Implement container that does this in count(x)
-		if (serverIdToData.count(currentServerConnectionHandlerID)) {
-			serverIdToData[currentServerConnectionHandlerID].setFreqInfos(tokens);
-		}
-		LeaveCriticalSection(&serverDataCriticalSection);
+		serverIdToData.setFreqInfos(currentServerConnectionHandlerID, tokens);
 		std::string nickname = tokens[7];
 		std::string myNickname = getMyNickname(currentServerConnectionHandlerID);
 		if (myNickname != nickname && myNickname.length() > 0 && (nickname != "Error: No unit" && nickname != "Error: No vehicle" && nickname != "any")) {
@@ -1190,7 +1157,6 @@ DWORD WINAPI ServiceThread(LPVOID lpParam) {
 	return NULL;
 }
 
-#define FAILS_TO_SLEEP 50
 DWORD WINAPI PipeThread(LPVOID lpParam) {
 	HANDLE pipe = INVALID_HANDLE_VALUE;
 
@@ -1268,10 +1234,6 @@ DWORD WINAPI PipeThread(LPVOID lpParam) {
 	return NULL;
 }
 
-
-
-
-
 int pttCallback(void *arg, int argc, char **argv, char **azColName) {
 	if (argc != 1) return 1;
 	if (argv[0] != NULL) {
@@ -1305,7 +1267,6 @@ int ts3plugin_init() {
 	}
 
 	InitializeCriticalSection(&serverDataCriticalSection);
-	InitializeCriticalSection(&playbackCriticalSection);
 	InitializeCriticalSection(&tangentCriticalSection);
 
 	exitThread = FALSE;
@@ -1316,7 +1277,7 @@ int ts3plugin_init() {
 	for (int q = 0; q < MAX_CHANNELS; q++) {
 		floatsSample[q] = new float[1];
 	}
-	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);
+	threadPipeHandle = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);
 	threadService = CreateThread(NULL, 0, ServiceThread, NULL, 0, NULL);
 	task_force_radio::createCheckForUpdateThread();
 
@@ -1343,7 +1304,7 @@ void ts3plugin_shutdown() {
 	exitThread = TRUE;
 	Sleep(1000);
 	DWORD exitCode;
-	BOOL result = GetExitCodeThread(thread, &exitCode);
+	BOOL result = GetExitCodeThread(threadPipeHandle, &exitCode);
 	if (!result || exitCode == STILL_ACTIVE) {
 		log("thread not terminated", LogLevel_CRITICAL);
 	}
@@ -1358,7 +1319,7 @@ void ts3plugin_shutdown() {
 	LeaveCriticalSection(&serverDataCriticalSection);
 	pipeConnected = inGame = false;
 	updateUserStatusInfo(false);
-	thread = threadService = INVALID_HANDLE_VALUE;
+	threadPipeHandle = threadService = INVALID_HANDLE_VALUE;
 	unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
 	exitThread = FALSE;
 
@@ -1402,9 +1363,7 @@ void ts3plugin_onConnectStatusChangeEvent(uint64 serverConnectionHandlerID, int 
 		std::string myNickname = getMyNickname(serverConnectionHandlerID);
 		serverIdToData.resetAndSetMyNickname(serverConnectionHandlerID, myNickname);
 
-		EnterCriticalSection(&playbackCriticalSection);
-		serverIdToPlayback[serverConnectionHandlerID] = SERVER_PLAYBACK();
-		LeaveCriticalSection(&playbackCriticalSection);
+		playbackHandler.addServer(serverConnectionHandlerID);
 		updateNicknamesList(serverConnectionHandlerID);
 
 		// Set system 3d settings
@@ -1493,44 +1452,7 @@ void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples,
 }
 
 void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
-	EnterCriticalSection(&playbackCriticalSection);
-	bool fill = false;
-	std::vector<std::string> to_remove;
-	if (!(*channelFillMask & 3)) {
-		memset(samples, 0, sampleCount * channels * sizeof(short));
-	}
-	for (auto it = serverIdToPlayback[serverConnectionHandlerID].playback.begin(); it != serverIdToPlayback[serverConnectionHandlerID].playback.end(); ++it) {
-		int position = 0;
-		while (position < sampleCount * channels && it->second.size() > 0) {
-			for (int q = 0; q < 2; q++) {
-				short s = it->second.at(0);
-				if (samples[position] + s > SHRT_MAX) {
-					samples[position] = SHRT_MAX;
-				} else if (samples[position] + s < SHRT_MIN) {
-					samples[position] = SHRT_MIN;
-				} else {
-					samples[position] += s;
-				}
-				position++;
-				it->second.pop_front();
-				fill = true;
-			}
-			for (int q = 2; q < channels; q++) {
-				samples[position++] = 0;
-			}
-		}
-		if (it->second.size() == 0) {
-			to_remove.push_back(it->first);
-		}
-	}
-
-	for (auto it = to_remove.begin(); it != to_remove.end(); ++it) {	 //#FOREACH
-		serverIdToPlayback[serverConnectionHandlerID].playback.erase(*it);
-	}
-
-	if (fill) *channelFillMask |= 3;
-	LeaveCriticalSection(&playbackCriticalSection);
-
+	playbackHandler.onEditMixedPlaybackVoiceDataEvent(serverConnectionHandlerID, samples, sampleCount, channels, channelSpeakerArray, channelFillMask);
 }
 
 void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {
@@ -1721,7 +1643,7 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 
 			ts3plugin_onEditPostProcessVoiceDataEventStereo(serverConnectionHandlerID, myId, voice, sampleCount, channels * m);
 			LeaveCriticalSection(&serverDataCriticalSection);
-			appendPlayback("my_radio_voice", serverConnectionHandlerID, voice, sampleCount, channels * m);
+			playbackHandler.appendPlayback("my_radio_voice", serverConnectionHandlerID, voice, sampleCount, channels * m);
 			delete[] voice;
 		} else {
 			LeaveCriticalSection(&serverDataCriticalSection);
@@ -1829,7 +1751,7 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 
 			if (hasClientData(serverId, clientId)) {
 				std::vector<LISTED_INFO> listedInfos = isOverRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
-				for (LISTED_INFO & listedInfo : listedInfos){
+				for (LISTED_INFO & listedInfo : listedInfos) {
 					CLIENT_DATA* myData = getClientData(serverId, myId);
 					std::pair<std::string, float> myVehicleDesriptor = helpers::getVehicleDescriptor(myData->vehicleId);
 					const float vehicleVolumeLoss = helpers::clamp(myVehicleDesriptor.second + listedInfo.vehicle.second, 0.0f, 0.99f);
