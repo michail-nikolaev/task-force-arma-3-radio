@@ -38,7 +38,7 @@ static float* floatsSample[MAX_CHANNELS];
 #define UPDATE_FILE L"/michail-nikolaev/task-force-arma-3-radio/master/current_version.txt"
 
 #define INVALID_DATA_FRAME 9999
-
+#define FAILS_TO_SLEEP 50 //PipeThread
 
 #define START_DATA "<TFAR>"
 #define END_DATA "</TFAR>"
