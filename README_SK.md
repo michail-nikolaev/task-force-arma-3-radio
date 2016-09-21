@@ -7,11 +7,11 @@
          alt="Wiki" />
   </a>
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases">
-    <img src="http://img.shields.io/badge/Verzia-0.9.7.3-blue.svg?style=flat"
+    <img src="http://img.shields.io/badge/Verzia-0.9.12-blue.svg?style=flat"
          alt="Verzia" />
   </a>
-  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7.3/0.9.7.3.zip">
-    <img src="http://img.shields.io/badge/Stiahnuť-126_MB-green.svg?style=flat"
+  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.12/0.9.12.zip">
+    <img src="http://img.shields.io/badge/Stiahnuť-124_MB-green.svg?style=flat"
          alt="Stiahnuť" />
   </a>
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md">
@@ -32,7 +32,7 @@
 </p>
 
 ###Inštalácia
- 1. Stiahnite si a rozbaľte [0.9.7.3 radio archív](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7.3/0.9.7.3.zip).
+ 1. Stiahnite si a rozbaľte [0.9.12 radio archív](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.12/0.9.12.zip).
  2. Skopírujte `TeamSpeak 3 Client` obsah adresára do hlavného adresára s nainštalovaným TeamSpeak klientom.
  3. Skopírujte `Arma 3` obsah adresára do – `...\SteamApps\common\Arma 3 adresára`.
 
