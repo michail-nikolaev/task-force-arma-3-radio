@@ -11,7 +11,7 @@
 enum OVER_RADIO_TYPE {
 	LISTEN_TO_SW,
 	LISTEN_TO_LR,
-	LISTEN_TO_DD,
+	LISTEN_TO_DD, //#diverRadio
 	LISTEN_TO_NONE
 };
 
@@ -37,7 +37,7 @@ public:
 	bool pluginEnabled;
 	uint32_t pluginEnabledCheck;
 	anyID clientId;
-	OVER_RADIO_TYPE tangentOverType;
+	OVER_RADIO_TYPE tangentOverType; //Radio type this transmission is comming from
 	TS3_VECTOR clientPosition;
 	uint64 positionTime;
 
@@ -158,7 +158,7 @@ public:
 		return filtersVehicle[byKey];
 	}
 
-	chunkware_simple::SimpleComp compressor; //#TODO move to clientData
+	chunkware_simple::SimpleComp compressor;
 	void resetRadioEffect()
 	{
 		for (auto it = swEffects.begin(); it != swEffects.end(); ++it) delete it->second;		
@@ -212,9 +212,10 @@ public:
 class STRING_TO_CLIENT_DATA_MAP {
 public:
 	typedef std::map<std::string, CLIENT_DATA*>::iterator iterator;
-	STRING_TO_CLIENT_DATA_MAP() {};//#TODO delete content of data
+	~STRING_TO_CLIENT_DATA_MAP();
 	std::map<std::string, CLIENT_DATA*>::iterator begin();
 	std::map<std::string, CLIENT_DATA*>::iterator end();
+	std::vector<CLIENT_DATA*> getClientDataByClientID(anyID clientID);
 	size_t count(std::string const& key) const;
 	CLIENT_DATA*& operator[](std::string const& key);
 	void removeExpiredPositions(const int &curDataFrame);
