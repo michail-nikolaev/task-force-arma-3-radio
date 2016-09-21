@@ -7,11 +7,11 @@
          alt="Вики" />
   </a>
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases">
-    <img src="http://img.shields.io/badge/Версия-0.9.7.3-blue.svg?style=flat"
+    <img src="http://img.shields.io/badge/Версия-0.9.12-blue.svg?style=flat"
          alt="Версия" />
   </a>
-  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.7.3/0.9.7.3.zip">
-    <img src="http://img.shields.io/badge/Скачать-126_МБ-green.svg?style=flat"
+  <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.12/0.9.12.zip">
+    <img src="http://img.shields.io/badge/Скачать-124_МБ-green.svg?style=flat"
          alt="Скачать" />
   </a>
   <a href="https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/master/LICENSE.md">
