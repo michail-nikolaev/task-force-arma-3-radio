@@ -1,13 +1,24 @@
-private ["_keys", "_pressed", "_result"];
+private ["_keys", "_pressed", "_result", "_keyup"];
+
 _pressed = _this select 0;
 _result = false;
-{		
-	if (_x select 0 == "TFAR") then {
-		_keys = _x select 2;				
-		if ((_keys select 0 == _pressed select 1) and {(_keys select 1) isEqualTo (_pressed select 2)} and {(_keys select 2) isEqualTo  (_pressed select 3)} and {(_keys select 3) isEqualTo (_pressed select 4)}) exitWith {			
-			_result = _this call CBA_events_fnc_keyHandler;
-		};
-	};
-	true;
-} count cba_keybinding_handlers;
+_keyup = (_this select 1) isEqualTo 'keyup';
+
+_processKeys = {
+	private ["_mods", "_key_pressed", "_handler"];
+	
+	if ([_key, "tfar_"] call CBA_fnc_find == 0) then {
+
+		_key_pressed = _value select 0;
+		_mods = _value select 1;
+		_handler = _value select 2;	
+					
+		if ((_key_pressed == _pressed select 1) and {(_mods select 0) isEqualTo (_pressed select 2)} and {(_mods select 1) isEqualTo  (_pressed select 3)} and {(_mods select 2) isEqualTo (_pressed select 4)}) exitWith {			
+			_result = call _handler;
+		};		 
+	 };
+};
+
+[if (_keyup) then {cba_events_keyhandlers_up} else {cba_events_keyhandlers_down}, _processKeys] call CBA_fnc_hashEachPair;
+
 _result;

@@ -1,5 +1,5 @@
 private ["_item", "_freq", "_pos", "_unit_pos", "_p", "_manpack", "_lrs", "_isolation"];
-_unit_pos = eyepos currentUnit;
+_unit_pos = eyepos TFAR_currentUnit;
 {
 	_pos = getPosASL _x;
 	if ((_pos select 2) > 0) then {
@@ -34,7 +34,7 @@ _unit_pos = eyepos currentUnit;
 		
 		} forEach (everyBackpack _x);
 	};
-} forEach (nearestObjects [getPos currentUnit, ["WeaponHolder", "GroundWeaponHolder", "WeaponHolderSimulated"], TF_speakerDistance]);
+} forEach (nearestObjects [getPos TFAR_currentUnit, ["WeaponHolder", "GroundWeaponHolder", "WeaponHolderSimulated"], TF_speakerDistance]);
 
 {
 	if ((_x getVariable ["tf_lr_speakers", false]) and {_x call TFAR_fnc_hasVehicleRadio}) then {
@@ -80,4 +80,4 @@ _unit_pos = eyepos currentUnit;
 		};
 
 	};
-} forEach  (currentUnit nearEntities [["LandVehicle", "Air", "Ship"], TF_speakerDistance]);
+} forEach  (TFAR_currentUnit nearEntities [["LandVehicle", "Air", "Ship"], TF_speakerDistance]);

@@ -34,6 +34,7 @@ class mr6000l_radio_dialog
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
+	onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'mr6000l_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
 	controls[]=
 	{
 		background,
@@ -80,7 +81,7 @@ class mr6000l_radio_dialog
 		w = 0.135685 * safezoneW;
 		h = 0.055003 * safezoneH;
 		colorText[] = {0,0.95,0,1};
-		colorBackground[] = {0,0.95,0,1};
+		colorBackground[] = {0,0,0,0};
 		font = "tf_font_dots";
 		shadow = 2;
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 22) * 1.2)";
@@ -95,7 +96,7 @@ class mr6000l_radio_dialog
 		w = 0.136717 * safezoneW;
 		h = 0.0638035 * safezoneH;
 		colorText[] = {0,0.95,0,1};
-		colorBackground[] = {0,0.95,0,1};
+		colorBackground[] = {0,0,0,0};
 		font = "tf_font_dots";
 		shadow = 2;
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 22) * 1.2)";

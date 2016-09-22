@@ -24,6 +24,7 @@ class rf7800str_radio_dialog
 	movingEnable = 1;
 	controlsBackground[] = { };
 	objects[] = { };
+	onUnload = "['OnRadioOpen', player, [player, TF_sw_dialog_radio, false, 'rf7800str_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
 	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\task_force_radio\rf7800str\rf7800str_n.paa';((_this select 0) displayCtrl TF_MICRODAGR_BACKGROUND_ID) ctrlSetText '\task_force_radio\microdagr\microdagr_n.paa';}; _this call TFAR_fnc_updateProgrammatorDialog;";
 	controls[]=
 	{
@@ -149,7 +150,7 @@ class rf7800str_radio_dialog
 		moving = 1;
 		font = "tf_font_dots";
 		shadow = 2;
-		canModify = 1;		
+		canModify = 1;
 		tooltip = $STR_current_freq;
 	};
 	class clear: HiddenButton

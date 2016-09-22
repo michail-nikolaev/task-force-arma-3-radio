@@ -19,7 +19,7 @@
 		_radios = false call TFAR_fnc_radioToRequestCount;
 */
 private ["_to_remove", "_allRadios", "_personalRadio", "_riflemanRadio", "_defaultRadio", "_classes"];
-waitUntil {sleep 0.1;!(isNull currentUnit)};
+waitUntil {sleep 0.1;!(isNull TFAR_currentUnit)};
 
 _to_remove = [];
 _allRadios = _this;
@@ -31,7 +31,7 @@ _classes = call TFAR_fnc_getDefaultRadioClasses;
 _personalRadio = _classes select 1;
 _riflemanRadio = _classes select 2;
 
-if ((TF_give_personal_radio_to_regular_soldier) or {leader currentUnit == currentUnit} or {rankId currentUnit >= 2}) then {
+if ((TF_give_personal_radio_to_regular_soldier) or {leader TFAR_currentUnit == TFAR_currentUnit} or {rankId TFAR_currentUnit >= 2}) then {
 	_defaultRadio = _personalRadio;
 } else {
 	_defaultRadio = _riflemanRadio;
@@ -55,7 +55,7 @@ TF_settingsToCopy = [];
 		};
 	};	
 	true;
-} count (assignedItems currentUnit);
+} count (assignedItems TFAR_currentUnit);
 {
     if (_x call TFAR_fnc_isPrototypeRadio) then {
         _to_remove pushBack _x;
@@ -71,11 +71,11 @@ TF_settingsToCopy = [];
 		};
 	};
 	true;
-} count (items currentUnit);
+} count (items TFAR_currentUnit);
 
 {
-	currentUnit unassignItem _x;
-	currentUnit removeItem _x;
+	TFAR_currentUnit unassignItem _x;
+	TFAR_currentUnit removeItem _x;
 	if (_x == "ItemRadio") then {
 		_to_remove set [_forEachIndex, _defaultRadio];
 	};

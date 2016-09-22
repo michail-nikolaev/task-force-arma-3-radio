@@ -22,6 +22,7 @@ class anarc164_radio_dialog
 	idd = IDD_ANARC164_RADIO_DIALOG;
 	movingEnable = 1;
 	controlsBackground[] = { };
+	onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'anarc164_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
 	objects[] = { };
 	controls[]=
 	{
@@ -58,7 +59,7 @@ class anarc164_radio_dialog
 		w = 0.0324844 * safezoneW;
 		h = 0.0374 * safezoneH;
 		colorText[] = {1,0.5,0,1};
-		colorBackground[] = {1,0.5,0,1};
+		colorBackground[] = {0,0,0,0};
 		colorActive[] = {0,1,0,1};
 		font = "tf_font_segments";
 		shadow = 1;
@@ -74,7 +75,7 @@ class anarc164_radio_dialog
 		w = 0.0995156 * safezoneW;
 		h = 0.0352 * safezoneH;
 		colorText[] = {1,0.5,0,1};
-		colorBackground[] = {1,0.5,0,1};
+		colorBackground[] = {0,0,0,0};
 		colorActive[] = {0,0,0,1};
 		font = "tf_font_segments";
 		shadow = 1;

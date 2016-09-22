@@ -13,6 +13,6 @@
 		ARRAY - Radio list sorted.
  	
  	Example:
-		_radios = currentUnit call TFAR_fnc_radiosListSorted;
+		_radios = TFAR_currentUnit call TFAR_fnc_radiosListSorted;
 */
 (_this call TFAR_fnc_radiosList) call BIS_fnc_sortAlphabetically

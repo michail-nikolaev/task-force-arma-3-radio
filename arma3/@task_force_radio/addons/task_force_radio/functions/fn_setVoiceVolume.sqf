@@ -14,10 +14,10 @@
 		Nothing
  	
  	Example:
-		[30] call TFAR_fnc_setVoiceVolume;
+		30 call TFAR_fnc_setVoiceVolume;
  */
 #include "script.h"
 TF_speak_volume_meters = TF_max_voice_volume min _this;
 
 //							unit, range
-["OnSpeakVolume", currentUnit, [currentUnit, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
+["OnSpeakVolume", TFAR_currentUnit, [TFAR_currentUnit, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;

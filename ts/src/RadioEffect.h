@@ -1,6 +1,8 @@
+#pragma once
 #include "DspFilters\Butterworth.h"
 #include "DspFilters\RBJ.h"
 #include <math.h>
+#include <Windows.h>
 #define SAMPLE_RATE 48000
 
 
@@ -216,3 +218,47 @@ private:
 };
 
 
+
+extern CRITICAL_SECTION serverDataCriticalSection;
+template<class T>
+void processRadioEffect(short* samples, int channels, int sampleCount, float gain, T* effect, int stereoMode) {
+	int startChannel = 0;
+	int endChannel = channels;
+	if (stereoMode == 1) {
+		startChannel = 0;
+		endChannel = 1;
+		gain *= 1.5f;
+	} else if (stereoMode == 2) {
+		startChannel = 1;
+		endChannel = 2;
+		gain *= 1.5f;
+	}
+	float* buffer = new float[sampleCount];
+	for (int i = 0; i < sampleCount * channels; i += channels) {
+		// prepare mono for radio						
+		long long no3D = 0;
+		for (int j = 0; j < channels; j++) {
+			no3D += samples[i + j];
+		}
+
+		short to_process = (short) (no3D / channels);
+		buffer[i / channels] = ((float) to_process / (float) SHRT_MAX) * gain;
+	}
+	EnterCriticalSection(&serverDataCriticalSection);
+	effect->process(buffer, sampleCount);
+	LeaveCriticalSection(&serverDataCriticalSection);
+	for (int i = 0; i < sampleCount * channels; i += channels) {
+		// put mixed output to stream			
+		for (int j = 0; j < channels; j++) samples[i + j] = 0;
+
+		for (int j = startChannel; j < endChannel; j++) {
+			float sample = buffer[i / channels];
+			short newValue;
+			if (sample > 1.0) newValue = SHRT_MAX;
+			else if (sample < -1.0) newValue = SHRT_MIN;
+			else newValue = (short) (sample * (SHRT_MAX - 1));
+			samples[i + j] = newValue;
+		}
+	}
+	delete[] buffer;
+}

@@ -143,7 +143,7 @@ unsigned Hrtf::process(
 
 	int window = 0;
 	while(sample3d[0].get_size() < dst_n * 2 || sample3d[1].get_size() < dst_n * 2) {
-		size_t offset = window * WINDOW_SIZE / 2;
+		int offset = window * WINDOW_SIZE / 2;
 		assert(offset + WINDOW_SIZE / 2 <= src_n);
 		for(unsigned c = 0; c < dst_ch; ++c) {
 			sample3d[c].reserve(WINDOW_SIZE);
@@ -211,7 +211,7 @@ void Hrtf::hrtf(const unsigned channel_idx, s16 *dst, const s16 *src, int src_ch
 	{
 		for(size_t i = 0; i < mdct_type::M; ++i)
 		{
-			const int kemar_sample = i * 257 / mdct_type::M;
+			const size_t kemar_sample = i * 257 / mdct_type::M;
 			std::complex<float> fir(kemar_data[kemar_idx][0][kemar_sample][0], kemar_data[kemar_idx][0][kemar_sample][1]);
 			//_mdct.data[i] *= std::abs(fir); TODO: fix HRTF
 		}
