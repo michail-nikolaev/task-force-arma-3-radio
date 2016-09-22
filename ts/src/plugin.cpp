@@ -231,7 +231,55 @@ void playWavFile(const char* fileNameWithoutExtension) {
 	}
 }
 
+void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain,int stereoMode) {
+	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
+	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
+	if (!isConnected(serverConnectionHandlerID)) return;
+	std::string path = std::string(pluginPath);
+	std::string to_play = path + std::string(fileNameWithoutExtension) + ".wav";
 
+	clunk::WavFile* wave = NULL;
+	EnterCriticalSection(&serverDataCriticalSection);
+	if (serverIdToData[serverConnectionHandlerID].waves.count(to_play) == 0) {
+		FILE *f = fopen(to_play.c_str(), "rb");
+		if (f) {
+			clunk::WavFile* wav = new clunk::WavFile(f);
+			wav->read();
+			if (wav->ok() && wav->_spec.channels == 2 && wav->_spec.sample_rate == 48000) {
+				serverIdToData[serverConnectionHandlerID].waves[to_play] = wav;
+				wave = serverIdToData[serverConnectionHandlerID].waves[to_play];
+			}
+			fclose(f);
+		}
+	} else {
+		wave = serverIdToData[serverConnectionHandlerID].waves[to_play];
+	}
+	LeaveCriticalSection(&serverDataCriticalSection);
+
+	if (wave) {
+		short* data = static_cast<short*>(wave->_data.get_ptr());
+		int samples = static_cast<int>((wave->_data.get_size() / sizeof(short)) / wave->_spec.channels);
+		short* input = new short[samples * wave->_spec.channels];
+
+		memcpy(input, data, wave->_data.get_size());
+		helpers::applyGain(input, wave->_spec.channels, samples, gain);
+
+		std::string id = to_play + std::to_string(rand());
+		  if (stereoMode == 0) {
+		  }	  else if (stereoMode == 1) {
+			  for (int q = 0; q < samples * wave->_spec.channels; q += wave->_spec.channels) {
+				  input[q+1] = 0;	//mute right channel
+			  }
+		  }	  else if (stereoMode == 2) {
+			  for (int q = 0; q < samples * wave->_spec.channels; q+= wave->_spec.channels) {
+				  input[q] = 0;   //mute left channel
+			  }
+		  }
+		
+		playbackHandler.appendPlayback(id, serverConnectionHandlerID, input, samples, wave->_spec.channels);
+		delete[] input;
+	}
+}
 
 
 // taken from https://github.com/MadStyleCow/A2TS_Rebuild/blob/master/src/ts3plugin.cpp#L1367
@@ -1033,9 +1081,48 @@ std::string processGameCommand(std::string command) {
 			std::string commandToBroadcast = command + "\t" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].getMyNickname();
 			if (pressed) {
 				switch (PTTDelayArguments::subtypeToString(subtype)) {
-					case PTTDelayArguments::subtypes::digital_lr: playWavFile("radio-sounds/lr/local_start"); break;
+					case PTTDelayArguments::subtypes::digital_lr: 
+						
+						
+						
+					{
+						std::string frequency = tokens[2];
+
+						if (serverIdToData[currentServerConnectionHandlerID].myLrFrequencies.count(frequency)) {
+
+
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/lr/local_start", 1, serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency].stereoMode);
+						} else {
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/lr/local_start", 1, 0);
+						}
+
+
+					}
+						
+						//playWavFile("radio-sounds/lr/local_start");
+						
+						
+						break;
 					case PTTDelayArguments::subtypes::dd: playWavFile("radio-sounds/dd/local_start"); break;
-					case PTTDelayArguments::subtypes::digital: playWavFile("radio-sounds/sw/local_start"); break;
+					case PTTDelayArguments::subtypes::digital: 
+					{
+						std::string frequency = tokens[2];
+					
+						if (serverIdToData[currentServerConnectionHandlerID].mySwFrequencies.count(frequency)) {
+							
+							
+								playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_start", 1, serverIdToData[currentServerConnectionHandlerID].mySwFrequencies[frequency].stereoMode);
+
+						}else {
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_start", 1, 0);
+						}
+					
+					
+					}
+						
+						
+						//playWavFile("radio-sounds/sw/local_start"); 
+					break;
 					case PTTDelayArguments::subtypes::airborne: playWavFile("radio-sounds/ab/local_start"); break;
 				}
 				EnterCriticalSection(&tangentCriticalSection);
