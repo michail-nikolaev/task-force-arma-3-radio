@@ -6,7 +6,7 @@ if (time - TF_last_lr_tangent_press > 0.1) then {
 			call TFAR_fnc_unableToUseHint;
 		} else {
 			_radio = call TFAR_fnc_activeLrRadio;
-			if (!([_radio] call TFAR_fnc_RadioOn)) exitWith{};
+			if (!([_radio] call TFAR_fnc_RadioOn)) exitWith {};
 			if ([TFAR_currentUnit, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, TFAR_currentUnit call TFAR_fnc_eyeDepth] call TFAR_fnc_canUseLRRadio) then {
 				[format[localize "STR_transmit",format ["%1<img size='1.5' image='%2'/>",[_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty,
 					getText(configFile >> "CfgVehicles"  >> typeof (_radio select 0) >> "picture")],(_radio call TFAR_fnc_getLrChannel) + 1, call TFAR_fnc_currentLRFrequency],
