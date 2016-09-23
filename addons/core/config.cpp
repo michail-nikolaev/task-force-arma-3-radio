@@ -30,3 +30,4 @@ class CfgMods {
 };
 
 #include "CfgEventHandlers.hpp"
+#include "CfgSounds.hpp"
