@@ -1,5 +1,4 @@
 class RscStructuredText;
-
 class RscTitles
 {
 	class RscTaskForceHint
@@ -11,7 +10,7 @@ class RscTitles
 		fadeOut=0.2;
 		movingEnable = false;
 		duration = 10e10;
-		name = "RscTaskForceHint"; 
+		name = "RscTaskForceHint";
 		class controls
 		{
 			class InformationText: RscStructuredText

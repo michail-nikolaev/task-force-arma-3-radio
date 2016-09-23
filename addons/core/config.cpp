@@ -29,5 +29,8 @@ class CfgMods {
     };
 };
 
+#include "RadioDialogControls.hpp"
+#include "RscTitles.hpp"
+#include "RadioDialogControls.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgSounds.hpp"
