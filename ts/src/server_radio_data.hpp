@@ -18,10 +18,8 @@ struct SPEAKER_DATA {
 
 struct SERVER_RADIO_DATA {
 	std::string getMyNickname() const { return myNickname; }
-	void setMyNickname(std::string val) {
-		EnterCriticalSection(&serverDataCriticalSection);
+	void setMyNicknamex(std::string val) {//#TODO remove x
 		myNickname = CLIENT_DATA::convertNickname(val);
-		LeaveCriticalSection(&serverDataCriticalSection);
 	}
 
 
@@ -86,5 +84,49 @@ private:
 };
 
 
-typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
+//typedef std::map<uint64, SERVER_RADIO_DATA> SERVER_ID_TO_SERVER_DATA;
+
+
+
+
+
+class SERVER_ID_TO_SERVER_DATA {
+public:
+	typedef std::map<uint64_t, SERVER_RADIO_DATA>::iterator iterator;
+	std::map<uint64_t, SERVER_RADIO_DATA>::iterator begin();
+	std::map<uint64_t, SERVER_RADIO_DATA>::iterator end();
+	size_t count(const uint64_t &serverConnectionHandlerID) const;
+	SERVER_RADIO_DATA& operator[](const uint64_t &serverConnectionHandlerID);
+	auto erase(const uint64_t &serverConnectionHandlerID) {
+		return data.erase(serverConnectionHandlerID);
+	}
+	void setMyNickname(const uint64_t &serverConnectionHandlerID, const std::string& nickname);
+	std::string getMyNickname(const uint64_t &serverConnectionHandlerID);
+	//convenience function to keep CriticalSection interaction low
+	void resetAndSetMyNickname(const uint64_t &serverConnectionHandlerID, const std::string& nickname);
+	std::vector<CLIENT_DATA*> getClientDataByClientID(const uint64_t &serverConnectionHandlerID, anyID clientID);
+	float getWavesLevel(uint64_t const& serverConnectionHandlerID);
+	std::string getAddonVersion(const uint64_t &serverConnectionHandlerID);
+	//Returns SeriousMode Channel in format {Channel Name, Channel Password}
+	std::pair<std::string, std::string> getSeriousModeChannel(const uint64_t &serverConnectionHandlerID);
+	//convenience function for serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(nickname) with CriticalSectionLock
+	size_t clientDataCount(const uint64_t &serverConnectionHandlerID, const std::string & nickname);
+	void setFreqInfos(const uint64_t &serverConnectionHandlerID, const std::vector<std::string> &tokens) {
+		if (data.count(serverConnectionHandlerID))
+			data[serverConnectionHandlerID].setFreqInfos(tokens);
+	}
+private:
+	std::map<uint64, SERVER_RADIO_DATA> data;
+};
+
+
+
+
+
+
+
+
+
+
+
 

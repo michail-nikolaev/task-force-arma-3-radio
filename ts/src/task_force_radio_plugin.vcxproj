@@ -225,6 +225,7 @@
     <ClCompile Include="constant_ts3_functions.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="pipe_handler.cpp" />
+    <ClCompile Include="playback_handler.cpp" />
     <ClCompile Include="plugin.cpp" />
     <ClCompile Include="server_radio_data.cpp" />
     <ClCompile Include="task_force_radio.cpp" />
@@ -256,6 +257,7 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="helpers.h" />
     <ClInclude Include="pipe_handler.h" />
+    <ClInclude Include="playback_handler.h" />
     <ClInclude Include="RadioEffect.h" />
     <ClInclude Include="plugin.h" />
     <ClInclude Include="server_radio_data.hpp" />
