@@ -112,6 +112,8 @@ class CfgFunctions
 			class onSwTangentPressedHack;
 			class onSwTangentReleasedHack;
 			class onSpeakVolumeChange;
+			class onSpeakVolumeModifierPressed;
+			class onSpeakVolumeModifierReleased;
 			class onSwDialogOpen;
 			class onLRDialogOpen;
 			class onDDDialogOpen;
