@@ -115,3 +115,9 @@ TF_dialog_dd_modifiers = [true, false, false];
 
 TF_speak_volume_scancode = 15;
 TF_speak_volume_modifiers = [false, true, false];
+
+TF_speak_volume_modifier_yelling_scancode = 0;
+TF_speak_volume_modifier_yelling_modifiers = [false, false, false];
+
+TF_speak_volume_modifier_whispering_scancode = 0;
+TF_speak_volume_modifier_whispering_modifiers = [false, false, false];
