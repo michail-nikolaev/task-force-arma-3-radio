@@ -130,6 +130,7 @@ class CfgFunctions
 			class processGroupFrequencySettings;
 			class processRespawn;
 			// R
+			class radioOn;
 			class removeEventHandler;
 			class radioReplaceProcess;
 			class requestRadios;
