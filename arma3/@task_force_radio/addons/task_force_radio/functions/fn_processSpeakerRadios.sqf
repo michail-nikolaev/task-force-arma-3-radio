@@ -52,7 +52,7 @@ _unit_pos = eyepos TFAR_currentUnit;
 			if (isNull (commander _x) && {count (_x getVariable ["commander_radio_settings", []]) > 0}) then {
 				_lrs pushBack [_x, "commander_radio_settings"];
 			};
-			if (isNull (_x turretUnit [0]) && {count (_x getVariable ["turretUnit_0_radio_setting", []]) > 0}) then {
+			if (isNull (_x call TFAR_fnc_getCopilot) && {count (_x getVariable ["turretUnit_0_radio_setting", []]) > 0}) then {
 				_lrs pushBack [_x, "turretUnit_0_radio_setting"];
 			};
 			

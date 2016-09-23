@@ -25,10 +25,5 @@ public:
 			NULL);    // don't set maximum time 
 		return pipe;
 	}
-
-
-
-
-
 };
 
