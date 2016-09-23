@@ -55,6 +55,7 @@ class CfgFunctions
 			class getTeamSpeakServerName;
 			class getTeamSpeakChannelName;
 			class getConfigProperty;
+			class getCopilot;
 			class getLrRadioProperty;
 			class GetChannelFrequency;
 			class getSideRadio;
