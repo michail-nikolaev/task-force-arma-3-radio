@@ -5,6 +5,15 @@ std::map<std::string, CLIENT_DATA*>::iterator STRING_TO_CLIENT_DATA_MAP::end() {
 	return data.end();
 }
 
+std::vector<CLIENT_DATA*> STRING_TO_CLIENT_DATA_MAP::getClientDataByClientID(anyID clientID) {
+	std::vector<CLIENT_DATA*> output;
+	for (auto & it : data) {
+		if (it.second->clientId == clientID)
+			output.push_back(it.second);
+	}
+	return output;
+}
+
 size_t STRING_TO_CLIENT_DATA_MAP::count(std::string const& key) const {
 	return data.count(CLIENT_DATA::convertNickname(key));
 }
@@ -28,6 +37,13 @@ void STRING_TO_CLIENT_DATA_MAP::removeExpiredPositions(const int &curDataFrame) 
 		log_string(std::string("Expire position of ") + *it + " time:" + std::to_string(time - client_data->positionTime), LogLevel_DEBUG);
 		delete client_data;
 	}
+}
+
+STRING_TO_CLIENT_DATA_MAP::~STRING_TO_CLIENT_DATA_MAP() {
+	for (auto & it : data) {
+		delete it.second;
+	}
+	data.clear();
 }
 
 std::map<std::string, CLIENT_DATA*>::iterator STRING_TO_CLIENT_DATA_MAP::begin() {

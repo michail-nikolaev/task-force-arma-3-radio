@@ -216,6 +216,9 @@ private:
 	Dsp::SimpleFilter<Dsp::RBJ::HighPass, 1> filterMicHP;
 	Dsp::SimpleFilter<Dsp::RBJ::LowPass, 1> filterMicLP;
 };
+
+
+
 extern CRITICAL_SECTION serverDataCriticalSection;
 template<class T>
 void processRadioEffect(short* samples, int channels, int sampleCount, float gain, T* effect, int stereoMode) {

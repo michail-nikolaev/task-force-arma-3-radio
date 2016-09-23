@@ -55,6 +55,7 @@ class CfgFunctions
 			class getTeamSpeakServerName;
 			class getTeamSpeakChannelName;
 			class getConfigProperty;
+			class getCopilot;
 			class getLrRadioProperty;
 			class GetChannelFrequency;
 			class getSideRadio;
@@ -111,6 +112,8 @@ class CfgFunctions
 			class onSwTangentPressedHack;
 			class onSwTangentReleasedHack;
 			class onSpeakVolumeChange;
+			class onSpeakVolumeModifierPressed;
+			class onSpeakVolumeModifierReleased;
 			class onSwDialogOpen;
 			class onLRDialogOpen;
 			class onDDDialogOpen;
@@ -130,6 +133,7 @@ class CfgFunctions
 			class processGroupFrequencySettings;
 			class processRespawn;
 			// R
+			class radioOn;
 			class removeEventHandler;
 			class radioReplaceProcess;
 			class requestRadios;
