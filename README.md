@@ -1,4 +1,4 @@
-<h1 align="center">Task Force Arma 3 Radio</h1>
+<h1 align="center">Task Force Arrowhead Radio</h1>
 <p align="center">
 <img src="https://raw.githubusercontent.com/Tourorist/TPS/master/tfar/tfar_manw.jpg"
      width="572px" /><br />
