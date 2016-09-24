@@ -1,6 +1,17 @@
-private ["_result"];
-_result = TFAR_currentUnit getVariable "tf_unable_to_use_radio";
-if (isNil "_result") then {
-	_result = false;
-};
-_result
+/*
+ 	Name: TFAR_fnc_isAbleToUseRadio
+ 	
+ 	Author(s):
+
+ 	Description:
+		Checks whether the current unit is able to use their radio.
+	
+	Parameters:
+ 	
+ 	Returns:
+		BOOLEAN
+ 	
+ 	Example:
+		_ableToUseRadio = call TFAR_fnc_isAbleToUseRadio;
+*/
+!(TFAR_currentUnit getVariable ["tf_unable_to_use_radio", false])

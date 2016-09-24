@@ -1,8 +1,23 @@
+/*
+ 	Name: TFAR_fnc_onAdditionalLRTangentPressed
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Fired when the additional keybinding for LR is pressed.
+	
+	Parameters:
+ 	
+ 	Returns:
+		BOOLEAN
+ 	
+ 	Example:
+		call TFAR_fnc_onAdditionalLRTangentPressed;
+*/
 private["_freq","_radio"];
 if (!(TF_tangent_lr_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_haveLRRadio}) then {
 	if (call TFAR_fnc_isAbleToUseRadio) then {
-		call TFAR_fnc_unableToUseHint;
-	} else {
 		if ([TFAR_currentUnit, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, TFAR_currentUnit call TFAR_fnc_eyeDepth] call TFAR_fnc_canUseLRRadio) then {
 			_radio = call TFAR_fnc_activeLrRadio;			
 			if ((_radio call TFAR_fnc_getAdditionalLrChannel) > -1) then {
@@ -19,6 +34,8 @@ if (!(TF_tangent_lr_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_hav
 		} else {
 			call TFAR_fnc_inWaterHint;
 		}
+	} else {
+		call TFAR_fnc_unableToUseHint;
 	};
 };
 false
