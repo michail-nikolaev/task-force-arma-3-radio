@@ -24,15 +24,15 @@
 }
 
 //Helpers for setting vehicles Isolation and if they have LR
-#define MACRO_VEC_ISOLATION (vehicle,baseClass,isolation)  class vehicle : baseClass { \
-    tf_isolatedAmount = isolation;\
+#define MACRO_VEC_ISOLATION(vehicle,baseClass,isolation) class vehicle : baseClass { \
+    tf_isolatedAmount = isolation; \
 }
 
-#define MACRO_VEC_ISOLATION (vehicle,baseClass,isolation,hasLR)  class vehicle : baseClass { \
-    tf_hasLRradio = hasLR;\
-    tf_isolatedAmount = isolation;\
+#define MACRO_VEC_LR(vehicle,baseClass,hasLR) class vehicle : baseClass { \
+    tf_hasLRradio = hasLR; \
 }
 
-#define MACRO_VEC_LR (vehicle,baseClass,hasLR)  class vehicle : baseClass { \
-    tf_hasLRradio = hasLR;\
+#define MACRO_VEC_ISOLATION_LR(vehicle,baseClass,isolation,hasLR) class vehicle : baseClass { \
+    tf_hasLRradio = hasLR; \
+    tf_isolatedAmount = isolation; \
 }

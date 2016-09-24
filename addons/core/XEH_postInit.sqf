@@ -1,3 +1,9 @@
 #include "script_component.hpp"
 
-// here goes all the client initialization
+if (isServer or isDedicated) then {
+	[] spawn TFAR_fnc_ServerInit;
+};
+
+if (hasInterface) then {
+	[] spawn TFAR_fnc_ClientInit;
+};
