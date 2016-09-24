@@ -15,3 +15,23 @@
 
 
 #define VARIABLE_DEFAULT(varName,defaultValue) if (isNil QUOTE(varName)) then {	varName = defaultValue; };
+
+//From https://github.com/acemod/ACE3
+#define MACRO_ADDITEM(ITEM,COUNT) class _xx_##ITEM { \
+    name = #ITEM; \
+    count = COUNT; \
+}
+
+//Helpers for setting vehicles Isolation and if they have LR
+#define MACRO_VEC_ISOLATION (vehicle,baseClass,isolation)  class vehicle : baseClass { \
+    tf_isolatedAmount = isolation;\
+}
+
+#define MACRO_VEC_ISOLATION (vehicle,baseClass,isolation,hasLR)  class vehicle : baseClass { \
+    tf_hasLRradio = hasLR;\
+    tf_isolatedAmount = isolation;\
+}
+
+#define MACRO_VEC_LR (vehicle,baseClass,hasLR)  class vehicle : baseClass { \
+    tf_hasLRradio = hasLR;\
+}
