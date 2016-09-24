@@ -172,29 +172,22 @@ class CfgVehicles {
     scopeCurator = 1;
   };
 
-  
 
-  
-  
-  
 
-  
 
-  
+
+
+
+
+
+
 
   #include "vehicles.hpp"
   #include "crates.hpp"
-  #include "modules.hpp"
 
-  
 
-  
 
- 
 
-  
-
-  
 
 };
 
@@ -203,7 +196,7 @@ class CfgVehicles {
 class CfgWeapons
 {
   class ItemRadio;
-  
-    
-    
+
+
+
 };

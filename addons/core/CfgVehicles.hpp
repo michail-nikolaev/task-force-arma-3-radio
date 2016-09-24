@@ -10,7 +10,7 @@ class CfgVehicles {
     };
     class tfar_ModuleTaskForceRadioEnforceUsage: Module_F {
     	scope = 2;
-    	author = "Task Force Arrowhead Radio";
+    	author = QUOTE(AUTHORS);
     	displayName = "$STR_TFAR_Mod_EnforceUsage";
     	category = "TFAR";
 
@@ -71,7 +71,7 @@ class CfgVehicles {
     };
     class tfar_ModuleTaskForceRadio: Module_F {
     	scope = 2;
-    	author = "Task Force Arrowhead Radio";
+    	author = QUOTE(AUTHORS);
     	displayName = "$STR_TFAR_Mod_SideRadio";
     	category = "TFAR";
 
@@ -128,7 +128,7 @@ class CfgVehicles {
 
     class tfar_ModuleTaskForceRadioFrequencies: Module_F {
     	scope = 2;
-    	author = "Task Force Arrowhead Radio";
+    	author = QUOTE(AUTHORS);
     	displayName = "$STR_TFAR_Mod_Frequencies";
     	category = "TFAR";
 
@@ -159,4 +159,77 @@ class CfgVehicles {
     		sync[] = {"AnyPerson"};
     	};
     };
+
+
+    //Add radios to vehicles
+
+    class All;
+    MACRO_VEC_ISOLATION(AllVehicles,All,0,0);
+    MACRO_VEC_ISOLATION(Air,AllVehicles,0.1,1);
+    class Land;
+    class LandVehicle: Land {
+    	tf_range = 30000;
+    };
+    MACRO_VEC_ISOLATION(Car,LandVehicle,0.1);
+    MACRO_VEC_ISOLATION(Tank,LandVehicle,1,1);
+    class Helicopter;
+    MACRO_VEC_ISOLATION(ParachuteBase,Helicopter,0,0);
+    class Helicopter_Base_F;
+    MACRO_VEC_ISOLATION(Heli_Attack_02_base_F,Helicopter_Base_F,0.7);
+    MACRO_VEC_ISOLATION(Heli_Attack_01_base_F,Helicopter_Base_F,0.7);
+    class Helicopter_Base_H;
+    MACRO_VEC_ISOLATION(Heli_Light_02_base_F,Helicopter_Base_H,0.7);
+    MACRO_VEC_ISOLATION(Heli_Transport_01_base_F,Helicopter_Base_H,0.3);
+    MACRO_VEC_ISOLATION(Heli_Transport_02_base_F,Helicopter_Base_H,0.8);
+
+    MACRO_VEC_ISOLATION(Heli_Light_02_base_F,Helicopter_Base_H,0.7);
+    MACRO_VEC_ISOLATION(Heli_Light_02_base_F,Helicopter_Base_H,0.7);
+    MACRO_VEC_ISOLATION(Heli_Light_02_base_F,Helicopter_Base_H,0.7);
+    MACRO_VEC_ISOLATION(Heli_Light_02_base_F,Helicopter_Base_H,0.7);
+    class Car_F;
+    MACRO_VEC_ISOLATION(Wheeled_Apc_F,Car_F,0.6,1);
+    MACRO_VEC_ISOLATION(MRAP_01_base_F,Car_F,0.7,1);
+    MACRO_VEC_ISOLATION(MRAP_02_base_F,Car_F,0.7,1);
+    MACRO_VEC_ISOLATION(MRAP_03_base_F,Car_F,0.7,1);
+    class Truck_F;
+    MACRO_VEC_ISOLATION(Truck_01_base_F,Truck_F,0.4,1);
+    MACRO_VEC_ISOLATION(Truck_02_base_F,Truck_F,0.4,1);
+    MACRO_VEC_ISOLATION(Truck_03_base_F,Truck_F,0.4,1);
+    MACRO_VEC_ISOLATION(Wheeled_Apc_F,Car_F,0.6,1);
+    class Offroad_01_base_f;
+    MACRO_VEC_ISOLATION(Offroad_01_armed_base_F,Offroad_01_base_f,0.25,1);
+
+    class Boat_F;
+    MACRO_VEC_ISOLATION(SDV_01_base_F,Boat_F,0.1,1);
+    MACRO_VEC_ISOLATION(Boat_Armed_01_base_F,Boat_F,0.1,1);
+    class Boat_Civil_01_base_F;
+    MACRO_VEC_ISOLATION(Boat_Armed_01_base_F,Boat_F,0.1,1);
+    MACRO_VEC_LR(C_Boat_Civil_01_police_F,Boat_Civil_01_base_F,1);
+    MACRO_VEC_LR(C_Boat_Civil_01_rescue_F,Boat_Civil_01_base_F,1);
+
+
+    // ---------------------------------------------------------
+    // Default 3d-party Mod Support
+    // ---------------------------------------------------------
+    MACRO_VEC_ISOLATION(rc_hmmwv_base,Car_F,0.3,1);
+
+    class Plane;
+    // C-130J Port Release - http://forums.bistudio.com/showthread.php?173431-C-130J-Port-Release
+    MACRO_VEC_ISOLATION(C130J_Base,Plane,0.8,1);
+
+    // HAFM - ArmA 2 HMMWVs import - http://forums.bistudio.com/showthread.php?172647-HAFM-ArmA-2-HMMWVs-import
+    MACRO_VEC_ISOLATION(HMMWV_Base,Car_F,0.3,1);
+
+    // HAFM - ArmA 2 UK Wheeled - http://forums.bistudio.com/showthread.php?176138-HAFM-ArmA-2-UK-Wheeled-Import
+    MACRO_VEC_ISOLATION(BAF_Offroad_D,Car_F,0.1,1);
+    MACRO_VEC_ISOLATION(BAF_Jackal2_BASE_D,Car_F,0,1);
+
+    // HAFM UAZ Cars - http://forums.bistudio.com/showthread.php?175914-HAFM-UAZ-Cars
+    MACRO_VEC_ISOLATION(UAZ_Base,Car_F,0,1);
+    MACRO_VEC_ISOLATION(UAZ_Unarmed,Car_F,0.15,1);
+
+    // HAFM -  ArmA 2 US Helicopters Import to A3 - http://forums.bistudio.com/showthread.php?173822-ArmA-2-US-Helicopters-Import-to-A3
+    MACRO_VEC_ISOLATION(CH_47F_base,Helicopter,0.4,1);
+    MACRO_VEC_ISOLATION(AH64_Base,Helicopter,0.85,1);
+    MACRO_VEC_ISOLATION(AH1_Base,Helicopter,0.85,1);
 };

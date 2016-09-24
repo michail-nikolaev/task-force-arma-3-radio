@@ -1,7 +1,11 @@
 #include "script_component.hpp"
+
 class CfgPatches {
     class ADDON {
         units[] = {
+            "TF_NATO_Radio_Crate",
+            "TF_EAST_Radio_Crate",
+            "TF_IND_Radio_Crate",
             "Item_tf_anprc152",
             "Item_tf_pnr1000a",
             "Item_tf_anprc148jem",
@@ -19,26 +23,15 @@ class CfgPatches {
             "tf_rf7800str",
             "tf_pnr1000a"
         };
-        requiredVersion = 1.0;
+        requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"A3_Modules_F", "A3_UI_F", "A3_Structures_F_Items_Electronics", "A3_Weapons_F_ItemHolders"};
-        author = "[TF]Nkey";
         Url = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
-        version = 1.0.0;
-        versionStr = "1.0.0";
-        versionAr[] = {1,0,0};
+        author = QUOTE(AUTHORS);
+        VERSION_CONFIG;
     };
 };
 
-class CfgVehicles {
-    class Item_Base_F;
-    #include "anprc148jem/CfgVehicles.hpp"
-    #include "anprc152/CfgVehicles.hpp"
-    #include "anprc154/CfgVehicles.hpp"
-    #include "fadak/CfgVehicles.hpp"
-    #include "microdagr/CfgVehicles.hpp"
-    #include "pnr1000a/CfgVehicles.hpp"
-    #include "rf7800/CfgVehicles.hpp"
-};
+#include "CfgVehicles.hpp"
 
 #include "radio_ids.hpp"
 
