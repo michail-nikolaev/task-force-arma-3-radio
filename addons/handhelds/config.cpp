@@ -24,10 +24,15 @@ class CfgPatches {
             "tf_pnr1000a"
         };
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"A3_Modules_F", "A3_UI_F", "A3_Structures_F_Items_Electronics", "A3_Weapons_F_ItemHolders"};
+        requiredAddons[] = {
+            "A3_Modules_F",
+            "A3_UI_F",
+            "A3_Structures_F_Items_Electronics",
+            "A3_Weapons_F_ItemHolders",
+
+            "tfar_core"
+        };
         Url = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
-        author = QUOTE(AUTHORS);
-        VERSION_CONFIG;
     };
 };
 
@@ -47,7 +52,6 @@ class CfgWeapons {
 };
 
 #include "CfgVehicles.hpp"
-#include "uiDefines.hpp"
 
 #include "anprc148jem\ui\anprc148jem.ext"
 #include "anprc152\ui\anprc152.ext"
