@@ -531,7 +531,7 @@ def get_project_version():
     #do the magic based on https://github.com/acemod/ACE3/issues/806#issuecomment-95639048
 
     try:
-        scriptModPath = os.path.join(work_drive, prefix, "main\script_mod.hpp")
+        scriptModPath = os.path.join(work_drive, prefix, "core\script_mod.hpp")
 
         if os.path.isfile(scriptModPath):
             f = open(scriptModPath, "r")
@@ -666,7 +666,7 @@ def restore_version_files():
     return True
 
 
-def get_private_keyname(commitID,module="main"):
+def get_private_keyname(commitID,module="core"):
     global pbo_name_prefix
 
     aceVersion = get_project_version()
