@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_setSwSpeakers
 
@@ -16,7 +18,7 @@
  	Example:
 		[call TFAR_fnc_ActiveSWRadio] call TFAR_fnc_setSwSpeakers;
  */
-#include "script.h"
+
 private ["_settings", "_flag"];
 
 prams ["_radio_id"];

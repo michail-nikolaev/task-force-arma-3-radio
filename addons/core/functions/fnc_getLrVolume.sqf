@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_getLrVolume
  	
@@ -18,7 +20,7 @@
  	Example:
 		_volume = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getLrVolume;
 */
-#include "script.h"
+
 private ["_settings"];
 _settings = _this call TFAR_fnc_getLrSettings;
 _settings select VOLUME_OFFSET

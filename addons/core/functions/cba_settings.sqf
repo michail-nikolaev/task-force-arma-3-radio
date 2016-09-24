@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 // server
 ["TF_no_auto_long_range_radio", "CHECKBOX", localize "STR_radio_no_auto_long_range_radio", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
 ["TF_give_personal_radio_to_regular_soldier", "CHECKBOX", localize "STR_radio_give_personal_radio_to_regular_soldier", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;

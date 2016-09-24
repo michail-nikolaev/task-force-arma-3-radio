@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_setLrFrequency
  	
@@ -18,7 +20,7 @@
  	Example:
 		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, "45.48"] call TFAR_fnc_setLrFrequency;
 */
-#include "script.h"
+
 private ["_radio"];
 _radio = [_this select 0, _this select 1];
 

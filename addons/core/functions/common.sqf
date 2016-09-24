@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 TF_FREQ_OFFSET = 2;
 TF_FREQ_ROUND_POWER = 10;
 

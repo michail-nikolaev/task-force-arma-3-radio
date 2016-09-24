@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 [] spawn {
     private ["_radio","_dialog_to_open","_dialog_update"];
     sleep 0.1;

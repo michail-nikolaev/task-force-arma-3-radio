@@ -2,7 +2,7 @@
 
 class CfgPatches {
     class ADDON {
-        name = COMPONENT_NAME;
+        name = "TFAR - Core";
         units[] = {
             "tfar_ModuleTaskForceRadioEnforceUsage",
             "tfar_ModuleTaskForceRadio",
@@ -16,7 +16,6 @@ class CfgPatches {
             "cba_xeh"
         };
         author = QUOTE(AUTHORS);
-        VERSION_CONFIG;
     };
 };
 
@@ -28,7 +27,6 @@ class CfgMods {
         hidePicture = "true";
         hideName = "true";
         actionName = "Website";
-        action = CSTRING(URL);
         description = "War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.";
     };
 };
@@ -36,7 +34,6 @@ class CfgMods {
 #include "RadioDialogControls.hpp"
 #include "RscTitles.hpp"
 #include "RadioDialogControls.hpp"
-#include "CfgEventHandlers.hpp"
 #include "CfgSounds.hpp"
 #include "CfgFontFamilies.hpp"
 #include "CfgVehicles.hpp"

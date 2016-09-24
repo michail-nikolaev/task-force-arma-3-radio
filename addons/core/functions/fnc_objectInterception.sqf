@@ -1,4 +1,6 @@
-#include "script.h"
+#include "script_component.hpp"
+
+
 private ["_result", "_s"];
 
 KK_fnc_inString = {

@@ -1,4 +1,5 @@
 #define COMPONENT core
+
 #include "\z\tfar\addons\core\script_mod.hpp"
 #include "\z\tfar\addons\core\defines.hpp"
 
@@ -12,7 +13,5 @@
 #endif
 
 #ifdef DEBUG_SETTINGS_CORE
-    #define DEBUG_SETTINGS DEBUG_SETTINGS_MAIN
+    #define DEBUG_SETTINGS DEBUG_SETTINGS_CORE
 #endif
-
-#include "\z\tfar\addons\core\script_macros.hpp"

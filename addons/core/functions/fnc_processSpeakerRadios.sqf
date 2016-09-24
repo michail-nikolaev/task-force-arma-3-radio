@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 private ["_item", "_freq", "_pos", "_unit_pos", "_p", "_manpack", "_lrs", "_isolation"];
 _unit_pos = eyepos TFAR_currentUnit;
 {

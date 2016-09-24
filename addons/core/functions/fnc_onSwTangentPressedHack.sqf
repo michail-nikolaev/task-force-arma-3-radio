@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_onSwTangentPressedHack
  	
@@ -15,7 +17,7 @@
  	Example:
 		call TFAR_fnc_onSwTangentPressedHack;
 */
-#include "script.h"
+
 private ["_scancode", "_mods", "_mods_lr", "_is_lr", "_sw_keybind", "_lr_keybind", "_scancode_lr"];
 if (call TFAR_fnc_isAbleToUseRadio) then {
 	_scancode = _this select 1; 

@@ -1,3 +1,6 @@
+#include "script_component.hpp"
+
+
 /*
  	Name: TFAR_fnc_updateLRDialogToChannel
 
@@ -20,11 +23,11 @@
 		// Custom format
 		["CH: %1"] call TFAR_fnc_updateLRDialogToChannel;
 */
-#include "\task_force_radio\define.h"
+
 private ["_channelText", "_formatText"];
 _formatText = "CH:%1";
 
-if ((_this isEqualType []) and {count _this > 0} and  {(_this select 0) isEqualType ""}) then {	
+if ((_this isEqualType []) and {count _this > 0} and  {(_this select 0) isEqualType ""}) then {
 	_formatText = _this select 0;
 };
 

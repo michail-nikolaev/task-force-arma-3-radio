@@ -2,6 +2,7 @@
 #include "\x\cba\addons\xeh\script_xeh.hpp"
 
 
+//From https://github.com/acemod/ACE3
 #udef DFUNC
 #define DFUNC(var1) TRIPLES(PREFIX,fnc,var1)
 

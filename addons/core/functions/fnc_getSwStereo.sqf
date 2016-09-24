@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_getSwStereo
  	
@@ -16,7 +18,7 @@
  	Example:
 		_stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwStereo;
 */
-#include "script.h"
+
 private ["_settings", "_result"];
 _settings = _this call TFAR_fnc_getSwSettings;
 _result = 0;

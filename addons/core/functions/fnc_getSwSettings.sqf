@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_getSwSettings
  	
@@ -17,7 +19,7 @@
  	Example:
 	(call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings;
 */
-#include "script.h"
+
 private ["_variableName", "_value", "_rc"];
 _variableName = format["%1_settings", _this];
 _value = missionNamespace getVariable _variableName;

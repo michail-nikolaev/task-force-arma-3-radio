@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_SetChannelFrequency
 
@@ -21,7 +23,7 @@
 	// SW radio - channel 1
 	[(call TFAR_fnc_activeSwRadio), 1, "84.3"] call TFAR_fnc_SetChannelFrequency;
 */
-#include "script.h"
+
 private ["_settings", "_lr"];
 params ["_radio", "_channel", "_frequency"];
 _channel = _channel - 1;

@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_copySettings
 
@@ -20,7 +22,7 @@
 	// SW - SW
 	[(call TFAR_fnc_activeSwRadio),"tf_anprc148jem_20"] call TFAR_fnc_CopySettings;
 */
-#include "script.h"
+
 private ["_settings", "_isDLR", "_isSLR", "_support_additional"];
 
 params ["_source", "_destination"];

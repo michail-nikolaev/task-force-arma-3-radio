@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 private ["_result","_index","_players_in_group","_spectator", "_v"];
 _players_in_group = count (units (group TFAR_currentUnit));
 _result = [];

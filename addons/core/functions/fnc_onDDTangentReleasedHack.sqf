@@ -1,4 +1,6 @@
-#include "script.h"
+#include "script_component.hpp"
+
+
 private ["_scancode", "_mods", "_keybind", "_scancode_dd"];
 _scancode = _this select 1; 
 _keybind = ["TFAR", "DDTransmit"] call cba_fnc_getKeybind;
