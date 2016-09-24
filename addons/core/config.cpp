@@ -34,3 +34,5 @@ class CfgMods {
 #include "RadioDialogControls.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgSounds.hpp"
+#include "CfgFontFamilies.hpp"
+#include "CfgVehicles.hpp"
