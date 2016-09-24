@@ -29,7 +29,6 @@ class CfgPatches {
             "A3_UI_F",
             "A3_Structures_F_Items_Electronics",
             "A3_Weapons_F_ItemHolders",
-
             "tfar_core"
         };
         Url = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
@@ -42,21 +41,21 @@ class CfgPatches {
 
 class CfgWeapons {
     class ItemRadio;
-    #include "anprc148jem/CfgWeapons.hpp"
-    #include "anprc152/CfgWeapons.hpp"
-    #include "anprc154/CfgWeapons.hpp"
-    #include "fadak/CfgWeapons.hpp"
-    #include "microdagr/CfgWeapons.hpp"
-    #include "pnr1000a/CfgWeapons.hpp"
-    #include "rf7800/CfgWeapons.hpp"
+    #include "anprc148jem\CfgWeapons.hpp"
+    #include "anprc152\CfgWeapons.hpp"
+    #include "anprc154\CfgWeapons.hpp"
+    #include "fadak\CfgWeapons.hpp"
+    #include "microdagr\CfgWeapons.hpp"
+    #include "pnr1000a\CfgWeapons.hpp"
+    #include "rf7800\CfgWeapons.hpp"
 };
 
 #include "CfgVehicles.hpp"
-
+#include "uiDefines.hpp"
 #include "anprc148jem\ui\anprc148jem.ext"
 #include "anprc152\ui\anprc152.ext"
 #include "anprc154\ui\anprc154.ext"
 #include "diver_radio\ui\diver_radio.ext"
 #include "fadak\ui\fadak.ext"
 #include "pnr1000a\ui\pnr1000a.ext"
-#include "rf7800str\ui\rf7800str.ext"
+#include "rf7800\ui\rf7800str.ext"

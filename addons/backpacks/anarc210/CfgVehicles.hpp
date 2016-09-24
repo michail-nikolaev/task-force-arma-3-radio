@@ -2,9 +2,9 @@ class tf_anarc210: TFAR_Bag_Base {
     displayName = "AN/ARC-210";
     descriptionShort = "AN/ARC-210 airborne radio 40km";//#Stringtable
     picture = QPATHOF(anarc210\ui\anarc210_icon.paa);
-    model = QPATHOF(models\TFR_BACKPACK)
+    model = QPATHOF(models\TFR_BACKPACK);
     hiddenSelections[] = {"camo"};
-    hiddenSelectionsTextures[] = {QPATHOF(models\data\camo\backpack_mcam_co.paa)};
+    hiddenSelectionsTextures[] = {QPATHTOF(models\data\camo\backpack_mcam_co.paa)};
     scope = 2;
     scopeCurator = 2;
     maximumLoad = 20;
