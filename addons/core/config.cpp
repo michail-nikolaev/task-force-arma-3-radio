@@ -11,6 +11,8 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
+            "A3_UI_F",
+
             "cba_main",
             "cba_ui",
             "cba_xeh"
@@ -31,6 +33,7 @@ class CfgMods {
     };
 };
 
+#include "CfgEventHandlers.hpp"
 #include "RadioDialogControls.hpp"
 #include "RscTitles.hpp"
 #include "CfgSounds.hpp"
