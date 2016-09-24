@@ -1,5 +1,3 @@
-#include "script_component.hpp"
-
 class CfgVehicles {
     class Logic;
     class Module_F: Logic {
@@ -171,7 +169,7 @@ class CfgVehicles {
     class LandVehicle: Land {
     	tf_range = 30000;
     };
-    MACRO_VEC_ISOLATION_LR(Car,LandVehicle,0.1);
+    MACRO_VEC_ISOLATION(Car,LandVehicle,0.1);
     MACRO_VEC_ISOLATION_LR(Tank,LandVehicle,1,1);
     class Helicopter;
     MACRO_VEC_ISOLATION_LR(ParachuteBase,Helicopter,0,0);
@@ -183,10 +181,6 @@ class CfgVehicles {
     MACRO_VEC_ISOLATION(Heli_Transport_01_base_F,Helicopter_Base_H,0.3);
     MACRO_VEC_ISOLATION(Heli_Transport_02_base_F,Helicopter_Base_H,0.8);
 
-    MACRO_VEC_ISOLATION(Heli_Light_02_base_F,Helicopter_Base_H,0.7);
-    MACRO_VEC_ISOLATION(Heli_Light_02_base_F,Helicopter_Base_H,0.7);
-    MACRO_VEC_ISOLATION(Heli_Light_02_base_F,Helicopter_Base_H,0.7);
-    MACRO_VEC_ISOLATION(Heli_Light_02_base_F,Helicopter_Base_H,0.7);
     class Car_F;
     MACRO_VEC_ISOLATION_LR(Wheeled_Apc_F,Car_F,0.6,1);
     MACRO_VEC_ISOLATION_LR(MRAP_01_base_F,Car_F,0.7,1);
@@ -196,7 +190,6 @@ class CfgVehicles {
     MACRO_VEC_ISOLATION_LR(Truck_01_base_F,Truck_F,0.4,1);
     MACRO_VEC_ISOLATION_LR(Truck_02_base_F,Truck_F,0.4,1);
     MACRO_VEC_ISOLATION_LR(Truck_03_base_F,Truck_F,0.4,1);
-    MACRO_VEC_ISOLATION_LR(Wheeled_Apc_F,Car_F,0.6,1);
     class Offroad_01_base_f;
     MACRO_VEC_ISOLATION_LR(Offroad_01_armed_base_F,Offroad_01_base_f,0.25,1);
 
@@ -204,7 +197,6 @@ class CfgVehicles {
     MACRO_VEC_ISOLATION_LR(SDV_01_base_F,Boat_F,0.1,1);
     MACRO_VEC_ISOLATION_LR(Boat_Armed_01_base_F,Boat_F,0.1,1);
     class Boat_Civil_01_base_F;
-    MACRO_VEC_ISOLATION_LR(Boat_Armed_01_base_F,Boat_F,0.1,1);
     MACRO_VEC_LR(C_Boat_Civil_01_police_F,Boat_Civil_01_base_F,1);
     MACRO_VEC_LR(C_Boat_Civil_01_rescue_F,Boat_Civil_01_base_F,1);
 };

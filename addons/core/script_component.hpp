@@ -14,3 +14,5 @@
 #ifdef DEBUG_SETTINGS_CORE
     #define DEBUG_SETTINGS DEBUG_SETTINGS_CORE
 #endif
+
+#include "\z\tfar\addons\core\script_macros.hpp"
