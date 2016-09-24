@@ -2,7 +2,7 @@
 
 class CfgPatches {
   class ADDON {
-    units[] = {
+      units[] = {
         "TF_NATO_Radio_Crate",
         "TF_EAST_Radio_Crate",
         "TF_IND_Radio_Crate",
@@ -31,10 +31,16 @@ class CfgPatches {
     };
     weapons[] = {};
     requiredVersion = REQUIRED_VERSION;
-    requiredAddons[] = {"A3_Modules_F", "A3_UI_F", "A3_Structures_F_Items_Electronics", "A3_Weapons_F_ItemHolders"};
+
+    requiredAddons[] = {
+        "A3_Modules_F",
+        "A3_UI_F",
+        "A3_Structures_F_Items_Electronics",
+        "A3_Weapons_F_ItemHolders",
+
+        "tfar_core"
+    };
     Url = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
-    author = QUOTE(AUTHORS);
-    VERSION_CONFIG;
   };
 };
 
@@ -50,9 +56,6 @@ class CfgFactionClasses {
 };
 
 #include "CfgVehicles.hpp"
-
-#include "uiDefines.hpp"
-
 #include "anarc164\ui\anarc164.ext"
 #include "anarc210\ui\anarc210.ext"
 #include "anprc155\ui\anprc155.ext"
