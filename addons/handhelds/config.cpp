@@ -31,7 +31,7 @@ class CfgPatches {
     };
 };
 
-#include "CfgVehicles.hpp"
+
 
 #include "radio_ids.hpp"
 
@@ -45,3 +45,14 @@ class CfgWeapons {
     #include "pnr1000a/CfgWeapons.hpp"
     #include "rf7800/CfgWeapons.hpp"
 };
+
+#include "CfgVehicles.hpp"
+#include "uiDefines.hpp"
+
+#include "anprc148jem\ui\anprc148jem.ext"
+#include "anprc152\ui\anprc152.ext"
+#include "anprc154\ui\anprc154.ext"
+#include "diver_radio\ui\diver_radio.ext"
+#include "fadak\ui\fadak.ext"
+#include "pnr1000a\ui\pnr1000a.ext"
+#include "rf7800str\ui\rf7800str.ext"

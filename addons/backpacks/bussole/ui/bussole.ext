@@ -60,7 +60,7 @@ class bussole_radio_dialog
 class background: RscBackPicture
 {
 	idc = IDC_BUSSOLE_BACKGROUND;
-	text = "task_force_radio\bussole\bussole.paa";
+	text = QPATHTOF(bussole\ui\bussole.paa);
 	x = 0.0864688 * safezoneW + safezoneX;
 	y = -0.1182 * safezoneH + safezoneY;
 	w = 0.634594 * safezoneW;

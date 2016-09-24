@@ -49,7 +49,7 @@ controls[]=
 class background: RscBackPicture
 {
 	idc = IDC_FADAK_BACKGROUND;
-	text = "\task_force_radio\fadak\fadak.paa";
+	text = QPATHTOF(fadak\ui\fadak.paa);
 	x = 0.0142813 * safezoneW + safezoneX;
 	y = -0.1314 * safezoneH + safezoneY;
 	w = 0.332062 * safezoneW;

@@ -1,21 +1,18 @@
 ///////////////////////////////////////////////////////////////////////////
 /// Base Classes
 ///////////////////////////////////////////////////////////////////////////
-class RscBackPicture
-{
+class RscBackPicture {
 	access = 0;
 	type = 0;
 	idc = -1;
 	style = 48;
-	colorBackground[] =
-	{
+	colorBackground[] = {
 		0,
 		0,
 		0,
 		0
 	};
-	colorText[] =
-	{
+	colorText[] = {
 		1,
 		1,
 		1,
@@ -33,37 +30,32 @@ class RscBackPicture
 	h = 0.15;
 };
 
-class RscEditLCD
-{
+class RscEditLCD {
 	access = 0;
 	type = 2;
 	x = 0;
 	y = 0;
 	h = 0.04;
 	w = 0.2;
-	colorBackground[] =
-	{
+	colorBackground[] = {
 		0,
 		0,
 		0,
 		0
 	};
-	colorText[] =
-	{
+	colorText[] = {
 		0,
 		0,
 		0,
 		1
 	};
-	colorDisabled[] =
-	{
+	colorDisabled[] = {
 		1,
 		1,
 		1,
 		0.25
 	};
-	colorSelection[] =
-	{
+	colorSelection[] = {
 		"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.69])",
 		"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.75])",
 		"(profilenamespace getvariable ['GUI_BCG_RGB_B',0.5])",
@@ -84,50 +76,46 @@ class HiddenButton
 	type = 1;
 	text = "";
 	colorText[] = {
-			0, 0, 0, 1
+		0, 0, 0, 1
 	};
-	colorDisabled[] = {
-			0, 0, 0, 0
+		colorDisabled[] = {
+	0, 0, 0, 0
 	};
 	colorBackground[] = {
-			0, 0, 0, 0
+		0, 0, 0, 0
 	};
 	colorBackgroundDisabled[] = {
-			0, 0, 0, 0
+		0, 0, 0, 0
 	};
 	colorBackgroundActive[] = {
-			0, 0, 0, 0
+		0, 0, 0, 0
 	};
 	colorFocused[] = {
-			0, 0, 0, 0
+		0, 0, 0, 0
 	};
 	colorShadow[] = {
-			0, 0, 0, 0
+		0, 0, 0, 0
 	};
 	colorBorder[] = {
-			0, 0, 0, 0
+		0, 0, 0, 0
 	};
 
-	soundEnter[] =
-	{
+	soundEnter[] = {
 		"\A3\ui_f\data\sound\RscButton\soundEnter",
 		0.09,
 		1
 	};
-	soundPush[] =
-	{
-		"\task_force_radio\sounds\softPush",
+	soundPush[] = {
+		QPATHTOEF(core,sounds\softPush),
 		0.5,
 		1
 	};
-	soundClick[] =
-	{
-		"\task_force_radio\sounds\softClick",
+	soundClick[] = {
+		QPATHTOEF(core,sounds\softClick),
 		0.5,
 		1
 	};
-	soundEscape[] =
-	{
+	soundEscape[] = {
 		"\A3\ui_f\data\sound\RscButton\soundEscape",
 		0.09,
 		1
@@ -147,31 +135,27 @@ class HiddenButton
 	borderSize = 0;
 };
 
-class HiddenRotator:HiddenButton{
-	soundPush[] =
-	{
+class HiddenRotator:HiddenButton {
+	soundPush[] = {
 		"\A3\ui_f\data\sound\RscButton\soundEscape",
 		0.5,
 		1
 	};
-	soundClick[] =
-	{
+	soundClick[] = {
 		"\A3\ui_f\data\sound\RscButton\soundEscape",
 		0.5,
 		1
 	};
 };
 
-class HiddenFlip:HiddenButton{
-	soundPush[] =
-	{
-		"task_force_radio\sounds\switchPush",
+class HiddenFlip:HiddenButton {
+	soundPush[] = {
+		QPATHTOEF(core,sounds\switchPush),
 		0.5,
 		1
 	};
-	soundClick[] =
-	{
-		"task_force_radio\sounds\switchClick",
+	soundClick[] = {
+		QPATHTOEF(core,sounds\switchClick),
 		0.5,
 		1
 	};

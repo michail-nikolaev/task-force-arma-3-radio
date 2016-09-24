@@ -45,7 +45,7 @@ controls[]=
 class background: RscBackPicture
 {
 	idc = IDC_ANPRC155_BACKGROUND;
-	text = "\task_force_radio\anprc155\155.paa";
+	text = QPATHTOF(anprc155\ui\155.paa);
 	x = 0.0869844 * safezoneW + safezoneX;
 	y = -0.1182 * safezoneH + safezoneY;
 	w = 0.634594 * safezoneW;

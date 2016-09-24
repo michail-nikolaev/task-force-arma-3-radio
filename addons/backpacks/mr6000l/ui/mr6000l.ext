@@ -65,7 +65,7 @@ class mr6000l_radio_dialog
 	class background: RscBackPicture
 	{
 		idc = IDC_MR6000L_BACKGROUND;
-		text = "\task_force_radio\mr6000l\mr6000l.paa";
+		text = QPATHTOF(mr6000l\ui\mr6000l.paa);
 		x = 0.0413536 * safezoneW + safezoneX;
 		y = 0.0434751 * safezoneH + safezoneY;
 		w = 0.533454 * safezoneW;

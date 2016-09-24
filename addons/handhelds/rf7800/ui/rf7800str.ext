@@ -48,7 +48,7 @@ class rf7800str_radio_dialog
 	class background: RscBackPicture
 	{
 		idc = IDC_RF7800STR_BACKGROUND;
-		text = "\task_force_radio\rf7800str\rf7800str.paa";
+		text = QPATHTOF(rf7800str\rf7800str.paa);
 		x = -0.0207812 * safezoneW + safezoneX;
 		y = -0.5373 * safezoneH + safezoneY;
 		w = 0.418172 * safezoneW;

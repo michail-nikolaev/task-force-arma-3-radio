@@ -69,7 +69,7 @@ class mr3000_radio_dialog
 class background: RscBackPicture
 {
 	idc = IDC_MR3000_BACKGROUND;
-	text = "\task_force_radio\mr3000\mr3000.paa";
+	text = QPATHTOF(mr3000\ui\mr3000.paa);
 	x = 0.0993594 * safezoneW + safezoneX;
 	y = 0.1722 * safezoneH + safezoneY;
 	w = 0.66825 * safezoneW;

@@ -36,7 +36,7 @@ class diver_radio_dialog
 class background: RscBackPicture
 {
 	idc = IDC_DIVER_RADIO_BACKGROUND;
-	text = "\task_force_radio\diver_radio\diver_radio.paa";
+	text = QPATHTOF(diver_radio\diver_radio.paa);
 	x = 0.1745 * safezoneW + safezoneX;
 	y = 0.224138 * safezoneH + safezoneY;
 	w = 0.268406 * safezoneW;
