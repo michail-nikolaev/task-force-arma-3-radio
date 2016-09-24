@@ -17,7 +17,6 @@
  	Example:
 
  */
-#include "common.sqf"
 
 params [
     ["_logic", objNull, [objNull]],

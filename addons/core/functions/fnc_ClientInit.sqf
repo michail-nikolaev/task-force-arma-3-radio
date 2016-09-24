@@ -1,9 +1,5 @@
 #include "script_component.hpp"
 
-//#define DEBUG_MODE_FULL
-
-// cba settings
-#include "cba_settings.sqf"
 
 if (isNil "tf_radio_channel_name") then {
 	tf_radio_channel_name = "TaskForceRadio";

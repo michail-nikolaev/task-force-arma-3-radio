@@ -1,1 +1,1 @@
-#include "z\tfar\addons\core\script_component.hpp"
+#include "\z\tfar\addons\core\script_component.hpp"

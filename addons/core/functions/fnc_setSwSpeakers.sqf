@@ -21,7 +21,7 @@
 
 private ["_settings", "_flag"];
 
-prams ["_radio_id"];
+params ["_radio_id"];
 
 _settings = _radio_id call TFAR_fnc_getSwSettings;
 if (_settings select TF_SW_SPEAKER_OFFSET) then {
