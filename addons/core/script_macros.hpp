@@ -3,7 +3,7 @@
 
 
 //From https://github.com/acemod/ACE3
-#undef DFUNC
+//#undef DFUNC
 #define DFUNC(var1) TRIPLES(PREFIX,fnc,var1)
 
 #ifdef DISABLE_COMPILE_CACHE
