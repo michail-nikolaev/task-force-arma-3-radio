@@ -14,12 +14,12 @@ class CfgVehicles {
         scopeCurator = 1;
     };
 
-    #include "anarc164/CfgVehicles.hpp"
-    #include "anarc210/CfgVehicles.hpp"
-    #include "bussole/CfgVehicles.hpp"
-    #include "mr3000/CfgVehicles.hpp"
-    #include "mr6000l/CfgVehicles.hpp"
-    #include "rt1523g/CfgVehicles.hpp"
+    #include "anarc164\CfgVehicles.hpp"
+    #include "anarc210\CfgVehicles.hpp"
+    #include "bussole\CfgVehicles.hpp"
+    #include "mr3000\CfgVehicles.hpp"
+    #include "mr6000l\CfgVehicles.hpp"
+    #include "rt1523g\CfgVehicles.hpp"
 
 
     class Box_NATO_Support_F;
@@ -30,18 +30,17 @@ class CfgVehicles {
     	class TransportMagazines{};
     	class TransportWeapons{};
     	class TransportBackpacks {
-            MACRO_ADDBACKPACK(tf_rt1523g,10),
-            MACRO_ADDBACKPACK(tf_rt1523g_big,3),
-            MACRO_ADDBACKPACK(tf_rt1523g_sage,3),
-            MACRO_ADDBACKPACK(tf_rt1523g_green,3),
-            MACRO_ADDBACKPACK(tf_rt1523g_black,3),
-            MACRO_ADDBACKPACK(tf_rt1523g_fabric,3),
-            MACRO_ADDBACKPACK(tf_rt1523g_bwmod,1),
-            MACRO_ADDBACKPACK(tf_rt1523g_bwmod,1),
-            MACRO_ADDBACKPACK(tf_rt1523g_big_bwmod,1),
-            MACRO_ADDBACKPACK(tf_rt1523g_big_bwmod_tropen,1),
-            MACRO_ADDBACKPACK(tf_rt1523g_big_rhs,1),
-            MACRO_ADDBACKPACK(tf_rt1523g_rhs,1)
+            MACRO_ADDBACKPACK(tf_rt1523g,10);
+            MACRO_ADDBACKPACK(tf_rt1523g_big,3);
+            MACRO_ADDBACKPACK(tf_rt1523g_sage,3);
+            MACRO_ADDBACKPACK(tf_rt1523g_green,3);
+            MACRO_ADDBACKPACK(tf_rt1523g_black,3);
+            MACRO_ADDBACKPACK(tf_rt1523g_fabric,3);
+            MACRO_ADDBACKPACK(tf_rt1523g_bwmod,1);
+            MACRO_ADDBACKPACK(tf_rt1523g_big_bwmod,1);
+            MACRO_ADDBACKPACK(tf_rt1523g_big_bwmod_tropen,1);
+            MACRO_ADDBACKPACK(tf_rt1523g_big_rhs,1);
+            MACRO_ADDBACKPACK(tf_rt1523g_rhs,1);
     	};
     };
 
@@ -53,12 +52,12 @@ class CfgVehicles {
     	class TransportMagazines{};
     	class TransportWeapons{};
     	class TransportBackpacks {
-            MACRO_ADDBACKPACK(tf_mr3000,10),
-            MACRO_ADDBACKPACK(tf_mr3000_multicam,3),
-            MACRO_ADDBACKPACK(tf_mr3000_bwmod1),
-            MACRO_ADDBACKPACK(tf_mr3000_bwmod_tropen,1),
-            MACRO_ADDBACKPACK(tf_mr3000_rhs,1),
-            MACRO_ADDBACKPACK(tf_bussole,3)
+            MACRO_ADDBACKPACK(tf_mr3000,10);
+            MACRO_ADDBACKPACK(tf_mr3000_multicam,3);
+            MACRO_ADDBACKPACK(tf_mr3000_bwmod,1);
+            MACRO_ADDBACKPACK(tf_mr3000_bwmod_tropen,1);
+            MACRO_ADDBACKPACK(tf_mr3000_rhs,1);
+            MACRO_ADDBACKPACK(tf_bussole,3);
     	};
     };
 
@@ -70,8 +69,8 @@ class CfgVehicles {
     	class TransportMagazines{};
     	class TransportWeapons{};
     	class TransportBackpacks {
-            MACRO_ADDBACKPACK(tf_anprc155,10),
-            MACRO_ADDBACKPACK(tf_anprc155_coyote,10)
+            MACRO_ADDBACKPACK(tf_anprc155,10);
+            MACRO_ADDBACKPACK(tf_anprc155_coyote,10);
     	};
     };
 };

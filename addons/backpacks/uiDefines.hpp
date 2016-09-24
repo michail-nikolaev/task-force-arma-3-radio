@@ -1,3 +1,9 @@
+class RscBackPicture;
+class RscEditLCD;
+class HiddenButton;
+class HiddenRotator;
+class HiddenFlip;
+
 //--- rt1523g_radio_dialog
 #define IDD_RT1523G_RADIO_DIALOG		1666
 #define IDC_RT1523G_BACKGROUND	IDD_BACKGROUND

@@ -14,4 +14,4 @@ class tf_pnr1000a: ItemRadio {
     tf_additional_channel = 0;
     tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
 };
-TF_RADIO_IDS(tf_rf7800str,RF-7800S-TR)
+TF_RADIO_IDS(tf_pnr1000a,PNR-1000A)
