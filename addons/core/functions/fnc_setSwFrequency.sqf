@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_setSwFrequency
 
@@ -18,7 +20,7 @@
  	Example:
 		[(call TFAR_fnc_activeSwRadio), "76.2"] call TFAR_fnc_setSwFrequency;
 */
-#include "script.h"
+
 
 params ["_radio", "_freq"];
 

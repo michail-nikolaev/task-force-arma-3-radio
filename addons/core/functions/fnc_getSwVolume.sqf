@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_getSwVolume
  	
@@ -16,7 +18,7 @@
  	Example:
 		_volume = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwVolume;
 */
-#include "script.h"
+
 private ["_settings"];
 _settings = _this call TFAR_fnc_getSwSettings;
 _settings select VOLUME_OFFSET

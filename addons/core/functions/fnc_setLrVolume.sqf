@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_setLrVolume
 
@@ -18,7 +20,7 @@
  	Example:
 		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 5] call TFAR_fnc_setLrVolume;
 */
-#include "script.h"
+
 private ["_settings"];
 
 params ["_radio_object", "_radio_qualifier", "_value"];

@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 [] spawn {
 	sleep 0.1;
 	if ((alive TFAR_currentUnit) and {!(isNil "TF_sw_dialog_radio")} and {!dialog}) then {

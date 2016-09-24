@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 TF_tangent_sw_scancode = 58;
 TF_tangent_sw_modifiers = [false,false,false];
 

@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_setSwChannel
 
@@ -17,7 +19,7 @@
  	Example:
 		[(call TFAR_fnc_activeSwRadio), 2] call TFAR_fnc_setSwChannel;
 */
-#include "script.h"
+
 private ["_settings"];
 
 params ["_radio_id", "_channel_to_set"];

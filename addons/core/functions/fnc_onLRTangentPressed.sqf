@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_onLRTangentPressed
  	

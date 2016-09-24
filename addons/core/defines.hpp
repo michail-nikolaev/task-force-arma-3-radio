@@ -4,3 +4,12 @@
 #define ID_SPEAKERS 123456
 #define LR_EDIT	1410
 #define LR_CHANNEL	1411
+
+#define SHIFTL 42
+#define CTRLL 29
+#define ALTL 56
+#define ACTIVE_CHANNEL_OFFSET 0
+#define VOLUME_OFFSET 1
+#define RADIO_OWNER 7
+#define SPEAKER_OFFSET 8
+#define POWER_OFFSET 9

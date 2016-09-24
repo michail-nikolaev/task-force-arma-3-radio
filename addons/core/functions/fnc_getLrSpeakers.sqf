@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_getLrSpeakers
  	
@@ -18,7 +20,7 @@
  	Example:
 		_speakers = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getLrSpeakers;
 */
-#include "script.h"
+
 private ["_settings", "_result"];
 _settings = _this call TFAR_fnc_getLrSettings;
 _result = false;

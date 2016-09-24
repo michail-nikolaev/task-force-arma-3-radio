@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_getLrSettings
 
@@ -18,7 +20,7 @@
  	Example:
 	(call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrSettings;
 */
-#include "script.h"
+
 private ["_value", "_rc", "_radioType"];
 
 params ["_radio_object", "_radio_qualifier"];

@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_setAdditionalSwStereo
 
@@ -17,7 +19,7 @@
  	Example:
 		[(call TFAR_fnc_ActiveSWRadio), 2] call TFAR_fnc_setAdditionalSwStereo;
  */
-#include "script.h"
+
 private ["_settings"];
 
 params ["_radio_id", "_channel_to_set"];

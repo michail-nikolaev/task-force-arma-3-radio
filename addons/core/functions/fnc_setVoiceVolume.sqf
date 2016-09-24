@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_setVoiceVolume
  	
@@ -16,7 +18,7 @@
  	Example:
 		30 call TFAR_fnc_setVoiceVolume;
  */
-#include "script.h"
+
 TF_speak_volume_meters = TF_max_voice_volume min _this;
 
 //							unit, range

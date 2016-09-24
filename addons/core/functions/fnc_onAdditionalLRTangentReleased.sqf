@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 private ["_freq"];	
 if ((TF_tangent_lr_pressed) and {alive TFAR_currentUnit}) then {
 	private "_radio";

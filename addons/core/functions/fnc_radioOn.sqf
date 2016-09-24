@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
    Name: TFAR_fnc_radioOn
 
@@ -17,7 +19,7 @@
    Example:
     call TFAR_fnc_radioOn;
 */
-#include "script.h"
+
 private ["_radio", "_status","_settings", "_lr"];
 _radio = _this select 0;
 _status = false;

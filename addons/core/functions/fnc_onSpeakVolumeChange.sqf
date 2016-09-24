@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 private["_localName", "_hintText"];
 if (alive TFAR_currentUnit) then {
 	_localName = "STR_voice_normal";

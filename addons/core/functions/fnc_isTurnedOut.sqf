@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 // by commy2 v0.4
 
 private "_fnc_getTurrets";

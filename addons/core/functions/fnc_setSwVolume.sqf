@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_setSwVolume
 
@@ -17,7 +19,7 @@
  	Example:
 		[(call TFAR_fnc_ActiveSWRadio), 10] call TFAR_fnc_setSwVolume;
  */
-#include "script.h"
+
 private ["_settings", "_radio_id", "_value"];
 
 params ["_radio_id", "_value"];

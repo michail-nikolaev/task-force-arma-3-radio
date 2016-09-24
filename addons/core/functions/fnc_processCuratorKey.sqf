@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 private ["_keys", "_pressed", "_result", "_keyup"];
 
 _pressed = _this select 0;

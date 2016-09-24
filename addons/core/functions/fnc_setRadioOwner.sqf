@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_setRadioOwner
 
@@ -18,7 +20,7 @@
  	Example:
 		[(call TFAR_fnc_activeSwRadio),player] call TFAR_fnc_setRadioOwner;
 */
-#include "script.h"
+
 private ["_settings"];
 
 params ["_radio", "_owner", ["_local", false, [true]]];

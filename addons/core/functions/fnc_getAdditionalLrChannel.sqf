@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_getAdditionalLrChannel
  	
@@ -18,7 +20,7 @@
  	Example:
 		_channel = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getAdditionalLrChannel;
 */
-#include "script.h"
+
 private ["_settings"];
 _settings = _this call TFAR_fnc_getLrSettings;
 _settings select TF_ADDITIONAL_CHANNEL_OFFSET

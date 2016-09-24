@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_setLrSpeakers
 
@@ -17,7 +19,7 @@
  	Example:
 		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1] call TFAR_fnc_setLrSpeakers;
 */
-#include "script.h"
+
 private ["_flag", "_settings"];
 
 params ["_radio_object", "_radio_qualifier"];

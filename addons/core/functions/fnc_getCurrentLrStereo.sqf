@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_getCurrentLrStereo
  	
@@ -18,7 +20,7 @@
  	Example:
 		_stereo = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getCurrentLrStereo;
 */
-#include "script.h"
+
 private ["_result"];
 _result = 0;
 if ((_this call TFAR_fnc_getAdditionalLrChannel) == (_this call TFAR_fnc_getLrChannel)) then {

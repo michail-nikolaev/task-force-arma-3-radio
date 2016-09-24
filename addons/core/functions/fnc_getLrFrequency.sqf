@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
  	Name: TFAR_fnc_getLrFrequency
  	
@@ -19,5 +21,5 @@
  	Example:
 		_frequency = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getLrFrequency;
 */
-#include "script.h"
+
 [_this, ((_this call TFAR_fnc_getLrSettings) select ACTIVE_CHANNEL_OFFSET)+1] call TFAR_fnc_GetChannelFrequency;

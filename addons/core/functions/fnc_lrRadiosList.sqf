@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 private ["_result", "_active_lr", "_vehicle_lr", "_backpack_lr", "_backpack_check", "_vehicle_check"];
 _result = [];
 _active_lr = nil;
