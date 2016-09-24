@@ -1,4 +1,8 @@
-#include QPATHTOEF(core,uiDefines.hpp)
+class RscBackPicture;
+class RscEditLCD;
+class HiddenButton;
+class HiddenRotator;
+class HiddenFlip;
 
 //--- anprc152_radio_dialog
 #define IDD_ANPRC152_RADIO_DIALOG		1333

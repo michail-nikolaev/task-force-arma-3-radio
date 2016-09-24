@@ -4,7 +4,7 @@ class tf_anarc164: TFAR_Bag_Base {
     picture = QPATHOF(anarc164\ui\anarc164_icon.paa);
     model = QPATHOF(models\TFR_BACKPACK);
     hiddenSelections[] = {"camo"};
-    hiddenSelectionsTextures[] = {QPATHOF(models\data\camo\backpack_dpcu_co.paa)};
+    hiddenSelectionsTextures[] = {QPATHTOF(models\data\camo\backpack_dpcu_co.paa)};
     scope = 2;
     scopeCurator = 2;
     maximumLoad = 20;
