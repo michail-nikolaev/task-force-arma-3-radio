@@ -50,7 +50,7 @@ class anprc148jem_radio_dialog
 class background: RscBackPicture
 {
 	idc = IDC_ANPRC148JEM_BACKGROUND;
-	text = "\task_force_radio\anprc148jem\148.paa";
+	text = QPATHTOF(anprc148jem\ui\148.paa);
 	x = 0.0447031 * safezoneW + safezoneX;
 	y = -1.0488 * safezoneH + safezoneY;
 	w = 0.302156 * safezoneW;

@@ -44,7 +44,7 @@ class anarc164_radio_dialog
 	class background: RscBackPicture
 	{
 		idc = IDC_ANARC164_BACKGROUND;
-		text = "\task_force_radio\anarc164\anarc164.paa";
+		text = QPATHTOF(anarc164\ui\anarc164.paa);
 		x = 0.0413536 * safezoneW + safezoneX;
 		y = 0.0434751 * safezoneH + safezoneY;
 		w = 0.431062 * safezoneW;

@@ -47,7 +47,7 @@ class anprc152_radio_dialog
 class background: RscBackPicture
 {
 	idc = IDC_ANPRC152_BACKGROUND;
-	text = "\task_force_radio\anprc152\152.paa";
+	text = QPATHTOF(anprc152\ui\152.paa);
 	x = 0.0138687 * safezoneW + safezoneX;
 	y = -1.28145 * safezoneH + safezoneY;
 	w = 0.335981 * safezoneW;

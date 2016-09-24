@@ -50,3 +50,13 @@ class CfgFactionClasses {
 };
 
 #include "CfgVehicles.hpp"
+
+#include "uiDefines.hpp"
+
+#include "anarc164\ui\anarc164.ext"
+#include "anarc210\ui\anarc210.ext"
+#include "anprc155\ui\anprc155.ext"
+#include "bussole\ui\bussole.ext"
+#include "mr3000\ui\mr3000.ext"
+#include "mr6000l\ui\mr6000l.ext"
+#include "rt1523g\ui\rt1523g.ext"

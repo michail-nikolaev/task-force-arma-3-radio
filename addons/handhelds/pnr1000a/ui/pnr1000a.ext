@@ -51,7 +51,7 @@ class pnr1000a_radio_dialog
 	class background: RscBackPicture
 	{
 		idc = IDC_PNR1000A_BACKGROUND;
-		text = "\task_force_radio\pnr1000a\pnr1000a.paa";
+		text = QPATHTOF(pnr1000a\ui\pnr1000a.paa);
 		x = -0.0153696 * safezoneW + safezoneX;
 		y = -0.323109 * safezoneH + safezoneY;
 		w = 0.38292 * safezoneW;
