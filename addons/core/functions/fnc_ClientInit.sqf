@@ -135,6 +135,7 @@ disableSerialization;
 
 waitUntil {sleep 0.2;time > 0};
 waitUntil {sleep 0.1;!(isNull player)};
+
 TFAR_currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_ShowHint;
 
@@ -167,6 +168,7 @@ TF_last_lr_tangent_press = 0.0;
 TF_last_dd_tangent_press = 0.0;
 
 TF_HintFnc = nil;
+/*
 
 IDC_ANPRC152_RADIO_DIALOG_EDIT_ID = IDC_ANPRC152_EDIT;
 IDC_ANPRC152_RADIO_DIALOG_ID = IDD_ANPRC152_RADIO_DIALOG;
@@ -212,6 +214,7 @@ TF_MICRODAGR_CLEAR_ID = IDC_MICRODAGR_CLEAR;
 TF_MICRODAGR_ENTER_ID = IDC_MICRODAGR_ENTER;
 TF_MICRODAGR_EDIT_ID = IDC_MICRODAGR_EDIT;
 TF_MICRODAGR_CHANNEL_EDIT_ID = IDC_MICRODAGR_CHANNEL_EDIT;
+*/
 
 TF_tangent_sw_pressed = false;
 TF_tangent_lr_pressed = false;

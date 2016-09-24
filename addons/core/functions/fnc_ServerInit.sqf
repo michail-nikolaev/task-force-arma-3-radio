@@ -19,11 +19,9 @@
  	Example:
 		call TFAR_fnc_serverInit;
 */
-#define MAX_RADIO_COUNT 1000
+
 private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_task_force_radio_used", "_last_check", "_allUnits"];
 
-// cba settings
-#include "cba_settings.sqf"
 
 TF_server_addon_version = TF_ADDON_VERSION;
 publicVariable "TF_server_addon_version";
