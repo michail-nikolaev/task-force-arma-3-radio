@@ -1,9 +1,24 @@
+/*
+ 	Name: TFAR_fnc_onSwTangentPressed
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Fired when the keybinding for SW is pressed.
+	
+	Parameters:
+ 	
+ 	Returns:
+		BOOLEAN
+ 	
+ 	Example:
+		call TFAR_fnc_onSwTangentPressed;
+*/
 private["_depth", "_radio"];
 if (time - TF_last_lr_tangent_press > 0.5) then {
 	if (!(TF_tangent_sw_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_haveSWRadio}) then {	
 		if (call TFAR_fnc_isAbleToUseRadio) then {
-			call TFAR_fnc_unableToUseHint;
-		} else {
 			_radio = call TFAR_fnc_activeSwRadio;
 			if (!([_radio] call TFAR_fnc_RadioOn)) exitWith{};
 			_depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
@@ -20,6 +35,8 @@ if (time - TF_last_lr_tangent_press > 0.5) then {
 			} else {
 				call TFAR_fnc_inWaterHint;
 			};
+		} else {
+			call TFAR_fnc_unableToUseHint;
 		};
 	};
 };
