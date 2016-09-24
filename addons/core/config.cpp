@@ -3,7 +3,11 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {};
+        units[] = {
+            "tfar_ModuleTaskForceRadioEnforceUsage",
+            "tfar_ModuleTaskForceRadio",
+            "tfar_ModuleTaskForceRadioFrequencies"
+        };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {

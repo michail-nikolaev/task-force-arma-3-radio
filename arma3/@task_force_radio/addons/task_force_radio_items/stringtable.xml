@@ -2,7 +2,7 @@
 <Project ID="Arma2">
   <Package ID="Missions">
     <Container ID="A3RU_MissionInformation">
-      <Key ID="STR_TFAR_NATO_crate">
+      <Key ID="STR_TFAR_NATO_crate" TODO="move all crates stringtables to core">
         <Original>
           TFAR Radio (NATO)
         </Original>

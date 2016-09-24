@@ -1,9 +1,8 @@
+#include "script_component.hpp"
+
 class CfgPatches {
   class ADDON {
     units[] = {
-        "tfar_ModuleTaskForceRadioEnforceUsage",
-        "tfar_ModuleTaskForceRadio",
-        "tfar_ModuleTaskForceRadioFrequencies",
         "TF_NATO_Radio_Crate",
         "TF_EAST_Radio_Crate",
         "TF_IND_Radio_Crate",
@@ -31,13 +30,11 @@ class CfgPatches {
         "tf_bussole"
     };
     weapons[] = {};
-    requiredVersion = 1.0;
+    requiredVersion = REQUIRED_VERSION;
     requiredAddons[] = {"A3_Modules_F", "A3_UI_F", "A3_Structures_F_Items_Electronics", "A3_Weapons_F_ItemHolders"};
-    author = "[TF]Nkey";
     Url = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
-    version = 1.0.0;
-    versionStr = "1.0.0";
-    versionAr[] = {1,0,0};
+    author = QUOTE(AUTHORS);
+    VERSION_CONFIG;
   };
 };
 
@@ -52,25 +49,4 @@ class CfgFactionClasses {
     };
 };
 
-class CfgVehicles {
-    class ReammoBox;
-    class Item_Base_F;
-
-    class Bag_Base: ReammoBox {
-        tf_hasLRradio = 0;
-        tf_encryptionCode = "";
-        tf_range = 20000;
-    };
-    class TFAR_Bag_Base: Bag_Base {
-        tf_dialogUpdate = "call TFAR_fnc_updateLRDialogToChannel;";
-        tf_hasLRradio = 1;
-        scope = 1;
-        scopeCurator = 1;
-    };
-
-    #include "vehicles.hpp"
-    #include "crates.hpp"
-    #include "modules.hpp"
-
-
-};
+#include "CfgVehicles.hpp"

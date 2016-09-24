@@ -1,12 +1,11 @@
 class ItemWatch;
 
-  class tf_microdagr: ItemWatch
-  {
+class tf_microdagr: ItemWatch {
     author = "Raspu, Nkey";
-    displayName = "MicroDAGR Radio Programmer";
-    descriptionShort = "Provides ability to program rifleman radios in the field";
-    picture = "\task_force_radio_items\microdagr\microdagr_icon.paa";
+    displayName = "MicroDAGR Radio Programmer";//#Stringtable
+    descriptionShort = "Provides ability to program rifleman radios in the field";//#Stringtable
     scope = 2;
     scopeCurator = 2;
-    model = "\task_force_radio_items\models\tfr_microdagr";
-  };
+    picture = QPATHOF(microdagr\ui\microdagr_icon.paa);
+    model = QPATHOF(models\tfr_microdagr);
+};

@@ -1,11 +1,10 @@
-class tf_anarc164: TFAR_Bag_Base
-  {
+class tf_anarc164: TFAR_Bag_Base {
     displayName = "AN/ARC-164";
-    descriptionShort = "AN/ARC-164 airborne radio 40km";
-    picture = "\task_force_radio_items\anarc164\anarc164_icon.paa";
-    model = "\task_force_radio_items\models\TFR_BACKPACK";
+    descriptionShort = "AN/ARC-164 airborne radio 40km";//#Stringtable
+    picture = QPATHOF(anarc164\ui\anarc164_icon.paa);
+    model = QPATHOF(models\TFR_BACKPACK);
     hiddenSelections[] = {"camo"};
-    hiddenSelectionsTextures[] = {"\task_force_radio_items\models\data\camo\backpack_dpcu_co.paa"};
+    hiddenSelectionsTextures[] = {QPATHOF(models\data\camo\backpack_dpcu_co.paa)};
     scope = 2;
     scopeCurator = 2;
     maximumLoad = 20;
@@ -15,4 +14,4 @@ class tf_anarc164: TFAR_Bag_Base
     tf_dialog = "anarc164_radio_dialog";
     tf_subtype = "airborne";
     tf_dialogUpdate = "[""%1""] call TFAR_fnc_updateLRDialogToChannel;";
-  };
+};

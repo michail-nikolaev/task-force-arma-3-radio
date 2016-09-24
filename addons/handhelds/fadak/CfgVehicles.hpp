@@ -1,1 +1,1 @@
-class Item_tf_fadak: Item_Base_F  {    scope = 2;    scopeCurator = 2;    displayName = "FADAK";    author = "Nkey";    vehicleClass = "Items";    class TransportItems    {      class tf_fadak      {        name="tf_fadak";        count=1;      };    };  };
+class Item_tf_fadak: Item_Base_F {    scope = 2;    scopeCurator = 2;    displayName = "FADAK";    author = "Nkey";    vehicleClass = "Items";    class TransportItems {        class tf_fadak {            name="tf_fadak";            count=1;        };    };};
