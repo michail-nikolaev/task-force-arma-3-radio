@@ -1,8 +1,23 @@
+/*
+ 	Name: TFAR_fnc_onAdditionalSwTangentPressed
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Fired when the additional keybinding for SW is pressed.
+	
+	Parameters:
+ 	
+ 	Returns:
+		BOOLEAN
+ 	
+ 	Example:
+		call TFAR_fnc_onAdditionalSwTangentPressed;
+*/
 private["_depth", "_freq"];
 if (!(TF_tangent_sw_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_haveSWRadio}) then {	
 	if (call TFAR_fnc_isAbleToUseRadio) then {
-		call TFAR_fnc_unableToUseHint;
-	} else {
 		_depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
 		if ([TFAR_currentUnit, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, [TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, _depth] call TFAR_fnc_canSpeak, _depth] call TFAR_fnc_canUseSWRadio) then {
 			private "_radio";
@@ -22,6 +37,8 @@ if (!(TF_tangent_sw_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_hav
 		} else {
 			call TFAR_fnc_inWaterHint;
 		};
+	} else {
+		call TFAR_fnc_unableToUseHint;
 	};
 };
 false

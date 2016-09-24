@@ -1,6 +1,23 @@
+/*
+ 	Name: TFAR_fnc_onSwTangentPressedHack
+ 	
+ 	Author(s):
+		NKey
+
+ 	Description:
+		Hack to not make LR/SW transmit when one or the other is called first.
+	
+	Parameters:
+ 	
+ 	Returns:
+		BOOLEAN
+ 	
+ 	Example:
+		call TFAR_fnc_onSwTangentPressedHack;
+*/
 #include "script.h"
 private ["_scancode", "_mods", "_mods_lr", "_is_lr", "_sw_keybind", "_lr_keybind", "_scancode_lr"];
-if !(call TFAR_fnc_isAbleToUseRadio) then {
+if (call TFAR_fnc_isAbleToUseRadio) then {
 	_scancode = _this select 1; 
 	_sw_keybind = ["TFAR", "SWTransmit"] call cba_fnc_getKeybind;
 	_lr_keybind = ["TFAR", "LRTransmit"] call cba_fnc_getKeybind;
