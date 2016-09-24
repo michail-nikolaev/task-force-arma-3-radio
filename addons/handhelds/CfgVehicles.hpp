@@ -15,7 +15,8 @@ class CfgVehicles {
         displayName = "$STR_TFAR_NATO_crate";
         class TransportItems {
             MACRO_ADDITEM(tf_anprc152,40),
-            MACRO_ADDITEM(tf_rf7800str,40)
+            MACRO_ADDITEM(tf_rf7800str,40),
+            MACRO_ADDITEM(tf_microdagr,5)
         };
         class TransportMagazines{};
         class TransportWeapons{};
@@ -28,7 +29,8 @@ class CfgVehicles {
         displayName = "$STR_TFAR_EAST_crate";
         class TransportItems {
             MACRO_ADDITEM(tf_fadak,40),
-            MACRO_ADDITEM(tf_pnr1000a,40)
+            MACRO_ADDITEM(tf_pnr1000a,40),
+            MACRO_ADDITEM(tf_microdagr,5)
         };
         class TransportMagazines{};
         class TransportWeapons{};
@@ -41,7 +43,8 @@ class CfgVehicles {
         displayName = "$STR_TFAR_IND_crate";
         class TransportItems {
             MACRO_ADDITEM(tf_anprc148jem,40),
-            MACRO_ADDITEM(tf_anprc154,40)
+            MACRO_ADDITEM(tf_anprc154,40),
+            MACRO_ADDITEM(tf_microdagr,5)
         };
         class TransportMagazines{};
         class TransportWeapons{};
