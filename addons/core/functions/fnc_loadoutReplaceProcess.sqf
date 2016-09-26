@@ -31,7 +31,7 @@ for [{private _i = (count _loadouts) - 1}, {_i > 0}, {_i = _i - 2}] do {
 		{
 			_class = ConfigFile >> "CfgWeapons" >> _x;
 
-			// if the item is actual radio, not a radio prototype
+			// if the item is an actual radio, not a radio prototype nor common item
 			if ((isClass _class) && (isNumber (_class >> "tf_radio"))) then {
 				// find his parent prototype
 				_parent = ([_class, true] call BIS_fnc_returnParents) select 1;
