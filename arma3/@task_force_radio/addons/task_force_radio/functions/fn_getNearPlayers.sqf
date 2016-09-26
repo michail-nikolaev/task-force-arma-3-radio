@@ -20,13 +20,6 @@ if (alive TFAR_currentUnit) then {
 			_allUnits pushBack _x;
 		} forEach (crew _v);
 	} forEach  (TFAR_currentUnit nearEntities [["LandVehicle", "Air", "Ship"], TF_max_voice_volume]);
-	
-	{		
-		if !(_x in _allUnits) then {
-			_allUnits pushBack _x;	
-		};
-		true;
-	} count (call BIS_fnc_listCuratorPlayers);
 		
 	{			
 		if ((isPlayer _x) and {alive _x}) then {				

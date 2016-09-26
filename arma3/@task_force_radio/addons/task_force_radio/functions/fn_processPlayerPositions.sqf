@@ -29,6 +29,15 @@ if !(isNull (findDisplay 46)) then {
 
 			_other_units = allUnits - tf_nearPlayers;
 			
+				
+			{		
+				if !(_x in _other_units) then {
+					_other_units pushBack _x;	
+				};
+				true;
+			} count (call BIS_fnc_listCuratorPlayers);//Add curators
+			
+			
 			tf_farPlayers = [];
 			tf_farPlayersIndex = 0;	
 			{
