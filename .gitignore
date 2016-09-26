@@ -23,3 +23,4 @@
 /misc/documentation-generator/.gradle
 /misc/documentation-generator/.idea
 /misc/documentation-generator/classes
+*.opendb

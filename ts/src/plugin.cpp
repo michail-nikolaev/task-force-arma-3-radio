@@ -1598,7 +1598,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 	}
 }
 
-
+//Data from other clients to us. After 3D processing
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
 	short* stereo = new short[sampleCount * 2];
 	for (int q = 0; q < sampleCount; q++) {
@@ -1618,15 +1618,15 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 	delete[] stereo;
 }
 
+//Data from our microphone before its sent
 void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, int* edited) {
 	if (!inGame)
 		return;
 	if (*edited & 2) {
 		anyID myId = getMyId(serverConnectionHandlerID);
 		EnterCriticalSection(&serverDataCriticalSection);
-
-		bool alive = serverIdToData[serverConnectionHandlerID].alive;
-		if (hasClientData(serverConnectionHandlerID, myId) && alive) {
+		//We dont need to copy our data to ourselves if there are no speakers
+		if (!serverIdToData[serverConnectionHandlerID].speakers.empty() && hasClientData(serverConnectionHandlerID, myId) && serverIdToData[serverConnectionHandlerID].alive) {
 			int m = 1;
 			if (channels == 1) m = 2;
 
