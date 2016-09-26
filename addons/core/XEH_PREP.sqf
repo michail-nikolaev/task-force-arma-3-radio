@@ -86,6 +86,7 @@ PREP(isTeamSpeakPluginEnabled);
 PREP(isTurnedOut);
 PREP(isVehicleIsolated);
 // L
+PREP(loadoutReplaceProcess);
 PREP(lrRadioSubMenu);
 PREP(lrRadioMenu);
 PREP(lrRadiosList);
