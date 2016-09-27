@@ -4,11 +4,18 @@
 #include "\z\tfar\addons\core\defines.hpp"
 
 //From https://github.com/acemod/ACE3
-//#undef DFUNC
+
+
+#ifdef DFUNC
+    #undef DFUNC
+#endif
 #define DFUNC(var1) TRIPLES(PREFIX,fnc,var1)
 
 #define DISABLE_COMPILE_CACHE 1
 
+#ifdef PREP
+    #undef PREP
+#endif
 #define PREP(fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)
 
 #define VARIABLE_DEFAULT(varName,defaultValue) if (isNil QUOTE(varName)) then {	varName = defaultValue; };
