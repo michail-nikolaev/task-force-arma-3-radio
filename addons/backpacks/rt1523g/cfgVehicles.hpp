@@ -1,10 +1,10 @@
 class tf_rt1523g: TFAR_Bag_Base {
-scope = 2;
-scopeCurator = 2;
+    scope = 2;
+    scopeCurator = 2;
     author = "Raspu, Gandi, Nkey";
     displayName = "RT-1523G (ASIP)";
     descriptionShort = "RT-1523G (ASIP) long range radio 20km";//#Stringtable
-    picture = QPATHTOF(rt1523g\rt1523g_icon.paa);
+    picture = QPATHTOF(rt1523g\ui\rt1523g_icon.paa);
     model=QPATHTOF(models\clf_prc117g_ap);
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_prc117g_ap_co.paa)};
@@ -24,7 +24,7 @@ class tf_rt1523g_rhs: tf_rt1523g {
     displayName = "RT-1523G (ASIP) RHS";
     descriptionShort = "RT-1523G (ASIP) RHS long range radio 20km";//#Stringtable
     hiddenSelections[] = {"camo"};
-    hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_prc117g_rhs_co.paa.paa)};
+    hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_prc117g_rhs_co.paa)};
 };
 class tf_rt1523g_big: tf_rt1523g {
     author = "Raspu, Gandi, Nkey";
