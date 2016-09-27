@@ -6,6 +6,6 @@ class tf_microdagr: ItemWatch {
     descriptionShort = "Provides ability to program rifleman radios in the field";//#Stringtable
     scope = 2;
     scopeCurator = 2;
-    picture = QPATHOF(microdagr\ui\microdagr_icon.paa);
-    model = QPATHOF(models\tfr_microdagr);
+    picture = QPATHTOF(microdagr\ui\microdagr_icon.paa);
+    model = QPATHTOF(models\tfr_microdagr);
 };

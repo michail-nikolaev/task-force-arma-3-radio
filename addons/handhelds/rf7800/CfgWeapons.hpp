@@ -4,8 +4,8 @@ class tf_rf7800str: ItemRadio {
     descriptionShort = "RF-7800S-TR rifleman radio 2km";//#Stringtable
     scope = 2;
     scopeCurator = 2;
-    model = QPATHOF(models\tfr_rf7800);
-    picture = QPATHOF(rf7800str\ui\rf7800str_icon.paa);
+    model = QPATHTOF(models\tfr_rf7800);
+    picture = QPATHTOF(rf7800str\ui\rf7800str_icon.paa);
     tf_prototype = 1;
     tf_range = 2000;
     tf_dialog = "rf7800str_radio_dialog";
