@@ -2,12 +2,12 @@ class tf_mr3000: TFAR_Bag_Base {
     author = "Raspu, Gandi, Nkey";
     displayName = "MR3000";
     descriptionShort = "MR3000 long range radio 20km";//#Stringtable
-    picture = QPATHOF(mr3000\ui\mr3000_icon.paa);
+    picture = QPATHTOF(mr3000\ui\mr3000_icon.paa);
     scope = 2;
     scopeCurator = 2;
     maximumLoad = 160;
     mass = 160;
-    model = QPATHOF(models\clf_nicecomm2_prc117g);
+    model = QPATHTOF(models\clf_nicecomm2_prc117g);
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_nicecomm2_csat_multi_co.paa)};
     tf_encryptionCode = "tf_east_radio_code";
