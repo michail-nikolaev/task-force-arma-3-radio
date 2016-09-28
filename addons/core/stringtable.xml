@@ -435,7 +435,7 @@
                 <French>Canal supplémentaire LP: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
                 <German>Zusätzlicher LS-Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
                 <Italian>Canale aggiuntivo OL: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
-                <Polish>Dodatkowy kanał LR &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
+                <Polish>Dodatkowy kanał LR: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
                 <Russian>Дополнительный канал ДС: &lt;t color='#ff00ff'&gt;%1&lt;/t&gt;</Russian>
                 <Spanish>Canal adicional RL:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
                 <Turkish>Ek UM(Uzun Menzil) kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
@@ -567,7 +567,7 @@
                 <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;</French>
                 <German>&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
                 <Italian>&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
-                <Polish>&lt;t size='1' align='center' color='#FF9900'&gt;Nadano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
+                <Polish>&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
                 <Russian>&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
                 <Spanish>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
                 <Turkish>&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
@@ -589,7 +589,7 @@
                 <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;</French>
                 <German>&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
                 <Italian>&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
-                <Polish>&lt;t size='1' align='center' color='#FF9900'&gt;Nadano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
+                <Polish>&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
                 <Russian>&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Дополнительный канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
                 <Spanish>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
                 <Turkish>&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
@@ -677,7 +677,7 @@
                 <French>Copiez les réglages d'une autre radio ayant le même code de cryptage</French>
                 <German>Einstellungen aus einem anderen Funkgerät derselben Verschlüsselung kopieren</German>
                 <Italian>Copia impostazioni da un'altra radio con lo stesso codice di crittografia</Italian>
-                <Polish>Kopiuj ustawienia z innego radia o tym samym szyfrowaniu</Polish>
+                <Polish>Kopiuj ustawienia z innego radia z tym samym szyfrowaniem</Polish>
                 <Russian>Скопировать настройки из другой рации с тем же кодом шифрования</Russian>
                 <Spanish>Para copiar los ajustes de otra radio con el mismo código de cifrado</Spanish>
                 <Turkish>Aynı şifreleme kodu ile başka bir radyo ayarlarını kopyala</Turkish>
@@ -738,7 +738,7 @@
                 <Turkish>Taraflar için SW frekansları</Turkish>
             </Key>
             <Key name="STR_TFAR_Mod_Rifle_Radio">
-                <English>Rifleman radio</English>
+                <Original>Rifleman radio</Original>
                 <Czech>Klasická (malá) vysílačka</Czech>
                 <German>Kurzstreckenfunkgerät</German>
                 <Polish>Radio strzelca</Polish>
@@ -1188,7 +1188,7 @@ Essendo sott'acqua, non potrai capire le comunicazioni sulla terra ferma.&lt;br/
 Usa il ricetrasmettitore subacqueo per comunicare con gli altri sommozzatori.&lt;br/&gt;
 Non puoi usare le normali radio sott'acqua (nè trasmettere nè ricevere). Se vuoi usare la normale radio emergi in superfice. &lt;br/&gt;Eccezione - sottomarino a quota periscopio (i sommozzatori possono usare una radio ad onde lunghe).</Italian>
                 <Polish>&lt;br/&gt;
-Nie możesz rozmawiać pod wodą (nawet w akwalungu). Jednak, z bliskiej odległości twój towarzysz może usłyszeć niewyraźną mowę (z wyjątekiem przebywania pod wodą i w izolowanym pojeździe).&lt;br/&gt;
+Nie możesz mówić pod wodą (nawet w akwalungu). Jednak, z bliskiej odległości twój towarzysz może usłyszeć niewyraźną mowę (z wyjątekiem przebywania pod wodą i w izolowanym pojeździe).&lt;br/&gt;
 Będąc pod wodą, można usłyszeć stłumione głosy z powierzchni.&lt;br/&gt;
 Użyj podwodnego nadajnika do komunikacji między nurkami.&lt;br/&gt;
 Nie możesz używać komunikacji radiowej pod wodą (ani do nadawania, ani do odbierania). Jeśli chcesz przekazać jakąś wiadomość na powierzchnię - wynurz się. &lt;br/&gt;
@@ -1334,23 +1334,23 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Per uscire dalla interfaccia radio.</Italian>
                 <Polish>&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	Rozmowa bezpośrednia.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Nadawanie na radiu.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Nadawanie na radiu SW (krótkim).&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Nadawanie na radiu LR (długim).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Otwarcie interfejsu radia SW (krótkiego) (radio musi być w odpowiednim slocie ekwipunku). Jeśli masz więcej niż jedno - wybierz odpowiadające ci. Istnieje możliwość ustawienia radia jako aktywnego (będzie ono używane do nadawania).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Otwarcie interfejsu radia SW (radio musi być w odpowiednim slocie ekwipunku). Jeśli masz więcej niż jedno - wybierz odpowiadające ci. Istnieje możliwość ustawienia radia jako aktywnego (będzie ono używane do nadawania).&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; Przełączanie pomiędzy dostępnymi radiami SW.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; Szybkie przełączanie trybów stereo w radiu SW.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Szybkie przełączanie kanałów w radiu SW.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Otwarcie interfejsu radio LR (radio musi być na twoich plecach lub musisz znajdować się w pojeździe na siedzeniu kierowcy, strzelca, pilota lub co-pilota). Jeśli posiadasz więcej niż jedno - wybierz odpowiadające ci. Tylko jedno radio LR może zostać ustawione jako aktywne.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Otwarcie interfejsu radia LR (radio musi być na twoich plecach lub musisz znajdować się w pojeździe na siedzeniu kierowcy, strzelca, pilota lub co-pilota). Jeśli posiadasz więcej niż jedno - wybierz odpowiadające ci. Tylko jedno radio LR może zostać ustawione jako aktywne.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; Przełączanie pomiędzy dostępnymi radiami LR.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; Szybkie przełączanie trybów stereo w radiu LR.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;   Szybkie przełączanie kanałów w radiu LR.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Zmiana głośności mowy bezpośredniej: szept, normalna, krzyk. Nie wpływa na głośność transmisji radiowych.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Otwarcie interfejsu radia podwodnego (musisz mieć założony akwalung i aparat oddechowy).&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Nadawanie na radiu podwodnym.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Wybieranie następnego radio SW.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Wybieranie poprzednie radio SW.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Wybieranie następnego radio LR.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Wybieranie poprzedniego radio LR.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Wybieranie następnego radia SW.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Wybieranie poprzedniego radia SW.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Wybieranie następnego radia LR.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Wybieranie poprzedniego radia LR.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Zmiana trybu stereo radia SW.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Zmiana trybu stereo radia LR.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Nadawanie na dodatkowym kanale radia SW.&lt;br/&gt;
