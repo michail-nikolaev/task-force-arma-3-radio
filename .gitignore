@@ -24,3 +24,5 @@
 /misc/documentation-generator/.idea
 /misc/documentation-generator/classes
 *.opendb
+/ts/src/build
+/ts/src/Release

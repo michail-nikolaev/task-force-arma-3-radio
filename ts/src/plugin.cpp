@@ -155,7 +155,7 @@ float volumeFromDistance(float distance, bool shouldPlayerHear, int clientDistan
 	return helpers::volumeFromDistance(distance, shouldPlayerHear, static_cast<float>(clientDistance), multiplifer);
 }
 
-void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, TS3_VECTOR position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck) {
+void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, TS3_VECTOR position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, int stereoMode = 0) {
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	if (!isConnected(serverConnectionHandlerID)) return;
@@ -207,6 +207,16 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 					if (underwater) {
 						helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(input, wave->_spec.channels, samples, CANT_SPEAK_GAIN * 50, (clientData->getFilterCantSpeak(id)));
 					}
+				} else {
+					if (stereoMode == 1) {//Only left
+						for (int q = 0; q < samples * wave->_spec.channels; q += wave->_spec.channels) {
+							input[q + 1] = 0;//mute right channel
+						}
+					} else if (stereoMode == 2) {//Only right
+						for (int q = 0; q < samples * wave->_spec.channels; q += wave->_spec.channels) {
+							input[q] = 0;//mute left channel
+						}
+					}
 				}
 				clientData->getClunk(id)->process(input, wave->_spec.channels, samples, position, clientData->viewAngle);
 				clientData->removeClunk(id);
@@ -231,7 +241,7 @@ void playWavFile(const char* fileNameWithoutExtension) {
 	}
 }
 
-void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain,int stereoMode) {
+void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, int stereoMode) {
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	if (!isConnected(serverConnectionHandlerID)) return;
@@ -265,17 +275,17 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 		helpers::applyGain(input, wave->_spec.channels, samples, gain);
 
 		std::string id = to_play + std::to_string(rand());
-		  if (stereoMode == 0) {
-		  }	  else if (stereoMode == 1) {
-			  for (int q = 0; q < samples * wave->_spec.channels; q += wave->_spec.channels) {
-				  input[q+1] = 0;	//mute right channel
-			  }
-		  }	  else if (stereoMode == 2) {
-			  for (int q = 0; q < samples * wave->_spec.channels; q+= wave->_spec.channels) {
-				  input[q] = 0;   //mute left channel
-			  }
-		  }
-		
+		if (stereoMode == 0) {
+		} else if (stereoMode == 1) {
+			for (int q = 0; q < samples * wave->_spec.channels; q += wave->_spec.channels) {
+				input[q + 1] = 0;	//mute right channel
+			}
+		} else if (stereoMode == 2) {
+			for (int q = 0; q < samples * wave->_spec.channels; q += wave->_spec.channels) {
+				input[q] = 0;   //mute left channel
+			}
+		}
+
 		playbackHandler.appendPlayback(id, serverConnectionHandlerID, input, samples, wave->_spec.channels);
 		delete[] input;
 	}
@@ -1054,7 +1064,7 @@ std::string processGameCommand(std::string command) {
 		task_force_radio::trackPiwik(tokens[1]);
 	} else if (tokens.size() == 14 && tokens[0] == "POS") {
 		//POS nickname x y z viewangle canSpeak canUseSWRadio canUseLRRadio canUseDDRadio vehicleID terrainInterception voiceVolume currentDirection
-		TS3_VECTOR position { std::stof(tokens[2]) ,std::stof(tokens[3]) ,std::stof(tokens[4]) };
+		TS3_VECTOR position{ std::stof(tokens[2]) ,std::stof(tokens[3]) ,std::stof(tokens[4]) };
 		return processUnitPosition(tokens[1], currentServerConnectionHandlerID, position, std::stof(tokens[5]),
 			helpers::isTrue(tokens[6]), helpers::isTrue(tokens[7]), helpers::isTrue(tokens[8]), helpers::isTrue(tokens[9]), tokens[10], std::stoi(tokens[11]), (float) std::atof(tokens[12].c_str()), (float) std::atof(tokens[13].c_str()));
 	} else if (tokens.size() == 5 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD")) {	//#async does only return OK
@@ -1080,50 +1090,30 @@ std::string processGameCommand(std::string command) {
 		if (changed) {
 			std::string commandToBroadcast = command + "\t" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].getMyNickname();
 			if (pressed) {
+				std::string frequency = tokens[2];
 				switch (PTTDelayArguments::subtypeToString(subtype)) {
-					case PTTDelayArguments::subtypes::digital_lr: 
-						
-						
-						
-					{
-						std::string frequency = tokens[2];
-
+					case PTTDelayArguments::subtypes::digital_lr:
 						if (serverIdToData[currentServerConnectionHandlerID].myLrFrequencies.count(frequency)) {
-
-
 							playWavFile(currentServerConnectionHandlerID, "radio-sounds/lr/local_start", 1, serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency].stereoMode);
 						} else {
-							playWavFile(currentServerConnectionHandlerID, "radio-sounds/lr/local_start", 1, 0);
+							playWavFile("radio-sounds/lr/local_start");
 						}
-
-
-					}
-						
-						//playWavFile("radio-sounds/lr/local_start");
-						
-						
-						break;
-					case PTTDelayArguments::subtypes::dd: playWavFile("radio-sounds/dd/local_start"); break;
-					case PTTDelayArguments::subtypes::digital: 
-					{
-						std::string frequency = tokens[2];
-					
-						if (serverIdToData[currentServerConnectionHandlerID].mySwFrequencies.count(frequency)) {
-							
-							
-								playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_start", 1, serverIdToData[currentServerConnectionHandlerID].mySwFrequencies[frequency].stereoMode);
-
-						}else {
-							playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_start", 1, 0);
-						}
-					
-					
-					}
-						
-						
-						//playWavFile("radio-sounds/sw/local_start"); 
 					break;
-					case PTTDelayArguments::subtypes::airborne: playWavFile("radio-sounds/ab/local_start"); break;
+					case PTTDelayArguments::subtypes::dd: playWavFile("radio-sounds/dd/local_start"); break;
+					case PTTDelayArguments::subtypes::digital:
+						if (serverIdToData[currentServerConnectionHandlerID].mySwFrequencies.count(frequency)) {
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_start", 1, serverIdToData[currentServerConnectionHandlerID].mySwFrequencies[frequency].stereoMode);
+						} else {
+							playWavFile("radio-sounds/sw/local_start");
+						}
+					break;
+					case PTTDelayArguments::subtypes::airborne: 
+						if (serverIdToData[currentServerConnectionHandlerID].myLrFrequencies.count(frequency)) {
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/ab/local_start", 1, serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency].stereoMode);
+						} else {
+							playWavFile("radio-sounds/ab/local_start");
+						}
+						break;
 				}
 				EnterCriticalSection(&tangentCriticalSection);
 				if (!waiting_tangent_off) {
@@ -1139,11 +1129,30 @@ std::string processGameCommand(std::string command) {
 				args.currentServerConnectionHandlerID = currentServerConnectionHandlerID;
 				args.subtype = subtype;
 				ptt_arguments = args;
+				std::string frequency = tokens[2];
 				switch (ptt_arguments.subtypeToString(ptt_arguments.subtype)) {
-					case PTTDelayArguments::subtypes::digital_lr: playWavFile("radio-sounds/lr/local_end"); break;
-					case PTTDelayArguments::subtypes::dd: playWavFile("radio-sounds/dd/local_end"); break;
-					case PTTDelayArguments::subtypes::digital: playWavFile("radio-sounds/sw/local_end"); break;
-					case PTTDelayArguments::subtypes::airborne: playWavFile("radio-sounds/ab/local_end"); break;
+					case PTTDelayArguments::subtypes::digital_lr:
+						if (serverIdToData[currentServerConnectionHandlerID].myLrFrequencies.count(frequency)) {
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/lr/local_end", 1, serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency].stereoMode);
+						} else {
+							playWavFile("radio-sounds/lr/local_end");
+						}
+						break;
+					case PTTDelayArguments::subtypes::dd: playWavFile("radio-sounds/dd/local_start"); break;
+					case PTTDelayArguments::subtypes::digital:
+						if (serverIdToData[currentServerConnectionHandlerID].mySwFrequencies.count(frequency)) {
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_end", 1, serverIdToData[currentServerConnectionHandlerID].mySwFrequencies[frequency].stereoMode);
+						} else {
+							playWavFile("radio-sounds/sw/local_end");
+						}
+						break;
+					case PTTDelayArguments::subtypes::airborne:
+						if (serverIdToData[currentServerConnectionHandlerID].myLrFrequencies.count(frequency)) {
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/ab/local_end", 1, serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency].stereoMode);
+						} else {
+							playWavFile("radio-sounds/ab/local_end");
+						}
+						break;
 				}
 
 				CreateThread(NULL, 0, process_tangent_off, NULL, 0, NULL);
@@ -1336,7 +1345,7 @@ int pttCallback(void *arg, int argc, char **argv, char **azColName) {
 		}
 	}
 	return 0;
-}
+		}
 
 /*
  * Custom code called right after loading the plugin. Returns 0 on success, 1 on failure.
@@ -1850,20 +1859,20 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 					if (alive && listedInfo.on != LISTED_ON_NONE) {
 						switch (PTTDelayArguments::subtypeToString(subtype)) {
 							case PTTDelayArguments::subtypes::digital:
-								if (playPressed) playWavFile(serverId, "radio-sounds/sw/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
-								if (playReleased) playWavFile(serverId, "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
+								if (playPressed) playWavFile(serverId, "radio-sounds/sw/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck,listedInfo.stereoMode);
+								if (playReleased) playWavFile(serverId, "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
 								break;
 							case PTTDelayArguments::subtypes::digital_lr:
-								if (playPressed) playWavFile(serverId, "radio-sounds/lr/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
-								if (playReleased) playWavFile(serverId, "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
+								if (playPressed) playWavFile(serverId, "radio-sounds/lr/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
+								if (playReleased) playWavFile(serverId, "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
 								break;
 							case PTTDelayArguments::subtypes::dd:
-								if (playPressed) playWavFile(serverId, "radio-sounds/dd/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
-								if (playReleased) playWavFile(serverId, "radio-sounds/dd/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
+								if (playPressed) playWavFile(serverId, "radio-sounds/dd/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
+								if (playReleased) playWavFile(serverId, "radio-sounds/dd/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
 								break;
 							case PTTDelayArguments::subtypes::airborne:
-								if (playPressed) playWavFile(serverId, "radio-sounds/ab/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
-								if (playReleased) playWavFile(serverId, "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck);
+								if (playPressed) playWavFile(serverId, "radio-sounds/ab/remote_start", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
+								if (playReleased) playWavFile(serverId, "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
 								break;
 						}
 					}
