@@ -33,11 +33,8 @@ for [{private _i = (count _loadouts) - 1}, {_i > 0}, {_i = _i - 2}] do {
 
 			// if the item is an actual radio, not a radio prototype nor common item
 			if ((isClass _class) && (isNumber (_class >> "tf_radio"))) then {
-				// find his parent prototype
-				_parent = ([_class, true] call BIS_fnc_returnParents) select 1;
-
-				// then erease the content value with it
-				_content set [_forEachIndex, _parent];
+				// erease the content value with parent prototype
+				_content set [_forEachIndex, getText (_class >> "tf_parent")];
 			};
 		} forEach _content;
 	} forEach [
