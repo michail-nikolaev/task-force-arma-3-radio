@@ -10,7 +10,7 @@
 void helpers::applyGain(short * samples, int channels, int sampleCount, float directTalkingVolume)
 {
 	if (directTalkingVolume == 0.0f) {
-		memset(samples, 0, sampleCount);
+		memset(samples, 0, sampleCount* channels);
 		return;
 	}
 	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short) (samples[i] * directTalkingVolume);
