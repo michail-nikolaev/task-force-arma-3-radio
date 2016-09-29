@@ -7,5 +7,5 @@ class tf_microdagr: ItemWatch {
     scope = 2;
     scopeCurator = 2;
     picture = QPATHTOF(microdagr\ui\microdagr_icon.paa);
-    model = QPATHTOF(models\tfr_microdagr);
+    model = QPATHTOF(microdagr\data\tfr_microdagr);
 };

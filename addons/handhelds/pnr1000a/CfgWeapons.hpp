@@ -3,7 +3,7 @@ class tf_pnr1000a: ItemRadio {
     descriptionShort = "PNR-1000A rifleman radio 2km";//#Stringtable
     scope = 2;
     scopeCurator = 2;
-    model = QPATHTOF(models\tfr_pnr1000a);
+    model = QPATHTOF(pnr1000a\data\tfr_pnr1000a);
     picture = QPATHTOF(pnr1000a\ui\pnr1000a_icon.paa);
     tf_prototype = 1;
     tf_range = 2000;

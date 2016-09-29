@@ -4,7 +4,7 @@ class tf_anprc154: ItemRadio {
     descriptionShort = "AN/PRC-154 rifleman radio 2km";//#Stringtable
     scope = 2;
     scopeCurator = 2;
-    model = QPATHTOF(models\tfr_anprc154);
+    model = QPATHTOF(anprc154\data\tfr_anprc154);
     picture = QPATHTOF(anprc154\ui\154_icon.paa);
     tf_prototype = 1;
     tf_range = 2000;
