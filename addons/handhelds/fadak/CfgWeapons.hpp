@@ -3,7 +3,7 @@ class tf_fadak: ItemRadio {
     descriptionShort = "FADAK personal radio 5km";//#Stringtable
     scope = 2;
     scopeCurator = 2;
-    model = QPATHTOF(models\tfr_fadak);
+    model = QPATHTOF(fadak\data\tfr_fadak);
     picture = QPATHTOF(fadak\ui\fadak_icon.paa);
     tf_prototype = 1;
     tf_range = 5000;

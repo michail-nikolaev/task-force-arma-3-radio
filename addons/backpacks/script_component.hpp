@@ -1,4 +1,4 @@
-#define COMPONENT handhelds
+#define COMPONENT backpacks
 #include "\z\tfar\addons\core\script_mod.hpp"
 #include "\z\tfar\addons\core\defines.hpp"
 
