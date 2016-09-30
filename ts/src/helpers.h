@@ -35,13 +35,18 @@ public:
 		}
 		return output;
 	}
-	static float volumeFromDistance(float d, bool shouldPlayerHear, float clientDistance, float multiplifer = 1.0f) {
-		if (d <= 1.0) return 1.0;
+	static float volumeFromDistance(float distance, bool shouldPlayerHear, float clientDistance, float multiplifer = 1.0f) {
+		if (distance <= 1.0) return 1.0;
 		float maxDistance = shouldPlayerHear ? clientDistance * multiplifer : CANT_SPEAK_DISTANCE;
-		float gain = powf(d, -0.3f) * (max(0, (maxDistance - d)) / maxDistance);
+		float gain = powf(distance, -0.3f) * (max(0, (maxDistance - distance)) / maxDistance);
 		if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
 	}
-
+	static float volumeFromDistance(float distance, bool shouldPlayerHear, int clientDistance, float multiplifer = 1.0f) {
+		if (distance <= 1.0) return 1.0;
+		float maxDistance = shouldPlayerHear ? static_cast<float>(clientDistance) * multiplifer : CANT_SPEAK_DISTANCE;
+		float gain = powf(distance, -0.3f) * (max(0, (maxDistance - distance)) / maxDistance);
+		if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
+	}
 
 	template<class T>	  //#MAYBE audioHelpers?
 	static void processFilterStereo(short * samples, int channels, int sampleCount, float gain, T* filter) {
