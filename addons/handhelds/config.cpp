@@ -12,8 +12,7 @@ class CfgPatches {
             "Item_tf_fadak",
             "Item_tf_anprc154",
             "Item_tf_rf7800str",
-            "Item_tf_microdagr",
-            "tf_microdagr"
+            "Item_tf_microdagr"
         };
         weapons[] = {
             "tf_anprc152",
@@ -21,7 +20,8 @@ class CfgPatches {
             "tf_fadak",
             "tf_anprc154",
             "tf_rf7800str",
-            "tf_pnr1000a"
+            "tf_pnr1000a",
+            "tf_microdagr"
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
