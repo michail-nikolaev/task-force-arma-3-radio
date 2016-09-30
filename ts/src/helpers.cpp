@@ -7,21 +7,21 @@
 #include <algorithm>
 #include <sstream>
 
-void helpers::applyGain(short * samples, int channels, int sampleCount, float directTalkingVolume)
-{
+void helpers::applyGain(short * samples, int channels, int sampleCount, float directTalkingVolume) {
 	if (directTalkingVolume == 0.0f) {
-		memset(samples, 0, sampleCount* channels);
+		memset(samples, 0, sampleCount * channels * sizeof(short));
 		return;
 	}
+	if (directTalkingVolume == 1.0f) //no change in gain
+		return;
 	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short) (samples[i] * directTalkingVolume);
 }
 
-void helpers::applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle)
-{
+void helpers::applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle) {
 	if (channels == 2) {
 		viewAngle = viewAngle * static_cast<float>((M_PI)) / 180.0f;
 		float dir = atan2(position.y, position.x) + viewAngle;
-		while (dir >  static_cast<float>((M_PI))) {
+		while (dir > static_cast<float>((M_PI))) {
 			dir = dir - 2 * static_cast<float>((M_PI));
 		}
 
