@@ -223,7 +223,7 @@ def find_bi_tools(work_drive):
     dscreatekey_path = os.path.join(arma3tools_path, "DSSignFile", "DSCreateKey.exe")
     cfgconvert_path = os.path.join(arma3tools_path, "CfgConvert", "CfgConvert.exe")
 
-    if and os.path.isfile(dssignfile_path) and os.path.isfile(dscreatekey_path) and os.path.isfile(cfgconvert_path):
+    if os.path.isfile(dssignfile_path) and os.path.isfile(dscreatekey_path) and os.path.isfile(cfgconvert_path):
         return [addonbuilder_path, dssignfile_path, dscreatekey_path, cfgconvert_path]
     else:
         raise Exception("BadTools","Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
