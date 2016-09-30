@@ -542,9 +542,10 @@ def get_project_version():
                 majorText = re.search(r"#define MAJOR (.*\b)", hpptext).group(1)
                 minorText = re.search(r"#define MINOR (.*\b)", hpptext).group(1)
                 patchlvlText = re.search(r"#define PATCHLVL (.*\b)", hpptext).group(1)
+                buildText = re.search(r"#define BUILD (.*\b)", hpptext).group(1)
 
                 if majorText:
-                    versionStamp = "{major}.{minor}.{patchlvl}".format(major=majorText,minor=minorText,patchlvl=patchlvlText)
+                    versionStamp = "{major}.{minor}.{patchlvl}.{build}".format(major=majorText,minor=minorText,patchlvl=patchlvlText,build=buildText)
 
         else:
             print_error("A Critical file seems to be missing or inaccessible: {}".format(scriptModPath))
