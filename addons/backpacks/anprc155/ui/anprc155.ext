@@ -23,7 +23,7 @@ class anprc155_radio_dialog
 	controlsBackground[] = { };
 	objects[] = { };
 	onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'anprc155_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\task_force_radio\anprc155\155_n.paa';};";
+	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\z\tfar\addons\backpacks\anprc155\ui\155_n.paa';};";
 controls[]=
 {
 	background,
