@@ -8,7 +8,7 @@ PixelShaderID = "Super";
 VertexShaderID = "Super";
 class Stage1
 {
-	texture="z	far\addons\backpacks\models\data\clf_prc117g_ap_nohq.paa";
+	texture="z\tfar\addons\backpacks\models\data\clf_prc117g_ap_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -56,7 +56,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="z	far\addons\backpacks\models\data\clf_prc117g_ap_smdi.paa";
+	texture="z\tfar\addons\backpacks\models\data\clf_prc117g_ap_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{
