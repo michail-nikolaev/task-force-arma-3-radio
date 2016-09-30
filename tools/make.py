@@ -223,7 +223,7 @@ def find_bi_tools(work_drive):
     dscreatekey_path = os.path.join(arma3tools_path, "DSSignFile", "DSCreateKey.exe")
     cfgconvert_path = os.path.join(arma3tools_path, "CfgConvert", "CfgConvert.exe")
 
-    if os.path.isfile(addonbuilder_path) and os.path.isfile(dssignfile_path) and os.path.isfile(dscreatekey_path) and os.path.isfile(cfgconvert_path):
+    if and os.path.isfile(dssignfile_path) and os.path.isfile(dscreatekey_path) and os.path.isfile(cfgconvert_path):
         return [addonbuilder_path, dssignfile_path, dscreatekey_path, cfgconvert_path]
     else:
         raise Exception("BadTools","Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
@@ -542,10 +542,9 @@ def get_project_version():
                 majorText = re.search(r"#define MAJOR (.*\b)", hpptext).group(1)
                 minorText = re.search(r"#define MINOR (.*\b)", hpptext).group(1)
                 patchlvlText = re.search(r"#define PATCHLVL (.*\b)", hpptext).group(1)
-                buildText = re.search(r"#define BUILD (.*\b)", hpptext).group(1)
 
                 if majorText:
-                    versionStamp = "{major}.{minor}.{patchlvl}.{build}".format(major=majorText,minor=minorText,patchlvl=patchlvlText,build=buildText)
+                    versionStamp = "{major}.{minor}.{patchlvl}".format(major=majorText,minor=minorText,patchlvl=patchlvlText)
 
         else:
             print_error("A Critical file seems to be missing or inaccessible: {}".format(scriptModPath))
