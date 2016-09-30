@@ -270,8 +270,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 		helpers::applyGain(input, wave->_spec.channels, samples, gain);
 
 		std::string id = to_play + std::to_string(rand());
-		if (stereoMode == 0) {
-		} else if (stereoMode == 1) {
+		if (stereoMode == 1) {
 			for (int q = 0; q < samples * wave->_spec.channels; q += wave->_spec.channels) {
 				input[q + 1] = 0;	//mute right channel
 			}
@@ -1089,7 +1088,8 @@ std::string processGameCommand(std::string command) {
 				switch (PTTDelayArguments::subtypeToString(subtype)) {
 					case PTTDelayArguments::subtypes::digital_lr:
 						if (serverIdToData[currentServerConnectionHandlerID].myLrFrequencies.count(frequency)) {
-							playWavFile(currentServerConnectionHandlerID, "radio-sounds/lr/local_start", 1, serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency].stereoMode);
+							FREQ_SETTINGS& freq = serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency];
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/lr/local_start", helpers::volumeMultiplifier(static_cast<float>(freq.volume)) * serverIdToData[currentServerConnectionHandlerID].globalVolume, freq.stereoMode);
 						} else {
 							playWavFile("radio-sounds/lr/local_start");
 						}
@@ -1097,14 +1097,16 @@ std::string processGameCommand(std::string command) {
 					case PTTDelayArguments::subtypes::dd: playWavFile("radio-sounds/dd/local_start"); break;
 					case PTTDelayArguments::subtypes::digital:
 						if (serverIdToData[currentServerConnectionHandlerID].mySwFrequencies.count(frequency)) {
-							playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_start", 1, serverIdToData[currentServerConnectionHandlerID].mySwFrequencies[frequency].stereoMode);
+							FREQ_SETTINGS& freq = serverIdToData[currentServerConnectionHandlerID].mySwFrequencies[frequency];
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_start", helpers::volumeMultiplifier(static_cast<float>(freq.volume)) * serverIdToData[currentServerConnectionHandlerID].globalVolume, freq.stereoMode);
 						} else {
 							playWavFile("radio-sounds/sw/local_start");
 						}
 					break;
 					case PTTDelayArguments::subtypes::airborne: 
 						if (serverIdToData[currentServerConnectionHandlerID].myLrFrequencies.count(frequency)) {
-							playWavFile(currentServerConnectionHandlerID, "radio-sounds/ab/local_start", 1, serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency].stereoMode);
+							FREQ_SETTINGS& freq = serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency];
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/ab/local_start", helpers::volumeMultiplifier(static_cast<float>(freq.volume)) * serverIdToData[currentServerConnectionHandlerID].globalVolume, freq.stereoMode);
 						} else {
 							playWavFile("radio-sounds/ab/local_start");
 						}
@@ -1136,7 +1138,7 @@ std::string processGameCommand(std::string command) {
 					case PTTDelayArguments::subtypes::dd: playWavFile("radio-sounds/dd/local_start"); break;
 					case PTTDelayArguments::subtypes::digital:
 						if (serverIdToData[currentServerConnectionHandlerID].mySwFrequencies.count(frequency)) {
-							playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_end", 1, serverIdToData[currentServerConnectionHandlerID].mySwFrequencies[frequency].stereoMode);
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_end", 0.3f, serverIdToData[currentServerConnectionHandlerID].mySwFrequencies[frequency].stereoMode);
 						} else {
 							playWavFile("radio-sounds/sw/local_end");
 						}
