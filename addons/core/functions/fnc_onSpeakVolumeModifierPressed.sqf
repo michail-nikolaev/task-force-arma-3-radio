@@ -36,6 +36,12 @@ if(_modifierMode == "yelling") then {
     TF_speak_volume_meters = TF_min_voice_volume;
 };
 
+/*  Tell the plugin that we just changed our volume
+    We can't wait for the normal sendFreqInfo interval because the Plugin has to
+    know the change before we start transmitting
+*/
+call TFAR_fnc_sendFrequencyInfo;
+
 _localName = localize format["STR_voice_%1", _modifierMode];
 _hintText = format[localize "STR_voice_volume", _localName];
 if (TF_volumeModifier_forceSpeech) then {
