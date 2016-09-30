@@ -53,14 +53,3 @@ static float* floatsSample[MAX_CHANNELS];
 #define INFODATA_BUFSIZE 512
 extern void log_string(std::string message, LogLevel level = LogLevel_DEVEL);
 extern void log(const char* message, LogLevel level = LogLevel_DEVEL);
-
-
-__inline int roundq(float flt) {
-	int intgr;
-	_asm
-	{
-		fld flt;
-		fistp intgr;
-	};
-	return intgr;
-}

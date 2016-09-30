@@ -54,7 +54,7 @@ inline float helpers::parseArmaNumber(const std::string& armaNumber) {
 }
 
 inline int helpers::parseArmaNumberToInt(const std::string& armaNumber) {
-	return roundq(std::round(parseArmaNumber(armaNumber)));
+	return static_cast<int>(std::round(parseArmaNumber(armaNumber)));
 }
 
 bool helpers::startsWith(const std::string& shouldStartWith, const  std::string& startIn) {
