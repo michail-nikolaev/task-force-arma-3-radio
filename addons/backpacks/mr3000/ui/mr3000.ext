@@ -35,7 +35,7 @@ class mr3000_radio_dialog
 	controlsBackground[] = { };
 	objects[] = { };
 	onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'mr3000_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\task_force_radio\mr3000\mr3000_n.paa';};";
+	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\z\tfar\addons\backpacks\mr3000\ui\mr3000_n.paa';};";
 	controls[]=
 	{
 		background,
