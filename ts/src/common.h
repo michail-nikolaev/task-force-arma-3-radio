@@ -59,8 +59,8 @@ __inline int roundq(float flt) {
 	int intgr;
 	_asm
 	{
-		fld flt
-		fistp intgr
+		fld flt;
+		fistp intgr;
 	};
 	return intgr;
 }
