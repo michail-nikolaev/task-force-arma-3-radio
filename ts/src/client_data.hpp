@@ -23,10 +23,10 @@ public:
 		if (nickname.front() == ' ' || nickname.back() == ' ') {
 			std::string newName(nickname);
 			if (nickname.front() == ' ') {
-				newName.replace(0, nickname.find_first_not_of(' '), nickname.find_first_not_of(' '), '.');
+				newName.replace(0, nickname.find_first_not_of(' '), nickname.find_first_not_of(' '), '_');
 			}
 			if (nickname.back() == ' ') {
-				newName.replace(nickname.find_last_not_of(' ') + 1, newName.length() - nickname.find_last_not_of(' ') - 1, newName.length() - nickname.find_last_not_of(' ') - 1, '.');
+				newName.replace(nickname.find_last_not_of(' ') + 1, newName.length() - nickname.find_last_not_of(' ') - 1, newName.length() - nickname.find_last_not_of(' ') - 1, '_');
 			}
 			return std::move(newName);
 		}
