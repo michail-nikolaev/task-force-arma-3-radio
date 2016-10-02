@@ -15,7 +15,8 @@ class CfgPatches {
             "A3_UI_F",
             "cba_main",
             "cba_ui",
-            "cba_xeh"
+            "cba_xeh",
+            "cba_settings"
         };
         author = QUOTE(AUTHORS);
     };
