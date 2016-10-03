@@ -9,7 +9,7 @@ int constexpr const_strlen(const char* str) {
 }
 class helpers {
 public:
-	static void applyGain(short * samples, int channels, int sampleCount, float directTalkingVolume);
+	static void applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume);
 	static void applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle);
 	static float sq(float x);
 	static float distance(TS3_VECTOR from, TS3_VECTOR to) ;
