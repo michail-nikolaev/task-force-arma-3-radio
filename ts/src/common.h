@@ -53,3 +53,9 @@ static float* floatsSample[MAX_CHANNELS];
 #define INFODATA_BUFSIZE 512
 extern void log_string(std::string message, LogLevel level = LogLevel_DEVEL);
 extern void log(const char* message, LogLevel level = LogLevel_DEVEL);
+
+enum class stereoMode {//#TODO move to a real header
+	stereo = 0,
+	leftOnly = 1,
+	rightOnly = 2
+};
