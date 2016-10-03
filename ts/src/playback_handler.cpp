@@ -68,3 +68,70 @@ void playback_handler::addServer(uint64_t serverConnectionHandlerID) {
 	CriticalSectionLock lock(&playbackCriticalSection);//std::map is ordered so we need a lock here
 	serverIdToPlayback[serverConnectionHandlerID] = SERVER_PLAYBACK();
 }
+
+playbackWavStereo::playbackWavStereo(clunk::WavFile* wavFile, stereoMode stereo) {
+	if (wavFile->ok() && wavFile->_spec.channels == 2 && wavFile->_spec.sample_rate == 48000 && wavFile->_spec.format == clunk::AudioSpec::S16) {
+		playbackWavStereo(static_cast<short*>(wavFile->_data.get_ptr()), wavFile->_data.get_size() / sizeof(short), wavFile->_spec.channels, stereo);
+	} else if (wavFile->ok()) {
+		MessageBoxA(0, "Unknown audio file has invalid format.", "Task Force Arrowhead Radio", MB_OK);
+	}
+}
+
+playbackWavStereo::playbackWavStereo(std::string wavFilePath, stereoMode stereo) {
+	FILE *f = fopen(wavFilePath.c_str(), "rb");
+	if (f) {
+		clunk::WavFile* wav = new clunk::WavFile(f);
+		wav->read();
+		if (!wav->ok() || wav->_spec.channels != 2 || wav->_spec.sample_rate != 48000 || wav->_spec.format != clunk::AudioSpec::S16) {
+			char buffer[MAX_PATH + const_strlen("File %s has invalid format.")];
+			_snprintf_s(buffer, MAX_PATH + const_strlen("File %s has invalid format."), _TRUNCATE, "File %s has invalid format.", wavFilePath.c_str());
+			MessageBoxA(0, buffer, "Task Force Arrowhead Radio", MB_OK);
+		} else {
+			playbackWavStereo(wav, stereo);
+		}
+		fclose(f);
+		delete wav;
+	}
+	//#TODO else log error to teamspeak
+}
+
+playbackWavStereo::playbackWavStereo(short* samples, uint32_t sampleCount, uint8_t channels, stereoMode stereo) : currentPosition(0) {
+	sampleStore.reserve(sampleCount * 2);
+	if (stereo == stereoMode::stereo) {
+		if (channels == 2)
+			memcpy(sampleStore.data(), samples, sampleCount*channels);
+		else {
+			short* target = sampleStore.data();
+			for (uint32_t q = 0; q < sampleCount; q += 2) {
+				target[q] = samples[(q*channels)];//copy left channel
+				target[q + 1] = samples[(q*channels) + 1];//copy right channel
+			}
+		}
+	} else if (stereo == stereoMode::leftOnly) {
+		short* target = sampleStore.data();
+		for (uint32_t q = 0; q < sampleCount; q += 2) {
+			target[q] = samples[(q*channels)];//only copy left channel
+		}
+	} else if (stereo == stereoMode::rightOnly) {
+		short* target = sampleStore.data();
+		for (uint32_t q = 0; q < sampleCount; q += 2) {
+			target[q + 1] = samples[(q*channels) + 1] = 0;//only copy right channel
+		}
+	}
+}
+
+
+playbackWavStereo::~playbackWavStereo() {
+	sampleStore.clear();
+}
+
+uint32_t playbackWavStereo::getSamples(const short* &data) {
+	data = sampleStore.data() + currentPosition;
+	return sampleStore.size() - currentPosition;//current position can never be bigger than sampleStore.size()
+}
+
+uint32_t playbackWavStereo::cleanSamples(uint32_t sampleCount) {
+	uint32_t increase = min(sampleCount, sampleStore.size() - currentPosition);
+	currentPosition += increase;
+	return increase;
+}
