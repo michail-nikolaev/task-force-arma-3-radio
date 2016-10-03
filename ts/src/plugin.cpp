@@ -149,8 +149,9 @@ anyID getMyId(uint64 serverConnectionHandlerID) {
 	}
 	return myID;
 }
-
+#include <chrono>
 void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, TS3_VECTOR position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, int stereoMode = 0) {
+	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	if (!isConnected(serverConnectionHandlerID)) return;
@@ -220,8 +221,11 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 
 		}
 		LeaveCriticalSection(&serverDataCriticalSection);
-		playbackHandler.appendPlayback(id, serverConnectionHandlerID, input, samples, wave->_spec.channels);
+		playbackHandler.appendPlayback(id, input, samples, wave->_spec.channels);
 		delete[] input;
+		std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
+		log_string(id + std::to_string(duration), LogLevel_WARNING);
 	}
 }
 
@@ -236,53 +240,14 @@ void playWavFile(const char* fileNameWithoutExtension) {
 	}
 }
 
-void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, int stereoMode) {
+void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, int stereo) {
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	if (!isConnected(serverConnectionHandlerID)) return;
 	std::string path = std::string(pluginPath);
 	std::string to_play = path + std::string(fileNameWithoutExtension) + ".wav";
 
-	clunk::WavFile* wave = NULL;
-	EnterCriticalSection(&serverDataCriticalSection);
-	if (serverIdToData[serverConnectionHandlerID].waves.count(to_play) == 0) {
-		FILE *f = fopen(to_play.c_str(), "rb");
-		if (f) {
-			clunk::WavFile* wav = new clunk::WavFile(f);
-			wav->read();
-			if (wav->ok() && wav->_spec.channels == 2 && wav->_spec.sample_rate == 48000) {
-				serverIdToData[serverConnectionHandlerID].waves[to_play] = wav;
-				wave = serverIdToData[serverConnectionHandlerID].waves[to_play];
-			}
-			fclose(f);
-		}
-	} else {
-		wave = serverIdToData[serverConnectionHandlerID].waves[to_play];
-	}
-	LeaveCriticalSection(&serverDataCriticalSection);
-
-	if (wave) {
-		short* data = static_cast<short*>(wave->_data.get_ptr());
-		int samples = static_cast<int>((wave->_data.get_size() / sizeof(short)) / wave->_spec.channels);
-		short* input = new short[samples * wave->_spec.channels];
-
-		memcpy(input, data, wave->_data.get_size());
-		helpers::applyGain(input, wave->_spec.channels, samples, gain);
-
-		std::string id = to_play + std::to_string(rand());
-		if (stereoMode == 1) {
-			for (int q = 0; q < samples * wave->_spec.channels; q += wave->_spec.channels) {
-				input[q + 1] = 0;	//mute right channel
-			}
-		} else if (stereoMode == 2) {
-			for (int q = 0; q < samples * wave->_spec.channels; q += wave->_spec.channels) {
-				input[q] = 0;   //mute left channel
-			}
-		}
-
-		playbackHandler.appendPlayback(id, serverConnectionHandlerID, input, samples, wave->_spec.channels);
-		delete[] input;
-	}
+	playbackHandler.appendPlayback(to_play + std::to_string(rand()), to_play, (stereoMode)stereo, gain);
 }
 
 
@@ -1130,7 +1095,8 @@ std::string processGameCommand(std::string command) {
 				switch (ptt_arguments.subtypeToString(ptt_arguments.subtype)) {
 					case PTTDelayArguments::subtypes::digital_lr:
 						if (serverIdToData[currentServerConnectionHandlerID].myLrFrequencies.count(frequency)) {
-							playWavFile(currentServerConnectionHandlerID, "radio-sounds/lr/local_end", 1, serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency].stereoMode);
+							FREQ_SETTINGS& freq = serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency];
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/lr/local_end", helpers::volumeMultiplifier(static_cast<float>(freq.volume)) * serverIdToData[currentServerConnectionHandlerID].globalVolume, serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency].stereoMode);
 						} else {
 							playWavFile("radio-sounds/lr/local_end");
 						}
@@ -1138,14 +1104,16 @@ std::string processGameCommand(std::string command) {
 					case PTTDelayArguments::subtypes::dd: playWavFile("radio-sounds/dd/local_start"); break;
 					case PTTDelayArguments::subtypes::digital:
 						if (serverIdToData[currentServerConnectionHandlerID].mySwFrequencies.count(frequency)) {
-							playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_end", 0.3f, serverIdToData[currentServerConnectionHandlerID].mySwFrequencies[frequency].stereoMode);
+							FREQ_SETTINGS& freq = serverIdToData[currentServerConnectionHandlerID].mySwFrequencies[frequency];
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/sw/local_end", helpers::volumeMultiplifier(static_cast<float>(freq.volume)) * serverIdToData[currentServerConnectionHandlerID].globalVolume, serverIdToData[currentServerConnectionHandlerID].mySwFrequencies[frequency].stereoMode);
 						} else {
 							playWavFile("radio-sounds/sw/local_end");
 						}
 						break;
 					case PTTDelayArguments::subtypes::airborne:
 						if (serverIdToData[currentServerConnectionHandlerID].myLrFrequencies.count(frequency)) {
-							playWavFile(currentServerConnectionHandlerID, "radio-sounds/ab/local_end", 1, serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency].stereoMode);
+							FREQ_SETTINGS& freq = serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency];
+							playWavFile(currentServerConnectionHandlerID, "radio-sounds/ab/local_end", helpers::volumeMultiplifier(static_cast<float>(freq.volume)) * serverIdToData[currentServerConnectionHandlerID].globalVolume, serverIdToData[currentServerConnectionHandlerID].myLrFrequencies[frequency].stereoMode);
 						} else {
 							playWavFile("radio-sounds/ab/local_end");
 						}
@@ -1456,7 +1424,6 @@ void ts3plugin_onConnectStatusChangeEvent(uint64 serverConnectionHandlerID, int 
 		std::string myNickname = getMyNickname(serverConnectionHandlerID);
 		serverIdToData.resetAndSetMyNickname(serverConnectionHandlerID, myNickname);
 
-		playbackHandler.addServer(serverConnectionHandlerID);
 		updateNicknamesList(serverConnectionHandlerID);
 
 		// Set system 3d settings
@@ -1543,9 +1510,9 @@ void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples,
 		}
 	}
 }
-
+//packet receive ->	decode -> onEditPlaybackVoiceDataEvent -> 3D positioning -> onEditPostProcessVoiceDataEvent -> mixing -> onEditMixedPlaybackVoiceDataEvent -> speaker output
 void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
-	playbackHandler.onEditMixedPlaybackVoiceDataEvent(serverConnectionHandlerID, samples, sampleCount, channels, channelSpeakerArray, channelFillMask);
+	playbackHandler.onEditMixedPlaybackVoiceDataEvent(samples, sampleCount, channels, channelSpeakerArray, channelFillMask);
 }
 
 void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {
@@ -1691,6 +1658,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 	}
 }
 
+//packet receive ->	decode -> onEditPlaybackVoiceDataEvent -> 3D positioning -> onEditPostProcessVoiceDataEvent -> mixing -> onEditMixedPlaybackVoiceDataEvent -> speaker output
 //Data from other clients to us. After 3D processing
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
 	short* stereo = new short[sampleCount * 2];
@@ -1736,7 +1704,7 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 
 			ts3plugin_onEditPostProcessVoiceDataEventStereo(serverConnectionHandlerID, myId, voice, sampleCount, channels * m);
 			LeaveCriticalSection(&serverDataCriticalSection);
-			playbackHandler.appendPlayback("my_radio_voice", serverConnectionHandlerID, voice, sampleCount, channels * m);
+			playbackHandler.appendPlayback("my_radio_voice", voice, sampleCount, channels * m);
 			delete[] voice;
 		} else {
 			LeaveCriticalSection(&serverDataCriticalSection);

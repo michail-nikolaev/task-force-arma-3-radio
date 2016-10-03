@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <sstream>
 
-void helpers::applyGain(short * samples, int channels, int sampleCount, float directTalkingVolume) {
+void helpers::applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume) {
 	if (directTalkingVolume == 0.0f) {
 		memset(samples, 0, sampleCount * channels * sizeof(short));
 		return;

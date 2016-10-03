@@ -20,7 +20,7 @@ class CLIENT_DATA
 public:
 
 	static std::string convertNickname(const std::string& nickname) {
-		if (nickname.front() == ' ' || nickname.back() == ' ') {
+		if (!nickname.empty() && (nickname.front() == ' ' || nickname.back() == ' ')) {
 			std::string newName(nickname);
 			if (nickname.front() == ' ') {
 				newName.replace(0, nickname.find_first_not_of(' '), nickname.find_first_not_of(' '), '_');
@@ -32,7 +32,6 @@ public:
 		}
 		return nickname;
 	}
-
 
 	bool pluginEnabled;
 	uint32_t pluginEnabledCheck;
