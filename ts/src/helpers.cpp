@@ -6,7 +6,7 @@
 #include <math.h>
 #include <algorithm>
 #include <sstream>
-
+   //#TODO swap channels and sampleCount parameters. Everywhere else sampleCount*channels is used.
 void helpers::applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume) {
 	if (directTalkingVolume == 0.0f) {
 		memset(samples, 0, sampleCount * channels * sizeof(short));
@@ -16,7 +16,7 @@ void helpers::applyGain(short * samples, int channels, size_t sampleCount, float
 		return;
 	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short) (samples[i] * directTalkingVolume);
 }
-
+//#TODO swap channels and sampleCount parameters. Everywhere else sampleCount*channels is used.
 void helpers::applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle) {
 	if (channels == 2) {
 		viewAngle = viewAngle * static_cast<float>((M_PI)) / 180.0f;
