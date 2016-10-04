@@ -9,6 +9,9 @@
 #include "common.h"
 #include <memory>
 #include <chrono>
+#include <functional>
+#include <thread>
+#include <mutex>
 /*
  Dedmen:
  This style of separate functions for getting and removing may seem weird.
@@ -18,7 +21,8 @@
 enum class playbackType {
 	base,
 	stereo,
-	raw
+	raw,
+	processing
 };
 
 class playbackBase {
@@ -109,7 +113,7 @@ public:
 	virtual bool isDone() { return currentPosition == sampleStore.size(); }
 	virtual playbackType type() { return playbackType::stereo; }
 private:
-	void construct(const short* samples, size_t sampleCount, uint8_t channels, stereoMode stereo, float gain ); //#DOCS
+	void construct(const short* samples, size_t sampleCount, uint8_t channels, stereoMode stereo, float gain); //#DOCS
 	void construct(clunk::WavFile* wavFile, stereoMode stereo, float gain);  //#DOCS
 	void construct(std::string wavFilePath, stereoMode stereo, float gain);	//#DOCS
 	std::vector<short> sampleStore;
@@ -155,17 +159,64 @@ public:
 	void appendSamples(const short* samples, size_t sampleCount, uint8_t channels);
 	virtual playbackType type() { return playbackType::raw; }
 	std::chrono::high_resolution_clock::time_point creation;
+	std::once_flag flag1;
 private:
 	std::vector<short> sampleStore;
 	size_t currentPosition;
 };
 
-
-struct SERVER_PLAYBACK {
-	//#TODO add mixable sound class. subclassable to play repeating sound. vector<short> getSamples(sampleCount) , bool isDone();
-	//event callback when player releases tangent. because some repeating sounds want to go into done state then.
-
+//************************************
+// Class:    playbackWavProcessing
+// Description:	A playback that does more in-depth processing on audio data
+//************************************
+class playbackWavProcessing : public playbackBase {
+public:
+	playbackWavProcessing(short* samples, size_t sampleCount, int channels, std::vector<std::function<void(short*, size_t, uint8_t)>> processors); //#DOCS
+	virtual ~playbackWavProcessing() {};
+	//************************************
+	// Method:    getSamples
+	// FullName:  playbackBase::getSamples
+	// Returns:   uint32_t availableSamples - the actual amount of samples available in data
+	// Parameter: short * & data - will contain pointer to data after call
+	// Description:	Used to retrieve a Pointer to the beginning of the internal buffer.	 
+	//				After processing cleanSamples should be called with the amount of availableSamples returned by this function 
+	//************************************
+	virtual size_t getSamples(const short*& data);
+	//************************************
+	// Method:    cleanSamples
+	// FullName:  playbackBase::cleanSamples
+	// Returns:   uint32_t removedSamples - the amount of samples actually removed
+	// Parameter: uint32_t sampleCount - the amount of samples to remove from the internal buffer
+	// Description: This will remove sampleCount samples from the beginning of the internal buffer.
+	//************************************
+	virtual size_t cleanSamples(size_t sampleCount);
+	//************************************
+	// Method:    samplesReady
+	// FullName:  playbackBase::samplesReady
+	// Returns:   bool ready - If all samples are processed and ready for playback
+	// Description: This can be used to determine if a playback that has effects applied to it 
+	//				has all samples processed and is ready to output them.
+	//				If this returns false then getSamples would block till the thread doing the processing is done. 
+	//************************************
+	virtual bool samplesReady();
+	virtual bool isDone() { return currentPosition == sampleStore.size(); }
+	virtual playbackType type() { return playbackType::processing; }
+	std::chrono::high_resolution_clock::time_point creation;
+	std::once_flag flag1;
+private:
+	std::vector<short> sampleStore;
+	size_t currentPosition;
+	std::atomic<bool> processingDone;
+	std::vector<std::function<void(short*, size_t, uint8_t)>> functors;
+	std::thread* myThread;
 };
+
+
+
+
+
+
+
 
 class playback_handler {
 public:
@@ -174,8 +225,9 @@ public:
 
 	void onEditMixedPlaybackVoiceDataEvent(short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask);
 	void appendPlayback(std::string name, short* samples, int sampleCount, int channels);
-	void appendPlayback(std::string name, std::string filePath, stereoMode stereo = stereoMode::stereo,float gain = 1.0f);
-
+	void appendPlayback(std::string name, std::string filePath, stereoMode stereo = stereoMode::stereo, float gain = 1.0f);
+	//functors is short* samples,int sampleCount,int channels
+	void appendPlayback(std::string name, std::string filePath, std::vector<std::function<void(short*, size_t, uint8_t)>> functors);
 	//tangentReleased(serverconhandler,clientID) iterates through playbacks and calls their onTangentReleased funcs
 	std::map<std::string, std::shared_ptr<playbackBase>> playbacks;
 	std::map<std::string, std::shared_ptr<clunk::WavFile>> wavCache;
