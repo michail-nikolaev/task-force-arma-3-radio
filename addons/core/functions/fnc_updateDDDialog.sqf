@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_updateDDDialog
+    Name: TFAR_fnc_updateDDDialog
 
- 	Author(s):
-		NKey
+    Author(s):
+        NKey
 
- 	Description:
-		Updates the DD dialog to the channel and depth if switched.
+    Description:
+        Updates the DD dialog to the channel and depth if switched.
 
- 	Parameters:
-		Nothing
+    Parameters:
+        Nothing
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		call TFAR_fnc_updateDDDialog;
+    Example:
+        call TFAR_fnc_updateDDDialog;
 */
 
 private ["_depth", "_depthText"];

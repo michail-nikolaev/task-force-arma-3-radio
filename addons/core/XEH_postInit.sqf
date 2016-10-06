@@ -2,9 +2,9 @@
 
 
 if (isServer or isDedicated) then {
-	[] spawn TFAR_fnc_ServerInit;
+    [] spawn TFAR_fnc_ServerInit;
 };
 
 if (hasInterface) then {
-	[] spawn TFAR_fnc_ClientInit;
+    [] spawn TFAR_fnc_ClientInit;
 };

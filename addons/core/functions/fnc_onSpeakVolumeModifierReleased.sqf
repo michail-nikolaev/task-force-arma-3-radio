@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_onSpeakVolumeModifierReleased
+    Name: TFAR_fnc_onSpeakVolumeModifierReleased
 
- 	Author(s):
-		ACyprus
+    Author(s):
+        ACyprus
 
- 	Description:
-		Restores any transient volume changes for the player's voice in game
+    Description:
+        Restores any transient volume changes for the player's voice in game
 
- 	Parameters:
-		NONE
+    Parameters:
+        NONE
 
- 	Returns:
-		BOOLEAN - Whether or not the event was handled
+    Returns:
+        BOOLEAN - Whether or not the event was handled
 
- 	Example:
-		call TFAR_fnc_onSpeakVolumeModifierReleased;
+    Example:
+        call TFAR_fnc_onSpeakVolumeModifierReleased;
 */
 TF_speak_volume_level = TF_last_speak_volume_level;
 TF_speak_volume_meters = TF_last_speak_volume_meters;

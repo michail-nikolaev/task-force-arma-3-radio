@@ -1,24 +1,24 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setLrFrequency
- 	
- 	Author(s):
-		NKey
+    Name: TFAR_fnc_setLrFrequency
+    
+    Author(s):
+        NKey
 
- 	Description:
-		Sets the frequency for the active channel
-	
-	Parameters:
-		0: OBJECT - Radio object
-		1: STRING - Radio ID
-		2: STRING - Frequency
- 	
- 	Returns:
-		Nothing
- 	
- 	Example:
-		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, "45.48"] call TFAR_fnc_setLrFrequency;
+    Description:
+        Sets the frequency for the active channel
+    
+    Parameters:
+        0: OBJECT - Radio object
+        1: STRING - Radio ID
+        2: STRING - Frequency
+    
+    Returns:
+        Nothing
+    
+    Example:
+        [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, "45.48"] call TFAR_fnc_setLrFrequency;
 */
 
 private ["_radio"];

@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_processSWStereoKeys
+    Name: TFAR_fnc_processSWStereoKeys
 
- 	Author(s):
+    Author(s):
 
 
- 	Description:
-		Switches the SW stereo setting on the active SW radio.
+    Description:
+        Switches the SW stereo setting on the active SW radio.
 
-	Parameters:
-		0: NUMBER - Stereo number : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
+    Parameters:
+        0: NUMBER - Stereo number : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
 
- 	Returns:
-		BOOLEAN - if handled or not.
+    Returns:
+        BOOLEAN - if handled or not.
 
- 	Example:
-		Called via CBA onKey EventHandler
+    Example:
+        Called via CBA onKey EventHandler
 */
 private ["_sw_stereo_number", "_result"];
 params ["_sw_stereo_number"];
@@ -24,10 +24,10 @@ params ["_sw_stereo_number"];
 _result = false;
 
 if ((alive TFAR_currentUnit) and {call TFAR_fnc_haveSWRadio}) then {
-	private "_radio";
-	_radio = call TFAR_fnc_activeSwRadio;
-	[_radio, _sw_stereo_number] call TFAR_fnc_setSwStereo;
-	[_radio] call TFAR_fnc_ShowRadioVolume;
-	_result = true;
+    private "_radio";
+    _radio = call TFAR_fnc_activeSwRadio;
+    [_radio, _sw_stereo_number] call TFAR_fnc_setSwStereo;
+    [_radio] call TFAR_fnc_ShowRadioVolume;
+    _result = true;
 };
 _result
