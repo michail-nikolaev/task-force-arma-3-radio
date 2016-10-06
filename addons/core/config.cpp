@@ -56,4 +56,7 @@ class CfgMods {
 #include "RscTitles.hpp"
 #include "CfgSounds.hpp"
 #include "CfgFontFamilies.hpp"
+class CfgVehicles {
 #include "CfgVehicles.hpp"
+#include "ACEActions.hpp"
+};
