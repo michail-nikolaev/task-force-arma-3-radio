@@ -7,6 +7,8 @@
 #include "Clunk.h"
 #include <clunk/wav_file.h>
 #include "simpleSource\SimpleComp.h"
+#include <memory> //shared_ptr
+#include <unordered_map>
 
 enum OVER_RADIO_TYPE {
 	LISTEN_TO_SW,
@@ -20,7 +22,7 @@ class CLIENT_DATA
 public:
 
 	static std::string convertNickname(const std::string& nickname) {
-		if (nickname.front() == ' ' || nickname.back() == ' ') {
+		if (!nickname.empty() && (nickname.front() == ' ' || nickname.back() == ' ')) {
 			std::string newName(nickname);
 			if (nickname.front() == ' ') {
 				newName.replace(0, nickname.find_first_not_of(' '), nickname.find_first_not_of(' '), '_');
@@ -32,7 +34,6 @@ public:
 		}
 		return nickname;
 	}
-
 
 	bool pluginEnabled;
 	uint32_t pluginEnabledCheck;
@@ -211,16 +212,20 @@ public:
 
 class STRING_TO_CLIENT_DATA_MAP {
 public:
-	typedef std::map<std::string, CLIENT_DATA*>::iterator iterator;
+	typedef std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator iterator;
 	~STRING_TO_CLIENT_DATA_MAP();
-	std::map<std::string, CLIENT_DATA*>::iterator begin();
-	std::map<std::string, CLIENT_DATA*>::iterator end();
-	std::vector<CLIENT_DATA*> getClientDataByClientID(anyID clientID);
+	std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator begin();
+	std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator end();
+	std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator find(const std::string& key);
+	std::vector<std::shared_ptr<CLIENT_DATA>> getClientDataByClientID(anyID clientID);
 	size_t count(std::string const& key) const;
-	CLIENT_DATA*& operator[](std::string const& key);
+
+	std::shared_ptr<CLIENT_DATA>& operator[](std::string const& key);
 	void removeExpiredPositions(const int &curDataFrame);
 private:
-	std::map<std::string, CLIENT_DATA*> data;
+	//unordered_map is a hashmap, which has faster access times. Which we definitely want for many players
+	//The default hash function (std::hash) may produce collisions. use Murmur-hash?
+	std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>> data;
 };
 
 
