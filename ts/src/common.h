@@ -29,6 +29,12 @@ static float* floatsSample[MAX_CHANNELS];
 #else
 #define PLUGIN_VERSION "1.0.0.1"
 #endif
+#define RESOURCE_VERSION 1,0,0,1
+#ifdef X64BUILD
+#define RESOURCE_FILENAME  PLUGIN_NAME_x64
+#else
+#define RESOURCE_FILENAME  PLUGIN_NAME_x32
+#endif
 
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4

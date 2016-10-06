@@ -100,6 +100,7 @@ void playback_handler::appendPlayback(std::string name, std::string filePath, st
 
 
 void playback_handler::appendPlayback(std::string name, std::string filePath, std::vector<std::function<void(short*, size_t, uint8_t)>> functors) {
+	CriticalSectionLock lock(&playbackCriticalSection);
 	if (playbacks.count(name) == 0) {
 
 		std::shared_ptr<clunk::WavFile> wave;
@@ -144,8 +145,9 @@ void playbackWavStereo::construct(std::string wavFilePath, stereoMode stereo, fl
 		}
 		fclose(f);
 		delete wav;
+	} else{
+		log_string("Can't Open file " + wavFilePath,LogLevel_ERROR);
 	}
-	//#TODO else log error to teamspeak
 }
 
 void playbackWavStereo::construct(const short* samples, size_t sampleCount, uint8_t channels, stereoMode stereo, float gain) {
@@ -213,13 +215,21 @@ size_t playbackWavStereo::cleanSamples(size_t sampleCount) {
 	return increase;
 }
 
+
+playbackWavRaw::playbackWavRaw() :currentPosition(0) {
+#ifdef DEBUG_PLAYBACK_TIMES
+	creation = std::chrono::high_resolution_clock::now();
+#endif
+}
+
 size_t playbackWavRaw::getSamples(const short*& data) {
+#ifdef DEBUG_PLAYBACK_TIMES
 	std::call_once(flag1, [this]() {
 		std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - creation).count();
-		log_string("raw use " + std::to_string(duration), LogLevel_WARNING);   //#TODO remove logging and creation variable
+		log_string("raw use " + std::to_string(duration), LogLevel_WARNING);
 	});
-
+#endif
 	data = sampleStore.data() + currentPosition;
 	return sampleStore.size() - currentPosition;//current position can never be bigger than sampleStore.size()
 }
@@ -261,38 +271,46 @@ playbackWavProcessing::playbackWavProcessing(short* samples, size_t sampleCount,
 			previousEnd[posInTarget++] = samples[q + 1];//copy right channel
 		}
 	}
+#ifdef DEBUG_PLAYBACK_TIMES
 	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+#endif
 	myThread = new std::thread([this, sampleCount]() {
 		for (auto it : functors) {
 			it(sampleStore.data(), sampleCount, 2);
 		}
 		processingDone = true;
 	});
-
+#ifdef DEBUG_PLAYBACK_TIMES
 	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 	creation = t2;
 	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
-	log_string("processing " + std::to_string(duration), LogLevel_WARNING);   //#TODO remove logging and creation variable
+	log_string("processing init " + std::to_string(duration), LogLevel_WARNING); 
+#endif
 }
 
 size_t playbackWavProcessing::getSamples(const short*& data) {
-	if (!processingDone) {//#TODO add mutex lock so we actually wait for the thread to end 
+	if (!processingDone) {
+		//#TODO Add possibility to wait instead of skipping (add mutex lock so we actually wait for the thread to end) 
+#ifdef DEBUG_PLAYBACK_TIMES
+		//This was used to diagnose the time myThread->join() would block if it wasn't done yet
 		std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-		//myThread->join(); //#TODO if thread doesnt exist here something is seriously wrong.. Can i prevent a crash here?
+#endif
+		//myThread->join(); //if thread doesnt exist here something is seriously wrong.. Should check for nullptr
 		//delete myThread;
-		//could probably just set isDone==true and return 0 samples
+#ifdef DEBUG_PLAYBACK_TIMES
 		std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
-		log_string("processing skip " + std::to_string(duration), LogLevel_WARNING);   //#TODO remove logging and creation variable
+		log_string("processing skip " + std::to_string(duration), LogLevel_WARNING);
+#endif
 		return 0;
 	}
-
+#ifdef DEBUG_PLAYBACK_TIMES
 	std::call_once(flag1, [this]() {
 		std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - creation).count();
-		log_string("processing use " + std::to_string(duration), LogLevel_WARNING);   //#TODO remove logging and creation variable
+		log_string("processing use " + std::to_string(duration), LogLevel_WARNING);
 	});
-
+#endif
 	data = sampleStore.data() + currentPosition;
 	return sampleStore.size() - currentPosition;//current position can never be bigger than sampleStore.size()
 }

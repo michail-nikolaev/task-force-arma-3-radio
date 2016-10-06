@@ -104,7 +104,7 @@ public:
 	std::string getMyNickname(const uint64_t &serverConnectionHandlerID);
 	//convenience function to keep CriticalSection interaction low
 	void resetAndSetMyNickname(const uint64_t &serverConnectionHandlerID, const std::string& nickname);
-	std::vector<CLIENT_DATA*> getClientDataByClientID(const uint64_t &serverConnectionHandlerID, anyID clientID);
+	std::vector<std::shared_ptr<CLIENT_DATA>> getClientDataByClientID(const uint64_t &serverConnectionHandlerID, anyID clientID);
 	float getWavesLevel(uint64_t const& serverConnectionHandlerID);
 	std::string getAddonVersion(const uint64_t &serverConnectionHandlerID);
 	//Returns SeriousMode Channel in format {Channel Name, Channel Password}

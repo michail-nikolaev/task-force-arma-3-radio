@@ -17,7 +17,7 @@ void helpers::applyGain(short * samples, int channels, size_t sampleCount, float
 	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short) (samples[i] * directTalkingVolume);
 }
 //#TODO swap channels and sampleCount parameters. Everywhere else sampleCount*channels is used.
-void helpers::applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle) {
+void helpers::applyILD(short * samples, int channels, size_t sampleCount, TS3_VECTOR position, float viewAngle) {
 	if (channels == 2) {
 		viewAngle = viewAngle * static_cast<float>((M_PI)) / 180.0f;
 		float dir = atan2(position.y, position.x) + viewAngle;
@@ -111,10 +111,8 @@ std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(std::string strin
 	std::map<std::string, FREQ_SETTINGS> result;
 	std::string sub = string.substr(1, string.length() - 2);
 	std::vector<std::string> v = split(sub, ',');
-	for (auto i = v.begin(); i != v.end(); i++) { //#FOREACH
-		std::string xs = *i;
-		xs = xs.substr(1, xs.length() - 2);
-		std::vector<std::string> parts = split(xs, '|');
+	for (const std::string& xs : v) {
+		std::vector<std::string> parts = split(xs.substr(1, xs.length() - 2), '|');
 		if (parts.size() == 3) {
 			FREQ_SETTINGS settings;
 			settings.volume = parseArmaNumberToInt(parts[1]);

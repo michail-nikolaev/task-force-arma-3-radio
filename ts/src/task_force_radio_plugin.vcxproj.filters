@@ -206,4 +206,7 @@
       <UniqueIdentifier>{b380b208-1500-423d-8ab7-bbb6b6294ab9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
 </Project>
