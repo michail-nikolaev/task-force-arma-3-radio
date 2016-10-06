@@ -10,7 +10,7 @@ int constexpr const_strlen(const char* str) {
 class helpers {
 public:
 	static void applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume);
-	static void applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle);
+	static void applyILD(short * samples, int channels, size_t sampleCount, TS3_VECTOR position, float viewAngle);
 	static float sq(float x);
 	static float distance(TS3_VECTOR from, TS3_VECTOR to) ;
 	static float parseArmaNumber(const std::string& armaNumber);
@@ -49,7 +49,7 @@ public:
 	}
 
 	template<class T>	  //#MAYBE audioHelpers?
-	static void processFilterStereo(short * samples, int channels, int sampleCount, float gain, T* filter) {
+	static void processFilterStereo(short * samples, int channels, size_t sampleCount, float gain, T* filter) {
 		for (int i = 0; i < sampleCount * channels; i += channels) {
 			// all channels mixed
 			float mix[MAX_CHANNELS];

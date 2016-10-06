@@ -117,10 +117,10 @@ bool isConnected(uint64 serverConnectionHandlerID) {
 	return result != 0;
 }
 
-CLIENT_DATA* getClientData(uint64 serverConnectionHandlerID, anyID clientID) {
+std::shared_ptr<CLIENT_DATA> getClientData(uint64 serverConnectionHandlerID, anyID clientID) {
 	auto foundClientDatas = serverIdToData.getClientDataByClientID(serverConnectionHandlerID, clientID);
 	if (foundClientDatas.empty())
-		return nullptr;
+		return std::shared_ptr<CLIENT_DATA>();
 	return foundClientDatas.back();//There should really only be one DATA here.. But we cant be sure
 }
 
@@ -130,7 +130,7 @@ bool hasClientData(uint64 serverConnectionHandlerID, anyID clientID) {
 	EnterCriticalSection(&serverDataCriticalSection);
 	int currentDataFrame = serverIdToData[serverConnectionHandlerID].currentDataFrame;
 	auto foundClientDatas = serverIdToData[serverConnectionHandlerID].nicknameToClientData.getClientDataByClientID(clientID);
-	for (CLIENT_DATA* it : foundClientDatas) {
+	for (std::shared_ptr<CLIENT_DATA>& it : foundClientDatas) {
 		if (abs(currentDataFrame - it->dataFrame) <= 1) {
 			result = true;
 			break;
@@ -169,7 +169,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 	anyID me = getMyId(serverConnectionHandlerID);
 	CriticalSectionLock lock(&serverDataCriticalSection);//Not doing any real processing. so we can keep this locked till func return
 	if (hasClientData(serverConnectionHandlerID, me)) {
-		CLIENT_DATA* clientData = getClientData(serverConnectionHandlerID, me);
+		std::shared_ptr<CLIENT_DATA>& clientData = getClientData(serverConnectionHandlerID, me);
 		if (clientData) {
 			float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
 			float distance_from_radio = helpers::distance(clientData->clientPosition, position);
@@ -219,7 +219,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 			processors.push_back([pClunk, viewAngle, position, clientData, id](short* samples, size_t sampleCount, uint8_t channels) {
 				pClunk->process(samples, channels, sampleCount, position, viewAngle);
 				helpers::applyILD(samples, channels, sampleCount, position, viewAngle);
-				clientData->removeClunk(id); //#TODO clientData has to be shared_ptr
+				clientData->removeClunk(id);
 			});
 
 		}
@@ -353,7 +353,7 @@ float distanceForDiverRadio(float distance, uint64 serverConnectionHandlerID) {
 	return DD_MIN_DISTANCE + (DD_MAX_DISTANCE - DD_MIN_DISTANCE) * (1.0f - wavesLevel);
 }
 
-float effectErrorFromDistance(OVER_RADIO_TYPE radioType, float distance, uint64 serverConnectionHandlerID, CLIENT_DATA* data) {
+float effectErrorFromDistance(OVER_RADIO_TYPE radioType, float distance, uint64 serverConnectionHandlerID, std::shared_ptr<CLIENT_DATA>& data) {
 	float maxD = 0.0f;
 	switch (radioType) {
 		case LISTEN_TO_SW: maxD = static_cast<float>(data->range); break;
@@ -364,7 +364,7 @@ float effectErrorFromDistance(OVER_RADIO_TYPE radioType, float distance, uint64 
 	return distance / maxD;
 }
 
-float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data) {
+float effectiveDistance(uint64 serverConnectionHandlerID, std::shared_ptr<CLIENT_DATA>& data) {
 	CriticalSectionLock lock(&serverDataCriticalSection);
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
 	TS3_VECTOR clientPosition = data->clientPosition;
@@ -377,7 +377,7 @@ float effectiveDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data) {
 	return result;
 }
 
-LISTED_INFO isOverLocalRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* senderData, CLIENT_DATA* myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent) {
+LISTED_INFO isOverLocalRadio(uint64 serverConnectionHandlerID, std::shared_ptr<CLIENT_DATA>& senderData, std::shared_ptr<CLIENT_DATA>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent) {
 	LISTED_INFO result;
 	result.over = LISTEN_TO_NONE;
 	result.volume = 0;
@@ -456,7 +456,7 @@ std::string getClientNickname(uint64 serverConnectionHandlerID, anyID clientID) 
 	return "Unknown nickname";
 }
 
-std::vector<LISTED_INFO> isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DATA* senderData, CLIENT_DATA* myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent) {
+std::vector<LISTED_INFO> isOverRadio(uint64 serverConnectionHandlerID, std::shared_ptr<CLIENT_DATA>& senderData, std::shared_ptr<CLIENT_DATA>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent) {
 	std::vector<LISTED_INFO> result;
 	if (senderData == NULL || myData == NULL) return result;
 	//check if we receive him over a radio we have on us
@@ -493,7 +493,7 @@ std::vector<LISTED_INFO> isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DA
 					} else {
 						int currentDataFrame = serverIdToData[serverConnectionHandlerID].currentDataFrame;
 						if (serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(speaker.nickname)) {
-							CLIENT_DATA* clientData = serverIdToData[serverConnectionHandlerID].nicknameToClientData[speaker.nickname];
+							std::shared_ptr<CLIENT_DATA>& clientData = serverIdToData[serverConnectionHandlerID].nicknameToClientData[speaker.nickname];
 							if (abs(currentDataFrame - clientData->dataFrame) <= 1) {
 								info.pos = clientData->clientPosition;
 								posSet = true;
@@ -512,9 +512,9 @@ std::vector<LISTED_INFO> isOverRadio(uint64 serverConnectionHandlerID, CLIENT_DA
 
 
 
-float distanceFromClient(uint64 serverConnectionHandlerID, CLIENT_DATA* data) {//#TODO replace by just helpers::distance
+float distanceFromClient(uint64 serverConnectionHandlerID, std::shared_ptr<CLIENT_DATA>& data) {//#TODO replace by just helpers::distance
 	EnterCriticalSection(&serverDataCriticalSection);
-	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition; //#TODO add getter fucntion with CriticalSections
+	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition; //#TODO add getter function with CriticalSections
 	LeaveCriticalSection(&serverDataCriticalSection);
 	TS3_VECTOR clientPosition = data->clientPosition;
 	float d = helpers::distance(myPosition, clientPosition);
@@ -540,13 +540,13 @@ void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId) {
 	bool mute = false;
 	if (isSeriousModeEnabled(serverConnectionHandlerID, clientId)) {
 		CriticalSectionLock lock(&serverDataCriticalSection);
-		CLIENT_DATA* data = hasClientData(serverConnectionHandlerID, clientId) ? getClientData(serverConnectionHandlerID, clientId) : NULL;
-		CLIENT_DATA* myData = hasClientData(serverConnectionHandlerID, getMyId(serverConnectionHandlerID))
-			? getClientData(serverConnectionHandlerID, getMyId(serverConnectionHandlerID)) : NULL;
+		std::shared_ptr<CLIENT_DATA>& data = hasClientData(serverConnectionHandlerID, clientId) ? getClientData(serverConnectionHandlerID, clientId) : nullptr;
+		std::shared_ptr<CLIENT_DATA>& myData = hasClientData(serverConnectionHandlerID, getMyId(serverConnectionHandlerID))
+			? getClientData(serverConnectionHandlerID, getMyId(serverConnectionHandlerID)) : nullptr;
 		bool alive = false;
 		if (data && myData && serverIdToData[serverConnectionHandlerID].alive) {
 			std::vector<LISTED_INFO> listedInfo = isOverRadio(serverConnectionHandlerID, data, myData, false, false, false);
-			if (listedInfo.size() == 0) {
+			if (listedInfo.empty()) {
 				bool isTalk = data->clientTalkingNow || isTalking(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), clientId);
 				mute = (distanceFromClient(serverConnectionHandlerID, data) > data->voiceVolume) || (!isTalk);
 			} else {
@@ -682,11 +682,9 @@ void setMuteForDeadPlayers(uint64 serverConnectionHandlerID, bool isSeriousModeE
 	LeaveCriticalSection(&serverDataCriticalSection);
 	std::vector<anyID> clientsIds = getChannelClients(serverConnectionHandlerID, getCurrentChannel(serverConnectionHandlerID));
 	anyID myId = getMyId(serverConnectionHandlerID);
-	for (auto it = clientsIds.begin(); it != clientsIds.end(); it++) {//#FOREACH
-		if (!(*it == myId)) {
-			if (!hasClientData(serverConnectionHandlerID, *it)) {
-				setClientMuteStatus(serverConnectionHandlerID, (*it), alive && isSeriousModeEnabled); // mute not listed client if you alive, and unmute them if not
-			}
+	for (auto & Id : clientsIds) {
+		if (Id != myId && !hasClientData(serverConnectionHandlerID, Id)) {
+			setClientMuteStatus(serverConnectionHandlerID, Id, alive && isSeriousModeEnabled); // mute not listed client if you alive, and unmute them if not
 		}
 	}
 }
@@ -781,10 +779,7 @@ void updateNicknamesList(uint64 serverConnectionHandlerID) {
 			if (serverIdToData.count(serverConnectionHandlerID)) {
 				CriticalSectionLock lock(&serverDataCriticalSection);
 				std::string clientNickname(name);
-				if (!serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(clientNickname)) {
-					serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname] = new CLIENT_DATA();
-				}
-				CLIENT_DATA* data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname];
+				std::shared_ptr<CLIENT_DATA>& data = serverIdToData[serverConnectionHandlerID].nicknameToClientData[clientNickname];
 				data->clientId = clientId;
 			}
 			ts3Functions.freeMemory(name);
@@ -818,7 +813,7 @@ void processUnitKilled(std::string &name, uint64 &serverConnection) {
 	if (serverIdToData.count(serverConnection)) {
 		CriticalSectionLock lock(&serverDataCriticalSection);
 		if (serverIdToData[serverConnection].nicknameToClientData.count(name)) {
-			CLIENT_DATA* clientData = serverIdToData[serverConnection].nicknameToClientData[name];
+			std::shared_ptr<CLIENT_DATA>& clientData = serverIdToData[serverConnection].nicknameToClientData[name];
 			if (clientData) {
 				clientData->dataFrame = INVALID_DATA_FRAME;
 			}
@@ -837,7 +832,7 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 		TS3_VECTOR zero;
 		zero.x = zero.y = zero.z = 0.0f;
 		if (nickname == serverIdToData.getMyNickname(serverConnection)) {
-			CLIENT_DATA* clientData = 0;
+			std::shared_ptr<CLIENT_DATA> clientData;
 			EnterCriticalSection(&serverDataCriticalSection);
 			if (serverIdToData[serverConnection].nicknameToClientData.count(nickname))
 				clientData = serverIdToData[serverConnection].nicknameToClientData[nickname];
@@ -871,7 +866,7 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 			}
 			EnterCriticalSection(&serverDataCriticalSection);
 			if (serverIdToData[serverConnection].nicknameToClientData.count(nickname)) {
-				CLIENT_DATA* clientData = serverIdToData[serverConnection].nicknameToClientData[nickname];
+				std::shared_ptr<CLIENT_DATA>& clientData = serverIdToData[serverConnection].nicknameToClientData[nickname];
 				if (clientData) {
 					playerId = clientData->clientId;
 					clientData->clientPosition = position;
@@ -888,7 +883,7 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 				}
 			}
 			if (serverIdToData[serverConnection].nicknameToClientData.count(serverIdToData[serverConnection].getMyNickname())) {
-				CLIENT_DATA* myData = serverIdToData[serverConnection].nicknameToClientData[serverIdToData[serverConnection].getMyNickname()];
+				std::shared_ptr<CLIENT_DATA>& myData = serverIdToData[serverConnection].nicknameToClientData[serverIdToData[serverConnection].getMyNickname()];
 				myData->viewAngle = currentUnitDrection;
 			}
 			LeaveCriticalSection(&serverDataCriticalSection);
@@ -1039,7 +1034,7 @@ std::string processGameCommand(std::string command) {
 			changed = (serverIdToData[currentServerConnectionHandlerID].tangentPressed != pressed);
 			serverIdToData[currentServerConnectionHandlerID].tangentPressed = pressed;
 			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(serverIdToData[currentServerConnectionHandlerID].getMyNickname())) {
-				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[serverIdToData[currentServerConnectionHandlerID].getMyNickname()];
+				std::shared_ptr<CLIENT_DATA>& clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[serverIdToData[currentServerConnectionHandlerID].getMyNickname()];
 				if (longRange) clientData->canUseLRRadio = true;
 				else if (diverRadio) clientData->canUseDDRadio = true;
 				else clientData->canUseSWRadio = true;
@@ -1147,7 +1142,7 @@ std::string processGameCommand(std::string command) {
 		bool clientTalkingOnRadio = false;
 		if (serverIdToData.count(currentServerConnectionHandlerID)) {
 			if (serverIdToData[currentServerConnectionHandlerID].nicknameToClientData.count(nickname)) {
-				CLIENT_DATA* clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
+				std::shared_ptr<CLIENT_DATA>& clientData = serverIdToData[currentServerConnectionHandlerID].nicknameToClientData[nickname];
 				if (clientData) {
 					playerId = clientData->clientId;
 					clientTalkingOnRadio = (clientData->tangentOverType != LISTEN_TO_NONE) || clientData->clientTalkingNow;
@@ -1309,12 +1304,12 @@ int pttCallback(void *arg, int argc, char **argv, char **azColName) {
 	if (argc != 1) return 1;
 	if (argv[0] != NULL) {
 		std::vector<std::string> v = helpers::split(argv[0], '\n');
-		for (auto i = v.begin(); i != v.end(); i++) { //#FOREACH
-			if (*i == "delay_ptt=true") {
+		for (const std::string i : v) {
+			if (i == "delay_ptt=true") {
 				pttDelay = true;
 			}
-			if (i->substr(0, strlen("delay_ptt_msecs")) == "delay_ptt_msecs") {
-				std::vector<std::string> values = helpers::split(*i, '=');
+			if (i.substr(0, const_strlen("delay_ptt_msecs")) == "delay_ptt_msecs") {
+				std::vector<std::string> values = helpers::split(i, '=');
 				pttDelayMs = std::stoi(values[1]);
 			}
 		}
@@ -1492,7 +1487,7 @@ bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID) {
 
 	DWORD currentTime = GetTickCount();
 	EnterCriticalSection(&serverDataCriticalSection);
-	CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);
+	std::shared_ptr<CLIENT_DATA>& data = getClientData(serverConnectionHandlerID, clientID);
 	if (data) {
 		if (result) {
 			data->pluginEnabledCheck = currentTime;
@@ -1546,8 +1541,8 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 		if (isSeriousModeEnabled(serverConnectionHandlerID, clientID) && !alive) {
 			helpers::applyGain(samples, channels, sampleCount, 0.0f);
 		} else {
-			CLIENT_DATA* data = getClientData(serverConnectionHandlerID, clientID);
-			CLIENT_DATA* myData = getClientData(serverConnectionHandlerID, myId);
+			std::shared_ptr<CLIENT_DATA>& data = getClientData(serverConnectionHandlerID, clientID);
+			std::shared_ptr<CLIENT_DATA>& myData = getClientData(serverConnectionHandlerID, myId);
 			float globalGain = serverIdToData[serverConnectionHandlerID].globalVolume;
 			if (data && myData) {
 				EnterCriticalSection(&serverDataCriticalSection);
@@ -1767,7 +1762,7 @@ void processAllTangentRelease(uint64 serverId, std::vector<std::string> &tokens)
 	std::string nickname = tokens[1];
 	CriticalSectionLock lock(&serverDataCriticalSection);
 	if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(nickname)) {
-		CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[nickname];
+		std::shared_ptr<CLIENT_DATA>& clientData = serverIdToData[serverId].nicknameToClientData[nickname];
 		if (clientData) {
 			clientData->tangentOverType = LISTEN_TO_NONE;
 		}
@@ -1792,7 +1787,7 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 	bool alive = serverIdToData[serverId].alive;
 
 	if (serverIdToData.count(serverId) && serverIdToData[serverId].nicknameToClientData.count(nickname)) {
-		CLIENT_DATA* clientData = serverIdToData[serverId].nicknameToClientData[nickname];
+		std::shared_ptr<CLIENT_DATA>& clientData = serverIdToData[serverId].nicknameToClientData[nickname];
 		if (clientData) {
 			clientData->positionTime = time;
 			clientData->pluginEnabled = true;
@@ -1825,7 +1820,7 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 			if (hasClientData(serverId, clientId)) {
 				std::vector<LISTED_INFO> listedInfos = isOverRadio(serverId, clientData, getClientData(serverId, myId), !longRange && !diverRadio, longRange, diverRadio);
 				for (LISTED_INFO & listedInfo : listedInfos) {
-					CLIENT_DATA* myData = getClientData(serverId, myId);
+					std::shared_ptr<CLIENT_DATA>& myData = getClientData(serverId, myId);
 					std::pair<std::string, float> myVehicleDesriptor = helpers::getVehicleDescriptor(myData->vehicleId);
 					const float vehicleVolumeLoss = helpers::clamp(myVehicleDesriptor.second + listedInfo.vehicle.second, 0.0f, 0.99f);
 					bool vehicleCheck = (myVehicleDesriptor.first == listedInfo.vehicle.first);

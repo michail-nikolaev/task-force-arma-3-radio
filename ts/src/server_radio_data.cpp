@@ -50,7 +50,7 @@ void SERVER_ID_TO_SERVER_DATA::resetAndSetMyNickname(uint64_t const& serverConne
 	data[serverConnectionHandlerID].setMyNicknamex(nickname);
 }
 
-std::vector<CLIENT_DATA*> SERVER_ID_TO_SERVER_DATA::getClientDataByClientID(uint64_t const& serverConnectionHandlerID, anyID clientID) {
+std::vector<std::shared_ptr<CLIENT_DATA>> SERVER_ID_TO_SERVER_DATA::getClientDataByClientID(uint64_t const& serverConnectionHandlerID, anyID clientID) {
 	CriticalSectionLock lock(&serverDataCriticalSection);
 	return data[serverConnectionHandlerID].nicknameToClientData.getClientDataByClientID(clientID);
 }
