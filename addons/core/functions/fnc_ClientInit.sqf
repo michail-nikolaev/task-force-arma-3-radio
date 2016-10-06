@@ -2,70 +2,70 @@
 
 
 if (isNil "tf_radio_channel_name") then {
-	tf_radio_channel_name = "TaskForceRadio";
+    tf_radio_channel_name = "TaskForceRadio";
 };
 if (isNil "tf_radio_channel_password") then {
-	tf_radio_channel_password = "123";
+    tf_radio_channel_password = "123";
 };
 if (isNil "tf_west_radio_code") then {
-	tf_west_radio_code = "_bluefor";
+    tf_west_radio_code = "_bluefor";
 };
 if (isNil "tf_east_radio_code") then {
-	tf_east_radio_code = "_opfor";
+    tf_east_radio_code = "_opfor";
 };
 if (isNil "tf_guer_radio_code") then {
-	tf_guer_radio_code = "_independent";
+    tf_guer_radio_code = "_independent";
 
-	if (([west, resistance] call BIS_fnc_areFriendly) and {!([east, resistance] call BIS_fnc_areFriendly)}) then {
-		tf_guer_radio_code = "_bluefor";
-	};
+    if (([west, resistance] call BIS_fnc_areFriendly) and {!([east, resistance] call BIS_fnc_areFriendly)}) then {
+        tf_guer_radio_code = "_bluefor";
+    };
 
-	if (([east, resistance] call BIS_fnc_areFriendly) and {!([west, resistance] call BIS_fnc_areFriendly)}) then {
-		tf_guer_radio_code = "_opfor";
-	};
+    if (([east, resistance] call BIS_fnc_areFriendly) and {!([west, resistance] call BIS_fnc_areFriendly)}) then {
+        tf_guer_radio_code = "_opfor";
+    };
 };
 if (isNil "TF_defaultWestBackpack") then {
-	TF_defaultWestBackpack = "tf_rt1523g";
+    TF_defaultWestBackpack = "tf_rt1523g";
 };
 if (isNil "TF_defaultEastBackpack") then {
-	TF_defaultEastBackpack = "tf_mr3000";
+    TF_defaultEastBackpack = "tf_mr3000";
 };
 if (isNil "TF_defaultGuerBackpack") then {
-	TF_defaultGuerBackpack = "tf_anprc155";
+    TF_defaultGuerBackpack = "tf_anprc155";
 };
 
 if (isNil "TF_defaultWestPersonalRadio") then {
-	TF_defaultWestPersonalRadio = "tf_anprc152";
+    TF_defaultWestPersonalRadio = "tf_anprc152";
 };
 if (isNil "TF_defaultEastPersonalRadio") then {
-	TF_defaultEastPersonalRadio = "tf_fadak";
+    TF_defaultEastPersonalRadio = "tf_fadak";
 };
 if (isNil "TF_defaultGuerPersonalRadio") then {
-	TF_defaultGuerPersonalRadio = "tf_anprc148jem";
+    TF_defaultGuerPersonalRadio = "tf_anprc148jem";
 };
 
 if (isNil "TF_defaultWestRiflemanRadio") then {
-	TF_defaultWestRiflemanRadio = "tf_rf7800str";
+    TF_defaultWestRiflemanRadio = "tf_rf7800str";
 };
 if (isNil "TF_defaultEastRiflemanRadio") then {
-	TF_defaultEastRiflemanRadio = "tf_pnr1000a";
+    TF_defaultEastRiflemanRadio = "tf_pnr1000a";
 };
 if (isNil "TF_defaultGuerRiflemanRadio") then {
-	TF_defaultGuerRiflemanRadio = "tf_anprc154";
+    TF_defaultGuerRiflemanRadio = "tf_anprc154";
 };
 
 if (isNil "TF_defaultWestAirborneRadio") then {
-	TF_defaultWestAirborneRadio = "tf_anarc210";
+    TF_defaultWestAirborneRadio = "tf_anarc210";
 };
 if (isNil "TF_defaultEastAirborneRadio") then {
-	TF_defaultEastAirborneRadio = "tf_mr6000l";
+    TF_defaultEastAirborneRadio = "tf_mr6000l";
 };
 if (isNil "TF_defaultGuerAirborneRadio") then {
-	TF_defaultGuerAirborneRadio = "tf_anarc164";
+    TF_defaultGuerAirborneRadio = "tf_anarc164";
 };
 
 if (isNil "TF_terrain_interception_coefficient") then {
-	TF_terrain_interception_coefficient = 7.0;
+    TF_terrain_interception_coefficient = 7.0;
 };
 
 disableSerialization;
@@ -110,14 +110,14 @@ disableSerialization;
 ["TFAR","CycleLRRadios",["Cycle << LR Radios","Cycle << LR Radios"],{true},{["prev"] call TFAR_fnc_processLRCycleKeys},[TF_lr_cycle_prev_scancode, TF_lr_cycle_prev_modifiers],false] call cba_fnc_addKeybind;
 
 
-["TFAR","SWStereoBoth",	["SW Stereo: Both","SW Stereo: Both"],{[0] call TFAR_fnc_processSWStereoKeys},	{true},[TF_sw_stereo_both_scancode, TF_sw_stereo_both_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","SWStereoLeft",	["SW Stereo: Left","SW Stereo: Left"],{[1] call TFAR_fnc_processSWStereoKeys},	{true},[TF_sw_stereo_left_scancode, TF_sw_stereo_left_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","SWStereoBoth",    ["SW Stereo: Both","SW Stereo: Both"],{[0] call TFAR_fnc_processSWStereoKeys},    {true},[TF_sw_stereo_both_scancode, TF_sw_stereo_both_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","SWStereoLeft",    ["SW Stereo: Left","SW Stereo: Left"],{[1] call TFAR_fnc_processSWStereoKeys},    {true},[TF_sw_stereo_left_scancode, TF_sw_stereo_left_modifiers],false] call cba_fnc_addKeybind;
 ["TFAR","SWStereoRight",["SW Stereo: Right","SW Stereo: Right"],{[2] call TFAR_fnc_processSWStereoKeys},{true},[TF_sw_stereo_right_scancode,TF_sw_stereo_right_modifiers],false] call cba_fnc_addKeybind;
 
 
-["TFAR","LRStereoBoth",	["LR Stereo: Both","LR Stereo: Both"],{[0] call TFAR_fnc_processLRStereoKeys},	{true},[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRStereoLeft",	["LR Stereo: Left","LR Stereo: Left"],{[1] call TFAR_fnc_processLRStereoKeys},	{true},[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRStereoRight",	["LR Stereo: Right","LR Stereo: Right"],{[2] call TFAR_fnc_processLRStereoKeys},{true},[TF_lr_stereo_right_scancode,TF_lr_stereo_right_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRStereoBoth",    ["LR Stereo: Both","LR Stereo: Both"],{[0] call TFAR_fnc_processLRStereoKeys},    {true},[TF_lr_stereo_both_scancode, TF_lr_stereo_both_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRStereoLeft",    ["LR Stereo: Left","LR Stereo: Left"],{[1] call TFAR_fnc_processLRStereoKeys},    {true},[TF_lr_stereo_left_scancode, TF_lr_stereo_left_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRStereoRight",    ["LR Stereo: Right","LR Stereo: Right"],{[2] call TFAR_fnc_processLRStereoKeys},{true},[TF_lr_stereo_right_scancode,TF_lr_stereo_right_modifiers],false] call cba_fnc_addKeybind;
 
 
 ["TFAR","SWTransmit",["SW Transmit","SW Transmit"],{call TFAR_fnc_onSwTangentPressed},{call TFAR_fnc_onSwTangentReleased},[TF_tangent_sw_scancode, TF_tangent_sw_modifiers],false] call cba_fnc_addKeybind;
@@ -268,17 +268,17 @@ tf_lastError = false;
 tf_msSpectatorPerStepMax = 0.035;
 
 [] spawn {
-	waituntil {sleep 0.1;!(IsNull (findDisplay 46))};
+    waituntil {sleep 0.1;!(IsNull (findDisplay 46))};
 
-	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
-	(findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
-	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
-	(findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
+    (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
+    (findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
+    (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
+    (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
 
-	if (isMultiplayer) then {
-		call TFAR_fnc_sendVersionInfo;
-		["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
-	};
+    if (isMultiplayer) then {
+        call TFAR_fnc_sendVersionInfo;
+        ["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
+    };
 };
 
 TF_first_radio_request = true;
@@ -286,99 +286,109 @@ TF_last_request_time = 0;
 
 player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 player addEventHandler ["killed", {
-	TF_use_saved_sw_setting = true;
-	TF_use_saved_lr_setting = true;
-	TF_first_radio_request = true;
-	call TFAR_fnc_HideHint;
+    TF_use_saved_sw_setting = true;
+    TF_use_saved_lr_setting = true;
+    TF_first_radio_request = true;
+    call TFAR_fnc_HideHint;
 }];
 
 [] spawn {
-	call TFAR_fnc_processRespawn;
+    call TFAR_fnc_processRespawn;
 };
 TF_respawnedAt = time;
 TFAR_previouscurrentUnit = nil;
-TFAR_currentUnit = player;
 [] spawn {
-	waitUntil {sleep 0.1;!(isNull player)};
-	if (player call TFAR_fnc_isForcedCurator) then {
-		player enableSimulation false;
-		player hideObject true;
+    waitUntil {sleep 0.1;!(isNull player)};
+    if (player call TFAR_fnc_isForcedCurator) then {
+        player enableSimulation false;
+        player hideObject true;
 
-		player unlinkItem "ItemRadio";
-		player addVest "V_Rangemaster_belt";
+        player unlinkItem "ItemRadio";
+        player addVest "V_Rangemaster_belt";
 
-		switch (typeOf (player)) do {
-			case "B_VirtualCurator_F": {
-					player addItem TF_defaultWestPersonalRadio;
-					TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];
-				};
-			case "O_VirtualCurator_F": {
-					player addItem TF_defaultEastPersonalRadio;
-					TF_curator_backpack_1 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];
-				};
-			case "I_VirtualCurator_F": {
-					player addItem TF_defaultGuerPersonalRadio;
-					TF_curator_backpack_1 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];
-				};
-			default {
-				player addItem TF_defaultWestPersonalRadio;
-				player addItem TF_defaultEastPersonalRadio;
-				player addItem TF_defaultGuerPersonalRadio;
-				TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];
-				TF_curator_backpack_2 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];
-				TF_curator_backpack_3 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];
-			};
-		};
+        switch (typeOf (player)) do {
+            case "B_VirtualCurator_F": {
+                    player addItem TF_defaultWestPersonalRadio;
+                    TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];
+                };
+            case "O_VirtualCurator_F": {
+                    player addItem TF_defaultEastPersonalRadio;
+                    TF_curator_backpack_1 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];
+                };
+            case "I_VirtualCurator_F": {
+                    player addItem TF_defaultGuerPersonalRadio;
+                    TF_curator_backpack_1 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];
+                };
+            default {
+                player addItem TF_defaultWestPersonalRadio;
+                player addItem TF_defaultEastPersonalRadio;
+                player addItem TF_defaultGuerPersonalRadio;
+                TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];
+                TF_curator_backpack_2 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];
+                TF_curator_backpack_3 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];
+            };
+        };
 
-		[] spawn {
-			while {true} do {
-				if !(isNull curatorCamera) then {
-					player setPosATL (getPosATL curatorCamera);
-					player setDir (getDir curatorCamera);
-				};
-				sleep 1;
-			};
-		};
-	};
-	sleep 2;
-	if (player in (call BIS_fnc_listCuratorPlayers)) then {
-		[] spawn {
-			while {true} do {
-				waitUntil {sleep 0.1;!(isNull (findDisplay 312))};
-				(findDisplay 312) displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_processCuratorKey"];
-				(findDisplay 312) displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
-				waitUntil {sleep 0.1;isNull (findDisplay 312)};
-			};
-		};
-	};
+        [] spawn {
+            while {true} do {
+                if !(isNull curatorCamera) then {
+                    player setPosATL (getPosATL curatorCamera);
+                    player setDir (getDir curatorCamera);
+                };
+                sleep 1;
+            };
+        };
+    };
+    sleep 2;
+    if (player in (call BIS_fnc_listCuratorPlayers)) then {
+        [] spawn {
+            while {true} do {
+                waitUntil {sleep 0.1;!(isNull (findDisplay 312))};
+                (findDisplay 312) displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_processCuratorKey"];
+                (findDisplay 312) displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
+                waitUntil {sleep 0.1;isNull (findDisplay 312)};
+            };
+        };
+    };
 
-	call TFAR_fnc_radioReplaceProcess;
+    call TFAR_fnc_radioReplaceProcess;
 };
 
 [] spawn {
-	waitUntil {sleep 0.1;!((isNil "TF_server_addon_version") and (time < 20))};
-	if (isNil "TF_server_addon_version") then {
-		hintC (localize "STR_no_server");
-	} else {
-		if (TF_server_addon_version != TF_ADDON_VERSION) then {
-			hintC format[localize "STR_different_version", TF_server_addon_version, TF_ADDON_VERSION];
-		};
-	};
+    waitUntil {sleep 0.1;!((isNil "TF_server_addon_version") and (time < 20))};
+    if (isNil "TF_server_addon_version") then {
+        hintC (localize "STR_no_server");
+    } else {
+        if (TF_server_addon_version != TF_ADDON_VERSION) then {
+            hintC format[localize "STR_different_version", TF_server_addon_version, TF_ADDON_VERSION];
+        };
+    };
 };
 
 if (player in (call BIS_fnc_listCuratorPlayers)) then {
-	[] spawn {
-		while {true} do {
-			waitUntil {sleep 0.1;!(isNull (findDisplay 312))};
-			(findDisplay 312) displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_processCuratorKey"];
-			(findDisplay 312) displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
-			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
-			(findDisplay 312) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
-			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
-			(findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
-			waitUntil {sleep 0.1;isNull (findDisplay 312)};
-		};
-	};
+    [] spawn {
+        while {true} do {
+            waitUntil {sleep 0.1;!(isNull (findDisplay 312))};
+            (findDisplay 312) displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_processCuratorKey"];
+            (findDisplay 312) displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
+            (findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
+            (findDisplay 312) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
+            (findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
+            (findDisplay 312) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
+            waitUntil {sleep 0.1;isNull (findDisplay 312)};
+        };
+    };
 };
+
+//From ACEMOD
+// "playerChanged" event
+["unit", {
+    //current unit changed (Curator took control of unit)
+    if (TFAR_currentUnit != (_this select 0)) then {
+        TFAR_currentUnit setVariable ["tf_controlled_unit",(_this select 0)];
+    } else {
+        TFAR_currentUnit setVariable ["tf_controlled_unit",nil];
+    };
+}] call CBA_fnc_addPlayerEventHandler;
 
 call TFAR_fnc_sessionTracker;
