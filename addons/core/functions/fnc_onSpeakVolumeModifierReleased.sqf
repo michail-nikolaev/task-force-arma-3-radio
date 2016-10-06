@@ -21,6 +21,11 @@
 TF_speak_volume_level = TF_last_speak_volume_level;
 TF_speak_volume_meters = TF_last_speak_volume_meters;
 
+/*  Tell the plugin that we just changed our volume
+    We can't wait for the normal sendFreqInfo interval because the Plugin has to
+    know the change before we start transmitting
+*/
+call TFAR_fnc_sendFrequencyInfo;
 
 if (TF_volumeModifier_forceSpeech) then {
     ["",format["TANGENT	RELEASED	%1	%2	%3","directSpeechFreq", 0, "directSpeech"],0] call TFAR_fnc_ProcessTangent;
