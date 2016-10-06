@@ -5,6 +5,11 @@ std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator STRING_T
 	return data.end();
 }
 
+
+std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator STRING_TO_CLIENT_DATA_MAP::find(const std::string& key) {
+	return data.find(key);
+}
+
 std::vector<std::shared_ptr<CLIENT_DATA>> STRING_TO_CLIENT_DATA_MAP::getClientDataByClientID(anyID clientID) {
 	std::vector<std::shared_ptr<CLIENT_DATA>> output;
 	for (auto & it : data) {
