@@ -64,16 +64,14 @@ void __stdcall RVExtension(char *output, int outputSize, const char *input)
 	OVERLAPPED pipeOverlap;
 	pipeOverlap.hEvent = waitForDataEvent;
 	DWORD errorCode = ERROR_SUCCESS;
-	if (!TransactNamedPipe(pipe, (void*) input, strlen(input), output, outputSize, &written, NULL)) {
+	if (!TransactNamedPipe(pipe, (void*) input, strlen(input), output, outputSize, &written, &pipeOverlap)) {
 		errorCode = GetLastError();
 		if (errorCode == ERROR_IO_PENDING)//Handle overlapped datatransfer
 		{
 			DWORD waitResult = WaitForSingleObject(waitForDataEvent, PIPE_TIMEOUT);
 			if (!waitResult) {
 				errorCode = WAIT_TIMEOUT;
-				MessageBoxA(NULL, "timeout", "stuff", MB_ICONERROR | MB_OK);
 			} else {
-
 				GetOverlappedResult(
 					pipe, // handle to pipe 
 					&pipeOverlap, // OVERLAPPED structure 
@@ -93,7 +91,6 @@ void __stdcall RVExtension(char *output, int outputSize, const char *input)
 		switch (errorCode) {
 			case ERROR_NO_DATA:
 			case WAIT_TIMEOUT:
-				MessageBoxA(NULL, "timeout or nodata", "stuff", MB_ICONERROR | MB_OK);
 				strncpy_s(output, outputSize, "Pipe was closed by TS", _TRUNCATE);
 				break;
 			case ERROR_PIPE_LISTENING:

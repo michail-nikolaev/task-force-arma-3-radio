@@ -191,6 +191,7 @@
     <ClInclude Include="..\include\sqlite3\sqlite3.h">
       <Filter>externals</Filter>
     </ClInclude>
+    <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="externals">
@@ -205,5 +206,8 @@
     <Filter Include="externals\clunk">
       <UniqueIdentifier>{b380b208-1500-423d-8ab7-bbb6b6294ab9}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
 </Project>
