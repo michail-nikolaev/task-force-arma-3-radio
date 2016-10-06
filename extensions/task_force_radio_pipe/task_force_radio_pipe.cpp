@@ -69,7 +69,7 @@ void __stdcall RVExtension(char *output, int outputSize, const char *input)
 		if (errorCode == ERROR_IO_PENDING)//Handle overlapped datatransfer
 		{
 			DWORD waitResult = WaitForSingleObject(waitForDataEvent, PIPE_TIMEOUT);
-			if (!waitResult) {
+			if (waitResult == WAIT_TIMEOUT) {
 				errorCode = WAIT_TIMEOUT;
 			} else {
 				GetOverlappedResult(
