@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setAdditionalSwStereo
+    Name: TFAR_fnc_setAdditionalSwStereo
 
- 	Author(s):
-		NKey
+    Author(s):
+        NKey
 
- 	Description:
-		Sets the stereo setting for additional channel the SW radio
+    Description:
+        Sets the stereo setting for additional channel the SW radio
 
- 	Parameters:
- 	0: STRING - Radio
-	1: NUMBER - Stereo : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
+    Parameters:
+    0: STRING - Radio
+    1: NUMBER - Stereo : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		[(call TFAR_fnc_ActiveSWRadio), 2] call TFAR_fnc_setAdditionalSwStereo;
+    Example:
+        [(call TFAR_fnc_ActiveSWRadio), 2] call TFAR_fnc_setAdditionalSwStereo;
  */
 
 private ["_settings"];

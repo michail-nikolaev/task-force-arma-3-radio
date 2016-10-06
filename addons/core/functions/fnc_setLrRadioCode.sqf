@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setLrRadioCode
+    Name: TFAR_fnc_setLrRadioCode
 
- 	Author(s):
-		L-H
+    Author(s):
+        L-H
 
- 	Description:
-		Allows setting of the encryption code for individual radios.
+    Description:
+        Allows setting of the encryption code for individual radios.
 
- 	Parameters:
+    Parameters:
 
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, "NewEncryptionCode"] call TFAR_fnc_setLrRadioCode;
+    Example:
+        [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, "NewEncryptionCode"] call TFAR_fnc_setLrRadioCode;
 */
 
 private ["_settings"];
