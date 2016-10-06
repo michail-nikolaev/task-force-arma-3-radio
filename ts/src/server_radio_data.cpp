@@ -77,3 +77,8 @@ size_t SERVER_ID_TO_SERVER_DATA::clientDataCount(uint64_t const& serverConnectio
 	CriticalSectionLock lock(&serverDataCriticalSection);
 	return data[serverConnectionHandlerID].nicknameToClientData.count(nickname);
 }
+
+void SERVER_ID_TO_SERVER_DATA::setFreqInfos(const uint64_t &serverConnectionHandlerID, const std::vector<std::string> &tokens) {
+	if (data.count(serverConnectionHandlerID))
+		data[serverConnectionHandlerID].setFreqInfos(tokens);
+}

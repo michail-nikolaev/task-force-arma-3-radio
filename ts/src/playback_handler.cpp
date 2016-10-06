@@ -73,7 +73,6 @@ void playback_handler::appendPlayback(std::string name, short* samples, int samp
 void playback_handler::appendPlayback(std::string name, std::string filePath, stereoMode stereo, float gain) {
 	CriticalSectionLock lock(&playbackCriticalSection);
 	if (playbacks.count(name) == 0) {
-
 		std::shared_ptr<clunk::WavFile> wave;
 		if (wavCache.count(filePath) == 0) {
 			FILE *f = fopen(filePath.c_str(), "rb");
@@ -186,7 +185,6 @@ playbackWavStereo::playbackWavStereo(const short* samples, size_t sampleCount, u
 	construct(samples, sampleCount, channels, stereo, gain);
 }
 
-
 playbackWavStereo::playbackWavStereo(clunk::WavFile* wavFile, stereoMode stereo, float gain /*= 1.0f*/) : currentPosition(0) {
 	construct(wavFile, stereo, gain);
 }
@@ -290,11 +288,12 @@ playbackWavProcessing::playbackWavProcessing(short* samples, size_t sampleCount,
 
 size_t playbackWavProcessing::getSamples(const short*& data) {
 	if (!processingDone) {
-		//#TODO Add possibility to wait instead of skipping (add mutex lock so we actually wait for the thread to end) 
 #ifdef DEBUG_PLAYBACK_TIMES
 		//This was used to diagnose the time myThread->join() would block if it wasn't done yet
 		std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 #endif
+		//when someone implements waiting again consider next comment
+		//Add possibility to wait instead of skipping (add mutex lock so we actually wait for the thread to end) 
 		//myThread->join(); //if thread doesnt exist here something is seriously wrong.. Should check for nullptr
 		//delete myThread;
 #ifdef DEBUG_PLAYBACK_TIMES
@@ -326,5 +325,5 @@ size_t playbackWavProcessing::cleanSamples(size_t sampleCount) {
 }
 
 bool playbackWavProcessing::samplesReady() {
-	return true;//#TODO implement threading
+	return true;//implement threading
 }

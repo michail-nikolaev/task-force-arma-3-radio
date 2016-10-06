@@ -22,7 +22,7 @@ public:
 	static short* allocatePool(int sampleCount, int channels, short* samples);
 	static void mix(short* to, short* from, int sampleCount, int channels);
 	static float volumeMultiplifier(const float volumeValue);
-	static std::map<std::string, FREQ_SETTINGS> parseFrequencies(std::string string);
+	static std::map<std::string, FREQ_SETTINGS> parseFrequencies(const std::string& string);
 	static float clamp(float x, float a, float b);
 	static std::pair<std::string, float> getVehicleDescriptor(std::string vechicleId);
 	//String of format [0.123,0.123,0.123]
@@ -50,7 +50,7 @@ public:
 
 	template<class T>	  //#MAYBE audioHelpers?
 	static void processFilterStereo(short * samples, int channels, size_t sampleCount, float gain, T* filter) {
-		for (int i = 0; i < sampleCount * channels; i += channels) {
+		for (size_t i = 0; i < sampleCount * channels; i += channels) {
 			// all channels mixed
 			float mix[MAX_CHANNELS];
 			for (int j = 0; j < MAX_CHANNELS; j++) mix[j] = 0.0;
@@ -97,4 +97,26 @@ class CriticalSectionLock {
 public:
 	explicit CriticalSectionLock(CRITICAL_SECTION* _cs) : cs(_cs) { EnterCriticalSection(cs); }
 	~CriticalSectionLock() { LeaveCriticalSection(cs); }
+};
+#include <chrono>
+class speedTest {
+public:
+	speedTest(const std::string & name_):start(std::chrono::high_resolution_clock::now()), name(name_) {}
+	~speedTest() { log(); }
+	void log() const {
+		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
+		log_string(name+" " + std::to_string(duration)+" microsecs", LogLevel_WARNING);
+	}
+	void log(const std::string & text) {
+		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
+		log_string(name + "-" + text + " " + std::to_string(duration) + " microsecs", LogLevel_WARNING);
+		start += std::chrono::high_resolution_clock::now() - now; //compensate time for call to log func
+	}
+	void reset() {
+		start = std::chrono::high_resolution_clock::now();
+	}
+	std::chrono::high_resolution_clock::time_point start;
+	std::string name;
 };

@@ -64,7 +64,7 @@ void __stdcall RVExtension(char *output, int outputSize, const char *input)
 	OVERLAPPED pipeOverlap;
 	pipeOverlap.hEvent = waitForDataEvent;
 	DWORD errorCode = ERROR_SUCCESS;
-	if (!TransactNamedPipe(pipe, (void*) input, strlen(input), output, outputSize, &written, NULL)) {
+	if (!TransactNamedPipe(pipe, (void*) input, strlen(input), output, outputSize, &written, &pipeOverlap)) {
 		errorCode = GetLastError();
 		if (errorCode == ERROR_IO_PENDING)//Handle overlapped datatransfer
 		{

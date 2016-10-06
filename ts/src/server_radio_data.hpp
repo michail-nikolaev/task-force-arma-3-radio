@@ -111,10 +111,7 @@ public:
 	std::pair<std::string, std::string> getSeriousModeChannel(const uint64_t &serverConnectionHandlerID);
 	//convenience function for serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(nickname) with CriticalSectionLock
 	size_t clientDataCount(const uint64_t &serverConnectionHandlerID, const std::string & nickname);
-	void setFreqInfos(const uint64_t &serverConnectionHandlerID, const std::vector<std::string> &tokens) {
-		if (data.count(serverConnectionHandlerID))
-			data[serverConnectionHandlerID].setFreqInfos(tokens);
-	}
+	void setFreqInfos(const uint64_t &serverConnectionHandlerID, const std::vector<std::string> &tokens);
 private:
 	std::map<uint64, SERVER_RADIO_DATA> data;
 };

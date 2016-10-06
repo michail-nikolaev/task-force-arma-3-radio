@@ -216,8 +216,10 @@ public:
 	~STRING_TO_CLIENT_DATA_MAP();
 	std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator begin();
 	std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator end();
+	std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator find(const std::string& key);
 	std::vector<std::shared_ptr<CLIENT_DATA>> getClientDataByClientID(anyID clientID);
 	size_t count(std::string const& key) const;
+
 	std::shared_ptr<CLIENT_DATA>& operator[](std::string const& key);
 	void removeExpiredPositions(const int &curDataFrame);
 private:

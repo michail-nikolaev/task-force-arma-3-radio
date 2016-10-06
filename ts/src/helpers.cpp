@@ -14,7 +14,7 @@ void helpers::applyGain(short * samples, int channels, size_t sampleCount, float
 	}
 	if (directTalkingVolume == 1.0f) //no change in gain
 		return;
-	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short) (samples[i] * directTalkingVolume);
+	for (size_t i = 0; i < sampleCount * channels; i++) samples[i] = static_cast<short>(samples[i] * directTalkingVolume);
 }
 //#TODO swap channels and sampleCount parameters. Everywhere else sampleCount*channels is used.
 void helpers::applyILD(short * samples, int channels, size_t sampleCount, TS3_VECTOR position, float viewAngle) {
@@ -25,13 +25,10 @@ void helpers::applyILD(short * samples, int channels, size_t sampleCount, TS3_VE
 			dir = dir - 2 * static_cast<float>((M_PI));
 		}
 
-		float gainLeft = 1.0;
-		float gainRight = 1.0;
+		float gainLeft = -0.375f * cos(dir) + 0.625f;
+		float gainRight = 0.375f * cos(dir) + 0.625f;
 
-		gainLeft = -0.375f * cos(dir) + 0.625f;
-		gainRight = 0.375f * cos(dir) + 0.625f;
-
-		for (int i = 0; i < sampleCount * channels; i++) {
+		for (size_t i = 0; i < sampleCount * channels; i++) {
 			if (i % 2 == 0) {
 				samples[i] = static_cast<short>(samples[i] * gainLeft);
 			} else {
@@ -107,7 +104,7 @@ float helpers::volumeMultiplifier(const float volumeValue) {
 	return pow(normalized, 4);
 }
 
-std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(std::string string) {
+std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(const std::string& string) {
 	std::map<std::string, FREQ_SETTINGS> result;
 	std::string sub = string.substr(1, string.length() - 2);
 	std::vector<std::string> v = split(sub, ',');

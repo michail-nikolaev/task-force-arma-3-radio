@@ -1,4 +1,5 @@
 #pragma once
+#include "version.h"
 #include "public_definitions.h"
 #include <string>
 
@@ -23,18 +24,6 @@ static float* floatsSample[MAX_CHANNELS];
 #define DD_MAX_DISTANCE 300
 
 #define UNDERWATER_LEVEL -1.1f
-
-#ifdef AppVeyorBuild
-#define PLUGIN_VERSION AppVeyorBuild
-#else
-#define PLUGIN_VERSION "1.0.0.1"
-#endif
-#define RESOURCE_VERSION 1,0,0,1
-#ifdef X64BUILD
-#define RESOURCE_FILENAME  PLUGIN_NAME_x64
-#else
-#define RESOURCE_FILENAME  PLUGIN_NAME_x32
-#endif
 
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
