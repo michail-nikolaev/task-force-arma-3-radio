@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setSwRadioCode
+    Name: TFAR_fnc_setSwRadioCode
 
- 	Author(s):
-		L-H
+    Author(s):
+        L-H
 
- 	Description:
-		Allows setting of the encryption code for individual radios.
+    Description:
+        Allows setting of the encryption code for individual radios.
 
- 	Parameters:
-		0: STRING - Radio classname
-		1: STRING - Encryption code.
+    Parameters:
+        0: STRING - Radio classname
+        1: STRING - Encryption code.
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		[call TFAR_fnc_activeSwRadio, "NewEncryptionCode"] call TFAR_fnc_setSwRadioCode;
+    Example:
+        [call TFAR_fnc_activeSwRadio, "NewEncryptionCode"] call TFAR_fnc_setSwRadioCode;
 */
 private ["_settings"];
 

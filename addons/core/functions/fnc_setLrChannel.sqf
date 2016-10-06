@@ -1,24 +1,24 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setLrChannel
+    Name: TFAR_fnc_setLrChannel
 
- 	Author(s):
-		NKey
+    Author(s):
+        NKey
 
- 	Description:
-		Sets the radio to the passed channel
+    Description:
+        Sets the radio to the passed channel
 
-	Parameters:
-		0: OBJECT - Radio object
-		1: STRING - Radio ID
-		2: NUMBER - Channel : Range (0,8)
+    Parameters:
+        0: OBJECT - Radio object
+        1: STRING - Radio ID
+        2: NUMBER - Channel : Range (0,8)
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 4] call TFAR_fnc_setLrChannel;
+    Example:
+        [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 4] call TFAR_fnc_setLrChannel;
 */
 
 private ["_settings"];
