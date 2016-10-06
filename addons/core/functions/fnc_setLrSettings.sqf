@@ -1,26 +1,26 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setLrSettings
+    Name: TFAR_fnc_setLrSettings
 
- 	Author(s):
-		NKey
+    Author(s):
+        NKey
 
- 	Description:
-		Saves the settings for the passed radio and broadcasts it to all clients and the server.
+    Description:
+        Saves the settings for the passed radio and broadcasts it to all clients and the server.
 
-	Parameters:
-		0: OBJECT - Radio object
-		1: STRING - Radio ID
-		2: ARRAY - Settings, usually acquired via TFAR_fnc_getLrSettings and then changed.
+    Parameters:
+        0: OBJECT - Radio object
+        1: STRING - Radio ID
+        2: ARRAY - Settings, usually acquired via TFAR_fnc_getLrSettings and then changed.
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		_settings = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getSwSettings;
-		_settings set [0, 2]; // sets the active channel to 2
-		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, _settings] call TFAR_fnc_setLrSettings;
+    Example:
+        _settings = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getSwSettings;
+        _settings set [0, 2]; // sets the active channel to 2
+        [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, _settings] call TFAR_fnc_setLrSettings;
 */
 private ["_value"];
 

@@ -1,24 +1,24 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setLrVolume
+    Name: TFAR_fnc_setLrVolume
 
- 	Author(s):
-		NKey
+    Author(s):
+        NKey
 
- 	Description:
-		Sets the volume for the passed radio
+    Description:
+        Sets the volume for the passed radio
 
- 	Parameters:
-		0: OBJECT - Radio object
-		1: STRING - Radio ID
-		2: NUMBER - Volume : Range (0,10)
+    Parameters:
+        0: OBJECT - Radio object
+        1: STRING - Radio ID
+        2: NUMBER - Volume : Range (0,10)
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 5] call TFAR_fnc_setLrVolume;
+    Example:
+        [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 5] call TFAR_fnc_setLrVolume;
 */
 
 private ["_settings"];

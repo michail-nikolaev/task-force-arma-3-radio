@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setSwChannel
+    Name: TFAR_fnc_setSwChannel
 
- 	Author(s):
-		NKey
+    Author(s):
+        NKey
 
- 	Description:
-		Sets the channel for the passed radio
+    Description:
+        Sets the channel for the passed radio
 
- 	Parameters:
-		0: STRING - Radio classname
-		1: NUMBER - Channel
+    Parameters:
+        0: STRING - Radio classname
+        1: NUMBER - Channel
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		[(call TFAR_fnc_activeSwRadio), 2] call TFAR_fnc_setSwChannel;
+    Example:
+        [(call TFAR_fnc_activeSwRadio), 2] call TFAR_fnc_setSwChannel;
 */
 
 private ["_settings"];
