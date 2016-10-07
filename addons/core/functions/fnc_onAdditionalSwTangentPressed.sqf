@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_onAdditionalSwTangentPressed
- 	
- 	Author(s):
-		NKey
+    Name: TFAR_fnc_onAdditionalSwTangentPressed
+    
+    Author(s):
+        NKey
 
- 	Description:
-		Fired when the additional keybinding for SW is pressed.
-	
-	Parameters:
- 	
- 	Returns:
-		BOOLEAN
- 	
- 	Example:
-		call TFAR_fnc_onAdditionalSwTangentPressed;
+    Description:
+        Fired when the additional keybinding for SW is pressed.
+    
+    Parameters:
+    
+    Returns:
+        BOOLEAN
+    
+    Example:
+        call TFAR_fnc_onAdditionalSwTangentPressed;
 */
 private["_depth", "_freq"];
 if (!(TF_tangent_sw_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_haveSWRadio}) then {	

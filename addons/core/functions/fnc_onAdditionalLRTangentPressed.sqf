@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_onAdditionalLRTangentPressed
- 	
- 	Author(s):
-		NKey
+    Name: TFAR_fnc_onAdditionalLRTangentPressed
+    
+    Author(s):
+        NKey
 
- 	Description:
-		Fired when the additional keybinding for LR is pressed.
-	
-	Parameters:
- 	
- 	Returns:
-		BOOLEAN
- 	
- 	Example:
-		call TFAR_fnc_onAdditionalLRTangentPressed;
+    Description:
+        Fired when the additional keybinding for LR is pressed.
+    
+    Parameters:
+    
+    Returns:
+        BOOLEAN
+    
+    Example:
+        call TFAR_fnc_onAdditionalLRTangentPressed;
 */
 private["_freq","_radio"];
 if (!(TF_tangent_lr_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_haveLRRadio}) then {

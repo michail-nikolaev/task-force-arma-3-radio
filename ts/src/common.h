@@ -1,4 +1,5 @@
 #pragma once
+#include "version.h"
 #include "public_definitions.h"
 #include <string>
 
@@ -24,12 +25,6 @@ static float* floatsSample[MAX_CHANNELS];
 
 #define UNDERWATER_LEVEL -1.1f
 
-#ifdef AppVeyorBuild
-#define PLUGIN_VERSION AppVeyorBuild
-#else
-#define PLUGIN_VERSION "1.0.0.1"
-#endif
-
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
 
@@ -53,3 +48,9 @@ static float* floatsSample[MAX_CHANNELS];
 #define INFODATA_BUFSIZE 512
 extern void log_string(std::string message, LogLevel level = LogLevel_DEVEL);
 extern void log(const char* message, LogLevel level = LogLevel_DEVEL);
+
+enum class stereoMode {//#TODO move to a real header
+	stereo = 0,
+	leftOnly = 1,
+	rightOnly = 2
+};

@@ -70,7 +70,7 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\build\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Configuration)\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\build\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\build\</OutDir>
@@ -108,13 +108,14 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalDependencies>wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;X64BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
@@ -147,7 +148,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -161,7 +162,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;X64BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -231,6 +232,7 @@
     <ClCompile Include="task_force_radio.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\clientlib_publicdefinitions.h" />
     <ClInclude Include="..\include\clunk\buffer.h" />
     <ClInclude Include="..\include\clunk\clunk_assert.h" />
     <ClInclude Include="..\include\clunk\clunk_ex.h" />
@@ -251,7 +253,13 @@
     <ClInclude Include="..\include\clunk\types.h" />
     <ClInclude Include="..\include\clunk\v3.h" />
     <ClInclude Include="..\include\clunk\wav_file.h" />
+    <ClInclude Include="..\include\plugin_definitions.h" />
+    <ClInclude Include="..\include\public_definitions.h" />
+    <ClInclude Include="..\include\public_errors.h" />
+    <ClInclude Include="..\include\public_errors_rare.h" />
+    <ClInclude Include="..\include\public_rare_definitions.h" />
     <ClInclude Include="..\include\sqlite3\sqlite3.h" />
+    <ClInclude Include="..\include\ts3_functions.h" />
     <ClInclude Include="client_data.hpp" />
     <ClInclude Include="Clunk.h" />
     <ClInclude Include="common.h" />
@@ -262,6 +270,10 @@
     <ClInclude Include="plugin.h" />
     <ClInclude Include="server_radio_data.hpp" />
     <ClInclude Include="task_force_radio.hpp" />
+    <ClInclude Include="version.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_onSwTangentPressed
- 	
- 	Author(s):
-		NKey
+    Name: TFAR_fnc_onSwTangentPressed
+    
+    Author(s):
+        NKey
 
- 	Description:
-		Fired when the keybinding for SW is pressed.
-	
-	Parameters:
- 	
- 	Returns:
-		BOOLEAN
- 	
- 	Example:
-		call TFAR_fnc_onSwTangentPressed;
+    Description:
+        Fired when the keybinding for SW is pressed.
+    
+    Parameters:
+    
+    Returns:
+        BOOLEAN
+    
+    Example:
+        call TFAR_fnc_onSwTangentPressed;
 */
 private["_depth", "_radio"];
 if (time - TF_last_lr_tangent_press > 0.5) then {

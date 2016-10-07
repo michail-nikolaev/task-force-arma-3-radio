@@ -191,6 +191,28 @@
     <ClInclude Include="..\include\sqlite3\sqlite3.h">
       <Filter>externals</Filter>
     </ClInclude>
+    <ClInclude Include="version.h" />
+    <ClInclude Include="..\include\clientlib_publicdefinitions.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\plugin_definitions.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\public_definitions.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\public_errors.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\public_errors_rare.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\public_rare_definitions.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ts3_functions.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="externals">
@@ -205,5 +227,11 @@
     <Filter Include="externals\clunk">
       <UniqueIdentifier>{b380b208-1500-423d-8ab7-bbb6b6294ab9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="externals\teamspeak">
+      <UniqueIdentifier>{9409b456-1398-4b63-9116-9596f82faac5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
 </Project>

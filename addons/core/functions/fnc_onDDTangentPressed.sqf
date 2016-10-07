@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_onDDTangentPressed
- 	
- 	Author(s):
-		NKey
+    Name: TFAR_fnc_onDDTangentPressed
+    
+    Author(s):
+        NKey
 
- 	Description:
-		Fired when the keybinding for DD is pressed.
-	
-	Parameters:
- 	
- 	Returns:
-		BOOLEAN
- 	
- 	Example:
-		call TFAR_fnc_onDDTangentPressed;
+    Description:
+        Fired when the keybinding for DD is pressed.
+    
+    Parameters:
+    
+    Returns:
+        BOOLEAN
+    
+    Example:
+        call TFAR_fnc_onDDTangentPressed;
 */
 if (time - TF_last_dd_tangent_press > 0.1) then {
 	if (!(TF_tangent_dd_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_haveDDRadio}) then {

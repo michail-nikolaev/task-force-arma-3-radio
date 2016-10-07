@@ -9,8 +9,8 @@ int constexpr const_strlen(const char* str) {
 }
 class helpers {
 public:
-	static void applyGain(short * samples, int channels, int sampleCount, float directTalkingVolume);
-	static void applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle);
+	static void applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume);
+	static void applyILD(short * samples, int channels, size_t sampleCount, TS3_VECTOR position, float viewAngle);
 	static float sq(float x);
 	static float distance(TS3_VECTOR from, TS3_VECTOR to) ;
 	static float parseArmaNumber(const std::string& armaNumber);
@@ -22,7 +22,7 @@ public:
 	static short* allocatePool(int sampleCount, int channels, short* samples);
 	static void mix(short* to, short* from, int sampleCount, int channels);
 	static float volumeMultiplifier(const float volumeValue);
-	static std::map<std::string, FREQ_SETTINGS> parseFrequencies(std::string string);
+	static std::map<std::string, FREQ_SETTINGS> parseFrequencies(const std::string& string);
 	static float clamp(float x, float a, float b);
 	static std::pair<std::string, float> getVehicleDescriptor(std::string vechicleId);
 	//String of format [0.123,0.123,0.123]
@@ -31,21 +31,26 @@ public:
 		if (coordinateString.length() > 2) {
 			std::vector<std::string> coords = helpers::split(coordinateString.substr(1, coordinateString.length() - 2), ',');
 			for (const std::string& coord : coords)
-				output.push_back(static_cast<float>(std::atof(coord.c_str())));
+				output.push_back(parseArmaNumber(coord));
 		}
 		return output;
 	}
-	static float volumeFromDistance(float d, bool shouldPlayerHear, float clientDistance, float multiplifer = 1.0f) {
-		if (d <= 1.0) return 1.0;
+	static float volumeFromDistance(float distance, bool shouldPlayerHear, float clientDistance, float multiplifer = 1.0f) {
+		if (distance <= 1.0) return 1.0;
 		float maxDistance = shouldPlayerHear ? clientDistance * multiplifer : CANT_SPEAK_DISTANCE;
-		float gain = powf(d, -0.3f) * (max(0, (maxDistance - d)) / maxDistance);
+		float gain = powf(distance, -0.3f) * (max(0, (maxDistance - distance)) / maxDistance);
+		if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
+	}
+	static float volumeFromDistance(float distance, bool shouldPlayerHear, int clientDistance, float multiplifer = 1.0f) {
+		if (distance <= 1.0) return 1.0;
+		float maxDistance = shouldPlayerHear ? static_cast<float>(clientDistance) * multiplifer : CANT_SPEAK_DISTANCE;
+		float gain = powf(distance, -0.3f) * (max(0, (maxDistance - distance)) / maxDistance);
 		if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
 	}
 
-
 	template<class T>	  //#MAYBE audioHelpers?
-	static void processFilterStereo(short * samples, int channels, int sampleCount, float gain, T* filter) {
-		for (int i = 0; i < sampleCount * channels; i += channels) {
+	static void processFilterStereo(short * samples, int channels, size_t sampleCount, float gain, T* filter) {
+		for (size_t i = 0; i < sampleCount * channels; i += channels) {
 			// all channels mixed
 			float mix[MAX_CHANNELS];
 			for (int j = 0; j < MAX_CHANNELS; j++) mix[j] = 0.0;
@@ -92,4 +97,31 @@ class CriticalSectionLock {
 public:
 	explicit CriticalSectionLock(CRITICAL_SECTION* _cs) : cs(_cs) { EnterCriticalSection(cs); }
 	~CriticalSectionLock() { LeaveCriticalSection(cs); }
+};
+#include <chrono>
+class speedTest {
+public:
+	speedTest(const std::string & name_,bool willPrintOnDestruct_=true) :start(std::chrono::high_resolution_clock::now()), name(name_), willPrintOnDestruct(willPrintOnDestruct_){}
+	~speedTest() { if (willPrintOnDestruct) log(); }
+	void log() const {
+		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
+		log_string(name+" " + std::to_string(duration)+" microsecs", LogLevel_WARNING);
+	}
+	void log(const std::string & text) {
+		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
+		log_string(name + "-" + text + " " + std::to_string(duration) + " microsecs", LogLevel_WARNING);
+		start += std::chrono::high_resolution_clock::now() - now; //compensate time for call to log func
+	}
+	void reset() {
+		start = std::chrono::high_resolution_clock::now();
+	}
+	std::chrono::microseconds getCurrentElapsedTime() const {
+		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+		return std::chrono::duration_cast<std::chrono::microseconds>(now - start);
+	}
+	std::chrono::high_resolution_clock::time_point start;
+	std::string name;
+	bool willPrintOnDestruct;
 };

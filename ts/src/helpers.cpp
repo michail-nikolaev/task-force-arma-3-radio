@@ -6,32 +6,29 @@
 #include <math.h>
 #include <algorithm>
 #include <sstream>
-
-void helpers::applyGain(short * samples, int channels, int sampleCount, float directTalkingVolume)
-{
+   //#TODO swap channels and sampleCount parameters. Everywhere else sampleCount*channels is used.
+void helpers::applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume) {
 	if (directTalkingVolume == 0.0f) {
-		memset(samples, 0, sampleCount* channels);
+		memset(samples, 0, sampleCount * channels * sizeof(short));
 		return;
 	}
-	for (int i = 0; i < sampleCount * channels; i++) samples[i] = (short) (samples[i] * directTalkingVolume);
+	if (directTalkingVolume == 1.0f) //no change in gain
+		return;
+	for (size_t i = 0; i < sampleCount * channels; i++) samples[i] = static_cast<short>(samples[i] * directTalkingVolume);
 }
-
-void helpers::applyILD(short * samples, int channels, int sampleCount, TS3_VECTOR position, float viewAngle)
-{
+//#TODO swap channels and sampleCount parameters. Everywhere else sampleCount*channels is used.
+void helpers::applyILD(short * samples, int channels, size_t sampleCount, TS3_VECTOR position, float viewAngle) {
 	if (channels == 2) {
 		viewAngle = viewAngle * static_cast<float>((M_PI)) / 180.0f;
 		float dir = atan2(position.y, position.x) + viewAngle;
-		while (dir >  static_cast<float>((M_PI))) {
+		while (dir > static_cast<float>((M_PI))) {
 			dir = dir - 2 * static_cast<float>((M_PI));
 		}
 
-		float gainLeft = 1.0;
-		float gainRight = 1.0;
+		float gainLeft = -0.375f * cos(dir) + 0.625f;
+		float gainRight = 0.375f * cos(dir) + 0.625f;
 
-		gainLeft = -0.375f * cos(dir) + 0.625f;
-		gainRight = 0.375f * cos(dir) + 0.625f;
-
-		for (int i = 0; i < sampleCount * channels; i++) {
+		for (size_t i = 0; i < sampleCount * channels; i++) {
 			if (i % 2 == 0) {
 				samples[i] = static_cast<short>(samples[i] * gainLeft);
 			} else {
@@ -107,14 +104,12 @@ float helpers::volumeMultiplifier(const float volumeValue) {
 	return pow(normalized, 4);
 }
 
-std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(std::string string) {
+std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(const std::string& string) {
 	std::map<std::string, FREQ_SETTINGS> result;
 	std::string sub = string.substr(1, string.length() - 2);
 	std::vector<std::string> v = split(sub, ',');
-	for (auto i = v.begin(); i != v.end(); i++) { //#FOREACH
-		std::string xs = *i;
-		xs = xs.substr(1, xs.length() - 2);
-		std::vector<std::string> parts = split(xs, '|');
+	for (const std::string& xs : v) {
+		std::vector<std::string> parts = split(xs.substr(1, xs.length() - 2), '|');
 		if (parts.size() == 3) {
 			FREQ_SETTINGS settings;
 			settings.volume = parseArmaNumberToInt(parts[1]);

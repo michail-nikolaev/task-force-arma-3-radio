@@ -11,3 +11,4 @@
 ["TF_same_dd_frequencies_for_side", "CHECKBOX", localize "STR_radio_same_dd_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 // client
 ["TF_default_radioVolume", "SLIDER", localize "STR_radio_default_radioVolume", "Task Force Arrowhead Radio", [1, 9, 9, 0]] call CBA_Settings_fnc_init;
+["TF_volumeModifier_forceSpeech", "CHECKBOX", "Activate directSpeech when pressing volume modifier.", "Task Force Arrowhead Radio", false] call CBA_Settings_fnc_init;//#Stringtable

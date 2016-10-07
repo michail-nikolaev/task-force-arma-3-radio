@@ -4,7 +4,7 @@ class tf_anprc152: ItemRadio {
     descriptionShort = "AN/PRC-152 personal radio 5km";//#Stringtable
     scope = 2;
     scopeCurator = 2;
-    model = QPATHTOF(models\tfr_anprc152);
+    model = QPATHTOF(anprc152\data\tfr_anprc152);
     picture = QPATHTOF(anprc152\ui\152_icon.paa);
     tf_prototype = 1;
     tf_range = 5000;

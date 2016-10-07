@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_onLRTangentPressed
- 	
- 	Author(s):
-		NKey
+    Name: TFAR_fnc_onLRTangentPressed
+    
+    Author(s):
+        NKey
 
- 	Description:
-		Fired when the keybinding for LR is pressed.
-	
-	Parameters:
- 	
- 	Returns:
-		BOOLEAN
- 	
- 	Example:
-		call TFAR_fnc_onLRTangentPressed;
+    Description:
+        Fired when the keybinding for LR is pressed.
+    
+    Parameters:
+    
+    Returns:
+        BOOLEAN
+    
+    Example:
+        call TFAR_fnc_onLRTangentPressed;
 */
 private["_radio"];
 if (time - TF_last_lr_tangent_press > 0.1) then {

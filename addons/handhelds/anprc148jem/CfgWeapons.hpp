@@ -4,7 +4,7 @@ class tf_anprc148jem: ItemRadio {
     descriptionShort = "AN/PRC-148 JEM personal radio 5km";//#Stringtable
     scope = 2;
     scopeCurator = 2;
-    model = QPATHTOF(models\tfr_anprc148);
+    model = QPATHTOF(anprc148jem\data\tfr_anprc148);
     picture = QPATHTOF(anprc148jem\ui\148_icon.paa);
     tf_prototype = 1;
     tf_range = 5000;

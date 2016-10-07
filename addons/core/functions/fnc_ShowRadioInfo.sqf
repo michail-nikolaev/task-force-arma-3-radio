@@ -1,25 +1,25 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_ShowRadioInfo
+    Name: TFAR_fnc_ShowRadioInfo
 
- 	Author(s):
-		L-H
+    Author(s):
+        L-H
 
- 	Description:
+    Description:
 
- 	Parameters:
-	0: OBJECT/STRING - Radio
-	1: BOOLEAN - is LR radio
+    Parameters:
+    0: OBJECT/STRING - Radio
+    1: BOOLEAN - is LR radio
 
- 	Returns:
-	Nothing
+    Returns:
+    Nothing
 
- 	Example:
-	// LR radio
-	[(call TFAR_fnc_activeLrRadio), true] call TFAR_fnc_ShowRadioInfo;
-	// SW radio
-	[(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_ShowRadioInfo;
+    Example:
+    // LR radio
+    [(call TFAR_fnc_activeLrRadio), true] call TFAR_fnc_ShowRadioInfo;
+    // SW radio
+    [(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_ShowRadioInfo;
 */
 private ["_hintText", "_name", "_picture", "_channel", "_additional", "_add_channel", "_imagesize"];
 
@@ -31,18 +31,18 @@ _picture = if(_isLrRadio) then {getText (ConfigFile >> "CfgVehicles" >> typeof (
 _channel = if(_isLrRadio) then {format[localize "STR_active_lr_channel", (_radio call TFAR_fnc_getLrChannel) + 1]} else {format[localize "STR_active_sw_channel", (_radio call TFAR_fnc_getSwChannel) + 1]};
 _additional = nil;
 if (_isLrRadio) then {
-	_additional = _radio call TFAR_fnc_getAdditionalLrChannel;
+    _additional = _radio call TFAR_fnc_getAdditionalLrChannel;
 } else {
-	_additional = _radio call TFAR_fnc_getAdditionalSwChannel;
+    _additional = _radio call TFAR_fnc_getAdditionalSwChannel;
 };
 _add_channel = "";
 if (_additional > -1) then {
-	_add_channel = if(_isLrRadio) then {format[localize "STR_active_additional_lr_channel", (_radio call TFAR_fnc_getAdditionalLrChannel) + 1]} else {format[localize "STR_active_additional_sw_channel", (_radio call TFAR_fnc_getAdditionalSwChannel) + 1]};
+    _add_channel = if(_isLrRadio) then {format[localize "STR_active_additional_lr_channel", (_radio call TFAR_fnc_getAdditionalLrChannel) + 1]} else {format[localize "STR_active_additional_sw_channel", (_radio call TFAR_fnc_getAdditionalSwChannel) + 1]};
 };
 
 _imagesize = "1.6";
 if ((_isLrRadio) and {!((_radio select 0) isKindOf "Bag_Base")}) then {
-	_imagesize = "1.0";
+    _imagesize = "1.0";
 };
 _hintText = "";
 if(tf_radio_show_freq)then

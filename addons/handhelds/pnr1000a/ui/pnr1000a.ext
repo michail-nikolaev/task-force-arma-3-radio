@@ -27,7 +27,7 @@ class pnr1000a_radio_dialog
 	controlsBackground[] = { };
 	objects[] = { };
 	onUnload = "['OnRadioOpen', player, [player, TF_sw_dialog_radio, false, 'pnr1000a_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\task_force_radio\pnr1000a\pnr1000a_n.paa';((_this select 0) displayCtrl TF_MICRODAGR_BACKGROUND_ID) ctrlSetText '\task_force_radio\microdagr\microdagr_n.paa';}; _this call TFAR_fnc_updateProgrammatorDialog;";
+	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\z\tfar\addons\handhelds\pnr1000a\ui\pnr1000a_n.paa';((_this select 0) displayCtrl TF_MICRODAGR_BACKGROUND_ID) ctrlSetText '\z\tfar\addons\handhelds\microdagr\ui\microdagr_n.paa';}; _this call TFAR_fnc_updateProgrammatorDialog;";
 	controls[]=
 	{
 		background,
@@ -131,7 +131,7 @@ class pnr1000a_radio_dialog
 	class microdagr_background: RscBackPicture
 	{
 		idc = IDC_MICRODAGR_BACKGROUND;
-		text = "\task_force_radio\microdagr\microdagr.paa";
+		text = QPATHTOF(microdagr\ui\microdagr.paa);
 		x = 0.217953 * safezoneW + safezoneX;
 		y = -0.1611 * safezoneH + safezoneY;
 		w = 0.551203 * safezoneW;
