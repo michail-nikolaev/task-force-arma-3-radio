@@ -33,5 +33,5 @@ if ((count _this) == 3) then{
 };
 [parseText (_this select 0), _timer] call TFAR_fnc_showHint;
 if (isMultiplayer) then {
-    "task_force_radio_pipe" callExtension (_this select 1);
+    "task_force_radio_pipe" callExtension (_this select 1) + "~";//Async call will always return "OK"
 };

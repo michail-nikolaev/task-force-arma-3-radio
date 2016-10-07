@@ -17,7 +17,7 @@ using namespace std;
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 #define DEBUG_PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
 #define DEBUG_PARAMETER L"-tfdebug"
-#define PIPE_TIMEOUT 2000
+#define PIPE_TIMEOUT 1000
 extern HANDLE pipe;
 extern HANDLE waitForDataEvent;
 

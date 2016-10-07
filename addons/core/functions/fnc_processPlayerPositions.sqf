@@ -98,7 +98,7 @@ if !(isNull (findDisplay 46)) then {
                         {
                             _speakers = _speakers + TF_vertical_tab + _x;
                         } count (tf_speakerRadios);
-                        "task_force_radio_pipe" callExtension _speakers;
+                        "task_force_radio_pipe" callExtension _speakers+"~";//Async call will always return "OK"
 
                         tf_speakerRadios = [];
                     };
