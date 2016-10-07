@@ -1,6 +1,8 @@
 #include "script_component.hpp"
 
-
+if (isNil "tf_radio_show_freq") then {
+    tf_radio_show_freq = true;
+};
 if (isNil "tf_radio_channel_name") then {
     tf_radio_channel_name = "TaskForceRadio";
 };

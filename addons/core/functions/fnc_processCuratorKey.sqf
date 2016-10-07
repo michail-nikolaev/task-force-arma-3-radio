@@ -17,7 +17,7 @@ _processKeys = {
                     
         if ((_key_pressed == _pressed select 1) and {(_mods select 0) isEqualTo (_pressed select 2)} and {(_mods select 1) isEqualTo  (_pressed select 3)} and {(_mods select 2) isEqualTo (_pressed select 4)}) exitWith {
             _result = call _handler;
-        };		 
+        }; 
      };
 };
 
