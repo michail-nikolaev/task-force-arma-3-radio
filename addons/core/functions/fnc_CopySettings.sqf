@@ -23,8 +23,6 @@
     [(call TFAR_fnc_activeSwRadio),"tf_anprc148jem_20"] call TFAR_fnc_CopySettings;
 */
 
-private ["_settings", "_isDLR", "_isSLR", "_support_additional"];
-
 params ["_source", "_destination"];
 
 private _isDLR = if (_destination isEqualType []) then {true}else{false};
@@ -42,7 +40,7 @@ if (_isSLR) then {
     private _settings = _source call TFAR_fnc_GetSwSettings;
     if (!_isDLR) then {
         _settings = []+_settings;
-        private _support_additional = getNumber (configFile >> "CfgWeapons" >> _destination >> "tf_additional_channel");
+        _support_additional = getNumber (configFile >> "CfgWeapons" >> _destination >> "tf_additional_channel");
         if ((isNil "_support_additional") or {_support_additional == 0}) then {
             _settings set [TF_ADDITIONAL_CHANNEL_OFFSET, -1];
         };

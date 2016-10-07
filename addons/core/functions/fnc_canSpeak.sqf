@@ -19,6 +19,7 @@
     Example:
         _canSpeak = [false, -12] call TFAR_fnc_canSpeak;
 */
+
 params ["_vehIsolation", "_eyeDepth"];
 
 private _result = false;

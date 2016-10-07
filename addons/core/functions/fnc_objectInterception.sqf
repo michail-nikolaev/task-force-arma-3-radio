@@ -1,14 +1,11 @@
 #include "script_component.hpp"
 
-
-
 KK_fnc_inString = {
-    params [["_needle", "", [""]], ["_needle", "", [""]]];
-    private _haystack = toArray (_haystack);
+    params [["_needle", "", [""]], ["_haystack", "", [""]]];
+    _haystack = toArray (_haystack);
     private _needleLen = count toArray _needle;
     private _hay = +_haystack;
     _hay resize _needleLen;
-
     private _found = false;
     for "_i" from _needleLen to count _haystack do {
         if (toString _hay == _needle) exitWith {_found = true};

@@ -19,6 +19,7 @@
     Example:
         call TFAR_fnc_serverInit;
 */
+
 TF_server_addon_version = TF_ADDON_VERSION;
 publicVariable "TF_server_addon_version";
 
@@ -38,22 +39,19 @@ while {true} do {
         if (isPlayer _x) then {
             private _variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
             private _radio_request = missionNamespace getVariable (_variableName);
-
             if !(isNil "_radio_request") then {
                 missionNamespace setVariable [_variableName, nil];
                 (owner (_x)) publicVariableClient (_variableName);
-
                 private _responseVariableName = "radio_response_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
                 private _response = [];
-
                 if (_radio_request isEqualType []) then {
                     {
-                        private _radio = _x;
-                        private _count = -1;
-
+                        private ["_radio", "_count"];
+                        _radio = _x;
                         if !(_radio call TFAR_fnc_isPrototypeRadio) then {
                             _radio = configname inheritsFrom (configFile >> "CfgWeapons" >> _radio);
                         };
+                        _count = -1;
                         {
                             if ((_x select 0) == _radio) exitWith {
                                 _x set [1, (_x select 1) + 1];
@@ -78,7 +76,7 @@ while {true} do {
                 (owner (_x)) publicVariableClient (_responseVariableName);
             };
             private _task_force_radio_used = _x getVariable "tf_force_radio_active";
-            private _variableName = "no_radio_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
+            _variableName = "no_radio_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
             if (isNil "_task_force_radio_used") then {
                 private _last_check = missionNamespace getVariable _variableName;
 

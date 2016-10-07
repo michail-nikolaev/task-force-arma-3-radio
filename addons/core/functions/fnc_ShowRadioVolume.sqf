@@ -23,6 +23,7 @@
     // DD radio
     ["", true] call TFAR_fnc_ShowRadioVolume;
 */
+
 params ["_radio", ["_isDDRadio", false, [true]]];
 
 private _isLrRadio = if (typename _radio == "STRING")then{false}else{true};
@@ -34,7 +35,6 @@ if !(_isDDRadio) then {
     private _volume = formatText [localize "STR_radio_volume",if(_isLrRadio) then {((_radio call TFAR_fnc_getLrVolume) + 1) * 10} else {((_radio call TFAR_fnc_getSwVolume) + 1) * 10}];
     private _stereo = localize format ["STR_stereo_settings_%1", if(_isLrRadio) then {_radio call TFAR_fnc_getLrStereo} else {_radio call TFAR_fnc_getSwStereo}];
 
-    private _additional = nil;
     if (_isLrRadio) then {
         _additional = _radio call TFAR_fnc_getAdditionalLrChannel;
     } else {

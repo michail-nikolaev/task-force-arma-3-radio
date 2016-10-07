@@ -24,6 +24,7 @@
     // DD radio
     ["", true] call TFAR_fnc_ShowRadioSpeakers;
 */
+
 params ["_radio", ["_isDDRadio", false, [true]]];
 
 private _isLrRadio = if (typename _radio == "STRING")then{false}else{true};

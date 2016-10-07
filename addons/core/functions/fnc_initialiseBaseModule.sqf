@@ -17,6 +17,7 @@
     Example:
 
  */
+
 params [
     ["_logic", objNull, [objNull]],
     ["_units", [], [[]]],
@@ -25,15 +26,14 @@ params [
 
 if (_activated) then {
     private _swFreq = false call TFAR_fnc_generateSwSettings;
-    private _lrFreq = false call TFAR_fnc_generateLrSettings;
     private _freqs = call compile (_logic getVariable "PrFreq");
     private _randomFreqs = [TF_MAX_CHANNELS,TF_MAX_SW_FREQ,TF_MIN_SW_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
-
     while {count _freqs < TF_MAX_CHANNELS} do {
         _freqs set [count _freqs, _randomFreqs select (count _freqs)];
     };
     _swFreq set [2,_freqs];
 
+    private _lrFreq = false call TFAR_fnc_generateLrSettings;
     _freqs = call compile (_logic getVariable "LrFreq");
     _randomFreqs = [TF_MAX_LR_CHANNELS,TF_MAX_ASIP_FREQ,TF_MIN_ASIP_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
     while {count _freqs < TF_MAX_LR_CHANNELS} do {
@@ -48,6 +48,8 @@ if (_activated) then {
     tf_same_sw_frequencies_for_side = true;
     tf_same_lr_frequencies_for_side = true;
 
+    private _RiflemanRadio = _logic getVariable "RiflemanRadio";
+    private _radio_code = _logic getVariable "Encryption";
     if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getConfigProperty) != 1) then {
         diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
         hint format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
@@ -58,9 +60,6 @@ if (_activated) then {
         hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
         _radio = "-1";
     };
-
-    private _RiflemanRadio = _logic getVariable "RiflemanRadio";
-    private _radio_code = _logic getVariable "Encryption";
     {
         if ((str _currentSide) != (str side _x)) then {
             _currentSide = side _x;

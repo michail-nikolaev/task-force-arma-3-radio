@@ -21,6 +21,7 @@
     Example:
         _canUseSW = [player, false, false, 10] call TFAR_fnc_canUseSwRadio;
 */
+
 params ["_player", "_isolated_and_inside", "_can_speak", "_depth"];
 
 private _result = false;

@@ -17,7 +17,8 @@
 
     Example:
         [call TFAR_fnc_ActiveSWRadio] call TFAR_fnc_setSwSpeakers;
- */
+*/
+
 params ["_radio_id"];
 
 private _settings = _radio_id call TFAR_fnc_getSwSettings;

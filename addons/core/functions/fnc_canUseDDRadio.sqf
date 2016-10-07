@@ -19,6 +19,7 @@
     Example:
         _canUseDD = [-12,true] call TFAR_fnc_canUseDDRadio;
 */
+
 params ["_depth", "_isolated_and_inside"];
 
 (_depth < 0) and !(_isolated_and_inside)

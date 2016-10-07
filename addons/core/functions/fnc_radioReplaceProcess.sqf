@@ -18,6 +18,7 @@
     Example:
         [] spawn TFAR_fnc_radioReplaceProcess;
 */
+
 while {true} do {
     TFAR_currentUnit = call TFAR_fnc_currentUnit;
     if ((isNil "TFAR_previouscurrentUnit") or {TFAR_previouscurrentUnit != TFAR_currentUnit}) then {
@@ -37,10 +38,10 @@ while {true} do {
                 };
             }];
             TFAR_currentUnit addEventHandler ["Killed", {
-                private _unit = _this select 0;
+                params ["_unit"];
                 private _items = (assignedItems _unit) + (items _unit);
                 {
-                    private _class = ConfigFile >> "CfgWeapons" >> _x;
+                    _class = ConfigFile >> "CfgWeapons" >> _x;
                     if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
                         [_x, ""] call TFAR_fnc_setRadioOwner;
                     };
@@ -50,6 +51,7 @@ while {true} do {
             TFAR_currentUnit setVariable ["tf_handlers_set", true];
         };
     };
+
     private _controlled = player getVariable "tf_controlled_unit";
     if (TFAR_currentUnit != player) then {
         if (isNil "_controlled") then {
@@ -91,7 +93,7 @@ while {true} do {
 
     if !(TF_use_saved_lr_setting) then {
         if ((alive TFAR_currentUnit) and (call TFAR_fnc_haveLRRadio)) then {
-            _active_lr_radio = call TFAR_fnc_activeLrRadio;
+            private _active_lr_radio = call TFAR_fnc_activeLrRadio;
             if !(isNil "_active_lr_radio") then {
                 TF_saved_active_lr_settings = _active_lr_radio call TFAR_fnc_getLrSettings;
             } else {
@@ -107,7 +109,7 @@ while {true} do {
         false call TFAR_fnc_requestRadios;
     };
     if !(isNull TFAR_currentUnit) then {
-        _currentPlayerFlag = TFAR_currentUnit getVariable "tf_force_radio_active";
+        private _currentPlayerFlag = TFAR_currentUnit getVariable "tf_force_radio_active";
         if (isNil "_currentPlayerFlag") then {
             TFAR_currentUnit setVariable ["tf_force_radio_active", TF_ADDON_VERSION, true];
         };

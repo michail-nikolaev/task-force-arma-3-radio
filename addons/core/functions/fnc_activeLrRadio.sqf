@@ -18,6 +18,7 @@
     Example:
     _radio = call TFAR_fnc_activeLRRadio;
 */
+
 private _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
 if (isNil "TF_lr_active_radio") then {
     if (count _radios > 0) then {

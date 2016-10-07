@@ -2,19 +2,19 @@
 
 /*
     Name: TFAR_fnc_processGroupFrequencySettings
-    
+
     Author(s):
         NKey
 
     Description:
         Sets frequency settings for groups.
-    
+
     Parameters:
         Nothing
-    
+
     Returns:
         Nothing
-    
+
     Example:
         call TFAR_fnc_processGroupFrequencySettings;
 */

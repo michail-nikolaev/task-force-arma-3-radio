@@ -18,4 +18,5 @@
     Example:
     call TFAR_fnc_currentUnit;
 */
+
 missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player]

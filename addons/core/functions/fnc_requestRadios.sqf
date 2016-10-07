@@ -20,11 +20,13 @@
     Example:
         spawn TFAR_fnc_requestRadios;
 */
-_fnc_CopySettings = {
+
+private _fnc_CopySettings = {
     params ["_settingsCount", "_copyIndex", "_destination"];
-    if (_settingsCount > _copyIndex)) then {
+
+    if (_settingsCount > _copyIndex) then {
         if ([_destination, TF_settingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
-            private _source = TF_settingsToCopy select (_this select 1);
+            private _source = TF_settingsToCopy select _copyIndex;
             private _variableName = format["%1_settings_local", _source];
             private _localSettings = missionNamespace getVariable _variableName;
             if !(isNil "_variableName") then {
@@ -32,7 +34,7 @@ _fnc_CopySettings = {
             };
         };
     };
-    _copyIndex + 1;
+    (_copyIndex + 1)
 };
 
 waitUntil {
@@ -54,8 +56,8 @@ if ((time - TF_last_request_time > 3) or {_this}) then {
 
         waitUntil {!(isNil _responseVariableName)};
         private _response = missionNamespace getVariable _responseVariableName;
+        private _copyIndex = 0;
         if (_response isEqualType []) then {
-            private _copyIndex = 0;
             private _radioCount = count _response;
             private _settingsCount = count TF_SettingsToCopy;
             private _startIndex = 0;

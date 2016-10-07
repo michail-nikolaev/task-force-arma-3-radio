@@ -18,6 +18,7 @@
     Example:
         call TFAR_fnc_processPlayerPositions;
 */
+
 if !(isNull (findDisplay 46)) then {
     if !(isNull TFAR_currentUnit) then {
         if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {

@@ -29,11 +29,11 @@
     Example:
         _settings = call TFAR_fnc_generateSwSettings;
 */
+
 private _volume = 7;
 if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")) then {
   _volume = getNumber(ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")
 };
-
 private _sw_settings = [0, _volume, [], 0, nil, -1, 0, getPlayerUID player, false, true];
 private _set = false;
 private _sw_frequencies = [];
@@ -52,3 +52,4 @@ if (!_set) then {
 _sw_settings set [2, _sw_frequencies];
 
 _sw_settings
+>>>>>>> 8b8749952bfc75733054c34ae530f0cfdbf1d5bb

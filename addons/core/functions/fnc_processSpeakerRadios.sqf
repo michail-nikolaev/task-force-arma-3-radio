@@ -14,8 +14,7 @@ private _unit_pos = eyepos TFAR_currentUnit;
                 tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12%13", _x, TF_new_line, _freq, TF_new_line,  "", TF_new_line, _p, TF_new_line, _x call TFAR_fnc_getSwVolume, TF_new_line, "no", TF_new_line, _pos select 2]);
             };
         } forEach ((getItemCargo _x) select 0);
-            
-        
+
         {
             if  ((_x getVariable ["tf_lr_speakers", false]) and {[typeof (_x), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1}) then {
                 private _manpack = [_x, "radio_settings"];
@@ -32,7 +31,6 @@ private _unit_pos = eyepos TFAR_currentUnit;
                     tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12%13", _radio_id, TF_new_line, _freq, TF_new_line,  "", TF_new_line, _p, TF_new_line, _manpack call TFAR_fnc_getLrVolume, TF_new_line, "no", TF_new_line, _pos select 2]);
                 };
             };
-        
         } forEach (everyBackpack _x);
     };
 } forEach (nearestObjects [getPos TFAR_currentUnit, ["WeaponHolder", "GroundWeaponHolder", "WeaponHolderSimulated"], TF_speakerDistance]);
@@ -42,8 +40,8 @@ private _unit_pos = eyepos TFAR_currentUnit;
         private _pos = getPosASL _x;
         if (_pos select 2 >= TF_UNDERWATER_RADIO_DEPTH) then {
             private _p = [(_pos select 0) - (_unit_pos select 0), (_pos select 1) - (_unit_pos select 1), (_pos select 2) - (_unit_pos select 2)];
-            
             private _lrs = [];
+
             if (isNull (gunner _x) && {count (_x getVariable ["gunner_radio_settings", []]) > 0}) then {
                 _lrs pushBack [_x, "gunner_radio_settings"];
             };
@@ -56,7 +54,7 @@ private _unit_pos = eyepos TFAR_currentUnit;
             if (isNull (_x call TFAR_fnc_getCopilot) && {count (_x getVariable ["turretUnit_0_radio_setting", []]) > 0}) then {
                 _lrs pushBack [_x, "turretUnit_0_radio_setting"];
             };
-            
+
             {
                 if (_x call TFAR_fnc_getLrSpeakers) then {
                     private _freq = format ["%1%2", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode];

@@ -2,21 +2,22 @@
 
 /*
     Name: TFAR_fnc_onAdditionalLRTangentPressed
-    
+
     Author(s):
         NKey
 
     Description:
         Fired when the additional keybinding for LR is pressed.
-    
+
     Parameters:
-    
+
     Returns:
         BOOLEAN
-    
+
     Example:
         call TFAR_fnc_onAdditionalLRTangentPressed;
 */
+
 if (!(TF_tangent_lr_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_haveLRRadio}) then {
     if (call TFAR_fnc_isAbleToUseRadio) then {
         if ([TFAR_currentUnit, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, TFAR_currentUnit call TFAR_fnc_eyeDepth] call TFAR_fnc_canUseLRRadio) then {

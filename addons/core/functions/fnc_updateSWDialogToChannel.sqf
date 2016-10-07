@@ -22,6 +22,7 @@
         // Custom format
         ["CH: %1"] call TFAR_fnc_updateSWDialogToChannel;
 */
+
 private _formatText = "C%1";
 
 if ((_this isEqualType []) and {count _this > 0} and  {(_this select 0) isEqualType ""}) then {

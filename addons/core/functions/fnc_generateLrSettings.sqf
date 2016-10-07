@@ -29,6 +29,7 @@
     Example:
         _settings = call TFAR_fnc_generateLrSettings;
 */
+
 private _volume = 7;
 if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")) then {
     getNumber(ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")
@@ -41,13 +42,12 @@ if (_this isEqualType true) then {
     if (!_this) then {
         for "_i" from 0 to TF_MAX_LR_CHANNELS step 1 do {
             _lr_frequencies set [_i, "50"];
-            };
-            _set = true;
+        };
+        _set = true;
     };
 };
 if (!_set) then {
     _lr_frequencies = [TF_MAX_LR_CHANNELS,TF_MAX_ASIP_FREQ,TF_MIN_ASIP_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
 };
 _lr_settings set [2, _lr_frequencies];
-
 _lr_settings

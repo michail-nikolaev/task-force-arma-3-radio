@@ -18,7 +18,8 @@
     Example:
         player call TFAR_fnc_sendPlayerKilled;
 */
-_this setRandomLip false;
-private _request = format["KILLED	%1~", name _this];//Async call will always return "OK"
 
-"task_force_radio_pipe" callExtension _request;
+_this setRandomLip false;
+
+private _request = format["KILLED	%1~", name _this];//Async call will always return "OK"
+_result = "task_force_radio_pipe" callExtension _request;

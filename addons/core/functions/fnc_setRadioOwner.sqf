@@ -20,6 +20,7 @@
     Example:
         [(call TFAR_fnc_activeSwRadio),player] call TFAR_fnc_setRadioOwner;
 */
+
 params ["_radio", "_owner", ["_local", false, [true]]];
 
 private _settings = _radio call TFAR_fnc_getSwSettings;

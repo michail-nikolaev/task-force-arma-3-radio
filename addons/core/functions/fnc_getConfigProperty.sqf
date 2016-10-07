@@ -21,7 +21,8 @@
 
     Example:
         [_LRradio, "tf_hasLrRadio", 0] call TFAR_fnc_getConfigProperty;
- */
+*/
+
 params ["_item", "_property", ["_default", ""]];
 
 if ((isNil "_item") or {str(_item) == ""}) exitWith {_default};

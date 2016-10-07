@@ -35,7 +35,6 @@ _eventID = format ["TFAR_event_%1", _eventID];
 
 private _handlers = _unit getVariable [_eventID, []];
 private _alreadySet = -1;
-
 {
     if (_customID == (_x select 0)) exitWith {
         _alreadySet = _foreachIndex;

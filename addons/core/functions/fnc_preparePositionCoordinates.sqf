@@ -2,24 +2,25 @@
 
 /*
     Name: TFAR_fnc_preparePositionCoordinates
-    
+
     Author(s):
         NKey
 
     Description:
         Prepares the position coordinates of the passed unit.
-    
+
     Parameters:
         0: OBJECT - unit
         1: BOOLEAN - Is near player
         3: STRING - Unit name
-    
+
     Returns:
         Nothing
-    
+
     Example:
-        
+
 */
+
 params ["_unit", "_nearPlayer"];
 
 private _pos = [_unit, _nearPlayer] call (_unit getVariable ["TF_fnc_position", TFAR_fnc_defaultPositionCoordinates]);
@@ -57,7 +58,7 @@ if ((_nearPlayer) and {TFAR_currentUnit distance _unit <= TF_speakerDistance}) t
             true;
         } count (_unit call TFAR_fnc_lrRadiosList);
     };
-    
+
     if (_unit getVariable ["tf_sw_speakers", false] && _useSw) then {
         {
             if (_x call TFAR_fnc_getSwSpeakers) then {

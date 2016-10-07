@@ -16,7 +16,8 @@
 
     Example:
 
- */
+*/
+
 params [
     ["_logic", objNull, [objNull]],
     ["_units", [], [[]]],
@@ -25,12 +26,8 @@ params [
 
 if (_activated) then {
     if (count _units == 0) exitWith { hint "TFAR - No units set for Frequency Module";diag_log "TFAR - No units set for Frequency Module";};
-
     if (isServer) then {
-        private ["_swFreq", "_lrFreq", "_freqTest", "_freqs", "_randomFreqs"];
-
         private _swFreq = false call TFAR_fnc_generateSwSettings;
-        private _lrFreq = false call TFAR_fnc_generateLrSettings;
         private _freqs = call compile (_logic getVariable "PrFreq");
         private _randomFreqs = [TF_MAX_CHANNELS,TF_MAX_SW_FREQ,TF_MIN_SW_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
         while {count _freqs < TF_MAX_CHANNELS} do {
@@ -38,6 +35,7 @@ if (_activated) then {
         };
         _swFreq set [2,_freqs];
 
+        private _lrFreq = false call TFAR_fnc_generateLrSettings;
         _freqs = call compile (_logic getVariable "LrFreq");
         _randomFreqs = [TF_MAX_LR_CHANNELS,TF_MAX_ASIP_FREQ,TF_MIN_ASIP_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
         while {count _freqs < TF_MAX_LR_CHANNELS} do{
@@ -46,22 +44,14 @@ if (_activated) then {
         _lrFreq set [2,_freqs];
 
         {
-            private _group = (group _x)
-            private _freqTest = _group getVariable "tf_sw_frequency";
+            private _freqTest = (group _x) getVariable "tf_sw_frequency";
+            if (!isNil "_freqTest") then {hint format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];diag_log format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];};
 
-            if (!isNil "_freqTest") then {
-              hint format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules.", _group];
-              diag_log format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules.", _group];
-            };
+            _freqTest = (group _x) getVariable "tf_lr_frequency";
+            if (!isNil "_freqTest") then {hint format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];diag_log format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];};
 
-            _freqTest = _group getVariable "tf_lr_frequency";
-            if (!isNil "_freqTest") then {
-              hint format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules.", _group];
-              diag_log format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules.", _group];
-            };
-
-            _group setVariable ["tf_sw_frequency", _swFreq, true];
-            _group setVariable ["tf_lr_frequency", _lrFreq, true];
+            (group _x) setVariable ["tf_sw_frequency", _swFreq, true];
+            (group _x) setVariable ["tf_lr_frequency", _lrFreq, true];
             true;
         } count _units;
     };

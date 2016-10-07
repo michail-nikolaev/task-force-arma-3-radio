@@ -2,27 +2,27 @@
 
 /*
     Name: TFAR_fnc_onSwTangentPressed
-    
+
     Author(s):
         NKey
 
     Description:
         Fired when the keybinding for SW is pressed.
-    
+
     Parameters:
-    
+
     Returns:
         BOOLEAN
-    
+
     Example:
         call TFAR_fnc_onSwTangentPressed;
 */
+
 if (time - TF_last_lr_tangent_press > 0.5) then {
     if (!(TF_tangent_sw_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_haveSWRadio}) then {
         if (call TFAR_fnc_isAbleToUseRadio) then {
             private _radio = call TFAR_fnc_activeSwRadio;
             if (!([_radio] call TFAR_fnc_RadioOn)) exitWith{};
-
             private _depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
             if ([TFAR_currentUnit, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, [TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, _depth] call TFAR_fnc_canSpeak, _depth] call TFAR_fnc_canUseSWRadio) then {
                 ["OnBeforeTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 0, false, true]] call TFAR_fnc_fireEventHandlers;
@@ -43,3 +43,4 @@ if (time - TF_last_lr_tangent_press > 0.5) then {
     };
 };
 true
+>>>>>>> 8b8749952bfc75733054c34ae530f0cfdbf1d5bb

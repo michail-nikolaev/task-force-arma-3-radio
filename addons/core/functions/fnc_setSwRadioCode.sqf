@@ -19,6 +19,7 @@
     Example:
         [call TFAR_fnc_activeSwRadio, "NewEncryptionCode"] call TFAR_fnc_setSwRadioCode;
 */
+
 params ["_radio_id", "_code_to_set"];
 
 private _settings = _radio_id call TFAR_fnc_getSwSettings;

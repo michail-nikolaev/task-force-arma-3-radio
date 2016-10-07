@@ -18,6 +18,7 @@
     Example:
         Called via CBA onKey EventHandler
 */
+
 params ["_sw_stereo_number"];
 
 private _result = false;

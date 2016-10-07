@@ -17,9 +17,9 @@
     Example:
     _hasSW = call TFAR_fnc_haveSWRadio;
  */
-if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith{false};
 
 private _result = false;
+if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith{false};
 {
     if (_x call TFAR_fnc_isRadio) exitWith {_result = true};
     true;

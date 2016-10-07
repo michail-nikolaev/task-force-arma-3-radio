@@ -18,4 +18,5 @@
     Example:
         call TFAR_fnc_getTransmittingDistanceMultiplicator;
 */
+
 TFAR_currentUnit getVariable ["tf_sendingDistanceMultiplicator",1.0];

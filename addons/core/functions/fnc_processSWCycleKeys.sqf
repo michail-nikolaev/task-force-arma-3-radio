@@ -18,6 +18,7 @@
     Example:
         Handled via CBA's onKey eventhandler.
 */
+
 params ["_sw_cycle_direction"];
 
 private _result = false;
@@ -35,9 +36,8 @@ if ((call TFAR_fnc_haveSWRadio) and {alive TFAR_currentUnit}) then{
         };
     } forEach _radio_list;
 
-
-    switch (_sw_cycle_direction) do{
-        case "next":{
+    switch (_sw_cycle_direction) do {
+        case "next": {
             _new_radio_index = (_active_radio_index + 1) mod (count _radio_list);
         };
         case "prev": {

@@ -2,24 +2,25 @@
 
 /*
     Name: TFAR_fnc_swRadioMenu
-    
+
     Author(s):
         NKey
         L-H
-    
+
     Description:
         Returns a list of SW radios if more than one is on the player.
-    
-    Parameters: 
+
+    Parameters:
         Nothing
-    
+
     Returns:
         ARRAY:
             CBA UI menu.
-    
+
     Example:
         Called internally by CBA UI
 */
+
 private _menu = [];
 if ((count (TFAR_currentUnit call TFAR_fnc_radiosList) > 1) or {(count (TFAR_currentUnit call TFAR_fnc_radiosList) == 1) and !(call TFAR_fnc_haveSWRadio)}) then {
     private _menuDef = ["main", localize "STR_select_radio", "buttonList", "", false];
@@ -33,8 +34,8 @@ if ((count (TFAR_currentUnit call TFAR_fnc_radiosList) > 1) or {(count (TFAR_cur
             _submenu = "_this call TFAR_fnc_swRadioSubMenu";
         };
         private _position = [
-            getText(configFile >> "CfgWeapons"  >> _x >> "displayName"), 
-            _command, 
+            getText(configFile >> "CfgWeapons"  >> _x >> "displayName"),
+            _command,
             getText(configFile >> "CfgWeapons"  >> _x >> "picture"),
             "",
             _submenu,

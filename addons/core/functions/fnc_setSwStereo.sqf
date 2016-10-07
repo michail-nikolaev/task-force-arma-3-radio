@@ -18,7 +18,8 @@
 
     Example:
         [(call TFAR_fnc_ActiveSWRadio), 2] call TFAR_fnc_setSwStereo;
- */
+*/
+
 params ["_radio_id", "_value_to_set"];
 
 if ((_radio_id call TFAR_fnc_getAdditionalSwChannel) == (_radio_id call TFAR_fnc_getSwChannel)) then {

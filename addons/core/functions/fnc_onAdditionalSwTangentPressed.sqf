@@ -2,18 +2,18 @@
 
 /*
     Name: TFAR_fnc_onAdditionalSwTangentPressed
-    
+
     Author(s):
         NKey
 
     Description:
         Fired when the additional keybinding for SW is pressed.
-    
+
     Parameters:
-    
+
     Returns:
         BOOLEAN
-    
+
     Example:
         call TFAR_fnc_onAdditionalSwTangentPressed;
 */
@@ -22,7 +22,7 @@ if (!(TF_tangent_sw_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_hav
         private _depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
         if ([TFAR_currentUnit, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, [TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, _depth] call TFAR_fnc_canSpeak, _depth] call TFAR_fnc_canUseSWRadio) then {
             private _radio = call TFAR_fnc_activeSwRadio;
-            
+
             if ((_radio call TFAR_fnc_getAdditionalSwChannel) > -1) then {
                 private _freq = [_radio, (_radio call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency;
                 ["OnBeforeTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 0, true, true]] call TFAR_fnc_fireEventHandlers;

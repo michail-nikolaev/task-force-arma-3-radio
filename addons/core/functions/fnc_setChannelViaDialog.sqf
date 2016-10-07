@@ -23,6 +23,7 @@
         // SW radio
         [_this select 1, false] call TFAR_fnc_setChannelViaDialog;
 */
+
 params ["_btn", "_lr", ["_format", ""]];
 
 playSound "TFAR_rotatorPush";

@@ -20,6 +20,7 @@
     Example:
         [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 4] call TFAR_fnc_setAdditionalLrChannel;
 */
+
 params ["_radio_object", "_radio_qualifier", "_value"];
 
 private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;

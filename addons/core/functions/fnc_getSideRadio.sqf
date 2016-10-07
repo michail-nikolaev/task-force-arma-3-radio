@@ -21,6 +21,7 @@
         _defaultSWRadio = [side player, 1] call TFAR_fnc_getSideRadio;
         _defaultRiflemanRadio = [side player, 2] call TFAR_fnc_getSideRadio;
 */
+
 params ["_side", "_radioType"];
 
 private _result = "";

@@ -21,6 +21,7 @@
     // SW radio
     [(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_ShowRadioInfo;
 */
+
 params ["_radio", "_isLrRadio"];
 
 private _name = if(_isLrRadio) then {getText (ConfigFile >> "CfgVehicles" >> typeof (_radio select 0) >> "displayName")} else {getText(configFile >> "CfgWeapons" >> _radio >> "displayName")};

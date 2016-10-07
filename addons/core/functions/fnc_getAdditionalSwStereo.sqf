@@ -18,6 +18,7 @@
     Example:
         _stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getAdditionalSwStereo;
 */
+
 private _settings = _this call TFAR_fnc_getSwSettings;
 private _result = 0;
 if (count _settings > TF_ADDITIONAL_STEREO_OFFSET) then {

@@ -2,61 +2,55 @@
 
 // by commy2 v0.4
 private _fnc_getTurrets = {
-        private ["_config", "_turrets", "_fnc_addTurrets"];
+    params ["_vehicle"];
 
-        params ["_vehicle"];
+    private _config = configFile >> "CfgVehicles" >> typeOf _vehicle;
+    private _turrets = [];
 
-        _config = configFile >> "CfgVehicles" >> typeOf _vehicle;
+    _fnc_addTurret = {
+            private ["_config", "_path", "_count", "_index"];
 
-        _turrets = [];
+            params ["_config", "_path"];
 
-        _fnc_addTurret = {
-                private ["_config", "_path", "_count", "_index"];
+            _config = _config >> "Turrets";
+            private _count = count _config;
 
-                params ["_config", "_path"];
+            for "_index" from 0 to (_count - 1) do {
+                _turrets set [count _turrets, _path + [_index]];
+                [_config select _index, [_index]] call _fnc_addTurret;
+            };
+    };
 
-                _config = _config >> "Turrets";
-                _count = count _config;
+    [_config, []] call _fnc_addTurret;
 
-                for "_index" from 0 to (_count - 1) do {
-                        _turrets set [count _turrets, _path + [_index]];
-                        [_config select _index, [_index]] call _fnc_addTurret;
-                };
-        };
-
-        [_config, []] call _fnc_addTurret;
-
-        _turrets
+    _turrets
 };
 
 private _fnc_getTurretIndex = {
-        private ["_vehicle", "_turrets", "_units", "_index"];
+    params ["_unit"];
 
-        params ["_unit"];
+    private _vehicle = vehicle _unit;
+    private _turrets = [_vehicle] call _fnc_getTurrets;
+    private _units = [];
 
-        _vehicle = vehicle _unit;
+    {
+            _units set [count _units, _vehicle turretUnit _x];
+    } forEach _turrets;
 
-        _turrets = [_vehicle] call _fnc_getTurrets;
+    private _index = _units find _unit;
 
-        _units = [];
-        {
-                _units set [count _units, _vehicle turretUnit _x];
-        } forEach _turrets;
+    if (_index == -1) exitWith {[]};
 
-        _index = _units find _unit;
-
-        if (_index == -1) exitWith {[]};
-
-        _turrets select _index;
+    _turrets select _index;
 };
 
-params ["_vehicle"];
+params ["_unit"];
 
 private _vehicle = vehicle _unit;
 private _config = configFile >> "CfgVehicles" >> typeOf _vehicle;
 private _result = false;
 
-if (_vehicle== _unit) then {
+if (_vehicle == _unit) then {
     _result = true;
 } else {
     if ((driver _vehicle == _unit) && {getNumber(_config >> "forceHideDriver") == 1}) then {
@@ -73,9 +67,8 @@ if (_vehicle== _unit) then {
                 _action = getText (_config >> "driverAction");
                 _inAction = getText (_config >> "driverInAction");
             } else {
-                _turretIndex = [_unit] call _fnc_getTurretIndex;
-
-                _count = count _turretIndex;
+                private _turretIndex = [_unit] call _fnc_getTurretIndex;
+                private _count = count _turretIndex;
 
                 for "_index" from 0 to (_count - 1) do {
                     _config = _config >> "Turrets";
@@ -95,4 +88,5 @@ if (_vehicle== _unit) then {
         };
     };
 };
+
 _result;

@@ -25,6 +25,7 @@
         // SW
         _sw_frequencies = [TF_MAX_CHANNELS,TF_MAX_SW_FREQ,TF_MIN_SW_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
 */
+
 params ["_channels", "_max_freq", "_min_freq", "_freq_rp"];
 
 private _frequencies = [];

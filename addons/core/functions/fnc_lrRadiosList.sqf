@@ -8,7 +8,7 @@ if (!isNil "TF_lr_active_radio") then {
 private _vehicle_lr = _this call TFAR_fnc_vehicleLr;
 
 private _backpack_check = {
-    private _backpack_lr = _this call TFAR_fnc_backpackLr;
+    _backpack_lr = _this call TFAR_fnc_backpackLr;
     if (count _backpack_lr > 0) then {
         _result set [count _result, _backpack_lr];
     };

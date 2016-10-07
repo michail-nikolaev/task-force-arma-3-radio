@@ -20,12 +20,13 @@
     Example:
         ["MyID", "OnSpeak", player] call TFAR_fnc_removeEventHandler;
 */
+
 params ["_customID", "_eventID", "_unit"];
 
 if (isNull _unit) then {
     _unit = missionNamespace;
 };
-private _eventID = format ["TFAR_event_%1", _eventID];
+_eventID = format ["TFAR_event_%1", _eventID];
 private _handlers = _unit getVariable [_eventID, []];
 {
     if (_customID == (_x select 0)) exitWith {

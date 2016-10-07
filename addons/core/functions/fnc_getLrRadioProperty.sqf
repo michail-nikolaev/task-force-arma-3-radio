@@ -18,6 +18,7 @@
     Example:
     [(vehicle player), "TF_hasLRradio"] call TFAR_fnc_getLrRadioProperty;
 */
+
 params ["_radio", "_property"];
 
 private _result = _radio getVariable _property;
@@ -36,7 +37,6 @@ if (isNil "_result") then {
             _result = [typeof _radio, "tf_RadioType"] call TFAR_fnc_getConfigProperty;
 
             if (!isNil "_result" AND {_result != ""}) exitWith {};
-
             private _air = (typeof(_radio) isKindOf "Air");
             if ((_radio call TFAR_fnc_getVehicleSide) == west) then {
                 if (_air) then {

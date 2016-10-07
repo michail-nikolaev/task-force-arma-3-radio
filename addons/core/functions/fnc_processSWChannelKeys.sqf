@@ -18,6 +18,7 @@
     Example:
         Called by CBA.
 */
+
 params ["_sw_channel_number"];
 
 private _result = false;

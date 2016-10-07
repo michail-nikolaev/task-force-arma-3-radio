@@ -2,22 +2,23 @@
 
 /*
     Name: TFAR_fnc_vehicleID
-    
+
     Author(s):
         NKey
-    
+
     Description:
         Returns a string with information about the player vehicle, used at the plugin side.
-    
-    Parameters: 
+
+    Parameters:
         0: OBJECT - The unit to check.
-    
+
     Returns:
         STRING - NetworkID, Turned out
-    
+
     Example:
         _vehicleID = player call TFAR_fnc_vehicleID;
 */
+
 private _result = "no";
 if ((vehicle _this) != _this) then {
     _result = netid (vehicle _this);

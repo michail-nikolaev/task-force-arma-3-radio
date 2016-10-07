@@ -7,13 +7,14 @@ private _keyup = _key isEqualTo 'keyup';
 
 private _processKeys = {
     if ([_key, "tfar_"] call CBA_fnc_find == 0) then {
+
         private _key_pressed = _value select 0;
         private _mods = _value select 1;
         private _handler = _value select 2;
-                    
+
         if ((_key_pressed == _pressed select 1) and {(_mods select 0) isEqualTo (_pressed select 2)} and {(_mods select 1) isEqualTo  (_pressed select 3)} and {(_mods select 2) isEqualTo (_pressed select 4)}) exitWith {
             _result = call _handler;
-        };		 
+        };
      };
 };
 

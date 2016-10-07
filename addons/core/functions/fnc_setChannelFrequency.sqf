@@ -28,7 +28,7 @@ params ["_radio", "_channel", "_frequency"];
 _channel = _channel - 1;
 
 private _lr = if (_radio isEqualType "") then { false }else{true};
-private _settings = [];
+private _settings = nil;
 
 if (_lr) then {
     _settings = _radio call TFAR_fnc_getLrSettings;

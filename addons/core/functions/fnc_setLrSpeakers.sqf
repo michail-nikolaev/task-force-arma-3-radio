@@ -19,6 +19,7 @@
     Example:
         [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1] call TFAR_fnc_setLrSpeakers;
 */
+
 params ["_radio_object", "_radio_qualifier"];
 
 private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
