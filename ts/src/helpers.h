@@ -31,7 +31,7 @@ public:
 		if (coordinateString.length() > 2) {
 			std::vector<std::string> coords = helpers::split(coordinateString.substr(1, coordinateString.length() - 2), ',');
 			for (const std::string& coord : coords)
-				output.push_back(static_cast<float>(std::atof(coord.c_str())));
+				output.push_back(parseArmaNumber(coord));
 		}
 		return output;
 	}
@@ -101,8 +101,8 @@ public:
 #include <chrono>
 class speedTest {
 public:
-	speedTest(const std::string & name_):start(std::chrono::high_resolution_clock::now()), name(name_) {}
-	~speedTest() { log(); }
+	speedTest(const std::string & name_,bool willPrintOnDestruct_=true) :start(std::chrono::high_resolution_clock::now()), name(name_), willPrintOnDestruct(willPrintOnDestruct_){}
+	~speedTest() { if (willPrintOnDestruct) log(); }
 	void log() const {
 		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
@@ -117,6 +117,11 @@ public:
 	void reset() {
 		start = std::chrono::high_resolution_clock::now();
 	}
+	std::chrono::microseconds getCurrentElapsedTime() const {
+		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+		return std::chrono::duration_cast<std::chrono::microseconds>(now - start);
+	}
 	std::chrono::high_resolution_clock::time_point start;
 	std::string name;
+	bool willPrintOnDestruct;
 };
