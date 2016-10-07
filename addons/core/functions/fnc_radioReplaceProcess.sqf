@@ -59,7 +59,7 @@ while {true} do {
         if (isNil "_controlled") then {
             player setVariable ["tf_controlled_unit", TFAR_currentUnit, true];
             if (isMultiplayer) then {
-                "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1", name player]);
+                "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name player]);//Async call will always return "OK"
             };
         };
     } else {
@@ -67,7 +67,7 @@ while {true} do {
         if !(isNil "_controlled") then {
             player setVariable ["tf_controlled_unit", nil, true];
             if (isMultiplayer) then {
-                "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1", name player]);
+                "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name player]);//Async call will always return "OK"
             };
         };
     };
