@@ -27,7 +27,7 @@ if (time - TF_last_lr_tangent_press > 0.5) then {
             if ([TFAR_currentUnit, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, [TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, _depth] call TFAR_fnc_canSpeak, _depth] call TFAR_fnc_canUseSWRadio) then {
                 ["OnBeforeTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 0, false, true]] call TFAR_fnc_fireEventHandlers;
                 _dis_freq = "";
-                if(tf_radio_show_freq) then {
+                if (tf_radio_show_freq) then {
                     _dis_freq = call TFAR_fnc_currentSWFrequency;
                 } else {
                     _dis_freq = "==Hidden==";

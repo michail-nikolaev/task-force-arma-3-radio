@@ -6,7 +6,7 @@ if ((TF_tangent_lr_pressed) and {alive TFAR_currentUnit}) then {
 
     ["OnBeforeTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 1, false, false]] call TFAR_fnc_fireEventHandlers;
     _dis_freq = "";
-    if(tf_radio_show_freq) then {
+    if (tf_radio_show_freq) then {
         _dis_freq = call TFAR_fnc_currentLRFrequency;
     } else {
         _dis_freq = "==Hidden==";

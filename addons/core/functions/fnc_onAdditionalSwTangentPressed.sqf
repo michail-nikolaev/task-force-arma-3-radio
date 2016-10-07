@@ -28,7 +28,7 @@ if (!(TF_tangent_sw_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_hav
             if ((_radio call TFAR_fnc_getAdditionalSwChannel) > -1) then {
                 _freq = [_radio, (_radio call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency;
                 _dis_freq = "";
-                if(tf_radio_show_freq)then {
+                if (tf_radio_show_freq) then {
                     _dis_freq = _freq;
                 } else {
                     _dis_freq = "==Hidden==";

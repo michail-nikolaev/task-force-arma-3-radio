@@ -8,7 +8,7 @@ if ((TF_tangent_sw_pressed) and {alive TFAR_currentUnit}) then {
         _freq = [_radio, (_radio call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency;
         ["OnBeforeTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 0, true, false]] call TFAR_fnc_fireEventHandlers;
         _dis_freq = "";
-        if(tf_radio_show_freq) then {
+        if (tf_radio_show_freq) then {
             _dis_freq = _freq;
         } else {
             _dis_freq = "==Hidden==";

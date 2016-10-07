@@ -23,7 +23,7 @@ if (time - TF_last_dd_tangent_press > 0.1) then {
             if ([TFAR_currentUnit call TFAR_fnc_eyeDepth, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside] call TFAR_fnc_canUseDDRadio) then {
                 ["OnBeforeTangent", TFAR_currentUnit, [TFAR_currentUnit, "DD", 2, false, true]] call TFAR_fnc_fireEventHandlers;
                 _dis_freq = "";
-                if(tf_radio_show_freq) then {
+                if (tf_radio_show_freq) then {
                     _dis_freq = TF_dd_frequency;
                 } else {
                     _dis_freq = "==Hidden==";

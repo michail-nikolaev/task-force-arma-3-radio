@@ -25,7 +25,7 @@ if (time - TF_last_lr_tangent_press > 0.1) then {
             if (!([_radio] call TFAR_fnc_RadioOn)) exitWith {};
             if ([TFAR_currentUnit, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, TFAR_currentUnit call TFAR_fnc_eyeDepth] call TFAR_fnc_canUseLRRadio) then {
                 _dis_freq = "";
-                if(tf_radio_show_freq) then {
+                if (tf_radio_show_freq) then {
                     _dis_freq = call TFAR_fnc_currentLRFrequency;
                 } else {
                     _dis_freq = "==Hidden==";

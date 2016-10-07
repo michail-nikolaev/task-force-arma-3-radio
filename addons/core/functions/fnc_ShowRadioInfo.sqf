@@ -45,8 +45,7 @@ if ((_isLrRadio) and {!((_radio select 0) isKindOf "Bag_Base")}) then {
     _imagesize = "1.0";
 };
 _hintText = "";
-if(tf_radio_show_freq)then
-{
+if (tf_radio_show_freq) then {
     _hintText = format
     [
         ("<t size='1' align='center'>%1 <img size='" + _imagesize + "' image='%2'/></t><br /><t align='center'>%3</t><br /><t align='center'>%4</t><br /><t align='center'>%5</t>"),
