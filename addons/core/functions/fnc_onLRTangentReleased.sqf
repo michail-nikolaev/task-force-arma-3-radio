@@ -1,8 +1,7 @@
 #include "script_component.hpp"
 
-private ["_radio"];
 if ((TF_tangent_lr_pressed) and {alive TFAR_currentUnit}) then {
-    _radio = call TFAR_fnc_activeLrRadio;
+    private _radio = call TFAR_fnc_activeLrRadio;
     
     ["OnBeforeTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 1, false, false]] call TFAR_fnc_fireEventHandlers;
     [format[localize "STR_transmit_end",format ["%1<img size='1.5' image='%2'/>",[_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty,

@@ -1,10 +1,7 @@
 #include "script_component.hpp"
 
 // by commy2 v0.4
-
-private "_fnc_getTurrets";
-
-_fnc_getTurrets = {
+private _fnc_getTurrets = {
         private ["_config", "_turrets", "_fnc_addTurrets"];
 
         params ["_vehicle"];
@@ -32,9 +29,7 @@ _fnc_getTurrets = {
         _turrets
 };
 
-private "_fnc_getTurretIndex";
-
-_fnc_getTurretIndex = {
+private _fnc_getTurretIndex = {
         private ["_vehicle", "_turrets", "_units", "_index"];
 
         params ["_unit"];
@@ -55,13 +50,11 @@ _fnc_getTurretIndex = {
         _turrets select _index;
 };
 
-private ["_unit", "_config", "_animation", "_action", "_inAction", "_turretIndex", "_count", "_index", "_result"];
-
 params ["_vehicle"];
 
-_vehicle = vehicle _unit;
-_config = configFile >> "CfgVehicles" >> typeOf _vehicle;
-_result = false;
+private _vehicle = vehicle _unit;
+private _config = configFile >> "CfgVehicles" >> typeOf _vehicle;
+private _result = false;
 
 if (_vehicle== _unit) then {
     _result = true;
@@ -72,23 +65,25 @@ if (_vehicle== _unit) then {
         if ((commander _vehicle == _unit) && {getNumber(_config >> "forceHideCommander") == 1}) then {
             _result = false;
         } else {
-            _animation = animationState _unit;
+            private _animation = animationState _unit;
+            private _action = "";
+            private _inAction = "";
 
             if (_unit == driver _vehicle) then {
-                    _action = getText (_config >> "driverAction");
-                    _inAction = getText (_config >> "driverInAction");
+                _action = getText (_config >> "driverAction");
+                _inAction = getText (_config >> "driverInAction");
             } else {
-                    _turretIndex = [_unit] call _fnc_getTurretIndex;
+                _turretIndex = [_unit] call _fnc_getTurretIndex;
 
-                    _count = count _turretIndex;
+                _count = count _turretIndex;
 
-                    for "_index" from 0 to (_count - 1) do {
-                            _config = _config >> "Turrets";
-                            _config = _config select (_turretIndex select _index);
-                    };
+                for "_index" from 0 to (_count - 1) do {
+                    _config = _config >> "Turrets";
+                    _config = _config select (_turretIndex select _index);
+                };
 
-                    _action = getText (_config >> "gunnerAction");
-                    _inAction = getText (_config >> "gunnerInAction");
+                _action = getText (_config >> "gunnerAction");
+                _inAction = getText (_config >> "gunnerInAction");
             };
 
             if (_action == "" || {_inAction == ""} || {_action == _inAction}) exitWith {_result = false};

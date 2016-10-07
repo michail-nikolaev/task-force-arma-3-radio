@@ -18,8 +18,7 @@
     Example:
         _radio = call TFAR_fnc_activeSwRadio;
 */
-private ["_result"];
-_result = nil;
+private _result = nil;
 {
     if (_x call TFAR_fnc_isRadio) exitWith {_result = _x};
     true;

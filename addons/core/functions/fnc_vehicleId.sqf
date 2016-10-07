@@ -18,8 +18,7 @@
     Example:
         _vehicleID = player call TFAR_fnc_vehicleID;
 */
-private["_result"];
-_result = "no";
+private _result = "no";
 if ((vehicle _this) != _this) then {
     _result = netid (vehicle _this);
     if (_result == "") then {

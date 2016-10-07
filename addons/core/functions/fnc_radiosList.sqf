@@ -18,8 +18,7 @@
     Example:
         _radios = TFAR_currentUnit call TFAR_fnc_radiosList;
 */
-private ["_result"];
-_result = [];
+private _result = [];
 {
     if (_x call TFAR_fnc_isRadio) then {
         _result pushBack _x;

@@ -20,8 +20,8 @@
     };
 */
 if (_this == "ItemRadio") exitWith {true};
-private "_result";
-_result = getNumber (configFile >> "CfgWeapons" >> _this >> "tf_prototype");
+
+private _result = getNumber (configFile >> "CfgWeapons" >> _this >> "tf_prototype");
 if (isNil "_result") then {
     _result = 0;
 };

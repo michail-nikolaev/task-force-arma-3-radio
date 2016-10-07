@@ -18,9 +18,9 @@
     Example:
         _radio = player call TFAR_fnc_backpackLR;
 */
-private ["_result", "_backpack"];
-_result = [];
-_backpack = backpack _this;
+private _result = [];
+private _backpack = backpack _this;
+
 if (([_backpack, "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty) == 1) then {
     _result = [unitBackpack _this, "radio_settings"];
 };

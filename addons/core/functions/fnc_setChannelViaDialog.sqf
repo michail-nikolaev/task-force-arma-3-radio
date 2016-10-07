@@ -23,14 +23,13 @@
         // SW radio
         [_this select 1, false] call TFAR_fnc_setChannelViaDialog;
 */
-private ["_cChange", "_radio", "_lr", "_maxChannels", "_currentChannel", "_fnc_GetChannel", "_format"];
-
 params ["_btn", "_lr", ["_format", ""]];
 
 playSound "TFAR_rotatorPush";
-_maxChannels = 0;
-_radio = "";
-_fnc_GetChannel = {};
+private _maxChannels = 0;
+private _radio = "";
+private _fnc_GetChannel = {};
+
 if (_lr) then {
     _maxChannels = TF_MAX_LR_CHANNELS;
     _radio = TF_lr_dialog_radio;
@@ -40,7 +39,7 @@ if (_lr) then {
     _radio = TF_sw_dialog_radio;
     _fnc_GetChannel = TFAR_fnc_getSwChannel;
 };
-_cChange = if(_btn == 0)then{-1 + _maxChannels}else{1};
+private _cChange = if(_btn == 0)then{-1 + _maxChannels}else{1};
 _cChange = ((_radio call _fnc_GetChannel) + _cChange) mod _maxChannels;
 
 if (_lr) then {

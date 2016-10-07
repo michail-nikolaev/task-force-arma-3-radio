@@ -1,14 +1,13 @@
 #include "script_component.hpp"
 
-private ["_item", "_freq", "_pos", "_unit_pos", "_p", "_manpack", "_lrs", "_isolation"];
-_unit_pos = eyepos TFAR_currentUnit;
+private _unit_pos = eyepos TFAR_currentUnit;
 {
-    _pos = getPosASL _x;
+    private _pos = getPosASL _x;
     if ((_pos select 2) > 0) then {
-        _p = [(_pos select 0) - (_unit_pos select 0), (_pos select 1) - (_unit_pos select 1), (_pos select 2) - (_unit_pos select 2)];
+        private _p = [(_pos select 0) - (_unit_pos select 0), (_pos select 1) - (_unit_pos select 1), (_pos select 2) - (_unit_pos select 2)];
         {
             if ((_x call TFAR_fnc_isRadio) and {_x call TFAR_fnc_getSwSpeakers}) then {
-                _freq = format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode];
+                private _freq = format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode];
                 if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
                     _freq = _freq + format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
                 };
@@ -19,13 +18,13 @@ _unit_pos = eyepos TFAR_currentUnit;
         
         {
             if  ((_x getVariable ["tf_lr_speakers", false]) and {[typeof (_x), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1}) then {
-                _manpack = [_x, "radio_settings"];
+                private _manpack = [_x, "radio_settings"];
                 if (_manpack call TFAR_fnc_getLrSpeakers) then {
-                    _freq = format ["%1%2", _manpack call TFAR_fnc_getLrFrequency, _manpack call TFAR_fnc_getLrRadioCode];
+                    private _freq = format ["%1%2", _manpack call TFAR_fnc_getLrFrequency, _manpack call TFAR_fnc_getLrRadioCode];
                     if ((_manpack call TFAR_fnc_getAdditionalLrChannel) > -1) then {
                         _freq = _freq + format ["|%1%2", [_manpack, (_manpack call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _manpack call TFAR_fnc_getLrRadioCode];
                     };
-                    _radio_id = netId (_manpack select 0);
+                    private _radio_id = netId (_manpack select 0);
                     if (_radio_id == '') then {
                         _radio_id = str (_manpack select 0);
                     };
@@ -40,11 +39,11 @@ _unit_pos = eyepos TFAR_currentUnit;
 
 {
     if ((_x getVariable ["tf_lr_speakers", false]) and {_x call TFAR_fnc_hasVehicleRadio}) then {
-        _pos = getPosASL _x;
+        private _pos = getPosASL _x;
         if (_pos select 2 >= TF_UNDERWATER_RADIO_DEPTH) then {
-            _p = [(_pos select 0) - (_unit_pos select 0), (_pos select 1) - (_unit_pos select 1), (_pos select 2) - (_unit_pos select 2)];
+            private _p = [(_pos select 0) - (_unit_pos select 0), (_pos select 1) - (_unit_pos select 1), (_pos select 2) - (_unit_pos select 2)];
             
-            _lrs = [];
+            private _lrs = [];
             if (isNull (gunner _x) && {count (_x getVariable ["gunner_radio_settings", []]) > 0}) then {
                 _lrs pushBack [_x, "gunner_radio_settings"];
             };
@@ -60,16 +59,16 @@ _unit_pos = eyepos TFAR_currentUnit;
             
             {
                 if (_x call TFAR_fnc_getLrSpeakers) then {
-                    _freq = format ["%1%2", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode];
+                    private _freq = format ["%1%2", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode];
                     if ((_x call TFAR_fnc_getAdditionalLrChannel) > -1) then {
                         _freq = _freq + format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getLrRadioCode];
                     };
-                    _radio_id = netId (_x select 0);
+                    private _radio_id = netId (_x select 0);
                     if (_radio_id == '') then {
                         _radio_id = str (_x select 0);
                     };
                     _radio_id =  _radio_id + (_x select 1);
-                    _isolation = netid (_x select 0);
+                    private _isolation = netid (_x select 0);
                     if (_isolation == "") then {
                         _isolation = "singleplayer";
                     };

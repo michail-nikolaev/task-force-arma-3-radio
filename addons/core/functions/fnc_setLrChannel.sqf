@@ -20,12 +20,9 @@
     Example:
         [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 4] call TFAR_fnc_setLrChannel;
 */
-
-private ["_settings"];
-
 params ["_radio_object", "_radio_qualifier", "_value"];
 
-_settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
+private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
 _settings set [ACTIVE_CHANNEL_OFFSET, _value];
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 

@@ -17,13 +17,11 @@
     Example:
 
  */
-
 params [
     ["_logic", objNull, [objNull]],
     ["_units", [], [[]]],
     ["_activated", true, [true]]
 ];
-
 
 if (_activated) then {
     tf_no_auto_long_range_radio = !(_logic getVariable "TeamLeaderRadio");

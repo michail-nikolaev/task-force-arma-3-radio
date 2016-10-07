@@ -21,6 +21,5 @@
         _channel = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getAdditionalLrChannel;
 */
 
-private ["_settings"];
-_settings = _this call TFAR_fnc_getLrSettings;
+private _settings = _this call TFAR_fnc_getLrSettings;
 _settings select TF_ADDITIONAL_CHANNEL_OFFSET

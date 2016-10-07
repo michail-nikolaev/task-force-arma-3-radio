@@ -19,8 +19,6 @@
     Example:
         Called internally by CBA UI
 */
-private ["_submenu"];
-_submenu = 
 [
     ["secondary", localize "STR_select_action", "buttonList", "", false],
     [
@@ -29,4 +27,3 @@ _submenu =
         [localize "STR_select_action_copy_settings_from", "", "", localize "STR_select_action_settings_from_tooltip", "_this call TFAR_fnc_copyRadioSettingMenu", -1, true, true]
     ]
 ];
-_submenu

@@ -20,9 +20,8 @@
     Example:
         _stereo = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getCurrentLrStereo;
 */
+private _result = 0;
 
-private ["_result"];
-_result = 0;
 if ((_this call TFAR_fnc_getAdditionalLrChannel) == (_this call TFAR_fnc_getLrChannel)) then {
     _result = _this call TFAR_fnc_getAdditionalLrStereo;
 } else {

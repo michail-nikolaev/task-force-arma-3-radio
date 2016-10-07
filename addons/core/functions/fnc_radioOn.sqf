@@ -20,11 +20,12 @@
     call TFAR_fnc_radioOn;
 */
 
-private ["_radio", "_status","_settings", "_lr"];
-_radio = _this select 0;
-_status = false;
-_lr = (typename _radio == "ARRAY");
-_settings = [];
+params ["_radio"];
+
+private _status = false;
+private _lr = (typename _radio == "ARRAY");
+private _settings = [];
+
 if (_lr) then {
     _settings = (_radio call TFAR_fnc_getLrSettings);
     _status = _settings select POWER_OFFSET;

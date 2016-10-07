@@ -17,13 +17,13 @@
     Example:
         call TFAR_fnc_onSwTangentPressed;
 */
-private["_depth", "_radio"];
 if (time - TF_last_lr_tangent_press > 0.5) then {
     if (!(TF_tangent_sw_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_haveSWRadio}) then {
         if (call TFAR_fnc_isAbleToUseRadio) then {
-            _radio = call TFAR_fnc_activeSwRadio;
+            private _radio = call TFAR_fnc_activeSwRadio;
             if (!([_radio] call TFAR_fnc_RadioOn)) exitWith{};
-            _depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
+
+            private _depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
             if ([TFAR_currentUnit, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, [TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside, _depth] call TFAR_fnc_canSpeak, _depth] call TFAR_fnc_canUseSWRadio) then {
                 ["OnBeforeTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 0, false, true]] call TFAR_fnc_fireEventHandlers;
                 [format[localize "STR_transmit",format ["%1<img size='1.5' image='%2'/>", getText (ConfigFile >> "CfgWeapons" >> _radio >> "displayName"),

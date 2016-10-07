@@ -18,10 +18,9 @@
     Example:
         Handled via CBA's onKey eventhandler.
 */
-private ["_result"];
-
 params ["_lr_cycle_direction"];
-_result = false;
+
+private _result = false;
 
 if ((call TFAR_fnc_haveLRRadio) and {alive TFAR_currentUnit}) then {
     private ["_radio", "_radio_list", "_active_radio_index", "_new_radio_index"];

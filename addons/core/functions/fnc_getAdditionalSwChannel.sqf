@@ -18,7 +18,5 @@
     Example:
         _channel = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getAdditionalSwChannel;
 */
-
-private ["_settings"];
-_settings = _this call TFAR_fnc_getSwSettings;
+private _settings = _this call TFAR_fnc_getSwSettings;
 _settings select TF_ADDITIONAL_CHANNEL_OFFSET

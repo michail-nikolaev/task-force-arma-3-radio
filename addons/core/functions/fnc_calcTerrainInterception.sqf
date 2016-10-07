@@ -20,17 +20,20 @@
 */
 private ["_result", "_l", "_r", "_m", "_p1", "_p2", "_middle"];
 
-_result = 0;
-_p1 = eyePos TFAR_currentUnit;
-_p2 = eyePos _this;
+private _result = 0;
+private _p1 = eyePos TFAR_currentUnit;
+private _p2 = eyePos _this;
 
 if (terrainIntersectASL[_p1, _p2]) then {
-    _l = 10.0;
-    _r = 250.0;
-    _m = 100.0;
+    private _l = 10.0;
+    private _r = 250.0;
+    private _m = 100.0;
 
-    _middle = [((_p1 select 0) + (_p2 select 0)) / 2.0, ((_p1 select 1) + (_p2 select 1)) / 2.0, ((_p1 select 2) + (_p2 select 2)) / 2.0];
-    _base = _middle select 2;
+    _p1 params ["_p1x", "_p1y", "_p1z"];
+    _p2 params ["_p2x", "_p2y", "_p2z"];
+
+    private _middle = [(_p1x + _p2x) / 2.0, (_p1y + _p2y) / 2.0, (_p1z + _p2z) / 2.0];
+    private _base = _middle select 2;
 
     while {(_r - _l) > 10} do {
         _middle set[2, _base + _m];

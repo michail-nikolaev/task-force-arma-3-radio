@@ -19,10 +19,9 @@
     Example:
         _canSpeak = [false, -12] call TFAR_fnc_canSpeak;
 */
-private ["_result"];
 params ["_vehIsolation", "_eyeDepth"];
 
-_result = false;
+private _result = false;
 
 if (_eyeDepth > 0) then {
     _result = true;

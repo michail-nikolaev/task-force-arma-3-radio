@@ -22,8 +22,6 @@
         _settings set [0, 2]; // sets the active channel to 2
         [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, _settings] call TFAR_fnc_setLrSettings;
 */
-private ["_value"];
-
 params ["_radio_object", "_radio_qualifier", "_value"];
 
 _radio_object setVariable [_radio_qualifier, + _value, true];

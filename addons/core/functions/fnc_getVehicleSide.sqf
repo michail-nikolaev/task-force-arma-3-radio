@@ -19,8 +19,9 @@
     Example:
         _vehicleSide = (vehicle player) call TFAR_fnc_getVehicleSide;
 */
-private ["_result", "_side"];
-_side = _this getVariable "tf_side";
+private _side = _this getVariable "tf_side";
+private _result = resistance;
+
 if !(isNil "_side") then {
     switch(_side) do {
         case "west": {
@@ -28,9 +29,6 @@ if !(isNil "_side") then {
         };
         case "east": {
             _result = east;
-        };
-        default {
-            _result = resistance;
         };
     };
 } else {

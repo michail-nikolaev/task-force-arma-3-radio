@@ -26,8 +26,7 @@
 
         [_hintText, _request] call TFAR_fnc_ProcessTangent;
 */
-private "_timer";
-_timer = 2.5;
+private _timer = 2.5;
 if ((count _this) == 3) then{
     _timer = _this select 2;
 };

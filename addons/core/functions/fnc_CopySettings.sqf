@@ -27,11 +27,11 @@ private ["_settings", "_isDLR", "_isSLR", "_support_additional"];
 
 params ["_source", "_destination"];
 
-_isDLR = if (_destination isEqualType []) then {true}else{false};
-_isSLR = if (_source isEqualType []) then {true}else{false};
+private _isDLR = if (_destination isEqualType []) then {true}else{false};
+private _isSLR = if (_source isEqualType []) then {true}else{false};
 
 if (_isSLR) then {
-    _settings = _source call TFAR_fnc_GetLRSettings;
+    private _settings = _source call TFAR_fnc_GetLRSettings;
     if (_isDLR) then {
         [_destination select 0, _destination select 1,[]+_settings] call TFAR_fnc_SetLRSettings;
     } else {
@@ -39,10 +39,10 @@ if (_isSLR) then {
         hint "TFAR - unable to copy from LR to SW";
     };
 } else {
-    _settings = _source call TFAR_fnc_GetSwSettings;
+    private _settings = _source call TFAR_fnc_GetSwSettings;
     if (!_isDLR) then {
         _settings = []+_settings;
-        _support_additional = getNumber (configFile >> "CfgWeapons" >> _destination >> "tf_additional_channel");
+        private _support_additional = getNumber (configFile >> "CfgWeapons" >> _destination >> "tf_additional_channel");
         if ((isNil "_support_additional") or {_support_additional == 0}) then {
             _settings set [TF_ADDITIONAL_CHANNEL_OFFSET, -1];
         };

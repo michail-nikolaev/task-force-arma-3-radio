@@ -32,13 +32,12 @@
             if (tf_no_auto_long_range_radio or {backpack TFAR_currentUnit == "B_Parachute"} or {player call TFAR_fnc_isForcedCurator}) exitWith {};
             if ([(backpack TFAR_currentUnit), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1) exitWith {};
             
-            private ["_items", "_backPack", "_newItems"];
-            _items = backpackItems TFAR_currentUnit;
-            _backPack = unitBackpack TFAR_currentUnit;
+            private _items = backpackItems TFAR_currentUnit;
+            private _backPack = unitBackpack TFAR_currentUnit;
             TFAR_currentUnit action ["putbag", TFAR_currentUnit];
             sleep 3;
             TFAR_currentUnit addBackpack ((call TFAR_fnc_getDefaultRadioClasses) select 0);
-            _newItems = [];
+            private _newItems = [];
             {
                 if (TFAR_currentUnit canAddItemToBackpack _x) then {
                     TFAR_currentUnit addItemToBackpack _x;

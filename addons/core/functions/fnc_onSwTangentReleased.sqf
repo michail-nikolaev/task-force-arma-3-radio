@@ -1,8 +1,7 @@
 #include "script_component.hpp"
 
-private ["_radio"];
 if ((TF_tangent_sw_pressed) and {alive TFAR_currentUnit}) then {
-    _radio = call TFAR_fnc_activeSwRadio;
+    private _radio = call TFAR_fnc_activeSwRadio;
     
     ["OnBeforeTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 0, false, false]] call TFAR_fnc_fireEventHandlers;
     

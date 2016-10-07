@@ -1,8 +1,6 @@
 #include "script_component.hpp"
 
-private ["_submenu"];
-_submenu = 
-[
+private _submenu = [
     ["secondary", localize "STR_select_action", "buttonList", "", false],
     [
         [localize "STR_select_action_setup", "call TFAR_fnc_onLrDialogOpen;", "", localize "STR_select_action_setup_tooltip", "", -1, true, true],

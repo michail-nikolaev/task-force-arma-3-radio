@@ -19,8 +19,7 @@
     Example:
         _radio = player call TFAR_fnc_VehicleLR;
  */
-private ["_result"];
-_result = [];
+private _result = [];
 if (((vehicle _this) != _this) and {(vehicle _this) call TFAR_fnc_hasVehicleRadio}) then {
     switch (_this) do {
         case (gunner (vehicle _this)): {

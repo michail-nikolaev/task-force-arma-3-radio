@@ -18,7 +18,6 @@
     Example:
         call TFAR_fnc_processPlayerPositions;
 */
-private ["_elemsNearToProcess","_elemsFarToProcess","_other_units", "_unit", "_controlled", "_speakers"];
 if !(isNull (findDisplay 46)) then {
     if !(isNull TFAR_currentUnit) then {
         if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {
@@ -29,7 +28,7 @@ if !(isNull (findDisplay 46)) then {
                 tf_nearPlayers = call TFAR_fnc_getNearPlayers;
             };
 
-            _other_units = allUnits - tf_nearPlayers;
+            private _other_units = allUnits - tf_nearPlayers;
 
             {
                 if !(_x in _other_units) then {
@@ -41,7 +40,7 @@ if !(isNull (findDisplay 46)) then {
             tf_farPlayers = [];
             tf_farPlayersIndex = 0;
             {
-                _spectator = _x getVariable ["tf_forceSpectator",false];
+                private _spectator = _x getVariable ["tf_forceSpectator",false];
                 if ((isPlayer _x) and {!_spectator}) then {
                     tf_farPlayers set[tf_farPlayersIndex, _x];
                     tf_farPlayersIndex = tf_farPlayersIndex + 1;
@@ -71,12 +70,12 @@ if !(isNull (findDisplay 46)) then {
             };
             call TFAR_fnc_sendVersionInfo;
         } else {
-            _elemsNearToProcess = (diag_tickTime - tf_lastNearFrameTick) / tf_msNearPerStep;
+            private _elemsNearToProcess = (diag_tickTime - tf_lastNearFrameTick) / tf_msNearPerStep;
             if (_elemsNearToProcess >= 1) then {
                 for "_y" from 0 to _elemsNearToProcess step 1 do {
                     if (tf_nearPlayersIndex < count tf_nearPlayers) then {
-                        _unit = (tf_nearPlayers select tf_nearPlayersIndex);
-                        _controlled = _unit getVariable "tf_controlled_unit";
+                        private _unit = (tf_nearPlayers select tf_nearPlayersIndex);
+                        private _controlled = _unit getVariable "tf_controlled_unit";
                         if !(isNil "_controlled") then {
                             [_controlled, true, name _unit] call TFAR_fnc_sendPlayerInfo;
                         } else {
@@ -94,7 +93,7 @@ if !(isNull (findDisplay 46)) then {
 
                         call TFAR_fnc_processSpeakerRadios;
 
-                        _speakers = "SPEAKERS	";
+                        private _speakers = "SPEAKERS	";
                         {
                             _speakers = _speakers + TF_vertical_tab + _x;
                         } count (tf_speakerRadios);
@@ -106,11 +105,11 @@ if !(isNull (findDisplay 46)) then {
                 tf_lastNearFrameTick = diag_tickTime;
             };
 
-            _elemsFarToProcess = (diag_tickTime - tf_lastFarFrameTick) / tf_msFarPerStep;
+            private _elemsFarToProcess = (diag_tickTime - tf_lastFarFrameTick) / tf_msFarPerStep;
             if (_elemsFarToProcess >= 1) then {
                 for "_y" from 0 to _elemsFarToProcess step 1 do {
                     if (tf_farPlayersIndex < count tf_farPlayers) then {
-                        _unit = (tf_farPlayers select tf_farPlayersIndex);
+                        private _unit = (tf_farPlayers select tf_farPlayersIndex);
                         [_unit, false, name _unit] call TFAR_fnc_sendPlayerInfo;
                         tf_farPlayersIndex = tf_farPlayersIndex + 1;
                     } else {

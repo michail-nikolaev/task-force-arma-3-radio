@@ -18,14 +18,12 @@
     Example:
         Called via CBA onKey EventHandler
 */
-private ["_sw_stereo_number", "_result"];
 params ["_sw_stereo_number"];
 
-_result = false;
+private _result = false;
 
 if ((alive TFAR_currentUnit) and {call TFAR_fnc_haveSWRadio}) then {
-    private "_radio";
-    _radio = call TFAR_fnc_activeSwRadio;
+    private _radio = call TFAR_fnc_activeSwRadio;
     [_radio, _sw_stereo_number] call TFAR_fnc_setSwStereo;
     [_radio] call TFAR_fnc_ShowRadioVolume;
     _result = true;

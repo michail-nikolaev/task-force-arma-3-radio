@@ -18,7 +18,4 @@
     Example:
         call TFAR_fnc_getTransmittingDistanceMultiplicator;
 */
-private ["_result"];
-_result = TFAR_currentUnit getVariable ["tf_sendingDistanceMultiplicator",1.0];
-
-_result;
+TFAR_currentUnit getVariable ["tf_sendingDistanceMultiplicator",1.0];

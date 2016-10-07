@@ -24,19 +24,18 @@
     // DD radio
     ["", true] call TFAR_fnc_ShowRadioSpeakers;
 */
-private ["_isLrRadio", "_hintText", "_name", "_picture", "_volume", "_speakers", "_imagesize"];
-
 params ["_radio", ["_isDDRadio", false, [true]]];
 
-_isLrRadio = if (typename _radio == "STRING")then{false}else{true};
+private _isLrRadio = if (typename _radio == "STRING")then{false}else{true};
+private _hintText = "";
 
 if !(_isDDRadio) then {
-    _name = if(_isLrRadio) then {getText (ConfigFile >> "CfgVehicles" >> typeof (_radio select 0) >> "displayName")} else {getText(configFile >> "CfgWeapons" >> _radio >> "displayName")};
-    _picture = if(_isLrRadio) then {getText (ConfigFile >> "CfgVehicles" >> typeof (_radio select 0) >> "picture")} else {getText(configFile >> "CfgWeapons" >> _radio >> "picture")};
-    _volume = formatText [localize "STR_radio_volume",if(_isLrRadio) then {((_radio call TFAR_fnc_getLrVolume) + 1) * 10} else {((_radio call TFAR_fnc_getSwVolume) + 1) * 10}];
-    _speakers = localize format ["STR_speakers_settings_%1", if(_isLrRadio) then {_radio call TFAR_fnc_getLrSpeakers} else {_radio call TFAR_fnc_getSwSpeakers}];
+    private _name = if(_isLrRadio) then {getText (ConfigFile >> "CfgVehicles" >> typeof (_radio select 0) >> "displayName")} else {getText(configFile >> "CfgWeapons" >> _radio >> "displayName")};
+    private _picture = if(_isLrRadio) then {getText (ConfigFile >> "CfgVehicles" >> typeof (_radio select 0) >> "picture")} else {getText(configFile >> "CfgWeapons" >> _radio >> "picture")};
+    private _volume = formatText [localize "STR_radio_volume",if(_isLrRadio) then {((_radio call TFAR_fnc_getLrVolume) + 1) * 10} else {((_radio call TFAR_fnc_getSwVolume) + 1) * 10}];
+    private _speakers = localize format ["STR_speakers_settings_%1", if(_isLrRadio) then {_radio call TFAR_fnc_getLrSpeakers} else {_radio call TFAR_fnc_getSwSpeakers}];
 
-    _imagesize = "1.6";
+    private _imagesize = "1.6";
     if ((_isLrRadio) and {!((_radio select 0) isKindOf "Bag_Base")}) then {
         _imagesize = "1.0";
     };

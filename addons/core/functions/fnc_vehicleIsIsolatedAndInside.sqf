@@ -18,8 +18,7 @@
     Example:
         _isolated = player call TFAR_fnc_vehicleIsIsolatedAndInside;
 */
-private ["_result"];
-_result = false;
+private _result = false;
 if (vehicle _this != _this) then {
     if ((vehicle _this) call TFAR_fnc_isVehicleIsolated) then {
         if !([_this] call TFAR_fnc_isTurnedOut) then {

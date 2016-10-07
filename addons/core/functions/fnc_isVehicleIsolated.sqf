@@ -18,8 +18,6 @@
     Example:
         _isolated = (vehicle player) call TFAR_fnc_isVehicleIsolated;
 */
-private ["_isolated"];
-
-_isolated = [(typeof _this), "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty;
+private _isolated = [(typeof _this), "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty;
 
 _isolated > 0.5

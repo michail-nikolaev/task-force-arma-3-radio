@@ -20,23 +20,21 @@
     Example:
         _radios = false call TFAR_fnc_radioToRequestCount;
 */
-private ["_to_remove", "_allRadios", "_personalRadio", "_riflemanRadio", "_defaultRadio", "_classes"];
 waitUntil {sleep 0.1;!(isNull TFAR_currentUnit)};
 
-_to_remove = [];
-_allRadios = _this;
+private _to_remove = [];
+private _allRadios = _this;
 
-_personalRadio = nil;
-_riflemanRadio = nil;
+private _personalRadio = nil;
+private _riflemanRadio = nil;
 
-_classes = call TFAR_fnc_getDefaultRadioClasses;
-_personalRadio = _classes select 1;
-_riflemanRadio = _classes select 2;
+private _classes = call TFAR_fnc_getDefaultRadioClasses;
+private _personalRadio = _classes select 1;
+private _riflemanRadio = _classes select 2;
+private _defaultRadio = _riflemanRadio;
 
 if ((TF_give_personal_radio_to_regular_soldier) or {leader TFAR_currentUnit == TFAR_currentUnit} or {rankId TFAR_currentUnit >= 2}) then {
     _defaultRadio = _personalRadio;
-} else {
-    _defaultRadio = _riflemanRadio;
 };
 
 TF_settingsToCopy = [];

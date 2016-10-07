@@ -21,12 +21,10 @@
     Example:
         [player] call TFAR_fnc_sendPlayerInfo;
 */
-private ["_request","_result", "_player", "_isNearPlayer", "_killSet"];
-
 params ["_unit"];
 
-_request = _this call TFAR_fnc_preparePositionCoordinates;
-_result = "task_force_radio_pipe" callExtension _request;
+private _request = _this call TFAR_fnc_preparePositionCoordinates;
+private _result = "task_force_radio_pipe" callExtension _request;
 
 if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"}) then {
     [parseText (_result), 10] call TFAR_fnc_showHint;
@@ -38,21 +36,22 @@ if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"
     };
 };
 if (_result == "SPEAKING") then {
-    _player setRandomLip true;
+    _unit setRandomLip true;
     if (!(_player getVariable ["tf_isSpeaking", false])) then {
         _player setVariable ["tf_isSpeaking", true];
         ["OnSpeak", _player, [_player, true]] call TFAR_fnc_fireEventHandlers;
     };
-    _player setVariable ["tf_start_speaking", diag_tickTime];
+    _unit setVariable ["tf_start_speaking", diag_tickTime];
 } else {
-    _player setRandomLip false;
+    _unit setRandomLip false;
     if ((_player getVariable ["tf_isSpeaking", false])) then {
         _player setVariable ["tf_isSpeaking", false];
         ["OnSpeak", _player, [_player, false]] call TFAR_fnc_fireEventHandlers;
     };
 };
-_killSet = _player getVariable "tf_killSet";
+
+private _killSet = _unit getVariable "tf_killSet";
 if (isNil "_killSet") then {
-    _player addEventHandler ["Killed", {_unit call TFAR_fnc_sendPlayerKilled}];
-    _player setVariable ["tf_killSet", true];
+    _unit addEventHandler ["Killed", {_unit call TFAR_fnc_sendPlayerKilled}];
+    _unit setVariable ["tf_killSet", true];
 };

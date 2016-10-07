@@ -18,19 +18,16 @@
     Example:
         Handled via CBA's onKey eventhandler.
 */
-private ["_sw_cycle_direction", "_result"];
-
 params ["_sw_cycle_direction"];
 
-_result = false;
+private _result = false;
 
 if ((call TFAR_fnc_haveSWRadio) and {alive TFAR_currentUnit}) then{
-    private ["_radio", "_radio_list", "_active_radio_index", "_new_radio_index"];
-    _radio = call TFAR_fnc_activeSwRadio;
-    _radio_list = TFAR_currentUnit call TFAR_fnc_radiosListSorted;
+    private _radio = call TFAR_fnc_activeSwRadio;
+    private _radio_list = TFAR_currentUnit call TFAR_fnc_radiosListSorted;
 
-    _active_radio_index = 0;
-    _new_radio_index = 0;
+    private _active_radio_index = 0;
+    private _new_radio_index = 0;
 
     {
         if (_x == _radio) exitWith{
@@ -40,12 +37,10 @@ if ((call TFAR_fnc_haveSWRadio) and {alive TFAR_currentUnit}) then{
 
 
     switch (_sw_cycle_direction) do{
-        case "next":
-            {
-                _new_radio_index = (_active_radio_index + 1) mod (count _radio_list);
-            };
-        case "prev":
-        {
+        case "next":{
+            _new_radio_index = (_active_radio_index + 1) mod (count _radio_list);
+        };
+        case "prev": {
             if (_active_radio_index != 0) then {
                 _new_radio_index = (_active_radio_index - 1);
             } else {

@@ -20,7 +20,5 @@
     Example:
         _volume = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getLrVolume;
 */
-
-private ["_settings"];
-_settings = _this call TFAR_fnc_getLrSettings;
+private _settings = _this call TFAR_fnc_getLrSettings;
 _settings select VOLUME_OFFSET

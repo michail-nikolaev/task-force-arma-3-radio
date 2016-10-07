@@ -21,11 +21,10 @@
     Example:
         _canUseSW = [player, false, false, 10] call TFAR_fnc_canUseLrRadio;
 */
-private ["_result"];
 
 params ["_player", "_isolated_and_inside", "_depth"];
 
-_result = false;
+private _result = false;
 
 if (_depth > 0) then {
     _result = true;

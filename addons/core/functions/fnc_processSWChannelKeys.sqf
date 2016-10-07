@@ -18,13 +18,12 @@
     Example:
         Called by CBA.
 */
-private ["_sw_channel_number", "_hintText", "_result"];
 params ["_sw_channel_number"];
-_result = false;
+
+private _result = false;
 
 if ((call TFAR_fnc_haveSWRadio) and {alive TFAR_currentUnit}) then {
-    private "_radio";
-    _radio = call TFAR_fnc_activeSwRadio;
+    private _radio = call TFAR_fnc_activeSwRadio;
     [_radio, _sw_channel_number] call TFAR_fnc_setSwChannel;
     [_radio, false] call TFAR_fnc_ShowRadioInfo;
     if (dialog) then {
