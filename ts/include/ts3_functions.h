@@ -246,7 +246,7 @@ struct TS3Functions {
 	void         (*getAppPath)(char* path, size_t maxLen);
 	void         (*getResourcesPath)(char* path, size_t maxLen);
 	void         (*getConfigPath)(char* path, size_t maxLen);
-	void         (*getPluginPath)(char* path, size_t maxLen, const char* pluginID);
+	void         (*getPluginPath)(char* path, size_t maxLen);
 	uint64       (*getCurrentServerConnectionHandlerID)();
 	void         (*printMessage)(uint64 serverConnectionHandlerID, const char* message, enum PluginMessageTarget messageTarget);
 	void         (*printMessageToCurrentTab)(const char* message);
