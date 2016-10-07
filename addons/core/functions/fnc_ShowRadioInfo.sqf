@@ -47,24 +47,24 @@ if ((_isLrRadio) and {!((_radio select 0) isKindOf "Bag_Base")}) then {
 _hintText = "";
 if(tf_radio_show_freq)then
 {
-	_hintText = format
-	[
-		("<t size='1' align='center'>%1 <img size='" + _imagesize + "' image='%2'/></t><br /><t align='center'>%3</t><br /><t align='center'>%4</t><br /><t align='center'>%5</t>"),
-		_name,
-		_picture,
-		_channel,
-		format[localize "STR_active_frequency", if(_isLrRadio) then {_radio call TFAR_fnc_getLrFrequency} else {_radio call TFAR_fnc_getSwFrequency}],
-		_add_channel
-	];
-}else{
-	_hintText = format
-	[
-		("<t size='1' align='center'>%1 <img size='" + _imagesize + "' image='%2'/></t><br /><t align='center'>%3</t><br /><t align='center'>%4</t><br /><t align='center'>%5</t>"),
-		_name,
-		_picture,
-		_channel,
-		"==Hidden==",
-		_add_channel
-	];
+    _hintText = format
+    [
+        ("<t size='1' align='center'>%1 <img size='" + _imagesize + "' image='%2'/></t><br /><t align='center'>%3</t><br /><t align='center'>%4</t><br /><t align='center'>%5</t>"),
+        _name,
+        _picture,
+        _channel,
+        format[localize "STR_active_frequency", if(_isLrRadio) then {_radio call TFAR_fnc_getLrFrequency} else {_radio call TFAR_fnc_getSwFrequency}],
+        _add_channel
+    ];
+} else {
+    _hintText = format
+    [
+        ("<t size='1' align='center'>%1 <img size='" + _imagesize + "' image='%2'/></t><br /><t align='center'>%3</t><br /><t align='center'>%4</t><br /><t align='center'>%5</t>"),
+        _name,
+        _picture,
+        _channel,
+        "==Hidden==",
+        _add_channel
+    ];
 };
 [parseText (_hintText), 5] call TFAR_fnc_showHint;
