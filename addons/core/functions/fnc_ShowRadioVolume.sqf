@@ -26,7 +26,7 @@
 
 params ["_radio", ["_isDDRadio", false, [true]]];
 
-private _isLrRadio = if (typename _radio == "STRING")then{false}else{true};
+private _isLrRadio = if (typename _radio == "STRING") then {false} else {true};
 private _hintText = "";
 
 if !(_isDDRadio) then {

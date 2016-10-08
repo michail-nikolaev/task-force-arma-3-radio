@@ -32,7 +32,7 @@
 
 private _volume = 7;
 if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")) then {
-  _volume = getNumber(ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")
+    _volume = getNumber(ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")
 };
 private _sw_settings = [0, _volume, [], 0, nil, -1, 0, getPlayerUID player, false, true];
 private _set = false;

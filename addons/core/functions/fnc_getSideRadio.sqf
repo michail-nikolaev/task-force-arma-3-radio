@@ -34,7 +34,7 @@ switch (_radioType) do {
     case 1: {
         _result = missionNamespace getVariable (_variable + "PersonalRadio");
     };
-    case 2:	{
+    case 2: {
         _result = missionNamespace getVariable (_variable + "RiflemanRadio");
     };
 };
