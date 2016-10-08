@@ -20,7 +20,7 @@
     call TFAR_fnc_radioOn;
 */
 
-params ["_radio", ["_status", false]]
+params ["_radio", ["_status", false]];
 
 _lr = (typename _radio == "ARRAY");
 _settings = [];

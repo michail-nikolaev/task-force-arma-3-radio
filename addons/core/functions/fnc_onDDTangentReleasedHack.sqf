@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-params ["_scancode"];
+params ["", "_scancode"];
 
 private _keybind = ["TFAR", "DDTransmit"] call cba_fnc_getKeybind;
 if !(isNil "_keybind") then {
