@@ -91,7 +91,7 @@ class anarc164_radio_dialog
 		w = 0.037125 * safezoneW;
 		h = 0.0693 * safezoneH;
 		tooltip = $STR_set_frequency;
-		action = "playSound 'TFAR_rotatorPush';_f = parseNumber(ctrlText IDC_ANARC164_RADIO_DIALOG_EDIT_ID);if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setLrFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_ASIP_FREQ, TF_MAX_ASIP_FREQ]}; [""%1""] call TFAR_fnc_updateLRDialogToChannel;";
+		action = "playSound 'TFAR_rotatorPush';_f = parseNumber(ctrlText IDC_ANARC164_EDIT);if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setLrFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_ASIP_FREQ, TF_MAX_ASIP_FREQ]}; [""%1""] call TFAR_fnc_updateLRDialogToChannel;";
 	};
 	class clear: HiddenRotator
 	{
@@ -101,7 +101,7 @@ class anarc164_radio_dialog
 		w = 0.0376406 * safezoneW;
 		h = 0.0715 * safezoneH;
 		tooltip = $STR_clear_frequency;
-		action = "playSound 'TFAR_rotatorPush';ctrlSetText [IDC_ANARC164_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANARC164_RADIO_DIALOG_ID) displayCtrl IDC_ANARC164_RADIO_DIALOG_EDIT_ID);";
+		action = "playSound 'TFAR_rotatorPush';ctrlSetText [IDC_ANARC164_EDIT, '']; ctrlSetFocus ((findDisplay IDD_ANARC164_RADIO_DIALOG) displayCtrl IDC_ANARC164_EDIT);";
 	};
 	class prev_channel: HiddenRotator
 	{
