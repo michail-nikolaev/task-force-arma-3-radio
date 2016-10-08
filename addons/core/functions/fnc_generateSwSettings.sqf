@@ -52,4 +52,3 @@ if (!_set) then {
 _sw_settings set [2, _sw_frequencies];
 
 _sw_settings
->>>>>>> 8b8749952bfc75733054c34ae530f0cfdbf1d5bb

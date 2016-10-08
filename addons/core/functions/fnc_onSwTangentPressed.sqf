@@ -43,4 +43,3 @@ if (time - TF_last_lr_tangent_press > 0.5) then {
     };
 };
 true
->>>>>>> 8b8749952bfc75733054c34ae530f0cfdbf1d5bb
