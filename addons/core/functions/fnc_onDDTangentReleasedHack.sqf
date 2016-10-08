@@ -1,7 +1,6 @@
 #include "script_component.hpp"
 
-params ["", "_scancode"];
-
+private _scancode = param [1];
 private _keybind = ["TFAR", "DDTransmit"] call cba_fnc_getKeybind;
 if !(isNil "_keybind") then {
     private _mods = ((_keybind) select 5) select 1;
