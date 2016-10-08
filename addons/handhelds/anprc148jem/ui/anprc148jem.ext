@@ -27,7 +27,7 @@ class anprc148jem_radio_dialog
 	controlsBackground[] = { };
 	objects[] = { };
 	onUnload = "['OnRadioOpen', player, [player, TF_sw_dialog_radio, false, 'anprc148jem_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl IDD_BACKGROUND) ctrlSetText '\z\tfar\addons\handhelds\anprc148jem\ui\148_n.paa';};";
+	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\z\tfar\addons\handhelds\anprc148jem\ui\148_n.paa';};";
 	controls[]=
 {
 	background,
@@ -65,7 +65,7 @@ class enter: HiddenButton
 	w = 0.0275625 * safezoneW;
 	h = 0.0266059 * safezoneH;
 	tooltip = $STR_set_frequency;
-	action = "_f = parseNumber(ctrlText IDC_ANPRC148JEM_EDIT);  if ((_f >= TF_MIN_SW_FREQ) and (_f <= TF_MAX_SW_FREQ)) then {[TF_sw_dialog_radio, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setSwFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_SW_FREQ, TF_MAX_SW_FREQ]}; call TFAR_fnc_updateSWDialogToChannel;";
+	action = "_f = parseNumber(ctrlText IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID);  if ((_f >= TF_MIN_SW_FREQ) and (_f <= TF_MAX_SW_FREQ)) then {[TF_sw_dialog_radio, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setSwFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_SW_FREQ, TF_MAX_SW_FREQ]}; call TFAR_fnc_updateSWDialogToChannel;";
 };
 class clear: HiddenButton
 {
@@ -75,7 +75,7 @@ class clear: HiddenButton
 	w = 0.0249375 * safezoneW;
 	h = 0.0280062 * safezoneH;
 	tooltip = $STR_clear_frequency;
-	action = "ctrlSetText [IDC_ANPRC148JEM_EDIT, '']; ctrlSetFocus ((findDisplay IDD_ANPRC148JEM_RADIO_DIALOG) displayCtrl IDC_ANPRC148JEM_EDIT);";
+	action = "ctrlSetText [IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_ANPRC148JEM_RADIO_DIALOG_ID) displayCtrl IDC_ANPRC148JEM_RADIO_DIALOG_EDIT_ID);";
 };
 class edit: RscEditLCD
 {

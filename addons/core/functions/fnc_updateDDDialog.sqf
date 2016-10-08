@@ -20,7 +20,7 @@
 */
 
 private ["_depth", "_depthText"];
-ctrlSetText [IDC_DIVER_RADIO_EDIT, TF_dd_frequency];
+ctrlSetText [IDC_DIVER_RADIO_EDIT_ID, TF_dd_frequency];
 _depth = round (((eyepos TFAR_currentUnit) select 2) * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER;
 _depthText =  format["%1m", _depth];
-ctrlSetText [IDC_DIVER_RADIO_DEPTH_EDIT, _depthText];
+ctrlSetText [IDC_DIVER_RADIO_DEPTH_ID, _depthText];

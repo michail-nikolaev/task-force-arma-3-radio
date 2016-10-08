@@ -32,7 +32,7 @@ class bussole_radio_dialog
 	controlsBackground[] = { };
 	objects[] = { };
 	onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'bussole_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl IDD_BACKGROUND) ctrlSetText '\z\tfar\addons\backpacks\bussole\ui\bussole_n.paa';};";
+	onLoad = "if(sunOrMoon < 0.2)then{((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText '\z\tfar\addons\backpacks\bussole\ui\bussole_n.paa';};";
 	controls[]=
 {
 	background,
@@ -101,7 +101,7 @@ class enter: HiddenButton
 	w = 0.0211406 * safezoneW;
 	h = 0.0286 * safezoneH;
 	tooltip = $STR_set_frequency;
-	action = "_f = parseNumber(ctrlText IDC_BUSSOLE_EDIT);if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setLrFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_ASIP_FREQ, TF_MAX_ASIP_FREQ]}; call TFAR_fnc_updateLRDialogToChannel;";
+	action = "_f = parseNumber(ctrlText IDC_BUSSOLE_RADIO_DIALOG_EDIT_ID);if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER)] call TFAR_fnc_setLrFrequency; call TFAR_fnc_hideHint;} else {hint formatText [localize 'STR_incorrect_frequency', TF_MIN_ASIP_FREQ, TF_MAX_ASIP_FREQ]}; call TFAR_fnc_updateLRDialogToChannel;";
 };
 class clear: HiddenButton
 {
@@ -111,7 +111,7 @@ class clear: HiddenButton
 	w = 0.020625 * safezoneW;
 	h = 0.0286 * safezoneH;
 	tooltip = $STR_clear_frequency;
-	action = "ctrlSetText [IDC_BUSSOLE_EDIT, '']; ctrlSetFocus ((findDisplay IDC_BUSSOLE_RADIO_DIALOG_ID) displayCtrl IDC_BUSSOLE_EDIT);";
+	action = "ctrlSetText [IDC_BUSSOLE_RADIO_DIALOG_EDIT_ID, '']; ctrlSetFocus ((findDisplay IDC_BUSSOLE_RADIO_DIALOG_ID) displayCtrl IDC_BUSSOLE_RADIO_DIALOG_EDIT_ID);";
 };
 class prev_channel: HiddenButton
 {

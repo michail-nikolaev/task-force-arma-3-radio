@@ -1,9 +1,9 @@
 #include "script_component.hpp"
 
 if !(call TFAR_fnc_haveProgrammator) then {
-    ((_this select 0) displayCtrl IDC_MICRODAGR_BACKGROUND) ctrlShow false;
-    ((_this select 0) displayCtrl IDC_MICRODAGR_CLEAR) ctrlShow false;
-    ((_this select 0) displayCtrl IDC_MICRODAGR_ENTER) ctrlShow false;
-    ((_this select 0) displayCtrl IDC_MICRODAGR_EDIT) ctrlShow false;
-    ((_this select 0) displayCtrl IDC_MICRODAGR_CHANNEL_EDIT) ctrlShow false;
+    ((_this select 0) displayCtrl TF_MICRODAGR_BACKGROUND_ID) ctrlShow false;
+    ((_this select 0) displayCtrl TF_MICRODAGR_CLEAR_ID) ctrlShow false;
+    ((_this select 0) displayCtrl TF_MICRODAGR_ENTER_ID) ctrlShow false;
+    ((_this select 0) displayCtrl TF_MICRODAGR_EDIT_ID) ctrlShow false;
+    ((_this select 0) displayCtrl TF_MICRODAGR_CHANNEL_EDIT_ID) ctrlShow false;
 };
