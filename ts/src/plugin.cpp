@@ -1087,7 +1087,7 @@ std::string processGameCommand(std::string command) {
 
 		if (!changed) //If nothing changed there is nothing to do.
 			return "OK";
-		std::string commandToBroadcast = command + "\t" + serverIdToData[ts3Functions.getCurrentServerConnectionHandlerID()].getMyNickname();
+		std::string commandToBroadcast = command + "\t" + serverIdToData[currentServerConnectionHandlerID].getMyNickname();
 		std::string frequency = tokens[2];
 		//convenience function to remove duplicate code
 		auto playRadioSound = [currentServerConnectionHandlerID, globalVolume, frequency](const char* fileNameWithoutExtension,
@@ -1152,6 +1152,23 @@ std::string processGameCommand(std::string command) {
 	}
 	if (tokens.size() == 2 && tokens[0] == "RELEASE_ALL_TANGENTS") {//async
 		ts3Functions.sendPluginCommand(ts3Functions.getCurrentServerConnectionHandlerID(), pluginID, command.c_str(), PluginCommandTarget_CURRENT_CHANNEL, NULL, NULL);
+		return "OK";
+	}
+	if (tokens.size() >= 3 && tokens[0] == "SETCFG") {//async
+		std::string key = tokens[1];
+		std::string value = tokens[2];
+		if (tokens.size() == 4) {
+			std::string type = tokens[3];
+			  if (type == "BOOL") {
+				  task_force_radio::config.set(key, value == "true" || value == "TRUE");
+			  }	else if (type == "SCALAR") {
+				  task_force_radio::config.set(key, helpers::parseArmaNumber(value));
+			  }	else {//unsupported type or STRING
+				  task_force_radio::config.set(key, value);
+			  }
+		} else {
+			task_force_radio::config.set(key, value);
+		}
 		return "OK";
 	}
 
