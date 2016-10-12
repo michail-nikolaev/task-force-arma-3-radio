@@ -7,6 +7,8 @@ task_force_radio::task_force_radio() {}
 
 task_force_radio::~task_force_radio() {}
 
+settings task_force_radio::config;//declaring the static config
+
 bool task_force_radio::isUpdateAvailable() {
 	DWORD dwBytes;
 	char ch;

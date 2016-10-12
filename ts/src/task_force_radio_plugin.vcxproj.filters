@@ -213,6 +213,8 @@
     <ClInclude Include="..\include\ts3_functions.h">
       <Filter>externals\teamspeak</Filter>
     </ClInclude>
+    <ClInclude Include="settings.hpp" />
+    <ClInclude Include="enum.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="externals">

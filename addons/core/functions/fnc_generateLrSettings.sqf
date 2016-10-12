@@ -29,11 +29,7 @@
     Example:
         _settings = call TFAR_fnc_generateLrSettings;
 */
-
 private _volume = 7;
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")) then {
-    getNumber(ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")
-};
 
 private _lr_settings = [0, _volume, [], 0, nil, -1, 0, nil, false, true];
 private _set = false;

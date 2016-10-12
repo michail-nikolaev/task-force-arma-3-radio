@@ -43,17 +43,25 @@ if (_activated) then {
         };
         _lrFreq set [2,_freqs];
 
+        //Make unique list of groups. In case player assigned module to multiple units of same group
+        private _groups = [];
         {
-            private _freqTest = (group _x) getVariable "tf_sw_frequency";
-            if (!isNil "_freqTest") then {hint format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];diag_log format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];};
-
-            _freqTest = (group _x) getVariable "tf_lr_frequency";
-            if (!isNil "_freqTest") then {hint format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];diag_log format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];};
-
-            (group _x) setVariable ["tf_sw_frequency", _swFreq, true];
-            (group _x) setVariable ["tf_lr_frequency", _lrFreq, true];
+            _groups pushBackUnique (group _x);
             true;
         } count _units;
+
+        {
+            private _freqTest = _x getVariable "tf_sw_frequency";
+            if (!isNil "_freqTest") then {hint format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.", (group _x)];diag_log format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];};
+
+            private _freqTest = _x getVariable "tf_lr_frequency";
+            if (!isNil "_freqTest") then {hint format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.", (group _x)];diag_log format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];};
+
+            _x setVariable ["tf_sw_frequency", _swFreq, true];
+            _x setVariable ["tf_lr_frequency", _lrFreq, true];
+
+            true;
+        } count _groups;
     };
 };
 
