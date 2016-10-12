@@ -139,7 +139,8 @@ waitUntil {sleep 0.1;!(isNull player)};
 TFAR_currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_ShowHint;
 
-
+// loadout cleaning on initialization to avoid duplicate radios ids
+[] call TFAR_fnc_loadoutReplaceProcess;
 
 TF_radio_request_mutex = false;
 
