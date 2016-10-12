@@ -343,5 +343,14 @@ if (player in (call BIS_fnc_listCuratorPlayers)) then {
         TFAR_currentUnit setVariable ["tf_controlled_unit",nil];
     };
 }] call CBA_fnc_addPlayerEventHandler;
+diag_log "ClientInitAddHandler";
+//onArsenal PostClose event
+[missionnamespace,"arsenalClosed", {
+diag_log "arsenalClosedHandler";
+    "PostClose" call TFAR_fnc_onArsenal;
+}] call bis_fnc_addScriptedEventhandler;
 
+
+//Macro to missionVariable sessionTracker needs that. Don't ask me why
+missionNamespace setVariable ["TF_ADDON_VERSION",TF_ADDON_VERSION];
 call TFAR_fnc_sessionTracker;

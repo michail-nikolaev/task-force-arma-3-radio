@@ -95,6 +95,7 @@ PREP(onAdditionalSwTangentReleased);
 PREP(onAdditionalSwTangentPressed);
 PREP(onAdditionalLRTangentReleased);
 PREP(onAdditionalLRTangentPressed);
+PREP(onArsenal);
 PREP(onDDTangentPressed);
 PREP(onDDTangentReleased);
 PREP(onDDTangentReleasedHack);
@@ -177,7 +178,6 @@ PREP(setChannelViaDialog);
 PREP(updateDDDialog);
 PREP(updateSWDialogToChannel);
 PREP(updateLRDialogToChannel);
-PREP(updateProgrammatorDialog);
 PREP(unableToUseHint);
 // V
 PREP(vehicleId);
