@@ -35,7 +35,11 @@ class CfgPatches {
     };
 };
 
-
+class Extended_PreStart_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_preStart));
+    };
+};
 
 #include "radio_ids.hpp"
 
@@ -52,6 +56,13 @@ class CfgWeapons {
 
 #include "CfgVehicles.hpp"
 #include "uiDefines.hpp"
+//This is here because uiDefines is #included from a script
+//having classes in there would cause errors
+class RscBackPicture;
+class RscEditLCD;
+class HiddenButton;
+class HiddenRotator;
+class HiddenFlip;
 #include "anprc148jem\ui\anprc148jem.ext"
 #include "anprc152\ui\anprc152.ext"
 #include "anprc154\ui\anprc154.ext"

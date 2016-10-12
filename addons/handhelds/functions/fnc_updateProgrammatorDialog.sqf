@@ -1,5 +1,6 @@
-#include "script_component.hpp"
-
+#include "..\uiDefines.hpp"
+//#TODO
+#TODO move to handhelds
 if !(call TFAR_fnc_haveProgrammator) then {
     ((_this select 0) displayCtrl IDC_MICRODAGR_BACKGROUND) ctrlShow false;
     ((_this select 0) displayCtrl IDC_MICRODAGR_CLEAR) ctrlShow false;
