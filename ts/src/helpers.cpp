@@ -110,10 +110,12 @@ std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(const std::string
 	std::vector<std::string> v = split(sub, ',');
 	for (const std::string& xs : v) {
 		std::vector<std::string> parts = split(xs.substr(1, xs.length() - 2), '|');
-		if (parts.size() == 3) {
+		if (parts.size() == 3 || parts.size() == 4) {
 			FREQ_SETTINGS settings;
 			settings.volume = parseArmaNumberToInt(parts[1]);
 			settings.stereoMode = parseArmaNumberToInt(parts[2]);
+			if (parts.size() == 4)
+				settings.radioClassname = parts[3];
 			result[parts[0]] = settings;
 		}
 	}

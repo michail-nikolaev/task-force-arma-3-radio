@@ -381,21 +381,6 @@ LISTED_INFO isOverLocalRadio(uint64 serverConnectionHandlerID, std::shared_ptr<C
 	result.waveZ = 1.0f;
 	if (senderData == NULL || myData == NULL) return result;
 
-	if (
-		!task_force_radio::config.get<bool>(Setting::full_duplex) &&
-		senderData->frequency.compare(serverIdToData[serverConnectionHandlerID].currentTransmittingFrequency)) {
-		/*
-		We are on half-duplex and currently transmitting on the incoming frequency. So we can't hear the other sender.
-		This creates a problem. As it doesn't make a difference between LR and SR radios
-		You can't hear with a LR radio, set to the same frequency as your SR, while transmitting on the SR radio.
-		But people shouldn't do that anyway as they would theoretically hear themselves.
-		(Which they currently can't as we are not checking if we receive on a radio when we are the sender)
-		Also this does only differentiate FREQ's not radios. So you can still hear on alternate Channel on the same radio while transmitting
-		*/
-		return result;
-	}
-
-
 	CriticalSectionLock lock(&serverDataCriticalSection);
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
 	TS3_VECTOR clientPosition = senderData->clientPosition;
@@ -445,13 +430,23 @@ LISTED_INFO isOverLocalRadio(uint64 serverConnectionHandlerID, std::shared_ptr<C
 	}
 
 	if (senderOnLRFrequency && myData->canUseLRRadio) {//to our LR
+		auto &frequencyInfo = serverIdToData[serverConnectionHandlerID].myLrFrequencies[senderData->frequency];
+		if (!task_force_radio::config.get<bool>(Setting::full_duplex) &&
+			frequencyInfo.radioClassname.compare(serverIdToData[serverConnectionHandlerID].currentTransmittingRadio)) {
+			return result;
+		}
 		result.on = LISTED_ON_LR;
-		result.volume = serverIdToData[serverConnectionHandlerID].myLrFrequencies[senderData->frequency].volume;
-		result.stereoMode = serverIdToData[serverConnectionHandlerID].myLrFrequencies[senderData->frequency].stereoMode;
+		result.volume = frequencyInfo.volume;
+		result.stereoMode = frequencyInfo.stereoMode;
 	} else if (senderOnSWFrequency && myData->canUseSWRadio) {//to our SW
+		auto &frequencyInfo = serverIdToData[serverConnectionHandlerID].mySwFrequencies[senderData->frequency];
+		if (!task_force_radio::config.get<bool>(Setting::full_duplex) &&
+			frequencyInfo.radioClassname.compare(serverIdToData[serverConnectionHandlerID].currentTransmittingRadio)) {
+			return result;
+		}
 		result.on = LISTED_ON_SW;
-		result.volume = serverIdToData[serverConnectionHandlerID].mySwFrequencies[senderData->frequency].volume;
-		result.stereoMode = serverIdToData[serverConnectionHandlerID].mySwFrequencies[senderData->frequency].stereoMode;
+		result.volume = frequencyInfo.volume;
+		result.stereoMode = frequencyInfo.stereoMode;
 	}
 	return result;
 }
@@ -1077,7 +1072,7 @@ std::string processGameCommand(std::string command) {
 		processSpeakers(tokens, currentServerConnectionHandlerID);
 		return "OK";
 	}
-	if (tokens.size() == 5 && tokens[0].substr(0, const_strlen("TANGENT")) == "TANGENT") {//async
+	if (tokens.size() >= 5 && tokens[0].substr(0, const_strlen("TANGENT")) == "TANGENT") {//async
 		bool pressed = (tokens[1] == "PRESSED");
 		bool longRange = (tokens[0] == "TANGENT_LR");
 		bool diverRadio = (tokens[0] == "TANGENT_DD");
@@ -1131,8 +1126,8 @@ std::string processGameCommand(std::string command) {
 					break;
 				default: break;
 			}
-			if (!task_force_radio::config.get<bool>(Setting::full_duplex)) {
-				serverIdToData[currentServerConnectionHandlerID].currentTransmittingFrequency = frequency;
+			if (!task_force_radio::config.get<bool>(Setting::full_duplex) && tokens.size() == 6) {
+				serverIdToData[currentServerConnectionHandlerID].currentTransmittingRadio = tokens[5];
 			}
 			//Force enable PTT
 			EnterCriticalSection(&tangentCriticalSection);
@@ -1164,6 +1159,9 @@ std::string processGameCommand(std::string command) {
 					playRadioSound("radio-sounds/ab/local_end", serverIdToData[currentServerConnectionHandlerID].myLrFrequencies);
 					break;
 				default: break;
+			}
+			if (!task_force_radio::config.get<bool>(Setting::full_duplex)) {
+				serverIdToData[currentServerConnectionHandlerID].currentTransmittingRadio = "";
 			}
 		}
 		return "OK";
