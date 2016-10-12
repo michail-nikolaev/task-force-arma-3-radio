@@ -20,6 +20,16 @@ class Extended_PostInit_EventHandlers {
 
 class Extended_DisplayLoad_EventHandlers { //From commy2
     class RscDisplayArsenal {
-        TFAR_ArsenalOpened = "diag_log 'EHARSENAL';'PreOpen' call TFAR_fnc_onArsenal";
+        //Actually gets called after units backpack was already replaced
+        TFAR_ArsenalOpened = "'PreOpen' call TFAR_fnc_onArsenal";
+    };
+};
+
+class RscListBox;
+class RscDisplayArsenal {
+    class Controls {
+        class ListBackpack : RscListBox {
+            onLoad = "'PrePreOpen' call TFAR_fnc_onArsenal"; //Called before PreOpen.
+        };
     };
 };
