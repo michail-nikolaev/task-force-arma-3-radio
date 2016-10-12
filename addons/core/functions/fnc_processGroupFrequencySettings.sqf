@@ -2,23 +2,22 @@
 
 /*
     Name: TFAR_fnc_processGroupFrequencySettings
-    
+
     Author(s):
         NKey
 
     Description:
         Sets frequency settings for groups.
-    
+
     Parameters:
         Nothing
-    
+
     Returns:
         Nothing
-    
+
     Example:
         call TFAR_fnc_processGroupFrequencySettings;
 */
-private ["_group_freq"];
 if (isNil "tf_same_sw_frequencies_for_side") then {
     if (!isNil "tf_same_sw_frequencies_for_side_server") then {
         tf_same_sw_frequencies_for_side = tf_same_sw_frequencies_for_side_server;
@@ -70,7 +69,7 @@ if (isNil "tf_freq_guer_dd") then {
 };
 
 {
-    _group_freq = _x getVariable "tf_sw_frequency";
+    private _group_freq = _x getVariable "tf_sw_frequency";
     if (isNil "_group_freq") then {
         if !(tf_same_sw_frequencies_for_side) then {
             _x setVariable ["tf_sw_frequency", call TFAR_fnc_generateSwSettings, true];

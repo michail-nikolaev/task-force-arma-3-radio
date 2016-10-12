@@ -1,16 +1,12 @@
 #include "script_component.hpp"
 
-
-private ["_result", "_s"];
-
 KK_fnc_inString = {
-    private ["_needleLen","_hay","_found"];
-    params [["_needle", "", [""]], ["_needle", "", [""]]];
+    params [["_needle", "", [""]], ["_haystack", "", [""]]];
     _haystack = toArray (_haystack);
-    _needleLen = count toArray _needle;
-    _hay = +_haystack;
+    private _needleLen = count toArray _needle;
+    private _hay = +_haystack;
     _hay resize _needleLen;
-    _found = false;
+    private _found = false;
     for "_i" from _needleLen to count _haystack do {
         if (toString _hay == _needle) exitWith {_found = true};
         _hay set [_needleLen, _haystack select _i];
@@ -20,7 +16,7 @@ KK_fnc_inString = {
     _found
 };
 
-_result = "";
+private _result = "";
 {
     if ((_x isKindOf "Static") or {_x isKindOf "AllVehicles"}) then {
         if (!(_x isKindOf "Lamps_Base_F") and {!(_x isKindOf "PowerLines_base_F")}) then {

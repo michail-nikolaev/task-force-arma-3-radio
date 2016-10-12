@@ -2,7 +2,7 @@
 
 /*
     Name: TFAR_fnc_radioToRequestCount
-    
+
     Author(s):
         NKey
         L-H
@@ -10,33 +10,29 @@
     Description:
         Searches through all the items assigned to and on the player and checks if it is a prototype radio
         and then creates an array of all the classnames of the prototype radios and returns it.
-    
+
     Parameters:
         BOOLEAN - Regardless of whether the radio is prototype or not, return it as a radio to be replaced.
-    
+
     Returns:
         ARRAY - List of all radio classes to be replaced.
-    
+
     Example:
         _radios = false call TFAR_fnc_radioToRequestCount;
 */
-private ["_to_remove", "_allRadios", "_personalRadio", "_riflemanRadio", "_defaultRadio", "_classes"];
+
 waitUntil {sleep 0.1;!(isNull TFAR_currentUnit)};
 
-_to_remove = [];
-_allRadios = _this;
+private _to_remove = [];
+private _allRadios = _this;
 
-_personalRadio = nil;
-_riflemanRadio = nil;
-
-_classes = call TFAR_fnc_getDefaultRadioClasses;
-_personalRadio = _classes select 1;
-_riflemanRadio = _classes select 2;
+private _classes = call TFAR_fnc_getDefaultRadioClasses;
+private _personalRadio = _classes select 1;
+private _riflemanRadio = _classes select 2;
+private _defaultRadio = _riflemanRadio;
 
 if ((TF_give_personal_radio_to_regular_soldier) or {leader TFAR_currentUnit == TFAR_currentUnit} or {rankId TFAR_currentUnit >= 2}) then {
     _defaultRadio = _personalRadio;
-} else {
-    _defaultRadio = _riflemanRadio;
 };
 
 TF_settingsToCopy = [];

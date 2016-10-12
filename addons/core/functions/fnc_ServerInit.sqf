@@ -20,9 +20,6 @@
         call TFAR_fnc_serverInit;
 */
 
-private ["_variableName", "_radio_request", "_responseVariableName", "_response", "_task_force_radio_used", "_last_check", "_allUnits"];
-
-
 TF_server_addon_version = TF_ADDON_VERSION;
 publicVariable "TF_server_addon_version";
 
@@ -32,7 +29,7 @@ TF_Radio_Count = [];
 
 while {true} do {
     call TFAR_fnc_processGroupFrequencySettings;
-    _allUnits = allUnits;
+    private _allUnits = allUnits;
     {
         _allUnits pushBack _x;
         true;
@@ -40,13 +37,13 @@ while {true} do {
 
     {
         if (isPlayer _x) then {
-            _variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
-            _radio_request = missionNamespace getVariable (_variableName);
+            private _variableName = "radio_request_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
+            private _radio_request = missionNamespace getVariable (_variableName);
             if !(isNil "_radio_request") then {
                 missionNamespace setVariable [_variableName, nil];
                 (owner (_x)) publicVariableClient (_variableName);
-                _responseVariableName = "radio_response_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
-                _response = [];
+                private _responseVariableName = "radio_response_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
+                private _response = [];
                 if (_radio_request isEqualType []) then {
                     {
                         private ["_radio", "_count"];
@@ -78,10 +75,10 @@ while {true} do {
                 missionNamespace setVariable [_responseVariableName, _response];
                 (owner (_x)) publicVariableClient (_responseVariableName);
             };
-            _task_force_radio_used = _x getVariable "tf_force_radio_active";
+            private _task_force_radio_used = _x getVariable "tf_force_radio_active";
             _variableName = "no_radio_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
             if (isNil "_task_force_radio_used") then {
-                _last_check = missionNamespace getVariable _variableName;
+                private _last_check = missionNamespace getVariable _variableName;
 
                 if (isNil "_last_check") then {
                     missionNamespace setVariable [_variableName, time];

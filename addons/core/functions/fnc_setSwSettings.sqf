@@ -22,11 +22,10 @@
         _settings set [0, 2]; // sets the active channel to 2
         [(call TFAR_fnc_activeSwRadio), _settings] call TFAR_fnc_setSwSettings;
 */
-private ["_variableName"];
 
 params ["_radio_id", "_value", ["_local", false, [true]]];
 
-_variableName = format["%1_settings", _radio_id];
+private _variableName = format["%1_settings", _radio_id];
 
 missionNamespace setVariable [_variableName, + _value];
 missionNamespace setVariable [_variableName + "_local", + _value];

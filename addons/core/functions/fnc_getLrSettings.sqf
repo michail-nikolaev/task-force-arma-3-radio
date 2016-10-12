@@ -21,11 +21,10 @@
     (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrSettings;
 */
 
-private ["_value", "_rc", "_radioType"];
-
 params ["_radio_object", "_radio_qualifier"];
 
-_value = _radio_object getVariable _radio_qualifier;
+private _value = _radio_object getVariable _radio_qualifier;
+private _radioType = [];
 
 if (_radio_object isKindOf "Bag_Base") then {
     _radioType = typeof _radio_object;
@@ -34,7 +33,7 @@ if (_radio_object isKindOf "Bag_Base") then {
     if (isNil "_radioType") then {
         _radioType = [typeof _radio_object, "tf_RadioType"] call TFAR_fnc_getConfigProperty;
         if ((isNil "_radioType") or {_radioType == ""}) then {
-            _air = (typeof(_radio_object) isKindOf "Air");
+            private _air = (typeof(_radio_object) isKindOf "Air");
             if ((_radio_object call TFAR_fnc_getVehicleSide) == west) then {
                 if (_air) then {
                     _radioType = TF_defaultWestAirborneRadio;
@@ -74,11 +73,10 @@ if (isNil "_value") then {
     if (TF_use_saved_lr_setting) then {
         TF_use_saved_lr_setting = false;
     };
-    _rc = _value select TF_CODE_OFFSET;
+    private _rc = _value select TF_CODE_OFFSET;
     if (isNil "_rc") then {
-        private ["_code", "_hasDefaultEncryption"];
-        _code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
-        _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
+        private _code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
+        private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
         if (_hasDefaultEncryption and {((TFAR_currentUnit call BIS_fnc_objectSide) != civilian)}) then {
             if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType} or {_radio_object call TFAR_fnc_getVehicleSide == TFAR_currentUnit call BIS_fnc_objectSide}) then {
                 _rc = missionNamespace getVariable format ["tf_%1_radio_code",(TFAR_currentUnit call BIS_fnc_objectSide)];

@@ -2,22 +2,22 @@
 
 /*
     Name: TFAR_fnc_getLrFrequency
-    
+
     Author(s):
         NKey
         L-H
 
     Description:
         Gets the frequency for the active channel.
-    
+
     Parameters:
         Array: Radio
             0: OBJECT - Radio object
             1: STRING - Radio ID
-    
+
     Returns:
         NUMBER: Frequency
-    
+
     Example:
         _frequency = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getLrFrequency;
 */

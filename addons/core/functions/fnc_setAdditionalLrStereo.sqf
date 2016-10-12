@@ -21,11 +21,9 @@
         [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 1] call TFAR_fnc_setAdditionalLrStereo;
 */
 
-private ["_settings"];
-
 params ["_radio_object", "_radio_qualifier", "_value"];
 
-_settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
+private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
 _settings set [TF_ADDITIONAL_STEREO_OFFSET, _value];
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 

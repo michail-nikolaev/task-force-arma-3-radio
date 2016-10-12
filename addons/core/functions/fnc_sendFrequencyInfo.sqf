@@ -19,20 +19,18 @@
         call TFAR_fnc_sendFrequencyInfo;
 */
 
-private ["_request","_result","_freq","_freq_lr","_freq_dd","_alive","_nickname","_isolated_and_inside","_can_speak","_depth","_globalVolume", "_voiceVolume", "_spectator", "_receivingDistanceMultiplicator", "_radios"];
-
 // send frequencies
-_freq = ["No_SW_Radio"];
-_freq_lr = ["No_LR_Radio"];
-_freq_dd = "No_DD_Radio";
+private _freq = ["No_SW_Radio"];
+private _freq_lr = ["No_LR_Radio"];
+private _freq_dd = "No_DD_Radio";
 
-_isolated_and_inside = TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside;
-_depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
-_can_speak = [_isolated_and_inside, _depth] call TFAR_fnc_canSpeak;
+private _isolated_and_inside = TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside;
+private _depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
+private _can_speak = [_isolated_and_inside, _depth] call TFAR_fnc_canSpeak;
 
 if (((call TFAR_fnc_haveSWRadio) or (TFAR_currentUnit != player)) and {[TFAR_currentUnit, _isolated_and_inside, _can_speak, _depth] call TFAR_fnc_canUseSWRadio}) then {
     _freq = [];
-    _radios = TFAR_currentUnit call TFAR_fnc_radiosList;
+    private _radios = TFAR_currentUnit call TFAR_fnc_radiosList;
     if (TFAR_currentUnit != player) then {
         _radios = _radios + (player call TFAR_fnc_radiosList);
     };
@@ -54,7 +52,7 @@ if (((call TFAR_fnc_haveSWRadio) or (TFAR_currentUnit != player)) and {[TFAR_cur
 };
 if (((call TFAR_fnc_haveLRRadio) or (TFAR_currentUnit != player)) and {[TFAR_currentUnit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio}) then {
     _freq_lr = [];
-    _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
+    private _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
     if (TFAR_currentUnit != player) then {
         _radios = _radios + (player call TFAR_fnc_lrRadiosList);
     };
@@ -77,19 +75,19 @@ if (((call TFAR_fnc_haveLRRadio) or (TFAR_currentUnit != player)) and {[TFAR_cur
 if ((call TFAR_fnc_haveDDRadio) and {[_depth, _isolated_and_inside] call TFAR_fnc_canUseDDRadio}) then {
     _freq_dd = TF_dd_frequency;
 };
-_alive = alive TFAR_currentUnit;
+private _alive = alive TFAR_currentUnit;
 if (_alive) then {
     TFAR_player_name = name player;
 };
 
-_nickname = TFAR_player_name;
-_globalVolume = TFAR_currentUnit getVariable ["tf_globalVolume",1.0];
-_voiceVolume = TFAR_currentUnit getVariable ["tf_voiceVolume",1.0];
-_spectator = TFAR_currentUnit getVariable ["tf_forceSpectator",false];
+private _nickname = TFAR_player_name;
+private _globalVolume = TFAR_currentUnit getVariable ["tf_globalVolume",1.0];
+private _voiceVolume = TFAR_currentUnit getVariable ["tf_voiceVolume",1.0];
+private _spectator = TFAR_currentUnit getVariable ["tf_forceSpectator",false];
 if (_spectator) then {
     _alive = false;
 };
-_receivingDistanceMultiplicator = TFAR_currentUnit getVariable ["tf_receivingDistanceMultiplicator",1.0];
+private _receivingDistanceMultiplicator = TFAR_currentUnit getVariable ["tf_receivingDistanceMultiplicator",1.0];
 //Async call will always return "OK"
-_request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12	%13~", str(_freq), str(_freq_lr), _freq_dd, _alive, TF_speak_volume_meters min TF_max_voice_volume, TF_dd_volume_level, _nickname, waves, TF_terrain_interception_coefficient, _globalVolume, _voiceVolume, _receivingDistanceMultiplicator, TF_speakerDistance];
+private _request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12	%13~", str(_freq), str(_freq_lr), _freq_dd, _alive, TF_speak_volume_meters min TF_max_voice_volume, TF_dd_volume_level, _nickname, waves, TF_terrain_interception_coefficient, _globalVolume, _voiceVolume, _receivingDistanceMultiplicator, TF_speakerDistance];
 _result = "task_force_radio_pipe" callExtension _request;
