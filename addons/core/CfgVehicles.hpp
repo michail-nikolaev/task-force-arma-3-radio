@@ -33,7 +33,6 @@ class CfgVehicles {
     			typeName = "BOOL";
     			defaultValue = 1;
     		};
-
     		class terrain_interception_coefficient {
     			displayName = "$STR_TFAR_Mod_TerrainInterceptionCoefficient";
     			description = "$STR_TFAR_Mod_TerrainInterceptionCoefficientTT";
@@ -52,7 +51,6 @@ class CfgVehicles {
     			typeName = "TEXT";
     			defaultValue = "123";
     		};
-
     		class same_sw_frequencies_for_side {
     			displayName = "$STR_TFAR_Mod_SameSWFrequencies";
     			description = "$STR_TFAR_Mod_SameSWFrequenciesTT";
@@ -62,6 +60,12 @@ class CfgVehicles {
     		class same_lr_frequencies_for_side {
     			displayName = "$STR_TFAR_Mod_SameLrFrequencies";
     			description = "$STR_TFAR_Mod_SameLrFrequenciesTT";
+    			typeName = "BOOL";
+    			defaultValue = 1;
+    		};
+            class full_duplex {
+    			displayName = "$STR_TFAR_Mod_FullDuplex";
+    			description = "$STR_TFAR_Mod_FullDuplexDescription";
     			typeName = "BOOL";
     			defaultValue = 1;
     		};

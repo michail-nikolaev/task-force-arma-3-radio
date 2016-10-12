@@ -32,7 +32,8 @@ if (_activated) then {
     TF_terrain_interception_coefficient = (_logic getVariable "terrain_interception_coefficient");
     tf_radio_channel_name = (_logic getVariable "radio_channel_name");
     tf_radio_channel_password = (_logic getVariable "radio_channel_password");
-
+    TF_full_duplex = (_logic getVariable "full_duplex");
+    
     if (isServer) then {
         tf_same_sw_frequencies_for_side = (_logic getVariable "same_sw_frequencies_for_side");
         tf_same_lr_frequencies_for_side = (_logic getVariable "same_lr_frequencies_for_side");

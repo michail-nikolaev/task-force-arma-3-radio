@@ -344,4 +344,6 @@ if (player in (call BIS_fnc_listCuratorPlayers)) then {
     };
 }] call CBA_fnc_addPlayerEventHandler;
 
+["full_duplex",TF_full_duplex] call TFAR_fnc_setPluginSettings;
+
 call TFAR_fnc_sessionTracker;

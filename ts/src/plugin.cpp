@@ -382,7 +382,7 @@ LISTED_INFO isOverLocalRadio(uint64 serverConnectionHandlerID, std::shared_ptr<C
 	if (senderData == NULL || myData == NULL) return result;
 
 	if (
-		task_force_radio::config.get<bool>(Setting::half_duplex) &&
+		!task_force_radio::config.get<bool>(Setting::full_duplex) &&
 		senderData->frequency.compare(serverIdToData[serverConnectionHandlerID].currentTransmittingFrequency)) {
 		/*
 		We are on half-duplex and currently transmitting on the incoming frequency. So we can't hear the other sender.
@@ -1131,7 +1131,7 @@ std::string processGameCommand(std::string command) {
 					break;
 				default: break;
 			}
-			if (task_force_radio::config.get<bool>(Setting::half_duplex)) {
+			if (!task_force_radio::config.get<bool>(Setting::full_duplex)) {
 				serverIdToData[currentServerConnectionHandlerID].currentTransmittingFrequency = frequency;
 			}
 			//Force enable PTT
