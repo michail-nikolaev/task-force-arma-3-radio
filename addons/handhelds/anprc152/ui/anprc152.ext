@@ -27,7 +27,7 @@ class anprc152_radio_dialog
     onUnload = "['OnRadioOpen', player, [player, TF_sw_dialog_radio, false, 'anprc152_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
     onLoad = QUOTE(
         if (sunOrMoon < 0.2) then {
-            ((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText QPATHTOF(anprc152\ui\152_n.paa);
+            ((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText QPATHTOF(anprc152\ui\152_n.paa);
         };
     );
     controls[]=
@@ -93,7 +93,7 @@ class enter: HiddenButton
     h = 0.017875 * safezoneH;
     tooltip = $STR_set_frequency;
     action = QUOTE(
-        _f = parseNumber(ctrlText IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);
+        _f = parseNumber(ctrlText IDC_ANPRC152_EDIT);
         if ((_f >= TF_MIN_SW_FREQ) and (_f <= TF_MAX_SW_FREQ)) then {
             [ARR_2(TF_sw_dialog_radio, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER))] call TFAR_fnc_setSwFrequency;
             call TFAR_fnc_hideHint;
@@ -112,8 +112,8 @@ class clear: HiddenButton
     h = 0.0198 * safezoneH;
     tooltip = $STR_clear_frequency;
     action = QUOTE(
-        ctrlSetText [ARR_2(IDC_ANPRC152_RADIO_DIALOG_EDIT_ID, '')];
-        ctrlSetFocus ((findDisplay IDC_ANPRC152_RADIO_DIALOG_ID) displayCtrl IDC_ANPRC152_RADIO_DIALOG_EDIT_ID);
+        ctrlSetText [ARR_2(IDC_ANPRC152_EDIT, '')];
+        ctrlSetFocus ((findDisplay IDD_ANPRC152_RADIO_DIALOG) displayCtrl IDC_ANPRC152_EDIT);
     );
 };
 class additional: HiddenButton

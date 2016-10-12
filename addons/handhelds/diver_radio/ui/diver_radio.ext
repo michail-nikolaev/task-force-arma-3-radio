@@ -52,7 +52,7 @@ class enter: HiddenButton
     h = 0.042502 * safezoneH;
     tooltip = $STR_set_frequency;
     action = QUOTE(
-        _f = parseNumber(ctrlText IDC_DIVER_RADIO_EDIT_ID);
+        _f = parseNumber(ctrlText IDC_DIVER_RADIO_EDIT);
         if ((_f >= TF_MIN_DD_FREQ) and (_f <= TF_MAX_DD_FREQ)) then {
             TF_dd_frequency = str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER);
             call TFAR_fnc_hideHint;
@@ -70,8 +70,8 @@ class clear: HiddenButton
     w = 0.0334687 * safezoneW;
     h = 0.044202 * safezoneH;
     action = QUOTE(
-        ctrlSetText [ARR_2(IDC_DIVER_RADIO_EDIT_ID, '')];
-        ctrlSetFocus ((findDisplay IDC_DIDER_RADIO_DIALOG_ID) displayCtrl IDC_DIVER_RADIO_EDIT_ID);
+        ctrlSetText [ARR_2(IDC_DIVER_RADIO_EDIT, '')];
+        ctrlSetFocus ((findDisplay IDD_DIVER_RADIO_DIALOG) displayCtrl IDC_DIVER_RADIO_EDIT);
     );
     tooltip = $STR_clear_frequency;
 };

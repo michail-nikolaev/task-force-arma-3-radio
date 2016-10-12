@@ -35,7 +35,7 @@ class rt1523g_radio_dialog
     onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'rt1523g_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
     onLoad = QUOTE(
         if (sunOrMoon < 0.2) then {
-            ((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText QPATHTOF(rt1523g\ui\rt1523g_n.paa);
+            ((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText QPATHTOF(rt1523g\ui\rt1523g_n.paa);
         };
     );
     controls[]=
@@ -111,7 +111,7 @@ class clear: HiddenButton
     tooltip = $STR_clear_frequency;
     action = QUOTE(
         ctrlSetText [ARR_2(IDC_RT1523G_EDIT, '')];
-        ctrlSetFocus ((findDisplay IDC_RT1523G_RADIO_DIALOG_ID) displayCtrl IDC_RT1523G_EDIT);
+        ctrlSetFocus ((findDisplay IDD_RT1523G_RADIO_DIALOG) displayCtrl IDC_RT1523G_EDIT);
     );
 };
 class enter: HiddenButton

@@ -37,7 +37,7 @@ class mr3000_radio_dialog
     onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'mr3000_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
     onLoad = QUOTE(
         if (sunOrMoon < 0.2) then {
-            ((_this select 0) displayCtrl TF_BACKGROUND_ID) ctrlSetText QPATHTOF(mr3000\ui\mr3000_n.paa);
+            ((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText QPATHTOF(mr3000\ui\mr3000_n.paa);
         };
     );
     controls[]=
@@ -89,7 +89,7 @@ class enter: HiddenButton
     h = 0.0308069 * safezoneH;
     tooltip = $STR_set_frequency;
     action = QUOTE(
-        _f = parseNumber(ctrlText IDC_MR3000_RADIO_DIALOG_EDIT_ID);
+        _f = parseNumber(ctrlText IDC_MR3000_EDIT);
         if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {
             [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER))] call TFAR_fnc_setLrFrequency;
             call TFAR_fnc_hideHint;
@@ -108,8 +108,8 @@ class clear: HiddenButton
     h = 0.0308069 * safezoneH;
     tooltip = $STR_clear_frequency;
     action = QUOTE(
-        ctrlSetText [ARR_2(IDC_MR3000_RADIO_DIALOG_EDIT_ID, '')];
-        ctrlSetFocus ((findDisplay IDC_MR3000_RADIO_DIALOG_ID) displayCtrl IDC_MR3000_RADIO_DIALOG_EDIT_ID);
+        ctrlSetText [ARR_2(IDC_MR3000_EDIT, '')];
+        ctrlSetFocus ((findDisplay IDD_MR3000_RADIO_DIALOG) displayCtrl IDC_MR3000_EDIT);
     );
 };
 class next_channel: HiddenButton
