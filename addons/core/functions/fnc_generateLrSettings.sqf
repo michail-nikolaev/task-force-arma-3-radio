@@ -31,9 +31,6 @@
 */
 private ["_lr_frequencies", "_lr_settings", "_set", "_volume"];
 _volume = 7;
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")) then {
-    getNumber(ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")
-};
 
 _lr_settings = [0, _volume, [], 0, nil, -1, 0, nil, false, true];
 _set = false;

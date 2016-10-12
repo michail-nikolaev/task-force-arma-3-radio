@@ -178,7 +178,6 @@ PREP(setChannelViaDialog);
 PREP(updateDDDialog);
 PREP(updateSWDialogToChannel);
 PREP(updateLRDialogToChannel);
-PREP(updateProgrammatorDialog);
 PREP(unableToUseHint);
 // V
 PREP(vehicleId);
