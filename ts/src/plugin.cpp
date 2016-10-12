@@ -381,6 +381,21 @@ LISTED_INFO isOverLocalRadio(uint64 serverConnectionHandlerID, std::shared_ptr<C
 	result.waveZ = 1.0f;
 	if (senderData == NULL || myData == NULL) return result;
 
+	if (
+		task_force_radio::config.get<bool>(Setting::half_duplex) &&
+		senderData->frequency.compare(serverIdToData[serverConnectionHandlerID].currentTransmittingFrequency)) {
+		/*
+		We are on half-duplex and currently transmitting on the incoming frequency. So we can't hear the other sender.
+		This creates a problem. As it doesn't make a difference between LR and SR radios
+		You can't hear with a LR radio, set to the same frequency as your SR, while transmitting on the SR radio.
+		But people shouldn't do that anyway as they would theoretically hear themselves.
+		(Which they currently can't as we are not checking if we receive on a radio when we are the sender)
+		Also this does only differentiate FREQ's not radios. So you can still hear on alternate Channel on the same radio while transmitting
+		*/
+		return result;
+	}
+
+
 	CriticalSectionLock lock(&serverDataCriticalSection);
 	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
 	TS3_VECTOR clientPosition = senderData->clientPosition;
@@ -1115,6 +1130,9 @@ std::string processGameCommand(std::string command) {
 					playRadioSound("radio-sounds/ab/local_start", serverIdToData[currentServerConnectionHandlerID].myLrFrequencies);
 					break;
 				default: break;
+			}
+			if (task_force_radio::config.get<bool>(Setting::half_duplex)) {
+				serverIdToData[currentServerConnectionHandlerID].currentTransmittingFrequency = frequency;
 			}
 			//Force enable PTT
 			EnterCriticalSection(&tangentCriticalSection);
