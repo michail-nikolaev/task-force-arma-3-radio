@@ -289,7 +289,7 @@ tf_msSpectatorPerStepMax = 0.035;
 	
 	if (isMultiplayer) then {
 		call TFAR_fnc_sendVersionInfo;
-        TF_processPlayerPositionsHandler = addMissionEventHandler ["EachFrame", TFAR_fnc_processPlayerPositions];
+        TF_processPlayerPositionsHandler = [TFAR_fnc_processPlayerPositions] call CBA_fnc_addPerFrameHandler;
 	};
 };
 
