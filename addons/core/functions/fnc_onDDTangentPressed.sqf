@@ -2,18 +2,18 @@
 
 /*
     Name: TFAR_fnc_onDDTangentPressed
-    
+
     Author(s):
         NKey
 
     Description:
         Fired when the keybinding for DD is pressed.
-    
+
     Parameters:
-    
+
     Returns:
         BOOLEAN
-    
+
     Example:
         call TFAR_fnc_onDDTangentPressed;
 */

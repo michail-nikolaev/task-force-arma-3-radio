@@ -24,8 +24,7 @@
         ["CH: %1"] call TFAR_fnc_updateLRDialogToChannel;
 */
 
-private ["_channelText", "_formatText"];
-_formatText = "CH:%1";
+private _formatText = "CH:%1";
 
 if ((_this isEqualType []) and {count _this > 0} and  {(_this select 0) isEqualType ""}) then {
     _formatText = _this select 0;
@@ -36,5 +35,5 @@ if ((TF_lr_dialog_radio call TFAR_fnc_getAdditionalLrChannel) == (TF_lr_dialog_r
 };
 
 ctrlSetText [LR_EDIT, TF_lr_dialog_radio call TFAR_fnc_getLrFrequency];
-_channelText =  format[_formatText, (TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1];
+private _channelText =  format[_formatText, (TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1];
 ctrlSetText [LR_CHANNEL, _channelText];

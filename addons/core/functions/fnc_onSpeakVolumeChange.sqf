@@ -1,8 +1,7 @@
 #include "script_component.hpp"
 
-private["_localName", "_hintText"];
 if (alive TFAR_currentUnit) then {
-    _localName = "STR_voice_normal";
+    private _localName = "STR_voice_normal";
     if (TF_speak_volume_level == "Whispering") then {
         TF_speak_volume_level = "normal";
         TF_speak_volume_meters = 20;
@@ -18,7 +17,7 @@ if (alive TFAR_currentUnit) then {
             _localName = localize "STR_voice_whispering";
         }
     };
-    _hintText = format[localize "STR_voice_volume", _localName];
+    private _hintText = format[localize "STR_voice_volume", _localName];
     [parseText (_hintText), 5] call TFAR_fnc_showHint;
     //							unit, range
     ["OnSpeakVolume", TFAR_currentUnit, [TFAR_currentUnit, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;

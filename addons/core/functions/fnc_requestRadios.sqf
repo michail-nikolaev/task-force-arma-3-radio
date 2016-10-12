@@ -20,23 +20,21 @@
     Example:
         spawn TFAR_fnc_requestRadios;
 */
-private ["_radiosToRequest", "_variableName", "_responseVariableName", "_response", "_fnc_CopySettings"];
 
-_fnc_CopySettings = {
-    private ["_source", "_destination", "_variableName", "_localSettings"];
-    if ((_this select 0) > (_this select 1)) then {
-        if ([(_this select 2), TF_settingsToCopy select (_this select 1)] call TFAR_fnc_isSameRadio) then {
-            _source = TF_settingsToCopy select (_this select 1);
-            _variableName = format["%1_settings_local", _source];
-            _localSettings = missionNamespace getVariable _variableName;
+private _fnc_CopySettings = {
+    params ["_settingsCount", "_copyIndex", "_destination"];
+
+    if (_settingsCount > _copyIndex) then {
+        if ([_destination, TF_settingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
+            private _source = TF_settingsToCopy select _copyIndex;
+            private _variableName = format["%1_settings_local", _source];
+            private _localSettings = missionNamespace getVariable _variableName;
             if !(isNil "_variableName") then {
-                _destination = (_this select 2);
                 [_destination, _localSettings, true] call TFAR_fnc_setSwSettings;
             };
-            _copyIndex = _copyIndex + 1;
         };
     };
-    ((_this select 1) + 1)
+    (_copyIndex + 1)
 };
 
 waitUntil {
@@ -46,25 +44,23 @@ waitUntil {
 
 if ((time - TF_last_request_time > 3) or {_this}) then {
     TF_last_request_time = time;
-    _variableName = "radio_request_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
-    _radiosToRequest = _this call TFAR_fnc_radioToRequestCount;
+    private _variableName = "radio_request_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
+    private _radiosToRequest = _this call TFAR_fnc_radioToRequestCount;
 
     if ((count _radiosToRequest) > 0) then {
         missionNamespace setVariable [_variableName, _radiosToRequest];
-        _responseVariableName = "radio_response_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
+        private _responseVariableName = "radio_response_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
         missionNamespace setVariable [_responseVariableName, nil];
         publicVariableServer _variableName;
         [parseText(localize ("STR_wait_radio")), 10] call TFAR_fnc_ShowHint;
 
         waitUntil {!(isNil _responseVariableName)};
-        _response = missionNamespace getVariable _responseVariableName;
-        private "_copyIndex";
-        _copyIndex = 0;
+        private _response = missionNamespace getVariable _responseVariableName;
+        private _copyIndex = 0;
         if (_response isEqualType []) then {
-            private ["_radioCount","_settingsCount", "_startIndex"];
-            _radioCount = count _response;
-            _settingsCount = count TF_SettingsToCopy;
-            _startIndex = 0;
+            private _radioCount = count _response;
+            private _settingsCount = count TF_SettingsToCopy;
+            private _startIndex = 0;
             if (_radioCount > 0) then {
                 if (TF_first_radio_request) then {
                     TF_first_radio_request = false;

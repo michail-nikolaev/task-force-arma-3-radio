@@ -19,17 +19,15 @@
         _copilot = (vehicle player) call TFAR_fnc_getCopilot;
 */
 
-private ["_copilotTurret","_turretNumber","_turrets","_i","_turretConfigPath"];
-
 // default co-pilot turret
-_copilotTurret = 0;
+private _copilotTurret = 0;
 
 // if this is a helicopter, find the turret number that has isCopilot set to 1
 if (_this isKindOf "Helicopter") then {
-    _turretNumber = -1;
+    private _turretNumber = -1;
     _copilotTurret = -1;
     // get a list of all turrets
-    _turrets = configFile >> "CfgVehicles" >> (typeOf _this) >> "Turrets";
+    private _turrets = configFile >> "CfgVehicles" >> (typeOf _this) >> "Turrets";
 
     // iterate through the list of turrets
     for "_i" from 0 to (count _turrets -1) do {

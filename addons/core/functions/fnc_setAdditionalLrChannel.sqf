@@ -21,11 +21,9 @@
         [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 4] call TFAR_fnc_setAdditionalLrChannel;
 */
 
-private ["_settings"];
-
 params ["_radio_object", "_radio_qualifier", "_value"];
 
-_settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
+private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
 if ((_settings select TF_ADDITIONAL_CHANNEL_OFFSET) != _value) then {
     _settings set [TF_ADDITIONAL_CHANNEL_OFFSET, _value];
 } else {

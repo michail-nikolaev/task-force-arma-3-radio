@@ -1,11 +1,11 @@
 #include "script_component.hpp"
 
-private ["_menuDef","_positions","_active_radio","_submenu","_command","_pos","_menu","_position"];
-_menu = [];
+private _menu = [];
 if (count (TFAR_currentUnit call TFAR_fnc_lrRadiosList) > 1) then {
-    _menuDef = ["main", localize "STR_select_lr_radio", "buttonList", "", false];
-    _positions = [];
-    _pos = 0;
+    private _menuDef = ["main", localize "STR_select_lr_radio", "buttonList", "", false];
+    private _positions = [];
+    private _pos = 0;
+
     {
         _command = format["TF_lr_dialog_radio = (TFAR_currentUnit call TFAR_fnc_lrRadiosList) select %1;call TFAR_fnc_onLrDialogOpen;", _pos];
         _submenu = "";
@@ -28,8 +28,8 @@ if (count (TFAR_currentUnit call TFAR_fnc_lrRadiosList) > 1) then {
         _pos = _pos + 1;
         true;
     } count (TFAR_currentUnit call TFAR_fnc_lrRadiosList);
-    _menu =
-    [
+
+    _menu = [
         _menuDef,
         _positions
     ];

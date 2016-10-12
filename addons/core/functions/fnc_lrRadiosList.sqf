@@ -1,21 +1,20 @@
 #include "script_component.hpp"
 
-private ["_result", "_active_lr", "_vehicle_lr", "_backpack_lr", "_backpack_check", "_vehicle_check"];
-_result = [];
-_active_lr = nil;
+private _result = [];
+private _active_lr = nil;
 if (!isNil "TF_lr_active_radio") then {
     _active_lr = TF_lr_active_radio;
 };
-_vehicle_lr = _this call TFAR_fnc_vehicleLr;
+private _vehicle_lr = _this call TFAR_fnc_vehicleLr;
 
-_backpack_check = {
+private _backpack_check = {
     _backpack_lr = _this call TFAR_fnc_backpackLr;
     if (count _backpack_lr > 0) then {
         _result set [count _result, _backpack_lr];
     };
 };
 
-_vehicle_check = {
+private _vehicle_check = {
     if (count _this > 0) then {
         _result set [count _result, _this];
     };

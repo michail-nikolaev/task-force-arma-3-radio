@@ -24,11 +24,11 @@
     [(call TFAR_fnc_activeSwRadio), 1, "84.3"] call TFAR_fnc_SetChannelFrequency;
 */
 
-private ["_settings", "_lr"];
 params ["_radio", "_channel", "_frequency"];
 _channel = _channel - 1;
 
-_lr = if (_radio isEqualType "") then { false }else{true};
+private _lr = if (_radio isEqualType "") then { false }else{true};
+private _settings = nil;
 
 if (_lr) then {
     _settings = _radio call TFAR_fnc_getLrSettings;

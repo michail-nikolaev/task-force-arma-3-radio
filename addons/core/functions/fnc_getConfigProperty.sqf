@@ -21,12 +21,13 @@
 
     Example:
         [_LRradio, "tf_hasLrRadio", 0] call TFAR_fnc_getConfigProperty;
- */
-private ["_result", "_item", "_property", "_default"];
+*/
 
 params ["_item", "_property", ["_default", ""]];
 
 if ((isNil "_item") or {str(_item) == ""}) exitWith {_default};
+
+private _result = _default;
 if (isNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api")) then {
     _result = getNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api");
 }else{
@@ -38,9 +39,7 @@ if (isNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api")) then 
         }else{
             if (isText (configFile >> "CfgVehicles" >> _item >> _property)) then {
                 _result = getText (ConfigFile >> "CfgVehicles" >> _item >> _property);
-            } else {
-                _result = _default;
-            }
+            };
         };
     };
 };

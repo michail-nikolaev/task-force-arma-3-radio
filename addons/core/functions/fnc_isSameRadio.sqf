@@ -21,6 +21,7 @@
             hint "same parent radio";
         };
 */
+
 params ["_radio1", "_radio2"];
 
 if !(_radio1 call TFAR_fnc_isPrototypeRadio) then {
