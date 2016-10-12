@@ -23,10 +23,10 @@
     [(call TFAR_fnc_activeSwRadio), 1] call TFAR_fnc_GetChannelFrequency;
 */
 
-private ["_settings"];
 params ["_radio", "_channel"];
 
-_channel = _channel - 1;
+private _channel = _channel - 1;
+private _settings = nil;
 
 if (_radio isEqualType "") then {
     _settings = _radio call TFAR_fnc_getSwSettings;

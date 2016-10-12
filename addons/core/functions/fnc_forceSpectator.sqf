@@ -20,7 +20,8 @@
 
     Example:
         [player, true] call TFAR_fnc_forceSpectator;
- */
+*/
+
 params ["_player", "_value"];
 
 if (_value) then {

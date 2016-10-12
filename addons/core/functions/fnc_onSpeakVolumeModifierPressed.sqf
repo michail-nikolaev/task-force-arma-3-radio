@@ -18,10 +18,10 @@
     Example:
         ["yelling"] call TFAR_fnc_onSpeakVolumeModifierPressed;
 */
-private ["_modifierMode", "_allowedModes", "_localName", "_hintText"];
 
-_modifierMode = _this select 0;
-_allowedModes = ["yelling", "whispering"];
+params ["_modifierMode"];
+
+private _allowedModes = ["yelling", "whispering"];
 
 if(!alive TFAR_currentUnit || TF_tangent_sw_pressed || TF_tangent_lr_pressed || TF_tangent_dd_pressed) exitWith {false};
 if!(_modifierMode in _allowedModes) exitWith {false};
@@ -42,8 +42,8 @@ if(_modifierMode == "yelling") then {
 */
 call TFAR_fnc_sendFrequencyInfo;
 
-_localName = localize format["STR_voice_%1", _modifierMode];
-_hintText = format[localize "STR_voice_volume", _localName];
+private _localName = localize format["STR_voice_%1", _modifierMode];
+private _hintText = format[localize "STR_voice_volume", _localName];
 if (TF_volumeModifier_forceSpeech) then {
     [_hintText,format["TANGENT	PRESSED	%1	%2	%3","directSpeechFreq", 0, "directSpeech"],-1] call TFAR_fnc_ProcessTangent;
 } else {

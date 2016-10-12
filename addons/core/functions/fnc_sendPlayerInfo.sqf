@@ -21,12 +21,11 @@
     Example:
         [player] call TFAR_fnc_sendPlayerInfo;
 */
-private ["_request","_result", "_player", "_isNearPlayer", "_killSet"];
 
-params ["_unit"];
+params ["_player"];
 
-_request = _this call TFAR_fnc_preparePositionCoordinates;
-_result = "task_force_radio_pipe" callExtension _request;
+private _request = _this call TFAR_fnc_preparePositionCoordinates;
+private _result = "task_force_radio_pipe" callExtension _request;
 
 if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"}) then {
     [parseText (_result), 10] call TFAR_fnc_showHint;
@@ -51,8 +50,8 @@ if (_result == "SPEAKING") then {
         ["OnSpeak", _player, [_player, false]] call TFAR_fnc_fireEventHandlers;
     };
 };
-_killSet = _player getVariable "tf_killSet";
+private _killSet = _player getVariable "tf_killSet";
 if (isNil "_killSet") then {
-    _player addEventHandler ["Killed", {_unit call TFAR_fnc_sendPlayerKilled}];
+    _player addEventHandler ["Killed", {_player call TFAR_fnc_sendPlayerKilled}];
     _player setVariable ["tf_killSet", true];
 };

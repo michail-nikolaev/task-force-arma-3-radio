@@ -139,7 +139,8 @@ waitUntil {sleep 0.1;!(isNull player)};
 TFAR_currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_ShowHint;
 
-
+// loadout cleaning on initialization to avoid duplicate radios ids
+[] call TFAR_fnc_loadoutReplaceProcess;
 
 TF_radio_request_mutex = false;
 
@@ -230,7 +231,7 @@ tf_msSpectatorPerStepMax = 0.035;
 
     if (isMultiplayer) then {
         call TFAR_fnc_sendVersionInfo;
-        ["processPlayerPositionsHandler", "onEachFrame", "TFAR_fnc_processPlayerPositions"] call BIS_fnc_addStackedEventHandler;
+        [TFAR_fnc_processPlayerPositions] call CBA_fnc_addPerFrameHandler;
     };
 };
 
@@ -343,7 +344,16 @@ if (player in (call BIS_fnc_listCuratorPlayers)) then {
         TFAR_currentUnit setVariable ["tf_controlled_unit",nil];
     };
 }] call CBA_fnc_addPlayerEventHandler;
+diag_log "ClientInitAddHandler";
+//onArsenal PostClose event
+[missionnamespace,"arsenalClosed", {
+diag_log "arsenalClosedHandler";
+    "PostClose" call TFAR_fnc_onArsenal;
+}] call bis_fnc_addScriptedEventhandler;
 
 ["full_duplex",TF_full_duplex] call TFAR_fnc_setPluginSettings;
 
+
+//Macro to missionVariable sessionTracker needs that. Don't ask me why
+missionNamespace setVariable ["TF_ADDON_VERSION",TF_ADDON_VERSION];
 call TFAR_fnc_sessionTracker;

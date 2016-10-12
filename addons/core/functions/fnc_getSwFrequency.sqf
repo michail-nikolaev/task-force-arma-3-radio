@@ -2,20 +2,20 @@
 
 /*
     Name: TFAR_fnc_getSwFrequency
-    
+
     Author(s):
         NKey
         L-H
 
     Description:
         Gets the frequency for the active channel.
-    
+
     Parameters:
         STRING: Radio classname
-    
+
     Returns:
         NUMBER: Frequency
-    
+
     Example:
         _frequency = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwFrequency;
 */

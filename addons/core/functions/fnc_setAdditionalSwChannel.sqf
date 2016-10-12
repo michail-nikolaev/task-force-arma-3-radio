@@ -20,11 +20,9 @@
         [(call TFAR_fnc_activeSwRadio), 2] call TFAR_fnc_setAdditionalSwChannel;
 */
 
-private ["_settings"];
-
 params ["_radio_id", "_channel_to_set"];
 
-_settings = _radio_id call TFAR_fnc_getSwSettings;
+private _settings = _radio_id call TFAR_fnc_getSwSettings;
 if ((_settings select TF_ADDITIONAL_CHANNEL_OFFSET) != _channel_to_set) then {
     _settings set [TF_ADDITIONAL_CHANNEL_OFFSET, _channel_to_set];
 } else {

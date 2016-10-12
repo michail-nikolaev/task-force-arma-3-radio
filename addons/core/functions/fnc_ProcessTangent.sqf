@@ -26,11 +26,13 @@
 
         [_hintText, _request] call TFAR_fnc_ProcessTangent;
 */
-private "_timer";
-_timer = 2.5;
+
+private _timer = 2.5;
+
 if ((count _this) == 3) then{
     _timer = _this select 2;
 };
+
 [parseText (_this select 0), _timer] call TFAR_fnc_showHint;
 if (isMultiplayer) then {
     "task_force_radio_pipe" callExtension (_this select 1) + "~";//Async call will always return "OK"

@@ -25,11 +25,10 @@
         // SW
         _sw_frequencies = [TF_MAX_CHANNELS,TF_MAX_SW_FREQ,TF_MIN_SW_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
 */
-private ["_frequencies"];
 
 params ["_channels", "_max_freq", "_min_freq", "_freq_rp"];
 
-_frequencies = [];
+private _frequencies = [];
 
 for "_i" from 0 to _channels step 1 do {
     _frequencies set [_i, (str (round (((random (_max_freq - _min_freq)) + _min_freq) * _freq_rp) / _freq_rp))];

@@ -21,7 +21,6 @@
         [(call TFAR_fnc_activeSwRadio), "76.2"] call TFAR_fnc_setSwFrequency;
 */
 
-
 params ["_radio", "_freq"];
 
 [_radio, ((_radio call TFAR_fnc_getSwSettings) select ACTIVE_CHANNEL_OFFSET)+1, _freq] call TFAR_fnc_setChannelFrequency;

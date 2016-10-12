@@ -25,7 +25,6 @@
             hint format ["%1 is speaking %2", name _unit, _volume];
         }, player] call TFAR_fnc_addEventHandler;
 */
-private ["_handlers", "_alreadySet"];
 
 params ["_customID", "_eventID", "_code", "_unit"];
 
@@ -33,8 +32,9 @@ if (isNull _unit) then {
     _unit = missionNamespace;
 };
 _eventID = format ["TFAR_event_%1", _eventID];
-_handlers = _unit getVariable [_eventID, []];
-_alreadySet = -1;
+
+private _handlers = _unit getVariable [_eventID, []];
+private _alreadySet = -1;
 {
     if (_customID == (_x select 0)) exitWith {
         _alreadySet = _foreachIndex;

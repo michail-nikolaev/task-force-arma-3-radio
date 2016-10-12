@@ -21,13 +21,11 @@
         _defaultSWRadio = [side player, 1] call TFAR_fnc_getSideRadio;
         _defaultRiflemanRadio = [side player, 2] call TFAR_fnc_getSideRadio;
 */
-private ["_result", "_variable"];
 
 params ["_side", "_radioType"];
 
-_result = "";
-
-_variable = "TF_default" + str(_side);
+private _result = "";
+private _variable = "TF_default" + str(_side);
 
 switch (_radioType) do {
     case 0: {
@@ -36,7 +34,7 @@ switch (_radioType) do {
     case 1: {
         _result = missionNamespace getVariable (_variable + "PersonalRadio");
     };
-    case 2:	{
+    case 2: {
         _result = missionNamespace getVariable (_variable + "RiflemanRadio");
     };
 };

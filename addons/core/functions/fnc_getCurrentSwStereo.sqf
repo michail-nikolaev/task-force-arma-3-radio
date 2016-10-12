@@ -19,8 +19,7 @@
         _stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getCurrentSwStereo;
 */
 
-private ["_result"];
-_result = 0;
+private _result = 0;
 if ((_this call TFAR_fnc_getAdditionalSwChannel) == (_this call TFAR_fnc_getSwChannel)) then {
     _result = _this call TFAR_fnc_getAdditionalSwStereo;
 } else {
