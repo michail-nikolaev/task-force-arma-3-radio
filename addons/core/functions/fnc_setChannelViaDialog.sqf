@@ -32,11 +32,11 @@ private _radio = "";
 private _fnc_GetChannel = {};
 
 if (_lr) then {
-    _maxChannels = TF_MAX_LR_CHANNELS;
+    _maxChannels = TFAR_MAX_LR_CHANNELS;
     _radio = TF_lr_dialog_radio;
     _fnc_GetChannel = TFAR_fnc_getLrChannel;
 } else {
-    _maxChannels = TF_MAX_CHANNELS;
+    _maxChannels = TFAR_MAX_CHANNELS;
     _radio = TF_sw_dialog_radio;
     _fnc_GetChannel = TFAR_fnc_getSwChannel;
 };

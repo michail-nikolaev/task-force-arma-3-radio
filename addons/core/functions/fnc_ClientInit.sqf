@@ -25,43 +25,43 @@ if (isNil "tf_guer_radio_code") then {
     };
 };
 if (isNil "TF_defaultWestBackpack") then {
-    TF_defaultWestBackpack = "tf_rt1523g";
+    TF_defaultWestBackpack = "TFAR_rt1523g";
 };
 if (isNil "TF_defaultEastBackpack") then {
-    TF_defaultEastBackpack = "tf_mr3000";
+    TF_defaultEastBackpack = "TFAR_mr3000";
 };
 if (isNil "TF_defaultGuerBackpack") then {
-    TF_defaultGuerBackpack = "tf_anprc155";
+    TF_defaultGuerBackpack = "TFAR_anprc155";
 };
 
 if (isNil "TF_defaultWestPersonalRadio") then {
-    TF_defaultWestPersonalRadio = "tf_anprc152";
+    TF_defaultWestPersonalRadio = "TFAR_anprc152";
 };
 if (isNil "TF_defaultEastPersonalRadio") then {
-    TF_defaultEastPersonalRadio = "tf_fadak";
+    TF_defaultEastPersonalRadio = "TFAR_fadak";
 };
 if (isNil "TF_defaultGuerPersonalRadio") then {
-    TF_defaultGuerPersonalRadio = "tf_anprc148jem";
+    TF_defaultGuerPersonalRadio = "TFAR_anprc148jem";
 };
 
 if (isNil "TF_defaultWestRiflemanRadio") then {
-    TF_defaultWestRiflemanRadio = "tf_rf7800str";
+    TF_defaultWestRiflemanRadio = "TFAR_rf7800str";
 };
 if (isNil "TF_defaultEastRiflemanRadio") then {
-    TF_defaultEastRiflemanRadio = "tf_pnr1000a";
+    TF_defaultEastRiflemanRadio = "TFAR_pnr1000a";
 };
 if (isNil "TF_defaultGuerRiflemanRadio") then {
-    TF_defaultGuerRiflemanRadio = "tf_anprc154";
+    TF_defaultGuerRiflemanRadio = "TFAR_anprc154";
 };
 
 if (isNil "TF_defaultWestAirborneRadio") then {
-    TF_defaultWestAirborneRadio = "tf_anarc210";
+    TF_defaultWestAirborneRadio = "TFAR_anarc210";
 };
 if (isNil "TF_defaultEastAirborneRadio") then {
-    TF_defaultEastAirborneRadio = "tf_mr6000l";
+    TF_defaultEastAirborneRadio = "TFAR_mr6000l";
 };
 if (isNil "TF_defaultGuerAirborneRadio") then {
-    TF_defaultGuerAirborneRadio = "tf_anarc164";
+    TF_defaultGuerAirborneRadio = "TFAR_anarc164";
 };
 
 if (isNil "TF_terrain_interception_coefficient") then {
@@ -313,8 +313,8 @@ TFAR_previouscurrentUnit = nil;
     if (isNil "TF_server_addon_version") then {
         hintC (localize "STR_no_server");
     } else {
-        if (TF_server_addon_version != TF_ADDON_VERSION) then {
-            hintC format[localize "STR_different_version", TF_server_addon_version, TF_ADDON_VERSION];
+        if (TF_server_addon_version != TFAR_ADDON_VERSION) then {
+            hintC format[localize "STR_different_version", TF_server_addon_version, TFAR_ADDON_VERSION];
         };
     };
 };
@@ -353,5 +353,6 @@ diag_log "arsenalClosedHandler";
 
 
 //Macro to missionVariable sessionTracker needs that. Don't ask me why
-missionNamespace setVariable ["TF_ADDON_VERSION",TF_ADDON_VERSION];
+//#TODO maybe because line is too long for preprocessor
+missionNamespace setVariable ["TF_ADDON_VERSION",TFAR_ADDON_VERSION];
 call TFAR_fnc_sessionTracker;

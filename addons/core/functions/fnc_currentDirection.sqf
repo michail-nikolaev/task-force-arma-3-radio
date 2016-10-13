@@ -20,7 +20,7 @@
 */
 
 private _current_look_at = (screenToWorld [0.5,0.5]) vectorDiff (eyepos TFAR_currentUnit);
-private _current_look_at params ["_current_look_at_x", "_current_look_at_y", "_current_look_at_z"];
+_current_look_at params ["_current_look_at_x", "_current_look_at_y", "_current_look_at_z"];
 
 private _current_rotation_horizontal = 0;
 private _current_hyp_horizontal = sqrt(_current_look_at_x * _current_look_at_x + _current_look_at_y * _current_look_at_y);

@@ -73,7 +73,7 @@ if (isNil "_value") then {
     if (TF_use_saved_lr_setting) then {
         TF_use_saved_lr_setting = false;
     };
-    private _rc = _value select TF_CODE_OFFSET;
+    private _rc = _value select TFAR_CODE_OFFSET;
     if (isNil "_rc") then {
         private _code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
         private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
@@ -90,7 +90,7 @@ if (isNil "_value") then {
             };
         };
 
-        _value set [TF_CODE_OFFSET, _rc];
+        _value set [TFAR_CODE_OFFSET, _rc];
     };
     [_radio_object, _radio_qualifier, + _value] call TFAR_fnc_setLrSettings;
 };

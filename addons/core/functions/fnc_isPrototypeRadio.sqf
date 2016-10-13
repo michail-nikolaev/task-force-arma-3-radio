@@ -15,7 +15,7 @@
     BOOLEAN - True if prototype, false if actual radio.
 
     Example:
-    if ("tf_148jem" call TFAR_fnc_isPrototypeRadio) then {
+    if ("TFAR_anprc148jem" call TFAR_fnc_isPrototypeRadio) then {
         hint "Prototype";
     };
 */

@@ -53,11 +53,11 @@ class enter: HiddenButton
     tooltip = $STR_set_frequency;
     action = QUOTE(
         _f = parseNumber(ctrlText IDC_DIVER_RADIO_EDIT);
-        if ((_f >= TF_MIN_DD_FREQ) and (_f <= TF_MAX_DD_FREQ)) then {
-            TF_dd_frequency = str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER);
+        if ((_f >= TFAR_MIN_DD_FREQ) and (_f <= TFAR_MAX_DD_FREQ)) then {
+            TF_dd_frequency = str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER);
             call TFAR_fnc_hideHint;
         } else {
-            hint formatText [ARR_3(localize 'STR_incorrect_frequency', TF_MIN_DD_FREQ, TF_MAX_DD_FREQ)]
+            hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_DD_FREQ, TFAR_MAX_DD_FREQ)]
         };
         call TFAR_fnc_updateDDDialog;
     );
@@ -83,7 +83,7 @@ class edit: RscEditLCD
     y = 0.394595 * safezoneH + safezoneY;
     w = 0.0613594 * safezoneW;
     h = 0.0833038 * safezoneH;
-    font = "tf_font_dots";
+    font = "TFAR_font_dots";
     shadow = 2;
     moving = 1;
     canModify = 1;
@@ -107,7 +107,7 @@ class depth_edit: RscEditLCD
     y = 0.488099 * safezoneH + safezoneY;
     w = 0.0574531 * safezoneW;
     h = 0.0391018 * safezoneH;
-    font = "tf_font_segments";
+    font = "TFAR_font_segments";
     shadow = 1;
     moving = 1;
     canModify = 0;
