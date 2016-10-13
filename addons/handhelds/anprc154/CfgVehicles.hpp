@@ -1,13 +1,11 @@
-class Item_tf_anprc154: Item_Base_F {
-    scope = 2;
-    scopeCurator = 2;
+class Item_TFAR_anprc154: Item_Base_F {
+    scope = PUBLIC;
+    scopeCurator = PUBLIC;
     displayName =  "AN/PRC-154";
     author = "Nkey";
     vehicleClass = "Items";
     class TransportItems {
-        class tf_anprc154  {
-            name="tf_anprc154";
-            count=1;
-        };
+        MACRO_ADDITEM(TFAR_anprc154,1);
     };
 };
+HIDDEN_CLASS(Item_tf_anprc154 : Item_TFAR_anprc154); //#Deprecated dummy class for backwards compat

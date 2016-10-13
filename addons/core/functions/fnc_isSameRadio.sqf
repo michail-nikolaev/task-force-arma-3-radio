@@ -17,7 +17,7 @@
         BOOLEAN - same parent radio
 
     Example:
-        if([(call TFAR_fnc_activeSwRadio),"tf_fadak"] call TFAR_fnc_isSameRadio) then {
+        if([(call TFAR_fnc_activeSwRadio),"TFAR_fadak"] call TFAR_fnc_isSameRadio) then {
             hint "same parent radio";
         };
 */

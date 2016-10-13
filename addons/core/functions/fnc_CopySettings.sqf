@@ -20,7 +20,7 @@
     // LR - LR
     [(call TFAR_fnc_activeLrRadio),[(vehicle player), "driver"]] call TFAR_fnc_CopySettings;
     // SW - SW
-    [(call TFAR_fnc_activeSwRadio),"tf_anprc148jem_20"] call TFAR_fnc_CopySettings;
+    [(call TFAR_fnc_activeSwRadio),"TFAR_anprc148jem_20"] call TFAR_fnc_CopySettings;
 */
 
 params ["_source", "_destination"];
@@ -42,7 +42,7 @@ if (_isSLR) then {
         _settings = []+_settings;
         _support_additional = getNumber (configFile >> "CfgWeapons" >> _destination >> "tf_additional_channel");
         if ((isNil "_support_additional") or {_support_additional == 0}) then {
-            _settings set [TF_ADDITIONAL_CHANNEL_OFFSET, -1];
+            _settings set [TFAR_ADDITIONAL_CHANNEL_OFFSET, -1];
         };
         [_destination, _settings] call TFAR_fnc_SetSwSettings;
     } else {

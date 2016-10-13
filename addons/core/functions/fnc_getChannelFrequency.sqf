@@ -35,7 +35,7 @@ if (_radio isEqualType "") then {
 };
 
 if (!isNil "_settings") then {
-    ((_settings select TF_FREQ_OFFSET) select _channel)
+    ((_settings select TFAR_FREQ_OFFSET) select _channel)
 } else {
     "";
 };

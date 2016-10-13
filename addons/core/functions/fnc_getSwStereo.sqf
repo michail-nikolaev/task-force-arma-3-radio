@@ -21,7 +21,7 @@
 
 private _settings = _this call TFAR_fnc_getSwSettings;
 private _result = 0;
-if (count _settings > TF_SW_STEREO_OFFSET) then {
-    _result = _settings select TF_SW_STEREO_OFFSET;
+if (count _settings > TFAR_SW_STEREO_OFFSET) then {
+    _result = _settings select TFAR_SW_STEREO_OFFSET;
 };
 _result

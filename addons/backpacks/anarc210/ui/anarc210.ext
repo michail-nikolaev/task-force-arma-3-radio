@@ -77,7 +77,7 @@ class anarc210_radio_dialog
         h = 0.0658147 * safezoneH;
         colorBackground[] = {0,0,0,0};
         colorText[] = {1,0.5,0,1};
-        font = "tf_font_segments";
+        font = "TFAR_font_segments";
         shadow = 1;
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 32) * 1.2)";
         tooltip = $STR_current_channel;
@@ -93,7 +93,7 @@ class anarc210_radio_dialog
         h = 0.0682 * safezoneH;
         colorBackground[] = {0,0,0,0};
         colorText[] = {1,0.5,0,1};
-        font = "tf_font_segments";
+        font = "TFAR_font_segments";
         shadow = 1;
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 32) * 1.2)";
         tooltip = $STR_current_freq;
@@ -109,11 +109,11 @@ class anarc210_radio_dialog
         tooltip = $STR_set_frequency;
         action = QUOTE(
             _f = parseNumber(ctrlText IDC_ANPRC210_EDIT);
-            if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {
-                [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER))] call TFAR_fnc_setLrFrequency;
+            if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {
+                [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))] call TFAR_fnc_setLrFrequency;
                 call TFAR_fnc_hideHint;
             } else {
-                hint formatText [ARR_3(localize 'STR_incorrect_frequency', TF_MIN_ASIP_FREQ, TF_MAX_ASIP_FREQ)]
+                hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ)]
             };
             ["CH%1"] call TFAR_fnc_updateLRDialogToChannel;
         );
@@ -149,7 +149,7 @@ class anarc210_radio_dialog
         w = 0.03 * safezoneW;
         h = 0.05 * safezoneH;
         action = QUOTE(
-            [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO)] call TFAR_fnc_setLrStereo;
+            [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;
             [TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;
         );
         tooltip = $STR_stereo_settings;
