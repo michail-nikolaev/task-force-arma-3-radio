@@ -12,7 +12,7 @@
             createDialog _dialog_to_open;
             TFAR_currentUnit playAction "Gear";
             call compile _dialog_update;
-            ["OnRadioOpen", player, [player, TF_lr_dialog_radio, true, _dialog_to_open, true]] call TFAR_fnc_fireEventHandlers;
+            ["OnRadioOpen", [player, TF_lr_dialog_radio, true, _dialog_to_open, true]] call TFAR_fnc_fireEventHandlers;
         };
     };
 };

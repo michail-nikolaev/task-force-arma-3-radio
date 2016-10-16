@@ -4,35 +4,29 @@
     Name: TFAR_fnc_removeEventHandler
 
     Author(s):
-        L-H
+        L-H, Dedmen
 
     Description:
-        Removes an event from a unit/global
+        Removes an EventHandler
 
     Parameters:
         0: STRING - ID for custom handler
         1: STRING - ID for event
-        2: OBJECT - Unit to add the event to, ObjNull to add globally.
-
     Returns:
         NOTHING
 
     Example:
-        ["MyID", "OnSpeak", player] call TFAR_fnc_removeEventHandler;
+        ["MyID", "OnSpeak"] call TFAR_fnc_removeEventHandler;
 */
 
-params ["_customID", "_eventID", "_unit"];
+params ["_customID", "_eventName"];
 
-if (isNull _unit) then {
-    _unit = missionNamespace;
-};
-_eventID = format ["TFAR_event_%1", _eventID];
-private _handlers = _unit getVariable [_eventID, []];
+private _handlersHash = missionNamespace getVariable format["tfar_EHandlers_%1",_eventName];
+if (isNil "_handlersHash") exitWith {WARNING("Tried to delete non-existent Eventhandler");};
+
 {
-    if (_customID == (_x select 0)) exitWith {
-        _handlers = _handlers - _x;
-    };
-    true;
-} count _handlers;
-
-_unit setVariable [_eventID, _handlers];
+    [format ["TFAR_event_%1", _eventName], _x] call CBA_fnc_removeEventHandler;
+} forEach ([_handlersHash,_customID] call CBA_fnc_hashGet);
+[_handlersHash,_customID] call CBA_fnc_hashRem;
+//We don't setVariable here because we are editing by ref.
+//Could setVariable to nil of we just removed the last Handler.
