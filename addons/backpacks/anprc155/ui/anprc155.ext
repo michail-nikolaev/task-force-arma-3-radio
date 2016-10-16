@@ -22,7 +22,7 @@ class anprc155_radio_dialog
     movingEnable = 1;
     controlsBackground[] = { };
     objects[] = { };
-    onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'anprc155_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
+    onUnload = "['OnRadioOpen', [player, TF_lr_dialog_radio, true, 'anprc155_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
     onLoad = QUOTE(
         if(sunOrMoon < 0.2) then {
             ((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText QPATHTOF(anprc155\ui\155_n.paa);

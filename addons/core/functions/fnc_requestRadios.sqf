@@ -82,7 +82,7 @@ if ((time - TF_last_request_time > 3) or {_this}) then {
         };
         call TFAR_fnc_HideHint;
         //								unit, radios
-        ["OnRadiosReceived", TFAR_currentUnit, [TFAR_currentUnit, _response]] call TFAR_fnc_fireEventHandlers;
+        ["OnRadiosReceived", [TFAR_currentUnit, _response]] call TFAR_fnc_fireEventHandlers;
     };
     TF_last_request_time = time;
 };
