@@ -34,6 +34,6 @@ if (TF_volumeModifier_forceSpeech) then {
     call TFAR_fnc_HideHint;
 };
 
-["OnSpeakVolumeModifierReleased", TFAR_currentUnit, [TFAR_currentUnit, TF_speak_volume_level, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
+["OnSpeakVolumeModifierReleased", [TFAR_currentUnit, TF_speak_volume_level, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
 
 true

@@ -11,26 +11,15 @@
 
     Parameters:
         0: STRING - ID for event
-        1: OBJECT - unit to fire events on.
         2: ANY - parameters
 
     Returns:
         NOTHING
 
     Example:
-        ["OnSpeak", player, [player, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
+        ["OnSpeak", [player, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
 */
 
-params ["_eventID", "_unit", "_parameters"];
+params ["_eventName", "_parameters"];
 
-_eventID = format ["TFAR_event_%1", _eventID];
-private _handlers = missionNamespace getVariable [_eventID, []];
-{
-    _parameters call (_x select 1);
-    true;
-} count _handlers;
-if (isNil "_unit" || {isNull _unit}) exitWith {};
-_handlers = _unit getVariable [_eventID, []];
-{
-    _parameters call (_x select 1);
-} foreach _handlers;
+[format["TFAR_event_%1", _eventName],_parameters] call CBA_fnc_localEvent;
