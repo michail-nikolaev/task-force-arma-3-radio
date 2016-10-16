@@ -22,7 +22,7 @@ class anarc164_radio_dialog
     idd = IDD_ANARC164_RADIO_DIALOG;
     movingEnable = 1;
     controlsBackground[] = { };
-    onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'anarc164_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
+    onUnload = "['OnRadioOpen', [player, TF_lr_dialog_radio, true, 'anarc164_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
     objects[] = { };
     controls[]=
     {

@@ -26,7 +26,7 @@ class fadak_radio_dialog
     movingEnable = 1;
     controlsBackground[] = { };
     objects[] = { };
-    onUnload = "['OnRadioOpen', player, [player, TF_sw_dialog_radio, false, 'fadak_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
+    onUnload = "['OnRadioOpen', [player, TF_sw_dialog_radio, false, 'fadak_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
     onLoad = QUOTE(
         if (sunOrMoon < 0.2) then {
             ((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText QPATHTOF(fadak\ui\fadak_n.paa);
