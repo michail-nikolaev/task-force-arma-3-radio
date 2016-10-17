@@ -92,6 +92,26 @@ public:
 
 };
 
+class ts3 {
+public:
+	static bool isConnected(uint64 serverConnectionHandlerID);;
+	static anyID getMyId(uint64 serverConnectionHandlerID) {
+		anyID myID = (anyID) -1;
+		if (!ts3::isConnected(serverConnectionHandlerID)) return myID;
+		DWORD error;
+		if ((error = ts3Functions.getClientID(serverConnectionHandlerID, &myID)) != ERROR_ok) {
+			log("Failure getting client ID", error);
+		}
+		return myID;
+	}
+
+
+};
+
+
+
+
+
 class CriticalSectionLock {
 	CRITICAL_SECTION* cs;
 public:

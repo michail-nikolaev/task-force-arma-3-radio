@@ -186,7 +186,7 @@ TF_sw_dialog_radio = nil;
 TF_last_speak_volume_level = TF_speak_volume_level;
 TF_last_speak_volume_meters = TF_speak_volume_meters;
 
-TF_lr_dialog_radio = nil;
+tf_lr_dialog_radio = nil;
 TF_lr_active_radio = nil;
 TF_lr_active_curator_radio = nil;
 
@@ -232,6 +232,7 @@ tf_msSpectatorPerStepMax = 0.035;
     if (isMultiplayer) then {
         call TFAR_fnc_sendVersionInfo;
         [TFAR_fnc_processPlayerPositions] call CBA_fnc_addPerFrameHandler;
+        [TFAR_fnc_sessionTracker,60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
     };
 };
 
@@ -350,9 +351,3 @@ diag_log "ClientInitAddHandler";
 diag_log "arsenalClosedHandler";
     "PostClose" call TFAR_fnc_onArsenal;
 }] call bis_fnc_addScriptedEventhandler;
-
-
-//Macro to missionVariable sessionTracker needs that. Don't ask me why
-//#TODO maybe because line is too long for preprocessor
-missionNamespace setVariable ["TF_ADDON_VERSION",TFAR_ADDON_VERSION];
-call TFAR_fnc_sessionTracker;

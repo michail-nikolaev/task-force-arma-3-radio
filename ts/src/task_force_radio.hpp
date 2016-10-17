@@ -10,7 +10,7 @@ public:
 
 
 	static bool isUpdateAvailable();
-	static void trackPiwik(std::string url);
+	static void trackPiwik(const std::vector<std::string>& piwikData);
 	static void createCheckForUpdateThread();
 	static int versionNumber(std::string versionString);
 
