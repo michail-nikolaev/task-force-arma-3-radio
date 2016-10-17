@@ -23,10 +23,10 @@
 params ["_radio_object", "_radio_qualifier"];
 
 private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
-if (_settings select TF_LR_SPEAKER_OFFSET) then {
-    _settings set [TF_LR_SPEAKER_OFFSET, false];
+if (_settings select TFAR_LR_SPEAKER_OFFSET) then {
+    _settings set [TFAR_LR_SPEAKER_OFFSET, false];
 } else {
-    _settings set [TF_LR_SPEAKER_OFFSET, true];
+    _settings set [TFAR_LR_SPEAKER_OFFSET, true];
     private _flag = TFAR_currentUnit getVariable "tf_lr_speakers";
     if (isNil "_flag") then {
         TFAR_currentUnit setVariable ["tf_lr_speakers", true, true];

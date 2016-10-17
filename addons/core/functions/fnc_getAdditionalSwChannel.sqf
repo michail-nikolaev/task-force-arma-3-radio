@@ -20,4 +20,4 @@
 */
 
 private _settings = _this call TFAR_fnc_getSwSettings;
-_settings select TF_ADDITIONAL_CHANNEL_OFFSET
+_settings select TFAR_ADDITIONAL_CHANNEL_OFFSET

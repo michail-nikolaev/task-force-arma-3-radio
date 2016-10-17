@@ -1,5 +1,5 @@
 class StageTI {
-	texture = "z	far\addons\backpacks\models\data\tf_bussole_ti_ca.paa";
+	texture = "z\tfar\addons\backpacks\models\data\tf_bussole_ti_ca.paa";
 };
 
 ambient[]={1,1,1,1};
@@ -12,7 +12,7 @@ PixelShaderID="Super";
 VertexShaderID="Super";
 class Stage1
 {
-	texture="z	far\addons\backpacks\models\data\tf_bussole_nohq.paa";
+	texture="z\tfar\addons\backpacks\models\data\tf_bussole_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -48,7 +48,7 @@ class Stage3
 };
 class Stage4
 {
-	texture="z	far\addons\backpacks\models\data\tf_bussole_as.paa";
+	texture="z\tfar\addons\backpacks\models\data\tf_bussole_as.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -60,7 +60,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="z	far\addons\backpacks\models\data\tf_bussole_smdi.paa";
+	texture="z\tfar\addons\backpacks\models\data\tf_bussole_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{

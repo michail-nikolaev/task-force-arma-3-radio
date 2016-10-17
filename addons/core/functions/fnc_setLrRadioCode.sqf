@@ -22,5 +22,5 @@
 params ["_radio_object", "_radio_qualifier", "_value"];
 
 private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
-_settings set [TF_CODE_OFFSET, _value];
+_settings set [TFAR_CODE_OFFSET, _value];
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;

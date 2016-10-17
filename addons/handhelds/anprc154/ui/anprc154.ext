@@ -114,7 +114,7 @@ class anprc154_radio_dialog
     	w = 0.0309222 * safezoneW;
     	h = 0.0395915 * safezoneH;
     	action = QUOTE(
-            [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TF_MAX_STEREO)] call TFAR_fnc_setSwStereo;
+            [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
             [TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;
         );
     	tooltip = $STR_stereo_settings;
@@ -169,7 +169,7 @@ class anprc154_radio_dialog
     	w = 0.0381562 * safezoneW;
     	h = 0.0528 * safezoneH;
     	moving = 1;
-    	font = "tf_font_dots";
+    	font = "TFAR_font_dots";
     	shadow = 2;
     	canModify = 0;
     	tooltip = $STR_current_channel;
@@ -183,7 +183,7 @@ class anprc154_radio_dialog
     	w = 0.0613594 * safezoneW;
     	h = 0.0528 * safezoneH;
     	moving = 1;
-    	font = "tf_font_dots";
+    	font = "TFAR_font_dots";
     	shadow = 2;
     	canModify = 1;
     	tooltip = $STR_current_freq;
@@ -197,7 +197,7 @@ class anprc154_radio_dialog
     	w = 0.0402187 * safezoneW;
     	h = 0.0517 * safezoneH;
     	tooltip = $STR_clear_frequency;
-    	font = "tf_font_dots";
+    	font = "TFAR_font_dots";
     	shadow = 2;
     	action = QUOTE(
             ctrlSetText [ARR_2(IDC_MICRODAGR_EDIT, '')];
@@ -213,15 +213,15 @@ class anprc154_radio_dialog
     	w = 0.04125 * safezoneW;
     	h = 0.055 * safezoneH;
     	tooltip = $STR_set_frequency;
-    	font = "tf_font_dots";
+    	font = "TFAR_font_dots";
     	shadow = 2;
     	action = QUOTE(
             _f = parseNumber(ctrlText IDC_ANPRC152_EDIT);
-            if ((_f >= TF_MIN_SW_FREQ) and (_f <= TF_MAX_SW_FREQ)) then {
-                [ARR_2(TF_sw_dialog_radio, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER))] call TFAR_fnc_setSwFrequency;
+            if ((_f >= TFAR_MIN_SW_FREQ) and (_f <= TFAR_MAX_SW_FREQ)) then {
+                [ARR_2(TF_sw_dialog_radio, str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))] call TFAR_fnc_setSwFrequency;
                 call TFAR_fnc_hideHint;
             } else {
-                hint formatText [ARR_3(localize 'STR_incorrect_frequency', TF_MIN_SW_FREQ, TF_MAX_SW_FREQ)]
+                hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)]
             };
             call TFAR_fnc_updateSWDialogToChannel;
         );

@@ -3,31 +3,31 @@
 class CfgPatches {
   class ADDON {
       units[] = {
-        "TF_NATO_Radio_Crate",
-        "TF_EAST_Radio_Crate",
-        "TF_IND_Radio_Crate",
-        "tf_rt1523g",
-        "tf_anprc155",
-        "tf_mr3000",
-        "tf_anarc164",
-        "tf_mr6000l",
-        "tf_anarc210",
-        "tf_mr3000_multicam",
-        "tf_anprc155_coyote",
-        "tf_rt1523g_sage",
-        "tf_rt1523g_green",
-        "tf_rt1523g_fabric",
-        "tf_rt1523g_big",
-        "tf_rt1523g_black",
-        "tf_rt1523g_big_bwmod",
-        "tf_mr3000_bwmod",
-        "tf_rt1523g_bwmod",
-        "tf_mr3000_bwmod_tropen",
-        "tf_rt1523g_big_bwmod_tropen",
-        "tf_rt1523g_big_rhs",
-        "tf_rt1523g_rhs",
-        "tf_mr3000_rhs",
-        "tf_bussole"
+        "TFAR_NATO_Radio_Crate",
+        "TFAR_EAST_Radio_Crate",
+        "TFAR_IND_Radio_Crate",
+        "TFAR_rt1523g",
+        "TFAR_anprc155",
+        "TFAR_mr3000",
+        "TFAR_anarc164",
+        "TFAR_mr6000l",
+        "TFAR_anarc210",
+        "TFAR_mr3000_multicam",
+        "TFAR_anprc155_coyote",
+        "TFAR_rt1523g_sage",
+        "TFAR_rt1523g_green",
+        "TFAR_rt1523g_fabric",
+        "TFAR_rt1523g_big",
+        "TFAR_rt1523g_black",
+        "TFAR_rt1523g_big_bwmod",
+        "TFAR_mr3000_bwmod",
+        "TFAR_rt1523g_bwmod",
+        "TFAR_mr3000_bwmod_tropen",
+        "TFAR_rt1523g_big_bwmod_tropen",
+        "TFAR_rt1523g_big_rhs",
+        "TFAR_rt1523g_rhs",
+        "TFAR_mr3000_rhs",
+        "TFAR_bussole"
     };
     weapons[] = {};
     requiredVersion = REQUIRED_VERSION;
@@ -49,7 +49,7 @@ class CfgFactionClasses {
         side = 7;
     };
     class BLU_G_F {
-        backpack_tf_faction_radio = "tf_rt1523g_sage";
+        backpack_tf_faction_radio = "TFAR_rt1523g_sage";
     };
 };
 

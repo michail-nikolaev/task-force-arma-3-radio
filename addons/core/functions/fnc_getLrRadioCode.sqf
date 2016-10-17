@@ -20,4 +20,4 @@
     (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrRadioCode;
 */
 
-((_this call TFAR_fnc_getLrSettings) select TF_CODE_OFFSET)
+((_this call TFAR_fnc_getLrSettings) select TFAR_CODE_OFFSET)

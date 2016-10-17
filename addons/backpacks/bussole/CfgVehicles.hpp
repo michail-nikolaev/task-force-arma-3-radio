@@ -1,10 +1,10 @@
-class tf_bussole: TFAR_Bag_Base {
+class TFAR_bussole: TFAR_Bag_Base {
     author = "Raspu";
     displayName = "Assault Pack Bussole";//#Stringtable
     descriptionShort = "Bussole long range radio 20km";//#Stringtable
     picture = QPATHTOF(bussole\ui\bussole_icon.paa);
-    scope = 2;
-    scopeCurator = 2;
+    scope = PUBLIC;
+    scopeCurator = PUBLIC;
     maximumLoad = 30;
     mass = 120;
     model=QPATHTOF(models\tf_bussole);
@@ -14,3 +14,4 @@ class tf_bussole: TFAR_Bag_Base {
     tf_dialog = "bussole_radio_dialog";
     tf_subtype = "digital_lr";
 };
+HIDDEN_CLASS(tf_bussole : TFAR_bussole); //#Deprecated dummy class for backwards compat
