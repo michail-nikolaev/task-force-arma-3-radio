@@ -627,12 +627,14 @@ void setMetaData(std::string data) {
 }
 
 std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includeVersion) {
-	std::string result = std::string("[I]Connected[/I] [B]")
-		+ (pipeConnected ? "Y" : "N") + "[/B] [I]Play[/I] [B]"
-		+ (inGame ? "Y" : "N")
-		+ (includeVersion ? std::string("[/B] [I]P:[/I][B]") + PLUGIN_VERSION + "[/B]" : "")
-		+ (includeVersion ? std::string("[I] A: [/I][B]") + serverIdToData.getAddonVersion(ts3Functions.getCurrentServerConnectionHandlerID()) + "[/B]" : "");
-	return result;
+	std::ostringstream stringStream;
+	stringStream << "Connected to Game: " << (pipeConnected ? "[B]Yes[/B]" : "[B]No[/B]") << std::endl;
+	stringStream << "Playing: " << (inGame ? "[B]Yes[/B]" : "[B]No[/B]") << std::endl;
+	if (includeVersion) {
+		stringStream << "Plugin version: [B]" << PLUGIN_VERSION <<"[/B]" << std::endl;
+		stringStream << "Addon version: [B]" << serverIdToData.getAddonVersion(ts3Functions.getCurrentServerConnectionHandlerID()) << "[/B]" << std::endl;
+	}
+	return stringStream.str();
 }
 
 void updateUserStatusInfo(bool pluginEnabled) {
@@ -723,6 +725,7 @@ void onGameEnd(uint64 serverConnectionHandlerID, anyID clientId) {
 	if ((error = ts3Functions.setClientSelfVariableAsString(serverConnectionHandlerID, CLIENT_NICKNAME, revertNickname.c_str())) != ERROR_ok) {
 		log("Error setting back client nickname", error);
 	}
+	ts3Functions.flushClientSelfUpdates(ts3Functions.getCurrentServerConnectionHandlerID(), NULL);
 }
 
 void onGameStart(uint64 serverConnectionHandlerID, anyID clientId) {
@@ -1037,6 +1040,7 @@ std::string processGameCommand(std::string command) {
 				log("Error setting client nickname", error);
 			} else {
 				serverIdToData[currentServerConnectionHandlerID].setMyOriginalNickname(myNickname);
+				ts3Functions.flushClientSelfUpdates(ts3Functions.getCurrentServerConnectionHandlerID(), NULL);
 			}
 		}
 		return "OK";
@@ -1339,9 +1343,6 @@ int pttCallback(void *arg, int argc, char **argv, char **azColName) {
  * If the function returns 1 on failure, the plugin will be unloaded again.
  */
 int ts3plugin_init() {
-#ifdef _WIN64
-	_set_FMA3_enable(0);
-#endif
 	if (ts3plugin_apiVersion() <= 20) {
 		ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE);
 	} else {	//Compatibility hack for API version > 21
@@ -1352,14 +1353,11 @@ int ts3plugin_init() {
 	InitializeCriticalSection(&serverDataCriticalSection);
 	InitializeCriticalSection(&tangentCriticalSection);
 
-	exitThread = FALSE;
+	exitThread = false;
 	if (isConnected(ts3Functions.getCurrentServerConnectionHandlerID())) {
 		updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
 	}
 
-	for (int q = 0; q < MAX_CHANNELS; q++) {
-		floatsSample[q] = new float[1];
-	}
 	threadPipeHandle = std::thread(&PipeThread);
 	threadService = std::thread(&ServiceThread);
 	task_force_radio::createCheckForUpdateThread();
@@ -1384,7 +1382,7 @@ void ts3plugin_shutdown() {
 	log("shutdown...");
 	if (inGame)
 		onGameEnd(ts3Functions.getCurrentServerConnectionHandlerID(), getMyId(ts3Functions.getCurrentServerConnectionHandlerID()));
-	exitThread = TRUE;
+	exitThread = true;
 	threadPipeHandle.join();
 	threadService.join();
 
@@ -1394,7 +1392,6 @@ void ts3plugin_shutdown() {
 	pipeConnected = inGame = false;
 	updateUserStatusInfo(false);
 	unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
-	exitThread = FALSE;
 
 	/* Free pluginID if we registered it */
 	if (pluginID) {

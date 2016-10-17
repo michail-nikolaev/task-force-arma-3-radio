@@ -6,6 +6,7 @@
 #include <math.h>
 #include <algorithm>
 #include <sstream>
+#include "server_radio_data.hpp"
    //#TODO swap channels and sampleCount parameters. Everywhere else sampleCount*channels is used.
 void helpers::applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume) {
 	if (directTalkingVolume == 0.0f) {
