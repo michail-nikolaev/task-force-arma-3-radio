@@ -20,7 +20,7 @@
         call TFAR_fnc_serverInit;
 */
 
-TF_server_addon_version = TF_ADDON_VERSION;
+TF_server_addon_version = TFAR_ADDON_VERSION;
 publicVariable "TF_server_addon_version";
 
 waitUntil {sleep 0.1;time > 0};

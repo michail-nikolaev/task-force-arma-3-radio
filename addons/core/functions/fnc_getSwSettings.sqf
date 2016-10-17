@@ -38,7 +38,7 @@ if (isNil "_value") then {
     if (TF_use_saved_sw_setting) then {
         TF_use_saved_sw_setting = false;
     };
-    private _rc = _value select TF_CODE_OFFSET;
+    private _rc = _value select TFAR_CODE_OFFSET;
     if (isNil "_rc") then {
         private _code = getText (ConfigFile >>  "CfgWeapons" >> _this >> "tf_encryptionCode");
         private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
@@ -56,7 +56,7 @@ if (isNil "_value") then {
                 _rc = missionNamespace getVariable [_code, ""];
             };
         };
-        _value set [TF_CODE_OFFSET, _rc];
+        _value set [TFAR_CODE_OFFSET, _rc];
     };
     [_this, _value, true] call TFAR_fnc_setSwSettings;
 };

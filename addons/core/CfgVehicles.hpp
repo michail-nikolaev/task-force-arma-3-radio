@@ -9,8 +9,8 @@ class CfgVehicles {
     	};
     };
 
-    class tfar_ModuleTaskForceRadioEnforceUsage: Module_F {
-    	scope = 2;
+    class TFAR_ModuleTaskForceRadioEnforceUsage: Module_F {
+    	scope = PUBLIC;
     	author = QUOTE(AUTHORS);
     	displayName = "$STR_TFAR_Mod_EnforceUsage";
     	category = "TFAR";
@@ -70,8 +70,8 @@ class CfgVehicles {
     		description = "$STR_TFAR_Mod_EnforceUsage_Description";
     	};
     };
-    class tfar_ModuleTaskForceRadio: Module_F {
-    	scope = 2;
+    class TFAR_ModuleTaskForceRadio: Module_F {
+    	scope = PUBLIC;
     	author = QUOTE(AUTHORS);
     	displayName = "$STR_TFAR_Mod_SideRadio";
     	category = "TFAR";
@@ -93,19 +93,19 @@ class CfgVehicles {
     			displayName = "$STR_TFAR_Mod_LR_Radio";
     			description = "$STR_TFAR_Mod_LR_RadioTT";
     			typeName = "TEXT";
-    			defaultValue = "tf_rt1523g";
+    			defaultValue = "TFAR_rt1523g";
     		};
     		class Radio {
     			displayName = "$STR_TFAR_Mod_PR_Radio";
     			description = "$STR_TFAR_Mod_PR_RadioTT";
     			typeName = "TEXT";
-    			defaultValue = "tf_anprc152";
+    			defaultValue = "TFAR_anprc154";
     		};
     		class RiflemanRadio {
     			displayName = "$STR_TFAR_Mod_Rifle_Radio";
     			description = "$STR_TFAR_Mod_Rifle_RadioTT";
     			typeName = "TEXT";
-    			defaultValue = "tf_rf7800str";
+    			defaultValue = "TFAR_rf7800str";
     		};
     		class PrFreq {
     			displayName = "$STR_TFAR_Mod_PRFrequency";
@@ -127,8 +127,8 @@ class CfgVehicles {
     	};
     };
 
-    class tfar_ModuleTaskForceRadioFrequencies: Module_F {
-    	scope = 2;
+    class TFAR_ModuleTaskForceRadioFrequencies: Module_F {
+    	scope = PUBLIC;
     	author = QUOTE(AUTHORS);
     	displayName = "$STR_TFAR_Mod_Frequencies";
     	category = "TFAR";

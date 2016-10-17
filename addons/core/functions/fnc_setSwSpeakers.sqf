@@ -22,10 +22,10 @@
 params ["_radio_id"];
 
 private _settings = _radio_id call TFAR_fnc_getSwSettings;
-if (_settings select TF_SW_SPEAKER_OFFSET) then {
-    _settings set [TF_SW_SPEAKER_OFFSET, false];
+if (_settings select TFAR_SW_SPEAKER_OFFSET) then {
+    _settings set [TFAR_SW_SPEAKER_OFFSET, false];
 } else {
-    _settings set [TF_SW_SPEAKER_OFFSET, true];
+    _settings set [TFAR_SW_SPEAKER_OFFSET, true];
     private _flag = TFAR_currentUnit getVariable "tf_sw_speakers";
     if (isNil "_flag") then {
         TFAR_currentUnit setVariable ["tf_sw_speakers", true, true];

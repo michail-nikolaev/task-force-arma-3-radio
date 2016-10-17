@@ -16,7 +16,7 @@
         Nothing
 
     Example:
-        "tf_anprc148jem_1" call TFAR_fnc_setActiveSwRadio;
+        "TFAR_anprc148jem_1" call TFAR_fnc_setActiveSwRadio;
 */
 private _old = (call TFAR_fnc_activeSwRadio);
 TFAR_currentUnit unassignItem _old;

@@ -1,5 +1,5 @@
 class CfgFontFamilies {
-    class tf_font_dots {
+    class TFAR_font_dots {
         fonts[] = {
             QPATHTOF(fonts\dots\dots6),
             QPATHTOF(fonts\dots\dots7),
@@ -36,7 +36,7 @@ class CfgFontFamilies {
         spaceWidth = 0.6;
         spacing = 0.15;
     };
-    class tf_font_segments {
+    class TFAR_font_segments {
         fonts[] = {
             QPATHTOF(fonts\segments\segments6),
             QPATHTOF(fonts\segments\segments7),

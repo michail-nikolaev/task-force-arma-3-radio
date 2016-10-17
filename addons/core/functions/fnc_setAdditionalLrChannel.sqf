@@ -24,10 +24,10 @@
 params ["_radio_object", "_radio_qualifier", "_value"];
 
 private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
-if ((_settings select TF_ADDITIONAL_CHANNEL_OFFSET) != _value) then {
-    _settings set [TF_ADDITIONAL_CHANNEL_OFFSET, _value];
+if ((_settings select TFAR_ADDITIONAL_CHANNEL_OFFSET) != _value) then {
+    _settings set [TFAR_ADDITIONAL_CHANNEL_OFFSET, _value];
 } else {
-    _settings set [TF_ADDITIONAL_CHANNEL_OFFSET, -1];
+    _settings set [TFAR_ADDITIONAL_CHANNEL_OFFSET, -1];
 };
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 
