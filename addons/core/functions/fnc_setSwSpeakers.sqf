@@ -34,4 +34,4 @@ if (_settings select TFAR_SW_SPEAKER_OFFSET) then {
 [_radio_id, _settings] call TFAR_fnc_setSwSettings;
 
 //									unit, radio ID,	speakers
-["OnSWspeakersSet", [TFAR_currentUnit, _radio_id, _settings select TF_SW_SPEAKER_OFFSET]] call TFAR_fnc_fireEventHandlers;
+["OnSWspeakersSet", [TFAR_currentUnit, _radio_id, _settings select TFAR_SW_SPEAKER_OFFSET]] call TFAR_fnc_fireEventHandlers;
