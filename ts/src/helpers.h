@@ -2,17 +2,21 @@
 #include <ts3_functions.h>
 #include <string>
 #include <vector>
-#include "server_radio_data.hpp"
 #include <Windows.h>
+#include "common.h"
+#include <map>
 int constexpr const_strlen(const char* str) {
 	return *str ? 1 + const_strlen(str + 1) : 0;
 }
+
+struct FREQ_SETTINGS;
+
 class helpers {
 public:
 	static void applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume);
 	static void applyILD(short * samples, int channels, size_t sampleCount, TS3_VECTOR position, float viewAngle);
 	static float sq(float x);
-	static float distance(TS3_VECTOR from, TS3_VECTOR to) ;
+	static float distance(TS3_VECTOR from, TS3_VECTOR to);
 	static float parseArmaNumber(const std::string& armaNumber);
 	static int parseArmaNumberToInt(const std::string& armaNumber);
 	static bool startsWith(const std::string& shouldStartWith, const std::string& startIn);
@@ -50,37 +54,33 @@ public:
 
 	template<class T>	  //#MAYBE audioHelpers?
 	static void processFilterStereo(short * samples, int channels, size_t sampleCount, float gain, T* filter) {
+		static thread_local size_t allocatedFloatsSample = 0;
+		static thread_local float* floatsSample[MAX_CHANNELS]{ nullptr };
+
+		if (allocatedFloatsSample < sampleCount)  //Not enough buffer, create new one
+		{
+			for (int j = 0; j < MAX_CHANNELS; j++) {
+				if (floatsSample[j])  //Will be nullptr if this is the first call in current thread
+					delete[] floatsSample[j];
+				floatsSample[j] = new float[sampleCount];
+			}
+			allocatedFloatsSample = sampleCount;
+		}
+
+		//Split channels into separate arrays
 		for (size_t i = 0; i < sampleCount * channels; i += channels) {
-			// all channels mixed
-			float mix[MAX_CHANNELS];
-			for (int j = 0; j < MAX_CHANNELS; j++) mix[j] = 0.0;
+			for (int j = 0; j < channels; j++) {
+				floatsSample[j][i / channels] = ((float) samples[i + j] / (float) SHRT_MAX);
+			}
+		};
 
-			// prepare mono for radio
-			short to_process[MAX_CHANNELS];
-			for (int j = 0; j < MAX_CHANNELS; j++) to_process[j] = 0;
+		filter->process<float>(sampleCount, floatsSample);
+
+		// put mixed output to stream
+		for (size_t i = 0; i < sampleCount * channels; i += channels) {
 
 			for (int j = 0; j < channels; j++) {
-				to_process[j] = samples[i + j];
-			}
-
-			// process radio filter
-			EnterCriticalSection(&serverDataCriticalSection);
-			for (int j = 0; j < channels; j++) {
-				floatsSample[j][0] = ((float) to_process[j] / (float) SHRT_MAX);
-			}
-			// skip other channels
-			for (int j = channels; j < MAX_CHANNELS; j++) {
-				floatsSample[j][0] = 0.0;
-			}
-			filter->process<float>(1, floatsSample);
-			for (int j = 0; j < channels; j++) {
-				mix[j] = floatsSample[j][0] * gain;
-			}
-			LeaveCriticalSection(&serverDataCriticalSection);
-
-			// put mixed output to stream		
-			for (int j = 0; j < channels; j++) {
-				float sample = mix[j];
+				float sample = floatsSample[j][i / channels] * gain;
 				short newValue;
 				if (sample > 1.0) newValue = SHRT_MAX;
 				else if (sample < -1.0) newValue = SHRT_MIN;
@@ -101,17 +101,20 @@ public:
 #include <chrono>
 class speedTest {
 public:
-	speedTest(const std::string & name_,bool willPrintOnDestruct_=true) :start(std::chrono::high_resolution_clock::now()), name(name_), willPrintOnDestruct(willPrintOnDestruct_){}
+	speedTest(const std::string & name_, bool willPrintOnDestruct_ = true) :start(std::chrono::high_resolution_clock::now()), name(name_), willPrintOnDestruct(willPrintOnDestruct_) {}
 	~speedTest() { if (willPrintOnDestruct) log(); }
 	void log() const {
 		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
-		log_string(name+" " + std::to_string(duration)+" microsecs", LogLevel_WARNING);
+		log_string(name + " " + std::to_string(duration) + " microsecs", LogLevel_WARNING);
 	}
 	void log(const std::string & text) {
 		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
-		log_string(name + "-" + text + " " + std::to_string(duration) + " microsecs", LogLevel_WARNING);
+		std::string message = name + "-" + text + " " + std::to_string(duration) + " microsecs";
+		log_string(message, LogLevel_WARNING);
+		OutputDebugStringA(message.c_str());
+		OutputDebugStringA("\n");
 		start += std::chrono::high_resolution_clock::now() - now; //compensate time for call to log func
 	}
 	void reset() {
