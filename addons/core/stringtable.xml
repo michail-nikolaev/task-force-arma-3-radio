@@ -998,6 +998,14 @@
                 <Spanish>Frec. RP</Spanish>
                 <Turkish>KR(Kişisel Radyo) Senkronize.</Turkish>
             </Key>
+            <Key ID="STR_TFAR_Mod_FullDuplex">
+                <English>Full-Duplex</English>
+                <German>Voll-Duplex</German>
+            </Key>
+            <Key ID="STR_TFAR_Mod_FullDuplexDescription">
+                <English>Allows Radios to simultaneously receive while transmitting.</English>
+                <German>Erlaubt Funkgeräten gleichzeitig zu senden und zu empfangen.</German>
+            </Key>
         </Container>
         <Container name="settings">
             <Key ID="STR_radio_default_radioVolume">
