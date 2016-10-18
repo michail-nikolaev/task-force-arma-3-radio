@@ -5,6 +5,7 @@ extern CRITICAL_SECTION serverDataCriticalSection;
 struct FREQ_SETTINGS {
 	int volume;
 	int stereoMode;
+	std::string radioClassname;
 };
 
 struct SPEAKER_DATA {
@@ -71,13 +72,17 @@ struct SERVER_RADIO_DATA {
 
 	int currentDataFrame;
 
-	SERVER_RADIO_DATA() {
+	std::string currentTransmittingRadio;//Used for half-duplex mode
+
+	SERVER_RADIO_DATA(): ddVolumeLevel(0), myVoiceVolume(0), alive(false), canSpeak(false), wavesLevel(0) {
 		tangentPressed = false;
 		currentDataFrame = INVALID_DATA_FRAME;
 		terrainIntersectionCoefficient = 7.0f;
 		globalVolume = receivingDistanceMultiplicator = 1.0f;
 		speakerDistance = 20.0f;
+		currentTransmittingRadio = "";
 	}
+
 private:
 	std::string myNickname;
 
