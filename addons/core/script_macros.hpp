@@ -18,7 +18,7 @@
 #endif
 #define PREP(fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)
 
-#define VARIABLE_DEFAULT(varName,defaultValue) if (isNil QUOTE(varName)) then {	varName = defaultValue; };
+#define VARIABLE_DEFAULT(varName,defaultValue) if (isNil QUOTE(varName)) then {varName = defaultValue;}
 
 //From https://github.com/acemod/ACE3
 #define MACRO_ADDWEAPON(WEAPON,COUNT) class _xx_##WEAPON { \
