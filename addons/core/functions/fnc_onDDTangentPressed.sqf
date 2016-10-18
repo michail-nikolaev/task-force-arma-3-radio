@@ -22,7 +22,7 @@ if (time - TF_last_dd_tangent_press > 0.1) then {
         if (call TFAR_fnc_isAbleToUseRadio) then {
             if ([TFAR_currentUnit call TFAR_fnc_eyeDepth, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside] call TFAR_fnc_canUseDDRadio) then {
                 ["OnBeforeTangent", [TFAR_currentUnit, "DD", 2, false, true]] call TFAR_fnc_fireEventHandlers;
-                [format[localize "STR_transmit", "DD", "1", TF_dd_frequency], format["TANGENT_DD	PRESSED	%1	0	dd	%2", TF_dd_frequency, typeOf _x], -1,] call TFAR_fnc_ProcessTangent;
+                [format[localize "STR_transmit", "DD", "1", TF_dd_frequency], format["TANGENT_DD	PRESSED	%1	0	dd	%2", TF_dd_frequency, typeOf _x], -1] call TFAR_fnc_ProcessTangent;
                 TF_tangent_dd_pressed = true;
                 //						unit, radio, radioType, additional, buttonDown
                 ["OnTangent", [TFAR_currentUnit, "DD", 2, false, true]] call TFAR_fnc_fireEventHandlers;
