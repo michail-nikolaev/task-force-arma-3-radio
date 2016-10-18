@@ -129,7 +129,7 @@ std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(const std::string
 		if (parts.size() == 3 || parts.size() == 4) {
 			FREQ_SETTINGS settings;
 			settings.volume = parseArmaNumberToInt(parts[1]);
-			settings.stereoMode = parseArmaNumberToInt(parts[2]);
+			settings.stereoMode = static_cast<stereoMode>(parseArmaNumberToInt(parts[2]));
 			if (parts.size() == 4)
 				settings.radioClassname = parts[3];
 			result[parts[0]] = settings;
@@ -161,21 +161,98 @@ std::pair<std::string, float> helpers::getVehicleDescriptor(std::string vechicle
 }
 
 extern struct TS3Functions ts3Functions;
+extern void log(const char* message, LogLevel level);
+extern void log(char* message, DWORD errorCode, LogLevel level = LogLevel_INFO);
+
 bool ts3::isConnected(uint64 serverConnectionHandlerID) {
-	DWORD error;
 	int result;
-	if ((error = ts3Functions.getConnectionStatus(serverConnectionHandlerID, &result)) != ERROR_ok) {
+	if (ts3Functions.getConnectionStatus(serverConnectionHandlerID, &result) != ERROR_ok) {
 		return false;
 	}
 	return result != 0;
 }
 
 anyID ts3::getMyId(uint64 serverConnectionHandlerID) {
-	anyID myID = (anyID) -1;
-	if (!ts3::isConnected(serverConnectionHandlerID)) return myID;
+	anyID myID(-1);
+	if (!isConnected(serverConnectionHandlerID)) return myID;
 	DWORD error;
 	if ((error = ts3Functions.getClientID(serverConnectionHandlerID, &myID)) != ERROR_ok) {
 		log("Failure getting client ID", error);
 	}
 	return myID;
+}
+
+bool ts3::isInChannel(uint64 serverConnectionHandlerID, anyID clientId, const char* channelToCheck) {
+	return getChannelName(serverConnectionHandlerID, clientId) == channelToCheck;
+}
+
+std::string ts3::getChannelName(uint64 serverConnectionHandlerID, anyID clientId) {
+	if (clientId == anyID(-1)) return "";
+	uint64 channelId;
+	DWORD error;
+	if ((error = ts3Functions.getChannelOfClient(serverConnectionHandlerID, clientId, &channelId)) != ERROR_ok) {
+		if (error != ERROR_client_invalid_id) //can happen if client disconnected while playing
+			log("Can't get channel of client", error);
+		return "";
+	}
+	char* channelName;
+	if ((error = ts3Functions.getChannelVariableAsString(serverConnectionHandlerID, channelId, CHANNEL_NAME, &channelName)) != ERROR_ok) {
+		log("Can't get channel name", error);
+		return "";
+	}
+	const std::string result(channelName);
+	ts3Functions.freeMemory(channelName);
+	return result;
+}
+
+bool ts3::isTalking(uint64 currentServerConnectionHandlerID, anyID myId, anyID playerId) {
+	int result = 0;
+	DWORD error;
+	if (playerId == myId) {
+		if ((error = ts3Functions.getClientSelfVariableAsInt(currentServerConnectionHandlerID, CLIENT_FLAG_TALKING, &result)) != ERROR_ok) {
+			log("Can't get talking status", error);
+		}
+	} else {
+		if ((error = ts3Functions.getClientVariableAsInt(currentServerConnectionHandlerID, playerId, CLIENT_FLAG_TALKING, &result)) != ERROR_ok) {
+			log("Can't get talking status", error);
+		}
+	}
+	return result != 0;
+}
+
+std::vector<anyID> ts3::getChannelClients(uint64 serverConnectionHandlerID, uint64 channelId) {
+	std::vector<anyID> result;
+	anyID* clients = nullptr;
+	if (ts3Functions.getChannelClientList(serverConnectionHandlerID, channelId, &clients) == ERROR_ok) {
+		int i = 0;
+		while (clients[i]) {
+			result.push_back(clients[i]);
+			i++;
+		}
+		ts3Functions.freeMemory(clients);
+	}
+	return result;
+}
+
+uint64 ts3::getCurrentChannel(uint64 serverConnectionHandlerID) {
+	uint64 channelId;
+	DWORD error;
+	if ((error = ts3Functions.getChannelOfClient(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), &channelId)) != ERROR_ok) {
+		log("Can't get current channel", error);
+	}
+	return channelId;
+}
+
+std::string ts3::getMyNickname(uint64 serverConnectionHandlerID) {
+	char* bufferForNickname;
+	DWORD error;
+	anyID myId = getMyId(serverConnectionHandlerID);
+	if (myId == anyID(-1)) return "";
+	if ((error = ts3Functions.getClientVariableAsString(serverConnectionHandlerID, myId, CLIENT_NICKNAME, &bufferForNickname)) != ERROR_ok) {
+		log("Error getting client nickname", error, LogLevel_DEBUG);
+		return "";
+	}
+	std::string result(bufferForNickname);
+	ts3Functions.freeMemory(bufferForNickname);
+	return result;
 }

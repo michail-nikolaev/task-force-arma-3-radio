@@ -1,12 +1,11 @@
 #pragma once
-#include <string>
+#include "common.h"
 #include <map>
 #include <ts3_functions.h>
-#include "common.h"
 #include "RadioEffect.h"
 #include "Clunk.h"
 #include <clunk/wav_file.h>
-#include "simpleSource\SimpleComp.h"
+#include "simpleSource/SimpleComp.h"
 #include <memory> //shared_ptr
 #include <unordered_map>
 

@@ -39,7 +39,7 @@ void playback_handler::onEditMixedPlaybackVoiceDataEvent(short * samples, int sa
 				inputPosition++;
 				fill = true;
 			}
-			outputPosition += max(channels - 2, 0);
+			outputPosition += std::max(channels - 2, 0);
 		}
 		it->second->cleanSamples(inputPosition);
 		if (it->second->isDone()) {
@@ -204,7 +204,7 @@ size_t playbackWavStereo::getSamples(const short* &data) {
 }
 
 size_t playbackWavStereo::cleanSamples(size_t sampleCount) {
-	size_t increase = min(sampleCount, sampleStore.size() - currentPosition);
+	size_t increase = std::min(sampleCount, sampleStore.size() - currentPosition);
 	currentPosition += increase;
 	if (isDone()) {
 		sampleStore.clear();
@@ -233,7 +233,7 @@ size_t playbackWavRaw::getSamples(const short*& data) {
 }
 
 size_t playbackWavRaw::cleanSamples(size_t sampleCount) {
-	size_t increase = min(sampleCount, sampleStore.size() - currentPosition);
+	size_t increase = std::min(sampleCount, sampleStore.size() - currentPosition);
 	currentPosition += increase;
 	if (isDone()) {
 		sampleStore.clear();
@@ -315,7 +315,7 @@ size_t playbackWavProcessing::getSamples(const short*& data) {
 }
 
 size_t playbackWavProcessing::cleanSamples(size_t sampleCount) {
-	size_t increase = min(sampleCount, sampleStore.size() - currentPosition);
+	size_t increase = std::min(sampleCount, sampleStore.size() - currentPosition);
 	currentPosition += increase;
 	if (isDone()) {
 		sampleStore.clear();

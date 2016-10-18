@@ -5,6 +5,8 @@
 #include <Windows.h>
 #include "common.h"
 #include <map>
+
+
 int constexpr const_strlen(const char* str) {
 	return *str ? 1 + const_strlen(str + 1) : 0;
 }
@@ -39,17 +41,17 @@ public:
 		}
 		return output;
 	}
-	static float volumeFromDistance(float distance, bool shouldPlayerHear, float clientDistance, float multiplifer = 1.0f) {
-		if (distance <= 1.0) return 1.0;
+	static float volumeFromDistance(float distFromRadio, bool shouldPlayerHear, float clientDistance, float multiplifer = 1.0f) {
+		if (distFromRadio <= 1.0) return 1.0;
 		float maxDistance = shouldPlayerHear ? clientDistance * multiplifer : CANT_SPEAK_DISTANCE;
-		float gain = powf(distance, -0.3f) * (max(0, (maxDistance - distance)) / maxDistance);
-		if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
+		float gain = powf(distFromRadio, -0.3f) * (std::max(0.f, (maxDistance - distFromRadio)) / maxDistance);
+		if (gain < 0.001f) return 0.0f; else return std::min(1.0f, gain);
 	}
-	static float volumeFromDistance(float distance, bool shouldPlayerHear, int clientDistance, float multiplifer = 1.0f) {
-		if (distance <= 1.0) return 1.0;
+	static float volumeFromDistance(float distFromRadio, bool shouldPlayerHear, int clientDistance, float multiplifer = 1.0f) {
+		if (distFromRadio <= 1.0) return 1.0;
 		float maxDistance = shouldPlayerHear ? static_cast<float>(clientDistance) * multiplifer : CANT_SPEAK_DISTANCE;
-		float gain = powf(distance, -0.3f) * (max(0, (maxDistance - distance)) / maxDistance);
-		if (gain < 0.001f) return 0.0f; else return min(1.0f, gain);
+		float gain = powf(distFromRadio, -0.3f) * (std::max(0.f, (maxDistance - distFromRadio)) / maxDistance);
+		if (gain < 0.001f) return 0.0f; else return std::min(1.0f, gain);
 	}
 
 	template<class T>	  //#MAYBE audioHelpers?
@@ -74,7 +76,7 @@ public:
 			}
 		};
 
-		filter->process<float>(sampleCount, floatsSample);
+		filter->process<float>(static_cast<int>(sampleCount), floatsSample);
 
 		// put mixed output to stream
 		for (size_t i = 0; i < sampleCount * channels; i += channels) {
@@ -96,6 +98,12 @@ class ts3 {
 public:
 	static bool isConnected(uint64 serverConnectionHandlerID);
 	static anyID getMyId(uint64 serverConnectionHandlerID);
+	static bool isInChannel(uint64 serverConnectionHandlerID, anyID clientId, const char* channelToCheck);
+	static std::string getChannelName(uint64 serverConnectionHandlerID, anyID clientId);
+	static bool isTalking(uint64 currentServerConnectionHandlerID, anyID myId, anyID playerId);
+	static std::vector<anyID> getChannelClients(uint64 serverConnectionHandlerID, uint64 channelId);
+	static uint64 getCurrentChannel(uint64 serverConnectionHandlerID);
+	static std::string getMyNickname(uint64 serverConnectionHandlerID);
 };
 
 

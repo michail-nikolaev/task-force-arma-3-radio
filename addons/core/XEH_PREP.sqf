@@ -164,7 +164,7 @@ PREP(setActiveSwRadio);
 PREP(setActiveLrRadio);
 PREP(setLongRangeRadioFrequency);
 PREP(setPersonalRadioFrequency);
-PREP(sendVersionInfo);
+PREP(pluginNextDataFrame);
 PREP(swRadioSubMenu);
 PREP(swRadioMenu);
 PREP(sendFrequencyInfo);

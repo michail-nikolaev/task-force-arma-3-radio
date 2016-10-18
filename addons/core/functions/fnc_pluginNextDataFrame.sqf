@@ -1,13 +1,14 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_sendVersionInfo
+    Name: TFAR_fnc_pluginNextDataFrame
 
     Author(s):
         NKey
 
     Description:
-        Sends information about the current TFAR version.
+        Tells the plugin that the current DataFrame is done.
+        This tells the plugin that we are currently ingame.
 
     Parameters:
         Nothing
@@ -16,9 +17,9 @@
         Nothing
 
     Example:
-        call TFAR_fnc_sendVersionInfo;
+        call TTFAR_fnc_pluginNextDataFrame
 */
 
 //Async call will always return "OK"
-private _request = format["VERSION	%1	%2	%3~", TFAR_ADDON_VERSION, tf_radio_channel_name, tf_radio_channel_password];
+private _request = format["DFRAME~"];
 _result = "task_force_radio_pipe" callExtension _request;

@@ -69,7 +69,7 @@ if !(isNull (findDisplay 46)) then {
             } else {
                 tf_msFarPerStep = tf_farUpdateTime;
             };
-            call TFAR_fnc_sendVersionInfo;
+            call TFAR_fnc_pluginNextDataFrame;
         } else {
             private _elemsNearToProcess = (diag_tickTime - tf_lastNearFrameTick) / tf_msNearPerStep;
             if (_elemsNearToProcess >= 1) then {

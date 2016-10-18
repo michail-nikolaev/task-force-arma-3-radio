@@ -8,8 +8,9 @@
 #undef max
 ENUM(Setting, unsigned char,
 	full_duplex = 0,
-
-
+	addon_version,
+	serious_channelName,
+	serious_channelPassword,
 	Setting_MAX	//has to be last value
 )
 #pragma pop_macro("max")
@@ -46,7 +47,7 @@ public:
 			delete stringValue;
 	}
 	settingValue(const settingValue& other) = delete;//Disable copying
-	operator const std::string() const {
+	operator const std::string&() const {
 		switch(type) {
 			case settingType::t_bool: return boolValue ? "true" : "false";
 			case settingType::t_float: return std::to_string(floatValue);
@@ -90,6 +91,9 @@ public:
 	settings() {
 		//default variables
 		values[data_Setting::full_duplex] = true;
+		values[data_Setting::addon_version] = "unknown";
+		values[data_Setting::serious_channelName] = "TaskForceRadio";
+		values[data_Setting::serious_channelPassword] = "123";
 	}
 	~settings() {}
 	template<typename TYPE>
@@ -99,7 +103,7 @@ public:
 	template<typename TYPE>
 	const TYPE& get(const Setting& key) {
 		if (Setting::Setting_MAX < key)//Using that instead of values.size because that can be evaluated at compile-time
-			return settingValue();
+			return values[data_Setting::Setting_MAX];//Max is a null initialized value
 		return values[key];
 	}
 	const settingValue& get(const Setting& key) {
