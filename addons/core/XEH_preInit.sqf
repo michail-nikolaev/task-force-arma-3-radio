@@ -16,19 +16,12 @@
 
 
 if (hasInterface) then {
-//PreInit variables
-    if (isNil "tf_radio_channel_name") then {
-        tf_radio_channel_name = "TaskForceRadio";
-    };
-    if (isNil "tf_radio_channel_password") then {
-        tf_radio_channel_password = "123";
-    };
-    if (isNil "tf_west_radio_code") then {
-        tf_west_radio_code = "_bluefor";
-    };
-    if (isNil "tf_east_radio_code") then {
-        tf_east_radio_code = "_opfor";
-    };
+    //PreInit variablesy
+    VARIABLE_DEFAULT(tf_radio_channel_name,"TaskForceRadio");
+    VARIABLE_DEFAULT(tf_radio_channel_password,"123");
+    VARIABLE_DEFAULT(tf_west_radio_code,"_bluefor");
+    VARIABLE_DEFAULT(tf_east_radio_code,"_opfor");
+
     if (isNil "tf_guer_radio_code") then {
         tf_guer_radio_code = "_independent";
 
@@ -40,49 +33,24 @@ if (hasInterface) then {
             tf_guer_radio_code = "_opfor";
         };
     };
-    if (isNil "TF_defaultWestBackpack") then {
-        TF_defaultWestBackpack = "TFAR_rt1523g";
-    };
-    if (isNil "TF_defaultEastBackpack") then {
-        TF_defaultEastBackpack = "TFAR_mr3000";
-    };
-    if (isNil "TF_defaultGuerBackpack") then {
-        TF_defaultGuerBackpack = "TFAR_anprc155";
-    };
 
-    if (isNil "TF_defaultWestPersonalRadio") then {
-        TF_defaultWestPersonalRadio = "TFAR_anprc152";
-    };
-    if (isNil "TF_defaultEastPersonalRadio") then {
-        TF_defaultEastPersonalRadio = "TFAR_fadak";
-    };
-    if (isNil "TF_defaultGuerPersonalRadio") then {
-        TF_defaultGuerPersonalRadio = "TFAR_anprc148jem";
-    };
+    VARIABLE_DEFAULT(TF_defaultWestBackpack,"TFAR_rt1523g");
+    VARIABLE_DEFAULT(TF_defaultEastBackpack,"TFAR_mr3000");
+    VARIABLE_DEFAULT(TF_defaultGuerBackpack,"TFAR_anprc155");
 
-    if (isNil "TF_defaultWestRiflemanRadio") then {
-        TF_defaultWestRiflemanRadio = "TFAR_rf7800str";
-    };
-    if (isNil "TF_defaultEastRiflemanRadio") then {
-        TF_defaultEastRiflemanRadio = "TFAR_pnr1000a";
-    };
-    if (isNil "TF_defaultGuerRiflemanRadio") then {
-        TF_defaultGuerRiflemanRadio = "TFAR_anprc154";
-    };
+    VARIABLE_DEFAULT(TF_defaultWestPersonalRadio,"TFAR_anprc152");
+    VARIABLE_DEFAULT(TF_defaultEastPersonalRadio,"TFAR_fadak");
+    VARIABLE_DEFAULT(TF_defaultGuerPersonalRadio,"TFAR_anprc148jem");
 
-    if (isNil "TF_defaultWestAirborneRadio") then {
-        TF_defaultWestAirborneRadio = "TFAR_anarc210";
-    };
-    if (isNil "TF_defaultEastAirborneRadio") then {
-        TF_defaultEastAirborneRadio = "TFAR_mr6000l";
-    };
-    if (isNil "TF_defaultGuerAirborneRadio") then {
-        TF_defaultGuerAirborneRadio = "TFAR_anarc164";
-    };
+    VARIABLE_DEFAULT(TF_defaultWestRiflemanRadio,"TFAR_rf7800str");
+    VARIABLE_DEFAULT(TF_defaultEastRiflemanRadio,"TFAR_pnr1000a");
+    VARIABLE_DEFAULT(TF_defaultGuerRiflemanRadio,"TFAR_anprc154");
 
-    if (isNil "TF_terrain_interception_coefficient") then {
-        TF_terrain_interception_coefficient = 7.0;
-    };
+    VARIABLE_DEFAULT(TF_defaultWestAirborneRadio,"TFAR_anarc210");
+    VARIABLE_DEFAULT(TF_defaultEastAirborneRadio,"TFAR_mr6000l");
+    VARIABLE_DEFAULT(TF_defaultGuerAirborneRadio,"TFAR_anarc164");
+
+    VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
 
 
     TF_radio_request_mutex = false;

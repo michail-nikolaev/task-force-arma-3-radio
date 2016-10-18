@@ -25,12 +25,12 @@ class CfgVehicles {
 
     class Box_NATO_Support_F;
     class TFAR_NATO_Radio_Crate: Box_NATO_Support_F {
-    	author = "TFAR";
-    	displayName = "$STR_TFAR_NATO_crate";
-    	class TransportItems {};
-    	class TransportMagazines{};
-    	class TransportWeapons{};
-    	class TransportBackpacks {
+        author = "TFAR";
+        displayName = "$STR_TFAR_NATO_crate";
+        class TransportItems {};
+        class TransportMagazines{};
+        class TransportWeapons{};
+        class TransportBackpacks {
             MACRO_ADDBACKPACK(TFAR_rt1523g,10);
             MACRO_ADDBACKPACK(TFAR_rt1523g_big,3);
             MACRO_ADDBACKPACK(TFAR_rt1523g_sage,3);
@@ -42,39 +42,39 @@ class CfgVehicles {
             MACRO_ADDBACKPACK(TFAR_rt1523g_big_bwmod_tropen,1);
             MACRO_ADDBACKPACK(TFAR_rt1523g_big_rhs,1);
             MACRO_ADDBACKPACK(TFAR_rt1523g_rhs,1);
-    	};
+        };
     };
     HIDDEN_CLASS(TF_NATO_Radio_Crate : TFAR_NATO_Radio_Crate); //#Deprecated dummy class for backwards compat
 
     class Box_EAST_Support_F;
     class TFAR_EAST_Radio_Crate: Box_EAST_Support_F {
-    	author = QUOTE(AUTHORS);
-    	displayName = "$STR_TFAR_EAST_crate";
-    	class TransportItems {};
-    	class TransportMagazines{};
-    	class TransportWeapons{};
-    	class TransportBackpacks {
+        author = QUOTE(AUTHORS);
+        displayName = "$STR_TFAR_EAST_crate";
+        class TransportItems {};
+        class TransportMagazines{};
+        class TransportWeapons{};
+        class TransportBackpacks {
             MACRO_ADDBACKPACK(TFAR_mr3000,10);
             MACRO_ADDBACKPACK(TFAR_mr3000_multicam,3);
             MACRO_ADDBACKPACK(TFAR_mr3000_bwmod,1);
             MACRO_ADDBACKPACK(TFAR_mr3000_bwmod_tropen,1);
             MACRO_ADDBACKPACK(TFAR_mr3000_rhs,1);
             MACRO_ADDBACKPACK(TFAR_bussole,3);
-    	};
+        };
     };
     HIDDEN_CLASS(TF_EAST_Radio_Crate : TFAR_EAST_Radio_Crate); //#Deprecated dummy class for backwards compat
 
     class Box_IND_Support_F;
     class TFAR_IND_Radio_Crate: Box_IND_Support_F {
-    	author = QUOTE(AUTHORS);
-    	displayName = "$STR_TFAR_IND_crate";
-    	class TransportItems {};
-    	class TransportMagazines{};
-    	class TransportWeapons{};
-    	class TransportBackpacks {
+        author = QUOTE(AUTHORS);
+        displayName = "$STR_TFAR_IND_crate";
+        class TransportItems {};
+        class TransportMagazines{};
+        class TransportWeapons{};
+        class TransportBackpacks {
             MACRO_ADDBACKPACK(TFAR_anprc155,10);
             MACRO_ADDBACKPACK(TFAR_anprc155_coyote,10);
-    	};
+        };
     };
     HIDDEN_CLASS(TF_IND_Radio_Crate : TFAR_IND_Radio_Crate); //#Deprecated dummy class for backwards compat
 };
