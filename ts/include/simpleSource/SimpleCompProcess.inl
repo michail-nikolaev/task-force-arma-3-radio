@@ -33,8 +33,8 @@
 #ifndef __SIMPLE_COMP_PROCESS_INL__
 #define __SIMPLE_COMP_PROCESS_INL__
 
-#ifndef max
-#define max(a,b)            (((a) > (b)) ? (a) : (b))
+#ifndef MAX
+#define MAX(a,b)            (((a) > (b)) ? (a) : (b))
 #endif
 
 namespace chunkware_simple
@@ -51,7 +51,7 @@ namespace chunkware_simple
 		 * the rectified signal.
 		 */
 
-		double link = max( rect1, rect2 );	// link channels with greater of 2
+		double link = MAX( rect1, rect2 );	// link channels with greater of 2
 
 		process( in1, in2, link );	// rest of process
 	}

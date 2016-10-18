@@ -34,7 +34,7 @@ TF_respawnedAt = time;//first spawn so.. respawned now
     (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
 
     if (isMultiplayer) then {
-        call TFAR_fnc_sendVersionInfo; //tell plugin that we are ingame and settings for serious-mode channel
+        call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
         [TFAR_fnc_processPlayerPositions] call CBA_fnc_addPerFrameHandler;
         [TFAR_fnc_sessionTracker,60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
     };
@@ -87,7 +87,6 @@ if (player call TFAR_fnc_isForcedCurator) then {
     "PostClose" call TFAR_fnc_onArsenal;
 }] call bis_fnc_addScriptedEventhandler;
 
-["full_duplex",TF_full_duplex] call TFAR_fnc_setPluginSettings;
 player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 
 player addEventHandler ["killed", {
@@ -111,3 +110,9 @@ call TFAR_fnc_radioReplaceProcess;
         };
     };
 };
+
+
+["full_duplex",TF_full_duplex] call TFAR_fnc_setPluginSettings;
+["addon_version",TFAR_ADDON_VERSION] call TFAR_fnc_setPluginSettings;
+["serious_channelName",tf_radio_channel_name] call TFAR_fnc_setPluginSettings;
+["serious_channelPassword",tf_radio_channel_password] call TFAR_fnc_setPluginSettings;

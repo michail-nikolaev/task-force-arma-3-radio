@@ -189,14 +189,14 @@ private:
 
 extern CRITICAL_SECTION serverDataCriticalSection;
 template<class T>
-void processRadioEffect(short* samples, int channels, int sampleCount, float gain, T* effect, int stereoMode) {
+void processRadioEffect(short* samples, int channels, int sampleCount, float gain, T* effect, stereoMode stereoMode) {
 	int startChannel = 0;
 	int endChannel = channels;
-	if (stereoMode == 1) {
+	if (stereoMode == stereoMode::leftOnly) {
 		startChannel = 0;
 		endChannel = 1;
 		gain *= 1.5f;
-	} else if (stereoMode == 2) {
+	} else if (stereoMode == stereoMode::rightOnly) {
 		startChannel = 1;
 		endChannel = 2;
 		gain *= 1.5f;

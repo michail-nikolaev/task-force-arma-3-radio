@@ -2,6 +2,7 @@
 #include "version.h"
 #include "public_definitions.h"
 #include <string>
+#include <algorithm>
 
 #define RADIO_GAIN_LR 5
 #define RADIO_GAIN_DD 15
@@ -31,7 +32,7 @@
 #define UPDATE_URL L"raw.github.com"
 #define UPDATE_FILE L"/michail-nikolaev/task-force-arma-3-radio/master/current_version.txt"
 
-#define INVALID_DATA_FRAME 9999
+#define INVALID_DATA_FRAME std::numeric_limits<int>::max()
 #define FAILS_TO_SLEEP 50 //PipeThread
 
 #define START_DATA "<TFAR>"
