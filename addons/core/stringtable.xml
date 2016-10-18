@@ -1001,10 +1001,12 @@
             <Key ID="STR_TFAR_Mod_FullDuplex">
                 <English>Full-Duplex</English>
                 <German>Voll-Duplex</German>
+                <Japanese>全二重通信</Japanese>
             </Key>
             <Key ID="STR_TFAR_Mod_FullDuplexDescription">
                 <English>Allows Radios to simultaneously receive while transmitting.</English>
                 <German>Erlaubt Funkgeräten gleichzeitig zu senden und zu empfangen.</German>
+                <Japanese>無線機が送信中に受信も同時に行うようにします。</Japanese>
             </Key>
         </Container>
         <Container name="settings">
