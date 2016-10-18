@@ -87,6 +87,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
     "PostClose" call TFAR_fnc_onArsenal;
 }] call bis_fnc_addScriptedEventhandler;
 
+["full_duplex",TF_full_duplex] call TFAR_fnc_setPluginSettings;
 player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 
 player addEventHandler ["killed", {
