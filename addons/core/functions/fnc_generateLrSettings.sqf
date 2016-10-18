@@ -36,14 +36,14 @@ private _set = false;
 private _lr_frequencies = [];
 if (_this isEqualType true) then {
     if (!_this) then {
-        for "_i" from 0 to TF_MAX_LR_CHANNELS step 1 do {
+        for "_i" from 0 to TFAR_MAX_LR_CHANNELS step 1 do {
             _lr_frequencies set [_i, "50"];
         };
         _set = true;
     };
 };
 if (!_set) then {
-    _lr_frequencies = [TF_MAX_LR_CHANNELS,TF_MAX_ASIP_FREQ,TF_MIN_ASIP_FREQ,TF_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
+    _lr_frequencies = [TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
 };
 _lr_settings set [2, _lr_frequencies];
 _lr_settings

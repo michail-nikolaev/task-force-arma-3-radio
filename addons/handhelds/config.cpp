@@ -3,25 +3,25 @@
 class CfgPatches {
     class ADDON {
         units[] = {
-            "TF_NATO_Radio_Crate",
-            "TF_EAST_Radio_Crate",
-            "TF_IND_Radio_Crate",
-            "Item_tf_anprc152",
-            "Item_tf_pnr1000a",
-            "Item_tf_anprc148jem",
-            "Item_tf_fadak",
-            "Item_tf_anprc154",
-            "Item_tf_rf7800str",
-            "Item_tf_microdagr"
+            "TFAR_NATO_Radio_Crate",
+            "TFAR_EAST_Radio_Crate",
+            "TFAR_IND_Radio_Crate",
+            "Item_TFAR_anprc152",
+            "Item_TFAR_pnr1000a",
+            "Item_TFAR_anprc148jem",
+            "Item_TFAR_fadak",
+            "Item_TFAR_anprc154",
+            "Item_TFAR_rf7800str",
+            "Item_TFAR_microdagr"
         };
         weapons[] = {
-            "tf_anprc152",
-            "tf_anprc148jem",
-            "tf_fadak",
-            "tf_anprc154",
-            "tf_rf7800str",
-            "tf_pnr1000a",
-            "tf_microdagr"
+            "TFAR_anprc152",
+            "TFAR_anprc148jem",
+            "TFAR_fadak",
+            "TFAR_anprc154",
+            "TFAR_rf7800str",
+            "TFAR_pnr1000a",
+            "TFAR_microdagr"
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {

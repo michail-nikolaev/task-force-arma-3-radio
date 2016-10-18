@@ -3,27 +3,24 @@
 #include "DspFilters\RBJ.h"
 #include <math.h>
 #include <Windows.h>
+#include "helpers.h"
 #define SAMPLE_RATE 48000
 
 
 #define PI_2     1.57079632679489661923f
 #define DELAY_SAMPLES (SAMPLE_RATE / 20)
 
-class RadioEffect
-{
+class RadioEffect {
 public:
 
-	RadioEffect()
-	{
-		floatsSample[0] = new float[1];
+	RadioEffect() {
 		for (int q = 0; q < DELAY_SAMPLES; q++) delayLine[q] = 0.0f;
 		delayPosition = 0;
 	}
-	
+
 	virtual void process(float* buffer, int samplesNumber) = 0;
 
-	float delay(float input)
-	{
+	float delay(float input) {
 		delayLine[delayPosition] = input;
 		int position = (delayPosition + 1) % DELAY_SAMPLES;
 		float value = delayLine[position];
@@ -33,53 +30,37 @@ public:
 	}
 
 	template<class T>
-	void processFilter(T& filter, float* buffer, int samplesNumber)
-	{
-		for (int q = 0; q < samplesNumber; q++)
-		{
-			*floatsSample[0] = buffer[q];
-			filter.process<float>(1, floatsSample);
-			buffer[q] = *floatsSample[0];
-		}
+	static void processFilter(T& filter, float* buffer, int samplesNumber) {
+		filter.process<float>(samplesNumber, &buffer); //need a float** here so we use &buffer
 	}
 
 	virtual void setErrorLeveL(float errorLevel) = 0;
 
-	~RadioEffect()
-	{
-		delete floatsSample[0];
-	}
+	~RadioEffect() {}
 private:
-	float* floatsSample[1];
 	float delayLine[DELAY_SAMPLES];
 	int delayPosition;
 };
 
-class UnderWaterRadioEffect: public RadioEffect
-{
+class UnderWaterRadioEffect : public RadioEffect {
 public:
-	UnderWaterRadioEffect()
-	{
+	UnderWaterRadioEffect() {
 		filterDD.setup(2, 48000, 1000, 400);
 		errorLevel = 0.0f;
 		errorLessThan = 0;
 	}
 
-	virtual void process(float* buffer, int samplesNumber)
-	{
-		for (int q = 0; q < samplesNumber; q++)
-		{
-			if (rand() < errorLessThan)
-			{
+	virtual void process(float* buffer, int samplesNumber) {
+		for (int q = 0; q < samplesNumber; q++) {
+			if (rand() < errorLessThan) {
 				buffer[q] = 0.0f;
 			}
-		}		
+		}
 		processFilter(filterDD, buffer, samplesNumber);
 		for (int q = 0; q < samplesNumber; q++) buffer[q] *= 30;
-	}	
+	}
 
-	virtual void setErrorLeveL(float errorLevel)
-	{
+	virtual void setErrorLeveL(float errorLevel) {
 		this->errorLevel = errorLevel;
 		errorLessThan = (int) (RAND_MAX * errorLevel);
 	}
@@ -91,17 +72,14 @@ private:
 };
 
 
-class SimpleRadioEffect: public RadioEffect
-{
+class SimpleRadioEffect : public RadioEffect {
 public:
-	SimpleRadioEffect()
-	{						
+	SimpleRadioEffect() {
 		phase = 0;
-		errorLevel = 0;	
+		errorLevel = 0;
 	}
 
-	virtual void process(float* buffer, int samplesNumber)
-	{				
+	virtual void process(float* buffer, int samplesNumber) {
 		double acc = 0.0;
 		for (int q = 0; q < samplesNumber; q++) acc += fabs(buffer[q]);
 		double avg = acc / samplesNumber;
@@ -112,7 +90,7 @@ public:
 
 		for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);
 		for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], errorLevel);
-		for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], (float)(0.3f * (1.0f - errorLevel) * x));
+		for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], (float) (0.3f * (1.0f - errorLevel) * x));
 
 		processFilter(filterSpeakerHP, buffer, samplesNumber);
 		processFilter(filterSpeakerLP, buffer, samplesNumber);
@@ -122,16 +100,15 @@ public:
 
 
 
-	virtual void setErrorLeveL(float errorLevel)
-	{		
+	virtual void setErrorLeveL(float errorLevel) {
 		this->errorLevel = calcErrorLevel(errorLevel);
 	}
 
 
 protected:
-	
-	
-	/*	
+
+
+	/*
 	0.0	0.0
 	0.1	0.150000006
 	0.2	0.300000012
@@ -143,33 +120,29 @@ protected:
 	0.8	0.980000019
 	0.9	0.995000005
 	1.0	0.997799993*/
-	float calcErrorLevel(float errorLevel)
-	{
+	static float calcErrorLevel(float errorLevel) {
 		double levels[] = { 0.0, 0.150000006, 0.300000012, 0.600000024, 0.899999976, 0.950000048, 0.960000038, 0.970000029, 0.980000019, 0.995000005, 0.997799993, 0.998799993, 0.999 };
 
-		int part = (int)(errorLevel * 10.0);
+		int part = (int) (errorLevel * 10.0);
 		double from = levels[part];
 		double to = levels[part + 1];
 
 		double result = from + (from - to) * (errorLevel - part / 10.0);
-		return (float)result;
+		return static_cast<float>(result);
 	}
 
 
-	float foldback(float in, float threshold)
-	{
+	static float foldback(float in, float threshold) {
 		if (threshold < 0.00001) return 0.0f;
-		if (in>threshold || in<-threshold)
-		{
-			in = fabs(fabs(fmod(in - threshold, threshold*4)) - threshold*2) - threshold;
+		if (in > threshold || in < -threshold) {
+			in = fabs(fabs(fmod(in - threshold, threshold * 4)) - threshold * 2) - threshold;
 		}
 		return in;
 	}
 
-	float ringmodulation(float in, float mix) 
-	{
+	float ringmodulation(float in, float mix) {
 		float multiple = in * sin(phase * PI_2);
-		phase += (90.0f * 1.0f / (float) SAMPLE_RATE);
+		phase += (90.0f * 1.0f / static_cast<float>(SAMPLE_RATE));
 		if (phase > 1.0f) phase = 0.0f;
 		return in * (1.0f - mix) + multiple * mix;
 	}
@@ -178,35 +151,30 @@ protected:
 	float errorLevel;
 	float phase;
 
-	Dsp::SimpleFilter<Dsp::RBJ::HighPass, 1> filterSpeakerHP;	
+	Dsp::SimpleFilter<Dsp::RBJ::HighPass, 1> filterSpeakerHP;
 	Dsp::SimpleFilter<Dsp::RBJ::LowPass, 1> filterSpeakerLP;
 };
 
-class LongRangeRadioffect: public SimpleRadioEffect
-{
+class LongRangeRadioffect : public SimpleRadioEffect {
 public:
-	LongRangeRadioffect()
-	{		
+	LongRangeRadioffect() {
 		filterSpeakerHP.setup(SAMPLE_RATE, 520, 0.97);
 		filterSpeakerLP.setup(SAMPLE_RATE, 1300, 1.0);
-	}		
+	}
 };
 
 
-class PersonalRadioEffect: public SimpleRadioEffect
-{
+class PersonalRadioEffect : public SimpleRadioEffect {
 public:
-	PersonalRadioEffect()
-	{
+	PersonalRadioEffect() {
 		filterSpeakerHP.setup(SAMPLE_RATE, 520, 0.97);
 		filterSpeakerLP.setup(SAMPLE_RATE, 4300, 2.0);
 
 		filterMicHP.setup(SAMPLE_RATE, 900, 0.85);
-		filterMicLP.setup(SAMPLE_RATE, 3000, 2.0);		
-	}	
+		filterMicLP.setup(SAMPLE_RATE, 3000, 2.0);
+	}
 
-	virtual void process(float* buffer, int samplesNumber)
-	{
+	virtual void process(float* buffer, int samplesNumber) {
 		processFilter(filterMicHP, buffer, samplesNumber);
 		processFilter(filterMicLP, buffer, samplesNumber);
 		SimpleRadioEffect::process(buffer, samplesNumber);

@@ -22,7 +22,7 @@ class anarc164_radio_dialog
     idd = IDD_ANARC164_RADIO_DIALOG;
     movingEnable = 1;
     controlsBackground[] = { };
-    onUnload = "['OnRadioOpen', player, [player, TF_lr_dialog_radio, true, 'anarc164_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
+    onUnload = "['OnRadioOpen', [player, TF_lr_dialog_radio, true, 'anarc164_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
     objects[] = { };
     controls[]=
     {
@@ -61,7 +61,7 @@ class anarc164_radio_dialog
         colorText[] = {1,0.5,0,1};
         colorBackground[] = {0,0,0,0};
         colorActive[] = {0,1,0,1};
-        font = "tf_font_segments";
+        font = "TFAR_font_segments";
         shadow = 1;
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
         tooltip = $STR_current_channel;
@@ -77,7 +77,7 @@ class anarc164_radio_dialog
         colorText[] = {1,0.5,0,1};
         colorBackground[] = {0,0,0,0};
         colorActive[] = {0,0,0,1};
-        font = "tf_font_segments";
+        font = "TFAR_font_segments";
         shadow = 1;
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 23) * 1.2)";
         tooltip = $STR_current_freq;
@@ -94,11 +94,11 @@ class anarc164_radio_dialog
         action = QUOTE(
             playSound 'TFAR_rotatorPush';
             _f = parseNumber(ctrlText IDC_ANARC164_EDIT);
-            if ((_f >= TF_MIN_ASIP_FREQ) and (_f <= TF_MAX_ASIP_FREQ)) then {
-                [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER))] call TFAR_fnc_setLrFrequency;
+            if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {
+                [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))] call TFAR_fnc_setLrFrequency;
                 call TFAR_fnc_hideHint;
             } else {
-                hint formatText [ARR_3(localize 'STR_incorrect_frequency', TF_MIN_ASIP_FREQ, TF_MAX_ASIP_FREQ)]
+                hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ)]
             };
             ["%1"] call TFAR_fnc_updateLRDialogToChannel;
           );
@@ -146,7 +146,7 @@ class anarc164_radio_dialog
         h = 0.110006 * safezoneH;
         action = QUOTE(
             playSound 'TFAR_rotatorPush';
-            [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TF_MAX_STEREO)] call TFAR_fnc_setLrStereo;
+            [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;
             [TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;
         );
         tooltip = $STR_stereo_settings;

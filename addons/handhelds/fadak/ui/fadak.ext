@@ -26,7 +26,7 @@ class fadak_radio_dialog
     movingEnable = 1;
     controlsBackground[] = { };
     objects[] = { };
-    onUnload = "['OnRadioOpen', player, [player, TF_sw_dialog_radio, false, 'fadak_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
+    onUnload = "['OnRadioOpen', [player, TF_sw_dialog_radio, false, 'fadak_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
     onLoad = QUOTE(
         if (sunOrMoon < 0.2) then {
             ((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText QPATHTOF(fadak\ui\fadak_n.paa);
@@ -70,11 +70,11 @@ class enter: HiddenButton
     tooltip = $STR_set_frequency;
     action = QUOTE(
         _f = parseNumber(ctrlText IDC_FADAK_EDIT);
-        if ((_f >= TF_MIN_SW_FREQ) and (_f <= TF_MAX_SW_FREQ)) then {
-            [ARR_2(TF_sw_dialog_radio, str (round (_f * TF_FREQ_ROUND_POWER) / TF_FREQ_ROUND_POWER))] call TFAR_fnc_setSwFrequency;
+        if ((_f >= TFAR_MIN_SW_FREQ) and (_f <= TFAR_MAX_SW_FREQ)) then {
+            [ARR_2(TF_sw_dialog_radio, str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))] call TFAR_fnc_setSwFrequency;
             call TFAR_fnc_hideHint;
         } else {
-            hint formatText [ARR_3(localize 'STR_incorrect_frequency', TF_MIN_SW_FREQ, TF_MAX_SW_FREQ)]
+            hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)]
         };
         call TFAR_fnc_updateSWDialogToChannel;
     );
@@ -139,7 +139,7 @@ class edit: RscEditLCD
     y = 0.401 * safezoneH + safezoneY;
     w = 0.0505312 * safezoneW;
     h = 0.0539 * safezoneH;
-    font = "tf_font_segments";
+    font = "TFAR_font_segments";
     shadow = 1;
     tooltip = $STR_current_freq;
     canModify = 1;
@@ -151,7 +151,7 @@ class channel_edit: RscEditLCD
     y = 0.401 * safezoneH + safezoneY;
     w = 0.0257812 * safezoneW;
     h = 0.0539 * safezoneH;
-    font = "tf_font_segments";
+    font = "TFAR_font_segments";
     shadow = 1;
     tooltip = $STR_current_channel;
     canModify = 0;
@@ -164,7 +164,7 @@ class stereo: HiddenButton
     w = 0.0164063 * safezoneW;
     h = 0.0252056 * safezoneH;
     action = QUOTE(
-        [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TF_MAX_STEREO)] call TFAR_fnc_setSwStereo;
+        [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
         [ARR_2(TF_sw_dialog_radio, false)] call TFAR_fnc_ShowRadioVolume;
     );
     tooltip = $STR_stereo_settings;

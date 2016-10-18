@@ -4,7 +4,7 @@
     Name: TFAR_fnc_sessionTracker
 
     Author(s):
-        NKey
+        NKey, Dedmen
 
     Description:
         Collects some statistic information to help make TFAR better.
@@ -18,16 +18,31 @@
     Example:
         call TFAR_fnc_sessionTracker
 */
-[] spawn {
-    waitUntil {sleep 10;!(isNull player)};
-    private _action = "start";
-    if (isMultiplayer) then {
-        sleep (60 * 1);
-         while {true} do {
-            private _request = format['TRACK	piwik.php?idsite=2&rec=1&url="radio.task-force.ru&action_name=%1&rand=%2&uid=%3&cvar={"1":["group","%4"], "2":["playableUnits","%5"], "3":["allUnits","%6"], "4":["BIS_fnc_listCuratorPlayers","%7"], "5":["playerSide","%8"], "5":["faction","%9"], "6":["isServer","%10"], "7":["isDedicated","%11"], "8":["missionName","%12"], "9":["currentSW","%13"], "10":["currentLR","%14"], "11":["nearPlayers","%15"], "12":["farPlayers","%16"], "13":["typeof","%17"], "14":["diag_fps","%18"], "15":["diag_fpsmin","%19"], "16":["daytime","%20"], "17":["vehicle","%21"], "18":["time","%22"], "19":["version","%23"]}~', _action, random 1000, getPlayerUID player, count (units group player), count playableUnits, count allUnits, count (call BIS_fnc_listCuratorPlayers), playerSide, faction player, isServer, isDedicated, missionName, count (TFAR_currentUnit call TFAR_fnc_radiosList), count (TFAR_currentUnit call TFAR_fnc_lrRadiosList), count tf_nearPlayers, count tf_farPlayers, typeof TFAR_currentUnit, diag_fps, diag_fpsmin, daytime, typeof (vehicle TFAR_currentUnit), time, TF_ADDON_VERSION];
-            "task_force_radio_pipe" callExtension _request;
-            _action = "continue";
-            sleep (60 * 10);
-        };
-    };
-};
+
+private _variables = [
+                        [1, "group"                     ,count (units group player)],
+                        [2, "playableUnits"             ,count playableUnits],
+                        [3, "allUnits"                  ,count allUnits],
+                        [4, "BIS_fnc_listCuratorPlayers",count (call BIS_fnc_listCuratorPlayers)],
+                        [5, "faction"                   ,faction player],
+                        [6, "isServer"                  ,isServer],
+                        [7, "isDedicated"               ,isDedicated],
+                        [8, "missionName"               ,missionName],
+                        [9, "currentSW"                 ,count (TFAR_currentUnit call TFAR_fnc_radiosList)],
+                        [10,"currentLR"                 ,count (TFAR_currentUnit call TFAR_fnc_lrRadiosList)],
+                        [11,"nearPlayers"               ,count tf_nearPlayers],
+                        [12,"farPlayers"                ,count tf_farPlayers],
+                        [13,"typeof"                    ,typeof TFAR_currentUnit],
+                        [14,"diag_fps"                  ,round diag_fps],
+                        [15,"diag_fpsmin"               ,round diag_fpsmin],
+                        [16,"daytime"                   ,round daytime],
+                        [17,"vehicle"                   ,typeof (vehicle TFAR_currentUnit)],
+                        [18,"time"                      ,round time],
+                        [19,"version"                   ,TFAR_ADDON_VERSION],
+                        [20,"playerSide"                ,playerSide]
+                    ];
+
+private _request = format['TRACK	%1	%2	%3~',missionnamespace getVariable ["TFAR_sessionTrackerAction","start"],getPlayerUID player,_variables];
+
+"task_force_radio_pipe" callExtension _request;
+TFAR_sessionTrackerAction = "continue";

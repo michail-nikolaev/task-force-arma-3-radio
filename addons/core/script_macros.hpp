@@ -54,3 +54,10 @@
     tf_hasLRradio = hasLR; \
     tf_isolatedAmount = isolation; \
 }
+
+//config scopes
+#define PRIVATE 0 //unusable - only for inheritance
+#define HIDDEN 1 //Hidden in Editor/Curator/Arsenal
+#define PUBLIC 2 //usable and visible
+#define ALL_SCOPES_HIDDEN scope = 1;scopeCurator = 1;scopeArsenal = 1;
+#define HIDDEN_CLASS(name) class name {scope = 1;scopeCurator = 1;scopeArsenal = 1;}

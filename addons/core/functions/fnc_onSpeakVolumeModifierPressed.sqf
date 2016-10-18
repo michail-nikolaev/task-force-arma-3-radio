@@ -49,6 +49,6 @@ if (TF_volumeModifier_forceSpeech) then {
 } else {
     [parseText (_hintText), -1] call TFAR_fnc_showHint;
 };
-["OnSpeakVolumeModifierPressed", TFAR_currentUnit, [TFAR_currentUnit, TF_speak_volume_level, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
+["OnSpeakVolumeModifierPressed", [TFAR_currentUnit, TF_speak_volume_level, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
 
 true

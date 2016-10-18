@@ -1,6 +1,5 @@
 #define COMPONENT handhelds
 #include "\z\tfar\addons\core\script_mod.hpp"
-#include "\z\tfar\addons\core\defines.hpp"
 
 // #define DEBUG_MODE_FULL
 // #define DISABLE_COMPILE_CACHE

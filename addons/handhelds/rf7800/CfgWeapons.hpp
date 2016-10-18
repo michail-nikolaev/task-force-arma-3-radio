@@ -1,9 +1,9 @@
-class tf_rf7800str: ItemRadio {
+class TFAR_rf7800str: ItemRadio {
     author = "Raspu";
     displayName = "RF-7800S-TR";
     descriptionShort = "RF-7800S-TR rifleman radio 2km";//#Stringtable
-    scope = 2;
-    scopeCurator = 2;
+    scope = PUBLIC;
+    scopeCurator = PUBLIC;
     model = QPATHTOF(rf7800\data\tfr_rf7800);
     picture = QPATHTOF(rf7800\ui\rf7800str_icon.paa);
     tf_prototype = 1;
@@ -11,8 +11,9 @@ class tf_rf7800str: ItemRadio {
     tf_dialog = "rf7800str_radio_dialog";
     tf_encryptionCode = "tf_west_radio_code";
     tf_subtype = "digital";
-    tf_parent = "tf_rf7800str";
+    tf_parent = "TFAR_rf7800str";
     tf_additional_channel = 0;
     tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
 };
-TF_RADIO_IDS(tf_rf7800str,RF-7800S-TR)
+HIDDEN_CLASS(tf_rf7800str : TFAR_rf7800str); //#Deprecated dummy class for backwards compat
+TF_RADIO_IDS(TFAR_rf7800str,RF-7800S-TR)

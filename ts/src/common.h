@@ -8,7 +8,6 @@
 #define CANT_SPEAK_GAIN 14
 
 #define MAX_CHANNELS  8
-static float* floatsSample[MAX_CHANNELS];
 
 #define PLUGIN_API_VERSION 21
 //#define PLUGIN_API_VERSION 19

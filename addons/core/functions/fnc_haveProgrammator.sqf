@@ -20,4 +20,4 @@
 
 if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith{false};
 
-"tf_microdagr" in (assignedItems TFAR_currentUnit);
+"TFAR_microdagr" in (assignedItems TFAR_currentUnit);

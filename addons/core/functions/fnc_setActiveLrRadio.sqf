@@ -25,4 +25,4 @@ TF_lr_active_radio = _this;
 if (TFAR_currentUnit == player) then {
     TF_lr_active_curator_radio = _this;
 };
-["OnLRChange", TFAR_currentUnit, [TFAR_currentUnit, TF_lr_active_radio, _old]] call TFAR_fnc_fireEventHandlers;
+["OnLRChange", [TFAR_currentUnit, TF_lr_active_radio, _old]] call TFAR_fnc_fireEventHandlers;

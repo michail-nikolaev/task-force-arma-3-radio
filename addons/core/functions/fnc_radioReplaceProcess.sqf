@@ -111,7 +111,7 @@ while {true} do {
     if !(isNull TFAR_currentUnit) then {
         private _currentPlayerFlag = TFAR_currentUnit getVariable "tf_force_radio_active";
         if (isNil "_currentPlayerFlag") then {
-            TFAR_currentUnit setVariable ["tf_force_radio_active", TF_ADDON_VERSION, true];
+            TFAR_currentUnit setVariable ["tf_force_radio_active", TFAR_ADDON_VERSION, true];
         };
     }
 };

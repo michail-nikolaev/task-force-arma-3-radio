@@ -97,6 +97,7 @@ PREP(onAdditionalSwTangentPressed);
 PREP(onAdditionalLRTangentReleased);
 PREP(onAdditionalLRTangentPressed);
 PREP(onArsenal);
+PREP(onCuratorInterfaceOpen);
 PREP(onDDTangentPressed);
 PREP(onDDTangentReleased);
 PREP(onDDTangentReleasedHack);

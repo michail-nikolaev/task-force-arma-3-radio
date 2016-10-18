@@ -30,7 +30,7 @@ if (time - TF_last_lr_tangent_press > 0.1) then {
                 ] call TFAR_fnc_ProcessTangent;
                 TF_tangent_lr_pressed = true;
                 //				unit, radio, radioType, additional, buttonDown
-                ["OnTangent", TFAR_currentUnit, [TFAR_currentUnit, _radio, 1, false, true]] call TFAR_fnc_fireEventHandlers;
+                ["OnTangent", [TFAR_currentUnit, _radio, 1, false, true]] call TFAR_fnc_fireEventHandlers;
             } else {
                 call TFAR_fnc_inWaterHint;
             }

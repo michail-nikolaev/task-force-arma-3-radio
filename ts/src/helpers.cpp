@@ -6,7 +6,11 @@
 #include <math.h>
 #include <algorithm>
 #include <sstream>
-   //#TODO swap channels and sampleCount parameters. Everywhere else sampleCount*channels is used.
+#include "server_radio_data.hpp"
+#include <bitset>
+#include <public_errors.h>
+
+//#TODO swap channels and sampleCount parameters. Everywhere else sampleCount*channels is used.
 void helpers::applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume) {
 	if (directTalkingVolume == 0.0f) {
 		memset(samples, 0, sampleCount * channels * sizeof(short));
@@ -63,12 +67,24 @@ bool helpers::startsWith(const std::string& shouldStartWith, const  std::string&
 	}
 }
 
+//http://stackoverflow.com/a/5506223
 std::vector<std::string>& helpers::split(const std::string& s, char delim, std::vector<std::string>& elems) {
-	std::stringstream ss(s);
-	std::string item;
-	while (std::getline(ss, item, delim)) {
-		elems.push_back(item);
+	std::string::const_iterator beg;
+	bool in_token = false;
+	for (std::string::const_iterator it = s.begin(), end = s.end();
+		it != end; ++it) {
+		if (delim == *it) {
+			if (in_token) {
+				elems.push_back(std::string(beg, it));
+				in_token = false;
+			}
+		} else if (!in_token) {
+			beg = it;
+			in_token = true;
+		}
 	}
+	if (in_token)
+		elems.push_back(std::string(beg, s.end()));
 	return elems;
 }
 
@@ -142,4 +158,24 @@ std::pair<std::string, float> helpers::getVehicleDescriptor(std::string vechicle
 		}
 	}
 	return result;
+}
+
+extern struct TS3Functions ts3Functions;
+bool ts3::isConnected(uint64 serverConnectionHandlerID) {
+	DWORD error;
+	int result;
+	if ((error = ts3Functions.getConnectionStatus(serverConnectionHandlerID, &result)) != ERROR_ok) {
+		return false;
+	}
+	return result != 0;
+}
+
+anyID ts3::getMyId(uint64 serverConnectionHandlerID) {
+	anyID myID = (anyID) -1;
+	if (!ts3::isConnected(serverConnectionHandlerID)) return myID;
+	DWORD error;
+	if ((error = ts3Functions.getClientID(serverConnectionHandlerID, &myID)) != ERROR_ok) {
+		log("Failure getting client ID", error);
+	}
+	return myID;
 }

@@ -38,7 +38,7 @@ if (_lr) then {
 
 if (isNil "_settings") exitWith {};
 
-(_settings select TF_FREQ_OFFSET) set [_channel, _frequency];
+(_settings select TFAR_FREQ_OFFSET) set [_channel, _frequency];
 
 if (_lr) then {
     [_radio select 0, _radio select 1, _settings] call TFAR_fnc_setLrSettings;
