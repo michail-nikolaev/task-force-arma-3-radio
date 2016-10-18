@@ -31,7 +31,7 @@ if (_unit != TFAR_currentUnit) then {
         // It makes use of the 2 slower position functions.
         _renderAt = visiblePosition _unit;
         _pos = getPos _unit;
-        // add different between pos and eyepos to visiblePosition to get some kind of visiblePositionEyepos
+        // add difference between pos and eyepos to visiblePosition to get some kind of visiblePositionEyepos
         _current_eyepos = _renderAt vectorAdd (_current_eyepos vectorDiff _pos);
     };
     // for now it used only for player
