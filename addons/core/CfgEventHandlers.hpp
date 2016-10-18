@@ -23,6 +23,9 @@ class Extended_DisplayLoad_EventHandlers { //From commy2
         //Actually gets called after units backpack was already replaced
         TFAR_ArsenalOpened = "'PreOpen' call TFAR_fnc_onArsenal";
     };
+    class RscDisplayCurator {
+        TFAR_CuratorInterfaceOpened = "call TFAR_fnc_onCuratorInterfaceOpen";
+    };
 };
 
 class RscListBox;

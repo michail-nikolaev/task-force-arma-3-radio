@@ -92,6 +92,16 @@ public:
 
 };
 
+class ts3 {
+public:
+	static bool isConnected(uint64 serverConnectionHandlerID);
+	static anyID getMyId(uint64 serverConnectionHandlerID);
+};
+
+
+
+
+
 class CriticalSectionLock {
 	CRITICAL_SECTION* cs;
 public:
