@@ -46,7 +46,7 @@ inline float helpers::sq(float x) {
 	return x * x;
 }
 
-float helpers::distance(TS3_VECTOR from, TS3_VECTOR to) {
+float helpers::vectorDistance(TS3_VECTOR from, TS3_VECTOR to) {
 	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
