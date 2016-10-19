@@ -18,7 +18,7 @@ public:
 	static void applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume);
 	static void applyILD(short * samples, int channels, size_t sampleCount, TS3_VECTOR position, float viewAngle);
 	static float sq(float x);
-	static float distance(TS3_VECTOR from, TS3_VECTOR to);
+	static float vectorDistance(TS3_VECTOR from, TS3_VECTOR to);
 	static float parseArmaNumber(const std::string& armaNumber);
 	static int parseArmaNumberToInt(const std::string& armaNumber);
 	static bool startsWith(const std::string& shouldStartWith, const std::string& startIn);
@@ -41,17 +41,33 @@ public:
 		}
 		return output;
 	}
-	static float volumeFromDistance(float distFromRadio, bool shouldPlayerHear, float clientDistance, float multiplifer = 1.0f) {
-		if (distFromRadio <= 1.0) return 1.0;
-		float maxDistance = shouldPlayerHear ? clientDistance * multiplifer : CANT_SPEAK_DISTANCE;
-		float gain = powf(distFromRadio, -0.3f) * (std::max(0.f, (maxDistance - distFromRadio)) / maxDistance);
-		if (gain < 0.001f) return 0.0f; else return std::min(1.0f, gain);
+	static float volumeAttenuation(float distance, bool shouldPlayerHear, float maxAudible, float multiplifer = 1.0f) {
+		if (distance <= 1.0) return 1.0;
+		float maxDistance = shouldPlayerHear ? maxAudible * multiplifer : CANT_SPEAK_DISTANCE;
+
+		//linear:
+			//float gain = 1.0f - (distance / maxDistance);
+
+	   //logarithmic
+			//float gain = 0.5f *logf(distance / maxDistance);
+
+	   //inverse:
+			//float gain = 0.02f / (distance / maxDistance);
+
+	   //Reverse Logarithmic
+			//float gain = 1.0f + 0.5f *logf(1.0f - (distance / maxDistance));
+
+	   //Unreal Engine NaturalSound	https://docs.unrealengine.com/latest/INT/Engine/Audio/DistanceModelAttenuation/index.html
+		float gain = powf(10.0f, ((distance / maxDistance) * -60.0f) / 20.0f);
+
+		//Old thingy
+		//float gain = powf(distFromRadio, -0.3f) * (std::max(0.f, (maxDistance - distFromRadio)) / maxDistance);
+
+		if (gain < 0.001f) return 0.0f;
+		return std::min(1.0f, gain);//Don't go over 100%
 	}
-	static float volumeFromDistance(float distFromRadio, bool shouldPlayerHear, int clientDistance, float multiplifer = 1.0f) {
-		if (distFromRadio <= 1.0) return 1.0;
-		float maxDistance = shouldPlayerHear ? static_cast<float>(clientDistance) * multiplifer : CANT_SPEAK_DISTANCE;
-		float gain = powf(distFromRadio, -0.3f) * (std::max(0.f, (maxDistance - distFromRadio)) / maxDistance);
-		if (gain < 0.001f) return 0.0f; else return std::min(1.0f, gain);
+	static float volumeAttenuation(float distance, bool shouldPlayerHear, int maxAudible, float multiplifer = 1.0f) {
+		return volumeAttenuation(distance, shouldPlayerHear, static_cast<float>(maxAudible), multiplifer);
 	}
 
 	template<class T>	  //#MAYBE audioHelpers?
