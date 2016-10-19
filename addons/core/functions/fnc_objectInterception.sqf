@@ -1,41 +1,33 @@
 #include "script_component.hpp"
 
-KK_fnc_inString = {
-    params [["_needle", "", [""]], ["_haystack", "", [""]]];
-    _haystack = toArray (_haystack);
-    private _needleLen = count toArray _needle;
-    private _hay = +_haystack;
-    _hay resize _needleLen;
-    private _found = false;
-    for "_i" from _needleLen to count _haystack do {
-        if (toString _hay == _needle) exitWith {_found = true};
-        _hay set [_needleLen, _haystack select _i];
-        _hay set [0, "x"];
-        _hay = _hay - ["x"]
-    };
-    _found
-};
+/*
+    Name: TFAR_fnc_objectInterception
 
-private _result = "";
-{
-    if ((_x isKindOf "Static") or {_x isKindOf "AllVehicles"}) then {
-        if (!(_x isKindOf "Lamps_Base_F") and {!(_x isKindOf "PowerLines_base_F")}) then {
-            _result = _result + "wall|";
-        };
-    } else {
-        if ((typeOf _x) == "") then {
-            _result = _result + str(_x) + "|";
-            //(if ((["wall", _s] call KK_fnc_inString)
-            //	or {["city", _s] call KK_fnc_inString}
-            //	or {["rock", _s] call KK_fnc_inString}
-            //	or {["wreck", _s] call KK_fnc_inString}
-            //	or {["cargo", _s] call KK_fnc_inString}
-            //	or {["stone", _s] call KK_fnc_inString}) then {
-            //	_result = _result + 1;
-            //};
-        };
-    };
-    true;
-} count (lineIntersectsWith  [eyepos TFAR_currentUnit, eyepos _this, TFAR_currentUnit, _this]);
+    Author(s):
+        Dedmen
 
-_result;
+    Description:
+        Returns the number of voice-blocking Objects between player and _unit
+
+    Parameters:
+        Nothing
+
+    Returns:
+        NUMBER: amount of objects between player and _unit
+
+    Example:
+        _unit call TFAR_fnc_objectInterception;
+*/
+
+private _ins = lineIntersectsSurfaces [
+    eyepos TFAR_currentUnit,
+    eyepos _this,
+    TFAR_currentUnit,
+    _this,
+    true,
+    10,
+    "FIRE",
+    "NONE"
+];
+
+count _ins

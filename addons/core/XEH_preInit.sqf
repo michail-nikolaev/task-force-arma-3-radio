@@ -134,6 +134,6 @@ if (hasInterface) then {
     TFAR_previouscurrentUnit = nil;
 
 
-
+    TFAR_objectInterceptionEnabled = true;//#TODO CBA Setting serverside
 
 };
