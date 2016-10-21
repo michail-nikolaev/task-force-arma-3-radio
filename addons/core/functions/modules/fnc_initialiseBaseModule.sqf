@@ -25,7 +25,7 @@ params [
 ];
 
 if (_activated) then {
-    private _swFreq = false call TFAR_fnc_generateSwSettings;
+    private _swFreq = false call TFAR_fnc_generateSRSettings;
     private _freqs = call compile (_logic getVariable "PrFreq");
     private _randomFreqs = [TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
     while {count _freqs < TFAR_MAX_CHANNELS} do {

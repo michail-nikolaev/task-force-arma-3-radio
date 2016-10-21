@@ -67,16 +67,66 @@ TFAR_RadioCountHash = [] call CBA_fnc_hashCreate;
 }] call CBA_fnc_addEventHandler;
 
 
+//Handle API variables
+
+if (!isNil "TFAR_defaultFrequencies_sr_west") then {
+    TFAR_SameSRFrequenciesForSide = true;
+    TFAR_freq_sr_west = call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_west set [2,TFAR_defaultFrequencies_sw_west];
+};
+
+if (!isNil "TFAR_defaultFrequencies_sr_east") then {
+    TFAR_SameSRFrequenciesForSide = true;
+    TFAR_freq_sr_east = call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_east set [2,TFAR_defaultFrequencies_sw_west];
+};
+
+if (!isNil "TFAR_defaultFrequencies_sr_independent") then {
+    TFAR_SameSRFrequenciesForSide = true;
+    TFAR_freq_sr_independent = call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_independent set [2,TFAR_defaultFrequencies_sw_west];
+};
+
+if (!isNil "TFAR_defaultFrequencies_lr_west") then {
+    TFAR_SameLRFrequenciesForSide = true;
+    TFAR_freq_lr_west = call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_west set [2,TFAR_defaultFrequencies_lr_west];
+};
+
+if (!isNil "TFAR_defaultFrequencies_lr_east") then {
+    TFAR_SameLRFrequenciesForSide = true;
+    TFAR_freq_lr_east = call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_east set [2,TFAR_defaultFrequencies_lr_east];
+};
+
+if (!isNil "TFAR_defaultFrequencies_lr_independent") then {
+    TFAR_SameLRFrequenciesForSide = true;
+    TFAR_freq_lr_independent = call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_independent set [2,TFAR_defaultFrequencies_lr_independent];
+};
 
 
 
 
 
 
+//Default variables
 
+VARIABLE_DEFAULT(tf_same_sw_frequencies_for_side,false);
+VARIABLE_DEFAULT(tf_same_lr_frequencies_for_side,true);
+VARIABLE_DEFAULT(tf_same_dd_frequencies_for_side,true);
 
+VARIABLE_DEFAULT(tf_freq_west,call TFAR_fnc_generateSRSettings);
+VARIABLE_DEFAULT(tf_freq_east,call TFAR_fnc_generateSRSettings);
+VARIABLE_DEFAULT(tf_freq_guer,call TFAR_fnc_generateSRSettings);
 
+VARIABLE_DEFAULT(tf_freq_west_lr,call TFAR_fnc_generateLrSettings);
+VARIABLE_DEFAULT(tf_freq_east_lr,call TFAR_fnc_generateLrSettings);
+VARIABLE_DEFAULT(tf_freq_guer_lr,call TFAR_fnc_generateLrSettings);
 
+VARIABLE_DEFAULT(tf_freq_west_dd,call TFAR_fnc_generateDDFreq);
+VARIABLE_DEFAULT(tf_freq_east_dd,call TFAR_fnc_generateDDFreq);
+VARIABLE_DEFAULT(tf_freq_guer_dd,call TFAR_fnc_generateDDFreq);
 
 
 

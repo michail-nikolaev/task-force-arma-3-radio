@@ -30,7 +30,7 @@ if (isNil "_value") then {
             _value = (group TFAR_currentUnit) getVariable "tf_sw_frequency";
         };
         if (isNil "_value") then {
-            _value = call TFAR_fnc_generateSwSettings;
+            _value = call TFAR_fnc_generateSRSettings;
         };
     } else {
         _value = TF_saved_active_sw_settings;

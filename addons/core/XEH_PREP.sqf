@@ -30,7 +30,7 @@ PREP(forceSpectator);
 // G
 PREP(generateDDFreq);
 PREP(generateLrSettings);
-PREP(generateSwSettings);
+PREP(generateSRSettings);
 PREP(generateFrequencies);
 PREP(getVehicleSide);
 PREP(getSwRadioCode);
@@ -185,3 +185,8 @@ PREP_SUB(hint,unableToUseHint);
 PREP(vehicleId);
 PREP(vehicleIsIsolatedAndInside);
 PREP(vehicleLr);
+
+
+
+
+DEPRECATE(fnc_generateSwSettings,fnc_generateSRSettings); //#Depreacted renamed func for SR LR consistency
