@@ -14,14 +14,14 @@ waitUntil {sleep 0.2;time > 0};
 waitUntil {sleep 0.1;!(isNull player)};
 
 TFAR_currentUnit = call TFAR_fnc_currentUnit;
-[parseText(localize ("STR_init")), 5] call TFAR_fnc_ShowHint;
+[parseText(localize ("STR_init")), 5] call TFAR_fnc_showHint;
 
 // loadout cleaning on initialization to avoid duplicate radios ids in Arsenal
 [] call TFAR_fnc_loadoutReplaceProcess;
 
 tf_lastNearFrameTick = diag_tickTime;
 tf_lastFarFrameTick = diag_tickTime;
-TF_first_radio_request = true;
+TFAR_RadioReqLinkFirstItem = true;
 TF_last_request_time = 0;
 TF_respawnedAt = time;//first spawn so.. respawned now
 
@@ -93,8 +93,8 @@ player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 player addEventHandler ["killed", {
     TF_use_saved_sw_setting = true;
     TF_use_saved_lr_setting = true;
-    TF_first_radio_request = true;
-    call TFAR_fnc_HideHint;
+    TFAR_RadioReqLinkFirstItem = true;
+    call TFAR_fnc_hideHint;
 }];
 
 call TFAR_fnc_processRespawn; //Handle our current spawn

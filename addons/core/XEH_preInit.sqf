@@ -52,8 +52,8 @@ if (hasInterface) then {
 
     VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
 
+    MUTEX_INIT(TF_radio_request_mutex);
 
-    TF_radio_request_mutex = false;
 
     TF_use_saved_sw_setting = false;
     TF_saved_active_sw_settings = nil;

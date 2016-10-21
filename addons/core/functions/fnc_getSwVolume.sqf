@@ -19,5 +19,4 @@
         _volume = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwVolume;
 */
 
-private _settings = _this call TFAR_fnc_getSwSettings;
-_settings select VOLUME_OFFSET
+(_this call TFAR_fnc_getSwSettings) param [VOLUME_OFFSET,false]

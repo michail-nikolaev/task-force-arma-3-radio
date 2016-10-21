@@ -20,8 +20,7 @@
         call TFAR_fnc_serverInit;
 */
 
-TF_server_addon_version = TFAR_ADDON_VERSION;
-publicVariable "TF_server_addon_version";
+missionNamespace setVariable ["TF_server_addon_version",TFAR_ADDON_VERSION,true];
 
 waitUntil {sleep 0.1;time > 0};
 
@@ -94,9 +93,9 @@ while {true} do {
     {
         if (isPlayer _x) then {
 
-            private _task_force_radio_used = _x getVariable "TFAR_modActive";
+            private _ModActive = _x getVariable "TFAR_modActive";
             _variableName = "no_radio_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
-            if (isNil "_task_force_radio_used") then {
+            if (isNil "_ModActive") then {
                 private _last_check = missionNamespace getVariable _variableName;
 
                 if (isNil "_last_check") then {

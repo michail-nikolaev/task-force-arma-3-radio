@@ -20,4 +20,4 @@
     (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwRadioCode;
 */
 
-((_this call TFAR_fnc_getSwSettings) select TFAR_CODE_OFFSET)
+(_this call TFAR_fnc_getSwSettings) param [TFAR_CODE_OFFSET,""]

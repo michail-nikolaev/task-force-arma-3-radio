@@ -19,5 +19,4 @@
         _channel = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwChannel;
 */
 
-private _settings = _this call TFAR_fnc_getSwSettings;
-_settings select ACTIVE_CHANNEL_OFFSET
+(_this call TFAR_fnc_getSwSettings) param [ACTIVE_CHANNEL_OFFSET,0]

@@ -25,7 +25,7 @@ private _menuDef = ["main", localize "STR_select_action_copy_settings_from", "bu
 private _positions = [];
 {
     if (((_x call TFAR_fnc_getSwRadioCode) == (TF_sw_dialog_radio call TFAR_fnc_getSwRadioCode)) and {TF_sw_dialog_radio != _x}) then {
-        private _command = format["['%1',TF_sw_dialog_radio] call TFAR_fnc_CopySettings;", _x];
+        private _command = format["['%1',TF_sw_dialog_radio] call TFAR_fnc_copySettings;", _x];
         _position = [
             getText(configFile >> "CfgWeapons"  >> _x >> "displayName"),
             _command,

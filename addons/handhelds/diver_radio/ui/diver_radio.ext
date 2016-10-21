@@ -96,7 +96,7 @@ class increase_volume: HiddenButton
     y = 0.423497 * safezoneH + safezoneY;
     w = 0.0119531 * safezoneW;
     h = 0.0561026 * safezoneH;
-    action = "TF_dd_volume_level = (TF_dd_volume_level + 1) mod TF_MAX_DD_VOLUME;['',true] call TFAR_fnc_ShowRadioVolume;";
+    action = "TF_dd_volume_level = (TF_dd_volume_level + 1) mod TF_MAX_DD_VOLUME;['',true] call TFAR_fnc_showRadioVolume;";
     tooltip = $STR_volume;
 };
 class depth_edit: RscEditLCD

@@ -21,5 +21,4 @@
         _volume = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getLrVolume;
 */
 
-private _settings = _this call TFAR_fnc_getLrSettings;
-_settings select VOLUME_OFFSET
+(_this call TFAR_fnc_getLrSettings) param [VOLUME_OFFSET,0]

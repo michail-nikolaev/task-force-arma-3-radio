@@ -113,7 +113,7 @@ class pnr1000a_radio_dialog
     	h = 0.0374 * safezoneH;
     	action = QUOTE(
             [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
-            [TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;
+            [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;
         );
     	tooltip = $STR_stereo_settings;
     };
@@ -125,7 +125,7 @@ class pnr1000a_radio_dialog
     	w = 0.0340144 * safezoneW;
     	h = 0.0307934 * safezoneH;
     	tooltip = $STR_radio_channel_1;
-    	action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+    	action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_showRadioInfo;";
     };
     class speakers: HiddenRotator
     {
@@ -135,7 +135,7 @@ class pnr1000a_radio_dialog
     	w = 0.019584 * safezoneW;
     	h = 0.037392 * safezoneH;
     	tooltip = $STR_speakers_settings_true;
-    	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
+    	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
     };
     class microdagr_background: RscBackPicture
     {

@@ -21,9 +21,4 @@
         _stereo = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getLrStereo;
 */
 
-private _settings = _this call TFAR_fnc_getLrSettings;
-private _result = 0;
-if (count _settings > TFAR_LR_STEREO_OFFSET) then {
-    _result = _settings select TFAR_LR_STEREO_OFFSET;
-};
-_result
+(_this call TFAR_fnc_getLrSettings) param [TFAR_LR_STEREO_OFFSET,0]

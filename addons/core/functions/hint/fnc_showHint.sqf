@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_ShowHint
+    Name: TFAR_fnc_showHint
 
     Author(s):
         L-H
@@ -17,8 +17,8 @@
     Nothing
 
     Example:
-    [parseText "Hello", 3] call TFAR_fnc_ShowHint;
-    [parseText "Hello", -1] call TFAR_fnc_ShowHint;
+    [parseText "Hello", 3] call TFAR_fnc_showHint;
+    [parseText "Hello", -1] call TFAR_fnc_showHint;
  */
 
 params ["_text", "_time"];
@@ -35,5 +35,5 @@ if (_time == -1) exitWith {};
 
 TF_HintFnc = [_time] spawn {
     sleep (_this select 0);
-    call TFAR_fnc_HideHint;
+    call TFAR_fnc_hideHint;
 };

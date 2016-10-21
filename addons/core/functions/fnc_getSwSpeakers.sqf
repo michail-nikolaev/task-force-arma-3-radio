@@ -19,9 +19,4 @@
         _stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwSpeakers;
 */
 
-private _settings = _this call TFAR_fnc_getSwSettings;
-private _result = false;
-if (count _settings > TFAR_SW_SPEAKER_OFFSET) then {
-    _result = _settings select TFAR_SW_SPEAKER_OFFSET;
-};
-_result
+(_this call TFAR_fnc_getSwSettings) param [TFAR_SW_SPEAKER_OFFSET,false]

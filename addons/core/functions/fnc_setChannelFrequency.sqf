@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_SetChannelFrequency
+    Name: TFAR_fnc_setChannelFrequency
 
     Author(s):
         L-H
@@ -19,9 +19,9 @@
 
     Example:
     // LR radio - channel 1
-    [(call TFAR_fnc_activeLrRadio), 1, "56.2"] call TFAR_fnc_SetChannelFrequency;
+    [(call TFAR_fnc_activeLrRadio), 1, "56.2"] call TFAR_fnc_setChannelFrequency;
     // SW radio - channel 1
-    [(call TFAR_fnc_activeSwRadio), 1, "84.3"] call TFAR_fnc_SetChannelFrequency;
+    [(call TFAR_fnc_activeSwRadio), 1, "84.3"] call TFAR_fnc_setChannelFrequency;
 */
 
 params ["_radio", "_channel", "_frequency"];
