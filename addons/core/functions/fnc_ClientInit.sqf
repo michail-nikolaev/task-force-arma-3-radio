@@ -76,10 +76,11 @@ if (player call TFAR_fnc_isForcedCurator) then {
 ["unit", {
     //current unit changed (Curator took control of unit)
     if (TFAR_currentUnit != (_this select 0)) then {
-        TFAR_currentUnit setVariable ["tf_controlled_unit",(_this select 0)];
+        TFAR_currentUnit setVariable ["TFAR_controlledUnit",(_this select 0), true];
     } else {
-        TFAR_currentUnit setVariable ["tf_controlled_unit",nil];
+        TFAR_currentUnit setVariable ["TFAR_controlledUnit",nil, true];
     };
+    "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name player]);//Async call will always return "OK"
 }] call CBA_fnc_addPlayerEventHandler;
 
 //onArsenal PostClose event

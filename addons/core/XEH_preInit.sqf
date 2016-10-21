@@ -104,7 +104,7 @@ if (hasInterface) then {
 
     tf_msPerStep = 0;
 
-    tf_speakerRadios = [];
+    TFAR_speakerRadios = [];
     tf_nearPlayers = [];
     tf_farPlayers = [];
 

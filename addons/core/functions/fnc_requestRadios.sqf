@@ -12,7 +12,7 @@
         handles waiting for response from server with radio classnames and applying them to the player.
 
     Parameters:
-        Nothing
+        BOOLEAN - Replace already instanced Radios
 
     Returns:
         Nothing

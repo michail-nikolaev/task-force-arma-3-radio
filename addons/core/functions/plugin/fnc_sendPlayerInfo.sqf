@@ -36,22 +36,21 @@ if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"
         tf_lastError = false;
     };
 };
-if (_result == "SPEAKING") then {
-    _player setRandomLip true;
-    if (!(_player getVariable ["tf_isSpeaking", false])) then {
-        _player setVariable ["tf_isSpeaking", true];
-        ["OnSpeak", [_player, true]] call TFAR_fnc_fireEventHandlers;
-    };
-    _player setVariable ["tf_start_speaking", diag_tickTime];
-} else {
-    _player setRandomLip false;
-    if ((_player getVariable ["tf_isSpeaking", false])) then {
-        _player setVariable ["tf_isSpeaking", false];
-        ["OnSpeak", [_player, false]] call TFAR_fnc_fireEventHandlers;
-    };
+
+private _isSpeaking = (_result == "SPEAKING");
+if (_isSpeaking) then {
+    player setVariable ["TFAR_speakingSince", diag_tickTime];
 };
-private _killSet = _player getVariable "tf_killSet";
-if (isNil "_killSet") then {
+
+_player setRandomLip _isSpeaking;
+//Only want to fire EH once
+if ((_player getVariable ["TFAR_isSpeaking", false]) != _isSpeaking) then {
+    _player setVariable ["TFAR_isSpeaking", _isSpeaking];
+    ["OnSpeak", [_player, _isSpeaking]] call TFAR_fnc_fireEventHandlers;
+};
+
+//#TODO could maybe use XEH Killed EH but i think that also fires for non-players
+if !(_player getVariable ["TFAR_killedEHAttached",false]) then {
     _player addEventHandler ["Killed", {_player call TFAR_fnc_sendPlayerKilled}];
-    _player setVariable ["tf_killSet", true];
+    _player setVariable ["TFAR_killedEHAttached", true];
 };

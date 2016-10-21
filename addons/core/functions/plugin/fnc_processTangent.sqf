@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_ProcessTangent
+    Name: TFAR_fnc_processTangent
 
     Author(s):
         NKey
@@ -24,7 +24,7 @@
         _request = format["TANGENT_LR	RELEASED	%1%2	%3	%4", call TFAR_fnc_currentLRFrequency, (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrRadioCode, ([_radio select 0, "tf_range"]
             call TFAR_fnc_getLrRadioProperty) * (call TFAR_fnc_getTransmittingDistanceMultiplicator), [_radio select 0, "tf_subtype"] call TFAR_fnc_getLrRadioProperty];
 
-        [_hintText, _request] call TFAR_fnc_ProcessTangent;
+        [_hintText, _request] call TFAR_fnc_processTangent;
 */
 
 private _timer = 2.5;
