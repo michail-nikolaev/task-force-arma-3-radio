@@ -76,7 +76,7 @@ if !(isNull (findDisplay 46)) then {
                 for "_y" from 0 to _elemsNearToProcess step 1 do {
                     if (tf_nearPlayersIndex < count tf_nearPlayers) then {
                         private _unit = (tf_nearPlayers select tf_nearPlayersIndex);
-                        private _controlled = _unit getVariable "tf_controlled_unit";
+                        private _controlled = _unit getVariable "TFAR_controlledUnit";
                         if !(isNil "_controlled") then {
                             [_controlled, true, name _unit] call TFAR_fnc_sendPlayerInfo;
                         } else {
@@ -92,15 +92,7 @@ if !(isNull (findDisplay 46)) then {
                             tf_lastNearPlayersUpdate = diag_tickTime;
                         };
 
-                        call TFAR_fnc_processSpeakerRadios;
-
-                        private _speakers = "SPEAKERS	";
-                        {
-                            _speakers = _speakers + TF_vertical_tab + _x;
-                        } count (tf_speakerRadios);
-                        "task_force_radio_pipe" callExtension _speakers+"~";//Async call will always return "OK"
-
-                        tf_speakerRadios = [];
+                        call TFAR_fnc_sendSpeakerRadios;//send Speaker radio infos to plugin
                     };
                 };
                 tf_lastNearFrameTick = diag_tickTime;

@@ -17,7 +17,7 @@
         Nothing
 
     Example:
-        call TTFAR_fnc_pluginNextDataFrame
+        call TFAR_fnc_pluginNextDataFrame
 */
 
 //Async call will always return "OK"

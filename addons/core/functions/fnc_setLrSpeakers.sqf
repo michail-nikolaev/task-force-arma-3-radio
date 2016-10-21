@@ -27,13 +27,13 @@ if (_settings select TFAR_LR_SPEAKER_OFFSET) then {
     _settings set [TFAR_LR_SPEAKER_OFFSET, false];
 } else {
     _settings set [TFAR_LR_SPEAKER_OFFSET, true];
-    private _flag = TFAR_currentUnit getVariable "tf_lr_speakers";
+    private _flag = TFAR_currentUnit getVariable "TFAR_LRSpeakersEnabled";
     if (isNil "_flag") then {
-        TFAR_currentUnit setVariable ["tf_lr_speakers", true, true];
+        TFAR_currentUnit setVariable ["TFAR_LRSpeakersEnabled", true, true];
     };
-    _flag = _radio_object getVariable "tf_lr_speakers";
+    _flag = _radio_object getVariable "TFAR_LRSpeakersEnabled";
     if (isNil "_flag") then {
-        _radio_object setVariable ["tf_lr_speakers", true, true];
+        _radio_object setVariable ["TFAR_LRSpeakersEnabled", true, true];
     };
 };
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;

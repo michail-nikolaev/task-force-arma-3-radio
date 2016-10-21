@@ -21,7 +21,7 @@
 
 */
 
-params ["_unit", "_nearPlayer"];
+params ["_unit", "_nearPlayer","_unitName"];
 
 private _pos = [_unit, _nearPlayer] call (_unit getVariable ["TF_fnc_position", TFAR_fnc_defaultPositionCoordinates]);
 private _isolated_and_inside = _unit call TFAR_fnc_vehicleIsIsolatedAndInside;
@@ -41,19 +41,18 @@ if (count _pos != 4) then {
 
 private _vehicle = _unit call TFAR_fnc_vehicleId;
 if ((_nearPlayer) and {TFAR_currentUnit distance _unit <= TF_speakerDistance}) then {
-    if (_unit getVariable ["tf_lr_speakers", false] && _useLr) then {
+    if (_unit getVariable ["TFAR_LRSpeakersEnabled", false] && _useLr) then {
         {
             if (_x call TFAR_fnc_getLrSpeakers) then {
-                private _freq = format ["%1%2", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode];
+                private _frequencies = [format ["%1%2", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode]];
                 if ((_x call TFAR_fnc_getAdditionalLrChannel) > -1) then {
-                    _freq = _freq + format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getLrRadioCode];
+                    _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getLrRadioCode];
                 };
                 private _radio_id = netId (_x select 0);
                 if (_radio_id == '') then {
                     _radio_id = str (_x select 0);
                 };
-
-                tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12%13", _radio_id, TF_new_line, _freq, TF_new_line, _this select 2, TF_new_line, [], TF_new_line, _x call TFAR_fnc_getLrVolume, TF_new_line, _vehicle, TF_new_line, (getPosASL _unit) select 2]);
+                TFAR_speakerRadios pushBack ([_radio_id,_frequencies joinString "|",__unitName,[], _x call TFAR_fnc_getLrVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);
             };
             true;
         } count (_unit call TFAR_fnc_lrRadiosList);
@@ -62,12 +61,12 @@ if ((_nearPlayer) and {TFAR_currentUnit distance _unit <= TF_speakerDistance}) t
     if (_unit getVariable ["tf_sw_speakers", false] && _useSw) then {
         {
             if (_x call TFAR_fnc_getSwSpeakers) then {
-                private _freq = format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode];
+                private _frequencies = [format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode]];
                 if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
-                    _freq = _freq + format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
+                    _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
                 };
                 private _radio_id = _x;
-                tf_speakerRadios pushBack (format ["%1%2%3%4%5%6%7%8%9%10%11%12%13", _radio_id, TF_new_line, _freq, TF_new_line, _this select 2, TF_new_line, [], TF_new_line, _x call TFAR_fnc_getSwVolume, TF_new_line, _vehicle, TF_new_line, (getPosASL _unit) select 2]);
+                TFAR_speakerRadios pushBack ([_radio_id,_frequencies joinString "|",_unitName,[], _x call TFAR_fnc_getSwVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);
             };
             true;
         } count (_unit call TFAR_fnc_radiosList);
@@ -80,7 +79,7 @@ if (TFAR_objectInterceptionEnabled && _nearPlayer) then {
 };
 
 (format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12	%13	%14",
-    _this select 2, _pos select 0, _pos select 1, _pos select 2, _pos select 3,
+    _unitName, _pos select 0, _pos select 1, _pos select 2, _pos select 3,
     _can_speak, _useSw, _useLr, _useDd, _vehicle, _unit call TFAR_fnc_calcTerrainInterception,
     _unit getVariable ["tf_voiceVolume", 1.0], call TFAR_fnc_currentDirection,_object_interception
     ])

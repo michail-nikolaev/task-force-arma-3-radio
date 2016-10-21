@@ -910,8 +910,7 @@ void processSpeakers(std::vector<std::string>& tokens, uint64 currentServerConne
 		data.radio_id = parts[0];
 		std::vector<std::string> freqs = helpers::split(parts[1], '|');
 		data.nickname = parts[2];
-		std::string coordinates = parts[3];
-		data.pos = helpers::coordStringToVector(coordinates);
+		data.pos = helpers::coordStringToVector(parts[3]);
 		data.volume = helpers::parseArmaNumberToInt(parts[4]);
 		data.vehicle = helpers::getVehicleDescriptor(parts[5]);
 		if (parts.size() > 6)

@@ -29,7 +29,7 @@ if (!(TF_tangent_sw_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_hav
                 [format[localize "STR_additional_transmit",format ["%1<img size='1.5' image='%2'/>", getText (ConfigFile >> "CfgWeapons" >> _radio >> "displayName"), getText(configFile >> "CfgWeapons"  >> _radio >> "picture")], (_radio call TFAR_fnc_getAdditionalSwChannel) + 1, _freq],
                 format["TANGENT	PRESSED	%1%2	%3	%4	%5", _freq, _radio call TFAR_fnc_getSwRadioCode, getNumber(configFile >> "CfgWeapons" >> _radio >> "tf_range") * (call TFAR_fnc_getTransmittingDistanceMultiplicator), getText(configFile >> "CfgWeapons" >> _radio >> "tf_subtype"), typeOf _x],
                 -1
-                ] call TFAR_fnc_ProcessTangent;
+                ] call TFAR_fnc_processTangent;
                 TF_tangent_sw_pressed = true;
                 //						unit, radio, radioType, additional, buttonDown
                 ["OnTangent", [TFAR_currentUnit, _radio, 0, true, true]] call TFAR_fnc_fireEventHandlers;
