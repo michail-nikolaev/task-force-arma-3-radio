@@ -44,45 +44,51 @@ waitUntil {
 
 if ((time - TF_last_request_time > 3) or {_this}) then {
     TF_last_request_time = time;
-    private _variableName = "radio_request_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
     private _radiosToRequest = _this call TFAR_fnc_radioToRequestCount;
 
     if ((count _radiosToRequest) > 0) then {
-        missionNamespace setVariable [_variableName, _radiosToRequest];
-        private _responseVariableName = "radio_response_" + (getPlayerUID player) + str (player call BIS_fnc_objectSide);
-        missionNamespace setVariable [_responseVariableName, nil];
-        publicVariableServer _variableName;
+        //Send request
+        diag_log format["Send TFAR_RadioRequestEvent %1 %2",[_radiosToRequest,player],diag_tickTime]; //#TODO remove
+        ["TFAR_RadioRequestEvent", [_radiosToRequest,player]] call CBA_fnc_serverEvent;
+
         [parseText(localize ("STR_wait_radio")), 10] call TFAR_fnc_ShowHint;
 
-        waitUntil {!(isNil _responseVariableName)};
-        private _response = missionNamespace getVariable _responseVariableName;
-        private _copyIndex = 0;
-        if (_response isEqualType []) then {
-            private _radioCount = count _response;
-            private _settingsCount = count TF_SettingsToCopy;
-            private _startIndex = 0;
-            if (_radioCount > 0) then {
-                if (TF_first_radio_request) then {
-                    TF_first_radio_request = false;
-                    TFAR_currentUnit linkItem (_response select 0);
-                    _copyIndex = [_settingsCount, _copyIndex, (_response select 0)] call _fnc_CopySettings;
-                    [(_response select 0), getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
-                    _startIndex = 1;
+        //Wait for answer
+        ["TFAR_RadioRequestResponseEvent", {
+            diag_log format["TFAR_RadioRequestResponseEvent %1 %2",_this,diag_tickTime];//#TODO remove
+            params ["_response"];
+            private _copyIndex = 0;
+            if (_response isEqualType []) then {
+                private _radioCount = count _response;
+                private _settingsCount = count TF_SettingsToCopy;
+                private _startIndex = 0;
+                if (_radioCount > 0) then {
+                    if (TF_first_radio_request) then {
+                        TF_first_radio_request = false;
+                        TFAR_currentUnit linkItem (_response select 0);
+                        _copyIndex = [_settingsCount, _copyIndex, (_response select 0)] call _fnc_CopySettings;
+                        [(_response select 0), getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
+                        _startIndex = 1;
+                    };
+                    _radioCount = _radioCount - 1;
+                    for "_index" from _startIndex to _radioCount do {
+                        TFAR_currentUnit addItem (_response select _index);
+                        _copyIndex = [_settingsCount, _copyIndex, (_response select _index)] call _fnc_CopySettings;
+                        [(_response select _index), getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
+                    };
                 };
-                _radioCount = _radioCount - 1;
-                for "_index" from _startIndex to _radioCount do {
-                    TFAR_currentUnit addItem (_response select _index);
-                    _copyIndex = [_settingsCount, _copyIndex, (_response select _index)] call _fnc_CopySettings;
-                    [(_response select _index), getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
-                };
-                //TF_settingsToCopy = [];
+            } else {
+                hintC _response;
             };
-        }else{
-            hintC _response;
-        };
-        call TFAR_fnc_HideHint;
-        //								unit, radios
-        ["OnRadiosReceived", [TFAR_currentUnit, _response]] call TFAR_fnc_fireEventHandlers;
+            call TFAR_fnc_HideHint;
+            //								unit, radios
+            ["OnRadiosReceived", [TFAR_currentUnit, _response]] call TFAR_fnc_fireEventHandlers;
+
+            ["TFAR_RadioRequestResponseEvent", _eventId] call CBA_fnc_removeEventHandler;
+        }] call CBA_fnc_addEventHandler;
+
+
+
     };
     TF_last_request_time = time;
 };

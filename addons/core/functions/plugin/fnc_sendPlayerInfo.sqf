@@ -39,12 +39,12 @@ if ((_result != "OK") and {_result != "SPEAKING"} and {_result != "NOT_SPEAKING"
 
 private _isSpeaking = (_result == "SPEAKING");
 if (_isSpeaking) then {
-    player setVariable ["TFAR_speakingSince", diag_tickTime];
+    _player setVariable ["TFAR_speakingSince", diag_tickTime];
 };
 
 _player setRandomLip _isSpeaking;
 //Only want to fire EH once
-if ((_player getVariable ["TFAR_isSpeaking", false]) != _isSpeaking) then {
+if !((_player getVariable ["TFAR_isSpeaking", false]) isEqualTo _isSpeaking) then {
     _player setVariable ["TFAR_isSpeaking", _isSpeaking];
     ["OnSpeak", [_player, _isSpeaking]] call TFAR_fnc_fireEventHandlers;
 };

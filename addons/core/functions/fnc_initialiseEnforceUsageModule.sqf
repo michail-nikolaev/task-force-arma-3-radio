@@ -32,7 +32,7 @@ if (_activated) then {
         ["CBA_settings_setSettingMission", ["TF_full_duplex",_fullDuplex,true]] call CBA_fnc_localEvent;
         ["CBA_settings_setSettingMission", ["tf_same_sw_frequencies_for_side",_sameSWFreq,true]] call CBA_fnc_localEvent;
         ["CBA_settings_setSettingMission", ["tf_same_lr_frequencies_for_side",_sameLRFreq,true]] call CBA_fnc_localEvent;
-        _thisId call CBA_fnc_removeEventHandler;
+        ["CBA_beforeSettingsInitialized",_thisId] call CBA_fnc_removeEventHandler;
     },[
         !(_logic getVariable "TeamLeaderRadio"),
         !(_logic getVariable "RiflemanRadio"),
