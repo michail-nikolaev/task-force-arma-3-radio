@@ -69,3 +69,10 @@
 #define PUBLIC 2 //usable and visible
 #define ALL_SCOPES_HIDDEN scope = 1;scopeCurator = 1;scopeArsenal = 1;
 #define HIDDEN_CLASS(name) class name {scope = 1;scopeCurator = 1;scopeArsenal = 1;}
+
+
+
+//Mutex
+#define MUTEX_INIT(name) name = false
+#define MUTEX_LOCK(name) waitUntil {if (!name) exitWith {name = true; true};false;}
+#define MUTEX_UNLOCK(name) name = false

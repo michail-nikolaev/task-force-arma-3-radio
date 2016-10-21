@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_HideHint
+    Name: TFAR_fnc_hideHint
 
     Author(s):
         L-H
@@ -16,7 +16,7 @@
     Nothing
 
     Example:
-    call TFAR_fnc_HideHint;
+    call TFAR_fnc_hideHint;
  */
 
 ("TFAR_HintLayer" call BIS_fnc_rscLayer) cutText ["", "PLAIN"];

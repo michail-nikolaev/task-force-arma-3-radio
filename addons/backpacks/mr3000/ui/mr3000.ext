@@ -159,7 +159,7 @@ class channel_1: HiddenButton
     y = 0.4989 * safezoneH + safezoneY;
     w = 0.0190313 * safezoneW;
     h = 0.0322072 * safezoneH;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 0] call TFAR_fnc_setLrChannel;call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 0] call TFAR_fnc_setLrChannel;call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     tooltip = $STR_radio_channel_1;
 };
 class channel_2: HiddenButton
@@ -169,7 +169,7 @@ class channel_2: HiddenButton
     y = 0.5011 * safezoneH + safezoneY;
     w = 0.0223125 * safezoneW;
     h = 0.0294066 * safezoneH;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 1] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 1] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     tooltip = $STR_radio_channel_2;
 };
 class channel_3: HiddenButton
@@ -179,7 +179,7 @@ class channel_3: HiddenButton
     y = 0.5 * safezoneH + safezoneY;
     w = 0.0203438 * safezoneW;
     h = 0.0322072 * safezoneH;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 2] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 2] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     tooltip = $STR_radio_channel_3;
 };
 class channel_4: HiddenButton
@@ -189,7 +189,7 @@ class channel_4: HiddenButton
     y = 0.4989 * safezoneH + safezoneY;
     w = 0.021 * safezoneW;
     h = 0.0308069 * safezoneH;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 3)] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 3)] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     tooltip = $STR_radio_channel_4;
 };
 class channel_5: HiddenButton
@@ -199,7 +199,7 @@ class channel_5: HiddenButton
     y = 0.5011 * safezoneH + safezoneY;
     w = 0.0223125 * safezoneW;
     h = 0.0322072 * safezoneH;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 4] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 4] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     tooltip = $STR_radio_channel_5;
 };
 class channel_6: HiddenButton
@@ -209,7 +209,7 @@ class channel_6: HiddenButton
     y = 0.5561 * safezoneH + safezoneY;
     w = 0.021 * safezoneW;
     h = 0.0294066 * safezoneH;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 5] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 5] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     tooltip = $STR_radio_channel_6;
 };
 class channel_7: HiddenButton
@@ -219,7 +219,7 @@ class channel_7: HiddenButton
     y = 0.555 * safezoneH + safezoneY;
     w = 0.021 * safezoneW;
     h = 0.0294066 * safezoneH;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 6] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 6] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     tooltip = $STR_radio_channel_7;
 };
 class channel_8: HiddenButton
@@ -229,7 +229,7 @@ class channel_8: HiddenButton
     y = 0.5539 * safezoneH + safezoneY;
     w = 0.021 * safezoneW;
     h = 0.0294066 * safezoneH;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 7] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 7] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     tooltip = $STR_radio_channel_8;
 };
 class channel_9: HiddenButton
@@ -239,7 +239,7 @@ class channel_9: HiddenButton
     y = 0.555 * safezoneH + safezoneY;
     w = 0.021 * safezoneW;
     h = 0.0294066 * safezoneH;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 8] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_ShowRadioInfo;";
+    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, 8] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     tooltip = $STR_radio_channel_9;
 };
 class edit: RscEditLCD
@@ -277,7 +277,7 @@ class stereo: HiddenButton
     h = 0.0308069 * safezoneH;
     action = QUOTE(
         [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;
-        [TF_lr_dialog_radio] call TFAR_fnc_ShowRadioVolume;
+        [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;
     );
     tooltip = $STR_stereo_settings;
 };
@@ -293,7 +293,7 @@ class additional: HiddenRotator
     playSound 'TFAR_rotatorPush';
         [TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel;
         call TFAR_fnc_updateLRDialogToChannel;
-        [ARR_2(TF_lr_dialog_radio, true)] call TFAR_fnc_ShowRadioInfo;
+        [ARR_2(TF_lr_dialog_radio, true)] call TFAR_fnc_showRadioInfo;
     );
 };
 class volume_switch: HiddenRotator
@@ -324,7 +324,7 @@ class speakers: HiddenButton
     w = 0.0159844 * safezoneW;
     h = 0.0715 * safezoneH;
     tooltip = $STR_speakers_settings_true;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1] call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
+    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1] call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END

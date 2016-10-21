@@ -115,7 +115,7 @@ class anprc154_radio_dialog
     	h = 0.0395915 * safezoneH;
     	action = QUOTE(
             [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
-            [TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;
+            [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;
         );
     	tooltip = $STR_stereo_settings;
 
@@ -128,7 +128,7 @@ class anprc154_radio_dialog
     	w = 0.0190781 * safezoneW;
     	h = 0.0374 * safezoneH;
     	tooltip = $STR_radio_channel_1;
-    	action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+    	action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_showRadioInfo;";
     };
     class reset_channel_alt: HiddenButton
     {
@@ -138,7 +138,7 @@ class anprc154_radio_dialog
     	w = 0.0262838 * safezoneW;
     	h = 0.0428908 * safezoneH;
     	tooltip = $STR_radio_channel_1;
-    	action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+    	action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_showRadioInfo;";
     };
     class speakers: HiddenRotator
     {
@@ -148,7 +148,7 @@ class anprc154_radio_dialog
     	w = 0.0324844 * safezoneW;
     	h = 0.1089 * safezoneH;
     	tooltip = $STR_speakers_settings_true;
-    	action = "playSound 'TFAR_rotatorPush';[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
+    	action = "playSound 'TFAR_rotatorPush';[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
     };
     class microdagr_background: RscBackPicture
     {

@@ -21,9 +21,4 @@
         _speakers = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getLrSpeakers;
 */
 
-private _settings = _this call TFAR_fnc_getLrSettings;
-private _result = false;
-if (count _settings > TFAR_LR_SPEAKER_OFFSET) then {
-    _result = _settings select TFAR_LR_SPEAKER_OFFSET;
-};
-_result
+(_this call TFAR_fnc_getLrSettings) param [TFAR_LR_SPEAKER_OFFSET,false]

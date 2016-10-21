@@ -147,7 +147,7 @@ class additional: HiddenButton
     w = 0.0242813 * safezoneW;
     h = 0.0294066 * safezoneH;
     tooltip = $STR_set_additional;
-    action = "[TF_sw_dialog_radio, TF_sw_dialog_radio call TFAR_fnc_getSwChannel] call TFAR_fnc_setAdditionalSwChannel; call TFAR_fnc_updateSWDialogToChannel; [TF_sw_dialog_radio, false] call TFAR_fnc_ShowRadioInfo;";
+    action = "[TF_sw_dialog_radio, TF_sw_dialog_radio call TFAR_fnc_getSwChannel] call TFAR_fnc_setAdditionalSwChannel; call TFAR_fnc_updateSWDialogToChannel; [TF_sw_dialog_radio, false] call TFAR_fnc_showRadioInfo;";
 };
 class speakers: HiddenButton
 {
@@ -157,7 +157,7 @@ class speakers: HiddenButton
     w = 0.0269063 * safezoneW;
     h = 0.0266059 * safezoneH;
     tooltip = $STR_speakers_settings_true;
-    action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
+    action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
 };
 class stereo: HiddenButton
 {
@@ -168,7 +168,7 @@ class stereo: HiddenButton
     h = 0.0363 * safezoneH;
     action = QUOTE(
         [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
-        [TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;
+        [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;
     );
     tooltip = $STR_stereo_settings;
 };

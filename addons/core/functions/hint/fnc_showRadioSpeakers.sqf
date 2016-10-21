@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_ShowRadioSpeakers
+    Name: TFAR_fnc_showRadioSpeakers
 
     Author(s):
         L-H
@@ -18,11 +18,11 @@
 
     Example:
     // LR radio
-    [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_ShowRadioSpeakers;
+    [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioSpeakers;
     // SW radio
-    [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_ShowRadioSpeakers;
+    [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioSpeakers;
     // DD radio
-    ["", true] call TFAR_fnc_ShowRadioSpeakers;
+    ["", true] call TFAR_fnc_showRadioSpeakers;
 */
 
 params ["_radio", ["_isDDRadio", false, [true]]];

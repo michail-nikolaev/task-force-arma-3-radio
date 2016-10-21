@@ -51,7 +51,7 @@ if ((call TFAR_fnc_haveSWRadio) and {alive TFAR_currentUnit}) then{
 
     (_radio_list select _new_radio_index) call TFAR_fnc_setActiveSwRadio;
 
-    [(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_ShowRadioInfo;
+    [(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_showRadioInfo;
 
     _result = true;
 };

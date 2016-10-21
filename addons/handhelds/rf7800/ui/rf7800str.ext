@@ -89,7 +89,7 @@ class rf7800str_radio_dialog
     	w = 0.0144375 * safezoneW;
     	h = 0.0319 * safezoneH;
     	tooltip = $STR_speakers_settings_true;
-    	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_ShowRadioSpeakers;";
+    	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
     };
     class stereo: HiddenButton
     {
@@ -100,7 +100,7 @@ class rf7800str_radio_dialog
     	h = 0.02 * safezoneH;
     	action = QUOTE(
             [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
-            [TF_sw_dialog_radio] call TFAR_fnc_ShowRadioVolume;
+            [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;
         );
     	tooltip = $STR_stereo_settings;
     };

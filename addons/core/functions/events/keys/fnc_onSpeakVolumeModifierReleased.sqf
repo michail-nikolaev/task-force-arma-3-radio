@@ -31,7 +31,7 @@ call TFAR_fnc_sendFrequencyInfo;
 if (TF_volumeModifier_forceSpeech) then {
     ["",format["TANGENT	RELEASED	%1	%2	%3","directSpeechFreq", 0, "directSpeech"],0] call TFAR_fnc_processTangent;
 } else {
-    call TFAR_fnc_HideHint;
+    call TFAR_fnc_hideHint;
 };
 
 ["OnSpeakVolumeModifierReleased", [TFAR_currentUnit, TF_speak_volume_level, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;

@@ -49,4 +49,4 @@ if (_lr) then {
 } else {
     [_radio,_vChange] call TFAR_fnc_setSwVolume;
 };
-[_radio] call TFAR_fnc_ShowRadioVolume;
+[_radio] call TFAR_fnc_showRadioVolume;

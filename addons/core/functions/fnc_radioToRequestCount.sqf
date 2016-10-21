@@ -15,13 +15,13 @@
         BOOLEAN - Regardless of whether the radio is prototype or not, return it as a radio to be replaced.
 
     Returns:
-        ARRAY - List of all radio classes to be replaced.
+        ARRAY
+            0: ARRAY - List of all radio classes to be replaced.
+            1: ARRAY - List of settings to be copied
 
     Example:
-        _radios = false call TFAR_fnc_radioToRequestCount;
+        (false call TFAR_fnc_radioToRequestCount) params ["_radiosToReplace","_TF_SettingsToCopy"];
 */
-
-waitUntil {sleep 0.1;!(isNull TFAR_currentUnit)};
 
 private _to_remove = [];
 private _allRadios = _this;
@@ -35,25 +35,26 @@ if ((TF_give_personal_radio_to_regular_soldier) or {leader TFAR_currentUnit == T
     _defaultRadio = _personalRadio;
 };
 
-TF_settingsToCopy = [];
+private _TF_settingsToCopy = [];
 {
-    if (_x call TFAR_fnc_isPrototypeRadio) then {
-        _to_remove pushBack _x;
-        TF_first_radio_request = true;
-    } else {
-        if (_x call TFAR_fnc_isRadio) then {
+    if (_x call TFAR_fnc_isRadio) then {
+        if (_x call TFAR_fnc_isPrototypeRadio) then {
+            _to_remove pushBack _x;
+            TFAR_RadioReqLinkFirstItem = true;
+        } else {
             if ((_x call TFAR_fnc_getRadioOwner) == "") then {
                 [_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
             };
             if (((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios) then {
                 _to_remove pushBack _x;
-                TF_settingsToCopy set [0, _x];
-                TF_first_radio_request = true;
+                _TF_settingsToCopy set [0, _x];
+                TFAR_RadioReqLinkFirstItem = true;
             };
         };
     };
     true;
 } count (assignedItems TFAR_currentUnit);
+
 {
     if (_x call TFAR_fnc_isPrototypeRadio) then {
         _to_remove pushBack _x;
@@ -64,13 +65,14 @@ TF_settingsToCopy = [];
             };
             if (((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios) then {
                 _to_remove pushBack _x;
-                TF_settingsToCopy pushBack _x;
+                _TF_settingsToCopy pushBack _x;
             };
         };
     };
     true;
 } count (items TFAR_currentUnit);
 
+//Remove old items from Players inventory
 {
     TFAR_currentUnit unassignItem _x;
     TFAR_currentUnit removeItem _x;
@@ -78,4 +80,4 @@ TF_settingsToCopy = [];
         _to_remove set [_forEachIndex, _defaultRadio];
     };
 } forEach _to_remove;
-_to_remove
+[_to_remove,_TF_settingsToCopy]
