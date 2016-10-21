@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_generateSwSettings
+    Name: TFAR_fnc_generateSRSettings
 
     Author(s):
         NKey
@@ -27,14 +27,10 @@
       9: BOOLEAN - On]
 
     Example:
-        _settings = call TFAR_fnc_generateSwSettings;
+        _settings = call TFAR_fnc_ggenerateSRSettings
 */
 
-private _volume = 7;
-if (isNumber (ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")) then {
-    _volume = getNumber(ConfigFile >> "task_force_radio_settings" >> "tf_default_radioVolume")
-};
-private _sw_settings = [0, _volume, [], 0, nil, -1, 0, getPlayerUID player, false, true];
+private _sw_settings = [0, TFAR_default_radioVolume, [], 0, nil, -1, 0, getPlayerUID player, false, true];
 private _set = false;
 private _sw_frequencies = [];
 

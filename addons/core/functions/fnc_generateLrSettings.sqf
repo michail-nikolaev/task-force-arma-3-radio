@@ -29,20 +29,15 @@
     Example:
         _settings = call TFAR_fnc_generateLrSettings;
 */
-private _volume = 7;
+params [["_generateFrequencies",true]];
 
-private _lr_settings = [0, _volume, [], 0, nil, -1, 0, nil, false, true];
-private _set = false;
+private _lr_settings = [0, TFAR_default_radioVolume, [], 0, nil, -1, 0, nil, false, true];
 private _lr_frequencies = [];
-if (_this isEqualType true) then {
-    if (!_this) then {
-        for "_i" from 0 to TFAR_MAX_LR_CHANNELS step 1 do {
-            _lr_frequencies set [_i, "50"];
-        };
-        _set = true;
+if (!_generateFrequencies) then {
+    for "_i" from 0 to TFAR_MAX_LR_CHANNELS step 1 do {
+        _lr_frequencies set [_i, "50"];
     };
-};
-if (!_set) then {
+} else {
     _lr_frequencies = [TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
 };
 _lr_settings set [2, _lr_frequencies];
