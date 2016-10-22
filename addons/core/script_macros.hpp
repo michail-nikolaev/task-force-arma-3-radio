@@ -76,3 +76,10 @@
 #define MUTEX_INIT(name) name = false
 #define MUTEX_LOCK(name) waitUntil {if (!name) exitWith {name = true; true};false;}
 #define MUTEX_UNLOCK(name) name = false
+
+
+#define DEPRECATE_VARIABLE(OLD_VARIABLE,NEW_VARIABLE) \
+    if (!isNil QUOTE(OLD_VARIABLE)){ \
+        WARNING('Deprecated variable used: OLD_VARIABLE (new: NEW_VARIABLE) in ADDON'); \
+        NEW_VARIABLE = OLD_VARIABLE; \
+    }

@@ -6,9 +6,9 @@
 ["TF_no_auto_long_range_radio", "CHECKBOX", "STR_radio_no_auto_long_range_radio", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
 ["TF_give_personal_radio_to_regular_soldier", "CHECKBOX", "STR_radio_give_personal_radio_to_regular_soldier", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TF_give_microdagr_to_soldier", "CHECKBOX", "STR_radio_give_microdagr_to_soldier", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
-["TF_same_sw_frequencies_for_side", "CHECKBOX", "STR_radio_same_sw_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TF_same_lr_frequencies_for_side", "CHECKBOX", "STR_radio_same_lr_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TF_same_dd_frequencies_for_side", "CHECKBOX", "STR_radio_same_dd_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
+["TFAR_SameSRFrequenciesForSide", "CHECKBOX", "STR_radio_same_sw_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
+["TFAR_SameLRFrequenciesForSide", "CHECKBOX", "STR_radio_same_lr_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
+["TFAR_SameDDFrequenciesForSide", "CHECKBOX", "STR_radio_same_dd_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TF_full_duplex", "CHECKBOX", ["STR_TFAR_Mod_FullDuplex","STR_TFAR_Mod_FullDuplexDescription"], "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
 // client
 ["TFAR_default_radioVolume", "SLIDER", "STR_radio_default_radioVolume", "Task Force Arrowhead Radio", [1, 9, 7, 0]] call CBA_Settings_fnc_init;
@@ -34,21 +34,21 @@ if (hasInterface) then {
         };
     };
 
-    VARIABLE_DEFAULT(TF_defaultWestBackpack,"TFAR_rt1523g");
-    VARIABLE_DEFAULT(TF_defaultEastBackpack,"TFAR_mr3000");
-    VARIABLE_DEFAULT(TF_defaultGuerBackpack,"TFAR_anprc155");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_West,"TFAR_rt1523g");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_East,"TFAR_mr3000");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_Independent,"TFAR_anprc155");
 
-    VARIABLE_DEFAULT(TF_defaultWestPersonalRadio,"TFAR_anprc152");
-    VARIABLE_DEFAULT(TF_defaultEastPersonalRadio,"TFAR_fadak");
-    VARIABLE_DEFAULT(TF_defaultGuerPersonalRadio,"TFAR_anprc148jem");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Personal_West,"TFAR_anprc152");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Personal_East,"TFAR_fadak");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Personal_Independent,"TFAR_anprc148jem");
 
-    VARIABLE_DEFAULT(TF_defaultWestRiflemanRadio,"TFAR_rf7800str");
-    VARIABLE_DEFAULT(TF_defaultEastRiflemanRadio,"TFAR_pnr1000a");
-    VARIABLE_DEFAULT(TF_defaultGuerRiflemanRadio,"TFAR_anprc154");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Rifleman_West,"TFAR_rf7800str");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Rifleman_East,"TFAR_pnr1000a");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Rifleman_Independent,"TFAR_anprc154");
 
-    VARIABLE_DEFAULT(TF_defaultWestAirborneRadio,"TFAR_anarc210");
-    VARIABLE_DEFAULT(TF_defaultEastAirborneRadio,"TFAR_mr6000l");
-    VARIABLE_DEFAULT(TF_defaultGuerAirborneRadio,"TFAR_anarc164");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_West,"TFAR_anarc210");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_East,"TFAR_mr6000l");
+    VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_Independent,"TFAR_anarc164");
 
     VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
 
