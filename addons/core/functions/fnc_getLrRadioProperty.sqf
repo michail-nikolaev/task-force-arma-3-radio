@@ -40,22 +40,22 @@ if (isNil "_result") then {
             private _air = (typeof(_radio) isKindOf "Air");
             if ((_radio call TFAR_fnc_getVehicleSide) == west) then {
                 if (_air) then {
-                    _result = TF_defaultWestAirborneRadio;
+                    _result = TFAR_DefaultRadio_Airborne_West;
                 } else {
-                    _result = TF_defaultWestBackpack;
+                    _result = TFAR_DefaultRadio_Backpack_West;
                 };
             } else {
                 if ((_radio call TFAR_fnc_getVehicleSide) == east) then {
                     if (_air) then {
-                        _result = TF_defaultEastAirborneRadio;
+                        _result = TFAR_DefaultRadio_Airborne_East;
                     } else {
-                        _result = TF_defaultEastBackpack;
+                        _result = TFAR_DefaultRadio_Backpack_East;
                     };
                 } else {
                     if (_air) then {
-                        _result = TF_defaultGuerAirborneRadio;
+                        _result = TFAR_DefaultRadio_Airborne_Independent;
                     } else {
-                        _result = TF_defaultGuerBackpack;
+                        _result = TFAR_DefaultRadio_Backpack_Independent;
                     };
                 };
             };

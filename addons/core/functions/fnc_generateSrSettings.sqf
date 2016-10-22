@@ -27,7 +27,7 @@
       9: BOOLEAN - On]
 
     Example:
-        _settings = call TFAR_fnc_ggenerateSRSettings
+        _settings = call TFAR_fnc_generateSRSettings
 */
 
 private _sw_settings = [0, TFAR_default_radioVolume, [], 0, nil, -1, 0, getPlayerUID player, false, true];

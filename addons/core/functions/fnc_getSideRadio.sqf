@@ -25,17 +25,15 @@
 params ["_side", "_radioType"];
 
 private _result = "";
-private _variable = "TF_default" + str(_side);
-
 switch (_radioType) do {
     case 0: {
-        _result = missionNamespace getVariable (_variable + "Backpack");
+        _result = missionNamespace getVariable format["TFAR_DefaultRadio_%1_%2","Backpack",_side];
     };
     case 1: {
-        _result = missionNamespace getVariable (_variable + "PersonalRadio");
+        _result = missionNamespace getVariable format["TFAR_DefaultRadio_%1_%2","Personal",_side];
     };
     case 2: {
-        _result = missionNamespace getVariable (_variable + "RiflemanRadio");
+        _result = missionNamespace getVariable format["TFAR_DefaultRadio_%1_%2","Rifleman",_side];
     };
 };
 

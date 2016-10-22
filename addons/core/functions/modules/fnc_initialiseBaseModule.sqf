@@ -45,8 +45,8 @@ if (_activated) then {
     private _radio = _logic getVariable "Radio";
     private _currentSide = "North";
 
-    tf_same_sw_frequencies_for_side = true;
-    tf_same_lr_frequencies_for_side = true;
+    TFAR_SameSRFrequenciesForSide = true;
+    TFAR_SameLRFrequenciesForSide = true;
 
     private _RiflemanRadio = _logic getVariable "RiflemanRadio";
     private _radio_code = _logic getVariable "Encryption";
@@ -64,23 +64,23 @@ if (_activated) then {
         if ((str _currentSide) != (str side _x)) then {
             _currentSide = side _x;
             if (_currentSide == independent || {_currentSide == civilian}) then {
-                _currentSide = "guer";
+                _currentSide = "independent";
             };
 
-            missionNamespace setVariable [format ["TF_default%1RiflemanRadio", _currentSide], _RiflemanRadio];
-            missionNamespace setVariable [format ["TF_%1_radio_code", _currentSide], _radio_code];
+            missionNamespace setVariable [format ["TFAR_DefaultRadio_Rifleman_%1", _currentSide], _RiflemanRadio];
+            missionNamespace setVariable [format ["TF_%1_radio_code", _currentSide], _radio_code];//#TODO radio codes don't work. cuz _currentSide doesnt contain guer anymore
             if (_LRradio != "-1") then {
-                missionNamespace setVariable [format ["TF_default%1Backpack", _currentSide], _LRradio];
+                missionNamespace setVariable [format ["TFAR_DefaultRadio_Backpack_%1", _currentSide], _LRradio];
             };
             if (_radio != "-1") then {
-                missionNamespace setVariable [format ["TF_default%1PersonalRadio", _currentSide], _radio];
+                missionNamespace setVariable [format ["TFAR_DefaultRadio_Personal_%1", _currentSide], _radio];
             };
 
             if (isServer) then {
-                if (!isNil (format ["tf_freq_%1", _currentSide])) then {hint "TFAR - tf_freq_west already set, module overriding.";diag_log "TFAR - tf_freq_west already set, module overriding.";};
-                if (!isNil (format ["tf_freq_%1_lr", _currentSide])) then {hint "TFAR - tf_freq_west_lr already set, module overriding.";diag_log "TFAR - tf_freq_west_lr already set, module overriding.";};
-                missionNamespace setVariable [format ["tf_freq_%1", _currentSide], _swFreq];
-                missionNamespace setVariable [format ["tf_freq_%1_lr", _currentSide], _lrFreq];
+                if (!isNil (format ["TFAR_freq_sr_%1", _currentSide])) then {hint "TFAR - TFAR_freq_sr_west already set, module overriding.";diag_log "TFAR - TFAR_freq_sr_west already set, module overriding.";};
+                if (!isNil (format ["TFAR_freq_lr_%1", _currentSide])) then {hint "TFAR - TFAR_freq_lr_west already set, module overriding.";diag_log "TFAR - TFAR_freq_lr_west already set, module overriding.";};
+                missionNamespace setVariable [format ["TFAR_freq_sw_%1", _currentSide], _swFreq];
+                missionNamespace setVariable [format ["TFAR_freq_lr_%1", _currentSide], _lrFreq];
             };
         };
         true;

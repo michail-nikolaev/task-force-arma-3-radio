@@ -13,6 +13,33 @@ disableSerialization;
 waitUntil {sleep 0.2;time > 0};
 waitUntil {sleep 0.1;!(isNull player)};
 
+
+
+//#API Variables
+//#TODO rename radio code vars
+//#TODO rename new vars
+DEPRECATE_VARIABLE(tf_give_personal_radio_to_regular_soldier,tf_give_personal_radio_to_regular_soldier);
+DEPRECATE_VARIABLE(tf_no_auto_long_range_radio,tf_no_auto_long_range_radio);
+DEPRECATE_VARIABLE(tf_give_microdagr_to_soldier,tf_give_microdagr_to_soldier);
+
+DEPRECATE_VARIABLE(tf_defaultWestPersonalRadio,TFAR_DefaultRadio_Personal_West);
+DEPRECATE_VARIABLE(tf_defaultEastPersonalRadio,TFAR_DefaultRadio_Personal_East);
+DEPRECATE_VARIABLE(tf_defaultGuerPersonalRadio,TFAR_DefaultRadio_Personal_Independent);
+
+DEPRECATE_VARIABLE(TF_defaultWestRiflemanRadio,TFAR_DefaultRadio_Rifleman_West);
+DEPRECATE_VARIABLE(TF_defaultEastRiflemanRadio,TFAR_DefaultRadio_Rifleman_East);
+DEPRECATE_VARIABLE(TF_defaultGuerRiflemanRadio,TFAR_DefaultRadio_Rifleman_Independent);
+
+DEPRECATE_VARIABLE(TF_defaultWestAirborneRadio,TFAR_DefaultRadio_Airborne_West);
+DEPRECATE_VARIABLE(TF_defaultEastAirborneRadio,TFAR_DefaultRadio_Airborne_East);
+DEPRECATE_VARIABLE(TF_defaultGuerAirborneRadio,TFAR_DefaultRadio_Airborne_Independent);
+
+DEPRECATE_VARIABLE(TF_defaultWestBackpack,TFAR_DefaultRadio_Backpack_West);
+DEPRECATE_VARIABLE(TF_defaultEastBackpack,TFAR_DefaultRadio_Backpack_East);
+DEPRECATE_VARIABLE(TF_defaultGuerBackpack,TFAR_DefaultRadio_Backpack_Independent);
+
+
+
 TFAR_currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_showHint;
 
@@ -49,24 +76,24 @@ if (player call TFAR_fnc_isForcedCurator) then {
 
     switch (typeOf (player)) do {
         case "B_VirtualCurator_F": {
-                player addItem TF_defaultWestPersonalRadio;
-                TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];
+                player addItem TFAR_DefaultRadio_Personal_West;
+                TF_curator_backpack_1 = TFAR_DefaultRadio_Airborne_West createVehicleLocal [0, 0, 0];
             };
         case "O_VirtualCurator_F": {
-                player addItem TF_defaultEastPersonalRadio;
-                TF_curator_backpack_1 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];
+                player addItem TFAR_DefaultRadio_Personal_East;
+                TF_curator_backpack_1 = TFAR_DefaultRadio_Airborne_East createVehicleLocal [0, 0, 0];
             };
         case "I_VirtualCurator_F": {
-                player addItem TF_defaultGuerPersonalRadio;
-                TF_curator_backpack_1 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];
+                player addItem TFAR_DefaultRadio_Personal_Independent;
+                TF_curator_backpack_1 = TFAR_DefaultRadio_Airborne_Independent createVehicleLocal [0, 0, 0];
             };
         default {
-            player addItem TF_defaultWestPersonalRadio;
-            player addItem TF_defaultEastPersonalRadio;
-            player addItem TF_defaultGuerPersonalRadio;
-            TF_curator_backpack_1 = TF_defaultWestAirborneRadio createVehicleLocal [0, 0, 0];
-            TF_curator_backpack_2 = TF_defaultEastAirborneRadio createVehicleLocal [0, 0, 0];
-            TF_curator_backpack_3 = TF_defaultGuerAirborneRadio createVehicleLocal [0, 0, 0];
+            player addItem TTFAR_DefaultRadio_Personal_West
+            player addItem TTFAR_DefaultRadio_Personal_East
+            player addItem TTFAR_DefaultRadio_Personal_Independent
+            TF_curator_backpack_1 = TTFAR_DefaultRadio_Airborne_WestcreateVehicleLocal [0, 0, 0];
+            TF_curator_backpack_2 = TTFAR_DefaultRadio_Airborne_EastcreateVehicleLocal [0, 0, 0];
+            TF_curator_backpack_3 = TTFAR_DefaultRadio_Airborne_IndependentcreateVehicleLocal [0, 0, 0];
         };
     };
 };

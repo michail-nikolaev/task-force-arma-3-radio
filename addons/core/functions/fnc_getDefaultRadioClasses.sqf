@@ -19,14 +19,14 @@
         _classes = call TFAR_fnc_getDefaultRadioClasses;
 */
 
-private _personalRadio = TF_defaultGuerPersonalRadio;
-private _riflemanRadio = TF_defaultGuerRiflemanRadio;
-private _lrRadio = TF_defaultGuerBackpack;
-private _airborne = TF_defaultGuerAirborneRadio;
+private _personalRadio = TFAR_DefaultRadio_Personal_Independent;
+private _riflemanRadio = TFAR_DefaultRadio_Rifleman_Independent;
+private _lrRadio = TFAR_DefaultRadio_Backpack_Independent;
+private _airborne = TFAR_DefaultRadio_Airborne_Independent;
 
 switch (TFAR_currentUnit call BIS_fnc_objectSide) do {
-    case west: {_personalRadio = TF_defaultWestPersonalRadio; _riflemanRadio = TF_defaultWestRiflemanRadio; _lrRadio = TF_defaultWestBackpack; _airborne = TF_defaultWestAirborneRadio;};
-    case east: {_personalRadio = TF_defaultEastPersonalRadio; _riflemanRadio = TF_defaultEastRiflemanRadio;_lrRadio = TF_defaultEastBackpack; _airborne = TF_defaultEastAirborneRadio;};
+    case west: {_personalRadio = TFAR_DefaultRadio_Personal_West; _riflemanRadio = TFAR_DefaultRadio_Rifleman_West; _lrRadio = TFAR_DefaultRadio_Backpack_West; _airborne = TFAR_DefaultRadio_Airborne_West;};
+    case east: {_personalRadio = TFAR_DefaultRadio_Personal_East; _riflemanRadio = TFAR_DefaultRadio_Rifleman_East;_lrRadio = TFAR_DefaultRadio_Backpack_East; _airborne = TFAR_DefaultRadio_Airborne_East;};
 };
 
 TFAR_tryResolveFactionClass =
