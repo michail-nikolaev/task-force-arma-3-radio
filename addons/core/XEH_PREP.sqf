@@ -169,7 +169,7 @@ PREP(setPersonalRadioFrequency);
 PREP_SUB(plugin,pluginNextDataFrame);
 PREP(swRadioSubMenu);
 PREP(swRadioMenu);
-PREP(showRadioVolume);
+PREP_SUB(hint,showRadioVolume);
 PREP(setChannelFrequency);
 PREP(setRadioOwner);
 PREP(setLrSpeakers);

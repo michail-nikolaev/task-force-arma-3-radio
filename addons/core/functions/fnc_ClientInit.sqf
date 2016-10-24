@@ -63,6 +63,7 @@ TF_respawnedAt = time;//first spawn so.. respawned now
     if (isMultiplayer) then {
         call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
         [TFAR_fnc_processPlayerPositions] call CBA_fnc_addPerFrameHandler;
+        [TFAR_fnc_sendFrequencyInfo,0.2 /*200 milliseconds*/] call CBA_fnc_addPerFrameHandler;
         [TFAR_fnc_sessionTracker,60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
     };
 };
@@ -88,12 +89,12 @@ if (player call TFAR_fnc_isForcedCurator) then {
                 TF_curator_backpack_1 = TFAR_DefaultRadio_Airborne_Independent createVehicleLocal [0, 0, 0];
             };
         default {
-            player addItem TTFAR_DefaultRadio_Personal_West
-            player addItem TTFAR_DefaultRadio_Personal_East
-            player addItem TTFAR_DefaultRadio_Personal_Independent
-            TF_curator_backpack_1 = TTFAR_DefaultRadio_Airborne_WestcreateVehicleLocal [0, 0, 0];
-            TF_curator_backpack_2 = TTFAR_DefaultRadio_Airborne_EastcreateVehicleLocal [0, 0, 0];
-            TF_curator_backpack_3 = TTFAR_DefaultRadio_Airborne_IndependentcreateVehicleLocal [0, 0, 0];
+            player addItem TTFAR_DefaultRadio_Personal_West;
+            player addItem TTFAR_DefaultRadio_Personal_East;
+            player addItem TTFAR_DefaultRadio_Personal_Independent;
+            TF_curator_backpack_1 = TTFAR_DefaultRadio_Airborne_West createVehicleLocal [0, 0, 0];
+            TF_curator_backpack_2 = TTFAR_DefaultRadio_Airborne_East createVehicleLocal [0, 0, 0];
+            TF_curator_backpack_3 = TTFAR_DefaultRadio_Airborne_Independent createVehicleLocal [0, 0, 0];
         };
     };
 };

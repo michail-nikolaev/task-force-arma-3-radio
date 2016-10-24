@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include "common.h"
 #include <map>
-
+#include "profilers.h"
 
 int constexpr const_strlen(const char* str) {
 	return *str ? 1 + const_strlen(str + 1) : 0;
@@ -122,43 +122,23 @@ public:
 	static std::string getMyNickname(uint64 serverConnectionHandlerID);
 };
 
-
-
-
-
 class CriticalSectionLock {
 	CRITICAL_SECTION* cs;
 public:
 	explicit CriticalSectionLock(CRITICAL_SECTION* _cs) : cs(_cs) { EnterCriticalSection(cs); }
 	~CriticalSectionLock() { LeaveCriticalSection(cs); }
 };
-#include <chrono>
-class speedTest {
+class ReadLock {
+	PSRWLOCK lock;
 public:
-	speedTest(const std::string & name_, bool willPrintOnDestruct_ = true) :start(std::chrono::high_resolution_clock::now()), name(name_), willPrintOnDestruct(willPrintOnDestruct_) {}
-	~speedTest() { if (willPrintOnDestruct) log(); }
-	void log() const {
-		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
-		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
-		log_string(name + " " + std::to_string(duration) + " microsecs", LogLevel_WARNING);
-	}
-	void log(const std::string & text) {
-		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
-		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
-		std::string message = name + "-" + text + " " + std::to_string(duration) + " microsecs";
-		log_string(message, LogLevel_WARNING);
-		OutputDebugStringA(message.c_str());
-		OutputDebugStringA("\n");
-		start += std::chrono::high_resolution_clock::now() - now; //compensate time for call to log func
-	}
-	void reset() {
-		start = std::chrono::high_resolution_clock::now();
-	}
-	std::chrono::microseconds getCurrentElapsedTime() const {
-		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
-		return std::chrono::duration_cast<std::chrono::microseconds>(now - start);
-	}
-	std::chrono::high_resolution_clock::time_point start;
-	std::string name;
-	bool willPrintOnDestruct;
+	explicit ReadLock(PSRWLOCK _lock) :lock(_lock) { AcquireSRWLockShared(lock); }
+	~ReadLock() { ReleaseSRWLockShared(lock); }
 };
+
+class WriteLock {
+	PSRWLOCK lock;
+public:
+	explicit WriteLock(PSRWLOCK _lock) :lock(_lock) { AcquireSRWLockExclusive(lock); }
+	~WriteLock() { ReleaseSRWLockExclusive(lock);}
+};
+

@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="client_data.cpp" />
     <ClCompile Include="constant_ts3_functions.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="pipe_handler.cpp" />
     <ClCompile Include="playback_handler.cpp" />
     <ClCompile Include="plugin.cpp" />
-    <ClCompile Include="server_radio_data.cpp" />
     <ClCompile Include="task_force_radio.cpp" />
     <ClCompile Include="..\include\clunk\clunk_ex.cpp">
       <Filter>externals\clunk</Filter>
@@ -114,16 +112,17 @@
     <ClCompile Include="..\include\sqlite3\sqlite3.c">
       <Filter>externals</Filter>
     </ClCompile>
+    <ClCompile Include="serverData.cpp" />
+    <ClCompile Include="clientData.cpp" />
+    <ClCompile Include="profilers.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="client_data.hpp" />
     <ClInclude Include="common.h" />
     <ClInclude Include="helpers.h" />
     <ClInclude Include="pipe_handler.h" />
     <ClInclude Include="playback_handler.h" />
     <ClInclude Include="RadioEffect.h" />
     <ClInclude Include="plugin.h" />
-    <ClInclude Include="server_radio_data.hpp" />
     <ClInclude Include="task_force_radio.hpp" />
     <ClInclude Include="..\include\clunk\wav_file.h">
       <Filter>externals\clunk</Filter>
@@ -215,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="settings.hpp" />
     <ClInclude Include="enum.hpp" />
+    <ClInclude Include="serverData.hpp" />
+    <ClInclude Include="clientData.hpp" />
+    <ClInclude Include="profilers.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="externals">

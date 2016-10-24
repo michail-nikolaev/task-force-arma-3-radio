@@ -222,13 +222,14 @@
     <ClCompile Include="..\include\simpleSource\SimpleGate.cpp" />
     <ClCompile Include="..\include\simpleSource\SimpleLimit.cpp" />
     <ClCompile Include="..\include\sqlite3\sqlite3.c" />
-    <ClCompile Include="client_data.cpp" />
+    <ClCompile Include="clientData.cpp" />
     <ClCompile Include="constant_ts3_functions.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="pipe_handler.cpp" />
     <ClCompile Include="playback_handler.cpp" />
     <ClCompile Include="plugin.cpp" />
-    <ClCompile Include="server_radio_data.cpp" />
+    <ClCompile Include="profilers.cpp" />
+    <ClCompile Include="serverData.cpp" />
     <ClCompile Include="task_force_radio.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -260,16 +261,17 @@
     <ClInclude Include="..\include\public_rare_definitions.h" />
     <ClInclude Include="..\include\sqlite3\sqlite3.h" />
     <ClInclude Include="..\include\ts3_functions.h" />
-    <ClInclude Include="client_data.hpp" />
+    <ClInclude Include="clientData.hpp" />
     <ClInclude Include="Clunk.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="enum.hpp" />
     <ClInclude Include="helpers.h" />
     <ClInclude Include="pipe_handler.h" />
     <ClInclude Include="playback_handler.h" />
+    <ClInclude Include="profilers.h" />
     <ClInclude Include="RadioEffect.h" />
     <ClInclude Include="plugin.h" />
-    <ClInclude Include="server_radio_data.hpp" />
+    <ClInclude Include="serverData.hpp" />
     <ClInclude Include="settings.hpp" />
     <ClInclude Include="task_force_radio.hpp" />
     <ClInclude Include="version.h" />
