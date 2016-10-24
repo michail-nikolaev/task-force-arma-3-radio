@@ -42,10 +42,10 @@ if !(isNull (findDisplay 46)) then {
             tf_farPlayersIndex = 0;
             {
                 private _spectator = _x getVariable ["tf_forceSpectator",false];
-                if ((isPlayer _x) and {!_spectator}) then {
+                //if ((isPlayer _x) and {!_spectator}) then {
                     tf_farPlayers set[tf_farPlayersIndex, _x];
                     tf_farPlayersIndex = tf_farPlayersIndex + 1;
-                };
+                //};
                 true;
             } count _other_units;
 
@@ -112,10 +112,6 @@ if !(isNull (findDisplay 46)) then {
                 };
                 tf_lastFarFrameTick = diag_tickTime;
             };
-        };
-        if (diag_tickTime - tf_lastFrequencyInfoTick > 0.5) then {
-            call TFAR_fnc_sendFrequencyInfo;
-            tf_lastFrequencyInfoTick = diag_tickTime;
         };
     };
 };

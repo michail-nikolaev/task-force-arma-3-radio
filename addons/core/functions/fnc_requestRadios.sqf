@@ -43,15 +43,10 @@ MUTEX_LOCK(TF_radio_request_mutex);
 if ((time - TF_last_request_time > 3) or {_this}) then {
     TF_last_request_time = time;
     (_this call TFAR_fnc_radioToRequestCount) params["_radiosToRequest","_TF_SettingsToCopy"];
-
+    diag_log format["Send TFAR_RadioRequestEvent %1 %2",[_radiosToRequest,player],diag_tickTime]; //#TODO remove
     if ((count _radiosToRequest) > 0) then {
-        //Send request
-        diag_log format["Send TFAR_RadioRequestEvent %1 %2",[_radiosToRequest,player],diag_tickTime]; //#TODO remove
-        ["TFAR_RadioRequestEvent", [_radiosToRequest,player]] call CBA_fnc_serverEvent;
 
-        [parseText(localize ("STR_wait_radio")), 10] call TFAR_fnc_showHint;
-
-        //Wait for answer
+        //Answer EH
         ["TFAR_RadioRequestResponseEvent", {
             diag_log format["TFAR_RadioRequestResponseEvent %1 %2",_this,diag_tickTime];//#TODO remove
             params ["_response"];
@@ -62,7 +57,7 @@ if ((time - TF_last_request_time > 3) or {_this}) then {
                 private _startIndex = 0;
                 if (_radioCount > 0) then {
                     if (TFAR_RadioReqLinkFirstItem) then {
-                        TTFAR_RadioReqLinkFirstItem= false;
+                        TFAR_RadioReqLinkFirstItem= false;
                         TFAR_currentUnit linkItem (_response select 0);
                         _copyIndex = [_settingsCount, _copyIndex, (_response select 0),_TF_SettingsToCopy] call _fnc_CopySettings;
                         [(_response select 0), getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
@@ -82,11 +77,13 @@ if ((time - TF_last_request_time > 3) or {_this}) then {
             //								unit, radios
             ["OnRadiosReceived", [TFAR_currentUnit, _response]] call TFAR_fnc_fireEventHandlers;
 
-            ["TFAR_RadioRequestResponseEvent", _eventId] call CBA_fnc_removeEventHandler;
-        }] call CBA_fnc_addEventHandler;
+            ["TFAR_RadioRequestResponseEvent", _thisId] call CBA_fnc_removeEventHandler;
+        }] call CBA_fnc_addEventHandlerArgs;
 
+        [parseText(localize ("STR_wait_radio")), 10] call TFAR_fnc_showHint;
 
-
+        //Send request
+        ["TFAR_RadioRequestEvent", [_radiosToRequest,player]] call CBA_fnc_serverEvent;
     };
     TF_last_request_time = time;
 };

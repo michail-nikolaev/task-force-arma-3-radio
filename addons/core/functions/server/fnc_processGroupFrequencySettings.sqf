@@ -20,7 +20,7 @@
 */
 
 {
-    if (isNil (_x getVariable "tf_sw_frequency")) then {
+    if ((_x getVariable ["tf_sw_frequency",false]) isEqualTo false) then {
         if !(TFAR_SameSRFrequenciesForSide) then {
             _x setVariable ["tf_sw_frequency", call TFAR_fnc_generateSRSettings, true];
         } else {
@@ -37,7 +37,7 @@
             };
         };
     };
-    if (isNil (_x getVariable "tf_dd_frequency")) then {
+    if ((_x getVariable "tf_dd_frequency") isEqualTo false) then {
         if !(TFAR_SameDDFrequenciesForSide) then {
             _x setVariable ["tf_dd_frequency", call TFAR_fnc_generateDDFreq, true];
         } else {
@@ -54,7 +54,7 @@
             };
         };
     };
-    if (isNil (_x getVariable "tf_lr_frequency")) then {
+    if ((_x getVariable "tf_lr_frequency") isEqualTo false) then {
         if !(TFAR_SameLRFrequenciesForSide) then {
             _x setVariable ["tf_lr_frequency", call TFAR_fnc_generateLrSettings, true];
         } else {

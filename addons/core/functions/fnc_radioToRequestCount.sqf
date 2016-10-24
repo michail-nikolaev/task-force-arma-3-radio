@@ -37,11 +37,11 @@ if ((TF_give_personal_radio_to_regular_soldier) or {leader TFAR_currentUnit == T
 
 private _TF_settingsToCopy = [];
 {
-    if (_x call TFAR_fnc_isRadio) then {
-        if (_x call TFAR_fnc_isPrototypeRadio) then {
-            _to_remove pushBack _x;
-            TFAR_RadioReqLinkFirstItem = true;
-        } else {
+    if (_x call TFAR_fnc_isPrototypeRadio) then {
+        _to_remove pushBack _x;
+        TFAR_RadioReqLinkFirstItem = true;
+    } else {
+        if (_x call TFAR_fnc_isRadio) then {
             if ((_x call TFAR_fnc_getRadioOwner) == "") then {
                 [_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
             };
@@ -80,4 +80,5 @@ private _TF_settingsToCopy = [];
         _to_remove set [_forEachIndex, _defaultRadio];
     };
 } forEach _to_remove;
+
 [_to_remove,_TF_settingsToCopy]

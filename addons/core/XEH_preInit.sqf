@@ -124,7 +124,6 @@ if (hasInterface) then {
     tf_msFarPerStep = tf_msFarPerStepMax;
     tf_farUpdateTime = 3.5;
 
-    tf_lastFrequencyInfoTick = 0;
     tf_lastNearPlayersUpdate = 0;
 
     tf_lastError = false;

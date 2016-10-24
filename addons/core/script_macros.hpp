@@ -17,14 +17,8 @@
     #undef PREP
 #endif
 
-
-#ifdef DISABLE_COMPILE_CACHE
-    #define PREP(fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)
-    #define PREP_SUB(subfolder,fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\subfolder\DOUBLES(fnc,fncName).sqf)
-#else
-    #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QUOTE(DFUNC(fncName))] call CBA_fnc_compileFunction
-    #define PREP_SUB(subfolder,fncName) [QPATHTOF(functions\subfolder\DOUBLES(fnc,fncName).sqf), QUOTE(DFUNC(fncName))] call CBA_fnc_compileFunction
-#endif
+#define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QUOTE(DFUNC(fncName))] call CBA_fnc_compileFunction
+#define PREP_SUB(subfolder,fncName) [QPATHTOF(functions\subfolder\DOUBLES(fnc,fncName).sqf), QUOTE(DFUNC(fncName))] call CBA_fnc_compileFunction
 
 #define VARIABLE_DEFAULT(varName,defaultValue) if (isNil QUOTE(varName)) then {varName = defaultValue;}
 
@@ -79,7 +73,7 @@
 
 
 #define DEPRECATE_VARIABLE(OLD_VARIABLE,NEW_VARIABLE) \
-    if (!isNil QUOTE(OLD_VARIABLE)){ \
+    if (!isNil QUOTE(OLD_VARIABLE)) then { \
         WARNING('Deprecated variable used: OLD_VARIABLE (new: NEW_VARIABLE) in ADDON'); \
         NEW_VARIABLE = OLD_VARIABLE; \
     }

@@ -21,9 +21,6 @@
 */
 
 missionNamespace setVariable ["TF_server_addon_version",TFAR_ADDON_VERSION,true];
-
-waitUntil {sleep 0.1;time > 0};
-
 TFAR_RadioCountHash = [] call CBA_fnc_hashCreate;
 
 ["TFAR_RadioRequestEvent", {
@@ -73,32 +70,32 @@ TFAR_RadioCountHash = [] call CBA_fnc_hashCreate;
 DEPRECATE_VARIABLE(tf_same_sw_frequencies_for_side,TFAR_SameSRFrequenciesForSide);
 DEPRECATE_VARIABLE(tf_same_lr_frequencies_for_side,TFAR_SameLRFrequenciesForSide);
 
-if (!isNil "tf_freq_west"){ \
+if (!isNil "tf_freq_west") then { \
     WARNING('Deprecated variable used: tf_freq_west (new: TFAR_defaultFrequencies_sr_west) in ADDON'); \
     TFAR_defaultFrequencies_sr_west = tf_freq_west param [2,nil];
-}
-if (!isNil "tf_freq_west_lr"){ \
+};
+if (!isNil "tf_freq_west_lr") then { \
     WARNING('Deprecated variable used: tf_freq_west_lr (new: TFAR_defaultFrequencies_lr_west) in ADDON'); \
     TFAR_defaultFrequencies_lr_west = tf_freq_west_lr param [2,nil];
-}
+};
 
-if (!isNil "tf_freq_east"){ \
+if (!isNil "tf_freq_east") then { \
     WARNING('Deprecated variable used: tf_freq_east (new: TFAR_defaultFrequencies_sr_east) in ADDON'); \
     TFAR_defaultFrequencies_sr_east = tf_freq_east param [2,nil];
-}
-if (!isNil "tf_freq_east_lr"){ \
+};
+if (!isNil "tf_freq_east_lr") then { \
     WARNING('Deprecated variable used: tf_freq_east_lr (new: TFAR_defaultFrequencies_lr_east) in ADDON'); \
     TFAR_defaultFrequencies_lr_east = tf_freq_east_lr param [2,nil];
-}
+};
 
-if (!isNil "tf_freq_guer"){ \
+if (!isNil "tf_freq_guer") then { \
     WARNING('Deprecated variable used: tf_freq_guer (new: TFAR_defaultFrequencies_sr_independent) in ADDON'); \
     TFAR_defaultFrequencies_sr_independent = tf_freq_guer param [2,nil];
-}
-if (!isNil "tf_freq_guer_lr"){ \
+};
+if (!isNil "tf_freq_guer_lr") then { \
     WARNING('Deprecated variable used: tf_freq_guer_lr (new: TFAR_defaultFrequencies_lr_independent) in ADDON'); \
     TFAR_defaultFrequencies_lr_independent = tf_freq_guer_lr param [2,nil];
-}
+};
 
 if (!isNil "TFAR_defaultFrequencies_sr_west") then {
     TFAR_SameSRFrequenciesForSide = true;
@@ -161,7 +158,7 @@ VARIABLE_DEFAULT(TFAR_freq_sr_independent_dd,call TFAR_fnc_generateDDFreq);
 
 
 
-
+waitUntil {sleep 0.1;time > 0};
 
 while {true} do {
     call TFAR_fnc_processGroupFrequencySettings;

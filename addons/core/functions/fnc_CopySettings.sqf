@@ -20,7 +20,7 @@
     // LR - LR
     [(call TFAR_fnc_activeLrRadio),[(vehicle player), "driver"]] call TFAR_fnc_copySettings;
     // SW - SW
-    [(call TFAR_fnc_activeSwRadio),"TFAR_anprc148jem_20"] call TTFAR_fnc_copySettings
+    [(call TFAR_fnc_activeSwRadio),"TFAR_anprc148jem_20"] call TFAR_fnc_copySettings
 */
 
 params ["_source", "_destination"];
