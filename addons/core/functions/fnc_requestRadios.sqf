@@ -78,10 +78,13 @@ if ((time - TF_last_request_time > 3) or {_this}) then {
             ["OnRadiosReceived", [TFAR_currentUnit, _response]] call TFAR_fnc_fireEventHandlers;
 
             ["TFAR_RadioRequestResponseEvent", _thisId] call CBA_fnc_removeEventHandler;
+            [[15,"radioRequest",round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release
+
+
         }] call CBA_fnc_addEventHandlerArgs;
 
         [parseText(localize ("STR_wait_radio")), 10] call TFAR_fnc_showHint;
-
+        TFAR_beta_RadioRequestStart = diag_tickTime;//#TODO remove on release
         //Send request
         ["TFAR_RadioRequestEvent", [_radiosToRequest,player]] call CBA_fnc_serverEvent;
     };
