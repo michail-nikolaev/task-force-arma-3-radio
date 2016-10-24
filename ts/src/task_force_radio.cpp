@@ -131,7 +131,10 @@ void task_force_radio::trackPiwik(const std::vector<std::string>& piwikData) {
 		std::vector<trackerCustomVariable> customVariables = parseCustomVariables(piwikData[3]);
 		if (customVariables.empty()) return;
 		std::stringstream request;
-		request << "piwik.php?idsite=2&rec=1&url=\"radio.task-force.ru\"";
+		if (piwikData[1] == "beta")		 //#TODO remove on release
+			request << "piwik.php?idsite=2&rec=1&url=\"piwik.dedmen.de\"";
+		else
+			request << "piwik.php?idsite=2&rec=1&url=\"radio.task-force.ru\"";
 		request << "&action_name=" << piwikData[1];
 		request << "&rand=" << rand();
 		request << "&uid=" << piwikData[2];
@@ -157,7 +160,11 @@ void task_force_radio::trackPiwik(const std::vector<std::string>& piwikData) {
 		if (r & INTERNET_CONNECTION_OFFLINE) return;
 
 		HINTERNET Initialize = InternetOpen(L"TFAR", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
-		HINTERNET Connection = InternetConnect(Initialize, PIWIK_URL, INTERNET_DEFAULT_HTTP_PORT, NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0);
+		HINTERNET Connection;
+		if (piwikData[1] == "beta")
+			Connection = InternetConnect(Initialize, L"piwik.dedmen.de", INTERNET_DEFAULT_HTTP_PORT, NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0);
+		else
+			Connection = InternetConnect(Initialize, PIWIK_URL, INTERNET_DEFAULT_HTTP_PORT, NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0);
 		HINTERNET File = HttpOpenRequestA(Connection, NULL, requestString.c_str(), NULL, NULL, NULL, 0, 0);
 		if (HttpSendRequest(File, NULL, 0, NULL, 0)) {
 			while (InternetReadFile(File, &ch, 1, &dwBytes)) {
