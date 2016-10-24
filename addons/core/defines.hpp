@@ -41,3 +41,8 @@
 
 #define TFAR_LR_SPEAKER_OFFSET 8
 #define TFAR_SW_SPEAKER_OFFSET 8
+
+
+#define TFAR_PLAYER_RESCAN_TIME 1//Interval between Rescans of Players
+
+#define TFAR_FAR_PLAYER_UPDATE_TIME 3.5 //Interval between updates of Far(>TF_max_voice_volume) Player positions
