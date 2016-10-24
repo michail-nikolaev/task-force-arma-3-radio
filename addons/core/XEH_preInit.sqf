@@ -102,29 +102,18 @@ if (hasInterface) then {
     TF_lr_active_curator_radio = nil;
 
 
-    tf_msPerStep = 0;
-
     TFAR_speakerRadios = [];
-    tf_nearPlayers = [];
-    tf_farPlayers = [];
+    TFAR_currentNearPlayers = [];
+    TFAR_currentFarPlayers = [];
+    TFAR_currentNearPlayersProcessing = [];
+    TFAR_currentFarPlayersProcessing = [];
 
-    tf_nearPlayersIndex = 0;
-    tf_nearPlayersProcessed = true;
+    TFAR_currentNearPlayersProcessed = true;
+    TFAR_currentFarPlayersProcessed = true;
+    TFAR_lastFarPlayerProcessTime = 0;
+    TFAR_lastNearPlayerProcessTime = 0;
+    TFAR_lastPlayerScanTime = 0;
 
-    tf_farPlayersIndex = 0;
-    tf_farPlayersProcessed = true;
-
-    tf_msNearPerStepMax = 0.025;
-    tf_msNearPerStepMin = 0.1;
-    tf_msNearPerStep = tf_msNearPerStepMax;
-    tf_nearUpdateTime = 0.3;
-
-    tf_msFarPerStepMax = 0.025;
-    tf_msFarPerStepMin = 1.00;
-    tf_msFarPerStep = tf_msFarPerStepMax;
-    tf_farUpdateTime = 3.5;
-
-    tf_lastNearPlayersUpdate = 0;
 
     tf_lastError = false;
 

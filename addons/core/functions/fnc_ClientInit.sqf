@@ -62,8 +62,8 @@ TF_respawnedAt = time;//first spawn so.. respawned now
 
     if (isMultiplayer) then {
         call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
-        [TFAR_fnc_processPlayerPositions] call CBA_fnc_addPerFrameHandler;
-        [TFAR_fnc_sendFrequencyInfo,0.2 /*200 milliseconds*/] call CBA_fnc_addPerFrameHandler;
+        [TFAR_fnc_processPlayerPositions,0.1 /*100 milliseconds*/] call CBA_fnc_addPerFrameHandler;
+        [TFAR_fnc_sendFrequencyInfo,0.3 /*300 milliseconds*/] call CBA_fnc_addPerFrameHandler;
         [TFAR_fnc_sessionTracker,60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
     };
 };
@@ -103,11 +103,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
 // "playerChanged" event
 ["unit", {
     //current unit changed (Curator took control of unit)
-    if (TFAR_currentUnit != (_this select 0)) then {
-        TFAR_currentUnit setVariable ["TFAR_controlledUnit",(_this select 0), true];
-    } else {
-        TFAR_currentUnit setVariable ["TFAR_controlledUnit",nil, true];
-    };
+    TFAR_currentUnit = (_this select 0);
     "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name player]);//Async call will always return "OK"
 }] call CBA_fnc_addPlayerEventHandler;
 

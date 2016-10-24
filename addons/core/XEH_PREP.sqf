@@ -174,6 +174,7 @@ PREP(setChannelFrequency);
 PREP(setRadioOwner);
 PREP(setLrSpeakers);
 PREP_SUB(plugin,sessionTracker);
+PREP_SUB(plugin,betaTracker); //#TODO remove on release
 PREP_SUB(events\ui,setVolumeViaDialog);
 PREP_SUB(events\ui,setChannelViaDialog);
 // U
