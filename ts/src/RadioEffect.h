@@ -3,7 +3,7 @@
 #include "DspFilters\RBJ.h"
 #include <math.h>
 #include <Windows.h>
-#include "helpers.h"
+#include "helpers.hpp"
 #define SAMPLE_RATE 48000
 
 

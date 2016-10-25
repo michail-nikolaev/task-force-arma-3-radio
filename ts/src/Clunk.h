@@ -8,11 +8,10 @@ class Clunk
 public:
 
 
-	void process(short * samples, int channels, int sampleCount, TS3_VECTOR pos, float direction)
+	void process(short * samples, int channels, int sampleCount, Position3D pos, float direction)
 	{
-		float x = pos.x;
-		float y = pos.y;
-		float z = pos.z;
+		float x, y, z;
+		std::tie(x, y, z) = pos.get();
 		
 
 		//| cos θ - sin θ   0 | | x | | x cos θ - y sin θ | | x'|

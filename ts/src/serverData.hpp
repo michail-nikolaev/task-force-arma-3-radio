@@ -1,6 +1,7 @@
 #pragma once
 #include "clientData.hpp"
 #include <Windows.h>
+
 extern CRITICAL_SECTION serverDataCriticalSection;
 struct FREQ_SETTINGS {
 	int volume;
@@ -11,7 +12,7 @@ struct FREQ_SETTINGS {
 struct SPEAKER_DATA {
 	std::string radio_id;
 	std::string nickname;
-	std::vector<float> pos;
+	Position3D pos;
 	int volume;
 	std::pair<std::string, float> vehicle;
 	float waveZ;
@@ -33,7 +34,7 @@ struct serverData {
 		LeaveCriticalSection(&serverDataCriticalSection);
 	}
 	bool tangentPressed;
-	TS3_VECTOR myPosition;
+	Position3D myPosition;
 	STRING_TO_CLIENT_DATA_MAP nicknameToClientData;
 #ifndef unmuteAllClients
 	std::vector<anyID> mutedClients; //Access is guarded by serverDataCriticalSection 

@@ -1,14 +1,13 @@
 #include "profilers.h"
 #include <thread>
 #include <sstream>
-std::shared_ptr<std::ofstream> profiler::logFile;
+#include "Logger.h"
 
-void profiler::log(std::string message) {
+void profiler::log(const std::string& message) {
 	//log_string(message, LogLevel_WARNING);
 	//OutputDebugStringA(message.c_str());
 	//OutputDebugStringA("\n");
-	if (logFile)
-		*logFile << message << std::endl;
+	Logger::log(LoggerTypes::profiler, message);
 }
 
 

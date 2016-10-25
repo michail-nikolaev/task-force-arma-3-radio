@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <array>
-#include "helpers.h"
+#include "helpers.hpp"
 #include "enum.hpp"
 
 #pragma push_macro("max") //macro is interfering with ENUM _from_string function. Could also define NOMINMAX globally
@@ -98,6 +98,7 @@ public:
 	~settings() {}
 	template<typename TYPE>
 	void set(const Setting& key,const TYPE& value) {
+		//#TODO add CriticalSection
 		values[key] = value;
 	}
 	template<typename TYPE>

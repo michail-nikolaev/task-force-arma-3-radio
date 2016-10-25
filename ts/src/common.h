@@ -4,6 +4,8 @@
 #include <string>
 #include <algorithm>
 #include <chrono>
+#include "datatypes.h"
+using namespace dataType;
 using namespace std::literals;
 #define RADIO_GAIN_LR 5
 #define RADIO_GAIN_DD 15

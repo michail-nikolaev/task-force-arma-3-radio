@@ -1,5 +1,5 @@
 #include "serverData.hpp"
-#include "helpers.h"
+#include "helpers.hpp"
 
 
 void serverData::setFreqInfos(const std::vector<std::string>& tokens) {
@@ -11,7 +11,7 @@ void serverData::setFreqInfos(const std::vector<std::string>& tokens) {
 	myVoiceVolume = helpers::parseArmaNumberToInt(tokens[5]);
 	ddVolumeLevel = helpers::parseArmaNumberToInt(tokens[6]);
 	wavesLevel = helpers::parseArmaNumber(tokens[8]);
-	terrainIntersectionCoefficient = helpers::parseArmaNumber(tokens[9]);
+	terrainIntersectionCoefficient = helpers::parseArmaNumber(tokens[9]); //#TODO make setter function and PluginConfigSetting
 	globalVolume = helpers::parseArmaNumber(tokens[10]);
 	receivingDistanceMultiplicator = helpers::parseArmaNumber(tokens[12]);
 	speakerDistance = helpers::parseArmaNumber(tokens[13]);

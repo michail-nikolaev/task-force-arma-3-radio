@@ -78,8 +78,8 @@ if (TFAR_objectInterceptionEnabled && _nearPlayer) then {
     _object_interception = _unit call TFAR_fnc_objectInterception;
 };
 
-(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12	%13	%14",
-    _unitName, _pos select 0, _pos select 1, _pos select 2, _pos select 3,
+(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12",
+    _unitName, [_pos select 0, _pos select 1, _pos select 2], _pos select 3,
     _can_speak, _useSw, _useLr, _useDd, _vehicle, _unit call TFAR_fnc_calcTerrainInterception,
     _unit getVariable ["tf_voiceVolume", 1.0], call TFAR_fnc_currentDirection,_object_interception
     ])

@@ -1,4 +1,4 @@
-#include "helpers.h"
+#include "helpers.hpp"
 
 #ifndef _USE_MATH_DEFINES
 #define _USE_MATH_DEFINES
@@ -20,34 +20,29 @@ void helpers::applyGain(short * samples, int channels, size_t sampleCount, float
 		return;
 	for (size_t i = 0; i < sampleCount * channels; i++) samples[i] = static_cast<short>(samples[i] * directTalkingVolume);
 }
-//#TODO swap channels and sampleCount parameters. Everywhere else sampleCount*channels is used.
-void helpers::applyILD(short * samples, int channels, size_t sampleCount, TS3_VECTOR position, float viewAngle) {
+
+constexpr float DegToRad(float deg) {
+	return deg * (static_cast<float>(M_PI) / 180);
+}
+
+void helpers::applyILD(short * samples, size_t sampleCount, int channels, Position3D position, float viewAngle) {
 	if (channels == 2) {
-		viewAngle = viewAngle * static_cast<float>((M_PI)) / 180.0f;
-		float dir = atan2(position.y, position.x) + viewAngle;
+		viewAngle = DegToRad(viewAngle);
+		float dir = position.atanyx() + viewAngle;
 		while (dir > static_cast<float>((M_PI))) {
 			dir = dir - 2 * static_cast<float>((M_PI));
 		}
 
-		float gainLeft = -0.375f * cos(dir) + 0.625f;
-		float gainRight = 0.375f * cos(dir) + 0.625f;
+		float gainFrontLeft = DegToRad(-21.5f) * cos(dir) + 0.625f;
+		float gainFrontRight = DegToRad(21.5f) * cos(dir) + 0.625f;
+		//Use https://msdn.microsoft.com/en-us/library/windows/desktop/ee415798(v=vs.85).aspx for more than 2 channels
 
-		for (size_t i = 0; i < sampleCount * channels; i++) {
-			if (i % 2 == 0) {
-				samples[i] = static_cast<short>(samples[i] * gainLeft);
-			} else {
-				samples[i] = static_cast<short>(samples[i] * gainRight);
-			}
+
+		for (size_t i = 0; i < sampleCount * channels; i+=channels) {
+				samples[i] = static_cast<short>(samples[i] * gainFrontLeft);
+				samples[i+1] = static_cast<short>(samples[i+1] * gainFrontRight);
 		}
 	}
-}
-
-inline float helpers::sq(float x) {
-	return x * x;
-}
-
-float helpers::vectorDistance(TS3_VECTOR from, TS3_VECTOR to) {
-	return sqrt(sq(from.x - to.x) + sq(from.y - to.y) + sq(from.z - to.z));
 }
 
 inline float helpers::parseArmaNumber(const std::string& armaNumber) {
