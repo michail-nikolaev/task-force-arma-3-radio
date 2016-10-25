@@ -16,9 +16,7 @@ struct FREQ_SETTINGS;
 class helpers {
 public:
 	static void applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume);
-	static void applyILD(short * samples, int channels, size_t sampleCount, TS3_VECTOR position, float viewAngle);
-	static float sq(float x);
-	static float vectorDistance(TS3_VECTOR from, TS3_VECTOR to);
+	static void applyILD(short * samples, size_t sampleCount, int channels, Position3D position, float viewAngle); //interaural level difference
 	static float parseArmaNumber(const std::string& armaNumber);
 	static int parseArmaNumberToInt(const std::string& armaNumber);
 	static bool startsWith(const std::string& shouldStartWith, const std::string& startIn);
@@ -124,9 +122,16 @@ public:
 
 class CriticalSectionLock {
 	CRITICAL_SECTION* cs;
+	bool isLocked;
 public:
-	explicit CriticalSectionLock(CRITICAL_SECTION* _cs) : cs(_cs) { EnterCriticalSection(cs); }
-	~CriticalSectionLock() { LeaveCriticalSection(cs); }
+	explicit CriticalSectionLock(CRITICAL_SECTION* _cs) : cs(_cs) { EnterCriticalSection(cs); isLocked = true; }
+	~CriticalSectionLock() { if (isLocked) LeaveCriticalSection(cs); }
+	void unlock() {
+		if (isLocked) {
+			LeaveCriticalSection(cs);
+			isLocked = false;
+		};
+	}
 };
 class ReadLock {
 	PSRWLOCK lock;

@@ -76,9 +76,6 @@
     <ClCompile Include="..\include\clunk\distance_model.cpp">
       <Filter>externals\clunk</Filter>
     </ClCompile>
-    <ClCompile Include="..\include\clunk\logger.cpp">
-      <Filter>externals\clunk</Filter>
-    </ClCompile>
     <ClCompile Include="..\include\clunk\kemar.c">
       <Filter>externals\clunk</Filter>
     </ClCompile>
@@ -114,11 +111,19 @@
     </ClCompile>
     <ClCompile Include="serverData.cpp" />
     <ClCompile Include="clientData.cpp" />
-    <ClCompile Include="profilers.cpp" />
+    <ClCompile Include="Logger.cpp">
+      <Filter>logging</Filter>
+    </ClCompile>
+    <ClCompile Include="profilers.cpp">
+      <Filter>logging</Filter>
+    </ClCompile>
+    <ClCompile Include="datatypes.cpp" />
+    <ClCompile Include="..\include\clunk\clunk_logger.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h" />
-    <ClInclude Include="helpers.h" />
     <ClInclude Include="pipe_handler.h" />
     <ClInclude Include="playback_handler.h" />
     <ClInclude Include="RadioEffect.h" />
@@ -216,7 +221,14 @@
     <ClInclude Include="enum.hpp" />
     <ClInclude Include="serverData.hpp" />
     <ClInclude Include="clientData.hpp" />
-    <ClInclude Include="profilers.h" />
+    <ClInclude Include="Logger.h">
+      <Filter>logging</Filter>
+    </ClInclude>
+    <ClInclude Include="profilers.h">
+      <Filter>logging</Filter>
+    </ClInclude>
+    <ClInclude Include="datatypes.h" />
+    <ClInclude Include="helpers.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="externals">
@@ -233,6 +245,9 @@
     </Filter>
     <Filter Include="externals\teamspeak">
       <UniqueIdentifier>{9409b456-1398-4b63-9116-9596f82faac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="logging">
+      <UniqueIdentifier>{b9faa526-064f-4f13-b8fc-2b18f0b1405a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

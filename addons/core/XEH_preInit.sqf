@@ -50,7 +50,7 @@ if (hasInterface) then {
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_East,"TFAR_mr6000l");
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_Independent,"TFAR_anarc164");
 
-    VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
+    VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);//#TODO make setter function and PluginConfigSetting
 
     MUTEX_INIT(TF_radio_request_mutex);
 

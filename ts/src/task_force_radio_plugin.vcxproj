@@ -193,7 +193,7 @@
     <ClCompile Include="..\include\clunk\distance_model.cpp" />
     <ClCompile Include="..\include\clunk\hrtf.cpp" />
     <ClCompile Include="..\include\clunk\kemar.c" />
-    <ClCompile Include="..\include\clunk\logger.cpp" />
+    <ClCompile Include="..\include\clunk\clunk_logger.cpp" />
     <ClCompile Include="..\include\clunk\object.cpp" />
     <ClCompile Include="..\include\clunk\sample.cpp" />
     <ClCompile Include="..\include\clunk\source.cpp" />
@@ -224,7 +224,9 @@
     <ClCompile Include="..\include\sqlite3\sqlite3.c" />
     <ClCompile Include="clientData.cpp" />
     <ClCompile Include="constant_ts3_functions.cpp" />
+    <ClCompile Include="datatypes.cpp" />
     <ClCompile Include="helpers.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="pipe_handler.cpp" />
     <ClCompile Include="playback_handler.cpp" />
     <ClCompile Include="plugin.cpp" />
@@ -264,8 +266,10 @@
     <ClInclude Include="clientData.hpp" />
     <ClInclude Include="Clunk.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="datatypes.h" />
     <ClInclude Include="enum.hpp" />
-    <ClInclude Include="helpers.h" />
+    <ClInclude Include="helpers.hpp" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="pipe_handler.h" />
     <ClInclude Include="playback_handler.h" />
     <ClInclude Include="profilers.h" />

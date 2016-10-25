@@ -38,7 +38,7 @@ public:
 	uint32_t pluginEnabledCheck;
 	anyID clientId;
 	OVER_RADIO_TYPE tangentOverType; //Radio type this transmission is comming from
-	TS3_VECTOR clientPosition;
+	Position3D clientPosition;
 	uint64 positionTime;
 
 	std::string frequency;
@@ -188,7 +188,6 @@ public:
 		positionTime = 0;
 		tangentOverType = LISTEN_TO_NONE;
 		dataFrame = 0;
-		clientPosition.x = clientPosition.y = clientPosition.z = 0;
 		clientId = -1;
 		voiceVolume = 0;
 		canSpeak = true;

@@ -38,8 +38,9 @@
 #include "task_force_radio.hpp"
 #include "common.h"
 #include "pipe_handler.h"
-#include "helpers.h"
+#include "helpers.hpp"
 #include "playback_handler.h"
+#include "Logger.h"
 
 enum LISTED_ON {
 	LISTED_ON_SW,
@@ -55,7 +56,7 @@ struct LISTED_INFO {
 	int volume;
 	stereoMode stereoMode;
 	std::string radio_id;
-	TS3_VECTOR pos;
+	Position3D pos;
 	float waveZ;
 	std::pair<std::string, float> vehicle;
 };
@@ -130,7 +131,7 @@ bool hasClientData(uint64 serverConnectionHandlerID, anyID clientID) {
 }
 
 #include <chrono>
-void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, TS3_VECTOR position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode = stereoMode::stereo) {
+void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, Position3D position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode = stereoMode::stereo) {
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	if (!ts3::isConnected(serverConnectionHandlerID)) return;
@@ -151,7 +152,7 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 		std::shared_ptr<clientData>& clientData = getClientData(serverConnectionHandlerID, me);
 		if (clientData) {
 			float speakerDistance = (radioVolume / 10.f) * serverIdToData[serverConnectionHandlerID].speakerDistance;
-			float distance_from_radio = helpers::vectorDistance(clientData->clientPosition, position);
+			float distance_from_radio = position.distanceTo(clientData->clientPosition);
 
 			if (vehicleVolumeLoss > 0.01f && !vehicleCheck)
 				processors.push_back([id, distance_from_radio, speakerDistance, vehicleVolumeLoss, clientData](short* samples, size_t sampleCount, uint8_t channels) {
@@ -204,8 +205,8 @@ void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutEx
 			auto pClunk = clientData->getClunk(id);
 			float viewAngle = clientData->viewAngle;
 			processors.push_back([pClunk, viewAngle, position, clientData, id](short* samples, size_t sampleCount, uint8_t channels) {
-				pClunk->process(samples, channels, static_cast<int>(sampleCount), position, viewAngle);
-				helpers::applyILD(samples, channels, sampleCount, position, viewAngle);
+				pClunk->process(samples, channels, static_cast<int>(sampleCount), position, viewAngle); //interaural time difference
+				helpers::applyILD(samples, sampleCount, channels, position, viewAngle);	//interaural level difference
 				clientData->removeClunk(id);
 			});
 
@@ -329,9 +330,8 @@ float effectErrorFromDistance(OVER_RADIO_TYPE radioType, float distance, uint64 
 
 float effectiveDistance(uint64 serverConnectionHandlerID, std::shared_ptr<clientData>& data) {
 	CriticalSectionLock lock(&serverDataCriticalSection);
-	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
-	TS3_VECTOR clientPosition = data->clientPosition;
-	float d = helpers::vectorDistance(myPosition, clientPosition);
+	Position3D myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
+	float d = myPosition.distanceTo(data->clientPosition);
 	// (bob distance player) + (bob call TFAR_fnc_calcTerrainInterception) * 7 + (bob call TFAR_fnc_calcTerrainInterception) * 7 * ((bob distance player) / 2000.0)
 	float result = d +
 		+(data->terrainInterception * serverIdToData[serverConnectionHandlerID].terrainIntersectionCoefficient)
@@ -349,10 +349,8 @@ LISTED_INFO isOverLocalRadio(uint64 serverConnectionHandlerID, std::shared_ptr<c
 	if (senderData == NULL || myData == NULL) return result;
 
 	CriticalSectionLock lock(&serverDataCriticalSection);
-	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
-	TS3_VECTOR clientPosition = senderData->clientPosition;
-
-	result.pos.x = result.pos.y = result.pos.z = 0.0f;
+	Position3D myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
+	Position3D clientPosition = senderData->clientPosition;
 
 	result.radio_id = "local_radio";
 	result.vehicle = helpers::getVehicleDescriptor(myData->vehicleId);
@@ -365,7 +363,7 @@ LISTED_INFO isOverLocalRadio(uint64 serverConnectionHandlerID, std::shared_ptr<c
 	//Receive DD->DD
 	if ((senderData->tangentOverType == LISTEN_TO_DD || ignoreDdTangent)	 //#diverRadio
 		&& (serverIdToData[serverConnectionHandlerID].myDdFrequency == senderData->frequency)) {
-		float dUnderWater = helpers::vectorDistance(myPosition, clientPosition);
+		float dUnderWater = myPosition.distanceTo(clientPosition);
 		if (senderData->canUseDDRadio && myData->canUseDDRadio && dUnderWater < distanceForDiverRadio(dUnderWater, serverConnectionHandlerID)) {
 			result.over = LISTEN_TO_DD;
 			result.on = LISTED_ON_DD;
@@ -450,7 +448,7 @@ std::vector<LISTED_INFO> isOverRadio(uint64 serverConnectionHandlerID, std::shar
 		(senderData->canUseSWRadio && (senderData->tangentOverType == LISTEN_TO_SW || ignoreSwTangent)) || //Sending over SW
 		(senderData->canUseLRRadio && (senderData->tangentOverType == LISTEN_TO_LR || ignoreLrTangent))) { //Sending over LR
 		for (std::multimap<std::string, SPEAKER_DATA>::iterator itr = serverIdToData[serverConnectionHandlerID].speakers.begin(); itr != serverIdToData[serverConnectionHandlerID].speakers.end(); ++itr) {
-			if ((itr->first == senderData->frequency) && 
+			if ((itr->first == senderData->frequency) &&
 				(itr->second.nickname != senderNickname)) {//If the speaker is Senders backpack we don't hear it.. Because he is sending with his Backpack so it can't receive
 				SPEAKER_DATA speaker = itr->second;
 				LISTED_INFO info;
@@ -462,8 +460,8 @@ std::vector<LISTED_INFO> isOverRadio(uint64 serverConnectionHandlerID, std::shar
 				info.volume = speaker.volume;
 				info.waveZ = speaker.waveZ;
 				bool posSet = false;
-				if (speaker.pos.size() == 3) {
-					info.pos = { speaker.pos[0],speaker.pos[1],speaker.pos[2] };
+				if (speaker.pos) {
+					info.pos = speaker.pos;
 					posSet = true;
 				} else {//pos is empty array. Which tells us to use clients Position
 					int currentDataFrame = serverIdToData[serverConnectionHandlerID].currentDataFrame;
@@ -486,11 +484,9 @@ std::vector<LISTED_INFO> isOverRadio(uint64 serverConnectionHandlerID, std::shar
 
 float distanceFromClient(uint64 serverConnectionHandlerID, std::shared_ptr<clientData>& data) {//#TODO replace by just helpers::distance
 	EnterCriticalSection(&serverDataCriticalSection);
-	TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition; //#TODO add getter function with CriticalSections
+	auto& myData = serverIdToData[serverConnectionHandlerID];
 	LeaveCriticalSection(&serverDataCriticalSection);
-	TS3_VECTOR clientPosition = data->clientPosition;
-	float distance = helpers::vectorDistance(myPosition, clientPosition);
-	return distance;
+	return myData.myPosition.distanceTo(data->clientPosition);
 }
 
 void setGameClientMuteStatus(uint64 serverConnectionHandlerID, anyID clientId) {
@@ -750,7 +746,7 @@ void processUnitKilled(std::string &name, uint64 &serverConnection) {
 
 DEFINE_API_PROFILER(processUnitPosition);
 
-std::string processUnitPosition(std::string &nickname, uint64 &serverConnection, TS3_VECTOR position, float viewAngle, bool canSpeak,
+std::string processUnitPosition(std::string &nickname, uint64 &serverConnection, Position3D position, float viewAngle, bool canSpeak,
 	bool canUseSWRadio, bool canUseLRRadio, bool canUseDDRadio, std::string vehicleID, int terrainInterception, float voiceVolume, float currentUnitDrection, int objectInterception) {
 	API_PROFILER(processUnitPosition);
 	DWORD time = GetTickCount();
@@ -758,8 +754,6 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 	anyID playerId = anyID(-1);
 	bool clientTalkingOnRadio = false;
 	if (serverIdToData.count(serverConnection)) {
-		TS3_VECTOR zero;
-		zero.x = zero.y = zero.z = 0.0f;
 		if (nickname == serverIdToData.getMyNickname(serverConnection)) {
 			std::shared_ptr<clientData> clientData;
 			EnterCriticalSection(&serverDataCriticalSection);
@@ -787,7 +781,7 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 			serverIdToData[serverConnection].canSpeak = canSpeak;
 			LeaveCriticalSection(&serverDataCriticalSection);
 			DWORD error;
-			if ((error = ts3Functions.systemset3DListenerAttributes(serverConnection, &zero, NULL, NULL)) != ERROR_ok) {
+			if ((error = ts3Functions.systemset3DListenerAttributes(serverConnection, Position3D(), NULL, NULL)) != ERROR_ok) {
 				log("can't center listener", error);
 			}
 		} else {
@@ -823,7 +817,7 @@ std::string processUnitPosition(std::string &nickname, uint64 &serverConnection,
 				if (clientID != anyID(-1)) {
 					setGameClientMuteStatus(serverConnection, clientID);
 					DWORD error;
-					if ((error = ts3Functions.channelset3DAttributes(serverConnection, clientID, &zero)) != ERROR_ok)
+					if ((error = ts3Functions.channelset3DAttributes(serverConnection, clientID, Position3D())) != ERROR_ok)
 						if (error != ERROR_client_invalid_id) //can happen if client disconnected while playing
 							log("can't center client", error);
 				}
@@ -914,7 +908,7 @@ void processSpeakers(std::vector<std::string>& tokens, uint64 currentServerConne
 		data.radio_id = parts[0];
 		std::vector<std::string> freqs = helpers::split(parts[1], '|');
 		data.nickname = parts[2];
-		data.pos = helpers::coordStringToVector(parts[3]);
+		data.pos = Position3D(parts[3]);
 		data.volume = helpers::parseArmaNumberToInt(parts[4]);
 		data.vehicle = helpers::getVehicleDescriptor(parts[5]);
 		if (parts.size() > 6)
@@ -930,7 +924,8 @@ void processSpeakers(std::vector<std::string>& tokens, uint64 currentServerConne
 DEFINE_API_PROFILER(processGameCommand);
 DEFINE_API_PROFILER(processFreq);
 std::string processGameCommand(std::string command) {
-	profiler::log(command);
+	//#TODO ThreadPool that processing is offloaded to. So this can return afap (as fast as possible)
+	Logger::log(LoggerTypes::gameCommands, command);
 	API_PROFILER(processGameCommand);
 	uint64 currentServerConnectionHandlerID = ts3Functions.getCurrentServerConnectionHandlerID();
 	std::vector<std::string> tokens; tokens.reserve(18);
@@ -939,12 +934,11 @@ std::string processGameCommand(std::string command) {
 	if (tokens.size() == 2 && tokens[0] == "TS_INFO")
 		return ts_info(tokens[1]);
 
-	if (tokens.size() == 15 && tokens[0] == "POS") {
-		//POS nickname x y z viewangle canSpeak canUseSWRadio canUseLRRadio canUseDDRadio vehicleID terrainInterception voiceVolume currentDirection objectInterception
-		TS3_VECTOR position{ std::stof(tokens[2]) ,std::stof(tokens[3]) ,std::stof(tokens[4]) };
-		return processUnitPosition(tokens[1], currentServerConnectionHandlerID, position, std::stof(tokens[5]),
-			helpers::isTrue(tokens[6]), helpers::isTrue(tokens[7]), helpers::isTrue(tokens[8]), helpers::isTrue(tokens[9]), tokens[10], std::stoi(tokens[11]), helpers::parseArmaNumber(tokens[12]),
-			helpers::parseArmaNumber(tokens[13]), helpers::parseArmaNumberToInt(tokens[14]));
+	if (tokens.size() == 13 && tokens[0] == "POS") {
+		//POS nickname [x,y,z] viewangle canSpeak canUseSWRadio canUseLRRadio canUseDDRadio vehicleID terrainInterception voiceVolume currentDirection objectInterception
+		return processUnitPosition(tokens[1], currentServerConnectionHandlerID, Position3D(tokens[2]), helpers::parseArmaNumber(tokens[3]),
+			helpers::isTrue(tokens[4]), helpers::isTrue(tokens[5]), helpers::isTrue(tokens[6]), helpers::isTrue(tokens[7]), tokens[8], helpers::parseArmaNumberToInt(tokens[9]), helpers::parseArmaNumber(tokens[10]),
+			helpers::parseArmaNumber(tokens[11]), helpers::parseArmaNumberToInt(tokens[12]));
 	}
 	if (tokens.size() == 2 && tokens[0] == "IS_SPEAKING") {
 		std::string nickname = tokens[1];
@@ -1169,7 +1163,7 @@ void ServiceThread() {
 	}
 }
 
-void PipeThread() {
+void PipeThread() {//#TODO use shared memory https://msdn.microsoft.com/de-de/library/windows/desktop/aa366551(v=vs.85).aspx faster
 	HANDLE pipe = INVALID_HANDLE_VALUE;
 	DWORD sleep = FAILS_TO_SLEEP;
 	char buffer[4096];
@@ -1304,7 +1298,9 @@ int ts3plugin_init() {
 	task_force_radio::createCheckForUpdateThread();
 
 #ifdef ENABLE_API_PROFILER
-	profiler::logFile = std::make_shared<std::ofstream>("P:/logfile.log");
+	Logger::registerLogger(LoggerTypes::profiler, std::make_shared<FileLogger>("P:/profiler.log"));
+	Logger::registerLogger(LoggerTypes::gameCommands, std::make_shared<FileLogger>("P:/gameCommands.log"));
+	Logger::registerLogger(LoggerTypes::pluginCommands, std::make_shared<FileLogger>("P:/pluginCommands.log"));
 #endif
 
 
@@ -1502,9 +1498,9 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 					//process voice
 
 					//Time differential based on direction
-					data->getClunk("voice_clunk")->process(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);
+					data->getClunk("voice_clunk")->process(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);//interaural time difference
 					//Volume differential based on direction
-					helpers::applyILD(samples, channels, sampleCount, data->clientPosition, myData->viewAngle);
+					helpers::applyILD(samples, sampleCount, channels, data->clientPosition, myData->viewAngle);//interaural level difference
 					if (shouldPlayerHear) {
 						if (vehicleVolumeLoss < 0.01 || vehicleCheck) {
 
@@ -1546,7 +1542,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 							break;
 						case PTTDelayArguments::subtypes::dd: {
 							float ddVolumeLevel = helpers::volumeMultiplifier(static_cast<float>(serverIdToData[serverConnectionHandlerID].ddVolumeLevel));
-							data->getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, helpers::vectorDistance(data->clientPosition, myData->clientPosition), serverConnectionHandlerID, data));
+							data->getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, data->clientPosition.distanceTo(myData->clientPosition), serverConnectionHandlerID, data));
 							processRadioEffect(radio_buffer, channels, sampleCount, ddVolumeLevel * 0.6f, data->getUnderwaterRadioEffect(info.radio_id), info.stereoMode);
 							break; }
 						case  PTTDelayArguments::subtypes::phone:
@@ -1559,8 +1555,8 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 
 					if (info.on == LISTED_ON_GROUND) {
 
-						TS3_VECTOR myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
-						float distance_from_radio = helpers::vectorDistance(myPosition, info.pos);
+						Position3D myPosition = serverIdToData[serverConnectionHandlerID].myPosition;
+						float distance_from_radio = myPosition.distanceTo(info.pos);
 
 						const float radioVehicleVolumeLoss = helpers::clamp(myVehicleDesriptor.second + info.vehicle.second, 0.0f, 0.99f);
 						bool radioVehicleCheck = (myVehicleDesriptor.first == info.vehicle.first);
@@ -1576,8 +1572,8 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHand
 						if (info.waveZ < UNDERWATER_LEVEL) {
 							helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, CANT_SPEAK_GAIN, (data->getFilterCantSpeak(info.radio_id)));
 						}
-						data->getClunk(info.radio_id)->process(radio_buffer, channels, sampleCount, info.pos, myData->viewAngle);
-						helpers::applyILD(radio_buffer, channels, sampleCount, info.pos, myData->viewAngle);
+						data->getClunk(info.radio_id)->process(radio_buffer, channels, sampleCount, info.pos, myData->viewAngle);//interaural time difference
+						helpers::applyILD(radio_buffer, sampleCount, channels, info.pos, myData->viewAngle);//interaural level difference
 					}
 					helpers::mix(samples, radio_buffer, sampleCount, channels);
 
@@ -1753,7 +1749,7 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 			else if (diverRadio) pClientData->canUseDDRadio = true;
 			else pClientData->canUseSWRadio = true;
 
-			TS3_VECTOR myPosition = serverIdToData[serverId].myPosition;
+			Position3D myPosition = serverIdToData[serverId].myPosition;
 
 			log_string(std::string("REMOTE COMMAND ") + command, LogLevel_DEVEL);
 			if ((pClientData->tangentOverType != LISTEN_TO_NONE) != pressed) {
@@ -1780,8 +1776,8 @@ void processTangentPress(uint64 serverId, std::vector<std::string> &tokens, std:
 					const float vehicleVolumeLoss = helpers::clamp(myVehicleDesriptor.second + listedInfo.vehicle.second, 0.0f, 0.99f);
 					bool vehicleCheck = (myVehicleDesriptor.first == listedInfo.vehicle.first);
 
-					LeaveCriticalSection(&serverDataCriticalSection);
 					float gain = helpers::volumeMultiplifier(static_cast<float>(listedInfo.volume)) * serverIdToData[serverId].globalVolume;
+					LeaveCriticalSection(&serverDataCriticalSection);
 					setGameClientMuteStatus(serverId, clientId);
 					if (alive && listedInfo.on != LISTED_ON_NONE) {
 						switch (PTTDelayArguments::stringToSubtype(subtype)) {

@@ -1,7 +1,7 @@
 #include "playback_handler.h"
 #include <vector>
 
-#include "helpers.h"
+#include "helpers.hpp"
 
 
 playback_handler::playback_handler() { InitializeCriticalSection(&playbackCriticalSection); }

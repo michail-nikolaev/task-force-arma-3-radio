@@ -6,8 +6,7 @@
 #include <fstream>
 namespace profiler
 {
-	void log(std::string message);
-	extern std::shared_ptr<std::ofstream> logFile;
+	void log(const std::string& message);
 }
 
 
