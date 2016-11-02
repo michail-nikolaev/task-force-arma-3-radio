@@ -22,6 +22,7 @@
  */
 
 params ["_text", "_time"];
+if (_time == 0) exitWith {};
 
 if (isNull (uiNamespace getVariable ["TFAR_Hint_Display", displayNull])) then {
     ("TFAR_HintLayer" call BIS_fnc_rscLayer) cutRsc["RscTaskForceHint", "PLAIN",0,true];

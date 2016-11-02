@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 #include <Windows.h>
-#include "common.h"
+#include "common.hpp"
 #include <map>
-#include "profilers.h"
+#include "profilers.hpp"
 
 int constexpr const_strlen(const char* str) {
 	return *str ? 1 + const_strlen(str + 1) : 0;
@@ -15,8 +15,11 @@ struct FREQ_SETTINGS;
 
 class helpers {
 public:
-	static void applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume);
-	static void applyILD(short * samples, size_t sampleCount, int channels, Position3D position, float viewAngle); //interaural level difference
+	static void applyGain(short * samples, size_t sampleCount, int channels, float directTalkingVolume);
+	static void applyILD(short * samples, size_t sampleCount, int channels, Direction3D direction, AngleRadians viewAnglee); //interaural level difference
+
+	static void applyILD(short * samples, size_t sampleCount, int channels,Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection); //interaural level difference
+
 	static float parseArmaNumber(const std::string& armaNumber);
 	static int parseArmaNumberToInt(const std::string& armaNumber);
 	static bool startsWith(const std::string& shouldStartWith, const std::string& startIn);
@@ -107,43 +110,3 @@ public:
 	}
 
 };
-
-class ts3 {
-public:
-	static bool isConnected(uint64 serverConnectionHandlerID);
-	static anyID getMyId(uint64 serverConnectionHandlerID);
-	static bool isInChannel(uint64 serverConnectionHandlerID, anyID clientId, const char* channelToCheck);
-	static std::string getChannelName(uint64 serverConnectionHandlerID, anyID clientId);
-	static bool isTalking(uint64 currentServerConnectionHandlerID, anyID myId, anyID playerId);
-	static std::vector<anyID> getChannelClients(uint64 serverConnectionHandlerID, uint64 channelId);
-	static uint64 getCurrentChannel(uint64 serverConnectionHandlerID);
-	static std::string getMyNickname(uint64 serverConnectionHandlerID);
-};
-
-class CriticalSectionLock {
-	CRITICAL_SECTION* cs;
-	bool isLocked;
-public:
-	explicit CriticalSectionLock(CRITICAL_SECTION* _cs) : cs(_cs) { EnterCriticalSection(cs); isLocked = true; }
-	~CriticalSectionLock() { if (isLocked) LeaveCriticalSection(cs); }
-	void unlock() {
-		if (isLocked) {
-			LeaveCriticalSection(cs);
-			isLocked = false;
-		};
-	}
-};
-class ReadLock {
-	PSRWLOCK lock;
-public:
-	explicit ReadLock(PSRWLOCK _lock) :lock(_lock) { AcquireSRWLockShared(lock); }
-	~ReadLock() { ReleaseSRWLockShared(lock); }
-};
-
-class WriteLock {
-	PSRWLOCK lock;
-public:
-	explicit WriteLock(PSRWLOCK _lock) :lock(_lock) { AcquireSRWLockExclusive(lock); }
-	~WriteLock() { ReleaseSRWLockExclusive(lock);}
-};
-

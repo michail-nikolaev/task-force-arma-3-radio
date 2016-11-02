@@ -86,7 +86,7 @@ if ((time - TF_last_request_time > 3) or {_this}) then {
         [parseText(localize ("STR_wait_radio")), 10] call TFAR_fnc_showHint;
         TFAR_beta_RadioRequestStart = diag_tickTime;//#TODO remove on release
         //Send request
-        ["TFAR_RadioRequestEvent", [_radiosToRequest,player]] call CBA_fnc_serverEvent;
+        ["TFAR_RadioRequestEvent", [_radiosToRequest,TFAR_currentUnit]] call CBA_fnc_serverEvent;
     };
     TF_last_request_time = time;
 };

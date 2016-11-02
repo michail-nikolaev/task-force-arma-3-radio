@@ -113,7 +113,7 @@ private _unitPos = eyepos TFAR_currentUnit;
 
 private _empty = (count _speakerRadios == 0);
 //If we didn't have speakers in last call and don't have any now. Skip calling Extension
-if (!(missionnamespace getVariable ["TFAR_hadSpeakers",false])) exitWith {};
+if (!(missionnamespace getVariable ["TFAR_hadSpeakers",false]) && _empty) exitWith {};
 TFAR_hadSpeakers = !_empty;
 
 "task_force_radio_pipe" callExtension format["SPEAKERS	%1~",_speakerRadios joinString TF_vertical_tab];//Async call will always return "OK"

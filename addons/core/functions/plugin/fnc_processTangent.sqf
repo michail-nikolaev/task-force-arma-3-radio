@@ -13,8 +13,7 @@
     Parameters:
         0: STRING - Hint text
         1: STRING - Request string
-        (Optional)2: NUMBER  - Hint display time
-    #TODO allow not to show hint
+        (Optional)2: NUMBER  - Hint display time - 0 won't show a hint
     Returns:
         Nothing
 

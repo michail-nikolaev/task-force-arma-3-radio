@@ -26,9 +26,9 @@ private _startTime = diag_tickTime;
 //Process queued Near Players
 if (!TFAR_currentNearPlayersProcessed) then {
     private _nearPlayersCount = count TFAR_currentNearPlayersProcessing;
-    if (_nearPlayersCount == 0) exitWith {TFAR_lastNearPlayerProcessTime = diag_tickTime;TFAR_currentNearPlayersProcessed = true};
-    private _playersToProcess = _nearPlayersCount min 20;//Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
-    if (_playersToProcess == 0) exitWith {TFAR_lastNearPlayerProcessTime = diag_tickTime;TFAR_currentNearPlayersProcessed = true};
+    if (_nearPlayersCount == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
+    private _playersToProcess = _nearPlayersCount min 50;//Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
+    if (_playersToProcess == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
 
     private _startIndex = _nearPlayersCount - _playersToProcess; //Is min 0
     for "_y" from _startIndex to _nearPlayersCount-1 step 1 do {
@@ -44,7 +44,7 @@ if (!TFAR_currentNearPlayersProcessed) then {
     //Remove processed Units from array
     TFAR_currentNearPlayersProcessing deleteRange [_startIndex,_playersToProcess];
     //We just processed the last players
-    if ((_nearPlayersCount - _playersToProcess) == 0) exitWith {TFAR_lastNearPlayerProcessTime = diag_tickTime;TFAR_currentNearPlayersProcessed = true};
+    if ((_nearPlayersCount - _playersToProcess) == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
 };
 
 //Don't process anymore if we already blocked too long (5 millisec)
@@ -54,7 +54,7 @@ if ((diag_tickTime - _startTime) > 0.005) exitWith {};
 if (!TFAR_currentFarPlayersProcessed) then {
     private _farPlayersCount = count TFAR_currentFarPlayersProcessing;
     if (_farPlayersCount == 0) exitWith {TFAR_lastFarPlayerProcessTime = diag_tickTime;TFAR_currentFarPlayersProcessed = true};
-    private _playersToProcess = _farPlayersCount min 10;//Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
+    private _playersToProcess = _farPlayersCount min 50;//Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
     if (_playersToProcess == 0) exitWith {TFAR_lastFarPlayerProcessTime = diag_tickTime;TFAR_currentFarPlayersProcessed = true};
 
     private _startIndex = _farPlayersCount - _playersToProcess; //Is min 0
@@ -101,7 +101,6 @@ if (_needNearPlayerScan) then {
         };
         true;
     } count _other_units;
-    call TFAR_fnc_pluginNextDataFrame;
     TFAR_lastPlayerScanTime = diag_tickTime;
 };
 
@@ -117,6 +116,7 @@ if ((diag_tickTime - TFAR_lastFarPlayerProcessTime) < TFAR_FAR_PLAYER_UPDATE_TIM
 
 //Queue new updates to plugin if last one processed
 if (TFAR_currentFarPlayersProcessed) then {
+    call TFAR_fnc_pluginNextDataFrame;//Doing this here causes NearPlayers to only expire after TFAR_FAR_PLAYER_UPDATE_TIME
     TFAR_currentFarPlayersProcessing = +TFAR_currentFarPlayers;//Copy array for processing
     TFAR_currentFarPlayersProcessed = false;
 };

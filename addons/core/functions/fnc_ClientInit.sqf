@@ -89,12 +89,12 @@ if (player call TFAR_fnc_isForcedCurator) then {
                 TF_curator_backpack_1 = TFAR_DefaultRadio_Airborne_Independent createVehicleLocal [0, 0, 0];
             };
         default {
-            player addItem TTFAR_DefaultRadio_Personal_West;
-            player addItem TTFAR_DefaultRadio_Personal_East;
-            player addItem TTFAR_DefaultRadio_Personal_Independent;
-            TF_curator_backpack_1 = TTFAR_DefaultRadio_Airborne_West createVehicleLocal [0, 0, 0];
-            TF_curator_backpack_2 = TTFAR_DefaultRadio_Airborne_East createVehicleLocal [0, 0, 0];
-            TF_curator_backpack_3 = TTFAR_DefaultRadio_Airborne_Independent createVehicleLocal [0, 0, 0];
+            player addItem TFAR_DefaultRadio_Personal_West;
+            player addItem TFAR_DefaultRadio_Personal_East;
+            player addItem TFAR_DefaultRadio_Personal_Independent;
+            TF_curator_backpack_1 = TFAR_DefaultRadio_Airborne_West createVehicleLocal [0, 0, 0];
+            TF_curator_backpack_2 = TFAR_DefaultRadio_Airborne_East createVehicleLocal [0, 0, 0];
+            TF_curator_backpack_3 = TFAR_DefaultRadio_Airborne_Independent createVehicleLocal [0, 0, 0];
         };
     };
 };
@@ -103,6 +103,13 @@ if (player call TFAR_fnc_isForcedCurator) then {
 // "playerChanged" event
 ["unit", {
     //current unit changed (Curator took control of unit)
+
+    if (player != (_this select 0)) then {
+        player setVariable ["TFAR_controlledUnit",(_this select 0), true];//This tells other players that our position is different
+    } else {
+        player setVariable ["TFAR_controlledUnit",nil, true];
+    };
+
     TFAR_currentUnit = (_this select 0);
     "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name player]);//Async call will always return "OK"
 }] call CBA_fnc_addPlayerEventHandler;
@@ -137,7 +144,4 @@ call TFAR_fnc_radioReplaceProcess;
 };
 
 
-["full_duplex",TF_full_duplex] call TFAR_fnc_setPluginSettings;
-["addon_version",TFAR_ADDON_VERSION] call TFAR_fnc_setPluginSettings;
-["serious_channelName",tf_radio_channel_name] call TFAR_fnc_setPluginSettings;
-["serious_channelPassword",tf_radio_channel_password] call TFAR_fnc_setPluginSettings;
+call TFAR_fnc_sendPluginConfig;

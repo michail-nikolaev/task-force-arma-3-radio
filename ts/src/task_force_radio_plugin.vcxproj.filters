@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="constant_ts3_functions.cpp" />
     <ClCompile Include="helpers.cpp" />
-    <ClCompile Include="pipe_handler.cpp" />
-    <ClCompile Include="playback_handler.cpp" />
     <ClCompile Include="plugin.cpp" />
     <ClCompile Include="task_force_radio.cpp" />
     <ClCompile Include="..\include\clunk\clunk_ex.cpp">
@@ -112,21 +109,30 @@
     <ClCompile Include="serverData.cpp" />
     <ClCompile Include="clientData.cpp" />
     <ClCompile Include="Logger.cpp">
-      <Filter>logging</Filter>
+      <Filter>Logging</Filter>
     </ClCompile>
     <ClCompile Include="profilers.cpp">
-      <Filter>logging</Filter>
+      <Filter>Logging</Filter>
     </ClCompile>
-    <ClCompile Include="datatypes.cpp" />
     <ClCompile Include="..\include\clunk\clunk_logger.cpp">
       <Filter>externals\clunk</Filter>
     </ClCompile>
+    <ClCompile Include="CommandProcessor.cpp" />
+    <ClCompile Include="pipe_handler.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="SharedMemoryHandler.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaybackHandler.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Teamspeak.cpp" />
+    <ClCompile Include="datatypes.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="common.h" />
-    <ClInclude Include="pipe_handler.h" />
-    <ClInclude Include="playback_handler.h" />
-    <ClInclude Include="RadioEffect.h" />
     <ClInclude Include="plugin.h" />
     <ClInclude Include="task_force_radio.hpp" />
     <ClInclude Include="..\include\clunk\wav_file.h">
@@ -218,17 +224,45 @@
       <Filter>externals\teamspeak</Filter>
     </ClInclude>
     <ClInclude Include="settings.hpp" />
-    <ClInclude Include="enum.hpp" />
     <ClInclude Include="serverData.hpp" />
     <ClInclude Include="clientData.hpp" />
-    <ClInclude Include="Logger.h">
-      <Filter>logging</Filter>
-    </ClInclude>
-    <ClInclude Include="profilers.h">
-      <Filter>logging</Filter>
-    </ClInclude>
-    <ClInclude Include="datatypes.h" />
     <ClInclude Include="helpers.hpp" />
+    <ClInclude Include="enum.hpp">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Locks.hpp">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="datatypes.hpp">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Teamspeak.hpp" />
+    <ClInclude Include="CommandProcessor.hpp" />
+    <ClInclude Include="common.hpp" />
+    <ClInclude Include="Logger.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="profilers.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="SignalSlot.hpp">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedMemoryHandler.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="pipe_handler.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaybackHandler.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="RadioEffect.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\locker.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="externals">
@@ -246,8 +280,17 @@
     <Filter Include="externals\teamspeak">
       <UniqueIdentifier>{9409b456-1398-4b63-9116-9596f82faac5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="logging">
+    <Filter Include="Networking">
+      <UniqueIdentifier>{ba17cb2a-bc9d-4345-9c4d-a37376199b0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
       <UniqueIdentifier>{b9faa526-064f-4f13-b8fc-2b18f0b1405a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{fe91a6f4-c76c-41c8-bd4d-f8fd18055378}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{c64d3f43-52e8-4b0f-8dc5-789f81dbd86f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

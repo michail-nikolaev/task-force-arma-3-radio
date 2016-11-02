@@ -26,3 +26,6 @@
 *.opendb
 /ts/src/build
 /ts/src/Release
+/extensions/task_force_radio_pipe/Release
+/extensions/task_force_radio_pipe/Debug
+/extensions/task_force_radio_pipe/exe

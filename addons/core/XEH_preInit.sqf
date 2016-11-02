@@ -110,8 +110,6 @@ if (hasInterface) then {
 
     TFAR_currentNearPlayersProcessed = true;
     TFAR_currentFarPlayersProcessed = true;
-    TFAR_lastFarPlayerProcessTime = 0;
-    TFAR_lastNearPlayerProcessTime = 0;
     TFAR_lastPlayerScanTime = 0;
 
 
