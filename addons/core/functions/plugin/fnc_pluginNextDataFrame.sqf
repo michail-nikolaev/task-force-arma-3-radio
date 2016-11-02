@@ -19,7 +19,6 @@
     Example:
         call TFAR_fnc_pluginNextDataFrame
 */
-
 //Async call will always return "OK"
-private _request = format["DFRAME~"];
-_result = "task_force_radio_pipe" callExtension _request;
+_result = "task_force_radio_pipe" callExtension "DFRAME~";
+if (_result == "NEEDCFG") then {call TFAR_fnc_sendPluginConfig;};//Plugin wants config

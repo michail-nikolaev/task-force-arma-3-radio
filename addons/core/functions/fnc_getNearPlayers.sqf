@@ -3,7 +3,7 @@
 private _players_in_group = count (units (group TFAR_currentUnit));
 private _result = [];
 if (alive TFAR_currentUnit) then {
-    private _allUnits = TFAR_currentUnit nearEntities ["Man", TF_max_voice_volume];
+    private _allUnits = TFAR_currentUnit nearEntities ["Man", TF_max_voice_volume+40];//+40 because he won't be updated fast enough when coming into region
 
     if (_players_in_group < 10) then {
         {
@@ -19,7 +19,7 @@ if (alive TFAR_currentUnit) then {
         {
             _allUnits pushBack _x;
         } forEach (crew _v);
-    } forEach  (TFAR_currentUnit nearEntities [["LandVehicle", "Air", "Ship"], TF_max_voice_volume]);
+    } forEach  (TFAR_currentUnit nearEntities [["LandVehicle", "Air", "Ship"], TF_max_voice_volume+40]);
 
 
     {

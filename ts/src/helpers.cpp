@@ -6,12 +6,11 @@
 #include <math.h>
 #include <algorithm>
 #include <sstream>
-#include "serverData.hpp"
+#include "task_force_radio.hpp"
 #include <bitset>
 #include <public_errors.h>
 
-//#TODO swap channels and sampleCount parameters. Everywhere else sampleCount*channels is used.
-void helpers::applyGain(short * samples, int channels, size_t sampleCount, float directTalkingVolume) {
+void helpers::applyGain(short * samples, size_t sampleCount, int channels, float directTalkingVolume) {
 	if (directTalkingVolume == 0.0f) {
 		memset(samples, 0, sampleCount * channels * sizeof(short));
 		return;
@@ -24,24 +23,84 @@ void helpers::applyGain(short * samples, int channels, size_t sampleCount, float
 constexpr float DegToRad(float deg) {
 	return deg * (static_cast<float>(M_PI) / 180);
 }
-
-void helpers::applyILD(short * samples, size_t sampleCount, int channels, Position3D position, float viewAngle) {
+//static_assert(static_cast<AngleRadians>(190.0_deg) > 3.f, "");
+void helpers::applyILD(short * samples, size_t sampleCount, int channels, Direction3D direction, AngleRadians viewAngle) {
 	if (channels == 2) {
-		viewAngle = DegToRad(viewAngle);
-		float dir = position.atanyx() + viewAngle;
-		while (dir > static_cast<float>((M_PI))) {
-			dir = dir - 2 * static_cast<float>((M_PI));
-		}
-
-		float gainFrontLeft = DegToRad(-21.5f) * cos(dir) + 0.625f;
-		float gainFrontRight = DegToRad(21.5f) * cos(dir) + 0.625f;
+		AngleRadians dir = (direction.toPolarAngle() + viewAngle);
+		float gainFrontLeft = AngleDegrees(-21.5f).toRadians() * dir.cosine() + 0.625f;
+		float gainFrontRight = AngleDegrees(21.5f).toRadians() * dir.cosine() + 0.625f;
 		//Use https://msdn.microsoft.com/en-us/library/windows/desktop/ee415798(v=vs.85).aspx for more than 2 channels
 
-
-		for (size_t i = 0; i < sampleCount * channels; i+=channels) {
-				samples[i] = static_cast<short>(samples[i] * gainFrontLeft);
-				samples[i+1] = static_cast<short>(samples[i+1] * gainFrontRight);
+		for (size_t i = 0; i < sampleCount * channels; i += channels) {
+			samples[i] = static_cast<short>(samples[i] * gainFrontLeft);
+			samples[i + 1] = static_cast<short>(samples[i + 1] * gainFrontRight);
 		}
+	}
+}
+#include <X3daudio.h>
+#pragma comment(lib, "x3daudio.lib")
+X3DAUDIO_HANDLE x3d_handle;
+bool x3d_initialized = false;
+
+void helpers::applyILD(short * samples, size_t sampleCount, int channels, Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection) {
+	if (!x3d_initialized) {
+		X3DAudioInitialize(
+			SPEAKER_FRONT_LEFT | SPEAKER_FRONT_RIGHT,
+			X3DAUDIO_SPEED_OF_SOUND,
+			x3d_handle
+		);
+		x3d_initialized = true;
+	}
+	//#TODO cache if position didn't change.
+	//#TODO make player local effect so X3DAudio objects are local to every player.
+	//#TODO fix up vector problem
+	X3DAUDIO_LISTENER listener {};
+	std::tie(listener.OrientFront.x, listener.OrientFront.y, listener.OrientFront.z) = myViewDirection.get();
+	listener.OrientFront.y = -listener.OrientFront.y;
+	listener.OrientFront.x = -listener.OrientFront.x;
+	std::tie(listener.OrientTop.x, listener.OrientTop.y, listener.OrientTop.z) = Direction3D(-std::get<0>(myViewDirection.get()), -std::get<1>(myViewDirection.get()), 1).get();
+	std::tie(listener.Position.x, listener.Position.y, listener.Position.z) = myPosition.get();
+	listener.pCone = NULL;
+
+	X3DAUDIO_EMITTER emitter {};
+	
+	std::tie(emitter.Position.x, emitter.Position.y, emitter.Position.z) = emitterPosition.get();
+	std::tie(emitter.OrientFront.x, emitter.OrientFront.y, emitter.OrientFront.z) = emitterViewDirection.get();
+	//std::tie(emitter.OrientTop.x, emitter.OrientTop.y, emitter.OrientTop.z) = emitterRotation.up.get();
+	emitter.ChannelCount = 1;
+	emitter.CurveDistanceScaler = 1.f;
+	emitter.ChannelRadius = 1.f;
+
+	X3DAUDIO_DSP_SETTINGS output{ 0 };
+
+	output.SrcChannelCount = 1;
+	output.DstChannelCount = channels;
+	float* volumeMatrix = new float[channels];
+	output.pMatrixCoefficients = volumeMatrix;
+
+
+
+	X3DAudioCalculate(
+		x3d_handle,
+		&listener,
+		&emitter,
+		X3DAUDIO_CALCULATE_MATRIX,
+		&output
+	);
+
+
+
+	float gainFrontLeft = volumeMatrix[0];
+	float gainFrontRight = volumeMatrix[1];
+	delete[] volumeMatrix;
+	float mult = 1 / (gainFrontRight + gainFrontLeft);
+	gainFrontLeft *= mult; //make sure left+right = 1.0 else it would decrease overall volume which we don't want
+	gainFrontRight *= mult;
+
+
+	for (size_t i = 0; i < sampleCount * channels; i += channels) {
+		samples[i] = static_cast<short>(samples[i] * gainFrontLeft);
+		samples[i + 1] = static_cast<short>(samples[i + 1] * gainFrontRight);
 	}
 }
 
@@ -54,7 +113,7 @@ inline int helpers::parseArmaNumberToInt(const std::string& armaNumber) {
 }
 
 bool helpers::startsWith(const std::string& shouldStartWith, const  std::string& startIn) {
-	if (startIn.size() > shouldStartWith.size()) {
+	if (startIn.size() >= shouldStartWith.size()) {
 		auto res = std::mismatch(shouldStartWith.begin(), shouldStartWith.end(), startIn.begin());
 		return (res.first == shouldStartWith.end());
 	} else {
@@ -137,117 +196,20 @@ float helpers::clamp(float x, float a, float b) {
 	return x < a ? a : (x > b ? b : x);
 }
 
-std::pair<std::string, float> helpers::getVehicleDescriptor(std::string vechicleId) {
+std::pair<std::string, float> helpers::getVehicleDescriptor(std::string vehicleID) { //#TODO move to clientData
 	std::pair<std::string, float> result;
 	result.first == ""; // hear vehicle
 	result.second = 0.0f; // hear 
 
-	if (vechicleId.find("_turnout") != std::string::npos) {
-		result.first = vechicleId.substr(0, vechicleId.find("_turnout"));
+	if (vehicleID.find("_turnout") != std::string::npos) {
+		result.first = vehicleID.substr(0, vehicleID.find("_turnout"));
 	} else {
-		if (vechicleId.find_last_of("_") != std::string::npos) {
-			result.first = vechicleId.substr(0, vechicleId.find_last_of("_"));
-			result.second = std::stof(vechicleId.substr(vechicleId.find_last_of("_") + 1));
+		if (vehicleID.find_last_of("_") != std::string::npos) {
+			result.first = vehicleID.substr(0, vehicleID.find_last_of("_"));
+			result.second = std::stof(vehicleID.substr(vehicleID.find_last_of("_") + 1));
 		} else {
-			result.first = vechicleId;
+			result.first = vehicleID;
 		}
 	}
-	return result;
-}
-
-extern struct TS3Functions ts3Functions;
-extern void log(const char* message, LogLevel level);
-extern void log(char* message, DWORD errorCode, LogLevel level = LogLevel_INFO);
-
-bool ts3::isConnected(uint64 serverConnectionHandlerID) {
-	int result;
-	if (ts3Functions.getConnectionStatus(serverConnectionHandlerID, &result) != ERROR_ok) {
-		return false;
-	}
-	return result != 0;
-}
-
-anyID ts3::getMyId(uint64 serverConnectionHandlerID) {
-	anyID myID(-1);
-	if (!isConnected(serverConnectionHandlerID)) return myID;
-	DWORD error;
-	if ((error = ts3Functions.getClientID(serverConnectionHandlerID, &myID)) != ERROR_ok) {
-		log("Failure getting client ID", error);
-	}
-	return myID;
-}
-
-bool ts3::isInChannel(uint64 serverConnectionHandlerID, anyID clientId, const char* channelToCheck) {
-	return getChannelName(serverConnectionHandlerID, clientId) == channelToCheck;
-}
-
-std::string ts3::getChannelName(uint64 serverConnectionHandlerID, anyID clientId) {
-	if (clientId == anyID(-1)) return "";
-	uint64 channelId;
-	DWORD error;
-	if ((error = ts3Functions.getChannelOfClient(serverConnectionHandlerID, clientId, &channelId)) != ERROR_ok) {
-		if (error != ERROR_client_invalid_id) //can happen if client disconnected while playing
-			log("Can't get channel of client", error);
-		return "";
-	}
-	char* channelName;
-	if ((error = ts3Functions.getChannelVariableAsString(serverConnectionHandlerID, channelId, CHANNEL_NAME, &channelName)) != ERROR_ok) {
-		log("Can't get channel name", error);
-		return "";
-	}
-	const std::string result(channelName);
-	ts3Functions.freeMemory(channelName);
-	return result;
-}
-
-bool ts3::isTalking(uint64 currentServerConnectionHandlerID, anyID myId, anyID playerId) {
-	int result = 0;
-	DWORD error;
-	if (playerId == myId) {
-		if ((error = ts3Functions.getClientSelfVariableAsInt(currentServerConnectionHandlerID, CLIENT_FLAG_TALKING, &result)) != ERROR_ok) {
-			log("Can't get talking status", error);
-		}
-	} else {
-		if ((error = ts3Functions.getClientVariableAsInt(currentServerConnectionHandlerID, playerId, CLIENT_FLAG_TALKING, &result)) != ERROR_ok) {
-			log("Can't get talking status", error);
-		}
-	}
-	return result != 0;
-}
-
-std::vector<anyID> ts3::getChannelClients(uint64 serverConnectionHandlerID, uint64 channelId) {
-	std::vector<anyID> result;
-	anyID* clients = nullptr;
-	if (ts3Functions.getChannelClientList(serverConnectionHandlerID, channelId, &clients) == ERROR_ok) {
-		int i = 0;
-		while (clients[i]) {
-			result.push_back(clients[i]);
-			i++;
-		}
-		ts3Functions.freeMemory(clients);
-	}
-	return result;
-}
-
-uint64 ts3::getCurrentChannel(uint64 serverConnectionHandlerID) {
-	uint64 channelId;
-	DWORD error;
-	if ((error = ts3Functions.getChannelOfClient(serverConnectionHandlerID, getMyId(serverConnectionHandlerID), &channelId)) != ERROR_ok) {
-		log("Can't get current channel", error);
-	}
-	return channelId;
-}
-
-std::string ts3::getMyNickname(uint64 serverConnectionHandlerID) {
-	char* bufferForNickname;
-	DWORD error;
-	anyID myId = getMyId(serverConnectionHandlerID);
-	if (myId == anyID(-1)) return "";
-	if ((error = ts3Functions.getClientVariableAsString(serverConnectionHandlerID, myId, CLIENT_NICKNAME, &bufferForNickname)) != ERROR_ok) {
-		log("Error getting client nickname", error, LogLevel_DEBUG);
-		return "";
-	}
-	std::string result(bufferForNickname);
-	ts3Functions.freeMemory(bufferForNickname);
 	return result;
 }

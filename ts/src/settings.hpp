@@ -47,11 +47,11 @@ public:
 			delete stringValue;
 	}
 	settingValue(const settingValue& other) = delete;//Disable copying
-	operator const std::string&() const {
+	operator std::string() const {
 		switch(type) {
 			case settingType::t_bool: return boolValue ? "true" : "false";
 			case settingType::t_float: return std::to_string(floatValue);
-			case settingType::t_string: return *stringValue;					   
+			case settingType::t_string: return std::string(*stringValue);					   
 		}
 		return "";
 	}
@@ -100,19 +100,24 @@ public:
 	void set(const Setting& key,const TYPE& value) {
 		//#TODO add CriticalSection
 		values[key] = value;
+		needRefresh = false;
 	}
 	template<typename TYPE>
-	const TYPE& get(const Setting& key) {
+	TYPE get(const Setting& key) {
 		if (Setting::Setting_MAX < key)//Using that instead of values.size because that can be evaluated at compile-time
-			return values[data_Setting::Setting_MAX];//Max is a null initialized value
-		return values[key];
+			return values.at(Setting::Setting_MAX);
+		return values.at(key);
 	}
+
 	const settingValue& get(const Setting& key) {
 		if (Setting::Setting_MAX < key)//Using that instead of values.size because that can be evaluated at compile-time
-			return values[data_Setting::Setting_MAX];
-		return values[key];
+			return values.at(Setting::Setting_MAX);
+		return values.at(key);
 	}
+	void setRefresh() { needRefresh = true; }
+	bool needsRefresh() const { return needRefresh; }
 private:
-	std::array<settingValue, Setting::Setting_MAX> values;
+	bool needRefresh = true;
+	std::array<settingValue, Setting::Setting_MAX+1> values;
 };
 

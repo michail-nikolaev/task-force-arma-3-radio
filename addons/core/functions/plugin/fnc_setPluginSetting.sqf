@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setPluginSettings
+    Name: TFAR_fnc_setPluginSetting
 
     Author(s):
         Dedmen
@@ -17,7 +17,7 @@
         Nothing
 
     Example:
-        ["half_duplex",true] spawn TFAR_fnc_setPluginSettings;
+        ["half_duplex",true] call TFAR_fnc_setPluginSetting;
 */
 
 params ["_key", ["_value",false,["",false,0]]];

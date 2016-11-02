@@ -1,18 +1,80 @@
 #include "task_force_radio.hpp"
 #include <Windows.h>
 #include <wininet.h>
-#include "common.h"
+#include "common.hpp"
 #include <thread>
 #include <locale>
+#include "CommandProcessor.hpp"
+#include "PlaybackHandler.hpp"
+#include "serverData.hpp"
+#include "Teamspeak.hpp"
+#include "Logger.hpp"
 
-task_force_radio::task_force_radio() {}
+extern struct TS3Functions ts3Functions;
 
 
-task_force_radio::~task_force_radio() {}
+TFAR::TFAR() {
+	onGameDisconnected.connect([this]() {
+		Logger::log(LoggerTypes::teamspeakClientlog, "On Game Disconnected", LogLevel_DEVEL);
+		Teamspeak::unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
+		if (getCurrentlyInGame()) {
+			TFAR::getInstance().getPlaybackHandler()->playWavFile("radio-sounds/off");
+			onGameEnd();
+			TFAR::config.setRefresh();
+		}
+		setCurrentlyInGame(false);
+	});
 
-settings task_force_radio::config;//declaring the static config
+	onGameConnected.connect([this]() {
+		Logger::log(LoggerTypes::teamspeakClientlog, "On Game Connected", LogLevel_DEVEL);
+		std::string channelName = TFAR::config.get(Setting::serious_channelName);
+		if (!getCurrentlyInGame() && channelName.length() > 0) {
+			getPlaybackHandler()->playWavFile("radio-sounds/on");
+			setCurrentlyInGame(true);
+			onGameStart();
+			m_gameData.currentDataFrame = 0;
+		}
+		
+	});
 
-bool task_force_radio::isUpdateAvailable() {
+	onGameStart.connect([this]() {
+		Logger::log(LoggerTypes::teamspeakClientlog, "On Respawn", LogLevel_DEVEL);
+		if (!Teamspeak::isConnected())
+			return;
+
+		Teamspeak::moveToSeriousChannel();
+	});
+	
+	onGameEnd.connect([this]()
+	{
+		TSServerID currentServer = ts3Functions.getCurrentServerConnectionHandlerID();
+		TSClientID myClientID = Teamspeak::getMyId(currentServer);
+		Logger::log(LoggerTypes::teamspeakClientlog, "On Game End", LogLevel_DEVEL);
+		Teamspeak::moveFromSeriousChannel(currentServer);
+		Teamspeak::resetMyNickname(currentServer);
+		Teamspeak::unmuteAll(currentServer); //this may be called twice. If End was caused by PluginDisconnect. But will return immediatly if there are no muted clients
+	});
+
+	onShutdown.connect([this]() {
+		if (getCurrentlyInGame())
+			onGameEnd();
+		if (m_commandProcessor)
+			m_commandProcessor->stopThread();
+	});
+
+}
+
+
+TFAR::~TFAR() {}
+
+TFAR& TFAR::getInstance() {
+	static TFAR tfarSingleton;
+	return tfarSingleton;
+}
+
+settings TFAR::config;//declaring the static config
+
+bool TFAR::isUpdateAvailable() {
 	DWORD dwBytes;
 	char ch;
 	std::string pluginVersion;
@@ -42,7 +104,7 @@ bool task_force_radio::isUpdateAvailable() {
 	}
 }
 #include <sstream>
-void task_force_radio::trackPiwik(const std::vector<std::string>& piwikData) {
+void TFAR::trackPiwik(const std::vector<std::string>& piwikData) {
 
 	/*
 	piwikData
@@ -102,7 +164,7 @@ void task_force_radio::trackPiwik(const std::vector<std::string>& piwikData) {
 						newCustomVar.customVarID = std::stoi(id);
 					}
 					catch (...) { return std::vector<trackerCustomVariable>(); }
-					
+
 					inStream >> curChar;//curChar has first char of name
 					//"name","value"], [2, "name2", 22]]
 					while (curChar != ',') {
@@ -177,7 +239,7 @@ void task_force_radio::trackPiwik(const std::vector<std::string>& piwikData) {
 	}).detach();
 }
 
-void task_force_radio::createCheckForUpdateThread() {
+void TFAR::createCheckForUpdateThread() {
 	std::thread([]() {
 		if (isUpdateAvailable()) {
 			MessageBox(NULL, L"New version of Task Force Arrowhead Radio is available. Check radio.task-force.ru/en", L"Task Force Arrowhead Radio Update", MB_OK);
@@ -185,7 +247,7 @@ void task_force_radio::createCheckForUpdateThread() {
 	}).detach();
 }
 
-int task_force_radio::versionNumber(std::string versionString) {
+int TFAR::versionNumber(std::string versionString) {
 	int number = 0;
 	for (unsigned int q = 0; q < versionString.length(); q++) {
 		char ch = versionString.at(q);
@@ -197,5 +259,23 @@ int task_force_radio::versionNumber(std::string versionString) {
 		}
 	}
 	return number;
+}
+
+std::shared_ptr<CommandProcessor>& TFAR::getCommandProcessor() {
+	if (!getInstance().m_commandProcessor)
+		getInstance().m_commandProcessor = std::make_shared<CommandProcessor>();
+	return getInstance().m_commandProcessor;
+}
+
+std::shared_ptr<PlaybackHandler>& TFAR::getPlaybackHandler() {
+	if (!getInstance().m_playbackHandler)
+		getInstance().m_playbackHandler = std::make_shared<PlaybackHandler>();
+	return getInstance().m_playbackHandler;
+}
+
+std::shared_ptr<serverDataDirectory>& TFAR::getServerDataDirectory() {
+	if (!getInstance().m_serverData)
+		getInstance().m_serverData = std::make_shared<serverDataDirectory>();
+	return getInstance().m_serverData;
 }
 

@@ -17,22 +17,27 @@
     Example:
         call TFAR_fnc_onDDTangentPressed;
 */
-if (time - TF_last_dd_tangent_press > 0.1) then {
-    if (!(TF_tangent_dd_pressed) and {alive TFAR_currentUnit} and {call TFAR_fnc_haveDDRadio}) then {
-        if (call TFAR_fnc_isAbleToUseRadio) then {
-            if ([TFAR_currentUnit call TFAR_fnc_eyeDepth, TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside] call TFAR_fnc_canUseDDRadio) then {
-                ["OnBeforeTangent", [TFAR_currentUnit, "DD", 2, false, true]] call TFAR_fnc_fireEventHandlers;
-                [format[localize "STR_transmit", "DD", "1", TF_dd_frequency], format["TANGENT_DD	PRESSED	%1	0	dd	%2", TF_dd_frequency, typeOf _x], -1] call TFAR_fnc_processTangent;
-                TF_tangent_dd_pressed = true;
-                //						unit, radio, radioType, additional, buttonDown
-                ["OnTangent", [TFAR_currentUnit, "DD", 2, false, true]] call TFAR_fnc_fireEventHandlers;
-            } else {
-                call TFAR_fnc_onGroundHint;
-            }
-        } else {
-            call TFAR_fnc_unableToUseHint;
-        }
-    };
-};
+if (time - TF_last_dd_tangent_press < 0.1) exitWith {TF_last_dd_tangent_press = time;true};
 TF_last_dd_tangent_press = time;
+
+if ((TF_tangent_dd_pressed) or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveDDRadio}) exitWith {true};
+if (!call TFAR_fnc_isAbleToUseRadio) exitWith {call TFAR_fnc_onGroundHint;true};
+
+
+if !([
+        TFAR_currentUnit call TFAR_fnc_eyeDepth,
+        TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside
+    ] call TFAR_fnc_canUseDDRadio) exitWith {call TFAR_fnc_unableToUseHint;true};
+
+["OnBeforeTangent", [TFAR_currentUnit, "DD", 2, false, true]] call TFAR_fnc_fireEventHandlers;
+
+[
+    format[localize "STR_transmit", "DD", "1", TF_dd_frequency],
+    format["TANGENT_DD	PRESSED	%1	0	dd	dd", TF_dd_frequency],
+    -1
+] call TFAR_fnc_processTangent;
+
+TF_tangent_dd_pressed = true;
+//						unit, radio, radioType, additional, buttonDown
+["OnTangent", [TFAR_currentUnit, "DD", 2, false, true]] call TFAR_fnc_fireEventHandlers;
 true

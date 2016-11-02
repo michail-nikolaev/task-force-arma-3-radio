@@ -109,6 +109,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalDependencies>wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalLibraryDirectories>../lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -132,6 +133,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <AdditionalDependencies>wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -157,6 +159,7 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalDependencies>wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -172,6 +175,7 @@
       <BrowseInformation>false</BrowseInformation>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -184,6 +188,7 @@
       <AdditionalDependencies>wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AssemblyDebug>
       </AssemblyDebug>
+      <AdditionalLibraryDirectories>../lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -223,16 +228,18 @@
     <ClCompile Include="..\include\simpleSource\SimpleLimit.cpp" />
     <ClCompile Include="..\include\sqlite3\sqlite3.c" />
     <ClCompile Include="clientData.cpp" />
-    <ClCompile Include="constant_ts3_functions.cpp" />
+    <ClCompile Include="CommandProcessor.cpp" />
     <ClCompile Include="datatypes.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="pipe_handler.cpp" />
-    <ClCompile Include="playback_handler.cpp" />
+    <ClCompile Include="PlaybackHandler.cpp" />
     <ClCompile Include="plugin.cpp" />
     <ClCompile Include="profilers.cpp" />
     <ClCompile Include="serverData.cpp" />
+    <ClCompile Include="SharedMemoryHandler.cpp" />
     <ClCompile Include="task_force_radio.cpp" />
+    <ClCompile Include="Teamspeak.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\clientlib_publicdefinitions.h" />
@@ -245,6 +252,7 @@
     <ClInclude Include="..\include\clunk\fft_context.h" />
     <ClInclude Include="..\include\clunk\hrtf.h" />
     <ClInclude Include="..\include\clunk\kemar.h" />
+    <ClInclude Include="..\include\clunk\locker.h" />
     <ClInclude Include="..\include\clunk\logger.h" />
     <ClInclude Include="..\include\clunk\mdct_context.h" />
     <ClInclude Include="..\include\clunk\mixer.h" />
@@ -265,19 +273,24 @@
     <ClInclude Include="..\include\ts3_functions.h" />
     <ClInclude Include="clientData.hpp" />
     <ClInclude Include="Clunk.h" />
-    <ClInclude Include="common.h" />
-    <ClInclude Include="datatypes.h" />
+    <ClInclude Include="CommandProcessor.hpp" />
+    <ClInclude Include="common.hpp" />
+    <ClInclude Include="datatypes.hpp" />
     <ClInclude Include="enum.hpp" />
     <ClInclude Include="helpers.hpp" />
-    <ClInclude Include="Logger.h" />
-    <ClInclude Include="pipe_handler.h" />
-    <ClInclude Include="playback_handler.h" />
-    <ClInclude Include="profilers.h" />
-    <ClInclude Include="RadioEffect.h" />
+    <ClInclude Include="Locks.hpp" />
+    <ClInclude Include="Logger.hpp" />
+    <ClInclude Include="pipe_handler.hpp" />
+    <ClInclude Include="PlaybackHandler.hpp" />
+    <ClInclude Include="profilers.hpp" />
+    <ClInclude Include="RadioEffect.hpp" />
     <ClInclude Include="plugin.h" />
     <ClInclude Include="serverData.hpp" />
     <ClInclude Include="settings.hpp" />
+    <ClInclude Include="SharedMemoryHandler.hpp" />
+    <ClInclude Include="SignalSlot.hpp" />
     <ClInclude Include="task_force_radio.hpp" />
+    <ClInclude Include="Teamspeak.hpp" />
     <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>

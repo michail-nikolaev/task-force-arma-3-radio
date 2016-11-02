@@ -1,5 +1,6 @@
 #include "script_component.hpp"
-
+params ["_unit"];
+/*
 // by commy2 v0.4
 private _fnc_getTurrets = {
     params ["_vehicle"];
@@ -44,7 +45,7 @@ private _fnc_getTurretIndex = {
     _turrets select _index;
 };
 
-params ["_unit"];
+
 
 private _vehicle = vehicle _unit;
 private _config = configFile >> "CfgVehicles" >> typeOf _vehicle;
@@ -89,4 +90,8 @@ if (_vehicle == _unit) then {
     };
 };
 
-_result;
+*/
+
+if (vehicle _unit == _unit) exitWith {true;};
+
+isTurnedOut _unit;

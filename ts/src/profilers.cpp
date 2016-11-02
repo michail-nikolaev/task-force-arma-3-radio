@@ -1,7 +1,7 @@
-#include "profilers.h"
+#include "profilers.hpp"
 #include <thread>
 #include <sstream>
-#include "Logger.h"
+#include "Logger.hpp"
 
 void profiler::log(const std::string& message) {
 	//log_string(message, LogLevel_WARNING);
