@@ -11,7 +11,9 @@
         Returns the encryption code for the passed radio.
 
     Parameters:
-    0: OBJECT - Radio
+        Array: Radio
+            0: OBJECT - Radio object
+            1: STRING - Radio ID
 
     Returns:
     STRING - Encryption code
@@ -20,4 +22,4 @@
     (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrRadioCode;
 */
 
-((_this call TFAR_fnc_getLrSettings) select TFAR_CODE_OFFSET)
+(_this call TFAR_fnc_getLrSettings) param [TFAR_CODE_OFFSET]

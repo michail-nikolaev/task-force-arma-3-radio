@@ -17,29 +17,27 @@
     BOOLEAN - On Status
 
    Example:
-    call TFAR_fnc_radioOn;
+    [call TFAR_fnc_activeSWRadio,true] call TFAR_fnc_radioOn;
 */
 
 params ["_radio", ["_status", false]];
 
-_lr = (typename _radio == "ARRAY");
+_isLRRadio = _radio isEqualType [];
 _settings = [];
 
-if (_lr) then {
+if (_isLRRadio) then {
     _settings = (_radio call TFAR_fnc_getLrSettings);
-    _status = _settings select POWER_OFFSET;
 } else {
     _settings = (_radio call TFAR_fnc_getSwSettings);
-    _status = _settings select POWER_OFFSET;
 };
 
 if (count _this == 2) then {
     _settings set [POWER_OFFSET, _status];
-    if (_lr) then {
+    if (_isLRRadio) then {
         [_radio select 0, _radio select 1, _settings] call TFAR_fnc_setLrSettings;
     } else {
         [_radio, _settings] call TFAR_fnc_setSwSettings;
     };
 };
 
-_status
+_settings select POWER_OFFSET

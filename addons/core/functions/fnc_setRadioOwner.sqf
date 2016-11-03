@@ -18,7 +18,7 @@
         Nothing
 
     Example:
-        [(call TFAR_fnc_activeSwRadio),player] call TFAR_fnc_setRadioOwner;
+        [call TFAR_fnc_activeSwRadio, getPlayerUID player] call TFAR_fnc_setRadioOwner;
 */
 
 params ["_radio", "_owner", ["_local", false, [true]]];

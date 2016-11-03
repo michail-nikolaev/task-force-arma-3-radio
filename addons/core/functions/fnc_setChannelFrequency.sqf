@@ -24,13 +24,13 @@
     [(call TFAR_fnc_activeSwRadio), 1, "84.3"] call TFAR_fnc_setChannelFrequency;
 */
 
-params ["_radio", "_channel", "_frequency"];
+params [["_radio","",[[],""]], "_channel", "_frequency"];
 _channel = _channel - 1;
 
-private _lr = if (_radio isEqualType "") then { false }else{true};
+private _isLRRadio = _radio isEqualType [];
 private _settings = nil;
 
-if (_lr) then {
+if (_isLRRadio) then {
     _settings = _radio call TFAR_fnc_getLrSettings;
 } else {
     _settings = _radio call TFAR_fnc_getSwSettings;
@@ -40,7 +40,7 @@ if (isNil "_settings") exitWith {};
 
 (_settings select TFAR_FREQ_OFFSET) set [_channel, _frequency];
 
-if (_lr) then {
+if (_isLRRadio) then {
     [_radio select 0, _radio select 1, _settings] call TFAR_fnc_setLrSettings;
 } else {
     [_radio, _settings] call TFAR_fnc_setSwSettings;

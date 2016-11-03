@@ -10,19 +10,20 @@
         Sets the speakers setting for the passed radio
 
     Parameters:
-        0: OBJECT - Radio object
-        1: STRING - Radio ID
+        0: ARRAY - Radio
+            0: OBJECT- Radio object
+            1: STRING - Radio ID
 
     Returns:
         Nothing
 
     Example:
-        [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1] call TFAR_fnc_setLrSpeakers;
+        (call TFAR_fnc_activeLrRadio) call TFAR_fnc_setLrSpeakers;
 */
 
 params ["_radio_object", "_radio_qualifier"];
 
-private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
+private _settings = [_radio_object,_radio_qualifier] call TFAR_fnc_getLrSettings;
 if (_settings select TFAR_LR_SPEAKER_OFFSET) then {
     _settings set [TFAR_LR_SPEAKER_OFFSET, false];
 } else {
@@ -39,4 +40,4 @@ if (_settings select TFAR_LR_SPEAKER_OFFSET) then {
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 
 //							unit, radio object,		radio ID			speakers
-["OnLRspeakersSet", [TFAR_currentUnit, _radio_object, _radio_qualifier, _settings select TF_LR_SPEAKER_OFFSET]] call TFAR_fnc_fireEventHandlers;
+["OnLRspeakersSet", [TFAR_currentUnit, _radio_object, _radio_qualifier, _settings select TFAR_LR_SPEAKER_OFFSET]] call TFAR_fnc_fireEventHandlers;

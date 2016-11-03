@@ -34,7 +34,7 @@ private _unitPos = eyepos TFAR_currentUnit;
                 private _frequencies = [format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode]];
                 private _additionalChannel = _x call TFAR_fnc_getAdditionalSwChannel;
                 if (_additionalChannel > -1) then {
-                    _frequencies pushBack format ["%1%2", [_x, _additionalChannel + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
+                    _frequencies pushBack format ["%1%2", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
                 };
 
                 _speakerRadios pushBack ([_x/*radio_id*/,_frequencies joinString "|",""/*nickname*/,_relativePos,_x call TFAR_fnc_getSwVolume, "no"/*vehicle*/, _waveZ] joinString TF_new_line);
@@ -48,7 +48,7 @@ private _unitPos = eyepos TFAR_currentUnit;
                 if (_manpack call TFAR_fnc_getLrSpeakers) then {
                     private _frequencies = [format ["%1%2", _manpack call TFAR_fnc_getLrFrequency, _manpack call TFAR_fnc_getLrRadioCode]];
                     if ((_manpack call TFAR_fnc_getAdditionalLrChannel) > -1) then {
-                        _frequencies pushBack format ["%1%2", [_manpack, (_manpack call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _manpack call TFAR_fnc_getLrRadioCode];
+                        _frequencies pushBack format ["%1%2", [_manpack, (_manpack call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_getChannelFrequency, _manpack call TFAR_fnc_getLrRadioCode];
                     };
                     private _radio_id = netId (_manpack select 0);
                     if (_radio_id == '') then {
@@ -88,7 +88,7 @@ private _unitPos = eyepos TFAR_currentUnit;
                 if (_x call TFAR_fnc_getLrSpeakers) then {
                     private _frequencies = [format ["%1%2", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode]];
                     if ((_x call TFAR_fnc_getAdditionalLrChannel) > -1) then {
-                        _frequencies pushBack format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getLrRadioCode];
+                        _frequencies pushBack format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_getChannelFrequency, _x call TFAR_fnc_getLrRadioCode];
                     };
                     private _radio_id = netId (_x select 0);
                     if (_radio_id == '') then {

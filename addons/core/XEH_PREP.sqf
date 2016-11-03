@@ -1,3 +1,4 @@
+//#TODO sort after subfolders and then after alphabet
 
 PREP_SUB(server,serverInit);
 PREP(clientInit);
@@ -14,7 +15,7 @@ PREP(canSpeak);
 PREP(canUseSWRadio);
 PREP(canUseLRRadio);
 PREP(canUseDDRadio);
-PREP(copyRadioSettingMenu);
+PREP_SUB(flexiUI,copyRadioSettingMenu);
 PREP(copySettings);
 PREP(currentDirection);
 PREP(currentLRFrequency);
@@ -51,7 +52,7 @@ PREP_SUB(plugin,getTeamSpeakChannelName);
 PREP(getConfigProperty);
 PREP(getCopilot);
 PREP(getLrRadioProperty);
-PREP(GetChannelFrequency);
+PREP(getChannelFrequency);
 PREP(getSideRadio);
 PREP(getTransmittingDistanceMultiplicator);
 PREP(getAdditionalLrStereo);
@@ -87,8 +88,8 @@ PREP(isTurnedOut);
 PREP(isVehicleIsolated);
 // L
 PREP(loadoutReplaceProcess);
-PREP(lrRadioSubMenu);
-PREP(lrRadioMenu);
+PREP_SUB(flexiUI,lrRadioSubMenu);
+PREP_SUB(flexiUI,lrRadioMenu);
 PREP(lrRadiosList);
 // O
 PREP(objectInterception);
@@ -170,8 +171,8 @@ PREP(setLongRangeRadioFrequency);
 PREP(setPersonalRadioFrequency);
 PREP_SUB(plugin,setPluginSetting);
 PREP_SUB(plugin,pluginNextDataFrame);
-PREP(swRadioSubMenu);
-PREP(swRadioMenu);
+PREP_SUB(flexiUI,swRadioSubMenu);
+PREP_SUB(flexiUI,swRadioMenu);
 PREP_SUB(hint,showRadioVolume);
 PREP(setChannelFrequency);
 PREP(setRadioOwner);

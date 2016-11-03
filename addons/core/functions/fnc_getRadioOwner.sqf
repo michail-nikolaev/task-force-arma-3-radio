@@ -18,10 +18,6 @@
     Example:
         _owner = (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getRadioOwner;
 */
+params[["_radio","",[""]]];
 
-private _settings = (_this call TFAR_fnc_getSwSettings);
-if (count _settings > RADIO_OWNER) exitWith {
-    ((_this call TFAR_fnc_getSwSettings) select RADIO_OWNER)
-};
-
-""
+(_radio call TFAR_fnc_getSwSettings) param [RADIO_OWNER,""]

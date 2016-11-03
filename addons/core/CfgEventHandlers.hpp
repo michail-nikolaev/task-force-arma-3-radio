@@ -31,7 +31,7 @@ class Extended_DisplayLoad_EventHandlers { //From commy2
 class Extended_DisplayUnload_EventHandlers {
     class RscDisplayMission {
         TFAR_MissionEnded = "call TFAR_fnc_onMissionEnd";
-    }
+    };
 };
 
 class RscListBox;

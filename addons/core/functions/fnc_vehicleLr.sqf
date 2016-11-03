@@ -19,22 +19,24 @@
     Example:
         _radio = player call TFAR_fnc_VehicleLR;
 */
+params ["_unit"];
+
+if (isNull (objectParent _unit)) exitWith {[]};//Unit is not in vehicle
 
 private _result = [];
-if (((vehicle _this) != _this) and {(vehicle _this) call TFAR_fnc_hasVehicleRadio}) then {
-    switch (_this) do {
-        case (gunner (vehicle _this)): {
-            _result = [vehicle _this, "gunner_radio_settings"];
-        };
-        case (driver (vehicle _this)): {
-            _result = [vehicle _this, "driver_radio_settings"];
-        };
-        case (commander (vehicle _this)): {
-            _result = [vehicle _this, "commander_radio_settings"];
-        };
-        case ((vehicle _this) call TFAR_fnc_getCopilot): {
-            _result = [vehicle _this, "turretUnit_0_radio_setting"];
-        };
+
+switch (_unit) do {
+    case (gunner (vehicle _unit)): {
+        _result = [vehicle _unit, "gunner_radio_settings"];
+    };
+    case (driver (vehicle _unit)): {
+        _result = [vehicle _unit, "driver_radio_settings"];
+    };
+    case (commander (vehicle _unit)): {
+        _result = [vehicle _unit, "commander_radio_settings"];
+    };
+    case ((vehicle _unit) call TFAR_fnc_getCopilot): {
+        _result = [vehicle _unit, "turretUnit_0_radio_setting"];
     };
 };
 _result

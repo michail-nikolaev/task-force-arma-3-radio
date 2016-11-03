@@ -91,7 +91,7 @@ class enter: HiddenButton
     action = QUOTE(
         _f = parseNumber(ctrlText IDC_ANPRC155_EDIT);
         if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {
-            [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))] call TFAR_fnc_setLrFrequency;
+            [ARR_2(TF_lr_dialog_radio, str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))] call TFAR_fnc_setLrFrequency;
             call TFAR_fnc_hideHint;
         } else {
             hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ)]
@@ -149,7 +149,7 @@ class stereo: HiddenButton
     w = 0.0180469 * safezoneW;
     h = 0.0275 * safezoneH;
     action = QUOTE(
-        [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;
+        [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;
         [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;
     );
     tooltip = $STR_stereo_settings;
@@ -162,7 +162,7 @@ class additional: HiddenButton
     w = 0.0190781 * safezoneW;
     h = 0.0275 * safezoneH;
     tooltip = $STR_set_additional;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
+    action = "[TF_lr_dialog_radio,TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
 };
 class speakers: HiddenButton
 {
@@ -172,7 +172,7 @@ class speakers: HiddenButton
     w = 0.0190781 * safezoneW;
     h = 0.0242 * safezoneH;
     tooltip = $STR_speakers_settings_true;
-    action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1] call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
+    action = "TF_lr_dialog_radio call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END

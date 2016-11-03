@@ -17,7 +17,9 @@
 #define MAX_RADIO_COUNT 1000
 
 #define TFAR_FREQ_OFFSET 2
-#define TFAR_FREQ_ROUND_POWER 10
+#define TFAR_FREQ_ROUND_POWER 10//#TODO https://community.bistudio.com/wiki/toFixed after 1.65 release
+//round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER    -> _f toFixed 1
+//or use CBA_fnc_formatNumber
 
 #define TFAR_MAX_CHANNELS 8
 #define TFAR_MIN_SW_FREQ 30

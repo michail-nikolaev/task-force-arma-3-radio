@@ -18,12 +18,7 @@
         NUMBER: Stereo setting : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
 
     Example:
-        _stereo = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getAdditionalLrStereo;
+        _stereo = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getAdditionalLrStereo;
 */
 
-private _settings = _this call TFAR_fnc_getLrSettings;
-private _result = 0;
-if (count _settings > TFAR_ADDITIONAL_STEREO_OFFSET) then {
-    _result = _settings select TFAR_ADDITIONAL_STEREO_OFFSET;
-};
-_result
+(_this call TFAR_fnc_getLrSettings) param [TFAR_ADDITIONAL_STEREO_OFFSET,0]

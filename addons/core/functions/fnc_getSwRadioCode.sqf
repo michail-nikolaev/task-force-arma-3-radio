@@ -19,5 +19,6 @@
     Example:
     (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwRadioCode;
 */
+params[["_radio","",[""]]];
 
-(_this call TFAR_fnc_getSwSettings) param [TFAR_CODE_OFFSET,""]
+(_radio call TFAR_fnc_getSwSettings) param [TFAR_CODE_OFFSET,""]

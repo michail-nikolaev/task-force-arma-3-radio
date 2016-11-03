@@ -3,7 +3,7 @@
 if ((TF_tangent_lr_pressed) and {alive TFAR_currentUnit}) then {
     private _radio = call TFAR_fnc_activeLrRadio;
     if ((_radio call TFAR_fnc_getAdditionalLrChannel) > -1) then {
-        private _freq = [_radio, (_radio call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency;
+        private _freq = [_radio, (_radio call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_getChannelFrequency;
 
         ["OnBeforeTangent", [TFAR_currentUnit, _radio, 1, true, false]] call TFAR_fnc_fireEventHandlers;
         [format[localize "STR_additional_transmit_end",format ["%1<img size='1.5' image='%2'/>",[_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty, getText(configFile >> "CfgVehicles"  >> typeof (_radio select 0) >> "picture")], (_radio call TFAR_fnc_getAdditionalLrChannel) + 1, _freq],

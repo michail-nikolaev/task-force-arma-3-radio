@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_GetChannelFrequency
+    Name: TFAR_fnc_getChannelFrequency
 
     Author(s):
         L-H
@@ -18,9 +18,9 @@
 
     Example:
     // LR radio - channel 1
-    [(call TFAR_fnc_activeLrRadio), 1] call TFAR_fnc_GetChannelFrequency;
+    [(call TFAR_fnc_activeLrRadio), 1] call TFAR_fnc_getChannelFrequency;
     // SW radio - channel 1
-    [(call TFAR_fnc_activeSwRadio), 1] call TFAR_fnc_GetChannelFrequency;
+    [(call TFAR_fnc_activeSwRadio), 1] call TFAR_fnc_getChannelFrequency;
 */
 
 params ["_radio", "_channel"];
@@ -28,14 +28,12 @@ params ["_radio", "_channel"];
 private _channel = _channel - 1;
 private _settings = nil;
 
-if (_radio isEqualType "") then {
+if (_radio isEqualType "") then {//SW radio is string
     _settings = _radio call TFAR_fnc_getSwSettings;
-} else {
+} else {//LR Radio is array
     _settings = _radio call TFAR_fnc_getLrSettings;
 };
 
-if (!isNil "_settings") then {
-    ((_settings select TFAR_FREQ_OFFSET) select _channel)
-} else {
-    "";
-};
+
+
+((_settings param[TFAR_FREQ_OFFSET]) param [_channel,""])

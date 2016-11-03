@@ -18,5 +18,6 @@
     Example:
         _volume = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwVolume;
 */
+params[["_radio","",[""]]];
 
-(_this call TFAR_fnc_getSwSettings) param [VOLUME_OFFSET,false]
+(_radio call TFAR_fnc_getSwSettings) param [VOLUME_OFFSET,false]

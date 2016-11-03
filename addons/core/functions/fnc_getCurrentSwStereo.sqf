@@ -18,11 +18,10 @@
     Example:
         _stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getCurrentSwStereo;
 */
+params[["_radio","",[""]]];
 
-private _result = 0;
-if ((_this call TFAR_fnc_getAdditionalSwChannel) == (_this call TFAR_fnc_getSwChannel)) then {
-    _result = _this call TFAR_fnc_getAdditionalSwStereo;
-} else {
-    _result = _this call TFAR_fnc_getSwStereo;
+if ((_this call TFAR_fnc_getAdditionalSwChannel) == (_this call TFAR_fnc_getSwChannel)) exitWith {
+    _radio call TFAR_fnc_getAdditionalSwStereo;
 };
-_result
+
+_radio call TFAR_fnc_getSwStereo;

@@ -5,8 +5,7 @@ disableSerialization;
 #include "keys.sqf"
 
 // Menus
-["TFAR","OpenSWRadioMenu",["Open SW Radio Menu","Open SW Radio Menu"],{["player",[],-3,"_this call TFAR_fnc_swRadioMenu",true] call cba_fnc_fleximenu_openMenuByDef;},{true},[TF_dialog_sw_scancode, TF_dialog_sw_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","OpenLRRadioMenu",["Open LR Radio Menu","Open LR Radio Menu"],{["player",[],-3,"_this call TFAR_fnc_lrRadioMenu",true] call cba_fnc_fleximenu_openMenuByDef;},{true},[TF_dialog_lr_scancode, TF_dialog_lr_modifiers],false] call cba_fnc_addKeybind;
+#include "flexiUI\flexiInit.sqf"
 
 #include "diary.sqf"
 
@@ -112,6 +111,34 @@ if (player call TFAR_fnc_isForcedCurator) then {
 
     TFAR_currentUnit = (_this select 0);
     "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name player]);//Async call will always return "OK"
+
+    if !(TFAR_currentUnit getVariable ["TFAR_HandlersSet",false]) then {
+        TFAR_currentUnit addEventHandler ["Take", {
+            private _class = configFile >> "CfgWeapons" >> (_this select 2);
+            if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+                [(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;
+            };
+        }];
+        TFAR_currentUnit addEventHandler ["Put", {
+            private _class = configFile >> "CfgWeapons" >> (_this select 2);
+            if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+                [(_this select 2), ""] call TFAR_fnc_setRadioOwner;
+            };
+        }];
+        TFAR_currentUnit addEventHandler ["Killed", {
+            params ["_unit"];
+            private _items = (assignedItems _unit) + (items _unit);
+            {
+                _class = configFile >> "CfgWeapons" >> _x;
+                if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+                    [_x, ""] call TFAR_fnc_setRadioOwner;
+                };
+                true;
+            } count _items;
+        }];
+        TFAR_currentUnit setVariable ["TFAR_HandlersSet", true];
+    };
+
 }] call CBA_fnc_addPlayerEventHandler;
 
 //onArsenal PostClose event
