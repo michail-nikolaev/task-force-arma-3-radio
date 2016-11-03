@@ -43,7 +43,7 @@
             {
                 if (TFAR_currentUnit canAddItemToBackpack _x) then {
                     TFAR_currentUnit addItemToBackpack _x;
-                }else{
+                }else {
                     _newItems pushBack _x;
                 };
                 true;
@@ -55,7 +55,7 @@
             {
                 if (isClass (configFile >> "CfgMagazines" >> _x)) then{
                     _backPack addMagazineCargoGlobal [_x, 1];
-                }else{
+                }else {
                     _backPack addItemCargoGlobal [_x, 1];
                     _backPack addWeaponCargoGlobal [_x, 1];
                 };

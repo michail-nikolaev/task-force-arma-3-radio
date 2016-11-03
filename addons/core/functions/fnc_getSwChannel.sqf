@@ -18,5 +18,6 @@
     Example:
         _channel = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwChannel;
 */
+params[["_radio","",[""]]];
 
-(_this call TFAR_fnc_getSwSettings) param [ACTIVE_CHANNEL_OFFSET,0]
+(_radio call TFAR_fnc_getSwSettings) param [ACTIVE_CHANNEL_OFFSET,0]

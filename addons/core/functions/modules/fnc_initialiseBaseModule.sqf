@@ -29,7 +29,7 @@ if (_activated) then {
     private _freqs = call compile (_logic getVariable "PrFreq");
     private _randomFreqs = [TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
     while {count _freqs < TFAR_MAX_CHANNELS} do {
-        _freqs set [count _freqs, _randomFreqs select (count _freqs)];
+        _freqs pushBack (_randomFreqs select (count _freqs));
     };
     _swFreq set [2,_freqs];
 
@@ -37,7 +37,7 @@ if (_activated) then {
     _freqs = call compile (_logic getVariable "LrFreq");
     _randomFreqs = [TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
     while {count _freqs < TFAR_MAX_LR_CHANNELS} do {
-        _freqs set [count _freqs, _randomFreqs select (count _freqs)];
+        _freqs pushBack (_randomFreqs select (count _freqs));
     };
     _lrFreq set [2,_freqs];
 
@@ -55,7 +55,7 @@ if (_activated) then {
         hint format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
         _LRradio = "-1";
     };
-    if (getNumber (ConfigFile >> "CfgWeapons" >> _radio >> "tf_prototype") != 1) then {
+    if (getNumber (configFile >> "CfgWeapons" >> _radio >> "tf_prototype") != 1) then {
         diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
         hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
         _radio = "-1";

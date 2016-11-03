@@ -20,15 +20,12 @@
     Example:
         _settings = (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings;
         _settings set [0, 2]; // sets the active channel to 2
-        [(call TFAR_fnc_activeSwRadio), _settings] call TFAR_fnc_setSwSettings;
+        [call TFAR_fnc_activeSwRadio, _settings] call TFAR_fnc_setSwSettings;
 */
 
 params ["_radio_id", "_value", ["_local", false, [true]]];
 
 private _variableName = format["%1_settings", _radio_id];
 
-missionNamespace setVariable [_variableName, + _value];
+missionNamespace setVariable [_variableName, + _value,!_local];
 missionNamespace setVariable [_variableName + "_local", + _value];
-if !(_local) then {
-    publicVariable _variableName;
-}

@@ -10,22 +10,18 @@ private _vehicle_lr = _this call TFAR_fnc_vehicleLr;
 private _backpack_check = {
     _backpack_lr = _this call TFAR_fnc_backpackLr;
     if (count _backpack_lr > 0) then {
-        _result set [count _result, _backpack_lr];
+        _result pushBack _backpack_lr;
     };
 };
 
-private _vehicle_check = {
-    if (count _this > 0) then {
-        _result set [count _result, _this];
-    };
-};
-
-if (!(isNil "_active_lr") and {count _vehicle_lr > 0} and {(_active_lr select 0) == (_vehicle_lr select 0)} and {(_active_lr select 1) == (_vehicle_lr select 1)}) then {
-    _result set [count _result, _active_lr];
+if ((!isNil "_active_lr") && {_active_lr isEqualTo _vehicle_lr}) then {
+    _result pushBack _active_lr;
     call _backpack_check;
 } else {
     call _backpack_check;
-    _vehicle_lr call _vehicle_check;
+    if (count _vehicle_lr > 0) then {
+        _result pushBack _vehicle_lr;
+    };
 };
 
 if ((player call TFAR_fnc_isForcedCurator) and {TFAR_currentUnit == player}) then {

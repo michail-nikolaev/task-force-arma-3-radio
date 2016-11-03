@@ -10,20 +10,21 @@
         Sets the radio to the passed channel
 
     Parameters:
-        0: OBJECT - Radio object
-        1: STRING - Radio ID
-        2: NUMBER - Channel : Range (0,8)
+        0: ARRAY - Radio
+            0: OBJECT- Radio object
+            1: STRING - Radio ID
+        1: NUMBER - Channel : Range (0,8)
 
     Returns:
         Nothing
 
     Example:
-        [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 4] call TFAR_fnc_setLrChannel;
+        [call TFAR_fnc_activeLrRadio, 4] call TFAR_fnc_setLrChannel;
 */
+params [["_radio",[],[[]],2],["_value",0,[0]]];
+_radio params ["_radio_object", "_radio_qualifier"];
 
-params ["_radio_object", "_radio_qualifier", "_value"];
-
-private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
+private _settings = _radio call TFAR_fnc_getLrSettings;
 _settings set [ACTIVE_CHANNEL_OFFSET, _value];
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 

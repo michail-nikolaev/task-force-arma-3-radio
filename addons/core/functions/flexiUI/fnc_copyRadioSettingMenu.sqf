@@ -36,7 +36,7 @@ private _positions = [];
             true,
             true
         ];
-        _positions set [count _positions, _position];
+        _positions pushBack _position;
     };
 } forEach (TFAR_currentUnit call TFAR_fnc_radiosList);
 _menu =

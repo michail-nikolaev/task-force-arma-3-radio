@@ -41,11 +41,11 @@ if (_lr) then {
     _fnc_GetVolume = TFAR_fnc_getSwVolume;
 };
 
-private _vChange = if(_btn == 0)then{-1 + _maxVolume}else{1};
+private _vChange = if(_btn == 0)then{-1 + _maxVolume}else {1};
 _vChange = ((_radio call _fnc_GetVolume) + _vChange) mod _maxVolume;
 
 if (_lr) then {
-    [_radio select 0, _radio select 1, _vChange] call TFAR_fnc_setLrVolume;
+    [_radio, _vChange] call TFAR_fnc_setLrVolume;
 } else {
     [_radio,_vChange] call TFAR_fnc_setSwVolume;
 };

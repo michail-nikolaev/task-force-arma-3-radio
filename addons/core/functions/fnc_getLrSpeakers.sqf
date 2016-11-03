@@ -18,7 +18,7 @@
         BOOLEAN : speakers or headphones
 
     Example:
-        _speakers = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getLrSpeakers;
+        _speakers = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrSpeakers;
 */
 
 (_this call TFAR_fnc_getLrSettings) param [TFAR_LR_SPEAKER_OFFSET,false]

@@ -11,21 +11,21 @@
         Returns the current settings for the passed radio.
 
     Parameters:
-    0: OBJECT - Radio
-    1: STRING - Radio Qualifier
+        0: OBJECT - Radio object
+        1: STRING - Radio ID
 
     Returns:
-    ARRAY - settings.
+        ARRAY - settings.
 
     Example:
-    (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrSettings;
+        (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrSettings;
 */
+params ["_radio_object", "_radio_id"];
 
-params ["_radio_object", "_radio_qualifier"];
+private _value = _radio_object getVariable _radio_id;
+if (!isNil "_value") exitWith {_value};
 
-private _value = _radio_object getVariable _radio_qualifier;
-private _radioType = [];
-
+private _radioType = "";
 if (_radio_object isKindOf "Bag_Base") then {
     _radioType = typeof _radio_object;
 } else {
@@ -33,65 +33,59 @@ if (_radio_object isKindOf "Bag_Base") then {
     if (isNil "_radioType") then {
         _radioType = [typeof _radio_object, "tf_RadioType"] call TFAR_fnc_getConfigProperty;
         if ((isNil "_radioType") or {_radioType == ""}) then {
-            private _air = (typeof(_radio_object) isKindOf "Air");
-            if ((_radio_object call TFAR_fnc_getVehicleSide) == west) then {
-                if (_air) then {
-                    _radioType = TFAR_DefaultRadio_Airborne_West;
-                } else {
-                    _radioType = TFAR_DefaultRadio_Backpack_West;
+            private _isAirRadio = (typeof(_radio_object) isKindOf "Air");
+
+            switch (_radio call TFAR_fnc_getVehicleSide) do {
+                case west: {
+                    _radioType = [TFAR_DefaultRadio_Backpack_West,TFAR_DefaultRadio_Airborne_West] select _isAirRadio;
                 };
-            } else {
-                if ((_radio_object call TFAR_fnc_getVehicleSide) == east) then {
-                    if (_air) then {
-                        _radioType = TFAR_DefaultRadio_Airborne_East;
-                    } else {
-                        _radioType = TFAR_DefaultRadio_Backpack_East;
-                    };
-                } else {
-                    if (_air) then {
-                        _radioType = TFAR_DefaultRadio_Airborne_Independent;
-                    } else {
-                        _radioType = TFAR_DefaultRadio_Backpack_Independent;
-                    };
+                case east: {
+                    _radioType = [TFAR_DefaultRadio_Backpack_East,TFAR_DefaultRadio_Airborne_East] select _isAirRadio;
+                };
+                default {
+                    _radioType = [TFAR_DefaultRadio_Backpack_Independent,TFAR_DefaultRadio_Airborne_Independent] select _isAirRadio;
                 };
             };
         };
     };
 };
 
-if (isNil "_value") then {
-    if (!(TF_use_saved_lr_setting) or (isNil "TF_saved_active_lr_settings")) then {
-        if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType} or {getText(configFile >> "CfgVehicles" >> _radioType >> "tf_encryptionCode") == toLower (format ["tf_%1_radio_code",(TFAR_currentUnit call BIS_fnc_objectSide)])}) then {
-            _value = (group TFAR_currentUnit) getVariable "tf_lr_frequency";
-        };
-        if (isNil "_value") then {
-            _value = call TFAR_fnc_generateLrSettings;
+
+
+if (!(TF_use_saved_lr_setting) or (isNil "TF_saved_active_lr_settings")) then {
+    if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType} or {getText(configFile >> "CfgVehicles" >> _radioType >> "tf_encryptionCode") == toLower (format ["tf_%1_radio_code",(TFAR_currentUnit call BIS_fnc_objectSide)])}) then {
+        _value = (group TFAR_currentUnit) getVariable "tf_lr_frequency";
+    };
+    if (isNil "_value") then {
+        _value = call TFAR_fnc_generateLrSettings;
+    };
+} else {
+    _value = TF_saved_active_lr_settings;
+};
+
+if (TF_use_saved_lr_setting) then {
+    TF_use_saved_lr_setting = false;
+};
+
+private _radioCode = _value select TFAR_CODE_OFFSET;
+if (isNil "_radioCode") then {
+    private _code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
+    private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
+    if (_hasDefaultEncryption and {((TFAR_currentUnit call BIS_fnc_objectSide) != civilian)}) then {
+        if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType} or {_radio_object call TFAR_fnc_getVehicleSide == TFAR_currentUnit call BIS_fnc_objectSide}) then {
+            _radioCode = missionNamespace getVariable format ["tf_%1_radio_code",(TFAR_currentUnit call BIS_fnc_objectSide)];
+        }else {
+            _radioCode = missionNamespace getVariable [_code, ""];
         };
     } else {
-        _value = TF_saved_active_lr_settings;
-    };
-    if (TF_use_saved_lr_setting) then {
-        TF_use_saved_lr_setting = false;
-    };
-    private _rc = _value select TFAR_CODE_OFFSET;
-    if (isNil "_rc") then {
-        private _code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
-        private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
-        if (_hasDefaultEncryption and {((TFAR_currentUnit call BIS_fnc_objectSide) != civilian)}) then {
-            if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType} or {_radio_object call TFAR_fnc_getVehicleSide == TFAR_currentUnit call BIS_fnc_objectSide}) then {
-                _rc = missionNamespace getVariable format ["tf_%1_radio_code",(TFAR_currentUnit call BIS_fnc_objectSide)];
-            }else{
-                _rc = missionNamespace getVariable [_code, ""];
-            };
-        } else {
-            _rc = "";
-            if (_code != "") then {
-                _rc = missionNamespace getVariable [_code, ""];
-            };
+        _radioCode = "";
+        if (_code != "") then {
+            _radioCode = missionNamespace getVariable [_code, ""];
         };
-
-        _value set [TFAR_CODE_OFFSET, _rc];
     };
-    [_radio_object, _radio_qualifier, + _value] call TFAR_fnc_setLrSettings;
+    _value set [TFAR_CODE_OFFSET, _radioCode];
 };
+
+[_radio_object, _radio_id, + _value] call TFAR_fnc_setLrSettings;
+
 _value

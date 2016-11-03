@@ -39,55 +39,51 @@ private _fnc_CopySettings = {
 
 MUTEX_LOCK(TF_radio_request_mutex);
 
+if ((time - TF_last_request_time < 3) or {!_this}) exitWith {MUTEX_UNLOCK(TF_radio_request_mutex);};
+TF_last_request_time = time;
 
-if ((time - TF_last_request_time > 3) or {_this}) then {
-    TF_last_request_time = time;
-    (_this call TFAR_fnc_radioToRequestCount) params["_radiosToRequest","_TF_SettingsToCopy"];
-    diag_log format["Send TFAR_RadioRequestEvent %1 %2",[_radiosToRequest,player],diag_tickTime]; //#TODO remove
-    if ((count _radiosToRequest) > 0) then {
+(_this call TFAR_fnc_radioToRequestCount) params ["_radiosToRequest","_TF_SettingsToCopy"];
 
-        //Answer EH
-        ["TFAR_RadioRequestResponseEvent", {
-            diag_log format["TFAR_RadioRequestResponseEvent %1 %2",_this,diag_tickTime];//#TODO remove
-            params ["_response"];
-            private _copyIndex = 0;
-            if (_response isEqualType []) then {
-                private _radioCount = count _response;
-                private _settingsCount = count _TF_SettingsToCopy;
-                private _startIndex = 0;
-                if (_radioCount > 0) then {
-                    if (TFAR_RadioReqLinkFirstItem) then {
-                        TFAR_RadioReqLinkFirstItem= false;
-                        TFAR_currentUnit linkItem (_response select 0);
-                        _copyIndex = [_settingsCount, _copyIndex, (_response select 0),_TF_SettingsToCopy] call _fnc_CopySettings;
-                        [(_response select 0), getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
-                        _startIndex = 1;
-                    };
-                    _radioCount = _radioCount - 1;
-                    for "_index" from _startIndex to _radioCount do {
-                        TFAR_currentUnit addItem (_response select _index);
-                        _copyIndex = [_settingsCount, _copyIndex, (_response select _index),_TF_SettingsToCopy] call _fnc_CopySettings;
-                        [(_response select _index), getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
-                    };
-                };
-            } else {
-                hintC _response;
+if (_radiosToRequest isEqualTo []) exitWith {MUTEX_UNLOCK(TF_radio_request_mutex);};
+
+//Answer EH
+["TFAR_RadioRequestResponseEvent", {
+    params ["_response"];
+    private _copyIndex = 0;
+    if (_response isEqualType []) then {
+        private _radioCount = count _response;
+        private _settingsCount = count _TF_SettingsToCopy;
+        private _startIndex = 0;
+        if (_radioCount > 0) then {
+            if (TFAR_RadioReqLinkFirstItem) then {
+                TFAR_RadioReqLinkFirstItem= false;
+                TFAR_currentUnit linkItem (_response select 0);
+                _copyIndex = [_settingsCount, _copyIndex, (_response select 0),_TF_SettingsToCopy] call _fnc_CopySettings;
+                [(_response select 0), getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
+                _startIndex = 1;
             };
-            call TFAR_fnc_hideHint;
-            //								unit, radios
-            ["OnRadiosReceived", [TFAR_currentUnit, _response]] call TFAR_fnc_fireEventHandlers;
-
-            ["TFAR_RadioRequestResponseEvent", _thisId] call CBA_fnc_removeEventHandler;
-            [[15,"radioRequest",round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release
-
-
-        }] call CBA_fnc_addEventHandlerArgs;
-
-        [parseText(localize ("STR_wait_radio")), 10] call TFAR_fnc_showHint;
-        TFAR_beta_RadioRequestStart = diag_tickTime;//#TODO remove on release
-        //Send request
-        ["TFAR_RadioRequestEvent", [_radiosToRequest,TFAR_currentUnit]] call CBA_fnc_serverEvent;
+            _radioCount = _radioCount - 1;
+            for "_index" from _startIndex to _radioCount do {
+                TFAR_currentUnit addItem (_response select _index);
+                _copyIndex = [_settingsCount, _copyIndex, (_response select _index),_TF_SettingsToCopy] call _fnc_CopySettings;
+                [(_response select _index), getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
+            };
+        };
+    } else {
+        hintC _response;
     };
-    TF_last_request_time = time;
-};
+    call TFAR_fnc_hideHint;
+    //								unit, radios
+    ["OnRadiosReceived", [TFAR_currentUnit, _response]] call TFAR_fnc_fireEventHandlers;
+
+    ["TFAR_RadioRequestResponseEvent", _thisId] call CBA_fnc_removeEventHandler;
+    [[15,"radioRequest",round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release
+
+}] call CBA_fnc_addEventHandlerArgs;
+
+[parseText(localize ("STR_wait_radio")), 10] call TFAR_fnc_showHint;
+TFAR_beta_RadioRequestStart = diag_tickTime;//#TODO remove on release
+//Send request
+["TFAR_RadioRequestEvent", [_radiosToRequest,TFAR_currentUnit]] call CBA_fnc_serverEvent;
+
 MUTEX_UNLOCK(TF_radio_request_mutex);

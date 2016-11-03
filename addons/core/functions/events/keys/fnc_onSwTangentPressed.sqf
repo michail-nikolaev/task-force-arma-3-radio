@@ -41,7 +41,7 @@ private _hintText = format[
                             localize "STR_transmit",
                             format [
                                     "%1<img size='1.5' image='%2'/>",
-                                    getText (ConfigFile >> "CfgWeapons" >> _radio >> "displayName"),
+                                    getText (configFile >> "CfgWeapons" >> _radio >> "displayName"),
                                     getText(configFile >> "CfgWeapons"  >> _radio >> "picture")
                                     ],
                             (_radio call TFAR_fnc_getSwChannel) + 1,

@@ -19,9 +19,11 @@
  */
 
 private _result = false;
-if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith{false};
+
+if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith {false};
 {
     if (_x call TFAR_fnc_isRadio) exitWith {_result = true};
     true;
 } count (assignedItems TFAR_currentUnit);
+
 _result

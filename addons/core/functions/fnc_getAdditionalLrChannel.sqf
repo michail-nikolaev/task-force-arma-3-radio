@@ -18,8 +18,7 @@
         NUMBER: Channel
 
     Example:
-        _channel = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getAdditionalLrChannel;
+        _channel = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getAdditionalLrChannel;
 */
 
-private _settings = _this call TFAR_fnc_getLrSettings;
-_settings select TFAR_ADDITIONAL_CHANNEL_OFFSET
+(_this call TFAR_fnc_getLrSettings) param [TFAR_ADDITIONAL_CHANNEL_OFFSET,-1]

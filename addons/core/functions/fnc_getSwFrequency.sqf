@@ -19,5 +19,6 @@
     Example:
         _frequency = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwFrequency;
 */
+params[["_radio","",[""]]];
 
-[_this, ((_this call TFAR_fnc_getSwSettings) param [ACTIVE_CHANNEL_OFFSET,0])+1] call TFAR_fnc_GetChannelFrequency;
+[_radio, ((_radio call TFAR_fnc_getSwSettings) param [ACTIVE_CHANNEL_OFFSET,0])+1] call TFAR_fnc_getChannelFrequency;

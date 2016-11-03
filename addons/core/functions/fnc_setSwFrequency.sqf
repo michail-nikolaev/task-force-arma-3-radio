@@ -18,7 +18,7 @@
         Nothing
 
     Example:
-        [(call TFAR_fnc_activeSwRadio), "76.2"] call TFAR_fnc_setSwFrequency;
+        [call TFAR_fnc_activeSwRadio, "76.2"] call TFAR_fnc_setSwFrequency;
 */
 
 params ["_radio", "_freq"];

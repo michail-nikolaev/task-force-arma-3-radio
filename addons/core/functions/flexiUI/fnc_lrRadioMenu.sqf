@@ -15,8 +15,8 @@ if (count (TFAR_currentUnit call TFAR_fnc_lrRadiosList) > 1) then {
             _submenu = "_this call TFAR_fnc_lrRadioSubMenu";
         };
         _position = [
-            getText(configFile >> "CfgVehicles"  >> typeof(_x select 0) >> "displayName"), 
-            _command, 
+            getText(configFile >> "CfgVehicles"  >> typeof(_x select 0) >> "displayName"),
+            _command,
             getText(configFile >> "CfgVehicles"  >> typeof(_x select 0) >> "picture"),
             "",
             _submenu,
@@ -24,7 +24,7 @@ if (count (TFAR_currentUnit call TFAR_fnc_lrRadiosList) > 1) then {
             true,
             true
         ];
-        _positions set [count _positions, _position];
+        _positions pushBack _position;
         _pos = _pos + 1;
         true;
     } count (TFAR_currentUnit call TFAR_fnc_lrRadiosList);

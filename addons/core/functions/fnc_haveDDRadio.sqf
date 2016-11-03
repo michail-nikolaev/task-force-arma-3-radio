@@ -9,16 +9,16 @@
         Returns whether the player has a DD radio.
 
     Parameters:
-    Nothing
+        Nothing
 
     Returns:
-    Bool
+        Bool
 
     Example:
-    _hasDD = call TFAR_fnc_haveDDRadio;
+        _hasDD = call TFAR_fnc_haveDDRadio;
  */
 
-if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith{false};
+if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith {false};
 
 if (isNil "TF_dd_frequency") then {
     TF_dd_frequency = (group TFAR_currentUnit) getVariable "tf_dd_frequency";

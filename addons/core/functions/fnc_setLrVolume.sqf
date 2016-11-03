@@ -10,20 +10,21 @@
         Sets the volume for the passed radio
 
     Parameters:
-        0: OBJECT - Radio object
-        1: STRING - Radio ID
-        2: NUMBER - Volume : Range (0,10)
+        0: ARRAY - Radio
+            0: OBJECT- Radio object
+            1: STRING - Radio ID
+        1: NUMBER - Volume : Range (0,10)
 
     Returns:
         Nothing
 
     Example:
-        [(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 5] call TFAR_fnc_setLrVolume;
+        [call TFAR_fnc_activeLrRadio, 5] call TFAR_fnc_setLrVolume;
 */
+params [["_radio",[],[[]],2],["_value",0,[0]]];
+_radio params ["_radio_object", "_radio_qualifier"];
 
-params ["_radio_object", "_radio_qualifier", "_value"];
-
-private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
+private _settings = _radio call TFAR_fnc_getLrSettings;
 _settings set [VOLUME_OFFSET, _value];
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 

@@ -18,5 +18,6 @@
     Example:
         _stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwStereo;
 */
+params[["_radio","",[""]]];
 
-(_this call TFAR_fnc_getSwSettings) param [TFAR_SW_STEREO_OFFSET,false]
+(_radio call TFAR_fnc_getSwSettings) param [TFAR_SW_STEREO_OFFSET,false]

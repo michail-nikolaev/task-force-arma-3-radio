@@ -19,19 +19,13 @@
     Example:
         _vehicleSide = (vehicle player) call TFAR_fnc_getVehicleSide;
 */
-private _side = _this getVariable "tf_side";
-private _result = resistance;
+params [["_vehicle",objNull,[objNull]]];
 
-if !(isNil "_side") then {
-    switch(_side) do {
-        case "west": {
-            _result = west;
-        };
-        case "east": {
-            _result = east;
-        };
-    };
-} else {
-    _result = [getNumber(configFile >> "CfgVehicles" >> typeOf(_this) >> "side")] call BIS_fnc_sideType;
-};
-_result
+private _side = _vehicle getVariable "tf_side";
+
+if (isNil "_side") exitWith {[getNumber(configFile >> "CfgVehicles" >> (typeOf _vehicle) >> "side")] call BIS_fnc_sideType};
+
+if (_side == "west") exitWith {west};
+if (_side == "east") exitWith {east};
+
+independent

@@ -46,7 +46,7 @@ if ((_nearPlayer) and {TFAR_currentUnit distance _unit <= TF_speakerDistance}) t
             if (_x call TFAR_fnc_getLrSpeakers) then {
                 private _frequencies = [format ["%1%2", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode]];
                 if ((_x call TFAR_fnc_getAdditionalLrChannel) > -1) then {
-                    _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getLrRadioCode];
+                    _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_getChannelFrequency, _x call TFAR_fnc_getLrRadioCode];
                 };
                 private _radio_id = netId (_x select 0);
                 if (_radio_id == '') then {
@@ -63,7 +63,7 @@ if ((_nearPlayer) and {TFAR_currentUnit distance _unit <= TF_speakerDistance}) t
             if (_x call TFAR_fnc_getSwSpeakers) then {
                 private _frequencies = [format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode]];
                 if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
-                    _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
+                    _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_getChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
                 };
                 private _radio_id = _x;
                 TFAR_speakerRadios pushBack ([_radio_id,_frequencies joinString "|",_unitName,[], _x call TFAR_fnc_getSwVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);

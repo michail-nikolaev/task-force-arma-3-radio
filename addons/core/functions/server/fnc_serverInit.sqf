@@ -156,38 +156,16 @@ VARIABLE_DEFAULT(TFAR_freq_sr_west_dd,call TFAR_fnc_generateDDFreq);
 VARIABLE_DEFAULT(TFAR_freq_sr_east_dd,call TFAR_fnc_generateDDFreq);
 VARIABLE_DEFAULT(TFAR_freq_sr_independent_dd,call TFAR_fnc_generateDDFreq);
 
+//Check if all players are running TFAR
+{
+    if(isServer) exitWith {};
+    waitUntil {sleep 0.1;time > 0};
+    if !(isClass(configFile >> "CfgPatches" >> "tfar_core")) exitWith {
+        [player, "TASK FORCE RADIO NOT LOADED"] remoteExec ["globalChat", -2];
+        ["LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0"] call "BIS_fnc_guiMessage";
+    };
+} remoteExec ["BIS_fnc_spawn", -2, true];
 
 
 waitUntil {sleep 0.1;time > 0};
-
-while {true} do {
-    call TFAR_fnc_processGroupFrequencySettings;
-    private _allUnits = allUnits;
-    {
-        _allUnits pushBack _x;
-        true;
-    } count (call BIS_fnc_listCuratorPlayers);
-
-    {
-        if (isPlayer _x) then {
-
-            private _ModActive = _x getVariable "TFAR_modActive";
-            _variableName = "no_radio_" + (getPlayerUID _x) + str (_x call BIS_fnc_objectSide);
-            if (isNil "_ModActive") then {
-                private _last_check = missionNamespace getVariable _variableName;
-
-                if (isNil "_last_check") then {
-                    missionNamespace setVariable [_variableName, time];
-                } else {
-                    if (time - _last_check > 30) then {
-                        [["LOOKS LIKE TASK FORCE RADIO ADDON NOT ENABLED OR VERSION LESS THAN 0.8.1"],"BIS_fnc_guiMessage",(owner _x), false] spawn BIS_fnc_MP;
-                        _x setVariable ["TFAR_modActive", "error_shown", true];
-                    };
-                };
-            } else {
-                missionNamespace setVariable [_variableName, nil];
-            };
-        };
-    } count _allUnits;
-    sleep 1;
-};
+[TFAR_fnc_processGroupFrequencySettings,10/*10 seconds*/] call CBA_fnc_addPerFrameHandler;

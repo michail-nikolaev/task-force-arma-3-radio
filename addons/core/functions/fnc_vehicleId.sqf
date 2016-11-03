@@ -18,17 +18,14 @@
     Example:
         _vehicleID = player call TFAR_fnc_vehicleID;
 */
+params ["_unit"];
 
-private _result = "no";
-if ((vehicle _this) != _this) then {
-    _result = netid (vehicle _this);
-    if (_result == "") then {
-        _result = "singleplayer";
-    };
-    if ([_this] call TFAR_fnc_isTurnedOut) then {
-        _result = _result + "_turnout";
-    } else {
-        _result = _result + "_" + str ([(typeof (vehicle _this)), "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty);
-    };
+if (isNull (objectParent _unit)) exitWith {"no"};//Unit is not in vehicle
+
+_netID = netid (vehicle _unit);
+if (_netID == "") then {
+    _netID = "singleplayer";
 };
-_result
+if ([_unit] call TFAR_fnc_isTurnedOut) exitWith {_netID + "_turnout";};
+
+_netID + "_" + str ([(typeof (vehicle _unit)), "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty);

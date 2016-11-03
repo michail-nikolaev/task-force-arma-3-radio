@@ -19,7 +19,7 @@
         NUMBER: Frequency
 
     Example:
-        _frequency = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getLrFrequency;
+        _frequency = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrFrequency;
 */
 
-[_this, ((_this call TFAR_fnc_getLrSettings) select ACTIVE_CHANNEL_OFFSET)+1] call TFAR_fnc_GetChannelFrequency;
+[_this, ((_this call TFAR_fnc_getLrSettings) param [ACTIVE_CHANNEL_OFFSET])+1] call TFAR_fnc_getChannelFrequency;

@@ -42,7 +42,7 @@ if (((call TFAR_fnc_haveSWRadio) or (TFAR_currentUnit != player)) and {[TFAR_cur
                 } else {
                     _freq pushBack format ["%1%2|%3|%4|%5", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode, _x call TFAR_fnc_getSwVolume, _x call TFAR_fnc_getSwStereo,_x];
                     if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
-                        _freq pushBack format ["%1%2|%3|%4|%5", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getSwRadioCode, _x call TFAR_fnc_getSwVolume, _x call TFAR_fnc_getAdditionalSwStereo,_x];
+                        _freq pushBack format ["%1%2|%3|%4|%5", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_getChannelFrequency, _x call TFAR_fnc_getSwRadioCode, _x call TFAR_fnc_getSwVolume, _x call TFAR_fnc_getAdditionalSwStereo,_x];
                     };
                 };
             };
@@ -64,7 +64,7 @@ if (((call TFAR_fnc_haveLRRadio) or (TFAR_currentUnit != player)) and {[TFAR_cur
                 } else {
                     _freq_lr pushBack format ["%1%2|%3|%4|%5", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode, _x call TFAR_fnc_getLrVolume, _x call TFAR_fnc_getLrStereo,typeof (_x select 0)];
                     if ((_x call TFAR_fnc_getAdditionalLrChannel) > -1) then {
-                        _freq_lr pushBack format ["%1%2|%3|%4|%5", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_GetChannelFrequency, _x call TFAR_fnc_getLrRadioCode, _x call TFAR_fnc_getLrVolume, _x call TFAR_fnc_getAdditionalLrStereo,typeof (_x select 0)];
+                        _freq_lr pushBack format ["%1%2|%3|%4|%5", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_getChannelFrequency, _x call TFAR_fnc_getLrRadioCode, _x call TFAR_fnc_getLrVolume, _x call TFAR_fnc_getAdditionalLrStereo,typeof (_x select 0)];
                     };
                 };
             };

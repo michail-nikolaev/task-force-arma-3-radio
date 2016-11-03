@@ -18,7 +18,7 @@
         NUMBER: Volume : range (0,10)
 
     Example:
-        _volume = (call TFAR_fnc_ActiveLrRadio) call TFAR_fnc_getLrVolume;
+        _volume = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrVolume;
 */
 
 (_this call TFAR_fnc_getLrSettings) param [VOLUME_OFFSET,0]

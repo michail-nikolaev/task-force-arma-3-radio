@@ -23,8 +23,6 @@
 if (_this == "ItemRadio") exitWith {true};
 
 private _result = getNumber (configFile >> "CfgWeapons" >> _this >> "tf_prototype");
-if (isNil "_result") then {
-    _result = 0;
-};
+if (!isNil "_result") exitWith {_result == 1};
 
-(_result == 1)
+false

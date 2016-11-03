@@ -25,10 +25,10 @@
 params ["_radio1", "_radio2"];
 
 if !(_radio1 call TFAR_fnc_isPrototypeRadio) then {
-    _radio1 = configName inheritsFrom (configFile >> "CfgWeapons" >> _radio1);
+    _radio1 = configName (inheritsFrom (configFile >> "CfgWeapons" >> _radio1));
 };
 if !(_radio2 call TFAR_fnc_isPrototypeRadio) then {
-    _radio2 = configName inheritsFrom (configFile >> "CfgWeapons" >> _radio2);
+    _radio2 = configName (inheritsFrom (configFile >> "CfgWeapons" >> _radio2));
 };
 
 (_radio2 == _radio1)

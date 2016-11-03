@@ -20,37 +20,6 @@
 */
 
 while {true} do {
-    private _newCurrentUnit = call TFAR_fnc_currentUnit;
-    if ((_newCurrentUnit != TFAR_currentUnit)) then {
-        TFAR_currentUnit = _newCurrentUnit;
-        if !(TFAR_currentUnit getVariable ["TFAR_HandlersSet",false]) then {
-            TFAR_currentUnit addEventHandler ["Take", {
-                private _class = ConfigFile >> "CfgWeapons" >> (_this select 2);
-                if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
-                    [(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;
-                };
-            }];
-            TFAR_currentUnit addEventHandler ["Put", {
-                private _class = ConfigFile >> "CfgWeapons" >> (_this select 2);
-                if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
-                    [(_this select 2), ""] call TFAR_fnc_setRadioOwner;
-                };
-            }];
-            TFAR_currentUnit addEventHandler ["Killed", {
-                params ["_unit"];
-                private _items = (assignedItems _unit) + (items _unit);
-                {
-                    _class = ConfigFile >> "CfgWeapons" >> _x;
-                    if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
-                        [_x, ""] call TFAR_fnc_setRadioOwner;
-                    };
-                    true;
-                } count _items;
-            }];
-            TFAR_currentUnit setVariable ["TFAR_HandlersSet", true];
-        };
-    };
-
     // hide curator players
     {
         if (_x call TFAR_fnc_isForcedCurator) then {
@@ -87,15 +56,7 @@ while {true} do {
     };
 
     sleep 2;
-    if ((time - TF_respawnedAt > 10) and (alive TFAR_currentUnit)) then {
+    if ((time - TF_respawnedAt > 10) and {alive TFAR_currentUnit}) then {
         false call TFAR_fnc_requestRadios;
-    };
-
-    //Tell server that TFAR_currentUnit has TFAR loaded.
-    if !(isNull TFAR_currentUnit) then {
-        private _currentPlayerFlag = TFAR_currentUnit getVariable "TFAR_modActive";
-        if (isNil "_currentPlayerFlag") then {
-            TFAR_currentUnit setVariable ["TFAR_modActive", TFAR_ADDON_VERSION, true];
-        };
     };
 };

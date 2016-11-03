@@ -31,7 +31,7 @@ if ((call TFAR_fnc_haveSWRadio) and {alive TFAR_currentUnit}) then{
     private _new_radio_index = 0;
 
     {
-        if (_x == _radio) exitWith{
+        if (_x == _radio) exitWith {
             _active_radio_index = _forEachIndex;
         };
     } forEach _radio_list;

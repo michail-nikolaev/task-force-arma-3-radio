@@ -40,7 +40,7 @@ if (_lr) then {
     _radio = TF_sw_dialog_radio;
     _fnc_GetChannel = TFAR_fnc_getSwChannel;
 };
-private _cChange = if(_btn == 0)then{-1 + _maxChannels}else{1};
+private _cChange = if(_btn == 0)then{-1 + _maxChannels}else {1};
 _cChange = ((_radio call _fnc_GetChannel) + _cChange) mod _maxChannels;
 
 if (_lr) then {

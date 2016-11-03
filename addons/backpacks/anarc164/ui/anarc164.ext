@@ -95,7 +95,7 @@ class anarc164_radio_dialog
             playSound 'TFAR_rotatorPush';
             _f = parseNumber(ctrlText IDC_ANARC164_EDIT);
             if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {
-                [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))] call TFAR_fnc_setLrFrequency;
+                [ARR_2(TF_lr_dialog_radio, str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))] call TFAR_fnc_setLrFrequency;
                 call TFAR_fnc_hideHint;
             } else {
                 hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ)]
@@ -146,7 +146,7 @@ class anarc164_radio_dialog
         h = 0.110006 * safezoneH;
         action = QUOTE(
             playSound 'TFAR_rotatorPush';
-            [ARR_3(TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;
+            [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;
             [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;
         );
         tooltip = $STR_stereo_settings;
@@ -159,7 +159,7 @@ class anarc164_radio_dialog
         w = 0.0374025 * safezoneW;
         h = 0.0700156 * safezoneH;
         tooltip = $STR_set_additional;
-        action ="playSound 'TFAR_rotatorPush';[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1, TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel;call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
+        action ="playSound 'TFAR_rotatorPush';[TF_lr_dialog_radio,TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel;call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     };
     class speakers: HiddenFlip
     {
@@ -169,7 +169,7 @@ class anarc164_radio_dialog
         w = 0.0293761 * safezoneW;
         h = 0.0406957 * safezoneH;
         tooltip = $STR_speakers_settings_true;
-        action = "[TF_lr_dialog_radio select 0, TF_lr_dialog_radio select 1] call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
+        action = "TF_lr_dialog_radio call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
     };
     ////////////////////////////////////////////////////////
     // GUI EDITOR OUTPUT END

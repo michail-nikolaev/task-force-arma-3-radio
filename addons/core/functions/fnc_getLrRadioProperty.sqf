@@ -21,50 +21,37 @@
 
 params ["_radio", "_property"];
 
-private _result = _radio getVariable _property;
+private _propertyGetVariable = _radio getVariable _property;
 
-if (isNil "_result") then {
-    if (!(_radio isKindOf "Bag_Base")) then {
-        if (isNumber (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> _property)
-            or {isText (configFile >> "CfgVehicles" >> (typeof _radio) >> _property)}
-            or {isNumber (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> (_property + "_api"))}
-            or {isText (ConfigFile >> "CfgVehicles" >> (typeof _radio) >> (_property + "_api"))}
-            ) exitWith {
-            _radio = typeof _radio;
-        };
-        _result = _radio getVariable "TF_RadioType";
-        if (isNil "_result") then {
-            _result = [typeof _radio, "tf_RadioType"] call TFAR_fnc_getConfigProperty;
+if (!isNil "_propertyGetVariable") exitWith {_propertyGetVariable};
 
-            if (!isNil "_result" AND {_result != ""}) exitWith {};
-            private _air = (typeof(_radio) isKindOf "Air");
-            if ((_radio call TFAR_fnc_getVehicleSide) == west) then {
-                if (_air) then {
-                    _result = TFAR_DefaultRadio_Airborne_West;
-                } else {
-                    _result = TFAR_DefaultRadio_Backpack_West;
-                };
-            } else {
-                if ((_radio call TFAR_fnc_getVehicleSide) == east) then {
-                    if (_air) then {
-                        _result = TFAR_DefaultRadio_Airborne_East;
-                    } else {
-                        _result = TFAR_DefaultRadio_Backpack_East;
-                    };
-                } else {
-                    if (_air) then {
-                        _result = TFAR_DefaultRadio_Airborne_Independent;
-                    } else {
-                        _result = TFAR_DefaultRadio_Backpack_Independent;
-                    };
-                };
-            };
-        };
-        _radio = _result;
-    } else {
-        _radio = typeof _radio;
+if (_radio isKindOf "Bag_Base") exitWith {[typeof _radio, _property] call TFAR_fnc_getConfigProperty};
+
+if (isNumber (configFile >> "CfgVehicles" >> (typeof _radio) >> _property)
+    or {isText (configFile >> "CfgVehicles" >> (typeof _radio) >> _property)}
+    or {isNumber (configFile >> "CfgVehicles" >> (typeof _radio) >> (_property + "_api"))}
+    or {isText (configFile >> "CfgVehicles" >> (typeof _radio) >> (_property + "_api"))}
+    ) exitWith {[typeof _radio, _property] call TFAR_fnc_getConfigProperty};
+
+_radioTypeVariable = _radio getVariable "TF_RadioType";
+if (!isNil "_radioTypeVariable") exitWith {[_radioTypeVariable, _property] call TFAR_fnc_getConfigProperty};
+
+_radioTypeConfig = [typeof _radio, "tf_RadioType"] call TFAR_fnc_getConfigProperty;
+if (!isNil "_radioTypeConfig" AND {_radioTypeConfig != ""}) exitWith {[_radioTypeConfig, _property] call TFAR_fnc_getConfigProperty};
+
+private _isAirRadio = (typeof _radio) isKindOf "Air";
+
+private _radioClassname = "";
+switch (_radio call TFAR_fnc_getVehicleSide) do {
+    case west: {
+        _radioClassname = [TFAR_DefaultRadio_Backpack_West,TFAR_DefaultRadio_Airborne_West] select _isAirRadio;
     };
-    _result = [_radio, _property] call TFAR_fnc_getConfigProperty;
+    case east: {
+        _radioClassname = [TFAR_DefaultRadio_Backpack_East,TFAR_DefaultRadio_Airborne_East] select _isAirRadio;
+    };
+    default {
+        _radioClassname = [TFAR_DefaultRadio_Backpack_Independent,TFAR_DefaultRadio_Airborne_Independent] select _isAirRadio;
+    };
 };
 
-_result
+[_radioClassname, _property] call TFAR_fnc_getConfigProperty;

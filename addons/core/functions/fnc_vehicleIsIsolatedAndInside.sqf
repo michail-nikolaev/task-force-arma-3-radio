@@ -18,13 +18,10 @@
     Example:
         _isolated = player call TFAR_fnc_vehicleIsIsolatedAndInside;
 */
+params ["_unit"];
 
-private _result = false;
-if (vehicle _this != _this) then {
-    if ((vehicle _this) call TFAR_fnc_isVehicleIsolated) then {
-        if !([_this] call TFAR_fnc_isTurnedOut) then {
-            _result = true;
-        };
-    };
-};
-_result
+if (isNull (objectParent _unit)) exitWith {false};//Unit is not in vehicle
+
+if ((vehicle _unit) call TFAR_fnc_isVehicleIsolated && {!([_this] call TFAR_fnc_isTurnedOut)}) exitWith {true};
+
+false

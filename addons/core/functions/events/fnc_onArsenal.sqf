@@ -22,7 +22,7 @@ params ["_eventType"];
 switch _eventType do {
     case "PrePreOpen": {
         //Check if current backpack is a TFAR Radio
-        private _class = ConfigFile >> "CfgVehicles" >> (backpack player);
+        private _class = configFile >> "CfgVehicles" >> (backpack player);
         if (isClass _class AND {isNumber (_class >> "tf_hasLRradio")}) then {
             //Save all variables from backpack into array
             private _backpackVariables = [];
@@ -38,7 +38,7 @@ switch _eventType do {
     };
     case "PostClose": {
         //Check if current backpack is a TFAR Radio
-        private _class = ConfigFile >> "CfgVehicles" >> (backpack player);
+        private _class = configFile >> "CfgVehicles" >> (backpack player);
         if (isClass _class AND {isNumber (_class >> "tf_hasLRradio")}) then {
             if (isNil "TFAR_ArsenalBackpackVariables") exitwith {};
             if ((TFAR_ArsenalBackpackVariables select 0) == backpack player) then {

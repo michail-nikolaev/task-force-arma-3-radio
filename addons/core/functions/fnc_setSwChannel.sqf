@@ -17,7 +17,7 @@
         Nothing
 
     Example:
-        [(call TFAR_fnc_activeSwRadio), 2] call TFAR_fnc_setSwChannel;
+        [call TFAR_fnc_activeSwRadio, 2] call TFAR_fnc_setSwChannel;
 */
 
 params ["_radio_id", "_channel_to_set"];

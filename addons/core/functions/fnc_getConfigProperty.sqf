@@ -27,20 +27,21 @@ params ["_item", "_property", ["_default", ""]];
 
 if ((isNil "_item") or {str(_item) == ""}) exitWith {_default};
 
-private _result = _default;
-if (isNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api")) then {
-    _result = getNumber (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api");
-}else{
-    if (isNumber (ConfigFile >> "CfgVehicles" >> _item >> _property)) then{
-        _result = getNumber (ConfigFile >> "CfgVehicles" >> _item >> _property);
-    }else{
-        if (isText (configFile >> "CfgVehicles" >> _item >> _property + "_api")) then{
-            _result = getText (ConfigFile >> "CfgVehicles" >> _item >> _property + "_api");
-        }else{
-            if (isText (configFile >> "CfgVehicles" >> _item >> _property)) then {
-                _result = getText (ConfigFile >> "CfgVehicles" >> _item >> _property);
-            };
-        };
-    };
+if (isNumber (configFile >> "CfgVehicles" >> _item >> _property + "_api")) exitWith {
+    getNumber (configFile >> "CfgVehicles" >> _item >> _property + "_api")
 };
-_result
+
+if (isNumber (configFile >> "CfgVehicles" >> _item >> _property)) exitWith {
+    getNumber (configFile >> "CfgVehicles" >> _item >> _property)
+};
+
+if (isText (configFile >> "CfgVehicles" >> _item >> _property + "_api")) exitWith {
+    getText (configFile >> "CfgVehicles" >> _item >> _property + "_api")
+};
+
+if (isText (configFile >> "CfgVehicles" >> _item >> _property)) exitWith {
+    getText (configFile >> "CfgVehicles" >> _item >> _property);
+};
+
+
+_default

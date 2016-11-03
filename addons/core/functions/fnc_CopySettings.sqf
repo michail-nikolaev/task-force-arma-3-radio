@@ -25,8 +25,9 @@
 
 params ["_source", "_destination"];
 
-private _isDLR = if (_destination isEqualType []) then {true}else{false};
-private _isSLR = if (_source isEqualType []) then {true}else{false};
+//LR radios are Arrays. SW are not
+private _isDLR = (_destination isEqualType []);
+private _isSLR = (_source isEqualType []);
 
 if (_isSLR) then {
     private _settings = _source call TFAR_fnc_GetLRSettings;
