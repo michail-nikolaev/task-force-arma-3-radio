@@ -8,43 +8,31 @@ namespace dataType {
 	float fast_invsqrt(float number);
 
 
-	class TSClientID {
+	template <typename Type>
+	class TeamspeakID {
 	public:
-		TSClientID(anyID id) : m_id(id) {}
-		TSClientID(int id) : m_id(id) {}
-		TSClientID(uint64_t id) : m_id(static_cast<anyID>(id)) {} //ts3plugin_infoData
-		operator anyID&() { return m_id; }
-		operator bool() const { return m_id != -1; }
-		bool operator== (const TSClientID& other) const { return m_id == other.m_id; }
-		bool operator== (const int& other) const { return m_id == static_cast<anyID>(other); }
-		bool operator< (const TSClientID& other) const { return m_id < other.m_id; }
+		constexpr TeamspeakID() : m_id(-1) {}
+		constexpr TeamspeakID(Type id) : m_id(id) {}
+		constexpr TeamspeakID(int id) : m_id(id) {}
+		constexpr Type baseType() { return m_id; }//Making this operator Type() will break operator bool in if statements... C++ Magic
+		constexpr bool isValid() const noexcept { return m_id != static_cast<Type>(-1); }
+		constexpr explicit operator bool() const noexcept { return isValid(); }
+		constexpr bool operator!() const noexcept { return !isValid(); }
+		constexpr bool operator== (const TeamspeakID& other) const noexcept { return m_id == other.m_id; }
+		constexpr bool operator== (const int& other) const noexcept { return m_id == static_cast<Type>(other); }
+		constexpr bool operator== (const Type& other) const noexcept { return m_id == other; }
+		constexpr bool operator!= (const TeamspeakID& other) const noexcept { return m_id != other.m_id; }
+		constexpr bool operator< (const TeamspeakID& other) const noexcept { return m_id < other.m_id; }
 	private:
-		anyID m_id;
+		Type m_id;
 	};
 
-	class TSChannelID {
-	public:
-		TSChannelID(uint64_t id) : m_id(id) {}
-		operator uint64_t&() { return m_id; }
-		operator bool() const { return m_id != -1; }
-		bool operator== (const TSChannelID& other) const { return m_id == other.m_id; }
-		bool operator== (const int& other) const { return m_id == static_cast<uint64_t>(other); }
-		bool operator< (const TSChannelID& other) const { return m_id < other.m_id; }
-	private:
-		uint64_t m_id;
-	};
+	using TSClientID = TeamspeakID<anyID>;
+	using TSChannelID = TeamspeakID<uint64_t>;
+	using TSServerID = TeamspeakID<uint64_t>;
 
-	class TSServerID {
-	public:
-		TSServerID(uint64_t id) : m_id(id) {}
-		operator uint64_t&() { return m_id; }
-		operator bool() const { return m_id != -1; }
-		bool operator== (const TSServerID& other) const { return m_id == other.m_id; }
-		bool operator== (const int& other) const { return m_id == static_cast<uint64_t>(other); }
-		bool operator< (const TSServerID& other) const { return m_id < other.m_id; }
-	private:
-		uint64_t m_id;
-	};
+	// static_assert(TSClientID(5));
+	static_assert(!TSClientID(-1).isValid(), "Empty TSClientID detection failed");
 
 	class AngleDegrees;
 	class AngleRadians {
@@ -107,7 +95,7 @@ namespace dataType {
 		Position3D operator-(const Position3D& other) const;
 		bool operator< (const Position3D& other) const;
 		bool operator== (const Position3D& other) const;
-		operator bool() const;
+		bool isNull() const;
 
 		//Functions
 		std::tuple<float, float, float> get() const;
@@ -124,7 +112,7 @@ namespace dataType {
 
 		//When adding variables never add them before the 3D vector floats! Because operator TS3_VECTOR*
 	};
-	
+
 	class RotationMatrix {
 	public:
 		Position3D right;
@@ -144,7 +132,7 @@ namespace dataType {
 		AngleRadians toAngle() const;
 		AngleRadians toPolarAngle() const;
 		Direction3D(float x, float y, float z) : Position3D(x, y, z) {}
-		Position3D getpos() const { return Position3D(m_x,m_y,m_z); }
+		Position3D getpos() const { return Position3D(m_x, m_y, m_z); }
 
 		//Direction3D getUpVector();
 		//RotationMatrix toRotationMatrix();

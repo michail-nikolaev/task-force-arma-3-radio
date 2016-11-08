@@ -43,6 +43,15 @@ private:
 	LogLevel level;
 };
 
+class DebugStringLogger : public ILogger {
+public:
+    explicit DebugStringLogger() {};
+    virtual ~DebugStringLogger() {}
+
+    void log(const std::string& message) override;
+    void log(const std::string& message, LogLevel _loglevel) override;
+};
+
 enum class LoggerTypes {
 	profiler,
 	gameCommands,
@@ -54,7 +63,9 @@ enum class LoggerTypes {
 class Logger {
 public:
 	static void registerLogger(LoggerTypes type, std::shared_ptr<ILogger> logger);
-	static void log(LoggerTypes type, const std::string& message);
+	//#TODO deprecate log without logLevel and use DEBUG as default loglevel
+	//#TODO log function that takes message as rvalue reference to avoid copy (&&)
+	static void log(LoggerTypes type, const std::string& message); 
 	static void log(LoggerTypes type, const std::string& message, LogLevel _loglevel);
 
 private:

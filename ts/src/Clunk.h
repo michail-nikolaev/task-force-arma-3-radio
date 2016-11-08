@@ -8,7 +8,7 @@ class Clunk
 public:
 
 
-	void process(short * samples, int channels, int sampleCount, Direction3D pos, AngleRadians direction)
+	void process(short * samples, uint8_t channels, size_t sampleCount, Direction3D pos, AngleRadians direction)
 	{
 		float x, y, z;
 		std::tie(x, y, z) = pos.get();
@@ -25,7 +25,7 @@ public:
 
 		input_buffer.insert(input_buffer.end(), samples, samples + (sampleCount*channels));
 
-		if (input_buffer.size() > clunk::Hrtf::WINDOW_SIZE * channels * 2)
+		if (input_buffer.size() > clunk::Hrtf::WINDOW_SIZE * channels * 2u)
 		{
 
 			const int to_process = (int) input_buffer.size();

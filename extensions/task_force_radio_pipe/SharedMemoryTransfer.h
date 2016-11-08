@@ -54,7 +54,10 @@ namespace SharedMemoryHandlerInternal {
 		std::chrono::system_clock::time_point getLastGameTick() const { return lastGameTick; }
 		void setLastGameTick() { lastGameTick = std::chrono::system_clock::now(); }
 		std::chrono::system_clock::time_point getLastPluginTick() const { return lastPluginTick; }
-		void onShutdown() { lastGameTick = std::chrono::system_clock::time_point(0us); }
+		void onShutdown() {
+			lastGameTick = std::chrono::system_clock::time_point(0us); 
+			nextFreeAsyncMessage = 0;
+		}
 		bool needConfigRefresh() const { return configNeedsRefresh; }
 	private:
 		uint32_t sharedMemSize{ 0 };
@@ -103,6 +106,7 @@ public:
 	bool isConnected();
 	bool needsConfigRefresh();
 	bool isReady();
+	void shutdown() const;
 	std::string errorMessage;
 private:
 	bool createMemRegion();

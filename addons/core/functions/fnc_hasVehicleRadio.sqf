@@ -16,7 +16,7 @@
         BOOL: True|False
 
     Example:
-        _present = (vehicle player) call TFAR_fnc_hasVehicleRadio;;
+        _present = (vehicle player) call TFAR_fnc_hasVehicleRadio;
 */
 params [["_vehicle",objNull,[objNull]]];
 

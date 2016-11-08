@@ -27,6 +27,9 @@ public:
 		}
 		return returnData;
 	}
+	void removeAllSlots() {
+		slots.clear();
+	}
 private:
 	std::vector<Slot> slots{};
 };
@@ -51,6 +54,9 @@ public:
 		for (auto &slot : slots) {
 			slot(args...);
 		}
+	}
+	void removeAllSlots() {
+		slots.clear();
 	}
 private:
 	std::vector<Slot> slots{};

@@ -8,11 +8,12 @@
 #include <windows.h>
 using namespace dataType;
 using namespace std::literals;
+
 #define RADIO_GAIN_LR 5
 #define RADIO_GAIN_DD 15
 #define CANT_SPEAK_GAIN 14
 
-#define MAX_CHANNELS  8
+#define MAX_CHANNELS  2 //was 8 originally. But we compress everything down to stereo anyway. And higher MAX_CHANNELS causes more memory and CPU use
 
 #define PLUGIN_API_VERSION 21
 //#define PLUGIN_API_VERSION 19
@@ -22,7 +23,7 @@ using namespace std::literals;
 #define PLUGIN_NAME "task_force_radio"
 #define PLUGIN_NAME_x32 "task_force_radio_win32"
 #define PLUGIN_NAME_x64 "task_force_radio_win64"
-#define MILLIS_TO_EXPIRE 4000  // 4 seconds without updates of client position to expire
+#define MILLIS_TO_EXPIRE 4000ms  // 4 seconds without updates of client position to expire
 
 #define DD_MIN_DISTANCE 70
 #define DD_MAX_DISTANCE 300
@@ -59,10 +60,10 @@ enum class stereoMode {//#TODO move to a real header
 	rightOnly = 2
 };
 
-
 struct PTTDelayArguments {
 	std::string commandToBroadcast;
-	uint64 currentServerConnectionHandlerID;
+	TSServerID currentServerConnectionHandlerID;
+	std::chrono::milliseconds pttDelay;
 	std::string subtype;
 	enum class subtypes {
 		digital_lr,

@@ -2,6 +2,12 @@
 #include "common.hpp"
 
 //#CStandart On C++17 use http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0091r2.html for lock guards
+/*
+This will make 
+using LockGuard_shared = LockGuard_shared<ReadWriteLock>;
+using LockGuard_exclusive = LockGuard_exclusive<ReadWriteLock>;
+not needed anymore
+*/
 template<class LOCK>
 class LockGuard_exclusive;
 

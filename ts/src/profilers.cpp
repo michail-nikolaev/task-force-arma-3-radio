@@ -42,7 +42,7 @@ void APIProfiler::Flush(INT64 end) {
 	float interval = (end - m_threadInfo->lastReportTime) * s_ooFrequency;
 	float measured = m_threadInfo->accumulator * s_ooFrequency;
 	char buffer[512];
-	snprintf(buffer, "TID 0x%llu time spent in \"%s\": %.3f/%.3f ms %.1f%% %llux %.5f microsec per-call",
+	snprintf(buffer, "TID 0x%zu time spent in \"%s\": %.3f/%.3f ms %.1f%% %llux %.5f microsec per-call",
 		std::hash<std::thread::id>()(std::this_thread::get_id()),
 		m_threadInfo->name,
 		measured * 1000,
