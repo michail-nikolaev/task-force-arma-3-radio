@@ -274,13 +274,14 @@ public:
 	//tangentReleased(serverconhandler,clientID) iterates through playbacks and calls their onTangentReleased funcs
 	std::map<std::string, std::shared_ptr<playbackBase>> playbacks;
 	std::map<std::string, std::shared_ptr<clunk::WavFile>> wavCache;
-	CriticalSectionLock playbackCriticalSection;
+	
 
-	void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, Position3D position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode = stereoMode::stereo);
+	void playWavFile(TSServerID serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, Position3D position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode = stereoMode::stereo);
 	void playWavFile(const char* fileNameWithoutExtension) const;
-	void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, stereoMode stereo);
-
-
-
+	void playWavFile(TSServerID serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, stereoMode stereo);
+private:
+	using LockGuard_shared = LockGuard_shared<CriticalSectionLock>;
+	using LockGuard_exclusive = LockGuard_exclusive<CriticalSectionLock>;
+	CriticalSectionLock playbackCriticalSection;
 };
 

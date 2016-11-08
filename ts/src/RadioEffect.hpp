@@ -217,7 +217,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 
 		for (int j = startChannel; j < endChannel; j++) {
 			float sample = buffer[i / channels];
-			short newValue;
+			short newValue;				 //#TODO std::clamp
 			if (sample > 1.0) newValue = SHRT_MAX;
 			else if (sample < -1.0) newValue = SHRT_MIN;
 			else newValue = (short) (sample * (SHRT_MAX - 1));

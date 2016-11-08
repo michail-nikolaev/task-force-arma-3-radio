@@ -39,7 +39,7 @@ private _fnc_CopySettings = {
 
 MUTEX_LOCK(TF_radio_request_mutex);
 
-if ((time - TF_last_request_time < 3) or {!_this}) exitWith {MUTEX_UNLOCK(TF_radio_request_mutex);};
+if ((time - TF_last_request_time < 3)) exitWith {MUTEX_UNLOCK(TF_radio_request_mutex);};
 TF_last_request_time = time;
 
 (_this call TFAR_fnc_radioToRequestCount) params ["_radiosToRequest","_TF_SettingsToCopy"];

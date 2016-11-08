@@ -3,6 +3,8 @@
 #include <array>
 #include "helpers.hpp"
 #include "enum.hpp"
+#include "Locks.hpp"
+#include "SignalSlot.hpp"
 
 #pragma push_macro("max") //macro is interfering with ENUM _from_string function. Could also define NOMINMAX globally
 #undef max
@@ -48,10 +50,10 @@ public:
 	}
 	settingValue(const settingValue& other) = delete;//Disable copying
 	operator std::string() const {
-		switch(type) {
+		switch (type) {
 			case settingType::t_bool: return boolValue ? "true" : "false";
 			case settingType::t_float: return std::to_string(floatValue);
-			case settingType::t_string: return std::string(*stringValue);					   
+			case settingType::t_string: return std::string(*stringValue);
 		}
 		return "";
 	}
@@ -71,7 +73,7 @@ public:
 		}
 		return false;
 	}
-	
+
 private:
 	enum class settingType {
 		t_invalid,
@@ -97,16 +99,29 @@ public:
 	}
 	~settings() {}
 	template<typename TYPE>
-	void set(const Setting& key,const TYPE& value) {
-		//#TODO add CriticalSection
-		values[key] = value;
-		needRefresh = false;
+	void set(const Setting& key, const TYPE& value) {
+		if (std::is_same<TYPE, std::string>::value) {  //Only lock for types that are big enough to need mutex
+			LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
+			values[key] = value;
+			needRefresh = false;
+		} else {
+			values[key] = value;
+			needRefresh = false;
+		}
+        configValueSet(key);
 	}
 	template<typename TYPE>
 	TYPE get(const Setting& key) {
-		if (Setting::Setting_MAX < key)//Using that instead of values.size because that can be evaluated at compile-time
-			return values.at(Setting::Setting_MAX);
-		return values.at(key);
+		if (std::is_same<TYPE, std::string>::value) {	//Only lock for types that are big enough to need mutex
+			LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
+			if (Setting::Setting_MAX < key)//Using that instead of values.size because that can be evaluated at compile-time
+				return values.at(Setting::Setting_MAX);
+			return values.at(key);
+		} else {
+			if (Setting::Setting_MAX < key)//Using that instead of values.size because that can be evaluated at compile-time
+				return values.at(Setting::Setting_MAX);
+			return values.at(key);
+		}
 	}
 
 	const settingValue& get(const Setting& key) {
@@ -116,8 +131,10 @@ public:
 	}
 	void setRefresh() { needRefresh = true; }
 	bool needsRefresh() const { return needRefresh; }
+    Signal<void(const Setting&)> configValueSet;
 private:
+	CriticalSectionLock m_lock;
 	bool needRefresh = true;
-	std::array<settingValue, Setting::Setting_MAX+1> values;
+	std::array<settingValue, Setting::Setting_MAX + 1> values;
 };
 

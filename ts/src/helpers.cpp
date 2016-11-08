@@ -37,6 +37,7 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Direct
 		}
 	}
 }
+#define _SPEAKER_POSITIONS_
 #include <X3daudio.h>
 #pragma comment(lib, "x3daudio.lib")
 X3DAUDIO_HANDLE x3d_handle;
@@ -51,9 +52,9 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Positi
 		);
 		x3d_initialized = true;
 	}
-	//#TODO cache if position didn't change.
-	//#TODO make player local effect so X3DAudio objects are local to every player.
-	//#TODO fix up vector problem
+	//#X3DAudio cache if position didn't change.
+	//#X3DAudio make player local effect so X3DAudio objects are local to every player.
+	//#X3DAudio fix up vector problem
 	X3DAUDIO_LISTENER listener {};
 	std::tie(listener.OrientFront.x, listener.OrientFront.y, listener.OrientFront.z) = myViewDirection.get();
 	listener.OrientFront.y = -listener.OrientFront.y;
@@ -75,7 +76,7 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Positi
 
 	output.SrcChannelCount = 1;
 	output.DstChannelCount = channels;
-	float* volumeMatrix = new float[channels];
+	float* volumeMatrix = new float[channels];	//#X3DAudio minimum 2 channels
 	output.pMatrixCoefficients = volumeMatrix;
 
 
@@ -129,7 +130,7 @@ std::vector<std::string>& helpers::split(const std::string& s, char delim, std::
 		it != end; ++it) {
 		if (delim == *it) {
 			if (in_token) {
-				elems.push_back(std::string(beg, it));
+				elems.emplace_back(beg, it);
 				in_token = false;
 			}
 		} else if (!in_token) {
@@ -138,8 +139,26 @@ std::vector<std::string>& helpers::split(const std::string& s, char delim, std::
 		}
 	}
 	if (in_token)
-		elems.push_back(std::string(beg, s.end()));
+		elems.emplace_back(beg, s.end());
 	return elems;
+}
+
+std::vector<boost::string_ref>& helpers::split(boost::string_ref s, char delim, std::vector<boost::string_ref>& elems) {
+    auto lastPos = s.find_first_not_of(delim);
+    auto pos = s.substr(lastPos).find_first_of(delim);
+
+    while (boost::string_ref::npos != pos || boost::string_ref::npos != lastPos) {
+        // Found a token, add it to the vector.
+        elems.push_back(s.substr(lastPos, pos - lastPos));
+        // Skip delimiters.  Note the "not_of"
+        lastPos = s.substr(pos).find_first_not_of(delim)+ pos;
+        // Find next "non-delimiter"
+        pos = s.substr(lastPos).find_first_of(delim)+ lastPos;
+        if (pos == lastPos - 1) break;
+    }
+	if (lastPos != s.length())
+        elems.push_back(s.substr(lastPos));
+    return elems;
 }
 
 std::vector<std::string> helpers::split(const std::string& s, char delim) {
@@ -163,9 +182,8 @@ short* helpers::allocatePool(int sampleCount, int channels, short* samples) {
 void helpers::mix(short* to, short* from, int sampleCount, int channels) {
 	for (int q = 0; q < sampleCount * channels; q++) {
 		int sum = to[q] + from[q];
-		if (sum > SHRT_MAX) sum = SHRT_MAX;
-		else if (sum < SHRT_MIN) sum = SHRT_MIN;
-		to[q] = sum;
+
+		to[q] = std::clamp(sum, SHRT_MIN, SHRT_MAX);
 	}
 }
 
@@ -192,24 +210,23 @@ std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(const std::string
 	return result;
 }
 
-float helpers::clamp(float x, float a, float b) {
-	return x < a ? a : (x > b ? b : x);
-}
-
-std::pair<std::string, float> helpers::getVehicleDescriptor(std::string vehicleID) { //#TODO move to clientData
-	std::pair<std::string, float> result;
-	result.first == ""; // hear vehicle
-	result.second = 0.0f; // hear 
-
+vehicleDescriptor helpers::getVehicleDescriptor(const std::string& vehicleID) {
+	vehicleDescriptor result;
+	result.vehicleName == ""; // hear vehicle
+	result.vehicleIsolation = 0.0f; // hear 
 	if (vehicleID.find("_turnout") != std::string::npos) {
-		result.first = vehicleID.substr(0, vehicleID.find("_turnout"));
+		result.vehicleName = vehicleID.substr(0, vehicleID.find("_turnout"));
 	} else {
 		if (vehicleID.find_last_of("_") != std::string::npos) {
-			result.first = vehicleID.substr(0, vehicleID.find_last_of("_"));
-			result.second = std::stof(vehicleID.substr(vehicleID.find_last_of("_") + 1));
+			result.vehicleName = vehicleID.substr(0, vehicleID.find_last_of("_"));
+			result.vehicleIsolation = std::stof(vehicleID.substr(vehicleID.find_last_of("_") + 1));
 		} else {
-			result.first = vehicleID;
+			result.vehicleName = vehicleID;
 		}
 	}
 	return result;
+}
+
+float helpers::distanceForDiverRadio() {
+	return DD_MIN_DISTANCE + (DD_MAX_DISTANCE - DD_MIN_DISTANCE) * (1.0f - TFAR::getInstance().m_gameData.wavesLevel);
 }

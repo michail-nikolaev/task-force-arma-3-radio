@@ -24,7 +24,7 @@
 */
 
 params ["_item", "_property", ["_default", ""]];
-
+//#TODO deprecate _api stuff
 if ((isNil "_item") or {str(_item) == ""}) exitWith {_default};
 
 if (isNumber (configFile >> "CfgVehicles" >> _item >> _property + "_api")) exitWith {

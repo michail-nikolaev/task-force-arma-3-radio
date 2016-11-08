@@ -54,9 +54,10 @@ namespace SharedMemoryHandlerInternal {
 		bool hasAsyncRequest() const;
 		bool hasSyncRequest() const;
 		std::chrono::system_clock::time_point getLastGameTick() const { return lastGameTick; }
-		void setLastPluginTick() { lastPluginTick = std::chrono::system_clock::now();}
+        void setLastPluginTick() { lastPluginTick = std::chrono::system_clock::now(); }
+        void setLastGameTick(std::chrono::system_clock::time_point time) { lastGameTick = time;}
 		void setConfigNeedsRefresh(bool needs) { configNeedsRefresh = needs; };
-		void onShutdown(){ lastPluginTick = std::chrono::system_clock::time_point(0us); }
+		void onShutdown(){ lastPluginTick = std::chrono::system_clock::time_point(0us); } //#TODO remove again. handles by pipe
 	private:
 		uint32_t sharedMemSize{ 0 };
 		volatile uint16_t nextFreeAsyncMessage{ 0 };
@@ -107,7 +108,8 @@ public:
 	bool getAsyncRequest(std::string& request);
 	bool isConnected();
 	void setConfigNeedsRefresh(bool param1) const;
-
+    std::chrono::system_clock::time_point lastConnectedEvent;
+    void setGameDisconnected();
 	Signal<void()> onConnected;
 	Signal<void()> onDisconnected;
 

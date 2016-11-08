@@ -15,7 +15,7 @@ extern struct TS3Functions ts3Functions;
 
 TFAR::TFAR() {
 	onGameDisconnected.connect([this]() {
-		Logger::log(LoggerTypes::teamspeakClientlog, "On Game Disconnected", LogLevel_DEVEL);
+		Logger::log(LoggerTypes::profiler, "On Game Disconnected", LogLevel_DEVEL);
 		Teamspeak::unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
 		if (getCurrentlyInGame()) {
 			TFAR::getInstance().getPlaybackHandler()->playWavFile("radio-sounds/off");
@@ -26,8 +26,8 @@ TFAR::TFAR() {
 	});
 
 	onGameConnected.connect([this]() {
-		Logger::log(LoggerTypes::teamspeakClientlog, "On Game Connected", LogLevel_DEVEL);
-		std::string channelName = TFAR::config.get(Setting::serious_channelName);
+		Logger::log(LoggerTypes::profiler, "On Game Connected", LogLevel_DEVEL);
+		std::string channelName = TFAR::config.get<std::string>(Setting::serious_channelName);
 		if (!getCurrentlyInGame() && channelName.length() > 0) {
 			getPlaybackHandler()->playWavFile("radio-sounds/on");
 			setCurrentlyInGame(true);
@@ -38,7 +38,7 @@ TFAR::TFAR() {
 	});
 
 	onGameStart.connect([this]() {
-		Logger::log(LoggerTypes::teamspeakClientlog, "On Respawn", LogLevel_DEVEL);
+		Logger::log(LoggerTypes::profiler, "On Respawn", LogLevel_DEVEL);
 		if (!Teamspeak::isConnected())
 			return;
 
@@ -47,21 +47,34 @@ TFAR::TFAR() {
 	
 	onGameEnd.connect([this]()
 	{
+        Logger::log(LoggerTypes::profiler, "On Game End", LogLevel_DEVEL);
 		TSServerID currentServer = ts3Functions.getCurrentServerConnectionHandlerID();
 		TSClientID myClientID = Teamspeak::getMyId(currentServer);
-		Logger::log(LoggerTypes::teamspeakClientlog, "On Game End", LogLevel_DEVEL);
 		Teamspeak::moveFromSeriousChannel(currentServer);
 		Teamspeak::resetMyNickname(currentServer);
 		Teamspeak::unmuteAll(currentServer); //this may be called twice. If End was caused by PluginDisconnect. But will return immediatly if there are no muted clients
 	});
 
 	onShutdown.connect([this]() {
+
+		onGameStart.removeAllSlots(); //clear all Signals slots so they cannot possibly be called after shutdown
+		onGameEnd.removeAllSlots();
+		onGameConnected.removeAllSlots();
+		onGameDisconnected.removeAllSlots();
+		onTeamspeakServerConnect.removeAllSlots();
+		onTeamspeakClientJoined.removeAllSlots();
+		onTeamspeakClientLeft.removeAllSlots();
+		onTeamspeakClientUpdated.removeAllSlots();
+
 		if (getCurrentlyInGame())
 			onGameEnd();
 		if (m_commandProcessor)
 			m_commandProcessor->stopThread();
 	});
-
+    config.configValueSet.connect([](const Setting& setting) {
+		if (setting == Setting::serious_channelName || setting == Setting::serious_channelPassword)
+        Teamspeak::moveToSeriousChannel();
+    });
 }
 
 
@@ -193,7 +206,7 @@ void TFAR::trackPiwik(const std::vector<std::string>& piwikData) {
 		std::vector<trackerCustomVariable> customVariables = parseCustomVariables(piwikData[3]);
 		if (customVariables.empty()) return;
 		std::stringstream request;
-		if (piwikData[1] == "beta")		 //#TODO remove on release
+		if (piwikData[1] == "beta")		 //#Release remove on release
 			request << "piwik.php?idsite=2&rec=1&url=\"piwik.dedmen.de\"";
 		else
 			request << "piwik.php?idsite=2&rec=1&url=\"radio.task-force.ru\"";
@@ -245,20 +258,6 @@ void TFAR::createCheckForUpdateThread() {
 			MessageBox(NULL, L"New version of Task Force Arrowhead Radio is available. Check radio.task-force.ru/en", L"Task Force Arrowhead Radio Update", MB_OK);
 		}
 	}).detach();
-}
-
-int TFAR::versionNumber(std::string versionString) {
-	int number = 0;
-	for (unsigned int q = 0; q < versionString.length(); q++) {
-		char ch = versionString.at(q);
-		if (isdigit(ch)) {
-			number += (ch - 48);
-		}
-		if (ch == '.') {
-			number *= 10;
-		}
-	}
-	return number;
 }
 
 std::shared_ptr<CommandProcessor>& TFAR::getCommandProcessor() {

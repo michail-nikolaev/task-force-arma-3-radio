@@ -162,11 +162,15 @@ bool SharedMemoryHandler::isConnected() {
 	pData->setLastPluginTick();
 	auto lastGameTick = pData->getLastGameTick();
 	lock.unlock();
-	bool isCurrentlyConnected = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - lastGameTick).count() < MILLIS_TO_EXPIRE;
+	bool isCurrentlyConnected = (std::chrono::system_clock::now() - lastGameTick) < MILLIS_TO_EXPIRE;
+    if ((std::chrono::system_clock::now() - lastConnectedEvent) < 500ms)
+        return isCurrentlyConnected;
 	if (wasConnected && !isCurrentlyConnected) {
 		onDisconnected();
+        lastConnectedEvent = std::chrono::system_clock::now();
 	} else if (!wasConnected && isCurrentlyConnected) {
 		onConnected();
+        lastConnectedEvent = std::chrono::system_clock::now();
 	}
 	wasConnected = isCurrentlyConnected;
 	return isCurrentlyConnected;
@@ -175,6 +179,13 @@ bool SharedMemoryHandler::isConnected() {
 void SharedMemoryHandler::setConfigNeedsRefresh(bool param1) const {
 	SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
 	pData->setConfigNeedsRefresh(param1);
+}
+
+void SharedMemoryHandler::setGameDisconnected() {
+    if (!isReady()) return;
+    MutexLock lock(hMutex);
+    SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
+    pData->setLastGameTick(std::chrono::system_clock::time_point(0us));
 }
 
 bool SharedMemoryHandler::createMemRegion() {

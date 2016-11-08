@@ -100,19 +100,19 @@ if (!isNil "tf_freq_guer_lr") then { \
 if (!isNil "TFAR_defaultFrequencies_sr_west") then {
     TFAR_SameSRFrequenciesForSide = true;
     TFAR_freq_sr_west = call TFAR_fnc_generateSRSettings;
-    TFAR_freq_sr_west set [2,TFAR_defaultFrequencies_sw_west];
+    TFAR_freq_sr_west set [2,TFAR_defaultFrequencies_sr_west];
 };
 
 if (!isNil "TFAR_defaultFrequencies_sr_east") then {
     TFAR_SameSRFrequenciesForSide = true;
     TFAR_freq_sr_east = call TFAR_fnc_generateSRSettings;
-    TFAR_freq_sr_east set [2,TFAR_defaultFrequencies_sw_west];
+    TFAR_freq_sr_east set [2,TFAR_defaultFrequencies_sr_east];
 };
 
 if (!isNil "TFAR_defaultFrequencies_sr_independent") then {
     TFAR_SameSRFrequenciesForSide = true;
     TFAR_freq_sr_independent = call TFAR_fnc_generateSRSettings;
-    TFAR_freq_sr_independent set [2,TFAR_defaultFrequencies_sw_west];
+    TFAR_freq_sr_independent set [2,TFAR_defaultFrequencies_sr_independent];
 };
 
 if (!isNil "TFAR_defaultFrequencies_lr_west") then {

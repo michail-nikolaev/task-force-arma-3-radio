@@ -64,12 +64,9 @@ SharedMemoryHandler::SharedMemoryHandler() {
 	createMemMap();
 }
 
-SharedMemoryHandler::~SharedMemoryHandler() {
-	if (pMapView) {
-		SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
-		pData->onShutdown();
-		UnmapViewOfFile(pMapView);
-	}
+SharedMemoryHandler::~SharedMemoryHandler() {  
+	shutdown();
+	if (pMapView) UnmapViewOfFile(pMapView);
 	if (hMapFile) CloseHandle(hMapFile);
 	if (hEventRequest) CloseHandle(hEventRequest);
 	if (hMutex) CloseHandle(hMutex);
@@ -238,6 +235,13 @@ bool SharedMemoryHandler::isReady() {
 	return true;
 }
 
+void SharedMemoryHandler::shutdown() const {
+	if (pMapView) {
+		SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
+		pData->onShutdown();
+	}
+}
+
 SharedMemoryTransfer::SharedMemoryTransfer() {}
 
 
@@ -265,6 +269,8 @@ void SharedMemoryTransfer::transactMessage(char* output, int outputSize, const c
 		handler.doAsyncRequest(inp);
 		if (inp.front() == 'D' && handler.needsConfigRefresh())//DFRAME
 			answer = "NEEDCFG";
+		else if (inp.front() == 'M')//MISSIONEND
+			handler.shutdown();
 		else
 			answer = "OK";
 	} else {

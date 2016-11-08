@@ -1,5 +1,6 @@
 #include "Logger.hpp"
 #include "ts3_functions.h"
+#include <windows.h>
 extern struct TS3Functions ts3Functions;
 FileLogger::FileLogger(std::string filePath) : file(filePath) {}
 
@@ -36,7 +37,7 @@ void Logger::log(LoggerTypes type, const std::string& message) {
 }
 
 void Logger::log(LoggerTypes type, const std::string & message, LogLevel _loglevel) {
-#ifndef DEBUG_MOD_ENABLED
+#ifndef DEBUG_MOD_ENABLED //#Release change to #ifdef on Release
 	if (_loglevel != LogLevel_DEVEL && _loglevel != LogLevel_DEBUG)
 #endif
 	getInstance()._log(type, message, _loglevel);
@@ -70,3 +71,7 @@ Logger::Logger() {}
 
 
 Logger::~Logger() {}
+
+void DebugStringLogger::log(const std::string & message) { OutputDebugStringA(message.c_str()); printf("%s", message.c_str());}
+
+void DebugStringLogger::log(const std::string & message, LogLevel _loglevel) { OutputDebugStringA(message.c_str()); printf("%s",message.c_str()); }

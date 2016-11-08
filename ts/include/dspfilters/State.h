@@ -288,6 +288,14 @@ public:
       filter.process (numSamples, arrayOfChannels[i], m_state[i]);
   }
 
+  template <class Filter, typename Sample>
+  void process(int numSamples,
+	  std::array<std::vector<Sample>, Channels>& arrayOfChannels,
+	  Filter& filter) {
+	  for (int i = 0; i < Channels; ++i)
+		  filter.process(numSamples, arrayOfChannels[i].data(), m_state[i]);
+  }
+
 private:
   StateType m_state[Channels];
 };

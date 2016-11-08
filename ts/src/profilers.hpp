@@ -13,8 +13,8 @@ namespace profiler
 
 
 
-
-#define ENABLE_API_PROFILER 0     // Comment this line to disable the profiler
+					   //#Release disable on Release
+#define ENABLE_API_PROFILER 1     // Comment this line to disable the profiler
 
 #if ENABLE_API_PROFILER
 

@@ -81,10 +81,10 @@ bool dataType::Position3D::operator<(const Position3D& other) const {
 	return length() < other.length();
 }
 
-dataType::Position3D::operator bool() const {
+bool dataType::Position3D::isNull() const {
 	//Is initialized. Used to check if FromString was successful
 					   //May optimize this by storing whether FromString was success but fpOps are fast enough
-	return m_x != 0.f || m_y != 0.f || m_z != 0.f;
+	return m_x == 0.f && m_y == 0.f && m_z == 0.f;
 }
 
 std::tuple<float, float, float> dataType::Position3D::get() const {

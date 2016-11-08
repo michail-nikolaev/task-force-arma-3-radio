@@ -16,7 +16,7 @@ PlaybackHandler::PlaybackHandler() {}
 PlaybackHandler::~PlaybackHandler() {}
 
 void PlaybackHandler::onEditMixedPlaybackVoiceDataEvent(short * samples, int sampleCount, int channels, const unsigned int * channelSpeakerArray, unsigned int * channelFillMask) {
-	LockGuard_exclusive<CriticalSectionLock> lock(&playbackCriticalSection);
+	LockGuard_exclusive lock(&playbackCriticalSection);
 	bool fill = false;
 	std::vector<std::string> to_remove;
 	if (!(*channelFillMask & 3)) {
@@ -60,7 +60,7 @@ void PlaybackHandler::onEditMixedPlaybackVoiceDataEvent(short * samples, int sam
 }
 
 void PlaybackHandler::appendPlayback(std::string name, short* samples, int sampleCount, int channels) {
-	LockGuard_exclusive<CriticalSectionLock> lock(&playbackCriticalSection);
+	LockGuard_exclusive lock(&playbackCriticalSection);
 	if (playbacks.count(name) == 0) {
 		std::shared_ptr<playbackWavRaw> d = std::make_shared<playbackWavRaw>();
 		playbacks[name] = d;
@@ -77,7 +77,7 @@ void PlaybackHandler::appendPlayback(std::string name, short* samples, int sampl
 
 
 void PlaybackHandler::appendPlayback(std::string name, std::string filePath, stereoMode stereo, float gain) {
-	LockGuard_exclusive<CriticalSectionLock> lock(&playbackCriticalSection);
+	LockGuard_exclusive lock(&playbackCriticalSection);
 	if (playbacks.count(name) == 0) {
 		std::shared_ptr<clunk::WavFile> wave;
 		if (wavCache.count(filePath) == 0) {
@@ -105,7 +105,7 @@ void PlaybackHandler::appendPlayback(std::string name, std::string filePath, ste
 
 
 void PlaybackHandler::appendPlayback(std::string name, std::string filePath, std::vector<std::function<void(short*, size_t, uint8_t)>> functors) {
-	LockGuard_exclusive<CriticalSectionLock> lock(&playbackCriticalSection);
+	LockGuard_exclusive lock(&playbackCriticalSection);
 	if (playbacks.count(name) == 0) {
 
 		std::shared_ptr<clunk::WavFile> wave;
@@ -127,13 +127,11 @@ void PlaybackHandler::appendPlayback(std::string name, std::string filePath, std
 			playbacks[name] = std::make_shared<playbackWavProcessing>(static_cast<short*>(wave->_data.get_ptr()), (wave->_data.get_size() / sizeof(short)) / wave->_spec.channels, wave->_spec.channels, functors);
 	}
 }
-extern serverDataDirectory serverIdToData;
-extern std::shared_ptr<clientData> getClientData(uint64 serverConnectionHandlerID, anyID clientID);	//#TODO make obsolete
-extern bool hasClientData(uint64 serverConnectionHandlerID, anyID clientID);//#TODO make obsolete
-void PlaybackHandler::playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, Position3D position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode) {
+
+void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, Position3D position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode) {
 
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
-	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
+    _mm_setcsr((_mm_getcsr() & ~0x0040) | (0x0040));//_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	if (!Teamspeak::isConnected(serverConnectionHandlerID)) return;
 
 	auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
@@ -158,17 +156,17 @@ void PlaybackHandler::playWavFile(uint64 serverConnectionHandlerID, const char* 
 		if (vehicleVolumeLoss > 0.01f && !vehicleCheck)
 			processors.push_back([id, distance_from_radio, speakerDistance, vehicleVolumeLoss, myClientData](short* samples, size_t sampleCount, uint8_t channels) {
 
-			helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance), 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), myClientData->getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
+			helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance), 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), myClientData->effects.getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
 		});
 		if (onGround) {
 			processors.push_back([id, distance_from_radio, speakerDistance, myClientData](short* samples, size_t sampleCount, uint8_t channels) {
 				helpers::applyGain(samples, sampleCount, channels, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance)));
-				helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(samples, channels, sampleCount, SPEAKER_GAIN, myClientData->getSpeakerFilter(id));
+				helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(samples, channels, sampleCount, SPEAKER_GAIN, myClientData->effects.getSpeakerFilter(id));
 			});
 
 			if (underwater) {
 				processors.push_back([id, distance_from_radio, speakerDistance, myClientData](short* samples, size_t sampleCount, uint8_t channels) {
-					helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, CANT_SPEAK_GAIN * 50, myClientData->getFilterCantSpeak(id));
+					helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, CANT_SPEAK_GAIN * 50, myClientData->effects.getFilterCantSpeak(id));
 				});
 			}
 		} else {
@@ -203,13 +201,13 @@ void PlaybackHandler::playWavFile(uint64 serverConnectionHandlerID, const char* 
 			});
 
 		}
-		auto pClunk = myClientData->getClunk(id);
+		auto pClunk = myClientData->effects.getClunk(id);
 		processors.push_back([pClunk, position, myClientData, id](short* samples, size_t sampleCount, uint8_t channels) {
 			auto relativePos = myClientData->getClientPosition().directionTo(position);
 			auto viewDirection = myClientData->getViewDirection().toAngle();
 			pClunk->process(samples, channels, static_cast<int>(sampleCount), relativePos, viewDirection); //interaural time difference
 			helpers::applyILD(samples, sampleCount, channels, relativePos, viewDirection);	//interaural level difference
-			myClientData->removeClunk(id);
+			myClientData->effects.removeClunk(id);
 		});
 	}
 
@@ -222,9 +220,9 @@ void PlaybackHandler::playWavFile(const char* fileNameWithoutExtension) const {
 	Teamspeak::playWavFile(to_play);
 }
 
-void PlaybackHandler::playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, stereoMode stereo) {
+void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, stereoMode stereo) {
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
-	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
+    _mm_setcsr((_mm_getcsr() & ~0x0040) | (0x0040));//_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	if (!Teamspeak::isConnected(serverConnectionHandlerID)) return;
 	std::string to_play = TFAR::getInstance().getPluginPath() + std::string(fileNameWithoutExtension) + ".wav";
 

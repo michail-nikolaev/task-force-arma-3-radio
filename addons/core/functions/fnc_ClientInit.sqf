@@ -156,7 +156,7 @@ player addEventHandler ["killed", {
 }];
 
 call TFAR_fnc_processRespawn; //Handle our current spawn
-call TFAR_fnc_radioReplaceProcess;
+[] spawn TFAR_fnc_radioReplaceProcess;//#TODO move to PFH
 
 
 [] spawn {

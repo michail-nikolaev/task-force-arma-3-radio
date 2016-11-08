@@ -29,3 +29,8 @@
 /extensions/task_force_radio_pipe/Release
 /extensions/task_force_radio_pipe/Debug
 /extensions/task_force_radio_pipe/exe
+ts/src/task_force_radio_plugin.VC.db
+/ts/src/C++17Debug
+/ts/src/C++17Release
+/ts/src/C++17ReleaseExe
+/ts/src/C++17DebugExe

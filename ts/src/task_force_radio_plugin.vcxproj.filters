@@ -103,9 +103,6 @@
     <ClCompile Include="..\include\clunk\stream.cpp">
       <Filter>externals\clunk</Filter>
     </ClCompile>
-    <ClCompile Include="..\include\sqlite3\sqlite3.c">
-      <Filter>externals</Filter>
-    </ClCompile>
     <ClCompile Include="serverData.cpp" />
     <ClCompile Include="clientData.cpp" />
     <ClCompile Include="Logger.cpp">
@@ -131,6 +128,10 @@
     <ClCompile Include="datatypes.cpp">
       <Filter>Misc</Filter>
     </ClCompile>
+    <ClCompile Include="..\include\sqlite3\sqlite3.c">
+      <Filter>externals</Filter>
+    </ClCompile>
+    <ClCompile Include="debugExecutable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugin.h" />
@@ -262,6 +263,9 @@
     </ClInclude>
     <ClInclude Include="..\include\clunk\locker.h">
       <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="string_ref.hpp">
+      <Filter>externals</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
