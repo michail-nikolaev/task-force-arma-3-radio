@@ -96,6 +96,60 @@ if (player call TFAR_fnc_isForcedCurator) then {
             TF_curator_backpack_3 = TFAR_DefaultRadio_Airborne_Independent createVehicleLocal [0, 0, 0];
         };
     };
+//Having Radios of different factions needs special handling
+    ["CuratorFrequencyHandler", "newLRSettingsAssigned", {
+        params ["_player","_radio"];
+        private _settings = _radio call TFAR_fnc_getLrSettings;
+        if (isNil "_settings") exitWith {};
+        switch (_radio select 0) do {
+            case TF_curator_backpack_1:{
+                if (!isNil "TFAR_defaultFrequencies_lr_west") then {
+                    _settings set [TFAR_FREQ_OFFSET,TFAR_defaultFrequencies_lr_west];
+                };
+            };
+            case TF_curator_backpack_2:{
+                if (!isNil "TFAR_defaultFrequencies_lr_east") then {
+                    _settings set [TFAR_FREQ_OFFSET,TFAR_defaultFrequencies_lr_east];
+                };
+            };
+            case TF_curator_backpack_3:{
+                if (!isNil "TFAR_defaultFrequencies_lr_independent") then {
+                    _settings set [TFAR_FREQ_OFFSET,TFAR_defaultFrequencies_lr_independent];
+                };
+            };
+        };
+        [_radio select 0,_radio select 1, _settings] call TFAR_fnc_setLrSettings;
+    }, player] call TFAR_fnc_addEventHandler;
+
+
+    ["CuratorFrequencyHandler", "OnRadiosReceived", {
+        params ["_player","_radios"];
+        {
+            _radioClass = getText (configFile >> "CfgWeapons" >> _x >> "tf_parent");
+            private _settings = _x call TFAR_fnc_getSwSettings;
+            if (isNil "_settings") exitWith {};
+            switch (toLower _radioClass) do {
+                case (toLower TFAR_DefaultRadio_Personal_West):{
+                    if (!isNil "TFAR_defaultFrequencies_sr_west") then {
+                        _settings set [TFAR_FREQ_OFFSET,TFAR_defaultFrequencies_sr_west];
+                    };
+                };
+                case (toLower TFAR_DefaultRadio_Personal_East):{
+                    if (!isNil "TFAR_defaultFrequencies_sr_east") then {
+                        _settings set [TFAR_FREQ_OFFSET,TFAR_defaultFrequencies_sr_east];
+                    };
+                };
+                case (toLower TFAR_DefaultRadio_Personal_Independent):{
+                    if (!isNil "TFAR_defaultFrequencies_sr_independent") then {
+                        _settings set [TFAR_FREQ_OFFSET,TFAR_defaultFrequencies_sr_independent];
+                    };
+                };
+            };
+            [_x, _settings] call TFAR_fnc_setSwSettings;
+            true
+        } count _radios;
+    }, player] call TFAR_fnc_addEventHandler;
+
 };
 
 //From ACEMOD

@@ -19,7 +19,15 @@
         call TFAR_fnc_processGroupFrequencySettings;
 */
 
+_allGroups = allGroups;
+//allGroups doesn't include Curators so Add them.
 {
+    _allGroups pushBackUnique (group _x);
+    true;
+} count (call BIS_fnc_listCuratorPlayers);//Add curators
+
+{
+
     if ((_x getVariable ["tf_sw_frequency",false]) isEqualTo false) then {
         if !(TFAR_SameSRFrequenciesForSide) then {
             _x setVariable ["tf_sw_frequency", call TFAR_fnc_generateSRSettings, true];
@@ -37,6 +45,7 @@
             };
         };
     };
+
     if ((_x getVariable "tf_dd_frequency") isEqualTo false) then {
         if !(TFAR_SameDDFrequenciesForSide) then {
             _x setVariable ["tf_dd_frequency", call TFAR_fnc_generateDDFreq, true];
@@ -54,6 +63,7 @@
             };
         };
     };
+
     if ((_x getVariable "tf_lr_frequency") isEqualTo false) then {
         if !(TFAR_SameLRFrequenciesForSide) then {
             _x setVariable ["tf_lr_frequency", call TFAR_fnc_generateLrSettings, true];
@@ -72,4 +82,4 @@
         };
     };
     true;
-} count allGroups;
+} count _allGroups;
