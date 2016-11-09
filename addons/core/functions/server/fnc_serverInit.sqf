@@ -97,6 +97,7 @@ if (!isNil "tf_freq_guer_lr") then { \
     TFAR_defaultFrequencies_lr_independent = tf_freq_guer_lr param [2,nil];
 };
 
+
 if (!isNil "TFAR_defaultFrequencies_sr_west") then {
     TFAR_SameSRFrequenciesForSide = true;
     TFAR_freq_sr_west = call TFAR_fnc_generateSRSettings;
@@ -167,5 +168,10 @@ VARIABLE_DEFAULT(TFAR_freq_sr_independent_dd,call TFAR_fnc_generateDDFreq);
 } remoteExec ["BIS_fnc_spawn", -2, true];
 
 
-waitUntil {sleep 0.1;time > 0};
+waitUntil {sleep 0.1;
+    private _hasCurators = (count allcurators) > 0;
+    private _hasInitializedCurators = (count (call BIS_fnc_listCuratorPlayers)) > 0;
+    private _curatorsInitialized = !_hasCurators || _hasInitializedCurators;
+    ((time > 2) || _curatorsInitialized)
+};
 [TFAR_fnc_processGroupFrequencySettings,10/*10 seconds*/] call CBA_fnc_addPerFrameHandler;
