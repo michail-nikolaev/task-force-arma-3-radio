@@ -154,18 +154,20 @@ void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const ch
 		float distance_from_radio = position.distanceTo(myClientData->getClientPosition());
 
 		if (vehicleVolumeLoss > 0.01f && !vehicleCheck)
-			processors.push_back([id, distance_from_radio, speakerDistance, vehicleVolumeLoss, myClientData](short* samples, size_t sampleCount, uint8_t channels) {
-
+			processors.push_back([id, distance_from_radio, speakerDistance, vehicleVolumeLoss, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
+			if (auto myClientData = myClientDataWeak.lock())
 			helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance), 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), myClientData->effects.getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
 		});
 		if (onGround) {
-			processors.push_back([id, distance_from_radio, speakerDistance, myClientData](short* samples, size_t sampleCount, uint8_t channels) {
+			processors.push_back([id, distance_from_radio, speakerDistance, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
 				helpers::applyGain(samples, sampleCount, channels, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance)));
+				if (auto myClientData = myClientDataWeak.lock())
 				helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(samples, channels, sampleCount, SPEAKER_GAIN, myClientData->effects.getSpeakerFilter(id));
 			});
 
 			if (underwater) {
-				processors.push_back([id, distance_from_radio, speakerDistance, myClientData](short* samples, size_t sampleCount, uint8_t channels) {
+				processors.push_back([id, distance_from_radio, speakerDistance, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
+					if (auto myClientData = myClientDataWeak.lock())
 					helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, CANT_SPEAK_GAIN * 50, myClientData->effects.getFilterCantSpeak(id));
 				});
 			}
@@ -202,7 +204,9 @@ void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const ch
 
 		}
 		auto pClunk = myClientData->effects.getClunk(id);
-		processors.push_back([pClunk, position, myClientData, id](short* samples, size_t sampleCount, uint8_t channels) {
+		processors.push_back([pClunk, position, myClientDataWeak = std::weak_ptr<clientData>(myClientData), id](short* samples, size_t sampleCount, uint8_t channels) {
+			auto myClientData = myClientDataWeak.lock();
+			if (!myClientData) return;
 			auto relativePos = myClientData->getClientPosition().directionTo(position);
 			auto viewDirection = myClientData->getViewDirection().toAngle();
 			pClunk->process(samples, channels, static_cast<int>(sampleCount), relativePos, viewDirection); //interaural time difference

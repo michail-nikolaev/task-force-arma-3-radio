@@ -49,7 +49,6 @@ if !((_player getVariable ["TFAR_isSpeaking", false]) isEqualTo _isSpeaking) the
     ["OnSpeak", [_player, _isSpeaking]] call TFAR_fnc_fireEventHandlers;
 };
 
-//#TODO could maybe use XEH Killed EH but i think that also fires for non-players
 if !(_player getVariable ["TFAR_killedEHAttached",false]) then {
     _player addEventHandler ["Killed", {_player call TFAR_fnc_sendPlayerKilled}];
     _player setVariable ["TFAR_killedEHAttached", true];

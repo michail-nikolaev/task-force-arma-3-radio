@@ -68,7 +68,7 @@ if (_activated) then {
             };
 
             missionNamespace setVariable [format ["TFAR_DefaultRadio_Rifleman_%1", _currentSide], _RiflemanRadio];
-            missionNamespace setVariable [format ["TF_%1_radio_code", _currentSide], _radio_code];//#TODO radio codes don't work. cuz _currentSide doesnt contain guer anymore
+            missionNamespace setVariable [format ["TF_%1_radio_code", _currentSide], _radio_code];
             if (_LRradio != "-1") then {
                 missionNamespace setVariable [format ["TFAR_DefaultRadio_Backpack_%1", _currentSide], _LRradio];
             };

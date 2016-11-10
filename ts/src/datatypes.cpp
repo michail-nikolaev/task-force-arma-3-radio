@@ -36,21 +36,22 @@ Position3D Position3D::operator-(const Position3D& other) const {
 		m_z - other.m_z);
 }
 
-dataType::Position3D::Position3D(const std::string& coordinateString) {
+dataType::Position3D::Position3D(const boost::string_ref& coordinateString) {
 	if (coordinateString.length() < 3)
 		return; //Fail
-	std::vector<std::string> coords = helpers::split(
+    std::vector<boost::string_ref> coords; coords.reserve(3);
+    helpers::split(
 		coordinateString.front() == '[' ? coordinateString.substr(1,coordinateString.length() - 2) : coordinateString
-		, ',');
+		, ',', coords);
 	switch (coords.size()) {
 		case 2:
-			m_x = helpers::parseArmaNumber(coords.at(0));
-			m_y = helpers::parseArmaNumber(coords.at(1));
+			m_x = std::atof(coords.at(0).data());
+			m_y = std::atof(coords.at(1).data());
 			break;
 		case 3:
-			m_x = helpers::parseArmaNumber(coords.at(0));
-			m_y = helpers::parseArmaNumber(coords.at(1));
-			m_z = helpers::parseArmaNumber(coords.at(2));
+			m_x = std::atof(coords.at(0).data());
+			m_y = std::atof(coords.at(1).data());
+			m_z = std::atof(coords.at(2).data());
 			break;
 			//default Fail
 	}
@@ -166,21 +167,22 @@ dataType::Direction3D::Direction3D(const Position3D& from, const Position3D& to)
 //	return output;
 //}
 
-dataType::Direction3D::Direction3D(const std::string& coordinateString) {
+dataType::Direction3D::Direction3D(const boost::string_ref& coordinateString) {
 	if (coordinateString.length() < 3)
 		return; //Fail
-	std::vector<std::string> coords = helpers::split(
+    std::vector<boost::string_ref> coords; coords.reserve(3);
+    helpers::split(
 		coordinateString.front() == '[' ? coordinateString.substr(1,coordinateString.length() - 2) : coordinateString
-		, ',');
+		, ',',coords);
 	switch (coords.size()) {
 		case 2:
-			m_x = helpers::parseArmaNumber(coords.at(0));
-			m_y = helpers::parseArmaNumber(coords.at(1));
+			m_x = std::atof(coords.at(0).data());
+			m_y = std::atof(coords.at(1).data());
 			break;
 		case 3:
-			m_x = helpers::parseArmaNumber(coords.at(0));
-			m_y = helpers::parseArmaNumber(coords.at(1));
-			m_z = helpers::parseArmaNumber(coords.at(2));
+			m_x = std::atof(coords.at(0).data());
+			m_y = std::atof(coords.at(1).data());
+			m_z = std::atof(coords.at(2).data());
 			break;
 			//default Fail
 	}

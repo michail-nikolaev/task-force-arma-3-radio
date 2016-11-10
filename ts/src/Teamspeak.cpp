@@ -368,7 +368,8 @@ void Teamspeak::playWavFile(const std::string& filePath) {
 
 void Teamspeak::setVoiceDisabled(TSServerID serverConnectionHandlerID, bool disabled) {
 	DWORD error;
-	if ((error = ts3Functions.setClientSelfVariableAsInt(serverConnectionHandlerID.baseType(), CLIENT_INPUT_DEACTIVATED, disabled ? 1 : 0)) != ERROR_ok) {
+	//When CLIENT_INPUT_DEACTIVATED == INPUT_ACTIVE We are sending audio...
+	if ((error = ts3Functions.setClientSelfVariableAsInt(serverConnectionHandlerID.baseType(), CLIENT_INPUT_DEACTIVATED, disabled ? INPUT_DEACTIVATED : INPUT_ACTIVE)) != ERROR_ok) {
 		log("Can't active talking by tangent", error);
 	}
 	error = ts3Functions.flushClientSelfUpdates(serverConnectionHandlerID.baseType(), NULL);

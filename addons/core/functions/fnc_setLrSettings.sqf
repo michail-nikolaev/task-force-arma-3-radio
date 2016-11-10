@@ -10,9 +10,8 @@
         Saves the settings for the passed radio and broadcasts it to all clients and the server.
 
     Parameters:
-        0: ARRAY - Radio
-            0: OBJECT- Radio object
-            1: STRING - Radio ID
+        0: OBJECT- Radio object
+        1: STRING - Radio ID
         2: ARRAY - Settings, usually acquired via TFAR_fnc_getLrSettings and then changed.
 
     Returns:
@@ -23,6 +22,6 @@
         _settings set [0, 2]; // sets the active channel to 2
         [call TFAR_fnc_activeLrRadio, _settings] call TFAR_fnc_setLrSettings;
 */
-params ["_radio_object", "_radio_qualifier", ["_value",[],[[]]] ];
+params ["_radio_object", "_radio_qualifier", ["_value",[],[[]]] ];//#TODO update syntax to use Radio array instead of 2 params
 
 _radio_object setVariable [_radio_qualifier, + _value, true];

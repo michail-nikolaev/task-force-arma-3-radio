@@ -30,7 +30,7 @@ typedef uint32_t strHashType;
 #endif
 constexpr strHashType const_strhash(const char* str) {
 	strHashType hash = 1337;
-	auto length = 0;
+	auto length = 0u;
 	while (str[length] != 0) {
 #pragma warning( disable : 4307 ) // integer overflow
 		hash *= str[length];
@@ -40,7 +40,7 @@ constexpr strHashType const_strhash(const char* str) {
 }
 constexpr strHashType const_strhash(const char* str,size_t length) {
 	strHashType hash = 1337;
-	for (auto i = 0; i < length; ++i){
+	for (auto i = 0u; i < length; ++i){
 #pragma warning( disable : 4307 ) // integer overflow
 		hash *= str[i];
 	}

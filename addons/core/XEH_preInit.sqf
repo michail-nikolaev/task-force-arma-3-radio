@@ -3,9 +3,9 @@
 #include "XEH_PREP.sqf"
 
 // server
-["TF_no_auto_long_range_radio", "CHECKBOX", "STR_radio_no_auto_long_range_radio", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
+["TFAR_giveLongRangeRadioToGroupLeaders", "CHECKBOX", "STR_radio_no_auto_long_range_radio", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TF_give_personal_radio_to_regular_soldier", "CHECKBOX", "STR_radio_give_personal_radio_to_regular_soldier", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TF_give_microdagr_to_soldier", "CHECKBOX", "STR_radio_give_microdagr_to_soldier", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
+["TFAR_giveMicroDagrToSoldier", "CHECKBOX", "STR_radio_give_microdagr_to_soldier", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
 ["TFAR_SameSRFrequenciesForSide", "CHECKBOX", "STR_radio_same_sw_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TFAR_SameLRFrequenciesForSide", "CHECKBOX", "STR_radio_same_lr_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TFAR_SameDDFrequenciesForSide", "CHECKBOX", "STR_radio_same_dd_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
@@ -22,15 +22,15 @@ if (hasInterface) then {
     VARIABLE_DEFAULT(tf_west_radio_code,"_bluefor");
     VARIABLE_DEFAULT(tf_east_radio_code,"_opfor");
 
-    if (isNil "tf_guer_radio_code") then {
-        tf_guer_radio_code = "_independent";
+    if (isNil "tf_independent_radio_code") then {
+        tf_independent_radio_code = "_independent";
 
         if (([west, resistance] call BIS_fnc_areFriendly) and {!([east, resistance] call BIS_fnc_areFriendly)}) then {
-            tf_guer_radio_code = "_bluefor";
+            tf_independent_radio_code = "_bluefor";
         };
 
         if (([east, resistance] call BIS_fnc_areFriendly) and {!([west, resistance] call BIS_fnc_areFriendly)}) then {
-            tf_guer_radio_code = "_opfor";
+            tf_independent_radio_code = "_opfor";
         };
     };
 
@@ -50,7 +50,7 @@ if (hasInterface) then {
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_East,"TFAR_mr6000l");
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_Independent,"TFAR_anarc164");
 
-    VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);//#TODO make setter function and PluginConfigSetting
+    VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
 
     MUTEX_INIT(TF_radio_request_mutex);
 
