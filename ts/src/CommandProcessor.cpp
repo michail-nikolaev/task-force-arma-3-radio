@@ -169,10 +169,9 @@ void CommandProcessor::threadRun() {
 		std::unique_lock<std::mutex> lock(theadMutex);
 		threadWorkCondition.wait(lock, [this] {return !commandQueue.empty() || !shouldRun; });
 		if (!shouldRun) return;
-		std::string command = commandQueue.front(); commandQueue.pop();
+		std::string command(std::move(commandQueue.front())); commandQueue.pop();
 		lock.unlock();
 		processAsynchronousCommand(command);
-
 
 	}
 }

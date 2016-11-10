@@ -40,7 +40,7 @@ public:
 	~RadioEffect() {}
 private:
 	float delayLine[DELAY_SAMPLES];
-	int delayPosition;
+	int delayPosition{ 0 };
 };
 
 class UnderWaterRadioEffect : public RadioEffect {
@@ -227,8 +227,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 	delete[] buffer;
 }
 
-inline void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples, int channels, int sampleCount)
-{
+inline void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples, int channels, int sampleCount) {
 	if (channels >= 2) {
 		for (int q = 0; q < sampleCount; q++) {
 			double left = samples[channels * q];

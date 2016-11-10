@@ -47,7 +47,7 @@ if (TF_use_saved_sw_setting) then {
 private _rc = _value select TFAR_CODE_OFFSET;
 if (isNil "_rc") then {
     private _code = getText (configFile >>  "CfgWeapons" >> _radio >> "tf_encryptionCode");
-    private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
+    private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_independent_radio_code"};
     if (_hasDefaultEncryption and {(TFAR_currentUnit call BIS_fnc_objectSide) != civilian}) then {
         _parent = getText (configFile >> "CfgWeapons" >> _radio >> "tf_parent");
         private _default = call TFAR_fnc_getDefaultRadioClasses;

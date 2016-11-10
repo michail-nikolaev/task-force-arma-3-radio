@@ -25,11 +25,11 @@
 
     TF_respawnedAt = time;
     if (alive TFAR_currentUnit) then {
-        if (TF_give_microdagr_to_soldier)  then {
+        if (TFAR_giveMicroDagrToSoldier)  then {
             TFAR_currentUnit linkItem "TFAR_microdagr";
         };
         if (leader TFAR_currentUnit == TFAR_currentUnit) then {
-            if (tf_no_auto_long_range_radio or {backpack TFAR_currentUnit == "B_Parachute"} or {player call TFAR_fnc_isForcedCurator}) exitWith {};
+            if (!TFAR_giveLongRangeRadioToGroupLeaders or {backpack TFAR_currentUnit == "B_Parachute"} or {player call TFAR_fnc_isForcedCurator}) exitWith {};
             if ([(backpack TFAR_currentUnit), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1) exitWith {};
 
             private _items = backpackItems TFAR_currentUnit;

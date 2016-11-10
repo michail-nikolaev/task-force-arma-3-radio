@@ -51,13 +51,12 @@ if (_radio_object isKindOf "Bag_Base") then {
 };
 
 
-
 if (!(TF_use_saved_lr_setting) or (isNil "TF_saved_active_lr_settings")) then {
     if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType} or {getText(configFile >> "CfgVehicles" >> _radioType >> "tf_encryptionCode") == toLower (format ["tf_%1_radio_code",(TFAR_currentUnit call BIS_fnc_objectSide)])}) then {
         _value = (group TFAR_currentUnit) getVariable "tf_lr_frequency";
     };
     if (isNil "_value") then {
-        _value = call TFAR_fnc_generateLrSettings;
+        _value = [] call TFAR_fnc_generateLrSettings;
     };
 } else {
     _value = TF_saved_active_lr_settings;
@@ -70,7 +69,7 @@ if (TF_use_saved_lr_setting) then {
 private _radioCode = _value select TFAR_CODE_OFFSET;
 if (isNil "_radioCode") then {
     private _code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
-    private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_guer_radio_code"};
+    private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_independent_radio_code"};
     if (_hasDefaultEncryption and {((TFAR_currentUnit call BIS_fnc_objectSide) != civilian)}) then {
         if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType} or {_radio_object call TFAR_fnc_getVehicleSide == TFAR_currentUnit call BIS_fnc_objectSide}) then {
             _radioCode = missionNamespace getVariable format ["tf_%1_radio_code",(TFAR_currentUnit call BIS_fnc_objectSide)];

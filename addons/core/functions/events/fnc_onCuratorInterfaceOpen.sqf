@@ -32,8 +32,6 @@ _display displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleas
 if (player call TFAR_fnc_isForcedCurator) then {
     //Add PFH that moves curatorLogic's position to camera position,
     //so we can hear players relative to camera
-    //#TODO creates network traffic.. could also handle in TFAR_fnc_defaultPositionCoordinates
-    //And use diff between curatorCamera and _current_eyepos instead of TFAR_currentUnit
     [{
         params ["_args","_handle"];
         if !(isNull curatorCamera) then {

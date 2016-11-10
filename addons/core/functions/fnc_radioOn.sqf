@@ -31,7 +31,11 @@ if (_isLRRadio) then {
     _settings = (_radio call TFAR_fnc_getSwSettings);
 };
 
-if (count _this == 2) then {
+if (isNil "_settings") then {//TFAR_fnc_getLrSettings may return Nil if some script in there is screwed up
+    WARNING("_settings was Nil!");
+};
+
+if (count _this == 2) then {//want to set status
     _settings set [POWER_OFFSET, _status];
     if (_isLRRadio) then {
         [_radio select 0, _radio select 1, _settings] call TFAR_fnc_setLrSettings;
@@ -40,4 +44,4 @@ if (count _this == 2) then {
     };
 };
 
-_settings select POWER_OFFSET
+_settings param [POWER_OFFSET,true]

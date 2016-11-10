@@ -2,6 +2,7 @@
 #include "public_definitions.h"
 #include <cstdint>
 #include <vector>
+#include "string_ref.hpp"
 
 #define M_PI_FLOAT 3.14159265358979323846f
 namespace dataType {
@@ -14,7 +15,7 @@ namespace dataType {
 		constexpr TeamspeakID() : m_id(-1) {}
 		constexpr TeamspeakID(Type id) : m_id(id) {}
 		constexpr TeamspeakID(int id) : m_id(id) {}
-		constexpr Type baseType() { return m_id; }//Making this operator Type() will break operator bool in if statements... C++ Magic
+		constexpr Type baseType() const { return m_id; }//Making this operator Type() will break operator bool in if statements... C++ Magic
 		constexpr bool isValid() const noexcept { return m_id != static_cast<Type>(-1); }
 		constexpr explicit operator bool() const noexcept { return isValid(); }
 		constexpr bool operator!() const noexcept { return !isValid(); }
@@ -87,7 +88,7 @@ namespace dataType {
 		//explicit Position3D(const TS3_VECTOR& vec) :m_x(vec.x), m_y(vec.y), m_z(vec.z) {}
 		explicit Position3D(float x, float y, float z);
 		explicit Position3D(const std::vector<float>& vec);
-		explicit Position3D(const std::string& coordinateString);
+		explicit Position3D(const boost::string_ref& coordinateString);
 		//Conversions
 		operator TS3_VECTOR*();
 		//Operators
@@ -124,7 +125,7 @@ namespace dataType {
 		friend class Position3D;
 	public:
 		explicit Direction3D() : Position3D() {};
-		explicit Direction3D(const std::string& coordinateString);
+		explicit Direction3D(const boost::string_ref& coordinateString);
 		explicit Direction3D(const Position3D& from, const Position3D& to);
 		using Position3D::length;
 		using Position3D::get;

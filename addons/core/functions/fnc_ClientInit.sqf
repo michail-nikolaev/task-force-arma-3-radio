@@ -17,9 +17,9 @@ waitUntil {sleep 0.1;!(isNull player)};
 //#API Variables
 //#TODO rename radio code vars
 //#TODO rename new vars
-DEPRECATE_VARIABLE(tf_give_personal_radio_to_regular_soldier,tf_give_personal_radio_to_regular_soldier);
-DEPRECATE_VARIABLE(tf_no_auto_long_range_radio,tf_no_auto_long_range_radio);
-DEPRECATE_VARIABLE(tf_give_microdagr_to_soldier,tf_give_microdagr_to_soldier);
+DEPRECATE_VARIABLE(tf_give_personal_radio_to_regular_soldier,TFAR_givePersonalRadioToRegularSoldier);
+DEPRECATE_VARIABLE(tf_no_auto_long_range_radio,TFAR_giveLongRangeRadioToGroupLeaders);
+DEPRECATE_VARIABLE(tf_give_microdagr_to_soldier,TFAR_giveMicroDagrToSoldier);
 
 DEPRECATE_VARIABLE(tf_defaultWestPersonalRadio,TFAR_DefaultRadio_Personal_West);
 DEPRECATE_VARIABLE(tf_defaultEastPersonalRadio,TFAR_DefaultRadio_Personal_East);
@@ -47,7 +47,7 @@ TFAR_currentUnit = call TFAR_fnc_currentUnit;
 
 tf_lastNearFrameTick = diag_tickTime;
 tf_lastFarFrameTick = diag_tickTime;
-TFAR_RadioReqLinkFirstItem = true;
+TFAR_RadioReqLinkFirstItem = true;//Radio Request Link first Item
 TF_last_request_time = 0;
 TF_respawnedAt = time;//first spawn so.. respawned now
 
