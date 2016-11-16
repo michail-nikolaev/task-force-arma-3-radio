@@ -233,6 +233,7 @@ public:
 	dataType::Position3D getClientPosition() const { LockGuard_shared lock(&m_lock); return clientPosition; }
 	void setClientPosition(const Position3D& val) { LockGuard_exclusive lock(&m_lock); clientPosition = val; 
     if (val == Position3D(0, 0, 0))
+		MessageBoxA(0, "setClientPosition", "tfar", 0);
         DebugBreak();
     
     

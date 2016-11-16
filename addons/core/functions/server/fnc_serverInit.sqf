@@ -20,38 +20,12 @@
         call TFAR_fnc_serverInit;
 */
 
-missionNamespace setVariable ["TF_server_addon_version",TFAR_ADDON_VERSION,true];
-TFAR_RadioCountHash = [] call CBA_fnc_hashCreate;
-
 ["TFAR_RadioRequestEvent", {
     diag_log format["TFAR_RadioRequestEvent %1 %2",_this,diag_tickTime];//#TODO remove
     params [["_radio_request",[]],"_player"];
     private _response = [];
     if (_radio_request isEqualType []) then {
-        {
-            _x params ["_radioBaseClass"];
-            //get Radio baseclass without ID
-            _radioBaseClass = getText (configFile >> "CfgWeapons" >> _radioBaseClass >> "tf_parent");
-
-            private _nextRadioIndex = 1;
-            if ([TFAR_RadioCountHash,_radioBaseClass] call CBA_fnc_hashHasKey) then {
-                //Baseclass already exists so increment its current Index
-                private _currentRadioIndex = [TFAR_RadioCountHash,_radioBaseClass] call CBA_fnc_hashGet;
-
-                if (_currentRadioIndex > MAX_RADIO_COUNT) then {
-                    //If too big go to 1 again. Could cause duplicate Radios if you really have >MAX_RADIO_COUNT active radios
-                    _nextRadioIndex = 1;
-                } else {
-                    //Increment Index and return in _nextRadioIndex
-                    _nextRadioIndex = _currentRadioIndex + 1;
-                };
-            };
-            //This will either set the new Index or add an entry with Index 1
-            [TFAR_RadioCountHash,_radioBaseClass,_nextRadioIndex] call CBA_fnc_hashSet;
-
-            _response pushBack format["%1_%2", _radioBaseClass, _nextRadioIndex];//form new classname of baseclass_ID
-            true;
-        } count _radio_request;
+        _response = (_radio_request call TFAR_fnc_instanciateRadios);
     } else {
         _response = "ERROR:47";
         diag_log format ["TFAR - ERROR:47 - Request Content: %1; Requested By: %2", _radio_reqest, _player];

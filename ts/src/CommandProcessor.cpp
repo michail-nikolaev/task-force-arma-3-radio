@@ -362,6 +362,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
 
 void CommandProcessor::processSpeakers(std::vector<std::string>& tokens) {
 	//#TODO we don't really need to send Speakers every time.. Their pos is always static. Either on a person or on ground
+	LockGuard_exclusive<ReadWriteLock> lock(&TFAR::getInstance().m_gameData.m_lock);
 	TFAR::getInstance().m_gameData.speakers.clear();
 	if (tokens.size() != 2)
 		return;
@@ -378,7 +379,6 @@ void CommandProcessor::processSpeakers(std::vector<std::string>& tokens) {
 		if (parts.size() < 6) return;
 		//parts radio_id,nickname,pos,volume,vehicle,(waveZ)
 		auto clientData = clientDataDir->getClientData(convertNickname(parts[2]));
-		if (!clientData) continue;
 
 		SPEAKER_DATA data;
 		data.radio_id = parts[0];

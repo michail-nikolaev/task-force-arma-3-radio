@@ -44,7 +44,7 @@ private _cChange = if(_btn == 0)then{-1 + _maxChannels}else {1};
 _cChange = ((_radio call _fnc_GetChannel) + _cChange) mod _maxChannels;
 
 if (_lr) then {
-    [_radio select 0, _radio select 1, _cChange] call TFAR_fnc_setLRChannel;
+    [_radio, _cChange] call TFAR_fnc_setLRChannel;
     if (_format != "") then {
         _format call TFAR_fnc_updateLRDialogToChannel;
     } else {

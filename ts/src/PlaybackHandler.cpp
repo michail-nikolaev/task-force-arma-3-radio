@@ -69,7 +69,8 @@ void PlaybackHandler::appendPlayback(std::string name, short* samples, int sampl
 		if (playbacks[name]->type() == playbackType::raw) {
 			std::static_pointer_cast<playbackWavRaw>(playbacks[name])->appendSamples(samples, sampleCount, channels);
 		} else {
-			__debugbreak();
+			MessageBoxA(0, "void PlaybackHandler::appendPlayback(std::string name, short* samples, int sampleCount, int channels) 73", "tfar", 0);
+			__debugbreak();	  
 			//should not have different playback types with same name.
 		}
 	}
@@ -97,6 +98,7 @@ void PlaybackHandler::appendPlayback(std::string name, std::string filePath, ste
 
 		playbacks[name] = std::make_shared<playbackWavStereo>(wave.get(), stereo, gain);//we can use wave.get() because playbackWavStereo doesn't hold a ref to it
 	} else {
+		MessageBoxA(0, "void PlaybackHandler::appendPlayback(std::string name, std::string filePath, stereoMode stereo, float gain) 101", "tfar", 0);
 		__debugbreak();
 		//should not have different playback types with same name.
 		//wavStereo types cannot append
@@ -131,7 +133,7 @@ void PlaybackHandler::appendPlayback(std::string name, std::string filePath, std
 void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, Position3D position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode) {
 
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
-    _mm_setcsr((_mm_getcsr() & ~0x0040) | (0x0040));//_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
+	_mm_setcsr((_mm_getcsr() & ~0x0040) | (0x0040));//_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	if (!Teamspeak::isConnected(serverConnectionHandlerID)) return;
 
 	auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
@@ -156,19 +158,19 @@ void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const ch
 		if (vehicleVolumeLoss > 0.01f && !vehicleCheck)
 			processors.push_back([id, distance_from_radio, speakerDistance, vehicleVolumeLoss, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
 			if (auto myClientData = myClientDataWeak.lock())
-			helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance), 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), myClientData->effects.getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
+				helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance), 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), myClientData->effects.getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
 		});
 		if (onGround) {
 			processors.push_back([id, distance_from_radio, speakerDistance, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
 				helpers::applyGain(samples, sampleCount, channels, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance)));
 				if (auto myClientData = myClientDataWeak.lock())
-				helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(samples, channels, sampleCount, SPEAKER_GAIN, myClientData->effects.getSpeakerFilter(id));
+					helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(samples, channels, sampleCount, SPEAKER_GAIN, myClientData->effects.getSpeakerFilter(id));
 			});
 
 			if (underwater) {
 				processors.push_back([id, distance_from_radio, speakerDistance, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
 					if (auto myClientData = myClientDataWeak.lock())
-					helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, CANT_SPEAK_GAIN * 50, myClientData->effects.getFilterCantSpeak(id));
+						helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, CANT_SPEAK_GAIN * 50, myClientData->effects.getFilterCantSpeak(id));
 				});
 			}
 		} else {
@@ -226,7 +228,7 @@ void PlaybackHandler::playWavFile(const char* fileNameWithoutExtension) const {
 
 void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, stereoMode stereo) {
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
-    _mm_setcsr((_mm_getcsr() & ~0x0040) | (0x0040));//_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
+	_mm_setcsr((_mm_getcsr() & ~0x0040) | (0x0040));//_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	if (!Teamspeak::isConnected(serverConnectionHandlerID)) return;
 	std::string to_play = TFAR::getInstance().getPluginPath() + std::string(fileNameWithoutExtension) + ".wav";
 
@@ -264,7 +266,8 @@ void playbackWavStereo::construct(const short* samples, size_t sampleCount, uint
 	sampleStore.assign(sampleCount * 2, 0);
 	if (stereo == stereoMode::stereo) {
 		if (channels == 2)
-			memcpy(sampleStore.data(), samples, sampleCount*channels);//everything like we want it..
+			//std::copy(samples, samples + sampleCount*channels, std::back_inserter(sampleStore));//#TODO perf test
+			memcpy(sampleStore.data(), samples, sampleCount*channels* sizeof(short));//everything like we want it..
 		else {
 			short* target = sampleStore.data();
 			uint32_t posInTarget = 0;
@@ -276,15 +279,15 @@ void playbackWavStereo::construct(const short* samples, size_t sampleCount, uint
 	} else if (stereo == stereoMode::leftOnly) {
 		short* target = sampleStore.data();
 		uint32_t posInTarget = 0;
-		for (uint32_t q = 0; q < sampleCount*channels; q += channels) {
+		for (uint32_t q = 0; q < sampleCount*channels; q += channels) {	//#TODO iterate by two and increment posInTarget by two
 			target[posInTarget++] = samples[q];//only copy left channel
 			posInTarget++;//leave right channel 0
 		}
 	} else if (stereo == stereoMode::rightOnly) {
 		short* target = sampleStore.data();
 		uint32_t posInTarget = 0;
-		for (uint32_t q = 0; q < sampleCount*channels; q += channels) {
-			posInTarget++;//leave left channel 0
+		for (uint32_t q = 0; q < sampleCount*channels; q += channels) {		//#TODO iterate by two and increment posInTarget by two
+			posInTarget++;//leave left channel 0							  //#TODO use that for other stereo->mono thingys
 			target[posInTarget++] = samples[q + 1];//only copy right channel
 		}
 	}

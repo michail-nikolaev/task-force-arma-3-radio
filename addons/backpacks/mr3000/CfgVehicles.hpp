@@ -1,10 +1,10 @@
 class TFAR_mr3000: TFAR_Bag_Base {
+    scope = PUBLIC;
+    scopeCurator = PUBLIC;
     author = "Raspu, Gandi, Nkey";
     displayName = "MR3000";
     descriptionShort = "MR3000 long range radio 20km";//#Stringtable
     picture = QPATHTOF(mr3000\ui\mr3000_icon.paa);
-    scope = PUBLIC;
-    scopeCurator = PUBLIC;
     maximumLoad = 160;
     mass = 160;
     model = QPATHTOF(models\clf_nicecomm2_prc117g);

@@ -64,6 +64,14 @@ class CfgSettings {
    };
 };
 
+class CfgEditorCategories {
+    class TFAR {
+        displayName = "TFAR"; // Name visible in the list
+    };
+};
+
+
+
 #include "CfgEventHandlers.hpp"
 #include "RadioDialogControls.hpp"
 #include "RscTitles.hpp"

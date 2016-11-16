@@ -29,15 +29,17 @@ class CfgPatches {
             "A3_UI_F",
             "A3_Structures_F_Items_Electronics",
             "A3_Weapons_F_ItemHolders",
-            "tfar_core"
+            "tfar_core",
+            "tfar_static_radios",
+            "3DEN"
         };
         Url = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
     };
 };
 
-class Extended_PreStart_EventHandlers {
+class Extended_PreInit_EventHandlers {
     class ADDON {
-        init = QUOTE(call COMPILE_FILE(XEH_preStart));
+        init = QUOTE(call COMPILE_FILE(XEH_preInit));
     };
 };
 
