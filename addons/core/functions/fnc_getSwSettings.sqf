@@ -46,14 +46,15 @@ if (TF_use_saved_sw_setting) then {
 //If value doesn't have Radio code set.. Add it //#TODO why can this even happen? //generateXXSettings sets nil as radiocode
 private _rc = _value select TFAR_CODE_OFFSET;
 if (isNil "_rc") then {
+    _rc = "";
     private _code = getText (configFile >>  "CfgWeapons" >> _radio >> "tf_encryptionCode");
     private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_independent_radio_code"};
-    if (_hasDefaultEncryption and {(TFAR_currentUnit call BIS_fnc_objectSide) != civilian}) then {
+    if (_hasDefaultEncryption and {!isServer} and {(TFAR_currentUnit call BIS_fnc_objectSide) != civilian}) then {
         _parent = getText (configFile >> "CfgWeapons" >> _radio >> "tf_parent");
         private _default = call TFAR_fnc_getDefaultRadioClasses;
         if ((_default select 1) == _parent or {(_default select 2) == _parent}) then {
             _rc = missionNamespace getVariable format ["tf_%1_radio_code", (TFAR_currentUnit call BIS_fnc_objectSide)];
-        }else {
+        } else {
             _rc = missionNamespace getVariable [_code, ""];
         };
     } else {

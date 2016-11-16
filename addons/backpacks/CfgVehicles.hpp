@@ -12,6 +12,7 @@ class CfgVehicles {
         tf_hasLRradio = 1;
         scope = HIDDEN;
         scopeCurator = HIDDEN;
+        #include "\z\tfar\addons\static_radios\edenAttributes.hpp"
     };
 
     #include "anarc164\CfgVehicles.hpp"

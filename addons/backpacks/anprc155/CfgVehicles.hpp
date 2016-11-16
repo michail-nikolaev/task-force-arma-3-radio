@@ -1,10 +1,10 @@
 class TFAR_anprc155: TFAR_Bag_Base {
+    scope = PUBLIC;
+    scopeCurator = PUBLIC;
     author = "Raspu, Gandi, Nkey";
     displayName = "AN/PRC-155";
     descriptionShort = "AN/PRC-155 long range radio 20km";//#Stringtable
     picture = QPATHTOF(anprc155\ui\155_icon.paa);
-    scope = PUBLIC;
-    scopeCurator = PUBLIC;
     maximumLoad = 160;
     mass = 160;
     model=QPATHTOF(models\clf_nicecomm2);

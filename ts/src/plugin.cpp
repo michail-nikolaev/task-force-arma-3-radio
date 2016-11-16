@@ -735,7 +735,7 @@ void processAllTangentRelease(TSServerID serverId, std::vector<std::string> &tok
 }
 
 void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, std::string &command) {
-    std::string nickname = tokens[5];
+    std::string nickname = tokens.back();
     //Input validation first.
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverId);
     if (!clientDataDir) return;
@@ -842,8 +842,8 @@ void processPluginCommand(std::string command) {
     if (!clientDataDir) return;
 
 
-
-    if (tokens.size() == 6 && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD")) {
+	 //PRESSED is 7 tokens with half-duplex
+    if ((tokens.size() == 6 || tokens.size() == 7) && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD")) {
         processTangentPress(serverId, tokens, command);
     } else if (tokens.size() == 2 && tokens[0] == "RELEASE_ALL_TANGENTS") {
         processAllTangentRelease(serverId, tokens);

@@ -124,40 +124,37 @@ bool helpers::startsWith(const std::string& shouldStartWith, const  std::string&
 
 //http://stackoverflow.com/a/5506223
 std::vector<std::string>& helpers::split(const std::string& s, char delim, std::vector<std::string>& elems) {
-	std::string::const_iterator beg;
-	bool in_token = false;
-	for (std::string::const_iterator it = s.begin(), end = s.end();
-		it != end; ++it) {
-		if (delim == *it) {
-			if (in_token) {
-				elems.emplace_back(beg, it);
-				in_token = false;
-			}
-		} else if (!in_token) {
-			beg = it;
-			in_token = true;
+	std::string::size_type pos, lastPos = 0, length = s.length();
+	
+	while (lastPos < length + 1) {
+		pos = s.find_first_of(delim, lastPos);
+		if (pos == std::string::npos) {
+			pos = length;
 		}
+
+		//if (pos != lastPos || !trimEmpty)
+			elems.emplace_back(s.data() + lastPos,pos - lastPos);
+
+		lastPos = pos + 1;
 	}
-	if (in_token)
-		elems.emplace_back(beg, s.end());
+
 	return elems;
 }
 
 std::vector<boost::string_ref>& helpers::split(boost::string_ref s, char delim, std::vector<boost::string_ref>& elems) {
-    auto lastPos = s.find_first_not_of(delim);
-    auto pos = s.substr(lastPos).find_first_of(delim);
+	std::string::size_type pos, lastPos = 0, length = s.length();
 
-    while (boost::string_ref::npos != pos || boost::string_ref::npos != lastPos) {
-        // Found a token, add it to the vector.
-        elems.push_back(s.substr(lastPos, pos - lastPos));
-        // Skip delimiters.  Note the "not_of"
-        lastPos = s.substr(pos).find_first_not_of(delim)+ pos;
-        // Find next "non-delimiter"
-        pos = s.substr(lastPos).find_first_of(delim)+ lastPos;
-        if (pos == lastPos - 1) break;
-    }
-	if (lastPos != s.length())
-        elems.push_back(s.substr(lastPos));
+	while (lastPos < length + 1) {
+		pos = s.substr(lastPos).find_first_of(delim);
+		if (pos == std::string::npos) {
+			pos = length;
+		}
+
+		//if (pos != lastPos || !trimEmpty)
+		elems.emplace_back(s.data() + lastPos, pos - lastPos);
+
+		lastPos = pos + 1;
+	}
     return elems;
 }
 
@@ -195,6 +192,7 @@ float helpers::volumeMultiplifier(const float volumeValue) {
 std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(const std::string& string) {
 	std::map<std::string, FREQ_SETTINGS> result;
 	std::string sub = string.substr(1, string.length() - 2);
+	if (sub.empty()) return result;
 	std::vector<std::string> v = split(sub, ',');
 	for (const std::string& xs : v) {
 		std::vector<std::string> parts = split(xs.substr(1, xs.length() - 2), '|');

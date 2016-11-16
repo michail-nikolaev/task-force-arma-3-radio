@@ -15,24 +15,28 @@
 ["TF_volumeModifier_forceSpeech", "CHECKBOX", "Activate directSpeech when pressing volume modifier.", "Task Force Arrowhead Radio", false] call CBA_Settings_fnc_init;//#Stringtable
 
 
-if (hasInterface) then {
+//Global variables
+VARIABLE_DEFAULT(tf_west_radio_code,"_bluefor");//Server needs Radio codes for static_radios
+VARIABLE_DEFAULT(tf_east_radio_code,"_opfor");
+
+if (isNil "tf_independent_radio_code") then {
+    tf_independent_radio_code = "_independent";
+
+    if (([west, resistance] call BIS_fnc_areFriendly) and {!([east, resistance] call BIS_fnc_areFriendly)}) then {
+        tf_independent_radio_code = "_bluefor";
+    };
+
+    if (([east, resistance] call BIS_fnc_areFriendly) and {!([west, resistance] call BIS_fnc_areFriendly)}) then {
+        tf_independent_radio_code = "_opfor";
+    };
+};
+
+
+
+if (hasInterface) then {//Clientside Variables
     //PreInit variablesy
     VARIABLE_DEFAULT(tf_radio_channel_name,"TaskForceRadio");
     VARIABLE_DEFAULT(tf_radio_channel_password,"123");
-    VARIABLE_DEFAULT(tf_west_radio_code,"_bluefor");
-    VARIABLE_DEFAULT(tf_east_radio_code,"_opfor");
-
-    if (isNil "tf_independent_radio_code") then {
-        tf_independent_radio_code = "_independent";
-
-        if (([west, resistance] call BIS_fnc_areFriendly) and {!([east, resistance] call BIS_fnc_areFriendly)}) then {
-            tf_independent_radio_code = "_bluefor";
-        };
-
-        if (([east, resistance] call BIS_fnc_areFriendly) and {!([west, resistance] call BIS_fnc_areFriendly)}) then {
-            tf_independent_radio_code = "_opfor";
-        };
-    };
 
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_West,"TFAR_rt1523g");
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_East,"TFAR_mr3000");
@@ -53,7 +57,7 @@ if (hasInterface) then {
     VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
 
     MUTEX_INIT(TF_radio_request_mutex);
-
+//#TODO remove unused variables
 
     TF_use_saved_sw_setting = false;
     TF_saved_active_sw_settings = nil;
@@ -117,9 +121,11 @@ if (hasInterface) then {
 
     tf_msSpectatorPerStepMax = 0.035;
 
-    TFAR_previouscurrentUnit = nil;
-
-
     TFAR_objectInterceptionEnabled = true;//#TODO CBA Setting serverside
-
 };
+
+
+if (isServer) then {//Serverside variables
+    missionNamespace setVariable ["TF_server_addon_version",TFAR_ADDON_VERSION,true];
+    TFAR_RadioCountHash = [] call CBA_fnc_hashCreate;
+}

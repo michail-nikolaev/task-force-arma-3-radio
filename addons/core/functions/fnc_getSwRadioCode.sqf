@@ -10,14 +10,14 @@
     Description:
         Returns the encryption code for the passed radio.
 
-    Parameters:
+        Parameters:
     0: STRING - Radio classname
 
     Returns:
-    STRING - Encryption code
+        STRING - Encryption code
 
     Example:
-    (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwRadioCode;
+        (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwRadioCode;
 */
 params[["_radio","",[""]]];
 
