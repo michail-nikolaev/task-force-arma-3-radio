@@ -31,9 +31,7 @@ TFAR_RadioCountHash = [] call CBA_fnc_hashCreate;
         {
             _x params ["_radioBaseClass"];
             //get Radio baseclass without ID
-            if !(_radioBaseClass call TFAR_fnc_isPrototypeRadio) then {
-                _radioBaseClass = getText (configFile >> "CfgWeapons" >> _radioBaseClass >> "tf_parent");
-            };
+            _radioBaseClass = getText (configFile >> "CfgWeapons" >> _radioBaseClass >> "tf_parent");
 
             private _nextRadioIndex = 1;
             if ([TFAR_RadioCountHash,_radioBaseClass] call CBA_fnc_hashHasKey) then {
