@@ -488,7 +488,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExpandAttributedSource>false</ExpandAttributedSource>
       <BrowseInformation>true</BrowseInformation>
-      <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
@@ -524,7 +524,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExpandAttributedSource>false</ExpandAttributedSource>
       <BrowseInformation>true</BrowseInformation>
-      <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
@@ -561,7 +561,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExpandAttributedSource>false</ExpandAttributedSource>
       <BrowseInformation>true</BrowseInformation>
-      <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
@@ -598,7 +598,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <ExpandAttributedSource>false</ExpandAttributedSource>
       <BrowseInformation>true</BrowseInformation>
-      <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
