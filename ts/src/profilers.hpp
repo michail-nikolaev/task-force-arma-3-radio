@@ -4,16 +4,15 @@
 #include <windows.h>
 #include <memory>
 #include <fstream>
-namespace profiler
-{
-	void log(const std::string& message);
+namespace profiler {
+    void log(const std::string& message);
 }
 
 
 
 
 
-					   //#Release disable on Release
+//#Release disable on Release
 #define ENABLE_API_PROFILER 1     // Comment this line to disable the profiler
 
 #if ENABLE_API_PROFILER
@@ -22,30 +21,30 @@ namespace profiler
 
 class speedTest {
 public:
-	explicit speedTest(const std::string & name_, bool willPrintOnDestruct_ = true) :start(std::chrono::high_resolution_clock::now()), name(name_), willPrintOnDestruct(willPrintOnDestruct_) {}
-	~speedTest() { if (willPrintOnDestruct) log(); }
-	void log() const {
-		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
-		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
-		profiler::log(name + " " + std::to_string(duration) + " microsecs");
-	}
-	void log(const std::string & text) {
-		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
-		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
-		std::string message = name + "-" + text + " " + std::to_string(duration) + " microsecs";
-		profiler::log(message);
-		start += std::chrono::high_resolution_clock::now() - now; //compensate time for call to log func
-	}
-	void reset() {
-		start = std::chrono::high_resolution_clock::now();
-	}
-	std::chrono::microseconds getCurrentElapsedTime() const {
-		std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
-		return std::chrono::duration_cast<std::chrono::microseconds>(now - start);
-	}
-	std::chrono::high_resolution_clock::time_point start;
-	std::string name;
-	bool willPrintOnDestruct;
+    explicit speedTest(const std::string & name_, bool willPrintOnDestruct_ = true) :start(std::chrono::high_resolution_clock::now()), name(name_), willPrintOnDestruct(willPrintOnDestruct_) {}
+    ~speedTest() { if (willPrintOnDestruct) log(); }
+    void log() const {
+        std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
+        profiler::log(name + " " + std::to_string(duration) + " microsecs");
+    }
+    void log(const std::string & text) {
+        std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
+        std::string message = name + "-" + text + " " + std::to_string(duration) + " microsecs";
+        profiler::log(message);
+        start += std::chrono::high_resolution_clock::now() - now; //compensate time for call to log func
+    }
+    void reset() {
+        start = std::chrono::high_resolution_clock::now();
+    }
+    std::chrono::microseconds getCurrentElapsedTime() const {
+        std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+        return std::chrono::duration_cast<std::chrono::microseconds>(now - start);
+    }
+    std::chrono::high_resolution_clock::time_point start;
+    std::string name;
+    bool willPrintOnDestruct;
 };
 
 //http://preshing.com/20111203/a-c-profiling-module-for-multithreaded-apis/
@@ -63,40 +62,40 @@ public:
 //------------------------------------------------------------------
 class APIProfiler {
 public:
-	//------------------------------------------------------------------
-	// A structure for each thread to store information about an API:
-	//------------------------------------------------------------------
-	struct ThreadInfo {
-		INT64 lastReportTime;
-		INT64 accumulator;   // total time spent in target module since the last report
-		INT64 hitCount;      // number of times the target module was called since last report
-		const char *name;    // the name of the target module
-	};
+    //------------------------------------------------------------------
+    // A structure for each thread to store information about an API:
+    //------------------------------------------------------------------
+    struct ThreadInfo {
+        INT64 lastReportTime;
+        INT64 accumulator;   // total time spent in target module since the last report
+        INT64 hitCount;      // number of times the target module was called since last report
+        const char *name;    // the name of the target module
+    };
 
 private:
-	INT64 m_start;
-	ThreadInfo *m_threadInfo;
+    INT64 m_start;
+    ThreadInfo *m_threadInfo;
 
-	static float s_ooFrequency;      // 1.0 divided by QueryPerformanceFrequency()
-	static INT64 s_reportInterval;   // length of time between reports
-	void Flush(INT64 end);
+    static float s_ooFrequency;      // 1.0 divided by QueryPerformanceFrequency()
+    static INT64 s_reportInterval;   // length of time between reports
+    void Flush(INT64 end);
 
 public:
-	__forceinline APIProfiler(ThreadInfo *threadInfo) {
-		LARGE_INTEGER start;
-		QueryPerformanceCounter(&start);
-		m_start = start.QuadPart;
-		m_threadInfo = threadInfo;
-	}
+    __forceinline APIProfiler(ThreadInfo *threadInfo) {
+        LARGE_INTEGER start;
+        QueryPerformanceCounter(&start);
+        m_start = start.QuadPart;
+        m_threadInfo = threadInfo;
+    }
 
-	__forceinline ~APIProfiler() {
-		LARGE_INTEGER end;
-		QueryPerformanceCounter(&end);
-		m_threadInfo->accumulator += (end.QuadPart - m_start);
-		m_threadInfo->hitCount++;
-		if (end.QuadPart - m_threadInfo->lastReportTime > s_reportInterval)
-			Flush(end.QuadPart);
-	}
+    __forceinline ~APIProfiler() {
+        LARGE_INTEGER end;
+        QueryPerformanceCounter(&end);
+        m_threadInfo->accumulator += (end.QuadPart - m_start);
+        m_threadInfo->hitCount++;
+        if (end.QuadPart - m_threadInfo->lastReportTime > s_reportInterval)
+            Flush(end.QuadPart);
+    }
 };
 
 //----------------------
@@ -124,20 +123,20 @@ public:
 
 class speedTest {
 public:
-	explicit speedTest(const std::string & name_, bool willPrintOnDestruct_ = true){}
-	~speedTest() { return; }
-	void log() const {
-		return;
-	}
-	void log(const std::string & text) {
-		return;
-	}
-	void reset() {
-		return;
-	}
-	std::chrono::microseconds getCurrentElapsedTime() const {
-		return 0us;
-	}
+    explicit speedTest(const std::string & name_, bool willPrintOnDestruct_ = true) {}
+    ~speedTest() { return; }
+    void log() const {
+        return;
+    }
+    void log(const std::string & text) {
+        return;
+    }
+    void reset() {
+        return;
+    }
+    std::chrono::microseconds getCurrentElapsedTime() const {
+        return 0us;
+    }
 };
 
 

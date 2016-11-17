@@ -11,32 +11,32 @@
 
 class TeamspeakServerData {
 public:
-	TeamspeakServerData();
-	~TeamspeakServerData();
-	std::vector<dataType::TSClientID> getMutedClients();
-	void setClientMuteStatus(dataType::TSClientID, bool muted);
-	void clearMutedClients();
-	dataType::TSClientID getMyClientID();
-	void setMyClientID(dataType::TSClientID val);
-	std::string getMyOriginalNickname();
-	void setMyOriginalNickname(std::string val);
-	dataType::TSChannelID getMyOriginalChannel();
-	void setMyOriginalChannel(dataType::TSChannelID val);
-	TSChannelID myLastKnownChannel{-1};//Only called via Teamspeak Events. So not multi-threaded
+    TeamspeakServerData();
+    ~TeamspeakServerData();
+    std::vector<dataType::TSClientID> getMutedClients();
+    void setClientMuteStatus(dataType::TSClientID, bool muted);
+    void clearMutedClients();
+    dataType::TSClientID getMyClientID();
+    void setMyClientID(dataType::TSClientID val);
+    std::string getMyOriginalNickname();
+    void setMyOriginalNickname(std::string val);
+    dataType::TSChannelID getMyOriginalChannel();
+    void setMyOriginalChannel(dataType::TSChannelID val);
+    TSChannelID myLastKnownChannel{ -1 };//Only called via Teamspeak Events. So not multi-threaded
 
-	TSChannelID getChannelIDFromName(const std::string& channelName);
-	void addChannelCache(const char* channelName, TSChannelID channelID);
-	void clearChannelCache();
+    TSChannelID getChannelIDFromName(const std::string& channelName);
+    void addChannelCache(const char* channelName, TSChannelID channelID);
+    void clearChannelCache();
 
 private:
-	using LockGuard_shared = LockGuard_shared<CriticalSectionLock>;
-	using LockGuard_exclusive = LockGuard_exclusive<CriticalSectionLock>;
-	CriticalSectionLock m_criticalSection;
-	std::vector<dataType::TSClientID> mutedClients;
-	std::string myOriginalNickname;
-	TSClientID myClientID{ -1 };//Too small to need mutex
-	TSChannelID myOriginalChannel{ -1 };
-	std::unordered_map<std::string, TSChannelID> channelNameToID;
+    using LockGuard_shared = LockGuard_shared<CriticalSectionLock>;
+    using LockGuard_exclusive = LockGuard_exclusive<CriticalSectionLock>;
+    CriticalSectionLock m_criticalSection;
+    std::vector<dataType::TSClientID> mutedClients;
+    std::string myOriginalNickname;
+    TSClientID myClientID{ -1 };//Too small to need mutex
+    TSChannelID myOriginalChannel{ -1 };
+    std::unordered_map<std::string, TSChannelID> channelNameToID;
 };
 
 
@@ -44,66 +44,66 @@ private:
 
 class Teamspeak {
 public:
-	Teamspeak();
-	~Teamspeak();
-	static TSServerID getCurrentServerConnection();
-	static void unmuteAll(TSServerID serverConnectionHandlerID = Teamspeak::getCurrentServerConnection());
-	static void setClientMute(TSServerID serverConnectionHandlerID, TSClientID clientId, bool mute);
-	static void setClientMute(TSServerID serverConnectionHandlerID, std::vector<TSClientID> clientId, bool mute);
-	static void moveToSeriousChannel(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
-	static void moveFromSeriousChannel(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
-	static bool setMyNicknameToGameName(TSServerID serverConnectionHandlerID, const std::string& nickname);
-	static void resetMyNickname(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
+    Teamspeak();
+    ~Teamspeak();
+    static TSServerID getCurrentServerConnection();
+    static void unmuteAll(TSServerID serverConnectionHandlerID = Teamspeak::getCurrentServerConnection());
+    static void setClientMute(TSServerID serverConnectionHandlerID, TSClientID clientId, bool mute);
+    static void setClientMute(TSServerID serverConnectionHandlerID, std::vector<TSClientID> clientId, bool mute);
+    static void moveToSeriousChannel(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
+    static void moveFromSeriousChannel(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
+    static bool setMyNicknameToGameName(TSServerID serverConnectionHandlerID, const std::string& nickname);
+    static void resetMyNickname(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
 
 
-	static bool isConnected(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
-	static TSClientID getMyId(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
-	static bool isInChannel(TSServerID serverConnectionHandlerID, TSClientID clientId, const std::string& channelToCheck);
-	static std::string getChannelName(TSServerID serverConnectionHandlerID = getCurrentServerConnection(), TSClientID clientId = getMyId());
-	static TSChannelID getChannelOfClient(TSServerID serverConnectionHandlerID = getCurrentServerConnection(), TSClientID clientId = getMyId());
-	static std::string getServerName(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
-	static bool isTalking(TSServerID currentServerConnectionHandlerID, TSClientID clientID);
-	static std::vector<TSClientID> getChannelClients(TSServerID serverConnectionHandlerID, TSChannelID channelId);
-	static std::string getMyNickname(TSServerID serverConnectionHandlerID);
+    static bool isConnected(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
+    static TSClientID getMyId(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
+    static bool isInChannel(TSServerID serverConnectionHandlerID, TSClientID clientId, const std::string& channelToCheck);
+    static std::string getChannelName(TSServerID serverConnectionHandlerID = getCurrentServerConnection(), TSClientID clientId = getMyId());
+    static TSChannelID getChannelOfClient(TSServerID serverConnectionHandlerID = getCurrentServerConnection(), TSClientID clientId = getMyId());
+    static std::string getServerName(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
+    static bool isTalking(TSServerID currentServerConnectionHandlerID, TSClientID clientID);
+    static std::vector<TSClientID> getChannelClients(TSServerID serverConnectionHandlerID, TSChannelID channelId);
+    static std::string getMyNickname(TSServerID serverConnectionHandlerID);
 
-	static TSChannelID findChannelByName(TSServerID serverConnectionHandlerID, const std::string& channelName);
+    static TSChannelID findChannelByName(TSServerID serverConnectionHandlerID, const std::string& channelName);
 
-	static std::string getMetaData(TSServerID serverConnectionHandlerID, TSClientID clientId);
-	static void setMyMetaData(const std::string & metaData);
-	static std::string getClientNickname(TSServerID serverConnectionHandlerID, TSClientID clientId);
-	static void setMyClient3DPosition(TSServerID serverConnectionHandlerID, Position3D pos);
-	static void setClient3DPosition(TSServerID serverConnectionHandlerID, TSClientID clientId, Position3D pos);
+    static std::string getMetaData(TSServerID serverConnectionHandlerID, TSClientID clientId);
+    static void setMyMetaData(const std::string & metaData);
+    static std::string getClientNickname(TSServerID serverConnectionHandlerID, TSClientID clientId);
+    static void setMyClient3DPosition(TSServerID serverConnectionHandlerID, Position3D pos);
+    static void setClient3DPosition(TSServerID serverConnectionHandlerID, TSClientID clientId, Position3D pos);
 
-	static void sendPluginCommand(TSServerID serverConnectionHandlerID, const std::string& pluginID, const std::string& command, PluginTargetMode targetMode, std::vector<TSClientID> targets = {});
-	static void playWavFile(const std::string& filePath);
+    static void sendPluginCommand(TSServerID serverConnectionHandlerID, const std::string& pluginID, const std::string& command, PluginTargetMode targetMode, std::vector<TSClientID> targets = {});
+    static void playWavFile(const std::string& filePath);
 
-	static void setVoiceDisabled(TSServerID serverConnectionHandlerID, bool disabled);
-
-
-	// taken from https://github.com/MadStyleCow/A2TS_Rebuild/blob/master/src/ts3plugin.cpp#L1367
-	static bool hlp_checkVad();
-	static void hlp_enableVad();
-	static void hlp_disableVad();
-
-	static void log(std::string, DWORD errorCode, LogLevel level = LogLevel_INFO);
+    static void setVoiceDisabled(TSServerID serverConnectionHandlerID, bool disabled);
 
 
-	//Internal use
-	static void _onConnectStatusChangeEvent(TSServerID serverConnectionHandlerID, ConnectStatus newState);
-	static void _onChannelSwitchedEvent(TSServerID serverConnectionHandlerID, TSChannelID newChannel);
-	static void _onClientMoved(TSServerID serverConnectionHandlerID, TSClientID clientID, TSChannelID oldChannel, TSChannelID newChannel);
-	static void _onClientJoined(TSServerID serverConnectionHandlerID, TSClientID clientID, TSChannelID channel);
-	static void _onClientLeft(TSServerID serverConnectionHandlerID, TSClientID clientID);
-	static void _onClientUpdated(TSServerID serverConnectionHandlerID, TSClientID clientID);
-	static void _onInit();
-	static void _updateChanneNameCache(TSServerID serverConnectionHandlerID);
+    // taken from https://github.com/MadStyleCow/A2TS_Rebuild/blob/master/src/ts3plugin.cpp#L1367
+    static bool hlp_checkVad();
+    static void hlp_enableVad();
+    static void hlp_disableVad();
+
+    static void log(std::string, DWORD errorCode, LogLevel level = LogLevel_INFO);
+
+
+    //Internal use
+    static void _onConnectStatusChangeEvent(TSServerID serverConnectionHandlerID, ConnectStatus newState);
+    static void _onChannelSwitchedEvent(TSServerID serverConnectionHandlerID, TSChannelID newChannel);
+    static void _onClientMoved(TSServerID serverConnectionHandlerID, TSClientID clientID, TSChannelID oldChannel, TSChannelID newChannel);
+    static void _onClientJoined(TSServerID serverConnectionHandlerID, TSClientID clientID, TSChannelID channel);
+    static void _onClientLeft(TSServerID serverConnectionHandlerID, TSClientID clientID);
+    static void _onClientUpdated(TSServerID serverConnectionHandlerID, TSClientID clientID);
+    static void _onInit();
+    static void _updateChanneNameCache(TSServerID serverConnectionHandlerID);
 private:
-	static Teamspeak& getInstance();  //Used for accessing stored variables
+    static Teamspeak& getInstance();  //Used for accessing stored variables
 
 
 
 
-	std::map<dataType::TSServerID, TeamspeakServerData> serverData;
+    std::map<dataType::TSServerID, TeamspeakServerData> serverData;
 
 };
 

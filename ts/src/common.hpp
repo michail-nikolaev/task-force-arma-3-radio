@@ -55,23 +55,23 @@ extern void log_string(std::string message, LogLevel level = LogLevel_DEVEL);
 extern void log(char* message, DWORD errorCode, LogLevel level = LogLevel_INFO);
 
 enum class stereoMode {//#TODO move to a real header
-	stereo = 0,
-	leftOnly = 1,					  
-	rightOnly = 2
+    stereo = 0,
+    leftOnly = 1,
+    rightOnly = 2
 };
 
 struct PTTDelayArguments {
-	std::string commandToBroadcast;
-	TSServerID currentServerConnectionHandlerID;
-	std::chrono::milliseconds pttDelay;
-	std::string subtype;
-	enum class subtypes {
-		digital_lr,
-		dd,
-		digital,
-		airborne,
-		phone,
-		invalid
-	};
-	static subtypes stringToSubtype(const std::string& type);
+    std::string commandToBroadcast;
+    TSServerID currentServerConnectionHandlerID;
+    std::chrono::milliseconds pttDelay;
+    std::string subtype;
+    enum class subtypes {
+        digital_lr,
+        dd,
+        digital,
+        airborne,
+        phone,
+        invalid
+    };
+    static subtypes stringToSubtype(const std::string& type);
 };

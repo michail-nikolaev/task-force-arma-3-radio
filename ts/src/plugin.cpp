@@ -59,7 +59,7 @@ void log_string(std::string message, LogLevel level) {
 
 bool isSeriousModeEnabled(TSServerID serverConnectionHandlerID, TSClientID clientId) {
     std::string	serious_mod_channel_name = TFAR::config.get<std::string>(Setting::serious_channelName);
-    return (serious_mod_channel_name != "") && Teamspeak::isInChannel(serverConnectionHandlerID, clientId, serious_mod_channel_name);
+    return (!serious_mod_channel_name.empty()) && Teamspeak::isInChannel(serverConnectionHandlerID, clientId, serious_mod_channel_name);
 }
 
 float effectErrorFromDistance(sendingRadioType radioType, float distance, std::shared_ptr<clientData>& data) {
@@ -842,7 +842,7 @@ void processPluginCommand(std::string command) {
     if (!clientDataDir) return;
 
 
-	 //PRESSED is 7 tokens with half-duplex
+    //PRESSED is 7 tokens with half-duplex
     if ((tokens.size() == 6 || tokens.size() == 7) && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD")) {
         processTangentPress(serverId, tokens, command);
     } else if (tokens.size() == 2 && tokens[0] == "RELEASE_ALL_TANGENTS") {

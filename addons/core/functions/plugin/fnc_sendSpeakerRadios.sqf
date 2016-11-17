@@ -60,6 +60,7 @@ private _speakerRadios = TFAR_speakerRadios;
     };
     true;
 } count (nearestObjects [getPos TFAR_currentUnit, ["WeaponHolder", "GroundWeaponHolder", "WeaponHolderSimulated"], TF_speakerDistance]);
+//#TODO doesn't catch static LRRadio backpacks on ground because they are not in any Holder
 
 //Get vehicle radios on speaker
 {

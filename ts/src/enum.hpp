@@ -41,12 +41,12 @@
 // The type "T" mentioned above that drops assignment operations.
 template <typename U>
 struct ignore_assign {
-	constexpr explicit ignore_assign(U value) : _value(value) {}
-	constexpr operator U() const { return _value; }
+    constexpr explicit ignore_assign(U value) : _value(value) {}
+    constexpr operator U() const { return _value; }
 
-	constexpr const ignore_assign& operator =(int dummy) const { return *this; }
+    constexpr const ignore_assign& operator =(int dummy) const { return *this; }
 
-	U   _value;
+    U   _value;
 };
 
 
@@ -67,18 +67,18 @@ constexpr const char    terminators[] = " =\t\r\n";
 
 // The size of terminators includes the implicit '\0'.
 constexpr bool is_terminator(char c, size_t index = 0) {
-	return
-		index >= sizeof(terminators) ? false :
-		c == terminators[index] ? true :
-		is_terminator(c, index + 1);
+    return
+        index >= sizeof(terminators) ? false :
+        c == terminators[index] ? true :
+        is_terminator(c, index + 1);
 }
 
 constexpr bool matches_untrimmed(const char *untrimmed, const char *s,
-	size_t index = 0) {
-	return
-		is_terminator(untrimmed[index]) ? s[index] == '\0' :
-		s[index] != untrimmed[index] ? false :
-		matches_untrimmed(untrimmed, s, index + 1);
+    size_t index = 0) {
+    return
+        is_terminator(untrimmed[index]) ? s[index] == '\0' :
+        s[index] != untrimmed[index] ? false :
+        matches_untrimmed(untrimmed, s, index + 1);
 }
 
 
