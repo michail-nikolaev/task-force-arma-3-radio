@@ -59,7 +59,7 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Positi
     std::tie(listener.OrientFront.x, listener.OrientFront.y, listener.OrientFront.z) = myViewDirection.get();
     listener.OrientFront.y = -listener.OrientFront.y;
     listener.OrientFront.x = -listener.OrientFront.x;
-    std::tie(listener.OrientTop.x, listener.OrientTop.y, listener.OrientTop.z) = Direction3D(-std::get<0>(myViewDirection.get()), -std::get<1>(myViewDirection.get()), 1).get();
+    std::tie(listener.OrientTop.x, listener.OrientTop.y, listener.OrientTop.z) = Direction3D(-std::get<0>(myViewDirection.get()), -std::get<1>(myViewDirection.get()), 1.f).get();
     std::tie(listener.Position.x, listener.Position.y, listener.Position.z) = myPosition.get();
     listener.pCone = NULL;
 
@@ -154,7 +154,7 @@ std::vector<boost::string_ref>& helpers::split(boost::string_ref s, char delim, 
             pos = length;
         }
 
-        if (pos != lastPos /*|| !trimEmpty*/)
+       // if (pos != lastPos /*|| !trimEmpty*/)
             elems.push_back(s.substr(lastPos, lastPos + pos - lastPos));
 
         lastPos += pos + 1;
