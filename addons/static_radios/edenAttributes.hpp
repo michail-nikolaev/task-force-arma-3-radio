@@ -8,7 +8,7 @@ class Attributes {//#TODO move Attributes into base class for all Radio Vehicles
         property = "staticRadioFrequency"; // Unique config property name saved in SQM
         control = "Edit"; // UI control base class displayed in Edit Attributes window, points to Cfg3DEN >> Attributes
 
-        expression = QUOTE([ARR_2(_this,call compile _value)] call TFAR_static_radios_fnc_setFrequencies);
+        expression = QUOTE(if (isMultiplayer) then {[ARR_2(_this,call compile _value)] call TFAR_static_radios_fnc_setFrequencies});
 
         defaultValue = "str (_this call TFAR_static_radios_fnc_generateFrequencies)";
 
@@ -23,7 +23,7 @@ class Attributes {//#TODO move Attributes into base class for all Radio Vehicles
         property = "staticRadioChannel"; // Unique config property name saved in SQM
         control = "Edit"; // UI control base class displayed in Edit Attributes window, points to Cfg3DEN >> Attributes
 
-        expression = QUOTE([ARR_2(_this,_value)] call TFAR_static_radios_fnc_setChannel);
+        expression = QUOTE(if (isMultiplayer) then {[ARR_2(_this,_value)] call TFAR_static_radios_fnc_setChannel});
 
         defaultValue = '1';
 
@@ -38,7 +38,7 @@ class Attributes {//#TODO move Attributes into base class for all Radio Vehicles
         property = "staticRadioSpeaker"; // Unique config property name saved in SQM
         control = "Checkbox"; // UI control base class displayed in Edit Attributes window, points to Cfg3DEN >> Attributes
 
-        expression = QUOTE([ARR_2(_this,_value)] call TFAR_static_radios_fnc_setSpeakers);
+        expression = QUOTE(if (isMultiplayer) then {[ARR_2(_this,_value)] call TFAR_static_radios_fnc_setSpeakers});
 
         defaultValue = "false";
 

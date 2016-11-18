@@ -348,7 +348,8 @@ size_t playbackWavRaw::getSamples(const short*& data) {
 
 size_t playbackWavRaw::cleanSamples(size_t sampleCount) {
     size_t increase = std::min(sampleCount, sampleStore.size() - currentPosition);
-    currentPosition += increase;
+    sampleStore.erase(sampleStore.begin(), sampleStore.begin() + increase);
+   // currentPosition += increase;
     if (isDone()) {
         sampleStore.clear();
         currentPosition = 0;

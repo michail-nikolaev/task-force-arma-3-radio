@@ -14,7 +14,7 @@
 ["TFAR_default_radioVolume", "SLIDER", "STR_radio_default_radioVolume", "Task Force Arrowhead Radio", [1, 9, 7, 0]] call CBA_Settings_fnc_init;
 ["TF_volumeModifier_forceSpeech", "CHECKBOX", "Activate directSpeech when pressing volume modifier.", "Task Force Arrowhead Radio", false] call CBA_Settings_fnc_init;//#Stringtable
 
-
+if (!isMultiplayer && !is3DENMultiplayer) exitWith {}; //Don't do anything in Singleplayer
 //Global variables
 VARIABLE_DEFAULT(tf_west_radio_code,"_bluefor");//Server needs Radio codes for static_radios
 VARIABLE_DEFAULT(tf_east_radio_code,"_opfor");
@@ -128,4 +128,6 @@ if (hasInterface) then {//Clientside Variables
 if (isServer) then {//Serverside variables
     missionNamespace setVariable ["TF_server_addon_version",TFAR_ADDON_VERSION,true];
     TFAR_RadioCountHash = [] call CBA_fnc_hashCreate;
+    TFAR_RadioSettingsNamespace = true call CBA_fnc_createNamespace;
+    publicVariable "TFAR_RadioSettingsNamespace";
 }

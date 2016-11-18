@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <vector>
 #include "string_ref.hpp"
+#include <chrono>
 
 #define M_PI_FLOAT 3.14159265358979323846f
 namespace dataType {
@@ -54,10 +55,10 @@ namespace dataType {
         float angle;
     };
     constexpr AngleRadians operator "" _rad(long double _deg) { return AngleRadians(static_cast<float>(_deg)); }
-    class AngleDegrees : private AngleRadians {
+    class AngleDegrees {
         friend class AngleRadians;
     public:
-        constexpr AngleDegrees(float degrees) : AngleRadians(degrees) {}
+        constexpr AngleDegrees(float degrees) : angle(degrees) {}
         //Conversions
         constexpr AngleDegrees(const AngleRadians& other);
         constexpr AngleRadians toRadians() const { return AngleRadians(*this); }
@@ -71,6 +72,8 @@ namespace dataType {
             if (positive.angle < 0) positive.angle += 360.f;
             return positive;
         }
+    protected:
+        float angle;
     };
 
     constexpr AngleRadians::AngleRadians(const AngleDegrees& other) : angle(other.angle * (M_PI_FLOAT / 180)) {};
@@ -78,61 +81,65 @@ namespace dataType {
 
 
     constexpr AngleDegrees operator "" _deg(long double _deg) { return AngleDegrees(static_cast<float>(_deg)); }
-    class Direction3D;
-    class Position3D {
-        friend class Direction3D;
-    public:
-        //Initializers
-        explicit Position3D();
-        //explicit Position3D(const Position3D &obj) = delete;
-        //explicit Position3D(const TS3_VECTOR& vec) :m_x(vec.x), m_y(vec.y), m_z(vec.z) {}
-        explicit Position3D(float x, float y, float z);
-        explicit Position3D(const std::vector<float>& vec);
-        explicit Position3D(const boost::string_ref& coordinateString);
-        //Conversions
-        operator TS3_VECTOR*();
-        //Operators
-        Position3D& operator=(const Position3D& other);
-        Position3D operator-(const Position3D& other) const;
-        bool operator< (const Position3D& other) const;
-        bool operator== (const Position3D& other) const;
-        bool isNull() const;
 
-        //Functions
+    class Vector3D {
+    public:
+        Vector3D() {};
+        Vector3D(float x, float y, float z);
+        Vector3D(const std::vector<float>& vec);
+        Vector3D(const boost::string_ref& coordinateString);
+        Vector3D(Vector3D&& vec) : m_x(std::move(vec.m_x)), m_y(std::move(vec.m_y)), m_z(std::move(vec.m_z)) {};
+        Vector3D(const Vector3D& vec) : m_x(vec.m_x), m_y(vec.m_y), m_z(vec.m_z) {};
+
         std::tuple<float, float, float> get() const;
         float length() const;
-        float dotProduct(const Position3D& other) const;
-        float distanceTo(const Position3D& other) const;
-        Direction3D directionTo(const Position3D& other) const;
-        Position3D crossProduct(const Position3D& other) const;
-        Position3D normalized();
+        float dotProduct(const Vector3D& other) const;
+        Vector3D normalized();
+        bool isNull() const;
+        Vector3D operator*(float multiplier) {
+            return{ m_x *multiplier,m_y *multiplier ,m_z *multiplier };
+        }
+        Vector3D& operator=(const Vector3D& other);
+        Vector3D operator-(const Vector3D& other) const;
+        bool operator< (const Vector3D& other) const;
+        bool operator== (const Vector3D& other) const;
+
     protected:
         float m_x = 0.f;
         float m_y = 0.f;
         float m_z = 0.f;
-
-        //When adding variables never add them before the 3D vector floats! Because operator TS3_VECTOR*
     };
 
-    class RotationMatrix {
+
+    class Direction3D;
+    class Position3D : public Vector3D {
     public:
-        Position3D right;
-        Position3D up;
-        Position3D forward;
+        using Vector3D::Vector3D;
+        //Initializers
+        Position3D() {};
+        //explicit Position3D(const Position3D &obj) = delete;
+        //explicit Position3D(const TS3_VECTOR& vec) :m_x(vec.x), m_y(vec.y), m_z(vec.z) {}
+        //Conversions
+        operator TS3_VECTOR*();
+        //Operators
+
+        //Functions
+
+        float distanceTo(const Position3D& other) const;
+        Direction3D directionTo(const Position3D& other) const;
+        Position3D crossProduct(const Position3D& other) const;
+        Position3D normalized() {};
     };
+
     //Unit direction Vector
-    class Direction3D : protected Position3D {
+    class Direction3D : public Vector3D {
         friend class Position3D;
     public:
-        explicit Direction3D() : Position3D() {};
-        explicit Direction3D(const boost::string_ref& coordinateString);
+        template <typename ...Args>
+        Direction3D(Args&&... args) : Vector3D(std::forward<Args>(args)...) { (void)"This is nuts!"; }
         explicit Direction3D(const Position3D& from, const Position3D& to);
-        using Position3D::length;
-        using Position3D::get;
-        using Position3D::dotProduct;
         AngleRadians toAngle() const;
         AngleRadians toPolarAngle() const;
-        Direction3D(float x, float y, float z) : Position3D(x, y, z) {}
         Position3D getpos() const { return Position3D(m_x, m_y, m_z); }
 
         //Direction3D getUpVector();
@@ -142,12 +149,25 @@ namespace dataType {
     };
 
 
+    class Velocity3D : public Vector3D {
+    public:
+        using Vector3D::operator*;
+        //Initializers
+        Velocity3D() {};
+        Velocity3D(Vector3D other) : Vector3D(other) {};
+        //Operators
+        Velocity3D operator*(const std::chrono::duration<float>& time);
 
+        //Functions
 
+    };
 
-
-
-
+    class RotationMatrix {
+    public:
+        Vector3D right;
+        Vector3D up;
+        Vector3D forward;
+    };
 
 
 }

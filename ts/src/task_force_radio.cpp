@@ -27,8 +27,7 @@ TFAR::TFAR() {
 
     onGameConnected.connect([this]() {
         Logger::log(LoggerTypes::profiler, "On Game Connected", LogLevel_DEVEL);
-        std::string channelName = TFAR::config.get<std::string>(Setting::serious_channelName);
-        if (!getCurrentlyInGame() && !channelName.empty()) {
+        if (!getCurrentlyInGame()) {
             getPlaybackHandler()->playWavFile("radio-sounds/on");
             setCurrentlyInGame(true);
             onGameStart();
