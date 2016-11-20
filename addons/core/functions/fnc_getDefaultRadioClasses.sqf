@@ -1,50 +1,66 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_getDefaultRadioClasses
- 	
- 	Author(s):
-		NKey
+    Name: TFAR_fnc_getDefaultRadioClasses
 
- 	Description:
-		Return array of default radio classes for player. 
-	
-	Parameters:
-		Nothing
- 	
- 	Returns:
-		ARRAY - [defaultLR, defaultPersonal, defaultRifleman, defaultAirborne]
- 	
- 	Example:
-		_classes = call TFAR_fnc_getDefaultRadioClasses;
+    Author(s):
+        NKey
+
+    Description:
+        Return array of default radio classes for player.
+
+    Parameters:
+        Nothing
+
+    Returns:
+        ARRAY - [defaultLR, defaultPersonal, defaultRifleman, defaultAirborne]
+
+    Example:
+        _classes = call TFAR_fnc_getDefaultRadioClasses;
 */
-private ["_personalRadio", "_riflemanRadio", "_lrRadio", "_airborne"];
+
+private _defaultLRRadio = TFAR_DefaultRadio_Backpack_Independent;
+private _defaultPersonalRadio = TFAR_DefaultRadio_Personal_Independent;
+private _defaultRiflemanRadio = TFAR_DefaultRadio_Rifleman_Independent;
+private _defaultAirborneRadio = TFAR_DefaultRadio_Airborne_Independent;
 
 switch (TFAR_currentUnit call BIS_fnc_objectSide) do {
-	case west: {_personalRadio = TF_defaultWestPersonalRadio; _riflemanRadio = TF_defaultWestRiflemanRadio; _lrRadio = TF_defaultWestBackpack; _airborne = TF_defaultWestAirborneRadio;};
-	case east: {_personalRadio = TF_defaultEastPersonalRadio; _riflemanRadio = TF_defaultEastRiflemanRadio;_lrRadio = TF_defaultEastBackpack; _airborne = TF_defaultEastAirborneRadio;};
-	default {_personalRadio = TF_defaultGuerPersonalRadio; _riflemanRadio = TF_defaultGuerRiflemanRadio;_lrRadio = TF_defaultGuerBackpack; _airborne = TF_defaultGuerAirborneRadio;};
+    case west: {
+        _defaultLRRadio = TFAR_DefaultRadio_Backpack_West;
+        _defaultPersonalRadio = TFAR_DefaultRadio_Personal_West;
+        _defaultRiflemanRadio = TFAR_DefaultRadio_Rifleman_West;
+        _defaultAirborneRadio = TFAR_DefaultRadio_Airborne_West;
+    };
+    case east: {
+        _defaultLRRadio = TFAR_DefaultRadio_Backpack_East;
+        _defaultPersonalRadio = TFAR_DefaultRadio_Personal_East;
+        _defaultRiflemanRadio = TFAR_DefaultRadio_Rifleman_East;
+        _defaultAirborneRadio = TFAR_DefaultRadio_Airborne_East;
+    };
 };
 
-TFAR_tryResolveFactionClass = 
+TFAR_tryResolveFactionClass =
 {
-	private ["_prefix", "_faction", "_result", "_default"];
-	_prefix = _this select 0;
-	_default = _this select 1;
-	_faction = faction TFAR_currentUnit;
-	_result = missionNamespace getVariable (_faction + "_" + _prefix + "_tf_faction_radio");
-	if (isNil "_result") then {		
-		if (isText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"))) then {
-			 _result = getText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"));
-		} else {
-			if (isText (configFile >> "CfgFactionClasses" >> _faction >> _prefix + "_tf_faction_radio")) then {
-				_result = getText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio"));
-			} else {
-				_result = _default;
-			};
-		};		
-	};
-	_result
+    params ["_prefix", "_default"];
+    private _faction = faction TFAR_currentUnit;
+    private _result = missionNamespace getVariable (_faction + "_" + _prefix + "_tf_faction_radio");
+
+    if (!isNil "_result") exitWith {_result};
+
+    if (isText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"))) exitWith {
+        getText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"));
+    };
+
+    if (isText (configFile >> "CfgFactionClasses" >> _faction >> _prefix + "_tf_faction_radio")) exitWith {
+        getText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio"));
+    };
+
+    _default
 };
 
-[["backpack", _lrRadio] call TFAR_tryResolveFactionClass , ["personal", _personalRadio] call TFAR_tryResolveFactionClass , ["rifleman", _riflemanRadio] call TFAR_tryResolveFactionClass, ["airborne", _airborne] call TFAR_tryResolveFactionClass];
+[
+    ["backpack", _defaultLRRadio] call TFAR_tryResolveFactionClass,
+    ["personal", _defaultPersonalRadio] call TFAR_tryResolveFactionClass,
+    ["rifleman", _defaultRiflemanRadio] call TFAR_tryResolveFactionClass,
+    ["airborne", _defaultAirborneRadio] call TFAR_tryResolveFactionClass
+]

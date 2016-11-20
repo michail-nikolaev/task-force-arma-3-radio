@@ -101,7 +101,7 @@ namespace clunk {
 			throw std::runtime_error("cannot open file: " + fname);
 		WavFile wav(f);
 		wav.read();
-		std::auto_ptr<Sample> sample(context.create_sample());
+		std::unique_ptr<Sample> sample(context.create_sample());
 		sample->init(wav._data, wav._spec);
 		sample->name = fname;
 		return sample.release();

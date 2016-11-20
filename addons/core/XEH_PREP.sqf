@@ -1,12 +1,12 @@
+//#TODO sort after subfolders and then after alphabet
 
-PREP(ServerInit);
-PREP(ClientInit);
+PREP_SUB(server,serverInit);
+PREP(clientInit);
 
 // A
 PREP(activeLrRadio);
 PREP(activeSwRadio);
-PREP(addEventHandler);
-PREP(addRadiosToACE);
+PREP_SUB(events\handler,addEventHandler);
 // B
 PREP(backpackLr);
 // C
@@ -15,8 +15,8 @@ PREP(canSpeak);
 PREP(canUseSWRadio);
 PREP(canUseLRRadio);
 PREP(canUseDDRadio);
-PREP(copyRadioSettingMenu);
-PREP(CopySettings);
+PREP_SUB(flexiUI,copyRadioSettingMenu);
+PREP(copySettings);
 PREP(currentDirection);
 PREP(currentLRFrequency);
 PREP(currentSWFrequency);
@@ -26,12 +26,12 @@ PREP(defaultPositionCoordinates);
 // E
 PREP(eyeDepth);
 // F
-PREP(fireEventHandlers);
+PREP_SUB(events\handler,fireEventHandlers);
 PREP(forceSpectator);
 // G
 PREP(generateDDFreq);
 PREP(generateLrSettings);
-PREP(generateSwSettings);
+PREP(generateSRSettings);
 PREP(generateFrequencies);
 PREP(getVehicleSide);
 PREP(getSwRadioCode);
@@ -47,12 +47,12 @@ PREP(getLrVolume);
 PREP(getSwSettings);
 PREP(getLrSettings);
 PREP(getNearPlayers);
-PREP(getTeamSpeakServerName);
-PREP(getTeamSpeakChannelName);
+PREP_SUB(plugin,getTeamSpeakServerName);
+PREP_SUB(plugin,getTeamSpeakChannelName);
 PREP(getConfigProperty);
 PREP(getCopilot);
 PREP(getLrRadioProperty);
-PREP(GetChannelFrequency);
+PREP(getChannelFrequency);
 PREP(getSideRadio);
 PREP(getTransmittingDistanceMultiplicator);
 PREP(getAdditionalLrStereo);
@@ -68,68 +68,73 @@ PREP(getLrSpeakers);
 // H
 PREP(hasVehicleRadio);
 PREP(haveProgrammator);
-PREP(hideHint);
+PREP_SUB(hint,hideHint);
 PREP(haveDDRadio);
 PREP(haveLRRadio);
 PREP(haveSWRadio);
 // I
-PREP(initialiseBaseModule);
-PREP(initialiseFreqModule);
-PREP(initialiseEnforceUsageModule);
-PREP(inWaterHint);
+PREP_SUB(modules,initialiseBaseModule);
+PREP_SUB(modules,initialiseFreqModule);
+PREP_SUB(modules,initialiseEnforceUsageModule);
+PREP_SUB(server,instanciateRadios);
+PREP_SUB(hint,inWaterHint);
 PREP(isAbleToUseRadio);
 PREP(isForcedCurator);
 PREP(isPrototypeRadio);
 PREP(isRadio);
+PREP(isLRRadio);
 PREP(isSameRadio);
-PREP(isSpeaking);
-PREP(isTeamSpeakPluginEnabled);
+PREP_SUB(plugin,isSpeaking);
+PREP_SUB(plugin,isTeamSpeakPluginEnabled);
 PREP(isTurnedOut);
 PREP(isVehicleIsolated);
 // L
-PREP(lrRadioSubMenu);
-PREP(lrRadioMenu);
+PREP(loadoutReplaceProcess);
+PREP_SUB(flexiUI,lrRadioSubMenu);
+PREP_SUB(flexiUI,lrRadioMenu);
 PREP(lrRadiosList);
 // O
 PREP(objectInterception);
-PREP(onAdditionalSwTangentReleased);
-PREP(onAdditionalSwTangentPressed);
-PREP(onAdditionalLRTangentReleased);
-PREP(onAdditionalLRTangentPressed);
-PREP(onDDTangentPressed);
-PREP(onDDTangentReleased);
-PREP(onDDTangentReleasedHack);
-PREP(onLRTangentPressed);
-PREP(onLRTangentReleased);
-PREP(onLRTangentReleasedHack);
-PREP(onSwTangentPressed);
-PREP(onSwTangentReleased);
-PREP(onSwTangentPressedHack);
-PREP(onSwTangentReleasedHack);
-PREP(onSpeakVolumeChange);
-PREP(onSpeakVolumeModifierPressed);
-PREP(onSpeakVolumeModifierReleased);
-PREP(onSwDialogOpen);
-PREP(onLRDialogOpen);
-PREP(onDDDialogOpen);
-PREP(onGroundHint);
+PREP_SUB(events\keys,onAdditionalSwTangentReleased);
+PREP_SUB(events\keys,onAdditionalSwTangentPressed);
+PREP_SUB(events\keys,onAdditionalLRTangentReleased);
+PREP_SUB(events\keys,onAdditionalLRTangentPressed);
+PREP_SUB(events,onArsenal);
+PREP_SUB(events,onCuratorInterfaceOpen);
+PREP_SUB(events\keys,onDDTangentPressed);
+PREP_SUB(events\keys,onDDTangentReleased);
+PREP_SUB(events\keys,onDDTangentReleasedHack);
+PREP_SUB(events\keys,onLRTangentPressed);
+PREP_SUB(events\keys,onLRTangentReleased);
+PREP_SUB(events\keys,onLRTangentReleasedHack);
+PREP_SUB(events,onMissionEnd);
+PREP_SUB(events\keys,onSwTangentPressed);
+PREP_SUB(events\keys,onSwTangentReleased);
+PREP_SUB(events\keys,onSwTangentPressedHack);
+PREP_SUB(events\keys,onSwTangentReleasedHack);
+PREP_SUB(events\keys,onSpeakVolumeChangePressed);
+PREP_SUB(events\keys,onSpeakVolumeModifierPressed);
+PREP_SUB(events\keys,onSpeakVolumeModifierReleased);
+PREP_SUB(events\ui,onSwDialogOpen);
+PREP_SUB(events\ui,onLRDialogOpen);
+PREP_SUB(events\ui,onDDDialogOpen);
+PREP_SUB(hint,onGroundHint);
 // P
 PREP(preparePositionCoordinates);
-PREP(processSWChannelKeys);
-PREP(processSWCycleKeys);
-PREP(processSWStereoKeys);
-PREP(processLRChannelKeys);
-PREP(processLRCycleKeys);
-PREP(processLRStereoKeys);
+PREP_SUB(events\keys,processSWChannelKeys);
+PREP_SUB(events\keys,processSWCycleKeys);
+PREP_SUB(events\keys,processSWStereoKeys);
+PREP_SUB(events\keys,processLRChannelKeys);
+PREP_SUB(events\keys,processLRCycleKeys);
+PREP_SUB(events\keys,processLRStereoKeys);
 PREP(processPlayerPositions);
-PREP(processSpeakerRadios);
-PREP(processCuratorKey);
-PREP(ProcessTangent);
-PREP(processGroupFrequencySettings);
+PREP_SUB(events\keys,processCuratorKey);
+PREP_SUB(plugin,processTangent);
+PREP_SUB(server,processGroupFrequencySettings);
 PREP(processRespawn);
 // R
 PREP(radioOn);
-PREP(removeEventHandler);
+PREP_SUB(events\handler,removeEventHandler);
 PREP(radioReplaceProcess);
 PREP(requestRadios);
 PREP(radioToRequestCount);
@@ -146,15 +151,19 @@ PREP(setLrVolume);
 PREP(setSwFrequency);
 PREP(setLrFrequency);
 PREP(setLrStereo);
-PREP(sendPlayerInfo);
-PREP(sendPlayerKilled);
+PREP_SUB(plugin,sendFrequencyInfo);
+PREP_SUB(plugin,sendPlayerInfo);
+PREP_SUB(plugin,sendPlayerKilled);
+PREP_SUB(plugin,sendPluginConfig);
+PREP_SUB(plugin,sendSpeakerRadios);
 PREP(setSwSpeakers);
 PREP(setAdditionalLrStereo);
 PREP(setAdditionalSwStereo);
 PREP(setAdditionalLrChannel);
 PREP(setAdditionalSwChannel);
-PREP(showHint);
-PREP(ShowRadioInfo);
+PREP_SUB(hint,showHint);
+PREP_SUB(hint,showRadioInfo);
+PREP_SUB(hint,showRadioSpeakers);
 PREP(setSwRadioCode);
 PREP(setLrRadioCode);
 PREP(setVoiceVolume);
@@ -162,25 +171,29 @@ PREP(setActiveSwRadio);
 PREP(setActiveLrRadio);
 PREP(setLongRangeRadioFrequency);
 PREP(setPersonalRadioFrequency);
-PREP(sendVersionInfo);
-PREP(swRadioSubMenu);
-PREP(swRadioMenu);
-PREP(sendFrequencyInfo);
-PREP(showRadioVolume);
-PREP(SetChannelFrequency);
+PREP_SUB(plugin,setPluginSetting);
+PREP_SUB(plugin,pluginNextDataFrame);
+PREP_SUB(flexiUI,swRadioSubMenu);
+PREP_SUB(flexiUI,swRadioMenu);
+PREP_SUB(hint,showRadioVolume);
+PREP(setChannelFrequency);
 PREP(setRadioOwner);
 PREP(setLrSpeakers);
-PREP(showRadioSpeakers);
-PREP(sessionTracker);
-PREP(setVolumeViaDialog);
-PREP(setChannelViaDialog);
+PREP_SUB(plugin,sessionTracker);
+PREP_SUB(plugin,betaTracker); //#TODO remove on release
+PREP_SUB(events\ui,setVolumeViaDialog);
+PREP_SUB(events\ui,setChannelViaDialog);
 // U
-PREP(updateDDDialog);
-PREP(updateSWDialogToChannel);
-PREP(updateLRDialogToChannel);
-PREP(updateProgrammatorDialog);
-PREP(unableToUseHint);
+PREP_SUB(events\ui,updateDDDialog);
+PREP_SUB(events\ui,updateSWDialogToChannel);
+PREP_SUB(events\ui,updateLRDialogToChannel);
+PREP_SUB(hint,unableToUseHint);
 // V
 PREP(vehicleId);
 PREP(vehicleIsIsolatedAndInside);
 PREP(vehicleLr);
+
+
+
+
+DEPRECATE(fnc_generateSwSettings,fnc_generateSRSettings); //#Depreacted renamed func for SR LR consistency

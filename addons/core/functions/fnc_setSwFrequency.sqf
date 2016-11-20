@@ -1,26 +1,25 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setSwFrequency
+    Name: TFAR_fnc_setSwFrequency
 
- 	Author(s):
-		NKey
-		L-H
+    Author(s):
+        NKey
+        L-H
 
- 	Description:
-		Sets the frequency for the currently active channel
+    Description:
+        Sets the frequency for the currently active channel
 
- 	Parameters:
-		0: STRING - Radio classname
-		1: STRING - Frequency
+    Parameters:
+        0: STRING - Radio classname
+        1: STRING - Frequency
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		[(call TFAR_fnc_activeSwRadio), "76.2"] call TFAR_fnc_setSwFrequency;
+    Example:
+        [call TFAR_fnc_activeSwRadio, "76.2"] call TFAR_fnc_setSwFrequency;
 */
-
 
 params ["_radio", "_freq"];
 

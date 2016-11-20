@@ -51,6 +51,27 @@ class CfgMods {
     };
 };
 
+class CfgSettings {
+   class CBA {
+      class Versioning {
+         class TFAR {
+           main_addon = "tfar_core";
+            class Dependencies {
+               CBA[]={"cba_main", {3,1,0}, "true"};
+            };
+         };
+      };
+   };
+};
+
+class CfgEditorCategories {
+    class TFAR {
+        displayName = "TFAR"; // Name visible in the list
+    };
+};
+
+
+
 #include "CfgEventHandlers.hpp"
 #include "RadioDialogControls.hpp"
 #include "RscTitles.hpp"

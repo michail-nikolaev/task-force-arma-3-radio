@@ -4,37 +4,31 @@
     Name: TFAR_fnc_activeLrRadio
 
     Author(s):
-    NKey
+        NKey
 
     Description:
-    Returns the active LR radio.
+        Returns the active LR radio.
 
     Parameters:
-    Nothing
+        Nothing
 
     Returns:
-    ARRAY: Active LR radio
+        ARRAY: Active LR radio
 
     Example:
-    _radio = call TFAR_fnc_activeLRRadio;
+        _radio = call TFAR_fnc_activeLRRadio;
 */
-private ["_radios", "_found"];
-_radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
+
+private _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
 if (isNil "TF_lr_active_radio") then {
-	if (count _radios > 0) then {
-		TF_lr_active_radio = _radios select 0;
-	};
+    TF_lr_active_radio = _radios param[0,nil];
 } else {
-	_found = false;
-	{
-		if (((_x select 0) == (TF_lr_active_radio select 0)) and ((_x select 1) == (TF_lr_active_radio select 1))) exitWith {_found = true};
-	} count _radios;
-	if !(_found) then {
-		if (count _radios > 0) then {
-			TF_lr_active_radio = _radios select 0;
-		} else {
-			TF_lr_active_radio = nil;
-		};
-	};
+    private _found = false;
+    {
+        if (_x isEqualTo TF_lr_active_radio) exitWith {_found = true};
+    } count _radios;
+    if !(_found) then {
+        TF_lr_active_radio = _radios param [0,nil];
+    };
 };
 TF_lr_active_radio

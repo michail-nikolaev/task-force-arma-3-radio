@@ -1,44 +1,40 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_getSideRadio
+    Name: TFAR_fnc_getSideRadio
 
- 	Author(s):
-		L-H
+    Author(s):
+        L-H
 
- 	Description:
-		Returns the default radio for the passed side.
+    Description:
+        Returns the default radio for the passed side.
 
- 	Parameters:
-		0: SIDE - side
-		1: NUMBER - radio type : Range [0,2] (0 - LR, 1 - SW, 2 - Rifleman)
+    Parameters:
+        0: SIDE - side
+        1: NUMBER - radio type : Range [0,2] (0 - LR, 1 - SW, 2 - Rifleman)
 
- 	Returns:
-		STRING/OBJECT - Default Radio
+    Returns:
+        STRING/OBJECT - Default Radio
 
- 	Example:
-		_defaultLRRadio = [side player, 0] call TFAR_fnc_getSideRadio;
-		_defaultSWRadio = [side player, 1] call TFAR_fnc_getSideRadio;
-		_defaultRiflemanRadio = [side player, 2] call TFAR_fnc_getSideRadio;
+    Example:
+        _defaultLRRadio = [side player, 0] call TFAR_fnc_getSideRadio;
+        _defaultSWRadio = [side player, 1] call TFAR_fnc_getSideRadio;
+        _defaultRiflemanRadio = [side player, 2] call TFAR_fnc_getSideRadio;
 */
-private ["_result", "_variable"];
 
 params ["_side", "_radioType"];
 
-_result = "";
-
-_variable = "TF_default" + str(_side);
-
+private _result = "";
 switch (_radioType) do {
-	case 0: {
-		_result = missionNamespace getVariable (_variable + "Backpack");
-	};
-	case 1: {
-		_result = missionNamespace getVariable (_variable + "PersonalRadio");
-	};
-	case 2:	{
-		_result = missionNamespace getVariable (_variable + "RiflemanRadio");
-	};
+    case 0: {
+        _result = missionNamespace getVariable format["TFAR_DefaultRadio_%1_%2","Backpack",_side];
+    };
+    case 1: {
+        _result = missionNamespace getVariable format["TFAR_DefaultRadio_%1_%2","Personal",_side];
+    };
+    case 2: {
+        _result = missionNamespace getVariable format["TFAR_DefaultRadio_%1_%2","Rifleman",_side];
+    };
 };
 
 _result

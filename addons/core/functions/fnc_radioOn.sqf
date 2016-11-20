@@ -17,29 +17,31 @@
     BOOLEAN - On Status
 
    Example:
-    call TFAR_fnc_radioOn;
+    [call TFAR_fnc_activeSWRadio,true] call TFAR_fnc_radioOn;
 */
 
-private ["_radio", "_status","_settings", "_lr"];
-_radio = _this select 0;
-_status = false;
-_lr = (typename _radio == "ARRAY");
+params ["_radio", ["_status", false]];
+
+_isLRRadio = _radio isEqualType [];
 _settings = [];
-if(_lr)then {
-  _settings = (_radio call TFAR_fnc_getLrSettings);
-  _status = _settings select POWER_OFFSET;
-}else{
-  _settings = (_radio call TFAR_fnc_getSwSettings);
-  _status = _settings select POWER_OFFSET;
-};
-if (count _this == 2) then {
-  _status = _this select 1;
-  _settings set [POWER_OFFSET, _status];
-  if(_lr)then{
-    [_radio select 0, _radio select 1, _settings] call TFAR_fnc_setLrSettings;
-  }else{
-    [_radio, _settings] call TFAR_fnc_setSwSettings;
-  };
+
+if (_isLRRadio) then {
+    _settings = (_radio call TFAR_fnc_getLrSettings);
+} else {
+    _settings = (_radio call TFAR_fnc_getSwSettings);
 };
 
-_status
+if (isNil "_settings") then {//TFAR_fnc_getLrSettings may return Nil if some script in there is screwed up
+    WARNING("_settings was Nil!");
+};
+
+if (count _this == 2) then {//want to set status
+    _settings set [POWER_OFFSET, _status];
+    if (_isLRRadio) then {
+        [_radio select 0, _radio select 1, _settings] call TFAR_fnc_setLrSettings;
+    } else {
+        [_radio, _settings] call TFAR_fnc_setSwSettings;
+    };
+};
+
+_settings param [POWER_OFFSET,true]

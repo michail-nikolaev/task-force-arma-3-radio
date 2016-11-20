@@ -50,7 +50,7 @@ void SERVER_ID_TO_SERVER_DATA::resetAndSetMyNickname(uint64_t const& serverConne
 	data[serverConnectionHandlerID].setMyNicknamex(nickname);
 }
 
-std::vector<CLIENT_DATA*> SERVER_ID_TO_SERVER_DATA::getClientDataByClientID(uint64_t const& serverConnectionHandlerID, anyID clientID) {
+std::vector<std::shared_ptr<CLIENT_DATA>> SERVER_ID_TO_SERVER_DATA::getClientDataByClientID(uint64_t const& serverConnectionHandlerID, anyID clientID) {
 	CriticalSectionLock lock(&serverDataCriticalSection);
 	return data[serverConnectionHandlerID].nicknameToClientData.getClientDataByClientID(clientID);
 }
@@ -60,20 +60,12 @@ float SERVER_ID_TO_SERVER_DATA::getWavesLevel(uint64_t const& serverConnectionHa
 	return data[serverConnectionHandlerID].wavesLevel;
 }
 
-std::string SERVER_ID_TO_SERVER_DATA::getAddonVersion(uint64_t const& serverConnectionHandlerID) {
-	CriticalSectionLock lock(&serverDataCriticalSection);
-	return data[serverConnectionHandlerID].addon_version;
-}
-
-std::pair<std::string, std::string> SERVER_ID_TO_SERVER_DATA::getSeriousModeChannel(uint64_t const& serverConnectionHandlerID) {
-	CriticalSectionLock lock(&serverDataCriticalSection);
-	if (data.count(serverConnectionHandlerID)) {
-		return{ data[serverConnectionHandlerID].serious_mod_channel_name ,data[serverConnectionHandlerID].serious_mod_channel_password };
-	}
-	return{ "__unknown__" ,"__unknown__" };
-}
-
 size_t SERVER_ID_TO_SERVER_DATA::clientDataCount(uint64_t const& serverConnectionHandlerID, const std::string & nickname) {
 	CriticalSectionLock lock(&serverDataCriticalSection);
 	return data[serverConnectionHandlerID].nicknameToClientData.count(nickname);
+}
+
+void SERVER_ID_TO_SERVER_DATA::setFreqInfos(const uint64_t &serverConnectionHandlerID, const std::vector<std::string> &tokens) {
+	if (data.count(serverConnectionHandlerID))
+		data[serverConnectionHandlerID].setFreqInfos(tokens);
 }

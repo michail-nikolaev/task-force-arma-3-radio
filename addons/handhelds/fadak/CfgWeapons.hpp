@@ -1,8 +1,8 @@
-class tf_fadak: ItemRadio {
+class TFAR_fadak: ItemRadio {
     displayName = "FADAK";
     descriptionShort = "FADAK personal radio 5km";//#Stringtable
-    scope = 2;
-    scopeCurator = 2;
+    scope = PUBLIC;
+    scopeCurator = PUBLIC;
     model = QPATHTOF(fadak\data\tfr_fadak);
     picture = QPATHTOF(fadak\ui\fadak_icon.paa);
     tf_prototype = 1;
@@ -11,7 +11,8 @@ class tf_fadak: ItemRadio {
     tf_encryptionCode = "tf_east_radio_code";
     tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
     tf_subtype = "digital";
-    tf_parent = "tf_fadak";
+    tf_parent = "TFAR_fadak";
     tf_additional_channel = 1;
 };
-TF_RADIO_IDS(tf_fadak,FADAK)
+HIDDEN_CLASS(tf_fadak : TFAR_fadak); //#Deprecated dummy class for backwards compat
+TF_RADIO_IDS(TFAR_fadak,FADAK)

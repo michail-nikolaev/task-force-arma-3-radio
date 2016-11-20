@@ -4,7 +4,8 @@
 extern CRITICAL_SECTION serverDataCriticalSection;
 struct FREQ_SETTINGS {
 	int volume;
-	int stereoMode;
+	stereoMode stereoMode;
+	std::string radioClassname;
 };
 
 struct SPEAKER_DATA {
@@ -65,19 +66,17 @@ struct SERVER_RADIO_DATA {
 	float receivingDistanceMultiplicator;
 	float speakerDistance;
 
-	std::string serious_mod_channel_name;
-	std::string serious_mod_channel_password;
-	std::string addon_version;
-
 	int currentDataFrame;
 
-	SERVER_RADIO_DATA() {
-		tangentPressed = false;
-		currentDataFrame = INVALID_DATA_FRAME;
-		terrainIntersectionCoefficient = 7.0f;
-		globalVolume = receivingDistanceMultiplicator = 1.0f;
-		speakerDistance = 20.0f;
+	std::string currentTransmittingRadio;//Used for half-duplex mode
+
+	SERVER_RADIO_DATA(): tangentPressed(false), ddVolumeLevel(0), myVoiceVolume(0), alive(false), canSpeak(false),
+		wavesLevel(0), terrainIntersectionCoefficient(7.0f), globalVolume(1.0f),
+		receivingDistanceMultiplicator(1.0f), speakerDistance(20.0f), currentDataFrame(INVALID_DATA_FRAME), currentTransmittingRadio("")
+	{
+
 	}
+
 private:
 	std::string myNickname;
 
@@ -104,17 +103,11 @@ public:
 	std::string getMyNickname(const uint64_t &serverConnectionHandlerID);
 	//convenience function to keep CriticalSection interaction low
 	void resetAndSetMyNickname(const uint64_t &serverConnectionHandlerID, const std::string& nickname);
-	std::vector<CLIENT_DATA*> getClientDataByClientID(const uint64_t &serverConnectionHandlerID, anyID clientID);
+	std::vector<std::shared_ptr<CLIENT_DATA>> getClientDataByClientID(const uint64_t &serverConnectionHandlerID, anyID clientID);
 	float getWavesLevel(uint64_t const& serverConnectionHandlerID);
-	std::string getAddonVersion(const uint64_t &serverConnectionHandlerID);
-	//Returns SeriousMode Channel in format {Channel Name, Channel Password}
-	std::pair<std::string, std::string> getSeriousModeChannel(const uint64_t &serverConnectionHandlerID);
 	//convenience function for serverIdToData[serverConnectionHandlerID].nicknameToClientData.count(nickname) with CriticalSectionLock
 	size_t clientDataCount(const uint64_t &serverConnectionHandlerID, const std::string & nickname);
-	void setFreqInfos(const uint64_t &serverConnectionHandlerID, const std::vector<std::string> &tokens) {
-		if (data.count(serverConnectionHandlerID))
-			data[serverConnectionHandlerID].setFreqInfos(tokens);
-	}
+	void setFreqInfos(const uint64_t &serverConnectionHandlerID, const std::vector<std::string> &tokens);
 private:
 	std::map<uint64, SERVER_RADIO_DATA> data;
 };

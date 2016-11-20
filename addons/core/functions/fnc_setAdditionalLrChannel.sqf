@@ -1,37 +1,36 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setAdditionalLrChannel
+    Name: TFAR_fnc_setAdditionalLrChannel
 
- 	Author(s):
-		NKey
+    Author(s):
+        NKey
 
- 	Description:
-		Sets the radio to the passed channel or disables it (if current additional passed).
+    Description:
+        Sets the radio to the passed channel or disables it (if current additional passed).
 
-	Parameters:
-		0: OBJECT - Radio object
-		1: STRING - Radio ID
-		2: NUMBER - Channel : Range (0,8)
+    Parameters:
+        0: ARRAY - Radio
+            0: OBJECT- Radio object
+            1: STRING - Radio ID
+        2: NUMBER - Channel : Range (0,8)
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 4] call TFAR_fnc_setAdditionalLrChannel;
+    Example:
+        [call TFAR_fnc_activeLrRadio, 4] call TFAR_fnc_setAdditionalLrChannel;
 */
+params [["_radio",[],[[]],2],["_value",0,[0]]];
+_radio params ["_radio_object", "_radio_qualifier"];
 
-private ["_settings"];
-
-params ["_radio_object", "_radio_qualifier", "_value"];
-
-_settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
-if ((_settings select TF_ADDITIONAL_CHANNEL_OFFSET) != _value) then {
-	_settings set [TF_ADDITIONAL_CHANNEL_OFFSET, _value];
+private _settings = _radio call TFAR_fnc_getLrSettings;
+if ((_settings select TFAR_ADDITIONAL_CHANNEL_OFFSET) != _value) then {
+    _settings set [TFAR_ADDITIONAL_CHANNEL_OFFSET, _value];
 } else {
-	_settings set [TF_ADDITIONAL_CHANNEL_OFFSET, -1];
+    _settings set [TFAR_ADDITIONAL_CHANNEL_OFFSET, -1];
 };
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 
 //							unit, radio object,		radio ID			channel, additional
-["OnLRchannelSet", TFAR_currentUnit, [TFAR_currentUnit, _radio_object, _radio_qualifier, _value, true]] call TFAR_fnc_fireEventHandlers;
+["OnLRchannelSet", [TFAR_currentUnit, _radio_object, _radio_qualifier, _value, true]] call TFAR_fnc_fireEventHandlers;

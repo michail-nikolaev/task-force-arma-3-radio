@@ -1,45 +1,33 @@
 #include "script_component.hpp"
 
+/*
+    Name: TFAR_fnc_objectInterception
 
-private ["_result", "_s"];
+    Author(s):
+        Dedmen
 
-KK_fnc_inString = {
-    private ["_needleLen","_hay","_found"];
-    params [["_needle", "", [""]], ["_needle", "", [""]]];
-    _haystack = toArray (_haystack);
-    _needleLen = count toArray _needle;
-    _hay = +_haystack;
-    _hay resize _needleLen;
-    _found = false;
-    for "_i" from _needleLen to count _haystack do {
-        if (toString _hay == _needle) exitWith {_found = true};
-        _hay set [_needleLen, _haystack select _i];
-        _hay set [0, "x"];
-        _hay = _hay - ["x"]
-    };
-    _found
-};
+    Description:
+        Returns the number of voice-blocking Objects between player and _unit
 
-_result = "";
-{
-	if ((_x isKindOf "Static") or {_x isKindOf "AllVehicles"}) then {
-		if (!(_x isKindOf "Lamps_Base_F") and {!(_x isKindOf "PowerLines_base_F")}) then {
-			_result = _result + "wall|";
-		};
-	} else {
-		if ((typeOf _x) == "") then {
-			_result = _result + str(_x) + "|";
-			//(if ((["wall", _s] call KK_fnc_inString)
-			//	or {["city", _s] call KK_fnc_inString}
-			//	or {["rock", _s] call KK_fnc_inString}
-			//	or {["wreck", _s] call KK_fnc_inString}
-			//	or {["cargo", _s] call KK_fnc_inString}
-			//	or {["stone", _s] call KK_fnc_inString}) then {
-			//	_result = _result + 1;
-			//};
-		};
-	};
-	true;
-} count (lineIntersectsWith  [eyepos TFAR_currentUnit, eyepos _this, TFAR_currentUnit, _this]);
+    Parameters:
+        Nothing
 
-_result;
+    Returns:
+        NUMBER: amount of objects between player and _unit
+
+    Example:
+        _unit call TFAR_fnc_objectInterception;
+*/
+//#TODO check isKindOf "House" and other types and transmit that. Houses isolate stronger than freestanding walls
+private _ins = lineIntersectsSurfaces [
+    eyepos TFAR_currentUnit,
+    eyepos _this,
+    TFAR_currentUnit,
+    _this,
+    true,
+    10,
+    "FIRE",
+    "NONE"
+];
+
+count _ins

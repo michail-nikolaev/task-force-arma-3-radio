@@ -1,12 +1,13 @@
 #pragma once
-#include <string>
+#include "common.h"
 #include <map>
 #include <ts3_functions.h>
-#include "common.h"
 #include "RadioEffect.h"
 #include "Clunk.h"
 #include <clunk/wav_file.h>
-#include "simpleSource\SimpleComp.h"
+#include "simpleSource/SimpleComp.h"
+#include <memory> //shared_ptr
+#include <unordered_map>
 
 enum OVER_RADIO_TYPE {
 	LISTEN_TO_SW,
@@ -20,7 +21,7 @@ class CLIENT_DATA
 public:
 
 	static std::string convertNickname(const std::string& nickname) {
-		if (nickname.front() == ' ' || nickname.back() == ' ') {
+		if (!nickname.empty() && (nickname.front() == ' ' || nickname.back() == ' ')) {
 			std::string newName(nickname);
 			if (nickname.front() == ' ') {
 				newName.replace(0, nickname.find_first_not_of(' '), nickname.find_first_not_of(' '), '_');
@@ -32,7 +33,6 @@ public:
 		}
 		return nickname;
 	}
-
 
 	bool pluginEnabled;
 	uint32_t pluginEnabledCheck;
@@ -57,16 +57,16 @@ public:
 	std::string vehicleId;
 
 	int terrainInterception;
+	int objectInterception;
+	std::map<std::string, std::unique_ptr<PersonalRadioEffect>> swEffects;
+	std::map<std::string, std::unique_ptr<LongRangeRadioffect>> lrEffects;
+	std::map<std::string, std::unique_ptr<UnderWaterRadioEffect>> ddEffects;
+	std::map<std::string, std::unique_ptr<Clunk>> clunks;
 
-	std::map<std::string, PersonalRadioEffect*> swEffects;
-	std::map<std::string, LongRangeRadioffect*> lrEffects;
-	std::map<std::string, UnderWaterRadioEffect*> ddEffects;
-	std::map<std::string, Clunk*> clunks;
-
-	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>*> filtersCantSpeak;
-	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>*> filtersVehicle;
-	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>*> filtersSpeakers;
-	std::map<std::string, Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>*> filtersPhone;
+	std::map<std::string, std::unique_ptr<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>> filtersCantSpeak;
+	std::map<std::string, std::unique_ptr<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>> filtersVehicle;
+	std::map<std::string, std::unique_ptr<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>> filtersSpeakers;
+	std::map<std::string, std::unique_ptr<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>> filtersPhone;
 	
 	float viewAngle;
 
@@ -76,10 +76,10 @@ public:
 	{
 		if (!filtersPhone.count(key))
 		{
-			filtersPhone[key] = new Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>();
+			filtersPhone[key] = std::make_unique<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>();
 			filtersPhone[key]->setup(2, 48000, 1850, 1550);
 		}
-		return filtersPhone[key];
+		return filtersPhone[key].get();
 	}
 
 	
@@ -87,53 +87,49 @@ public:
 	{
 		if (!filtersSpeakers.count(key))
 		{
-			filtersSpeakers[key] = new Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>();
+			filtersSpeakers[key] = std::make_unique<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>();
 			filtersSpeakers[key]->setup(1, 48000, 2000, 1000);
 		}
-		return filtersSpeakers[key];
+		return filtersSpeakers[key].get();
 	}
 
 	PersonalRadioEffect* getSwRadioEffect(std::string key)
 	{
 		if (!swEffects.count(key))
 		{
-			swEffects[key] = new PersonalRadioEffect();
+			swEffects[key] = std::make_unique<PersonalRadioEffect>();
 		}
-		return swEffects[key];
+		return swEffects[key].get();
 	}
 
 	LongRangeRadioffect* getLrRadioEffect(std::string key)
 	{
 		if (!lrEffects.count(key))
 		{
-			lrEffects[key] = new LongRangeRadioffect();
+			lrEffects[key] = std::make_unique<LongRangeRadioffect>();
 		}
-		return lrEffects[key];
+		return lrEffects[key].get();
 	}
 
 	UnderWaterRadioEffect* getUnderwaterRadioEffect(std::string key)
 	{
 		if (!ddEffects.count(key))
 		{
-			ddEffects[key] = new UnderWaterRadioEffect();
+			ddEffects[key] = std::make_unique<UnderWaterRadioEffect>();
 		}
-		return ddEffects[key];
+		return ddEffects[key].get();
 	}
 
 	Clunk* getClunk(std::string key) {
 		if (!clunks.count(key))
 		{
-			clunks[key] = new Clunk();
+			clunks[key] = std::make_unique<Clunk>();
 		}
-		return clunks[key];
+		return clunks[key].get();
 	}
 
 	void removeClunk(std::string key)
 	{
-		if (clunks.count(key))
-		{
-			delete clunks[key];
-		}
 		clunks.erase(key);
 	}
 
@@ -141,10 +137,10 @@ public:
 	{
 		if (!filtersCantSpeak.count(key)) 
 		{
-			filtersCantSpeak[key] = new Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>();
+			filtersCantSpeak[key] = std::make_unique<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>();
 			filtersCantSpeak[key]->setup(4, 48000, 100);
 		}
-		return filtersCantSpeak[key];
+		return filtersCantSpeak[key].get();
 	}
 
 	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>* getFilterVehicle(std::string key, float vehicleVolumeLoss)
@@ -152,34 +148,38 @@ public:
 		std::string byKey = key + std::to_string(vehicleVolumeLoss);
 		if (!filtersVehicle.count(byKey))
 		{
-			filtersVehicle[byKey] = new Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>();
+			filtersVehicle[byKey] = std::make_unique<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>();
 			filtersVehicle[byKey]->setup(2, 48000, 20000 * (1.0 - vehicleVolumeLoss) / 4.0);
 		}
-		return filtersVehicle[byKey];
+		return filtersVehicle[byKey].get();
 	}
+
+	std::map<uint8_t, std::unique_ptr<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>> filtersObjectInterception;
+
+	Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>* getFilterObjectInterception(uint8_t objectCount) {
+		objectCount = std::min(objectCount, (uint8_t)5);
+		if (!filtersObjectInterception.count(objectCount)) {
+			filtersObjectInterception[objectCount] = std::make_unique<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>();
+			filtersObjectInterception[objectCount]->setup(2, 48000, 1800 - ((objectCount-1) * 400));
+		}
+		return filtersObjectInterception[objectCount].get();
+	}
+
 
 	chunkware_simple::SimpleComp compressor;
 	void resetRadioEffect()
-	{
-		for (auto it = swEffects.begin(); it != swEffects.end(); ++it) delete it->second;		
-		swEffects.clear();
-		for (auto it = lrEffects.begin(); it != lrEffects.end(); ++it) delete it->second;		
+	{	
+		swEffects.clear();		
 		lrEffects.clear();
-		for (auto it = ddEffects.begin(); it != ddEffects.end(); ++it) delete it->second;
 		ddEffects.clear();
-		for (auto it = filtersSpeakers.begin(); it != filtersSpeakers.end(); ++it) delete it->second;
 		filtersSpeakers.clear();
-		for (auto it = filtersPhone.begin(); it != filtersPhone.end(); ++it) delete it->second;
 		filtersPhone.clear();		
 	}
 
 	void resetVoices() 
 	{
-		for (auto it = clunks.begin(); it != clunks.end(); ++it) delete it->second;
 		clunks.clear();		
-		for (auto it = filtersCantSpeak.begin(); it != filtersCantSpeak.end(); ++it) delete it->second;
 		filtersCantSpeak.clear();
-		for (auto it = filtersVehicle.begin(); it != filtersVehicle.end(); ++it) delete it->second;
 		filtersVehicle.clear();
 	}
 
@@ -211,16 +211,20 @@ public:
 
 class STRING_TO_CLIENT_DATA_MAP {
 public:
-	typedef std::map<std::string, CLIENT_DATA*>::iterator iterator;
+	typedef std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator iterator;
 	~STRING_TO_CLIENT_DATA_MAP();
-	std::map<std::string, CLIENT_DATA*>::iterator begin();
-	std::map<std::string, CLIENT_DATA*>::iterator end();
-	std::vector<CLIENT_DATA*> getClientDataByClientID(anyID clientID);
+	std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator begin();
+	std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator end();
+	std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>>::iterator find(const std::string& key);
+	std::vector<std::shared_ptr<CLIENT_DATA>> getClientDataByClientID(anyID clientID);
 	size_t count(std::string const& key) const;
-	CLIENT_DATA*& operator[](std::string const& key);
+
+	std::shared_ptr<CLIENT_DATA>& operator[](std::string const& key);
 	void removeExpiredPositions(const int &curDataFrame);
 private:
-	std::map<std::string, CLIENT_DATA*> data;
+	//unordered_map is a hashmap, which has faster access times. Which we definitely want for many players
+	//The default hash function (std::hash) may produce collisions. use Murmur-hash?
+	std::unordered_map<std::string, std::shared_ptr<CLIENT_DATA>> data;
 };
 
 

@@ -1,33 +1,32 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setLrVolume
+    Name: TFAR_fnc_setLrVolume
 
- 	Author(s):
-		NKey
+    Author(s):
+        NKey
 
- 	Description:
-		Sets the volume for the passed radio
+    Description:
+        Sets the volume for the passed radio
 
- 	Parameters:
-		0: OBJECT - Radio object
-		1: STRING - Radio ID
-		2: NUMBER - Volume : Range (0,10)
+    Parameters:
+        0: ARRAY - Radio
+            0: OBJECT- Radio object
+            1: STRING - Radio ID
+        1: NUMBER - Volume : Range (0,10)
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 5] call TFAR_fnc_setLrVolume;
+    Example:
+        [call TFAR_fnc_activeLrRadio, 5] call TFAR_fnc_setLrVolume;
 */
+params [["_radio",[],[[]],2],["_value",0,[0]]];
+_radio params ["_radio_object", "_radio_qualifier"];
 
-private ["_settings"];
-
-params ["_radio_object", "_radio_qualifier", "_value"];
-
-_settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
+private _settings = _radio call TFAR_fnc_getLrSettings;
 _settings set [VOLUME_OFFSET, _value];
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 
 //							Unit, radio object, radio ID, volume
-["OnLRvolumeSet", TFAR_currentUnit, [TFAR_currentUnit, _radio_object, _radio_qualifier, _value]] call TFAR_fnc_fireEventHandlers;
+["OnLRvolumeSet", [TFAR_currentUnit, _radio_object, _radio_qualifier, _value]] call TFAR_fnc_fireEventHandlers;
