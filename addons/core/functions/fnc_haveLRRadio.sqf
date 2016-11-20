@@ -1,21 +1,23 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_haveLRRadio
+    Name: TFAR_fnc_haveLRRadio
 
- 	Author(s):
+    Author(s):
 
- 	Description:
-		Returns whether the player has a LR radio
+    Description:
+        Returns whether the player has a LR radio
 
- 	Parameters:
-	Nothing
+    Parameters:
+    Nothing
 
- 	Returns:
-	BOOLEAN
+    Returns:
+    BOOLEAN
 
- 	Example:
-	_hasLR = call TFAR_fnc_haveLRRadio;
+    Example:
+    _hasLR = call TFAR_fnc_haveLRRadio;
  */
-if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith{false};
+
+if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith {false};
+
 count (TFAR_currentUnit call TFAR_fnc_lrRadiosList) > 0

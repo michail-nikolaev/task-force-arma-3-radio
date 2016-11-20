@@ -1,27 +1,27 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_activeSwRadio
+    Name: TFAR_fnc_activeSwRadio
 
- 	Author(s):
-		NKey
+    Author(s):
+        NKey
 
- 	Description:
-		Returns the active SW radio.
+    Description:
+        Returns the active SW radio.
 
-	Parameters:
-		Nothing
+    Parameters:
+        Nothing
 
- 	Returns:
-		STRING: Active SW radio
+    Returns:
+        STRING: Active SW radio
 
- 	Example:
-		_radio = call TFAR_fnc_activeSwRadio;
+    Example:
+        _radio = call TFAR_fnc_activeSwRadio;
 */
-private ["_result"];
-_result = nil;
+
+private _result = nil;
 {
-	if (_x call TFAR_fnc_isRadio) exitWith {_result = _x};
-	true;
+    if (_x call TFAR_fnc_isRadio) exitWith {_result = _x};
+    true;
 } count (assignedItems TFAR_currentUnit);
 _result

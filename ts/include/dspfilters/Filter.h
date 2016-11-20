@@ -259,6 +259,11 @@ public:
     m_state.process (numSamples, arrayOfChannels, *((FilterClass*)this));
   }
 
+  template <typename Sample>
+  void process(int numSamples, std::array<std::vector<Sample>, Channels>& arrayOfChannels) {
+	  m_state.process(numSamples, arrayOfChannels, *((FilterClass*)this));
+  }
+
 protected:
   ChannelsState <Channels,
                  typename FilterClass::template State <StateType> > m_state;

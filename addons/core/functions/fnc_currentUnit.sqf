@@ -4,19 +4,19 @@
     Name: TFAR_fnc_currentUnit
 
     Author(s):
-    Nkey
+        Nkey
 
     Description:
-    Return current player unit (player or remote controlled by Zeus).
+        Return current player unit (player or remote controlled by Zeus).
 
     Parameters:
-    Nothing
+        Nothing
 
     Returns:
-    OBJECT: current unit
+        OBJECT: current unit
 
     Example:
-    call TFAR_fnc_currentUnit;
+        call TFAR_fnc_currentUnit;
 */
-private ["_unit"];
+
 missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player]

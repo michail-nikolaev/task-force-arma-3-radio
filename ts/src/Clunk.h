@@ -8,80 +8,53 @@ class Clunk
 public:
 
 
-	void process(short * samples, int channels, int sampleCount, TS3_VECTOR pos, float direction)
+	void process(short * samples, uint8_t channels, size_t sampleCount, Direction3D pos, AngleRadians direction)
 	{
-		float x = pos.x;
-		float y = pos.y;
-		float z = pos.z;
-		
+		float x, y, z;
+		std::tie(x, y, z) = pos.get();
 
 		//| cos θ - sin θ   0 | | x | | x cos θ - y sin θ | | x'|
 		//| sin θ    cos θ   0 | | y | = | x sin θ + y cos θ | = | y'|
 		//| 0       0      1 | | z | | z | | z'|
 
-		float rad = direction / 180.0f * (float) M_PI;
 
-		float x_ = x * cos(rad) - y * sin(rad);
-		float y_ = x * sin(rad) + y * cos(rad);
+		float x_ = x * direction.cosine() - y * direction.sine();
+		float y_ = x * direction.sine() + y * direction.cosine();
 		float z_ = z;	
 
-		for (int q = 0; q < channels * sampleCount; q++)
-		{
-			input_buffer.push_back(samples[q]);			
-		}
 
-		if (input_buffer.size() > clunk::Hrtf::WINDOW_SIZE * (unsigned int) channels * 2)
+		input_buffer.insert(input_buffer.end(), samples, samples + (sampleCount*channels));
+
+		if (input_buffer.size() > clunk::Hrtf::WINDOW_SIZE * channels * 2u)
 		{
 
 			const int to_process = (int) input_buffer.size();
 
 			clunk::Buffer src(to_process * sizeof(short));
-			short* src_s = new short[input_buffer.size()];
-
-			for (int q = 0; q < to_process; q++)
-			{
-				src_s[q] = input_buffer.at(0);
-				input_buffer.pop_front();
-			}
-			src.set_data(src_s, to_process * sizeof(short), true);
+			src.set_data(input_buffer.data(), to_process * sizeof(short), false);//This is used as const so we can just pass input_buffers data ptr
 
 
-			int output_size = to_process;
-			output_size -= clunk::Hrtf::WINDOW_SIZE * channels * 2;
+			int output_size = to_process - clunk::Hrtf::WINDOW_SIZE * channels * 2;
 
-
-			short* dst_s = new short[output_size];
+			short* dst_s = new short[output_size]; //Will be owned by clunk::Buffer	which takes care of deleting
 			memset(dst_s, 0, output_size * sizeof(short));
 			clunk::Buffer dst(output_size * sizeof(short));
 			dst.set_data(dst_s, output_size * sizeof(short), true);
 
 			int processed = hrft.process(SAMPLE_RATE, dst, channels, src, channels, clunk::v3f(x_, y_, z_), 1.0f);
+			input_buffer.erase(input_buffer.begin(), input_buffer.begin() + processed * channels); //Erase processed data and keep leftover
+			
+			output_buffer.insert(output_buffer.end(), dst_s, dst_s + output_size);
 
-			for (int q = processed * channels; q < to_process; q++)
-			{
-				input_buffer.push_back(src_s[q]);
-			}
-
-			for (int q = 0; q < output_size; q++)
-			{
-				output_buffer.push_back(dst_s[q]);
-			}			
 		}
 
-		int q = 0;
-		while (q < sampleCount * channels)
-		{
-			if (output_buffer.size() > 0)
-			{
-				samples[q] = output_buffer.at(0);	
-				output_buffer.pop_front();
-			}
-			else
-			{
-				samples[q] = 0;
-			}
-			q++;
+		if (output_buffer.size() < sampleCount * channels) {
+			memset(samples, 0, sampleCount * channels * sizeof(short));
+		} else {
+			memcpy(samples, output_buffer.data(), sampleCount * channels * sizeof(short));
+			output_buffer.erase(output_buffer.begin(), output_buffer.begin() + sampleCount * channels);
 		}
+
 	}
 
 	~Clunk()
@@ -93,6 +66,6 @@ public:
 	
 private:
 	clunk::Hrtf hrft;
-	std::deque<short> input_buffer;
-	std::deque<short> output_buffer;	
+	std::vector<short> input_buffer;
+	std::vector<short> output_buffer;	
 };

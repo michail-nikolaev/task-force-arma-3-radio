@@ -1,28 +1,23 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_getSwSpeakers
- 	
- 	Author(s):
-		NKey
+    Name: TFAR_fnc_getSwSpeakers
 
- 	Description:
-		Gets the speakers setting of the passed radio
-	
-	Parameters:
-		STRING: Radio classname
- 	
- 	Returns:
-		BOOLEAN: speakers or headphones
- 	
- 	Example:
-		_stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwSpeakers;
+    Author(s):
+        NKey
+
+    Description:
+        Gets the speakers setting of the passed radio
+
+    Parameters:
+        STRING: Radio classname
+
+    Returns:
+        BOOLEAN: speakers or headphones
+
+    Example:
+        _stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwSpeakers;
 */
+params[["_radio","",[""]]];
 
-private ["_settings", "_result"];
-_settings = _this call TFAR_fnc_getSwSettings;
-_result = false;
-if (count _settings > TF_SW_SPEAKER_OFFSET) then {
-	_result = _settings select TF_SW_SPEAKER_OFFSET;
-};
-_result
+(_radio call TFAR_fnc_getSwSettings) param [TFAR_SW_SPEAKER_OFFSET,false]

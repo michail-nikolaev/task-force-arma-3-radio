@@ -1,9 +1,9 @@
-class tf_anprc152: ItemRadio {
+class TFAR_anprc152: ItemRadio {
     author = "Raspu";
     displayName = "AN/PRC-152";
     descriptionShort = "AN/PRC-152 personal radio 5km";//#Stringtable
-    scope = 2;
-    scopeCurator = 2;
+    scope = PUBLIC;
+    scopeCurator = PUBLIC;
     model = QPATHTOF(anprc152\data\tfr_anprc152);
     picture = QPATHTOF(anprc152\ui\152_icon.paa);
     tf_prototype = 1;
@@ -12,7 +12,8 @@ class tf_anprc152: ItemRadio {
     tf_encryptionCode = "tf_west_radio_code";
     tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
     tf_subtype = "digital";
-    tf_parent = "tf_anprc152";
+    tf_parent = "TFAR_anprc152";
     tf_additional_channel = 1;
 };
-TF_RADIO_IDS(tf_anprc152,AN/PRC-152)
+HIDDEN_CLASS(tf_anprc152 : TFAR_anprc152); //#Deprecated dummy class for backwards compat
+TF_RADIO_IDS(TFAR_anprc152,AN/PRC-152)

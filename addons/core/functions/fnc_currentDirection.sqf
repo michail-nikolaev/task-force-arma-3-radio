@@ -1,41 +1,23 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_currentDirection
+    Name: TFAR_fnc_currentDirection
 
- 	Author(s):
-		NKey
+    Author(s):
+        NKey, Dedmen
 
- 	Description:
-		Returns current direction of players head.
+    Description:
+        Returns current direction of Units head.
 
- 	Parameters:
-		Nothing
+    Parameters:
+        0: UNIT: unit to get the Head direction from. (OPTIONAL)
 
- 	Returns:
-		0: NUMBER: head direction azimuth
+    Returns:
+        0: ARRAY: current look direction in Normalized 3D Vector
 
- 	Example:
-		call TFAR_fnc_currentDirection
+    Example:
+        TFAR_currentUnit call TFAR_fnc_currentDirection
 */
-private ["_current_look_at", "_current_hyp_horizontal", "_current_rotation_horizontal"];
+params [["_unit",TFAR_currentUnit,[objNull]]];
 
-_current_look_at = (screenToWorld [0.5,0.5]) vectorDiff (eyepos TFAR_currentUnit);
-_current_look_at params ["_current_look_at_x", "_current_look_at_y", "_current_look_at_z"];
-
-_current_rotation_horizontal = 0;
-_current_hyp_horizontal = sqrt(_current_look_at_x * _current_look_at_x + _current_look_at_y * _current_look_at_y);
-
-if (_current_hyp_horizontal > 0) then {
-	if (_current_look_at_x < 0) then {
-		_current_rotation_horizontal = round - acos(_current_look_at_y / _current_hyp_horizontal);
-	}else{
-		_current_rotation_horizontal = round acos(_current_look_at_y / _current_hyp_horizontal);
-	};
-} else {
-	_current_rotation_horizontal = 0;
-};
-while{_current_rotation_horizontal < 0} do {
-	_current_rotation_horizontal = _current_rotation_horizontal + 360;
-};
-_current_rotation_horizontal;
+getCameraViewDirection _unit

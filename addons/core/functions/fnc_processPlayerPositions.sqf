@@ -1,132 +1,122 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_processPlayerPositions
- 	
- 	Author(s):
-		NKey
+    Name: TFAR_fnc_processPlayerPositions
 
- 	Description:
-		Process some player positions on each call and sends it to the plugin.
-	
-	Parameters:
-		Nothing
- 	
- 	Returns:
-		Nothing
- 	
- 	Example:
-		call TFAR_fnc_processPlayerPositions;
+    Author(s):
+        NKey
+
+    Description:
+        Process some player positions on each call and sends it to the plugin.
+
+    Parameters:
+        Nothing
+
+    Returns:
+        Nothing
+
+    Example:
+        call TFAR_fnc_processPlayerPositions;
 */
-private ["_elemsNearToProcess","_elemsFarToProcess","_other_units", "_unit", "_controlled", "_speakers"];
-if !(isNull (findDisplay 46)) then {
-	if !(isNull TFAR_currentUnit) then {
-		if ((tf_farPlayersProcessed) and {tf_nearPlayersProcessed}) then {				
-			tf_nearPlayersIndex = 0;
-			tf_farPlayersIndex = 0;		
+if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW!"};
+if (isNull (findDisplay 46)) exitWith {};
+if (isNull TFAR_currentUnit) exitWith {};
+private _startTime = diag_tickTime;
 
-			if (count tf_nearPlayers == 0) then {
-				tf_nearPlayers = call TFAR_fnc_getNearPlayers;
-			};
+//Process queued Near Players
+if (!TFAR_currentNearPlayersProcessed) then {
+    private _nearPlayersCount = count TFAR_currentNearPlayersProcessing;
+    if (_nearPlayersCount == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
+    private _playersToProcess = _nearPlayersCount min 50;//Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
+    if (_playersToProcess == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
 
-			_other_units = allUnits - tf_nearPlayers;
-			
-			{		
-				if !(_x in _other_units) then {
-					_other_units pushBack _x;	
-				};
-				true;
-			} count (call BIS_fnc_listCuratorPlayers);//Add curators
-			
-			tf_farPlayers = [];
-			tf_farPlayersIndex = 0;	
-			{
-				_spectator = _x getVariable "tf_forceSpectator";
-				if (isNil "_spectator") then {
-					_spectator = false;
-				};
-				if ((isPlayer _x) and {!_spectator}) then {
-					tf_farPlayers set[tf_farPlayersIndex, _x];
-					tf_farPlayersIndex = tf_farPlayersIndex + 1;
-				};
-				true;
-			} count _other_units;
-			
-			tf_farPlayersIndex = 0;	
+    private _startIndex = _nearPlayersCount - _playersToProcess; //Is min 0
+    for "_y" from _startIndex to _nearPlayersCount-1 step 1 do {
+        private _unit = (TFAR_currentNearPlayersProcessing select _y);
+        private _controlled = _unit getVariable "TFAR_controlledUnit";
+        if !(isNil "_controlled") then {
+            [_controlled, true, name _unit] call TFAR_fnc_sendPlayerInfo;
+        } else {
+            [_unit, true, name _unit] call TFAR_fnc_sendPlayerInfo;
+        };
+    };
 
-			if (count tf_nearPlayers > 0) then {			
-				tf_nearPlayersProcessed = false;
-				tf_msNearPerStep = tf_msNearPerStepMax max (tf_nearUpdateTime / (count tf_nearPlayers));
-				tf_msNearPerStep = tf_msNearPerStep min tf_msNearPerStepMin;
-			} else {
-				tf_msNearPerStep = tf_nearUpdateTime;
-			};
-			if (count tf_farPlayers > 0) then {
-				tf_farPlayersProcessed = false;
-				if (count tf_nearPlayers > 0) then {
-					tf_msFarPerStep = tf_msFarPerStepMax max (tf_farUpdateTime / (count tf_farPlayers));
-					tf_msFarPerStep = tf_msFarPerStep min tf_msFarPerStepMin;
-				} else {
-					tf_msFarPerStep = tf_msSpectatorPerStepMax;
-				};
-			} else {
-				tf_msFarPerStep = tf_farUpdateTime;
-			};
-			call TFAR_fnc_sendVersionInfo;
-		} else {
-			_elemsNearToProcess = (diag_tickTime - tf_lastNearFrameTick) / tf_msNearPerStep;		
-			if (_elemsNearToProcess >= 1) then {
-				for "_y" from 0 to _elemsNearToProcess step 1 do {
-					if (tf_nearPlayersIndex < count tf_nearPlayers) then {
-						_unit = (tf_nearPlayers select tf_nearPlayersIndex);
-						_controlled = _unit getVariable "tf_controlled_unit";
-						if !(isNil "_controlled") then {
-							[_controlled, true, name _unit] call TFAR_fnc_sendPlayerInfo;
-						} else {
-							[_unit, true, name _unit] call TFAR_fnc_sendPlayerInfo;
-						};					
-						tf_nearPlayersIndex = tf_nearPlayersIndex + 1;
-					} else {
-						tf_nearPlayersIndex = 0;
-						tf_nearPlayersProcessed = true;					
+    //Remove processed Units from array
+    TFAR_currentNearPlayersProcessing deleteRange [_startIndex,_playersToProcess];
+    //We just processed the last players
+    if ((_nearPlayersCount - _playersToProcess) == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
+};
 
-						if (diag_tickTime - tf_lastNearPlayersUpdate > 0.5) then {	
-							tf_nearPlayers = call TFAR_fnc_getNearPlayers;						
-							tf_lastNearPlayersUpdate = diag_tickTime;						
-						};
-						
-						call TFAR_fnc_processSpeakerRadios;
-						
-						_speakers = "SPEAKERS	";
-						{
-							_speakers = _speakers + TF_vertical_tab + _x;
-						} count (tf_speakerRadios);
-						"task_force_radio_pipe" callExtension _speakers;
+//Don't process anymore if we already blocked too long (5 millisec)
+if ((diag_tickTime - _startTime) > 0.005) exitWith {};
 
-						tf_speakerRadios = [];
-					};
-				};
-				tf_lastNearFrameTick = diag_tickTime;
-			};
+//Process queued Far players
+if (!TFAR_currentFarPlayersProcessed) then {
+    private _farPlayersCount = count TFAR_currentFarPlayersProcessing;
+    if (_farPlayersCount == 0) exitWith {TFAR_lastFarPlayerProcessTime = diag_tickTime;TFAR_currentFarPlayersProcessed = true};
+    private _playersToProcess = _farPlayersCount min 50;//Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
+    if (_playersToProcess == 0) exitWith {TFAR_lastFarPlayerProcessTime = diag_tickTime;TFAR_currentFarPlayersProcessed = true};
 
-			_elemsFarToProcess = (diag_tickTime - tf_lastFarFrameTick) / tf_msFarPerStep;
-			if (_elemsFarToProcess >= 1) then {
-				for "_y" from 0 to _elemsFarToProcess step 1 do {
-					if (tf_farPlayersIndex < count tf_farPlayers) then {
-						_unit = (tf_farPlayers select tf_farPlayersIndex);
-						[_unit, false, name _unit] call TFAR_fnc_sendPlayerInfo;
-						tf_farPlayersIndex = tf_farPlayersIndex + 1;
-					} else {
-						tf_farPlayersIndex = 0;
-						tf_farPlayersProcessed = true;
-					};
-				};
-				tf_lastFarFrameTick = diag_tickTime;
-			};
-		};
-		if (diag_tickTime - tf_lastFrequencyInfoTick > 0.5) then {
-			call TFAR_fnc_sendFrequencyInfo;
-			tf_lastFrequencyInfoTick = diag_tickTime;
-		};
-	};
+    private _startIndex = _farPlayersCount - _playersToProcess; //Is min 0
+    for "_y" from _startIndex to _farPlayersCount-1 step 1 do {
+        private _unit = (TFAR_currentFarPlayersProcessing select _y);
+        private _controlled = _unit getVariable "TFAR_controlledUnit";
+        if !(isNil "_controlled") then {
+            [_controlled, true, name _unit] call TFAR_fnc_sendPlayerInfo;
+        } else {
+            [_unit, true, name _unit] call TFAR_fnc_sendPlayerInfo;
+        };
+    };
+
+    //Remove processed Units from array
+    TFAR_currentFarPlayersProcessing deleteRange [_startIndex,_playersToProcess];
+    //We just processed the last players
+    if ((_farPlayersCount - _playersToProcess) == 0) exitWith {TFAR_lastFarPlayerProcessTime = diag_tickTime;TFAR_currentFarPlayersProcessed = true};
+};
+
+
+
+//Rescan Players
+private _needNearPlayerScan = ((diag_tickTime - TFAR_lastPlayerScanTime) > TFAR_PLAYER_RESCAN_TIME) && TFAR_currentNearPlayersProcessed;
+
+if (_needNearPlayerScan) then {
+    TFAR_currentNearPlayers = call TFAR_fnc_getNearPlayers;
+    /*
+    Want to process Curators on NearPlayers because even if they are not near,
+    their controlled unit may be.
+    */
+    {
+        TFAR_currentNearPlayers pushBackUnique _x;
+        true;
+    } count (call BIS_fnc_listCuratorPlayers);//Add curators
+
+
+    private _other_units = allPlayers - TFAR_currentNearPlayers;
+
+    TFAR_currentFarPlayers = [];
+    {
+        private _spectator = _x getVariable ["tf_forceSpectator",false];
+        if ((isPlayer _x) and {!_spectator}) then {
+            TFAR_currentFarPlayers pushBackUnique _x;
+        };
+        true;
+    } count _other_units;
+    TFAR_lastPlayerScanTime = diag_tickTime;
+};
+
+//Queue new updates to plugin if last one processed
+if (TFAR_currentNearPlayersProcessed) then {
+    call TFAR_fnc_sendSpeakerRadios;//send Speaker radio infos to plugin
+    TFAR_currentNearPlayersProcessing = +TFAR_currentNearPlayers;//Copy array for processing
+    TFAR_currentNearPlayersProcessed = false;
+};
+
+//Only process FarPlayers once a TFAR_FAR_PLAYER_UPDATE_TIME
+if ((diag_tickTime - TFAR_lastFarPlayerProcessTime) < TFAR_FAR_PLAYER_UPDATE_TIME) exitWith {};
+
+//Queue new updates to plugin if last one processed
+if (TFAR_currentFarPlayersProcessed) then {
+    call TFAR_fnc_pluginNextDataFrame;//Doing this here causes NearPlayers to only expire after TFAR_FAR_PLAYER_UPDATE_TIME
+    TFAR_currentFarPlayersProcessing = +TFAR_currentFarPlayers;//Copy array for processing
+    TFAR_currentFarPlayersProcessed = false;
 };

@@ -1,33 +1,32 @@
 #include "script_component.hpp"
 
 /*
- 	Name: TFAR_fnc_setLrChannel
+    Name: TFAR_fnc_setLrChannel
 
- 	Author(s):
-		NKey
+    Author(s):
+        NKey
 
- 	Description:
-		Sets the radio to the passed channel
+    Description:
+        Sets the radio to the passed channel
 
-	Parameters:
-		0: OBJECT - Radio object
-		1: STRING - Radio ID
-		2: NUMBER - Channel : Range (0,8)
+    Parameters:
+        0: ARRAY - Radio
+            0: OBJECT- Radio object
+            1: STRING - Radio ID
+        1: NUMBER - Channel : Range (0,8)
 
- 	Returns:
-		Nothing
+    Returns:
+        Nothing
 
- 	Example:
-		[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 4] call TFAR_fnc_setLrChannel;
+    Example:
+        [call TFAR_fnc_activeLrRadio, 4] call TFAR_fnc_setLrChannel;
 */
+params [["_radio",[],[[]],2],["_value",0,[0]]];
+_radio params ["_radio_object", "_radio_qualifier"];
 
-private ["_settings"];
-
-params ["_radio_object", "_radio_qualifier", "_value"];
-
-_settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
+private _settings = _radio call TFAR_fnc_getLrSettings;
 _settings set [ACTIVE_CHANNEL_OFFSET, _value];
 [_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
 
 //							unit, radio object,		radio ID			channel, additional
-["OnLRchannelSet", TFAR_currentUnit, [TFAR_currentUnit, _radio_object, _radio_qualifier, _value, false]] call TFAR_fnc_fireEventHandlers;
+["OnLRchannelSet", [TFAR_currentUnit, _radio_object, _radio_qualifier, _value, false]] call TFAR_fnc_fireEventHandlers;

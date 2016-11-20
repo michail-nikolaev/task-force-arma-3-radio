@@ -10,7 +10,7 @@
 
 #define VERSION MAJOR.MINOR.PATCHLVL
 #define VERSION_AR MAJOR,MINOR,PATCHLVL
-#define TF_ADDON_VERSION QUOTE(VERSION)
+#define TFAR_ADDON_VERSION QUOTE(VERSION)
 
 // MINIMAL required version for the Mod. Components can specify others..
 #define REQUIRED_VERSION 1.62

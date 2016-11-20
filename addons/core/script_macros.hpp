@@ -16,9 +16,11 @@
 #ifdef PREP
     #undef PREP
 #endif
-#define PREP(fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)
 
-#define VARIABLE_DEFAULT(varName,defaultValue) if (isNil QUOTE(varName)) then {	varName = defaultValue; };
+#define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QUOTE(DFUNC(fncName))] call CBA_fnc_compileFunction
+#define PREP_SUB(subfolder,fncName) [QPATHTOF(functions\subfolder\DOUBLES(fnc,fncName).sqf), QUOTE(DFUNC(fncName))] call CBA_fnc_compileFunction
+
+#define VARIABLE_DEFAULT(varName,defaultValue) if (isNil QUOTE(varName)) then {varName = defaultValue;}
 
 //From https://github.com/acemod/ACE3
 #define MACRO_ADDWEAPON(WEAPON,COUNT) class _xx_##WEAPON { \
@@ -54,3 +56,24 @@
     tf_hasLRradio = hasLR; \
     tf_isolatedAmount = isolation; \
 }
+
+//config scopes
+#define PRIVATE 0 //unusable - only for inheritance
+#define HIDDEN 1 //Hidden in Editor/Curator/Arsenal
+#define PUBLIC 2 //usable and visible
+#define ALL_SCOPES_HIDDEN scope = 1;scopeCurator = 1;scopeArsenal = 1;
+#define HIDDEN_CLASS(name) class name {scope = 1;scopeCurator = 1;scopeArsenal = 1;}
+
+
+
+//Mutex
+#define MUTEX_INIT(name) name = false
+#define MUTEX_LOCK(name) waitUntil {if (!name) exitWith {name = true; true};false;}
+#define MUTEX_UNLOCK(name) name = false
+
+
+#define DEPRECATE_VARIABLE(OLD_VARIABLE,NEW_VARIABLE) \
+    if (!isNil QUOTE(OLD_VARIABLE)) then { \
+        WARNING('Deprecated variable used: OLD_VARIABLE (new: NEW_VARIABLE) in ADDON'); \
+        NEW_VARIABLE = OLD_VARIABLE; \
+    }
