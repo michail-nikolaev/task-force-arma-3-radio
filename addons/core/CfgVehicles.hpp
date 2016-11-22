@@ -164,7 +164,6 @@ class CfgVehicles {
             sync[] = {"AnyPerson"};
         };
     };
-
     //Add radios to vehicles
     class All;
     MACRO_VEC_ISOLATION_LR(AllVehicles,All,0,0);
@@ -172,9 +171,10 @@ class CfgVehicles {
     class Land;
     class LandVehicle: Land {
         tf_range = 30000;
+        class ACE_SelfActions;
     };
     MACRO_VEC_ISOLATION(Car,LandVehicle,0.1);
-    MACRO_VEC_ISOLATION_LR(Tank,LandVehicle,1,1);
+    MACRO_VEC_ISOLATION_LR_Intercom(Tank,LandVehicle,1,1,1);
     class Helicopter;
     MACRO_VEC_ISOLATION_LR(ParachuteBase,Helicopter,0,0);
     class Helicopter_Base_F;

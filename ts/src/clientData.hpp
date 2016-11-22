@@ -239,16 +239,14 @@ public:
     void setCurrentTransmittingFrequency(const std::string&val) { LockGuard_exclusive lock(&m_lock); currentTransmittingFrequency = val; }
     auto getCurrentTransmittingSubtype() const { LockGuard_shared lock(&m_lock); return currentTransmittingSubtype; }
     void setCurrentTransmittingSubtype(const std::string& val) { LockGuard_exclusive lock(&m_lock); currentTransmittingSubtype = val; }
-    auto getVehicleId() const { LockGuard_shared lock(&m_lock); return vehicleId; }
-    void setVehicleId(const std::string& val) { LockGuard_exclusive lock(&m_lock); vehicleId = val; }
-
     //Returns distance respecting TerrainInterception and Coefficients
     float effectiveDistanceTo(std::shared_ptr<clientData>& other) const;
     float effectiveDistanceTo(clientData* other) const;
     bool isAlive();
 
     vehicleDescriptor getVehicleDescriptor() const {
-        return helpers::getVehicleDescriptor(getVehicleId());
+        LockGuard_shared lock(&m_lock);
+        return vehicleId; //helpers::getVehicleDescriptor(getVehicleId());
     }
 
 
@@ -309,15 +307,25 @@ private:
     std::string currentTransmittingFrequency;//Frequency client is currently transmitting on
     std::string currentTransmittingSubtype;//subtype client is currently transmitting on
 
-    std::string vehicleId;
+    vehicleDescriptor vehicleId;
 
 
-
-
-
-
-
-
-
+    void setVehicleId(const std::string& val) {
+        //"2:390\x100.6\x10gunner"
+        if (val == "no") {
+            vehicleId.vehicleName = "no";
+            vehicleId.vehicleIsolation = 0.f;
+        }
+        auto split = helpers::split(val, '\x10');
+        if (split.size() < 3) return; //I don't listen to morons!!
+        vehicleDescriptor result;
+        vehicleId.vehicleName == split[0]; // hear vehicle
+        auto& isolation = split[1];
+        if (isolation == "turnout")
+            vehicleId.vehicleIsolation = 0.f;
+        else
+            vehicleId.vehicleIsolation = helpers::parseArmaNumber(split[1]); // hear
+        vehicleId.intercomSlot = helpers::parseArmaNumberToInt(split[2]);//vehicleDescriptor::stringToVehiclePosition(split[2]);
+    }
 };
 

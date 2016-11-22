@@ -57,6 +57,30 @@
     tf_isolatedAmount = isolation; \
 }
 
+#define MACRO_VEC_ISOLATION_LR_Intercom(vehicle,baseClass,isolation,hasLR,intercom) class vehicle : baseClass { \
+    tf_hasLRradio = hasLR; \
+    tf_isolatedAmount = isolation; \
+        class ACE_SelfActions : ACE_SelfActions { \
+            class TFAR_IntercomChannel { \
+                displayName = "Intercom Channel"; \
+                condition = QUOTE(true); \
+                statement = ""; \
+                icon = ""; \
+                class TFAR_IntercomChannel_1 { \
+                    displayName = "Cargo"; \
+                    condition = QUOTE(true); \
+                    statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],0,true];"; \
+                }; \
+                class TFAR_IntercomChannel_2 { \
+                    displayName = "Crew"; \
+                    condition = QUOTE(true); \
+                    statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],1,true];"; \
+                }; \
+            }; \
+        }; \
+    TFAR_hasIntercom = intercom; \
+}
+
 //config scopes
 #define PRIVATE 0 //unusable - only for inheritance
 #define HIDDEN 1 //Hidden in Editor/Curator/Arsenal

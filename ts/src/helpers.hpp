@@ -60,6 +60,19 @@ struct FREQ_SETTINGS;
 struct vehicleDescriptor {
     std::string vehicleName;
     float vehicleIsolation;
+    enum class vehiclePosition {
+       driver,
+       commander,
+       gunner,
+       cargo
+    } /*slot*/;
+    int16_t intercomSlot;//If this is -1 then vehicle doesn't have intercom
+    static vehiclePosition stringToVehiclePosition(const std::string& pos) {
+        if (pos == "driver") return vehiclePosition::driver;
+        if (pos == "commander") return vehiclePosition::commander;
+        if (pos == "gunner") return vehiclePosition::gunner;
+        return vehiclePosition::cargo;
+    }
 };
 
 

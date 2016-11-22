@@ -12,7 +12,7 @@ void clientData::updatePosition(const unitPositionPacket & packet) {
     canUseSWRadio = packet.canUseSWRadio;
     canUseLRRadio = packet.canUseLRRadio;
     canUseDDRadio = packet.canUseDDRadio;
-    vehicleId = packet.vehicleID;
+    setVehicleId(packet.vehicleID);
     terrainInterception = packet.terrainInterception;
     voiceVolumeMultiplifier = packet.voiceVolume;
     objectInterception = packet.objectInterception;
@@ -143,8 +143,10 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
     }
 
     //vehicle intercom
+    auto vecDescriptor = getVehicleDescriptor();
+    auto myVecDescriptor = myData->getVehicleDescriptor();
     if (currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_NONE && //Not currently transmitting on a Radio. If transmitting only direct speech.
-        getVehicleDescriptor().vehicleName != "no" && getVehicleDescriptor().vehicleName == myData->getVehicleDescriptor().vehicleName) {
+        vecDescriptor.vehicleName != "no" && vecDescriptor.vehicleName == myVecDescriptor.vehicleName && vecDescriptor.intercomSlot!=-1 && vecDescriptor.intercomSlot == myVecDescriptor.intercomSlot) {
         result.emplace_back(
             sendingRadioType::LISTEN_TO_SW,	//unused
             receivingRadioType::LISTED_ON_INTERCOM,
