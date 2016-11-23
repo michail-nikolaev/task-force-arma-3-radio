@@ -4,15 +4,18 @@
 
 // server
 ["TFAR_giveLongRangeRadioToGroupLeaders", "CHECKBOX", "STR_radio_no_auto_long_range_radio", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TF_give_personal_radio_to_regular_soldier", "CHECKBOX", "STR_radio_give_personal_radio_to_regular_soldier", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
+["TFAR_givePersonalRadioToRegularSoldier", "CHECKBOX", "STR_radio_give_personal_radio_to_regular_soldier", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TFAR_giveMicroDagrToSoldier", "CHECKBOX", "STR_radio_give_microdagr_to_soldier", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
 ["TFAR_SameSRFrequenciesForSide", "CHECKBOX", "STR_radio_same_sw_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TFAR_SameLRFrequenciesForSide", "CHECKBOX", "STR_radio_same_lr_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TFAR_SameDDFrequenciesForSide", "CHECKBOX", "STR_radio_same_dd_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TF_full_duplex", "CHECKBOX", ["STR_TFAR_Mod_FullDuplex","STR_TFAR_Mod_FullDuplexDescription"], "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
+["TFAR_fullDuplex", "CHECKBOX", ["STR_TFAR_Mod_FullDuplex","STR_TFAR_Mod_FullDuplexDescription"], "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
+["TFAR_enableIntercom", "CHECKBOX", "Enable vehicle Intercom", "Task Force Arrowhead Radio", true, true, {["intercomEnabled",missionNamespace getVariable ["TFAR_intercomVolume",0.3]] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 // client
 ["TFAR_default_radioVolume", "SLIDER", "STR_radio_default_radioVolume", "Task Force Arrowhead Radio", [1, 9, 7, 0]] call CBA_Settings_fnc_init;
-["TF_volumeModifier_forceSpeech", "CHECKBOX", "Activate directSpeech when pressing volume modifier.", "Task Force Arrowhead Radio", false] call CBA_Settings_fnc_init;//#Stringtable
+["TFAR_volumeModifier_forceSpeech", "CHECKBOX", "Activate directSpeech when pressing volume modifier.", "Task Force Arrowhead Radio", false] call CBA_Settings_fnc_init;//#Stringtable
+["TFAR_intercomVolume", "SLIDER", "Intercom Volume", "Task Force Arrowhead Radio", [0.01, 0.6, 0.3, 3], false, {["intercomVolume",TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
+
 
 if (!isMultiplayer && !is3DENMultiplayer) exitWith {}; //Don't do anything in Singleplayer
 //Global variables
