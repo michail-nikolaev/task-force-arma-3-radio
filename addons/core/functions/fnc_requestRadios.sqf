@@ -27,7 +27,7 @@ private _fnc_CopySettings = {
     if (_settingsCount > _copyIndex) then {
         if ([_destination, _TF_SettingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
             private _source = _TF_SettingsToCopy select _copyIndex;
-            private _variableName = format["%1_settings_local", _source];
+            private _variableName = format["%1_local", _source];
             private _localSettings = TFAR_RadioSettingsNamespace getVariable _variableName;
             if !(isNil "_variableName") then {
                 [_destination, _localSettings, true] call TFAR_fnc_setSwSettings;
