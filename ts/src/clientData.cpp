@@ -161,7 +161,7 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
     }
 
 
-    float effectiveDistance_ = myData->effectiveDistanceTo(this);
+    float effectiveDistance_ = myData->effectiveDistanceTo(this);//#TODO is this broken? seems to always return 0
     //check if we receive him over a radio laying on ground
     if (effectiveDistance_ > range)//does senders range reach to us?
         return result;	 //His distance > range

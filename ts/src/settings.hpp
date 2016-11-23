@@ -31,16 +31,16 @@ public:
     settingValue(const char* value) : type(settingType::t_string), stringValue(new std::string(value)) {}
     void operator=(const bool& value) {
         switch (type) {
-            case settingType::t_bool: boolValue = value;
-            case settingType::t_float: floatValue = value ? 1.f : 0.f;
-            case settingType::t_string: stringValue->assign(value ? "true" : "false");
+            case settingType::t_bool: boolValue = value;        break;
+            case settingType::t_float: floatValue = value ? 1.f : 0.f;  break;
+            case settingType::t_string: stringValue->assign(value ? "true" : "false");  break;
         }
     }
     void operator=(const float& value) {
         switch (type) {
-            case settingType::t_bool: boolValue = value > 0.f;
-            case settingType::t_float: floatValue = value;
-            case settingType::t_string: stringValue->assign(std::to_string(value));
+            case settingType::t_bool: boolValue = value > 0.f; break;
+            case settingType::t_float: floatValue = value; break;
+            case settingType::t_string: stringValue->assign(std::to_string(value)); break;
         }
     }
     void setString(const std::string& value) const {
@@ -63,12 +63,11 @@ public:
         return "";
     }
     operator const float() const {
-        switch (type) {
-            case settingType::t_bool: return boolValue ? 1.f : 0.f;
-            case settingType::t_float: return floatValue;
-            case settingType::t_string: return helpers::parseArmaNumber(*stringValue);
-        }
-        return 0.f;
+#ifdef _DEBUG
+        if (type != settingType::t_float)
+            __debugbreak();
+#endif
+        return floatValue;
     }
     operator const bool() const {
 #ifdef _DEBUG
@@ -137,7 +136,7 @@ private:
     bool needRefresh = true;
     std::array<settingValue, Setting::Setting_MAX + 1> values{
         true,  //full_duplex
-        "unknown", 
+        "unknown", //addon_version
         "",  //serious_channelName
         "",   //serious_channelPassword
         0.3f, //intercomVolume

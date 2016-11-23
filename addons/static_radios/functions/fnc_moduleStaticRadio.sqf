@@ -26,7 +26,7 @@ private _display = ctrlParent _control;
 private _logic = missionNamespace getVariable ["BIS_fnc_initCuratorAttributes_target",objNull];
 
 private _unit = (attachedTo _logic);
-_classname =  ((getItemCargo _unit) select 0) select 0;
+private _classname =  ((getItemCargo _unit) select 0) select 0;
 
 if !((_unit call TFAR_fnc_isLRRadio) || {(_classname call TFAR_fnc_isPrototypeRadio)} || {(_classname call TFAR_fnc_isRadio)}) exitWith {
     hint "This has to be used on a Radio";
@@ -53,15 +53,17 @@ private _fnc_onConfirm = {
     if (isNull _logic) exitWith {};
     private _unit = (attachedTo _logic);
 
-    _FreqControl = _display displayCtrl 20611804;
-    _ChannelControl = _display displayCtrl 20611806;
-    _SpeakerControl = _display displayCtrl 20611808;
+    _FreqControl = _display displayCtrl 2611804;
+    _ChannelControl = _display displayCtrl 2611806;
+    _SpeakerControl = _display displayCtrl 2611808;
+    _VolumeControl = _parent displayCtrl 2611810;
 
     _freq = ctrlText _FreqControl;
     _channel = ctrlText _ChannelControl;
     _speaker = cbChecked _SpeakerControl;
+    _volume = sliderPosition _VolumeControl;
 
-    ["TFAR_StaticRadioEvent", [_unit,_freq,_channel,_speaker]] call CBA_fnc_serverEvent;
+    ["TFAR_StaticRadioEvent", [_unit,_freq,_channel,_speaker, round _volume]] call CBA_fnc_serverEvent;
 
     deleteVehicle _logic;
 };
@@ -70,15 +72,34 @@ _display displayAddEventHandler ["unload", _fnc_onUnload];
 _control ctrlAddEventHandler ["buttonClick", _fnc_onConfirm];
 
 
-_parent = (ctrlParent _control);
 
-_randomFrequencies = _classname call TFAR_static_radios_fnc_generateFrequencies;
+private _FreqControl = _display displayCtrl 2611804;
+private _ChannelControl = _display displayCtrl 2611806;
+private _SpeakerControl = _display displayCtrl 2611808;
+private _VolumeControl = _display displayCtrl 2611810;
+private _VolumeEditControl = _display displayCtrl 2611811;
 
-_FreqControl = _parent displayCtrl 20611804;
-_ChannelControl = _parent displayCtrl 20611806;
-_SpeakerControl = _parent displayCtrl 20611808;
 
-_FreqControl ctrlSetText (str _randomFrequencies);
+//Edit volume control
+_VolumeControl sliderSetRange [1, 50];
+_VolumeControl sliderSetPosition TFAR_default_radioVolume;
+_VolumeControl ctrlSetTooltip "The normal max for this setting is 10. But for static Radios their volume can be amplified. Be careful using this on Radios that can be picked up by Players! A too high setting can cause performance problems on clients.";//#Stringtable
+_VolumeControl ctrlAddEventHandler ["SliderPosChanged", {
+    params ["_slider"];
+    private _edit = (ctrlParent _slider) displayCtrl 2611811;
+    private _value = sliderPosition _slider;
+    _edit ctrlSetText ([_value, 1, 0] call CBA_fnc_formatNumber);
+}];
+
+_VolumeEditControl ctrlAddEventHandler ["KillFocus", {
+    params ["_edit"];
+    private _slider = (ctrlParent _edit) displayCtrl 2611810;
+    private _value = ((parseNumber ctrlText _edit) min 50) max 1;
+    _slider sliderSetPosition _value;
+    _edit ctrlSetText str _value;
+}];
+
+_FreqControl ctrlSetText (str (_classname call TFAR_static_radios_fnc_generateFrequencies));
 _ChannelControl ctrlSetText "1";
 
 /*

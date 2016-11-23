@@ -594,8 +594,8 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
             bool radioVehicleCheck = (myVehicleDesriptor.vehicleName == info.vehicle.vehicleName);
 
             helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, SPEAKER_GAIN, (clientData->effects.getSpeakerFilter(info.radio_id)));
-
-            float speakerDistance = (info.volume / 10.f) * TFAR::getInstance().m_gameData.speakerDistance;
+            //Special handling for Radios that are louder than normal max. == statically placed radios
+            float speakerDistance = (info.volume < 20) ? (info.volume / 10.f) * TFAR::getInstance().m_gameData.speakerDistance : info.volume*1.9f;
             if (radioVehicleVolumeLoss < 0.01f || radioVehicleCheck) {
                 helpers::applyGain(radio_buffer, sampleCount, channels, helpers::volumeAttenuation(distance_from_radio, shouldPlayerHear, speakerDistance));
             } else {
