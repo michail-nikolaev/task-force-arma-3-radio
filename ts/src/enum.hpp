@@ -157,10 +157,11 @@ struct EnumName {                                                     \
     }                                                                 \
                                                                       \
     EnumName() = delete;                                              \
-    constexpr EnumName(_enum value) : _value(value) { }               \
+    constexpr EnumName(_enum value) : _value((value < _enum::Setting_MAX) ? value : (throw std::logic_error("invalid Enum value"))) {}               \
     constexpr EnumName(const char *s) : _value(_from_string(s)) { } /*Custom by dedmen*/              \
     EnumName(const std::string&s) : _value(_from_string(s.c_str())) { } /*Custom by dedmen*/              \
-    constexpr operator _enum() const { return (_enum)_value; }        \
+/*    constexpr operator _enum() const { return (_enum)_value; }*/        \
+    constexpr operator _underlying() const {return _value;}           \
                                                                       \
   private:                                                            \
     _underlying     _value;                                           \

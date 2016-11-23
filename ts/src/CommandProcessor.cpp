@@ -338,6 +338,11 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
         case gameCommand::SETCFG: {//async
             std::string key = tokens[1];
             std::string value = tokens[2];
+            Setting keyEnum(key);
+            if (!TFAR::config.isValidKey(keyEnum)) {
+                MessageBoxA(0, ("Used invalid config key: " + key).c_str(), "Task Force Radio", MB_OK);
+                return;
+            }
             if (tokens.size() == 4) {
                 std::string type = tokens[3];
                 if (type == "BOOL") {
@@ -348,7 +353,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                     TFAR::config.set(key, value);
                 }
             } else {
-                TFAR::config.set(key, "");
+                TFAR::config.set(key, std::string(""));
             }
         }; return;
         case gameCommand::MISSIONEND: //Handled by pipe extension. That sets last GameTick to 0 so SharedMemoryHandler::onDisconnected will fire
