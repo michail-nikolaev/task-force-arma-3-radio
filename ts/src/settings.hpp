@@ -20,29 +20,32 @@ ENUM(Setting, unsigned char,
 static_assert(Setting("full_duplex") == 0x0, "Can't execute Setting::_to_string at compile time!");
 
 
-class settingValue {
+class settingValue {//This is heavily optimized towards booleans get<bool> can be optimized down to a single instruction. Allowing very fast branching
 public:
     explicit settingValue() : type(settingType::t_invalid), boolValue(false) {}
-    explicit settingValue(const bool& value) : type(settingType::t_bool), boolValue(value) {}
-    explicit settingValue(const float& value) : type(settingType::t_float), floatValue(value) {}
-    explicit settingValue(const std::string& value) : type(settingType::t_string), stringValue(new std::string(value)) {}
-    explicit settingValue(const char* value) : type(settingType::t_string), stringValue(new std::string(value)) {}
+    constexpr settingValue(bool value) : type(settingType::t_bool), boolValue(value) {}
+    settingValue(const float& value) : type(settingType::t_float), floatValue(value) {}
+    settingValue(const std::string& value) : type(settingType::t_string), stringValue(new std::string(value)) {}
+    settingValue(const char* value) : type(settingType::t_string), stringValue(new std::string(value)) {}
     void operator=(const bool& value) {
-        type = settingType::t_bool;
-        boolValue = value;
+        switch (type) {
+            case settingType::t_bool: boolValue = value;
+            case settingType::t_float: floatValue = value ? 1.f : 0.f;
+            case settingType::t_string: stringValue->assign(value ? "true" : "false");
+        }
     }
     void operator=(const float& value) {
-        type = settingType::t_float;
-        floatValue = value;
+        switch (type) {
+            case settingType::t_bool: boolValue = value > 0.f;
+            case settingType::t_float: floatValue = value;
+            case settingType::t_string: stringValue->assign(std::to_string(value));
+        }
     }
-    void operator=(const std::string& value) {
-        if (type == settingType::t_string)
-            delete stringValue;
-        type = settingType::t_string;
-        stringValue = new std::string(value);
+    void setString(const std::string& value) const {
+        stringValue->assign(value);
     }
-    void operator=(const char* value) {
-        operator=(std::string(value));
+    void setString(const char* value) const {
+        stringValue->assign(value);
     }
     ~settingValue() {
         if (type == settingType::t_string)
@@ -66,12 +69,11 @@ public:
         return 0.f;
     }
     operator const bool() const {
-        switch (type) {
-            case settingType::t_bool: return boolValue;
-            case settingType::t_float: return floatValue > 0.f;
-            case settingType::t_string: return !stringValue->compare("true") || !stringValue->compare("TRUE");
-        }
-        return false;
+#ifdef _DEBUG
+        if (type != settingType::t_bool)
+            __debugbreak();
+#endif
+        return boolValue;
     }
 
 private:
@@ -80,54 +82,50 @@ private:
         t_bool,
         t_float,
         t_string
-    } type;
+    };
+    const settingType type;
     union {
         bool boolValue;
         float floatValue;
-        const std::string* stringValue;
+        std::string* stringValue;
     };
 };
 
 class settings {
 public:
-    settings() {
-        //default variables
-        values[Setting::full_duplex] = true;
-        values[Setting::addon_version] = "unknown";
-        values[Setting::serious_channelName] = "";
-        values[Setting::serious_channelPassword] = "";
-    }
+    settings() {}
     ~settings() {}
+
+    static bool isValidKey(Setting key) {
+        return key < Setting::Setting_MAX;
+    }
     template<typename TYPE>
-    void set(const Setting& key, const TYPE& value) {
-        if (std::is_same<TYPE, std::string>::value) {  //Only lock for types that are big enough to need mutex
-            LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
-            values[key] = value;
-            needRefresh = false;
-        } else {
-            values[key] = value;
-            needRefresh = false;
-        }
+    void set(Setting key, const TYPE& value) {
+        values[key] = value;
+        needRefresh = false;
         configValueSet(key);
     }
-    template<typename TYPE>
-    TYPE get(const Setting& key) {
-        if (std::is_same<TYPE, std::string>::value) {	//Only lock for types that are big enough to need mutex
-            LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
-            if (Setting::Setting_MAX < key)//Using that instead of values.size because that can be evaluated at compile-time
-                return values.at(Setting::Setting_MAX);
-            return values.at(key);
-        } else {
-            if (Setting::Setting_MAX < key)//Using that instead of values.size because that can be evaluated at compile-time
-                return values.at(Setting::Setting_MAX);
-            return values.at(key);
-        }
+
+    template<>
+    void set(Setting key, const std::string& value) {
+        LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
+        values[key].setString(value);
+        needRefresh = false;
+        configValueSet(key);
     }
 
-    const settingValue& get(const Setting& key) {
-        if (Setting::Setting_MAX < key)//Using that instead of values.size because that can be evaluated at compile-time
-            return values.at(Setting::Setting_MAX);
-        return values.at(key);
+    template<typename TYPE>
+    TYPE get(Setting key) {
+        //Using an invalid key on get will crash. But get is only used with compile-time known keys for now anyway.
+        if (std::is_same<TYPE, std::string>::value) {	//Only lock for types that are big enough to need mutex
+            LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
+            return values[key];
+        }
+        return values[key];
+    }
+
+    const settingValue& get(Setting key) {
+        return values[key];
     }
     void setRefresh() { needRefresh = true; }
     bool needsRefresh() const { return needRefresh; }
@@ -135,6 +133,6 @@ public:
 private:
     CriticalSectionLock m_lock;
     bool needRefresh = true;
-    std::array<settingValue, Setting::Setting_MAX + 1> values;
+    std::array<settingValue, Setting::Setting_MAX + 1> values{ true,"unknown","","" };
 };
 
