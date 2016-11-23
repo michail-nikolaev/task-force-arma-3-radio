@@ -44,7 +44,7 @@ call TFAR_fnc_sendFrequencyInfo;
 
 private _localName = localize format["STR_voice_%1", _modifierMode];
 private _hintText = format[localize "STR_voice_volume", _localName];
-if (TF_volumeModifier_forceSpeech) then {
+if (TFAR_volumeModifier_forceSpeech) then {
     [_hintText,format["TANGENT	PRESSED	%1	%2	%3","directSpeechFreq", 0, "directSpeech"],-1] call TFAR_fnc_processTangent;
 } else {
     [parseText (_hintText), -1] call TFAR_fnc_showHint;

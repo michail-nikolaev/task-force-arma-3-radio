@@ -145,8 +145,10 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
     //vehicle intercom
     auto vecDescriptor = getVehicleDescriptor();
     auto myVecDescriptor = myData->getVehicleDescriptor();
-    if (currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_NONE && //Not currently transmitting on a Radio. If transmitting only direct speech.
-        vecDescriptor.vehicleName != "no" && vecDescriptor.vehicleName == myVecDescriptor.vehicleName && vecDescriptor.intercomSlot!=-1 && vecDescriptor.intercomSlot == myVecDescriptor.intercomSlot) {
+    if (TFAR::config.get<bool>(Setting::intercomEnabled) &&
+        currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_NONE && //Not currently transmitting on a Radio. If transmitting only direct speech.
+        vecDescriptor.vehicleName != "no" && vecDescriptor.vehicleName == myVecDescriptor.vehicleName //In same vehicle 
+        && vecDescriptor.intercomSlot!=-1 && vecDescriptor.intercomSlot == myVecDescriptor.intercomSlot) { //On same Intercom Channel
         result.emplace_back(
             sendingRadioType::LISTEN_TO_SW,	//unused
             receivingRadioType::LISTED_ON_INTERCOM,

@@ -34,7 +34,7 @@ _allGroups = allGroups;
         } else {
             switch (side _x) do {
                 case west: {
-                    _x setVariable ["tf_sw_frequency", TFAR_freq_sr_west, true];//#TODO rename tf_xx_frequency
+                    _x setVariable ["tf_sw_frequency", TFAR_freq_sr_west, true];
                 };
                 case east: {
                     _x setVariable ["tf_sw_frequency", TFAR_freq_sr_east, true];

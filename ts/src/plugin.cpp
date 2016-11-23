@@ -609,9 +609,10 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
 
             clientData->effects.getClunk(info.radio_id)->process(radio_buffer, channels, sampleCount, relativePosition, myViewDirection);//interaural time difference
             helpers::applyILD(radio_buffer, sampleCount, channels, relativePosition, myViewDirection);//interaural level difference
-        } else  if (info.on == receivingRadioType::LISTED_ON_INTERCOM) {
+        
+        } else if (info.on == receivingRadioType::LISTED_ON_INTERCOM) {
             clientData->effects.getLrRadioEffect("intercom")->setErrorLeveL(0.f);
-            processRadioEffect(radio_buffer, channels, sampleCount, 0.3f, clientData->effects.getLrRadioEffect("intercom"), stereoMode::stereo);
+            processRadioEffect(radio_buffer, channels, sampleCount, TFAR::config.get<float>(Setting::intercomVolume), clientData->effects.getLrRadioEffect("intercom"), stereoMode::stereo);
         }
 
 

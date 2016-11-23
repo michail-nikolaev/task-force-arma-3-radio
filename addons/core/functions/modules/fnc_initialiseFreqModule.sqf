@@ -38,7 +38,7 @@ if (_activated) then {
     private _lrFreq = false call TFAR_fnc_generateLrSettings;
     _freqs = call compile (_logic getVariable "LrFreq");
     _randomFreqs = [TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
-    while {count _freqs < TFAR_MAX_LR_CHANNELS} do{
+    while {count _freqs < TFAR_MAX_LR_CHANNELS} do {
         _freqs pushBack (_randomFreqs select (count _freqs));
     };
     _lrFreq set [2,_freqs];
@@ -50,16 +50,21 @@ if (_activated) then {
         true;
     } count _units;
 
-    {
-        if (!isNil (_x getVariable "tf_sw_frequency")) then {hint format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.", (group _x)];diag_log format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];};
+    if (didJIP) then {
+        if (isNil (_x getVariable "tf_sw_frequency")) then {_x setVariable ["tf_sw_frequency", _swFreq, true];};
+        if (isNil (_x getVariable "tf_lr_frequency")) then {_x setVariable ["tf_lr_frequency", _lrFreq, true];};
+    } else {
+        {
+            if (!isNil (_x getVariable "tf_sw_frequency")) then {private _message = format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.", (group _x)];diag_log _message;hint _message;};
 
-        if (!isNil (_x getVariable "tf_lr_frequency")) then {hint format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.", (group _x)];diag_log format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules.", (group _x)];};
+            if (!isNil (_x getVariable "tf_lr_frequency")) then {private _message = format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.", (group _x)];diag_log _message;hint _message;};
 
-        _x setVariable ["tf_sw_frequency", _swFreq, true];
-        _x setVariable ["tf_lr_frequency", _lrFreq, true];
+            _x setVariable ["tf_sw_frequency", _swFreq, true];
+            _x setVariable ["tf_lr_frequency", _lrFreq, true];
 
-        true;
-    } count _groups;
+            true;
+        } count _groups;
+    };
 };
 
 true

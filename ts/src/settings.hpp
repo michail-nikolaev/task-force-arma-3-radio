@@ -13,6 +13,8 @@ ENUM(Setting, unsigned char,
     addon_version,
     serious_channelName,
     serious_channelPassword,
+    intercomVolume,
+    intercomEnabled,
     Setting_MAX	//has to be last value
 )
 #pragma pop_macro("max")
@@ -133,6 +135,13 @@ public:
 private:
     CriticalSectionLock m_lock;
     bool needRefresh = true;
-    std::array<settingValue, Setting::Setting_MAX + 1> values{ true,"unknown","","" };
+    std::array<settingValue, Setting::Setting_MAX + 1> values{
+        true,  //full_duplex
+        "unknown", 
+        "",  //serious_channelName
+        "",   //serious_channelPassword
+        0.3f, //intercomVolume
+        true //intercomEnabled
+    };
 };
 
