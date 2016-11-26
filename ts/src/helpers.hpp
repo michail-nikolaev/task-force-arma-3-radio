@@ -140,6 +140,8 @@ public:
     static void processFilterStereo(short * samples, int channels, size_t sampleCount, float gain, T* filter) {
         static thread_local size_t allocatedFloatsSample = 0;
         static thread_local std::array<std::vector<float>, MAX_CHANNELS> floatsSample;
+        if (allocatedFloatsSample != floatsSample[0].size())
+            allocatedFloatsSample = 0; //It happened that allocatedFloatsSample==960 and floatsSample[0] was of size 0...
 
         if (allocatedFloatsSample < sampleCount)  //Not enough buffer, create new one
         {

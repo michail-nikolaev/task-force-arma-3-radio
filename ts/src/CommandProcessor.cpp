@@ -326,6 +326,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                         break;
                     default: break;
                 }
+                frequencyLock.unlock(); //setCurTransRadio aquires lock. This can deadlock if we don't unlock here
                 if (!TFAR::config.get<bool>(Setting::full_duplex)) {
                     TFAR::getInstance().m_gameData.setCurrentTransmittingRadio("");
                 }
