@@ -57,7 +57,7 @@
     tf_isolatedAmount = isolation; \
 }
 
-#define MACRO_VEC_ISOLATION_LR_Intercom(vehicle,baseClass,isolation,hasLR,intercom) class vehicle : baseClass { \
+#define MACRO_VEC_ISOLATION_LR_Intercom(veeeeehicle,baseClass,isolation,hasLR,intercom) class veeeeehicle : baseClass { \
     tf_hasLRradio = hasLR; \
     tf_isolatedAmount = isolation; \
         class ACE_SelfActions : ACE_SelfActions { \

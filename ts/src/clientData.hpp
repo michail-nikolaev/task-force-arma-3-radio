@@ -67,6 +67,10 @@ public:
 
         resetRadioEffect();
     }
+     ~clientDataEffects() {
+
+    }
+
 
     Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* getSpeakerPhone(std::string key) {
         LockGuard_shared lock_shared(&m_lock);
@@ -88,6 +92,11 @@ public:
             filtersSpeakers[key]->setup(1, 48000, 2000, 1000);
         }
         return filtersSpeakers[key].get();
+    }
+
+    void removeSpeakerFilter(std::string key) {
+        LockGuard_exclusive lock_shared(&m_lock);
+         filtersSpeakers.erase(key);
     }
 
     PersonalRadioEffect* getSwRadioEffect(std::string key) {
@@ -146,6 +155,11 @@ public:
         return filtersCantSpeak[key].get();
     }
 
+    void removeFilterCantSpeak(std::string key) {
+        LockGuard_exclusive lock(&m_lock);
+        filtersCantSpeak.erase(key);
+    }
+
     Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>* getFilterVehicle(std::string key, float vehicleVolumeLoss) {
         std::string byKey = key + std::to_string(vehicleVolumeLoss);
         LockGuard_shared lock_shared(&m_lock);
@@ -156,6 +170,11 @@ public:
             filtersVehicle[byKey]->setup(2, 48000, 20000 * (1.0 - vehicleVolumeLoss) / 4.0);
         }
         return filtersVehicle[byKey].get();
+    }
+
+    void removeFilterVehicle(std::string key) {
+        LockGuard_exclusive lock(&m_lock);
+        filtersVehicle.erase(key);
     }
 
     std::map<uint8_t, std::unique_ptr<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>> filtersObjectInterception;
@@ -185,7 +204,7 @@ public:
 
     void resetVoices() {
         LockGuard_exclusive lock(&m_lock);
-        clunks.clear();
+        //clunks.clear();
         filtersCantSpeak.clear();
         filtersVehicle.clear();
     }

@@ -828,11 +828,6 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
             }
         }
     }
-
-    if (!playPressed && alive) {
-        senderClientData->effects.resetRadioEffect();
-    }
-
 }
 
 void processPluginCommand(std::string command) {

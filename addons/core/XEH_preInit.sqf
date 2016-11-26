@@ -13,7 +13,7 @@
 ["TFAR_enableIntercom", "CHECKBOX", "Enable vehicle Intercom", "Task Force Arrowhead Radio", true, true, {["intercomEnabled",missionNamespace getVariable ["TFAR_intercomVolume",0.3]] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 // client
 ["TFAR_default_radioVolume", "SLIDER", "STR_radio_default_radioVolume", "Task Force Arrowhead Radio", [1, 9, 7, 0]] call CBA_Settings_fnc_init;
-["TFAR_volumeModifier_forceSpeech", "CHECKBOX", "Activate directSpeech when pressing volume modifier.", "Task Force Arrowhead Radio", false] call CBA_Settings_fnc_init;//#Stringtable
+["TFAR_volumeModifier_forceSpeech", "CHECKBOX", ["Direct speech on volume modifier","Activate directSpeech when pressing volume modifier."], "Task Force Arrowhead Radio", false] call CBA_Settings_fnc_init;//#Stringtable
 ["TFAR_intercomVolume", "SLIDER", "Intercom Volume", "Task Force Arrowhead Radio", [0.01, 0.6, 0.3, 3], false, {["intercomVolume",TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 
 
