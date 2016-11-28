@@ -18,7 +18,7 @@
     Example:
         call TFAR_fnc_processPlayerPositions;
 */
-if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW!"};
+if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW! (Keeps PFH from firing after server disconnect)"};
 if (isNull (findDisplay 46)) exitWith {};
 if (isNull TFAR_currentUnit) exitWith {};
 private _startTime = diag_tickTime;

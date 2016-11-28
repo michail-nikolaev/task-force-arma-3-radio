@@ -18,7 +18,7 @@
         Nothing
 
     Example:
-        spawn TFAR_fnc_requestRadios;
+        call TFAR_fnc_requestRadios;
 */
 
 private _fnc_CopySettings = {
@@ -36,15 +36,15 @@ private _fnc_CopySettings = {
     };
     (_copyIndex + 1)
 };
+//#TODO somehow remove mutexing :x
+//MUTEX_LOCK(TF_radio_request_mutex);
 
-MUTEX_LOCK(TF_radio_request_mutex);
-
-if ((time - TF_last_request_time < 3)) exitWith {MUTEX_UNLOCK(TF_radio_request_mutex);};
+if ((time - TF_last_request_time < 3)) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mutex);*/};
 TF_last_request_time = time;
 
 (_this call TFAR_fnc_radioToRequestCount) params ["_radiosToRequest","_TF_SettingsToCopy"];
 
-if (_radiosToRequest isEqualTo []) exitWith {MUTEX_UNLOCK(TF_radio_request_mutex);};
+if (_radiosToRequest isEqualTo []) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mutex);*/};
 
 //Answer EH
 ["TFAR_RadioRequestResponseEvent", {
@@ -86,4 +86,4 @@ TFAR_beta_RadioRequestStart = diag_tickTime;//#TODO remove on release
 //Send request
 ["TFAR_RadioRequestEvent", [_radiosToRequest,TFAR_currentUnit]] call CBA_fnc_serverEvent;
 
-MUTEX_UNLOCK(TF_radio_request_mutex);
+//MUTEX_UNLOCK(TF_radio_request_mutex);
