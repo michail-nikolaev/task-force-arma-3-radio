@@ -217,7 +217,12 @@ void PipeThread() {
 #ifdef USE_SHAREDMEM
             std::string commandResult = TFAR::getInstance().getCommandProcessor()->processCommand(command);
             pipeHandler.sendData(commandResult);
-            if (gameCommandIn.getCurrentElapsedTime().count() > 200)
+            if (gameCommandIn.getCurrentElapsedTime().count() >
+#ifdef _DEBUG
+            400)
+#else
+            200)
+#endif
                 log_string("gameinteraction " + std::to_string(gameCommandIn.getCurrentElapsedTime().count()) + command, LogLevel_INFO);   //#Release remove logging and creation variable
 #else
             if (gameCommandIn.getCurrentElapsedTime().count() > 200)

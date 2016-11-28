@@ -17,7 +17,7 @@ namespace dataType {
         constexpr TeamspeakID(Type id) : m_id(id) {}
         constexpr TeamspeakID(int id) : m_id(id) {}
         constexpr Type baseType() const { return m_id; }//Making this operator Type() will break operator bool in if statements... C++ Magic
-        constexpr bool isValid() const noexcept { return m_id != static_cast<Type>(-1); }
+        constexpr bool isValid() const noexcept { return m_id != static_cast<Type>(-1) && m_id > 0; }
         constexpr explicit operator bool() const noexcept { return isValid(); }
         constexpr bool operator!() const noexcept { return !isValid(); }
         constexpr bool operator== (const TeamspeakID& other) const noexcept { return m_id == other.m_id; }
