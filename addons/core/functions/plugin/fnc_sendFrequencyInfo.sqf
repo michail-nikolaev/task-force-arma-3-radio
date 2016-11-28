@@ -18,7 +18,7 @@
     Example:
         call TFAR_fnc_sendFrequencyInfo;
 */
-if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW!"};
+if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW! (Keeps PFH from firing after server disconnect)"};
 // send frequencies
 private _freq = ["No_SW_Radio"];
 private _freq_lr = ["No_LR_Radio"];

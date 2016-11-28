@@ -37,6 +37,7 @@ if (isNil "tf_independent_radio_code") then {
 
 
 if (hasInterface) then {//Clientside Variables
+    call TFAR_fnc_initKeybinds;
     //PreInit variablesy
     VARIABLE_DEFAULT(tf_radio_channel_name,"TaskForceRadio");
     VARIABLE_DEFAULT(tf_radio_channel_password,"123");

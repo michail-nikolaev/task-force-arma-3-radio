@@ -21,6 +21,10 @@
 */
 
 ["TFAR_RadioRequestEvent", {
+    if (!TFAR_fnc_processGroupFrequencySettings_running) then {
+        //Curators not yet initialized. But a player wants his radio right now. So we need to get this done
+        call TFAR_fnc_processGroupFrequencySettings;
+    };
     diag_log format["TFAR_RadioRequestEvent %1 %2",_this,diag_tickTime];//#TODO remove
     params [["_radio_request",[]],"_player"];
     private _response = [];
@@ -132,18 +136,20 @@ VARIABLE_DEFAULT(TFAR_freq_sr_independent_dd,call TFAR_fnc_generateDDFreq);
 //Check if all players are running TFAR
 {
     if(isServer) exitWith {};
-    waitUntil {sleep 0.1;time > 0};
+    waitUntil {sleep 0.1;time > 3};
     if !(isClass(configFile >> "CfgPatches" >> "tfar_core")) exitWith {
         [player, "TASK FORCE RADIO NOT LOADED"] remoteExec ["globalChat", -2];
         ["LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0"] call "BIS_fnc_guiMessage";
     };
 } remoteExec ["BIS_fnc_spawn", -2, true];
 
-
-waitUntil {sleep 0.1;
+TFAR_fnc_processGroupFrequencySettings_running = false;
+[  {
     private _hasCurators = (count allcurators) > 0;
     private _hasInitializedCurators = (count (call BIS_fnc_listCuratorPlayers)) > 0;
     private _curatorsInitialized = !_hasCurators || _hasInitializedCurators;
     ((time > 2) || _curatorsInitialized)
-};
-[TFAR_fnc_processGroupFrequencySettings,10/*10 seconds*/] call CBA_fnc_addPerFrameHandler;
+    },{
+    TFAR_fnc_processGroupFrequencySettings_running = true;
+    [TFAR_fnc_processGroupFrequencySettings,10/*10 seconds*/] call CBA_fnc_addPerFrameHandler;
+}] call CBA_fnc_waitUntilAndExecute;
