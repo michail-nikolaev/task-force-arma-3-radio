@@ -15,7 +15,7 @@ volatile bool waitingForTangentOff = false;
 CriticalSectionLock tangentCriticalSection;
 extern void setMuteForDeadPlayers(TSServerID serverConnectionHandlerID, bool isSeriousModeEnabled);
 extern bool isSeriousModeEnabled(TSServerID serverConnectionHandlerID, TSClientID clientId);
-extern void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID);
+extern void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false });
 
 CommandProcessor::CommandProcessor() {}
 

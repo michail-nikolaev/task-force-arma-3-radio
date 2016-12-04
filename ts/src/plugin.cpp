@@ -72,7 +72,7 @@ float effectErrorFromDistance(sendingRadioType radioType, float distance, std::s
     return distance / maxD;
 }
 
-void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID) { //#TODO add isOverRadio parameter. That skips isOverRadio lookup when true
+void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool,bool> isOverRadio = {false,false}) { //#TODO add isOverRadio parameter. That skips isOverRadio lookup when true
     bool mute = false;
     if (isSeriousModeEnabled(serverConnectionHandlerID, clientID)) {
 
@@ -83,7 +83,9 @@ void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID cl
         auto myData = clientDataDir->myClientData;
 
         if (clientData && myData && TFAR::getInstance().m_gameData.alive && clientData->isAlive()) {
-            if (clientData->isOverRadio(myData, false, false, false).empty()) {	//#TODO function that returns bool on first radio
+            bool isOnRadio = isOverRadio.first ? isOverRadio.second : !clientData->isOverRadio(myData, false, false, false).empty();
+
+            if (!isOnRadio) {
                 bool isTalk = clientData->clientTalkingNow || Teamspeak::isTalking(serverConnectionHandlerID, clientData->clientId);
                 mute = myData->getClientPosition().distanceTo(clientData->getClientPosition()) > clientData->voiceVolume || !isTalk;
             } else {
@@ -583,7 +585,9 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
                 }
                                                            break;
                 case PTTDelayArguments::subtypes::airborne:
-                    //#TODO special Airborne effect   #959
+                    clientData->effects.getAirborneRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, radioDistance, clientData));
+                    processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getAirborneRadioEffect(info.radio_id), info.stereoMode);
+                    break;
                 case PTTDelayArguments::subtypes::digital_lr:
                     clientData->effects.getLrRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, radioDistance, clientData));
                     processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getLrRadioEffect(info.radio_id), info.stereoMode);
@@ -822,22 +826,21 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
         bool vehicleCheck = (vehicleDescriptor.vehicleName == listedInfo.vehicle.vehicleName);
 
         float gain = helpers::volumeMultiplifier(static_cast<float>(listedInfo.volume)) * TFAR::getInstance().m_gameData.globalVolume;
-
-        setGameClientMuteStatus(serverId, clientId);
         if (alive && listedInfo.on != receivingRadioType::LISTED_ON_NONE) {
             switch (PTTDelayArguments::stringToSubtype(subtype)) {
                 case PTTDelayArguments::subtypes::digital:
-                    if (playPressed) TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/sw/remote_start" : "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
+                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/sw/remote_start" : "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
                 case PTTDelayArguments::subtypes::digital_lr:
-                    if (playPressed) TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/lr/remote_start" : "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
+                     TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/lr/remote_start" : "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
                 case PTTDelayArguments::subtypes::airborne:
-                    if (playPressed) TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/ab/remote_start" : "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
+                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/ab/remote_start" : "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
             }
         }
     }
+    setGameClientMuteStatus(serverId, clientId, { true,!listedInfos.empty() });
 }
 
 void processPluginCommand(std::string command) {

@@ -176,6 +176,17 @@ void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const ch
                     }
                 });
             }
+            processors.push_back([position, myClientDataWeak = std::weak_ptr<clientData>(myClientData), id](short* samples, size_t sampleCount, uint8_t channels) {
+                auto myClientData = myClientDataWeak.lock();
+                if (!myClientData) return;
+                auto pClunk = myClientData->effects.getClunk(id);
+                auto relativePos = myClientData->getClientPosition().directionTo(position);
+                auto viewDirection = myClientData->getViewDirection().toAngle();
+                pClunk->process(samples, channels, static_cast<int>(sampleCount), relativePos, viewDirection); //interaural time difference
+                helpers::applyILD(samples, sampleCount, channels, relativePos, viewDirection);	//interaural level difference
+                myClientData->effects.removeClunk(id);
+            });
+           
         } else {
             //muting for stereo mode
             if (stereoMode != stereoMode::stereo)
@@ -208,17 +219,6 @@ void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const ch
             });
 
         }
-
-        processors.push_back([position, myClientDataWeak = std::weak_ptr<clientData>(myClientData), id](short* samples, size_t sampleCount, uint8_t channels) {
-            auto myClientData = myClientDataWeak.lock();
-            if (!myClientData) return;
-            auto pClunk = myClientData->effects.getClunk(id);
-            auto relativePos = myClientData->getClientPosition().directionTo(position);
-            auto viewDirection = myClientData->getViewDirection().toAngle();
-            pClunk->process(samples, channels, static_cast<int>(sampleCount), relativePos, viewDirection); //interaural time difference
-            helpers::applyILD(samples, sampleCount, channels, relativePos, viewDirection);	//interaural level difference
-            myClientData->effects.removeClunk(id);
-        });
     }
 
     appendPlayback(id, to_play, processors);
