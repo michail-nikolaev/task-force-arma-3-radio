@@ -110,15 +110,26 @@ public:
         return swEffects[key].get();
     }
 
-    LongRangeRadioffect* getLrRadioEffect(std::string key) {
+    LongRangeRadioEffect* getLrRadioEffect(std::string key) {
         LockGuard_shared lock_shared(&m_lock);
         if (!lrEffects.count(key)) {
             lock_shared.unlock();
             LockGuard_exclusive lock_exclusive(&m_lock);
-            lrEffects[key] = std::make_unique<LongRangeRadioffect>();
+            lrEffects[key] = std::make_unique<LongRangeRadioEffect>();
         }
         return lrEffects[key].get();
     }
+
+    AirborneRadioEffect* getAirborneRadioEffect(std::string key) {
+        LockGuard_shared lock_shared(&m_lock);
+        if (!airborneEffects.count(key)) {
+            lock_shared.unlock();
+            LockGuard_exclusive lock_exclusive(&m_lock);
+            airborneEffects[key] = std::make_unique<AirborneRadioEffect>();
+        }
+        return airborneEffects[key].get();
+    }
+
 
     UnderWaterRadioEffect* getUnderwaterRadioEffect(std::string key) {
         LockGuard_shared lock_shared(&m_lock);
@@ -219,7 +230,8 @@ private:
     using effectMap = std::map<std::string, std::unique_ptr<T>>;
 
     effectMap<PersonalRadioEffect> swEffects;
-    effectMap<LongRangeRadioffect> lrEffects;
+    effectMap<LongRangeRadioEffect> lrEffects;
+    effectMap<AirborneRadioEffect> airborneEffects;
     effectMap<UnderWaterRadioEffect> ddEffects;
     effectMap<Clunk> clunks;
 
