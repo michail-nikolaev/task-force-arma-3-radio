@@ -19,6 +19,21 @@ struct FREQ_SETTINGS {
 struct SPEAKER_DATA {
     std::string radio_id;
     std::weak_ptr<clientData> client;
+    Position3D getPos() const {
+        if (pos.isNull()) {
+            auto owner = client.lock();
+            if (owner)
+                return owner->getClientPosition();
+        }
+        return pos;
+    }
+    //Prefer this if you already know the owner
+    Position3D getPos(const std::shared_ptr<clientData>& owner) const {
+        if (pos.isNull() && owner) {
+                return owner->getClientPosition();
+        }
+        return pos;
+    }
     Position3D pos;
     int volume;
     vehicleDescriptor vehicle;
@@ -30,11 +45,14 @@ class gameData {
 public:
 
     void setFreqInfos(const std::vector<std::string>& tokens) {
+        //FREQ, str(_freq), str(_freq_lr)
+        //_alive, speakVolume, _nickname, 
+        //waves, TF_terrain_interception_coefficient, _globalVolume,
+        //_receivingDistanceMultiplicator, TF_speakerDistance
         LockGuard_exclusive<ReadWriteLock> lock(&m_lock);
         mySwFrequencies = helpers::parseFrequencies(tokens[1]);
         myLrFrequencies = helpers::parseFrequencies(tokens[2]);
-        myDdFrequency = tokens[3];
-        alive = tokens[4] == "true";
+        alive = tokens[3] == "true";
 
 
         //auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
@@ -42,22 +60,19 @@ public:
         //#TODO resend teamspeak VOLUME command if myVoiceVolume changed while talking
         //}
 
-        myVoiceVolume = helpers::parseArmaNumberToInt(tokens[5]);
-        ddVolumeLevel = helpers::parseArmaNumberToInt(tokens[6]);
-        wavesLevel = helpers::parseArmaNumber(tokens[8]);
-        terrainIntersectionCoefficient = helpers::parseArmaNumber(tokens[9]);
-        globalVolume = helpers::parseArmaNumber(tokens[10]);
-        receivingDistanceMultiplicator = helpers::parseArmaNumber(tokens[12]);
-        speakerDistance = helpers::parseArmaNumber(tokens[13]);
+        myVoiceVolume = helpers::parseArmaNumberToInt(tokens[4]);
+        wavesLevel = helpers::parseArmaNumber(tokens[6]);
+        terrainIntersectionCoefficient = helpers::parseArmaNumber(tokens[7]);
+        globalVolume = helpers::parseArmaNumber(tokens[8]);
+        receivingDistanceMultiplicator = helpers::parseArmaNumber(tokens[9]);
+        speakerDistance = helpers::parseArmaNumber(tokens[10]);
     }
     mutable ReadWriteLock m_lock;
     std::map<std::string, FREQ_SETTINGS> mySwFrequencies;
     std::map<std::string, FREQ_SETTINGS> myLrFrequencies;
 
-    std::string myDdFrequency;
     std::multimap<std::string, SPEAKER_DATA> speakers;
 
-    int ddVolumeLevel{ 0 };
     int myVoiceVolume{ 0 };
     bool alive{ false };
     float wavesLevel{ 0 };

@@ -63,10 +63,9 @@ bool isSeriousModeEnabled(TSServerID serverConnectionHandlerID, TSClientID clien
 }
 
 float effectErrorFromDistance(sendingRadioType radioType, float distance, std::shared_ptr<clientData>& data) {
-    float maxD = 0.0f;
+    float maxD = 1.0f;//We don't want division by 0 do we?
     switch (radioType) {
         case sendingRadioType::LISTEN_TO_SW: maxD = static_cast<float>(data->range); break;
-        case sendingRadioType::LISTEN_TO_DD: maxD = helpers::distanceForDiverRadio(); break;
         case sendingRadioType::LISTEN_TO_LR: maxD = static_cast<float>(data->range);
         default: break;
     };
@@ -219,9 +218,9 @@ void PipeThread() {
             pipeHandler.sendData(commandResult);
             if (gameCommandIn.getCurrentElapsedTime().count() >
 #ifdef _DEBUG
-            400)
+                400)
 #else
-            200)
+                200)
 #endif
                 log_string("gameinteraction " + std::to_string(gameCommandIn.getCurrentElapsedTime().count()) + command, LogLevel_INFO);   //#Release remove logging and creation variable
 #else
@@ -569,20 +568,26 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
         float volumeLevel = helpers::volumeMultiplifier(static_cast<float>(info.volume));
         if (info.on < receivingRadioType::LISTED_ON_NONE)//don't do for onGround or Intercom
             switch (PTTDelayArguments::stringToSubtype(clientData->getCurrentTransmittingSubtype())) {
-                case PTTDelayArguments::subtypes::digital:
-                    clientData->effects.getSwRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, radioDistance, clientData));
-                    processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getSwRadioEffect(info.radio_id), info.stereoMode);
-                    break;
-                case PTTDelayArguments::subtypes::digital_lr:
+                case PTTDelayArguments::subtypes::digital: {
+                    if (info.over == sendingRadioType::LISTEN_TO_SW) {
+                        clientData->effects.getSwRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, radioDistance, clientData));
+                        processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getSwRadioEffect(info.radio_id), info.stereoMode);
+                    } else {
+                        float underwaterDist = myPosition.distanceUnderwater(clientData->getClientPosition());
+                        float normalDist = myPosition.distanceTo(clientData->getClientPosition());
+                        clientData->effects.getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(
+                            (underwaterDist * (clientData->range / helpers::distanceForDiverRadio()) + (normalDist - underwaterDist)) / clientData->range
+                        );
+                        processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getUnderwaterRadioEffect(info.radio_id), info.stereoMode);
+                    }
+                }
+                                                           break;
                 case PTTDelayArguments::subtypes::airborne:
+                    //#TODO special Airborne effect   #959
+                case PTTDelayArguments::subtypes::digital_lr:
                     clientData->effects.getLrRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, radioDistance, clientData));
                     processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getLrRadioEffect(info.radio_id), info.stereoMode);
                     break;
-                case PTTDelayArguments::subtypes::dd: {
-                    float ddVolumeLevel = helpers::volumeMultiplifier(static_cast<float>(TFAR::getInstance().m_gameData.ddVolumeLevel));
-                    clientData->effects.getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, clientData->getClientPosition().distanceTo(myData->getClientPosition()), clientData));
-                    processRadioEffect(radio_buffer, channels, sampleCount, ddVolumeLevel * 0.6f, clientData->effects.getUnderwaterRadioEffect(info.radio_id), info.stereoMode);
-                    break; }
                 case  PTTDelayArguments::subtypes::phone:
                     helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, volumeLevel * 10.0f, (clientData->effects.getSpeakerPhone(info.radio_id)));
                     break;
@@ -614,7 +619,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
 
             clientData->effects.getClunk(info.radio_id)->process(radio_buffer, channels, sampleCount, relativePosition, myViewDirection);//interaural time difference
             helpers::applyILD(radio_buffer, sampleCount, channels, relativePosition, myViewDirection);//interaural level difference
-        
+
         } else if (info.on == receivingRadioType::LISTED_ON_INTERCOM) {
             clientData->effects.getLrRadioEffect("intercom")->setErrorLeveL(0.f);
             processRadioEffect(radio_buffer, channels, sampleCount, TFAR::config.get<float>(Setting::intercomVolume), clientData->effects.getLrRadioEffect("intercom"), stereoMode::stereo);
@@ -761,8 +766,6 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     sendingRadioType sendingRadioType;
     if (tokens[0] == "TANGENT_LR")
         sendingRadioType = sendingRadioType::LISTEN_TO_LR;
-    else if (tokens[0] == "TANGENT_DD")
-        sendingRadioType = sendingRadioType::LISTEN_TO_DD;
     else
         sendingRadioType = sendingRadioType::LISTEN_TO_SW;
 
@@ -781,13 +784,18 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     senderClientData->setLastPositionUpdateTime(time);
     senderClientData->setCurrentTransmittingSubtype(subtype);
 
+	
+
+
+
 
     //If he could press the tangent.. He is obviously able to use that radio... unless he is using telekinesis...
-    switch (sendingRadioType) {
-        case sendingRadioType::LISTEN_TO_LR:senderClientData->canUseLRRadio = true; break;
-        case sendingRadioType::LISTEN_TO_DD:senderClientData->canUseDDRadio = true; break;
-        case sendingRadioType::LISTEN_TO_SW:senderClientData->canUseSWRadio = true; break;
-    }
+    if (sendingRadioType == sendingRadioType::LISTEN_TO_LR) senderClientData->canUseLRRadio = true;
+    senderClientData->canUseSWRadio = tokens[6] == "1";
+    senderClientData->canUseDDRadio = tokens[7] == "1";
+
+    
+
 
     if ((senderClientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE) != pressed) {
         playPressed = pressed;
@@ -824,9 +832,6 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
                 case PTTDelayArguments::subtypes::digital_lr:
                     if (playPressed) TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/lr/remote_start" : "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
-                case PTTDelayArguments::subtypes::dd:
-                    if (playPressed) TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/dd/remote_start" : "radio-sounds/dd/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
-                    break;
                 case PTTDelayArguments::subtypes::airborne:
                     if (playPressed) TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/ab/remote_start" : "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
@@ -843,8 +848,8 @@ void processPluginCommand(std::string command) {
     if (!clientDataDir) return;
 
 
-    //PRESSED is 7 tokens with half-duplex
-    if ((tokens.size() == 6 || tokens.size() == 7) && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD")) {
+    //PRESSED is 7 tokens with half-duplex	plus 2 tokens for canUseDD and canUseSW
+    if ((tokens.size() == 8 || tokens.size() == 9) && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD")) {
         processTangentPress(serverId, tokens, command);
     } else if (tokens.size() == 2 && tokens[0] == "RELEASE_ALL_TANGENTS") {
         processAllTangentRelease(serverId, tokens);

@@ -11,7 +11,7 @@
         Internal use only!
 
     Parameters:
-        Control - #TODO
+        Control - The control given by the EventHandler
 
     Returns:
         NOTHING

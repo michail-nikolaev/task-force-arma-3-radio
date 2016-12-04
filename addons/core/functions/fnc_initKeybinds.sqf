@@ -105,16 +105,6 @@ TF_lr_channel_8_modifiers = [false, true, false];
 TF_lr_channel_9_scancode = 73;
 TF_lr_channel_9_modifiers = [false, true, false];
 
-
-TF_tangent_dd_scancode = 41;
-TF_tangent_dd_modifiers = [false, true, false];
-
-TF_tangent_dd_2_scancode = 0;
-TF_tangent_dd_2_modifiers = [false, false, false];
-
-TF_dialog_dd_scancode = 25;
-TF_dialog_dd_modifiers = [true, false, false];
-
 TF_speak_volume_scancode = 15;
 TF_speak_volume_modifiers = [false, true, false];
 
@@ -123,9 +113,6 @@ TF_speak_volume_modifier_yelling_modifiers = [false, false, false];
 
 TF_speak_volume_modifier_whispering_scancode = 0;
 TF_speak_volume_modifier_whispering_modifiers = [false, false, false];
-
-
-["TFAR","DDRadioSettings",["DD Radio Settings","DD Radio Settings"],{call TFAR_fnc_onDDDialogOpen},{true},[TF_dialog_dd_scancode, TF_dialog_dd_modifiers],false] call cba_fnc_addKeybind;
 
 ["TFAR","SWChannel1",["SW Channel 1","SW Channel 1"],{[0] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_1_scancode, TF_sw_channel_1_modifiers],false] call cba_fnc_addKeybind;
 ["TFAR","SWChannel2",["SW Channel 2","SW Channel 2"],{[1] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_2_scancode, TF_sw_channel_2_modifiers],false] call cba_fnc_addKeybind;
@@ -176,6 +163,3 @@ TF_speak_volume_modifier_whispering_modifiers = [false, false, false];
 ["TFAR","LRTransmit",["LR Transmit","LR Transmit"],{call TFAR_fnc_onLRTangentPressed},{call TFAR_fnc_onLRTangentReleased},[TF_tangent_lr_scancode, TF_tangent_lr_modifiers],false] call cba_fnc_addKeybind;
 ["TFAR","LRTransmitAlt",["LR Transmit Alt","LR Transmit Alt"],{call TFAR_fnc_onLRTangentPressed},{call TFAR_fnc_onLRTangentReleased},[TF_tangent_lr_2_scancode, TF_tangent_lr_2_modifiers],false] call cba_fnc_addKeybind;
 ["TFAR","LRTransmitAdditional",["LR Transmit Additional","LR Transmit Additional"],{call TFAR_fnc_onAdditionalLRTangentPressed},{call TFAR_fnc_onAdditionalLRTangentReleased},[TF_tangent_additional_lr_scancode, TF_tangent_additional_lr_modifiers],false] call cba_fnc_addKeybind;
-
-["TFAR","DDTransmit",["DD Transmit","DD Transmit"],{call TFAR_fnc_onDDTangentPressed},{call TFAR_fnc_onDDTangentReleased},[TF_tangent_dd_scancode, TF_tangent_dd_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","DDTransmitAlt",["DD Transmit Alt","DD Transmit Alt"],{call TFAR_fnc_onDDTangentPressed},{call TFAR_fnc_onDDTangentReleased},[TF_tangent_dd_2_scancode, TF_tangent_dd_2_modifiers],false] call cba_fnc_addKeybind;

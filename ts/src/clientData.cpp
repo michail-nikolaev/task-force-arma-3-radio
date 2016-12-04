@@ -9,9 +9,12 @@ void clientData::updatePosition(const unitPositionPacket & packet) {
     clientPosition = packet.position;
     viewDirection = packet.viewDirection;
     canSpeak = packet.canSpeak;
-    canUseSWRadio = packet.canUseSWRadio;
-    canUseLRRadio = packet.canUseLRRadio;
-    canUseDDRadio = packet.canUseDDRadio;
+    if (packet.myData) {
+		//Ugly hack because the canUsees of other people don't respect if they even have that radio type
+        canUseSWRadio = packet.canUseSWRadio;
+        canUseLRRadio = packet.canUseLRRadio;
+        canUseDDRadio = packet.canUseDDRadio;
+    }
     setVehicleId(packet.vehicleID);
     terrainInterception = packet.terrainInterception;
     voiceVolumeMultiplifier = packet.voiceVolume;
@@ -61,10 +64,28 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
 
     Position3D myPosition = myData->getClientPosition();
     Position3D clientPosition = getClientPosition();
-    std::string senderFrequency = getCurrentTransmittingFrequency();
+
+
+    //If we are underwater and can still use SWRadio then we are in a vehicle
+    bool receiverUnderwater = myPosition.getHeight() < 0 && !myData->canUseSWRadio;
+    bool senderUnderwater = clientPosition.getHeight() < 0 && !canUseSWRadio;
+
+    //If we didn't find anything result.on has to be LISTED_ON_NONE so we can set result.over
+    //even if we won't find a valid path on the receiver side
+
+    if ((currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_SW || ignoreSwTangent) && (canUseSWRadio || canUseDDRadio)) {//Sending from SW
+        result.over = senderUnderwater ? sendingRadioType::LISTEN_TO_DD : sendingRadioType::LISTEN_TO_SW;
+    } else if ((currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_LR || ignoreLrTangent) && canUseLRRadio) {//Sending from LR
+        result.over = sendingRadioType::LISTEN_TO_LR;
+    } else {
+        //He isn't actually sending on anything... 
+        return result;
+    }
 
     result.radio_id = "local_radio";
     result.vehicle = myData->getVehicleDescriptor();
+    std::string senderFrequency = getCurrentTransmittingFrequency();
+    bool isUnderwater = receiverUnderwater || senderUnderwater;
 
     LockGuard_shared countLock(&TFAR::getInstance().m_gameData.m_lock);
     //Sender is sending on a Frequency we are listening to on our LR Radio
@@ -73,39 +94,21 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     bool senderOnSWFrequency = TFAR::getInstance().m_gameData.mySwFrequencies.count(senderFrequency) != 0;
     countLock.unlock();
 
-    //Receive DD->DD
-    if ((currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_DD || ignoreDdTangent)	 //#diverRadio
-        && (TFAR::getInstance().m_gameData.myDdFrequency == senderFrequency)) {
-        float dUnderWater = myPosition.distanceTo(clientPosition);
-        if (canUseDDRadio && myData->canUseDDRadio && dUnderWater < helpers::distanceForDiverRadio()) {
-            result.over = sendingRadioType::LISTEN_TO_DD;
-            result.on = receivingRadioType::LISTED_ON_DD;
-            result.volume = TFAR::getInstance().m_gameData.ddVolumeLevel;
-            result.stereoMode = stereoMode::stereo;
-        }
-    }
-
     float effectiveDist = myData->effectiveDistanceTo(this);
-    /*
-    DD is handling effectiveDistance differently so we couldnt do this before
-    But now all other types are handling effectiveDist equally
-    so we can just skip all other checks if distance is higher than radio range
-    */
+    
+    if (isUnderwater) {
+        float underwaterDist = myPosition.distanceUnderwater(clientPosition);
+		//Seperate distance underwater and distance overwater.
+        effectiveDist = underwaterDist * (range / helpers::distanceForDiverRadio()) + (effectiveDist - underwaterDist);
+     }
 
     if (effectiveDist > range)
         return result;
 
-    //If we didn't find anything result.on has to be LISTED_ON_NONE so we can set result.over
-    //even if we won't find a valid path on the receiver side
 
-    if ((currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_SW || ignoreSwTangent) && canUseSWRadio) {//Sending from SW
-        result.over = sendingRadioType::LISTEN_TO_SW;
-    } else if ((currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_LR || ignoreLrTangent) && canUseLRRadio) {//Sending from LR
-        result.over = sendingRadioType::LISTEN_TO_LR;
-    } else {
-        //He isn't actually sending on anything... 
-        return result;
-    }
+
+
+
 
     std::string currentTransmittingRadio;
     if (!TFAR::config.get<bool>(Setting::full_duplex)) {
@@ -184,14 +187,16 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
             //If the speaker is Senders backpack we don't hear it.. Because he is sending with his Backpack so it can't receive
             //Also because we would normally hear him twice
             if (speakerOwner && speakerOwner->clientId == clientId) return;
-            if (speaker.pos.isNull() && !speakerOwner) return;//Need owners poi
+            auto speakerPosition = speaker.getPos(speakerOwner);
+            if (speakerPosition.isNull()) return;//Don't know its position
+            if (speakerPosition.getHeight() < 0) return;//Speakers don't work underwater.. duh
             result.emplace_back(
                 (currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_SW || ignoreSwTangent) ? sendingRadioType::LISTEN_TO_SW : sendingRadioType::LISTEN_TO_LR,
                 receivingRadioType::LISTED_ON_GROUND,
                 speaker.volume,
                 stereoMode::stereo,
                 speaker.radio_id,
-                speaker.pos.isNull() ? speakerOwner->getClientPosition() : speaker.pos,
+                speakerPosition,
                 speaker.waveZ,
                 speaker.vehicle);
 

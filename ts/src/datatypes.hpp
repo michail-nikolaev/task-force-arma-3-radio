@@ -101,8 +101,10 @@ namespace dataType {
         }
         Vector3D& operator=(const Vector3D& other);
         Vector3D operator-(const Vector3D& other) const;
+        Vector3D operator+(const Vector3D& other) const;
         bool operator< (const Vector3D& other) const;
         bool operator== (const Vector3D& other) const;
+        Vector3D operator/(float div) const;
 
     protected:
         float m_x = 0.f;
@@ -117,6 +119,7 @@ namespace dataType {
         using Vector3D::Vector3D;
         //Initializers
         Position3D() {};
+        Position3D(const Vector3D& other) : Vector3D(other) {}
         //explicit Position3D(const Position3D &obj) = delete;
         //explicit Position3D(const TS3_VECTOR& vec) :m_x(vec.x), m_y(vec.y), m_z(vec.z) {}
         //Conversions
@@ -124,8 +127,9 @@ namespace dataType {
         //Operators
 
         //Functions
-
-        float distanceTo(const Position3D& other) const;
+        float getHeight() const;
+        float distanceTo(const Position3D& other) const; 
+        float distanceUnderwater(const Position3D& other) const;
         Direction3D directionTo(const Position3D& other) const;
         Position3D crossProduct(const Position3D& other) const;
         Position3D normalized() {};

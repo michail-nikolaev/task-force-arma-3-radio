@@ -20,10 +20,8 @@
 
 if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith {false};
 
-if (isNil "TF_dd_frequency") then {
-    TF_dd_frequency = (group TFAR_currentUnit) getVariable "tf_dd_frequency";
-};
-
+if !(call TFAR_fnc_haveSWRadio) exitWith {false};
+//#TODO https://community.bistudio.com/wiki/isAbleToBreathe
 if ((vest TFAR_currentUnit) == "V_RebreatherB") exitWith {true};
 
 private _rebreather = configFile >> "CfgWeapons" >> "V_RebreatherB";

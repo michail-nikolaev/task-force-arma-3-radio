@@ -22,4 +22,4 @@
 
 params ["_depth", "_isolated_and_inside"];
 
-(_depth < 0) and !(_isolated_and_inside)
+(_depth < 0) and !(_isolated_and_inside) and {call TFAR_fnc_haveDDRadio}

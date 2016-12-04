@@ -26,7 +26,6 @@ _display displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_proces
 _display displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
 _display displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
 _display displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
-_display displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
 
 
 if (player call TFAR_fnc_isForcedCurator) then {

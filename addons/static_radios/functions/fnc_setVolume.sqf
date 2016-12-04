@@ -7,7 +7,7 @@
         Dedmen
 
     Description:
-        //#TODO
+        Sets the static Radio's Volume
 
     Parameters:
         0: OBJECT - The weaponholder containing the Radio
@@ -30,7 +30,7 @@ if (_radio_id call TFAR_fnc_isLRRadio) then {
 
     _settings set [VOLUME_OFFSET, _volume];
 
-    [_radio_id select 0,"radio_settings", _settings] call TFAR_fnc_setLrSettings;
+    [_radio_id, _settings] call TFAR_fnc_setLrSettings;
 } else {
     private _settings = _radio_id call TFAR_fnc_getSwSettings;
 

@@ -8,8 +8,6 @@ disableSerialization;
 #include "diary.sqf"
 
 //#API Variables
-//#TODO rename radio code vars
-//#TODO rename new vars
 DEPRECATE_VARIABLE(tf_give_personal_radio_to_regular_soldier,TFAR_givePersonalRadioToRegularSoldier);
 DEPRECATE_VARIABLE(tf_no_auto_long_range_radio,TFAR_giveLongRangeRadioToGroupLeaders);
 DEPRECATE_VARIABLE(tf_give_microdagr_to_soldier,TFAR_giveMicroDagrToSoldier);
@@ -49,7 +47,6 @@ TF_respawnedAt = time;//first spawn so.. respawned now
         (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
         (findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
         (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
-        (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
 
         if (isMultiplayer) then {
             call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
@@ -113,7 +110,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
                 };
             };
         };
-        [_radio select 0,_radio select 1, _settings] call TFAR_fnc_setLrSettings;
+        [_radio, _settings] call TFAR_fnc_setLrSettings;
     }, player] call TFAR_fnc_addEventHandler;
 
 
@@ -165,8 +162,13 @@ if (player call TFAR_fnc_isForcedCurator) then {
         TFAR_currentUnit addEventHandler ["Take", {
             systemChat str ["take",_this];
             private _class = configFile >> "CfgWeapons" >> (_this select 2);
-            if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+            if !(isClass _class) exitWith {};
+            if (isNumber (_class >> "tf_radio")) exitWith {
+                systemChat str ["take","isInstanciatedRadio"];
                 [(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;
+            };
+            if (isNumber (_class >> "tf_prototype")) then {
+                systemChat str ["take","isPrototypeRadio"];
                 call TFAR_fnc_radioReplaceProcess;
             };
         }];

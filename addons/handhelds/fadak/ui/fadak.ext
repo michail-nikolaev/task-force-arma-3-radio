@@ -165,7 +165,7 @@ class stereo: HiddenButton
     h = 0.0252056 * safezoneH;
     action = QUOTE(
         [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
-        [ARR_2(TF_sw_dialog_radio, false)] call TFAR_fnc_showRadioVolume;
+        [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;
     );
     tooltip = $STR_stereo_settings;
 };

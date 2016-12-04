@@ -1,13 +1,13 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_static_radios_fnc_setChannel
+    Name: TFAR_static_radios_fnc_setActiveChannel
 
     Author(s):
         Dedmen
 
     Description:
-        //#TODO
+        Sets the static Radio's active Channel
 
     Parameters:
         0: OBJECT - The weaponholder containing the Radio
@@ -17,9 +17,8 @@
         NOTHING
 
     Example:
-        ["TFAR_anprc_152_3",3] call TFAR_static_radios_fnc_setChannel;
+        ["TFAR_anprc_152_3",3] call TFAR_static_radios_fnc_setActiveChannel;
 */
-//#TODO rename setActiveChannel
 params ["_radioContainer","_channel"];
 
 _radio_id = _radioContainer call TFAR_static_radios_fnc_instanciatedRadio;
@@ -30,7 +29,7 @@ if (_radio_id call TFAR_fnc_isLRRadio) then {
 
     _settings set [ACTIVE_CHANNEL_OFFSET, _channel -1];
 
-    [_radio_id select 0,"radio_settings", _settings] call TFAR_fnc_setLrSettings;
+    [_radio_id, _settings] call TFAR_fnc_setLrSettings;
 } else {
     private _settings = _radio_id call TFAR_fnc_getSwSettings;
 
