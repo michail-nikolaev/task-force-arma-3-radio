@@ -32,7 +32,7 @@ private _isSLR = (_source isEqualType []);
 if (_isSLR) then {
     private _settings = _source call TFAR_fnc_GetLRSettings;
     if (_isDLR) then {
-        [_destination select 0, _destination select 1,[]+_settings] call TFAR_fnc_SetLRSettings;
+        [_destination,[]+_settings] call TFAR_fnc_SetLRSettings;
     } else {
         diag_log "TFAR - unable to copy from LR to SW";
         hint "TFAR - unable to copy from LR to SW";

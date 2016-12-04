@@ -46,24 +46,6 @@ _allGroups = allGroups;
         };
     };
 
-    if ((_x getVariable "tf_dd_frequency") isEqualTo false) then {
-        if !(TFAR_SameDDFrequenciesForSide) then {
-            _x setVariable ["tf_dd_frequency", call TFAR_fnc_generateDDFreq, true];
-        } else {
-            switch (side _x) do {
-                case west: {
-                    _x setVariable ["tf_dd_frequency", TFAR_freq_sr_west_dd, true];
-                };
-                case east: {
-                    _x setVariable ["tf_dd_frequency", TFAR_freq_sr_east_dd, true];
-                };
-                default {
-                    _x setVariable ["tf_dd_frequency", TFAR_freq_sr_independent_dd, true];
-                };
-            };
-        };
-    };
-
     if ((_x getVariable "tf_lr_frequency") isEqualTo false) then {
         if !(TFAR_SameLRFrequenciesForSide) then {
             _x setVariable ["tf_lr_frequency", call TFAR_fnc_generateLrSettings, true];

@@ -86,7 +86,7 @@ if (isNil "_radioCode") then {
     _value set [TFAR_CODE_OFFSET, _radioCode];
 };
 
-[_radio_object, _radio_id, + _value] call TFAR_fnc_setLrSettings;
+[[_radio_object, _radio_id], + _value] call TFAR_fnc_setLrSettings;
 
 //Internal use only.. For assigning Curator Logics frequencies
 ["newLRSettingsAssigned", [player, [_radio_object,_radio_id]]] call TFAR_fnc_fireEventHandlers;

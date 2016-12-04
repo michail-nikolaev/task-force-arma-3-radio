@@ -32,7 +32,8 @@ void CommandProcessor::stopThread() {
         shouldRun = false;
     }
     threadWorkCondition.notify_one();
-    myThread->join();
+    if (myThread->joinable()) //This happened once.. When something else crashed and dllDetach was called unexpectedly
+        myThread->join();
     myThread = nullptr;
 }
 
@@ -138,7 +139,7 @@ gameCommand CommandProcessor::toGameCommand(const std::string & textCommand, siz
         return gameCommand::IS_SPEAKING;
     if (tokenCount == 2 && textCommand == "TS_INFO")
         return gameCommand::TS_INFO;
-    if (tokenCount == 14 && textCommand == "FREQ")//async
+    if (tokenCount == 11 && textCommand == "FREQ")//async
         return gameCommand::FREQ;
     if (tokenCount > 2 && textCommand == "KILLED")//async
         return gameCommand::KILLED;
@@ -190,16 +191,21 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
     switch (gameCommand) {
 
         case gameCommand::FREQ: {//async
-                                 //FREQ, str(_freq), str(_freq_lr), _freq_dd, _alive, speakVolume, TF_dd_volume_level, _nickname, waves, TF_terrain_interception_coefficient, _globalVolume, _voiceVolume, _receivingDistanceMultiplicator, TF_speakerDistance
+                                 //FREQ, str(_freq), str(_freq_lr)
+                                //_alive, speakVolume, _nickname, 
+                                //waves, TF_terrain_interception_coefficient, _globalVolume,
+                                //_receivingDistanceMultiplicator, TF_speakerDistance
 
             TFAR::getInstance().m_gameData.setFreqInfos(tokens);
 
             if (!clientDataDir->myClientData) return;//shouldn't be possible.. but safety first
-            const std::string& nickname = convertNickname(tokens[7]);
+
+            //Rename to ingame name. This is okey here as long as we always get FREQ commands. Even if now having any Radios
+            //Could be replaced by telling everyone in channel our ingame name.. So they can assign it to clientID. If we really want to remove renaming in TS
+            const std::string& nickname = convertNickname(tokens[5]);
             std::string myNickname = Teamspeak::getMyNickname(currentServerConnectionHandlerID);
             if (!myNickname.empty() && myNickname != nickname && (nickname != "Error: No unit" && nickname != "Error: No vehicle" && nickname != "any")) {
                 if (Teamspeak::setMyNicknameToGameName(currentServerConnectionHandlerID, nickname)) {
-                    ;
                     TFAR::getInstance().onTeamspeakClientLeft(currentServerConnectionHandlerID, clientDataDir->myClientData->clientId);
                     TFAR::getInstance().onTeamspeakClientJoined(currentServerConnectionHandlerID, clientDataDir->myClientData->clientId, nickname);
                 }
@@ -243,13 +249,6 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
 
             bool pressed = (tokens[1] == "PRESSED");
 
-            if (tokens[0] == "TANGENT_LR")
-                myClientData->canUseLRRadio = true;
-            else if (tokens[0] == "TANGENT_DD")
-                myClientData->canUseDDRadio = true;
-            else
-                myClientData->canUseSWRadio = true;
-
             std::string subtype = tokens[4];
 
             bool changed = (TFAR::getInstance().m_gameData.tangentPressed != pressed);
@@ -257,12 +256,11 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
 
             myClientData->setCurrentTransmittingSubtype(subtype);
 
-
             float globalVolume = TFAR::getInstance().m_gameData.globalVolume;//used for playing radio sounds
 
             if (!changed) //If nothing changed there is nothing to do.
                 return;
-            std::string commandToBroadcast = command + "\t" + myClientData->getNickname();
+            std::string commandToBroadcast = command + "\t" + (myClientData->canUseSWRadio ? "1\t":"0\t") + (myClientData->canUseDDRadio ? "1\t" : "0\t") + myClientData->getNickname();
             std::string frequency = tokens[2];
             //convenience function to remove duplicate code
             auto playRadioSound = [currentServerConnectionHandlerID, globalVolume, &frequency](const char* fileNameWithoutExtension,
@@ -282,8 +280,6 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                     case PTTDelayArguments::subtypes::digital_lr:
                         playRadioSound("radio-sounds/lr/local_start", TFAR::getInstance().m_gameData.myLrFrequencies);
                         break;
-                    case PTTDelayArguments::subtypes::dd:
-                        TFAR::getInstance().getPlaybackHandler()->playWavFile("radio-sounds/dd/local_start"); break;
                     case PTTDelayArguments::subtypes::digital:
                         playRadioSound("radio-sounds/sw/local_start", TFAR::getInstance().m_gameData.mySwFrequencies);
                         break;
@@ -316,8 +312,6 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                     case PTTDelayArguments::subtypes::digital_lr:
                         playRadioSound("radio-sounds/lr/local_end", TFAR::getInstance().m_gameData.myLrFrequencies);
                         break;
-                    case PTTDelayArguments::subtypes::dd:
-                        TFAR::getInstance().getPlaybackHandler()->playWavFile("radio-sounds/dd/local_end"); break;
                     case PTTDelayArguments::subtypes::digital:
                         playRadioSound("radio-sounds/sw/local_end", TFAR::getInstance().m_gameData.mySwFrequencies);
                         break;
@@ -461,7 +455,7 @@ void CommandProcessor::processUnitKilled(std::string &name, TSServerID serverCon
 
 
 DEFINE_API_PROFILER(processUnitPosition);
-std::string CommandProcessor::processUnitPosition(TSServerID serverConnection, const unitPositionPacket & packet) {
+std::string CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket & packet) {
     API_PROFILER(processUnitPosition);
 
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
@@ -471,6 +465,8 @@ std::string CommandProcessor::processUnitPosition(TSServerID serverConnection, c
     auto clientData = clientDataDir->getClientData(packet.nickname);
     if (!clientData)
         return "NOT_SPEAKING";
+
+    packet.myData = clientData == clientDataDir->myClientData;
 
     clientData->updatePosition(packet);
     bool clientTalkingOnRadio = (clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE) || clientData->clientTalkingNow;

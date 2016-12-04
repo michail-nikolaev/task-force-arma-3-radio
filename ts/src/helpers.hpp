@@ -136,7 +136,7 @@ public:
         return volumeAttenuation(distance, shouldPlayerHear, static_cast<float>(maxAudible), multiplifer);
     }
 
-    template<class T>	  //#MAYBE audioHelpers?
+    template<class T>
     static void processFilterStereo(short * samples, int channels, size_t sampleCount, float gain, T* filter) {
         static thread_local size_t allocatedFloatsSample = 0;
         static thread_local std::array<std::vector<float>, MAX_CHANNELS> floatsSample;

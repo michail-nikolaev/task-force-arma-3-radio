@@ -20,6 +20,8 @@
 #define TFAR_FREQ_ROUND_POWER 10//#TODO https://community.bistudio.com/wiki/toFixed after 1.65 release
 //round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER    -> _f toFixed 1
 //or use CBA_fnc_formatNumber
+// str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))   ->>>> _f toFixed 1
+//#define ROUND_FREQ(FREQUENCY) FREQUENCY toFixes 1
 
 #define TFAR_MAX_CHANNELS 8
 #define TFAR_MIN_SW_FREQ 30
@@ -29,9 +31,6 @@
 
 #define TFAR_MIN_ASIP_FREQ 30
 #define TFAR_MAX_ASIP_FREQ 87
-
-#define TFAR_MIN_DD_FREQ 32
-#define TFAR_MAX_DD_FREQ 41
 
 #define TFAR_SW_STEREO_OFFSET (TFAR_FREQ_OFFSET + 1)
 #define TFAR_LR_STEREO_OFFSET (TFAR_FREQ_OFFSET + 1)

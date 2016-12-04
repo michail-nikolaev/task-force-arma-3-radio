@@ -52,6 +52,7 @@ struct unitPositionPacket {
     int terrainInterception;
     float voiceVolume;
     int objectInterception;
+    bool myData;
 };
 
 class clientDataEffects {

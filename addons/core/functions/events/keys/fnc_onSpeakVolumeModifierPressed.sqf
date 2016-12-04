@@ -23,7 +23,7 @@ params ["_modifierMode"];
 
 private _allowedModes = ["yelling", "whispering"];
 
-if(!alive TFAR_currentUnit || TF_tangent_sw_pressed || TF_tangent_lr_pressed || TF_tangent_dd_pressed) exitWith {false};
+if(!alive TFAR_currentUnit || TF_tangent_sw_pressed || TF_tangent_lr_pressed) exitWith {false};
 if!(_modifierMode in _allowedModes) exitWith {false};
 
 TF_last_speak_volume_level = TF_speak_volume_level;

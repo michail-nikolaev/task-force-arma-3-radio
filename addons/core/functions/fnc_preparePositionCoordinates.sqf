@@ -78,8 +78,18 @@ if (TFAR_objectInterceptionEnabled && _nearPlayer) then {
     _object_interception = _unit call TFAR_fnc_objectInterception;
 };
 
+private _terrainInterception = 0;
+if (!_nearPlayer) then {
+    _terrainInterception = _unit call TFAR_fnc_calcTerrainInterception;
+};
+
+
 //#TODO skip terrainInterception for nearplayers
-(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11",
-    _unitName, [_pos select 0, _pos select 1, _pos select 2], _unit call TFAR_fnc_currentDirection,
-    _can_speak, _useSw, _useLr, _useDd, _vehicle, _unit call TFAR_fnc_calcTerrainInterception,
-    _unit getVariable ["tf_voiceVolume", 1.0], _object_interception])
+(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11",//#TODO reorder
+    _unitName,
+    [_pos select 0, _pos select 1, _pos select 2], _unit call TFAR_fnc_currentDirection,//Position
+    _can_speak, _useSw, _useLr, _useDd, _vehicle,
+    _terrainInterception,
+    _unit getVariable ["tf_voiceVolume", 1.0],//Externally used API variable. Don't change name
+     _object_interception //Interceptions
+    ])

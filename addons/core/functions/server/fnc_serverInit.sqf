@@ -119,7 +119,6 @@ if (!isNil "TFAR_defaultFrequencies_lr_independent") then {
 
 VARIABLE_DEFAULT(TFAR_SameSRFrequenciesForSide,false);
 VARIABLE_DEFAULT(TFAR_SameLRFrequenciesForSide,true);
-VARIABLE_DEFAULT(TFAR_SameDDFrequenciesForSide,true);
 
 VARIABLE_DEFAULT(TFAR_freq_sr_west,call TFAR_fnc_generateSRSettings);
 VARIABLE_DEFAULT(TFAR_freq_sr_east,call TFAR_fnc_generateSRSettings);
@@ -128,10 +127,6 @@ VARIABLE_DEFAULT(TFAR_freq_sr_independent,call TFAR_fnc_generateSRSettings);
 VARIABLE_DEFAULT(TFAR_freq_lr_west,call TFAR_fnc_generateLrSettings);
 VARIABLE_DEFAULT(TFAR_freq_lr_east,call TFAR_fnc_generateLrSettings);
 VARIABLE_DEFAULT(TFAR_freq_lr_independent,call TFAR_fnc_generateLrSettings);
-
-VARIABLE_DEFAULT(TFAR_freq_sr_west_dd,call TFAR_fnc_generateDDFreq);
-VARIABLE_DEFAULT(TFAR_freq_sr_east_dd,call TFAR_fnc_generateDDFreq);
-VARIABLE_DEFAULT(TFAR_freq_sr_independent_dd,call TFAR_fnc_generateDDFreq);
 
 //Check if all players are running TFAR
 {

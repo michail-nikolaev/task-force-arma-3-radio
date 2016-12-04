@@ -10,7 +10,6 @@
 
     Parameters:
     0: OBJECT/STRING - Radio
-    1: BOOLEAN - DD radio (Optional)
 
     Returns:
     Nothing
@@ -20,17 +19,11 @@
     [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioVolume;
     // SW radio
     [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioVolume;
-    // DD radio
-    ["", true] call TFAR_fnc_showRadioVolume;
 */
-params ["_radio", ["_isDDRadio", false, [true]]];
+params ["_radio"];
 
 private _isLrRadio = _radio isEqualType [];
 private _hintText = "";
-
-if (_isDDRadio) exitWith {
-    [parseText (format ["%1<br />%2", "DD Radio",formatText [localize "STR_radio_volume",((TF_dd_volume_level + 1) * 10)]]), 5] call TFAR_fnc_showHint;
-};
 
 private _name = if(_isLrRadio) then {getText (configFile >> "CfgVehicles" >> typeof (_radio select 0) >> "displayName")} else {getText(configFile >> "CfgWeapons" >> _radio >> "displayName")};
 private _picture = if(_isLrRadio) then {getText (configFile >> "CfgVehicles" >> typeof (_radio select 0) >> "picture")} else {getText(configFile >> "CfgWeapons" >> _radio >> "picture")};

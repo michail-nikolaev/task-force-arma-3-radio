@@ -8,7 +8,6 @@
 ["TFAR_giveMicroDagrToSoldier", "CHECKBOX", "STR_radio_give_microdagr_to_soldier", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
 ["TFAR_SameSRFrequenciesForSide", "CHECKBOX", "STR_radio_same_sw_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TFAR_SameLRFrequenciesForSide", "CHECKBOX", "STR_radio_same_lr_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TFAR_SameDDFrequenciesForSide", "CHECKBOX", "STR_radio_same_dd_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TFAR_fullDuplex", "CHECKBOX", ["STR_TFAR_Mod_FullDuplex","STR_TFAR_Mod_FullDuplexDescription"], "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
 ["TFAR_enableIntercom", "CHECKBOX", "Enable vehicle Intercom", "Task Force Arrowhead Radio", true, true,{["intercomEnabled",TFAR_enableIntercom] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 // client
@@ -61,7 +60,6 @@ if (hasInterface) then {//Clientside Variables
     VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
 
     MUTEX_INIT(TF_radio_request_mutex);
-//#TODO remove unused variables
 
     TF_use_saved_sw_setting = false;
     TF_saved_active_sw_settings = nil;
@@ -75,25 +73,18 @@ if (hasInterface) then {//Clientside Variables
 
     TF_MAX_SW_VOLUME = 10;
     TF_MAX_LR_VOLUME = 10;
-    TF_MAX_DD_VOLUME = 10;
 
-    TF_UNDERWATER_RADIO_DEPTH = -3;
+    TF_UNDERWATER_RADIO_DEPTH = -3;//Depth at which LR Radio will still work. Also underwater vehicle LR Radios
 
     TF_new_line = toString [0xA];
     TF_vertical_tab = toString [0xB];
 
-    TF_dd_volume_level = 7;
-
     TF_last_lr_tangent_press = 0.0;
-    TF_last_dd_tangent_press = 0.0;
 
     TF_HintFnc = nil;
 
     TF_tangent_sw_pressed = false;
     TF_tangent_lr_pressed = false;
-    TF_tangent_dd_pressed = false;
-
-    TF_dd_frequency = nil;
 
     TF_speakerDistance = 20;
     TF_speak_volume_level = "normal";
@@ -122,8 +113,6 @@ if (hasInterface) then {//Clientside Variables
 
 
     tf_lastError = false;
-
-    tf_msSpectatorPerStepMax = 0.035;
 
     TFAR_objectInterceptionEnabled = true;//#TODO CBA Setting serverside
 };
