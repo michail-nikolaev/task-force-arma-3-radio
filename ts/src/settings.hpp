@@ -15,6 +15,7 @@ ENUM(Setting, unsigned char,
     serious_channelPassword,
     intercomVolume,
     intercomEnabled,
+    pluginTimeout,
     Setting_MAX	//has to be last value
 )
 #pragma pop_macro("max")
@@ -140,7 +141,8 @@ private:
         "",  //serious_channelName
         "",   //serious_channelPassword
         0.3f, //intercomVolume
-        true //intercomEnabled
+        true, //intercomEnabled
+        4.f //pluginTimeout
     };
 };
 

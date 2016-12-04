@@ -1,5 +1,7 @@
 #include "SharedMemoryHandler.hpp"
 #include <thread>
+#include "task_force_radio.hpp"
+#include "settings.hpp"
 using namespace SharedMemoryHandlerInternal;
 
 bool SharedMemoryHandlerInternal::SharedMemoryData::getAsyncRequest(std::string& req) {
@@ -157,12 +159,13 @@ bool SharedMemoryHandler::getAsyncRequest(std::string& request) {
 }
 
 bool SharedMemoryHandler::isConnected() {
+    std::chrono::milliseconds timeout = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<float>(TFAR::config.get<float>(Setting::pluginTimeout)));
     MutexLock lock(hMutex);
     SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
     pData->setLastPluginTick();
     auto lastGameTick = pData->getLastGameTick();
     lock.unlock();
-    bool isCurrentlyConnected = (std::chrono::system_clock::now() - lastGameTick) < MILLIS_TO_EXPIRE;
+    bool isCurrentlyConnected = (std::chrono::system_clock::now() - lastGameTick) < timeout;
     if ((std::chrono::system_clock::now() - lastConnectedEvent) < 500ms)
         return isCurrentlyConnected;
     if (wasConnected && !isCurrentlyConnected) {
