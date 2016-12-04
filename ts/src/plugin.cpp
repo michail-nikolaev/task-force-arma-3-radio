@@ -72,7 +72,7 @@ float effectErrorFromDistance(sendingRadioType radioType, float distance, std::s
     return distance / maxD;
 }
 
-void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool,bool> isOverRadio = {false,false}) { //#TODO add isOverRadio parameter. That skips isOverRadio lookup when true
+void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false }) { //#TODO add isOverRadio parameter. That skips isOverRadio lookup when true
     bool mute = false;
     if (isSeriousModeEnabled(serverConnectionHandlerID, clientID)) {
 
@@ -677,22 +677,28 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
     if (!clientDataDir || !clientDataDir->myClientData) return;
 
-
-    short* voice;
+    //ts3plugin_onEditPostProcessVoiceDataEventStereo is always modifying data so we need copy.
+    short* voice = new short[sampleCount * 2];
     if (channels == 1) {  //copy to stereo
-        voice = new short[sampleCount * 2];
         for (int q = 0; q < sampleCount; q++) {
             voice[q * 2] = samples[q];
             voice[q * 2 + 1] = samples[q];
         }
-    } else
-        voice = samples;
+    } else if (channels == 2) {
+        memcpy(voice, samples, sampleCount * 2 * sizeof(short));
+    } else {
+        uint32_t posInTarget = 0;
+        for (int32_t q = 0; q < sampleCount*channels; q += channels) {
+            voice[posInTarget++] = samples[q];//copy left channel
+            voice[posInTarget++] = samples[q + 1];//copy right channel
+        }
+    }
+
 
     ts3plugin_onEditPostProcessVoiceDataEventStereo(serverConnectionHandlerID, clientDataDir->myClientData->clientId, voice, sampleCount, 2);
 
     TFAR::getInstance().getPlaybackHandler()->appendPlayback("my_radio_voice", voice, sampleCount, 2);
-    if (channels == 1)
-        delete[] voice;
+    delete[] voice;
 }
 
 void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHandlerID, anyID clientID, float distance, float* volume) {
@@ -798,7 +804,7 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     senderClientData->canUseSWRadio = tokens[6] == "1";
     senderClientData->canUseDDRadio = tokens[7] == "1";
 
-    
+
 
 
     if ((senderClientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE) != pressed) {
@@ -832,7 +838,7 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
                     TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/sw/remote_start" : "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
                 case PTTDelayArguments::subtypes::digital_lr:
-                     TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/lr/remote_start" : "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
+                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/lr/remote_start" : "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
                 case PTTDelayArguments::subtypes::airborne:
                     TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/ab/remote_start" : "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);

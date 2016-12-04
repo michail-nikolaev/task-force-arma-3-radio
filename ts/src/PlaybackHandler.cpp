@@ -267,12 +267,9 @@ void playbackWavStereo::construct(std::string wavFilePath, stereoMode stereo, fl
 }
 
 void playbackWavStereo::construct(const short* samples, size_t sampleCount, uint8_t channels, stereoMode stereo, float gain) {
-    sampleStore.assign(sampleCount * 2, 0);//#TODO assign using begin and begin+sampleCount*2 iterators of samples.. then skip if stereo and 2 channel
+    sampleStore.assign(samples, samples+ sampleCount*2);
     if (stereo == stereoMode::stereo) {
-        if (channels == 2)
-            //std::copy(samples, samples + sampleCount*channels, std::back_inserter(sampleStore));//#TODO perf test
-            memcpy(sampleStore.data(), samples, sampleCount * 2 * sizeof(short));//everything like we want it..
-        else {
+        if (channels != 2) {
             short* target = sampleStore.data();
             uint32_t posInTarget = 0;
             for (uint32_t q = 0; q < sampleCount*channels; q += channels) {
