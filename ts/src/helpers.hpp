@@ -8,6 +8,7 @@
 #include "profilers.hpp"
 #include "string_ref.hpp"
 #include <array>
+#include <functional>
 
 constexpr int const_strlen(const char* str) {
 #ifndef VS15
@@ -178,4 +179,14 @@ public:
 
 
 
+};
+
+
+
+class execAtReturn {
+public:
+    explicit execAtReturn(std::function<void()> func):function(func) {}
+    ~execAtReturn() { function(); }
+private:
+    std::function<void()> function;
 };

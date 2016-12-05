@@ -72,7 +72,7 @@ float effectErrorFromDistance(sendingRadioType radioType, float distance, std::s
     return distance / maxD;
 }
 
-void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false }) { //#TODO add isOverRadio parameter. That skips isOverRadio lookup when true
+void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false }) {
     bool mute = false;
     if (isSeriousModeEnabled(serverConnectionHandlerID, clientID)) {
 
@@ -481,7 +481,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
 
     bool hasPluginEnabled = isPluginEnabledForUser(serverConnectionHandlerID, clientID);
 
-    if (!clientData || !clientDataDir->myClientData || !hasPluginEnabled) {	  //#TODO wanna check !clientData->isAlive()
+    if (!clientData || !clientDataDir->myClientData || !hasPluginEnabled) {
         if (clientID == myId) {
             memset(samples, 0, channels * sampleCount * sizeof(short));
             return;
@@ -489,7 +489,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
 
 
         if (isSeriousModeEnabled(serverConnectionHandlerID, clientID)) {
-            if (alive && TFAR::getInstance().getCurrentlyInGame() && hasPluginEnabled)	//#TODO also mute when sender is not alive
+            if (alive && TFAR::getInstance().getCurrentlyInGame() && hasPluginEnabled)
                 helpers::applyGain(samples, sampleCount, channels, 0.0f); // alive player hears only alive players in serious mode
         }
         if (std::chrono::system_clock::now() - last_no_info > MILLIS_TO_EXPIRE) {
@@ -501,7 +501,8 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
         return;
     }
     bool canSpeak = clientDataDir->myClientData->canSpeak;
-    if (isSeriousModeEnabled(serverConnectionHandlerID, clientID) && !alive) {
+    //If we are dead we can't hear alive people and if we are alive we can't hear dead people
+    if (isSeriousModeEnabled(serverConnectionHandlerID, clientID) && (!alive || !clientData->isAlive())) {
         helpers::applyGain(samples, sampleCount, channels, 0.0f);
         return;
     }
