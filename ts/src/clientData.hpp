@@ -349,8 +349,7 @@ private:
         }
         auto split = helpers::split(val, '\x10');
         if (split.size() < 3) return; //I don't listen to morons!!
-        vehicleDescriptor result;
-        vehicleId.vehicleName == split[0]; // hear vehicle
+        vehicleId.vehicleName = split[0]; // hear vehicle
         auto& isolation = split[1];
         if (isolation == "turnout")
             vehicleId.vehicleIsolation = 0.f;

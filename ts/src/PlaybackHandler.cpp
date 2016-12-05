@@ -31,8 +31,13 @@ void PlaybackHandler::onEditMixedPlaybackVoiceDataEvent(short * samples, int sam
         int outputPosition = 0;
         int inputPosition = 0;
         //mix stereo sound into multichannel sound
-        while (inputPosition < sampleCount * channels && (playbackSampleCount - outputPosition) > 0) {
-            for (int q = 0; q < 2; q++) {
+        while (outputPosition < sampleCount * channels && (static_cast<int>(playbackSampleCount) - inputPosition) > 0) {
+            for (int q = 0; q < 2; q++) {  
+#ifdef _DEBUG
+                if (outputPosition > sampleCount * channels) __debugbreak();
+                if (inputPosition > playbackSampleCount) __debugbreak();
+
+#endif   
                 short s = playbackSamples[inputPosition];
 
                 samples[outputPosition] = std::clamp(samples[outputPosition] + s, SHRT_MIN, SHRT_MAX);
