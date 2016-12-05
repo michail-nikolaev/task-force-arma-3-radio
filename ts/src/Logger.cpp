@@ -37,7 +37,7 @@ void Logger::log(LoggerTypes type, const std::string& message) {
 }
 
 void Logger::log(LoggerTypes type, const std::string & message, LogLevel _loglevel) {
-#ifndef DEBUG_MOD_ENABLED //#Release change to #ifdef on Release
+#if DEBUG_MOD_ENABLED || !isCI
     if (_loglevel != LogLevel_DEVEL && _loglevel != LogLevel_DEBUG)
 #endif
         getInstance()._log(type, message, _loglevel);

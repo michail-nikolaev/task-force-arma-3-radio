@@ -57,7 +57,7 @@ namespace SharedMemoryHandlerInternal {
         void setLastPluginTick() { lastPluginTick = std::chrono::system_clock::now(); }
         void setLastGameTick(std::chrono::system_clock::time_point time) { lastGameTick = time; }
         void setConfigNeedsRefresh(bool needs) { configNeedsRefresh = needs; };
-        void onShutdown() { lastPluginTick = std::chrono::system_clock::time_point(0us); } //#TODO remove again. handles by pipe
+        void onShutdown() { lastPluginTick = std::chrono::system_clock::time_point(0us); }
     private:
         uint32_t sharedMemSize{ 0 };
         volatile uint16_t nextFreeAsyncMessage{ 0 };

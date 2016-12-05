@@ -12,14 +12,13 @@
 enum class sendingRadioType {   //Receiving FROM senders Radio.
     LISTEN_TO_SW,
     LISTEN_TO_LR,
-    LISTEN_TO_DD, //#diverRadio
+    LISTEN_TO_DD,
     LISTEN_TO_NONE
 };
 
 enum class receivingRadioType { //Receiving TO our Radio
     LISTED_ON_SW,
     LISTED_ON_LR,
-    LISTED_ON_DD, //#diverRadio
     LISTED_ON_NONE,
     LISTED_ON_GROUND,
     LISTED_ON_INTERCOM
