@@ -161,7 +161,7 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
         result.emplace_back(
             sendingRadioType::LISTEN_TO_SW,	//unused
             receivingRadioType::LISTED_ON_INTERCOM,
-            20,	//unused
+            7,	//unused
             stereoMode::stereo,	 //unused
             "intercom",	  //unused
             Position3D(0, 0, 0), //unused
