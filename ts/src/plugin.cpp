@@ -827,13 +827,16 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     //Check where we can Receive him. Radios or Speakers
     std::vector<LISTED_INFO> listedInfos = senderClientData->isOverRadio(myClientData, senderClientData->canUseSWRadio, senderClientData->canUseLRRadio, senderClientData->canUseDDRadio);
     for (LISTED_INFO & listedInfo : listedInfos) {
-        auto vehicleDescriptor = myClientData->getVehicleDescriptor();
 
-        const float vehicleVolumeLoss = std::clamp(vehicleDescriptor.vehicleIsolation + listedInfo.vehicle.vehicleIsolation, 0.0f, 0.99f);
-        bool vehicleCheck = (vehicleDescriptor.vehicleName == listedInfo.vehicle.vehicleName);
+        if (alive && listedInfo.on != receivingRadioType::LISTED_ON_NONE && listedInfo.on != receivingRadioType::LISTED_ON_INTERCOM) {
+            auto vehicleDescriptor = myClientData->getVehicleDescriptor();
 
-        float gain = helpers::volumeMultiplifier(static_cast<float>(listedInfo.volume)) * TFAR::getInstance().m_gameData.globalVolume;
-        if (alive && listedInfo.on != receivingRadioType::LISTED_ON_NONE) {
+            const float vehicleVolumeLoss = std::clamp(vehicleDescriptor.vehicleIsolation + listedInfo.vehicle.vehicleIsolation, 0.0f, 0.99f);
+            bool vehicleCheck = (vehicleDescriptor.vehicleName == listedInfo.vehicle.vehicleName);
+
+            float gain = helpers::volumeMultiplifier(static_cast<float>(listedInfo.volume)) * TFAR::getInstance().m_gameData.globalVolume;
+
+
             switch (PTTDelayArguments::stringToSubtype(subtype)) {
                 case PTTDelayArguments::subtypes::digital:
                     TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/sw/remote_start" : "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
