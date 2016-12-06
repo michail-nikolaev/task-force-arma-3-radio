@@ -457,7 +457,7 @@ void CommandProcessor::processUnitKilled(std::string &name, TSServerID serverCon
 DEFINE_API_PROFILER(processUnitPosition);
 std::string CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket & packet) {
     API_PROFILER(processUnitPosition);
-
+              //#TODO remove all that speaking stuff. Its not handled here anymore
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
     if (!clientDataDir)
         return "NOT_SPEAKING";

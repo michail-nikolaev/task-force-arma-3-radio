@@ -6,22 +6,49 @@
 #include "Locks.hpp"
 #include "SignalSlot.hpp"
 
-#pragma push_macro("max") //macro is interfering with ENUM _from_string function. Could also define NOMINMAX globally
-#undef max
-ENUM(Setting, unsigned char,
-    full_duplex = 0,
-    addon_version,
-    serious_channelName,
-    serious_channelPassword,
-    intercomVolume,
-    intercomEnabled,
-    pluginTimeout,
-    Setting_MAX	//has to be last value
-)
-#pragma pop_macro("max")
+//Was originally using enum.hpp. But it had to be edited to allow more than 8 settings.. at that was too tedious
+#define Settings(XX) \
+   XX(full_duplex,true), \
+   XX(addon_version,"unknown"), \
+   XX(serious_channelName,""), \
+   XX(serious_channelPassword,""), \
+   XX(intercomVolume,0.3f), \
+   XX(intercomEnabled,true), \
+   XX(pluginTimeout,4.f), \
+   XX(headsetLowered,false)
 
-static_assert(Setting("full_duplex") == 0x0, "Can't execute Setting::_to_string at compile time!");
+#define EnumEntry(x,y) x
+#define EnumString(x,y) #x
+#define EnumDefault(x,y) y
 
+class Setting {
+public:
+    enum _enum : unsigned char {
+        Settings(EnumEntry),
+        Setting_MAX
+    };
+    static constexpr std::array<char*, static_cast<size_t>(Setting_MAX)> SettingStrings{
+        Settings(EnumString)
+    };
+
+    static _enum _from_string(const char* str) {
+        for (int i = 0; i < Setting_MAX; ++i) {
+            if (_strnicmp(str, SettingStrings[i], strlen(SettingStrings[i])) == 0) {
+                return static_cast<_enum>(i);
+            }
+        }
+        return Setting_MAX;
+    }
+
+    Setting() = delete;
+    constexpr Setting(_enum value) : _value((value < _enum::Setting_MAX) ? value : (throw std::logic_error("invalid Enum value"))) {}
+    Setting(const char* str) : _value(_from_string(str)) {}
+    Setting(const std::string&s) : _value(_from_string(s.c_str())) {}
+    constexpr operator _enum() const { return _value; }
+    _enum     _value;
+};
+
+//static_assert(stringToSetting("full_duplex") == 0x0, "Can't execute Setting::_to_string at compile time!");
 
 class settingValue {//This is heavily optimized towards booleans get<bool> can be optimized down to a single instruction. Allowing very fast branching
 public:
@@ -136,13 +163,7 @@ private:
     CriticalSectionLock m_lock;
     bool needRefresh = true;
     std::array<settingValue, Setting::Setting_MAX + 1> values{
-        true,  //full_duplex
-        "unknown", //addon_version
-        "",  //serious_channelName
-        "",   //serious_channelPassword
-        0.3f, //intercomVolume
-        true, //intercomEnabled
-        4.f //pluginTimeout
+        Settings(EnumDefault)
     };
 };
 

@@ -569,7 +569,12 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
     for (auto& info : listed_info) {
         short* radio_buffer = helpers::allocatePool(sampleCount, channels, original_buffer);
         float volumeLevel = helpers::volumeMultiplifier(static_cast<float>(info.volume));
-        if (info.on < receivingRadioType::LISTED_ON_NONE)//don't do for onGround or Intercom
+        if (info.on < receivingRadioType::LISTED_ON_NONE) {//don't do for onGround or Intercom
+
+            //Volume modifier for lowered headset - Placed here because this part of code only applies to actual non-speaker Radios
+            if (TFAR::config.get<bool>(Setting::headsetLowered))
+                volumeLevel *= 0.1f;
+
             switch (PTTDelayArguments::stringToSubtype(clientData->getCurrentTransmittingSubtype())) {
                 case PTTDelayArguments::subtypes::digital: {
                     if (info.over == sendingRadioType::LISTEN_TO_SW) {
@@ -600,7 +605,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
                     helpers::applyGain(radio_buffer, sampleCount, channels, 0.0f);
                     break;
             }
-
+        }
         if (info.on == receivingRadioType::LISTED_ON_GROUND) {
 
             float distance_from_radio = myPosition.distanceTo(info.pos);
