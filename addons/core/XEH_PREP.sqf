@@ -147,6 +147,7 @@ PREP(setLrVolume);
 PREP(setSwFrequency);
 PREP(setLrFrequency);
 PREP(setLrStereo);
+PREP(setHeadsetLowered);
 PREP_SUB(plugin,sendFrequencyInfo);
 PREP_SUB(plugin,sendPlayerInfo);
 PREP_SUB(plugin,sendPlayerKilled);

@@ -163,3 +163,7 @@ TF_speak_volume_modifier_whispering_modifiers = [false, false, false];
 ["TFAR","LRTransmit",["LR Transmit","LR Transmit"],{call TFAR_fnc_onLRTangentPressed},{call TFAR_fnc_onLRTangentReleased},[TF_tangent_lr_scancode, TF_tangent_lr_modifiers],false] call cba_fnc_addKeybind;
 ["TFAR","LRTransmitAlt",["LR Transmit Alt","LR Transmit Alt"],{call TFAR_fnc_onLRTangentPressed},{call TFAR_fnc_onLRTangentReleased},[TF_tangent_lr_2_scancode, TF_tangent_lr_2_modifiers],false] call cba_fnc_addKeybind;
 ["TFAR","LRTransmitAdditional",["LR Transmit Additional","LR Transmit Additional"],{call TFAR_fnc_onAdditionalLRTangentPressed},{call TFAR_fnc_onAdditionalLRTangentReleased},[TF_tangent_additional_lr_scancode, TF_tangent_additional_lr_modifiers],false] call cba_fnc_addKeybind;
+
+
+["TFAR","LowerHeadset",["Lower Headset","Lower Headset"],{},{true call TFAR_fnc_setHeadsetLowered;},[0, [false, false, false]],false] call cba_fnc_addKeybind;
+["TFAR","RaiseHeadset",["Raise Headset","Raise Headset"],{},{false call TFAR_fnc_setHeadsetLowered;},[0, [false, false, false]],false] call cba_fnc_addKeybind;
