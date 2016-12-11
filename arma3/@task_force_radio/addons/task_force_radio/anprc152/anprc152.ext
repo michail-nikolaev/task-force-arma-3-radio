@@ -102,7 +102,7 @@ class clear: HiddenButton
 };
 class additional: HiddenButton
 {
-	idc = IDC_ANPRC152_NEXT;
+	idc = IDC_ANPRC152_RADIO_DIALOG_ADDITIONAL;
 	x = 0.161956 * safezoneW + safezoneX;
 	y = 0.658675 * safezoneH + safezoneY;
 	w = 0.0169125 * safezoneW;
@@ -152,7 +152,7 @@ class stereo: HiddenButton
 };
 class volume_Switch: HiddenRotator
 {
-	idc = IDC_ANPRC152_RADIO_DIALOG_ADDITIONAL;
+	idc = IDC_ANPRC152_VOLUME_SWITCH; // not in define.h
 	x = 0.167319 * safezoneW + safezoneX;
 	y = 0.0762632 * safezoneH + safezoneY;
 	w = 0.0400125 * safezoneW;
