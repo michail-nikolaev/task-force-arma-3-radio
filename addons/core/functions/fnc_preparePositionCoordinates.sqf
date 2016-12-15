@@ -83,13 +83,19 @@ if (!_nearPlayer) then {
     _terrainInterception = _unit call TFAR_fnc_calcTerrainInterception;
 };
 
+private _isSpectating = _unit getVariable ["TFAR_forceSpectator",false];
+private _isEnemy = false;
+if (TFAR_currentUnit getVariable ["TFAR_forceSpectator",false]) then {
+    _isEnemy = [playerSide, side _unit] call BIS_fnc_sideIsEnemy;
+};
 
-//#TODO skip terrainInterception for nearplayers
-(format["POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11",//#TODO reorder
-    _unitName,
-    [_pos select 0, _pos select 1, _pos select 2], _unit call TFAR_fnc_currentDirection,//Position
-    _can_speak, _useSw, _useLr, _useDd, _vehicle,
-    _terrainInterception,
-    _unit getVariable ["tf_voiceVolume", 1.0],//Externally used API variable. Don't change name
-     _object_interception //Interceptions
-    ])
+([
+"POS",
+_unitName,
+[_pos select 0, _pos select 1, _pos select 2], _unit call TFAR_fnc_currentDirection,//Position
+_can_speak, _useSw, _useLr, _useDd, _vehicle,
+_terrainInterception,
+_unit getVariable ["tf_voiceVolume", 1.0],//Externally used API variable. Don't change name
+_object_interception, //Interceptions
+_isSpectating, _isEnemy
+] joinString "	")

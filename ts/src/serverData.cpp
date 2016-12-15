@@ -80,6 +80,7 @@ void serverData::clientJoined(TSClientID clientID, const std::string& clientNick
         if (!std::get<2>(*found)) {//std::shared_ptr is nullptr
             std::get<2>(*found) = std::make_shared<clientData>(clientID);//Give it a valid clientData
         }
+        std::get<2>(*found)->setNickname(clientNickname);
         return; //client already exists and is valid
     }
     std::shared_ptr<clientData> newClientData;
@@ -115,7 +116,23 @@ void serverData::clientUpdated(TSClientID clientID, const std::string& clientNic
         return;
     lock_shared.unlock();
     LockGuard_exclusive lock_exclusive(&m_lock);
+
+    //Remove and Reinsert to keep map sorted.
+    data.erase(findClientData(clientID));
+    insertInData(clientNickname, clientID, clientData);
+    //#TODO revert to old code commented below.. and instead of readding just change and sort
     //Don't need to care about duplicate nicknames. Teamspeak takes care of that
-    std::get<0>(*clientDataIterator) = std::hash<std::string>()(clientNickname);
+    //std::get<0>(*clientDataIterator) = std::hash<std::string>()(clientNickname);
     clientData->setNickname(clientNickname);
+}
+
+void serverData::debugPrint() const {
+    Logger::log(LoggerTypes::pluginCommands, "DebugPrintStart###");
+    for (auto& it : data) {
+        std::shared_ptr<clientData> cData = std::get<2>(it);
+        Logger::log(LoggerTypes::pluginCommands, "Entry " + std::to_string(std::get<0>(it)) + "=" + std::to_string(std::hash<indexedType>()(cData->getNickname()))
+            + " " + std::to_string(std::get<1>(it).baseType()) + "=" + std::to_string(cData->clientId.baseType()) + " " + cData->getNickname());
+    }
+
+    Logger::log(LoggerTypes::pluginCommands, "DebugPrintEnd###");
 }

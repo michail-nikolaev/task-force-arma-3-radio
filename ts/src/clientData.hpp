@@ -51,7 +51,12 @@ struct unitPositionPacket {
     int terrainInterception;
     float voiceVolume;
     int objectInterception;
-    bool myData;
+    bool isSpectating;
+    bool isEnemyToPlayer;
+
+
+
+    bool myData; //Has to be last element
 };
 
 class clientDataEffects {
@@ -320,7 +325,8 @@ public:
     int terrainInterception = 0;
     int objectInterception = 0;
     float voiceVolumeMultiplifier = 1.f;
-
+    bool isSpectating;
+    bool isEnemyToPlayer;
 
     clientDataEffects effects;
 private:

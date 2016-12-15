@@ -75,13 +75,12 @@ private _alive = alive TFAR_currentUnit;
 private _nickname = nil;
 if (_alive) then {
     _nickname = name player;
+} else {
+    _nickname = profileName;
 };
 
 private _globalVolume = TFAR_currentUnit getVariable ["tf_globalVolume",1.0];//used API variable. Don't change
-private _spectator = TFAR_currentUnit getVariable ["tf_forceSpectator",false];
-if (_spectator) then {
-    _alive = false;
-};
+
 private _receivingDistanceMultiplicator = TFAR_currentUnit getVariable ["tf_receivingDistanceMultiplicator",1.0];
 //Async call will always return "OK"
 private _request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10~",//#TODO reorder
