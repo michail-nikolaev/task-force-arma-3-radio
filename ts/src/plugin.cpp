@@ -88,7 +88,7 @@ void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID cl
             if (!isOnRadio) {
                 bool isTalk = clientData->clientTalkingNow || Teamspeak::isTalking(serverConnectionHandlerID, clientData->clientId);
                 auto distance = myData->getClientPosition().distanceTo(clientData->getClientPosition());
-                mute = distance > clientData->voiceVolume || !isTalk;
+                mute = distance > (clientData->voiceVolume+15) || !isTalk;
             } else {
                 mute = false;
             }
