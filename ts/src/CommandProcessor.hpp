@@ -36,7 +36,7 @@ private:
 	void processAsynchronousCommand(const std::string& command);//Called inside thread
 
 	void processSpeakers(std::vector<std::string>& tokens);
-	void processUnitKilled(std::string &name, TSServerID serverConnection);
+	void processUnitKilled(std::string &&name, TSServerID serverConnection);
 
 	std::string processUnitPosition(TSServerID serverConnection, unitPositionPacket & packet);
 	static std::string ts_info(std::string &command);

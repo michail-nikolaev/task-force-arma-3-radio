@@ -125,7 +125,7 @@ public:
             //float gain = 1.0f + 0.5f *logf(1.0f - (distance / maxDistance));
 
        //Unreal Engine NaturalSound	https://docs.unrealengine.com/latest/INT/Engine/Audio/DistanceModelAttenuation/index.html
-        float gain = powf(10.0f, ((distance / maxDistance) * -60.0f) / 20.0f);
+        float gain = powf(10.0f, ((distance / (maxDistance*2)) * -60.0f) / 20.0f);//originally powf(10.0f, ((distance / (maxDistance*2)) * -60.0f) / 20.0f);  but that would half maxDist
 
         //Old thingy
         //float gain = powf(distFromRadio, -0.3f) * (std::max(0.f, (maxDistance - distFromRadio)) / maxDistance);

@@ -160,15 +160,12 @@ if (player call TFAR_fnc_isForcedCurator) then {
 
     if !(TFAR_currentUnit getVariable ["TFAR_HandlersSet",false]) then {
         TFAR_currentUnit addEventHandler ["Take", {
-            systemChat str ["take",_this];
             private _class = configFile >> "CfgWeapons" >> (_this select 2);
             if !(isClass _class) exitWith {};
             if (isNumber (_class >> "tf_radio")) exitWith {
-                systemChat str ["take","isInstanciatedRadio"];
                 [(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;
             };
             if (isNumber (_class >> "tf_prototype")) then {
-                systemChat str ["take","isPrototypeRadio"];
                 call TFAR_fnc_radioReplaceProcess;
             };
         }];

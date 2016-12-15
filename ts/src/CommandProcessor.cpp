@@ -133,7 +133,7 @@ gameCommand CommandProcessor::toGameCommand(const std::string & textCommand, siz
             break;
     };
 #else
-    if (tokenCount == 12 && textCommand == "POS")
+    if (tokenCount == 14 && textCommand == "POS")
         return gameCommand::POS;
     if (tokenCount == 2 && textCommand == "IS_SPEAKING")
         return gameCommand::IS_SPEAKING;
@@ -213,7 +213,6 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
         }; return;
         case gameCommand::POS: {
             //POS nickname [x,y,z] [viewdirUnitvector(x,y,z)] canSpeak canUseSWRadio canUseLRRadio canUseDDRadio vehicleID terrainInterception voiceVolume objectInterception
-            TSServerID currentServerConnectionHandlerID = Teamspeak::getCurrentServerConnection();
             unitPositionPacket packet{
                 convertNickname(tokens[1]),					//nickname
                 Position3D(tokens[2]),						//position
@@ -225,7 +224,9 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                 tokens[8],									//vehicleID
                 helpers::parseArmaNumberToInt(tokens[9]),	//terrainInterception
                 helpers::parseArmaNumber(tokens[10]),		//voiceVolume
-                helpers::parseArmaNumberToInt(tokens[11])	//objectInterception
+                helpers::parseArmaNumberToInt(tokens[11]),	//objectInterception
+                helpers::isTrue(tokens[12]),
+                helpers::isTrue(tokens[13])
             };
 
             processUnitPosition(currentServerConnectionHandlerID, packet);
@@ -394,7 +395,7 @@ void CommandProcessor::processSpeakers(std::vector<std::string>& tokens) {
     }
 }
 
-void CommandProcessor::processUnitKilled(std::string &name, TSServerID serverConnection) {
+void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverConnection) {
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
     if (clientDataDir) {
         auto clientData = clientDataDir->getClientData(name);

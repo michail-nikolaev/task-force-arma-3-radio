@@ -22,6 +22,8 @@
 
 params ["_unit", "_isNearPlayer"];
 
+if (_unit getVariable ["TFAR_forceSpectator",false]) exitWith {ATLToASL (positionCameraToWorld [0,0,0])};
+
 private _current_eyepos = eyepos _unit;
 
 if ((_isNearPlayer) && {_unit != TFAR_currentUnit}) then {

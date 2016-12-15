@@ -82,12 +82,13 @@ void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID cl
             clientData = clientDataDir->getClientData(clientID);
         auto myData = clientDataDir->myClientData;
 
-        if (clientData && myData && TFAR::getInstance().m_gameData.alive && clientData->isAlive()) {
+        if (clientData && myData && ((TFAR::getInstance().m_gameData.alive && clientData->isAlive()) || myData->isSpectating)) {
             bool isOnRadio = isOverRadio.first ? isOverRadio.second : !clientData->isOverRadio(myData, false, false, false).empty();
 
             if (!isOnRadio) {
                 bool isTalk = clientData->clientTalkingNow || Teamspeak::isTalking(serverConnectionHandlerID, clientData->clientId);
-                mute = myData->getClientPosition().distanceTo(clientData->getClientPosition()) > clientData->voiceVolume || !isTalk;
+                auto distance = myData->getClientPosition().distanceTo(clientData->getClientPosition());
+                mute = distance > clientData->voiceVolume || !isTalk;
             } else {
                 mute = false;
             }
@@ -501,8 +502,16 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
         return;
     }
     bool canSpeak = clientDataDir->myClientData->canSpeak;
-    //If we are dead we can't hear alive people and if we are alive we can't hear dead people
-    if (isSeriousModeEnabled(serverConnectionHandlerID, clientID) && (!alive || !clientData->isAlive())) {
+    //If we are dead we can't hear anyone in seriousMode. And if we are alive we can't hear the dead.
+
+    bool isSpectator = clientData->isSpectating;
+    //NonPure normalPlayer->Spectator
+    bool isNotHearableInNonPureSpectator = clientDataDir->myClientData->isSpectating && (clientData->isEnemyToPlayer && TFAR::config.get<bool>(Setting::spectatorNotHearEnemies));
+    //Other player is also a spectator. So we always hear him without 3D positioning
+    bool isHearableInPureSpectator = clientDataDir->myClientData->isSpectating && clientData->isSpectating;
+    bool isHearableInSpectator = isHearableInPureSpectator || !isNotHearableInNonPureSpectator;
+
+    if (!isHearableInSpectator && isSeriousModeEnabled(serverConnectionHandlerID, clientID) && (!alive || !clientData->isAlive())) {
         helpers::applyGain(samples, sampleCount, channels, 0.0f);
         return;
     }
@@ -519,13 +528,16 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
     auto hisVehicleDesriptor = clientData->getVehicleDescriptor();
 
     const float vehicleVolumeLoss = std::clamp(myVehicleDesriptor.vehicleIsolation + hisVehicleDesriptor.vehicleIsolation, 0.0f, 0.99f);
-    bool vehicleCheck = (myVehicleDesriptor.vehicleName == hisVehicleDesriptor.vehicleName);
+    bool isInSameVehicle = (myVehicleDesriptor.vehicleName == hisVehicleDesriptor.vehicleName);
     float distanceFromClient_ = myPosition.distanceTo(clientData->getClientPosition()) + (2 * clientData->objectInterception); //2m more dist for each obstacle
 
 
 
     //#### DIRECT SPEECH
-    if (myId != clientID && distanceFromClient_ <= clientData->voiceVolume) {
+    if (myId != clientID &&
+        !isSpectator && !isNotHearableInNonPureSpectator && //We don't hear spectators and enemy units(if enabled in config)....
+        distanceFromClient_ <= (clientData->voiceVolume + 15)
+        ) {
         //Direct Speech
         //process voice
         auto relativePosition = myPosition.directionTo(clientData->getClientPosition());
@@ -539,10 +551,10 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
 
 
         if (shouldPlayerHear) {
-            if (vehicleVolumeLoss < 0.01 || vehicleCheck) {
+            if (vehicleVolumeLoss < 0.01 || isInSameVehicle) {
 
                 helpers::applyGain(samples, sampleCount, channels, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume));
-                if (!vehicleCheck && clientData->objectInterception > 0) {
+                if (!isInSameVehicle && clientData->objectInterception > 0) {
                     helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, 1.0f,
                         clientData->effects.getFilterObjectInterception(clientData->objectInterception)); //getFilterObjectInterception
                 }
@@ -553,7 +565,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
             helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume) * CANT_SPEAK_GAIN, (clientData->effects.getFilterCantSpeak("local_cantspeak")));
         }
 
-    } else {
+    } else if (!isHearableInPureSpectator) { //.... unless we are both spectating
         memset(samples, 0, channels * sampleCount * sizeof(short));
     }
 
@@ -611,12 +623,11 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
             float distance_from_radio = myPosition.distanceTo(info.pos);
 
             const float radioVehicleVolumeLoss = std::clamp(myVehicleDesriptor.vehicleIsolation + info.vehicle.vehicleIsolation, 0.0f, 0.99f);
-            bool radioVehicleCheck = (myVehicleDesriptor.vehicleName == info.vehicle.vehicleName);
 
             helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, SPEAKER_GAIN, (clientData->effects.getSpeakerFilter(info.radio_id)));
             //Special handling for Radios that are louder than normal max. == statically placed radios
             float speakerDistance = (info.volume < 20) ? (info.volume / 10.f) * TFAR::getInstance().m_gameData.speakerDistance : info.volume*1.9f;
-            if (radioVehicleVolumeLoss < 0.01f || radioVehicleCheck) {
+            if (radioVehicleVolumeLoss < 0.01f || isInSameVehicle) {
                 helpers::applyGain(radio_buffer, sampleCount, channels, helpers::volumeAttenuation(distance_from_radio, shouldPlayerHear, speakerDistance));
             } else {
                 helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, helpers::volumeAttenuation(distance_from_radio, shouldPlayerHear, speakerDistance, 1.0f - radioVehicleVolumeLoss) * pow((1.0f - radioVehicleVolumeLoss), 1.2f), (clientData->effects.getFilterVehicle(info.radio_id, radioVehicleVolumeLoss)));
@@ -800,7 +811,7 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     senderClientData->setLastPositionUpdateTime(time);
     senderClientData->setCurrentTransmittingSubtype(subtype);
 
-	
+
 
 
 

@@ -6,7 +6,7 @@
 void clientData::updatePosition(const unitPositionPacket & packet) {
     LockGuard_exclusive lock(&m_lock);
 
-    clientPosition = packet.position;
+    clientPosition = packet.position;//Could move assign if more performance is needed
     viewDirection = packet.viewDirection;
     canSpeak = packet.canSpeak;
     if (packet.myData) {
@@ -19,7 +19,8 @@ void clientData::updatePosition(const unitPositionPacket & packet) {
     terrainInterception = packet.terrainInterception;
     voiceVolumeMultiplifier = packet.voiceVolume;
     objectInterception = packet.objectInterception;
-
+    isSpectating = packet.isSpectating;
+    isEnemyToPlayer = packet.isEnemyToPlayer;
 
     lastPositionUpdateTime = std::chrono::system_clock::now();
     dataFrame = TFAR::getInstance().m_gameData.currentDataFrame;
