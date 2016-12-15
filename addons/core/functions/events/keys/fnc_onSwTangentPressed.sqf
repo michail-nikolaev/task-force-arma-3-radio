@@ -58,7 +58,7 @@ private _pluginCommand = format[
                                 _radio call TFAR_fnc_getSwRadioCode,
                                 getNumber(configFile >> "CfgWeapons" >> _radio >> "tf_range") * (call TFAR_fnc_getTransmittingDistanceMultiplicator),
                                 getText(configFile >> "CfgWeapons" >> _radio >> "tf_subtype"),
-                                typeOf _x
+                                _radio
                             ];
 
 [_hintText,_pluginCommand,-1] call TFAR_fnc_processTangent;
