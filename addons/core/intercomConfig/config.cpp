@@ -68,16 +68,16 @@ class AllVehicles;
         TFAR_hasIntercom = 1;
         IntercomMacro
     };
-    class MRAP_01_base_F : Car_F {
-        TFAR_hasIntercom = 1;
+    /*class MRAP_01_base_F : Car_F {
+        TFAR_hasIntercom = 0;
         IntercomMacro
     };
     class MRAP_02_base_F : Car_F {
-        TFAR_hasIntercom = 1;
+        TFAR_hasIntercom = 0;
         IntercomMacro
     };
     class MRAP_03_base_F : Car_F {
-        TFAR_hasIntercom = 1;
+        TFAR_hasIntercom = 0;
         IntercomMacro
-    };
+    };*/
 };
