@@ -6,7 +6,7 @@ class CAManBase: Man {
             condition = "call TFAR_fnc_haveSWRadio";
             exceptions[] = {"isNotSwimming"};
             statement = "";
-            icon = "";
+            icon = QPATHTOF(ui\ACE_Interaction_Radio_Icon.paa);
             insertChildren = "[_player] call TFAR_fnc_addRadiosToACE";
         };
     };
