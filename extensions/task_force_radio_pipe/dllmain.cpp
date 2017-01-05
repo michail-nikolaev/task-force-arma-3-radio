@@ -8,11 +8,7 @@ const wchar_t* pipeName = PIPE_NAME;
 SharedMemoryTransfer transfer;
 
 bool isDebugArmaInstance() {
-	std::wstring execPath(GetCommandLine());
-	if (std::string::npos != execPath.find(DEBUG_PARAMETER)) {
-		return true;
-	}
-	return false;
+	return std::wstring(GetCommandLine()).find(DEBUG_PARAMETER) != std::string::npos;
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule,
