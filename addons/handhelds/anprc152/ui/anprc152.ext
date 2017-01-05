@@ -118,7 +118,7 @@ class clear: HiddenButton
 };
 class additional: HiddenButton
 {
-    idc = IDC_ANPRC152_NEXT;
+    idc = IDC_ANPRC152_RADIO_DIALOG_ADDITIONAL;
     x = 0.161956 * safezoneW + safezoneX;
     y = 0.658675 * safezoneH + safezoneY;
     w = 0.0169125 * safezoneW;
@@ -128,7 +128,7 @@ class additional: HiddenButton
 };
 class speakers: HiddenButton
 {
-    idc = IDC_ANPRC152_PREV;
+    idc = IDC_ANPRC152_SPEAKERS;
     x = 0.181756 * safezoneW + safezoneX;
     y = 0.659225 * safezoneH + safezoneY;
     w = 0.0179438 * safezoneW;
@@ -171,7 +171,7 @@ class stereo: HiddenButton
 };
 class volume_Switch: HiddenRotator
 {
-    idc = IDC_ANPRC152_RADIO_DIALOG_ADDITIONAL;
+    idc = -1; //Well... all the IDC's are really not needed
     x = 0.167319 * safezoneW + safezoneX;
     y = 0.0762632 * safezoneH + safezoneY;
     w = 0.0400125 * safezoneW;
