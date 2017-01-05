@@ -9,6 +9,7 @@
 #include "serverData.hpp"
 #include "task_force_radio.hpp"
 #include "Teamspeak.hpp"
+#include "Logger.hpp"
 
 PlaybackHandler::PlaybackHandler() {}
 
@@ -30,17 +31,17 @@ void PlaybackHandler::onEditMixedPlaybackVoiceDataEvent(short * samples, int sam
         int outputPosition = 0;
         int inputPosition = 0;
         //mix stereo sound into multichannel sound
-        while (inputPosition < sampleCount * channels && (playbackSampleCount - outputPosition) > 0) {
-            for (int q = 0; q < 2; q++) {
+        while (outputPosition < sampleCount * channels && (static_cast<int>(playbackSampleCount) - inputPosition) > 0) {
+            for (int q = 0; q < 2; q++) {  
+#ifdef _DEBUG
+                if (outputPosition > sampleCount * channels) __debugbreak();
+                if (inputPosition > playbackSampleCount) __debugbreak();
+
+#endif   
                 short s = playbackSamples[inputPosition];
-                //clamp sample
-                if (samples[outputPosition] + s > SHRT_MAX) {
-                    samples[outputPosition] = SHRT_MAX;
-                } else if (samples[outputPosition] + s < SHRT_MIN) {
-                    samples[outputPosition] = SHRT_MIN;
-                } else {
-                    samples[outputPosition] += s;
-                }
+
+                samples[outputPosition] = std::clamp(samples[outputPosition] + s, SHRT_MIN, SHRT_MAX);
+
                 outputPosition++;
                 inputPosition++;
                 fill = true;
@@ -150,74 +151,82 @@ void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const ch
 
     auto myClientData = clientDataDir->myClientData;
 
-    //#TODO to remove nesting add executeAtReturn class that calls appendPlayback at return
-    if (myClientData) {
-        float speakerDistance = (radioVolume / 10.f) * TFAR::getInstance().m_gameData.speakerDistance;
-        float distance_from_radio = position.distanceTo(myClientData->getClientPosition());
+    execAtReturn ret([this, &id, &to_play, &processors]() {
+        appendPlayback(id, to_play, processors);
+    });
 
-        if (vehicleVolumeLoss > 0.01f && !vehicleCheck)
-            processors.push_back([id, distance_from_radio, speakerDistance, vehicleVolumeLoss, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
-            if (auto myClientData = myClientDataWeak.lock())
-                helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance), 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), myClientData->effects.getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
-        });
-        if (onGround) {
-            processors.push_back([id, distance_from_radio, speakerDistance, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
-                helpers::applyGain(samples, sampleCount, channels, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance)));
-                if (auto myClientData = myClientDataWeak.lock())
-                    helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(samples, channels, sampleCount, SPEAKER_GAIN, myClientData->effects.getSpeakerFilter(id));
-            });
+    if (!myClientData) return;
 
-            if (underwater) {
-                processors.push_back([id, distance_from_radio, speakerDistance, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
-                    if (auto myClientData = myClientDataWeak.lock())
-                        helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, CANT_SPEAK_GAIN * 50, myClientData->effects.getFilterCantSpeak(id));
-                });
-            }
-        } else {
-            //muting for stereo mode
-            if (stereoMode != stereoMode::stereo)
-                processors.push_back([stereoMode](short* samples, size_t sampleCount, uint8_t channels) {
+    float speakerDistance = (radioVolume / 10.f) * TFAR::getInstance().m_gameData.speakerDistance;
+    float distance_from_radio = position.distanceTo(myClientData->getClientPosition());
 
-                if (channels == 2) {
-                    //Performance opt using 32bit operations instead of 16 bit ones
-                    int* samples32bit = reinterpret_cast<int*>(samples);
-                    if (stereoMode == stereoMode::leftOnly) {//Only left
-                        for (size_t q = 0; q < sampleCount / 2; q += 1) {
-                            samples32bit[q] &= 0xFFFF0000;//mute right channel
-                        }
-                    } else if (stereoMode == stereoMode::rightOnly) {//Only right
-                        for (size_t q = 0; q < sampleCount / 2; q += 1) {
-                            samples32bit[q] &= 0x0000FFFF;//mute left channel
-                        }
-                    }
-                } else {
-                    if (stereoMode == stereoMode::leftOnly) {//Only left
-                        for (size_t q = 0; q < sampleCount * channels; q += channels) {
-                            samples[q + 1] = 0;//mute right channel
-                        }
-                    } else if (stereoMode == stereoMode::rightOnly) {//Only right
-                        for (size_t q = 0; q < sampleCount * channels; q += channels) {
-                            samples[q] = 0;//mute left channel
-                        }
-                    }
-                }
-
-            });
+    if (vehicleVolumeLoss > 0.01f && !vehicleCheck)
+        //In vehicle filter
+        processors.push_back([id, distance_from_radio, speakerDistance, vehicleVolumeLoss, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
+        if (auto myClientData = myClientDataWeak.lock()) {
+            helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance), 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), myClientData->effects.getFilterVehicle(id + "vehicle", vehicleVolumeLoss));
+            myClientData->effects.removeFilterVehicle(id + "vehicle");
 
         }
-        auto pClunk = myClientData->effects.getClunk(id);
-        processors.push_back([pClunk, position, myClientDataWeak = std::weak_ptr<clientData>(myClientData), id](short* samples, size_t sampleCount, uint8_t channels) {
+    });
+
+    if (onGround) {
+        //Speaker effect
+        processors.push_back([id, distance_from_radio, speakerDistance, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
+            helpers::applyGain(samples, sampleCount, channels, helpers::volumeAttenuation(distance_from_radio, true, round(speakerDistance)));
+            if (auto myClientData = myClientDataWeak.lock()) {
+                helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(samples, channels, sampleCount, SPEAKER_GAIN, myClientData->effects.getSpeakerFilter(id));
+                myClientData->effects.removeSpeakerFilter(id);
+            }
+        });
+
+        if (underwater) {
+            //Underwater Speaker effect
+            processors.push_back([id, distance_from_radio, speakerDistance, myClientDataWeak = std::weak_ptr<clientData>(myClientData)](short* samples, size_t sampleCount, uint8_t channels) {
+                if (auto myClientData = myClientDataWeak.lock()) {
+                    helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, CANT_SPEAK_GAIN * 50, myClientData->effects.getFilterCantSpeak(id));
+                    myClientData->effects.removeFilterCantSpeak(id);
+                }
+            });
+        }
+
+        //3D Positioning
+        processors.push_back([position, myClientDataWeak = std::weak_ptr<clientData>(myClientData), id](short* samples, size_t sampleCount, uint8_t channels) {
             auto myClientData = myClientDataWeak.lock();
             if (!myClientData) return;
+            auto pClunk = myClientData->effects.getClunk(id);
             auto relativePos = myClientData->getClientPosition().directionTo(position);
             auto viewDirection = myClientData->getViewDirection().toAngle();
             pClunk->process(samples, channels, static_cast<int>(sampleCount), relativePos, viewDirection); //interaural time difference
             helpers::applyILD(samples, sampleCount, channels, relativePos, viewDirection);	//interaural level difference
             myClientData->effects.removeClunk(id);
         });
-    }
 
-    appendPlayback(id, to_play, processors);
+    } else {
+        //muting for stereo mode
+        if (stereoMode != stereoMode::stereo)
+            processors.push_back([stereoMode](short* samples, size_t sampleCount, uint8_t channels) {
+
+            if (channels == 2) {
+                //Performance opt using 32bit operations instead of 16 bit ones
+                int* samples32bit = reinterpret_cast<int*>(samples);
+                if (stereoMode == stereoMode::leftOnly) {//Only left
+                    for (size_t q = 0; q < sampleCount / 2; q += 1)
+                        samples32bit[q] &= 0xFFFF0000;//mute right channel
+                } else if (stereoMode == stereoMode::rightOnly)//Only right
+                    for (size_t q = 0; q < sampleCount / 2; q += 1)
+                        samples32bit[q] &= 0x0000FFFF;//mute left channel
+            } else {
+                if (stereoMode == stereoMode::leftOnly) {//Only left
+                    for (size_t q = 0; q < sampleCount * channels; q += channels)
+                        samples[q + 1] = 0;//mute right channel
+                } else if (stereoMode == stereoMode::rightOnly)//Only right
+                    for (size_t q = 0; q < sampleCount * channels; q += channels)
+                        samples[q] = 0;//mute left channel
+            }
+        });
+
+    }
 }
 
 void PlaybackHandler::playWavFile(const char* fileNameWithoutExtension) const {
@@ -263,12 +272,9 @@ void playbackWavStereo::construct(std::string wavFilePath, stereoMode stereo, fl
 }
 
 void playbackWavStereo::construct(const short* samples, size_t sampleCount, uint8_t channels, stereoMode stereo, float gain) {
-    sampleStore.assign(sampleCount * 2, 0);
+    sampleStore.assign(samples, samples + sampleCount * 2);
     if (stereo == stereoMode::stereo) {
-        if (channels == 2)
-            //std::copy(samples, samples + sampleCount*channels, std::back_inserter(sampleStore));//#TODO perf test
-            memcpy(sampleStore.data(), samples, sampleCount*channels * sizeof(short));//everything like we want it..
-        else {
+        if (channels != 2) {
             short* target = sampleStore.data();
             uint32_t posInTarget = 0;
             for (uint32_t q = 0; q < sampleCount*channels; q += channels) {
@@ -279,15 +285,15 @@ void playbackWavStereo::construct(const short* samples, size_t sampleCount, uint
     } else if (stereo == stereoMode::leftOnly) {
         short* target = sampleStore.data();
         uint32_t posInTarget = 0;
-        for (uint32_t q = 0; q < sampleCount*channels; q += channels) {	//#TODO iterate by two and increment posInTarget by two
+        for (uint32_t q = 0; q < sampleCount*channels; q += channels) {
             target[posInTarget++] = samples[q];//only copy left channel
             posInTarget++;//leave right channel 0
         }
     } else if (stereo == stereoMode::rightOnly) {
         short* target = sampleStore.data();
         uint32_t posInTarget = 0;
-        for (uint32_t q = 0; q < sampleCount*channels; q += channels) {		//#TODO iterate by two and increment posInTarget by two
-            posInTarget++;//leave left channel 0							  //#TODO use that for other stereo->mono thingys
+        for (uint32_t q = 0; q < sampleCount*channels; q += channels) {
+            posInTarget++;//leave left channel 0
             target[posInTarget++] = samples[q + 1];//only copy right channel
         }
     }
@@ -313,8 +319,8 @@ playbackWavStereo::~playbackWavStereo() {
 }
 
 size_t playbackWavStereo::getSamples(const short* &data) {
-    data = sampleStore.data() + currentPosition;
-    return sampleStore.size() - currentPosition;//current position can never be bigger than sampleStore.size()
+    data = std::min(sampleStore.data() + currentPosition, sampleStore.end()._Ptr);
+    return sampleStore.end()._Ptr - (sampleStore.data() + currentPosition);
 }
 
 size_t playbackWavStereo::cleanSamples(size_t sampleCount) {
@@ -342,14 +348,23 @@ size_t playbackWavRaw::getSamples(const short*& data) {
         log_string("raw use " + std::to_string(duration), LogLevel_WARNING);
     });
 #endif
-    data = sampleStore.data() + currentPosition;
-    return sampleStore.size() - currentPosition;//current position can never be bigger than sampleStore.size()
+#ifndef isCI 
+    if (sampleStore.data() + currentPosition >= sampleStore.end()._Ptr) {
+        std::stringstream str;
+        str << "playbackWavRaw::getSamples tried read beyond end!! " << sampleStore.size() << currentPosition;
+        str << "offs " << sampleStore.data() + currentPosition << sampleStore.end()._Ptr;
+        Logger::log(LoggerTypes::teamspeakClientlog, str.str(), LogLevel_WARNING);
+    }
+#endif
+   
+    data = std::min(sampleStore.data() + currentPosition, sampleStore.end()._Ptr);
+    return sampleStore.end()._Ptr - (sampleStore.data() + currentPosition);
 }
 
 size_t playbackWavRaw::cleanSamples(size_t sampleCount) {
     size_t increase = std::min(sampleCount, sampleStore.size() - currentPosition);
     sampleStore.erase(sampleStore.begin(), sampleStore.begin() + increase);
-   // currentPosition += increase;
+    // currentPosition += increase;
     if (isDone()) {
         sampleStore.clear();
         currentPosition = 0;
@@ -425,8 +440,8 @@ size_t playbackWavProcessing::getSamples(const short*& data) {
         log_string("processing use " + std::to_string(duration), LogLevel_WARNING);
     });
 #endif
-    data = sampleStore.data() + currentPosition;
-    return sampleStore.size() - currentPosition;//current position can never be bigger than sampleStore.size()
+    data = std::min(sampleStore.data() + currentPosition, sampleStore.end()._Ptr);
+    return sampleStore.end()._Ptr - (sampleStore.data() + currentPosition);
 }
 
 size_t playbackWavProcessing::cleanSamples(size_t sampleCount) {

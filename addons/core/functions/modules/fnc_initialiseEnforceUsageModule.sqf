@@ -28,8 +28,8 @@ if (_activated) then {
     ["CBA_beforeSettingsInitialized", {
         _thisArgs params ["_GiveLRRadio","_GivePRRadio","_fullDuplex","_sameSWFreq","_sameLRFreq"];
         ["CBA_settings_setSettingMission", ["TFAR_giveLongRangeRadioToGroupLeaders",_GiveLRRadio,true]] call CBA_fnc_localEvent;
-        ["CBA_settings_setSettingMission", ["TF_give_personal_radio_to_regular_soldier",_GivePRRadio,true]] call CBA_fnc_localEvent;
-        ["CBA_settings_setSettingMission", ["TF_full_duplex",_fullDuplex,true]] call CBA_fnc_localEvent;
+        ["CBA_settings_setSettingMission", ["TFAR_givePersonalRadioToRegularSoldier",_GivePRRadio,true]] call CBA_fnc_localEvent;
+        ["CBA_settings_setSettingMission", ["TFAR_fullDuplex",_fullDuplex,true]] call CBA_fnc_localEvent;
         ["CBA_settings_setSettingMission", ["TFAR_SameSRFrequenciesForSide",_sameSWFreq,true]] call CBA_fnc_localEvent;
         ["CBA_settings_setSettingMission", ["TFAR_SameLRFrequenciesForSide",_sameLRFreq,true]] call CBA_fnc_localEvent;
         ["CBA_beforeSettingsInitialized",_thisId] call CBA_fnc_removeEventHandler;

@@ -46,6 +46,7 @@ _player setRandomLip _isSpeaking;
 //Only want to fire EH once
 if !((_player getVariable ["TFAR_isSpeaking", false]) isEqualTo _isSpeaking) then {
     _player setVariable ["TFAR_isSpeaking", _isSpeaking];
+    _player setVariable ["TF_isSpeaking", _isSpeaking];//#Deprecated variable
     ["OnSpeak", [_player, _isSpeaking]] call TFAR_fnc_fireEventHandlers;
 };
 

@@ -25,7 +25,5 @@
 
 params ["_radio_id", "_value", ["_local", false, [true]]];
 
-private _variableName = format["%1_settings", _radio_id];
-
-TFAR_RadioSettingsNamespace setVariable [_variableName, + _value,!_local];
-TFAR_RadioSettingsNamespace setVariable [_variableName + "_local", + _value];
+TFAR_RadioSettingsNamespace setVariable [_radio_id, + _value,!_local];
+TFAR_RadioSettingsNamespace setVariable [_radio_id + "_local", + _value];

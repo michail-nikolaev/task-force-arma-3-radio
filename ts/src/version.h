@@ -2,6 +2,7 @@
 
 #ifdef AppVeyorBuild
 #define PLUGIN_VERSION AppVeyorBuild
+#define isCI 1
 #else
 #define PLUGIN_VERSION "1.0.0.1"
 #endif

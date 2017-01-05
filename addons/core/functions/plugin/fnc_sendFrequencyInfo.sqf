@@ -18,11 +18,10 @@
     Example:
         call TFAR_fnc_sendFrequencyInfo;
 */
-if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW!"};
+if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW! (Keeps PFH from firing after server disconnect)"};
 // send frequencies
 private _freq = ["No_SW_Radio"];
 private _freq_lr = ["No_LR_Radio"];
-private _freq_dd = "No_DD_Radio";
 
 private _isolated_and_inside = TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside;
 private _depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
@@ -72,22 +71,22 @@ if (((call TFAR_fnc_haveLRRadio) or (TFAR_currentUnit != player)) and {[TFAR_cur
         true;
     } count (_radios);
 };
-if ((call TFAR_fnc_haveDDRadio) and {[_depth, _isolated_and_inside] call TFAR_fnc_canUseDDRadio}) then {
-    _freq_dd = TF_dd_frequency;
-};
 private _alive = alive TFAR_currentUnit;
 private _nickname = nil;
 if (_alive) then {
     _nickname = name player;
+} else {
+    _nickname = profileName;
 };
 
-private _globalVolume = TFAR_currentUnit getVariable ["tf_globalVolume",1.0];
-private _voiceVolume = TFAR_currentUnit getVariable ["tf_voiceVolume",1.0];
-private _spectator = TFAR_currentUnit getVariable ["tf_forceSpectator",false];
-if (_spectator) then {
-    _alive = false;
-};
+private _globalVolume = TFAR_currentUnit getVariable ["tf_globalVolume",1.0];//used API variable. Don't change
+
 private _receivingDistanceMultiplicator = TFAR_currentUnit getVariable ["tf_receivingDistanceMultiplicator",1.0];
 //Async call will always return "OK"
-private _request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12	%13~", str(_freq), str(_freq_lr), _freq_dd, _alive, TF_speak_volume_meters min TF_max_voice_volume, TF_dd_volume_level, _nickname, waves, TF_terrain_interception_coefficient, _globalVolume, _voiceVolume, _receivingDistanceMultiplicator, TF_speakerDistance];
+private _request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10~",//#TODO reorder
+    str(_freq), str(_freq_lr),
+    _alive,
+    TF_speak_volume_meters min TF_max_voice_volume,
+    _nickname, waves, TF_terrain_interception_coefficient, _globalVolume, _receivingDistanceMultiplicator, TF_speakerDistance];
+
 _result = "task_force_radio_pipe" callExtension _request;

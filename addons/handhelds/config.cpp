@@ -68,7 +68,6 @@ class HiddenFlip;
 #include "anprc148jem\ui\anprc148jem.ext"
 #include "anprc152\ui\anprc152.ext"
 #include "anprc154\ui\anprc154.ext"
-#include "diver_radio\ui\diver_radio.ext"
 #include "fadak\ui\fadak.ext"
 #include "pnr1000a\ui\pnr1000a.ext"
 #include "rf7800\ui\rf7800str.ext"

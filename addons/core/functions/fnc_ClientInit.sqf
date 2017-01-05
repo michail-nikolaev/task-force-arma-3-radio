@@ -2,21 +2,12 @@
 
 disableSerialization;
 
-#include "keys.sqf"
-
 // Menus
 #include "flexiUI\flexiInit.sqf"
 
 #include "diary.sqf"
 
-waitUntil {sleep 0.2;time > 0};
-waitUntil {sleep 0.1;!(isNull player)};
-
-
-
 //#API Variables
-//#TODO rename radio code vars
-//#TODO rename new vars
 DEPRECATE_VARIABLE(tf_give_personal_radio_to_regular_soldier,TFAR_givePersonalRadioToRegularSoldier);
 DEPRECATE_VARIABLE(tf_no_auto_long_range_radio,TFAR_giveLongRangeRadioToGroupLeaders);
 DEPRECATE_VARIABLE(tf_give_microdagr_to_soldier,TFAR_giveMicroDagrToSoldier);
@@ -51,26 +42,27 @@ TFAR_RadioReqLinkFirstItem = true;//Radio Request Link first Item
 TF_last_request_time = 0;
 TF_respawnedAt = time;//first spawn so.. respawned now
 
-[] spawn {
-    waituntil {sleep 0.1;!(IsNull (findDisplay 46))};
+[   {!(isNull (findDisplay 46))},
+    {
+        (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
+        (findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
+        (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
 
-    (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
-    (findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
-    (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
-    (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onDDTangentReleasedHack"];
+        if (isMultiplayer) then {
+            call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
+            [TFAR_fnc_processPlayerPositions,0.1 /*100 milliseconds*/] call CBA_fnc_addPerFrameHandler;
+            [TFAR_fnc_sendFrequencyInfo,0.3 /*300 milliseconds*/] call CBA_fnc_addPerFrameHandler;
+            [TFAR_fnc_sessionTracker,60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
 
-    if (isMultiplayer) then {
-        call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
-        [TFAR_fnc_processPlayerPositions,0.1 /*100 milliseconds*/] call CBA_fnc_addPerFrameHandler;
-        [TFAR_fnc_sendFrequencyInfo,0.3 /*300 milliseconds*/] call CBA_fnc_addPerFrameHandler;
-        [TFAR_fnc_sessionTracker,60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
-    };
-};
+            //Only want this to run after initial spawn was processed
+            [
+                {(time - TF_respawnedAt > 5)},
+                {[TFAR_fnc_radioReplaceProcess,2/*2 seconds*/] call CBA_fnc_addPerFrameHandler;}
+            ] call CBA_fnc_waitUntilAndExecute;
+        };
+}] call CBA_fnc_waitUntilAndExecute;
 
 if (player call TFAR_fnc_isForcedCurator) then {
-    player enableSimulation false;
-    player hideObject true;
-
     player unlinkItem "ItemRadio";
     player addVest "V_Rangemaster_belt";
 
@@ -118,7 +110,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
                 };
             };
         };
-        [_radio select 0,_radio select 1, _settings] call TFAR_fnc_setLrSettings;
+        [_radio, _settings] call TFAR_fnc_setLrSettings;
     }, player] call TFAR_fnc_addEventHandler;
 
 
@@ -169,8 +161,12 @@ if (player call TFAR_fnc_isForcedCurator) then {
     if !(TFAR_currentUnit getVariable ["TFAR_HandlersSet",false]) then {
         TFAR_currentUnit addEventHandler ["Take", {
             private _class = configFile >> "CfgWeapons" >> (_this select 2);
-            if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+            if !(isClass _class) exitWith {};
+            if (isNumber (_class >> "tf_radio")) exitWith {
                 [(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;
+            };
+            if (isNumber (_class >> "tf_prototype")) then {
+                call TFAR_fnc_radioReplaceProcess;
             };
         }];
         TFAR_currentUnit addEventHandler ["Put", {
@@ -193,7 +189,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
         TFAR_currentUnit setVariable ["TFAR_HandlersSet", true];
     };
 
-}] call CBA_fnc_addPlayerEventHandler;
+},true] call CBA_fnc_addPlayerEventHandler;
 
 //onArsenal PostClose event
 [missionnamespace,"arsenalClosed", {
@@ -210,19 +206,17 @@ player addEventHandler ["killed", {
 }];
 
 call TFAR_fnc_processRespawn; //Handle our current spawn
-[] spawn TFAR_fnc_radioReplaceProcess;//#TODO move to PFH
 
 
-[] spawn {
-    waitUntil {sleep 0.1;!((isNil "TF_server_addon_version") and (time < 20))};
-    if (isNil "TF_server_addon_version") then {
-        hintC (localize "STR_no_server");
-    } else {
-        if (TF_server_addon_version != TFAR_ADDON_VERSION) then {
-            hintC format[localize "STR_different_version", TF_server_addon_version, TFAR_ADDON_VERSION];
+[   {!((isNil "TF_server_addon_version") and (time < 20))},
+    {
+        if (isNil "TF_server_addon_version") then {
+            hintC (localize "STR_no_server");
+        } else {
+            if (TF_server_addon_version != TFAR_ADDON_VERSION) then {
+                hintC format[localize "STR_different_version", TF_server_addon_version, TFAR_ADDON_VERSION];
+            };
         };
-    };
-};
-
+}] call CBA_fnc_waitUntilAndExecute;
 
 call TFAR_fnc_sendPluginConfig;

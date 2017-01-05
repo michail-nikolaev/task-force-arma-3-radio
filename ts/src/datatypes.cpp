@@ -70,11 +70,22 @@ Vector3D Vector3D::operator-(const Vector3D& other) const {
         m_z - other.m_z);
 }
 
+Vector3D dataType::Vector3D::operator+(const Vector3D & other) const {
+    return Vector3D(
+        m_x + other.m_x,
+        m_y + other.m_y,
+        m_z + other.m_z);
+}
+
 bool dataType::Vector3D::operator<(const Vector3D& other) const {
     //Is this of any use?
     return length() < other.length();
 }
 
+
+dataType::Vector3D dataType::Vector3D::operator/(float div) const {
+    return{ m_x / div,m_y / div,m_z / div };
+}
 
 std::tuple<float, float, float> dataType::Vector3D::get() const {
     return{ m_x ,m_y ,m_z };
@@ -110,9 +121,38 @@ dataType::Position3D::operator TS3_VECTOR*() {
     return reinterpret_cast<TS3_VECTOR*>(this);
 }
 
+float dataType::Position3D::getHeight() const {
+    return m_z;
+}
+
 float dataType::Position3D::distanceTo(const Position3D& other) const {
     float distance = Position3D(m_x - other.m_x, m_y - other.m_y, m_z - other.m_z).length();
     return distance;
+}
+
+float dataType::Position3D::distanceUnderwater(const Position3D& other) const {
+    if (getHeight() > 0 && other.getHeight() > 0)//Not crossing waterline
+        return 0;
+    if (getHeight() < 0 && other.getHeight() < 0)//Not crossing waterline
+        return distanceTo(other);
+
+    float thisHeight = std::get<2>(get());
+	float otherHeight = std::get<2>(other.get());
+
+    Vector3D min = (thisHeight < otherHeight) ? *this : other;
+    Vector3D max = (thisHeight > otherHeight) ? *this : other;
+
+    Vector3D posDiff = max - min;
+
+    Vector3D diffToWater = posDiff / (std::get<2>(posDiff.get()) / (std::get<2>(min.get())*-1));
+
+    Vector3D waterLineIntersect = min + diffToWater;
+
+    if (getHeight() < 0) {
+        return distanceTo(waterLineIntersect);
+    } else {
+        return other.distanceTo(waterLineIntersect);
+    }
 }
 
 dataType::Direction3D dataType::Position3D::directionTo(const Position3D& other) const {

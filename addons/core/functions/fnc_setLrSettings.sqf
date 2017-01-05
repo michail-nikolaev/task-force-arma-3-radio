@@ -22,6 +22,8 @@
         _settings set [0, 2]; // sets the active channel to 2
         [call TFAR_fnc_activeLrRadio, _settings] call TFAR_fnc_setLrSettings;
 */
-params ["_radio_object", "_radio_qualifier", ["_value",[],[[]]] ];//#TODO update syntax to use Radio array instead of 2 params
+
+params [["_radio",[],[[]],2], ["_value",[],[[]]] ];
+_radio params ["_radio_object", "_radio_qualifier"];
 
 _radio_object setVariable [_radio_qualifier, + _value, true];

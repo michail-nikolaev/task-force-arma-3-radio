@@ -18,7 +18,7 @@
     Example:
         call TFAR_fnc_processPlayerPositions;
 */
-if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW!"};
+if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW! (Keeps PFH from firing after server disconnect)"};
 if (isNull (findDisplay 46)) exitWith {};
 if (isNull TFAR_currentUnit) exitWith {};
 private _startTime = diag_tickTime;
@@ -34,10 +34,14 @@ if (!TFAR_currentNearPlayersProcessed) then {
     for "_y" from _startIndex to _nearPlayersCount-1 step 1 do {
         private _unit = (TFAR_currentNearPlayersProcessing select _y);
         private _controlled = _unit getVariable "TFAR_controlledUnit";
+        private _unitName = name _unit;
+        if (_unit getVariable ["TFAR_forceSpectator",false]) then {
+            _unitName = _unit getVariable ["TFAR_spectatorName","any"];
+        };
         if !(isNil "_controlled") then {
-            [_controlled, true, name _unit] call TFAR_fnc_sendPlayerInfo;
+            [_controlled, true, _unitName] call TFAR_fnc_sendPlayerInfo;
         } else {
-            [_unit, true, name _unit] call TFAR_fnc_sendPlayerInfo;
+            [_unit, true, _unitName] call TFAR_fnc_sendPlayerInfo;
         };
     };
 
@@ -61,10 +65,14 @@ if (!TFAR_currentFarPlayersProcessed) then {
     for "_y" from _startIndex to _farPlayersCount-1 step 1 do {
         private _unit = (TFAR_currentFarPlayersProcessing select _y);
         private _controlled = _unit getVariable "TFAR_controlledUnit";
+        private _unitName = name _unit;
+        if (_unit getVariable ["TFAR_forceSpectator",false]) then {
+            _unitName = _unit getVariable ["TFAR_spectatorName","any"];
+        };
         if !(isNil "_controlled") then {
-            [_controlled, true, name _unit] call TFAR_fnc_sendPlayerInfo;
+            [_controlled, true, _unitName] call TFAR_fnc_sendPlayerInfo;
         } else {
-            [_unit, true, name _unit] call TFAR_fnc_sendPlayerInfo;
+            [_unit, true, _unitName] call TFAR_fnc_sendPlayerInfo;
         };
     };
 
@@ -95,8 +103,7 @@ if (_needNearPlayerScan) then {
 
     TFAR_currentFarPlayers = [];
     {
-        private _spectator = _x getVariable ["tf_forceSpectator",false];
-        if ((isPlayer _x) and {!_spectator}) then {
+        if (isPlayer _x) then {
             TFAR_currentFarPlayers pushBackUnique _x;
         };
         true;

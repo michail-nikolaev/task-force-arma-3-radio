@@ -8,6 +8,7 @@
 #include "profilers.hpp"
 #include "string_ref.hpp"
 #include <array>
+#include <functional>
 
 constexpr int const_strlen(const char* str) {
 #ifndef VS15
@@ -60,6 +61,19 @@ struct FREQ_SETTINGS;
 struct vehicleDescriptor {
     std::string vehicleName;
     float vehicleIsolation;
+    enum class vehiclePosition {
+       driver,
+       commander,
+       gunner,
+       cargo
+    } /*slot*/;
+    int16_t intercomSlot;//If this is -1 then vehicle doesn't have intercom
+    static vehiclePosition stringToVehiclePosition(const std::string& pos) {
+        if (pos == "driver") return vehiclePosition::driver;
+        if (pos == "commander") return vehiclePosition::commander;
+        if (pos == "gunner") return vehiclePosition::gunner;
+        return vehiclePosition::cargo;
+    }
 };
 
 
@@ -111,7 +125,7 @@ public:
             //float gain = 1.0f + 0.5f *logf(1.0f - (distance / maxDistance));
 
        //Unreal Engine NaturalSound	https://docs.unrealengine.com/latest/INT/Engine/Audio/DistanceModelAttenuation/index.html
-        float gain = powf(10.0f, ((distance / maxDistance) * -60.0f) / 20.0f);
+        float gain = powf(10.0f, ((distance / (maxDistance*2)) * -60.0f) / 20.0f);//originally powf(10.0f, ((distance / (maxDistance*2)) * -60.0f) / 20.0f);  but that would half maxDist
 
         //Old thingy
         //float gain = powf(distFromRadio, -0.3f) * (std::max(0.f, (maxDistance - distFromRadio)) / maxDistance);
@@ -123,10 +137,12 @@ public:
         return volumeAttenuation(distance, shouldPlayerHear, static_cast<float>(maxAudible), multiplifer);
     }
 
-    template<class T>	  //#MAYBE audioHelpers?
+    template<class T>
     static void processFilterStereo(short * samples, int channels, size_t sampleCount, float gain, T* filter) {
         static thread_local size_t allocatedFloatsSample = 0;
         static thread_local std::array<std::vector<float>, MAX_CHANNELS> floatsSample;
+        if (allocatedFloatsSample != floatsSample[0].size())
+            allocatedFloatsSample = 0; //It happened that allocatedFloatsSample==960 and floatsSample[0] was of size 0...
 
         if (allocatedFloatsSample < sampleCount)  //Not enough buffer, create new one
         {
@@ -163,4 +179,14 @@ public:
 
 
 
+};
+
+
+
+class execAtReturn {
+public:
+    explicit execAtReturn(std::function<void()> func):function(func) {}
+    ~execAtReturn() { function(); }
+private:
+    std::function<void()> function;
 };

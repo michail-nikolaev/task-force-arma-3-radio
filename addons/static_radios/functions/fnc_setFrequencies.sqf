@@ -32,7 +32,7 @@ if (_radio_id call TFAR_fnc_isLRRadio) then {
     //#TODO if _frequencies has less than 9 elements random-generate the rest
     _settings set [TFAR_FREQ_OFFSET, _frequencies];
 
-    [_radio_id select 0,"radio_settings", _settings] call TFAR_fnc_setLrSettings;
+    [_radio_id, _settings] call TFAR_fnc_setLrSettings;
 } else {
     _settings = _radio_id call TFAR_fnc_getSwSettings;
 

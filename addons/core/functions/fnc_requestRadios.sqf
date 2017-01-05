@@ -18,7 +18,7 @@
         Nothing
 
     Example:
-        spawn TFAR_fnc_requestRadios;
+        call TFAR_fnc_requestRadios;
 */
 
 private _fnc_CopySettings = {
@@ -27,7 +27,7 @@ private _fnc_CopySettings = {
     if (_settingsCount > _copyIndex) then {
         if ([_destination, _TF_SettingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
             private _source = _TF_SettingsToCopy select _copyIndex;
-            private _variableName = format["%1_settings_local", _source];
+            private _variableName = format["%1_local", _source];
             private _localSettings = TFAR_RadioSettingsNamespace getVariable _variableName;
             if !(isNil "_variableName") then {
                 [_destination, _localSettings, true] call TFAR_fnc_setSwSettings;
@@ -36,15 +36,15 @@ private _fnc_CopySettings = {
     };
     (_copyIndex + 1)
 };
+//#TODO somehow remove mutexing :x
+//MUTEX_LOCK(TF_radio_request_mutex);
 
-MUTEX_LOCK(TF_radio_request_mutex);
-
-if ((time - TF_last_request_time < 3)) exitWith {MUTEX_UNLOCK(TF_radio_request_mutex);};
+if ((time - TF_last_request_time < 3)) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mutex);*/};
 TF_last_request_time = time;
 
 (_this call TFAR_fnc_radioToRequestCount) params ["_radiosToRequest","_TF_SettingsToCopy"];
 
-if (_radiosToRequest isEqualTo []) exitWith {MUTEX_UNLOCK(TF_radio_request_mutex);};
+if (_radiosToRequest isEqualTo []) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mutex);*/};
 
 //Answer EH
 ["TFAR_RadioRequestResponseEvent", {
@@ -86,4 +86,4 @@ TFAR_beta_RadioRequestStart = diag_tickTime;//#TODO remove on release
 //Send request
 ["TFAR_RadioRequestEvent", [_radiosToRequest,TFAR_currentUnit]] call CBA_fnc_serverEvent;
 
-MUTEX_UNLOCK(TF_radio_request_mutex);
+//MUTEX_UNLOCK(TF_radio_request_mutex);
