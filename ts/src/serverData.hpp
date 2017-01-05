@@ -35,6 +35,9 @@ private:
 
     std::vector<clientDataDirectoryElement> data;
     //Don't worry about these... This stuff is almost 50% faster than using std::map and std::unordered_map
+
+    void debugPrint() const;
+
     auto findClientData(const indexedType& idx) const {
         auto range = std::equal_range(data.begin(), data.end(), std::make_tuple(std::hash<indexedType>()(idx), 0, nullptr), [](const auto& lhs, const auto& rhs) {
             return std::get<0>(lhs) < std::get<0>(rhs);
@@ -56,9 +59,11 @@ private:
     }
 
     auto containsClientData(const nonIndexedType& cid) const {
-        return std::binary_search(data.begin(), data.end(), std::make_tuple(0, cid, nullptr), [](const auto& lhs, const auto& rhs) {
-            return std::get<1>(lhs) < std::get<1>(rhs);
-        });
+        for (auto& it : data) {
+            if (std::get<1>(it) == cid)
+                return true;
+       }
+        return false;
     }
 
     template <typename ...T>

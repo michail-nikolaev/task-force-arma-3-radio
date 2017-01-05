@@ -169,7 +169,7 @@ void Teamspeak::moveToSeriousChannel(TSServerID serverConnectionHandlerID) {
     auto seriousChannelID = findChannelByName(serverConnectionHandlerID, TFAR::config.get<std::string>(Setting::serious_channelName));
     if (!seriousChannelID) //Channel not found
         return;
-    auto currentChannel = getChannelOfClient(serverConnectionHandlerID);
+    auto currentChannel = getChannelOfClient(serverConnectionHandlerID, getMyId(serverConnectionHandlerID));
     if (currentChannel == seriousChannelID)
         return;
     getInstance().serverData[serverConnectionHandlerID].setMyOriginalChannel(currentChannel);
@@ -186,7 +186,7 @@ void Teamspeak::moveFromSeriousChannel(TSServerID serverConnectionHandlerID) {
         return;
 
 
-    if (getChannelOfClient(serverConnectionHandlerID) == notSeriousChannelId) return;
+    if (getChannelOfClient(serverConnectionHandlerID, getMyId(serverConnectionHandlerID)) == notSeriousChannelId) return;
     DWORD error;
     if ((error = ts3Functions.requestClientMove(serverConnectionHandlerID.baseType(), getInstance().serverData[serverConnectionHandlerID].getMyClientID().baseType(), notSeriousChannelId.baseType(), "", NULL)) != ERROR_ok) {
         log("Can't join back channel", error);

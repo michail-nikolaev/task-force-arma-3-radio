@@ -134,11 +134,11 @@ class LockGuard_shared<SRWLOCK> {
     SRWLOCK* m_lock;
     bool isLocked;
 public:
-    explicit LockGuard_shared(SRWLOCK* _cs) : m_lock(_cs) { AcquireSRWLockExclusive(m_lock); isLocked = true; }
-    ~LockGuard_shared() { if (isLocked) ReleaseSRWLockExclusive(m_lock); }
+    explicit LockGuard_shared(SRWLOCK* _cs) : m_lock(_cs) { AcquireSRWLockShared(m_lock); isLocked = true; }
+    ~LockGuard_shared() { if (isLocked) ReleaseSRWLockShared(m_lock); }
     void unlock() {
         if (isLocked) {
-            ReleaseSRWLockExclusive(m_lock);
+            ReleaseSRWLockShared(m_lock);
             isLocked = false;
         };
     }

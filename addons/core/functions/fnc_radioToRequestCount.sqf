@@ -31,7 +31,7 @@ private _personalRadio = _classes select 1;
 private _riflemanRadio = _classes select 2;
 private _defaultRadio = _riflemanRadio;
 
-if ((TF_give_personal_radio_to_regular_soldier) or {leader TFAR_currentUnit == TFAR_currentUnit} or {rankId TFAR_currentUnit >= 2}) then {
+if ((TFAR_givePersonalRadioToRegularSoldier) or {leader TFAR_currentUnit == TFAR_currentUnit} or {rankId TFAR_currentUnit >= 2}) then {
     _defaultRadio = _personalRadio;
 };
 

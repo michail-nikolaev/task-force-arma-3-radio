@@ -21,8 +21,7 @@
 */
 params[["_radio","",[""]]];
 
-private _variableName = format["%1_settings", _radio];
-private _value = TFAR_RadioSettingsNamespace getVariable _variableName;
+private _value = TFAR_RadioSettingsNamespace getVariable _radio;
 if (!isNil "_value") exitWith {_value};
 
 

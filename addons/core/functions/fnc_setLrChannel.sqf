@@ -26,7 +26,7 @@ _radio params ["_radio_object", "_radio_qualifier"];
 
 private _settings = _radio call TFAR_fnc_getLrSettings;
 _settings set [ACTIVE_CHANNEL_OFFSET, _value];
-[_radio_object, _radio_qualifier, _settings] call TFAR_fnc_setLrSettings;
+[_radio, _settings] call TFAR_fnc_setLrSettings;
 
 //							unit, radio object,		radio ID			channel, additional
 ["OnLRchannelSet", [TFAR_currentUnit, _radio_object, _radio_qualifier, _value, false]] call TFAR_fnc_fireEventHandlers;

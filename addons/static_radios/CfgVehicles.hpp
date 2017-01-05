@@ -6,16 +6,17 @@ class RscPicture;
 class RscTree;
 class RscControlsGroupNoScrollbars;
 class RscCheckBox;
-//206118 == TFAR
-
-
+class RscSlider;
+//26118 == TFAR
+class ctrlXSliderH;
 
 class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
-    idc=20611800;
+    idc=2611800;
     x="7 * 					(			((safezoneW / safezoneH) min 1.2) / 40) + 		(safezoneX + (safezoneW - 					((safezoneW / safezoneH) min 1.2))/2)";
     y="5 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 		(safezoneY + (safezoneH - 					(			((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     w="26 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
     h="16 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+
     class controls {
         /*class RadioTitle: RscText {
             idc=20611801;
@@ -34,7 +35,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
             h="1 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         };*/
         class FreqTitle: RscText {
-            idc=20611803;
+            idc=2611803;
             text="Frequency";
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="1.1 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -43,7 +44,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
             colorBackground[]={0,0,0,0.5};
         };
         class FreqEdit: RscEdit {
-            idc=20611804;
+            idc=2611804;
             x="6 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="1.1 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="20 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
@@ -51,7 +52,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
             colorBackground[]={1,1,1,0.1};
         };
         class ChannelTitle: RscText {
-            idc=20611805;
+            idc=2611805;
             text="Channel";
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="2.2 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -61,7 +62,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
         };
         class ChannelEdit: RscEdit {
             style=16;
-            idc=20611806;
+            idc=2611806;
             x="10 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="2.2 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="16 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
@@ -69,7 +70,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
             colorBackground[]={1,1,1,0.1};
         };
         class SpeakerTitle: RscText {
-            idc=20611807;
+            idc=2611807;
             text="Speaker";
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="3.3 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -78,12 +79,38 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
             colorBackground[]={0,0,0,0.5};
         };
         class SpeakerCheckbox: RscCheckBox {
-            idc=20611808;
+            idc=2611808;
             text="#(argb,8,8,3)color(0,0,0,0)";
             x="10 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="3.3 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="1 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             h="1 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        };
+
+        class VolumeTitle: RscText {
+            idc=2611809;
+            text="Volume";
+            x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
+            y="4.4 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w="26 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
+            h="1 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            colorBackground[]={0,0,0,0.5};
+        };
+        class VolumeSlider: ctrlXSliderH {
+            idc=2611810;
+            x="10 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
+            y="4.4 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w="11 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
+            h="1 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        };
+        class VolumeEdit: RscEdit {
+            style=16;
+            idc=2611811;
+            x="(10+12) * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
+            y="4.4 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w="4 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
+            h="1 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            colorBackground[]={1,1,1,0.1};
         };
     };
 };

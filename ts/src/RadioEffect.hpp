@@ -156,14 +156,21 @@ protected:
     Dsp::SimpleFilter<Dsp::RBJ::LowPass, 1> filterSpeakerLP;
 };
 
-class LongRangeRadioffect : public SimpleRadioEffect {
+class LongRangeRadioEffect : public SimpleRadioEffect {
 public:
-    LongRangeRadioffect() {
+    LongRangeRadioEffect() {
         filterSpeakerHP.setup(SAMPLE_RATE, 520, 0.97);
         filterSpeakerLP.setup(SAMPLE_RATE, 1300, 1.0);
     }
 };
 
+class AirborneRadioEffect : public SimpleRadioEffect {
+public:
+    AirborneRadioEffect() {
+        filterSpeakerHP.setup(SAMPLE_RATE, 1000, 1.0);
+        filterSpeakerLP.setup(SAMPLE_RATE, 4000, 1.0);
+    }
+};
 
 class PersonalRadioEffect : public SimpleRadioEffect {
 public:
@@ -217,7 +224,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 
         for (int j = startChannel; j < endChannel; j++) {
             float sample = buffer[i / channels];
-            short newValue;				 //#TODO std::clamp
+            short newValue;
             if (sample > 1.0) newValue = SHRT_MAX;
             else if (sample < -1.0) newValue = SHRT_MIN;
             else newValue = (short) (sample * (SHRT_MAX - 1));

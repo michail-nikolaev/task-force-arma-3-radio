@@ -10,10 +10,11 @@ namespace profiler {
 
 
 
-
-
-//#Release disable on Release
+#ifdef isCI
+#define ENABLE_API_PROFILER 0     // Disabled for release builds
+#else
 #define ENABLE_API_PROFILER 1     // Comment this line to disable the profiler
+#endif
 
 #if ENABLE_API_PROFILER
 

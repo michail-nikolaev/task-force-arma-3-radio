@@ -12,14 +12,13 @@
 enum class sendingRadioType {   //Receiving FROM senders Radio.
     LISTEN_TO_SW,
     LISTEN_TO_LR,
-    LISTEN_TO_DD, //#diverRadio
+    LISTEN_TO_DD,
     LISTEN_TO_NONE
 };
 
 enum class receivingRadioType { //Receiving TO our Radio
     LISTED_ON_SW,
     LISTED_ON_LR,
-    LISTED_ON_DD, //#diverRadio
     LISTED_ON_NONE,
     LISTED_ON_GROUND,
     LISTED_ON_INTERCOM
@@ -52,6 +51,12 @@ struct unitPositionPacket {
     int terrainInterception;
     float voiceVolume;
     int objectInterception;
+    bool isSpectating;
+    bool isEnemyToPlayer;
+
+
+
+    bool myData; //Has to be last element
 };
 
 class clientDataEffects {
@@ -67,6 +72,10 @@ public:
 
         resetRadioEffect();
     }
+     ~clientDataEffects() {
+
+    }
+
 
     Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* getSpeakerPhone(std::string key) {
         LockGuard_shared lock_shared(&m_lock);
@@ -90,6 +99,11 @@ public:
         return filtersSpeakers[key].get();
     }
 
+    void removeSpeakerFilter(std::string key) {
+        LockGuard_exclusive lock_shared(&m_lock);
+         filtersSpeakers.erase(key);
+    }
+
     PersonalRadioEffect* getSwRadioEffect(std::string key) {
         LockGuard_shared lock_shared(&m_lock);
         if (!swEffects.count(key)) {
@@ -100,15 +114,26 @@ public:
         return swEffects[key].get();
     }
 
-    LongRangeRadioffect* getLrRadioEffect(std::string key) {
+    LongRangeRadioEffect* getLrRadioEffect(std::string key) {
         LockGuard_shared lock_shared(&m_lock);
         if (!lrEffects.count(key)) {
             lock_shared.unlock();
             LockGuard_exclusive lock_exclusive(&m_lock);
-            lrEffects[key] = std::make_unique<LongRangeRadioffect>();
+            lrEffects[key] = std::make_unique<LongRangeRadioEffect>();
         }
         return lrEffects[key].get();
     }
+
+    AirborneRadioEffect* getAirborneRadioEffect(std::string key) {
+        LockGuard_shared lock_shared(&m_lock);
+        if (!airborneEffects.count(key)) {
+            lock_shared.unlock();
+            LockGuard_exclusive lock_exclusive(&m_lock);
+            airborneEffects[key] = std::make_unique<AirborneRadioEffect>();
+        }
+        return airborneEffects[key].get();
+    }
+
 
     UnderWaterRadioEffect* getUnderwaterRadioEffect(std::string key) {
         LockGuard_shared lock_shared(&m_lock);
@@ -146,6 +171,11 @@ public:
         return filtersCantSpeak[key].get();
     }
 
+    void removeFilterCantSpeak(std::string key) {
+        LockGuard_exclusive lock(&m_lock);
+        filtersCantSpeak.erase(key);
+    }
+
     Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>* getFilterVehicle(std::string key, float vehicleVolumeLoss) {
         std::string byKey = key + std::to_string(vehicleVolumeLoss);
         LockGuard_shared lock_shared(&m_lock);
@@ -156,6 +186,11 @@ public:
             filtersVehicle[byKey]->setup(2, 48000, 20000 * (1.0 - vehicleVolumeLoss) / 4.0);
         }
         return filtersVehicle[byKey].get();
+    }
+
+    void removeFilterVehicle(std::string key) {
+        LockGuard_exclusive lock(&m_lock);
+        filtersVehicle.erase(key);
     }
 
     std::map<uint8_t, std::unique_ptr<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>> filtersObjectInterception;
@@ -185,7 +220,7 @@ public:
 
     void resetVoices() {
         LockGuard_exclusive lock(&m_lock);
-        clunks.clear();
+        //clunks.clear();
         filtersCantSpeak.clear();
         filtersVehicle.clear();
     }
@@ -199,7 +234,8 @@ private:
     using effectMap = std::map<std::string, std::unique_ptr<T>>;
 
     effectMap<PersonalRadioEffect> swEffects;
-    effectMap<LongRangeRadioffect> lrEffects;
+    effectMap<LongRangeRadioEffect> lrEffects;
+    effectMap<AirborneRadioEffect> airborneEffects;
     effectMap<UnderWaterRadioEffect> ddEffects;
     effectMap<Clunk> clunks;
 
@@ -239,16 +275,14 @@ public:
     void setCurrentTransmittingFrequency(const std::string&val) { LockGuard_exclusive lock(&m_lock); currentTransmittingFrequency = val; }
     auto getCurrentTransmittingSubtype() const { LockGuard_shared lock(&m_lock); return currentTransmittingSubtype; }
     void setCurrentTransmittingSubtype(const std::string& val) { LockGuard_exclusive lock(&m_lock); currentTransmittingSubtype = val; }
-    auto getVehicleId() const { LockGuard_shared lock(&m_lock); return vehicleId; }
-    void setVehicleId(const std::string& val) { LockGuard_exclusive lock(&m_lock); vehicleId = val; }
-
     //Returns distance respecting TerrainInterception and Coefficients
     float effectiveDistanceTo(std::shared_ptr<clientData>& other) const;
     float effectiveDistanceTo(clientData* other) const;
     bool isAlive();
 
     vehicleDescriptor getVehicleDescriptor() const {
-        return helpers::getVehicleDescriptor(getVehicleId());
+        LockGuard_shared lock(&m_lock);
+        return vehicleId; //helpers::getVehicleDescriptor(getVehicleId());
     }
 
 
@@ -291,7 +325,8 @@ public:
     int terrainInterception = 0;
     int objectInterception = 0;
     float voiceVolumeMultiplifier = 1.f;
-
+    bool isSpectating;
+    bool isEnemyToPlayer;
 
     clientDataEffects effects;
 private:
@@ -309,15 +344,24 @@ private:
     std::string currentTransmittingFrequency;//Frequency client is currently transmitting on
     std::string currentTransmittingSubtype;//subtype client is currently transmitting on
 
-    std::string vehicleId;
+    vehicleDescriptor vehicleId;
 
 
-
-
-
-
-
-
-
+    void setVehicleId(const std::string& val) {
+        //"2:390\x100.6\x10gunner"
+        if (val == "no") {
+            vehicleId.vehicleName = "no";
+            vehicleId.vehicleIsolation = 0.f;
+        }
+        auto split = helpers::split(val, '\x10');
+        if (split.size() < 3) return; //I don't listen to morons!!
+        vehicleId.vehicleName = split[0]; // hear vehicle
+        auto& isolation = split[1];
+        if (isolation == "turnout")
+            vehicleId.vehicleIsolation = 0.f;
+        else
+            vehicleId.vehicleIsolation = helpers::parseArmaNumber(split[1]); // hear
+        vehicleId.intercomSlot = helpers::parseArmaNumberToInt(split[2]);//vehicleDescriptor::stringToVehiclePosition(split[2]);
+    }
 };
 

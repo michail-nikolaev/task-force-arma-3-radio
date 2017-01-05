@@ -30,7 +30,6 @@ PREP(eyeDepth);
 PREP_SUB(events\handler,fireEventHandlers);
 PREP(forceSpectator);
 // G
-PREP(generateDDFreq);
 PREP(generateLrSettings);
 PREP(generateSRSettings);
 PREP(generateFrequencies);
@@ -77,6 +76,7 @@ PREP(haveSWRadio);
 PREP_SUB(modules,initialiseBaseModule);
 PREP_SUB(modules,initialiseFreqModule);
 PREP_SUB(modules,initialiseEnforceUsageModule);
+PREP(initKeybinds);
 PREP_SUB(server,instanciateRadios);
 PREP_SUB(hint,inWaterHint);
 PREP(isAbleToUseRadio);
@@ -102,9 +102,6 @@ PREP_SUB(events\keys,onAdditionalLRTangentReleased);
 PREP_SUB(events\keys,onAdditionalLRTangentPressed);
 PREP_SUB(events,onArsenal);
 PREP_SUB(events,onCuratorInterfaceOpen);
-PREP_SUB(events\keys,onDDTangentPressed);
-PREP_SUB(events\keys,onDDTangentReleased);
-PREP_SUB(events\keys,onDDTangentReleasedHack);
 PREP_SUB(events\keys,onLRTangentPressed);
 PREP_SUB(events\keys,onLRTangentReleased);
 PREP_SUB(events\keys,onLRTangentReleasedHack);
@@ -118,7 +115,6 @@ PREP_SUB(events\keys,onSpeakVolumeModifierPressed);
 PREP_SUB(events\keys,onSpeakVolumeModifierReleased);
 PREP_SUB(events\ui,onSwDialogOpen);
 PREP_SUB(events\ui,onLRDialogOpen);
-PREP_SUB(events\ui,onDDDialogOpen);
 PREP_SUB(hint,onGroundHint);
 // P
 PREP(preparePositionCoordinates);
@@ -152,6 +148,7 @@ PREP(setLrVolume);
 PREP(setSwFrequency);
 PREP(setLrFrequency);
 PREP(setLrStereo);
+PREP(setHeadsetLowered);
 PREP_SUB(plugin,sendFrequencyInfo);
 PREP_SUB(plugin,sendPlayerInfo);
 PREP_SUB(plugin,sendPlayerKilled);
@@ -185,7 +182,6 @@ PREP_SUB(plugin,betaTracker); //#TODO remove on release
 PREP_SUB(events\ui,setVolumeViaDialog);
 PREP_SUB(events\ui,setChannelViaDialog);
 // U
-PREP_SUB(events\ui,updateDDDialog);
 PREP_SUB(events\ui,updateSWDialogToChannel);
 PREP_SUB(events\ui,updateLRDialogToChannel);
 PREP_SUB(hint,unableToUseHint);
@@ -198,3 +194,5 @@ PREP(vehicleLr);
 
 
 DEPRECATE(fnc_generateSwSettings,fnc_generateSRSettings); //#Depreacted renamed func for SR LR consistency
+
+//#TODO deprecate other Sw functions

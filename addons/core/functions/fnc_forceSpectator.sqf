@@ -7,8 +7,8 @@
         NKey
 
     Description:
-        If second parameter is true player will force to be moved in spectator mode (at radio level).
-        If false - normal behaviour restore.
+        If second parameter is true player will moved to spectator mode
+        If false - normal behaviour will be restored.
 
     Parameters:
         ARRAY:
@@ -24,7 +24,5 @@
 
 params ["_player", "_value"];
 
-if (_value) then {
-    _player call TFAR_fnc_sendPlayerKilled;
-};
-_player setVariable ["tf_forceSpectator", _value, true];
+_player setVariable ["TFAR_forceSpectator", _value, true];
+_player setVariable ["TFAR_spectatorName", profileName, true];

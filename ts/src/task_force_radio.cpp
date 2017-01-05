@@ -55,6 +55,11 @@ TFAR::TFAR() {
 
     onShutdown.connect([this]() {
 
+        if (getCurrentlyInGame())
+            onGameEnd();
+        if (m_commandProcessor)
+            m_commandProcessor->stopThread();
+
         onGameStart.removeAllSlots(); //clear all Signals slots so they cannot possibly be called after shutdown
         onGameEnd.removeAllSlots();
         onGameConnected.removeAllSlots();
@@ -63,11 +68,6 @@ TFAR::TFAR() {
         onTeamspeakClientJoined.removeAllSlots();
         onTeamspeakClientLeft.removeAllSlots();
         onTeamspeakClientUpdated.removeAllSlots();
-
-        if (getCurrentlyInGame())
-            onGameEnd();
-        if (m_commandProcessor)
-            m_commandProcessor->stopThread();
     });
     config.configValueSet.connect([](const Setting& setting) {
         if (setting == Setting::serious_channelName || setting == Setting::serious_channelPassword)

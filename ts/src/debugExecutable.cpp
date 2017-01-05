@@ -254,8 +254,8 @@ auto clientDataVectorAccess() {
 int main() {
     Logger::registerLogger(LoggerTypes::profiler, std::make_shared<DebugStringLogger>());
     //auto durationStringToGameCommand = speedTestStringToGameCommand(); //should be < 300ns release <1300 ns debug
-    auto durationStringSplit = speedTestStringSplit(); //should by < 260ns release
-    auto durationStringSplit2 = speedTestStringSplitRef(); //should by < 140ns release
+    auto durationStringSplit = speedTestStringSplit(); //should be < 260ns release
+    auto durationStringSplit2 = speedTestStringSplitRef(); //should be < 140ns release
     clientDataVectorAccess();//150ns
     clientDataMapAccess();//250ns
     ASSERT(TFAR::Version("0.9.9") > TFAR::Version("0.9.8"));
@@ -263,6 +263,11 @@ int main() {
     ASSERT(TFAR::Version("1.0.0.0") > TFAR::Version("0.9.8"));
     ASSERT(TFAR::Version("1.0.0.0") > TFAR::Version("0.9.12"));
     ASSERT(TFAR::Version("1.0.0") > TFAR::Version("0.9.12"));
+
+    Position3D above(10, 10, 10);
+    Position3D below(-10, -10, -10);
+    float dist = above.distanceUnderwater(below);
+
 
 
     getchar();
