@@ -2152,7 +2152,9 @@ int ts3plugin_apiVersion() {
 	VS_FIXEDFILEINFO*   vsfi = NULL;
 	VerQueryValue(versionInfo, L"\\", (void**) &vsfi, &len);
 	short version = HIWORD(vsfi->dwFileVersionLS);
+    short minor = LOWORD(vsfi->dwFileVersionMS);
 	delete[] versionInfo;
+    if (minor == 1) return 21;//Teamspeak 3.1
 	switch (version) {
 		case 9: return 19;
 		case 10: return 19;
