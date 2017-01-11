@@ -112,7 +112,7 @@ class additional: HiddenButton
 };
 class speakers: HiddenButton
 {
-	idc = IDC_ANPRC152_PREV;
+	idc = IDC_ANPRC152_SPEAKERS;
 	x = 0.181756 * safezoneW + safezoneX;
 	y = 0.659225 * safezoneH + safezoneY;
 	w = 0.0179438 * safezoneW;
