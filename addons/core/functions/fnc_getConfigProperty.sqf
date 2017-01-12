@@ -24,15 +24,23 @@
 */
 
 params ["_item", "_property", ["_default", ""]];
+
 //#TODO deprecate _api stuff
-if ((isNil "_item") or {str(_item) == ""}) exitWith {_default};
+if ((isNil "_item") or {!(_item isEqualType "") }) exitWith {_default};//This is probably not needed... +0.01ms calltime so.... ehh...
+
+//Caching reduces function calltime from ~0.4ms to 0.023ms
+private _cacheName = (_item + _property);
+private _cachedEntry = TFAR_ConfigCacheNamespace getVariable _cacheName;
+if (!isNil "_cachedEntry") exitWith {_cachedEntry};
 
 if (isNumber (configFile >> "CfgVehicles" >> _item >> _property + "_api")) exitWith {
     getNumber (configFile >> "CfgVehicles" >> _item >> _property + "_api")
 };
 
 if (isNumber (configFile >> "CfgVehicles" >> _item >> _property)) exitWith {
-    getNumber (configFile >> "CfgVehicles" >> _item >> _property)
+    private _value = getNumber (configFile >> "CfgVehicles" >> _item >> _property);
+    TFAR_ConfigCacheNamespace setVariable [_cacheName,_value];
+    _value;
 };
 
 if (isText (configFile >> "CfgVehicles" >> _item >> _property + "_api")) exitWith {
@@ -40,8 +48,11 @@ if (isText (configFile >> "CfgVehicles" >> _item >> _property + "_api")) exitWit
 };
 
 if (isText (configFile >> "CfgVehicles" >> _item >> _property)) exitWith {
-    getText (configFile >> "CfgVehicles" >> _item >> _property);
+    private _value = getText (configFile >> "CfgVehicles" >> _item >> _property);
+    TFAR_ConfigCacheNamespace setVariable [_cacheName,_value];
+    _value;
 };
 
+TFAR_ConfigCacheNamespace setVariable [_cacheName,_default];
 
 _default
