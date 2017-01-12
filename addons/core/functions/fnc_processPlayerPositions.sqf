@@ -70,9 +70,9 @@ if (!TFAR_currentFarPlayersProcessed) then {
             _unitName = _unit getVariable ["TFAR_spectatorName","any"];
         };
         if !(isNil "_controlled") then {
-            [_controlled, true, _unitName] call TFAR_fnc_sendPlayerInfo;
+            [_controlled, false, _unitName] call TFAR_fnc_sendPlayerInfo;
         } else {
-            [_unit, true, _unitName] call TFAR_fnc_sendPlayerInfo;
+            [_unit, false, _unitName] call TFAR_fnc_sendPlayerInfo;
         };
     };
 
