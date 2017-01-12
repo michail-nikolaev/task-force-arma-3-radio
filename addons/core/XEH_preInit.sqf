@@ -115,6 +115,7 @@ if (hasInterface) then {//Clientside Variables
 
 
     tf_lastError = false;
+    TFAR_ConfigCacheNamespace = false call CBA_fnc_createNamespace;
 };
 
 

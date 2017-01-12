@@ -22,11 +22,9 @@ params ["_unit"];
 
 if (isNull (objectParent _unit)) exitWith {"no"};//Unit is not in vehicle
 
-_netID = netid (vehicle _unit);
-if (_netID == "") then {
-    _netID = "singleplayer";
-};
-if ([_unit] call TFAR_fnc_isTurnedOut) exitWith {_netID + "_turnout";};
+private _netID = netid (vehicle _unit);
+
+if (isTurnedOut _unit) exitWith {_netID + "_turnout";};//TFAR_fnc_isTurnedOut is 0.0122ms vs isTurnedOut 0.0023ms
 
 
 /*
@@ -43,6 +41,7 @@ tolower _slot
 //Get intercom slot of unit. By default everyone is Cargo
 private _hasIntercom = ([(typeof (vehicle _unit)), "TFAR_hasIntercom", 0] call TFAR_fnc_getConfigProperty) > 0;
 private _intercomSlot = -1;
+
 if (_hasIntercom) then {
     _intercomSlot = (vehicle _unit) getVariable [format ["TFAR_IntercomSlot_%1",(netID _unit)],0];
 };

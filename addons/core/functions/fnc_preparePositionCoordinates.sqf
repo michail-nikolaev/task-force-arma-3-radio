@@ -20,13 +20,12 @@
     Example:
 
 */
-
 params ["_unit", "_nearPlayer","_unitName"];
 
 private _pos = [_unit, _nearPlayer] call (_unit getVariable ["TF_fnc_position", TFAR_fnc_defaultPositionCoordinates]);
 private _isolated_and_inside = _unit call TFAR_fnc_vehicleIsIsolatedAndInside;
 private _depth = _unit call TFAR_fnc_eyeDepth;
-private _can_speak = [_isolated_and_inside, _depth] call TFAR_fnc_canSpeak;
+private _can_speak = (_depth > 0 || _isolated_and_inside); //Inlined version of TFAR_fnc_canSpeak to save performance
 private _useSw = true;
 private _useLr = true;
 private _useDd = false;
@@ -35,12 +34,9 @@ if (_depth < 0) then {
     _useLr = [_unit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio;
     _useDd = [_depth, _isolated_and_inside] call TFAR_fnc_canUseDDRadio;
 };
-if (count _pos != 4) then {
-    _pos pushBack 0;
-};
 
 private _vehicle = _unit call TFAR_fnc_vehicleId;
-if ((_nearPlayer) and {TFAR_currentUnit distance _unit <= TF_speakerDistance}) then {
+if ((_nearPlayer) && {TFAR_currentUnit distance _unit <= TF_speakerDistance}) then {
     if (_unit getVariable ["TFAR_LRSpeakersEnabled", false] && _useLr) then {
         {
             if (_x call TFAR_fnc_getLrSpeakers) then {
@@ -73,8 +69,9 @@ if ((_nearPlayer) and {TFAR_currentUnit distance _unit <= TF_speakerDistance}) t
     };
 };
 
+
 private _object_interception = 0;
-if (TFAR_objectInterceptionEnabled && _nearPlayer) then {
+if (TFAR_objectInterceptionEnabled && _nearPlayer && {_unit != TFAR_currentUnit}) then {
     _object_interception = _unit call TFAR_fnc_objectInterception;
 };
 
