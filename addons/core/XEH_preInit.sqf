@@ -90,9 +90,9 @@ if (hasInterface) then {//Clientside Variables
 
     TF_speakerDistance = 20;
     TF_speak_volume_level = "normal";
-    TF_speak_volume_meters = 20;
-    TF_min_voice_volume = 5;
-    TF_max_voice_volume = 60;
+    TF_speak_volume_meters = TFAR_VOLUME_NORMAL;
+    TF_min_voice_volume = TFAR_VOLUME_WHISPERING;
+    TF_max_voice_volume = TFAR_VOLUME_YELLING;
     TF_sw_dialog_radio = nil;
 
     TF_last_speak_volume_level = TF_speak_volume_level;

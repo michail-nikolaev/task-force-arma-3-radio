@@ -47,3 +47,7 @@
 #define TFAR_PLAYER_RESCAN_TIME 1//Interval between Rescans of Players
 
 #define TFAR_FAR_PLAYER_UPDATE_TIME 3.5 //Interval between updates of Far(>TF_max_voice_volume) Player positions
+
+#define TFAR_VOLUME_WHISPERING  5
+#define TFAR_VOLUME_NORMAL      20
+#define TFAR_VOLUME_YELLING     60
