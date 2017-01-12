@@ -327,7 +327,7 @@ public:
     float voiceVolumeMultiplifier = 1.f;
     bool isSpectating;
     bool isEnemyToPlayer;
-
+    bool receivingTransmission = false; //This unit is currently receiving a transmission. Only works for local player
     clientDataEffects effects;
 private:
     using LockGuard_shared = LockGuard_shared<ReadWriteLock>;

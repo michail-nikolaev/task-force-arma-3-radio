@@ -20,6 +20,7 @@ if (!hasInterface) exitWith {}; //Only on clients
     private _nearHostiles = _unit nearEntities [["Car", "Motorcycle", "Tank","CAManBase","Man"], TF_speak_volume_meters - 5];//-5 because Enemies don't have that good hearing
 
     {
+        //could use TFAR_speakingSince to see how long player is speaking and increase reveal according to that
 
         if (!((vehicle _x) call TFAR_fnc_isVehicleIsolated) && {!isPlayer _x} && {_x knowsAbout _unit <= 1.5}) then {
             [_x,[_unit,1.5]] remoteExec ["reveal",2];
