@@ -854,7 +854,7 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
 
             float gain = helpers::volumeMultiplifier(static_cast<float>(listedInfo.volume)) * TFAR::getInstance().m_gameData.globalVolume;
 
-
+            myClientData->receivingTransmission = playPressed; //Set that we are receiving a transmission. For the EventHandler
             switch (PTTDelayArguments::stringToSubtype(subtype)) {
                 case PTTDelayArguments::subtypes::digital:
                     TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/sw/remote_start" : "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);

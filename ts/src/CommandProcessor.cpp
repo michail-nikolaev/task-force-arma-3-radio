@@ -70,17 +70,17 @@ std::string CommandProcessor::processCommand(const std::string& command) {
             std::string nickname = convertNickname(tokens[1]);
             TSServerID currentServerConnectionHandlerID = Teamspeak::getCurrentServerConnection();
             auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(currentServerConnectionHandlerID);
-
-            if (!clientDataDir) return  "NOT_SPEAKING";
+            if (!clientDataDir) return "00";
             auto clientData = clientDataDir->getClientData(nickname);
+            bool receivingTransmission = clientData->receivingTransmission;
 
             if (clientData) {
                 bool clientTalkingOnRadio = (clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE) || clientData->clientTalkingNow;
                 if (clientData->clientTalkingNow || clientTalkingOnRadio)
-                    return "SPEAKING";
+                    return std::string("1").append(receivingTransmission ? "1" : "0", 1);
             }
 
-            return  "NOT_SPEAKING";
+            return  std::string("0").append(receivingTransmission ? "1" : "0", 1);
         }
     }
 
