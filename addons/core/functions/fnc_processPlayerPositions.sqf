@@ -27,7 +27,7 @@ private _startTime = diag_tickTime;
 if (!TFAR_currentNearPlayersProcessed) then {
     private _nearPlayersCount = count TFAR_currentNearPlayersProcessing;
     if (_nearPlayersCount == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
-    private _playersToProcess = _nearPlayersCount min 50;//Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
+    private _playersToProcess = _nearPlayersCount min 30;//Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
     if (_playersToProcess == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
 
     private _startIndex = _nearPlayersCount - _playersToProcess; //Is min 0
@@ -64,15 +64,15 @@ if (!TFAR_currentFarPlayersProcessed) then {
     private _startIndex = _farPlayersCount - _playersToProcess; //Is min 0
     for "_y" from _startIndex to _farPlayersCount-1 step 1 do {
         private _unit = (TFAR_currentFarPlayersProcessing select _y);
-        private _controlled = _unit getVariable "TFAR_controlledUnit";
+        private _controlled = _unit getVariable ["TFAR_controlledUnit", objNull];
         private _unitName = name _unit;
         if (_unit getVariable ["TFAR_forceSpectator",false]) then {
             _unitName = _unit getVariable ["TFAR_spectatorName","any"];
         };
-        if !(isNil "_controlled") then {
-            [_controlled, false, _unitName] call TFAR_fnc_sendPlayerInfo;
+        if (isNull _controlled) then {
+            [_unit, false, _unitName] call PROFCONTEXT_RTN(TFAR_fnc_sendPlayerInfo);
         } else {
-            [_unit, false, _unitName] call TFAR_fnc_sendPlayerInfo;
+            [_controlled, false, _unitName] call PROFCONTEXT_RTN(TFAR_fnc_sendPlayerInfo);
         };
     };
 
@@ -113,7 +113,7 @@ if (_needNearPlayerScan) then {
 
 //Queue new updates to plugin if last one processed
 if (TFAR_currentNearPlayersProcessed) then {
-    call TFAR_fnc_sendSpeakerRadios;//send Speaker radio infos to plugin
+    call PROFCONTEXT_NORTN(TFAR_fnc_sendSpeakerRadios);//send Speaker radio infos to plugin Has to be here because it needs a variable from NearPlayer processing
     TFAR_currentNearPlayersProcessing = +TFAR_currentNearPlayers;//Copy array for processing
     TFAR_currentNearPlayersProcessed = false;
 };

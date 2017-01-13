@@ -29,13 +29,14 @@ private _speakerRadios = TFAR_speakerRadios;
     if (_waveZ > 0) then {
         {
             if ((_x call TFAR_fnc_isRadio) and {_x call TFAR_fnc_getSwSpeakers}) then {
-                private _frequencies = [format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode]];
+                private _radioCode = _x call TFAR_fnc_getSwRadioCode;
+                private _frequencies = [format ["%1%2", _x call TFAR_fnc_getSwFrequency, _radioCode]];
                 private _additionalChannel = _x call TFAR_fnc_getAdditionalSwChannel;
                 if (_additionalChannel > -1) then {
-                    _frequencies pushBack format ["%1%2", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
+                    _frequencies pushBack format ["%1%2", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
                 };
 
-                _speakerRadios pushBack ([_x/*radio_id*/,_frequencies joinString "|",""/*nickname*/,_pos,_x call TFAR_fnc_getSwVolume, "no"/*vehicle*/, _waveZ] joinString TF_new_line);
+                _speakerRadios pushBack ([_x/*radio_id*/,_frequencies joinString "|",""/*nickname*/,_pos,_x call TFAR_fnc_getSwVolume, "no"/*vehicle*/] joinString TF_new_line);
             };
             true;
         } count ((getItemCargo _x) select 0);
@@ -44,23 +45,23 @@ private _speakerRadios = TFAR_speakerRadios;
             if  ((_x getVariable ["TFAR_LRSpeakersEnabled", false]) and {[typeof (_x), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1}) then {
                 private _manpack = [_x, "radio_settings"];
                 if (_manpack call TFAR_fnc_getLrSpeakers) then {
-                    private _frequencies = [format ["%1%2", _manpack call TFAR_fnc_getLrFrequency, _manpack call TFAR_fnc_getLrRadioCode]];
-                    if ((_manpack call TFAR_fnc_getAdditionalLrChannel) > -1) then {
-                        _frequencies pushBack format ["%1%2", [_manpack, (_manpack call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_getChannelFrequency, _manpack call TFAR_fnc_getLrRadioCode];
+                    private _radioCode = _manpack call TFAR_fnc_getLrRadioCode;
+                    private _frequencies = [format ["%1%2", _manpack call TFAR_fnc_getLrFrequency, _radioCode]];
+                    private _additionalChannel = _manpack call TFAR_fnc_getAdditionalLrChannel;
+                    if (_additionalChannel > -1) then {
+                        _frequencies pushBack format ["%1%2", [_manpack, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
                     };
-                    private _radio_id = netId (_manpack select 0);
-                    if (_radio_id == '') then {
-                        _radio_id = str (_manpack select 0);
-                    };
-                    _speakerRadios pushBack ([_radio_id,_frequencies joinString "|",""/*nickname*/,_pos,_manpack call TFAR_fnc_getLrVolume, "no"/*vehicle*/, _waveZ/*waveZ*/] joinString TF_new_line);
+                    private _radio_id = netId _x;
+                    _speakerRadios pushBack ([_radio_id,_frequencies joinString "|",""/*nickname*/,_pos,_manpack call TFAR_fnc_getLrVolume, "no"/*vehicle*/] joinString TF_new_line);
                 };
             };
             true;
         } count (everyBackpack _x);
     };
     true;
-} count (nearestObjects [getPos TFAR_currentUnit, ["WeaponHolder", "GroundWeaponHolder", "WeaponHolderSimulated"], TF_speakerDistance]);
+} count (nearestObjects [getPos TFAR_currentUnit, ["WeaponHolder", "WeaponHolderSimulated"], TF_speakerDistance]);
 //#TODO doesn't catch static LRRadio backpacks on ground because they are not in any Holder
+//Are you sure? nearestObjects seems to return a container and backpacks returns radio backpacks.. Should verify that again It may not see them because of TFAR_LRSpeakersEnabled not set
 
 //Get vehicle radios on speaker
 {
@@ -84,22 +85,16 @@ private _speakerRadios = TFAR_speakerRadios;
 
             {
                 if (_x call TFAR_fnc_getLrSpeakers) then {
-                    private _frequencies = [format ["%1%2", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode]];
-                    if ((_x call TFAR_fnc_getAdditionalLrChannel) > -1) then {
-                        _frequencies pushBack format ["|%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_getChannelFrequency, _x call TFAR_fnc_getLrRadioCode];
+                    private _radioCode = _x call TFAR_fnc_getLrRadioCode;
+                    private _frequencies = [format ["%1%2", _x call TFAR_fnc_getLrFrequency, _radioCode]];
+                    private _additionalChannel = _x call TFAR_fnc_getAdditionalLrChannel;
+                    if (_additionalChannel > -1) then {
+                        _frequencies pushBack format["%1%2", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
                     };
-                    private _radio_id = netId (_x select 0);
-                    if (_radio_id == '') then {
-                        _radio_id = str (_x select 0);
-                    };
-                    _radio_id =  _radio_id + (_x select 1);
-                    private _isolation = netid (_x select 0);
-                    if (_isolation == "") then {
-                        _isolation = "singleplayer";
-                    };
-                    _isolation = _isolation + "_" + str ([(typeof (_x select 0)), "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty);
+                    private _radio_id = netId (_x select 0) + (_x select 1);
+                    private _isolation = netid (_x select 0) + "_" + str ([(typeof (_x select 0)), "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty);
 
-                    _speakerRadios pushBack ([_radio_id,_frequencies,"",_pos,_x call TFAR_fnc_getLrVolume, _isolation, _pos select 2] joinString TF_new_line);
+                    _speakerRadios pushBack ([_radio_id,_frequencies joinString "|","",_pos,_x call TFAR_fnc_getLrVolume, _isolation] joinString TF_new_line);
                 };
                 true;
             } count (_lrs);

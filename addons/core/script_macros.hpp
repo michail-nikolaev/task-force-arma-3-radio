@@ -101,3 +101,20 @@
         WARNING('Deprecated variable used: OLD_VARIABLE (new: NEW_VARIABLE) in ADDON'); \
         NEW_VARIABLE = OLD_VARIABLE; \
     }
+
+
+
+
+
+
+#ifdef DEBUG_MODE_FULL
+
+#define PROFCONTEXT_NORTN(x) {isNil{call x}}
+#define PROFCONTEXT_RTN(x) {private _rtn = 0; isNil{_rtn = _this call x}; _rtn}
+
+#else
+
+#define PROFCONTEXT_NORTN(x) x
+#define PROFCONTEXT_RTN(x) x
+
+#endif

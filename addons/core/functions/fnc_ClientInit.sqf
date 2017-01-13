@@ -39,7 +39,6 @@ TFAR_currentUnit = call TFAR_fnc_currentUnit;
 tf_lastNearFrameTick = diag_tickTime;
 tf_lastFarFrameTick = diag_tickTime;
 TFAR_RadioReqLinkFirstItem = true;//Radio Request Link first Item
-TF_last_request_time = 0;
 TF_respawnedAt = time;//first spawn so.. respawned now
 
 [   {!(isNull (findDisplay 46))},
@@ -50,14 +49,14 @@ TF_respawnedAt = time;//first spawn so.. respawned now
 
         if (isMultiplayer) then {
             call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
-            [TFAR_fnc_processPlayerPositions,0.1 /*100 milliseconds*/] call CBA_fnc_addPerFrameHandler;
-            [TFAR_fnc_sendFrequencyInfo,0.3 /*300 milliseconds*/] call CBA_fnc_addPerFrameHandler;
-            [TFAR_fnc_sessionTracker,60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
+            [PROFCONTEXT_NORTN(TFAR_fnc_processPlayerPositions),0.1 /*100 milliseconds*/] call CBA_fnc_addPerFrameHandler;
+            [PROFCONTEXT_NORTN(TFAR_fnc_sendFrequencyInfo),0.3 /*300 milliseconds*/] call CBA_fnc_addPerFrameHandler;
+            [PROFCONTEXT_NORTN(TFAR_fnc_sessionTracker),60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
 
             //Only want this to run after initial spawn was processed
             [
                 {(time - TF_respawnedAt > 5)},
-                {[TFAR_fnc_radioReplaceProcess,2/*2 seconds*/] call CBA_fnc_addPerFrameHandler;}
+                {[PROFCONTEXT_NORTN(TFAR_fnc_radioReplaceProcess),2/*2 seconds*/] call CBA_fnc_addPerFrameHandler;}
             ] call CBA_fnc_waitUntilAndExecute;
         };
 }] call CBA_fnc_waitUntilAndExecute;
@@ -158,6 +157,8 @@ if (player call TFAR_fnc_isForcedCurator) then {
     TFAR_currentUnit = (_this select 0);
     "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name player]);//Async call will always return "OK"
 
+    TFAR_lastLoadoutChange = diag_tickTime; //Switching unit also switches loadout
+
     if !(TFAR_currentUnit getVariable ["TFAR_HandlersSet",false]) then {
         TFAR_currentUnit addEventHandler ["Take", {
             private _class = configFile >> "CfgWeapons" >> (_this select 2);
@@ -190,6 +191,14 @@ if (player call TFAR_fnc_isForcedCurator) then {
     };
 
 },true] call CBA_fnc_addPlayerEventHandler;
+
+["loadout", {
+    //current units loadout changed.. Should invalidate any caches about players loadout.
+    TFAR_lastLoadoutChange = diag_tickTime;
+},true] call CBA_fnc_addPlayerEventHandler;
+
+
+
 
 //onArsenal PostClose event
 [missionnamespace,"arsenalClosed", {

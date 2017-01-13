@@ -18,18 +18,31 @@
     Example:
         _radios = TFAR_currentUnit call TFAR_fnc_radiosList;
 */
-private _result = [];
-{
-    if (_x call TFAR_fnc_isRadio) then {
-        _result pushBack _x;
-    };
-    true;
-} count (assignedItems _this);
 
-{
-    if (_x call TFAR_fnc_isRadio) then {
-        _result pushBack _x;
-    };
-    true;
-} count (items _this);
+private _fetchItems = {
+    private _allItems = (assignedItems _this) + (items _this);
+    _allItems = _allItems arrayIntersect _allItems;//Remove duplicates
+
+    private _result = [];
+    {
+        if (_x call TFAR_fnc_isRadio) then {
+            _result pushBack _x;
+        };
+        true;
+    } count _allItems;
+    _result
+};
+
+//We only cache local player because TFAR_lastLoadoutChange only reflects local player
+if (_this != TFAR_currentUnit) exitWith {_this call _fetchItems};
+
+//Caching
+private _lastCache = [TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_radiosList_lastCache"] param [0, -1]; //Magic feat commy2
+if (_lastCache > TFAR_lastLoadoutChange) exitWith {TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_radiosList_CachedRadios"};
+
+private _result = _this call _fetchItems;
+
+TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_radiosList_lastCache",diag_tickTime-0.1];//#TODO make macros from these
+TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_radiosList_CachedRadios",_result];
+
 _result

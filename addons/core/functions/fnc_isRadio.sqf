@@ -20,7 +20,15 @@
         _isRadio = "NotARadioClass" call TFAR_fnc_isRadio;
 */
 
-private _result = getNumber (configFile >> "CfgWeapons" >> _this >> "tf_radio");
-if (!isNil "_result") exitWith {_result == 1};
+//This is the same caching as in fnc_getConfigProperty. But we don't need that special stuff for CfgVehicles in getConfigProperty
+//So we implement the same caching for this more slim function.
 
+private _cacheName = (_this+"tf_radio");
+private _cachedEntry = TFAR_ConfigCacheNamespace getVariable _cacheName;
+if (!isNil "_cachedEntry") exitWith {_cachedEntry};
+
+private _result = getNumber (configFile >> "CfgWeapons" >> _this >> "tf_radio");
+if (!isNil "_result") exitWith {TFAR_ConfigCacheNamespace setVariable [_cacheName,_result == 1];_result == 1};
+
+TFAR_ConfigCacheNamespace setVariable [_cacheName,false];
 false

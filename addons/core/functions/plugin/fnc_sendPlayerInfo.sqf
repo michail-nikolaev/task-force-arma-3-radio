@@ -24,7 +24,7 @@
 
 params ["_player"];
 
-private _request = _this call TFAR_fnc_preparePositionCoordinates;
+private _request = _this call PROFCONTEXT_RTN(TFAR_fnc_preparePositionCoordinates);
 private _result = "task_force_radio_pipe" callExtension _request;
 
 _splitResult = _result splitString "";

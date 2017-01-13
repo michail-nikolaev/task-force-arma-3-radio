@@ -55,6 +55,9 @@ private _TF_settingsToCopy = [];
     true;
 } count (assignedItems TFAR_currentUnit);
 
+private _uniqueItems = (items TFAR_currentUnit);
+_uniqueItems = _uniqueItems arrayIntersect _uniqueItems;//Remove duplicates
+
 {
     if (_x call TFAR_fnc_isPrototypeRadio) then {
         _to_remove pushBack _x;
@@ -70,7 +73,7 @@ private _TF_settingsToCopy = [];
         };
     };
     true;
-} count (items TFAR_currentUnit);
+} count _uniqueItems;
 
 //Remove old items from Players inventory
 {
