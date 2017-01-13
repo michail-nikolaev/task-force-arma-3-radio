@@ -24,7 +24,7 @@ params ["_unit", "_nearPlayer","_unitName"];
 
 private _pos = [_unit, _nearPlayer] call (_unit getVariable ["TF_fnc_position", TFAR_fnc_defaultPositionCoordinates]);
 private _isolated_and_inside = _unit call TFAR_fnc_vehicleIsIsolatedAndInside;
-private _depth = _unit call TFAR_fnc_eyeDepth;
+private _depth = ((eyepos _unit) select 2) + ((getPosASLW _unit) select 2) - ((getPosASL _unit) select 2);//Inlined version of TFAR_fnc_eyeDepth to save performance
 private _can_speak = (_depth > 0 || _isolated_and_inside); //Inlined version of TFAR_fnc_canSpeak to save performance
 private _useSw = true;
 private _useLr = true;

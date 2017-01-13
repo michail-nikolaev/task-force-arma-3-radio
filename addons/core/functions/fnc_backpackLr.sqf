@@ -13,15 +13,14 @@
         0: Object: Unit
 
     Returns:
-        ARRAY: Manpack or empty array
+        ARRAY: Manpack or nil if no radio
 
     Example:
         _radio = player call TFAR_fnc_backpackLR;
 */
 
-private _result = [];
 private _backpack = backpack _this;
-if (([_backpack, "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty) == 1) then {
-    _result = [unitBackpack _this, "radio_settings"];
+if (([_backpack, "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty) == 1) exitWith {
+    [unitBackpack _this, "radio_settings"]
 };
-_result
+nil

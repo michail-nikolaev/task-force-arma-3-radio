@@ -15,15 +15,16 @@
 
     Returns:
         ARRAY: 0 - Object - Vehicle, 1 - String - Radio Settings ID
+                or nil if no Vehicle radio found
 
     Example:
         _radio = player call TFAR_fnc_VehicleLR;
 */
 params ["_unit"];
 
-if (isNull (objectParent _unit)) exitWith {[]};//Unit is not in vehicle
+if (isNull (objectParent _unit)) exitWith {nil};//Unit is not in vehicle
 
-private _result = [];
+private _result = nil;
 
 switch (_unit) do {
     case (gunner (vehicle _unit)): {
@@ -39,4 +40,5 @@ switch (_unit) do {
         _result = [vehicle _unit, "turretUnit_0_radio_setting"];
     };
 };
+
 _result

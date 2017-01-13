@@ -19,7 +19,7 @@
     Example:
         ["TFAR_anprc_152"] call TFAR_fnc_instanciateRadios;
 */
-diag_log ["TFAR_fnc_instanciateRadios",_this];
+
 //params [ ["_radio_request", [], [[]] ] ];
 _radio_request = _this; //Params doesn't work because it turns ["test"] into "test" cuz its dumb
 //Note: This WILL be executed in unscheduled and freeze Server until done
