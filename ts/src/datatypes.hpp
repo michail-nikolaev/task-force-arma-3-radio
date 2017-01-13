@@ -91,7 +91,7 @@ namespace dataType {
         Vector3D(Vector3D&& vec) : m_x(std::move(vec.m_x)), m_y(std::move(vec.m_y)), m_z(std::move(vec.m_z)) {};
         Vector3D(const Vector3D& vec) : m_x(vec.m_x), m_y(vec.m_y), m_z(vec.m_z) {};
 
-        std::tuple<float, float, float> get() const;
+        std::tuple<float, float, float> get() const; //#TODO instead of using get.. how about operator[] ?
         float length() const;
         float dotProduct(const Vector3D& other) const;
         Vector3D normalized();
