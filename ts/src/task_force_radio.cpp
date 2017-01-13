@@ -104,11 +104,13 @@ bool TFAR::isUpdateAvailable() {
             pluginVersion += ch;
         }
     }
+    
     InternetCloseHandle(File);
     InternetCloseHandle(Connection);
     InternetCloseHandle(Initialize);
+
     std::string currentVersion = PLUGIN_VERSION;
-    if (pluginVersion.length() < 10) {
+    if (pluginVersion.length() > 3) {
         return Version(pluginVersion) > Version(currentVersion);
     } else {
         return false;
