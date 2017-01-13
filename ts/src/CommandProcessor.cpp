@@ -72,6 +72,8 @@ std::string CommandProcessor::processCommand(const std::string& command) {
             auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(currentServerConnectionHandlerID);
             if (!clientDataDir) return "00";
             auto clientData = clientDataDir->getClientData(nickname);
+            if (!clientData)
+                return "00";
             bool receivingTransmission = clientData->receivingTransmission;
 
             if (clientData) {
@@ -365,7 +367,7 @@ void CommandProcessor::processSpeakers(std::vector<std::string>& tokens) {
     if (tokens.size() != 2)
         return;
 
-    //if you switch TS tab... You don't get to get speakers bro!
+    //if you switch TS tab... You don't get speakers bro!
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
     if (!clientDataDir) return;
 
@@ -387,7 +389,7 @@ void CommandProcessor::processSpeakers(std::vector<std::string>& tokens) {
         if (parts.size() > 6)
             data.waveZ = helpers::parseArmaNumber(parts[6]);
         else
-            data.waveZ = 1;
+            data.waveZ = data.pos.isNull() ? 1 : std::get<2>(data.pos.get());
 
         for (const std::string & freq : helpers::split(parts[1], '|')) {
             TFAR::getInstance().m_gameData.speakers.insert(std::pair<std::string, SPEAKER_DATA>(freq, data));
