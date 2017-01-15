@@ -65,6 +65,10 @@ if (player call TFAR_fnc_isForcedCurator) then {
     player unlinkItem "ItemRadio";
     player addVest "V_Rangemaster_belt";
 
+    player enableSimulation false;//prevents falling sound when flying high in the sky
+    player hideObject true;
+
+
     switch (typeOf (player)) do {
         case "B_VirtualCurator_F": {
                 player addItem TFAR_DefaultRadio_Personal_West;
