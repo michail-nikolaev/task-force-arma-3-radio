@@ -194,8 +194,8 @@ class CfgVehicles {
     MACRO_VEC_ISOLATION_LR(Truck_01_base_F,Truck_F,0.4,1);
     MACRO_VEC_ISOLATION_LR(Truck_02_base_F,Truck_F,0.4,1);
     MACRO_VEC_ISOLATION_LR(Truck_03_base_F,Truck_F,0.4,1);
-    class Offroad_01_base_f;
-    MACRO_VEC_ISOLATION_LR(Offroad_01_armed_base_F,Offroad_01_base_f,0.25,1);
+    class Offroad_01_military_base_F;
+    MACRO_VEC_ISOLATION_LR(Offroad_01_armed_base_F,Offroad_01_military_base_F,0.25,1);
 
     class Boat_F;
     MACRO_VEC_ISOLATION_LR(SDV_01_base_F,Boat_F,0.1,1);
