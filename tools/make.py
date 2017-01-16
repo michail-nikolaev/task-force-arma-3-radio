@@ -947,7 +947,7 @@ See the make.cfg file for additional build options.
         # Project module Root
         module_root_parent = os.path.abspath(os.path.join(os.path.join(work_drive, prefix), os.pardir))
         module_root = cfg.get(make_target, "module_root", fallback=os.path.join(make_root_parent, "addons"))
-        optionals_root = cfg.get(make_target, "optionals", fallback=os.path.join(make_root_parent, "optionals"))
+        optionals_root = cfg.get(make_target, "optionals_root", fallback=os.path.join(make_root_parent, "optionals"))
         extensions_root = os.path.join(module_root_parent, "extensions")
 
         commit_id = get_commit_ID()
