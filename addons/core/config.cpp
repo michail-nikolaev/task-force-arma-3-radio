@@ -16,7 +16,8 @@ class CfgPatches {
             "cba_main",
             "cba_ui",
             "cba_xeh",
-            "cba_settings"
+            "cba_settings",
+            "A3_Soft_F_Offroad_01" //Offroad_01_base_F we are adding insolation and LR in CfgVehicles
         };
         author = QUOTE(AUTHORS);
     };
