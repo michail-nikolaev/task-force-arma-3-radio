@@ -5,6 +5,8 @@ private _radio = call TFAR_fnc_activeLrRadio;
 
 ["OnBeforeTangent", [TFAR_currentUnit, _radio, 1, false, false]] call TFAR_fnc_fireEventHandlers;
 
+private _currentFrequency = call TFAR_fnc_currentLRFrequency;
+
 private _hintText = format[
                             localize "STR_transmit_end",
                             format [
@@ -13,12 +15,12 @@ private _hintText = format[
                                 getText(configFile >> "CfgVehicles"  >> typeof (_radio select 0) >> "picture")
                             ],
                             (_radio call TFAR_fnc_getLrChannel) + 1,
-                            call TFAR_fnc_currentLRFrequency
+                            _currentFrequency
                         ];
 
 private _pluginCommand = format[
                                 "TANGENT_LR	RELEASED	%1%2	%3	%4",
-                                call TFAR_fnc_currentLRFrequency,
+                                _currentFrequency,
                                 (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrRadioCode,
                                 ([_radio select 0, "tf_range"] call TFAR_fnc_getLrRadioProperty) * (call TFAR_fnc_getTransmittingDistanceMultiplicator),
                                 [_radio select 0, "tf_subtype"] call TFAR_fnc_getLrRadioProperty
