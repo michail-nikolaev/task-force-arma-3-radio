@@ -26,6 +26,8 @@ if (_unit getVariable ["TFAR_forceSpectator",false]) exitWith {ATLToASL (positio
 
 private _current_eyepos = eyepos _unit;
 
+
+/* This code is slow and it doesn't seem to make a big difference //#TODO test again in real multiplayer against remote unit
 if ((_isNearPlayer) && {_unit != TFAR_currentUnit}) then {
         // This portion of the code appears that it will be extremely slow
         // It makes use of the 2 slower position functions.
@@ -34,5 +36,5 @@ if ((_isNearPlayer) && {_unit != TFAR_currentUnit}) then {
         // add difference between pos and eyepos to visiblePosition to get some kind of visiblePositionEyepos
         _current_eyepos = _renderAt vectorAdd (_current_eyepos vectorDiff _pos);
 };
-
+*/
 _current_eyepos
