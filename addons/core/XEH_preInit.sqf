@@ -116,6 +116,19 @@ if (hasInterface) then {//Clientside Variables
 
     tf_lastError = false;
     TFAR_ConfigCacheNamespace = false call CBA_fnc_createNamespace;
+
+
+    TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_haveSWRadio_lastCache",-1];
+    TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_haveDDRadio_lastCache",-1];
+
+    TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_radiosList_lastCache",-1];
+    TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_sendSpeakerRadioslastExec",-1];
+    TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_requestRadios_lastExec",-1];
+    TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_sendFrequencyInfo_lastExec",-1];
+    TFAR_ConfigCacheNamespace setVariable ["lastRadioSettingUpdate",-1];
+
+
+
     TFAR_lastLoadoutChange = 0;
 };
 

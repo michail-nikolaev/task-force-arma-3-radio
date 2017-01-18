@@ -18,12 +18,25 @@
         _hasDD = call TFAR_fnc_haveDDRadio;
  */
 
-if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith {false};
 
-if !(call TFAR_fnc_haveSWRadio) exitWith {false};
-//#TODO https://community.bistudio.com/wiki/isAbleToBreathe
-if ((vest TFAR_currentUnit) == "V_RebreatherB") exitWith {true};
+ private _lastCache = TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_haveDDRadio_lastCache";
+ if (_lastCache > TFAR_lastLoadoutChange) exitWith {TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_haveDDRadio_CachedResult"};
 
-private _rebreather = configFile >> "CfgWeapons" >> "V_RebreatherB";
-private _currentVest = configFile >> "CfgWeapons" >> (vest TFAR_currentUnit);
-[_currentVest, _rebreather] call CBA_fnc_inheritsFrom
+ if (isNil "TFAR_currentUnit" || {isNull (TFAR_currentUnit)}) exitWith {false};
+
+private _checkForRadio = {
+    if !(call TFAR_fnc_haveSWRadio) exitWith {false};
+    //#TODO https://community.bistudio.com/wiki/isAbleToBreathe
+    if ((vest TFAR_currentUnit) == "V_RebreatherB") exitWith {true};
+
+    private _rebreather = configFile >> "CfgWeapons" >> "V_RebreatherB";
+    private _currentVest = configFile >> "CfgWeapons" >> (vest TFAR_currentUnit);
+    [_currentVest, _rebreather] call CBA_fnc_inheritsFrom
+};
+
+private _result = call _checkForRadio;
+
+ TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_haveDDRadio_lastCache",diag_tickTime-0.1];
+ TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_haveDDRadio_CachedResult",_result];
+
+ _result
