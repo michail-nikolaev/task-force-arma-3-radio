@@ -37,7 +37,7 @@ private _fetchItems = {
 if (_this != TFAR_currentUnit) exitWith {_this call _fetchItems};
 
 //Caching
-private _lastCache = [TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_radiosList_lastCache"] param [0, -1]; //Magic feat commy2
+private _lastCache = TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_radiosList_lastCache";
 if (_lastCache > TFAR_lastLoadoutChange) exitWith {TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_radiosList_CachedRadios"};
 
 private _result = _this call _fetchItems;

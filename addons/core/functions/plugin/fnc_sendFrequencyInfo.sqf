@@ -20,6 +20,17 @@
 */
 
 if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW! (Keeps PFH from firing after server disconnect)"};
+
+private _timeSinceLastUpdate = diag_tickTime - (TFAR_ConfigCacheNamespace getVariable "lastRadioSettingUpdate");
+private _lastExec = diag_tickTime - (TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_sendFrequencyInfo_lastExec");
+
+//Only call every 2 seconds if we had no update to our Radio settings for longer than 5 seconds.
+if (_timeSinceLastUpdate > 5 && _lastExec < 2) exitWith {};
+
+PROFCONTEXT_LOGTRAP(FreqInfoTrap,TFAR_fnc_sendFrequencyInfo);
+
+TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_sendFrequencyInfo_lastExec",diag_tickTime];
+
 // send frequencies
 private _freq = ["No_SW_Radio"];
 private _freq_lr = ["No_LR_Radio"];
@@ -28,20 +39,20 @@ private _isolated_and_inside = TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedA
 private _depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
 private _can_speak = [_isolated_and_inside, _depth] call TFAR_fnc_canSpeak;
 
-if (((call TFAR_fnc_haveSWRadio) or (TFAR_currentUnit != player)) and {[TFAR_currentUnit, _isolated_and_inside, _can_speak, _depth] call TFAR_fnc_canUseSWRadio}) then {
+private _swRadios = TFAR_currentUnit call PROFCONTEXT_RTN(TFAR_fnc_radiosList); //Calling haveSWRadio and radiosList will iterate players inventory twice == bad performance. (reference to old code)
+
+if (((count _swRadios > 0) or (TFAR_currentUnit != player)) and {[TFAR_currentUnit, _isolated_and_inside, _can_speak, _depth] call TFAR_fnc_canUseSWRadio}) then {
     _freq = [];
-    private _radios = TFAR_currentUnit call TFAR_fnc_radiosList;
     private _playerRadios = [];
     if (TFAR_currentUnit != player) then {
         _playerRadios = (player call TFAR_fnc_radiosList);
-        _radios = _radios + _playerRadios;
+        _swRadios = _swRadios + _playerRadios;
     };
     {
         if ([_x] call TFAR_fnc_RadioOn) then {
-            if (!(_x call TFAR_fnc_getSwSpeakers)
+            if (!(_x call TFAR_fnc_getSwSpeakers) //If speakers are enabled we will not have it on our headset at the same time... I think...
                 or {(TFAR_currentUnit != player) and {_x in _playerRadios}} //When remote controlling a unit.. Still hear your original Radios
             ) then {
-
                 private _radioCode = _x call TFAR_fnc_getSwRadioCode;
                 private _volume = _x call TFAR_fnc_getSwVolume;
                 _freq pushBack format ["%1%2|%3|%4|%5", _x call TFAR_fnc_getSwFrequency, _radioCode, _volume, _x call TFAR_fnc_getSwStereo, _x];
@@ -52,15 +63,17 @@ if (((call TFAR_fnc_haveSWRadio) or (TFAR_currentUnit != player)) and {[TFAR_cur
             };
         };
         true;
-    } count (_radios);
+    } count (_swRadios);
 };
-if (((call TFAR_fnc_haveLRRadio) or (TFAR_currentUnit != player)) and {[TFAR_currentUnit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio}) then {
+
+private _lrRadios = TFAR_currentUnit call PROFCONTEXT_RTN(TFAR_fnc_lrRadiosList); //Calling haveLRRadio would call lrRadiosList anyway (reference to old code)
+
+if (((count _lrRadios > 0) or (TFAR_currentUnit != player)) and {[TFAR_currentUnit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio}) then {
     _freq_lr = [];
-    private _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
     private _playerRadios = [];
     if (TFAR_currentUnit != player) then {
         _playerRadios = (player call TFAR_fnc_lrRadiosList);
-        _radios = _radios + _playerRadios;
+        _lrRadios = _lrRadios + _playerRadios;
     };
     {
         if ([_x] call TFAR_fnc_RadioOn) then {
@@ -77,7 +90,7 @@ if (((call TFAR_fnc_haveLRRadio) or (TFAR_currentUnit != player)) and {[TFAR_cur
             };
         };
         true;
-    } count (_radios);
+    } count (_lrRadios);
 };
 private _alive = alive TFAR_currentUnit;
 

@@ -19,7 +19,7 @@
  */
 
 //Caching
-private _lastCache = [TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_haveSWRadio_lastCache"] param [0, -1]; //Magic feat commy2
+private _lastCache = TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_haveSWRadio_lastCache";
 if (_lastCache > TFAR_lastLoadoutChange) exitWith {TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_haveSWRadio_CachedResult"};
 
 private _result = false;

@@ -23,7 +23,7 @@
 
 //#TODO somehow remove mutexing :x
 //MUTEX_LOCK(TF_radio_request_mutex);
-private _lastExec = [TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_requestRadios_lastExec"] param [0, -1]; //Magic feat commy2
+private _lastExec = TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_requestRadios_lastExec";
 //If the loadout didn't change since last execute we don't need to check anything
 if (_lastExec > TFAR_lastLoadoutChange ) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mutex);*/};
 TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_requestRadios_lastExec", diag_tickTime-0.1];

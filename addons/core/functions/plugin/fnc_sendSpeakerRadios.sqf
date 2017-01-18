@@ -19,6 +19,12 @@
         call TFAR_fnc_sendSpeakerRadios;
 */
 
+
+//If there is no one near the player this would execute every 2 frames.. which is total overkill
+private _lastExec = TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_sendSpeakerRadioslastExec"; //Magic feat commy2
+if ((diag_tickTime - _lastExec) < 0.5) exitWith {}; //Don't run if we already ran less than 500ms ago
+TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_sendSpeakerRadioslastExec",diag_tickTime];
+
 //TFAR_speakerRadios are radios carried by people that are on speaker
 private _speakerRadios = TFAR_speakerRadios;
 
