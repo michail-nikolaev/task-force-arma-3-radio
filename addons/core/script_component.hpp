@@ -18,6 +18,7 @@
 
 #ifdef DEBUG_MODE_FULL
     #define DEBUG_PROFCONTEXT
+    #define DEBUG_PROFTRAP
 #endif
 
 
