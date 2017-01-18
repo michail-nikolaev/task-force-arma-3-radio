@@ -73,7 +73,7 @@ class CfgFactionClasses
   // support for BW
   class BWA3_Faction
   {
-    backpack_tf_faction_radio = "tf_mr3000_bwmod";
+    backpack_tf_faction_radio = "tf_rt1523g_big_bwmod";
   };
 };
 
