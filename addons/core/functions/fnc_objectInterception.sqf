@@ -30,4 +30,9 @@ private _ins = lineIntersectsSurfaces [
     "NONE"
 ];
 
-count _ins
+private _localParent = objectParent TFAR_currentUnit;
+private _remoteParent = objectParent _this;
+private _count = {!((_x select 2) isEqualTo _localParent || (_x select 2) isEqualTo _remoteParent)} count _ins;
+
+
+_count
