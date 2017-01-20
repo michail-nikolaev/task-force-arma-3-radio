@@ -26,7 +26,7 @@ if ((count (TFAR_currentUnit call TFAR_fnc_radiosList) > 1) or {(count (TFAR_cur
     private _menuDef = ["main", localize "STR_select_radio", "buttonList", "", false];
     private _positions = [];
     {
-        private _command = format["TF_sw_dialog_radio = '%1';call TFAR_fnc_onSwDialogOpen;", _x];
+        private _command = format["TF_sw_dialog_radio = '%1';[{call TFAR_fnc_onSwDialogOpen;}, [], 0.2] call CBA_fnc_waitAndExecute;", _x];
         private _submenu = "";
         private _active_radio = call TFAR_fnc_activeSwRadio;
         if ((isNil "_active_radio") or {_x != _active_radio}) then{
