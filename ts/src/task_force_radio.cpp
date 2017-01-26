@@ -57,6 +57,8 @@ TFAR::TFAR() {
 
         if (getCurrentlyInGame())
             onGameEnd();
+        Teamspeak::setMyMetaData("");
+
         if (m_commandProcessor)
             m_commandProcessor->stopThread();
 
