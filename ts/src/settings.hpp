@@ -17,7 +17,8 @@
    XX(intercomEnabled,true), \
    XX(pluginTimeout,4.f), \
    XX(headsetLowered,false), \
-   XX(spectatorNotHearEnemies,false)
+   XX(spectatorNotHearEnemies,false), \
+   XX(spectatorCanHearFriendlies, true)
 
 #define EnumEntry(x,y) x
 #define EnumString(x,y) #x
