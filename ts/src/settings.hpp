@@ -5,6 +5,7 @@
 #include "enum.hpp"
 #include "Locks.hpp"
 #include "SignalSlot.hpp"
+#include <sstream>
 
 //Was originally using enum.hpp. But it had to be edited to allow more than 8 settings.. at that was too tedious
 #define Settings(XX) \
@@ -53,6 +54,12 @@ public:
 
 class settingValue {//This is heavily optimized towards booleans get<bool> can be optimized down to a single instruction. Allowing very fast branching
 public:
+    enum class settingType {
+        t_invalid,
+        t_bool,
+        t_float,
+        t_string
+    };
     explicit settingValue() : type(settingType::t_invalid), boolValue(false) {}
     constexpr settingValue(bool value) : type(settingType::t_bool), boolValue(value) {}
     settingValue(const float& value) : type(settingType::t_float), floatValue(value) {}
@@ -83,6 +90,7 @@ public:
             delete stringValue;
     }
     settingValue(const settingValue& other) = delete;//Disable copying
+    settingType getType() const { return type; }
     operator std::string() const {
         switch (type) {
             case settingType::t_bool: return boolValue ? "true" : "false";
@@ -107,12 +115,6 @@ public:
     }
 
 private:
-    enum class settingType {
-        t_invalid,
-        t_bool,
-        t_float,
-        t_string
-    };
     const settingType type;
     union {
         bool boolValue;
@@ -159,6 +161,29 @@ public:
     }
     void setRefresh() { needRefresh = true; }
     bool needsRefresh() const { return needRefresh; }
+
+    void diagReport(std::stringstream& diag) {
+        diag << "CFG:\n";
+        uint32_t index = 0;
+        for (auto& value : values) {
+            switch (value.getType()) {
+                case settingValue::settingType::t_bool:
+                    diag << TS_INDENT << index << " bool: " << static_cast<bool>(value) << "\n";
+                    break;
+                case settingValue::settingType::t_float:
+                    diag << TS_INDENT << index << " float: " << static_cast<float>(value) << "\n";
+                    break;
+                case settingValue::settingType::t_string:
+                    diag << TS_INDENT << index << " string: " << static_cast<std::string>(value) << "\n";
+                    break;
+                case settingValue::settingType::t_invalid: break;
+                default: break;
+            }
+            index++;
+        }
+        diag << TS_INDENT << "needRefresh " << needRefresh << "\n";
+    }
+
     Signal<void(const Setting&)> configValueSet;
 private:
     CriticalSectionLock m_lock;

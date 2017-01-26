@@ -147,7 +147,6 @@ void ServiceThread() {
         }
         if ((std::chrono::system_clock::now() - lastCheckForExpire.load()) > MILLIS_TO_EXPIRE) {
             //bool isSerious = isSeriousModeEnabled(Teamspeak::getCurrentServerConnection(), Teamspeak::getMyId());
-            //if (TFAR::getInstance().getCurrentlyInGame()) setMuteForDeadPlayers(Teamspeak::getCurrentServerConnection(), isSerious);
 
             if (TFAR::getInstance().getCurrentlyInGame())
                 Teamspeak::moveToSeriousChannel();

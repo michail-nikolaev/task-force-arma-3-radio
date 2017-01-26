@@ -33,6 +33,16 @@ serverDataDirectory::serverDataDirectory() {
         LockGuard_exclusive lock(&m_lock);
         data.erase(serverID);
     });
+
+    TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
+        diag << "SDD:\n";
+        for (auto& it : data) {
+            diag << TS_INDENT << it.first.baseType() << ":\n";
+            diag << TS_INDENT << TS_INDENT << "myCD: " << it.second->myClientData << "\n";
+            it.second->debugPrint(diag);
+        }
+    });
+
 }
 
 std::shared_ptr<serverData> serverDataDirectory::getClientDataDirectory(TSServerID serverID) const {
@@ -126,13 +136,23 @@ void serverData::clientUpdated(TSClientID clientID, const std::string& clientNic
     clientData->setNickname(clientNickname);
 }
 
-void serverData::debugPrint() const {
-    Logger::log(LoggerTypes::pluginCommands, "DebugPrintStart###");
+void serverData::debugPrint(std::stringstream& diag) const {
+    //Logger::log(LoggerTypes::pluginCommands, "DebugPrintStart###");
     for (auto& it : data) {
         std::shared_ptr<clientData> cData = std::get<2>(it);
-        Logger::log(LoggerTypes::pluginCommands, "Entry " + std::to_string(std::get<0>(it)) + "=" + std::to_string(std::hash<indexedType>()(cData->getNickname()))
-            + " " + std::to_string(std::get<1>(it).baseType()) + "=" + std::to_string(cData->clientId.baseType()) + " " + cData->getNickname());
+
+
+        diag << TS_INDENT << TS_INDENT << TS_INDENT << cData << ":\n";
+        diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "NICK: " << cData->getNickname() << "\n";
+        diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "SHASH: " << std::get<0>(it) << "\n";
+        diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "CHASH: " << std::hash<indexedType>()(cData->getNickname()) << "\n";
+        diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "SCID: " << std::get<1>(it).baseType() << "\n";
+        diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "CCID: " << cData->clientId.baseType() << "\n";
+
+        //std::string entry = "Entry " + std::to_string(std::get<0>(it)) + "=" + std::to_string(std::hash<indexedType>()(cData->getNickname()))
+        //    + " " + std::to_string(std::get<1>(it).baseType()) + "=" + std::to_string(cData->clientId.baseType()) + " " + cData->getNickname();
+        //Logger::log(LoggerTypes::pluginCommands, entry);
     }
 
-    Logger::log(LoggerTypes::pluginCommands, "DebugPrintEnd###");
+    //Logger::log(LoggerTypes::pluginCommands, "DebugPrintEnd###");
 }
