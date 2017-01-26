@@ -11,7 +11,23 @@
 #include "Teamspeak.hpp"
 #include "Logger.hpp"
 
-PlaybackHandler::PlaybackHandler() {}
+PlaybackHandler::PlaybackHandler() {
+    TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
+        diag << "PH:\n";
+        std::array<char*,4> typeToString { "base","stereo","raw","processing" };
+
+        for (auto& it : playbacks) {
+            diag << TS_INDENT << "PB: " <<  it.first << ":\n";
+            diag << TS_INDENT << TS_INDENT << "Type: " << typeToString[static_cast<uint8_t>(it.second->type())] << "\n";
+            diag << TS_INDENT << TS_INDENT << "samplesReady: " << it.second->samplesReady() << "\n";
+            diag << TS_INDENT << TS_INDENT << "isDone: " << it.second->isDone() << "\n";
+        }
+
+        for (auto& it : wavCache) {
+            diag << TS_INDENT << "WC: " << it.first << ":\n";
+        }
+    });
+}
 
 
 PlaybackHandler::~PlaybackHandler() {}

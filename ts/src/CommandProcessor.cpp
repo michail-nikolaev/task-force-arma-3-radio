@@ -13,11 +13,20 @@ volatile bool vadEnabled = false;
 volatile bool skipTangentOff = false;
 volatile bool waitingForTangentOff = false;
 CriticalSectionLock tangentCriticalSection;
-extern void setMuteForDeadPlayers(TSServerID serverConnectionHandlerID, bool isSeriousModeEnabled);
 extern bool isSeriousModeEnabled(TSServerID serverConnectionHandlerID, TSClientID clientId);
 extern void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false });
 
-CommandProcessor::CommandProcessor() {}
+CommandProcessor::CommandProcessor() {
+    
+    TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
+        diag << "CP:\n";
+        diag << TS_INDENT << "shouldRun: " << shouldRun << "\n";
+        diag << TS_INDENT << "cmdQueueBacklog: " << commandQueue.size() << "\n";
+        diag << TS_INDENT << "thread: " << myThread->get_id() << "\n";
+    });
+
+
+}
 
 
 CommandProcessor::~CommandProcessor() {

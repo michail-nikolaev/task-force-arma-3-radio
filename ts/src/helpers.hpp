@@ -62,12 +62,12 @@ struct vehicleDescriptor {
     std::string vehicleName;
     float vehicleIsolation;
     enum class vehiclePosition {
-       driver,
-       commander,
-       gunner,
-       cargo
+        driver,
+        commander,
+        gunner,
+        cargo
     } /*slot*/;
-    int16_t intercomSlot;//If this is -1 then vehicle doesn't have intercom
+    int16_t intercomSlot{ -1 };//If this is -1 then vehicle doesn't have intercom
     static vehiclePosition stringToVehiclePosition(const std::string& pos) {
         if (pos == "driver") return vehiclePosition::driver;
         if (pos == "commander") return vehiclePosition::commander;
@@ -125,7 +125,7 @@ public:
             //float gain = 1.0f + 0.5f *logf(1.0f - (distance / maxDistance));
 
        //Unreal Engine NaturalSound	https://docs.unrealengine.com/latest/INT/Engine/Audio/DistanceModelAttenuation/index.html
-        float gain = powf(10.0f, ((distance / (maxDistance*2)) * -60.0f) / 20.0f);//originally powf(10.0f, ((distance / (maxDistance*2)) * -60.0f) / 20.0f);  but that would half maxDist
+        float gain = powf(10.0f, ((distance / (maxDistance * 2)) * -60.0f) / 20.0f);//originally powf(10.0f, ((distance / (maxDistance*2)) * -60.0f) / 20.0f);  but that would half maxDist
 
         //Old thingy
         //float gain = powf(distFromRadio, -0.3f) * (std::max(0.f, (maxDistance - distFromRadio)) / maxDistance);
@@ -185,7 +185,7 @@ public:
 
 class execAtReturn {
 public:
-    explicit execAtReturn(std::function<void()> func):function(func) {}
+    explicit execAtReturn(std::function<void()> func) :function(func) {}
     ~execAtReturn() { function(); }
 private:
     std::function<void()> function;

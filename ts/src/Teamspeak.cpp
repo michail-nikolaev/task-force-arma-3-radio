@@ -88,7 +88,33 @@ void TeamspeakServerData::clearChannelCache() {
     channelNameToID.clear();
 }
 
-Teamspeak::Teamspeak() {}
+Teamspeak::Teamspeak() {
+    TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
+        diag << "TS:\n";
+
+        for (auto& it : getInstance().serverData) {
+            diag << TS_INDENT << it.first.baseType() << ":\n";
+            diag << TS_INDENT << TS_INDENT << "myCID1: " << it.second.getMyClientID().baseType() << "\n";
+            diag << TS_INDENT << TS_INDENT << "myCID2: " << getMyId(it.first).baseType() << "\n";
+            diag << TS_INDENT << TS_INDENT << "myONICK: " << it.second.getMyOriginalNickname() << "\n";
+            diag << TS_INDENT << TS_INDENT << "myNICK: " << getMyNickname(it.first) << "\n";
+            diag << TS_INDENT << TS_INDENT << "myOCHAN: " << it.second.getMyOriginalChannel().baseType() << "\n";
+            diag << TS_INDENT << TS_INDENT << "myCHAN: " << getChannelOfClient(it.first).baseType() << "\n";
+            diag << TS_INDENT << TS_INDENT << "myLCHAN: " << it.second.myLastKnownChannel.baseType() << "\n";
+
+
+            diag << TS_INDENT << TS_INDENT << "curCHAN:\n";
+
+
+            std::vector<TSClientID> clients = getChannelClients(it.first, getChannelOfClient(it.first));
+            for (TSClientID clientId : clients) {
+                std::string clientNickname = getClientNickname(it.first, clientId);
+                diag << TS_INDENT << TS_INDENT << TS_INDENT << clientId.baseType() << " : " << clientNickname << "\n";
+            }
+
+        }
+    });
+}
 
 
 Teamspeak::~Teamspeak() {}
@@ -638,12 +664,19 @@ void ts3plugin_registerPluginID(const char* id) {
 
 /* Plugin command keyword. Return NULL or "" if not used. */
 const char* ts3plugin_commandKeyword() {
-    return "";
+    return "tfar";
 }
 
 /* Plugin processes console command. Return 0 if plugin handled the command, 1 if not handled. */
 int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* command) {
-    return 0;  /* Plugin handled command */
+
+    if (std::string(command).compare("diag") == 0) {
+        std::stringstream diag;
+        TFAR::getInstance().doDiagReport(diag);
+        ts3Functions.printMessageToCurrentTab(diag.str().c_str());
+        return 0; /* Plugin handled command */
+    }
+    return 1;  /* Plugin didn't handle command */
 }
 
 /* Client changed current server connection handler */
