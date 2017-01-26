@@ -583,7 +583,10 @@ void Teamspeak::setMyMetaData(const std::string & metaData) {
         } else {	//Only set stuff between TFAR tags
             std::string before = sharedMsg.substr(0, sharedMsg.find(START_DATA));
             std::string after = sharedMsg.substr(sharedMsg.find(END_DATA) + strlen(END_DATA), std::string::npos);
-            to_set = before + START_DATA + metaData + END_DATA + after;
+            if (metaData.empty())
+                to_set = before + after;
+            else
+                to_set = before + START_DATA + metaData + END_DATA + after;
         }
         if ((error = ts3Functions.setClientSelfVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_META_DATA, to_set.c_str())) != ERROR_ok) {
             log("setMetaData - Can't set own META_DATA", error);
