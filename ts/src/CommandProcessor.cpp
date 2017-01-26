@@ -208,8 +208,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
             std::string myNickname = Teamspeak::getMyNickname(currentServerConnectionHandlerID);
             if (!myNickname.empty() && myNickname != nickname && (nickname != "Error: No unit" && nickname != "Error: No vehicle" && nickname != "any")) {
                 if (Teamspeak::setMyNicknameToGameName(currentServerConnectionHandlerID, nickname)) {
-                    TFAR::getInstance().onTeamspeakClientLeft(currentServerConnectionHandlerID, clientDataDir->myClientData->clientId);
-                    TFAR::getInstance().onTeamspeakClientJoined(currentServerConnectionHandlerID, clientDataDir->myClientData->clientId, nickname);
+                    TFAR::getInstance().onTeamspeakClientUpdated(currentServerConnectionHandlerID, clientDataDir->myClientData->clientId, nickname);
                 }
             }
         }; return;
