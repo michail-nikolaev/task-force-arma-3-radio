@@ -507,7 +507,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
 
     bool isSpectator = clientData->isSpectating;
     //NonPure normalPlayer->Spectator
-    bool isNotHearableInNonPureSpectator = clientDataDir->myClientData->isSpectating && (clientData->isEnemyToPlayer && TFAR::config.get<bool>(Setting::spectatorNotHearEnemies));
+    bool isNotHearableInNonPureSpectator = clientDataDir->myClientData->isSpectating && (clientData->isEnemyToPlayer && TFAR::config.get<bool>(Setting::spectatorNotHearEnemies)) && TFAR::config.get<bool>(Setting::spectatorCanHearFriendlies);
     //Other player is also a spectator. So we always hear him without 3D positioning
     bool isHearableInPureSpectator = clientDataDir->myClientData->isSpectating && clientData->isSpectating;
     bool isHearableInSpectator = isHearableInPureSpectator || !isNotHearableInNonPureSpectator;
