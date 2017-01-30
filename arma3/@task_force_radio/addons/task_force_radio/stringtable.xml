@@ -30,6 +30,9 @@
 				<Polish>
 					Niewłaściwa wersja Task Force Radio. Wersja serwerowa: %1, Twoja wersja: %2
 				</Polish>
+				<Korean>
+					다른 버전의 Task Force Radio가 사용되고 있습니다. 서버 버전: %1, 설치된 버전: %2
+				</Korean>
 			</Key>
 			<Key ID="STR_stereo_settings">
 				<Original>
@@ -59,6 +62,9 @@
 				<Polish>
 					Ustawienia stereo
 				</Polish>
+				<Korean>
+					스테레오 세팅
+				</Korean>
 			</Key>
 			<Key ID="STR_stereo_settings_0">
 				<Original>
@@ -88,9 +94,12 @@
 				<Polish>
 					Lewy i prawy
 				</Polish>
+				<Korean>
+					
+				</Korean>
 			</Key>
 			<Key ID="STR_stereo_settings_1">
-				<Original>
+				<Original>					
 					Left only
 				</Original>
 				<Russian>
@@ -117,6 +126,9 @@
 				<Polish>
 					Tylko lewy
 				</Polish>
+				<Korean>
+					
+				</Korean>
 			</Key>
 			<Key ID="STR_stereo_settings_2">
 				<Original>
@@ -146,6 +158,9 @@
 				<Polish>
 					Tylko prawy
 				</Polish>
+				<Korean>
+					오른쪽
+				</Korean>
 			</Key>
 			<Key ID="STR_speakers_settings_false">
 				<Original>
@@ -172,6 +187,9 @@
 				<Polish>
 					Słuchawki
 				</Polish>
+				<Korean>
+					
+				</Korean>
 			</Key>
 			<Key ID="STR_speakers_settings_true">
 				<Original>
@@ -198,6 +216,9 @@
 				<Polish>
 					Głośniki
 				</Polish>
+				<Korean>
+					스피커
+				</Korean>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_0">
 				<Original>
@@ -227,6 +248,9 @@
 				<Polish>
 					Dodatkowy: Lewy oraz prawy
 				</Polish>
+				<Korean>
+					추가 채널: 양쪽
+				</Korean>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_1">
 				<Original>
@@ -256,6 +280,9 @@
 				<Polish>
 					Dodatkowy: Tylko lewy
 				</Polish>
+				<Korean>
+					추가 채널: 왼쪽
+				</Korean>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_2">
 				<Original>
@@ -285,6 +312,9 @@
 				<Polish>
 					Dodatkowy: Tylko prawy
 				</Polish>
+				<Korean>
+					추가 채널: 오른쪽
+				</Korean>
 			</Key>
 			<Key ID="STR_no_server">
 				<Original>
@@ -314,6 +344,9 @@
 				<Polish>
 					Na serwerze nie ma Task Force Radio!
 				</Polish>
+				<Korean>
+					Task Force Radio가 서버에서 사용되고 있지 않습니다!
+				</Korean>
 			</Key>
 			<Key ID="STR_current_freq">
 				<Original>
@@ -343,6 +376,9 @@
 				<Polish>
 					Obecna częstotliwość
 				</Polish>
+				<Korean>
+					현재 주파수				
+</Korean>
 			</Key>
 			<Key ID="STR_current_channel">
 				<Original>
@@ -372,6 +408,9 @@
 				<Polish>
 					Obecny kanał
 				</Polish>
+				<Korean>
+					현재 채널
+				</Korean>
 			</Key>
 			<Key ID="STR_set_frequency">
 				<Original>
@@ -401,6 +440,9 @@
 				<Polish>
 					Ustaw częstotliwość
 				</Polish>
+				<Korean>
+					주파수 설정
+				</Korean>
 			</Key>
 			<Key ID="STR_set_additional">
 				<Original>
@@ -430,6 +472,9 @@
 				<Polish>
 					Ustaw dodatkowy kanał
 				</Polish>
+				<Korean>
+					추가 채널 설정
+				</Korean>
 			</Key>
 			<Key ID="STR_clear_frequency">
 				<Original>
@@ -459,6 +504,9 @@
 				<Polish>
 					Wyczyść częstotliwość
 				</Polish>
+				<Korean>
+					주파수 지우기
+				</Korean>
 			</Key>
 			<Key ID="STR_previous_channel">
 				<Original>
@@ -488,6 +536,9 @@
 				<Polish>
 					Poprzedni kanał
 				</Polish>
+				<Korean>
+					이전 채널
+				</Korean>
 			</Key>
 			<Key ID="STR_next_channel">
 				<Original>
@@ -517,6 +568,9 @@
 				<Polish>
 					Następny kanał
 				</Polish>
+				<Korean>
+					다음 채널
+				</Korean>
 			</Key>
 			<Key ID="STR_rotator_volume">
 				<Original>
@@ -546,6 +600,9 @@
 				<Polish>
 					Zmniejsz głośność | Zwiększ głośność
 				</Polish>
+				<Korean>
+					볼륨 낮추기 | 볼륨 높이기
+				</Korean>
 			</Key>
 			<Key ID="STR_rotator_channel">
 				<Original>
@@ -575,6 +632,9 @@
 				<Polish>
 					Poprzedni kanał | Następny kanał
 				</Polish>
+				<Korean>
+					이전 채널 | 다음 채널
+				</Korean>
 			</Key>
 			<Key ID="STR_increase_volume">
 				<Original>
@@ -604,6 +664,9 @@
 				<Polish>
 					Zwiększ głośność
 				</Polish>
+				<Korean>
+					볼륨 높이기
+				</Korean>
 			</Key>
 			<Key ID="STR_decrease_volume">
 				<Original>
@@ -633,6 +696,9 @@
 				<Polish>
 					Zmniejsz głośność
 				</Polish>
+				<Korean>
+					볼륨 낮추기
+				</Korean>
 			</Key>
 			<Key ID="STR_volume">
 				<Original>
@@ -662,6 +728,9 @@
 				<Polish>
 					Ustaw głośność
 				</Polish>
+				<Korean>
+					볼륨 바꾸기
+				</Korean>
 			</Key>
 			<Key ID="STR_incorrect_frequency">
 				<Original>
@@ -691,6 +760,9 @@
 				<Polish>
 					Niepoprawna częstotliwość, skala %1-%2
 				</Polish>
+				<Korean>
+					잘못된 주파수 값, 범위는 %1 ~ %2입니다.
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_volume">
 				<Original>
@@ -720,6 +792,9 @@
 				<Polish>
 					Głośność: %1
 				</Polish>
+				<Korean>
+					볼륨: %1
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_channel_1">
 				<Original>
@@ -749,6 +824,9 @@
 				<Polish>
 					Kanał 1
 				</Polish>
+				<Korean>
+					채널 1
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_channel_2">
 				<Original>
@@ -778,6 +856,9 @@
 				<Polish>
 					Kanał 2
 				</Polish>
+				<Korean>
+					채널 2
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_channel_3">
 				<Original>
@@ -807,6 +888,9 @@
 				<Polish>
 					Kanał 3
 				</Polish>
+				<Korean>
+					채널 3
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_channel_4">
 				<Original>
@@ -836,6 +920,9 @@
 				<Polish>
 					Kanał 4
 				</Polish>
+				<Korean>
+					채널 4
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_channel_5">
 				<Original>
@@ -865,6 +952,9 @@
 				<Polish>
 					Kanał 5
 				</Polish>
+				<Korean>
+					채널 5
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_channel_6">
 				<Original>
@@ -894,6 +984,9 @@
 				<Polish>
 					Kanał 6
 				</Polish>
+				<Korean>
+					채널 6
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_channel_7">
 				<Original>
@@ -923,6 +1016,9 @@
 				<Polish>
 					Kanał 7
 				</Polish>
+				<Korean>
+					채널 7
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_channel_8">
 				<Original>
@@ -952,6 +1048,9 @@
 				<Polish>
 					Kanał 8
 				</Polish>
+				<Korean>
+					채널 8
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_channel_9">
 				<Original>
@@ -981,6 +1080,9 @@
 				<Polish>
 					Kanał 9
 				</Polish>
+				<Korean>
+					채널 10
+				</Korean>
 			</Key>
 			<Key ID="STR_depth">
 				<Original>
@@ -1010,6 +1112,9 @@
 				<Polish>
 					Aktualna głębokość
 				</Polish>
+				<Korean>
+					현재 깊이
+				</Korean>
 			</Key>
 			<Key ID="STR_active_sw_channel">
 				<Original>
@@ -1039,6 +1144,9 @@
 				<Polish>
 					Kanał: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Polish>
+				<Korean>
+					채널: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_active_additional_sw_channel">
 				<Original>
@@ -1068,6 +1176,9 @@
 				<Polish>
 					Dodatkowy kanał: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Polish>
+				<Korean>
+					추가 채널: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_active_frequency">
 				<Original>
@@ -1097,6 +1208,9 @@
 				<Polish>
 					Częstotliwość: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Polish>
+				<Korean>
+					주파수: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_active_lr_channel">
 				<Original>
@@ -1126,6 +1240,9 @@
 				<Polish>
 					LR kanał: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Polish>
+				<Korean>
+					장파 채널: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_active_additional_lr_channel">
 				<Original>
@@ -1155,6 +1272,9 @@
 				<Polish>
 					Dodatkowy kanał LR: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Polish>
+				<Korean>
+					장파 추가 채널: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_in_water_hint">
 				<Original>
@@ -1184,6 +1304,9 @@
 				<Polish>
 					&lt;t color=&apos;#33ccff&apos;&gt;Nie możesz używać radia pod wodą&lt;/t&gt;
 				</Polish>
+				<Korean>
+					&lt;t color=&apos;#33ccff&apos;&gt;수중에서는 무전기를 사용 할 수 없습니다&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_on_ground_hint">
 				<Original>
@@ -1213,6 +1336,9 @@
 				<Polish>
 					&lt;t color=&apos;#993300&apos;&gt;Nie możesz używać radia w powietrzu&lt;/t&gt;
 				</Polish>
+				<Korean>
+					&lt;t color=&apos;#993300&apos;&gt;물 밖에서는 잠수부 무전기를 사용 할 수 없습니다&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_unable_to_use_hint">
 				<Original>
@@ -1242,6 +1368,9 @@
 				<Polish>
 					&lt;t color=&apos;#FF0000&apos;&gt;Nie możesz używać tego radia&lt;/t&gt;
 				</Polish>
+				<Korean>
+					&lt;t color=&apos;#FF0000&apos;&gt;무전기를 사용 할 수 없습니다&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_select_action">
 				<Original>
@@ -1271,6 +1400,9 @@
 				<Polish>
 					Wybierz akcję
 				</Polish>
+				<Korean>
+					동작 선택
+				</Korean>
 			</Key>
 			<Key ID="STR_select_action_setup">
 				<Original>
@@ -1300,6 +1432,9 @@
 				<Polish>
 					Ustawienia...
 				</Polish>
+				<Korean>
+					설정...
+				</Korean>
 			</Key>
 			<Key ID="STR_select_action_setup_tooltip">
 				<Original>
@@ -1329,6 +1464,9 @@
 				<Polish>
 					Otwórz ustawienia
 				</Polish>
+				<Korean>
+					설정 대화 상자 열기
+				</Korean>
 			</Key>
 			<Key ID="STR_select_action_use">
 				<Original>
@@ -1358,6 +1496,9 @@
 				<Polish>
 					Wybierz jako aktywne
 				</Polish>
+				<Korean>
+					활성 상태로 설정
+				</Korean>
 			</Key>
 			<Key ID="STR_select_action_use_tooltip">
 				<Original>
@@ -1387,6 +1528,9 @@
 				<Polish>
 					Użyj do transmisji
 				</Polish>
+				<Korean>
+					전송중
+				</Korean>
 			</Key>
 			<Key ID="STR_select_radio">
 				<Original>
@@ -1416,6 +1560,9 @@
 				<Polish>
 					Wybierz radio krótkiego zasięgu
 				</Polish>
+				<Korean>
+					단파 라디오 선택
+				</Korean>
 			</Key>
 			<Key ID="STR_select_lr_radio">
 				<Original>
@@ -1445,6 +1592,9 @@
 				<Polish>
 					Wybierz radio dalekiego zasięgu
 				</Polish>
+				<Korean>
+					장파 라디오 선택
+				</Korean>
 			</Key>
 			<Key ID="STR_transmit">
 				<Original>
@@ -1474,6 +1624,9 @@
 				<Polish>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Transmisja&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;
 				</Polish>
+				<Korean>
+					&lt;t size='1' align='center' color='#00FF00'&gt;전송중&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_transmit_end">
 				<Original>
@@ -1503,6 +1656,9 @@
 				<Polish>
 					&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;
 				</Polish>
+				<Korean>
+					&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;전송끝&lt;t size='1' align='center' color='#FF9900'&gt;무전: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_additional_transmit">
 				<Original>
@@ -1532,6 +1688,9 @@
 				<Polish>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Transmisja&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;
 				</Polish>
+				<Korean>
+					&lt;t size='1' align='center' color='#00FF00'&gt;전송중&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;추가 채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_additional_transmit_end">
 				<Original>
@@ -1561,6 +1720,9 @@
 				<Polish>
 					&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;
 				</Polish>
+				<Korean>
+					&lt;t size='1' align='center' color='#FF9900'&gt;전송끝&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;추가 채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_waiting">
 				<Original>
@@ -1590,6 +1752,9 @@
 				<Polish>
 					Oczekuję...
 				</Polish>
+				<Korean>
+					대기중...
+				</Korean>
 			</Key>
 			<Key ID="STR_voice_volume">
 				<Original>
@@ -1619,6 +1784,9 @@
 				<Polish>
 					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Głośność głosu: %1&lt;/t&gt;
 				</Polish>
+				<Korean>
+					&lt;t align='center' color=&apos;#66ff33&apos;&gt;음성 볼륨: %1&lt;/t&gt;
+				</Korean>
 			</Key>
 			<Key ID="STR_voice_normal">
 				<Original>
@@ -1648,6 +1816,9 @@
 				<Polish>
 					Normalny
 				</Polish>
+				<Korean>
+					보통
+				</Korean>
 			</Key>
 			<Key ID="STR_voice_yelling">
 				<Original>
@@ -1677,6 +1848,9 @@
 				<Polish>
 					krzyk
 				</Polish>
+				<Korean>
+					소리지르기
+				</Korean>
 			</Key>
 			<Key ID="STR_voice_whispering">
 				<Original>
@@ -1706,6 +1880,9 @@
 				<Polish>
 					szept
 				</Polish>
+				<Korean>
+					속삭이기
+				</Korean>
 			</Key>
 			<Key ID="STR_init">
 				<Original>
@@ -1735,6 +1912,9 @@
 				<Polish>
 					Inicjalizacja...
 				</Polish>
+				<Korean>
+					초기화...
+				</Korean>
 			</Key>
 			<Key ID="STR_subject_name">
 				<Original>
@@ -1764,6 +1944,9 @@
 				<Polish>
 					Radio
 				</Polish>
+				<Korean>
+					무전기
+				</Korean>
 			</Key>
 			<Key ID="STR_select_action_copy_settings_from">
 				<Original>
@@ -1793,6 +1976,9 @@
 				<Polish>
 					Kopiuj ustawienia od...
 				</Polish>
+				<Korean>
+					설정 복사...
+				</Korean>
 			</Key>
 			<Key ID="STR_select_action_settings_from_tooltip">
 				<Original>
@@ -1822,6 +2008,9 @@
 				<Polish>
 					Skopiuj ustawienia z innego radia z tym samym kodem
 				</Polish>
+				<Korean>
+					다른 라디오에서 같은 암호화 코드를 사용하여 설정 복사
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_control">
 				<Original>
@@ -1851,6 +2040,9 @@
 				<Polish>
 					Klawiszologia
 				</Polish>
+				<Korean>
+					제어
+				</Korean>
 			</Key>
 			<Key ID="STR_wait_radio">
 				<Original>
@@ -1880,6 +2072,9 @@
 				<Polish>
 					Oczekiwanie na unikalne radio z serwera...
 				</Polish>
+				<Korean>
+					서버에서 무전기를 기다리는 중...
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_control_text">
 				<Original>
@@ -2096,6 +2291,32 @@
 &lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Nadawaj na dodatkowym kanale radia dalekiego zasięgu.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Wyłącz interfejs radia
 				</Polish>
+				<Korean>
+&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	직접 말하기.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	단파 무전으로 말하기.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	장파 무전으로 말하기.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	개인 무전기 인터페이스 엽니다. (무전기가 인벤토리 슬룻에 있어야 합니다.) 만약 여러개의 무전기가 있다면, 필요한 것을 선택하여 사용 할 수 있습니다. 그리고 전송에 사용될 무전기를 활성 할 수 있습니다.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; 사용 가능한 단파 무전기 순환(바꾸기)&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; 단파 무전기 스테레오 모드 전환 양쪽/왼쪽/오른쪽&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	단파 무전기 채널 전환&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	장파 무전기 인터페이스를 엽니다.(장파 무전기를 등에 매고 있어야 하고, 차량의 운전석, 조종석에 있어야 합니다.) 만약 여러개의 무전기를 가지고 있다면, 그 중 하나를 선택하는 메세지가 출력됩니다. 한 개의 무전기만 활성 할 수 있습니다.(다른 무전기가 스피커 설정 일 때, 듣기 가능)&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; 사용 가능한 장파 무전기 순환 (바꾸기)&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; 장파 무전기 스테레오 모드 전환 양쪽/왼쪽/오른쪽&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	장파 무전기 채널 전환&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	직접 말하기 볼륨을 변경합니다. (보통, 속삭이기, 소리지르기) 무전기의 송신 볼륨에 영향을 주지 않습니다.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	수중 트렌시버 인터페이스를 엽니다. (수중 호흡기를 착용 해야 합니다)&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	수중 트렌시버로 말하기&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	다음 개인 무전기 선택&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	이전 개인 무전기 선택&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	다음 장파 무전기 선택&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	이전 단파 무전기 선택&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	개인 무전기 스테레오 모드 변경&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	장파 무전기 스테레오 모드 변경&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	개인 무전기의 추가 채널에 말하기&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	장파 무전기의 추가 채널에 말하기&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	무전기 인터페이스에서 나가기
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_diver">
 				<Original>
@@ -2125,6 +2346,9 @@
 				<Polish>
 					Dla nurków
 				</Polish>
+				<Korean>
+					잠수용
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_diver_text">
 				<Original>
@@ -2189,6 +2413,14 @@ Użyj podwodnego nadajnika do komunikacji wśród nurków .&lt;br/&gt;
 Nie możesz używać komunikacji radiowej pod wodą (ani do nadawania, ani do odbierania). Jeśli chcesz przekazać jakąś wiadomość na powieszchnię - wynurz się. &lt;br/&gt;
 Wyjątek - możesz użyć długiego radia będąc kierowcą łodzi podwodnej znajdując się na głębokości peryskopowej.
 				</Polish>
+				<Korean>
+&lt;br/&gt;
+수중에서는 다이버 복장을 착용해도 말을 할  수가 없습니다. 말을 하려 하면 웅얼거리는 소리를 근처에 있는 사람이 들을 수 있습니다. (예외 - 수상에서 부양하는 차량의 경우)&lt;br/&gt;
+지상에서는 수중에 있는 사람의 웅얼거림을 희미하게 들을 수 있습니다.  &lt;br/&gt;
+수중에서의 무전을 위해 수중 트렌시버를 사용하십시오.&lt;br/&gt;
+또 수중에서는 무전기를 사용 할 수 없습니다. (전송도 수신도 불가) 무전을 보내거나 받고 싶다면, 수면이나 지상으로 올라가야 합니다.&lt;br/&gt;
+예외 - 잠수정에서 무전기 전송을 위해 잠망경 심도로 잠항 하십시오. (장파 라디오를 사용 할 수 있습니다.)
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_intercept">
 				<Original>
@@ -2218,6 +2450,9 @@ Wyjątek - możesz użyć długiego radia będąc kierowcą łodzi podwodnej zna
 				<Polish>
 					Przechwytywanie sygnału
 				</Polish>
+				<Korean>
+					무전 방해
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_intercept_text">
 				<Original>
@@ -2276,6 +2511,12 @@ Radio można zabierać od zabitych graczy i przekazywać sobie nawzajem. Radio z
 W pojazdach ustawienia radia również pozostaną niezmienione.&lt;/br&gt;
 Domyślnie radia wszystkich frakcji mają swoje kody szyfrujące, więc nie usłyszysz rozmów przeciwnika, nawet na tej samej częstotliwości. Aby przechwycić komunikaty przeciwnika (lub nadawać własne) musisz zdobyć ich radiostację.
 				</Polish>
+				<Korean>
+&lt;br/&gt;
+사망한 플레이어에게서 무전기를 다른 사람이 사용 하게 되면, 사망한 플레이어가 설정한 모든 설정이 유지됩니다. (주파수, 채널, 볼륨 등)&lt;br/&gt;
+차량 무전기 또한 모든 설정이 저장됩니다.&lt;/br&gt;
+디폴트 설정에서, 각 진영의 무전기는 각자의 암호화 코드를 하는데, 적 진영의 플레이어가 사용하는 주파수로 무전을 송신하거나 수신 할 수 없습니다. 적의 무전 네트워크를 듣거나 방수하기 위해 무전소를 점령하거나 노획하는 것이 필요합니다.
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_vehicle">
 				<Original>
@@ -2305,6 +2546,9 @@ Domyślnie radia wszystkich frakcji mają swoje kody szyfrujące, więc nie usł
 				<Polish>
 					Pojazdy
 				</Polish>
+				<Korean>
+					차량
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_vehicle_text">
 				<Original>
@@ -2379,6 +2623,12 @@ Każdy slot w pojeździe ma swoje radio, które musi być skonfigurowane oddziel
 &lt;br/&gt;
 Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkniętym pojeździe, nie będziesz słyszał głosów z zewnątrz (i vice versa). Jeśli jednak wychylisz się z pojazdu, będziesz słyszał wszystko, zarówno z zewnątrz jak i z wewnątrz.
 				</Polish>
+				<Korean>
+&lt;br/&gt;
+장파 무전기는 운전석, 지휘관석, 사수석, 부조종석에서 사용 할 수 있습니다. 모든 차량이 무전기를 내장하고 있지는 않습니다.&lt;br/&gt;
+각 차량 슬룻에는 각각의 무전기가 있으며, 별도로 설정해야 합니다. 차량에서 위치를 변경해야 하는 경우 - 미리 다른 슬룻의 무전기를 설정하십시오. (예를 들어 운전석 또는 사수석)&lt;br/&gt;
+차량들은 개방 되거나 밀폐(폐쇄)로 분류 됩니다. 밀폐된 차량 안에 있을 경우 외부의 소리가 들리지 않습니다. (반대의 경우도 같음) 차량에서 내리면 내외부의 소리를 들을 수 있습니다.
+				</Korean>
 			</Key>
 			<!-- CBA Settings -->
 			<Key ID="STR_radio_no_auto_long_range_radio">
@@ -2394,6 +2644,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Nie przydzielaj automatycznie długiego radia
 				</Polish>
+				<Korean>
+					장파 무전기는 자동으로 제공되지 않습니다.
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_give_personal_radio_to_regular_soldier">
 				<Original>
@@ -2408,6 +2661,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Przydziel PMR
 				</Polish>
+				<Korean>
+					일반 병사에게 개인 무전기를 쥐어줍니다.
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_give_microdagr_to_soldier">
 				<Original>
@@ -2422,6 +2678,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Przydziel MicroDAGR
 				</Polish>
+				<Korean>
+					MicroDAGR를 일반 병사에게 쥐어줍니다.
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_same_sw_frequencies_for_side">
 				<Original>
@@ -2436,6 +2695,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Takie same częstotliwości SW dla strony
 				</Polish>
+				<Korean>
+					진영에 소속된 단파 무전기의 주파수를 설정합니다.
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_same_lr_frequencies_for_side">
 				<Original>
@@ -2450,6 +2712,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Takie same częstotliwości LR dla strony
 				</Polish>
+				<Korean>
+					진영에 소속된 장파 무전기의 주파수를 설정합니다.
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_same_dd_frequencies_for_side">
 				<Original>
@@ -2464,6 +2729,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Takie same częstotliwości DD dla strony
 				</Polish>
+				<Korean>
+					진영에 소속된 수중 무전기의 주파수를 설정합니다.
+				</Korean>
 			</Key>
 			<Key ID="STR_radio_default_radioVolume">
 				<Original>
@@ -2478,6 +2746,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Domyślna głośność radia
 				</Polish>
+				<Korean>
+					기본 무전기 볼륨
+				</Korean>
 			</Key>
 		</Container>
 	</Package>
