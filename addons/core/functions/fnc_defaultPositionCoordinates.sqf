@@ -28,6 +28,7 @@ private _current_eyepos = eyepos _unit;
 
 
 /* This code is slow and it doesn't seem to make a big difference
+//tested No difference on buildings or underwater
 if ((_isNearPlayer) && {_unit != TFAR_currentUnit}) then {
         // This portion of the code appears that it will be extremely slow
         // It makes use of the 2 slower position functions.
