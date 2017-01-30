@@ -52,7 +52,7 @@ if ((_nearPlayer) && {TFAR_currentUnit distance _unit <= TF_speakerDistance}) th
         } count (_unit call TFAR_fnc_lrRadiosList);
     };
 
-    if (_unit getVariable ["tf_sw_speakers", false] && _useSw) then {
+    if (_unit getVariable ["TFAR_SRSpeakersEnabled", false] && _useSw) then {
         {
             if (_x call TFAR_fnc_getSwSpeakers) then {
                 private _frequencies = [format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode]];
