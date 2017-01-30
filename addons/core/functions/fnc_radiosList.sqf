@@ -20,7 +20,10 @@
 */
 
 private _fetchItems = {
-    private _allItems = (assignedItems _this) + (items _this);
+    private _allItems = (assignedItems _this);
+    _allItems append ((getItemCargo (uniformContainer _this)) select 0);
+    _allItems append ((getItemCargo (vestContainer _this)) select 0);
+    _allItems append ((getItemCargo (backpackContainer _this)) select 0);
     _allItems = _allItems arrayIntersect _allItems;//Remove duplicates
 
     private _result = [];
