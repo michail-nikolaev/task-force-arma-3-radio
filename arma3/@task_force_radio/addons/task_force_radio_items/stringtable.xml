@@ -21,6 +21,9 @@
         <Czech>
           TFAR Vysílačky (NATO)
         </Czech>
+        <Korean>
+          TFAR 무전기 (NATO)
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_EAST_crate">
         <Original>
@@ -41,6 +44,9 @@
         <Czech>
           TFAR Vysílačky (CSAT)
         </Czech>
+        <Korean>
+          TFAR 무전기 (CSAT)
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_IND_crate">
         <Original>
@@ -61,6 +67,9 @@
         <Czech>
           TFAR Vysílačky (AAF)
         </Czech>
+        <Korean>
+          TFAR 무전기 (AAF)
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_EnforceUsage">
         <Original>
@@ -81,6 +90,9 @@
         <Czech>
           TFAR – Vynutit použití
         </Czech>
+        <Korean>
+          TFAR – 규칙 적용
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_GiveTLradio">
         <Original>
@@ -101,6 +113,9 @@
         <Czech>
           Dát velitelům týmů vysílačku pro dlouhou vzdálenost
         </Czech>
+        <Korean>
+          분대장에게 장파 라디오를 줌
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_GiveTLradioTT">
         <Original>
@@ -121,6 +136,9 @@
         <Czech>
           Dá každému veliteli týmu vhodnou vysílačku pro dlouhou vzdálenost
         </Czech>
+        <Korean>
+          각 분대장(팀리더)들에게 적절한 장파 무전기를 쥐어 줍니다.
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
         <Original>
@@ -141,6 +159,9 @@
         <Czech>
           Dát malou vysílačku vojákům
         </Czech>
+        <Korean>
+          소총수 무전기를 줌
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
         <Original>
@@ -161,6 +182,9 @@
         <Czech>
           Dá malou vysílačku klasickým vojákům
         </Czech>
+        <Korean>
+          일반 보병에게 소총수 무전기를 쥐어줍니다.
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_EnforceUsage_Description">
         <Original>
@@ -181,6 +205,9 @@
         <Czech>
           Vynutí použití TFARU v misi.
         </Czech>
+        <Korean>
+          미션 내 TFAR의 규칙을 적용합니다.
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_EncryptionCode">
         <Original>
@@ -201,6 +228,9 @@
         <Czech>
           Šifrovací kód
         </Czech>
+        <Korean>
+          암호화 코드
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_LR_Radio">
         <Original>
@@ -221,6 +251,9 @@
         <Czech>
           LR Vysílačka
         </Czech>
+        <Korean>
+          장파 무전기
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_LR_RadioTT">
         <Original>
@@ -241,6 +274,9 @@
         <Czech>
           Vysílačka na dlouhou vzdálenost
         </Czech>
+        <Korean>
+          장거리 무전기
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_PR_Radio">
         <Original>
@@ -261,6 +297,9 @@
         <Czech>
           PR Vysílačka
         </Czech>
+        <Korean>
+          단파 무전기
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_PR_RadioTT">
         <Original>
@@ -281,6 +320,9 @@
         <Czech>
           Osobní vysílačka
         </Czech>
+        <Korean>
+          개인(단파) 무전기
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_Rifle_Radio">
         <Original>
@@ -301,6 +343,9 @@
         <Czech>
           Klasická (malá) vysílačka
         </Czech>
+        <Korean>
+          소총수 무전기
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_Rifle_RadioTT">
         <Original>
@@ -321,6 +366,9 @@
         <Czech>
           Klasická (malá) vysílačka
         </Czech>
+        <Korean>
+          소총수 무전기
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_PRFrequency">
         <Original>
@@ -341,6 +389,9 @@
         <Czech>
           PR Frek.
         </Czech>
+        <Korean>
+          단파 주파수
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_PRFrequencyTT">
         <Original>
@@ -361,6 +412,9 @@
         <Czech>
           Výchozí frekvence osobní vysílačky (jako SQF pole)
         </Czech>
+        <Korean>
+          단파 기본 주파수(SQF 배열)
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_LRFrequency">
         <Original>
@@ -381,6 +435,9 @@
         <Czech>
           LR Frek.
         </Czech>
+        <Korean>
+          장파 주파수
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_LRFrequencyTT">
         <Original>
@@ -401,6 +458,9 @@
         <Czech>
           Výchozí frekvence vysílačky pro dlouhou vzdálenost (jako SQF pole)
         </Czech>
+        <Korean>
+          장파 기본 주파수(SQF 배열)
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_SideRadio">
         <Original>
@@ -421,6 +481,9 @@
         <Czech>
           TFAR – Vysílačky strany
         </Czech>
+        <Korean>
+          TFAR – 진영 무전
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_SideRadio_Description">
         <Original>
@@ -441,6 +504,9 @@
         <Czech>
           Umožňuje nastavení výchozích vysílaček, šifrování a frekvencí pro určitou stranu.
         </Czech>
+        <Korean>
+          동기화된 진영의 기본 무전기, 암호화, 주파수 설정을 할 수 있습니다.
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_Frequencies">
         <Original>
@@ -461,6 +527,9 @@
         <Czech>
           TFAR – Frekvence
         </Czech>
+        <Korean>
+          TFAR – 주파수
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_Frequencies_Description">
         <Original>
@@ -481,6 +550,9 @@
         <Czech>
           Umožňuje nastavit výchozí frekvence pro určité strany.
         </Czech>
+        <Korean>
+          동기화된 진영의 기본 주파수를 설정 할 수 있습니다.
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
         <Original>
@@ -501,6 +573,9 @@
         <Czech>
           Koeficient rušení terénem
         </Czech>
+        <Korean>
+          지형 방해 계수
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
         <Original>
@@ -521,6 +596,9 @@
         <Czech>
           Koeficient rušení způsobené terénem
         </Czech>
+        <Korean>
+          지형 방해 계수
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_ChannelName">
         <Original>
@@ -541,6 +619,9 @@
         <Czech>
           Název kanálu
         </Czech>
+        <Korean>
+          채널 이름
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_ChannelNameTT">
         <Original>
@@ -561,6 +642,9 @@
         <Czech>
           Název kanálu na TeamSpeaku
         </Czech>
+        <Korean>
+          팀스피크 채널 이름
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_ChannelPassword">
         <Original>
@@ -581,6 +665,9 @@
         <Czech>
           Heslo kanálu
         </Czech>
+        <Korean>
+          채널 비밀번호
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_ChannelPasswordTT">
         <Original>
@@ -601,6 +688,9 @@
         <Czech>
           Heslo kanálu na TeamSpeaku
         </Czech>
+        <Korean>
+          팀스피크 채널 비밀번호
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_SameSWFrequencies">
         <Original>
@@ -621,6 +711,9 @@
         <Czech>
           Stejné SW frekvence pro stranu
         </Czech>
+        <Korean>
+          진영 단파 주파수
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
         <Original>
@@ -641,6 +734,9 @@
         <Czech>
           Stejné SW frekvence vysílačky pro stranu
         </Czech>
+        <Korean>
+          동기화된 진영에 같은 단파 주파수를 설정합니다.
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_SameLrFrequencies">
         <Original>
@@ -661,6 +757,9 @@
         <Czech>
           Stejné LR frekvence pro stranu
         </Czech>
+        <Korean>
+          진영 장파 주파수
+        </Korean>
       </Key>
       <Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
         <Original>
@@ -681,6 +780,9 @@
         <Czech>
           Stejné LR frekvence vysílačky pro dlouhou vzdálenost pro stranu
         </Czech>
+        <Korean>
+          동기화된 진영에 같은 장파 주파수를 설정합니다.
+        </Korean>
       </Key>
     </Container>
   </Package>
