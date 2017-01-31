@@ -1297,7 +1297,8 @@ std::string getConnectionStatusInfo(bool pipeConnected, bool inGame, bool includ
 	std::string addon = serverIdToData[id].addon_version;
 	LeaveCriticalSection(&serverDataCriticalSection);
 
-	std::string result = std::string("[I]Connected[/I] [B]")
+	std::string result = std::string("TFAR")+ (pipeConnected ? "Y" : "N") + (inGame ? "Y" : "N")
+		+"[I]Connected[/I] [B]"
 		+ (pipeConnected ? "Y" : "N") + "[/B] [I]Play[/I] [B]"
 		+ (inGame ? "Y" : "N")
 		+ (includeVersion ? std::string("[/B] [I]P:[/I][B]") + PLUGIN_VERSION + "[/B]" : "")
@@ -2368,7 +2369,7 @@ void ts3plugin_infoData(uint64 serverConnectionHandlerID, uint64 id, enum Plugin
 	{
 		std::string metaData = getMetaData((anyID)id);
 		*data = (char*)malloc(INFODATA_BUFSIZE * sizeof(char));  /* Must be allocated in the plugin! */
-		snprintf(*data, INFODATA_BUFSIZE, "%s", metaData.c_str());  /* bbCode is supported. HTML is not supported */
+		snprintf(*data, INFODATA_BUFSIZE, "%s", metaData.substr(6).c_str());  /* bbCode is supported. HTML is not supported */
 	}
 	else
 	{
@@ -2530,7 +2531,7 @@ bool isPluginEnabledForUser(uint64 serverConnectionHandlerID, anyID clientID)
 	std::string clientInfo = getMetaData(clientID);
 	bool result = false;
 
-	std::string shouldStartWith = getConnectionStatusInfo(true, true, false);
+	std::string shouldStartWith = "TFARYY";
 	std::string clientStatus = std::string(clientInfo);
 	result = startWith(shouldStartWith, clientStatus);
 
