@@ -25,7 +25,8 @@
 //MUTEX_LOCK(TF_radio_request_mutex);
 private _lastExec = TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_requestRadios_lastExec";
 //If the loadout didn't change since last execute we don't need to check anything
-if (_lastExec > TFAR_lastLoadoutChange ) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mutex);*/};
+//Also if player is still in Arsenal don't replace anything
+if (_lastExec > TFAR_lastLoadoutChange  || GVAR(currentlyInArsenal)) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mutex);*/};
 TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_requestRadios_lastExec", diag_tickTime-0.1];
 
 (_this call TFAR_fnc_radioToRequestCount) params ["_radiosToRequest","_TF_SettingsToCopy"];

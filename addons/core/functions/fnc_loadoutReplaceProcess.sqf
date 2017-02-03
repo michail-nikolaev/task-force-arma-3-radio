@@ -16,12 +16,14 @@
  	Example:
 		[] call TFAR_fnc_loadoutReplaceProcess;
 */
+scriptName "TFAR_fnc_loadoutReplaceProcess";
 
 private _loadouts = profileNamespace getVariable ["bis_fnc_saveinventory_data", []];
 private _cfgWeapons = configFile >> "CfgWeapons"; //So we don't resolve every time in loop
 
 // _loadouts is an associative array [loadoutName, loadoutContent, loadoutName, ...], so we have to skip the name in our loop
 for "_i" from ((count _loadouts) - 1) to 0 step -2 do {
+
     _inventory = _loadouts select _i;
     // iterate through each container
     {
@@ -30,9 +32,13 @@ for "_i" from ((count _loadouts) - 1) to 0 step -2 do {
         {
             _class = _cfgWeapons >> _x;
 
+            //Following will replace 0.9.x Radios with their 1.0 versions. //#TODO Enable for Release -- yet untested
+            //if ((_class select [0,3]) == "tf_") then {_class = "tfar_" + (_class select [3])};
+
             // if the item is an actual radio, not a radio prototype nor common item
             if ((isClass _class) && {isNumber (_class >> "tf_radio")}) then {
                 // erase the content value with parent prototype
+                //diag_log ["TFAR","replace",_class,_forEachIndex,getText (_class >> "tf_parent")];
                 _content set [_forEachIndex, getText (_class >> "tf_parent")];
             };
         } forEach _content;
