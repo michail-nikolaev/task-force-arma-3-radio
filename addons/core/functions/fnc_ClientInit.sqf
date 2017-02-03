@@ -34,7 +34,7 @@ TFAR_currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_showHint;
 
 // loadout cleaning on initialization to avoid duplicate radios ids in Arsenal
-[] call TFAR_fnc_loadoutReplaceProcess;
+[] spawn TFAR_fnc_loadoutReplaceProcess;//Yes we spawn this. Because it is time intensive and doesn't need to be finished before continuing
 
 tf_lastNearFrameTick = diag_tickTime;
 tf_lastFarFrameTick = diag_tickTime;
