@@ -63,7 +63,7 @@ DEFINE_API_PROFILER(processCommand);
 std::string CommandProcessor::processCommand(const std::string& command) {
     Logger::log(LoggerTypes::gameCommands, command);
     API_PROFILER(processCommand);
-    std::vector<std::string> tokens; tokens.reserve(18);
+    std::vector<boost::string_ref> tokens; tokens.reserve(18);
     helpers::split(command, '\t', tokens); //may not be used in nickname	
     auto gameCommand = toGameCommand(tokens[0], tokens.size());
     if (gameCommand == gameCommand::unknown) return "UNKNOWN COMMAND";
@@ -76,7 +76,7 @@ std::string CommandProcessor::processCommand(const std::string& command) {
             queueCommand(command);//do processing async
             //This will automatically continue to IS_SPEAKING which is what we want
         case gameCommand::IS_SPEAKING: {
-            std::string nickname = convertNickname(tokens[1]);
+            std::string nickname = convertNickname(tokens[1].to_string());
             TSServerID currentServerConnectionHandlerID = Teamspeak::getCurrentServerConnection();
             auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(currentServerConnectionHandlerID);
             if (!clientDataDir) return "00";
@@ -85,12 +85,9 @@ std::string CommandProcessor::processCommand(const std::string& command) {
                 return "00";
             bool receivingTransmission = clientData->receivingTransmission;
 
-            if (clientData) {
-                bool clientTalkingOnRadio = (clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE) || clientData->clientTalkingNow;
-                if (clientData->clientTalkingNow || clientTalkingOnRadio)
-                    return std::string("1").append(receivingTransmission ? "1" : "0", 1);
-            }
-
+            bool clientTalkingOnRadio = clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE;
+            if (clientData->clientTalkingNow || clientTalkingOnRadio)
+                return std::string("1").append(receivingTransmission ? "1" : "0", 1);
             return  std::string("0").append(receivingTransmission ? "1" : "0", 1);
         }
     }
@@ -99,7 +96,7 @@ std::string CommandProcessor::processCommand(const std::string& command) {
 }
 
 const std::string constTangent("TANGENT");
-gameCommand CommandProcessor::toGameCommand(const std::string & textCommand, size_t tokenCount) {
+gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textCommand, size_t tokenCount) {
     if (textCommand.length() < 3) return gameCommand::unknown;
 #ifdef VS15
     auto hash = const_strhash(textCommand.c_str());
@@ -170,7 +167,7 @@ gameCommand CommandProcessor::toGameCommand(const std::string & textCommand, siz
         return gameCommand::MISSIONEND;
 #endif
     return gameCommand::unknown;
-    }
+}
 
 void CommandProcessor::threadRun() {
 
@@ -271,7 +268,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
 
             if (!changed) //If nothing changed there is nothing to do.
                 return;
-            std::string commandToBroadcast = command + "\t" + (myClientData->canUseSWRadio ? "1\t":"0\t") + (myClientData->canUseDDRadio ? "1\t" : "0\t") + myClientData->getNickname();
+            std::string commandToBroadcast = command + "\t" + (myClientData->canUseSWRadio ? "1\t" : "0\t") + (myClientData->canUseDDRadio ? "1\t" : "0\t") + myClientData->getNickname();
             std::string frequency = tokens[2];
             //convenience function to remove duplicate code
             auto playRadioSound = [currentServerConnectionHandlerID, globalVolume, &frequency](const char* fileNameWithoutExtension,
@@ -468,7 +465,7 @@ void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverCo
 DEFINE_API_PROFILER(processUnitPosition);
 std::string CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket & packet) {
     API_PROFILER(processUnitPosition);
-              //#TODO remove all that speaking stuff. Its not handled here anymore
+    //#TODO remove all that speaking stuff. Its not handled here anymore
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
     if (!clientDataDir)
         return "NOT_SPEAKING";
@@ -495,7 +492,7 @@ std::string CommandProcessor::processUnitPosition(TSServerID serverConnection, u
     return "NOT_SPEAKING";
 }
 
-std::string CommandProcessor::ts_info(std::string &command) {
+std::string CommandProcessor::ts_info(const boost::string_ref &command) {
     if (command == "SERVER") {
         return Teamspeak::getServerName();
     } else if (command == "CHANNEL") {

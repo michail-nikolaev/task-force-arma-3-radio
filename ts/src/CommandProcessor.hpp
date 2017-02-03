@@ -30,7 +30,7 @@ public:
 	void queueCommand(const std::string& command);
 	std::string processCommand(const std::string& command);
 
-    static gameCommand toGameCommand(const std::string& textCommand,size_t tokenCount);
+    static gameCommand toGameCommand(const boost::string_ref& textCommand,size_t tokenCount);
 private:
 	void threadRun();
 	void processAsynchronousCommand(const std::string& command);//Called inside thread
@@ -39,7 +39,7 @@ private:
 	void processUnitKilled(std::string &&name, TSServerID serverConnection);
 
 	std::string processUnitPosition(TSServerID serverConnection, unitPositionPacket & packet);
-	static std::string ts_info(std::string &command);
+	static std::string ts_info(const boost::string_ref &command);
 
 	static void process_tangent_off(PTTDelayArguments arguments);
 
