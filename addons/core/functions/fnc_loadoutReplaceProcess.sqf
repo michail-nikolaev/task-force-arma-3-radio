@@ -18,6 +18,7 @@
 */
 
 private _loadouts = profileNamespace getVariable ["bis_fnc_saveinventory_data", []];
+private _cfgWeapons = configFile >> "CfgWeapons"; //So we don't resolve every time in loop
 
 // _loadouts is an associative array [loadoutName, loadoutContent, loadoutName, ...], so we have to skip the name in our loop
 for "_i" from ((count _loadouts) - 1) to 0 step -2 do {
@@ -27,7 +28,7 @@ for "_i" from ((count _loadouts) - 1) to 0 step -2 do {
         _content = _x;
         // iterate through each item of the container
         {
-            _class = configFile >> "CfgWeapons" >> _x;
+            _class = _cfgWeapons >> _x;
 
             // if the item is an actual radio, not a radio prototype nor common item
             if ((isClass _class) && {isNumber (_class >> "tf_radio")}) then {
@@ -43,3 +44,5 @@ for "_i" from ((count _loadouts) - 1) to 0 step -2 do {
         _inventory select 9				// assigned items
     ];
 };
+
+profileNamespace setVariable ["bis_fnc_saveinventory_data", _loadouts]; //We always have to set in profileNamespace
