@@ -13,7 +13,7 @@ if (!hasInterface) exitWith {}; //Only on clients
 
 ["TFAR_AI_Detection", "OnSpeak", {
     params ["_unit","_isSpeaking"];
-
+    //systemChat format["TFAR OnSpeak %1 %2",_unit,_isSpeaking];
     // Exit if unit is isolated or DC'd or dead
     if ((vehicle _unit) call TFAR_fnc_isVehicleIsolated || {isNil "_unit"} || {!alive _unit}) exitWith {};
 
@@ -25,8 +25,8 @@ if (!hasInterface) exitWith {}; //Only on clients
 
         if (!((vehicle _x) call TFAR_fnc_isVehicleIsolated) && {!isPlayer _x} && {_x knowsAbout _unit <= 1.5}) then {
             //#TODO the farther away the unit is the lower reveal it should have
-            [_x,[_unit,1.5]] remoteExec ["reveal",2];
-            //systemChat format["Revealing %1 to %2 (%3).",_unit,_x,_x knowsAbout _unit];
+            [_x,[_unit,1.5]] remoteExec ["reveal", _x];
+            //systemChat format["TFAR Revealing %1 to %2 (%3).",_unit,_x,_x knowsAbout _unit];
         };
         true
     } count _nearHostiles;
