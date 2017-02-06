@@ -10,7 +10,7 @@ bool SharedMemoryHandlerInternal::SharedMemoryData::canAddAsyncRequest() const {
 void SharedMemoryHandlerInternal::SharedMemoryData::addAsyncRequest(const std::string& req) {
 	setLastGameTick();
 	if (req.length() > SHAREDMEM_MAX_STRINGSIZE) {
-		MessageBoxA(0, (req + std::to_string(req.length())).c_str(), "TFAR Pipe Too big request", 0);
+		MessageBoxA(0, (req + std::to_string(req.length())).c_str(), "TFAR SHAMEM Too big request", 0);
 		return;
 	}
 	SharedMemString* asyncBase = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128 + sizeof(SharedMemString) * 2);
@@ -26,7 +26,7 @@ void SharedMemoryHandlerInternal::SharedMemoryData::addAsyncRequest(const std::s
 void SharedMemoryHandlerInternal::SharedMemoryData::setSyncRequest(const std::string& req) {
 	setLastGameTick();
 	if (req.length() > SHAREDMEM_MAX_STRINGSIZE) {
-		MessageBoxA(0, "TFAR Pipe Too big Srequest", req.c_str(), 0);
+		MessageBoxA(0, (req + std::to_string(req.length())).c_str(), "TFAR SHAMEM Too big Srequest", 0);
 		__debugbreak();//Request bigger than max allowed size
 		return;
 	}
