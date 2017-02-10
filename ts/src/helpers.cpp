@@ -230,5 +230,5 @@ vehicleDescriptor helpers::getVehicleDescriptor(const std::string& vehicleID) {
 }
 
 float helpers::distanceForDiverRadio() {
-    return DD_MIN_DISTANCE + (DD_MAX_DISTANCE - DD_MIN_DISTANCE) * (1.0f - TFAR::getInstance().m_gameData.wavesLevel);
+    return DD_MIN_DISTANCE + (DD_MAX_DISTANCE - DD_MIN_DISTANCE) * (1.0f - TFAR::getInstance().m_gameData.wavesLevel); //#TODO WTF?! underwater range is influenced by wave intensity?
 }

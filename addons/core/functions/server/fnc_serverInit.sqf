@@ -21,6 +21,7 @@
 */
 
 ["TFAR_RadioRequestEvent", {
+    //#TODO Use optional Parameter of TFAR_fnc_processGroupFrequencySettings to always make sure players group is initialized before giving him a Radio
     if (!TFAR_fnc_processGroupFrequencySettings_running) then {
         //Curators not yet initialized. But a player wants his radio right now. So we need to get this done
         call TFAR_fnc_processGroupFrequencySettings;
