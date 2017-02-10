@@ -1,8 +1,6 @@
 #pragma once
-#include "version.h"
+
 #include "public_definitions.h"
-#include <string>
-#include <algorithm>
 #include <chrono>
 #include "datatypes.hpp"
 #include <windows.h>

@@ -7,6 +7,7 @@
 #include <windows.h>
 #include "Logger.hpp"
 #include "task_force_radio.hpp"
+#include "version.h"
 using namespace dataType;
 struct TS3Functions ts3Functions;
 
@@ -628,14 +629,80 @@ void Teamspeak::setClient3DPosition(TSServerID serverConnectionHandlerID, TSClie
 
 
 
-
-
-
 #include "plugin.h"
+/*********************************** Required functions ************************************/
+/*
+* If any of these required functions is not implemented, TS3 will refuse to load the plugin
+*/
+
+#pragma comment (lib, "version.lib")
+int ts3plugin_apiVersion() {
+
+    WCHAR fileName[_MAX_PATH];
+    DWORD size = GetModuleFileName(nullptr, fileName, _MAX_PATH);
+    fileName[size] = NULL;
+    DWORD handle = 0;
+    size = GetFileVersionInfoSize(fileName, &handle);
+    BYTE* versionInfo = new BYTE[size];
+    if (!GetFileVersionInfo(fileName, handle, size, versionInfo)) {
+        delete[] versionInfo;
+        return PLUGIN_API_VERSION;
+    }
+    UINT    			len = 0;
+    VS_FIXEDFILEINFO*   vsfi = nullptr;
+    VerQueryValue(versionInfo, L"\\", reinterpret_cast<void**>(&vsfi), &len);
+    short version = HIWORD(vsfi->dwFileVersionLS);
+    short minor = LOWORD(vsfi->dwFileVersionMS);
+    delete[] versionInfo;
+    if (minor == 1) return 21;//Teamspeak 3.1 
+    switch (version) {
+        case 9: return 19;
+        case 10: return 19;
+        case 11: return 19;
+        case 12: return 19;
+        case 13: return 19;
+        case 14: return 20;
+        case 15: return 20;
+        case 16: return 20;
+        case 17: return 20;
+        case 18: return 20;
+        case 19: return 20;
+        case 20: return 21;
+        default: return PLUGIN_API_VERSION;
+    }
+}
+
 /* Set TeamSpeak 3 callback functions */
 void ts3plugin_setFunctionPointers(const struct TS3Functions funcs) {
     ts3Functions = funcs;
 }
+
+/* Unique name identifying this plugin */
+const char* ts3plugin_name() {
+    return "Task Force Arma 3 Radio";
+}
+
+/* Plugin version */
+const char* ts3plugin_version() {
+    return PLUGIN_VERSION;
+}
+
+/* Plugin author */
+const char* ts3plugin_author() {
+    /* If you want to use wchar_t, see ts3plugin_name() on how to use */
+    return "[TF]Nkey";
+}
+
+/* Plugin description */
+const char* ts3plugin_description() {
+    /* If you want to use wchar_t, see ts3plugin_name() on how to use */
+    return "Radio Addon for Arma 3";
+}
+
+
+
+
+
 
 
 /****************************** Optional functions ********************************/
