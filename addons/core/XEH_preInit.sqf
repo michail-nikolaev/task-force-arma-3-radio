@@ -3,8 +3,7 @@
 #include "XEH_PREP.sqf"
 
 // server
-//#TODO change STR_radio_no_auto_long_range_radio to STR_radio_auto_long_range_radio
-["TFAR_giveLongRangeRadioToGroupLeaders", "CHECKBOX", "STR_radio_no_auto_long_range_radio", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
+["TFAR_giveLongRangeRadioToGroupLeaders", "CHECKBOX", "STR_radio_auto_long_range_radio", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TFAR_givePersonalRadioToRegularSoldier", "CHECKBOX", "STR_radio_give_personal_radio_to_regular_soldier", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TFAR_giveMicroDagrToSoldier", "CHECKBOX", "STR_radio_give_microdagr_to_soldier", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
 ["TFAR_SameSRFrequenciesForSide", "CHECKBOX", "STR_radio_same_sw_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
