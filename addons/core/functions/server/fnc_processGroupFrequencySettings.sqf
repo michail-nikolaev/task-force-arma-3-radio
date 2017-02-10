@@ -18,6 +18,7 @@
     Example:
         call TFAR_fnc_processGroupFrequencySettings;
 */
+//#TODO add optional parameter to specify an array of groups to process. If not defined process all Groups
 
 _allGroups = allGroups;
 //allGroups doesn't include Curators so Add them.

@@ -11,7 +11,7 @@ void SharedMemoryHandlerInternal::SharedMemoryData::addAsyncRequest(const std::s
 	setLastGameTick();
 	if (req.length() > SHAREDMEM_MAX_STRINGSIZE) {
 		MessageBoxA(0, (req + std::to_string(req.length())).c_str(), "TFAR SHAMEM Too big request", 0);
-		return;
+		return; //#TODO Could try to open and use a NamedPipe instead as backup
 	}
 	SharedMemString* asyncBase = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128 + sizeof(SharedMemString) * 2);
 	if (nextFreeAsyncMessage > SHAREDMEM_ASYNCMSG_COUNT) {

@@ -19,12 +19,11 @@
     Example:
         [(call TFAR_fnc_activeSWRadio), 2] call TFAR_fnc_setAdditionalSwStereo;
  */
+params [["_radio","",[""]], ["_value",0,[0]]];
 
-params ["_radio_id", "_channel_to_set"];
-
-private _settings = _radio_id call TFAR_fnc_getSwSettings;
-_settings set [TFAR_ADDITIONAL_STEREO_OFFSET, _value_to_set];
-[_radio_id, _settings] call TFAR_fnc_setSwSettings;
+private _settings = _radio call TFAR_fnc_getSwSettings;
+_settings set [TFAR_ADDITIONAL_STEREO_OFFSET, _value];
+[_radio, _settings] call TFAR_fnc_setSwSettings;
 
 //							unit, radio ID,	stero, additional
-["OnSWstereoSet", [TFAR_currentUnit, _radio_id, _value_to_set, true]] call TFAR_fnc_fireEventHandlers;
+["OnSWstereoSet", [TFAR_currentUnit, _radio, _value, true]] call TFAR_fnc_fireEventHandlers;
