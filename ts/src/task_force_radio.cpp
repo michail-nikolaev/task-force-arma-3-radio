@@ -9,6 +9,7 @@
 #include "serverData.hpp"
 #include "Teamspeak.hpp"
 #include "Logger.hpp"
+#include "version.h"
 
 extern struct TS3Functions ts3Functions;
 
