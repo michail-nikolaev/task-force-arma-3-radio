@@ -690,7 +690,7 @@ const char* ts3plugin_version() {
 /* Plugin author */
 const char* ts3plugin_author() {
     /* If you want to use wchar_t, see ts3plugin_name() on how to use */
-    return "[TF]Nkey";
+    return "[TF]Nkey and Dedmen";
 }
 
 /* Plugin description */
