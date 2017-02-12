@@ -44,6 +44,7 @@
 #include "SharedMemoryHandler.hpp"
 #include "Teamspeak.hpp"
 #include <chrono>
+#include "version.h"
 
 #define PATH_BUFSIZE 512
 
@@ -394,7 +395,7 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
     TFAR::getInstance().getPlaybackHandler()->onEditMixedPlaybackVoiceDataEvent(samples, sampleCount, channels, channelSpeakerArray, channelFillMask);
 }
 
-void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnectionHandlerID, TSClientID clientID, short* samples, int sampleCount, int channels) {
+void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID, short* samples, int sampleCount, int channels,bool isFromMicrophone = false) {
     if (!TFAR::getInstance().getCurrentlyInGame())
         return;
     _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
@@ -514,6 +515,7 @@ void ts3plugin_onEditPostProcessVoiceDataEventStereo(TSServerID serverConnection
     float radioDistance = myData->effectiveDistanceTo(clientData);
 
     for (auto& info : listed_info) {
+        if (isFromMicrophone && info.on == receivingRadioType::LISTED_ON_INTERCOM) continue; //We don't want to hear ourselves over intercom while doing direct speech
         short* radio_buffer = helpers::allocatePool(sampleCount, channels, original_buffer);
         float volumeLevel = helpers::volumeMultiplifier(static_cast<float>(info.volume));
         if (info.on < receivingRadioType::LISTED_ON_NONE) {//don't do for onGround or Intercom
@@ -608,7 +610,7 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
             stereo[q * 2 + g] = samples[q * channels + g];
     }
 
-    ts3plugin_onEditPostProcessVoiceDataEventStereo(serverConnectionHandlerID, clientID, stereo, sampleCount, 2);
+    processVoiceData(serverConnectionHandlerID, clientID, stereo, sampleCount, 2);
 
     for (int q = 0; q < sampleCount; q++) {
         for (int g = 0; g < 2; g++)
@@ -629,7 +631,7 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
     if (!clientDataDir || !clientDataDir->myClientData) return;
 
-    //ts3plugin_onEditPostProcessVoiceDataEventStereo is always modifying data so we need copy.
+    //processVoiceData is always modifying data so we need copy.
     short* voice = new short[sampleCount * 2];
     if (channels == 1) {  //copy to stereo
         for (int q = 0; q < sampleCount; q++) {
@@ -647,7 +649,7 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
     }
 
 
-    ts3plugin_onEditPostProcessVoiceDataEventStereo(serverConnectionHandlerID, clientDataDir->myClientData->clientId, voice, sampleCount, 2);
+    processVoiceData(serverConnectionHandlerID, clientDataDir->myClientData->clientId, voice, sampleCount, 2, true);
 
     TFAR::getInstance().getPlaybackHandler()->appendPlayback("my_radio_voice", voice, sampleCount, 2);
     delete[] voice;
