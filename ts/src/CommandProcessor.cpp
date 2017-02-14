@@ -8,6 +8,7 @@
 #include <public_rare_definitions.h>
 #include "Locks.hpp"
 #include "Teamspeak.hpp"
+#include "antennaManager.h"
 
 volatile bool vadEnabled = false;
 volatile bool skipTangentOff = false;
@@ -138,6 +139,10 @@ gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textComman
         case FORCE_COMPILETIME(const_strhash("TANGENT_LR")):
         case FORCE_COMPILETIME(const_strhash("TANGENT_DD")):
             return gameCommand::TANGENT;
+        case FORCE_COMPILETIME(const_strhash("RadioTwrAdd")):
+            return gameCommand::AddRadioTower;
+        case FORCE_COMPILETIME(const_strhash("RadioTwrDel")):
+            return gameCommand::DeleteRadioTower;
             break;
     };
 #else
@@ -165,6 +170,10 @@ gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textComman
         return gameCommand::SETCFG;
     if (tokenCount == 1 && textCommand == "MISSIONEND")//async
         return gameCommand::MISSIONEND;
+    if (tokenCount == 2 && textCommand == "RadioTwrAdd")//async
+        return gameCommand::AddRadioTower;
+    if (tokenCount == 2 && textCommand == "RadioTwrDel")//async
+        return gameCommand::DeleteRadioTower;
 #endif
     return gameCommand::unknown;
 }
@@ -362,6 +371,29 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
         case gameCommand::MISSIONEND: //Handled by pipe extension. That sets last GameTick to 0 so SharedMemoryHandler::onDisconnected will fire
             //TFAR::getInstance().onGameDisconnected();
             return;
+        case gameCommand::AddRadioTower: {
+           auto data = helpers::split(tokens[1], 0xA);
+           for (auto& element : data) {
+               auto antennaData = helpers::split(element, ';');
+               TFAR::getAntennaManager()->addAntenna(Antenna(NetID(antennaData[0]), Position3D(antennaData[2]), helpers::parseArmaNumber(antennaData[1])));
+           }
+           return;
+           
+        }
+
+        case gameCommand::DeleteRadioTower: {
+                auto data = helpers::split(tokens[1], 0xA);
+                 for (auto& element : data) {
+                     TFAR::getAntennaManager()->removeAntenna(element);
+                 }
+                 return;
+
+            }
+
+
+
+
+
     }
 }
 

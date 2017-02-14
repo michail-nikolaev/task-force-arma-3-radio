@@ -73,8 +73,14 @@ TFAR::TFAR() {
         onTeamspeakClientUpdated.removeAllSlots();
     });
     config.configValueSet.connect([](const Setting& setting) {
-        if (setting == Setting::serious_channelName || setting == Setting::serious_channelPassword)
-            Teamspeak::moveToSeriousChannel();
+        static std::chrono::system_clock::time_point lastMove;
+        if ((setting == Setting::serious_channelName || setting == Setting::serious_channelPassword)
+            && std::chrono::system_clock::now() - lastMove < 10ms //Teamspeak needs a little time to update currentChannel. This prevents doublejoin
+            ) {
+                Teamspeak::moveToSeriousChannel();
+                lastMove = std::chrono::system_clock::now();
+            }
+            
     });
 
     doDiagReport.connect([this](std::stringstream& diag) {
@@ -329,5 +335,11 @@ std::shared_ptr<serverDataDirectory>& TFAR::getServerDataDirectory() {
     if (!getInstance().m_serverData)
         getInstance().m_serverData = std::make_shared<serverDataDirectory>();
     return getInstance().m_serverData;
+}
+
+std::shared_ptr<AntennaManager>& TFAR::getAntennaManager() {
+    if (!getInstance().m_antennaManger)
+        getInstance().m_antennaManger = std::make_shared<AntennaManager>();
+    return getInstance().m_antennaManger;
 }
 

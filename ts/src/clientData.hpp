@@ -9,6 +9,8 @@
 #include <memory> //shared_ptr
 #include <unordered_map>
 #include "Locks.hpp"
+#include "antennaManager.h"
+
 enum class sendingRadioType {   //Receiving FROM senders Radio.
     LISTEN_TO_SW,
     LISTEN_TO_LR,
@@ -25,9 +27,10 @@ enum class receivingRadioType { //Receiving TO our Radio
 };
 
 struct LISTED_INFO {
-    LISTED_INFO(sendingRadioType _over, receivingRadioType _on, int _volume, stereoMode _stereoMode, const std::string& _radio_id,
-        const Position3D& _pos, float _waveZ, const vehicleDescriptor& _vehicle)
-        :over(_over), on(_on), volume(_volume), stereoMode(_stereoMode), radio_id(_radio_id), pos(_pos), waveZ(_waveZ), vehicle(_vehicle) {}
+    LISTED_INFO(sendingRadioType _over, receivingRadioType _on, int _volume, stereoMode _stereoMode, std::string _radio_id,
+        Position3D _pos, float _waveZ, vehicleDescriptor _vehicle, AntennaConnection _antCon = AntennaConnection())
+        :over(_over), on(_on), volume(_volume), stereoMode(_stereoMode), radio_id(std::move(_radio_id)),
+        pos(std::move(_pos)), waveZ(_waveZ), vehicle(std::move(_vehicle)), antennaConnection(std::move(_antCon)) {}
     LISTED_INFO() {}
     sendingRadioType over = sendingRadioType::LISTEN_TO_NONE;//What radiotype the Sender is using
     receivingRadioType on = receivingRadioType::LISTED_ON_NONE;//What radiotype we are receiving on
@@ -37,6 +40,7 @@ struct LISTED_INFO {
     Position3D pos;
     float waveZ = 0.f;
     vehicleDescriptor vehicle;//Vehiclename and isolation
+    AntennaConnection antennaConnection;
 };
 
 struct unitPositionPacket {
@@ -280,6 +284,10 @@ public:
     float effectiveDistanceTo(clientData* other) const;
     bool isAlive();
 
+    operator Position3D() const { return getClientPosition(); } //convenience
+
+
+
     vehicleDescriptor getVehicleDescriptor() const {
         LockGuard_shared lock(&m_lock);
         return vehicleId; //helpers::getVehicleDescriptor(getVehicleId());
@@ -288,7 +296,7 @@ public:
 
 
 
-    LISTED_INFO isOverLocalRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent);
+    LISTED_INFO isOverLocalRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent, AntennaConnection& antennaConnection);
     std::vector<LISTED_INFO> isOverRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent);
 
 

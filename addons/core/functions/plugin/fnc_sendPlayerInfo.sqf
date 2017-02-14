@@ -40,7 +40,7 @@ if ((_result != "OK") and {(count _splitResult) != 2}) then {
 };
 
 private _isSpeaking = (_splitResult select 0) == "1";
-private _isReceiving = (_splitResult select 1) == "1";
+private _isReceiving = (_splitResult param [1,""]) == "1";
 
 if (_isSpeaking) then {
     _player setVariable ["TFAR_speakingSince", diag_tickTime];

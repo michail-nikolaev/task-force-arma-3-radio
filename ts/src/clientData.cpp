@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "Logger.hpp"
 #include "task_force_radio.hpp"
+#include "antennaManager.h"
 
 void clientData::updatePosition(const unitPositionPacket & packet) {
     LockGuard_exclusive lock(&m_lock);
@@ -54,7 +55,7 @@ bool clientData::isAlive() {
     return !timeout;
 }
 
-LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent) {
+LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent, AntennaConnection& antennaConnection) {
     //Sender is this
     LISTED_INFO result;
     result.over = sendingRadioType::LISTEN_TO_NONE;
@@ -101,15 +102,22 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
         float underwaterDist = myPosition.distanceUnderwater(clientPosition);
 		//Seperate distance underwater and distance overwater.
         effectiveDist = underwaterDist * (range / helpers::distanceForDiverRadio()) + (effectiveDist - underwaterDist);
+        
+        if (effectiveDist > range && !antennaConnection.isNull()) {
+            //Normal range not sufficient. Check if Antenna reaches.
+            auto antennaUnderwater = clientPosition.distanceUnderwater(antennaConnection.getAntenna()->getPos());
+            auto antennaTotal = clientPosition.distanceTo(antennaConnection.getAntenna()->getPos());
+            float effectiveRangeToAntenna = antennaUnderwater * (range / helpers::distanceForDiverRadio())
+                + (antennaTotal - antennaUnderwater);
+            if (effectiveRangeToAntenna < range)
+                effectiveDist = 0.f; //just use make the range check succeed
+        }
      }
 
-    if (effectiveDist > range)
+    if (effectiveDist > range ) //Out of range
         return result;
-
-
-
-
-
+    //#TODO always have a "valid" antenna connection in the end result. Just to transmit the connectionLoss to not have to calculate it again
+    result.antennaConnection = antennaConnection;
 
     std::string currentTransmittingRadio;
     if (!TFAR::config.get<bool>(Setting::full_duplex)) {
@@ -144,14 +152,7 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
 std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent) {
     std::vector<LISTED_INFO> result;
     if (!myData) return result;
-    //check if we receive him over a radio we have on us
-    if (clientId != myData->clientId) {//We don't hear ourselves over our Radio ^^
-        LISTED_INFO local = isOverLocalRadio(myData, ignoreSwTangent, ignoreLrTangent, ignoreDdTangent);
-        if (local.on != receivingRadioType::LISTED_ON_NONE && local.over != sendingRadioType::LISTEN_TO_NONE) {
-            result.push_back(local);
-        }
-    }
-
+    //Intercom has to be here because it has to be before range==0 check
     //vehicle intercom
     auto vecDescriptor = getVehicleDescriptor();
     auto myVecDescriptor = myData->getVehicleDescriptor();
@@ -171,10 +172,23 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
     }
 
 
+
+    if (range == 0) return result; //If we are sending range is set to Radio's range. Always!
+    auto antennaConnection = (clientId != myData->clientId) ? TFAR::getAntennaManager()->findConnection(getClientPosition(), static_cast<float>(range), myData->getClientPosition()) : AntennaConnection();
+    //check if we receive him over a radio we have on us
+    if (clientId != myData->clientId) {//We don't hear ourselves over our Radio ^^
+        LISTED_INFO local = isOverLocalRadio(myData, ignoreSwTangent, ignoreLrTangent, ignoreDdTangent, antennaConnection);
+        if (local.on != receivingRadioType::LISTED_ON_NONE && local.over != sendingRadioType::LISTEN_TO_NONE) {
+            result.push_back(local);
+        }
+    }
+
     float effectiveDistance_ = myData->effectiveDistanceTo(this);//#TODO is this broken? seems to always return 0
     //check if we receive him over a radio laying on ground
-    if (effectiveDistance_ > range)//does senders range reach to us?
-        return result;	 //His distance > range
+
+    //We reuse the antennaConnection for a nearby speaker. Technically antennaConnection measures connection to our body. But a speaker Radio is not that far away from us anyway
+    if (effectiveDistance_ > range && antennaConnection.isNull())//does senders range reach to us?
+        return result;	 //His distance > range and no suitable Antenna
 
     if (
         (canUseSWRadio && (currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_SW || ignoreSwTangent)) || //Sending over SW
@@ -199,7 +213,8 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
                 speaker.radio_id,
                 speakerPosition,
                 speaker.waveZ,
-                speaker.vehicle);
+                speaker.vehicle,
+                antennaConnection);
 
         });
 
