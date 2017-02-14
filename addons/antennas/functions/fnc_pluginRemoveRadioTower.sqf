@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_pluginRemoveRadioTower
+    Name: TFAR_antennas_fnc_pluginRemoveRadioTower
 
     Author(s):
         Dedmen
@@ -24,5 +24,6 @@
 for "_y" from 0 to (count _this)-1 step 50 do { //Only 50 per call to not exceed max message length
     private _towersToProcess = (_this select [_y,50]);
     private _towerData = _towersToProcess apply {netID _x};
-    "task_force_radio_pipe" callExtension (["RadioTwrDel",(_towerData joinString TF_new_line)] joinString "	");
+
+    "task_force_radio_pipe" callExtension format["RadioTwrDel	%1~", _towerData joinString TF_new_line];
 };

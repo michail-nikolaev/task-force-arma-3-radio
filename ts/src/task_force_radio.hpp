@@ -7,7 +7,7 @@
 
 class PlaybackHandler;
 class CommandProcessor;
-
+class AntennaManager;
 
 
 struct FREQ_SETTINGS {
@@ -106,6 +106,7 @@ public:
     static std::shared_ptr<CommandProcessor>& getCommandProcessor();
     static std::shared_ptr<PlaybackHandler>& getPlaybackHandler();
     static std::shared_ptr<serverDataDirectory>& getServerDataDirectory();
+    static std::shared_ptr<AntennaManager>& getAntennaManager();
     static settings config;//I'd like to use settings as the variable name. But... meh
 
 
@@ -165,6 +166,7 @@ private:
     std::shared_ptr<PlaybackHandler> m_playbackHandler;
     std::shared_ptr<CommandProcessor> m_commandProcessor;
     std::shared_ptr<serverDataDirectory> m_serverData;
+    std::shared_ptr<AntennaManager> m_antennaManger;
     bool currentlyInGame;
 
 

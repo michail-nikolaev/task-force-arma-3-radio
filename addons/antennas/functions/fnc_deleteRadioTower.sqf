@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_deleteRadioTower
+    Name: TFAR_antennas_fnc_deleteRadioTower
 
     Author(s):
         Dedmen
@@ -21,4 +21,4 @@
 
 [GVAR(radioTowerList), _tower] call CBA_fnc_hashRem;
 
-[_tower] call TFAR_fnc_pluginAddRadioTower;
+[_tower] call DFUNC(pluginRemoveRadioTower);

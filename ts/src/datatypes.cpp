@@ -51,7 +51,7 @@ dataType::Vector3D::Vector3D(const boost::string_ref& coordinateString) {
             //default Fail
     }
 }
- 
+
 bool dataType::Vector3D::operator==(const Vector3D& other) const {
     return 	m_x == other.m_x && m_y == other.m_y && m_z == other.m_z;
 }
@@ -95,6 +95,10 @@ float dataType::Vector3D::length() const {
     return sqrt(m_x*m_x + m_y*m_y + m_z*m_z);
 }
 
+float dataType::Vector3D::lengthSqr() const {
+    return m_x*m_x + m_y*m_y + m_z*m_z;
+}
+
 float dataType::Vector3D::dotProduct(const Vector3D& other) const {
     return m_x*other.m_x + m_y*other.m_y + m_z*other.m_z;
 }
@@ -130,6 +134,11 @@ float dataType::Position3D::distanceTo(const Position3D& other) const {
     return distance;
 }
 
+float dataType::Position3D::distanceToSqr(const Position3D& other) const {
+    float distance = Position3D(m_x - other.m_x, m_y - other.m_y, m_z - other.m_z).lengthSqr();
+    return distance;
+}
+
 float dataType::Position3D::distanceUnderwater(const Position3D& other) const {
     if (getHeight() > 0 && other.getHeight() > 0)//Not crossing waterline
         return 0;
@@ -137,7 +146,7 @@ float dataType::Position3D::distanceUnderwater(const Position3D& other) const {
         return distanceTo(other);
 
     float thisHeight = std::get<2>(get());
-	float otherHeight = std::get<2>(other.get());
+    float otherHeight = std::get<2>(other.get());
 
     Vector3D min = (thisHeight < otherHeight) ? *this : other;
     Vector3D max = (thisHeight > otherHeight) ? *this : other;
