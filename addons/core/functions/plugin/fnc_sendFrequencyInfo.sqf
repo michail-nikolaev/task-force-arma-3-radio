@@ -106,4 +106,4 @@ private _request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10~",//#TODO reorder
     TF_speak_volume_meters min TF_max_voice_volume,
     _nickname, waves, TF_terrain_interception_coefficient, _globalVolume, _receivingDistanceMultiplicator, TF_speakerDistance];
 
-_result = "task_force_radio_pipe" callExtension _request;
+"task_force_radio_pipe" callExtension _request;
