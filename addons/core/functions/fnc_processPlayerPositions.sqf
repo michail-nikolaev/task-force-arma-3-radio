@@ -39,9 +39,9 @@ if (!TFAR_currentNearPlayersProcessed) then {
             _unitName = _unit getVariable ["TFAR_spectatorName","any"];
         };
         if !(isNil "_controlled") then {
-            [_controlled, true, _unitName] call TFAR_fnc_sendPlayerInfo;
+            [_controlled, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         } else {
-            [_unit, true, _unitName] call TFAR_fnc_sendPlayerInfo;
+            [_unit, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         };
     };
 
@@ -70,9 +70,9 @@ if (!TFAR_currentFarPlayersProcessed) then {
             _unitName = _unit getVariable ["TFAR_spectatorName","any"];
         };
         if (isNull _controlled) then {
-            [_unit, false, _unitName] call PROFCONTEXT_RTN(TFAR_fnc_sendPlayerInfo);
+            [_unit, false, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         } else {
-            [_controlled, false, _unitName] call PROFCONTEXT_RTN(TFAR_fnc_sendPlayerInfo);
+            [_controlled, false, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         };
     };
 
