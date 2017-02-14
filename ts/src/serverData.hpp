@@ -14,7 +14,7 @@ public:
     bool hasClientData(TSClientID clientID) const;
     std::shared_ptr<clientData> getClientData(const std::string& nickname) const;
     std::shared_ptr<clientData> getClientData(TSClientID clientID) const;
-
+	void forEachClient(std::function<void(const std::shared_ptr<clientData>&)> func);
     std::shared_ptr<clientData> myClientData;//No lock needed. Its only changed once on serverconnect
 
     serverData() {

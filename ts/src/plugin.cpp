@@ -319,6 +319,19 @@ int ts3plugin_init() {
         sqlite3_close(db);
     }
 
+    TFAR::getInstance().onTeamspeakClientJoined.connect([](TSServerID serverID, TSClientID clientID, const std::string& clientNickname) {
+        setGameClientMuteStatus(serverID, clientID, { false, false }); //Mute non TFAR users if they join in serious channel
+    });
+
+    TFAR::getInstance().onSeriousModeChanged.connect([](bool isSerious) {
+        TSServerID serverID = Teamspeak::getCurrentServerConnection();
+        TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection())->forEachClient(
+            [serverID](const std::shared_ptr<clientData>& client) {
+            if (client)
+                setGameClientMuteStatus(serverID, client->clientId, { false, false });
+        });
+    });
+
     return 0;
 }
 
