@@ -18,3 +18,8 @@
     Example:
         _this call TFAR_fnc_initRadioTower;
 */
+params ["_tower","_range"];
+
+[GVAR(radioTowerList), _tower, _range] call CBA_fnc_hashSet;
+
+[_tower] call TFAR_fnc_pluginAddRadioTower;

@@ -18,3 +18,7 @@
     Example:
         _this call TFAR_fnc_deleteRadioTower;
 */
+
+[GVAR(radioTowerList), _tower] call CBA_fnc_hashRem;
+
+[_tower] call TFAR_fnc_pluginAddRadioTower;
