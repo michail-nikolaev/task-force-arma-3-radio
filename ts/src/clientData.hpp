@@ -76,7 +76,7 @@ public:
 
         resetRadioEffect();
     }
-     ~clientDataEffects() {
+    ~clientDataEffects() {
 
     }
 
@@ -105,7 +105,7 @@ public:
 
     void removeSpeakerFilter(std::string key) {
         LockGuard_exclusive lock_shared(&m_lock);
-         filtersSpeakers.erase(key);
+        filtersSpeakers.erase(key);
     }
 
     PersonalRadioEffect* getSwRadioEffect(std::string key) {

@@ -83,6 +83,12 @@ std::shared_ptr<clientData> serverData::getClientData(const std::string& nicknam
     return std::shared_ptr<clientData>();
 }
 
+void serverData::forEachClient(std::function<void(const std::shared_ptr<clientData>&)> func) {
+	   for (auto& cl : data) {
+		   func(std::get<2>(cl));
+	   }
+}
+
 void serverData::clientJoined(TSClientID clientID, const std::string& clientNickname) {
     LockGuard_exclusive lock(&m_lock);
     if (containsClientData(clientID)) {

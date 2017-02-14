@@ -72,16 +72,23 @@ TFAR::TFAR() {
         onTeamspeakClientLeft.removeAllSlots();
         onTeamspeakClientUpdated.removeAllSlots();
     });
-    config.configValueSet.connect([](const Setting& setting) {
+    config.configValueSet.connect([this](const Setting& setting) {
         static std::chrono::system_clock::time_point lastMove;
         if ((setting == Setting::serious_channelName || setting == Setting::serious_channelPassword)
-            && std::chrono::system_clock::now() - lastMove < 10ms //Teamspeak needs a little time to update currentChannel. This prevents doublejoin
-            ) {
-                Teamspeak::moveToSeriousChannel();
-                lastMove = std::chrono::system_clock::now();
-            }
-            
+            && std::chrono::system_clock::now() - lastMove > 10ms) { //Teamspeak needs a little time to update currentChannel. This prevents doublejoin
+            Teamspeak::moveToSeriousChannel();
+            lastMove = std::chrono::system_clock::now();
+        }
+        checkIfSeriousModeEnabled(Teamspeak::getCurrentServerConnection());
     });
+
+    onTeamspeakChannelSwitched.connect([this](TSServerID serverID, TSChannelID channelID) {
+        checkIfSeriousModeEnabled(serverID);
+    });
+
+
+
+
 
     doDiagReport.connect([this](std::stringstream& diag) {
         config.diagReport(diag);
@@ -144,6 +151,16 @@ TFAR& TFAR::getInstance() {
 
 settings TFAR::config;//declaring the static config
 
+void TFAR::checkIfSeriousModeEnabled(TSServerID serverID) {
+    std::string	serious_mod_channel_name = TFAR::config.get<std::string>(Setting::serious_channelName);
+    bool isSerious = false;
+    if (!serious_mod_channel_name.empty() && Teamspeak::isInChannel(serverID, Teamspeak::getMyId(serverID), serious_mod_channel_name)) isSerious = true;
+    if (isSeriousMode != isSerious) {
+        isSeriousMode = isSerious;
+        onSeriousModeChanged(isSerious);
+    }
+}
+
 bool TFAR::isUpdateAvailable() {
     DWORD dwBytes;
     char ch;
@@ -163,7 +180,7 @@ bool TFAR::isUpdateAvailable() {
             pluginVersion += ch;
         }
     }
-    
+
     InternetCloseHandle(File);
     InternetCloseHandle(Connection);
     InternetCloseHandle(Initialize);

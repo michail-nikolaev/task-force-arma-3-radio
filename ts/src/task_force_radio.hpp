@@ -127,6 +127,9 @@ public:
     Signal<void(TSServerID serverID, TSClientID clientID, const std::string& clientNickname)> onTeamspeakClientJoined;
     Signal<void(TSServerID serverID, TSClientID clientID)> onTeamspeakClientLeft; //If clientID == -2 all clients Left (aka channel switched)
     Signal<void(TSServerID serverID, TSClientID clientID, const std::string& clientNickname)> onTeamspeakClientUpdated; //Some variable about him updated. Probably his nickname
+	Signal<void(TSServerID serverID, TSChannelID channelID)> onTeamspeakChannelSwitched;
+
+	Signal<void(bool currentSeriousModeSetting)> onSeriousModeChanged;
 
     //Variable accessors
     std::string getPluginPath() const { return pluginPath; }
@@ -160,6 +163,7 @@ public:
     };
 
 private:
+	void checkIfSeriousModeEnabled(TSServerID serverID);
     std::string pluginPath;
     std::string pluginID;
     static bool isUpdateAvailable();
@@ -168,7 +172,7 @@ private:
     std::shared_ptr<serverDataDirectory> m_serverData;
     std::shared_ptr<AntennaManager> m_antennaManger;
     bool currentlyInGame;
-
+	bool isSeriousMode;
 
 };
 
