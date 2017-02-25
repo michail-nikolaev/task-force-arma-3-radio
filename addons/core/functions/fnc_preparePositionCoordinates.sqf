@@ -96,7 +96,7 @@ private _data = [
     //"POS",
     "POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12	%13",
     _unitName,
-    _pos, _curDir,//Position
+    _pos, _curViewDir,//Position
     _can_speak, _useSw, _useLr, _useDd, _vehicle,
     _terrainInterception,
     _unit getVariable ["tf_voiceVolume", 1.0],//Externally used API variable. Don't change name
