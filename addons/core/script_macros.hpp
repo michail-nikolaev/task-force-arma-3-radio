@@ -110,11 +110,13 @@
 #ifdef DEBUG_PROFCONTEXT
 
 #define PROFCONTEXT_NORTN(x) {isNil{call x}}
+#define PROFCONTEXT_NORTN_NAMED(n,x) {n;isNil{call x}}
 #define PROFCONTEXT_RTN(x) {private _rtn = 0; isNil{_rtn = _this call x}; _rtn}
 
 #else
 
 #define PROFCONTEXT_NORTN(x) x
+#define PROFCONTEXT_NORTN_NAMED(n,x) x
 #define PROFCONTEXT_RTN(x) x
 
 #endif
