@@ -27,7 +27,9 @@ dataType::Vector3D::Vector3D(float x, float y, float z) :m_x(x), m_y(y), m_z(z) 
 dataType::Vector3D::Vector3D(const std::vector<float>& vec) {
     switch (vec.size()) {
         case 2:m_x = vec.at(0); m_y = vec.at(1);	break;
-        case 3:m_x = vec.at(0); m_y = vec.at(1); m_z = vec.at(2); break;
+        case 3:
+        case 4: //Old overrides with TF_fnc_position may return 4 elements but we only want 3
+            m_x = vec.at(0); m_y = vec.at(1); m_z = vec.at(2); break;
     }
 }
 
@@ -44,6 +46,7 @@ dataType::Vector3D::Vector3D(const boost::string_ref& coordinateString) {
             m_y = helpers::parseArmaNumber(coords.at(1).data());
             break;
         case 3:
+        case 4: //Old overrides with TF_fnc_position may return 4 elements but we only want 3
             m_x = helpers::parseArmaNumber(coords.at(0).data());
             m_y = helpers::parseArmaNumber(coords.at(1).data());
             m_z = helpers::parseArmaNumber(coords.at(2).data());
