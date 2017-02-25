@@ -19,7 +19,6 @@
 ["TFAR_intercomVolume", "SLIDER", "Intercom Volume", "Task Force Arrowhead Radio", [0.01, 0.6, 0.3, 3], false, {["intercomVolume",TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 ["TFAR_pluginTimeout", "SLIDER", "Plugin Timeout in seconds", "Task Force Arrowhead Radio", [0.5, 10, 4, 3], false, {["pluginTimeout",TFAR_pluginTimeout] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 
-if (!isMultiplayer && !is3DENMultiplayer) exitWith {}; //Don't do anything in Singleplayer
 //Global variables
 VARIABLE_DEFAULT(tf_west_radio_code,"_bluefor");//Server needs Radio codes for static_radios
 VARIABLE_DEFAULT(tf_east_radio_code,"_opfor");
@@ -35,7 +34,6 @@ if (isNil "tf_independent_radio_code") then {
         tf_independent_radio_code = "_opfor";
     };
 };
-
 
 
 if (hasInterface) then {//Clientside Variables
@@ -133,6 +131,7 @@ if (hasInterface) then {//Clientside Variables
     TFAR_lastLoadoutChange = 0;
 };
 
+if (!isMultiplayer && !is3DENMultiplayer) exitWith {}; //Don't do anything more in Singleplayer - down here to atleast have Hotkeys available before
 
 if (isServer) then {//Serverside variables
     missionNamespace setVariable ["TF_server_addon_version",TFAR_ADDON_VERSION,true];
