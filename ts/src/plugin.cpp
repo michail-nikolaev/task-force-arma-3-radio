@@ -89,7 +89,7 @@ void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID cl
             if (!isOnRadio) {
                 bool isTalk = clientData->clientTalkingNow || Teamspeak::isTalking(serverConnectionHandlerID, clientData->clientId);
                 auto distance = myData->getClientPosition().distanceTo(clientData->getClientPosition());
-                mute = distance > (clientData->voiceVolume+15) || !isTalk;
+                mute = distance > (clientData->voiceVolume + 15) || !isTalk;
             } else {
                 mute = false;
             }
@@ -319,6 +319,19 @@ int ts3plugin_init() {
         sqlite3_close(db);
     }
 
+    TFAR::getInstance().onTeamspeakClientJoined.connect([](TSServerID serverID, TSClientID clientID, const std::string& clientNickname) {
+        setGameClientMuteStatus(serverID, clientID, { false, false }); //Mute non TFAR users if they join in serious channel
+    });
+
+    TFAR::getInstance().onSeriousModeChanged.connect([](bool isSerious) {
+        TSServerID serverID = Teamspeak::getCurrentServerConnection();
+        TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection())->forEachClient(
+            [serverID](const std::shared_ptr<clientData>& client) {
+            if (client)
+                setGameClientMuteStatus(serverID, client->clientId, { false, false });
+        });
+    });
+
     return 0;
 }
 
@@ -395,7 +408,7 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
     TFAR::getInstance().getPlaybackHandler()->onEditMixedPlaybackVoiceDataEvent(samples, sampleCount, channels, channelSpeakerArray, channelFillMask);
 }
 
-void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID, short* samples, int sampleCount, int channels,bool isFromMicrophone = false) {
+void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID, short* samples, int sampleCount, int channels, bool isFromMicrophone = false) {
     if (!TFAR::getInstance().getCurrentlyInGame())
         return;
     _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
@@ -527,24 +540,25 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
             switch (PTTDelayArguments::stringToSubtype(clientData->getCurrentTransmittingSubtype())) {
                 case PTTDelayArguments::subtypes::digital: {
                     if (info.over == sendingRadioType::LISTEN_TO_SW) {
-                        clientData->effects.getSwRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, radioDistance, clientData));
+                        clientData->effects.getSwRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss());
                         processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getSwRadioEffect(info.radio_id), info.stereoMode);
                     } else {
                         float underwaterDist = myPosition.distanceUnderwater(clientData->getClientPosition());
                         float normalDist = myPosition.distanceTo(clientData->getClientPosition());
-                        clientData->effects.getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(
+                        clientData->effects.getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ?
                             (underwaterDist * (clientData->range / helpers::distanceForDiverRadio()) + (normalDist - underwaterDist)) / clientData->range
+                            : info.antennaConnection.getLoss()
                         );
                         processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getUnderwaterRadioEffect(info.radio_id), info.stereoMode);
                     }
                 }
                                                            break;
                 case PTTDelayArguments::subtypes::airborne:
-                    clientData->effects.getAirborneRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, radioDistance, clientData));
+                    clientData->effects.getAirborneRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss());
                     processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getAirborneRadioEffect(info.radio_id), info.stereoMode);
                     break;
                 case PTTDelayArguments::subtypes::digital_lr:
-                    clientData->effects.getLrRadioEffect(info.radio_id)->setErrorLeveL(effectErrorFromDistance(info.over, radioDistance, clientData));
+                    clientData->effects.getLrRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss());
                     processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getLrRadioEffect(info.radio_id), info.stereoMode);
                     break;
                 case  PTTDelayArguments::subtypes::phone:
@@ -773,7 +787,7 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     }
 
     senderClientData->setCurrentTransmittingFrequency(frequency);
-    senderClientData->range = range;
+    senderClientData->range = pressed ? range : 0; //Setting range to 0 on transmit end helps identifying if he is currently sending
 
     auto clientId = senderClientData->clientId;
 

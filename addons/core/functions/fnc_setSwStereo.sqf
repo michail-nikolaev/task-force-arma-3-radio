@@ -22,13 +22,13 @@
 
 params ["_radio_id", "_value_to_set"];
 
-if ((_radio_id call TFAR_fnc_getAdditionalSwChannel) == (_radio_id call TFAR_fnc_getSwChannel)) then {
+if ((_radio_id call TFAR_fnc_getAdditionalSwChannel) == (_radio_id call TFAR_fnc_getSwChannel)) exitWith {
     _this call TFAR_fnc_setAdditionalSwStereo;
-} else {
-    private _settings = _radio_id call TFAR_fnc_getSwSettings;
-    _settings set [TFAR_SW_STEREO_OFFSET, _value_to_set];
-    [_radio_id, _settings] call TFAR_fnc_setSwSettings;
-
-    //							unit, radio ID,	stero, additional
-    ["OnSWstereoSet", [TFAR_currentUnit, _radio_id, _value_to_set, false]] call TFAR_fnc_fireEventHandlers;
 };
+
+private _settings = _radio_id call TFAR_fnc_getSwSettings;
+_settings set [TFAR_SW_STEREO_OFFSET, _value_to_set];
+[_radio_id, _settings] call TFAR_fnc_setSwSettings;
+
+//							unit, radio ID,	stero, additional
+["OnSWstereoSet", [TFAR_currentUnit, _radio_id, _value_to_set, false]] call TFAR_fnc_fireEventHandlers;
