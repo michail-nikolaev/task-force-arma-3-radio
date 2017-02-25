@@ -170,7 +170,7 @@ std::vector<std::string> helpers::split(const std::string& s, char delim) {
 
 bool helpers::isTrue(std::string& string) {
     if (string.length() != 4)	//small speed optimization
-        return false;
+        return string.length() == 1 && string.at(0) == '1';
     return string == "true";
 }
 

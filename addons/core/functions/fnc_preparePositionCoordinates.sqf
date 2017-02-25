@@ -22,23 +22,27 @@
 */
 params ["_unit", "_nearPlayer","_unitName"];
 
-private _pos = [_unit, _nearPlayer] call (_unit getVariable ["TF_fnc_position", {eyePos (_this select 0)}]);//TFAR_fnc_defaultPositionCoordinates
-private _pos = _unit call (_unit getVariable ["TF_fnc_position", {eyePos _this}]);//TFAR_fnc_defaultPositionCoordinates
-private _isInVehicle = (!isNull (objectParent _unit));
-private _isolated_and_inside = _isInVehicle && {_unit call TFAR_fnc_vehicleIsIsolatedAndInside}; //isNull objParent check is duplicate but increases performance 0.0128 -> 0.006 if not in vehicle
-private _depth = ((eyepos _unit) select 2) + ((getPosASLW _unit) select 2) - ((getPosASL _unit) select 2);//Inlined version of TFAR_fnc_eyeDepth to save performance
-private _can_speak = (_depth > 0 || _isolated_and_inside); //Inlined version of TFAR_fnc_canSpeak to save performance
-private _isLocalPlayer = _unit isEqualTo TFAR_currentUnit;
-private _useSw = true;
-private _useLr = true;
-private _useDd = false;
-if (_depth < 0) then {
-    _useSw = [_unit, _isolated_and_inside, _can_speak, _depth] call TFAR_fnc_canUseSWRadio;
-    _useLr = [_unit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio;
-    _useDd = [_depth, _isolated_and_inside] call TFAR_fnc_canUseDDRadio;
+private _pos = call (_unit getVariable ["TF_fnc_position", TFAR_fnc_defaultPositionCoordinates]); //_this get's forwarded without specifying it - perf improvement
+
+private _isolated_and_inside = false; //_isInVehicle && {_unit call TFAR_fnc_vehicleIsIsolatedAndInside};
+private _vehicle = "no"; //if (_isInVehicle) then {_unit call TFAR_fnc_vehicleId} else {"no"};
+if (!isNull (objectParent _unit)) then {//_isInVehicle
+    private _vehicle = _unit call TFAR_fnc_vehicleId;
+    private _isolated_and_inside = _unit call TFAR_fnc_vehicleIsIsolatedAndInside;
 };
 
-private _vehicle = if (_isInVehicle) then {_unit call TFAR_fnc_vehicleId} else {"no"}; //seperate vehicle check 0.0147ms -> 0.0098 ms
+private _eyeDepth = _pos select 2;//Inlined version of TFAR_fnc_eyeDepth to save performance
+private _can_speak = (_eyeDepth > 0 || _isolated_and_inside); //Inlined version of TFAR_fnc_canSpeak to save performance
+private _isRemotePlayer = !(_unit isEqualTo TFAR_currentUnit);
+private _useSw = true;
+private _useLr = true;
+private _useDd = 0;//Numbers are faster than true/false because https://feedback.bistudio.com/T123419
+if (_eyeDepth < 0) then {
+    _useSw = [_unit, _isolated_and_inside, _can_speak, _eyeDepth] call TFAR_fnc_canUseSWRadio;
+    _useLr = [_unit, _isolated_and_inside, _eyeDepth] call TFAR_fnc_canUseLRRadio;
+    _useDd = [_eyeDepth, _isolated_and_inside] call TFAR_fnc_canUseDDRadio;
+};
+
 private _object_interception = 0;
 private _terrainInterception = 0;
 
@@ -73,7 +77,7 @@ if (_nearPlayer) then {
         };
     };
 
-    if (TFAR_objectInterceptionEnabled && !_isLocalPlayer) then {
+    if (TFAR_objectInterceptionEnabled && _isRemotePlayer) then {
         _object_interception = _unit call TFAR_fnc_objectInterception;
     };
 } else {
@@ -82,17 +86,24 @@ if (_nearPlayer) then {
 
 private _isSpectating = _unit getVariable ["TFAR_forceSpectator",false];
 private _isEnemy = false;
-if (TFAR_currentUnit getVariable ["TFAR_forceSpectator",false]) then { //If we are not spectating we are not interested if he is enemy
+if (_isRemotePlayer && {TFAR_currentUnit getVariable ["TFAR_forceSpectator",false]}) then { //If we are not spectating we are not interested if he is enemy
     _isEnemy = [playerSide, side _unit] call BIS_fnc_sideIsEnemy;
 };
 
-([
-"POS",
-_unitName,
-[_pos select 0, _pos select 1, _pos select 2], _unit call TFAR_fnc_currentDirection,//Position
-_can_speak, _useSw, _useLr, _useDd, _vehicle,
-_terrainInterception,
-_unit getVariable ["tf_voiceVolume", 1.0],//Externally used API variable. Don't change name
-_object_interception, //Interceptions
-_isSpectating, _isEnemy
-] joinString "	")
+private _curViewDir = if (_isSpectating) then {(positionCameraToWorld [0,0,1]) vectorDiff (positionCameraToWorld [0,0,0])} else {getCameraViewDirection _unit};//Inlined version of TFAR_fnc_currentDirection
+
+private _data = [
+    //"POS",
+    "POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12	%13",
+    _unitName,
+    _pos, _curDir,//Position
+    _can_speak, _useSw, _useLr, _useDd, _vehicle,
+    _terrainInterception,
+    _unit getVariable ["tf_voiceVolume", 1.0],//Externally used API variable. Don't change name
+    _object_interception, //Interceptions
+    _isSpectating, _isEnemy
+    ];
+
+(format _data) //format is actually faster. 0.128 vs 0.131
+
+//(_data joinString "	")
