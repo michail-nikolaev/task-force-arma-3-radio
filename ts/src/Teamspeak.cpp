@@ -290,6 +290,7 @@ void Teamspeak::_onChannelSwitchedEvent(TSServerID serverConnectionHandlerID, TS
         if (clientNickname.empty()) continue;
         TFAR::getInstance().onTeamspeakClientJoined(serverConnectionHandlerID, clientId, clientNickname);
     }
+	TFAR::getInstance().onTeamspeakChannelSwitched(serverConnectionHandlerID, newChannel);
 }
 
 void Teamspeak::_onClientMoved(TSServerID serverConnectionHandlerID, TSClientID clientID, TSChannelID oldChannel, TSChannelID newChannel) {

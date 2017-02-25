@@ -19,6 +19,8 @@ enum class gameCommand {
     RELEASE_ALL_TANGENTS, //Async
     SETCFG,	//Async
     MISSIONEND,	//Async
+    AddRadioTower,
+    DeleteRadioTower,
 	unknown
 };
 
