@@ -31,16 +31,15 @@ if (!TFAR_currentNearPlayersProcessed) then {
     if (_playersToProcess == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
 
     {
-        params ["_unit"];
-        private _controlled = _unit getVariable "TFAR_controlledUnit";
-        private _unitName = name _unit;
-        if (_unit getVariable ["TFAR_forceSpectator",false]) then {
-            _unitName = _unit getVariable ["TFAR_spectatorName","any"];
+        private _controlled = _x getVariable "TFAR_controlledUnit";
+        private _unitName = name _x;
+        if (_x getVariable ["TFAR_forceSpectator",false]) then {
+            _unitName = _x getVariable ["TFAR_spectatorName","any"];
         };
         if !(isNil "_controlled") then {
             [_controlled, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         } else {
-            [_unit, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
+            [_x, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         };
     } forEach (TFAR_currentNearPlayersProcessing select [0,_playersToProcess]); //commy2
 
@@ -66,14 +65,13 @@ if (!TFAR_currentFarPlayersProcessed) then {
     if (_playersToProcess == 0) exitWith {TFAR_lastFarPlayerProcessTime = diag_tickTime;TFAR_currentFarPlayersProcessed = true};
 
     {
-        params ["_unit"];
-        private _controlled = _unit getVariable ["TFAR_controlledUnit", objNull];
-        private _unitName = name _unit;
-        if (_unit getVariable ["TFAR_forceSpectator",false]) then {
-            _unitName = _unit getVariable ["TFAR_spectatorName","any"];
+        private _controlled = _x getVariable ["TFAR_controlledUnit", objNull];
+        private _unitName = name _x;
+        if (_x getVariable ["TFAR_forceSpectator",false]) then {
+            _unitName = _x getVariable ["TFAR_spectatorName","any"];
         };
         if (isNull _controlled) then {
-            [_unit, false, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
+            [_x, false, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         } else {
             [_controlled, false, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         };
