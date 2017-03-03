@@ -28,6 +28,7 @@ class TFAR_mr3000_bwmod: TFAR_mr3000 {
     descriptionShort = "MR3000 BWMOD long range radio 20km";//#Stringtable
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_nicecomm2_bwmod_co.paa)};
+	tf_encryptionCode = "tf_west_radio_code";
 };
 HIDDEN_CLASS(tf_mr3000_bwmod : TFAR_mr3000_bwmod); //#Deprecated dummy class for backwards compat
 class TFAR_mr3000_bwmod_tropen: TFAR_mr3000_bwmod {
