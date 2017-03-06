@@ -11,12 +11,13 @@
 
     Parameters:
         OBJECT: the Tower
+        NUMBER: the Transmitting Range of the Tower
 
     Returns:
         NOTHING
 
     Example:
-        _this call TFAR_fnc_initRadioTower;
+        [_this,50000] call TFAR_fnc_initRadioTower;
 */
 params ["_tower","_range"];
 diag_log ["TFAR_antennas_fnc_initRadioTower",_this];
