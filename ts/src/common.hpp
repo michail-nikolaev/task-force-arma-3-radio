@@ -67,6 +67,7 @@ struct PTTDelayArguments {
     TSServerID currentServerConnectionHandlerID;
     std::chrono::milliseconds pttDelay;
     std::string subtype;
+    std::chrono::milliseconds tangentReleaseDelay;
     enum class subtypes {
         digital_lr,
         dd,
