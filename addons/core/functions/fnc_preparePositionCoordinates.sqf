@@ -26,9 +26,9 @@ private _pos = call (_unit getVariable ["TF_fnc_position", TFAR_fnc_defaultPosit
 
 private _isolated_and_inside = false; //_isInVehicle && {_unit call TFAR_fnc_vehicleIsIsolatedAndInside};
 private _vehicle = "no"; //if (_isInVehicle) then {_unit call TFAR_fnc_vehicleId} else {"no"};
-if (!isNull (objectParent _unit)) then {//_isInVehicle
-    private _vehicle = _unit call TFAR_fnc_vehicleId;
-    private _isolated_and_inside = _unit call TFAR_fnc_vehicleIsIsolatedAndInside;
+if (!isNull (objectParent _unit)) then {//_isInVehicle //#TODO somewhere here Intercom is failing. It's returning "no" while in vehicle
+    _vehicle = _unit call TFAR_fnc_vehicleId;
+    _isolated_and_inside = _unit call TFAR_fnc_vehicleIsIsolatedAndInside;
 };
 
 private _eyeDepth = _pos select 2;//Inlined version of TFAR_fnc_eyeDepth to save performance
