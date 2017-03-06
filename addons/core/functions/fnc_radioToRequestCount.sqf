@@ -56,7 +56,7 @@ private _TF_settingsToCopy = [];
 } count (assignedItems TFAR_currentUnit);
 
 private _uniqueItems = (items TFAR_currentUnit);
-_uniqueItems = _uniqueItems arrayIntersect _uniqueItems;//Remove duplicates
+_uniqueItems = _uniqueItems arrayIntersect _uniqueItems;//Remove duplicates //#BUG this causes that only one Radio will be requested per request if you have multiple with same classname
 
 {
     if (_x call TFAR_fnc_isPrototypeRadio) then {
