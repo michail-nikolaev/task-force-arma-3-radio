@@ -724,6 +724,7 @@ void processAllTangentRelease(TSServerID serverId, std::vector<std::string> &tok
 }
 
 void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, std::string &command) {
+    std::vector<LISTED_INFO> listedInfos;
     std::string nickname = tokens.back();
     //Input validation first.
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverId);
@@ -741,6 +742,10 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
 
     auto time = std::chrono::system_clock::now();
     bool pressed = (tokens[1] == "PRESSED");
+
+    if (!pressed) //Need to do this before we reset all his variables because after that we won't receive him anymore
+        listedInfos = senderClientData->isOverRadio(myClientData, senderClientData->canUseSWRadio, senderClientData->canUseLRRadio, senderClientData->canUseDDRadio);
+
     sendingRadioType sendingRadioType;
     if (tokens[0] == "TANGENT_LR")
         sendingRadioType = sendingRadioType::LISTEN_TO_LR;
@@ -792,7 +797,8 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     auto clientId = senderClientData->clientId;
 
     //Check where we can Receive him. Radios or Speakers
-    std::vector<LISTED_INFO> listedInfos = senderClientData->isOverRadio(myClientData, senderClientData->canUseSWRadio, senderClientData->canUseLRRadio, senderClientData->canUseDDRadio);
+    if (pressed)
+        listedInfos = senderClientData->isOverRadio(myClientData, senderClientData->canUseSWRadio, senderClientData->canUseLRRadio, senderClientData->canUseDDRadio);
     for (LISTED_INFO & listedInfo : listedInfos) {
 
         if (alive && listedInfo.on != receivingRadioType::LISTED_ON_NONE && listedInfo.on != receivingRadioType::LISTED_ON_INTERCOM) {

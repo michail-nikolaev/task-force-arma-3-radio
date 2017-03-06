@@ -56,7 +56,7 @@ if (_nearPlayer) then {
                         _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_getChannelFrequency, _x call TFAR_fnc_getLrRadioCode];
                     };
                     private _radio_id = netId (_x select 0);
-                    TFAR_speakerRadios pushBack ([_radio_id,_frequencies joinString "|",__unitName,[], _x call TFAR_fnc_getLrVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);
+                    TFAR_speakerRadios pushBack ([_radio_id,_frequencies joinString "|",_unitName,[], _x call TFAR_fnc_getLrVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);
                 };
                 true;
             } count (_unit call TFAR_fnc_lrRadiosList);
