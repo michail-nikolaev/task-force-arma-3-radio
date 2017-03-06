@@ -37,6 +37,9 @@ if (_radiosToRequest isEqualTo []) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mut
 //Answer EH
 ["TFAR_RadioRequestResponseEvent", {
     params ["_response"];
+
+    diag_log ["TFAR_ReceiveRadioRequestResponse",_response];
+
     private _copyIndex = 0;
     if (_response isEqualType []) then {
         private _radioCount = count _response;
@@ -61,18 +64,17 @@ if (_radiosToRequest isEqualTo []) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mut
             };
 
             if (TFAR_RadioReqLinkFirstItem) then {
-                TFAR_RadioReqLinkFirstItem= false;
+                TFAR_RadioReqLinkFirstItem = false;
                 TFAR_currentUnit linkItem (_response select 0);
                 _copyIndex = [_settingsCount, _copyIndex, (_response select 0),_TF_SettingsToCopy] call _fnc_CopySettings;
                 [(_response select 0), getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
-                _startIndex = 1;
             };
-            _radioCount = _radioCount - 1;
-            for "_index" from _startIndex to _radioCount do {
-                TFAR_currentUnit addItem (_response select _index);
-                _copyIndex = [_settingsCount, _copyIndex, (_response select _index),_TF_SettingsToCopy] call _fnc_CopySettings;
-                [(_response select _index), getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
-            };
+
+            {
+                TFAR_currentUnit addItem _x;
+                _copyIndex = [_settingsCount, _copyIndex, _x,_TF_SettingsToCopy] call _fnc_CopySettings;
+                [_x, getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
+            } forEach (if (TFAR_RadioReqLinkFirstItem) then {_response select [1]} else {_response});
         };
     } else {
         hintC _response;
@@ -89,5 +91,6 @@ if (_radiosToRequest isEqualTo []) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mut
 [parseText(localize ("STR_wait_radio")), 10] call TFAR_fnc_showHint;
 TFAR_beta_RadioRequestStart = diag_tickTime;//#TODO remove on release
 //Send request
+diag_log ["TFAR_SendRadioRequest",_radiosToRequest,TF_respawnedAt,time];
 ["TFAR_RadioRequestEvent", [_radiosToRequest,TFAR_currentUnit]] call CBA_fnc_serverEvent;
 //MUTEX_UNLOCK(TF_radio_request_mutex);
