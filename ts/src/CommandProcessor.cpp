@@ -323,6 +323,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                 args.currentServerConnectionHandlerID = currentServerConnectionHandlerID;
                 args.subtype = subtype;
                 args.pttDelay = TFAR::getInstance().m_gameData.pttDelay;
+                args.tangentReleaseDelay = std::chrono::milliseconds(static_cast<int>(TFAR::config.get<float>(Setting::tangentReleaseDelay)));
                 std::thread([this, args]() {process_tangent_off(args); }).detach();
                 LockGuard_shared<ReadWriteLock> frequencyLock(&TFAR::getInstance().m_gameData.m_lock);
                 switch (PTTDelayArguments::stringToSubtype(subtype)) {
@@ -337,7 +338,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                         break;
                     default: break;
                 }
-                frequencyLock.unlock(); //setCurTransRadio aquires lock. This can deadlock if we don't unlock here
+                frequencyLock.unlock(); //setCurTransRadio acquires lock. This can deadlock if we don't unlock here
                 if (!TFAR::config.get<bool>(Setting::full_duplex)) {
                     TFAR::getInstance().m_gameData.setCurrentTransmittingRadio("");
                 }
@@ -539,6 +540,8 @@ void CommandProcessor::process_tangent_off(PTTDelayArguments arguments) {
     waitingForTangentOff = true;
     if (arguments.pttDelay > 0ms)
         std::this_thread::sleep_for(arguments.pttDelay);
+    if (arguments.tangentReleaseDelay > 0ms)
+        std::this_thread::sleep_for(arguments.tangentReleaseDelay);
 
     LockGuard_exclusive<CriticalSectionLock> lock(&tangentCriticalSection);
     if (!skipTangentOff) {

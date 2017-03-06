@@ -18,7 +18,8 @@
    XX(pluginTimeout,4.f), \
    XX(headsetLowered,false), \
    XX(spectatorNotHearEnemies,false), \
-   XX(spectatorCanHearFriendlies, true)
+   XX(spectatorCanHearFriendlies, true), \
+   XX(tangentReleaseDelay, 0.f)
 
 #define EnumEntry(x,y) x
 #define EnumString(x,y) #x
