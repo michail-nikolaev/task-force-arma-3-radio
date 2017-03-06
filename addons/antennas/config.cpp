@@ -26,7 +26,7 @@ class Extended_PostInit_EventHandlers {
 };
 
 class Extended_Init_EventHandlers {
-    class Land_Communication_F {
+    class TFAR_Land_Communication_F {
         class ADDON {
             clientInit = QUOTE([ARR_2(_this select 0,50000)] call DFUNC(initRadioTower));
         };
@@ -34,7 +34,7 @@ class Extended_Init_EventHandlers {
 };
 
 class Extended_Delete_EventHandlers {
-    class Land_Communication_F {
+    class TFAR_Land_Communication_F {
         class ADDON {
             clientInit = QUOTE((_this param [ARR_2(0,_this)]) call DFUNC(deleteRadioTower));
         };
