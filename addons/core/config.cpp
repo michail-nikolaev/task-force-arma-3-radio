@@ -44,12 +44,21 @@ class CfgMods {
     class PREFIX {
         dir = "@task_force_radio";
         name = "Task Force Arrowhead Radio";
-        picture = "A3\Ui_f\data\Logos\arma3_expansion_alpha_ca";
-        hidePicture = "true";
-        hideName = "true";
+        tooltip = "Task Force Arrowhead Radio";
+        overview = "Task Force Arrowhead Radio";
+        picture = QPATHTOF(task_force_arrowhead_logo.paa);
+        contentBrowserPicture = QPATHTOF(task_force_arrowhead_logo.paa);
+        logo = QPATHTOF(task_force_arrowhead_logo.paa);
+        logoOver = QPATHTOF(task_force_arrowhead_logo.paa);
+        logoSmall = QPATHTOF(task_force_arrowhead_logo.paa);
+        hidePicture = 0;
+        hideName = 1;
+        requiresRestart = 0;
+        action = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
         actionName = "Website";
         description = "War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.";
     };
+
 };
 
 class CfgSettings {
