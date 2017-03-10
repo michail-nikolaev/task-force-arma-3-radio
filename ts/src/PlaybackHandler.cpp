@@ -229,9 +229,9 @@ void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const ch
         if (stereoMode != stereoMode::stereo)
             processors.push_back([stereoMode](short* samples, size_t sampleCount, uint8_t channels) {
 
-            if (channels == 2) {
+            if (false && channels == 2) { //#TODO this optimization was a fail.
                 //Performance opt using 32bit operations instead of 16 bit ones
-                int* samples32bit = reinterpret_cast<int*>(samples);
+                int* samples32bit = reinterpret_cast<int*>(samples); //#TODO int is 64bit on x64. use uint32_t
                 if (stereoMode == stereoMode::leftOnly) {//Only left
                     for (size_t q = 0; q < sampleCount / 2; q += 1)
                         samples32bit[q] &= 0xFFFF0000;//mute right channel
