@@ -207,7 +207,10 @@ private:
 class playbackWavProcessing : public playbackBase {
 public:
     playbackWavProcessing(short* samples, size_t sampleCount, int channels, std::vector<std::function<void(short*, size_t, uint8_t)>> processors); //#DOCS
-    virtual ~playbackWavProcessing() {};
+    virtual ~playbackWavProcessing() {if (myThread) {
+        myThread->join();
+        delete myThread;
+    }};
     //************************************
     // Method:    getSamples
     // FullName:  playbackWavProcessing::getSamples
