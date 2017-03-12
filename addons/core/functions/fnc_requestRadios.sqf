@@ -62,8 +62,8 @@ if (_radiosToRequest isEqualTo []) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mut
                 };
                 (_copyIndex + 1)
             };
-
-            if (TFAR_RadioReqLinkFirstItem) then {
+            private _linkFirstItem = TFAR_RadioReqLinkFirstItem;
+            if (_linkFirstItem) then {
                 TFAR_RadioReqLinkFirstItem = false;
                 TFAR_currentUnit linkItem (_response select 0);
                 _copyIndex = [_settingsCount, _copyIndex, (_response select 0),_TF_SettingsToCopy] call _fnc_CopySettings;
@@ -74,7 +74,7 @@ if (_radiosToRequest isEqualTo []) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mut
                 TFAR_currentUnit addItem _x;
                 _copyIndex = [_settingsCount, _copyIndex, _x,_TF_SettingsToCopy] call _fnc_CopySettings;
                 [_x, getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
-            } forEach (if (TFAR_RadioReqLinkFirstItem) then {_response select [1]} else {_response});
+            } forEach (if (_linkFirstItem) then {_response select [1]} else {_response});
         };
     } else {
         hintC _response;
