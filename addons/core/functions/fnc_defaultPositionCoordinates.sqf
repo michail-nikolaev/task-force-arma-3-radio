@@ -27,7 +27,7 @@ if (_unit getVariable ["TFAR_forceSpectator",false]) exitWith {ATLToASL (positio
 private _current_eyepos = eyepos _unit;
 
 //If this is not in here then positions inside fast moving vehicles will be weird. But this is also performance intensive
-if ((_isNearPlayer) && {!isNull (objectParent _unit)} && {_unit != TFAR_currentUnit}) then {
+if ((_isNearPlayer) && {(vectorMagnitude (velocity _unit)) > 3} && {_unit != TFAR_currentUnit}) then {
         // This portion of the code appears that it will be extremely slow
         // It makes use of the 2 slower position functions.
         _renderAt = visiblePosition _unit;

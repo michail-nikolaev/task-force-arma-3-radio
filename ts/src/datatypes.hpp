@@ -97,7 +97,7 @@ namespace dataType {
         float dotProduct(const Vector3D& other) const;
         Vector3D normalized();
         bool isNull() const;
-        Vector3D operator*(float multiplier) {
+        Vector3D operator*(float multiplier) const {
             return{ m_x *multiplier,m_y *multiplier ,m_z *multiplier };
         }
         Vector3D& operator=(const Vector3D& other);
@@ -126,7 +126,7 @@ namespace dataType {
         //Conversions
         operator TS3_VECTOR*();
         //Operators
-
+		Position3D operator+(const Vector3D& other) const;
         //Functions
         float getHeight() const;
         float distanceTo(const Position3D& other) const;

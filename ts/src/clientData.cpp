@@ -11,7 +11,7 @@ void clientData::updatePosition(const unitPositionPacket & packet) {
     viewDirection = packet.viewDirection;
     canSpeak = packet.canSpeak;
     if (packet.myData) {
-		//Ugly hack because the canUsees of other people don't respect if they even have that radio type
+        //Ugly hack because the canUsees of other people don't respect if they even have that radio type
         canUseSWRadio = packet.canUseSWRadio;
         canUseLRRadio = packet.canUseLRRadio;
         canUseDDRadio = packet.canUseDDRadio;
@@ -23,8 +23,28 @@ void clientData::updatePosition(const unitPositionPacket & packet) {
     isSpectating = packet.isSpectating;
     isEnemyToPlayer = packet.isEnemyToPlayer;
 
+    //OutputDebugStringA(std::to_string(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - lastPositionUpdateTime).count()).c_str());
+    //OutputDebugStringA("\n");
+
     lastPositionUpdateTime = std::chrono::system_clock::now();
     dataFrame = TFAR::getInstance().m_gameData.currentDataFrame;
+}
+
+Position3D clientData::getClientPosition() const {
+    LockGuard_shared lock(&m_lock);
+
+    if (velocity.isNull())
+        return clientPosition;
+
+    auto offsetTime = std::chrono::duration<float>(std::chrono::system_clock::now() - lastPositionUpdateTime).count();
+    auto offset = (velocity * offsetTime);
+
+    //float x, y, z;
+    //std::tie(x, y, z) = offset.get();
+    //OutputDebugStringA((std::to_string(offsetTime) + "o " + std::to_string(x) + "," + std::to_string(x) + ","+ std::to_string(z)).c_str());
+    //OutputDebugStringA("\n");
+
+    return clientPosition + offset;
 }
 
 float clientData::effectiveDistanceTo(std::shared_ptr<clientData>& other) const {
@@ -97,12 +117,12 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     countLock.unlock();
 
     float effectiveDist = myData->effectiveDistanceTo(this);
-    
+
     if (isUnderwater) {
         float underwaterDist = myPosition.distanceUnderwater(clientPosition);
-		//Seperate distance underwater and distance overwater.
+        //Seperate distance underwater and distance overwater.
         effectiveDist = underwaterDist * (range / helpers::distanceForDiverRadio()) + (effectiveDist - underwaterDist);
-        
+
         if (effectiveDist > range && !antennaConnection.isNull()) {
             //Normal range not sufficient. Check if Antenna reaches.
             auto antennaUnderwater = clientPosition.distanceUnderwater(antennaConnection.getAntenna()->getPos());
@@ -112,9 +132,9 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
             if (effectiveRangeToAntenna < range)
                 effectiveDist = 0.f; //just use make the range check succeed
         }
-     }
+    }
 
-    if (effectiveDist > range ) //Out of range
+    if (effectiveDist > range) //Out of range
         return result;
     //#TODO always have a "valid" antenna connection in the end result. Just to transmit the connectionLoss to not have to calculate it again
     result.antennaConnection = antennaConnection;

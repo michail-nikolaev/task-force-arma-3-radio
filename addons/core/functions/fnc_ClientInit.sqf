@@ -49,7 +49,7 @@ TF_respawnedAt = time;//first spawn so.. respawned now
 
         if (isMultiplayer) then {
             call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
-            [PROFCONTEXT_NORTN(TFAR_fnc_processPlayerPositions),0.1 /*100 milliseconds*/] call CBA_fnc_addPerFrameHandler;
+            [PROFCONTEXT_NORTN(TFAR_fnc_processPlayerPositions), TFAR_PosUpdateMode] call CBA_fnc_addPerFrameHandler;
             [PROFCONTEXT_NORTN(TFAR_fnc_sendFrequencyInfo),0.3 /*300 milliseconds*/] call CBA_fnc_addPerFrameHandler;
             [PROFCONTEXT_NORTN(TFAR_fnc_sessionTracker),60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
 
