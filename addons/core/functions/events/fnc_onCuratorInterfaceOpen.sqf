@@ -24,7 +24,7 @@ _display displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_pr
 _display displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
 
 _display displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
-_display displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
+_display displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onTangentPressedHack"];
 _display displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
 
 

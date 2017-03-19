@@ -107,7 +107,7 @@ PREP_SUB(events\keys,onLRTangentReleasedHack);
 PREP_SUB(events,onMissionEnd);
 PREP_SUB(events\keys,onSwTangentPressed);
 PREP_SUB(events\keys,onSwTangentReleased);
-PREP_SUB(events\keys,onSwTangentPressedHack);
+PREP_SUB(events\keys,onTangentPressedHack);
 PREP_SUB(events\keys,onSwTangentReleasedHack);
 PREP_SUB(events\keys,onSpeakVolumeChangePressed);
 PREP_SUB(events\keys,onSpeakVolumeModifierPressed);
