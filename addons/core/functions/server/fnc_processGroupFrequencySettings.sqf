@@ -47,7 +47,7 @@ _allGroups = allGroups;
         };
     };
 
-    if ((_x getVariable "tf_lr_frequency") isEqualTo false) then {
+    if ((_x getVariable ["tf_lr_frequency",false]) isEqualTo false) then {
         if !(TFAR_SameLRFrequenciesForSide) then {
             _x setVariable ["tf_lr_frequency", call TFAR_fnc_generateLrSettings, true];
         } else {
