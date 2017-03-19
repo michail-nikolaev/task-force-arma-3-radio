@@ -18,7 +18,7 @@
         call TFAR_fnc_onAdditionalLRTangentPressed;
 */
 
-if (TF_tangent_lr_pressed or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveLRRadio}) exitWith {true};
+if ((TF_tangent_lr_pressed or TF_tangent_sw_pressed) or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveLRRadio}) exitWith {true};
 if (!call TFAR_fnc_isAbleToUseRadio) exitWith {call TFAR_fnc_unableToUseHint;true};
 
 private _radio = call TFAR_fnc_activeLrRadio;
