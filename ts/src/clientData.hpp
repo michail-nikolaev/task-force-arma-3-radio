@@ -269,7 +269,7 @@ public:
 
     auto getNickname() const { LockGuard_shared lock(&m_lock); return nickname; }
     void setNickname(const std::string& val) { LockGuard_exclusive lock(&m_lock); nickname = val; }
-    auto getClientPosition() const { LockGuard_shared lock(&m_lock); return clientPosition; }
+    Position3D getClientPosition() const;
     void setClientPosition(const Position3D& val) { LockGuard_exclusive lock(&m_lock); clientPosition = val; }
     auto getViewDirection() const { LockGuard_shared lock(&m_lock); return viewDirection; }
     void setViewDirection(const Direction3D& val) { LockGuard_exclusive lock(&m_lock); viewDirection = val; }
@@ -353,13 +353,14 @@ private:
     std::string currentTransmittingSubtype;//subtype client is currently transmitting on
 
     vehicleDescriptor vehicleId;
-
+    Vector3D velocity;
 
     void setVehicleId(const std::string& val) {
         //"2:390\x100.6\x10gunner"
         if (val == "no") {
             vehicleId.vehicleName = "no";
             vehicleId.vehicleIsolation = 0.f;
+            velocity = { 0,0,0 };
         }
         auto split = helpers::split(val, '\x10');
         if (split.size() < 3) return; //I don't listen to morons!!
@@ -370,6 +371,7 @@ private:
         else
             vehicleId.vehicleIsolation = helpers::parseArmaNumber(split[1]); // hear
         vehicleId.intercomSlot = helpers::parseArmaNumberToInt(split[2]);//vehicleDescriptor::stringToVehiclePosition(split[2]);
+        velocity = Vector3D(split[3]);
     }
 };
 

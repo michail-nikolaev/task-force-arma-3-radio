@@ -19,6 +19,8 @@
 ["TFAR_intercomVolume", "SLIDER", "Intercom Volume", "Task Force Arrowhead Radio", [0.01, 0.6, 0.3, 3], false, {["intercomVolume",TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 ["TFAR_pluginTimeout", "SLIDER", "Plugin Timeout in seconds", "Task Force Arrowhead Radio", [0.5, 10, 4, 3], false, {["pluginTimeout",TFAR_pluginTimeout] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 ["TFAR_tangentReleaseDelay", "SLIDER", "tangentReleaseDelay in milliseconds", "Task Force Arrowhead Radio", [0, 500, 0, 0], false, {["tangentReleaseDelay",TFAR_tangentReleaseDelay] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
+["TFAR_PosUpdateMode", "LIST", ["Position Update Mode","The higher the quality the lower fps"], "Task Force Arrowhead Radio", [[0,0.1,0.2],["Quality","Normal","Performance"],1], false, {}] call CBA_Settings_fnc_init;
+
 
 //Global variables
 VARIABLE_DEFAULT(tf_west_radio_code,"_bluefor");//Server needs Radio codes for static_radios

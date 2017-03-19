@@ -128,6 +128,10 @@ dataType::Position3D::operator TS3_VECTOR*() {
     return reinterpret_cast<TS3_VECTOR*>(this);
 }
 
+dataType::Position3D dataType::Position3D::operator+(const Vector3D& other) const {
+	return *reinterpret_cast<const Vector3D*>(this) + other;
+}
+
 float dataType::Position3D::getHeight() const {
     return m_z;
 }
