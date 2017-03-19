@@ -44,7 +44,7 @@ TF_respawnedAt = time;//first spawn so.. respawned now
 [   {!(isNull (findDisplay 46))},
     {
         (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
-        (findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
+        (findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onTangentPressedHack"];
         (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
 
         if (isMultiplayer) then {

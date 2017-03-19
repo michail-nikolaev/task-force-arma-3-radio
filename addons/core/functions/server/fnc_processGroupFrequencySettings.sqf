@@ -31,7 +31,7 @@ _allGroups = allGroups;
 
     if ((_x getVariable ["tf_sw_frequency",false]) isEqualTo false) then {
         if !(TFAR_SameSRFrequenciesForSide) then {
-            _x setVariable ["tf_sw_frequency", call TFAR_fnc_generateSRSettings, true];
+            _x setVariable ["tf_sw_frequency", [] call TFAR_fnc_generateSRSettings, true];
         } else {
             switch (side _x) do {
                 case west: {
@@ -49,7 +49,7 @@ _allGroups = allGroups;
 
     if ((_x getVariable ["tf_lr_frequency",false]) isEqualTo false) then {
         if !(TFAR_SameLRFrequenciesForSide) then {
-            _x setVariable ["tf_lr_frequency", call TFAR_fnc_generateLrSettings, true];
+            _x setVariable ["tf_lr_frequency", [] call TFAR_fnc_generateLrSettings, true];
         } else {
             switch (side _x) do {
                 case west: {
