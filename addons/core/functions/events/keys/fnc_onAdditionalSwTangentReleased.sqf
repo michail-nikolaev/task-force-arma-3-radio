@@ -43,7 +43,7 @@ private _hintText = format[
 private _pluginCommand = format[
                                 "TANGENT	RELEASED	%1%2	%3	%4",
                                 _currentFrequency,
-                                (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwRadioCode,
+                                _radio call TFAR_fnc_getSwRadioCode,
                                 getNumber(configFile >> "CfgWeapons" >> _radio >> "tf_range") * (call TFAR_fnc_getTransmittingDistanceMultiplicator),
                                 getText(configFile >> "CfgWeapons" >> _radio >> "tf_subtype")
                             ];
