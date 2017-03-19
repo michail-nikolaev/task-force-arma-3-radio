@@ -42,7 +42,7 @@ private _hintText = format[
 private _pluginCommand = format[
                                 "TANGENT_LR	RELEASED	%1%2	%3	%4",
                                 _currentFrequency,
-                                (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrRadioCode,
+                                _radio call TFAR_fnc_getLrRadioCode,
                                 ([_radio select 0, "tf_range"] call TFAR_fnc_getLrRadioProperty) * (call TFAR_fnc_getTransmittingDistanceMultiplicator),
                                 [_radio select 0, "tf_subtype"] call TFAR_fnc_getLrRadioProperty
                             ];

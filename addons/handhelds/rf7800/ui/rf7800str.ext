@@ -190,9 +190,9 @@ class rf7800str_radio_dialog
     	font = "TFAR_font_dots";
     	shadow = 2;
     	action = QUOTE(
-            _f = parseNumber(ctrlText IDC_ANPRC152_EDIT);
+            _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANPRC152_EDIT);
             if ((_f >= TFAR_MIN_SW_FREQ) and (_f <= TFAR_MAX_SW_FREQ)) then {
-                [ARR_2(TF_sw_dialog_radio, str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))] call TFAR_fnc_setSwFrequency;
+                [ARR_2(TF_sw_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setSwFrequency;
                 call TFAR_fnc_hideHint;
             } else {
                 hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)]
