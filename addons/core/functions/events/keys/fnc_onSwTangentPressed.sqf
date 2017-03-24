@@ -21,6 +21,8 @@
 if (time - TF_last_lr_tangent_press < 0.5) exitWith {true};
 if (((TF_tangent_lr_pressed or TF_tangent_sw_pressed)) or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveSWRadio}) exitWith {true};
 
+if (!isMultiplayer) exitWith {_x = "TFAR doesn't work in Singleplayer. Use the Multiplayer Editor if you need to test TFAR stuff.";systemChat _x;hint _x;};
+
 if (!call TFAR_fnc_isAbleToUseRadio) exitWith {call TFAR_fnc_unableToUseHint;true};
 
 private _radio = call TFAR_fnc_activeSwRadio;
