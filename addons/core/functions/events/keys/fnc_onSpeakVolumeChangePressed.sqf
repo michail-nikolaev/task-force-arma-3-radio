@@ -19,6 +19,7 @@ if (alive TFAR_currentUnit) then {
     };
     private _hintText = format[localize "STR_voice_volume", _localName];
     [parseText (_hintText), 5] call TFAR_fnc_showHint;
+    call TFAR_fnc_updateSpeakVolumeUI;
     //							unit, range
     ["OnSpeakVolume", [TFAR_currentUnit, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
 };

@@ -1,4 +1,5 @@
 class RscStructuredText;
+class RscPictureKeepAspect;
 class RscTitles
 {
     class RscTaskForceHint
@@ -25,6 +26,24 @@ class RscTitles
                 colorBackground[] = {0.1,0.1,0.1,0.5};
                 sizeEx = 1;
                 size = "( ( ( ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * (0.55 / (getResolution select 5)))";
+            };
+        };
+    };
+    class GVAR(HUDVolumeIndicatorRsc) {
+        idd = -1;
+        movingEnable = 1;
+        duration = 9999999;
+        fadein = 0;
+        fadeout = 0;
+        onLoad = QUOTE(uiNamespace setVariable [ARR_2(QUOTE(QGVAR(HUDVolumeIndicatorRscDisplay)),_this select 0)];);
+        class controls {
+            class VolumeIndicator: RscPictureKeepAspect {
+                idc= 1112;
+                text=QPATHTOF(ui\tfar_volume_normal.paa);
+                x="(profilenamespace getvariable [""IGUI_grid_TFAR_Volume_X"",	0.85 * safezoneW + safezoneX])";
+                y="(profilenamespace getvariable [""IGUI_grid_TFAR_Volume_Y"",	0.9 * safezoneH + safezoneY])";
+                w="(profilenamespace getvariable [""IGUI_grid_TFAR_Volume_W"",  2 * (((safezoneW / safezoneH) min 1.2) / 50)])";
+                h="(profilenamespace getvariable [""IGUI_grid_TFAR_Volume_W"",  2 * (((safezoneW / safezoneH) min 1.2) / 50)])";
             };
         };
     };

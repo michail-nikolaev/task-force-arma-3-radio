@@ -81,6 +81,28 @@ class CfgEditorCategories {
 };
 
 
+class CfgUIGrids { //Thanks ACE guys!
+    class IGUI {
+        class Presets {
+            class Arma3 {
+                class Variables {
+                    grid_TFAR_Volume[] = {{"0.85 * safezoneW + safezoneX","0.9 * safezoneH + safezoneY","(10 * (2 * (((safezoneW / safezoneH) min 1.2) / 50))","(10 * (2 * (((safezoneW / safezoneH) min 1.2) / 50))"},"(2 * (((safezoneW / safezoneH) min 1.2) / 50))","(2 * (((safezoneW / safezoneH) min 1.2) / 50))"};
+                };
+            };
+        };
+        class Variables {
+            class grid_TFAR_Volume{
+                displayName = "TFAR volume Indicator";
+                description = "TFAR Volume Indicator";
+                preview = QPATHTOF(ui\tfar_volume_normal.paa);
+                saveToProfile[] = {0,1,2,3};
+                canResize = 1;
+            };
+        };
+    };
+};
+
+
 
 #include "CfgEventHandlers.hpp"
 #include "RadioDialogControls.hpp"

@@ -184,6 +184,7 @@ PREP_SUB(events\ui,setChannelViaDialog);
 PREP_SUB(events\ui,updateSWDialogToChannel);
 PREP_SUB(events\ui,updateLRDialogToChannel);
 PREP_SUB(hint,unableToUseHint);
+PREP(updateSpeakVolumeUI);
 // V
 PREP(vehicleId);
 PREP(vehicleIsIsolatedAndInside);
