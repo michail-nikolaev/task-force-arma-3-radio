@@ -20,6 +20,7 @@
 ["TFAR_pluginTimeout", "SLIDER", "Plugin Timeout in seconds", "Task Force Arrowhead Radio", [0.5, 10, 4, 3], false, {["pluginTimeout",TFAR_pluginTimeout] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 ["TFAR_tangentReleaseDelay", "SLIDER", "tangentReleaseDelay in milliseconds", "Task Force Arrowhead Radio", [0, 500, 0, 0], false, {["tangentReleaseDelay",TFAR_tangentReleaseDelay] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 ["TFAR_PosUpdateMode", "LIST", ["Position Update Mode","The higher the quality the lower fps"], "Task Force Arrowhead Radio", [[0,0.1,0.2],["Quality","Normal","Performance"],1], false, {}] call CBA_Settings_fnc_init;
+["TFAR_ShowVolumeHUD", "CHECKBOX", ["Show HUD Voice Volume indicator","Show HUD Voice Volume indicator"], "Task Force Arrowhead Radio", true, false, {if (TFAR_ShowVolumeHUD) then {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];} else {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];};}] call CBA_Settings_fnc_init;
 
 
 //Global variables
