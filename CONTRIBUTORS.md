@@ -42,9 +42,10 @@
 * [Armatech](http://forums.bistudio.com/member.php?48510-armatech) for help with CBA.
 * [marc_book](https://github.com/MarcBook) for BWMOD textures.
 * [Macusercom](https://github.com/Macusercom) for translations.
-* [SzwedzikPL] (http://arma3coop.pl) or translation into Polish.
-* [SniperOne] (http://steamcommunity.com/groups/SniperAliens-M18X/) for French translation.
+* [SzwedzikPL](http://arma3coop.pl) or translation into Polish.
+* [SniperOne](http://steamcommunity.com/groups/SniperAliens-M18X/) for French translation.
 * [Dedmen](https://github.com/dedmen) for improvements with the Teamspeak-Plugin and other help.
+* [Yourstruly](https://github.com/theYoursTruly) for exceptional help while testing the 1.0 Beta.
 * The development team of [RHS](http://www.rhsmods.org/), for their help with integration.
 * Everyone who made videos or wrote review articles.
 * All the players who use TFAR, especially those taking out their time to report bugs.

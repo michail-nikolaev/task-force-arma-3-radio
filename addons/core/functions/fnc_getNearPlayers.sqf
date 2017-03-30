@@ -25,4 +25,4 @@ _allUnits pushBackUnique TFAR_currentUnit;//Will be duplicate in normal play but
     true
 } count _allUnits;
 
-_result
+(_result arrayIntersect _result) //prevents duplicates that can happen due to the usage of append
