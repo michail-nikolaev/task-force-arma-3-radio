@@ -22,7 +22,7 @@
 */
 params ["_unit"];
 
-if (isNull (objectParent _unit)) exitWith {nil};//Unit is not in vehicle
+if (isNull (objectParent _unit) || {!((objectParent _this) call TFAR_fnc_hasVehicleRadio)}) exitWith {nil};//Unit is not in vehicle or vehicle doesn't have LR Radio
 
 private _result = nil;
 
