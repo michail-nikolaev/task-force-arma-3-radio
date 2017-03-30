@@ -1,4 +1,4 @@
-#include "CommandProcessor.hpp"
+﻿#include "CommandProcessor.hpp"
 #include "helpers.hpp"
 #include "serverData.hpp"
 #include "task_force_radio.hpp"
@@ -100,7 +100,7 @@ const std::string constTangent("TANGENT");
 gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textCommand, size_t tokenCount) {
     if (textCommand.length() < 3) return gameCommand::unknown;
 #ifdef VS15
-    auto hash = const_strhash(textCommand.c_str());
+    auto hash = const_strhash(textCommand.data(),textCommand.length());
     switch (hash) {
         case FORCE_COMPILETIME(const_strhash("POS")):
             return gameCommand::POS;

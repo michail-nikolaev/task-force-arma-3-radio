@@ -79,7 +79,7 @@ if (_activated) then {
             if (isServer) then {
                 if (!isNil (format ["TFAR_freq_sr_%1", _currentSide])) then {hint "TFAR - TFAR_freq_sr_west already set, module overriding.";diag_log "TFAR - TFAR_freq_sr_west already set, module overriding.";};
                 if (!isNil (format ["TFAR_freq_lr_%1", _currentSide])) then {hint "TFAR - TFAR_freq_lr_west already set, module overriding.";diag_log "TFAR - TFAR_freq_lr_west already set, module overriding.";};
-                missionNamespace setVariable [format ["TFAR_freq_sw_%1", _currentSide], _swFreq];
+                missionNamespace setVariable [format ["TFAR_freq_sr_%1", _currentSide], _swFreq];
                 missionNamespace setVariable [format ["TFAR_freq_lr_%1", _currentSide], _lrFreq];
             };
         };

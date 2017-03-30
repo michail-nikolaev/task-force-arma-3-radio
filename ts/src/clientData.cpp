@@ -115,6 +115,7 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     //Sender is sending on a Frequency we are listening to on our SW Radio
     bool senderOnSWFrequency = TFAR::getInstance().m_gameData.mySwFrequencies.count(senderFrequency) != 0;
     countLock.unlock();
+    if (!senderOnSWFrequency && !senderOnLRFrequency) return result; //He's not on any frequency we can receive on
 
     float effectiveDist = myData->effectiveDistanceTo(this);
 
