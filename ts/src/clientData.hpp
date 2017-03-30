@@ -269,7 +269,8 @@ public:
 
     auto getNickname() const { LockGuard_shared lock(&m_lock); return nickname; }
     void setNickname(const std::string& val) { LockGuard_exclusive lock(&m_lock); nickname = val; }
-    Position3D getClientPosition() const;
+    Position3D getClientPosition() const;       
+    Position3D getClientPositionRaw() { LockGuard_shared lock(&m_lock); return clientPosition; }
     void setClientPosition(const Position3D& val) { LockGuard_exclusive lock(&m_lock); clientPosition = val; }
     auto getViewDirection() const { LockGuard_shared lock(&m_lock); return viewDirection; }
     void setViewDirection(const Direction3D& val) { LockGuard_exclusive lock(&m_lock); viewDirection = val; }

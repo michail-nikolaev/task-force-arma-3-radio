@@ -119,6 +119,7 @@ public:
     Signal<void()> onShutdown;
 
     Signal<void(std::stringstream&)> doDiagReport;
+    Signal<void(const std::string& type, std::stringstream&)> doTypeDiagReport;
 
 
     //Teamspeak events. They are here because Teamspeak class is fully static
