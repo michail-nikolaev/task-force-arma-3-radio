@@ -34,8 +34,8 @@ if (_activated) then {
         ["CBA_settings_setSettingMission", ["TFAR_SameLRFrequenciesForSide",_sameLRFreq,true]] call CBA_fnc_localEvent;
         ["CBA_beforeSettingsInitialized",_thisId] call CBA_fnc_removeEventHandler;
     },[
-        !(_logic getVariable "TeamLeaderRadio"),
-        !(_logic getVariable "RiflemanRadio"),
+        (_logic getVariable "TeamLeaderRadio"),
+        (_logic getVariable "RiflemanRadio"),
         (_logic getVariable "full_duplex"),
         (_logic getVariable "same_sw_frequencies_for_side"),
         (_logic getVariable "same_lr_frequencies_for_side")
