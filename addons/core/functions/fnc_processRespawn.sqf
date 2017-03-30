@@ -70,4 +70,8 @@
             } count _newItems;
         }] call CBA_fnc_waitUntilAndExecute;
     };
+    [TFAR_currentUnit, false] call TFAR_fnc_forceSpectator;
+    if (TFAR_ShowVolumeHUD) then { //#TODO should really move this into a macro
+        (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];
+    };
 }] call CBA_fnc_waitUntilAndExecute;

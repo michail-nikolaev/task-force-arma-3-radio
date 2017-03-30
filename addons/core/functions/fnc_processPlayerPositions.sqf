@@ -34,7 +34,7 @@ if (!TFAR_currentNearPlayersProcessed) then {
         private _controlled = _x getVariable "TFAR_controlledUnit";
         private _unitName = name _x;
         if (_x getVariable ["TFAR_forceSpectator",false]) then {
-            _unitName = _x getVariable ["TFAR_spectatorName","any"];
+            _unitName = _x getVariable ["TFAR_spectatorName",_unitName];
         };
         if !(isNil "_controlled") then {
             [_controlled, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
@@ -68,7 +68,7 @@ if (!TFAR_currentFarPlayersProcessed) then {
         private _controlled = _x getVariable ["TFAR_controlledUnit", objNull];
         private _unitName = name _x;
         if (_x getVariable ["TFAR_forceSpectator",false]) then {
-            _unitName = _x getVariable ["TFAR_spectatorName","any"];
+            _unitName = _x getVariable ["TFAR_spectatorName",_unitName];
         };
         if (isNull _controlled) then {
             [_x, false, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
