@@ -100,7 +100,7 @@ PREP_SUB(events\keys,onAdditionalSwTangentPressed);
 PREP_SUB(events\keys,onAdditionalLRTangentReleased);
 PREP_SUB(events\keys,onAdditionalLRTangentPressed);
 PREP_SUB(events,onArsenal);
-PREP_SUB(events,onCuratorInterfaceOpen);
+PREP_SUB(events,onCuratorInterface);
 PREP_SUB(events\keys,onLRTangentPressed);
 PREP_SUB(events\keys,onLRTangentReleased);
 PREP_SUB(events\keys,onLRTangentReleasedHack);

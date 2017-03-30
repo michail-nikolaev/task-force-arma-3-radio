@@ -24,13 +24,19 @@ class Extended_DisplayLoad_EventHandlers { //From commy2
         TFAR_ArsenalOpened = "'PreOpen' call TFAR_fnc_onArsenal";
     };
     class RscDisplayCurator {
-        TFAR_CuratorInterfaceOpened = "call TFAR_fnc_onCuratorInterfaceOpen";
+        TFAR_CuratorInterfaceOpened = "[_this select 0, 'Open'] call TFAR_fnc_onCuratorInterface";
+    };
+    class RscDisplayEGSpectator {
+        TFAR_RscDisplayEGSpectator = "[player, true] call TFAR_fnc_forceSpectator;";
     };
 };
 
 class Extended_DisplayUnload_EventHandlers {
     class RscDisplayMission {
         TFAR_MissionEnded = "call TFAR_fnc_onMissionEnd";
+    };
+    class RscDisplayCurator {
+        TFAR_CuratorInterfaceOpened = "[_this select 0, 'Close'] call TFAR_fnc_onCuratorInterface";
     };
 };
 
