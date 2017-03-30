@@ -25,13 +25,13 @@ class CfgVehicles {
                 displayName = "$STR_TFAR_Mod_GiveTLradio";
                 description = "$STR_TFAR_Mod_GiveTLradioTT";
                 typeName = "BOOL";
-                defaultValue = 1;
+                defaultValue = 0;
             };
             class RiflemanRadio {
                 displayName = "$STR_TFAR_Mod_GiveRiflemanRadio";
                 description = "$STR_TFAR_Mod_GiveRiflemanRadioTT";
                 typeName = "BOOL";
-                defaultValue = 1;
+                defaultValue = 0;
             };
             class terrain_interception_coefficient {
                 displayName = "$STR_TFAR_Mod_TerrainInterceptionCoefficient";
@@ -61,7 +61,7 @@ class CfgVehicles {
                 displayName = "$STR_TFAR_Mod_SameLrFrequencies";
                 description = "$STR_TFAR_Mod_SameLrFrequenciesTT";
                 typeName = "BOOL";
-                defaultValue = 1;
+                defaultValue = 0;
             };
             class full_duplex {
                 displayName = "$STR_TFAR_Mod_FullDuplex";
