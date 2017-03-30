@@ -42,6 +42,16 @@ serverDataDirectory::serverDataDirectory() {
             it.second->debugPrint(diag);
         }
     });
+    TFAR::getInstance().doTypeDiagReport.connect([this](const std::string& type,std::stringstream& diag) {
+        if (type != "pos") return;
+        diag << "SDD:\n";
+        for (auto& it : data) {
+            diag << TS_INDENT << it.first.baseType() << ":\n";
+            diag << TS_INDENT << TS_INDENT << "myCD: " << it.second->myClientData << "\n";
+            it.second->debugPrint(diag,true);
+        }
+    });
+    
 
 }
 
@@ -142,7 +152,7 @@ void serverData::clientUpdated(TSClientID clientID, const std::string& clientNic
     clientData->setNickname(clientNickname);
 }
 
-void serverData::debugPrint(std::stringstream& diag) const {
+void serverData::debugPrint(std::stringstream& diag, bool withPos) const {
     //Logger::log(LoggerTypes::pluginCommands, "DebugPrintStart###");
     for (auto& it : data) {
         std::shared_ptr<clientData> cData = std::get<2>(it);
@@ -154,7 +164,18 @@ void serverData::debugPrint(std::stringstream& diag) const {
         diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "CHASH: " << std::hash<indexedType>()(cData->getNickname()) << "\n";
         diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "SCID: " << std::get<1>(it).baseType() << "\n";
         diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "CCID: " << cData->clientId.baseType() << "\n";
-
+        if (withPos) {
+            float x, y, z, x2, y2, z2;
+            std::tie(x, y, z) = cData->getClientPosition().get();
+            std::tie(x2, y2, z2) = cData->getClientPositionRaw().get();
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "POSINTERP: " << x << "," << y << "," << z << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "POSRAW: " << x2 << "," << y2 << "," << z2 << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "NICK: " << cData->getNickname() << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "VIEW: " << static_cast<float>(static_cast<AngleDegrees>(cData->getViewDirection())) << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "LPOSTIME: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - cData->getLastPositionUpdateTime()).count() << "us\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "CurTransFreq: " << cData->getCurrentTransmittingFrequency() << "us\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "spectator: " << cData->isSpectating << "us\n";
+         }
         //std::string entry = "Entry " + std::to_string(std::get<0>(it)) + "=" + std::to_string(std::hash<indexedType>()(cData->getNickname()))
         //    + " " + std::to_string(std::get<1>(it).baseType()) + "=" + std::to_string(cData->clientId.baseType()) + " " + cData->getNickname();
         //Logger::log(LoggerTypes::pluginCommands, entry);

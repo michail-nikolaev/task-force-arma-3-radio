@@ -60,7 +60,7 @@ namespace dataType {
     public:
         constexpr AngleDegrees(float degrees) : angle(degrees) {}
         //Conversions
-        constexpr AngleDegrees(const AngleRadians& other);
+        constexpr AngleDegrees(const AngleRadians& other) : angle(other.angle * (180 / M_PI_FLOAT)) {};
         constexpr AngleRadians toRadians() const { return AngleRadians(*this); }
         //Operators
         constexpr operator float() const { return angle; }
@@ -76,9 +76,7 @@ namespace dataType {
         float angle;
     };
 
-    constexpr AngleRadians::AngleRadians(const AngleDegrees& other) : angle(other.angle * (M_PI_FLOAT / 180)) {};
-
-
+    constexpr AngleRadians::AngleRadians(const AngleDegrees& other) : angle(other.angle * (M_PI_FLOAT / 180)) {}
 
     constexpr AngleDegrees operator "" _deg(long double _deg) { return AngleDegrees(static_cast<float>(_deg)); }
 

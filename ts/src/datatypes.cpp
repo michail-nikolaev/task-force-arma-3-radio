@@ -235,7 +235,3 @@ AngleRadians AngleRadians::to180() const {
     }
     return _180;
 }
-
-constexpr AngleDegrees::AngleDegrees(const AngleRadians& other) :angle(other.angle * (180 / M_PI_FLOAT)) {
-
-}

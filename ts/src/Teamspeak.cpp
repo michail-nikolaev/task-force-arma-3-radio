@@ -747,6 +747,12 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
         ts3Functions.printMessageToCurrentTab(diag.str().c_str());
         return 0; /* Plugin handled command */
     }
+    if (std::string(command).compare("pos") == 0) {
+        std::stringstream diag;
+        TFAR::getInstance().doTypeDiagReport("pos",diag);
+        ts3Functions.printMessageToCurrentTab(diag.str().c_str());
+        return 0; /* Plugin handled command */
+    }
     return 1;  /* Plugin didn't handle command */
 }
 
