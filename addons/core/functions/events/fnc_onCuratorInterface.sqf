@@ -56,6 +56,7 @@ switch _eventType do {
         if (TFAR_ShowVolumeHUD) then {
             (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];
         };
+        call TFAR_fnc_updateSpeakVolumeUI;
         if (player getVariable ["TFAR_curatorCamEars",false]) then {
             player setVariable ["TF_fnc_position", nil];
         }
