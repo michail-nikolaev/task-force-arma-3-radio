@@ -25,7 +25,7 @@ private _pluginCommand = format[
                                 getText(configFile >> "CfgWeapons" >> _radio >> "tf_subtype")
                             ];
 
-[_hintText,_pluginCommand] call TFAR_fnc_processTangent;
+[_hintText,_pluginCommand, [0,nil] select TFAR_showTransmittingHint] call TFAR_fnc_processTangent;
 
 TF_tangent_sw_pressed = false;
 //						unit, radio, radioType, additional, buttonDown

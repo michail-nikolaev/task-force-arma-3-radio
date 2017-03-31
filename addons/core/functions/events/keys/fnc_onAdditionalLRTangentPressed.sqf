@@ -55,7 +55,7 @@ private _pluginCommand = format[
                                 typeOf (_radio select 0)
                             ];
 
-[_hintText, _pluginCommand, -1] call TFAR_fnc_processTangent;
+[_hintText, _pluginCommand, [0,-1] select TFAR_showTransmittingHint] call TFAR_fnc_processTangent;
 TF_tangent_lr_pressed = true;
 //				unit, radio, radioType, additional, buttonDown
 ["OnTangent", [TFAR_currentUnit, _radio, 1, true, true]] call TFAR_fnc_fireEventHandlers;

@@ -27,7 +27,7 @@ if ((call TFAR_fnc_haveLRRadio) and {alive TFAR_currentUnit}) then {
     private _active_lr = call TFAR_fnc_activeLrRadio;
     [_active_lr, _lr_channel_number] call TFAR_fnc_setLrChannel;
     playSound "TFAR_rotatorPush";
-    [_active_lr, true] call TFAR_fnc_showRadioInfo;
+    if (TFAR_showChannelChangedHint) then {[_active_lr, true] call TFAR_fnc_showRadioInfo;};
     if (dialog) then {
         call compile ([_active_lr select 0, "tf_dialogUpdate"] call TFAR_fnc_getLrRadioProperty);
     };
