@@ -17,9 +17,33 @@
     Example:
     _children = [_player] call TFAR_fnc_addRadiosToACE;
  */
-params ["_unit"];
+params ["_unit",["_LROnly",false]];
 
 private _children = [];
+
+{
+    private _config = ConfigFile >> "CfgVehicles" >> typeOf (_x select 0);
+    _children pushBack
+        [
+            [
+                "radio_" + typeOf (_x select 0),
+                getText(_config >> "displayName"),
+                getText(_config >> "picture"),
+                {
+                    TF_lr_dialog_radio = (_this select 2) select 1;
+                    call TFAR_fnc_onLrDialogOpen;
+                },
+                {true},
+                {},
+                [_unit,_x]
+            ] call ACE_Interact_Menu_fnc_createAction,
+            [],
+            _unit
+        ];
+    true;
+} count (_unit call TFAR_fnc_lrRadiosList);
+
+if (_LROnly) exitWith {_children};
 
 {
     private _config = ConfigFile >> "CfgWeapons" >> _x;
