@@ -58,4 +58,4 @@ if (_lr) then {
         call TFAR_fnc_updateSWDialogToChannel;
     };
 };
-[_radio, _lr] call TFAR_fnc_showRadioInfo;
+if (TFAR_showChannelChangedHint) then {[_radio, _lr] call TFAR_fnc_showRadioInfo;};

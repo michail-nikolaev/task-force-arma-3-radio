@@ -63,7 +63,7 @@ private _pluginCommand = format[
                                 _radio
                             ];
 
-[_hintText,_pluginCommand,-1] call TFAR_fnc_processTangent;
+[_hintText,_pluginCommand, [0,-1] select TFAR_showTransmittingHint] call TFAR_fnc_processTangent;
 
 TF_tangent_sw_pressed = true;
 //						unit, radio, radioType, additional, buttonDown

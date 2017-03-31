@@ -26,7 +26,7 @@ private _pluginCommand = format[
                                 [_radio select 0, "tf_subtype"] call TFAR_fnc_getLrRadioProperty
                             ];
 
-[_hintText,_pluginCommand] call TFAR_fnc_processTangent;
+[_hintText,_pluginCommand, [0,nil] select TFAR_showTransmittingHint] call TFAR_fnc_processTangent;
 TF_tangent_lr_pressed = false;
 //						unit, radio, radioType, additional, buttonDown
 ["OnTangent", [TFAR_currentUnit, _radio, 1, false, false]] call TFAR_fnc_fireEventHandlers;

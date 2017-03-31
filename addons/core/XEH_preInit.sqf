@@ -22,6 +22,8 @@
 ["TFAR_PosUpdateMode", "LIST", ["Position Update Mode","The higher the quality the lower fps"], "Task Force Arrowhead Radio", [[0,0.1,0.2],["Quality","Normal","Performance"],1], false, {}] call CBA_Settings_fnc_init;
 ["TFAR_ShowVolumeHUD", "CHECKBOX", ["Show HUD Voice Volume indicator","Show HUD Voice Volume indicator"], "Task Force Arrowhead Radio", true, false, {if (TFAR_ShowVolumeHUD) then {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];} else {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];};}] call CBA_Settings_fnc_init;
 ["TFAR_oldVolumeHint", "CHECKBOX", ["Use old Voice Volume Hint","Use old Voice Volume Hint"], "Task Force Arrowhead Radio", false, false] call CBA_Settings_fnc_init;
+["TFAR_showTransmittingHint", "CHECKBOX", ["Show Transmitting Hint","Show the Hint (Bottom right) when you are Transmitting"], "Task Force Arrowhead Radio", true, false] call CBA_Settings_fnc_init;
+["TFAR_showChannelChangedHint", "CHECKBOX", ["Show Channel Changed Hint","Show the Hint (Bottom right) when you switch Channels via UI or Hotkey"], "Task Force Arrowhead Radio", true, false] call CBA_Settings_fnc_init;
 
 
 //Global variables
