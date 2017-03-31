@@ -74,4 +74,5 @@
     if (TFAR_ShowVolumeHUD) then { //#TODO should really move this into a macro
         (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];
     };
+    call TFAR_fnc_updateSpeakVolumeUI;
 }] call CBA_fnc_waitUntilAndExecute;
