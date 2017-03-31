@@ -19,7 +19,6 @@
         call TFAR_fnc_onCuratorInterface;
 */
 params [["_display",displayNull],["_eventType","Close"]];
-systemChat str ["onCuratorInterface ",_eventType];
 
 switch _eventType do {
     case "Open": {
@@ -50,7 +49,7 @@ switch _eventType do {
             (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];
         };
         if (player getVariable ["TFAR_curatorCamEars",false]) then {
-            player setVariable ["TFAR_forceSpectator", true];
+            player setVariable ["TF_fnc_position", {ATLToASL (positionCameraToWorld [0,0,0])}];
         }
     };
     case "Close": {
@@ -58,7 +57,7 @@ switch _eventType do {
             (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];
         };
         if (player getVariable ["TFAR_curatorCamEars",false]) then {
-            player setVariable ["TFAR_forceSpectator", false];
+            player setVariable ["TF_fnc_position", nil];
         }
     };
 };
