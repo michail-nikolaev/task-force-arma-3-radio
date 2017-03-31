@@ -28,4 +28,19 @@ class CAManBase: Man {
             };
         };
     };
+    class ACE_Actions {
+        class TFAR_Radios {
+            displayName = "Radios";
+            condition = "count (_target call TFAR_fnc_lrRadiosList) > 0";
+            insertChildren = "[_player,true] call TFAR_fnc_addRadiosToACE";
+            class TFAR_UseLRRadio {
+                displayName = "Radios";
+                condition = "true";
+                exceptions[] = {};
+                statement = "";
+                icon = "";
+                insertChildren = "[_player] call TFAR_fnc_addRadiosToACE";
+            };
+        };
+    };
 };
