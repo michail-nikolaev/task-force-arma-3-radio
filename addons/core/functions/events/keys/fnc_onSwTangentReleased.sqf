@@ -20,12 +20,12 @@ private _hintText = format[
 private _pluginCommand = format[
                                 "TANGENT	RELEASED	%1%2	%3	%4",
                                 _currentFrequency,
-                                (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwRadioCode,
+                                _radio call TFAR_fnc_getSwRadioCode,
                                 getNumber(configFile >> "CfgWeapons" >> _radio >> "tf_range") * (call TFAR_fnc_getTransmittingDistanceMultiplicator),
                                 getText(configFile >> "CfgWeapons" >> _radio >> "tf_subtype")
                             ];
 
-[_hintText,_pluginCommand] call TFAR_fnc_processTangent;
+[_hintText,_pluginCommand, [0,nil] select TFAR_showTransmittingHint] call TFAR_fnc_processTangent;
 
 TF_tangent_sw_pressed = false;
 //						unit, radio, radioType, additional, buttonDown

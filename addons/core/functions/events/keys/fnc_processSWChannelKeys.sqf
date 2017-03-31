@@ -26,7 +26,8 @@ private _result = false;
 if ((call TFAR_fnc_haveSWRadio) and {alive TFAR_currentUnit}) then {
     private _radio = call TFAR_fnc_activeSwRadio;
     [_radio, _sw_channel_number] call TFAR_fnc_setSwChannel;
-    [_radio, false] call TFAR_fnc_showRadioInfo;
+    playSound "TFAR_rotatorPush";
+    if (TFAR_showChannelChangedHint) then {[_radio, false] call TFAR_fnc_showRadioInfo;};
     if (dialog) then {
         call compile getText(configFile >> "CfgWeapons" >> _radio >> "tf_dialogUpdate");
     };

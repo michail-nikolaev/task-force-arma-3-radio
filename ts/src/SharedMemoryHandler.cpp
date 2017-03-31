@@ -85,6 +85,25 @@ SharedMemoryHandler::SharedMemoryHandler() {
         Logger::log(LoggerTypes::teamspeakClientlog, "SHAMEM CreateMutex " + GetLastErrorString(), LogLevel_ERROR);
 
     createMemMap();
+
+    TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
+        diag << "SHAMEM:\n";
+        diag << TS_INDENT << "hMapFile: " << hMapFile << "\n";
+        diag << TS_INDENT << "hEventRequest: " << hEventRequest << "\n";
+        diag << TS_INDENT << "hEventResponse: " << hEventResponse << "\n";
+        diag << TS_INDENT << "hMutex: " << hMutex << "\n";
+        diag << TS_INDENT << "pMapView: " << pMapView << "\n";
+        diag << TS_INDENT << "wasConnected: " << wasConnected << "\n";
+        diag << TS_INDENT << "isReady: " << isReady() << "\n";
+        
+        MutexLock lock(hMutex);
+        SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
+
+        diag << TS_INDENT << TS_INDENT << "hasAsyncRequest: " << pData->hasAsyncRequest() << "\n";
+        diag << TS_INDENT << TS_INDENT << "hasSyncRequest: " << pData->hasSyncRequest() << "\n";
+        diag << TS_INDENT << TS_INDENT << "lastGameTick: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now()-pData->getLastGameTick()).count() << u8"µs" << "\n";
+    });
+
 }
 
 

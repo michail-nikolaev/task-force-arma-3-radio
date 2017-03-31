@@ -25,6 +25,7 @@ private _result = false;
 
 if ((alive TFAR_currentUnit) and {call TFAR_fnc_haveLRRadio}) then {
     private _radio = call TFAR_fnc_activeLrRadio;
+    playSound "TFAR_rotatorPush";
     [_radio, _lr_stereo_number] call TFAR_fnc_setLrStereo;
     [_radio] call TFAR_fnc_showRadioVolume;
     _result = true;

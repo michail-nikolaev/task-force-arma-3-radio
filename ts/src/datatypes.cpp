@@ -27,7 +27,9 @@ dataType::Vector3D::Vector3D(float x, float y, float z) :m_x(x), m_y(y), m_z(z) 
 dataType::Vector3D::Vector3D(const std::vector<float>& vec) {
     switch (vec.size()) {
         case 2:m_x = vec.at(0); m_y = vec.at(1);	break;
-        case 3:m_x = vec.at(0); m_y = vec.at(1); m_z = vec.at(2); break;
+        case 3:
+        case 4: //Old overrides with TF_fnc_position may return 4 elements but we only want 3
+            m_x = vec.at(0); m_y = vec.at(1); m_z = vec.at(2); break;
     }
 }
 
@@ -44,6 +46,7 @@ dataType::Vector3D::Vector3D(const boost::string_ref& coordinateString) {
             m_y = helpers::parseArmaNumber(coords.at(1).data());
             break;
         case 3:
+        case 4: //Old overrides with TF_fnc_position may return 4 elements but we only want 3
             m_x = helpers::parseArmaNumber(coords.at(0).data());
             m_y = helpers::parseArmaNumber(coords.at(1).data());
             m_z = helpers::parseArmaNumber(coords.at(2).data());
@@ -51,7 +54,7 @@ dataType::Vector3D::Vector3D(const boost::string_ref& coordinateString) {
             //default Fail
     }
 }
- 
+
 bool dataType::Vector3D::operator==(const Vector3D& other) const {
     return 	m_x == other.m_x && m_y == other.m_y && m_z == other.m_z;
 }
@@ -95,6 +98,10 @@ float dataType::Vector3D::length() const {
     return sqrt(m_x*m_x + m_y*m_y + m_z*m_z);
 }
 
+float dataType::Vector3D::lengthSqr() const {
+    return m_x*m_x + m_y*m_y + m_z*m_z;
+}
+
 float dataType::Vector3D::dotProduct(const Vector3D& other) const {
     return m_x*other.m_x + m_y*other.m_y + m_z*other.m_z;
 }
@@ -121,12 +128,21 @@ dataType::Position3D::operator TS3_VECTOR*() {
     return reinterpret_cast<TS3_VECTOR*>(this);
 }
 
+dataType::Position3D dataType::Position3D::operator+(const Vector3D& other) const {
+	return *reinterpret_cast<const Vector3D*>(this) + other;
+}
+
 float dataType::Position3D::getHeight() const {
     return m_z;
 }
 
 float dataType::Position3D::distanceTo(const Position3D& other) const {
     float distance = Position3D(m_x - other.m_x, m_y - other.m_y, m_z - other.m_z).length();
+    return distance;
+}
+
+float dataType::Position3D::distanceToSqr(const Position3D& other) const {
+    float distance = Position3D(m_x - other.m_x, m_y - other.m_y, m_z - other.m_z).lengthSqr();
     return distance;
 }
 
@@ -137,7 +153,7 @@ float dataType::Position3D::distanceUnderwater(const Position3D& other) const {
         return distanceTo(other);
 
     float thisHeight = std::get<2>(get());
-	float otherHeight = std::get<2>(other.get());
+    float otherHeight = std::get<2>(other.get());
 
     Vector3D min = (thisHeight < otherHeight) ? *this : other;
     Vector3D max = (thisHeight > otherHeight) ? *this : other;
@@ -218,8 +234,4 @@ AngleRadians AngleRadians::to180() const {
         _180.angle = _180.angle - M_PI_FLOAT;
     }
     return _180;
-}
-
-constexpr AngleDegrees::AngleDegrees(const AngleRadians& other) :angle(other.angle * (180 / M_PI_FLOAT)) {
-
 }

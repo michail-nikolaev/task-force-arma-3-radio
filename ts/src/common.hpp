@@ -1,8 +1,6 @@
 #pragma once
-#include "version.h"
+
 #include "public_definitions.h"
-#include <string>
-#include <algorithm>
 #include <chrono>
 #include "datatypes.hpp"
 #include <windows.h>
@@ -51,6 +49,10 @@ using namespace std::literals;
 #endif
 
 #define INFODATA_BUFSIZE 512
+
+#define TS_INDENT "\xE1\x85\xA0" //I won't picture here how angry I am right now... Just to keep this PG... Teamspeak blocks normal indentation for my diagnose output
+
+
 extern void log_string(std::string message, LogLevel level = LogLevel_DEVEL);
 extern void log(char* message, DWORD errorCode, LogLevel level = LogLevel_INFO);
 
@@ -65,6 +67,7 @@ struct PTTDelayArguments {
     TSServerID currentServerConnectionHandlerID;
     std::chrono::milliseconds pttDelay;
     std::string subtype;
+    std::chrono::milliseconds tangentReleaseDelay;
     enum class subtypes {
         digital_lr,
         dd,

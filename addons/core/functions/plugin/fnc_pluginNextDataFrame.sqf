@@ -21,4 +21,4 @@
 */
 //Async call will always return "OK"
 _result = "task_force_radio_pipe" callExtension "DFRAME~";
-if (_result == "NEEDCFG") then {call TFAR_fnc_sendPluginConfig;};//Plugin wants config
+if (_result == "NEEDCFG") then {call TFAR_fnc_sendPluginConfig; ["TFAR_ConfigRefresh",[]] call CBA_fnc_localEvent;};//Plugin wants config

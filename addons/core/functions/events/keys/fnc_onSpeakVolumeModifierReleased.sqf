@@ -28,12 +28,23 @@ TF_speak_volume_meters = TF_last_speak_volume_meters;
 */
 call TFAR_fnc_sendFrequencyInfo;
 
-if (TFAR_volumeModifier_forceSpeech) then {
-    ["",format["TANGENT	RELEASED	%1	%2	%3","directSpeechFreq", 0, "directSpeech"],0] call TFAR_fnc_processTangent;
+if (TFAR_oldVolumeHint) then {
+    if (TFAR_volumeModifier_forceSpeech) then {
+        ["",format["TANGENT	RELEASED	%1	%2	%3","directSpeechFreq", 0, "directSpeech"],0] call TFAR_fnc_processTangent;
+    } else {
+        call TFAR_fnc_hideHint;
+    };
 } else {
     call TFAR_fnc_hideHint;
+    if (!TFAR_ShowVolumeHUD) then {
+        (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];
+    };
+    if (TFAR_volumeModifier_forceSpeech) then {
+        ["",format["TANGENT	RELEASED	%1	%2	%3","directSpeechFreq", 0, "directSpeech"],0] call TFAR_fnc_processTangent;
+    };
 };
 
+call TFAR_fnc_updateSpeakVolumeUI;
 ["OnSpeakVolumeModifierReleased", [TFAR_currentUnit, TF_speak_volume_level, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
 
 true

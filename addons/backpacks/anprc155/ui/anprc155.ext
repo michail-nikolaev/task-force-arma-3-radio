@@ -89,9 +89,9 @@ class enter: HiddenButton
     h = 0.0209 * safezoneH;
     tooltip = $STR_set_frequency;
     action = QUOTE(
-        _f = parseNumber(ctrlText IDC_ANPRC155_EDIT);
+        _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANPRC155_EDIT);
         if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {
-            [ARR_2(TF_lr_dialog_radio, str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))] call TFAR_fnc_setLrFrequency;
+            [ARR_2(TF_lr_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setLrFrequency;
             call TFAR_fnc_hideHint;
         } else {
             hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ)]

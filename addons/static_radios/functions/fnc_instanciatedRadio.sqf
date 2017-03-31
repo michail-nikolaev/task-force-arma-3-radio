@@ -26,7 +26,7 @@ if (_radioContainer call TFAR_fnc_isLRRadio) exitWith {_radioContainer};
 if !(_radioClass call TFAR_fnc_isPrototypeRadio) exitWith {_radioClass};
 
 _radioInstanciated = ([_radioClass] call TFAR_fnc_instanciateRadios select 0);
-diag_log ["TFAR_static_radios_fnc_instanciatedRadio",_this,_radioClass,_radioInstanciated];
+
 if (_radioInstanciated != _radioClass) then {
     _radioContainer addWeaponCargoGlobal ["arifle_MX_F", 1];
     clearItemCargoGlobal _radioContainer;

@@ -7,6 +7,7 @@
 #include <windows.h>
 #include "Logger.hpp"
 #include "task_force_radio.hpp"
+#include "version.h"
 using namespace dataType;
 struct TS3Functions ts3Functions;
 
@@ -88,7 +89,33 @@ void TeamspeakServerData::clearChannelCache() {
     channelNameToID.clear();
 }
 
-Teamspeak::Teamspeak() {}
+Teamspeak::Teamspeak() {
+    TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
+        diag << "TS:\n";
+
+        for (auto& it : getInstance().serverData) {
+            diag << TS_INDENT << it.first.baseType() << ":\n";
+            diag << TS_INDENT << TS_INDENT << "myCID1: " << it.second.getMyClientID().baseType() << "\n";
+            diag << TS_INDENT << TS_INDENT << "myCID2: " << getMyId(it.first).baseType() << "\n";
+            diag << TS_INDENT << TS_INDENT << "myONICK: " << it.second.getMyOriginalNickname() << "\n";
+            diag << TS_INDENT << TS_INDENT << "myNICK: " << getMyNickname(it.first) << "\n";
+            diag << TS_INDENT << TS_INDENT << "myOCHAN: " << it.second.getMyOriginalChannel().baseType() << "\n";
+            diag << TS_INDENT << TS_INDENT << "myCHAN: " << getChannelOfClient(it.first).baseType() << "\n";
+            diag << TS_INDENT << TS_INDENT << "myLCHAN: " << it.second.myLastKnownChannel.baseType() << "\n";
+
+
+            diag << TS_INDENT << TS_INDENT << "curCHAN:\n";
+
+
+            std::vector<TSClientID> clients = getChannelClients(it.first, getChannelOfClient(it.first));
+            for (TSClientID clientId : clients) {
+                std::string clientNickname = getClientNickname(it.first, clientId);
+                diag << TS_INDENT << TS_INDENT << TS_INDENT << clientId.baseType() << " : " << clientNickname << "\n";
+            }
+
+        }
+    });
+}
 
 
 Teamspeak::~Teamspeak() {}
@@ -263,6 +290,7 @@ void Teamspeak::_onChannelSwitchedEvent(TSServerID serverConnectionHandlerID, TS
         if (clientNickname.empty()) continue;
         TFAR::getInstance().onTeamspeakClientJoined(serverConnectionHandlerID, clientId, clientNickname);
     }
+	TFAR::getInstance().onTeamspeakChannelSwitched(serverConnectionHandlerID, newChannel);
 }
 
 void Teamspeak::_onClientMoved(TSServerID serverConnectionHandlerID, TSClientID clientID, TSChannelID oldChannel, TSChannelID newChannel) {
@@ -557,7 +585,10 @@ void Teamspeak::setMyMetaData(const std::string & metaData) {
         } else {	//Only set stuff between TFAR tags
             std::string before = sharedMsg.substr(0, sharedMsg.find(START_DATA));
             std::string after = sharedMsg.substr(sharedMsg.find(END_DATA) + strlen(END_DATA), std::string::npos);
-            to_set = before + START_DATA + metaData + END_DATA + after;
+            if (metaData.empty())
+                to_set = before + after;
+            else
+                to_set = before + START_DATA + metaData + END_DATA + after;
         }
         if ((error = ts3Functions.setClientSelfVariableAsString(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_META_DATA, to_set.c_str())) != ERROR_ok) {
             log("setMetaData - Can't set own META_DATA", error);
@@ -599,14 +630,80 @@ void Teamspeak::setClient3DPosition(TSServerID serverConnectionHandlerID, TSClie
 
 
 
-
-
-
 #include "plugin.h"
+/*********************************** Required functions ************************************/
+/*
+* If any of these required functions is not implemented, TS3 will refuse to load the plugin
+*/
+
+#pragma comment (lib, "version.lib")
+int ts3plugin_apiVersion() {
+
+    WCHAR fileName[_MAX_PATH];
+    DWORD size = GetModuleFileName(nullptr, fileName, _MAX_PATH);
+    fileName[size] = NULL;
+    DWORD handle = 0;
+    size = GetFileVersionInfoSize(fileName, &handle);
+    BYTE* versionInfo = new BYTE[size];
+    if (!GetFileVersionInfo(fileName, handle, size, versionInfo)) {
+        delete[] versionInfo;
+        return PLUGIN_API_VERSION;
+    }
+    UINT    			len = 0;
+    VS_FIXEDFILEINFO*   vsfi = nullptr;
+    VerQueryValue(versionInfo, L"\\", reinterpret_cast<void**>(&vsfi), &len);
+    short version = HIWORD(vsfi->dwFileVersionLS);
+    short minor = LOWORD(vsfi->dwFileVersionMS);
+    delete[] versionInfo;
+    if (minor == 1) return 21;//Teamspeak 3.1 
+    switch (version) {
+        case 9: return 19;
+        case 10: return 19;
+        case 11: return 19;
+        case 12: return 19;
+        case 13: return 19;
+        case 14: return 20;
+        case 15: return 20;
+        case 16: return 20;
+        case 17: return 20;
+        case 18: return 20;
+        case 19: return 20;
+        case 20: return 21;
+        default: return PLUGIN_API_VERSION;
+    }
+}
+
 /* Set TeamSpeak 3 callback functions */
 void ts3plugin_setFunctionPointers(const struct TS3Functions funcs) {
     ts3Functions = funcs;
 }
+
+/* Unique name identifying this plugin */
+const char* ts3plugin_name() {
+    return "Task Force Arma 3 Radio";
+}
+
+/* Plugin version */
+const char* ts3plugin_version() {
+    return PLUGIN_VERSION;
+}
+
+/* Plugin author */
+const char* ts3plugin_author() {
+    /* If you want to use wchar_t, see ts3plugin_name() on how to use */
+    return "[TF]Nkey and Dedmen";
+}
+
+/* Plugin description */
+const char* ts3plugin_description() {
+    /* If you want to use wchar_t, see ts3plugin_name() on how to use */
+    return "Radio Addon for Arma 3";
+}
+
+
+
+
+
 
 
 /****************************** Optional functions ********************************/
@@ -638,12 +735,25 @@ void ts3plugin_registerPluginID(const char* id) {
 
 /* Plugin command keyword. Return NULL or "" if not used. */
 const char* ts3plugin_commandKeyword() {
-    return "";
+    return "tfar";
 }
 
 /* Plugin processes console command. Return 0 if plugin handled the command, 1 if not handled. */
 int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* command) {
-    return 0;  /* Plugin handled command */
+
+    if (std::string(command).compare("diag") == 0) {
+        std::stringstream diag;
+        TFAR::getInstance().doDiagReport(diag);
+        ts3Functions.printMessageToCurrentTab(diag.str().c_str());
+        return 0; /* Plugin handled command */
+    }
+    if (std::string(command).compare("pos") == 0) {
+        std::stringstream diag;
+        TFAR::getInstance().doTypeDiagReport("pos",diag);
+        ts3Functions.printMessageToCurrentTab(diag.str().c_str());
+        return 0; /* Plugin handled command */
+    }
+    return 1;  /* Plugin didn't handle command */
 }
 
 /* Client changed current server connection handler */

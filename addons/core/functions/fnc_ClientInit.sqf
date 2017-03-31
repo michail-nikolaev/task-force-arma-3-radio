@@ -34,30 +34,29 @@ TFAR_currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_showHint;
 
 // loadout cleaning on initialization to avoid duplicate radios ids in Arsenal
-[] call TFAR_fnc_loadoutReplaceProcess;
+[] spawn TFAR_fnc_loadoutReplaceProcess;//Yes we spawn this. Because it is time intensive and doesn't need to be finished before continuing
 
 tf_lastNearFrameTick = diag_tickTime;
 tf_lastFarFrameTick = diag_tickTime;
 TFAR_RadioReqLinkFirstItem = true;//Radio Request Link first Item
-TF_last_request_time = 0;
 TF_respawnedAt = time;//first spawn so.. respawned now
 
 [   {!(isNull (findDisplay 46))},
     {
         (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
-        (findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onSwTangentPressedHack"];
+        (findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onTangentPressedHack"];
         (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
 
         if (isMultiplayer) then {
             call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
-            [TFAR_fnc_processPlayerPositions,0.1 /*100 milliseconds*/] call CBA_fnc_addPerFrameHandler;
-            [TFAR_fnc_sendFrequencyInfo,0.3 /*300 milliseconds*/] call CBA_fnc_addPerFrameHandler;
-            [TFAR_fnc_sessionTracker,60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
+            [PROFCONTEXT_NORTN(TFAR_fnc_processPlayerPositions), TFAR_PosUpdateMode] call CBA_fnc_addPerFrameHandler;
+            [PROFCONTEXT_NORTN(TFAR_fnc_sendFrequencyInfo),0.3 /*300 milliseconds*/] call CBA_fnc_addPerFrameHandler;
+            [PROFCONTEXT_NORTN(TFAR_fnc_sessionTracker),60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
 
             //Only want this to run after initial spawn was processed
             [
                 {(time - TF_respawnedAt > 5)},
-                {[TFAR_fnc_radioReplaceProcess,2/*2 seconds*/] call CBA_fnc_addPerFrameHandler;}
+                {[PROFCONTEXT_NORTN(TFAR_fnc_radioReplaceProcess),2/*2 seconds*/] call CBA_fnc_addPerFrameHandler;}
             ] call CBA_fnc_waitUntilAndExecute;
         };
 }] call CBA_fnc_waitUntilAndExecute;
@@ -65,6 +64,10 @@ TF_respawnedAt = time;//first spawn so.. respawned now
 if (player call TFAR_fnc_isForcedCurator) then {
     player unlinkItem "ItemRadio";
     player addVest "V_Rangemaster_belt";
+
+    player enableSimulation false;//prevents falling sound when flying high in the sky
+    player hideObject true;
+
 
     switch (typeOf (player)) do {
         case "B_VirtualCurator_F": {
@@ -158,6 +161,9 @@ if (player call TFAR_fnc_isForcedCurator) then {
     TFAR_currentUnit = (_this select 0);
     "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name player]);//Async call will always return "OK"
 
+    TFAR_lastLoadoutChange = diag_tickTime; //Switching unit also switches loadout
+    TFAR_ConfigCacheNamespace setVariable ["lastRadioSettingUpdate",diag_tickTime]; //And changes Radios
+
     if !(TFAR_currentUnit getVariable ["TFAR_HandlersSet",false]) then {
         TFAR_currentUnit addEventHandler ["Take", {
             private _class = configFile >> "CfgWeapons" >> (_this select 2);
@@ -190,6 +196,15 @@ if (player call TFAR_fnc_isForcedCurator) then {
     };
 
 },true] call CBA_fnc_addPlayerEventHandler;
+
+["loadout", {
+    //current units loadout changed.. Should invalidate any caches about players loadout.
+    TFAR_lastLoadoutChange = diag_tickTime;
+    TFAR_ConfigCacheNamespace setVariable ["lastRadioSettingUpdate",diag_tickTime];//Also updates Radio settings for safety
+},true] call CBA_fnc_addPlayerEventHandler;
+
+
+
 
 //onArsenal PostClose event
 [missionnamespace,"arsenalClosed", {

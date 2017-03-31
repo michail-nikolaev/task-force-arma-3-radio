@@ -662,6 +662,7 @@
     <ClCompile Include="..\include\simpleSource\SimpleGate.cpp" />
     <ClCompile Include="..\include\simpleSource\SimpleLimit.cpp" />
     <ClCompile Include="..\include\sqlite3\sqlite3.c" />
+    <ClCompile Include="antennaManager.cpp" />
     <ClCompile Include="clientData.cpp" />
     <ClCompile Include="CommandProcessor.cpp" />
     <ClCompile Include="datatypes.cpp" />
@@ -712,6 +713,7 @@
     <ClInclude Include="..\include\public_rare_definitions.h" />
     <ClInclude Include="..\include\sqlite3\sqlite3.h" />
     <ClInclude Include="..\include\ts3_functions.h" />
+    <ClInclude Include="antennaManager.h" />
     <ClInclude Include="clientData.hpp" />
     <ClInclude Include="Clunk.h" />
     <ClInclude Include="CommandProcessor.hpp" />

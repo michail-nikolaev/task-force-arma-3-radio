@@ -22,11 +22,4 @@
 
 params ["_vehIsolation", "_eyeDepth"];
 
-private _result = false;
-
-if (_eyeDepth > 0) then {
-    _result = true;
-} else {
-    _result = _vehIsolation;
-};
-_result
+(_eyeDepth > 0 || _vehIsolation)

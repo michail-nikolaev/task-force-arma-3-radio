@@ -9,6 +9,7 @@
 #include "serverData.hpp"
 #include "Teamspeak.hpp"
 #include "Logger.hpp"
+#include "version.h"
 
 extern struct TS3Functions ts3Functions;
 
@@ -57,6 +58,8 @@ TFAR::TFAR() {
 
         if (getCurrentlyInGame())
             onGameEnd();
+        Teamspeak::setMyMetaData("");
+
         if (m_commandProcessor)
             m_commandProcessor->stopThread();
 
@@ -69,10 +72,74 @@ TFAR::TFAR() {
         onTeamspeakClientLeft.removeAllSlots();
         onTeamspeakClientUpdated.removeAllSlots();
     });
-    config.configValueSet.connect([](const Setting& setting) {
-        if (setting == Setting::serious_channelName || setting == Setting::serious_channelPassword)
+    config.configValueSet.connect([this](const Setting& setting) {
+        static std::chrono::system_clock::time_point lastMove;
+        if ((setting == Setting::serious_channelName || setting == Setting::serious_channelPassword)
+            && std::chrono::system_clock::now() - lastMove > 10ms) { //Teamspeak needs a little time to update currentChannel. This prevents doublejoin
             Teamspeak::moveToSeriousChannel();
+            lastMove = std::chrono::system_clock::now();
+        }
+        checkIfSeriousModeEnabled(Teamspeak::getCurrentServerConnection());
     });
+
+    onTeamspeakChannelSwitched.connect([this](TSServerID serverID, TSChannelID channelID) {
+        checkIfSeriousModeEnabled(serverID);
+    });
+
+
+
+
+
+    doDiagReport.connect([this](std::stringstream& diag) {
+        config.diagReport(diag);
+        diag << "TFAR:\n";
+        diag << TS_INDENT << "currentlyInGame: " << getCurrentlyInGame() << "\n";
+        diag << TS_INDENT << "pluginPath: " << getPluginPath() << "\n";
+        diag << TS_INDENT << "pluginID: " << getPluginID() << "\n";
+
+        diag << TS_INDENT << "gameData:\n";
+        diag << TS_INDENT << TS_INDENT << "myVoiceVol: " << m_gameData.myVoiceVolume << "\n";
+        diag << TS_INDENT << TS_INDENT << "alive: " << m_gameData.alive << "\n";
+        diag << TS_INDENT << TS_INDENT << "wavesLvl: " << m_gameData.wavesLevel << "\n";
+        diag << TS_INDENT << TS_INDENT << "terrIntCoeff: " << m_gameData.terrainIntersectionCoefficient << "\n";
+        diag << TS_INDENT << TS_INDENT << "globalVol: " << m_gameData.globalVolume << "\n";
+        diag << TS_INDENT << TS_INDENT << "recvDistMult: " << m_gameData.receivingDistanceMultiplicator << "\n";
+        diag << TS_INDENT << TS_INDENT << "speakerDist: " << m_gameData.speakerDistance << "\n";
+        diag << TS_INDENT << TS_INDENT << "curDFrame: " << m_gameData.currentDataFrame << "\n";
+        diag << TS_INDENT << TS_INDENT << "curTransRadio: " << m_gameData.getCurrentTransmittingRadio() << "\n";
+        diag << TS_INDENT << TS_INDENT << "tangentPressed: " << m_gameData.tangentPressed << "\n";
+        diag << TS_INDENT << TS_INDENT << "pttDelay: " << m_gameData.pttDelay.count() << "ms\n";
+
+        std::array<char*, 3> stereoModeToString{ "stereo","left","right" };
+        diag << TS_INDENT << TS_INDENT << "mySRFreq:\n";
+        for (auto& it : m_gameData.mySwFrequencies) {
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << it.first << ":\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "radio: " << it.second.radioClassname << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "stereo: " << stereoModeToString[static_cast<uint8_t>(it.second.stereoMode)] << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "vol: " << it.second.volume << "\n";
+        }
+        diag << TS_INDENT << TS_INDENT << "myLRFreq:\n";
+        for (auto& it : m_gameData.myLrFrequencies) {
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << it.first << ":\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "radio: " << it.second.radioClassname << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "stereo: " << stereoModeToString[static_cast<uint8_t>(it.second.stereoMode)] << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "vol: " << it.second.volume << "\n";
+        }
+        diag << TS_INDENT << TS_INDENT << "Speaker:\n";
+        for (auto& it : m_gameData.speakers) {
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << it.first << ":\n";
+            auto lockedClient = it.second.client.lock();
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "client: " << lockedClient << " (" << (lockedClient ? lockedClient->getNickname() : "null") << ")\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "pos: " << it.second.getPos() << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "id: " << it.second.radio_id << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "vec: " << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "name: " << it.second.vehicle.vehicleName << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "IS: " << it.second.vehicle.intercomSlot << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "ISO: " << it.second.vehicle.vehicleIsolation << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "vol: " << it.second.volume << "\n";
+        }
+    });
+
 }
 
 
@@ -84,6 +151,16 @@ TFAR& TFAR::getInstance() {
 }
 
 settings TFAR::config;//declaring the static config
+
+void TFAR::checkIfSeriousModeEnabled(TSServerID serverID) {
+    std::string	serious_mod_channel_name = TFAR::config.get<std::string>(Setting::serious_channelName);
+    bool isSerious = false;
+    if (!serious_mod_channel_name.empty() && Teamspeak::isInChannel(serverID, Teamspeak::getMyId(serverID), serious_mod_channel_name)) isSerious = true;
+    if (isSeriousMode != isSerious) {
+        isSeriousMode = isSerious;
+        onSeriousModeChanged(isSerious);
+    }
+}
 
 bool TFAR::isUpdateAvailable() {
     DWORD dwBytes;
@@ -104,11 +181,13 @@ bool TFAR::isUpdateAvailable() {
             pluginVersion += ch;
         }
     }
+
     InternetCloseHandle(File);
     InternetCloseHandle(Connection);
     InternetCloseHandle(Initialize);
+
     std::string currentVersion = PLUGIN_VERSION;
-    if (pluginVersion.length() < 10) {
+    if (pluginVersion.length() > 3) {
         return Version(pluginVersion) > Version(currentVersion);
     } else {
         return false;
@@ -274,5 +353,11 @@ std::shared_ptr<serverDataDirectory>& TFAR::getServerDataDirectory() {
     if (!getInstance().m_serverData)
         getInstance().m_serverData = std::make_shared<serverDataDirectory>();
     return getInstance().m_serverData;
+}
+
+std::shared_ptr<AntennaManager>& TFAR::getAntennaManager() {
+    if (!getInstance().m_antennaManger)
+        getInstance().m_antennaManger = std::make_shared<AntennaManager>();
+    return getInstance().m_antennaManger;
 }
 

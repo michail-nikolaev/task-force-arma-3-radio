@@ -17,11 +17,15 @@
 #define MAX_RADIO_COUNT 1000
 
 #define TFAR_FREQ_OFFSET 2
-#define TFAR_FREQ_ROUND_POWER 10//#TODO https://community.bistudio.com/wiki/toFixed after 1.65 release
-//round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER    -> _f toFixed 1
-//or use CBA_fnc_formatNumber
-// str (round (_f * TFAR_FREQ_ROUND_POWER) / TFAR_FREQ_ROUND_POWER))   ->>>> _f toFixed 1
-//#define ROUND_FREQ(FREQUENCY) FREQUENCY toFixes 1
+#define TFAR_FREQ_ROUND_POWER 10 //x/10 decimals after decimal point 10 = 1.1, 100 = 1.11
+
+#define TFAR_ROUND_FREQUENCYP(frequency,pwr) (round (frequency * pwr) / pwr)
+#define QTFAR_ROUND_FREQUENCYP(frequency,pwr) (frequency toFixed (pwr/10))
+
+#define TFAR_ROUND_FREQUENCY(frequency) TFAR_ROUND_FREQUENCYP(frequency,TFAR_FREQ_ROUND_POWER)
+#define QTFAR_ROUND_FREQUENCY(frequency) QTFAR_ROUND_FREQUENCYP(frequency,TFAR_FREQ_ROUND_POWER)
+
+#define TFAR_FREQUENCYSTRING_TO_FREQNUMBER(frequency) parseNumber ( ((frequency) splitString ",.") joinString "." )
 
 #define TFAR_MAX_CHANNELS 8
 #define TFAR_MIN_SW_FREQ 30
@@ -47,3 +51,7 @@
 #define TFAR_PLAYER_RESCAN_TIME 1//Interval between Rescans of Players
 
 #define TFAR_FAR_PLAYER_UPDATE_TIME 3.5 //Interval between updates of Far(>TF_max_voice_volume) Player positions
+
+#define TFAR_VOLUME_WHISPERING  5
+#define TFAR_VOLUME_NORMAL      20
+#define TFAR_VOLUME_YELLING     60

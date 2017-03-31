@@ -170,7 +170,7 @@ std::vector<std::string> helpers::split(const std::string& s, char delim) {
 
 bool helpers::isTrue(std::string& string) {
     if (string.length() != 4)	//small speed optimization
-        return false;
+        return string.length() == 1 && string.at(0) == '1';
     return string == "true";
 }
 
@@ -230,5 +230,5 @@ vehicleDescriptor helpers::getVehicleDescriptor(const std::string& vehicleID) {
 }
 
 float helpers::distanceForDiverRadio() {
-    return DD_MIN_DISTANCE + (DD_MAX_DISTANCE - DD_MIN_DISTANCE) * (1.0f - TFAR::getInstance().m_gameData.wavesLevel);
+    return DD_MIN_DISTANCE + (DD_MAX_DISTANCE - DD_MIN_DISTANCE) * (1.0f - TFAR::getInstance().m_gameData.wavesLevel); //#TODO WTF?! underwater range is influenced by wave intensity?
 }

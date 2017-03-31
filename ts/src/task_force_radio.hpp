@@ -7,7 +7,7 @@
 
 class PlaybackHandler;
 class CommandProcessor;
-
+class AntennaManager;
 
 
 struct FREQ_SETTINGS {
@@ -106,6 +106,7 @@ public:
     static std::shared_ptr<CommandProcessor>& getCommandProcessor();
     static std::shared_ptr<PlaybackHandler>& getPlaybackHandler();
     static std::shared_ptr<serverDataDirectory>& getServerDataDirectory();
+    static std::shared_ptr<AntennaManager>& getAntennaManager();
     static settings config;//I'd like to use settings as the variable name. But... meh
 
 
@@ -117,6 +118,9 @@ public:
 
     Signal<void()> onShutdown;
 
+    Signal<void(std::stringstream&)> doDiagReport;
+    Signal<void(const std::string& type, std::stringstream&)> doTypeDiagReport;
+
 
     //Teamspeak events. They are here because Teamspeak class is fully static
     Signal<void(TSServerID serverID)> onTeamspeakServerConnect;
@@ -124,6 +128,9 @@ public:
     Signal<void(TSServerID serverID, TSClientID clientID, const std::string& clientNickname)> onTeamspeakClientJoined;
     Signal<void(TSServerID serverID, TSClientID clientID)> onTeamspeakClientLeft; //If clientID == -2 all clients Left (aka channel switched)
     Signal<void(TSServerID serverID, TSClientID clientID, const std::string& clientNickname)> onTeamspeakClientUpdated; //Some variable about him updated. Probably his nickname
+	Signal<void(TSServerID serverID, TSChannelID channelID)> onTeamspeakChannelSwitched;
+
+	Signal<void(bool currentSeriousModeSetting)> onSeriousModeChanged;
 
     //Variable accessors
     std::string getPluginPath() const { return pluginPath; }
@@ -157,14 +164,16 @@ public:
     };
 
 private:
+	void checkIfSeriousModeEnabled(TSServerID serverID);
     std::string pluginPath;
     std::string pluginID;
     static bool isUpdateAvailable();
     std::shared_ptr<PlaybackHandler> m_playbackHandler;
     std::shared_ptr<CommandProcessor> m_commandProcessor;
     std::shared_ptr<serverDataDirectory> m_serverData;
+    std::shared_ptr<AntennaManager> m_antennaManger;
     bool currentlyInGame;
-
+	bool isSeriousMode;
 
 };
 

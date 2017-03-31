@@ -34,3 +34,8 @@ ts/src/task_force_radio_plugin.VC.db
 /ts/src/C++17Release
 /ts/src/C++17ReleaseExe
 /ts/src/C++17DebugExe
+
+*.tlog
+*.iobj
+*.exp
+*.ipdb

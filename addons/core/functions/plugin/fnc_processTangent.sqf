@@ -25,14 +25,14 @@
 
         [_hintText, _request] call TFAR_fnc_processTangent;
 */
+params ["_hintText","_request",["_timer",2.5]];
+//private _timer = 2.5;
 
-private _timer = 2.5;
+//if ((count _this) == 3) then{
+//    _timer = _this select 2;
+//};
 
-if ((count _this) == 3) then{
-    _timer = _this select 2;
-};
-
-[parseText (_this select 0), _timer] call TFAR_fnc_showHint;
+[parseText _hintText, _timer] call TFAR_fnc_showHint;
 if (isMultiplayer) then {
-    "task_force_radio_pipe" callExtension (_this select 1) + "~";//Async call will always return "OK"
+    "task_force_radio_pipe" callExtension _request + "~";//Async call will always return "OK"
 };
