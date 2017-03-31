@@ -5,16 +5,16 @@ if (alive TFAR_currentUnit) then {
     if (TF_speak_volume_level == "Whispering") then {
         TF_speak_volume_level = "normal";
         TF_speak_volume_meters = TFAR_VOLUME_NORMAL;
-        _localName = localize "STR_voice_normal";
+        _localName = "STR_voice_normal";
     } else {
         if (TF_speak_volume_level == "Normal") then {
             TF_speak_volume_level = "yelling";
             TF_speak_volume_meters = TFAR_VOLUME_YELLING;
-            _localName = localize "STR_voice_yelling";
+            _localName = "STR_voice_yelling";
         } else {
             TF_speak_volume_level = "whispering";
             TF_speak_volume_meters = TFAR_VOLUME_WHISPERING;
-            _localName = localize "STR_voice_whispering";
+            _localName = "STR_voice_whispering";
         }
     };
 
