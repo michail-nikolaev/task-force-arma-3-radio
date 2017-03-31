@@ -28,9 +28,12 @@
             TFAR_currentUnit linkItem "TFAR_microdagr";
         };
 
-        true call TFAR_fnc_requestRadios;
+        [
+            {(time - TF_respawnedAt > 5)},
+            {true call TFAR_fnc_requestRadios;}
+        ] call CBA_fnc_waitUntilAndExecute;
 
-                //Handle backpack replacement for group leaders
+        //Handle backpack replacement for group leaders
         if (leader TFAR_currentUnit != TFAR_currentUnit) exitWith {};
         if (!TFAR_giveLongRangeRadioToGroupLeaders or {backpack TFAR_currentUnit == "B_Parachute"} or {player call TFAR_fnc_isForcedCurator}) exitWith {};
         if ([(backpack TFAR_currentUnit), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1) exitWith {};
@@ -67,4 +70,9 @@
             } count _newItems;
         }] call CBA_fnc_waitUntilAndExecute;
     };
+    [TFAR_currentUnit, false] call TFAR_fnc_forceSpectator;
+    if (TFAR_ShowVolumeHUD) then { //#TODO should really move this into a macro
+        (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];
+    };
+    call TFAR_fnc_updateSpeakVolumeUI;
 }] call CBA_fnc_waitUntilAndExecute;

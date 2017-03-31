@@ -21,7 +21,7 @@
 
 private _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
 if (isNil "TF_lr_active_radio") then {
-    TF_lr_active_radio = _radios param[0,nil];
+    TF_lr_active_radio = _radios param [0,nil];
 } else {
     private _found = false;
     {

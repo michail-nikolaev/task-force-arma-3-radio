@@ -14,7 +14,7 @@ public:
     bool hasClientData(TSClientID clientID) const;
     std::shared_ptr<clientData> getClientData(const std::string& nickname) const;
     std::shared_ptr<clientData> getClientData(TSClientID clientID) const;
-
+	void forEachClient(std::function<void(const std::shared_ptr<clientData>&)> func);
     std::shared_ptr<clientData> myClientData;//No lock needed. Its only changed once on serverconnect
 
     serverData() {
@@ -36,7 +36,7 @@ private:
     std::vector<clientDataDirectoryElement> data;
     //Don't worry about these... This stuff is almost 50% faster than using std::map and std::unordered_map
 
-    void debugPrint() const;
+    void debugPrint(std::stringstream& diag, bool withPos = false) const;
 
     auto findClientData(const indexedType& idx) const {
         auto range = std::equal_range(data.begin(), data.end(), std::make_tuple(std::hash<indexedType>()(idx), 0, nullptr), [](const auto& lhs, const auto& rhs) {

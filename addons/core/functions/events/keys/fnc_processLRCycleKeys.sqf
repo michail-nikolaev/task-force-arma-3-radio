@@ -53,7 +53,7 @@ if ((call TFAR_fnc_haveLRRadio) and {alive TFAR_currentUnit}) then {
     };
 
     (_radio_list select _new_radio_index) call TFAR_fnc_setActiveLrRadio;
-
+    playSound "TFAR_rotatorPush";
     [(call TFAR_fnc_activeLrRadio), true] call TFAR_fnc_showRadioInfo;
 
     _result = true;

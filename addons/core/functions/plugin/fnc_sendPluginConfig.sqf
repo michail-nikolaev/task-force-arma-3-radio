@@ -25,4 +25,8 @@
 ["intercomVolume",missionNamespace getVariable ["TFAR_intercomVolume",0.3]] call TFAR_fnc_setPluginSetting;
 ["intercomEnabled",missionNamespace getVariable ["TFAR_enableIntercom",true]] call TFAR_fnc_setPluginSetting;
 ["pluginTimeout",missionNamespace getVariable ["TFAR_pluginTimeout",4]] call TFAR_fnc_setPluginSetting;
+["spectatorNotHearEnemies",!(missionNamespace getVariable ["TFAR_spectatorCanHearEnemyUnits",false])] call TFAR_fnc_setPluginSetting;
+["spectatorCanHearFriendlies",missionNamespace getVariable ["TFAR_spectatorCanHearFriendlies",true]] call TFAR_fnc_setPluginSetting;
+["tangentReleaseDelay",missionNamespace getVariable ["TFAR_tangentReleaseDelay",0]] call TFAR_fnc_setPluginSetting;
+
 //If you add things that player could change in Mission call this PFH or tell players in WIKI

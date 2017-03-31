@@ -33,7 +33,9 @@ private _variables = [
                         [11,"typeof"                    ,typeof TFAR_currentUnit],
                         [12,"diag_fps"                  ,round diag_fps],
                         [13,"diag_fpsmin"               ,round diag_fpsmin],
-                        [14,"version"                   ,TFAR_ADDON_VERSION]
+                        [14,"version"                   ,TFAR_ADDON_VERSION],
+                        //15 is radio request time
+                        [16,"folder"                    ,configSourceMod (configFile >> "CfgPatches" >> "TFAR_core")]
                     ];
 if (_this isEqualType []) then {
     _variables = _variables + _this;

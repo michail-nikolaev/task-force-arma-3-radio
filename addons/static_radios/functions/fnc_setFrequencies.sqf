@@ -24,7 +24,7 @@
 params ["_radioContainer","_frequencies"];
 
 _radio_id = _radioContainer call TFAR_static_radios_fnc_instanciatedRadio;
-diag_log ["TFAR_static_radios_fnc_setFrequencies",_this];
+
 if (_radio_id call TFAR_fnc_isLRRadio) then {
     _radio_id = [_radio_id, "radio_settings"];
     private _settings = _radio_id call TFAR_fnc_getLrSettings;

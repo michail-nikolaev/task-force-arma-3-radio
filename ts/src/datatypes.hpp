@@ -60,7 +60,7 @@ namespace dataType {
     public:
         constexpr AngleDegrees(float degrees) : angle(degrees) {}
         //Conversions
-        constexpr AngleDegrees(const AngleRadians& other);
+        constexpr AngleDegrees(const AngleRadians& other) : angle(other.angle * (180 / M_PI_FLOAT)) {};
         constexpr AngleRadians toRadians() const { return AngleRadians(*this); }
         //Operators
         constexpr operator float() const { return angle; }
@@ -76,9 +76,7 @@ namespace dataType {
         float angle;
     };
 
-    constexpr AngleRadians::AngleRadians(const AngleDegrees& other) : angle(other.angle * (M_PI_FLOAT / 180)) {};
-
-
+    constexpr AngleRadians::AngleRadians(const AngleDegrees& other) : angle(other.angle * (M_PI_FLOAT / 180)) {}
 
     constexpr AngleDegrees operator "" _deg(long double _deg) { return AngleDegrees(static_cast<float>(_deg)); }
 
@@ -91,12 +89,13 @@ namespace dataType {
         Vector3D(Vector3D&& vec) : m_x(std::move(vec.m_x)), m_y(std::move(vec.m_y)), m_z(std::move(vec.m_z)) {};
         Vector3D(const Vector3D& vec) : m_x(vec.m_x), m_y(vec.m_y), m_z(vec.m_z) {};
 
-        std::tuple<float, float, float> get() const;
+        std::tuple<float, float, float> get() const; //#TODO instead of using get.. how about operator[] ?
         float length() const;
+        float lengthSqr() const;
         float dotProduct(const Vector3D& other) const;
         Vector3D normalized();
         bool isNull() const;
-        Vector3D operator*(float multiplier) {
+        Vector3D operator*(float multiplier) const {
             return{ m_x *multiplier,m_y *multiplier ,m_z *multiplier };
         }
         Vector3D& operator=(const Vector3D& other);
@@ -125,10 +124,11 @@ namespace dataType {
         //Conversions
         operator TS3_VECTOR*();
         //Operators
-
+		Position3D operator+(const Vector3D& other) const;
         //Functions
         float getHeight() const;
-        float distanceTo(const Position3D& other) const; 
+        float distanceTo(const Position3D& other) const;
+        float distanceToSqr(const Position3D& other) const;
         float distanceUnderwater(const Position3D& other) const;
         Direction3D directionTo(const Position3D& other) const;
         Position3D crossProduct(const Position3D& other) const;
@@ -173,5 +173,28 @@ namespace dataType {
         Vector3D forward;
     };
 
+    class NetID {
+    public:
+        NetID(const std::string& netIDStr) {
+            const char *idStr = strchr(netIDStr.c_str(), ':');
+            if (idStr) {
+                creator = atoi(netIDStr.c_str());
+                objID = atoi(idStr + 1);
+            }
+        }
+        bool operator<(const NetID &other) const {
+            return creator < other.creator || objID < other.objID;
+        }
+        bool operator ==(const NetID &other) const {
+            return other.creator == creator && other.objID == objID;
+        }
+        bool operator !=(const NetID &other) const {
+            return other.creator != creator || other.objID != objID;
+        }
+        bool isNull() const { return objID == 0; }
+    private:
+        int creator{ 0 };
+        int objID{ 0 };
+    };
 
 }

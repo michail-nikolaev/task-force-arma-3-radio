@@ -11,7 +11,23 @@
 #include "Teamspeak.hpp"
 #include "Logger.hpp"
 
-PlaybackHandler::PlaybackHandler() {}
+PlaybackHandler::PlaybackHandler() {
+    TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
+        diag << "PH:\n";
+        std::array<char*, 4> typeToString{ "base","stereo","raw","processing" };
+
+        for (auto& it : playbacks) {
+            diag << TS_INDENT << "PB: " << it.first << ":\n";
+            diag << TS_INDENT << TS_INDENT << "Type: " << typeToString[static_cast<uint8_t>(it.second->type())] << "\n";
+            diag << TS_INDENT << TS_INDENT << "samplesReady: " << it.second->samplesReady() << "\n";
+            diag << TS_INDENT << TS_INDENT << "isDone: " << it.second->isDone() << "\n";
+        }
+
+        for (auto& it : wavCache) {
+            diag << TS_INDENT << "WC: " << it.first << ":\n";
+        }
+    });
+}
 
 
 PlaybackHandler::~PlaybackHandler() {}
@@ -32,7 +48,7 @@ void PlaybackHandler::onEditMixedPlaybackVoiceDataEvent(short * samples, int sam
         int inputPosition = 0;
         //mix stereo sound into multichannel sound
         while (outputPosition < sampleCount * channels && (static_cast<int>(playbackSampleCount) - inputPosition) > 0) {
-            for (int q = 0; q < 2; q++) {  
+            for (int q = 0; q < 2; q++) {
 #ifdef _DEBUG
                 if (outputPosition > sampleCount * channels) __debugbreak();
                 if (inputPosition > playbackSampleCount) __debugbreak();
@@ -90,14 +106,20 @@ void PlaybackHandler::appendPlayback(std::string name, std::string filePath, ste
                 if (wav->ok() && wav->_spec.channels == 2 && wav->_spec.sample_rate == 48000) {
                     wavCache[filePath] = wav;
                     wave = wav;
+                } else {
+                    Logger::log(LoggerTypes::teamspeakClientlog, "Cannot read Soundfile: " + filePath, LogLevel::LogLevel_ERROR);
+                    return;
                 }
                 fclose(f);
+            } else {
+                Logger::log(LoggerTypes::teamspeakClientlog, "Cannot open Soundfile: " + filePath + " " + strerror(errno), LogLevel::LogLevel_ERROR);
+                return;
             }
         } else {
             wave = wavCache[filePath];
         }
-
-        playbacks[name] = std::make_shared<playbackWavStereo>(wave.get(), stereo, gain);//we can use wave.get() because playbackWavStereo doesn't hold a ref to it
+        if (wave)
+            playbacks[name] = std::make_shared<playbackWavStereo>(wave.get(), stereo, gain);//we can use wave.get() because playbackWavStereo doesn't hold a ref to it
     } else {
         MessageBoxA(0, "void PlaybackHandler::appendPlayback(std::string name, std::string filePath, stereoMode stereo, float gain) 101", "tfar", 0);
         __debugbreak();
@@ -207,9 +229,9 @@ void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const ch
         if (stereoMode != stereoMode::stereo)
             processors.push_back([stereoMode](short* samples, size_t sampleCount, uint8_t channels) {
 
-            if (channels == 2) {
+            if (false && channels == 2) { //#TODO this optimization was a fail.
                 //Performance opt using 32bit operations instead of 16 bit ones
-                int* samples32bit = reinterpret_cast<int*>(samples);
+                int* samples32bit = reinterpret_cast<int*>(samples); //#TODO int is 64bit on x64. use uint32_t
                 if (stereoMode == stereoMode::leftOnly) {//Only left
                     for (size_t q = 0; q < sampleCount / 2; q += 1)
                         samples32bit[q] &= 0xFFFF0000;//mute right channel
@@ -356,7 +378,7 @@ size_t playbackWavRaw::getSamples(const short*& data) {
         Logger::log(LoggerTypes::teamspeakClientlog, str.str(), LogLevel_WARNING);
     }
 #endif
-   
+
     data = std::min(sampleStore.data() + currentPosition, sampleStore.end()._Ptr);
     return sampleStore.end()._Ptr - (sampleStore.data() + currentPosition);
 }

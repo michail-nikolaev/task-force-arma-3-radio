@@ -8,7 +8,7 @@ offset 640: Synchronous Answer [512b]
 offset 1152: Asynchronous Messages array of SharedMemString[500]
 */
 
-#define SHAREDMEM_ASYNCMSG_COUNT 500
+#define SHAREDMEM_ASYNCMSG_COUNT 300
 #define SHAREDMEM_MAX_STRINGSIZE sizeof(SharedMemString) -4
 #define SHAREDMEM_BUFSIZE 128+sizeof(SharedMemString)+sizeof(SharedMemString)+(sizeof(SharedMemString) * SHAREDMEM_ASYNCMSG_COUNT) //Header+SyncReq+SyncAnsw+AsyncMessages
 #include <chrono>
@@ -16,7 +16,7 @@ offset 1152: Asynchronous Messages array of SharedMemString[500]
 namespace SharedMemoryHandlerInternal {
 	struct SharedMemString {
 		uint32_t length{ 0 };
-		char data[1020]{ 0 };
+		char data[2044]{ 0 };
 		SharedMemString& operator=(const std::string& other) {
 			length = static_cast<uint32_t>(other.length());
 			if (length == 0 || length > SHAREDMEM_MAX_STRINGSIZE) {

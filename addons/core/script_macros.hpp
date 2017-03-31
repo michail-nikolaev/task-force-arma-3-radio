@@ -101,3 +101,33 @@
         WARNING('Deprecated variable used: OLD_VARIABLE (new: NEW_VARIABLE) in ADDON'); \
         NEW_VARIABLE = OLD_VARIABLE; \
     }
+
+
+
+
+
+
+#ifdef DEBUG_PROFCONTEXT
+
+#define PROFCONTEXT_NORTN(x) {isNil{call x}}
+#define PROFCONTEXT_NORTN_NAMED(n,x) {n;isNil{call x}}
+#define PROFCONTEXT_RTN(x) {private _rtn = 0; isNil{_rtn = _this call x}; _rtn}
+
+#else
+
+#define PROFCONTEXT_NORTN(x) x
+#define PROFCONTEXT_NORTN_NAMED(n,x) x
+#define PROFCONTEXT_RTN(x) x
+
+#endif
+
+
+#ifdef DEBUG_PROFTRAP
+
+#define PROFCONTEXT_LOGTRAP(VAR,FUNC) if (missionNamespace getVariable [#VAR,false]) exitWith {VAR = false;diag_captureFrame 1;[PROFCONTEXT_NORTN(FUNC), []] call CBA_fnc_execNextFrame;}
+
+#else
+
+#define PROFCONTEXT_LOGTRAP(VAR,FUNC)
+
+#endif

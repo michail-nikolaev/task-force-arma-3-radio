@@ -22,15 +22,18 @@
 params ["_radio_id"];
 
 private _settings = _radio_id call TFAR_fnc_getSwSettings;
-if (_settings select TFAR_SW_SPEAKER_OFFSET) then {
+private _currentlyEnabled = _settings select TFAR_SW_SPEAKER_OFFSET;
+if (_currentlyEnabled) then {
     _settings set [TFAR_SW_SPEAKER_OFFSET, false];
 } else {
     _settings set [TFAR_SW_SPEAKER_OFFSET, true];
-    private _flag = TFAR_currentUnit getVariable "tf_sw_speakers";
-    if (isNil "_flag") then {
-        TFAR_currentUnit setVariable ["tf_sw_speakers", true, true];
-    };
 };
+
+private _flag = TFAR_currentUnit getVariable ["TFAR_SRSpeakersEnabled",scriptNull];
+if !(_flag isEqualTo _currentlyEnabled) then {
+    TFAR_currentUnit setVariable ["TFAR_SRSpeakersEnabled", true, true];
+};
+
 [_radio_id, _settings] call TFAR_fnc_setSwSettings;
 
 //									unit, radio ID,	speakers

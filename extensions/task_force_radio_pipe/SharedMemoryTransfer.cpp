@@ -9,9 +9,9 @@ bool SharedMemoryHandlerInternal::SharedMemoryData::canAddAsyncRequest() const {
 
 void SharedMemoryHandlerInternal::SharedMemoryData::addAsyncRequest(const std::string& req) {
 	setLastGameTick();
-	if (req.length() > SHAREDMEM_MAX_STRINGSIZE - 200) {
-		MessageBoxA(0, "TFAR Pipe Too big request", req.c_str(), 0);
-		return;
+	if (req.length() > SHAREDMEM_MAX_STRINGSIZE) {
+		MessageBoxA(0, (req + std::to_string(req.length())).c_str(), "TFAR SHAMEM Too big request", 0);
+		return; //#TODO Could try to open and use a NamedPipe instead as backup
 	}
 	SharedMemString* asyncBase = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128 + sizeof(SharedMemString) * 2);
 	if (nextFreeAsyncMessage > SHAREDMEM_ASYNCMSG_COUNT) {
@@ -26,7 +26,7 @@ void SharedMemoryHandlerInternal::SharedMemoryData::addAsyncRequest(const std::s
 void SharedMemoryHandlerInternal::SharedMemoryData::setSyncRequest(const std::string& req) {
 	setLastGameTick();
 	if (req.length() > SHAREDMEM_MAX_STRINGSIZE) {
-		MessageBoxA(0, "TFAR Pipe Too big Srequest", req.c_str(), 0);
+		MessageBoxA(0, (req + std::to_string(req.length())).c_str(), "TFAR SHAMEM Too big Srequest", 0);
 		__debugbreak();//Request bigger than max allowed size
 		return;
 	}
@@ -94,9 +94,9 @@ bool SharedMemoryHandler::doSyncRequest(const std::string& request, std::string&
 	if (waited != WAIT_OBJECT_0) {
 		return false;
 	}
-	lock.lock();
-	if (!lock.isLocked())
-		return false;
+	//lock.lock();//No need to lock again. see SharedMemoryHandler::doSyncAndAsyncRequest
+	//if (!lock.isLocked())
+	//	return false;
 	return pData->getSyncResponse(answer);
 }
 
@@ -125,9 +125,9 @@ bool SharedMemoryHandler::doSyncAndAsyncRequest(const std::string& syncRequest, 
 	if (waited != WAIT_OBJECT_0) {
 		return false;
 	}
-	lock.lock();
-	if (!lock.isLocked())
-		return false;
+    //lock.lock();//No need to lock again. There won't be anyone else who could write a sync response. gameTime update racecondition is possible but who if we mix up some microseconds
+    //if (!lock.isLocked())
+    //	return false;
 	return pData->getSyncResponse(answer);
 }
 

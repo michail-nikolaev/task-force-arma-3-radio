@@ -9,6 +9,8 @@
 #include <memory> //shared_ptr
 #include <unordered_map>
 #include "Locks.hpp"
+#include "antennaManager.h"
+
 enum class sendingRadioType {   //Receiving FROM senders Radio.
     LISTEN_TO_SW,
     LISTEN_TO_LR,
@@ -25,9 +27,10 @@ enum class receivingRadioType { //Receiving TO our Radio
 };
 
 struct LISTED_INFO {
-    LISTED_INFO(sendingRadioType _over, receivingRadioType _on, int _volume, stereoMode _stereoMode, const std::string& _radio_id,
-        const Position3D& _pos, float _waveZ, const vehicleDescriptor& _vehicle)
-        :over(_over), on(_on), volume(_volume), stereoMode(_stereoMode), radio_id(_radio_id), pos(_pos), waveZ(_waveZ), vehicle(_vehicle) {}
+    LISTED_INFO(sendingRadioType _over, receivingRadioType _on, int _volume, stereoMode _stereoMode, std::string _radio_id,
+        Position3D _pos, float _waveZ, vehicleDescriptor _vehicle, AntennaConnection _antCon = AntennaConnection())
+        :over(_over), on(_on), volume(_volume), stereoMode(_stereoMode), radio_id(std::move(_radio_id)),
+        pos(std::move(_pos)), waveZ(_waveZ), vehicle(std::move(_vehicle)), antennaConnection(std::move(_antCon)) {}
     LISTED_INFO() {}
     sendingRadioType over = sendingRadioType::LISTEN_TO_NONE;//What radiotype the Sender is using
     receivingRadioType on = receivingRadioType::LISTED_ON_NONE;//What radiotype we are receiving on
@@ -37,6 +40,7 @@ struct LISTED_INFO {
     Position3D pos;
     float waveZ = 0.f;
     vehicleDescriptor vehicle;//Vehiclename and isolation
+    AntennaConnection antennaConnection;
 };
 
 struct unitPositionPacket {
@@ -72,7 +76,7 @@ public:
 
         resetRadioEffect();
     }
-     ~clientDataEffects() {
+    ~clientDataEffects() {
 
     }
 
@@ -101,7 +105,7 @@ public:
 
     void removeSpeakerFilter(std::string key) {
         LockGuard_exclusive lock_shared(&m_lock);
-         filtersSpeakers.erase(key);
+        filtersSpeakers.erase(key);
     }
 
     PersonalRadioEffect* getSwRadioEffect(std::string key) {
@@ -265,7 +269,8 @@ public:
 
     auto getNickname() const { LockGuard_shared lock(&m_lock); return nickname; }
     void setNickname(const std::string& val) { LockGuard_exclusive lock(&m_lock); nickname = val; }
-    auto getClientPosition() const { LockGuard_shared lock(&m_lock); return clientPosition; }
+    Position3D getClientPosition() const;       
+    Position3D getClientPositionRaw() { LockGuard_shared lock(&m_lock); return clientPosition; }
     void setClientPosition(const Position3D& val) { LockGuard_exclusive lock(&m_lock); clientPosition = val; }
     auto getViewDirection() const { LockGuard_shared lock(&m_lock); return viewDirection; }
     void setViewDirection(const Direction3D& val) { LockGuard_exclusive lock(&m_lock); viewDirection = val; }
@@ -280,6 +285,10 @@ public:
     float effectiveDistanceTo(clientData* other) const;
     bool isAlive();
 
+    operator Position3D() const { return getClientPosition(); } //convenience
+
+
+
     vehicleDescriptor getVehicleDescriptor() const {
         LockGuard_shared lock(&m_lock);
         return vehicleId; //helpers::getVehicleDescriptor(getVehicleId());
@@ -288,7 +297,7 @@ public:
 
 
 
-    LISTED_INFO isOverLocalRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent);
+    LISTED_INFO isOverLocalRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent, AntennaConnection& antennaConnection);
     std::vector<LISTED_INFO> isOverRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent);
 
 
@@ -327,7 +336,7 @@ public:
     float voiceVolumeMultiplifier = 1.f;
     bool isSpectating;
     bool isEnemyToPlayer;
-
+    bool receivingTransmission = false; //This unit is currently receiving a transmission. Only works for local player
     clientDataEffects effects;
 private:
     using LockGuard_shared = LockGuard_shared<ReadWriteLock>;
@@ -345,13 +354,14 @@ private:
     std::string currentTransmittingSubtype;//subtype client is currently transmitting on
 
     vehicleDescriptor vehicleId;
-
+    Vector3D velocity;
 
     void setVehicleId(const std::string& val) {
         //"2:390\x100.6\x10gunner"
         if (val == "no") {
             vehicleId.vehicleName = "no";
             vehicleId.vehicleIsolation = 0.f;
+            velocity = { 0,0,0 };
         }
         auto split = helpers::split(val, '\x10');
         if (split.size() < 3) return; //I don't listen to morons!!
@@ -362,6 +372,7 @@ private:
         else
             vehicleId.vehicleIsolation = helpers::parseArmaNumber(split[1]); // hear
         vehicleId.intercomSlot = helpers::parseArmaNumberToInt(split[2]);//vehicleDescriptor::stringToVehiclePosition(split[2]);
+        velocity = Vector3D(split[3]);
     }
 };
 

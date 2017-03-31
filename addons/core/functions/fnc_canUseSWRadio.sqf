@@ -28,8 +28,4 @@ private _result = false;
 
 if (_depth > 0) exitWith {true};
 
-if (_can_speak and {_depth > -1} and {vehicle _player != _player}) then {
-    if (_isolated_and_inside or {isAbleToBreathe _player}) exitWith {true};
-};
-
-false
+(_isolated_and_inside or {isAbleToBreathe _player})

@@ -21,6 +21,7 @@
 */
 
 ["TFAR_RadioRequestEvent", {
+    //#TODO Use optional Parameter of TFAR_fnc_processGroupFrequencySettings to always make sure players group is initialized before giving him a Radio
     if (!TFAR_fnc_processGroupFrequencySettings_running) then {
         //Curators not yet initialized. But a player wants his radio right now. So we need to get this done
         call TFAR_fnc_processGroupFrequencySettings;
@@ -76,37 +77,37 @@ if (!isNil "tf_freq_guer_lr") then { \
 
 if (!isNil "TFAR_defaultFrequencies_sr_west") then {
     TFAR_SameSRFrequenciesForSide = true;
-    TFAR_freq_sr_west = call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_west = [] call TFAR_fnc_generateSRSettings;
     TFAR_freq_sr_west set [2,TFAR_defaultFrequencies_sr_west];
 };
 
 if (!isNil "TFAR_defaultFrequencies_sr_east") then {
     TFAR_SameSRFrequenciesForSide = true;
-    TFAR_freq_sr_east = call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_east = [] call TFAR_fnc_generateSRSettings;
     TFAR_freq_sr_east set [2,TFAR_defaultFrequencies_sr_east];
 };
 
 if (!isNil "TFAR_defaultFrequencies_sr_independent") then {
     TFAR_SameSRFrequenciesForSide = true;
-    TFAR_freq_sr_independent = call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_independent = [] call TFAR_fnc_generateSRSettings;
     TFAR_freq_sr_independent set [2,TFAR_defaultFrequencies_sr_independent];
 };
 
 if (!isNil "TFAR_defaultFrequencies_lr_west") then {
     TFAR_SameLRFrequenciesForSide = true;
-    TFAR_freq_lr_west = call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_west = [] call TFAR_fnc_generateLrSettings;
     TFAR_freq_lr_west set [2,TFAR_defaultFrequencies_lr_west];
 };
 
 if (!isNil "TFAR_defaultFrequencies_lr_east") then {
     TFAR_SameLRFrequenciesForSide = true;
-    TFAR_freq_lr_east = call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_east = [] call TFAR_fnc_generateLrSettings;
     TFAR_freq_lr_east set [2,TFAR_defaultFrequencies_lr_east];
 };
 
 if (!isNil "TFAR_defaultFrequencies_lr_independent") then {
     TFAR_SameLRFrequenciesForSide = true;
-    TFAR_freq_lr_independent = call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_independent = [] call TFAR_fnc_generateLrSettings;
     TFAR_freq_lr_independent set [2,TFAR_defaultFrequencies_lr_independent];
 };
 
@@ -120,13 +121,13 @@ if (!isNil "TFAR_defaultFrequencies_lr_independent") then {
 VARIABLE_DEFAULT(TFAR_SameSRFrequenciesForSide,false);
 VARIABLE_DEFAULT(TFAR_SameLRFrequenciesForSide,true);
 
-VARIABLE_DEFAULT(TFAR_freq_sr_west,call TFAR_fnc_generateSRSettings);
-VARIABLE_DEFAULT(TFAR_freq_sr_east,call TFAR_fnc_generateSRSettings);
-VARIABLE_DEFAULT(TFAR_freq_sr_independent,call TFAR_fnc_generateSRSettings);
+VARIABLE_DEFAULT(TFAR_freq_sr_west,[] call TFAR_fnc_generateSRSettings);
+VARIABLE_DEFAULT(TFAR_freq_sr_east,[] call TFAR_fnc_generateSRSettings);
+VARIABLE_DEFAULT(TFAR_freq_sr_independent,[] call TFAR_fnc_generateSRSettings);
 
-VARIABLE_DEFAULT(TFAR_freq_lr_west,call TFAR_fnc_generateLrSettings);
-VARIABLE_DEFAULT(TFAR_freq_lr_east,call TFAR_fnc_generateLrSettings);
-VARIABLE_DEFAULT(TFAR_freq_lr_independent,call TFAR_fnc_generateLrSettings);
+VARIABLE_DEFAULT(TFAR_freq_lr_west,[] call TFAR_fnc_generateLrSettings);
+VARIABLE_DEFAULT(TFAR_freq_lr_east,[] call TFAR_fnc_generateLrSettings);
+VARIABLE_DEFAULT(TFAR_freq_lr_independent,[] call TFAR_fnc_generateLrSettings);
 
 //Check if all players are running TFAR
 {

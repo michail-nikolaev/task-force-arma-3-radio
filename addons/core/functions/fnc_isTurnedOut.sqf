@@ -1,5 +1,14 @@
 #include "script_component.hpp"
 params ["_unit"];
+
+//This is bad performance.. prefer using isTurnedOut directly
+//TFAR_fnc_isTurnedOut is 0.0122ms vs isTurnedOut 0.0023ms
+
+if (vehicle _unit == _unit) exitWith {true;};
+
+isTurnedOut _unit;
+
+
 /*
 // by commy2 v0.4
 private _fnc_getTurrets = {
@@ -91,7 +100,3 @@ if (_vehicle == _unit) then {
 };
 
 */
-
-if (vehicle _unit == _unit) exitWith {true;};
-
-isTurnedOut _unit;

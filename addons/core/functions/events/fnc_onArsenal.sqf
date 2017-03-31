@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
     Name: TFAR_fnc_onArsenal
 
@@ -17,10 +19,12 @@
     Example:
     "PreOpen" call TFAR_fnc_onArsenal;
 */
-private ["_backpackVariables","_class"];
+
 params ["_eventType"];
+
 switch _eventType do {
     case "PrePreOpen": {
+        GVAR(currentlyInArsenal) = true;
         //Check if current backpack is a TFAR Radio
         private _class = configFile >> "CfgVehicles" >> (backpack player);
         if (isClass _class AND {isNumber (_class >> "tf_hasLRradio")}) then {
@@ -49,5 +53,6 @@ switch _eventType do {
             };//else player changed his backpack
         };//else non tfar backpack
         TFAR_ArsenalBackpackVariables = nil;
+        GVAR(currentlyInArsenal) = false;
     };
 };

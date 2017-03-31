@@ -19,7 +19,7 @@
 */
 if (time - TF_last_lr_tangent_press < 0.1) exitWith {TF_last_lr_tangent_press = time;true};
 TF_last_lr_tangent_press = time;
-if (TF_tangent_lr_pressed or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveLRRadio}) exitWith {true};
+if ((TF_tangent_lr_pressed or TF_tangent_sw_pressed) or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveLRRadio}) exitWith {true};
 if (!call TFAR_fnc_isAbleToUseRadio) exitWith {call TFAR_fnc_unableToUseHint;true};
 private _radio = call TFAR_fnc_activeLrRadio;
 if (!([_radio] call TFAR_fnc_RadioOn)) exitWith {true};
@@ -51,7 +51,7 @@ private _pluginCommand = format[
                                 typeOf (_radio select 0)
                             ];
 
-[_hintText, _pluginCommand, -1] call TFAR_fnc_processTangent;
+[_hintText, _pluginCommand, [0,-1] select TFAR_showTransmittingHint] call TFAR_fnc_processTangent;
 TF_tangent_lr_pressed = true;
 //				unit, radio, radioType, additional, buttonDown
 ["OnTangent", [TFAR_currentUnit, _radio, 1, false, true]] call TFAR_fnc_fireEventHandlers;

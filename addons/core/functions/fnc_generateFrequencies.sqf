@@ -31,7 +31,7 @@ params ["_channels", "_max_freq", "_min_freq", "_freq_rp"];
 private _frequencies = [];
 
 for "_i" from 0 to _channels step 1 do {
-    _frequencies set [_i, (str (round (((random (_max_freq - _min_freq)) + _min_freq) * _freq_rp) / _freq_rp))];
+    _frequencies set [_i, QTFAR_ROUND_FREQUENCYP(((random (_max_freq - _min_freq)) + _min_freq), _freq_rp)]; //#TODO also use toFixed instad of rounding stuff
 };
 
 _frequencies

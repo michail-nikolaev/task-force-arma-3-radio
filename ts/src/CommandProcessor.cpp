@@ -1,4 +1,4 @@
-#include "CommandProcessor.hpp"
+﻿#include "CommandProcessor.hpp"
 #include "helpers.hpp"
 #include "serverData.hpp"
 #include "task_force_radio.hpp"
@@ -8,16 +8,26 @@
 #include <public_rare_definitions.h>
 #include "Locks.hpp"
 #include "Teamspeak.hpp"
+#include "antennaManager.h"
 
 volatile bool vadEnabled = false;
 volatile bool skipTangentOff = false;
 volatile bool waitingForTangentOff = false;
 CriticalSectionLock tangentCriticalSection;
-extern void setMuteForDeadPlayers(TSServerID serverConnectionHandlerID, bool isSeriousModeEnabled);
 extern bool isSeriousModeEnabled(TSServerID serverConnectionHandlerID, TSClientID clientId);
 extern void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false });
 
-CommandProcessor::CommandProcessor() {}
+CommandProcessor::CommandProcessor() {
+    
+    TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
+        diag << "CP:\n";
+        diag << TS_INDENT << "shouldRun: " << shouldRun << "\n";
+        diag << TS_INDENT << "cmdQueueBacklog: " << commandQueue.size() << "\n";
+        diag << TS_INDENT << "thread: " << myThread->get_id() << "\n";
+    });
+
+
+}
 
 
 CommandProcessor::~CommandProcessor() {
@@ -54,7 +64,7 @@ DEFINE_API_PROFILER(processCommand);
 std::string CommandProcessor::processCommand(const std::string& command) {
     Logger::log(LoggerTypes::gameCommands, command);
     API_PROFILER(processCommand);
-    std::vector<std::string> tokens; tokens.reserve(18);
+    std::vector<boost::string_ref> tokens; tokens.reserve(18);
     helpers::split(command, '\t', tokens); //may not be used in nickname	
     auto gameCommand = toGameCommand(tokens[0], tokens.size());
     if (gameCommand == gameCommand::unknown) return "UNKNOWN COMMAND";
@@ -67,20 +77,19 @@ std::string CommandProcessor::processCommand(const std::string& command) {
             queueCommand(command);//do processing async
             //This will automatically continue to IS_SPEAKING which is what we want
         case gameCommand::IS_SPEAKING: {
-            std::string nickname = convertNickname(tokens[1]);
+            std::string nickname = convertNickname(tokens[1].to_string());
             TSServerID currentServerConnectionHandlerID = Teamspeak::getCurrentServerConnection();
             auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(currentServerConnectionHandlerID);
-
-            if (!clientDataDir) return  "NOT_SPEAKING";
+            if (!clientDataDir) return "00";
             auto clientData = clientDataDir->getClientData(nickname);
+            if (!clientData)
+                return "00";
+            bool receivingTransmission = clientData->receivingTransmission;
 
-            if (clientData) {
-                bool clientTalkingOnRadio = (clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE) || clientData->clientTalkingNow;
-                if (clientData->clientTalkingNow || clientTalkingOnRadio)
-                    return "SPEAKING";
-            }
-
-            return  "NOT_SPEAKING";
+            bool clientTalkingOnRadio = clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE;
+            if (clientData->clientTalkingNow || clientTalkingOnRadio)
+                return std::string("1").append(receivingTransmission ? "1" : "0", 1);
+            return  std::string("0").append(receivingTransmission ? "1" : "0", 1);
         }
     }
 
@@ -88,10 +97,10 @@ std::string CommandProcessor::processCommand(const std::string& command) {
 }
 
 const std::string constTangent("TANGENT");
-gameCommand CommandProcessor::toGameCommand(const std::string & textCommand, size_t tokenCount) {
+gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textCommand, size_t tokenCount) {
     if (textCommand.length() < 3) return gameCommand::unknown;
 #ifdef VS15
-    auto hash = const_strhash(textCommand.c_str());
+    auto hash = const_strhash(textCommand.data(),textCommand.length());
     switch (hash) {
         case FORCE_COMPILETIME(const_strhash("POS")):
             return gameCommand::POS;
@@ -130,6 +139,10 @@ gameCommand CommandProcessor::toGameCommand(const std::string & textCommand, siz
         case FORCE_COMPILETIME(const_strhash("TANGENT_LR")):
         case FORCE_COMPILETIME(const_strhash("TANGENT_DD")):
             return gameCommand::TANGENT;
+        case FORCE_COMPILETIME(const_strhash("RadioTwrAdd")):
+            return gameCommand::AddRadioTower;
+        case FORCE_COMPILETIME(const_strhash("RadioTwrDel")):
+            return gameCommand::DeleteRadioTower;
             break;
     };
 #else
@@ -157,9 +170,13 @@ gameCommand CommandProcessor::toGameCommand(const std::string & textCommand, siz
         return gameCommand::SETCFG;
     if (tokenCount == 1 && textCommand == "MISSIONEND")//async
         return gameCommand::MISSIONEND;
+    if (tokenCount == 2 && textCommand == "RadioTwrAdd")//async
+        return gameCommand::AddRadioTower;
+    if (tokenCount == 2 && textCommand == "RadioTwrDel")//async
+        return gameCommand::DeleteRadioTower;
 #endif
     return gameCommand::unknown;
-    }
+}
 
 void CommandProcessor::threadRun() {
 
@@ -206,8 +223,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
             std::string myNickname = Teamspeak::getMyNickname(currentServerConnectionHandlerID);
             if (!myNickname.empty() && myNickname != nickname && (nickname != "Error: No unit" && nickname != "Error: No vehicle" && nickname != "any")) {
                 if (Teamspeak::setMyNicknameToGameName(currentServerConnectionHandlerID, nickname)) {
-                    TFAR::getInstance().onTeamspeakClientLeft(currentServerConnectionHandlerID, clientDataDir->myClientData->clientId);
-                    TFAR::getInstance().onTeamspeakClientJoined(currentServerConnectionHandlerID, clientDataDir->myClientData->clientId, nickname);
+                    TFAR::getInstance().onTeamspeakClientUpdated(currentServerConnectionHandlerID, clientDataDir->myClientData->clientId, nickname);
                 }
             }
         }; return;
@@ -261,7 +277,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
 
             if (!changed) //If nothing changed there is nothing to do.
                 return;
-            std::string commandToBroadcast = command + "\t" + (myClientData->canUseSWRadio ? "1\t":"0\t") + (myClientData->canUseDDRadio ? "1\t" : "0\t") + myClientData->getNickname();
+            std::string commandToBroadcast = command + "\t" + (myClientData->canUseSWRadio ? "1\t" : "0\t") + (myClientData->canUseDDRadio ? "1\t" : "0\t") + myClientData->getNickname();
             std::string frequency = tokens[2];
             //convenience function to remove duplicate code
             auto playRadioSound = [currentServerConnectionHandlerID, globalVolume, &frequency](const char* fileNameWithoutExtension,
@@ -307,6 +323,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                 args.currentServerConnectionHandlerID = currentServerConnectionHandlerID;
                 args.subtype = subtype;
                 args.pttDelay = TFAR::getInstance().m_gameData.pttDelay;
+                args.tangentReleaseDelay = std::chrono::milliseconds(static_cast<int>(TFAR::config.get<float>(Setting::tangentReleaseDelay)));
                 std::thread([this, args]() {process_tangent_off(args); }).detach();
                 LockGuard_shared<ReadWriteLock> frequencyLock(&TFAR::getInstance().m_gameData.m_lock);
                 switch (PTTDelayArguments::stringToSubtype(subtype)) {
@@ -321,7 +338,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                         break;
                     default: break;
                 }
-                frequencyLock.unlock(); //setCurTransRadio aquires lock. This can deadlock if we don't unlock here
+                frequencyLock.unlock(); //setCurTransRadio acquires lock. This can deadlock if we don't unlock here
                 if (!TFAR::config.get<bool>(Setting::full_duplex)) {
                     TFAR::getInstance().m_gameData.setCurrentTransmittingRadio("");
                 }
@@ -355,6 +372,29 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
         case gameCommand::MISSIONEND: //Handled by pipe extension. That sets last GameTick to 0 so SharedMemoryHandler::onDisconnected will fire
             //TFAR::getInstance().onGameDisconnected();
             return;
+        case gameCommand::AddRadioTower: {
+           auto data = helpers::split(tokens[1], 0xA);
+           for (auto& element : data) {
+               auto antennaData = helpers::split(element, ';');
+               TFAR::getAntennaManager()->addAntenna(Antenna(NetID(antennaData[0]), Position3D(antennaData[2]), helpers::parseArmaNumber(antennaData[1])));
+           }
+           return;
+           
+        }
+
+        case gameCommand::DeleteRadioTower: {
+                auto data = helpers::split(tokens[1], 0xA);
+                 for (auto& element : data) {
+                     TFAR::getAntennaManager()->removeAntenna(element);
+                 }
+                 return;
+
+            }
+
+
+
+
+
     }
 }
 
@@ -365,7 +405,7 @@ void CommandProcessor::processSpeakers(std::vector<std::string>& tokens) {
     if (tokens.size() != 2)
         return;
 
-    //if you switch TS tab... You don't get to get speakers bro!
+    //if you switch TS tab... You don't get speakers bro!
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
     if (!clientDataDir) return;
 
@@ -387,7 +427,7 @@ void CommandProcessor::processSpeakers(std::vector<std::string>& tokens) {
         if (parts.size() > 6)
             data.waveZ = helpers::parseArmaNumber(parts[6]);
         else
-            data.waveZ = 1;
+            data.waveZ = data.pos.isNull() ? 1 : std::get<2>(data.pos.get());
 
         for (const std::string & freq : helpers::split(parts[1], '|')) {
             TFAR::getInstance().m_gameData.speakers.insert(std::pair<std::string, SPEAKER_DATA>(freq, data));
@@ -458,7 +498,7 @@ void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverCo
 DEFINE_API_PROFILER(processUnitPosition);
 std::string CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket & packet) {
     API_PROFILER(processUnitPosition);
-              //#TODO remove all that speaking stuff. Its not handled here anymore
+    //#TODO remove all that speaking stuff. Its not handled here anymore
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
     if (!clientDataDir)
         return "NOT_SPEAKING";
@@ -485,7 +525,7 @@ std::string CommandProcessor::processUnitPosition(TSServerID serverConnection, u
     return "NOT_SPEAKING";
 }
 
-std::string CommandProcessor::ts_info(std::string &command) {
+std::string CommandProcessor::ts_info(const boost::string_ref &command) {
     if (command == "SERVER") {
         return Teamspeak::getServerName();
     } else if (command == "CHANNEL") {
@@ -500,6 +540,8 @@ void CommandProcessor::process_tangent_off(PTTDelayArguments arguments) {
     waitingForTangentOff = true;
     if (arguments.pttDelay > 0ms)
         std::this_thread::sleep_for(arguments.pttDelay);
+    if (arguments.tangentReleaseDelay > 0ms)
+        std::this_thread::sleep_for(arguments.tangentReleaseDelay);
 
     LockGuard_exclusive<CriticalSectionLock> lock(&tangentCriticalSection);
     if (!skipTangentOff) {
