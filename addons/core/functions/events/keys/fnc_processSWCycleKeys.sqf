@@ -50,7 +50,7 @@ if ((call TFAR_fnc_haveSWRadio) and {alive TFAR_currentUnit}) then{
     };
 
     (_radio_list select _new_radio_index) call TFAR_fnc_setActiveSwRadio;
-
+    playSound "TFAR_rotatorPush";
     [(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_showRadioInfo;
 
     _result = true;
