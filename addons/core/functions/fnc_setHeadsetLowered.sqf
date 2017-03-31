@@ -22,4 +22,5 @@ params [["_lowered",false,[false]] ];
 
 //Using Plugin settngs framework because its easier to use for this. And doesn't cludder FREQ command
 //Benchmarking this returned 0.024ms per call
+GVAR(isHeadsetLowered) = _lowered;
 ["headsetLowered",_lowered] call TFAR_fnc_setPluginSetting;
