@@ -28,5 +28,6 @@
 ["spectatorNotHearEnemies",!(missionNamespace getVariable ["TFAR_spectatorCanHearEnemyUnits",false])] call TFAR_fnc_setPluginSetting;
 ["spectatorCanHearFriendlies",missionNamespace getVariable ["TFAR_spectatorCanHearFriendlies",true]] call TFAR_fnc_setPluginSetting;
 ["tangentReleaseDelay",missionNamespace getVariable ["TFAR_tangentReleaseDelay",0]] call TFAR_fnc_setPluginSetting;
+["headsetLowered",missionNamespace getVariable [QGVAR(isHeadsetLowered),false]] call TFAR_fnc_setPluginSetting;
 
 //If you add things that player could change in Mission call this PFH or tell players in WIKI
