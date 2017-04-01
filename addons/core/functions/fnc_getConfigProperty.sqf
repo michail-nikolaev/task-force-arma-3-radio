@@ -17,7 +17,7 @@
     2: ANYTHING - Default (Optional)
 
     Returns:
-    NUMBER or TEXT - Result
+    NUMBER or TEXT or ARRAY - Result
 
     Example:
         [_LRradio, "tf_hasLrRadio", 0] call TFAR_fnc_getConfigProperty;
@@ -49,6 +49,12 @@ if (isText (configFile >> "CfgVehicles" >> _item >> _property + "_api")) exitWit
 
 if (isText (configFile >> "CfgVehicles" >> _item >> _property)) exitWith {
     private _value = getText (configFile >> "CfgVehicles" >> _item >> _property);
+    TFAR_ConfigCacheNamespace setVariable [_cacheName,_value];
+    _value;
+};
+
+if (isArray (configFile >> "CfgVehicles" >> _item >> _property)) exitWith {
+    private _value = getArray (configFile >> "CfgVehicles" >> _item >> _property);
     TFAR_ConfigCacheNamespace setVariable [_cacheName,_value];
     _value;
 };
