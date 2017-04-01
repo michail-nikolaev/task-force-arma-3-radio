@@ -33,28 +33,31 @@ private _cacheName = (_item + _property);
 private _cachedEntry = TFAR_ConfigCacheNamespace getVariable _cacheName;
 if (!isNil "_cachedEntry") exitWith {_cachedEntry};
 
-if (isNumber (configFile >> "CfgVehicles" >> _item >> _property + "_api")) exitWith {
-    getNumber (configFile >> "CfgVehicles" >> _item >> _property + "_api")
+private _cfgApiProperty = (configFile >> "CfgVehicles" >> _item >> _property + "_api");
+private _cfgProperty = (configFile >> "CfgVehicles" >> _item >> _property);
+
+if (isNumber _cfgApiProperty) exitWith {
+    getNumber _cfgApiProperty
 };
 
-if (isNumber (configFile >> "CfgVehicles" >> _item >> _property)) exitWith {
-    private _value = getNumber (configFile >> "CfgVehicles" >> _item >> _property);
+if (isNumber _cfgProperty) exitWith {
+    private _value = getNumber _cfgProperty;
     TFAR_ConfigCacheNamespace setVariable [_cacheName,_value];
     _value;
 };
 
-if (isText (configFile >> "CfgVehicles" >> _item >> _property + "_api")) exitWith {
-    getText (configFile >> "CfgVehicles" >> _item >> _property + "_api")
+if (isText _cfgApiProperty) exitWith {
+    getText _cfgApiProperty
 };
 
-if (isText (configFile >> "CfgVehicles" >> _item >> _property)) exitWith {
-    private _value = getText (configFile >> "CfgVehicles" >> _item >> _property);
+if (isText _cfgProperty) exitWith {
+    private _value = getText _cfgProperty;
     TFAR_ConfigCacheNamespace setVariable [_cacheName,_value];
     _value;
 };
 
-if (isArray (configFile >> "CfgVehicles" >> _item >> _property)) exitWith {
-    private _value = getArray (configFile >> "CfgVehicles" >> _item >> _property);
+if (isArray _cfgProperty) exitWith {
+    private _value = getArray _cfgProperty;
     TFAR_ConfigCacheNamespace setVariable [_cacheName,_value];
     _value;
 };
