@@ -84,12 +84,27 @@ std::string CommandProcessor::processCommand(const std::string& command) {
             auto clientData = clientDataDir->getClientData(nickname);
             if (!clientData)
                 return "00";
-            bool receivingTransmission = clientData->receivingTransmission;
+            bool receivingTransmission = clientData->receivingTransmission > 0;
 
             bool clientTalkingOnRadio = clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE;
             if (clientData->clientTalkingNow || clientTalkingOnRadio)
                 return std::string("1").append(receivingTransmission ? "1" : "0", 1);
             return  std::string("0").append(receivingTransmission ? "1" : "0", 1);
+        }
+        case gameCommand::RECV_FREQS: {
+            TSServerID currentServerConnectionHandlerID = Teamspeak::getCurrentServerConnection();
+            auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(currentServerConnectionHandlerID);
+            if (!clientDataDir) return "[]";
+            auto clientData = clientDataDir->myClientData;
+            if (!clientData)
+                return "[]";
+            std::stringstream str;
+            str << "[";
+            for (auto& it : clientData->receivingFrequencies) {
+                str << '"' << it << "\",";
+            }
+            str.seekg(-1, str.cur);
+            str << "]";
         }
     }
 
@@ -100,7 +115,7 @@ const std::string constTangent("TANGENT");
 gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textCommand, size_t tokenCount) {
     if (textCommand.length() < 3) return gameCommand::unknown;
 #ifdef VS15
-    auto hash = const_strhash(textCommand.data(),textCommand.length());
+    auto hash = const_strhash(textCommand.data(), textCommand.length());
     switch (hash) {
         case FORCE_COMPILETIME(const_strhash("POS")):
             return gameCommand::POS;
@@ -143,6 +158,8 @@ gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textComman
             return gameCommand::AddRadioTower;
         case FORCE_COMPILETIME(const_strhash("RadioTwrDel")):
             return gameCommand::DeleteRadioTower;
+        case FORCE_COMPILETIME(const_strhash("RECV_FREQS")):
+            return gameCommand::RECV_FREQS;
             break;
     };
 #else
@@ -174,6 +191,8 @@ gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textComman
         return gameCommand::AddRadioTower;
     if (tokenCount == 2 && textCommand == "RadioTwrDel")//async
         return gameCommand::DeleteRadioTower;
+    if (tokenCount == 1 && textCommand == "RECV_FREQS")
+        return gameCommand::RECV_FREQS;
 #endif
     return gameCommand::unknown;
 }
@@ -373,23 +392,23 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
             //TFAR::getInstance().onGameDisconnected();
             return;
         case gameCommand::AddRadioTower: {
-           auto data = helpers::split(tokens[1], 0xA);
-           for (auto& element : data) {
-               auto antennaData = helpers::split(element, ';');
-               TFAR::getAntennaManager()->addAntenna(Antenna(NetID(antennaData[0]), Position3D(antennaData[2]), helpers::parseArmaNumber(antennaData[1])));
-           }
-           return;
-           
+            auto data = helpers::split(tokens[1], 0xA);
+            for (auto& element : data) {
+                auto antennaData = helpers::split(element, ';');
+                TFAR::getAntennaManager()->addAntenna(Antenna(NetID(antennaData[0]), Position3D(antennaData[2]), helpers::parseArmaNumber(antennaData[1])));
+            }
+            return;
+
         }
 
         case gameCommand::DeleteRadioTower: {
-                auto data = helpers::split(tokens[1], 0xA);
-                 for (auto& element : data) {
-                     TFAR::getAntennaManager()->removeAntenna(element);
-                 }
-                 return;
-
+            auto data = helpers::split(tokens[1], 0xA);
+            for (auto& element : data) {
+                TFAR::getAntennaManager()->removeAntenna(element);
             }
+            return;
+
+        }
 
 
 
