@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "DspFilters\Butterworth.h"
 #include "DspFilters\RBJ.h"
 #include <math.h>
@@ -125,6 +125,7 @@ protected:
         double levels[] = { 0.0, 0.150000006, 0.300000012, 0.600000024, 0.899999976, 0.950000048, 0.960000038, 0.970000029, 0.980000019, 0.995000005, 0.997799993, 0.998799993, 0.999 };
 
         int part = (int) (errorLevel * 10.0);
+        part = std::clamp(part, 0, 12);
         double from = levels[part];
         double to = levels[part + 1];
 
