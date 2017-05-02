@@ -1666,7 +1666,7 @@
 					Gritar
 				</Spanish>
 				<German>
-					Laut
+					Schreien
 				</German>
 				<Turkish>
 					Bağırma
@@ -1695,7 +1695,7 @@
 					Susurrar
 				</Spanish>
 				<German>
-					Leise
+					Flüstern
 				</German>
 				<Turkish>
 					Fısıldama
@@ -1724,7 +1724,7 @@
 					Inicializando...
 				</Spanish>
 				<German>
-					Initialisiere...
+					Initialisierung...
 				</German>
 				<Turkish>
 					Başlatılıyor...
@@ -2163,7 +2163,7 @@ Usa un transceptor submarino para comunicarte con otros buceadores. Si deseas co
 				</Spanish>
 				<German>
 &lt;br/&gt;
-Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen. Auf nahe Distanz kann Ihr Partner allerdings undeutliche Töne wahrnehmen (Ausnahme: Sie befinden sich in einem Fahrzeug).&lt;br/&gt;
+Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen. Auf nahe Distanz kann Ihr Partner allerdings undeutliche Töne wahrnehmen (Ausnahme: Sie befinden sich in einem isolierten Fahrzeug).&lt;br/&gt;
 Wenn Sie sich unter Wasser befinden, können Sie Unterhaltungen an Land gedämpft wahrnehmen.&lt;br/&gt;
 Nutzen Sie den Unterwasser-Transceiver, um sich mit anderen Tauchern zu unterhalten.&lt;br/&gt;Sie können normale Funkgeräte unter Wasser nicht nutzen (weder Senden noch Empfangen).&lt;br/&gt;Ausnahme: U-Boot auf Periskoptiefe. Hier kann der Langstreckenfunk verwendet werden.
 				</German>
@@ -2431,7 +2431,7 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 					Mêmes fréquences SW pour l'équipe
 				</French>
 				<German>
-					Gleiche kurzstrecken-Frequenzen für unterschiedlichen Fraktionen
+					Gleiche Kurzstrecken-Frequenzen für unterschiedlichen Fraktionen
 				</German>
 				<Polish>
 					Takie same częstotliwości SW dla strony
@@ -2445,7 +2445,7 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 					Mêmes fréquences LP pour l'équipe
 				</French>
 				<German>
-					Gleiche langstrecken-Frequenzen für unterschiedlichen Fraktionen
+					Gleiche Langstrecken-Frequenzen für unterschiedlichen Fraktionen
 				</German>
 				<Polish>
 					Takie same częstotliwości LR dla strony
@@ -2459,7 +2459,7 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 					Mêmes fréquences DD pour l'équipe
 				</French>
 				<German>
-					Gleiche unterwasser-Frequenzen für unterschiedlichen Fraktionen
+					Gleiche Unterwasser-Frequenzen für unterschiedlichen Fraktionen
 				</German>
 				<Polish>
 					Takie same częstotliwości DD dla strony
