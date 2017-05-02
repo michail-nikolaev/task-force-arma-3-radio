@@ -688,7 +688,7 @@
                 <Original>yelling</Original>
                 <Czech>křičení</Czech>
                 <French>Forte</French>
-                <German>Laut</German>
+                <German>Schreien</German>
                 <Italian>Gridare</Italian>
                 <Polish>krzyk</Polish>
                 <Russian>крик</Russian>
@@ -700,7 +700,7 @@
                 <Original>whispering</Original>
                 <Czech>šeptání</Czech>
                 <French>Faible</French>
-                <German>Leise</German>
+                <German>Flüstern</German>
                 <Italian>Bassa voce</Italian>
                 <Polish>szept</Polish>
                 <Russian>шепот</Russian>
@@ -712,7 +712,7 @@
                 <Original>Initialization...</Original>
                 <Czech>Inicializace...</Czech>
                 <French>Initialization...</French>
-                <German>Initialisiere...</German>
+                <German>Initialisierung...</German>
                 <Italian>Inizializzazione...</Italian>
                 <Polish>Inicjalizacja...</Polish>
                 <Russian>Инициализация...</Russian>
@@ -1117,21 +1117,21 @@
             <Key ID="STR_radio_same_dd_frequencies_for_side">
                 <Original>Same DD frequencies for side</Original>
                 <French>Mêmes fréquences DD pour l'équipe</French>
-                <German>Gleiche unterwasser-Frequenzen für unterschiedlichen Fraktionen</German>
+                <German>Gleiche Unterwasser-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości DD dla strony</Polish>
                 <Japanese>陣営に同じ DD の周波数</Japanese>
             </Key>
             <Key ID="STR_radio_same_lr_frequencies_for_side">
                 <Original>Same LR frequencies for side</Original>
                 <French>Mêmes fréquences LP pour l'équipe</French>
-                <German>Gleiche langstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
+                <German>Gleiche Langstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości LR dla strony</Polish>
                 <Japanese>陣営に同じ長距離ラジオの周波数</Japanese>
             </Key>
             <Key ID="STR_radio_same_sw_frequencies_for_side">
                 <Original>Same SW frequencies for side</Original>
                 <French>Mêmes fréquences SW pour l'équipe</French>
-                <German>Gleiche kurzstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
+                <German>Gleiche Kurzstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości SW dla strony</Polish>
                 <Japanese>陣営に同じ SW の周波数</Japanese>
             </Key>
@@ -1303,7 +1303,7 @@ En étant sous l'eau, Being underwater, vous pouvez entendre faiblement des voix
 Utiliser une radio sous-marine pour la communications entre plongeurs.&lt;br/&gt;
 Vous ne pouvez pas utiliser de radio sous l'eau (ni recevoir ni transmettre). Si vous voulez passer un message à la surface ou sur terre. &lt;br/&gt;Exception - les sous-marins à profondeur de périscope (les plongeurs peuvent utiliser une radio longue portée à ce moment la).</French>
                 <German>&lt;br/&gt;
-Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen. Auf nahe Distanz kann Ihr Partner allerdings undeutliche Töne wahrnehmen (Ausnahme: Sie befinden sich in einem Fahrzeug).&lt;br/&gt;
+Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen. Auf nahe Distanz kann Ihr Partner allerdings undeutliche Töne wahrnehmen (Ausnahme: Sie befinden sich in einem isolierten Fahrzeug).&lt;br/&gt;
 Wenn Sie sich unter Wasser befinden, können Sie Unterhaltungen an Land gedämpft wahrnehmen.&lt;br/&gt;
 Nutzen Sie den Unterwasser-Transceiver, um sich mit anderen Tauchern zu unterhalten.&lt;br/&gt;Sie können normale Funkgeräte unter Wasser nicht nutzen (weder Senden noch Empfangen).&lt;br/&gt;Ausnahme: U-Boot auf Periskoptiefe. Hier kann der Langstreckenfunk verwendet werden.</German>
                 <Italian>&lt;br/&gt;
@@ -1582,7 +1582,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Original>Controls</Original>
                 <Czech>Ovládání</Czech>
                 <French>Contrôles</French>
-                <German>Einstellungen</German>
+                <German>Steuerung</German>
                 <Italian>Controlli</Italian>
                 <Polish>Sterowanie</Polish>
                 <Russian>Управление</Russian>
