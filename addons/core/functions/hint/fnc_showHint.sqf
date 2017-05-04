@@ -38,3 +38,5 @@ TF_HintFnc = [_time] spawn {
     sleep (_this select 0);
     call TFAR_fnc_hideHint;
 };
+
+nil;
