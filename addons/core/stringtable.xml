@@ -310,7 +310,7 @@
                 <Spanish>Frecuencia incorrecta, el rango es %1-%2</Spanish>
                 <Turkish>Yanlış frekans değeri, Menzil %1-%2</Turkish>
                 <Japanese>周波数の値が正しくありません。適正値は %1-%2</Japanese>
-                <Korean>잘못된 주파수 값, 범위는 %1 ~ %2입니다.</Korean>
+                <Korean>잘못된 주파수 값, 범위는 %1-%2입니다.</Korean>
             </Key>
             <Key ID="STR_radio_volume">
                 <Original>Volume: %1</Original>
