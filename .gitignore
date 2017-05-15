@@ -39,3 +39,5 @@ ts/src/task_force_radio_plugin.VC.db
 *.iobj
 *.exp
 *.ipdb
+
+*.ipch
