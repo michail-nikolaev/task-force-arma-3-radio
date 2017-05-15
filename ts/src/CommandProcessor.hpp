@@ -21,6 +21,7 @@ enum class gameCommand {
     MISSIONEND,	//Async
     AddRadioTower,
     DeleteRadioTower,
+    RECV_FREQS,
 	unknown
 };
 

@@ -11,17 +11,23 @@ serverDataDirectory::serverDataDirectory() {
     TFAR::getInstance().onTeamspeakClientJoined.connect([this](TSServerID serverID, TSClientID clientID, const std::string& clientNickname) {
         Logger::log(LoggerTypes::pluginCommands, "clientJoined" + std::to_string(clientID.baseType()) + " " + clientNickname);
         LockGuard_shared lock(&m_lock);
-        data.at(serverID)->clientJoined(clientID, clientNickname);
+        auto found = data.find(serverID);
+        if (found != data.end())
+            found->second->clientJoined(clientID, clientNickname);
     });
     TFAR::getInstance().onTeamspeakClientLeft.connect([this](TSServerID serverID, TSClientID clientID) {
         Logger::log(LoggerTypes::pluginCommands, "clientLeft" + std::to_string(clientID.baseType()));
         LockGuard_shared lock(&m_lock);
-        data.at(serverID)->clientLeft(clientID);
+        auto found = data.find(serverID);
+        if (found != data.end())
+            found->second->clientLeft(clientID);
     });
     TFAR::getInstance().onTeamspeakClientUpdated.connect([this](TSServerID serverID, TSClientID clientID, const std::string& clientNickname) {
         Logger::log(LoggerTypes::pluginCommands, "clientUpdated" + std::to_string(clientID.baseType()) + " " + clientNickname);
         LockGuard_shared lock(&m_lock);
-        data.at(serverID)->clientUpdated(clientID, clientNickname);
+        auto found = data.find(serverID);
+        if (found != data.end())
+            found->second->clientUpdated(clientID, clientNickname);
     });
     TFAR::getInstance().onTeamspeakServerConnect.connect([this](TSServerID serverID) {
         Logger::log(LoggerTypes::pluginCommands, "serverConnect" + std::to_string(serverID.baseType()));
@@ -42,16 +48,16 @@ serverDataDirectory::serverDataDirectory() {
             it.second->debugPrint(diag);
         }
     });
-    TFAR::getInstance().doTypeDiagReport.connect([this](const std::string& type,std::stringstream& diag) {
+    TFAR::getInstance().doTypeDiagReport.connect([this](const std::string& type, std::stringstream& diag) {
         if (type != "pos") return;
         diag << "SDD:\n";
         for (auto& it : data) {
             diag << TS_INDENT << it.first.baseType() << ":\n";
             diag << TS_INDENT << TS_INDENT << "myCD: " << it.second->myClientData << "\n";
-            it.second->debugPrint(diag,true);
+            it.second->debugPrint(diag, true);
         }
     });
-    
+
 
 }
 
@@ -94,9 +100,9 @@ std::shared_ptr<clientData> serverData::getClientData(const std::string& nicknam
 }
 
 void serverData::forEachClient(std::function<void(const std::shared_ptr<clientData>&)> func) {
-	   for (auto& cl : data) {
-		   func(std::get<2>(cl));
-	   }
+    for (auto& cl : data) {
+        func(std::get<2>(cl));
+    }
 }
 
 void serverData::clientJoined(TSClientID clientID, const std::string& clientNickname) {
@@ -175,7 +181,7 @@ void serverData::debugPrint(std::stringstream& diag, bool withPos) const {
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "LPOSTIME: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - cData->getLastPositionUpdateTime()).count() << "us\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "CurTransFreq: " << cData->getCurrentTransmittingFrequency() << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "spectator: " << cData->isSpectating << "\n";
-         }
+        }
         //std::string entry = "Entry " + std::to_string(std::get<0>(it)) + "=" + std::to_string(std::hash<indexedType>()(cData->getNickname()))
         //    + " " + std::to_string(std::get<1>(it).baseType()) + "=" + std::to_string(cData->clientId.baseType()) + " " + cData->getNickname();
         //Logger::log(LoggerTypes::pluginCommands, entry);
