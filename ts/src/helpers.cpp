@@ -23,13 +23,12 @@ void helpers::applyGain(short * samples, size_t sampleCount, int channels, float
 
     size_t leftOver = 0;
     if (CAN_USE_SSE_ON(samples)) {
-        auto leftOver = (sampleCount * channels) % 8;
+        leftOver = (sampleCount * channels) % 8;
         __m128 xmm3;
         float multiplier[4] = { directTalkingVolume ,directTalkingVolume , directTalkingVolume, directTalkingVolume };//This is limiting to 4 channels max. But If we implement surround sound we don't really need a center
         xmm3 = _mm_loadu_ps(multiplier);
-        helpers::shortFloatMultEx(samples, sampleCount * channels, xmm3);
+        helpers::shortFloatMultEx(samples, (sampleCount * channels) - leftOver, xmm3);
     }
-
     for (size_t i = sampleCount * channels - leftOver; i < sampleCount * channels; i++) samples[i] = static_cast<short>(samples[i] * directTalkingVolume);
 }
 
@@ -46,11 +45,11 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Direct
 
         size_t leftOver = sampleCount * channels;
         if (CAN_USE_SSE_ON(samples)) {
-            auto leftOver = (sampleCount * channels) % 8;
+            leftOver = (sampleCount * channels) % 8;
             __m128 xmm3;
             float multiplier[4] = { gainFrontLeft ,gainFrontRight , gainFrontLeft, gainFrontRight };//This is limiting to 4 channels max. But If we implement surround sound we don't really need a center
             xmm3 = _mm_loadu_ps(multiplier);
-            helpers::shortFloatMultEx(samples, sampleCount * channels, xmm3);
+            helpers::shortFloatMultEx(samples, (sampleCount * channels) - leftOver, xmm3);
         }
         for (size_t i = sampleCount * channels - leftOver; i < sampleCount * channels; i += channels) {
             samples[i] = static_cast<short>(samples[i] * gainFrontLeft);
@@ -126,17 +125,17 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Positi
     float gainFrontLeft = volumeMatrix[0];
     float gainFrontRight = volumeMatrix[1];
     delete[] volumeMatrix;
-    float mult = 1 / (gainFrontRight + gainFrontLeft);
+    float mult = 1.25f / (gainFrontRight + gainFrontLeft);
     gainFrontLeft *= mult; //make sure left+right = 1.0 else it would decrease overall volume which we don't want
     gainFrontRight *= mult;
 
     size_t leftOver = sampleCount * channels;
     if (CAN_USE_SSE_ON(samples)) { //Can use SSE and memory is correctly aligned
-        auto leftOver = (sampleCount * channels) % 8;
+        leftOver = (sampleCount * channels) % 8;
         __m128 xmm3;
         float multiplier[4] = { gainFrontLeft ,gainFrontRight , gainFrontLeft, gainFrontRight };//This is limiting to 4 channels max. But If we implement surround sound we don't really need a center
         xmm3 = _mm_loadu_ps(multiplier);
-        helpers::shortFloatMultEx(samples, sampleCount * channels, xmm3);
+        helpers::shortFloatMultEx(samples, (sampleCount * channels) - leftOver, xmm3);
     }
     for (size_t i = sampleCount * channels - leftOver; i < sampleCount * channels; i += channels) {
         samples[i] = static_cast<short>(samples[i] * gainFrontLeft);
