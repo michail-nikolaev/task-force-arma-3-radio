@@ -21,7 +21,7 @@ void helpers::applyGain(short * samples, size_t sampleCount, int channels, float
 
 
 
-    size_t leftOver = 0;
+    size_t leftOver = sampleCount * channels;
     if (CAN_USE_SSE_ON(samples)) {
         leftOver = (sampleCount * channels) % 8;
         __m128 xmm3;
