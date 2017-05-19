@@ -11,5 +11,5 @@ GVAR(radioTowerList) = [] call CBA_fnc_hashCreate;
 
 ["TFAR_ConfigRefresh",{
     //systemChat "TFAR_ConfigRefresh";
-    ((GVAR(radioTowerList)) call CBA_fnc_hashKeys) call DFUNC(pluginAddRadioTower);
+    ([(GVAR(radioTowerList))] call CBA_fnc_hashKeys) call DFUNC(pluginAddRadioTower);
 }] call CBA_fnc_addEventHandler;
