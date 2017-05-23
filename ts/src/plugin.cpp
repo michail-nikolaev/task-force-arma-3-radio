@@ -272,6 +272,45 @@ int pttCallback(void *arg, int argc, char **argv, char **azColName) {
 extern struct TS3Functions ts3Functions;
 
 /* Plugin API version. Must be the same as the clients API major version, else the plugin fails to load. */
+<<<<<<< HEAD
+=======
+#pragma comment (lib, "version.lib")
+int ts3plugin_apiVersion() {
+
+	WCHAR fileName[_MAX_PATH];
+	DWORD size = GetModuleFileName(0, fileName, _MAX_PATH);
+	fileName[size] = NULL;
+	DWORD handle = 0;
+	size = GetFileVersionInfoSize(fileName, &handle);
+	BYTE* versionInfo = new BYTE[size];
+	if (!GetFileVersionInfo(fileName, handle, size, versionInfo)) {
+		delete[] versionInfo;
+		return PLUGIN_API_VERSION;
+	}
+	UINT    			len = 0;
+	VS_FIXEDFILEINFO*   vsfi = NULL;
+	VerQueryValue(versionInfo, L"\\", (void**) &vsfi, &len);
+	short version = HIWORD(vsfi->dwFileVersionLS);
+    short minor = LOWORD(vsfi->dwFileVersionMS);
+	delete[] versionInfo;
+    if (minor == 1) return 21;//Teamspeak 3.1
+	switch (version) {
+		case 9: return 19;
+		case 10: return 19;
+		case 11: return 19;
+		case 12: return 19;
+		case 13: return 19;
+		case 14: return 20;
+		case 15: return 20;
+		case 16: return 20;
+		case 17: return 20;
+		case 18: return 20;
+		case 19: return 20;
+		case 20: return 21;//Teamspeak 3.1
+		default: return PLUGIN_API_VERSION;
+	}
+}
+>>>>>>> refs/remotes/michail-nikolaev/master
 
 bool pluginInitialized = false;
 int ts3plugin_init() {
@@ -303,10 +342,62 @@ int ts3plugin_init() {
     threadService = std::thread(&ServiceThread);
     TFAR::createCheckForUpdateThread();
 
+<<<<<<< HEAD
     TFAR::getInstance().onGameDisconnected.connect([]() {
         TFAR::getInstance().m_gameData.alive = false;
         TFAR::getInstance().m_gameData.currentDataFrame = INVALID_DATA_FRAME;
     });
+=======
+/*
+ * Custom code called right after loading the plugin. Returns 0 on success, 1 on failure.
+ * If the function returns 1 on failure, the plugin will be unloaded again.
+ */
+int ts3plugin_init() {
+#ifdef _WIN64
+	_set_FMA3_enable(0);
+#endif
+	 if (ts3plugin_apiVersion() <= 20) {
+		 ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE);
+	 } else {	//Compatibility hack for API version > 21
+		 typedef  void(*getPluginPath_20)(char* path, size_t maxLen, const char* pluginID);
+		 static_cast<getPluginPath_20>(static_cast<void*>(ts3Functions.getPluginPath))(pluginPath, PATH_BUFSIZE,pluginID); //This is ugly but keeps compatibility
+	 }
+
+	
+
+	InitializeCriticalSection(&serverDataCriticalSection);
+	InitializeCriticalSection(&playbackCriticalSection);
+	InitializeCriticalSection(&tangentCriticalSection);	
+
+	exitThread = FALSE;
+	if (isConnected(ts3Functions.getCurrentServerConnectionHandlerID()))
+	{
+		updateNicknamesList(ts3Functions.getCurrentServerConnectionHandlerID());
+	}
+
+	for (int q = 0; q < MAX_CHANNELS; q++)
+	{
+		floatsSample[q] = new float[1];
+	}
+	thread = CreateThread(NULL, 0, PipeThread, NULL, 0, NULL);
+	threadService = CreateThread(NULL, 0, ServiceThread, NULL, 0, NULL);
+	CreateThread(NULL, 0, UpdateThread, NULL, 0, NULL);
+
+	char path[MAX_PATH];
+	ts3Functions.getConfigPath(path, MAX_PATH);
+	strcat_s(path, MAX_PATH, "settings.db");		
+
+	sqlite3 *db = 0;
+	char *err = 0;
+	if (!sqlite3_open(path, &db))
+	{
+		sqlite3_exec(db, "SELECT value FROM Profiles WHERE key='Capture/Default/PreProcessing'", pttCallback, NULL, &err);
+		sqlite3_close(db);
+	}	
+
+	return 0;
+}
+>>>>>>> refs/remotes/michail-nikolaev/master
 
     char path[MAX_PATH];
     ts3Functions.getConfigPath(path, MAX_PATH);
