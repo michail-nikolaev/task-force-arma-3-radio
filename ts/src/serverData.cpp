@@ -1,4 +1,4 @@
-#include "serverData.hpp"
+﻿#include "serverData.hpp"
 #include "helpers.hpp"
 #include "Locks.hpp"
 #include <mutex>
@@ -9,33 +9,33 @@
 
 serverDataDirectory::serverDataDirectory() {
     TFAR::getInstance().onTeamspeakClientJoined.connect([this](TSServerID serverID, TSClientID clientID, const std::string& clientNickname) {
-        Logger::log(LoggerTypes::pluginCommands, "clientJoined" + std::to_string(clientID.baseType()) + " " + clientNickname);
+        Logger::log(LoggerTypes::pluginCommands, "clientJoined " + std::to_string(clientID.baseType()) + " " + clientNickname);
         LockGuard_shared lock(&m_lock);
         auto found = data.find(serverID);
         if (found != data.end())
             found->second->clientJoined(clientID, clientNickname);
     });
     TFAR::getInstance().onTeamspeakClientLeft.connect([this](TSServerID serverID, TSClientID clientID) {
-        Logger::log(LoggerTypes::pluginCommands, "clientLeft" + std::to_string(clientID.baseType()));
+        Logger::log(LoggerTypes::pluginCommands, "clientLeft " + std::to_string(clientID.baseType()));
         LockGuard_shared lock(&m_lock);
         auto found = data.find(serverID);
         if (found != data.end())
             found->second->clientLeft(clientID);
     });
     TFAR::getInstance().onTeamspeakClientUpdated.connect([this](TSServerID serverID, TSClientID clientID, const std::string& clientNickname) {
-        Logger::log(LoggerTypes::pluginCommands, "clientUpdated" + std::to_string(clientID.baseType()) + " " + clientNickname);
+        Logger::log(LoggerTypes::pluginCommands, "clientUpdated " + std::to_string(clientID.baseType()) + " " + clientNickname);
         LockGuard_shared lock(&m_lock);
         auto found = data.find(serverID);
         if (found != data.end())
             found->second->clientUpdated(clientID, clientNickname);
     });
     TFAR::getInstance().onTeamspeakServerConnect.connect([this](TSServerID serverID) {
-        Logger::log(LoggerTypes::pluginCommands, "serverConnect" + std::to_string(serverID.baseType()));
+        Logger::log(LoggerTypes::pluginCommands, "serverConnect " + std::to_string(serverID.baseType()));
         LockGuard_exclusive lock(&m_lock);
         data.insert({ serverID,std::make_shared<serverData>() });
     });
     TFAR::getInstance().onTeamspeakServerDisconnect.connect([this](TSServerID serverID) {
-        Logger::log(LoggerTypes::pluginCommands, "serverConnect" + std::to_string(serverID.baseType()));
+        Logger::log(LoggerTypes::pluginCommands, "serverConnect " + std::to_string(serverID.baseType()));
         LockGuard_exclusive lock(&m_lock);
         data.erase(serverID);
     });
@@ -64,7 +64,7 @@ serverDataDirectory::serverDataDirectory() {
 std::shared_ptr<serverData> serverDataDirectory::getClientDataDirectory(TSServerID serverID) const {
     LockGuard_shared lock(&m_lock);
     if (!data.count(serverID)) {
-        Logger::log(LoggerTypes::pluginCommands, "invalid getClientDataDirectory" + std::to_string(serverID.baseType()));
+        Logger::log(LoggerTypes::pluginCommands, "invalid getClientDataDirectory " + std::to_string(serverID.baseType()));
         return std::shared_ptr<serverData>();
     }
     return data.at(serverID);
