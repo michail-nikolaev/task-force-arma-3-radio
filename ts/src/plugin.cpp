@@ -150,7 +150,7 @@ void ServiceThread() {
             //bool isSerious = isSeriousModeEnabled(Teamspeak::getCurrentServerConnection(), Teamspeak::getMyId());
 
             if (TFAR::getInstance().getCurrentlyInGame())
-                Teamspeak::moveToSeriousChannel();
+                Teamspeak::moveToSeriousChannel();//#TODO people may want to leave SeriousChannel on purpose and not be moved back
             lastCheckForExpire = std::chrono::system_clock::now();
         }
         if ((std::chrono::system_clock::now() - lastInfoUpdate.load()) > 4000ms) {
@@ -285,11 +285,14 @@ int ts3plugin_init() {
     }
     TFAR::getInstance().setPluginPath(pluginPath);
 
-#ifdef ENABLE_API_PROFILER
+#if ENABLE_API_PROFILER
     Logger::registerLogger(LoggerTypes::profiler, std::make_shared<FileLogger>("P:/profiler.log"));
     Logger::registerLogger(LoggerTypes::gameCommands, std::make_shared<FileLogger>("P:/gameCommands.log"));
     Logger::registerLogger(LoggerTypes::pluginCommands, std::make_shared<FileLogger>("P:/pluginCommands.log"));
     Logger::registerLogger(LoggerTypes::teamspeakClientlog, std::make_shared<TeamspeakLogger>(LogLevel::LogLevel_INFO));
+#endif
+#if !ENABLE_API_PROFILER && ENABLE_PLUGIN_LOGS
+    Logger::registerLogger(LoggerTypes::pluginCommands, std::make_shared<FileLogger>(std::string(getenv("appdata")) + "\\TS3Client\\TFAR_pluginCommands.log"));
 #endif
 
     TFAR::getInstance().setPluginPath(pluginPath);

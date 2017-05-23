@@ -39,6 +39,11 @@ private _fetchItems = {
 //We only cache local player because TFAR_lastLoadoutChange only reflects local player
 if (_this != TFAR_currentUnit) exitWith {_this call _fetchItems};
 
+//If Player is remote Controling return Player and controlled Unit's radios.
+if (player != TFAR_currentUnit) exitWith {
+        (player call _fetchItems) + (_this call _fetchItems);
+};
+
 //Caching
 private _lastCache = TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_radiosList_lastCache";
 if (_lastCache > TFAR_lastLoadoutChange) exitWith {TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_radiosList_CachedRadios"};

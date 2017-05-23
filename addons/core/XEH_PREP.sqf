@@ -46,6 +46,7 @@ PREP(getLrVolume);
 PREP(getSwSettings);
 PREP(getLrSettings);
 PREP(getNearPlayers);
+PREP_SUB(plugin,getTeamspeakPluginVersion);
 PREP_SUB(plugin,getTeamSpeakServerName);
 PREP_SUB(plugin,getTeamSpeakChannelName);
 PREP(getConfigProperty);

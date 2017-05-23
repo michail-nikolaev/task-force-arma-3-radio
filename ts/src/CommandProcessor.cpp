@@ -9,6 +9,7 @@
 #include "Locks.hpp"
 #include "Teamspeak.hpp"
 #include "antennaManager.h"
+#include "version.h"
 
 volatile bool vadEnabled = false;
 volatile bool skipTangentOff = false;
@@ -18,7 +19,7 @@ extern bool isSeriousModeEnabled(TSServerID serverConnectionHandlerID, TSClientI
 extern void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false });
 
 CommandProcessor::CommandProcessor() {
-    
+
     TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
         diag << "CP:\n";
         diag << TS_INDENT << "shouldRun: " << shouldRun << "\n";
@@ -551,6 +552,8 @@ std::string CommandProcessor::ts_info(const boost::string_ref &command) {
         return Teamspeak::getChannelName();
     } else if (command == "PING") {
         return "PONG";
+    } else if (command == "VERSION") {
+        return PLUGIN_VERSION;
     }
     return "FAIL";
 }

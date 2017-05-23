@@ -47,4 +47,10 @@ if ((player call TFAR_fnc_isForcedCurator) and {TFAR_currentUnit == player}) the
     };
 };
 
+//If Player is remote Controling return Player and controlled Unit's radios.
+if (_this isEqaulTo TFAR_currentUnit && {player != TFAR_currentUnit}) exitWith {
+        _result + (player call TFAR_fnc_LRRadiosList);
+};
+
+
 _result

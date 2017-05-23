@@ -119,6 +119,7 @@ if (hasInterface) then {//Clientside Variables
     TFAR_currentNearPlayersProcessed = true;
     TFAR_currentFarPlayersProcessed = true;
     TFAR_lastPlayerScanTime = 0;
+    TFAR_volumeIndicatorFlashIndex = 0; //Increments everytime the volumeIndicator is shown when it's set to hidden. Makes sure the Hide function is only called once for the latest show
 
 
     tf_lastError = false;
