@@ -37,9 +37,9 @@ if (!TFAR_currentNearPlayersProcessed) then {
             _unitName = _x getVariable ["TFAR_spectatorName",_unitName];
         };
         if (isNull _controlled) then {
-            [_x, false, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
+            [_x, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         } else {
-            [_controlled, false, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
+            [_controlled, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         };
     } forEach (TFAR_currentNearPlayersProcessing select [0,_playersToProcess]); //commy2
 

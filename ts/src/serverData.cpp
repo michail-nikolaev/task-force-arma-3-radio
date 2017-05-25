@@ -100,6 +100,7 @@ std::shared_ptr<clientData> serverData::getClientData(const std::string& nicknam
 }
 
 void serverData::forEachClient(std::function<void(const std::shared_ptr<clientData>&)> func) {
+    LockGuard_shared lock(&m_lock);
     for (auto& cl : data) {
         func(std::get<2>(cl));
     }
