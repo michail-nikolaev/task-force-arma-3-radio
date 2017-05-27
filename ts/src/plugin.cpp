@@ -1,4 +1,4 @@
-/*
+﻿/*
  * TeamSpeak 3 demo plugin
  *
  * Copyright (c) 2008-2013 TeamSpeak Systems GmbH
@@ -543,7 +543,9 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
             switch (PTTDelayArguments::stringToSubtype(clientData->getCurrentTransmittingSubtype())) {
                 case PTTDelayArguments::subtypes::digital: {
                     if (info.over == sendingRadioType::LISTEN_TO_SW) {
-                        clientData->effects.getSwRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss());
+                        auto errorLevel = info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss();
+                        clientData->effects.getSwRadioEffect(info.radio_id)->setErrorLeveL(errorLevel);
+                        
                         processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getSwRadioEffect(info.radio_id), info.stereoMode);
                     } else {
                         float underwaterDist = myPosition.distanceUnderwater(clientData->getClientPosition());

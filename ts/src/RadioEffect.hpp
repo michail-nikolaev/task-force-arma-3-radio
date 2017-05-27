@@ -96,7 +96,7 @@ public:
         processFilter(filterSpeakerHP, buffer, samplesNumber);
         processFilter(filterSpeakerLP, buffer, samplesNumber);
 
-        for (int q = 0; q < samplesNumber; q++) buffer[q] = buffer[q] *= 30;
+        for (int q = 0; q < samplesNumber; q++) buffer[q] *= 30.f;
     }
 
 
