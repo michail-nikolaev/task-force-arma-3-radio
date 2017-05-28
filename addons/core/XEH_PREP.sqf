@@ -65,6 +65,7 @@ PREP(getDefaultRadioClasses);
 PREP(getRadioOwner);
 PREP(getSwSpeakers);
 PREP(getLrSpeakers);
+PREP(getSwHalfDuplexOverride);
 // H
 PREP(hasVehicleRadio);
 PREP(haveProgrammator);
@@ -177,6 +178,7 @@ PREP_SUB(hint,showRadioVolume);
 PREP(setChannelFrequency);
 PREP(setRadioOwner);
 PREP(setLrSpeakers);
+PREP(setSwHalfDuplexOverride);
 PREP_SUB(plugin,sessionTracker);
 PREP_SUB(plugin,betaTracker); //#TODO remove on release
 PREP_SUB(events\ui,setVolumeViaDialog);

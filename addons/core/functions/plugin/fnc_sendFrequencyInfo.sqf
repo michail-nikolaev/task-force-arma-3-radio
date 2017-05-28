@@ -55,10 +55,11 @@ if (((count _swRadios > 0) or (TFAR_currentUnit != player)) and {[TFAR_currentUn
             ) then {
                 private _radioCode = _x call TFAR_fnc_getSwRadioCode;
                 private _volume = _x call TFAR_fnc_getSwVolume;
-                _freq pushBack format ["%1%2|%3|%4|%5", _x call TFAR_fnc_getSwFrequency, _radioCode, _volume, _x call TFAR_fnc_getSwStereo, _x];
+                private _halfDuplexOverride = _x call TFAR_fnc_getSwHalfDuplexOverride;
+                _freq pushBack format ["%1%2|%3|%4|%5|%6", _x call TFAR_fnc_getSwFrequency, _radioCode, _volume, _x call TFAR_fnc_getSwStereo, _x, _halfDuplexOverride];
                 private _additionalChannel = _x call TFAR_fnc_getAdditionalSwChannel;
                 if (_additionalChannel > -1 && {_additionalChannel != (_x call TFAR_fnc_getSwChannel)}) then {
-                    _freq pushBack format ["%1%2|%3|%4|%5", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode, _volume, _x call TFAR_fnc_getAdditionalSwStereo, _x];
+                    _freq pushBack format ["%1%2|%3|%4|%5|%6", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode, _volume, _x call TFAR_fnc_getAdditionalSwStereo, _x, _halfDuplexOverride];
                 };
             };
         };
@@ -82,10 +83,12 @@ if (((count _lrRadios > 0) or (TFAR_currentUnit != player)) and {[TFAR_currentUn
             ) then {
                 private _radioCode = _x call TFAR_fnc_getLrRadioCode;
                 private _volume = _x call TFAR_fnc_getLrVolume;
+                // private _halfDuplexOverride = _x call TFAR_fnc_getLrHalfDuplexOverride;
+                private _halfDuplexOverride = true; // TODO MorpheusXAUT implement LR function above
                 private _additionalChannel = _x call TFAR_fnc_getAdditionalLrChannel;
-                _freq_lr pushBack format ["%1%2|%3|%4|%5", _x call TFAR_fnc_getLrFrequency, _radioCode, _volume, _x call TFAR_fnc_getLrStereo, typeof (_x select 0)];
+                _freq_lr pushBack format ["%1%2|%3|%4|%5|%6", _x call TFAR_fnc_getLrFrequency, _radioCode, _volume, _x call TFAR_fnc_getLrStereo, typeof (_x select 0), _halfDuplexOverride];
                 if (_additionalChannel > -1 && {_additionalChannel != (_x call TFAR_fnc_getLrChannel)}) then {
-                    _freq_lr pushBack format ["%1%2|%3|%4|%5", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode, _volume, _x call TFAR_fnc_getAdditionalLrStereo, typeof (_x select 0)];
+                    _freq_lr pushBack format ["%1%2|%3|%4|%5|%6", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode, _volume, _x call TFAR_fnc_getAdditionalLrStereo, typeof (_x select 0), _halfDuplexOverride];
                 };
             };
         };

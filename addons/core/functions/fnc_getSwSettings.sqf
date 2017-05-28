@@ -65,6 +65,12 @@ if (isNil "_rc") then {
     _value set [TFAR_CODE_OFFSET, _rc];
 };
 
+private _hdo = _value select HALFDUPLEX_OVERRIDE_OFFSET;
+if (isNil "_hdo") then {
+    _hdo = false; // TODO MorpheusXAUT load default from config?
+    _value set [HALFDUPLEX_OVERRIDE_OFFSET, _hdo];
+};
+
 [_radio, _value, true] call TFAR_fnc_setSwSettings;
 
 

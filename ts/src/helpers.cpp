@@ -279,12 +279,17 @@ std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(const std::string
     std::vector<std::string> v = split(sub, ',');
     for (const std::string& xs : v) {
         std::vector<std::string> parts = split(xs.substr(1, xs.length() - 2), '|');
-        if (parts.size() == 3 || parts.size() == 4) {
+        if (parts.size() == 3 || parts.size() == 4 || parts.size() == 5) {
             FREQ_SETTINGS settings;
             settings.volume = parseArmaNumberToInt(parts[1]);
             settings.stereoMode = static_cast<stereoMode>(parseArmaNumberToInt(parts[2]));
-            if (parts.size() == 4)
-                settings.radioClassname = parts[3];
+			settings.halfDuplexOverride = false; // default value false, only enable override if provided below
+			if (parts.size() == 4) {
+				settings.radioClassname = parts[3];
+			} else if (parts.size() == 5) {
+				settings.radioClassname = parts[3];
+				settings.halfDuplexOverride = helpers::isTrue(parts[4]);
+			}
             result[parts[0]] = settings;
         }
     }

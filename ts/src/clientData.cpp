@@ -150,7 +150,8 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
         LockGuard_shared lock(&TFAR::getInstance().m_gameData.m_lock);
         auto &frequencyInfo = TFAR::getInstance().m_gameData.myLrFrequencies[senderFrequency];
         if (!TFAR::config.get<bool>(Setting::full_duplex) && //If we are currently transmitting on that Radio we can't hear so we return before result gets valid
-            frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0) {
+            frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0 &&
+			!frequencyInfo.halfDuplexOverride) { //Certain radios can be capable of using full-duplex as an exception, check for half-duplex override
             return result;
         }
         result.on = receivingRadioType::LISTED_ON_LR;
@@ -160,7 +161,8 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
         LockGuard_shared lock(&TFAR::getInstance().m_gameData.m_lock);
         auto &frequencyInfo = TFAR::getInstance().m_gameData.mySwFrequencies[senderFrequency];
         if (!TFAR::config.get<bool>(Setting::full_duplex) && //If we are currently transmitting on that Radio we can't hear so we return before result gets valid
-            frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0) {
+            frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0 &&
+			!frequencyInfo.halfDuplexOverride) { //Certain radios can be capable of using full-duplex as an exception, check for half-duplex override) {
             return result;
         }
         result.on = receivingRadioType::LISTED_ON_SW;

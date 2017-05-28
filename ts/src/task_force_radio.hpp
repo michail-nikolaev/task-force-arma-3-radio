@@ -14,6 +14,7 @@ struct FREQ_SETTINGS {
     int volume;
     stereoMode stereoMode;
     std::string radioClassname;
+	bool halfDuplexOverride;
 };
 
 struct SPEAKER_DATA {
