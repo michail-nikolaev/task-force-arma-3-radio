@@ -13,6 +13,7 @@ class TFAR_pnr1000a: ItemRadio {
     tf_parent = "TFAR_pnr1000a";
     tf_additional_channel = 0;
     tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
+    tf_halfDuplexOverride = 0; //0 disables half-duplex override, everything greater than 0 enables it
 };
 HIDDEN_CLASS(tf_pnr1000a : TFAR_pnr1000a); //#Deprecated dummy class for backwards compat
 TF_RADIO_IDS(TFAR_pnr1000a,PNR-1000A)

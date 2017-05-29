@@ -14,5 +14,6 @@ class TFAR_anarc164: TFAR_Bag_Base {
     tf_dialog = "anarc164_radio_dialog";
     tf_subtype = "airborne";
     tf_dialogUpdate = "[""%1""] call TFAR_fnc_updateLRDialogToChannel;";
+    tf_halfDuplexOverride = 0; //0 disables half-duplex override, everything greater than 0 enables it
 };
 HIDDEN_CLASS(tf_anarc164 : TFAR_anarc164); //#Deprecated dummy class for backwards compat

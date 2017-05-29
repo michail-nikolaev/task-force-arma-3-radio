@@ -14,6 +14,7 @@ class TFAR_rf7800str: ItemRadio {
     tf_parent = "TFAR_rf7800str";
     tf_additional_channel = 0;
     tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
+    tf_halfDuplexOverride = 0; //0 disables half-duplex override, everything greater than 0 enables it
 };
 HIDDEN_CLASS(tf_rf7800str : TFAR_rf7800str); //#Deprecated dummy class for backwards compat
 TF_RADIO_IDS(TFAR_rf7800str,RF-7800S-TR)

@@ -88,7 +88,13 @@ if (isNil "_radioCode") then {
 
 private _halfDuplexOverride = _value select HALFDUPLEX_OVERRIDE_OFFSET;
 if (isNil "_halfDuplexOverride") then {
-    _halfDuplexOverride = false; // TODO MorpheusXAUT load default from config?
+    _halfDuplexOverride = false; //Override is disabled by default. No harm done if we don't find the config value since it's expected default behaviour anyways
+    private _override = [_radio_object, "tf_halfDuplexOverride"] call TFAR_fnc_getLrRadioProperty;
+    if (_override isEqualType 0) then {
+        if (_override > 0) then { //tf_halfDuplexOverride is a number, 0 disables the override, everything greater than 0 enables it
+            _halfDuplexOverride = true;
+        };
+    };
     _value set [HALFDUPLEX_OVERRIDE_OFFSET, _halfDuplexOverride];
 };
 

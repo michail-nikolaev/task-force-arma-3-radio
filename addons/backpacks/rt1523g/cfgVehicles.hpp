@@ -13,6 +13,7 @@ class TFAR_rt1523g: TFAR_Bag_Base {
     tf_encryptionCode = "tf_west_radio_code";
     tf_dialog = "rt1523g_radio_dialog";
     tf_subtype = "digital_lr";
+    tf_halfDuplexOverride = 0; //0 disables half-duplex override, everything greater than 0 enables it
 };
 HIDDEN_CLASS(tf_rt1523g : TFAR_rt1523g); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_bwmod: TFAR_rt1523g {

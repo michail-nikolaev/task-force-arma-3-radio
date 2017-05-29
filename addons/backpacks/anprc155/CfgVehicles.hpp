@@ -13,6 +13,7 @@ class TFAR_anprc155: TFAR_Bag_Base {
     tf_encryptionCode = "tf_independent_radio_code";
     tf_dialog = "anprc155_radio_dialog";
     tf_subtype = "digital_lr";
+    tf_halfDuplexOverride = 0; //0 disables half-duplex override, everything greater than 0 enables it
 };
 HIDDEN_CLASS(tf_anprc155 : TFAR_anprc155); //#Deprecated dummy class for backwards compat
 class TFAR_anprc155_coyote: TFAR_anprc155 {

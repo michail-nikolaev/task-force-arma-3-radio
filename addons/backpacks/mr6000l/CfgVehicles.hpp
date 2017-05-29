@@ -12,5 +12,6 @@ class TFAR_mr6000l: TFAR_Bag_Base {
     tf_dialog = "mr6000l_radio_dialog";
     tf_subtype = "airborne";
     tf_dialogUpdate = "[""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;";
+    tf_halfDuplexOverride = 0; //0 disables half-duplex override, everything greater than 0 enables it
 };
 HIDDEN_CLASS(tf_mr6000l : TFAR_mr6000l); //#Deprecated dummy class for backwards compat

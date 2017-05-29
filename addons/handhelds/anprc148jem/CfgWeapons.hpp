@@ -14,6 +14,7 @@ class TFAR_anprc148jem: ItemRadio {
     tf_subtype = "digital";
     tf_parent = "TFAR_anprc148jem";
     tf_additional_channel = 1;
+    tf_halfDuplexOverride = 0; //0 disables half-duplex override, everything greater than 0 enables it
 };
 HIDDEN_CLASS(tf_anprc148jem : TFAR_anprc148jem); //#Deprecated dummy class for backwards compat
 TF_RADIO_IDS(TFAR_anprc148jem,AN/PRC-148 JEM)
