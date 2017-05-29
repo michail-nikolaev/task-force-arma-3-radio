@@ -25,7 +25,7 @@ private _result = nil;
     true;
 } count (assignedItems TFAR_currentUnit);
 
-if (player != TFAR_currentUnit && !isNil "TFAR_usingRemote" && TFAR_usingRemote) then {
+if (player != TFAR_currentUnit && !isNil "TFAR_remoteRadio" && TFAR_remoteRadio) then {
     _result = TFAR_remoteRadioItem;
 };
 
