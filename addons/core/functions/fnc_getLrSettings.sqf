@@ -86,6 +86,12 @@ if (isNil "_radioCode") then {
     _value set [TFAR_CODE_OFFSET, _radioCode];
 };
 
+private _halfDuplexOverride = _value select HALFDUPLEX_OVERRIDE_OFFSET;
+if (isNil "_halfDuplexOverride") then {
+    _halfDuplexOverride = false; // TODO MorpheusXAUT load default from config?
+    _value set [HALFDUPLEX_OVERRIDE_OFFSET, _halfDuplexOverride];
+};
+
 [[_radio_object, _radio_id], + _value] call TFAR_fnc_setLrSettings;
 
 //Internal use only.. For assigning Curator Logics frequencies

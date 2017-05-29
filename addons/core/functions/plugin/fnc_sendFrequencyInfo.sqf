@@ -83,8 +83,7 @@ if (((count _lrRadios > 0) or (TFAR_currentUnit != player)) and {[TFAR_currentUn
             ) then {
                 private _radioCode = _x call TFAR_fnc_getLrRadioCode;
                 private _volume = _x call TFAR_fnc_getLrVolume;
-                // private _halfDuplexOverride = _x call TFAR_fnc_getLrHalfDuplexOverride;
-                private _halfDuplexOverride = true; // TODO MorpheusXAUT implement LR function above
+                private _halfDuplexOverride = _x call TFAR_fnc_getLrHalfDuplexOverride;
                 private _additionalChannel = _x call TFAR_fnc_getAdditionalLrChannel;
                 _freq_lr pushBack format ["%1%2|%3|%4|%5|%6", _x call TFAR_fnc_getLrFrequency, _radioCode, _volume, _x call TFAR_fnc_getLrStereo, typeof (_x select 0), _halfDuplexOverride];
                 if (_additionalChannel > -1 && {_additionalChannel != (_x call TFAR_fnc_getLrChannel)}) then {

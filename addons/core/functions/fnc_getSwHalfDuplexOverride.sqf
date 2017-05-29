@@ -16,7 +16,7 @@
         BOOLEAN - Half-duplex mode should be skipped for this SW radio
 
     Example:
-        [call TFAR_fnc_activeSwRadio] call TFAR_fnc_getSwHalfDuplexOverride;
+        (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwHalfDuplexOverride;
 */
 
 params[["_radio","",[""]]];
