@@ -590,7 +590,7 @@ void Teamspeak::setMyMetaData(const std::string & metaData) {
         std::string to_set;
         std::string sharedMsg = clientInfo;
         if (sharedMsg.find(START_DATA) == std::string::npos || sharedMsg.find(END_DATA) == std::string::npos) {
-            to_set = to_set + START_DATA + metaData + END_DATA;
+            to_set = sharedMsg + START_DATA + metaData + END_DATA;
         } else {	//Only set stuff between TFAR tags
             std::string before = sharedMsg.substr(0, sharedMsg.find(START_DATA));
             std::string after = sharedMsg.substr(sharedMsg.find(END_DATA) + strlen(END_DATA), std::string::npos);
