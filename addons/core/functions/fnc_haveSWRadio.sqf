@@ -32,10 +32,10 @@ if (isNil "TFAR_currentUnit" || {isNull (TFAR_currentUnit)}) exitWith {false};
 } count (assignedItems TFAR_currentUnit);
 
 if (player != TFAR_currentUnit) then {
-  {
-      if (_x call TFAR_fnc_isRadio) exitWith {_result = true};
-      true;
-  } count (assignedItems player);
+    {
+        if (_x call TFAR_fnc_isRadio) exitWith {_result = true};
+        true;
+    } count (assignedItems player);
 };
 
 TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_haveSWRadio_lastCache",diag_tickTime-0.1];
