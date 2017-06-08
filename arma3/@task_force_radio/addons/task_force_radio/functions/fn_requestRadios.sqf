@@ -60,9 +60,17 @@ if ((time - TF_last_request_time > 3) or {_this}) then {
 		_copyIndex = 0;
 		if ((typename _response) == "ARRAY") then {
 			private ["_radioCount","_settingsCount", "_startIndex"];
+
+			{
+				if (_x == "ItemRadio" || _x in _radiosToRequest) then {
+					TFAR_currentUnit unassignItem _x;					
+					TFAR_currentUnit removeItem _x;					
+				};
+			} forEach items TFAR_currentUnit;
+			
 			_radioCount = count _response;
 			_settingsCount = count TF_SettingsToCopy;
-			_startIndex = 0;
+			_startIndex = 0;			
 			if (_radioCount > 0) then {
 				if (TF_first_radio_request) then {
 					TF_first_radio_request = false;

@@ -48,6 +48,8 @@ while {true} do {
 					};
 					true;
 				} count _items;
+				//Bug fix for sectrator mode, player continue talk after being killed
+				"task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1", name _unit]);
 			}];
 			TFAR_currentUnit setVariable ["tf_handlers_set", true];
 		};
