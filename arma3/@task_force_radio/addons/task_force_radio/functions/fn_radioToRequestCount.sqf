@@ -74,8 +74,6 @@ TF_settingsToCopy = [];
 } count (items TFAR_currentUnit);
 
 {
-	TFAR_currentUnit unassignItem _x;
-	TFAR_currentUnit removeItem _x;
 	if (_x == "ItemRadio") then {
 		_to_remove set [_forEachIndex, _defaultRadio];
 	};
