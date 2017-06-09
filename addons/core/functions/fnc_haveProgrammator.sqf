@@ -22,8 +22,12 @@ if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith {false};
 
 _result = "TFAR_microdagr" in (assignedItems TFAR_currentUnit);
 
-if (player != TFAR_currentUnit && !isNil "TFAR_remoteRadio" && TFAR_remoteRadio) then {
-    _result = "TFAR_microdagr" in (assignedItems palyer);
+if (player != TFAR_currentUnit) then {
+  if (!isNil "TFAR_remoteRadio") then {
+    if (TFAR_remoteRadio) then {
+      _result = "TFAR_microdagr" in (assignedItems palyer);
+    };
+  };
 };
 
 _result
