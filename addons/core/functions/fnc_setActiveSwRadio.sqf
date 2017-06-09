@@ -22,9 +22,9 @@ private _old = (call TFAR_fnc_activeSwRadio);
 if (_this in (items TFAR_currentUnit)) then {
     TFAR_currentUnit unassignItem _old;
     TFAR_currentUnit assignItem _this;
-    TFAR_remoteRadio = false;
+    TFAR_remoteRadio = False;
 } else {
-    TFAR_remoteRadio = true;
+    TFAR_remoteRadio = True;
     TFAR_remoteRadioItem = _this;
 };
 ["OnSWChange", [TFAR_currentUnit, _this, _old]] call TFAR_fnc_fireEventHandlers;
