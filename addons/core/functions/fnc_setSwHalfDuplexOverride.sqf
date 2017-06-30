@@ -20,7 +20,10 @@
         [call TFAR_fnc_activeSwRadio, true] call TFAR_fnc_setSwHalfDuplexOverride;
 */
 
-params ["_radio_id", "_halfDuplexOverride"];
+params [
+    ["_radio_id", "", [""]],
+    ["_halfDuplexOverride", false, [false]]
+];
 
 private _settings = _radio_id call TFAR_fnc_getSwSettings;
 _settings set [HALFDUPLEX_OVERRIDE_OFFSET, _halfDuplexOverride];

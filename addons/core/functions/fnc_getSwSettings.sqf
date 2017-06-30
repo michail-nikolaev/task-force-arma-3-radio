@@ -65,18 +65,18 @@ if (isNil "_rc") then {
     _value set [TFAR_CODE_OFFSET, _rc];
 };
 
-private _hdo = _value select HALFDUPLEX_OVERRIDE_OFFSET;
-if (isNil "_hdo") then {
-    _hdo = false; //Override is disabled by default. No harm done if we don't find the config value since it's expected default behaviour anyways
-    private _overrideCfg = configFile >> "CfgWeapons" >> _radio >> "tf_halfDuplexOverride";
+private _halfDuplexOverride = _value select HALFDUPLEX_OVERRIDE_OFFSET;
+if (isNil "_halfDuplexOverride") then {
+    _halfDuplexOverride = false; //Override is disabled by default. No harm done if we don't find the config value since it's expected default behaviour anyways
+    private _overrideCfg = configFile >> "CfgWeapons" >> _radio >> "tf_halfDuplexOverride"; //Unfortunately, we have to check the config ourselves since there is no getConfigProperty for CfgWeapons yet...
     if (isNumber _overrideCfg) then {
         private _override = getNumber _overrideCfg;
         if (_override > 0) then { //tf_halfDuplexOverride is a number, 0 disables the override, everything greater than 0 enables it
-            _hdo = true;
+            _halfDuplexOverride = true;
         };
     };
 
-    _value set [HALFDUPLEX_OVERRIDE_OFFSET, _hdo];
+    _value set [HALFDUPLEX_OVERRIDE_OFFSET, _halfDuplexOverride];
 };
 
 [_radio, _value, true] call TFAR_fnc_setSwSettings;
