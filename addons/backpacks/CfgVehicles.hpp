@@ -10,6 +10,7 @@ class CfgVehicles {
     class TFAR_Bag_Base: Bag_Base {
         tf_dialogUpdate = "call TFAR_fnc_updateLRDialogToChannel;";
         tf_hasLRradio = 1;
+        tf_halfDuplexOverride = 0; //0 disables half-duplex override, everything greater than 0 enables it
         scope = HIDDEN;
         scopeCurator = HIDDEN;
         #include "\z\tfar\addons\static_radios\edenAttributes.hpp"
