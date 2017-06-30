@@ -111,14 +111,14 @@ TFAR::TFAR() {
         diag << TS_INDENT << TS_INDENT << "pttDelay: " << m_gameData.pttDelay.count() << "ms\n";
 
         std::array<char*, 3> stereoModeToString{ "stereo","left","right" };
-		std::array<char*, 2> halfDuplexOverrideToString{ "disabled", "enabled" };
+        std::array<char*, 2> halfDuplexOverrideToString{ "disabled", "enabled" };
         diag << TS_INDENT << TS_INDENT << "mySRFreq:\n";
         for (auto& it : m_gameData.mySwFrequencies) {
             diag << TS_INDENT << TS_INDENT << TS_INDENT << it.first << ":\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "radio: " << it.second.radioClassname << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "stereo: " << stereoModeToString[static_cast<uint8_t>(it.second.stereoMode)] << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "vol: " << it.second.volume << "\n";
-			diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "halfDuplexOverride: " << halfDuplexOverrideToString[it.second.halfDuplexOverride] << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "halfDuplexOverride: " << halfDuplexOverrideToString[static_cast<uint8_t>(it.second.halfDuplexOverride)] << "\n";
         }
         diag << TS_INDENT << TS_INDENT << "myLRFreq:\n";
         for (auto& it : m_gameData.myLrFrequencies) {
@@ -126,7 +126,7 @@ TFAR::TFAR() {
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "radio: " << it.second.radioClassname << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "stereo: " << stereoModeToString[static_cast<uint8_t>(it.second.stereoMode)] << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "vol: " << it.second.volume << "\n";
-			diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "halfDuplexOverride: " << halfDuplexOverrideToString[it.second.halfDuplexOverride] << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "halfDuplexOverride: " << halfDuplexOverrideToString[static_cast<uint8_t>(it.second.halfDuplexOverride)] << "\n";
         }
         diag << TS_INDENT << TS_INDENT << "Speaker:\n";
         for (auto& it : m_gameData.speakers) {

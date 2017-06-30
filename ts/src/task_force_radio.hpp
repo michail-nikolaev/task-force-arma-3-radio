@@ -14,7 +14,7 @@ struct FREQ_SETTINGS {
     int volume;
     stereoMode stereoMode;
     std::string radioClassname;
-	bool halfDuplexOverride;
+    bool halfDuplexOverride;
 };
 
 struct SPEAKER_DATA {
@@ -47,7 +47,7 @@ public:
 
     void setFreqInfos(const std::vector<std::string>& tokens) {
         //FREQ, str(_freq), str(_freq_lr)
-        //_alive, speakVolume, _nickname, 
+        //_alive, speakVolume, _nickname,
         //waves, TF_terrain_interception_coefficient, _globalVolume,
         //_receivingDistanceMultiplicator, TF_speakerDistance
         LockGuard_exclusive<ReadWriteLock> lock(&m_lock);
@@ -129,9 +129,9 @@ public:
     Signal<void(TSServerID serverID, TSClientID clientID, const std::string& clientNickname)> onTeamspeakClientJoined;
     Signal<void(TSServerID serverID, TSClientID clientID)> onTeamspeakClientLeft; //If clientID == -2 all clients Left (aka channel switched)
     Signal<void(TSServerID serverID, TSClientID clientID, const std::string& clientNickname)> onTeamspeakClientUpdated; //Some variable about him updated. Probably his nickname
-	Signal<void(TSServerID serverID, TSChannelID channelID)> onTeamspeakChannelSwitched;
+    Signal<void(TSServerID serverID, TSChannelID channelID)> onTeamspeakChannelSwitched;
 
-	Signal<void(bool currentSeriousModeSetting)> onSeriousModeChanged;
+    Signal<void(bool currentSeriousModeSetting)> onSeriousModeChanged;
 
     //Variable accessors
     std::string getPluginPath() const { return pluginPath; }
@@ -165,7 +165,7 @@ public:
     };
 
 private:
-	void checkIfSeriousModeEnabled(TSServerID serverID);
+    void checkIfSeriousModeEnabled(TSServerID serverID);
     std::string pluginPath;
     std::string pluginID;
     static bool isUpdateAvailable();
@@ -174,7 +174,7 @@ private:
     std::shared_ptr<serverDataDirectory> m_serverData;
     std::shared_ptr<AntennaManager> m_antennaManger;
     bool currentlyInGame;
-	bool isSeriousMode;
+    bool isSeriousMode;
 
 };
 

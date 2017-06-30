@@ -78,16 +78,16 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Positi
     X3DAUDIO_LISTENER listener{};
     std::tie(listener.OrientFront.x, listener.OrientFront.y, listener.OrientFront.z) = myViewDirection.get();
     listener.OrientFront.x = -listener.OrientFront.x;//East and West are mixed up
-    listener.OrientFront.y = -listener.OrientFront.y;//North and South are mixed up   
+    listener.OrientFront.y = -listener.OrientFront.y;//North and South are mixed up
     //listener.OrientFront.z = 0;
 
     auto myRightVector = myViewDirection.crossProduct({ 0,0,1 });
     auto myUpVector = myRightVector.crossProduct(myViewDirection);
-   
+
     //listener.OrientFront = { 0,-1,0 };
-    
-    
-    
+
+
+
     std::tie(listener.OrientTop.x, listener.OrientTop.y, listener.OrientTop.z) = myUpVector.get();// Direction3D(0/*-std::get<0>(myViewDirection.get())*/, -std::get<2>(myViewDirection.get()), std::get<1>(myViewDirection.get())).get();
     //listener.OrientTop = { 0,0,1 };
     std::tie(listener.Position.x, listener.Position.y, listener.Position.z) = myPosition.get();
@@ -283,13 +283,13 @@ std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(const std::string
             FREQ_SETTINGS settings;
             settings.volume = parseArmaNumberToInt(parts[1]);
             settings.stereoMode = static_cast<stereoMode>(parseArmaNumberToInt(parts[2]));
-			settings.halfDuplexOverride = false; // default value false, only enable override if provided below
-			if (parts.size() == 4) {
-				settings.radioClassname = parts[3];
-			} else if (parts.size() == 5) {
-				settings.radioClassname = parts[3];
-				settings.halfDuplexOverride = helpers::isTrue(parts[4]);
-			}
+            settings.halfDuplexOverride = false; // default value false, only enable override if provided below
+            if (parts.size() == 4) {
+                settings.radioClassname = parts[3];
+            } else if (parts.size() == 5) {
+                settings.radioClassname = parts[3];
+                settings.halfDuplexOverride = helpers::isTrue(parts[4]);
+            }
             result[parts[0]] = settings;
         }
     }
@@ -299,7 +299,7 @@ std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(const std::string
 vehicleDescriptor helpers::getVehicleDescriptor(const std::string& vehicleID) {
     vehicleDescriptor result;
     result.vehicleName == ""; // hear vehicle
-    result.vehicleIsolation = 0.0f; // hear 
+    result.vehicleIsolation = 0.0f; // hear
     if (vehicleID.find("_turnout") != std::string::npos) {
         result.vehicleName = vehicleID.substr(0, vehicleID.find("_turnout"));
     } else {

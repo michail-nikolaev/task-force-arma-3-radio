@@ -100,7 +100,7 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     } else if ((currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_LR || ignoreLrTangent) && canUseLRRadio) {//Sending from LR
         result.over = sendingRadioType::LISTEN_TO_LR;
     } else {
-        //He isn't actually sending on anything... 
+        //He isn't actually sending on anything...
         return result;
     }
 
@@ -150,8 +150,8 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
         LockGuard_shared lock(&TFAR::getInstance().m_gameData.m_lock);
         auto &frequencyInfo = TFAR::getInstance().m_gameData.myLrFrequencies[senderFrequency];
         if (!TFAR::config.get<bool>(Setting::full_duplex) && //If we are currently transmitting on that Radio we can't hear so we return before result gets valid
-            frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0 &&
-			!frequencyInfo.halfDuplexOverride) { //Certain radios can be capable of using full-duplex as an exception, check for half-duplex override
+            !frequencyInfo.halfDuplexOverride && //Certain radios can be capable of using full-duplex as an exception, check for half-duplex override
+            frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0) {
             return result;
         }
         result.on = receivingRadioType::LISTED_ON_LR;
@@ -161,8 +161,8 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
         LockGuard_shared lock(&TFAR::getInstance().m_gameData.m_lock);
         auto &frequencyInfo = TFAR::getInstance().m_gameData.mySwFrequencies[senderFrequency];
         if (!TFAR::config.get<bool>(Setting::full_duplex) && //If we are currently transmitting on that Radio we can't hear so we return before result gets valid
-            frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0 &&
-			!frequencyInfo.halfDuplexOverride) { //Certain radios can be capable of using full-duplex as an exception, check for half-duplex override) {
+            !frequencyInfo.halfDuplexOverride && //Certain radios can be capable of using full-duplex as an exception, check for half-duplex override) {
+            frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0) {
             return result;
         }
         result.on = receivingRadioType::LISTED_ON_SW;
@@ -181,7 +181,7 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
     auto myVecDescriptor = myData->getVehicleDescriptor();
     if (TFAR::config.get<bool>(Setting::intercomEnabled) &&
         currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_NONE && //Not currently transmitting on a Radio. If transmitting only direct speech.
-        vecDescriptor.vehicleName != "no" && vecDescriptor.vehicleName == myVecDescriptor.vehicleName //In same vehicle 
+        vecDescriptor.vehicleName != "no" && vecDescriptor.vehicleName == myVecDescriptor.vehicleName //In same vehicle
         && vecDescriptor.intercomSlot != -1 && vecDescriptor.intercomSlot == myVecDescriptor.intercomSlot) { //On same Intercom Channel
         result.emplace_back(
             sendingRadioType::LISTEN_TO_SW,	//unused
