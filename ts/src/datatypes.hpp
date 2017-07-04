@@ -93,6 +93,7 @@ namespace dataType {
         float length() const;
         float lengthSqr() const;
         float dotProduct(const Vector3D& other) const;
+        Vector3D crossProduct(const Vector3D& other) const;
         Vector3D normalized();
         bool isNull() const;
         Vector3D operator*(float multiplier) const {

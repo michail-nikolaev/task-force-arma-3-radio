@@ -1,6 +1,10 @@
-#include "Logger.hpp"
+﻿#include "Logger.hpp"
 #include "ts3_functions.h"
 #include <windows.h>
+#include "profilers.hpp"
+#include <ctime>
+#include <iomanip> // put_time
+
 extern struct TS3Functions ts3Functions;
 FileLogger::FileLogger(std::string filePath) : file(filePath) {}
 
@@ -8,10 +12,11 @@ FileLogger::~FileLogger() {}
 
 void FileLogger::log(const std::string& message) {
     if (file.is_open()) {
-        file << message;
+        auto now = std::chrono::system_clock::now();
+        auto in_time_t = std::chrono::system_clock::to_time_t(now);
+        file << std::put_time(std::localtime(&in_time_t), "%H:%M:%S") << " " << message;
         file.flush();
     }
-
 }
 
 void FileLogger::log(const std::string& message, LogLevel _loglevel) {
@@ -37,9 +42,13 @@ void Logger::log(LoggerTypes type, const std::string& message) {
 }
 
 void Logger::log(LoggerTypes type, const std::string & message, LogLevel _loglevel) {
-#if DEBUG_MOD_ENABLED || !isCI
-    if (_loglevel != LogLevel_DEVEL && _loglevel != LogLevel_DEBUG)
-#endif
+#if DEBUG_MOD_ENABLED || isCI
+    if (
+    #if ENABLE_PLUGIN_LOGS
+        type == LoggerTypes::pluginCommands ||
+    #endif
+        (_loglevel != LogLevel_DEVEL && _loglevel != LogLevel_DEBUG))
+    #endif
         getInstance()._log(type, message, _loglevel);
 }
 

@@ -13,6 +13,7 @@
                 <Spanish>Estas usando diferentes versiones de Task Force Radio. Versión del servidor : %1, Tu versión : %2</Spanish>
                 <Turkish>Versiyon uyuşmazlığı. Server versiyonu: %1, Senin versiyonun: %2</Turkish>
                 <Japanese>使っている Task Force Radio のバージョンが違います。サーバー バージョン: %1, あなたのバージョン: %2</Japanese>
+                <Korean>다른 버전의 Task Force Radio가 사용되고 있습니다. 서버 버전: %1, 설치된 버전: %2</Korean>
             </Key>
             <Key ID="STR_stereo_settings">
                 <Original>Stereo settings</Original>
@@ -25,6 +26,7 @@
                 <Spanish>Configuración de stereo</Spanish>
                 <Turkish>Ses ayarları</Turkish>
                 <Japanese>ステレオ設定</Japanese>
+                <Korean>스테레오 세팅</Korean>
             </Key>
             <Key ID="STR_stereo_settings_0">
                 <Original>Left and right</Original>
@@ -37,6 +39,7 @@
                 <Spanish>Izquierda y derecha</Spanish>
                 <Turkish>Sol ve sağ</Turkish>
                 <Japanese>左右</Japanese>
+                <Korean>양쪽</Korean>
             </Key>
             <Key ID="STR_stereo_settings_1">
                 <Original>Left only</Original>
@@ -49,6 +52,7 @@
                 <Spanish>Izquierda solo</Spanish>
                 <Turkish>Sadece sol</Turkish>
                 <Japanese>左から</Japanese>
+                <Korean>왼쪽</Korean>
             </Key>
             <Key ID="STR_stereo_settings_2">
                 <Original>Right only</Original>
@@ -61,6 +65,7 @@
                 <Spanish>Derecha solo</Spanish>
                 <Turkish>Sadece sağ</Turkish>
                 <Japanese>右から</Japanese>
+                <Korean>오른쪽</Korean>
             </Key>
             <Key ID="STR_speakers_settings_false">
                 <Original>Headphones</Original>
@@ -72,6 +77,7 @@
                 <Russian>Наушники</Russian>
                 <Spanish>Auriculares</Spanish>
                 <Japanese>ヘッドホン</Japanese>
+                <Korean>헤드폰</Korean>
             </Key>
             <Key ID="STR_speakers_settings_true">
                 <Original>Speakers</Original>
@@ -83,6 +89,7 @@
                 <Russian>Динамики</Russian>
                 <Spanish>Altavoces</Spanish>
                 <Japanese>スピーカー</Japanese>
+                <Korean>스피커</Korean>
             </Key>
             <Key ID="STR_additional_stereo_settings_0">
                 <Original>Additional: Left and right</Original>
@@ -95,6 +102,7 @@
                 <Spanish>Adicional: Izquierda y derecha</Spanish>
                 <Turkish>Ek: Sol ve sağ</Turkish>
                 <Japanese>追加: 左右</Japanese>
+                <Korean>추가 채널: 양쪽</Korean>
             </Key>
             <Key ID="STR_additional_stereo_settings_1">
                 <Original>Additional: Left only</Original>
@@ -107,6 +115,7 @@
                 <Spanish>Adicional: Izquierda solo</Spanish>
                 <Turkish>Ek: Sadece sol</Turkish>
                 <Japanese>追加: 左から</Japanese>
+                <Korean>추가 채널: 왼쪽</Korean>
             </Key>
             <Key ID="STR_additional_stereo_settings_2">
                 <Original>Additional: Right only</Original>
@@ -119,6 +128,7 @@
                 <Spanish>Adicional: Derecha solo</Spanish>
                 <Turkish>Ek: Sadece sağ</Turkish>
                 <Japanese>追加: 右から</Japanese>
+                <Korean>추가 채널: 오른쪽</Korean>
             </Key>
             <Key ID="STR_no_server">
                 <Original>No Task Force Radio deployed on server!</Original>
@@ -131,6 +141,7 @@
                 <Spanish>¡El servidor no dispone de Task Force Radio!</Spanish>
                 <Turkish>Radyo serverda oluşturulamadı!</Turkish>
                 <Japanese>サーバー上で Task Force Radio が動作していません！</Japanese>
+                <Korean>Task Force Radio가 서버에서 사용되고 있지 않습니다!</Korean>
             </Key>
             <Key ID="STR_current_freq">
                 <Original>Current frequency</Original>
@@ -143,6 +154,7 @@
                 <Spanish>Frecuencia actual</Spanish>
                 <Turkish>Mevcut frekans</Turkish>
                 <Japanese>現在の周波数</Japanese>
+                <Korean>현재 주파수</Korean>
             </Key>
             <Key ID="STR_current_channel">
                 <Original>Current channel</Original>
@@ -155,6 +167,7 @@
                 <Spanish>Canal actual</Spanish>
                 <Turkish>Mevcut kanal</Turkish>
                 <Japanese>現在のチャンネル</Japanese>
+                <Korean>현재 채널</Korean>
             </Key>
             <Key ID="STR_set_frequency">
                 <Original>Set frequency</Original>
@@ -167,6 +180,7 @@
                 <Spanish>Establecer frecuencia</Spanish>
                 <Turkish>Frekansı ayarla</Turkish>
                 <Japanese>周波数を設定</Japanese>
+                <Korean>주파수 설정</Korean>
             </Key>
             <Key ID="STR_set_additional">
                 <Original>Set additional channel</Original>
@@ -179,6 +193,7 @@
                 <Spanish>Ajuste el canal adicional</Spanish>
                 <Turkish>Ek kanal olarak ayarla</Turkish>
                 <Japanese>追加チャンネルを設定</Japanese>
+                <Korean>추가 채널 설정</Korean>
             </Key>
             <Key ID="STR_clear_frequency">
                 <Original>Clear frequency</Original>
@@ -191,6 +206,7 @@
                 <Spanish>Reiniciar frecuencia</Spanish>
                 <Turkish>Frekansı temizle</Turkish>
                 <Japanese>周波数を消去</Japanese>
+                <Korean>주파수 지우기</Korean>
             </Key>
             <Key ID="STR_previous_channel">
                 <Original>Previous channel</Original>
@@ -203,6 +219,7 @@
                 <Spanish>Canal anterior</Spanish>
                 <Turkish>Önceki kanal</Turkish>
                 <Japanese>前のチャンネル</Japanese>
+                <Korean>이전 채널</Korean>
             </Key>
             <Key ID="STR_next_channel">
                 <Original>Next channel</Original>
@@ -215,6 +232,7 @@
                 <Spanish>Canal siguiente</Spanish>
                 <Turkish>Sonraki kanal</Turkish>
                 <Japanese>次のチャンネル</Japanese>
+                <Korean>다음 채널</Korean>
             </Key>
             <Key ID="STR_rotator_volume">
                 <Original>Decrease volume | Increase volume</Original>
@@ -227,6 +245,7 @@
                 <Spanish>Reducir volumen | Aumentar volumen</Spanish>
                 <Turkish>Sesi azalt | Sesi yükselt</Turkish>
                 <Japanese>音量低下 | 音量増加</Japanese>
+                <Korean>볼륨 낮추기 | 볼륨 높이기</Korean>
             </Key>
             <Key ID="STR_rotator_channel">
                 <Original>Previous channel | Next channel</Original>
@@ -239,6 +258,7 @@
                 <Spanish>Canal anterior | Canal siguiente</Spanish>
                 <Turkish>Önceki kanal | Sonraki kanal</Turkish>
                 <Japanese>前のチャンネル | 次のチャンネル</Japanese>
+                <Korean>이전 채널 | 다음 채널</Korean>
             </Key>
             <Key ID="STR_increase_volume">
                 <Original>Increase volume</Original>
@@ -251,6 +271,7 @@
                 <Spanish>Aumentar volumen</Spanish>
                 <Turkish>Sesi yükselt</Turkish>
                 <Japanese>音量を上げる</Japanese>
+                <Korean>볼륨 높이기</Korean>
             </Key>
             <Key ID="STR_decrease_volume">
                 <Original>Decrease volume</Original>
@@ -263,6 +284,7 @@
                 <Spanish>Reducir volumen</Spanish>
                 <Turkish>Sesi azalt</Turkish>
                 <Japanese>音量を下げる</Japanese>
+                <Korean>볼륨 낮추기</Korean>
             </Key>
             <Key ID="STR_volume">
                 <Original>Change volume</Original>
@@ -275,6 +297,7 @@
                 <Spanish>Cambiar volumen</Spanish>
                 <Turkish>Sesi değiştirme</Turkish>
                 <Japanese>音量を変える</Japanese>
+                <Korean>볼륨 바꾸기</Korean>
             </Key>
             <Key ID="STR_incorrect_frequency">
                 <Original>Incorrect frequency value, range is %1-%2</Original>
@@ -287,6 +310,7 @@
                 <Spanish>Frecuencia incorrecta, el rango es %1-%2</Spanish>
                 <Turkish>Yanlış frekans değeri, Menzil %1-%2</Turkish>
                 <Japanese>周波数の値が正しくありません。適正値は %1-%2</Japanese>
+                <Korean>잘못된 주파수 값, 범위는 %1-%2입니다.</Korean>
             </Key>
             <Key ID="STR_radio_volume">
                 <Original>Volume: %1</Original>
@@ -299,6 +323,7 @@
                 <Spanish>Volumen: %1</Spanish>
                 <Turkish>Ses: %1</Turkish>
                 <Japanese>音量: %1</Japanese>
+                <Korean>볼륨: %1</Korean>
             </Key>
             <Key ID="STR_radio_channel_1">
                 <Original>Channel 1</Original>
@@ -311,6 +336,7 @@
                 <Spanish>Canal 1</Spanish>
                 <Turkish>Kanal 1</Turkish>
                 <Japanese>チャンネル 1</Japanese>
+                <Korean>채널 1</Korean>
             </Key>
             <Key ID="STR_radio_channel_2">
                 <Original>Channel 2</Original>
@@ -323,6 +349,7 @@
                 <Spanish>Canal 2</Spanish>
                 <Turkish>Kanal 2</Turkish>
                 <Japanese>チャンネル 2</Japanese>
+                <Korean>채널 2</Korean>
             </Key>
             <Key ID="STR_radio_channel_3">
                 <Original>Channel 3</Original>
@@ -335,6 +362,7 @@
                 <Spanish>Canal 3</Spanish>
                 <Turkish>Kanal 3</Turkish>
                 <Japanese>チャンネル 3</Japanese>
+                <Korean>채널 3</Korean>
             </Key>
             <Key ID="STR_radio_channel_4">
                 <Original>Channel 4</Original>
@@ -347,6 +375,7 @@
                 <Spanish>Canal 4</Spanish>
                 <Turkish>Kanal 4</Turkish>
                 <Japanese>チャンネル 4</Japanese>
+                <Korean>채널 4</Korean>
             </Key>
             <Key ID="STR_radio_channel_5">
                 <Original>Channel 5</Original>
@@ -359,6 +388,7 @@
                 <Spanish>Canal 5</Spanish>
                 <Turkish>Kanal 5</Turkish>
                 <Japanese>チャンネル 5</Japanese>
+                <Korean>채널 5</Korean>
             </Key>
             <Key ID="STR_radio_channel_6">
                 <Original>Channel 6</Original>
@@ -371,6 +401,7 @@
                 <Spanish>Canal 6</Spanish>
                 <Turkish>Kanal 6</Turkish>
                 <Japanese>チャンネル 6</Japanese>
+                <Korean>채널 6</Korean>
             </Key>
             <Key ID="STR_radio_channel_7">
                 <Original>Channel 7</Original>
@@ -383,6 +414,7 @@
                 <Spanish>Canal 7</Spanish>
                 <Turkish>Kanal 7</Turkish>
                 <Japanese>チャンネル 7</Japanese>
+                <Korean>채널 7</Korean>
             </Key>
             <Key ID="STR_radio_channel_8">
                 <Original>Channel 8</Original>
@@ -395,6 +427,7 @@
                 <Spanish>Canal 8</Spanish>
                 <Turkish>Kanal 8</Turkish>
                 <Japanese>チャンネル 8</Japanese>
+                <Korean>채널 8</Korean>
             </Key>
             <Key ID="STR_radio_channel_9">
                 <Original>Channel 9</Original>
@@ -407,6 +440,7 @@
                 <Spanish>Canal 9</Spanish>
                 <Turkish>Kanal 9</Turkish>
                 <Japanese>チャンネル 9</Japanese>
+                <Korean>채널 9</Korean>
             </Key>
             <Key ID="STR_depth">
                 <Original>Current depth</Original>
@@ -419,6 +453,7 @@
                 <Spanish>Profundidad actual</Spanish>
                 <Turkish>Mevcut derinlik</Turkish>
                 <Japanese>現在の深度</Japanese>
+                <Korean>현재 깊이</Korean>
             </Key>
             <Key ID="STR_active_sw_channel">
                 <Original>Channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
@@ -431,6 +466,7 @@
                 <Spanish>Canal onda corta:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
                 <Turkish>Mevcut derinlik: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
                 <Japanese>チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
+                <Korean>채널: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_active_additional_sw_channel">
                 <Original>Additional channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
@@ -443,6 +479,7 @@
                 <Spanish>Canal adicional:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
                 <Turkish>Ek kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
                 <Japanese>追加チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
+                <Korean>추가 채널: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_active_frequency">
                 <Original>Frequency: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
@@ -455,6 +492,7 @@
                 <Spanish>Frecuencia:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
                 <Turkish>Frekans: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
                 <Japanese>周波数: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
+                <Korean>주파수: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_active_lr_channel">
                 <Original>LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
@@ -467,6 +505,7 @@
                 <Spanish>Canal RL:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
                 <Turkish>UM(Uzun Menzil) kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
                 <Japanese>長距離ラジオ チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
+                <Korean>장파 채널: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_active_additional_lr_channel">
                 <Original>Additional LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
@@ -479,6 +518,7 @@
                 <Spanish>Canal adicional RL:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
                 <Turkish>Ek UM(Uzun Menzil) kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
                 <Japanese>追加長距離ラジオ チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
+                <Korean>장파 추가 채널: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_in_water_hint">
                 <Original>&lt;t color='#33ccff'&gt;Can't use radio under WATER&lt;/t&gt;</Original>
@@ -491,6 +531,7 @@
                 <Spanish>&lt;t color='#33ccff'&gt;No puedes utilizar radios bajo el agua&lt;/t&gt;</Spanish>
                 <Turkish>&lt;t color='#33ccff'&gt;Bu radyo su altında çalışmaz&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t color='#33ccff'&gt;水中で無線機は使えません&lt;/t&gt;</Japanese>
+                <Korean>&lt;t color=&apos;#33ccff&apos;&gt;수중에서는 무전기를 사용 할 수 없습니다&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_on_ground_hint">
                 <Original>&lt;t color='#993300'&gt;Can't use driver radio on the air&lt;/t&gt;</Original>
@@ -503,6 +544,7 @@
                 <Spanish>&lt;t color='#993300'&gt;No puedes utilizar la radio del conductor en el aire&lt;/t&gt;</Spanish>
                 <Turkish>&lt;t color='#993300'&gt;Bu radyo sadece su altında çalışır&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t color='#993300'&gt;空中で操縦士用の無線機は使えませんr&lt;/t&gt;</Japanese>
+                <Korean>&lt;t color=&apos;#993300&apos;&gt;물 밖에서는 잠수부 무전기를 사용 할 수 없습니다&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_unable_to_use_hint">
                 <Original>&lt;t color='#FF0000'&gt;you are not able to use the radio&lt;/t&gt;</Original>
@@ -515,6 +557,7 @@
                 <Spanish>&lt;t color='#FF0000'&gt;Incapaz de usar la radio&lt;/t&gt;</Spanish>
                 <Turkish>&lt;t color='#FF0000'&gt;Radyoyu kullanamazsın&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t color='#FF0000'&gt;無線機は使えません&lt;/t&gt;</Japanese>
+                <Korean>&lt;t color='#FF0000'&gt;이 라디오를 사용 할 수 없습니다.&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_select_action">
                 <Original>Select action</Original>
@@ -527,6 +570,7 @@
                 <Spanish>Selecciona acción</Spanish>
                 <Turkish>Eylem seç</Turkish>
                 <Japanese>動作を選択</Japanese>
+                <Korean>동작 선택</Korean>
             </Key>
             <Key ID="STR_select_action_setup">
                 <Original>Settings...</Original>
@@ -539,6 +583,7 @@
                 <Spanish>Configuración</Spanish>
                 <Turkish>Ayarlar...</Turkish>
                 <Japanese>設定中</Japanese>
+                <Korean>설정...</Korean>
             </Key>
             <Key ID="STR_select_action_setup_tooltip">
                 <Original>Open settings dialog</Original>
@@ -551,6 +596,7 @@
                 <Spanish>Abrir ventana de configuración</Spanish>
                 <Turkish>Ayarlar diyaloğunu aç</Turkish>
                 <Japanese>設定画面を開く</Japanese>
+                <Korean>설정 대화 상자 열기</Korean>
             </Key>
             <Key ID="STR_select_action_use">
                 <Original>Set as active</Original>
@@ -563,6 +609,7 @@
                 <Spanish>Seleccionar como activa</Spanish>
                 <Turkish>Aktif olarak ayarla</Turkish>
                 <Japanese>使うように設定</Japanese>
+                <Korean>활성 상태로 설정</Korean>
             </Key>
             <Key ID="STR_select_action_use_tooltip">
                 <Original>Use for transmiting</Original>
@@ -575,6 +622,7 @@
                 <Spanish>Usar para transmitir</Spanish>
                 <Turkish>İletmek için kullan</Turkish>
                 <Japanese>送信に使う</Japanese>
+                <Korean>전송중</Korean>
             </Key>
             <Key ID="STR_select_radio">
                 <Original>Select short range radio</Original>
@@ -587,6 +635,7 @@
                 <Spanish>Seleccionar radio de corto alcance</Spanish>
                 <Turkish>Kısa menzilli radyo seç</Turkish>
                 <Japanese>短距離無線機として選択</Japanese>
+                <Korean>단파 라디오 선택</Korean>
             </Key>
             <Key ID="STR_select_lr_radio">
                 <Original>Select long range radio</Original>
@@ -599,6 +648,7 @@
                 <Spanish>Seleccionar radio de largo alcance</Spanish>
                 <Turkish>Uzun menzilli radyo seç</Turkish>
                 <Japanese>長距離無線機として選択</Japanese>
+                <Korean>장파 라디오 선택</Korean>
             </Key>
             <Key ID="STR_transmit">
                 <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
@@ -611,6 +661,7 @@
                 <Spanish>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
                 <Turkish>&lt;t size='1' align='center' color='#00FF00'&gt;İletiliyor&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t size='1' align='center' color='#00FF00'&gt;送信中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
+                <Korean>&lt;t size='1' align='center' color='#00FF00'&gt;전송중&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_transmit_end">
                 <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
@@ -623,6 +674,7 @@
                 <Spanish>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
                 <Turkish>&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t size='1' align='center' color='#FF9900'&gt;送信終了&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
+                <Korean>&lt;t size='1' align='center' color='#FF9900'&gt;송신끝&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_additional_transmit">
                 <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
@@ -635,6 +687,7 @@
                 <Spanish>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
                 <Turkish>&lt;t size='1' align='center' color='#00FF00'&gt;İletiliyor&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t size='1' align='center' color='#00FF00'&gt;送信中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;追加チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
+                <Korean>&lt;t size='1' align='center' color='#00FF00'&gt;전송중&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;추가 채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_additional_transmit_end">
                 <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional сhannel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
@@ -647,6 +700,7 @@
                 <Spanish>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
                 <Turkish>&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t size='1' align='center' color='#FF9900'&gt;送信終了&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;追加チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
+                <Korean>&lt;t size='1' align='center' color='#FF9900'&gt;전송끝&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;추가 채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_waiting">
                 <Original>Waiting...</Original>
@@ -659,6 +713,7 @@
                 <Spanish>En espera...</Spanish>
                 <Turkish>Bekleniyor...</Turkish>
                 <Japanese>待機中・・・</Japanese>
+                <Korean>대기중...</Korean>
             </Key>
             <Key ID="STR_voice_volume">
                 <Original>&lt;t align='center' color='#66ff33'&gt;Voice volume: %1&lt;/t&gt;</Original>
@@ -671,6 +726,7 @@
                 <Spanish>&lt;t align='center' color='#66ff33'&gt;Volumen de la voz: %1&lt;/t&gt;</Spanish>
                 <Turkish>&lt;t align='center' color='#66ff33'&gt;Ses seviyesi: %1&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t align='center' color='#66ff33'&gt;声量: %1&lt;/t&gt;</Japanese>
+                <Korean>&lt;t align='center' color=&apos;#66ff33'&gt;음성 볼륨: %1&lt;/t&gt;</Korean>
             </Key>
             <Key ID="STR_voice_normal">
                 <Original>normal</Original>
@@ -683,42 +739,46 @@
                 <Spanish>Normal</Spanish>
                 <Turkish>Normal</Turkish>
                 <Japanese>通常</Japanese>
+                <Korean>보통</Korean>
             </Key>
             <Key ID="STR_voice_yelling">
                 <Original>yelling</Original>
                 <Czech>křičení</Czech>
                 <French>Forte</French>
-                <German>Laut</German>
+                <German>Schreien</German>
                 <Italian>Gridare</Italian>
                 <Polish>krzyk</Polish>
                 <Russian>крик</Russian>
                 <Spanish>Gritar</Spanish>
                 <Turkish>Bağırma</Turkish>
                 <Japanese>大声</Japanese>
+                <Korean>소리지르기</Korean>
             </Key>
             <Key ID="STR_voice_whispering">
                 <Original>whispering</Original>
                 <Czech>šeptání</Czech>
                 <French>Faible</French>
-                <German>Leise</German>
+                <German>Flüstern</German>
                 <Italian>Bassa voce</Italian>
                 <Polish>szept</Polish>
                 <Russian>шепот</Russian>
                 <Spanish>Susurrar</Spanish>
                 <Turkish>Fısıldama</Turkish>
                 <Japanese>小声</Japanese>
+                <Korean>속삭이기</Korean>
             </Key>
             <Key ID="STR_init">
                 <Original>Initialization...</Original>
                 <Czech>Inicializace...</Czech>
                 <French>Initialization...</French>
-                <German>Initialisiere...</German>
+                <German>Initialisierung...</German>
                 <Italian>Inizializzazione...</Italian>
                 <Polish>Inicjalizacja...</Polish>
                 <Russian>Инициализация...</Russian>
                 <Spanish>Inicializando...</Spanish>
                 <Turkish>Başlatılıyor...</Turkish>
                 <Japanese>初期化中・・・</Japanese>
+                <Korean>초기화...</Korean>
             </Key>
             <Key ID="STR_select_action_copy_settings_from">
                 <Original>Copy settings from...</Original>
@@ -731,6 +791,7 @@
                 <Spanish>Para copiar los ajustes de...</Spanish>
                 <Turkish>Ayarları kopyala...</Turkish>
                 <Japanese>次から設定をコピー中・・・</Japanese>
+                <Korean>설정 복사중...</Korean>
             </Key>
             <Key ID="STR_select_action_settings_from_tooltip">
                 <Original>Copy settings from another radio with same encryption code</Original>
@@ -743,6 +804,7 @@
                 <Spanish>Para copiar los ajustes de otra radio con el mismo código de cifrado</Spanish>
                 <Turkish>Aynı şifreleme kodu ile başka bir radyo ayarlarını kopyala</Turkish>
                 <Japanese>他の無線機の設定を、周波数とともにコピーします。</Japanese>
+                <Korean>다른 라디오에서 같은 암호화 코드를 사용하여 설정 복사</Korean>
             </Key>
             <Key ID="STR_wait_radio">
                 <Original>Waiting for the unique radio from server...</Original>
@@ -755,6 +817,7 @@
                 <Spanish>Obteniendo una radio única del servidor...</Spanish>
                 <Turkish>Sunucu radyoyu kuruyor...</Turkish>
                 <Japanese>サーバーからの個別な無線機を待っています・・・</Japanese>
+                <Korean>서버에서 개별 무전기를 기다리는 중...</Korean>
             </Key>
             <Key ID="STR_TFAR_NATO_crate" TODO="move all crates stringtables to core">
                 <Original>TFAR Radio (NATO)</Original>
@@ -764,6 +827,7 @@
                 <Spanish>TFAR Radio (NATO)</Spanish>
                 <Turkish>TFAR Radyo (NATO)</Turkish>
                 <Japanese>TFAR ラジオ (NATO)</Japanese>
+                <Korean>TFAR Radio (NATO)</Korean>
             </Key>
             <Key ID="STR_TFAR_EAST_crate">
                 <Original>TFAR Radio (CSAT)</Original>
@@ -773,6 +837,7 @@
                 <Spanish>TFAR Radio (CSAT)</Spanish>
                 <Turkish>TFAR Radyo (CSAT)</Turkish>
                 <Japanese>TFAR ラジオ (CSAT)</Japanese>
+                <Korean>TFAR Radio (CSAT)</Korean>
             </Key>
             <Key ID="STR_TFAR_IND_crate">
                 <Original>TFAR Radio (AAF)</Original>
@@ -782,6 +847,7 @@
                 <Spanish>TFAR Radio (AAF)</Spanish>
                 <Turkish>TFAR Radyo (AAF)</Turkish>
                 <Japanese>TFAR ラジオ (AAF)</Japanese>
+                <Korean>TFAR Radio (AAF)</Korean>
             </Key>
         </Container>
         <Container name="modules">
@@ -794,6 +860,7 @@
                 <Spanish>Radio LA</Spanish>
                 <Turkish>UM(Uzun Menzilli) Radyo</Turkish>
                 <Japanese>長距離ラジオ</Japanese>
+                <Korean>장파 무전기</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_SameSWFrequencies">
                 <Original>Same SW Frequencies for side</Original>
@@ -804,6 +871,7 @@
                 <Spanish>Mismas frecuencias de onda corta para el bando</Spanish>
                 <Turkish>Taraflar için SW frekansları</Turkish>
                 <Japanese>陣営に同じ SW 周波数</Japanese>
+                <Korean>진영에 같은 단파 주파수 부여</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_Rifle_Radio">
                 <Original>Rifleman radio</Original>
@@ -814,6 +882,7 @@
                 <Spanish>Radio de fusilero</Spanish>
                 <Turkish>Tüfekçi(rifleman) Radyosu</Turkish>
                 <Japanese>ライフルマン ラジオ</Japanese>
+                <Korean>보병 무전기</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_PR_Radio">
                 <Original>PR Radio</Original>
@@ -824,6 +893,7 @@
                 <Spanish>Radio PR</Spanish>
                 <Turkish>KR(Kişisel Radyo) Radyo</Turkish>
                 <Japanese>PR ラジオ</Japanese>
+                <Korean>개인 무전기</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_PRFrequencyTT">
                 <Original>PR default frequencies (as an SQF array)</Original>
@@ -834,6 +904,7 @@
                 <Spanish>Frecuencia por defecto PR (como array SQF)</Spanish>
                 <Turkish>KR varsayılar senkronize (SQF dizisi olarak)</Turkish>
                 <Japanese>PR の標準周波数 (SQF のアライで設定)</Japanese>
+                <Korean>개인 기본 주파수들 (SQF 이용)</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
                 <Original>Give rifleman radio</Original>
@@ -844,6 +915,7 @@
                 <Spanish>Dar una radio personal</Spanish>
                 <Turkish>Tüfekçi(rifleman) radyosu ver</Turkish>
                 <Japanese>ライフルマン ラジオを与える</Japanese>
+                <Korean>보병 무전기 부여</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_EnforceUsage_Description">
                 <Original>Enforces usage of TFAR in mission.</Original>
@@ -854,6 +926,7 @@
                 <Spanish>Fuerza el uso de TFAR en la misión.</Spanish>
                 <Turkish>TFAR görevde kullanmaya zorlama.</Turkish>
                 <Japanese>ミッション内でTFAR を強制使用させます。</Japanese>
+                <Korean>미션에서 TFAR 사용을 강제 합니다.</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_SameLrFrequencies">
                 <Original>Same LR Frequencies for side</Original>
@@ -864,6 +937,7 @@
                 <Spanish>Mismas frecuencias de onda larga para el bando</Spanish>
                 <Turkish>Taraflar için SW UM(Uzun Menzilli) frekansları</Turkish>
                 <Japanese>陣営に同じ長距離ラジオの周波数</Japanese>
+                <Korean>진영에 같은 장파 주파수 부여</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
                 <Original>Terrain Interception Coefficient</Original>
@@ -874,6 +948,7 @@
                 <Spanish>Coeficiente de intercepción del terreno</Spanish>
                 <Turkish>Kesişme Alan Katsayısı</Turkish>
                 <Japanese>地形による障害</Japanese>
+                <Korean>지형 방해 계수</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_LRFrequencyTT">
                 <Original>LR default frequencies (as an SQF array)</Original>
@@ -884,6 +959,7 @@
                 <Spanish>Frecuencia por defecto LA (como array SQF)</Spanish>
                 <Turkish>UM(Uzun Menzilli) varsayılan senkronize (SQF dizisi olarak)</Turkish>
                 <Japanese>長距離ラジオの標準周波数 (SQF のアライで設定)</Japanese>
+                <Korean>장파 기본 주파수들 (SQF 이용)</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_Rifle_RadioTT">
                 <Original>Rifleman Radio</Original>
@@ -894,6 +970,7 @@
                 <Spanish>Radio de fusilero</Spanish>
                 <Turkish>Tüfekçi(rifleman) Radyosu</Turkish>
                 <Japanese>ライフルマン ラジオ</Japanese>
+                <Korean>보병 무전기</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_PR_RadioTT">
                 <Original>Personal radio</Original>
@@ -904,6 +981,7 @@
                 <Spanish>Radio Personal</Spanish>
                 <Turkish>Kişisel Radyo</Turkish>
                 <Japanese>パーソナル ラジオ</Japanese>
+                <Korean>개인 무전기</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_LR_RadioTT">
                 <Original>Long Range radio</Original>
@@ -914,6 +992,7 @@
                 <Spanish>Radio de Largo Alcance</Spanish>
                 <Turkish>Uzun Menzilli radyo</Turkish>
                 <Japanese>長距離ラジオ</Japanese>
+                <Korean>장거리 무전기</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveTLradio">
                 <Original>Give team leaders a long range radio</Original>
@@ -924,6 +1003,7 @@
                 <Spanish>Dar a los lideres de equipo una radio de largo alcance</Spanish>
                 <Turkish>Takım liderine uzun menzil radyo ver</Turkish>
                 <Japanese>チーム リーダーに長距離ラジオを与える</Japanese>
+                <Korean>분대장에게 장파 무전기 부여</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_EncryptionCode">
                 <Original>Encryption Code</Original>
@@ -934,6 +1014,7 @@
                 <Spanish>Codigo de encriptación</Spanish>
                 <Turkish>Şifreleme kodu</Turkish>
                 <Japanese>暗号化コード</Japanese>
+                <Korean>암호화 코드</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_Frequencies">
                 <Original>TFAR – Frequencies</Original>
@@ -944,6 +1025,7 @@
                 <Spanish>TFAR – Frecuencias</Spanish>
                 <Turkish>TFAR – Frekansları</Turkish>
                 <Japanese>TFAR - 周波数</Japanese>
+                <Korean>TFAR - 주파수</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelPassword">
                 <Original>Channel Password</Original>
@@ -954,6 +1036,7 @@
                 <Spanish>Contraseña del canal</Spanish>
                 <Turkish>Kanal Şifresi</Turkish>
                 <Japanese>チャンネル パスワード</Japanese>
+                <Korean>채널 비밀번호</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelName">
                 <Original>Channel Name</Original>
@@ -964,6 +1047,7 @@
                 <Spanish>Nombre del canal</Spanish>
                 <Turkish>Kanal Adı</Turkish>
                 <Japanese>チャンネル名</Japanese>
+                <Korean>채널 이름</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
                 <Original>Terrain Interception Coefficient</Original>
@@ -974,6 +1058,7 @@
                 <Spanish>Coeficiente de intercepción del terreno</Spanish>
                 <Turkish>Kesişme Alan Katsayısı</Turkish>
                 <Japanese>地形による障害</Japanese>
+                <Korean>지형 방해 계수</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_SideRadio_Description">
                 <Original>Allows setting of default radios, encryption and frequencies for synced side.</Original>
@@ -984,6 +1069,7 @@
                 <Spanish>Permite configurar las radios por defecto, la encriptacion y las frecuencias del bando sincronizado.</Spanish>
                 <Turkish>Radyoları varsayılan ayarlarına izin ver, şifreleme ve senkronize için frekanslar.</Turkish>
                 <Japanese>陣営内で標準の無線機や暗号化、周波数を同期する設定を許可します。</Japanese>
+                <Korean>동기화된 진영에서 기본 설정 무전기와 암호화 및 파수를 설정 할 수 있습니다.</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_SideRadio">
                 <Original>TFAR – Side Radio</Original>
@@ -994,6 +1080,7 @@
                 <Spanish>TFAR – Radio del bando</Spanish>
                 <Turkish>TFAR – Yan(ikincil) Radyo</Turkish>
                 <Japanese>TFAR - 陣営用無線機</Japanese>
+                <Korean>TFAR - 진영 무전기</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
                 <Original>Same LR Frequencies for side</Original>
@@ -1004,6 +1091,7 @@
                 <Spanish>Mismas frecuencias de onda larga para el bando</Spanish>
                 <Turkish>Taraflar için SW UM(Uzun Menzilli) frekansları</Turkish>
                 <Japanese>陣営に同じ長距離ラジオの周波数</Japanese>
+                <Korean>진영에 같은 장파 주파수 부여</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
                 <Original>Same SW Frequencies for side</Original>
@@ -1014,6 +1102,7 @@
                 <Spanish>Mismas frecuencias de onda corta para el bando</Spanish>
                 <Turkish>Taraflar için SW frekansları</Turkish>
                 <Japanese>陣営に同じ SW の周波数</Japanese>
+                <Korean>진영에 같은 단파 주파수 부여</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveTLradioTT">
                 <Original>Give each team leader the appropriate long range radio</Original>
@@ -1024,6 +1113,7 @@
                 <Spanish>Da a cada lider de equipo una radio de largo alcance apropiada</Spanish>
                 <Turkish>Her takım liderine uygun uzun menzilli radyo ver</Turkish>
                 <Japanese>各チーム リーダーに適切な長距離用ラジオを与えます</Japanese>
+                <Korean>각 분대장에게 장거리 무전기 부여</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
                 <Original>Give a rifleman radio to regular soldiers</Original>
@@ -1034,6 +1124,7 @@
                 <Spanish>Dar una radio personal a cada miembro de equipo</Spanish>
                 <Turkish>Tüfekçi(rifleman) radyosunu askerlere ver</Turkish>
                 <Japanese>通常の兵士にライフルマン ラジオを与えます</Japanese>
+                <Korean>일반 보병에게 단파 무전기 부여</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelNameTT">
                 <Original>TeamSpeak Channel Name</Original>
@@ -1044,6 +1135,7 @@
                 <Spanish>Nombre del canal del TeamSpeak</Spanish>
                 <Turkish>TeamSpeak Kanal Adı</Turkish>
                 <Japanese>TeamSpeak チャンネル名</Japanese>
+                <Korean>팀스피크 채널 이름</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelPasswordTT">
                 <Original>TeamSpeak Channel Password</Original>
@@ -1054,6 +1146,7 @@
                 <Spanish>Contraseña del canal del TeamSpeak</Spanish>
                 <Turkish>TeamSpeak Kanal Şifresi</Turkish>
                 <Japanese>TeamSpeak チャンネル パスワード</Japanese>
+                <Korean>팀스피크의 채널 이름</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_Frequencies_Description">
                 <Original>Allows setting of default frequencies for sides.</Original>
@@ -1064,6 +1157,7 @@
                 <Spanish>Permite configurar las frecuencias por defecto para los bandos.</Spanish>
                 <Turkish>Taraflar için varsayılan frekans ayarları.</Turkish>
                 <Japanese>陣営へ標準周波数の設定を許可します。</Japanese>
+                <Korean>진영에 기본 주파수를 설정 합니다.</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_EnforceUsage">
                 <Original>TFAR – Enforce Usage</Original>
@@ -1074,6 +1168,7 @@
                 <Spanish>TFAR – Obligar su uso</Spanish>
                 <Turkish>TFAR – Kullanıma Zorlamak</Turkish>
                 <Japanese>TFAR - 強制使用</Japanese>
+                <Korean>TFAR – 규칙 적용</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_LRFrequency">
                 <Original>LR Freq.</Original>
@@ -1084,6 +1179,7 @@
                 <Spanish>LA Frec.</Spanish>
                 <Turkish>UM(Uzun Menzilli) Senkronize.</Turkish>
                 <Japanese>長距離ラジオの周波数。</Japanese>
+                <Korean>장파 주파수.</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_PRFrequency">
                 <Original>PR Freq.</Original>
@@ -1094,16 +1190,19 @@
                 <Spanish>Frec. RP</Spanish>
                 <Turkish>KR(Kişisel Radyo) Senkronize.</Turkish>
                 <Japanese>パーソナル ラジオの周波数。</Japanese>
+                <Korean>단파 주파수</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_FullDuplex">
                 <English>Full-Duplex</English>
                 <German>Voll-Duplex</German>
                 <Japanese>全二重通信</Japanese>
+                <Korean>양방향 통신</Korean>
             </Key>
             <Key ID="STR_TFAR_Mod_FullDuplexDescription">
                 <English>Allows Radios to simultaneously receive while transmitting.</English>
                 <German>Erlaubt Funkgeräten gleichzeitig zu senden und zu empfangen.</German>
                 <Japanese>無線機が送信中に受信も同時に行うようにします。</Japanese>
+                <Korean>전송하는 동안 동시에 수신을 가능하게 합니다.</Korean>
             </Key>
         </Container>
         <Container name="settings">
@@ -1113,27 +1212,31 @@
                 <German>Standard Funklautstärke</German>
                 <Polish>Domyślna głośność radia</Polish>
                 <Japanese>無線機の標準音量</Japanese>
+                <Korean>기본 무전기 볼륨</Korean>
             </Key>
             <Key ID="STR_radio_same_dd_frequencies_for_side">
                 <Original>Same DD frequencies for side</Original>
                 <French>Mêmes fréquences DD pour l'équipe</French>
-                <German>Gleiche unterwasser-Frequenzen für unterschiedlichen Fraktionen</German>
+                <German>Gleiche Unterwasser-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości DD dla strony</Polish>
                 <Japanese>陣営に同じ DD の周波数</Japanese>
+                <Korean>진영에 같은 수중 주파수</Korean>
             </Key>
             <Key ID="STR_radio_same_lr_frequencies_for_side">
                 <Original>Same LR frequencies for side</Original>
                 <French>Mêmes fréquences LP pour l'équipe</French>
-                <German>Gleiche langstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
+                <German>Gleiche Langstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości LR dla strony</Polish>
                 <Japanese>陣営に同じ長距離ラジオの周波数</Japanese>
+                <Korean>진영에 같은 장파 주파수</Korean>
             </Key>
             <Key ID="STR_radio_same_sw_frequencies_for_side">
                 <Original>Same SW frequencies for side</Original>
                 <French>Mêmes fréquences SW pour l'équipe</French>
-                <German>Gleiche kurzstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
+                <German>Gleiche Kurzstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości SW dla strony</Polish>
                 <Japanese>陣営に同じ SW の周波数</Japanese>
+                <Korean>진영에 같은 단파 주파수</Korean>
             </Key>
             <Key ID="STR_radio_give_microdagr_to_soldier">
                 <Original>Give MicroDAGR to soldier</Original>
@@ -1141,6 +1244,7 @@
                 <German>MicroDAGR an Soldaten vergeben</German>
                 <Polish>Przydziel żołnierzowi MicroDAGR</Polish>
                 <Japanese>兵士に MicroDAGR を与えます</Japanese>
+                <Korean>보병에게 MicroDAGR 부여</Korean>
             </Key>
             <Key ID="STR_radio_give_personal_radio_to_regular_soldier">
                 <Original>Give personal radio to regular soldier</Original>
@@ -1148,6 +1252,7 @@
                 <German>Persönliches Funkgerät an Soldaten vergeben</German>
                 <Polish>Przydziel podkomendnemu radio PR</Polish>
                 <Japanese>通常の兵士にパーソナル ラジオを与えます</Japanese>
+                <Korean>일반 보병에게 개인 무전기 부여</Korean>
             </Key>
             <Key ID="STR_radio_auto_long_range_radio">
                 <Original>Automatically give long range radio</Original>
@@ -1155,6 +1260,7 @@
                 <German>Langstrecken-Funkgeräte automatisch vergeben</German>
                 <Polish>Przydzielaj automatycznie radia LR</Polish>
                 <Japanese>自動的に長距離ラジオを与えいようにします</Japanese>
+                <Korean>자동으로 장파 무전기 부여</Korean>
             </Key>
         </Container>
         <Container name="diary">
@@ -1217,6 +1323,10 @@ Araçlar iki türlü sınıflandırılmıştır açık veya kapalı (izole). Eğ
 長距離ラジオは運転手や車長、射手、副操縦士でつかえます。すべての車両に無線機は組み込まれていません。&lt;br/&gt;
 各車両のスロットにはそれぞれ無線機があり、設定により分離されています。もし車両内で席を変わる場合は、あらかじめ設定を統一している必要があります。(例えば、運転手と射手席との間など)&lt;br/&gt;
 車両は外部と内部の音声があります。もし閉め切っている車両では、外部の音声は聞こえません。ですが車両から身を乗り出したりすると、外部と内部の両方の音声が聞こえます。</Japanese>
+                <Korean>&lt;br/&gt;
+장파 무전기는 운전석, 지휘관석, 사수석, 부조종석에서 사용 할 수 있습니다. 모든 차량이 무전기를 내장하고 있지는 않습니다.&lt;br/&gt;
+각 차량 슬룻에는 각각의 무전기가 있으며, 별도로 설정해야 합니다. 차량에서 위치를 변경해야 하는 경우 - 미리 다른 슬룻의 무전기를 설정하십시오. (예를 들어 운전석 또는 사수석)&lt;br/&gt;
+차량들은 개방 되거나 밀폐(폐쇄)로 분류 됩니다. 밀폐된 차량 안에 있을 경우 외부의 소리가 들리지 않습니다. (반대의 경우도 같음) 차량에서 내리면 내외부의 소리를 들을 수 있습니다.</Korean>
             </Key>
             <Key ID="STR_radio_vehicle">
                 <Original>Vehicles</Original>
@@ -1229,6 +1339,7 @@ Araçlar iki türlü sınıflandırılmıştır açık veya kapalı (izole). Eğ
                 <Spanish>Vehículo</Spanish>
                 <Turkish>Araçlar</Turkish>
                 <Japanese>車両</Japanese>
+                <Korean>차량</Korean>
             </Key>
             <Key ID="STR_radio_intercept_text">
                 <Original>&lt;br/&gt;
@@ -1273,6 +1384,10 @@ Varsayılan olarak, her ülke kendi şifreleme kodunu kullanır, yani düşman k
 プレイヤーを殺すと、無線機を取得できます。従って、全ての設定を保持しています(チャンネルや周波数、音量)。&lt;br/&gt;
 また車載無線機も設定も保存されています。&lt;/br&gt;
 標準では、各勢力がつかう暗号化コードがあり、敵と同じ周波数でも会話は聞こえません。敵の通信を聞くには、敵から無線機を奪い取る必要があります。</Japanese>
+                <Korean>&lt;br/&gt;
+사망한 플레이어에게서 무전기를 다른 사람이 사용 하게 되면, 사망한 플레이어가 설정한 모든 설정이 유지됩니다. (주파수, 채널, 볼륨 등)&lt;br/&gt;
+차량 무전기 또한 모든 설정이 저장됩니다.&lt;/br&gt;
+디폴트 설정에서, 각 진영의 무전기는 각자의 암호화 코드를 하는데, 적 진영의 플레이어가 사용하는 주파수로 무전을 송신하거나 수신 할 수 없습니다. 적의 무전 네트워크를 듣거나 방수하기 위해 무전소를 점령하거나 노획하는 것이 필요합니다.</Korean>
             </Key>
             <Key ID="STR_radio_intercept">
                 <Original>Radio Interception</Original>
@@ -1285,6 +1400,7 @@ Varsayılan olarak, her ülke kendi şifreleme kodunu kullanır, yani düşman k
                 <Spanish>Intercepción de la radio</Spanish>
                 <Turkish>Radyo kesişmesi</Turkish>
                 <Japanese>ラジオの傍受</Japanese>
+                <Korean>무전 방해</Korean>
             </Key>
             <Key ID="STR_radio_diver_text">
                 <Original>&lt;br/&gt;
@@ -1303,7 +1419,7 @@ En étant sous l'eau, Being underwater, vous pouvez entendre faiblement des voix
 Utiliser une radio sous-marine pour la communications entre plongeurs.&lt;br/&gt;
 Vous ne pouvez pas utiliser de radio sous l'eau (ni recevoir ni transmettre). Si vous voulez passer un message à la surface ou sur terre. &lt;br/&gt;Exception - les sous-marins à profondeur de périscope (les plongeurs peuvent utiliser une radio longue portée à ce moment la).</French>
                 <German>&lt;br/&gt;
-Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen. Auf nahe Distanz kann Ihr Partner allerdings undeutliche Töne wahrnehmen (Ausnahme: Sie befinden sich in einem Fahrzeug).&lt;br/&gt;
+Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen. Auf nahe Distanz kann Ihr Partner allerdings undeutliche Töne wahrnehmen (Ausnahme: Sie befinden sich in einem isolierten Fahrzeug).&lt;br/&gt;
 Wenn Sie sich unter Wasser befinden, können Sie Unterhaltungen an Land gedämpft wahrnehmen.&lt;br/&gt;
 Nutzen Sie den Unterwasser-Transceiver, um sich mit anderen Tauchern zu unterhalten.&lt;br/&gt;Sie können normale Funkgeräte unter Wasser nicht nutzen (weder Senden noch Empfangen).&lt;br/&gt;Ausnahme: U-Boot auf Periskoptiefe. Hier kann der Langstreckenfunk verwendet werden.</German>
                 <Italian>&lt;br/&gt;
@@ -1336,6 +1452,12 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
 水中では、かすかに地上からの会話が聞こえます。&lt;/br&gt;
 ダイバー同士が会話するには水中無線をつかいます。&lt;/br&gt;
 水中では通常の無線機を使えないため、地上に通信を送るには潜水艇の潜望鏡深度から行います。(操舵手は長距離ラジオを使用可能)</Japanese>
+                <Korean>&lt;br/&gt;
+수중에서는 다이버 복장을 착용해도 말을 할  수가 없습니다. 말을 하려 하면 웅얼거리는 소리를 근처에 있는 사람이 들을 수 있습니다. (예외 - 수상에서 부양하는 차량의 경우)&lt;br/&gt;
+지상에서는 수중에 있는 사람의 웅얼거림을 희미하게 들을 수 있습니다.  &lt;br/&gt;
+수중에서의 무전을 위해 수중 트렌시버를 사용하십시오.&lt;br/&gt;
+또 수중에서는 무전기를 사용 할 수 없습니다. (전송도 수신도 불가) 무전을 보내거나 받고 싶다면, 수면이나 지상으로 올라가야 합니다.&lt;br/&gt;
+예외 - 잠수정에서 무전기 전송을 위해 잠망경 심도로 잠항 하십시오. (장파 라디오를 사용 할 수 있습니다.)</Korean>
             </Key>
             <Key ID="STR_radio_diver">
                 <Original>For divers</Original>
@@ -1348,6 +1470,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Spanish>Para buceadores</Spanish>
                 <Turkish>Dalgıçlar için</Turkish>
                 <Japanese>運転手向け</Japanese>
+                <Korean>잠수용</Korean>
             </Key>
             <Key ID="STR_radio_control_text">
                 <Original>&lt;br/&gt;
@@ -1577,18 +1700,43 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
 &lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	パーソナル ラジオの追加チャンネルを使って話す。&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	長距離ラジオの追加チャンネルを使って話す。&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	ラジオを閉じる。</Japanese>
+                <Korean>&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	직접 말하기.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	단파 무전으로 말하기.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	장파 무전으로 말하기.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	개인 무전기 인터페이스 엽니다. (무전기가 인벤토리 슬룻에 있어야 합니다.) 만약 여러개의 무전기가 있다면, 필요한 것을 선택하여 사용 할 수 있습니다. 그리고 전송에 사용될 무전기를 활성 할 수 있습니다.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; 사용 가능한 단파 무전기 순환(바꾸기)&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; 단파 무전기 스테레오 모드 전환 양쪽/왼쪽/오른쪽&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	단파 무전기 채널 전환&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	장파 무전기 인터페이스를 엽니다.(장파 무전기를 등에 매고 있어야 하고, 차량의 운전석, 조종석에 있어야 합니다.) 만약 여러개의 무전기를 가지고 있다면, 그 중 하나를 선택하는 메세지가 출력됩니다. 한 개의 무전기만 활성 할 수 있습니다.(다른 무전기가 스피커 설정 일 때, 듣기 가능)&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; 사용 가능한 장파 무전기 순환 (바꾸기)&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; 장파 무전기 스테레오 모드 전환 양쪽/왼쪽/오른쪽&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	장파 무전기 채널 전환&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	직접 말하기 볼륨을 변경합니다. (보통, 속삭이기, 소리지르기) 무전기의 송신 볼륨에 영향을 주지 않습니다.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	수중 트렌시버 인터페이스를 엽니다. (수중 호흡기를 착용 해야 합니다)&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	수중 트렌시버로 말하기&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	다음 개인 무전기 선택&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	이전 개인 무전기 선택&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	다음 장파 무전기 선택&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	이전 단파 무전기 선택&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	개인 무전기 스테레오 모드 변경&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	장파 무전기 스테레오 모드 변경&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	개인 무전기의 추가 채널에 말하기&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	장파 무전기의 추가 채널에 말하기&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	무전기 인터페이스에서 나가기</Korean>
             </Key>
             <Key ID="STR_radio_control">
                 <Original>Controls</Original>
                 <Czech>Ovládání</Czech>
                 <French>Contrôles</French>
-                <German>Einstellungen</German>
+                <German>Steuerung</German>
                 <Italian>Controlli</Italian>
                 <Polish>Sterowanie</Polish>
                 <Russian>Управление</Russian>
                 <Spanish>Controles</Spanish>
                 <Turkish>Kontroller</Turkish>
                 <Japanese>操作</Japanese>
+                <Korean>조작</Korean>
             </Key>
             <Key ID="STR_subject_name">
                 <Original>Radio</Original>
@@ -1601,6 +1749,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Spanish>Radio</Spanish>
                 <Turkish>Radyo</Turkish>
                 <Japanese>無線機</Japanese>
+                <Korean>무전기</Korean>
             </Key>
         </Container>
     </Package>
