@@ -10,6 +10,7 @@
 #include <unordered_map>
 #include "Locks.hpp"
 #include "antennaManager.h"
+#include <set>
 
 enum class sendingRadioType {   //Receiving FROM senders Radio.
     LISTEN_TO_SW,
@@ -336,7 +337,8 @@ public:
     float voiceVolumeMultiplifier = 1.f;
     bool isSpectating;
     bool isEnemyToPlayer;
-    bool receivingTransmission = false; //This unit is currently receiving a transmission. Only works for local player
+    uint8_t receivingTransmission = 0; //This unit is currently receiving a transmission. Only works for local player
+    std::set<std::string> receivingFrequencies;
     clientDataEffects effects;
 private:
     using LockGuard_shared = LockGuard_shared<ReadWriteLock>;

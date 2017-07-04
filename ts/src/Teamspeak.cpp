@@ -1,4 +1,4 @@
-#include "Teamspeak.hpp"
+﻿#include "Teamspeak.hpp"
 #include "public_errors.h"
 #include "public_errors_rare.h"
 #include "public_rare_definitions.h"
@@ -8,6 +8,8 @@
 #include "Logger.hpp"
 #include "task_force_radio.hpp"
 #include "version.h"
+#include <ctime> // localtime
+#include <iomanip> // put_time
 using namespace dataType;
 struct TS3Functions ts3Functions;
 
@@ -304,6 +306,9 @@ void Teamspeak::_onClientMoved(TSServerID serverConnectionHandlerID, TSClientID 
         if (clientNickname.empty()) return;
         TFAR::getInstance().onTeamspeakClientJoined(serverConnectionHandlerID, clientID, clientNickname);
     } else if (getInstance().serverData[serverConnectionHandlerID].myLastKnownChannel == oldChannel) {
+        auto mutedClients = getInstance().serverData[serverConnectionHandlerID].getMutedClients();
+        if (std::find(mutedClients.begin(),mutedClients.end(),clientID) != mutedClients.end())
+            setClientMute(serverConnectionHandlerID, clientID, false); //Unmute him if he is muted
         TFAR::getInstance().onTeamspeakClientLeft(serverConnectionHandlerID, clientID);
     }
 }
@@ -327,6 +332,10 @@ void Teamspeak::_onClientJoined(TSServerID serverConnectionHandlerID, TSClientID
 }
 
 void Teamspeak::_onClientLeft(TSServerID serverConnectionHandlerID, TSClientID clientID) {
+    //#TODO performance? :u
+    auto mutedClients = getInstance().serverData[serverConnectionHandlerID].getMutedClients();
+    if (std::find(mutedClients.begin(), mutedClients.end(), clientID) != mutedClients.end())
+        setClientMute(serverConnectionHandlerID, clientID, false); //Unmute him if he was muted
     TFAR::getInstance().onTeamspeakClientLeft(serverConnectionHandlerID, clientID);
 }
 
@@ -581,7 +590,7 @@ void Teamspeak::setMyMetaData(const std::string & metaData) {
         std::string to_set;
         std::string sharedMsg = clientInfo;
         if (sharedMsg.find(START_DATA) == std::string::npos || sharedMsg.find(END_DATA) == std::string::npos) {
-            to_set = to_set + START_DATA + metaData + END_DATA;
+            to_set = sharedMsg + START_DATA + metaData + END_DATA;
         } else {	//Only set stuff between TFAR tags
             std::string before = sharedMsg.substr(0, sharedMsg.find(START_DATA));
             std::string after = sharedMsg.substr(sharedMsg.find(END_DATA) + strlen(END_DATA), std::string::npos);
@@ -743,6 +752,9 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
 
     if (std::string(command).compare("diag") == 0) {
         std::stringstream diag;
+        auto now = std::chrono::system_clock::now();
+        auto in_time_t = std::chrono::system_clock::to_time_t(now);
+        diag << "diag from " << std::put_time(std::localtime(&in_time_t), "%H:%M:%S") << "\n";
         TFAR::getInstance().doDiagReport(diag);
         ts3Functions.printMessageToCurrentTab(diag.str().c_str());
         return 0; /* Plugin handled command */

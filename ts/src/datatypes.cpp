@@ -106,6 +106,15 @@ float dataType::Vector3D::dotProduct(const Vector3D& other) const {
     return m_x*other.m_x + m_y*other.m_y + m_z*other.m_z;
 }
 
+Vector3D dataType::Vector3D::crossProduct(const Vector3D & other) const
+{
+    return {
+        m_y * other.m_z - m_z * other.m_y,
+        m_z * other.m_x - m_x * other.m_z,
+        m_x * other.m_y - m_y * other.m_x
+    };
+}
+
 dataType::Vector3D dataType::Vector3D::normalized() {
     Vector3D other;
     float len = dataType::fast_invsqrt(length());
@@ -223,7 +232,7 @@ Velocity3D dataType::Velocity3D::operator*(const std::chrono::duration<float>& t
 
 AngleRadians AngleRadians::operator+(const AngleRadians& other) const {
     float newAngle = angle + other.angle;
-    while (newAngle > M_PI_FLOAT * 2) //convert 370°->10°
+    while (newAngle > M_PI_FLOAT * 2) //convert 370Â°->10Â°
         newAngle -= M_PI_FLOAT * 2;
     return AngleRadians(newAngle);
 }

@@ -45,7 +45,7 @@ if (_activated) then {
     private _radio = _logic getVariable "Radio";
     private _currentSide = "North";
 
-    TFAR_SameSRFrequenciesForSide = true;
+    TFAR_SameSRFrequenciesForSide = true;//#TODO this doesn't work with CBA settings
     TFAR_SameLRFrequenciesForSide = true;
 
     private _RiflemanRadio = _logic getVariable "RiflemanRadio";

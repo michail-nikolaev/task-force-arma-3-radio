@@ -9,6 +9,7 @@
 #include "string_ref.hpp"
 #include <array>
 #include <functional>
+#include <emmintrin.h>
 
 constexpr int const_strlen(const char* str) {
 #ifndef VS15
@@ -83,6 +84,8 @@ public:
     static void applyILD(short * samples, size_t sampleCount, int channels, Direction3D direction, AngleRadians viewAngle); //interaural level difference
 
     static void applyILD(short * samples, size_t sampleCount, int channels, Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection); //interaural level difference
+
+    static void shortFloatMultEx(short* data, size_t elementCount, __m128 multPack);
 
     static float parseArmaNumber(const std::string& armaNumber);
     static float parseArmaNumber(const char* armaNumber);
