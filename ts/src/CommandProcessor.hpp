@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <thread>
 #include <queue>
 #include <mutex>
@@ -22,39 +22,39 @@ enum class gameCommand {
     AddRadioTower,
     DeleteRadioTower,
     RECV_FREQS,
-	unknown
+    unknown
 };
 
 class CommandProcessor {
 public:
-	CommandProcessor();
-	~CommandProcessor();
-	void stopThread();
-	void queueCommand(const std::string& command);
-	std::string processCommand(const std::string& command);
+    CommandProcessor();
+    ~CommandProcessor();
+    void stopThread();
+    void queueCommand(const std::string& command);
+    std::string processCommand(const std::string& command);
 
-    static gameCommand toGameCommand(const boost::string_ref& textCommand,size_t tokenCount);
+    static gameCommand toGameCommand(const boost::string_ref& textCommand, size_t tokenCount);
 private:
-	void threadRun();
-	void processAsynchronousCommand(const std::string& command);//Called inside thread
+    void threadRun();
+    void processAsynchronousCommand(const std::string& command);//Called inside thread
 
-	void processSpeakers(std::vector<std::string>& tokens);
-	void processUnitKilled(std::string &&name, TSServerID serverConnection);
+    void processSpeakers(std::vector<std::string>& tokens);
+    void processUnitKilled(std::string &&name, TSServerID serverConnection);
 
-	std::string processUnitPosition(TSServerID serverConnection, unitPositionPacket & packet);
-	static std::string ts_info(const boost::string_ref &command);
+    void processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet);
+    static std::string ts_info(const boost::string_ref &command);
 
-	static void process_tangent_off(PTTDelayArguments arguments);
+    static void process_tangent_off(PTTDelayArguments arguments);
 
-	static void disableVoiceAndSendCommand(std::string commandToBroadcast, dataType::TSServerID currentServerConnectionHandlerID, bool pressed);
+    static void disableVoiceAndSendCommand(std::string commandToBroadcast, dataType::TSServerID currentServerConnectionHandlerID, bool pressed);
 
-	static std::string convertNickname(const std::string& nickname);
+    static std::string convertNickname(const std::string& nickname);
 
 
-	std::queue<std::string> commandQueue;
-	std::unique_ptr<std::thread> myThread;
-	std::condition_variable threadWorkCondition;
-	std::mutex theadMutex;
-	bool shouldRun = true;//don't need atomic here. believe me.
+    std::queue<std::string> commandQueue;
+    std::unique_ptr<std::thread> myThread;
+    std::condition_variable threadWorkCondition;
+    std::mutex theadMutex;
+    bool shouldRun = true;//don't need atomic here. believe me.
 };
 

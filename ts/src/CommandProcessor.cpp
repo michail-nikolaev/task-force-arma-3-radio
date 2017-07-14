@@ -516,33 +516,26 @@ void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverCo
 
 
 DEFINE_API_PROFILER(processUnitPosition);
-std::string CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket & packet) {
+
+void CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet) {
     API_PROFILER(processUnitPosition);
-    //#TODO remove all that speaking stuff. Its not handled here anymore
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
-    if (!clientDataDir)
-        return "NOT_SPEAKING";
+    if (!clientDataDir) return;
 
     auto clientData = clientDataDir->getClientData(packet.nickname);
-    if (!clientData)
-        return "NOT_SPEAKING";
+    if (!clientData) return;
 
     packet.myData = clientData == clientDataDir->myClientData;
 
     clientData->updatePosition(packet);
-    bool clientTalkingOnRadio = (clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE) || clientData->clientTalkingNow;
+    //bool clientTalkingOnRadio = (clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE) || clientData->clientTalkingNow;
 
-    if (clientData == clientDataDir->myClientData) {
+    if (packet.myData) {
         Teamspeak::setMyClient3DPosition(serverConnection, Position3D());
     } else {
         setGameClientMuteStatus(serverConnection, clientData->clientId);
         Teamspeak::setClient3DPosition(serverConnection, clientData->clientId, Position3D());
     }
-
-    if (clientTalkingOnRadio || clientData->clientTalkingNow) {
-        return "SPEAKING";
-    }
-    return "NOT_SPEAKING";
 }
 
 std::string CommandProcessor::ts_info(const boost::string_ref &command) {
