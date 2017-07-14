@@ -363,6 +363,7 @@ private:
         if (val == "no") {
             vehicleId.vehicleName = "no";
             vehicleId.vehicleIsolation = 0.f;
+            vehicleId.intercomSlot = -1;
             velocity = { 0,0,0 };
         }
         auto split = helpers::split(val, '\x10');
