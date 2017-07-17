@@ -76,26 +76,49 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Positi
     //#X3DAudio make player local effect so X3DAudio objects are local to every player.
     //#X3DAudio fix up vector problem
     X3DAUDIO_LISTENER listener{};
+
+
+   
     std::tie(listener.OrientFront.x, listener.OrientFront.y, listener.OrientFront.z) = myViewDirection.get();
-    listener.OrientFront.x = -listener.OrientFront.x;//East and West are mixed up
-    listener.OrientFront.y = -listener.OrientFront.y;//North and South are mixed up   
+    //listener.OrientFront.z = std::clamp(listener.OrientFront.z, -0.65f, 1.f);
+    listener.OrientFront.x = listener.OrientFront.x;//East and West are mixed up
+    listener.OrientFront.y = listener.OrientFront.y;//North and South are mixed up   
     //listener.OrientFront.z = 0;
+
+
+    /*
+onEachFrame {
+
+drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd ((getCameraViewDirection player2) vectorMultiply 20), [1,0,1,1]];
+
+rightVec = (getCameraViewDirection player2) vectorCrossProduct [0,0,1];
+drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (rightVec vectorMultiply 20), [1,0,1,1]];
+
+upVec = rightVec vectorCrossProduct (getCameraViewDirection player2);
+drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec vectorMultiply 20), [1,0,1,1]];
+}
+     */
 
     auto myRightVector = myViewDirection.crossProduct({ 0,0,1 });
     auto myUpVector = myRightVector.crossProduct(myViewDirection);
-   
+
     //listener.OrientFront = { 0,-1,0 };
-    
-    
-    
+
+
+
     std::tie(listener.OrientTop.x, listener.OrientTop.y, listener.OrientTop.z) = myUpVector.get();// Direction3D(0/*-std::get<0>(myViewDirection.get())*/, -std::get<2>(myViewDirection.get()), std::get<1>(myViewDirection.get())).get();
+    
+    //std::tie(listener.OrientTop.x, listener.OrientTop.y, listener.OrientTop.z) = Direction3D(-std::get<0>(myViewDirection.get()), -std::get<1>(myViewDirection.get()), 1.f).get();
+
+    
+    
     //listener.OrientTop = { 0,0,1 };
-    std::tie(listener.Position.x, listener.Position.y, listener.Position.z) = myPosition.get();
+    std::tie(listener.Position.x, listener.Position.y, listener.Position.z) = emitterPosition.get();
     listener.pCone = NULL;
 
     X3DAUDIO_EMITTER emitter{};
     emitter.pCone = NULL;
-    std::tie(emitter.Position.x, emitter.Position.y, emitter.Position.z) = emitterPosition.get();
+    std::tie(emitter.Position.x, emitter.Position.y, emitter.Position.z) = myPosition.get();
     std::tie(emitter.OrientFront.x, emitter.OrientFront.y, emitter.OrientFront.z) = emitterViewDirection.get();
     //emitter.OrientFront = { 0,1,0 };
     //std::tie(emitter.OrientTop.x, emitter.OrientTop.y, emitter.OrientTop.z) = emitterRotation.up.get();
