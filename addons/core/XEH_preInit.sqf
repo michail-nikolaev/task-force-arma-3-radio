@@ -66,6 +66,24 @@ if (hasInterface) then {//Clientside Variables
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_East,"TFAR_mr6000l");
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_Independent,"TFAR_anarc164");
 
+    //#depreacted
+    VARIABLE_DEFAULT(TF_defaultWestBackpack,"TFAR_rt1523g");
+    VARIABLE_DEFAULT(TF_defaultEastBackpack,"TFAR_mr3000");
+    VARIABLE_DEFAULT(TF_defaultGuerBackpack,"TFAR_anprc155");
+
+    VARIABLE_DEFAULT(TF_defaultWestPersonalRadio,"TFAR_anprc152");
+    VARIABLE_DEFAULT(TF_defaultEastPersonalRadio,"TFAR_fadak");
+    VARIABLE_DEFAULT(TF_defaultGuerPersonalRadio,"TFAR_anprc148jem");
+
+    VARIABLE_DEFAULT(TF_defaultWestRiflemanRadio,"TFAR_rf7800str");
+    VARIABLE_DEFAULT(TF_defaultEastRiflemanRadio,"TFAR_pnr1000a");
+    VARIABLE_DEFAULT(TF_defaultGuerRiflemanRadio,"TFAR_anprc154");
+
+    VARIABLE_DEFAULT(TF_defaultWestAirborneRadio,"TFAR_anarc210");
+    VARIABLE_DEFAULT(TF_defaultEastAirborneRadio,"TFAR_mr6000l");
+    VARIABLE_DEFAULT(TF_defaultGuerAirborneRadio,"TFAR_anarc164");
+
+
     VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
 
     MUTEX_INIT(TF_radio_request_mutex);

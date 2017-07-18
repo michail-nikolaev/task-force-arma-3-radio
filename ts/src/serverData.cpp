@@ -182,6 +182,7 @@ void serverData::debugPrint(std::stringstream& diag, bool withPos) const {
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "LPOSTIME: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - cData->getLastPositionUpdateTime()).count() << "us\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "CurTransFreq: " << cData->getCurrentTransmittingFrequency() << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "spectator: " << cData->isSpectating << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "IC: n:" << cData->getVehicleDescriptor().vehicleName << " id:"<< cData->getVehicleDescriptor().intercomSlot << "\n";
         }
         //std::string entry = "Entry " + std::to_string(std::get<0>(it)) + "=" + std::to_string(std::hash<indexedType>()(cData->getNickname()))
         //    + " " + std::to_string(std::get<1>(it).baseType()) + "=" + std::to_string(cData->clientId.baseType()) + " " + cData->getNickname();
