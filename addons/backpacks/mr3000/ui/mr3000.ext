@@ -189,7 +189,7 @@ class channel_4: HiddenButton
     y = 0.4989 * safezoneH + safezoneY;
     w = 0.021 * safezoneW;
     h = 0.0308069 * safezoneH;
-    action = "[TF_lr_dialog_radio, 3)] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
+    action = "[TF_lr_dialog_radio, 3] call TFAR_fnc_setLrChannel; call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     tooltip = $STR_radio_channel_4;
 };
 class channel_5: HiddenButton

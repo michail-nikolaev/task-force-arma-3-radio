@@ -1,8 +1,17 @@
 #include "antennaManager.h"
+#include "task_force_radio.hpp"
 
 
-
-AntennaManager::AntennaManager() {}
+AntennaManager::AntennaManager() {
+    TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
+        diag << "AM:\n";
+        for (auto& it : antennas) {
+            float x, y, z;
+            std::tie(x, y, z) = it->getPos().get();
+            diag << TS_INDENT << it->getID().getCreator() << " "<< it->getID().getobjID() << " (" << x << "," << y << "," << z << ") " << it->getRange() << " " << it->hasSatelliteUplink() << "\n";
+        }
+    });
+}
 
 
 AntennaManager::~AntennaManager() {}

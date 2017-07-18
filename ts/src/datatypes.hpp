@@ -193,6 +193,8 @@ namespace dataType {
             return other.creator != creator || other.objID != objID;
         }
         bool isNull() const { return objID == 0; }
+        int getCreator() const { return creator; }
+        int getobjID() const { return objID; }
     private:
         int creator{ 0 };
         int objID{ 0 };
