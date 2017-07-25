@@ -2,7 +2,7 @@
 
 class CfgPatches {
     class ADDON {
-        name = "TFAR - Core";
+        name = "$STR_TFAR_Core";
         units[] = {
             "tfar_ModuleTaskForceRadioEnforceUsage",
             "tfar_ModuleTaskForceRadio",
@@ -23,7 +23,7 @@ class CfgPatches {
     };
 
     class task_force_radio {
-        name = "TFAR - Legacy Compatibility";
+        name = "$STR_TFAR_LegacyCompatibility";
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -31,7 +31,7 @@ class CfgPatches {
         author = QUOTE(AUTHORS);
     };
     class task_force_radio_items {
-        name = "TFAR - Legacy Compatibility";
+        name = "$STR_TFAR_LegacyCompatibility";
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -43,9 +43,9 @@ class CfgPatches {
 class CfgMods {
     class PREFIX {
         dir = "@task_force_radio";
-        name = "Task Force Arrowhead Radio";
-        tooltip = "Task Force Arrowhead Radio";
-        overview = "Task Force Arrowhead Radio";
+        name = "$STR_TFAR_Main_Name";
+        tooltip = "$STR_TFAR_Main_Name";
+        overview = "$STR_TFAR_Main_Name";
         picture = QPATHTOF(task_force_arrowhead_logo.paa);
         contentBrowserPicture = QPATHTOF(task_force_arrowhead_logo.paa);
         logo = QPATHTOF(task_force_arrowhead_logo.paa);
@@ -55,8 +55,8 @@ class CfgMods {
         hideName = 1;
         requiresRestart = 0;
         action = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
-        actionName = "Website";
-        description = "War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.";
+        actionName = "$STR_TFAR_Main_Action_Name";
+        description = "$STR_TFAR_Main_Desc";
     };
 
 };
@@ -92,8 +92,8 @@ class CfgUIGrids { //Thanks ACE guys!
         };
         class Variables {
             class grid_TFAR_Volume{
-                displayName = "TFAR volume Indicator";
-                description = "TFAR Volume Indicator";
+                displayName = "$STR_TFAR_VolumeIndicator";
+                description = "$STR_TFAR_VolumeIndicator";
                 preview = QPATHTOF(ui\tfar_volume_normal.paa);
                 saveToProfile[] = {0,1,2,3};
                 canResize = 1;
@@ -107,14 +107,14 @@ class Cfg3DEN {
     class Object {
         class AttributeCategories {
             class TFAR_core_attributes {
-                displayName = "TFAR Options";
+                displayName = "$STR_TFAR_Att_Options";
                 collapsed = 1;
                 class Attributes {
                     class TFAR_CuratorCamEars {
                         property = "TFAR_CuratorCamEars";
                         control = "Checkbox";
-                        displayName = "Hear Camera when in Curator interface";
-                        tooltip = "Hear voice from Curator Camera when in Curator interface";
+                        displayName = "$STR_TFAR_Att_CuratorCamEars";
+                        tooltip = "$STR_TFAR_Att_CuratorCamEars_Tip";
                         expression = QUOTE(if (_value) then {_this setVariable [ARR_2('TFAR_curatorCamEars',_value)]};);
                         typeName = "BOOL";
                         condition = "objectBrain";

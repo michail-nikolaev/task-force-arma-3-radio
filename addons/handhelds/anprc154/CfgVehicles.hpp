@@ -1,7 +1,7 @@
 class Item_TFAR_anprc154: Item_Base_F {
     scope = PUBLIC;
     scopeCurator = PUBLIC;
-    displayName =  "AN/PRC-154";
+    displayName =  "$STR_TFAR_Veh_ANPRC154";
     author = "Nkey";
     vehicleClass = "Items";
     class TransportItems {

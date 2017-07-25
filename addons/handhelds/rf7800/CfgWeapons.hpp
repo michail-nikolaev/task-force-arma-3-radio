@@ -1,7 +1,7 @@
 class TFAR_rf7800str: ItemRadio {
     author = "Raspu";
-    displayName = "RF-7800S-TR";
-    descriptionShort = "RF-7800S-TR rifleman radio 2km";//#Stringtable
+    displayName = "$STR_TFAR_Veh_RF7800STR";
+    descriptionShort = "$STR_TFAR_Veh_RF7800STR_Desc";
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     model = QPATHTOF(rf7800\data\tfr_rf7800);

@@ -1,7 +1,7 @@
 class TFAR_anprc152: ItemRadio {
     author = "Raspu";
-    displayName = "AN/PRC-152";
-    descriptionShort = "AN/PRC-152 personal radio 5km";//#Stringtable
+    displayName = "$STR_TFAR_Veh_ANPRC152";
+    descriptionShort = "$STR_TFAR_Veh_ANPRC152_Desc";
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     model = QPATHTOF(anprc152\data\tfr_anprc152);

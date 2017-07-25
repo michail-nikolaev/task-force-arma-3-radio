@@ -4,7 +4,7 @@
 
 class CfgPatches {
     class TFAR_IntercomDummy {//Shut up Mikero... If i wanna use a config without CfgPatches please let me do that!!!
-        name = "TFAR - Intercom";
+        name = "$STR_TFAR_Intercom_Name";
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -15,17 +15,17 @@ class CfgPatches {
 
 #define IntercomMacro class ACE_SelfActions : ACE_SelfActions { \
     class TFAR_IntercomChannel { \
-        displayName = "IntercomChannel"; \
+        displayName = "$STR_TFAR_Intercom_ACESelfAction_Name"; \
         condition = "true"; \
         statement = ""; \
         icon = ""; \
         class TFAR_IntercomChannel_1 { \
-            displayName = "Cargo"; \
+            displayName = "$STR_TFAR_Intercom_ACESelfAction_Channel1"; \
             condition = "true"; \
             statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],0,true];"; \
         }; \
         class TFAR_IntercomChannel_2 { \
-            displayName = "Crew"; \
+            displayName = "$STR_TFAR_Intercom_ACESelfAction_Channel2"; \
             condition = "true"; \
             statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],1,true];"; \
         }; \

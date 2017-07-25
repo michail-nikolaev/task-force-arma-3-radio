@@ -1,7 +1,7 @@
 class Item_TFAR_rf7800str: Item_Base_F {
     scope = PUBLIC;
     scopeCurator = PUBLIC;
-    displayName =  "RF-7800S-TR";
+    displayName =  "$STR_TFAR_Veh_RF7800STR";
     author = "Nkey";
     vehicleClass = "Items";
     class TransportItems {
