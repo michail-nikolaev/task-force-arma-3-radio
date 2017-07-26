@@ -1,6 +1,6 @@
 class TFAR_anprc148jem: ItemRadio {
     author = "Raspu";
-    displayName = "$STR_TFAR_Veh_ANPRC148JEM";
+    displayName = "AN/PRC-148 JEM";
     descriptionShort = "$STR_TFAR_Veh_ANPRC148JEM_Desc";
     scope = PUBLIC;
     scopeCurator = PUBLIC;

@@ -1,7 +1,7 @@
 class TFAR_anarc210: TFAR_Bag_Base {
     scope = PUBLIC;
     scopeCurator = PUBLIC;
-    displayName = "$STR_TFAR_BP_ANARC210";
+    displayName = "AN/ARC-210";
     descriptionShort = "$STR_TFAR_BP_ANARC210_Desc";
     picture = QPATHTOF(anarc210\ui\anarc210_icon.paa);
     model = QPATHTOF(models\TFR_BACKPACK);

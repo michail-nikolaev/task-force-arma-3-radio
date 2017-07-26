@@ -1,5 +1,5 @@
 class TFAR_fadak: ItemRadio {
-    displayName = "$STR_TFAR_Veh_FADAK";
+    displayName = "FADAK";
     descriptionShort = "$STR_TFAR_Veh_FADAK_Desc";
     scope = PUBLIC;
     scopeCurator = PUBLIC;

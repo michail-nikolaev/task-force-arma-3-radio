@@ -4,7 +4,7 @@
 
 class CfgPatches {
     class TFAR_IntercomDummy {//Shut up Mikero... If i wanna use a config without CfgPatches please let me do that!!!
-        name = "$STR_TFAR_Intercom_Name";
+        name = "TFAR - Intercom";
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

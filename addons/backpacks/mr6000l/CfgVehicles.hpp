@@ -1,7 +1,7 @@
 class TFAR_mr6000l: TFAR_Bag_Base {
     scope = PUBLIC;
     scopeCurator = PUBLIC;
-    displayName = "$STR_TFAR_BP_MR6000L";
+    displayName = "MR6000L";
     descriptionShort = "$STR_TFAR_BP_MR6000L_Desc";
     model = QPATHTOF(models\TFR_BACKPACK);
     picture = QPATHTOF(mr6000l\ui\mr6000l_icon.paa);

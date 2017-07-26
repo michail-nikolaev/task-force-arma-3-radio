@@ -1,5 +1,5 @@
 class TFAR_pnr1000a: ItemRadio {
-    displayName = "$STR_TFAR_Veh_PNR1000A";
+    displayName = "PNR-1000A";
     descriptionShort = "$STR_TFAR_Veh_PNR1000A_Desc";
     scope = PUBLIC;
     scopeCurator = PUBLIC;

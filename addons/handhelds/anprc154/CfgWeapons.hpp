@@ -1,6 +1,6 @@
 class TFAR_anprc154: ItemRadio {
     author = "Raspu";
-    displayName = "$STR_TFAR_Veh_ANPRC154";
+    displayName = "AN/PRC-154";
     descriptionShort = "$STR_TFAR_Veh_ANPRC154_Desc";
     scope = PUBLIC;
     scopeCurator = PUBLIC;

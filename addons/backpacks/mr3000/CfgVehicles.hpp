@@ -2,7 +2,7 @@ class TFAR_mr3000: TFAR_Bag_Base {
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     author = "Raspu, Gandi, Nkey";
-    displayName = "$STR_TFAR_BP_MR3000";
+    displayName = "MR3000";
     descriptionShort = "$STR_TFAR_BP_MR3000_Desc";
     picture = QPATHTOF(mr3000\ui\mr3000_icon.paa);
     maximumLoad = 160;
@@ -37,7 +37,7 @@ class TFAR_mr3000_bwmod_tropen: TFAR_mr3000_bwmod {
 };
 HIDDEN_CLASS(tf_mr3000_bwmod_tropen : TFAR_mr3000_bwmod_tropen); //#Deprecated dummy class for backwards compat
 class TFAR_mr3000_rhs: TFAR_mr3000 {
-    displayName = "$STR_TFAR_BP_MR3000_RHS";
+    displayName = "MR3000 RHS";
     descriptionShort = "$STR_TFAR_BP_MR3000_RHS_Desc";
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_nicecomm2_rhs_digital_co.paa)};

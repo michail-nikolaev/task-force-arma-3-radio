@@ -2,7 +2,7 @@
 
 class CfgPatches {
     class ADDON {
-        name = "$STR_TFAR_Core";
+        name = "TFAR - Core";
         units[] = {
             "tfar_ModuleTaskForceRadioEnforceUsage",
             "tfar_ModuleTaskForceRadio",
@@ -23,7 +23,7 @@ class CfgPatches {
     };
 
     class task_force_radio {
-        name = "$STR_TFAR_LegacyCompatibility";
+        name = "TFAR - Legacy Compatibility";
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -31,7 +31,7 @@ class CfgPatches {
         author = QUOTE(AUTHORS);
     };
     class task_force_radio_items {
-        name = "$STR_TFAR_LegacyCompatibility";
+        name = "TFAR - Legacy Compatibility";
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -43,9 +43,9 @@ class CfgPatches {
 class CfgMods {
     class PREFIX {
         dir = "@task_force_radio";
-        name = "$STR_TFAR_Main_Name";
-        tooltip = "$STR_TFAR_Main_Name";
-        overview = "$STR_TFAR_Main_Name";
+        name = "Task Force Arrowhead Radio";
+ -      tooltip = "Task Force Arrowhead Radio";
+ -      overview = "Task Force Arrowhead Radio";
         picture = QPATHTOF(task_force_arrowhead_logo.paa);
         contentBrowserPicture = QPATHTOF(task_force_arrowhead_logo.paa);
         logo = QPATHTOF(task_force_arrowhead_logo.paa);
@@ -55,7 +55,7 @@ class CfgMods {
         hideName = 1;
         requiresRestart = 0;
         action = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
-        actionName = "$STR_TFAR_Main_Action_Name";
+        actionName = "Website";
         description = "$STR_TFAR_Main_Desc";
     };
 

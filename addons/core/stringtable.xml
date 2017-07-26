@@ -981,11 +981,6 @@
                 <Chinese>TFAR無線電 (Altis政府軍)</Chinese>
                 <Chinesesimp>TFAR无线电 (Altis政府军)</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_Intercom_Name">
-                <Original>TFAR - Intercom</Original>
-                <Chinese>TFAR - 對講機</Chinese>
-                <Chinesesimp>TFAR - 对讲机</Chinesesimp>
-            </Key>
             <Key ID="STR_TFAR_Intercom_ACESelfAction_Name">
                 <Original>IntercomChannel</Original>
                 <Chinese>對講機頻道</Chinese>
@@ -1010,26 +1005,6 @@
                 <Original>TFAR - Rotator Switch (Click)</Original>
                 <Chinese>TFAR - 旋轉開關 (點擊)</Chinese>
                 <Chinesesimp>TFAR - 旋转开关 (点击)</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_Core">
-                <Original>TFAR - Core</Original>
-                <Chinese>TFAR - 核心</Chinese>
-                <Chinesesimp>TFAR - 核心</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_LegacyCompatibility">
-                <Original>TFAR - Legacy Compatibility</Original>
-                <Chinese>TFAR - 舊版兼容性</Chinese>
-                <Chinesesimp>TFAR - 旧版兼容性</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_Main_Name">
-                <Original>Task Force Arrowhead Radio</Original>
-                <Chinese>箭頭特遣隊無線電</Chinese>
-                <Chinesesimp>箭头特遣队无线电</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_Main_Action_Name">
-                <Original>Website</Original>
-                <Chinese>網站</Chinese>
-                <Chinesesimp>网站</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Main_Desc">
                 <Original>War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.</Original>
@@ -2277,20 +2252,10 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>通訊塔 (TFAR)</Chinese>
                 <Chinesesimp>通讯塔 (TFAR)</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_Veh_RF7800STR">
-                <Original>RF-7800S-TR</Original>
-                <Chinese>RF-7800S-TR</Chinese>
-                <Chinesesimp>RF-7800S-TR</Chinesesimp>
-            </Key>
             <Key ID="STR_TFAR_Veh_RF7800STR_Desc">
                 <Original>RF-7800S-TR rifleman radio 2km</Original>
                 <Chinese>RF-7800S-TR短程步兵無線電，有效距離2公里</Chinese>
                 <Chinesesimp>RF-7800S-TR短程步兵无线电，有效距离2公里</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_Veh_PNR1000A">
-                <Original>PNR-1000A</Original>
-                <Chinese>PNR-1000A</Chinese>
-                <Chinesesimp>PNR-1000A</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Veh_PNR1000A_Desc">
                 <Original>PNR-1000A rifleman radio 2km</Original>
@@ -2307,40 +2272,20 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>使持有人能在戰場上調整短程步兵無線電的頻率設定</Chinese>
                 <Chinesesimp>使持有人能在战场上调整短程步兵无线电的频率设定</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_Veh_FADAK">
-                <Original>FADAK</Original>
-                <Chinese>FADAK</Chinese>
-                <Chinesesimp>FADAK</Chinesesimp>
-            </Key>
             <Key ID="STR_TFAR_Veh_FADAK_Desc">
                 <Original>FADAK personal radio 5km</Original>
                 <Chinese>FADAK短程個人無線電，有效距離5公里</Chinese>
                 <Chinesesimp>FADAK短程个人无线电，有效距离5公里</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_Veh_ANPRC154">
-                <Original>AN/PRC-154</Original>
-                <Chinese>AN/PRC-154</Chinese>
-                <Chinesesimp>AN/PRC-154</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Veh_ANPRC154_Desc">
                 <Original>AN/PRC-154 rifleman radio 2km</Original>
                 <Chinese>AN/PRC-154短程步兵無線電，有效距離2公里</Chinese>
                 <Chinesesimp>AN/PRC-154短程步兵无线电，有效距离2公里</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_Veh_ANPRC152">
-                <Original>AN/PRC-152</Original>
-                <Chinese>AN/PRC-152</Chinese>
-                <Chinesesimp>AN/PRC-152</Chinesesimp>
-            </Key>
             <Key ID="STR_TFAR_Veh_ANPRC152_Desc">
                 <Original>AN/PRC-152 personal radio 5km</Original>
                 <Chinese>AN/PRC-152短程個人無線電，有效距離5公里</Chinese>
                 <Chinesesimp>AN/PRC-152短程个人无线电，有效距离5公里</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_Veh_ANPRC148JEM">
-                <Original>AN/PRC-148 JEM</Original>
-                <Chinese>AN/PRC-148 JEM</Chinese>
-                <Chinesesimp>AN/PRC-148 JEM</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Veh_ANPRC148JEM_Desc">
                 <Original>AN/PRC-148 JEM personal radio 5km</Original>
@@ -2411,30 +2356,15 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             </Key>
         </Container>
         <Container name="Backpacks">
-            <Key ID="STR_TFAR_BP_RT1523G">
-                <Original>RT-1523G (ASIP)</Original>
-                <Chinese>RT-1523G (ASIP)</Chinese>
-                <Chinesesimp>RT-1523G (ASIP)</Chinesesimp>
-            </Key>
             <Key ID="STR_TFAR_BP_RT1523G_Desc">
                 <Original>RT-1523G (ASIP) long range radio 20km</Original>
                 <Chinese>RT-1523G (ASIP)長程無線電，有效距離20公里</Chinese>
                 <Chinesesimp>RT-1523G (ASIP)长程无线电，有效距离20公里</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_BP_RT1523G_BWMOD">
-                <Original>RT-1523G (ASIP) BWMOD</Original>
-                <Chinese>RT-1523G (ASIP) BWMOD</Chinese>
-                <Chinesesimp>RT-1523G (ASIP) BWMOD</Chinesesimp>
-            </Key>
             <Key ID="STR_TFAR_BP_RT1523G_BWMOD_Desc">
                 <Original>RT-1523G (ASIP) BWMOD long range radio 20km</Original>
                 <Chinese>RT-1523G (ASIP) BWMOD長程無線電，有效距離20公里</Chinese>
                 <Chinesesimp>RT-1523G (ASIP) BWMOD长程无线电，有效距离20公里</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_BP_RT1523G_RHS">
-                <Original>RT-1523G (ASIP) RHS</Original>
-                <Chinese>RT-1523G (ASIP) RHS</Chinese>
-                <Chinesesimp>RT-1523G (ASIP) RHS</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_BP_RT1523G_RHS_Desc">
                 <Original>RT-1523G (ASIP) RHS long range radio 20km</Original>
@@ -2516,20 +2446,10 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>RT-1523G (ASIP-黑色)長程無線電，有效距離20公里</Chinese>
                 <Chinesesimp>RT-1523G (ASIP-黑色)长程无线电，有效距离20公里</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_BP_MR6000L">
-                <Original>MR6000L</Original>
-                <Chinese>MR6000L</Chinese>
-                <Chinesesimp>MR6000L</Chinesesimp>
-            </Key>
             <Key ID="STR_TFAR_BP_MR6000L_Desc">
                 <Original>MR6000L airborne radio 40km</Original>
                 <Chinese>MR6000L空中載具無線電，有效距離40公里</Chinese>
                 <Chinesesimp>MR6000L空中载具无线电，有效距离40公里</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_BP_MR3000">
-                <Original>MR3000</Original>
-                <Chinese>MR3000</Chinese>
-                <Chinesesimp>MR3000</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_BP_MR3000_Desc">
                 <Original>MR3000 long range radio 20km</Original>
@@ -2561,11 +2481,6 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>MR3000 BWMOD [荒漠斑點迷彩]</Chinese>
                 <Chinesesimp>MR3000 BWMOD [荒漠斑点迷彩]</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_BP_MR3000_RHS">
-                <Original>MR3000 RHS</Original>
-                <Chinese>MR3000 RHS</Chinese>
-                <Chinesesimp>MR3000 RHS</Chinesesimp>
-            </Key>
             <Key ID="STR_TFAR_BP_MR3000_RHS_Desc">
                 <Original>MR3000 RHS long range radio 20km</Original>
                 <Chinese>MR3000 RHS長程無線電，有效距離20公里</Chinese>
@@ -2580,11 +2495,6 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Original>Bussole long range radio 20km</Original>
                 <Chinese>Bussole長程無線電，有效距離20公里</Chinese>
                 <Chinesesimp>Bussole长程无线电，有效距离20公里</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_BP_ANPRC155">
-                <Original>AN/PRC-155</Original>
-                <Chinese>AN/PRC-155</Chinese>
-                <Chinesesimp>AN/PRC-155</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_BP_ANPRC155_Desc">
                 <Original>AN/PRC-155 long range radio 20km</Original>
@@ -2601,20 +2511,10 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>AN/PRC 155 (土狼棕色)長程無線電，有效距離20公里</Chinese>
                 <Chinesesimp>AN/PRC 155 (土狼棕色)长程无线电，有效距离20公里</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_BP_ANARC210">
-                <Original>AN/ARC-210</Original>
-                <Chinese>AN/ARC-210</Chinese>
-                <Chinesesimp>AN/ARC-210</Chinesesimp>
-            </Key>
             <Key ID="STR_TFAR_BP_ANARC210_Desc">
                 <Original>AN/ARC-210 airborne radio 40km</Original>
                 <Chinese>AN/ARC-210空中載具無線電，有效距離40公里</Chinese>
                 <Chinesesimp>AN/ARC-210空中载具无线电，有效距离40公里</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_BP_ANARC164">
-                <Original>AN/ARC-164</Original>
-                <Chinese>AN/ARC-164</Chinese>
-                <Chinesesimp>AN/ARC-164</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_BP_ANARC164_Desc">
                 <Original>AN/ARC-164 airborne radio 40km</Original>

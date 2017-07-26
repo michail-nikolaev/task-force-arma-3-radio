@@ -2,7 +2,7 @@ class TFAR_anprc155: TFAR_Bag_Base {
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     author = "Raspu, Gandi, Nkey";
-    displayName = "$STR_TFAR_BP_ANPRC155";
+    displayName = "AN/PRC-155";
     descriptionShort = "$STR_TFAR_BP_ANPRC155_Desc";
     picture = QPATHTOF(anprc155\ui\155_icon.paa);
     maximumLoad = 160;

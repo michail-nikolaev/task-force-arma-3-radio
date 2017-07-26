@@ -2,7 +2,7 @@ class TFAR_rt1523g: TFAR_Bag_Base {
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     author = "Raspu, Gandi, Nkey";
-    displayName = "$STR_TFAR_BP_RT1523G";
+    displayName = "RT-1523G (ASIP)";
     descriptionShort = "$STR_TFAR_BP_RT1523G_Desc";
     picture = QPATHTOF(rt1523g\ui\rt1523g_icon.paa);
     model=QPATHTOF(models\clf_prc117g_ap);
@@ -16,14 +16,14 @@ class TFAR_rt1523g: TFAR_Bag_Base {
 };
 HIDDEN_CLASS(tf_rt1523g : TFAR_rt1523g); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_bwmod: TFAR_rt1523g {
-    displayName = "$STR_TFAR_BP_RT1523G_BWMOD";
+    displayName = "RT-1523G (ASIP) BWMOD";
     descriptionShort = "$STR_TFAR_BP_RT1523G_BWMOD_Desc";
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_prc117g_bwmod_co.paa)};
 };
 HIDDEN_CLASS(tf_rt1523g_bwmod : TFAR_rt1523g_bwmod); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_rhs: TFAR_rt1523g {
-    displayName = "$STR_TFAR_BP_RT1523G_RHS";
+    displayName = "RT-1523G (ASIP) RHS";
     descriptionShort = "$STR_TFAR_BP_RT1523G_RHS_Desc";
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_prc117g_rhs_co.paa)};

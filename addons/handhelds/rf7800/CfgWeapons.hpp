@@ -1,6 +1,6 @@
 class TFAR_rf7800str: ItemRadio {
     author = "Raspu";
-    displayName = "$STR_TFAR_Veh_RF7800STR";
+    displayName = "RF-7800S-TR";
     descriptionShort = "$STR_TFAR_Veh_RF7800STR_Desc";
     scope = PUBLIC;
     scopeCurator = PUBLIC;
