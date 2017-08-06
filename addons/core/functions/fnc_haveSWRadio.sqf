@@ -31,7 +31,7 @@ if (isNil "TFAR_currentUnit" || {isNull (TFAR_currentUnit)}) exitWith {false};
     true;
 } count (assignedItems TFAR_currentUnit);
 
-if (player != TFAR_currentUnit) then {
+if (!_result && {player != TFAR_currentUnit}) then {
     {
         if (_x call TFAR_fnc_isRadio) exitWith {_result = true};
         true;
