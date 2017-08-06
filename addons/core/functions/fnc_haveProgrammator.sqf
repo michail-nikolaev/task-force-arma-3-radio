@@ -20,10 +20,8 @@
 
 if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith {false};
 
-_result = "TFAR_microdagr" in (assignedItems TFAR_currentUnit);
-
 if (player != TFAR_currentUnit && {TFAR_remoteRadio}) then {
-    _result = "TFAR_microdagr" in (assignedItems player);
+    exitWith {"TFAR_microdagr" in (assignedItems player)};
 };
 
-_result
+exitWith {"TFAR_microdagr" in (assignedItems TFAR_currentUnit)};
