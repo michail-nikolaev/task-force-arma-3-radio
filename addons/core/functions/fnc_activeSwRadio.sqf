@@ -19,14 +19,14 @@
         _radio = call TFAR_fnc_activeSwRadio;
 */
 
+if (player != TFAR_currentUnit && {TFAR_remoteRadio}) then {
+    exitWith {TFAR_removeRadioItem}
+};
+
 private _result = nil;
 {
     if (_x call TFAR_fnc_isRadio) exitWith {_result = _x};
     true;
 } count (assignedItems TFAR_currentUnit);
-
-if (player != TFAR_currentUnit && {TFAR_remoteRadio}) then {
-    _result = TFAR_remoteRadioItem;
-};
 
 _result
