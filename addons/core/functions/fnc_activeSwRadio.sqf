@@ -20,7 +20,7 @@
 */
 
 if (player != TFAR_currentUnit && {TFAR_remoteRadio}) then {
-    exitWith {TFAR_removeRadioItem}
+    exitWith {TFAR_removeRadioItem};
 };
 
 private _result = nil;
