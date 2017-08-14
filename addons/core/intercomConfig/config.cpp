@@ -13,20 +13,27 @@ class CfgPatches {
     };
 };
 
+#define Intercom_Variable format [ARR_2('TFAR_IntercomSlot_%1',(netID ACE_Player))]
+
 #define IntercomMacro class ACE_SelfActions : ACE_SelfActions { \
     class TFAR_IntercomChannel { \
         displayName = "IntercomChannel"; \
         condition = "true"; \
         statement = ""; \
         icon = ""; \
+        class TFAR_IntercomChannel_disabled { \
+            displayName = "Disabled"; \
+            condition = "((vehicle ACE_Player) getVariable [Intercom_Variable,0]) != -1"; \
+            statement = "(vehicle ACE_Player) setVariable [Intercom_Variable,-1,true];"; \
+        }; \
         class TFAR_IntercomChannel_1 { \
             displayName = "Cargo"; \
-            condition = "true"; \
+            condition = "((vehicle ACE_Player) getVariable [Intercom_Variable,0]) != 0"; \
             statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],0,true];"; \
         }; \
         class TFAR_IntercomChannel_2 { \
             displayName = "Crew"; \
-            condition = "true"; \
+            condition = "((vehicle ACE_Player) getVariable [Intercom_Variable,0]) != 1"; \
             statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],1,true];"; \
         }; \
     }; \
