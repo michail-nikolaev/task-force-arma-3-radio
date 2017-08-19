@@ -23,18 +23,18 @@ class CfgPatches {
         icon = ""; \
         class TFAR_IntercomChannel_disabled { \
             displayName = "Disabled"; \
-            condition = "((vehicle ACE_Player) getVariable [Intercom_Variable,0]) != -1"; \
-            statement = "(vehicle ACE_Player) setVariable [Intercom_Variable,-1,true];"; \
+            condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != -1); \
+            statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,-1,true)];); \
         }; \
         class TFAR_IntercomChannel_1 { \
             displayName = "Cargo"; \
-            condition = "((vehicle ACE_Player) getVariable [Intercom_Variable,0]) != 0"; \
-            statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],0,true];"; \
+            condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 0); \
+            statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,0,true)];); \
         }; \
         class TFAR_IntercomChannel_2 { \
             displayName = "Crew"; \
-            condition = "((vehicle ACE_Player) getVariable [Intercom_Variable,0]) != 1"; \
-            statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],1,true];"; \
+            condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 1); \
+            statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,1,true)];); \
         }; \
     }; \
 };
