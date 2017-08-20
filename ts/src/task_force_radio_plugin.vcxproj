@@ -212,7 +212,7 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17Release|x64'">task_force_radio_win64</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17ReleaseExe|x64'">task_force_radio_win64test</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17DebugExe|x64'">task_force_radio_win64test</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">task_force_radio10pb_win32</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">task_force_radio_win32</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17Release|Win32'">task_force_radio_win32</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17ReleaseExe|Win32'">task_force_radio_win32test</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17DebugExe|Win32'">task_force_radio_win32test</TargetName>
