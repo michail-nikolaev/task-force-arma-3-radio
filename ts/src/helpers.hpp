@@ -12,19 +12,14 @@
 #include <emmintrin.h>
 
 constexpr int const_strlen(const char* str) {
-#ifndef VS15
-    return *str ? 1 + const_strlen(str + 1) : 0;
-#else
     if (str == 0)
         return -1;
     uint32_t length = 0;
     while (str[length] != 0) ++length;
     return length;
-#endif
 }
 static_assert(const_strlen("hello") == 5, "const_strlen no workerino");
 
-#ifdef VS15
 #ifdef X64BUILD
 typedef uint64_t strHashType;
 #else
@@ -54,7 +49,6 @@ static_assert(const_strhash("SETCFG") == 0x0000c2ca8962ff68, "const_strhash no w
 static_assert(const_strhash("SETCFG") == 0x8962ff68, "const_strhash no workerino");
 #endif
 
-#endif
 #define FORCE_COMPILETIME(e) (std::integral_constant<decltype(e), e>::value)
 
 struct FREQ_SETTINGS;

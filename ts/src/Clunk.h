@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <clunk/hrtf.h>
 #include <deque>
@@ -10,8 +10,7 @@ public:
 
 	void process(short * samples, uint8_t channels, size_t sampleCount, Direction3D pos, AngleRadians direction)
 	{
-		float x, y, z;
-		std::tie(x, y, z) = pos.get();
+		auto [x, y, z] = pos.get();
 
 		//| cos θ - sin θ   0 | | x | | x cos θ - y sin θ | | x'|
 		//| sin θ    cos θ   0 | | y | = | x sin θ + y cos θ | = | y'|

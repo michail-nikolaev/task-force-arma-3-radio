@@ -1,4 +1,4 @@
-﻿#include "CommandProcessor.hpp"
+#include "CommandProcessor.hpp"
 #include "helpers.hpp"
 #include "serverData.hpp"
 #include "task_force_radio.hpp"
@@ -115,7 +115,6 @@ std::string CommandProcessor::processCommand(const std::string& command) {
 const std::string constTangent("TANGENT");
 gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textCommand, size_t tokenCount) {
     if (textCommand.length() < 3) return gameCommand::unknown;
-#ifdef VS15
     auto hash = const_strhash(textCommand.data(), textCommand.length());
     switch (hash) {
         case FORCE_COMPILETIME(const_strhash("POS")):
@@ -163,38 +162,6 @@ gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textComman
             return gameCommand::RECV_FREQS;
             break;
     };
-#else
-    if (tokenCount == 14 && textCommand == "POS")
-        return gameCommand::POS;
-    if (tokenCount == 2 && textCommand == "IS_SPEAKING")
-        return gameCommand::IS_SPEAKING;
-    if (tokenCount == 2 && textCommand == "TS_INFO")
-        return gameCommand::TS_INFO;
-    if (tokenCount == 11 && textCommand == "FREQ")//async
-        return gameCommand::FREQ;
-    if (tokenCount > 2 && textCommand == "KILLED")//async
-        return gameCommand::KILLED;
-    if (tokenCount == 4 && textCommand == "TRACK")//async
-        return gameCommand::TRACK;
-    if (tokenCount == 1 && textCommand == "DFRAME")//async
-        return gameCommand::DFRAME;
-    if (tokenCount >= 1 && textCommand == "SPEAKERS")//async
-        return gameCommand::SPEAKERS;
-    if (tokenCount >= 5 && textCommand.substr(0, FORCE_COMPILETIME(const_strlen("TANGENT"))) == constTangent)//async
-        return gameCommand::TANGENT;
-    if (tokenCount == 2 && textCommand == "RELEASE_ALL_TANGENTS")//async
-        return gameCommand::RELEASE_ALL_TANGENTS;
-    if (tokenCount >= 3 && textCommand == "SETCFG")//async
-        return gameCommand::SETCFG;
-    if (tokenCount == 1 && textCommand == "MISSIONEND")//async
-        return gameCommand::MISSIONEND;
-    if (tokenCount == 2 && textCommand == "RadioTwrAdd")//async
-        return gameCommand::AddRadioTower;
-    if (tokenCount == 2 && textCommand == "RadioTwrDel")//async
-        return gameCommand::DeleteRadioTower;
-    if (tokenCount == 1 && textCommand == "RECV_FREQS")
-        return gameCommand::RECV_FREQS;
-#endif
     return gameCommand::unknown;
 }
 
@@ -517,7 +484,7 @@ void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverCo
 
 DEFINE_API_PROFILER(processUnitPosition);
 
-void CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet) {
+void CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet) const {
     API_PROFILER(processUnitPosition);
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
     if (!clientDataDir) return;

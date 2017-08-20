@@ -1,4 +1,4 @@
-﻿/*
+/*
  * TeamSpeak 3 demo plugin
  *
  * Copyright (c) 2008-2013 TeamSpeak Systems GmbH
@@ -152,6 +152,7 @@ void ServiceThread() {
             if (TFAR::getInstance().getCurrentlyInGame())
                 Teamspeak::moveToSeriousChannel();//#TODO people may want to leave SeriousChannel on purpose and not be moved back
             lastCheckForExpire = std::chrono::system_clock::now();
+            TFAR::getServerDataDirectory()->verify();
         }
         if ((std::chrono::system_clock::now() - lastInfoUpdate.load()) > 4000ms) {
             updateUserStatusInfo(true);

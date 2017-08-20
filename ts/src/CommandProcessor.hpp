@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <thread>
 #include <queue>
 #include <mutex>
@@ -41,7 +41,7 @@ private:
     void processSpeakers(std::vector<std::string>& tokens);
     void processUnitKilled(std::string &&name, TSServerID serverConnection);
 
-    void processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet);
+    void processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet) const;
     static std::string ts_info(const boost::string_ref &command);
 
     static void process_tangent_off(PTTDelayArguments arguments);
