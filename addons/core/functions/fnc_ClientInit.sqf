@@ -31,6 +31,7 @@ DEPRECATE_VARIABLE(TF_defaultGuerBackpack,TFAR_DefaultRadio_Backpack_Independent
 
 
 TFAR_currentUnit = call TFAR_fnc_currentUnit;
+TFAR_remoteRadio = false;
 [parseText(localize ("STR_init")), 5] call TFAR_fnc_showHint;
 
 // loadout cleaning on initialization to avoid duplicate radios ids in Arsenal

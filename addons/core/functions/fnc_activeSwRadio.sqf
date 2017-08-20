@@ -20,8 +20,16 @@
 */
 
 private _result = nil;
-{
-    if (_x call TFAR_fnc_isRadio) exitWith {_result = _x};
-    true;
-} count (assignedItems TFAR_currentUnit);
+
+if (player != TFAR_currentUnit && {TFAR_remoteRadio}) then {
+    exitWith {_result = TFAR_removeRadioItem};
+};
+
+if (_result == nil) then {
+    {
+        if (_x call TFAR_fnc_isRadio) exitWith {_result = _x};
+        true;
+    } count (assignedItems TFAR_currentUnit);
+};
+
 _result
