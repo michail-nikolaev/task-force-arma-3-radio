@@ -72,8 +72,9 @@ private:
         return data.emplace(std::upper_bound(data.begin(), data.end(), hash, [](const auto& hash, const auto& tup) {
             return hash < std::get<0>(tup);
         }), hash, std::forward<T>(args)...);
-    };
+    }
 
+    void verify();
 
 };
 
@@ -85,6 +86,7 @@ public:
 
     std::shared_ptr<serverData> getClientDataDirectory(TSServerID serverID) const;
     bool hasDirectory(TSServerID serverConnectionHandlerID) const;
+    void verify();
 private:
     using LockGuard_shared = LockGuard_shared<ReadWriteLock>;
     using LockGuard_exclusive = LockGuard_exclusive<ReadWriteLock>;

@@ -86,7 +86,7 @@ public:
     static void hlp_disableVad();
 
     static void log(std::string, DWORD errorCode, LogLevel level = LogLevel_INFO);
-
+    static void printMessageToCurrentTab(const char* msg);
 
     //Internal use
     static void _onConnectStatusChangeEvent(TSServerID serverConnectionHandlerID, ConnectStatus newState);

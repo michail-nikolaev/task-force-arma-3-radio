@@ -1,4 +1,4 @@
-﻿#include "serverData.hpp"
+#include "serverData.hpp"
 #include "helpers.hpp"
 #include "Locks.hpp"
 #include <mutex>
@@ -75,6 +75,13 @@ bool serverDataDirectory::hasDirectory(TSServerID serverConnectionHandlerID) con
     return data.count(serverConnectionHandlerID) > 0;
 }
 
+void serverDataDirectory::verify() {
+    LockGuard_shared lock(&m_lock);
+    for (auto& it : data) {
+        it.second->verify();
+    }
+}
+
 bool serverData::hasClientData(TSClientID clientID) const {
     auto clientData = getClientData(clientID);//using public function so we have our lock
     if (!clientData) return false;
@@ -113,14 +120,18 @@ void serverData::clientJoined(TSClientID clientID, const std::string& clientNick
         if (!std::get<2>(*found)) {//std::shared_ptr is nullptr
             std::get<2>(*found) = std::make_shared<clientData>(clientID);//Give it a valid clientData
         }
+        std::get<2>(*found)->addModificationLog(std::string("clientJoined MOD ") + std::to_string(clientID.baseType()) + " " + clientNickname);
         std::get<2>(*found)->setNickname(clientNickname);
         return; //client already exists and is valid
     }
-    std::shared_ptr<clientData> newClientData;
+
     if (myClientData && myClientData->clientId == clientID) { //Not needed after I added that clientLeft doesn't remove myID.. But better safe huh?
+        myClientData->addModificationLog(std::string("clientJoined myData ") + std::to_string(clientID.baseType()) + " " + clientNickname);
         myClientData->setNickname(clientNickname);
     } else {
-        std::get<2>(*insertInData(clientNickname, clientID, std::make_shared<clientData>(clientID)))->setNickname(clientNickname);
+        auto newCData = std::make_shared<clientData>(clientID);
+        std::get<2>(*insertInData(clientNickname, clientID, newCData))->setNickname(clientNickname);
+        newCData->addModificationLog(std::string("clientJoined ") + std::to_string(clientID.baseType()) + " " + clientNickname);
     }
 }
 
@@ -136,7 +147,9 @@ void serverData::clientLeft(TSClientID clientID) {
     if (myClientData && myClientData->clientId == clientID) return; //Don't remove my ID... Thats removed only when it really changes.. serverreconnect
     if (!containsClientData(clientID))
         return;
-    data.erase(findClientData(clientID));
+    auto clientData = findClientData(clientID);
+    std::get<2>(*clientData)->addModificationLog(std::string("clientLeft ") + std::to_string(clientID.baseType()));
+    data.erase(clientData);
 }
 
 void serverData::clientUpdated(TSClientID clientID, const std::string& clientNickname) {
@@ -148,6 +161,7 @@ void serverData::clientUpdated(TSClientID clientID, const std::string& clientNic
     if (clientData->getNickname() == clientNickname)
         return;
     lock_shared.unlock();
+    clientData->addModificationLog(std::string("clientUpdated ") + std::to_string(clientID.baseType()) + " " + clientNickname);
     LockGuard_exclusive lock_exclusive(&m_lock);
 
     //Remove and Reinsert to keep map sorted.
@@ -172,12 +186,10 @@ void serverData::debugPrint(std::stringstream& diag, bool withPos) const {
         diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "SCID: " << std::get<1>(it).baseType() << "\n";
         diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "CCID: " << cData->clientId.baseType() << "\n";
         if (withPos) {
-            float x, y, z, x2, y2, z2;
-            std::tie(x, y, z) = cData->getClientPosition().get();
-            std::tie(x2, y2, z2) = cData->getClientPositionRaw().get();
+            auto [x,y,z] = cData->getClientPosition().get();
+            auto [x2, y2, z2] = cData->getClientPositionRaw().get();
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "POSINTERP: " << x << "," << y << "," << z << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "POSRAW: " << x2 << "," << y2 << "," << z2 << "\n";
-            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "NICK: " << cData->getNickname() << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "VIEW: " << static_cast<float>(static_cast<AngleDegrees>(cData->getViewDirection())) << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "LPOSTIME: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - cData->getLastPositionUpdateTime()).count() << "us\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "CurTransFreq: " << cData->getCurrentTransmittingFrequency() << "\n";
@@ -190,4 +202,29 @@ void serverData::debugPrint(std::stringstream& diag, bool withPos) const {
     }
 
     //Logger::log(LoggerTypes::pluginCommands, "DebugPrintEnd###");
+}
+
+void serverData::verify() {
+    LockGuard_shared slock(&m_lock);
+    for (auto i = data.begin(); i < data.end(); ++i) {
+        std::shared_ptr<clientData> cData = std::get<2>(*i);
+        auto nick = cData->getNickname();
+        if (std::get<0>(*i) != std::hash<indexedType>()(nick)) {
+            slock.unlock();
+            LockGuard_exclusive lock(&m_lock);
+
+            std::string message = "HASH mismatch! Tell Dedmen! " + nick + "=" + std::to_string(std::hash<indexedType>()(nick)) + " IDX " + std::to_string(std::get<0>(*i));
+            
+            for (auto& it : cData->getModificationLog()) {
+                message += "\n" + it;
+            }
+            
+            Teamspeak::printMessageToCurrentTab(message.c_str());
+            auto cid = cData->clientId;
+            data.erase(i);
+            lock.unlock();
+            clientJoined(cid, nick);
+            return;
+        }
+    }
 }

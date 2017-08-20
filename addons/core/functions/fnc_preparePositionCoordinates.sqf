@@ -15,7 +15,7 @@
         3: STRING - Unit name
 
     Returns:
-        Nothing
+        String
 
     Example:
 

@@ -1,4 +1,4 @@
-﻿#include "Teamspeak.hpp"
+#include "Teamspeak.hpp"
 #include "public_errors.h"
 #include "public_errors_rare.h"
 #include "public_rare_definitions.h"
@@ -448,6 +448,10 @@ void Teamspeak::log(std::string message, DWORD errorCode, LogLevel level) {
     std::string output = std::string(message) + std::string(" : ") + std::string(errorBuffer);
     ts3Functions.freeMemory(errorBuffer);
     Logger::log(LoggerTypes::teamspeakClientlog, output, level);//Default loglevel is Info
+}
+
+void Teamspeak::printMessageToCurrentTab(const char* msg) {
+    ts3Functions.printMessageToCurrentTab(msg);
 }
 
 
