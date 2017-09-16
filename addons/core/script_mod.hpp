@@ -13,7 +13,7 @@
 #define TFAR_ADDON_VERSION QUOTE(VERSION)
 
 // MINIMAL required version for the Mod. Components can specify others..
-#define REQUIRED_VERSION 1.62
+#define REQUIRED_VERSION 1.72
 #define REQUIRED_CBA_VERSION {3,0,0}
 
 #define AUTHORS Task Force Arrowhead Radio Team
