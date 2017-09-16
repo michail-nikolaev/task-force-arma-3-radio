@@ -38,6 +38,9 @@ class Extended_DisplayUnload_EventHandlers {
     class RscDisplayCurator {
         TFAR_CuratorInterfaceOpened = "[_this select 0, 'Close'] call TFAR_fnc_onCuratorInterface";
     };
+    class RscDisplayEGSpectator {
+        TFAR_RscDisplayEGSpectator = "[player, false] call TFAR_fnc_forceSpectator;";
+    };
 };
 
 class RscListBox;

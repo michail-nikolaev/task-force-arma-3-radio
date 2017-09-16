@@ -23,7 +23,7 @@ if (!hasInterface) exitWith {}; //Only on clients
         //could use TFAR_speakingSince to see how long player is speaking and increase reveal according to that
 
 
-        if (!((vehicle _x) call TFAR_fnc_isVehicleIsolated) && {!isPlayer _x} && {_x knowsAbout _unit <= 1.5}) then {
+        if (!((vehicle _x) call TFAR_fnc_isVehicleIsolated) && {!isPlayer _x} && {_x knowsAbout _unit <= 1.5} && {!isNull _x}) then {
             //#TODO the farther away the unit is the lower reveal it should have
             [_x,[_unit,1.5]] remoteExec ["reveal", _x];
             //systemChat format["TFAR Revealing %1 to %2 (%3).",_unit,_x,_x knowsAbout _unit];

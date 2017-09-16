@@ -13,7 +13,7 @@
         0: ARRAY - Radio
             0: OBJECT- Radio object
             1: STRING - Radio ID
-        2: STRING - Frequency
+        1: STRING - Frequency
 
     Returns:
         Nothing
