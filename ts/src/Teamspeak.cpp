@@ -4,7 +4,6 @@
 #include "public_rare_definitions.h"
 #include "ts3_functions.h"
 #include <vector>
-#include <windows.h>
 #include "Logger.hpp"
 #include "task_force_radio.hpp"
 #include "version.h"
@@ -442,7 +441,7 @@ void Teamspeak::hlp_disableVad() {
     }
 }
 
-void Teamspeak::log(std::string message, DWORD errorCode, LogLevel level) {
+void Teamspeak::log(std::string message, unsigned long errorCode, LogLevel level) {
     char* errorBuffer;
     ts3Functions.getErrorMessage(errorCode, &errorBuffer);
     std::string output = std::string(message) + std::string(" : ") + std::string(errorBuffer);

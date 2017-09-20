@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <chrono>
 #include "common.hpp"
 #include <windows.h>
@@ -68,19 +68,19 @@ public:
     // A structure for each thread to store information about an API:
     //------------------------------------------------------------------
     struct ThreadInfo {
-        INT64 lastReportTime;
-        INT64 accumulator;   // total time spent in target module since the last report
-        INT64 hitCount;      // number of times the target module was called since last report
+        int64_t lastReportTime;
+        int64_t accumulator;   // total time spent in target module since the last report
+        int64_t hitCount;      // number of times the target module was called since last report
         const char *name;    // the name of the target module
     };
 
 private:
-    INT64 m_start;
+    int64_t m_start;
     ThreadInfo *m_threadInfo;
 
     static float s_ooFrequency;      // 1.0 divided by QueryPerformanceFrequency()
-    static INT64 s_reportInterval;   // length of time between reports
-    void Flush(INT64 end);
+    static int64_t s_reportInterval;   // length of time between reports
+    void Flush(int64_t end);
 
 public:
     __forceinline APIProfiler(ThreadInfo *threadInfo) {

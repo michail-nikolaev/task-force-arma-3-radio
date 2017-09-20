@@ -1,5 +1,4 @@
 #include "clientData.hpp"
-#include <Windows.h>
 #include "Logger.hpp"
 #include "task_force_radio.hpp"
 #include "antennaManager.h"

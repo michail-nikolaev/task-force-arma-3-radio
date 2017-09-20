@@ -3,7 +3,6 @@
 #include "public_definitions.h"
 #include <chrono>
 #include "datatypes.hpp"
-#include <windows.h>
 using namespace dataType;
 using namespace std::literals;
 
@@ -54,7 +53,7 @@ using namespace std::literals;
 
 
 extern void log_string(std::string message, LogLevel level = LogLevel_DEVEL);
-extern void log(char* message, DWORD errorCode, LogLevel level = LogLevel_INFO);
+extern void log(char* message, unsigned long errorCode, LogLevel level = LogLevel_INFO);
 
 enum class stereoMode {//#TODO move to a real header
     stereo = 0,
