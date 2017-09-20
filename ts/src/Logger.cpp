@@ -1,6 +1,5 @@
-﻿#include "Logger.hpp"
+#include "Logger.hpp"
 #include "ts3_functions.h"
-#include <windows.h>
 #include "profilers.hpp"
 #include <ctime>
 #include <iomanip> // put_time

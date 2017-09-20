@@ -85,7 +85,7 @@ public:
     static void hlp_enableVad();
     static void hlp_disableVad();
 
-    static void log(std::string, DWORD errorCode, LogLevel level = LogLevel_INFO);
+    static void log(std::string, unsigned long errorCode, LogLevel level = LogLevel_INFO);
     static void printMessageToCurrentTab(const char* msg);
 
     //Internal use

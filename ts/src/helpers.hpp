@@ -2,7 +2,6 @@
 #include <ts3_functions.h>
 #include <string>
 #include <vector>
-#include <Windows.h>
 #include "common.hpp"
 #include <map>
 #include "profilers.hpp"
@@ -18,6 +17,7 @@ constexpr int const_strlen(const char* str) {
     while (str[length] != 0) ++length;
     return length;
 }
+
 static_assert(const_strlen("hello") == 5, "const_strlen no workerino");
 
 //from MSVC std library just in constexpr

@@ -1,6 +1,5 @@
 #pragma once
 #include <stdint.h>
-#include <windows.h>
 #include <map>
 #include <deque>
 #include <atomic>

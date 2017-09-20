@@ -21,7 +21,7 @@ INT64 APIProfiler::s_reportInterval = 0;
 //------------------------------------------------------------------
 // Flush is called at the rate determined by APIProfiler_ReportIntervalSecs
 //------------------------------------------------------------------
-void APIProfiler::Flush(INT64 end) {
+void APIProfiler::Flush(int64_t end) {
     // Auto-initialize globals based on timer frequency:
     if (s_reportInterval == 0) {
         LARGE_INTEGER freq;
