@@ -247,6 +247,7 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
 
 void clientData::addModificationLog(std::string mod) {
     LockGuard_exclusive lock(&m_lock);
+    //Logger::log(LoggerTypes::pluginCommands, "mod " + mod);
     modificationLog.emplace_back(std::move(mod));
 }
 std::vector<std::string> clientData::getModificationLog() const {

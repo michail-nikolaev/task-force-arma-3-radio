@@ -120,8 +120,14 @@ void serverData::clientJoined(TSClientID clientID, const std::string& clientNick
         if (!std::get<2>(*found)) {//std::shared_ptr is nullptr
             std::get<2>(*found) = std::make_shared<clientData>(clientID);//Give it a valid clientData
         }
-        std::get<2>(*found)->addModificationLog(std::string("clientJoined MOD ") + std::to_string(clientID.baseType()) + " " + clientNickname);
-        std::get<2>(*found)->setNickname(clientNickname);
+        auto cData = std::get<2>(*found);
+        cData->addModificationLog(std::string("clientJoined MOD ") + std::to_string(clientID.baseType()) + " " + clientNickname);
+        cData->setNickname(clientNickname);
+
+        //fixup hash in case his name changed
+        data.erase(found);
+        insertInData(clientNickname, clientID, cData);
+
         return; //client already exists and is valid
     }
 
