@@ -26,7 +26,7 @@ private _pos = call (_unit getVariable ["TF_fnc_position", TFAR_fnc_defaultPosit
 
 private _isolated_and_inside = false; //_isInVehicle && {_unit call TFAR_fnc_vehicleIsIsolatedAndInside};
 private _vehicle = "no"; //if (_isInVehicle) then {_unit call TFAR_fnc_vehicleId} else {"no"};
-if (!isNull (objectParent _unit)) then {//_isInVehicle //#TODO somewhere here Intercom is failing. It's returning "no" while in vehicle
+if (!isNull (objectParent _unit)) then {//_isInVehicle
     _vehicle = _unit call TFAR_fnc_vehicleId;
     _isolated_and_inside = _unit call TFAR_fnc_vehicleIsIsolatedAndInside;
 };
@@ -51,9 +51,10 @@ if (_nearPlayer) then {
         if (_unit getVariable ["TFAR_LRSpeakersEnabled", false] && _useLr) then {
             {
                 if (_x call TFAR_fnc_getLrSpeakers) then {
-                    private _frequencies = [format ["%1%2", _x call TFAR_fnc_getLrFrequency, _x call TFAR_fnc_getLrRadioCode]];
+                    private _radioCode = _x call TFAR_fnc_getLrRadioCode;
+                    private _frequencies = [format ["%1%2", _x call TFAR_fnc_getLrFrequency, _radioCode]];
                     if ((_x call TFAR_fnc_getAdditionalLrChannel) > -1) then {
-                        _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_getChannelFrequency, _x call TFAR_fnc_getLrRadioCode];
+                        _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
                     };
                     private _radio_id = netId (_x select 0);
                     TFAR_speakerRadios pushBack ([_radio_id,_frequencies joinString "|",_unitName,[], _x call TFAR_fnc_getLrVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);
@@ -65,9 +66,10 @@ if (_nearPlayer) then {
         if (_unit getVariable ["TFAR_SRSpeakersEnabled", false] && _useSw) then {
             {
                 if (_x call TFAR_fnc_getSwSpeakers) then {
-                    private _frequencies = [format ["%1%2", _x call TFAR_fnc_getSwFrequency, _x call TFAR_fnc_getSwRadioCode]];
+                    private _radioCode = _x call TFAR_fnc_getSwRadioCode;
+                    private _frequencies = [format ["%1%2", _x call TFAR_fnc_getSwFrequency, _radioCode]];
                     if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
-                        _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_getChannelFrequency, _x call TFAR_fnc_getSwRadioCode];
+                        _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
                     };
                     private _radio_id = _x;
                     TFAR_speakerRadios pushBack ([_radio_id,_frequencies joinString "|",_unitName,[], _x call TFAR_fnc_getSwVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);

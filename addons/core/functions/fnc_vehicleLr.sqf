@@ -25,20 +25,29 @@ params ["_unit"];
 if (isNull (objectParent _unit) || {!((objectParent _this) call TFAR_fnc_hasVehicleRadio)}) exitWith {nil};//Unit is not in vehicle or vehicle doesn't have LR Radio
 
 private _result = nil;
-
+private _vehicle = vehicle _unit;
 switch (_unit) do {
-    case (gunner (vehicle _unit)): {
-        _result = [vehicle _unit, "gunner_radio_settings"];
+    case (gunner _vehicle): {
+        _result = [_vehicle, "gunner_radio_settings"];
     };
-    case (driver (vehicle _unit)): {
-        _result = [vehicle _unit, "driver_radio_settings"];
+    case (driver _vehicle): {
+        _result = [_vehicle, "driver_radio_settings"];
     };
-    case (commander (vehicle _unit)): {
-        _result = [vehicle _unit, "commander_radio_settings"];
+    case (commander _vehicle): {
+        _result = [_vehicle, "commander_radio_settings"];
     };
-    case ((vehicle _unit) call TFAR_fnc_getCopilot): {
-        _result = [vehicle _unit, "turretUnit_0_radio_setting"];
+    case (_vehicle call TFAR_fnc_getCopilot): {
+        _result = [_vehicle, "copilot_radio_setting"];
     };
+    default {
+        private _turrets = [(typeof _vehicle), "TFAR_AdditionalLR_Turret", []] call TFAR_fnc_getConfigProperty;
+        private _index = (_turrets apply {(_vehicle turretUnit _x)}) find _unit;
+        if (_index != -1) exitWith {_result = [_vehicle, format ["turretUnit_%1_radio_setting",_index]]};
+
+        private _cargos = [(typeof _vehicle), "TFAR_AdditionalLR_Cargo", []] call TFAR_fnc_getConfigProperty;
+        private _cargoIndex = _vehicle getCargoIndex _unit;
+        if (_cargoIndex in _cargos) exitWith {_result = [_vehicle, format ["cargoUnit_%1_radio_setting",_cargoIndex]]};
+    }
 };
 
 _result
