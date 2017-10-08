@@ -2,7 +2,7 @@
 /// Base Classes
 ///////////////////////////////////////////////////////////////////////////
 class RscBackPicture {
-    access = 0;
+    //access = 0;
     type = 0;
     idc = -1;
     style = 48;
@@ -31,7 +31,7 @@ class RscBackPicture {
 };
 
 class RscEditLCD {
-    access = 0;
+    //access = 0;
     type = 2;
     x = 0;
     y = 0;
@@ -72,7 +72,7 @@ class RscEditLCD {
 
 class HiddenButton
 {
-    access = 0;
+    //access = 0;
     type = 1;
     text = "";
     colorText[] = {

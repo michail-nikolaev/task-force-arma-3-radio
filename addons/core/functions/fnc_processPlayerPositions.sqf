@@ -31,15 +31,15 @@ if (!TFAR_currentNearPlayersProcessed) then {
     if (_playersToProcess == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
 
     {
-        private _controlled = _x getVariable "TFAR_controlledUnit";
+        private _controlled = _x getVariable ["TFAR_controlledUnit", objNull];
         private _unitName = name _x;
         if (_x getVariable ["TFAR_forceSpectator",false]) then {
             _unitName = _x getVariable ["TFAR_spectatorName",_unitName];
         };
-        if !(isNil "_controlled") then {
-            [_controlled, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
-        } else {
+        if (isNull _controlled) then {
             [_x, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
+        } else {
+            [_controlled, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         };
     } forEach (TFAR_currentNearPlayersProcessing select [0,_playersToProcess]); //commy2
 
@@ -107,13 +107,8 @@ if (_needNearPlayerScan) then {
 
     private _other_units = allPlayers - TFAR_currentNearPlayers;
 
-    TFAR_currentFarPlayers = [];
-    {
-        if (isPlayer _x) then {
-            TFAR_currentFarPlayers pushBackUnique _x;
-        };
-        true;
-    } count _other_units;
+    TFAR_currentFarPlayers = _other_units select {isPlayer _x};
+
     TFAR_lastPlayerScanTime = diag_tickTime;
 };
 

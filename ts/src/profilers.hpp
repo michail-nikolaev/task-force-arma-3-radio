@@ -1,17 +1,18 @@
-#pragma once
+﻿#pragma once
 #include <chrono>
 #include "common.hpp"
 #include <windows.h>
 #include <memory>
 #include <fstream>
+#include "version.h"
 namespace profiler {
     void log(const std::string& message);
 }
 
 
-
 #ifdef isCI
 #define ENABLE_API_PROFILER 0     // Disabled for release builds
+#define ENABLE_PLUGIN_LOGS 1
 #else
 #define ENABLE_API_PROFILER 1     // Comment this line to disable the profiler
 #endif

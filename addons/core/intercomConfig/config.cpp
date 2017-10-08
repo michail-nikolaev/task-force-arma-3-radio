@@ -43,7 +43,7 @@ class CfgVehicles {
         IntercomMacro
     };
 */
-class AllVehicles;
+    class AllVehicles;
     class Air : AllVehicles {class ACE_SelfActions;};
     class Helicopter: Air {
         TFAR_hasIntercom = 1;

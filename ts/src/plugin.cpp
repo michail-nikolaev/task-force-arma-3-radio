@@ -1,4 +1,4 @@
-/*
+﻿/*
  * TeamSpeak 3 demo plugin
  *
  * Copyright (c) 2008-2013 TeamSpeak Systems GmbH
@@ -150,7 +150,7 @@ void ServiceThread() {
             //bool isSerious = isSeriousModeEnabled(Teamspeak::getCurrentServerConnection(), Teamspeak::getMyId());
 
             if (TFAR::getInstance().getCurrentlyInGame())
-                Teamspeak::moveToSeriousChannel();
+                Teamspeak::moveToSeriousChannel();//#TODO people may want to leave SeriousChannel on purpose and not be moved back
             lastCheckForExpire = std::chrono::system_clock::now();
         }
         if ((std::chrono::system_clock::now() - lastInfoUpdate.load()) > 4000ms) {
@@ -194,9 +194,9 @@ void PipeThread() {
             continue;
         }
 
-#ifdef USE_SHAREDMEM
+    #ifdef USE_SHAREDMEM
         pipeHandler.setConfigNeedsRefresh(TFAR::config.needsRefresh());	//#TODO Signal/Slot ?
-#endif
+    #endif
         if (!pipeHandler.getData(command, 20ms))//This will still wait. 1ms if SHAMEM error. 20ms if game unconnected
             continue;
 
@@ -204,29 +204,29 @@ void PipeThread() {
         bool dataReturned = false;
         if (command.back() == '~') {//a ~ at the end identifies an Async call
             command.pop_back();//removes ~ from end
-#ifdef USE_SHAREDMEM
+        #ifdef USE_SHAREDMEM
             TFAR::getInstance().getCommandProcessor()->queueCommand(command);
-#else
+        #else
             if (pipeHandler.sendData("OK", 2)) {
                 log_string("Info to ARMA send async", LogLevel_DEBUG);
                 dataReturned = true;
             } else {
                 log_string("Can't send info to ARMA async", LogLevel_ERROR);
             }
-#endif	
+        #endif	
         } else {
             gameCommandIn.reset();
-#ifdef USE_SHAREDMEM
+        #ifdef USE_SHAREDMEM
             std::string commandResult = TFAR::getInstance().getCommandProcessor()->processCommand(command);
             pipeHandler.sendData(commandResult);
             if (gameCommandIn.getCurrentElapsedTime().count() >
-#ifdef _DEBUG
+            #ifdef _DEBUG
                 400)
-#else
+            #else
                 200)
-#endif
+            #endif
                 log_string("gameinteraction " + std::to_string(gameCommandIn.getCurrentElapsedTime().count()) + command, LogLevel_INFO);   //#Release remove logging and creation variable
-#else
+        #else
             if (gameCommandIn.getCurrentElapsedTime().count() > 200)
                 log_string("gameinteraction " + std::to_string(gameCommandIn.getCurrentElapsedTime().count()) + command, LogLevel_INFO);   //#Release remove logging and creation variable
 
@@ -237,7 +237,7 @@ void PipeThread() {
                     log_string("Can't send info to ARMA", LogLevel_ERROR);
                 }
             }
-#endif
+        #endif
 
         }
 
@@ -285,11 +285,14 @@ int ts3plugin_init() {
     }
     TFAR::getInstance().setPluginPath(pluginPath);
 
-#ifdef ENABLE_API_PROFILER
+#if ENABLE_API_PROFILER
     Logger::registerLogger(LoggerTypes::profiler, std::make_shared<FileLogger>("P:/profiler.log"));
     Logger::registerLogger(LoggerTypes::gameCommands, std::make_shared<FileLogger>("P:/gameCommands.log"));
     Logger::registerLogger(LoggerTypes::pluginCommands, std::make_shared<FileLogger>("P:/pluginCommands.log"));
     Logger::registerLogger(LoggerTypes::teamspeakClientlog, std::make_shared<TeamspeakLogger>(LogLevel::LogLevel_INFO));
+#endif
+#if !ENABLE_API_PROFILER && ENABLE_PLUGIN_LOGS
+    Logger::registerLogger(LoggerTypes::pluginCommands, std::make_shared<FileLogger>(std::string(getenv("appdata")) + "\\TS3Client\\TFAR_pluginCommands.log"));
 #endif
 
     TFAR::getInstance().setPluginPath(pluginPath);
@@ -480,7 +483,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     bool isInSameVehicle = (myVehicleDesriptor.vehicleName == hisVehicleDesriptor.vehicleName);
     float distanceFromClient_ = myPosition.distanceTo(clientData->getClientPosition()) + (2 * clientData->objectInterception); //2m more dist for each obstacle
 
-
+    //#TODO skip all the directSpeech processing if isFromMicrophone
 
     //#### DIRECT SPEECH
     if (myId != clientID &&
@@ -540,7 +543,9 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
             switch (PTTDelayArguments::stringToSubtype(clientData->getCurrentTransmittingSubtype())) {
                 case PTTDelayArguments::subtypes::digital: {
                     if (info.over == sendingRadioType::LISTEN_TO_SW) {
-                        clientData->effects.getSwRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss());
+                        auto errorLevel = info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss();
+                        clientData->effects.getSwRadioEffect(info.radio_id)->setErrorLeveL(errorLevel);
+
                         processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getSwRadioEffect(info.radio_id), info.stereoMode);
                     } else {
                         float underwaterDist = myPosition.distanceUnderwater(clientData->getClientPosition());
@@ -618,22 +623,24 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
     if (!TFAR::getInstance().getCurrentlyInGame())
         return;
 
-    short* stereo = new short[sampleCount * 2];
-    for (int q = 0; q < sampleCount; q++) {
-        for (int g = 0; g < 2; g++)
-            stereo[q * 2 + g] = samples[q * channels + g];
+    if (channels != 2) {
+        short* stereo = new short[sampleCount * 2];
+        for (int q = 0; q < sampleCount; q++) {
+            for (int g = 0; g < 2; g++)
+                stereo[q * 2 + g] = samples[q * channels + g];
+        }
+
+        processVoiceData(serverConnectionHandlerID, clientID, stereo, sampleCount, 2);
+        for (int q = 0; q < sampleCount; q++) {
+            for (int g = 0; g < 2; g++)
+                samples[q * channels + g] = stereo[q * 2 + g];
+            for (int g = 2; g < channels; g++)
+                samples[q * channels + g] = 0;
+        }
+        delete[] stereo;
+    } else {
+        processVoiceData(serverConnectionHandlerID, clientID, samples, sampleCount, 2);
     }
-
-    processVoiceData(serverConnectionHandlerID, clientID, stereo, sampleCount, 2);
-
-    for (int q = 0; q < sampleCount; q++) {
-        for (int g = 0; g < 2; g++)
-            samples[q * channels + g] = stereo[q * 2 + g];
-        for (int g = 2; g < channels; g++)
-            samples[q * channels + g] = 0;
-    }
-
-    delete[] stereo;
 }
 
 //Data from our microphone before its sent
@@ -809,7 +816,11 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
 
             float gain = helpers::volumeMultiplifier(static_cast<float>(listedInfo.volume)) * TFAR::getInstance().m_gameData.globalVolume;
 
-            myClientData->receivingTransmission = playPressed; //Set that we are receiving a transmission. For the EventHandler
+            if (playPressed) {
+                myClientData->receivingTransmission += 1; //Set that we are receiving a transmission. For the EventHandler
+                myClientData->receivingFrequencies.emplace(frequency);
+            }
+
             switch (PTTDelayArguments::stringToSubtype(subtype)) {
                 case PTTDelayArguments::subtypes::digital:
                     TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/sw/remote_start" : "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
@@ -823,6 +834,11 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
             }
         }
     }
+    if (!playPressed) {
+        myClientData->receivingTransmission -= 1;
+        myClientData->receivingFrequencies.erase(frequency);
+    }
+
     setGameClientMuteStatus(serverId, clientId, { true,!listedInfos.empty() });
 }
 
