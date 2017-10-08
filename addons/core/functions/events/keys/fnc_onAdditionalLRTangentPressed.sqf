@@ -59,4 +59,4 @@ private _pluginCommand = format[
 TF_tangent_lr_pressed = true;
 //				unit, radio, radioType, additional, buttonDown
 ["OnTangent", [TFAR_currentUnit, _radio, 1, true, true]] call TFAR_fnc_fireEventHandlers;
-true
+false
