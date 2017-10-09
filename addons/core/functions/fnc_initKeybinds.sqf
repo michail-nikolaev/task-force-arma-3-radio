@@ -1,5 +1,5 @@
 #include "script_component.hpp"
-#include “\a3\editor_f\Data\Scripts\dikCodes.h”
+#include "\a3\editor_f\Data\Scripts\dikCodes.h"
 
 TF_tangent_sw_scancode = DIK_CAPSLOCK;
 TF_tangent_sw_modifiers = [false,false,false];
