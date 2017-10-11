@@ -20,12 +20,12 @@ class CfgPatches {
         statement = ""; \
         icon = ""; \
         class TFAR_IntercomChannel_1 { \
-            displayName = "$STR_TFAR_Intercom_ACESelfAction_Channel1"; \
+            displayName = "Cargo"; \
             condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 0); \
             statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,0,true)];); \
         }; \
         class TFAR_IntercomChannel_2 { \
-            displayName = "$STR_TFAR_Intercom_ACESelfAction_Channel2"; \
+            displayName = "Crew"; \
             condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 1); \
             statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,1,true)];); \
         }; \
