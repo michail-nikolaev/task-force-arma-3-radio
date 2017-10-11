@@ -114,25 +114,43 @@ TF_speak_volume_modifier_yelling_modifiers = [false, false, false];
 TF_speak_volume_modifier_whispering_scancode = 0;
 TF_speak_volume_modifier_whispering_modifiers = [false, false, false];
 
-["TFAR","SWChannel1",["$STR_TFAR_key_SW_Channe_1","$STR_TFAR_key_SW_Channe_1"],{[0] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_1_scancode, TF_sw_channel_1_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","SWChannel2",["$STR_TFAR_key_SW_Channe_2","$STR_TFAR_key_SW_Channe_2"],{[1] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_2_scancode, TF_sw_channel_2_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","SWChannel3",["$STR_TFAR_key_SW_Channe_3","$STR_TFAR_key_SW_Channe_3"],{[2] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_3_scancode, TF_sw_channel_3_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","SWChannel4",["$STR_TFAR_key_SW_Channe_4","$STR_TFAR_key_SW_Channe_4"],{[3] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_4_scancode, TF_sw_channel_4_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","SWChannel5",["$STR_TFAR_key_SW_Channe_5","$STR_TFAR_key_SW_Channe_5"],{[4] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_5_scancode, TF_sw_channel_5_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","SWChannel6",["$STR_TFAR_key_SW_Channe_6","$STR_TFAR_key_SW_Channe_6"],{[5] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_6_scancode, TF_sw_channel_6_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","SWChannel7",["$STR_TFAR_key_SW_Channe_7","$STR_TFAR_key_SW_Channe_7"],{[6] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_7_scancode, TF_sw_channel_7_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","SWChannel8",["$STR_TFAR_key_SW_Channe_8","$STR_TFAR_key_SW_Channe_8"],{[7] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_8_scancode, TF_sw_channel_8_modifiers],false] call cba_fnc_addKeybind;
+
+_swCH1 = format ["%1 %2",localize "STR_TFAR_key_SW_Channe","1"];
+_swCH2 = format ["%1 %2",localize "STR_TFAR_key_SW_Channe","2"];
+_swCH3 = format ["%1 %2",localize "STR_TFAR_key_SW_Channe","3"];
+_swCH4 = format ["%1 %2",localize "STR_TFAR_key_SW_Channe","4"];
+_swCH5 = format ["%1 %2",localize "STR_TFAR_key_SW_Channe","5"];
+_swCH6 = format ["%1 %2",localize "STR_TFAR_key_SW_Channe","6"];
+_swCH7 = format ["%1 %2",localize "STR_TFAR_key_SW_Channe","7"];
+_swCH8 = format ["%1 %2",localize "STR_TFAR_key_SW_Channe","8"];
+["TFAR","SWChannel1",[_swCH1,_swCH1],{[0] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_1_scancode, TF_sw_channel_1_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","SWChannel2",[_swCH2,_swCH2],{[1] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_2_scancode, TF_sw_channel_2_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","SWChannel3",[_swCH3,_swCH3],{[2] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_3_scancode, TF_sw_channel_3_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","SWChannel4",[_swCH4,_swCH4],{[3] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_4_scancode, TF_sw_channel_4_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","SWChannel5",[_swCH5,_swCH5],{[4] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_5_scancode, TF_sw_channel_5_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","SWChannel6",[_swCH6,_swCH6],{[5] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_6_scancode, TF_sw_channel_6_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","SWChannel7",[_swCH7,_swCH7],{[6] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_7_scancode, TF_sw_channel_7_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","SWChannel8",[_swCH8,_swCH8],{[7] call TFAR_fnc_processSWChannelKeys},{true},[TF_sw_channel_8_scancode, TF_sw_channel_8_modifiers],false] call cba_fnc_addKeybind;
 
 
-["TFAR","LRChannel1",["$STR_TFAR_key_LR_Channe_1","$STR_TFAR_key_LR_Channe_1"],{[0] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_1_scancode, TF_lr_channel_1_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRChannel2",["$STR_TFAR_key_LR_Channe_2","$STR_TFAR_key_LR_Channe_2"],{[1] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_2_scancode, TF_lr_channel_2_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRChannel3",["$STR_TFAR_key_LR_Channe_3","$STR_TFAR_key_LR_Channe_3"],{[2] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_3_scancode, TF_lr_channel_3_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRChannel4",["$STR_TFAR_key_LR_Channe_4","$STR_TFAR_key_LR_Channe_4"],{[3] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_4_scancode, TF_lr_channel_4_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRChannel5",["$STR_TFAR_key_LR_Channe_5","$STR_TFAR_key_LR_Channe_5"],{[4] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_5_scancode, TF_lr_channel_5_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRChannel6",["$STR_TFAR_key_LR_Channe_6","$STR_TFAR_key_LR_Channe_6"],{[5] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_6_scancode, TF_lr_channel_6_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRChannel7",["$STR_TFAR_key_LR_Channe_7","$STR_TFAR_key_LR_Channe_7"],{[6] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_7_scancode, TF_lr_channel_7_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRChannel8",["$STR_TFAR_key_LR_Channe_8","$STR_TFAR_key_LR_Channe_8"],{[7] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_8_scancode, TF_lr_channel_8_modifiers],false] call cba_fnc_addKeybind;
-["TFAR","LRChannel9",["$STR_TFAR_key_LR_Channe_9","$STR_TFAR_key_LR_Channe_9"],{[8] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_9_scancode, TF_lr_channel_9_modifiers],false] call cba_fnc_addKeybind;
+_lrCH1 = format ["%1 %2",localize "STR_TFAR_key_LR_Channe","1"];
+_lrCH2 = format ["%1 %2",localize "STR_TFAR_key_LR_Channe","2"];
+_lrCH3 = format ["%1 %2",localize "STR_TFAR_key_LR_Channe","3"];
+_lrCH4 = format ["%1 %2",localize "STR_TFAR_key_LR_Channe","4"];
+_lrCH5 = format ["%1 %2",localize "STR_TFAR_key_LR_Channe","5"];
+_lrCH6 = format ["%1 %2",localize "STR_TFAR_key_LR_Channe","6"];
+_lrCH7 = format ["%1 %2",localize "STR_TFAR_key_LR_Channe","7"];
+_lrCH8 = format ["%1 %2",localize "STR_TFAR_key_LR_Channe","8"];
+_lrCH9 = format ["%1 %2",localize "STR_TFAR_key_LR_Channe","9"];
+["TFAR","LRChannel1",[_lrCH1,_lrCH1],{[0] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_1_scancode, TF_lr_channel_1_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRChannel2",[_lrCH2,_lrCH2],{[1] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_2_scancode, TF_lr_channel_2_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRChannel3",[_lrCH3,_lrCH3],{[2] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_3_scancode, TF_lr_channel_3_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRChannel4",[_lrCH4,_lrCH4],{[3] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_4_scancode, TF_lr_channel_4_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRChannel5",[_lrCH5,_lrCH5],{[4] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_5_scancode, TF_lr_channel_5_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRChannel6",[_lrCH6,_lrCH6],{[5] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_6_scancode, TF_lr_channel_6_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRChannel7",[_lrCH7,_lrCH7],{[6] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_7_scancode, TF_lr_channel_7_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRChannel8",[_lrCH8,_lrCH8],{[7] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_8_scancode, TF_lr_channel_8_modifiers],false] call cba_fnc_addKeybind;
+["TFAR","LRChannel9",[_lrCH9,_lrCH9],{[8] call TFAR_fnc_processLRChannelKeys},{true},[TF_lr_channel_9_scancode, TF_lr_channel_9_modifiers],false] call cba_fnc_addKeybind;
 
 
 ["TFAR","ChangeSpeakingVolume",["$STR_TFAR_key_ChangeSpeechVolume","$STR_TFAR_key_ChangeSpeechVolume"],{call TFAR_fnc_onSpeakVolumeChangePressed},{true},[TF_speak_volume_scancode, TF_speak_volume_modifiers],false] call cba_fnc_addKeybind;

@@ -44,8 +44,8 @@ class CfgMods {
     class PREFIX {
         dir = "@task_force_radio";
         name = "Task Force Arrowhead Radio";
- -      tooltip = "Task Force Arrowhead Radio";
- -      overview = "Task Force Arrowhead Radio";
+        tooltip = "Task Force Arrowhead Radio";
+        overview = "Task Force Arrowhead Radio";
         picture = QPATHTOF(task_force_arrowhead_logo.paa);
         contentBrowserPicture = QPATHTOF(task_force_arrowhead_logo.paa);
         logo = QPATHTOF(task_force_arrowhead_logo.paa);

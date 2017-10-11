@@ -21,13 +21,13 @@ class CfgPatches {
         icon = ""; \
         class TFAR_IntercomChannel_1 { \
             displayName = "$STR_TFAR_Intercom_ACESelfAction_Channel1"; \
-            condition = "true"; \
-            statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],0,true];"; \
+            condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 0); \
+            statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,0,true)];); \
         }; \
         class TFAR_IntercomChannel_2 { \
             displayName = "$STR_TFAR_Intercom_ACESelfAction_Channel2"; \
-            condition = "true"; \
-            statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],1,true];"; \
+            condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 1); \
+            statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,1,true)];); \
         }; \
     }; \
 };

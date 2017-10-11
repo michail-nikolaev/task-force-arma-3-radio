@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project ID="Arma2">
     <Package name="core">
         <Container name="misc">
@@ -995,16 +995,6 @@
                 <Original>Crew</Original>
                 <Chinese>機組員</Chinese>
                 <Chinesesimp>机组员</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_Rotator_Push">
-                <Original>TFAR - Rotator Switch (Push)</Original>
-                <Chinese>TFAR - 旋轉開關 (按壓)</Chinese>
-                <Chinesesimp>TFAR - 旋转开关 (按压)</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_Rotator_Click">
-                <Original>TFAR - Rotator Switch (Click)</Original>
-                <Chinese>TFAR - 旋轉開關 (點擊)</Chinese>
-                <Chinesesimp>TFAR - 旋转开关 (点击)</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Main_Desc">
                 <Original>War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.</Original>
@@ -2538,92 +2528,52 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>看來TFAR並沒有被載入，或是版本低於1.0</Chinese>
                 <Chinesesimp>看来TFAR并没有被载入，或是版本低于1.0</Chinesesimp>
             </Key>
+            <Key ID="STR_TFAR_WM_BaseModule_LR">
+                <Original>TFAR ERROR: %1 is not a valid LR radio</Original>
+                <Chinese>TFAR錯誤: %1並不是有效的長程無線電</Chinese>
+                <Chinesesimp>TFAR错误: %1并不是有效的长程无线电</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_BaseModule_PR">
+                <Original>TFAR ERROR: %1 is not a valid personal radio</Original>
+                <Chinese>TFAR錯誤: %1並不是有效的個人無線電</Chinese>
+                <Chinesesimp>TFAR错误: %1并不是有效的个人无线电</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_BaseModule_FQMSR_AlreadySet">
+                <Original>TFAR - TFAR_freq_sr_west already set, module overriding.</Original>
+                <Chinese>TFAR - TFAR_freq_sr_west已經被設置，模塊正在覆蓋。</Chinese>
+                <Chinesesimp>TFAR - TFAR_freq_sr_west已经被设置，模块正在覆盖。</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_BaseModule_FQMLR_AlreadySet">
+                <Original>TFAR - TFAR_freq_lr_west already set, module overriding.</Original>
+                <Chinese>TFAR - TFAR_freq_lr_west已經被設置，模塊正在覆蓋。</Chinese>
+                <Chinesesimp>TFAR - TFAR_freq_lr_west已经被设置，模块正在覆盖。</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_FreqModule_noUnits">
+                <Original>TFAR - No units set for Frequency Module</Original>
+                <Chinese>TFAR - 頻率模塊沒有與任何單位連接上</Chinese>
+                <Chinesesimp>TFAR - 频率模块没有与任何单位连接上</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_FreqModule_FQMSW_AlreadySet">
+                <Original>TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.</Original>
+                <Chinese>TFAR - tf_sw_frequency已經被設置，可能有群組(%1)被多個頻率模塊連接上。或有多個頻率模塊連接上到多個屬於同一群組的單位上。</Chinese>
+                <Chinesesimp>TFAR - tf_sw_frequency已经被设置，可能有群组(%1)被多个频率模块连接上。或有多个频率模块连接上到多个属于同一群组的单位上。</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_FreqModule_FQMLR_AlreadySet">
+                <Original>TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.</Original>
+                <Chinese>TFAR - tf_lr_frequency已經被設置，可能有群組(%1)被多個頻率模塊連接上。或有多個頻率模塊連接上到多個屬於同一群組的單位上。</Chinese>
+                <Chinesesimp>TFAR - tf_lr_frequency已经被设置，可能有群组(%1)被多个频率模块连接上。或有多个频率模块连接上到多个属于同一群组的单位上。</Chinesesimp>
+            </Key>
         </Container>
         <Container name="Keybinding">
-            <Key ID="STR_TFAR_key_SW_Channe_1">
-                <Original>SW Channel 1</Original>
-                <Chinese>短程無線電頻道1</Chinese>
-                <Chinesesimp>短程无线电频道1</Chinesesimp>
+            <Key ID="STR_TFAR_key_SW_Channe">
+                <Original>SW Channel</Original>
+                <Chinese>短程無線電頻道</Chinese>
+                <Chinesesimp>短程无线电频道</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_key_SW_Channe_2">
-                <Original>SW Channel 2</Original>
-                <Chinese>短程無線電頻道2</Chinese>
-                <Chinesesimp>短程无线电频道2</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_SW_Channe_3">
-                <Original>SW Channel 3</Original>
-                <Chinese>短程無線電頻道3</Chinese>
-                <Chinesesimp>短程无线电频道3</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_SW_Channe_4">
-                <Original>SW Channel 4</Original>
-                <Chinese>短程無線電頻道4</Chinese>
-                <Chinesesimp>短程无线电频道4</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_SW_Channe_5">
-                <Original>SW Channel 5</Original>
-                <Chinese>短程無線電頻道5</Chinese>
-                <Chinesesimp>短程无线电频道5</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_SW_Channe_6">
-                <Original>SW Channel 6</Original>
-                <Chinese>短程無線電頻道6</Chinese>
-                <Chinesesimp>短程无线电频道6</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_SW_Channe_7">
-                <Original>SW Channel 7</Original>
-                <Chinese>短程無線電頻道7</Chinese>
-                <Chinesesimp>短程无线电频道7</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_SW_Channe_8">
-                <Original>SW Channel 8</Original>
-                <Chinese>短程無線電頻道8</Chinese>
-                <Chinesesimp>短程无线电频道8</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_LR_Channe_1">
-                <Original>LR Channel 1</Original>
-                <Chinese>長程無線電頻道1</Chinese>
-                <Chinesesimp>长程无线电频道1</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_LR_Channe_2">
-                <Original>LR Channel 2</Original>
-                <Chinese>長程無線電頻道2</Chinese>
-                <Chinesesimp>长程无线电频道2</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_LR_Channe_3">
-                <Original>LR Channel 3</Original>
-                <Chinese>長程無線電頻道3</Chinese>
-                <Chinesesimp>长程无线电频道3</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_LR_Channe_4">
-                <Original>LR Channel 4</Original>
-                <Chinese>長程無線電頻道4</Chinese>
-                <Chinesesimp>长程无线电频道4</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_LR_Channe_5">
-                <Original>LR Channel 5</Original>
-                <Chinese>長程無線電頻道5</Chinese>
-                <Chinesesimp>长程无线电频道5</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_LR_Channe_6">
-                <Original>LR Channel 6</Original>
-                <Chinese>長程無線電頻道6</Chinese>
-                <Chinesesimp>长程无线电频道6</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_LR_Channe_7">
-                <Original>LR Channel 7</Original>
-                <Chinese>長程無線電頻道7</Chinese>
-                <Chinesesimp>长程无线电频道7</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_LR_Channe_8">
-                <Original>LR Channel 8</Original>
-                <Chinese>長程無線電頻道8</Chinese>
-                <Chinesesimp>长程无线电频道8</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_key_LR_Channe_9">
-                <Original>LR Channel 9</Original>
-                <Chinese>長程無線電頻道9</Chinese>
-                <Chinesesimp>长程无线电频道9</Chinesesimp>
+            <Key ID="STR_TFAR_key_LR_Channe">
+                <Original>LR Channel</Original>
+                <Chinese>長程無線電頻道</Chinese>
+                <Chinesesimp>长程无线电频道</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_key_ChangeSpeechVolume">
                 <Original>Change Speaking Volume</Original>
