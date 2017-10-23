@@ -10,7 +10,8 @@
         Used to provide an array of ace actions to be used as children actions in the interact menu.
 
     Parameters:
-
+        0: OBJECT - Unit
+        1: STRING/ARRAY - the radio
 
     Returns:
         An array of children ACE actions.
@@ -22,8 +23,6 @@
 params ["_unit", "_radio"];
 
 private ["_switchFnc","_switchCheck"];
-
-diag_log format["_this = %1",_this];
 
 if (_radio isEqualType []) then {
     _switchFnc = {(_this select 2) call TFAR_fnc_setLrStereo;};
