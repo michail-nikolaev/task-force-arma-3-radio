@@ -3,7 +3,7 @@ class CAManBase: Man {
     class ACE_SelfActions {
         class ACE_Equipment {
             class TFAR_Radio {
-                displayName = "Radios";
+                displayName = CSTRING(RADIOS);
                 condition = "(([] call TFAR_fnc_haveSWRadio)||([] call TFAR_fnc_haveLRRadio))";
                 exceptions[] = {"isNotInside","isNotSitting"};
                 statement = "";
@@ -25,6 +25,20 @@ class CAManBase: Man {
                 statement = "false call TFAR_fnc_setHeadsetLowered;";
                 //showDisabled = 0;
                 icon = "";
+            };
+        };
+    };
+    class ACE_Actions {
+        class ACE_MainActions {
+            class TFAR_Radio {
+                displayName = CSTRING(RADIOS);
+                distance = 2;
+                //condition = "(((count ([(_this select 1)] call TFAR_fnc_getRadioItems))>0)||!(((_this select 1) call TFAR_fnc_backpackLr) isEqualTo []))";
+                condition = "[_this select 1] call TFAR_fnc_hasRadio";
+                exceptions[] = {"isNotSwimming", "isNotInside"};
+                statement = "";
+                icon = QPATHTOF(ui\ACE_Interaction_Radio_Icon.paa);
+                insertChildren = "_this call TFAR_fnc_addTakeToACE";
             };
         };
     };

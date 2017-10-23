@@ -852,6 +852,14 @@
                 <Japanese>TFAR ラジオ (AAF)</Japanese>
                 <Korean>TFAR Radio (AAF)</Korean>
             </Key>
+            <Key ID="STR_TFAR_CORE_RADIOS">
+                <English>Radios</English>
+                <German>Funkgeräte</German>
+            </Key>
+            <Key ID="STR_TFAR_CORE_TAKE">
+                <English>Take %1</English>
+                <German>%1 nehmen</German>
+            </Key>
         </Container>
         <Container name="modules">
             <Key ID="STR_TFAR_Mod_LR_Radio">

@@ -9,11 +9,13 @@ PREP(activeSwRadio);
 PREP_SUB(events\handler,addEventHandler);
 PREP(addRadiosToACE);
 PREP(addStereoToACE);
+PREP(addTakeToACE);
 // B
 PREP(backpackLr);
 // C
 PREP(calcTerrainInterception);
 PREP(canSpeak);
+PREP(canTakeRadio);
 PREP(canUseSWRadio);
 PREP(canUseLRRadio);
 PREP(canUseDDRadio);
@@ -55,6 +57,7 @@ PREP(getConfigProperty);
 PREP(getCopilot);
 PREP(getLrRadioProperty);
 PREP(getChannelFrequency);
+PREP(getRadioItems);
 PREP(getSideRadio);
 PREP(getTransmittingDistanceMultiplicator);
 PREP(getAdditionalLrStereo);
@@ -68,6 +71,7 @@ PREP(getRadioOwner);
 PREP(getSwSpeakers);
 PREP(getLrSpeakers);
 // H
+PREP(hasRadio);
 PREP(hasVehicleRadio);
 PREP(haveProgrammator);
 PREP_SUB(hint,hideHint);
@@ -82,6 +86,7 @@ PREP(initKeybinds);
 PREP_SUB(server,instanciateRadios);
 PREP_SUB(hint,inWaterHint);
 PREP(isAbleToUseRadio);
+PREP(isBackpackRadio);
 PREP(isForcedCurator);
 PREP(isPrototypeRadio);
 PREP(isRadio);
@@ -183,6 +188,8 @@ PREP_SUB(plugin,sessionTracker);
 PREP_SUB(plugin,betaTracker); //#TODO remove on release
 PREP_SUB(events\ui,setVolumeViaDialog);
 PREP_SUB(events\ui,setChannelViaDialog);
+// T
+PREP(takeRadio);
 // U
 PREP_SUB(events\ui,updateSWDialogToChannel);
 PREP_SUB(events\ui,updateLRDialogToChannel);
