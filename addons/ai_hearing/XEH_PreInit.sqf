@@ -10,7 +10,6 @@
     false,
     1,
     {
-        diag_log "Setting changed";
         If (hasInterface) then {
             TFAR_AICanHearPlayer = _this;
             [] call TFAR_fnc_initializeAIHearing;
