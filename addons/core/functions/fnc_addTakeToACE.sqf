@@ -29,7 +29,7 @@ private _children = [];
         [
             [
                 format["TFAR_takeRadio_%1",_x],
-                format[LSTRING(TAKE),getText(_cfg >> "displayName")],
+                format[localize LSTRING(TAKE),getText(_cfg >> "displayName")],
                 getText(_cfg >> "picture"),
                 {call TFAR_fnc_takeRadio},
                 {call TFAR_fnc_canTakeRadio},
@@ -48,7 +48,7 @@ private _children = [];
         [
             [
                 format["TFAR_takeRadio_%1",_x],
-                format[LSTRING(TAKE),getText(_cfg >> "displayName")],
+                format[localize LSTRING(TAKE),getText(_cfg >> "displayName")],
                 getText(_cfg >> "picture"),
                 {call TFAR_fnc_takeRadio},
                 {call TFAR_fnc_canTakeRadio},
