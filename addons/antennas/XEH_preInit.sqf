@@ -1,15 +1,14 @@
 #include "script_component.hpp"
 
-PREP(deleteRadioTower);
-PREP(initRadioTower);
-PREP(pluginAddRadioTower);
-PREP(pluginRemoveRadioTower);
+#include "XEH_PREP.sqf"
 
 if (!hasInterface) exitWith {}; //Don't need on Headless and dedicated Servers
 
 GVAR(radioTowerList) = [] call CBA_fnc_hashCreate;
 
 ["TFAR_ConfigRefresh",{
-    //systemChat "TFAR_ConfigRefresh";
-    ([(GVAR(radioTowerList))] call CBA_fnc_hashKeys) call DFUNC(pluginAddRadioTower);
+    #ifdef DEBUG_MODE_FULL
+        systemChat "TFAR_ConfigRefresh";
+    #endif
+    ([(GVAR(radioTowerList))] call CBA_fnc_hashKeys) call FUNC(pluginAddRadioTower);
 }] call CBA_fnc_addEventHandler;

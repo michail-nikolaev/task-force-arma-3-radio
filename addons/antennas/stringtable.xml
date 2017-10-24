@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project ID="TFAR">
+    <Package name="antennas">
+        <Key ID="STR_TFAR_ANTENNAS_TOWERNAME">
+            <English>Communication Tower (TFAR)</English>
+            <German>Funkturm (TFAR)</German>
+        </Key>
+    </Package>
+</Project>

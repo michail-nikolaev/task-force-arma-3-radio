@@ -13,32 +13,5 @@ class CfgPatches {
     };
 };
 
-class Extended_PreInit_EventHandlers {
-    class ADDON {
-        init = QUOTE(call COMPILE_FILE(XEH_preInit));
-    };
-};
-
-class Extended_PostInit_EventHandlers {
-    class ADDON {
-        init = QUOTE(call COMPILE_FILE(XEH_postInit));
-    };
-};
-
-class Extended_Init_EventHandlers {
-    class TFAR_Land_Communication_F {
-        class ADDON {
-            clientInit = QUOTE([ARR_2(_this select 0,50000)] call DFUNC(initRadioTower));
-        };
-    };
-};
-
-class Extended_Delete_EventHandlers {
-    class TFAR_Land_Communication_F {
-        class ADDON {
-            clientInit = QUOTE((_this param [ARR_2(0,_this)]) call DFUNC(deleteRadioTower));
-        };
-    };
-};
-
+#include "CfgEventhandlers.hpp"
 #include "CfgVehicles.hpp"
