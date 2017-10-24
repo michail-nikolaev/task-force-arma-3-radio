@@ -33,9 +33,8 @@ class CAManBase: Man {
             class TFAR_Radio {
                 displayName = CSTRING(RADIOS);
                 distance = 2;
-                //condition = "(((count ([(_this select 1)] call TFAR_fnc_getRadioItems))>0)||!(((_this select 1) call TFAR_fnc_backpackLr) isEqualTo []))";
                 condition = "[_this select 1] call TFAR_fnc_hasRadio";
-                exceptions[] = {"isNotSwimming", "isNotInside"};
+                exceptions[] = {};
                 statement = "";
                 icon = QPATHTOF(ui\ACE_Interaction_Radio_Icon.paa);
                 insertChildren = "_this call TFAR_fnc_addTakeToACE";
