@@ -3,21 +3,25 @@
 /*
     Author(s):
         By Dimitri Yuri edited by 2600K
-        Dedmen
+        Dedmen, Dorbedo
 
     Description:
         Add Eventhandler that notifies nearby AI's when player is Speaking
 */
 
-if (!hasInterface) exitWith {}; //Only on clients
+if ((!hasInterface)||{!TFAR_AICanHearPlayer}||{missionNamespace getVariable [QGVAR(isInitialized),false]}) exitWith {}; //Only on clients
+
+GVAR(isInitialized) = true;
+
 
 ["TFAR_AI_Detection", "OnSpeak", {
+    If !(TFAR_AICanHearPlayer) exitWith {};
     params ["_unit","_isSpeaking"];
     //systemChat format["TFAR OnSpeak %1 %2",_unit,_isSpeaking];
     // Exit if unit is isolated or DC'd or dead
     if (isNil "_unit"  || {!alive _unit} || {(vehicle _unit) call TFAR_fnc_isVehicleIsolated}) exitWith {};
 
-    private _nearHostiles = _unit nearEntities [["Car", "Motorcycle", "Tank","CAManBase","Man"], TF_speak_volume_meters - 5];//-5 because Enemies don't have that good hearing
+    private _nearHostiles = _unit nearEntities [["Car", "Motorcycle", "Tank", "CAManBase", "Man"], TF_speak_volume_meters - 5];//-5 because Enemies don't have that good hearing
 
     {
         //could use TFAR_speakingSince to see how long player is speaking and increase reveal according to that
