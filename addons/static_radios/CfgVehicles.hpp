@@ -20,7 +20,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
     class controls {
         /*class RadioTitle: RscText {
             idc=20611801;
-            text="$STR_subject_name:";
+            text="Radios:";
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="0 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="10 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";

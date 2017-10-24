@@ -31,7 +31,7 @@ class Attributes {
     };
     class staticRadioSpeaker {
         displayName = "$STR_TFAR_Zeus_moduleStaticRadio_ATT_SpeakerEnabled"; // Name assigned to UI control class Title
-        tooltip = "$STR_TFAR_Zeus_moduleStaticRadio_ATT_SpeakerEnabled_Tip";
+        tooltip = "$STR_TFAR_Zeus_moduleStaticRadio_ATT_SpeakerEnabled_Tip"; //#TODO Doesn't work on Static LR Radio backpacks yet (#1169).
         property = "staticRadioSpeaker";
         control = "Checkbox";
 

@@ -131,3 +131,5 @@
 #define PROFCONTEXT_LOGTRAP(VAR,FUNC)
 
 #endif
+
+#define LOCALIZE_CHANNEL(x,y) y call _fnc_localize##x##Channel

@@ -981,17 +981,17 @@
                 <Chinese>TFAR無線電 (Altis政府軍)</Chinese>
                 <Chinesesimp>TFAR无线电 (Altis政府军)</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_Intercom_ACESelfAction_Name">
+            <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Name">
                 <Original>IntercomChannel</Original>
                 <Chinese>對講機頻道</Chinese>
                 <Chinesesimp>对讲机频道</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_Intercom_ACESelfAction_Channel1">
+            <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Channel1">
                 <Original>Cargo</Original>
                 <Chinese>乘客</Chinese>
                 <Chinesesimp>乘客</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_Intercom_ACESelfAction_Channel2">
+            <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Channel2">
                 <Original>Crew</Original>
                 <Chinese>機組員</Chinese>
                 <Chinesesimp>机组员</Chinesesimp>
@@ -2277,7 +2277,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>AN/PRC-152短程個人無線電，有效距離5公里</Chinese>
                 <Chinesesimp>AN/PRC-152短程个人无线电，有效距离5公里</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_Veh_ANPRC148JEM_Desc">
+            <Key ID="STR_TFAR_Handhelds_ANPRC148JEM_Desc">
                 <Original>AN/PRC-148 JEM personal radio 5km</Original>
                 <Chinese>AN/PRC-148 JEM短程個人無線電，有效距離5公里</Chinese>
                 <Chinesesimp>AN/PRC-148 JEM短程个人无线电，有效距离5公里</Chinesesimp>
@@ -2330,9 +2330,9 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>开启扩音器</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Zeus_moduleStaticRadio_ATT_SpeakerEnabled_Tip">
-                <Original>Whether the Radios Speaker is enabled. Doesn't work on Static LR Radio backpacks yet (#1169).</Original>
-                <Chinese>決定是否開啟無線電的擴音器。暫時還無法在固定式長程無線電背包上使用(#1169)。</Chinese>
-                <Chinesesimp>决定是否开启无线电的扩音器。暂时还无法在固定式长程无线电背包上使用(#1169)。</Chinesesimp>
+                <Original>Whether the Radios Speaker is enabled.</Original>
+                <Chinese>決定是否開啟無線電的擴音器。</Chinese>
+                <Chinesesimp>决定是否开启无线电的扩音器。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Zeus_moduleStaticRadio_ATT_RadioVolume">
                 <Original>Radio Volume</Original>
