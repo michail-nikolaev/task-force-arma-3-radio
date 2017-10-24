@@ -2565,12 +2565,12 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             </Key>
         </Container>
         <Container name="Keybinding">
-            <Key ID="STR_TFAR_key_SW_Channe">
+            <Key ID="STR_TFAR_key_SW_Channel">
                 <Original>SW Channel</Original>
                 <Chinese>短程無線電頻道</Chinese>
                 <Chinesesimp>短程无线电频道</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_key_LR_Channe">
+            <Key ID="STR_TFAR_key_LR_Channel">
                 <Original>LR Channel</Original>
                 <Chinese>長程無線電頻道</Chinese>
                 <Chinesesimp>长程无线电频道</Chinesesimp>
