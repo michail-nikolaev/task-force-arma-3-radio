@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+#define LOCALIZE_CHANNEL(x,y) y call _fnc_localize##x##Channel
 
 TF_tangent_sw_scancode = 58;
 TF_tangent_sw_modifiers = [false,false,false];
