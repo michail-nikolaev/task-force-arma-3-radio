@@ -10,8 +10,7 @@
     false,
     1,
     {
-        If (hasInterface) then {
-            TFAR_AICanHearPlayer = _this;
+        If ((hasInterface)&&{_this}) then {
             [] call TFAR_fnc_initializeAIHearing;
         };
     }
