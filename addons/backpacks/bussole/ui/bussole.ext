@@ -106,7 +106,7 @@ class enter: HiddenButton
     h = 0.0286 * safezoneH;
     tooltip = $STR_set_frequency;
     action = QUOTE(
-        _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_BUSSOLE_RADIO_DIALOG_EDIT_ID);
+        _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_BUSSOLE_EDIT);
         if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {
             [ARR_2(TF_lr_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setLrFrequency;
             call TFAR_fnc_hideHint;
@@ -125,8 +125,8 @@ class clear: HiddenButton
     h = 0.0286 * safezoneH;
     tooltip = $STR_clear_frequency;
     action = QUOTE(
-        ctrlSetText [ARR_2(IDC_BUSSOLE_RADIO_DIALOG_EDIT_ID, '')];
-        ctrlSetFocus ((findDisplay IDD_BUSSOLE_RADIO_DIALOG) displayCtrl IDC_BUSSOLE_RADIO_DIALOG_EDIT_ID);
+        ctrlSetText [ARR_2(IDC_BUSSOLE_EDIT, '')];
+        ctrlSetFocus ((findDisplay IDD_BUSSOLE_RADIO_DIALOG) displayCtrl IDC_BUSSOLE_EDIT);
     );
 };
 class prev_channel: HiddenButton

@@ -7,6 +7,7 @@ PREP(clientInit);
 PREP(activeLrRadio);
 PREP(activeSwRadio);
 PREP_SUB(events\handler,addEventHandler);
+PREP(addRadiosToACE);
 // B
 PREP(backpackLr);
 // C

@@ -108,7 +108,7 @@
             <Key ID="STR_additional_stereo_settings_0">
                 <Original>Additional: Left and right</Original>
                 <Czech>Dodatečný: Vlevo a vpravo</Czech>
-                <French>Supplémentaire: Gauche et droite</French>
+                <French>Supplémentaire : Gauche et droite</French>
                 <German>Zusätzlich: Links und rechts</German>
                 <Italian>Addizionale: Sinistra e destra</Italian>
                 <Polish>Dodatkowy: Lewy i prawy</Polish>
@@ -123,7 +123,7 @@
             <Key ID="STR_additional_stereo_settings_1">
                 <Original>Additional: Left only</Original>
                 <Czech>Dodatečný: Pouze vlevo</Czech>
-                <French>Supplémentaire: Gauche seulement</French>
+                <French>Supplémentaire : Gauche seulement</French>
                 <German>Zusätzlich: Nur links</German>
                 <Italian>Addizionale: Solo sinistra</Italian>
                 <Polish>Dodatkowy: Tylko lewy</Polish>
@@ -138,7 +138,7 @@
             <Key ID="STR_additional_stereo_settings_2">
                 <Original>Additional: Right only</Original>
                 <Czech>Dodatečný: Pouze vpravo</Czech>
-                <French>Supplémentaire: Droite seulement</French>
+                <French>Supplémentaire : Droite seulement</French>
                 <German>Zusätzlich: Nur rechts</German>
                 <Italian>Addizionale: Solo destra</Italian>
                 <Polish>Dodatkowy: Tylko prawy</Polish>
@@ -213,7 +213,7 @@
             <Key ID="STR_set_additional">
                 <Original>Set additional channel</Original>
                 <Czech>Nastavit dodatečný kanál</Czech>
-                <French>Canal supplémentaire prévue</French>
+                <French>Canal additionnel prévue</French>
                 <German>Zusätzlichen Kanal festlegen</German>
                 <Italian>Impostare canale aggiuntivo</Italian>
                 <Polish>Ustaw dodatkowy kanał</Polish>
@@ -348,7 +348,7 @@
             <Key ID="STR_incorrect_frequency">
                 <Original>Incorrect frequency value, range is %1-%2</Original>
                 <Czech>Nesprávná hodnota pro frekvenci, rozsah je %1-%2</Czech>
-                <French>Valeur de fréquence incorrecte, la plage est de %1-%2</French>
+                <French>Valeur de fréquence incorrecte, la plage est de %1 à %2</French>
                 <German>Falsche Frequenz, Frequenzbereich ist %1-%2</German>
                 <Italian>Campo di frequenza non corretto; Campi possibili sono %1-%2</Italian>
                 <Polish>Niepoprawna częstotliwość, skala %1-%2</Polish>
@@ -363,7 +363,7 @@
             <Key ID="STR_radio_volume">
                 <Original>Volume: %1</Original>
                 <Czech>Hlasitost: %1</Czech>
-                <French>Volume: %1</French>
+                <French>Volume : %1</French>
                 <German>Lautstärke: %1</German>
                 <Italian>Volume: %1</Italian>
                 <Polish>Głośność: %1</Polish>
@@ -513,7 +513,7 @@
             <Key ID="STR_depth">
                 <Original>Current depth</Original>
                 <Czech>Aktuální hloubka</Czech>
-                <French>Current depth</French>
+                <French>Profondeur actuelle</French>
                 <German>Derzeitige Tiefe</German>
                 <Italian>Profondità attuale</Italian>
                 <Polish>Aktualna głębokość</Polish>
@@ -528,7 +528,7 @@
             <Key ID="STR_active_sw_channel">
                 <Original>Channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
                 <Czech>Kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
-                <French>Canal courte portée: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
+                <French>Canal courte portée : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
                 <German>Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
                 <Italian>Canale onde corte: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
                 <Polish>Kanał: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
@@ -543,7 +543,7 @@
             <Key ID="STR_active_additional_sw_channel">
                 <Original>Additional channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
                 <Czech>Dodatečný kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
-                <French>Canal supplémentaire: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
+                <French>Canal additionnel : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
                 <German>Zusätzlicher Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
                 <Italian>Canale aggiuntivo: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
                 <Polish>Dodatkowy kanał: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
@@ -558,7 +558,7 @@
             <Key ID="STR_active_frequency">
                 <Original>Frequency: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
                 <Czech>Frekvence: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
-                <French>Fréquence: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
+                <French>Fréquence : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
                 <German>Frequenz: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
                 <Italian>Frequenza: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
                 <Polish>Częstotliwość: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
@@ -573,7 +573,7 @@
             <Key ID="STR_active_lr_channel">
                 <Original>LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
                 <Czech>LR kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
-                <French>Canal LP: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
+                <French>Canal LP : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
                 <German>LS-Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
                 <Italian>Canale OL: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
                 <Polish>Kanał LR: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
@@ -588,7 +588,7 @@
             <Key ID="STR_active_additional_lr_channel">
                 <Original>Additional LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
                 <Czech>Dodatečný LR kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
-                <French>Canal supplémentaire LP: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
+                <French>Canal additionnel LP : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
                 <German>Zusätzlicher LS-Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
                 <Italian>Canale aggiuntivo OL: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
                 <Polish>Dodatkowy kanał LR: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
@@ -663,7 +663,7 @@
             <Key ID="STR_select_action_setup">
                 <Original>Settings...</Original>
                 <Czech>Nastavení...</Czech>
-                <French>Options</French>
+                <French>Options...</French>
                 <German>Tastenbelegung</German>
                 <Italian>Opzioni</Italian>
                 <Polish>Ustawienia...</Polish>
@@ -678,7 +678,7 @@
             <Key ID="STR_select_action_setup_tooltip">
                 <Original>Open settings dialog</Original>
                 <Czech>Otevřít nastavení</Czech>
-                <French>Ouvrir la fenêtre des options</French>
+                <French>Ouvre la fenêtre de la radio</French>
                 <German>Einstellungen öffnen</German>
                 <Italian>Apri finestra opzioni</Italian>
                 <Polish>Otwórz ustawienia</Polish>
@@ -693,7 +693,7 @@
             <Key ID="STR_select_action_use">
                 <Original>Set as active</Original>
                 <Czech>Nastavit jako aktivní</Czech>
-                <French>Mettre dans le slot de radio</French>
+                <French>Mettre en radio active</French>
                 <German>Als aktiv setzen</German>
                 <Italian>Seleziona come in uso</Italian>
                 <Polish>Ustaw jako aktywne</Polish>
@@ -753,7 +753,7 @@
             <Key ID="STR_transmit">
                 <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
                 <Czech>&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
-                <French>&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;</French>
+                <French>&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
                 <German>&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
                 <Italian>&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
                 <Polish>&lt;t size='1' align='center' color='#00FF00'&gt;Nadawanie:&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
@@ -768,7 +768,7 @@
             <Key ID="STR_transmit_end">
                 <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
                 <Czech>&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
-                <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;</French>
+                <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
                 <German>&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
                 <Italian>&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
                 <Polish>&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
@@ -783,7 +783,7 @@
             <Key ID="STR_additional_transmit">
                 <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
                 <Czech>&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
-                <French>&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;</French>
+                <French>&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio : %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
                 <German>&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
                 <Italian>&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
                 <Polish>&lt;t size='1' align='center' color='#00FF00'&gt;Nadawanie&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
@@ -798,7 +798,7 @@
             <Key ID="STR_additional_transmit_end">
                 <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional сhannel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
                 <Czech>&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
-                <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence: %3&lt;/t&gt;</French>
+                <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
                 <German>&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
                 <Italian>&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
                 <Polish>&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
@@ -888,7 +888,7 @@
             <Key ID="STR_init">
                 <Original>Initialization...</Original>
                 <Czech>Inicializace...</Czech>
-                <French>Initialization...</French>
+                <French>Initialisation...</French>
                 <German>Initialisierung...</German>
                 <Italian>Inizializzazione...</Italian>
                 <Polish>Inicjalizacja...</Polish>
@@ -948,6 +948,7 @@
             <Key ID="STR_TFAR_NATO_crate" TODO="move all crates stringtables to core">
                 <Original>TFAR Radio (NATO)</Original>
                 <Czech>TFAR Vysílačky (NATO)</Czech>
+                <French>Radio TFAR (OTAN)</French>
                 <German>TFAR-Funkgeräte (NATO)</German>
                 <Russian>TFAR Рации (НАТО)</Russian>
                 <Spanish>TFAR Radio (NATO)</Spanish>
@@ -960,6 +961,7 @@
             <Key ID="STR_TFAR_EAST_crate">
                 <Original>TFAR Radio (CSAT)</Original>
                 <Czech>TFAR Vysílačky (CSAT)</Czech>
+                <French>Radio TFAR (CSAT)</French>
                 <German>TFAR-Funkgeräte (CSAT)</German>
                 <Russian>TFAR Рации (CSAT)</Russian>
                 <Spanish>TFAR Radio (CSAT)</Spanish>
@@ -972,6 +974,7 @@
             <Key ID="STR_TFAR_IND_crate">
                 <Original>TFAR Radio (AAF)</Original>
                 <Czech>TFAR Vysílačky (AAF)</Czech>
+                <French>Radio TFAR (AAF)</French>
                 <German>TFAR-Funkgeräte (AAF)</German>
                 <Russian>TFAR Рации (AAF)</Russian>
                 <Spanish>TFAR Radio (AAF)</Spanish>
@@ -1046,6 +1049,7 @@
             <Key ID="STR_TFAR_Mod_LR_Radio">
                 <Original>LR Radio</Original>
                 <Czech>LR Vysílačka</Czech>
+                <French>Radio LP</French>
                 <German>LS-Funkgerät</German>
                 <Polish>Radio LR</Polish>
                 <Russian>Рация дальней связи</Russian>
@@ -1059,6 +1063,7 @@
             <Key ID="STR_TFAR_Mod_SameSWFrequencies">
                 <Original>Same SW Frequencies for side</Original>
                 <Czech>Stejné SW frekvence pro stranu</Czech>
+                <French>Même fréquences CP par camp</French>
                 <German>Gleiche KS-Frequenzen für die Fraktionen</German>
                 <Polish>Takie same częstotliwości SW dla strony</Polish>
                 <Russian>Одинаковые частоты ближней связи для стороны</Russian>
@@ -1072,6 +1077,7 @@
             <Key ID="STR_TFAR_Mod_Rifle_Radio">
                 <Original>Rifleman radio</Original>
                 <Czech>Klasická (malá) vysílačka</Czech>
+                <French>Radio pour fusilier</French>
                 <German>Kurzstreckenfunkgerät</German>
                 <Polish>Radio strzelca</Polish>
                 <Russian>Рация рядового бойца</Russian>
@@ -1085,6 +1091,7 @@
             <Key ID="STR_TFAR_Mod_PR_Radio">
                 <Original>PR Radio</Original>
                 <Czech>PR Vysílačka</Czech>
+                <French>Radio CP</French>
                 <German>Pers. Funkgerät</German>
                 <Polish>Radio PR</Polish>
                 <Russian>Рация командира</Russian>
@@ -1098,6 +1105,7 @@
             <Key ID="STR_TFAR_Mod_PRFrequencyTT">
                 <Original>PR default frequencies (as an SQF array)</Original>
                 <Czech>Výchozí frekvence osobní vysílačky (jako SQF pole)</Czech>
+                <French>Fréquences par defaut des CP (en tant que liste SQF)</French>
                 <German>Pers. Standardfrequenzen (als SQF-Array)</German>
                 <Polish>Domyślne częstotliwości PR (jako tablica SQF)</Polish>
                 <Russian>Стандартные частоты ближней связи (как SQF массив)</Russian>
@@ -1111,6 +1119,7 @@
             <Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
                 <Original>Give rifleman radio</Original>
                 <Czech>Dát malou vysílačku vojákům</Czech>
+                <French>Radio personnelle pour les fusiliers</French>
                 <German>Weist ein Kurzstreckenfunkgerät zu</German>
                 <Polish>Daj radio strzelcowi</Polish>
                 <Russian>Выдавать личную рацию бойца</Russian>
@@ -1124,6 +1133,7 @@
             <Key ID="STR_TFAR_Mod_EnforceUsage_Description">
                 <Original>Enforces usage of TFAR in mission.</Original>
                 <Czech>Vynutí použití TFARU v misi.</Czech>
+                <French>Forcer l'utilisation de TFAR dans une mission.</French>
                 <German>Erzwingt den Gebrauch von TFAR während der Mission.</German>
                 <Polish>Wymuś używanie TFAR w misji.</Polish>
                 <Russian>Обязует игроков использовать аддон.</Russian>
@@ -1137,6 +1147,7 @@
             <Key ID="STR_TFAR_Mod_SameLrFrequencies">
                 <Original>Same LR Frequencies for side</Original>
                 <Czech>Stejné LR frekvence pro stranu</Czech>
+                <French>Même fréquences LP par camp</French>
                 <German>Gleiche LS-Frequenzen für die Fraktionen</German>
                 <Polish>Tes same częstotliwości LR dla strony</Polish>
                 <Russian>Одинаковые частоты дальней связи для стороны</Russian>
@@ -1150,6 +1161,7 @@
             <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
                 <Original>Terrain Interception Coefficient</Original>
                 <Czech>Koeficient rušení terénem</Czech>
+                <French>Coefficient d'interception du terrain</French>
                 <German>Koeffizient für Signalabschwächung durch das Gelände</German>
                 <Polish>Współczynnik rozpraszania terenu</Polish>
                 <Russian>Коэффициент помех от рельефа</Russian>
@@ -1163,6 +1175,7 @@
             <Key ID="STR_TFAR_Mod_LRFrequencyTT">
                 <Original>LR default frequencies (as an SQF array)</Original>
                 <Czech>Výchozí frekvence vysílačky pro dlouhou vzdálenost (jako SQF pole)</Czech>
+                <French>Fréquences par defaut des LP (en tant que liste SQF)</French>
                 <German>LS-Standardfrequenzen (als SQF-Array)</German>
                 <Polish>Domyślne częstotliwości LR (jako tablica SQF)</Polish>
                 <Russian>Стандартные частоты дальней связи (как SQF массив)</Russian>
@@ -1176,6 +1189,7 @@
             <Key ID="STR_TFAR_Mod_Rifle_RadioTT">
                 <Original>Rifleman Radio</Original>
                 <Czech>Klasická (malá) vysílačka</Czech>
+                <French>Radio pour fusilier</French>
                 <German>Kurzstreckenfunkgerät</German>
                 <Polish>Radio strzelca</Polish>
                 <Russian>Рация рядового бойца</Russian>
@@ -1189,6 +1203,7 @@
             <Key ID="STR_TFAR_Mod_PR_RadioTT">
                 <Original>Personal radio</Original>
                 <Czech>Osobní vysílačka</Czech>
+                <French>Radio courte portée</French>
                 <German>Persönliches Funkgerät</German>
                 <Polish>Radio osobiste</Polish>
                 <Russian>Рация командира группы</Russian>
@@ -1202,6 +1217,7 @@
             <Key ID="STR_TFAR_Mod_LR_RadioTT">
                 <Original>Long Range radio</Original>
                 <Czech>Vysílačka na dlouhou vzdálenost</Czech>
+                <French>Radio longue portée</French>
                 <German>Langstreckenfungerät</German>
                 <Polish>Radio LR</Polish>
                 <Russian>Рация дальней связи</Russian>
@@ -1215,6 +1231,7 @@
             <Key ID="STR_TFAR_Mod_GiveTLradio">
                 <Original>Give team leaders a long range radio</Original>
                 <Czech>Dát velitelům týmů vysílačku pro dlouhou vzdálenost</Czech>
+                <French>Les chefs d'équipe ont des radios LP</French>
                 <German>Weist dem Gruppenführer ein Langstreckenfunkgerät zu</German>
                 <Polish>Daj dowódcy radio LR</Polish>
                 <Russian>Выдавать лидерам групп рацию дальней связи</Russian>
@@ -1228,6 +1245,7 @@
             <Key ID="STR_TFAR_Mod_EncryptionCode">
                 <Original>Encryption Code</Original>
                 <Czech>Šifrovací kód</Czech>
+                <French>Code d'encryptage</French>
                 <German>Verschlüsselungscode</German>
                 <Polish>Kodowanie transmisji</Polish>
                 <Russian>Код шифрования</Russian>
@@ -1241,6 +1259,7 @@
             <Key ID="STR_TFAR_Mod_Frequencies">
                 <Original>TFAR – Frequencies</Original>
                 <Czech>TFAR – Frekvence</Czech>
+                <French>TFAR - Fréquences</French>
                 <German>TFAR – Frequenzen</German>
                 <Polish>TFAR - Częstotliwości</Polish>
                 <Russian>TFAR – Частоты</Russian>
@@ -1254,6 +1273,7 @@
             <Key ID="STR_TFAR_Mod_ChannelPassword">
                 <Original>Channel Password</Original>
                 <Czech>Heslo kanálu</Czech>
+                <French>Mot de passe du canal</French>
                 <German>Kanalpasswort</German>
                 <Polish>Haslo kanału</Polish>
                 <Russian>Пароль канала</Russian>
@@ -1267,6 +1287,7 @@
             <Key ID="STR_TFAR_Mod_ChannelName">
                 <Original>Channel Name</Original>
                 <Czech>Název kanálu</Czech>
+                <French>Nom du canal</French>
                 <German>Kanalname</German>
                 <Polish>Nazwa kanału</Polish>
                 <Russian>Название канала</Russian>
@@ -1280,6 +1301,7 @@
             <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
                 <Original>Terrain Interception Coefficient</Original>
                 <Czech>Koeficient rušení způsobené terénem</Czech>
+                <French>Coefficient d'interception et de brouillage du terrain</French>
                 <German>Koeffizient für Signalabschwächung durch das Gelände</German>
                 <Polish>Współczynnik rozpraszania terenu</Polish>
                 <Russian>Коэффициент помех от рельефа</Russian>
@@ -1293,6 +1315,7 @@
             <Key ID="STR_TFAR_Mod_SideRadio_Description">
                 <Original>Allows setting of default radios, encryption and frequencies for synced side.</Original>
                 <Czech>Umožňuje nastavení výchozích vysílaček, šifrování a frekvencí pro určitou stranu.</Czech>
+                <French>Permettre la configuration des radios, du cryptage et des fréquences pour les camps synchronisés.</French>
                 <German>Ermöglicht gleiche Einstellungen der Verschlüsselung und Frequenzen für alle Fraktionen.</German>
                 <Polish>Pozwól na domyślne ustawienia radia, kodowanie i częstotliwość synchronizowanej strony.</Polish>
                 <Russian>Позволяет определить стандартные рации, коды шифрования и частоту для синхронизированной стороны.</Russian>
@@ -1306,6 +1329,7 @@
             <Key ID="STR_TFAR_Mod_SideRadio">
                 <Original>TFAR – Side Radio</Original>
                 <Czech>TFAR – Vysílačky strany</Czech>
+                <French>TFAR - Radio des camps</French>
                 <German>TFAR – Funk-Fraktionszuweisung</German>
                 <Polish>TFAR - Radio strony</Polish>
                 <Russian>TFAR – Рации стороны</Russian>
@@ -1319,6 +1343,7 @@
             <Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
                 <Original>Same LR Frequencies for side</Original>
                 <Czech>Stejné LR frekvence vysílačky pro dlouhou vzdálenost pro stranu</Czech>
+                <French>Chaque camp à les mêmes fréquences longues portées</French>
                 <German>Gleiche LS-Frequenzen für die Fraktionen</German>
                 <Polish>Te same częstotliwości LR dla strony</Polish>
                 <Russian>Одинаковые частоты дальней связи для стороны</Russian>
@@ -1332,6 +1357,7 @@
             <Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
                 <Original>Same SW Frequencies for side</Original>
                 <Czech>Stejné SW frekvence vysílačky pro stranu</Czech>
+                <French>Chaque camp à les mêmes fréquences courtes portées</French>
                 <German>Gleiche KS-Frequenzen für die Fraktionen</German>
                 <Polish>Te same częstotliwości SW dla strony</Polish>
                 <Russian>Одинаковые частоты ближней связи для стороны</Russian>
@@ -1345,6 +1371,7 @@
             <Key ID="STR_TFAR_Mod_GiveTLradioTT">
                 <Original>Give each team leader the appropriate long range radio</Original>
                 <Czech>Dá každému veliteli týmu vhodnou vysílačku pro dlouhou vzdálenost</Czech>
+                <French>Donner à chaque chef d'équipe la radio longue portée approprié</French>
                 <German>Weist jedem Gruppenführer das entsprechende Langstreckenfunkgerät zu</German>
                 <Polish>Daj dowódcom oddziałów odpowiednie radio LR</Polish>
                 <Russian>Выдавать каждому лидеру группы рацию дальней связи</Russian>
@@ -1358,6 +1385,7 @@
             <Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
                 <Original>Give a rifleman radio to regular soldiers</Original>
                 <Czech>Dá malou vysílačku klasickým vojákům</Czech>
+                <French>Donner une radio de fusilier aux soldats</French>
                 <German>Weist jedem Gruppenmitglied ein Kurzstreckenfunkgerät zu</German>
                 <Polish>Daj podwładnemu radio strzelca</Polish>
                 <Russian>Выдавать личную рацию рядовым бойцам</Russian>
@@ -1371,6 +1399,7 @@
             <Key ID="STR_TFAR_Mod_ChannelNameTT">
                 <Original>TeamSpeak Channel Name</Original>
                 <Czech>Název kanálu na TeamSpeaku</Czech>
+                <French>Nom du canal TeamSpeak</French>
                 <German>TeamSpeak-Kanalname</German>
                 <Polish>Nazwa kanału TeamSpeak</Polish>
                 <Russian>Название канала TeamSpeak</Russian>
@@ -1384,6 +1413,7 @@
             <Key ID="STR_TFAR_Mod_ChannelPasswordTT">
                 <Original>TeamSpeak Channel Password</Original>
                 <Czech>Heslo kanálu na TeamSpeaku</Czech>
+                <French>Mot de passe du canal TeamSpeak</French>
                 <German>TeamSpeak-Kanalpasswort</German>
                 <Polish>Hasło kanału TeamSpeak</Polish>
                 <Russian>Пароль канала TeamSpeak</Russian>
@@ -1397,6 +1427,7 @@
             <Key ID="STR_TFAR_Mod_Frequencies_Description">
                 <Original>Allows setting of default frequencies for sides.</Original>
                 <Czech>Umožňuje nastavit výchozí frekvence pro určité strany.</Czech>
+                <French>Permet la configuration de fréquences par défaut par camps</French>
                 <German>Ermöglicht die Einstellung der Standardfrequenzen für Fraktionen.</German>
                 <Polish>Pozwól na ustawienie domyślnych częstotliwości dla stron.</Polish>
                 <Russian>Позволяет определить стандартные частоты для сторон.</Russian>
@@ -1410,6 +1441,7 @@
             <Key ID="STR_TFAR_Mod_EnforceUsage">
                 <Original>TFAR – Enforce Usage</Original>
                 <Czech>TFAR – Vynutit použití</Czech>
+                <French>TFAR - Forcer l'utilisation</French>
                 <German>TFAR – Erzwingt die Nutzung</German>
                 <Polish>TFAR - Wymuś używanie</Polish>
                 <Russian>TFAR – Базовый модуль</Russian>
@@ -1423,6 +1455,7 @@
             <Key ID="STR_TFAR_Mod_LRFrequency">
                 <Original>LR Freq.</Original>
                 <Czech>LR Frek.</Czech>
+                <French>Fréquence longue portée</French>
                 <German>LS-Freq.</German>
                 <Polish>Częstotliwość LR</Polish>
                 <Russian>Частота дальней связи</Russian>
@@ -1436,6 +1469,7 @@
             <Key ID="STR_TFAR_Mod_PRFrequency">
                 <Original>PR Freq.</Original>
                 <Czech>PR Frek.</Czech>
+                <French>Fréquence courte portée</French>
                 <German>Pers. Freq.</German>
                 <Polish>Częstotliwość PR</Polish>
                 <Russian>Частоты ближней связи</Russian>
@@ -1447,6 +1481,8 @@
                 <Chinesesimp>短程个人无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_FullDuplex">
+                <English>Full-Duplex</English>
+                <French>Duplex complet</French>
                 <German>Voll-Duplex</German>
                 <Japanese>全二重通信</Japanese>
                 <Korean>양방향 통신</Korean>
@@ -1455,6 +1491,8 @@
                 <Chinesesimp>全双工模式</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_FullDuplexDescription">
+                <English>Allows Radios to simultaneously receive while transmitting.</English>
+                <French>Permets aux radios de recevoir et transmettre simultanément.</French>
                 <German>Erlaubt Funkgeräten gleichzeitig zu senden und zu empfangen.</German>
                 <Japanese>無線機が送信中に受信も同時に行うようにします。</Japanese>
                 <Korean>전송하는 동안 동시에 수신을 가능하게 합니다.</Korean>
@@ -1476,7 +1514,7 @@
             </Key>
             <Key ID="STR_radio_same_dd_frequencies_for_side">
                 <Original>Same DD frequencies for side</Original>
-                <French>Mêmes fréquences DD pour l'équipe</French>
+                <French>Mêmes fréquences DD pour le camp</French>
                 <German>Gleiche Unterwasser-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości DD dla strony</Polish>
                 <Japanese>陣営に同じ DD の周波数</Japanese>
@@ -1496,7 +1534,7 @@
             </Key>
             <Key ID="STR_radio_same_sw_frequencies_for_side">
                 <Original>Same SW frequencies for side</Original>
-                <French>Mêmes fréquences SW pour l'équipe</French>
+                <French>Mêmes fréquences CP pour le camp</French>
                 <German>Gleiche Kurzstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości SW dla strony</Polish>
                 <Japanese>陣営に同じ SW の周波数</Japanese>
@@ -1526,7 +1564,7 @@
             </Key>
             <Key ID="STR_radio_auto_long_range_radio">
                 <Original>Automatically give long range radio</Original>
-                <French>Automatiquement donner de radio longue portée</French>
+                <French>Donner automatiquement une radio longue portée</French>
                 <German>Langstrecken-Funkgeräte automatisch vergeben</German>
                 <Polish>Przydzielaj automatycznie radia LR</Polish>
                 <Japanese>自動的に長距離ラジオを与えいようにします</Japanese>
@@ -1680,11 +1718,11 @@ Každé místo ve vozdile má vlastní vysílačku, která musí být nakonfigur
 &lt;br/&gt;
 Vozidla jsou rozděleny na uzavřené nebo zavřené (izolované). Pokud si v izolovaném vozidle, neuslyšíš hlasy z venku (a naopak). Nicméně, pokud vylezeš z vozidla, uslyšíš zvuky ze vnitř i z venku.</Czech>
                 <French>&lt;br/&gt;
-Une radio longue portée est disponible pour le conducteur, chef de char, tireur et copilot. Les véhicules non pas tous une radio longue portée installée.
+Une radio longue portée est disponible pour le conducteur, chef de char, tireur et copilote. Les véhicules non pas tous une radio longue portée installée.
 &lt;br/&gt;
-Chaque place de véhicule à sa propre radio devant être configuré séparément. Si vous prévoyez de changer de position dans un véhicule – configurez la radio à toutes les places nécessaires à l'avance (par exemple, à la place de conducteur et de tireur).
+Chaque place de véhicule ayant sa propre radio doit être configuré séparément. Si vous prévoyez de changer de position dans un véhicule – configurez la radio à toutes les places nécessaires à l'avance (par exemple, à la place de conducteur et de tireur).
 &lt;br/&gt;
-Les vehicules sont classé dans la catégorie "Ouvert" et "Fermé" (isolé). Si vous êtes dans un véhicule fermé, vous n'entendrez pas les voix provenant de l'exterieur (et vice versa). Par contre, si vous sortez la tête du véhicule vous entendrez les voix de l'interieur et exterieur.</French>
+Les vehicules sont classé dans la catégorie 'Ouvert' et 'Fermé' (isolé). Si vous êtes dans un véhicule fermé, vous n'entendrez pas les voix provenant de l'exterieur (et vice versa). Par contre, si vous sortez la tête du véhicule vous entendrez les voix de l'interieur et exterieur.</French>
                 <German>&lt;br/&gt;
 In Fahrzeugen kann ein eingebautes Langstreckenfungerät jeweils vom Fahrer, Schützen, Kommandanten oder Piloten verwendet werden. Allerdings verfügen nicht alle Fahrzeuge über ein Fahrzeugfunkgerät.
 &lt;br/&gt;
@@ -1810,7 +1848,7 @@ Varsayılan olarak, her ülke kendi şifreleme kodunu kullanır, yani düşman k
             <Key ID="STR_radio_intercept">
                 <Original>Radio Interception</Original>
                 <Czech>Odposlouchávání vysílačky</Czech>
-                <French>Interception Radio</French>
+                <French>Interception radio</French>
                 <German>Abhören von Funksprüchen</German>
                 <Italian>Intercettazioni radio</Italian>
                 <Polish>Przechwytywanie sygnału</Polish>
@@ -1834,8 +1872,8 @@ Když jste pod vodou, můžete slyšet nezřetelné hlasy na pevnině.&lt;br/&gt
 Používejte podvodní vysílačky pro komunikaci mezi potápeči.&lt;br/&gt;
 Není možné použít klasickou vysílačku pod vodou (ani pro vysílání nebo příjímání). Pokud chcete vyslat zprávu nad vodu - na pevninu. &lt;br/&gt;Vyjímka - ponorka v periskopické hloubce (potápěči zde můžou použít vysílačku pro dlouhou vzdálenost).</Czech>
                 <French>&lt;br/&gt;
-Vous ne pouvez pas parler sous l'eau (même en portant une combinaison de plongée). Cependant, à courte distance vos coéquipiers peuvent entendre des paroles indistinctes (excéption - si vous êtes dans un véhicule sous-marin isolé).&lt;br/&gt;
-En étant sous l'eau, Being underwater, vous pouvez entendre faiblement des voix assourdies sur la terre.&lt;br/&gt;
+Vous ne pouvez pas parler sous l'eau (même en portant une combinaison de plongée). Cependant, à courte distance vos coéquipiers peuvent entendre des paroles indistinctes (exception - si vous êtes dans un véhicule sous-marin isolé).&lt;br/&gt;
+En étant sous l'eau, vous pouvez entendre faiblement des voix assourdies sur la terre ferme.&lt;br/&gt;
 Utiliser une radio sous-marine pour la communications entre plongeurs.&lt;br/&gt;
 Vous ne pouvez pas utiliser de radio sous l'eau (ni recevoir ni transmettre). Si vous voulez passer un message à la surface ou sur terre. &lt;br/&gt;Exception - les sous-marins à profondeur de périscope (les plongeurs peuvent utiliser une radio longue portée à ce moment la).</French>
                 <German>&lt;br/&gt;
@@ -1954,25 +1992,27 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
 &lt;font color="#67ED24"&gt;Y&lt;/font&gt;	Vysílání na dodatečném kanálu vysílačky pro dlouhou vzdálenost.&lt;br/&gt;
 &lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	Opuštění rozhraní vysílačky.</Czech>
                 <French>&lt;br/&gt;
-&lt;font color="#67ED24"&gt; Bouton Push-to-talk dans TeamSpeak&lt;/font&gt;	Voix Directe.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	Pour parler à la radio courte portée.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt;	Pour parler à la radio longue portée.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt;	Pour ouvrir l'interface de la radio courte portée (elle doit être dans le slot de radio). Dans le cas où vous avez plusieurs radios vous pouvez choisir celle dont vous voulez ouvrir l'interface. Il est aussi possible de choisir la radio active (celle qui sera utilisé pour les transmissions).&lt;br/&gt;
-&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	Changement rapide de canal sur la radio courte portée.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	Pour ouvrir l'interface de la radio longue portée (Vous devez avoir une radio longue portée sur votre dos, ou vous pouvez utiliser celle d'un véhicule en tant que conducteur, tireur ou copilote). Si plusieurs radios sont disponibles vous devrez en choisir une. Il est aussi possible de choisir la radio active (celle qui sera utilisé pour les transmissions).&lt;br/&gt;
-&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt; Changement rapide de canal sur la radio longue portée.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt;	Pour changer le volume de la voix direct. Vous pouvez avoir 3 volumes de voix : Faible, Normale ou Forte. N'affecte pas le volume de la voix en transmission radio.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt;	Pour ouvrir l'interface de la radio sous-marine (vous devez porter un recycleur).&lt;br/&gt;
-&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt;	Pour parler à la radio sous-marine.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt;	Sélectionnez prochaine radio personnelle.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt;	Select previous personal radio.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt;	Sélectionnez radio personnelle précédente.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt;	Sélectionnez précédente radio longue portée..&lt;br/&gt;
-&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt;	Changer le mode stéréo de radio personnelle.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	Changer le mode stéréo radio longue portée.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;T&lt;/font&gt;	Transmettre sur le canal supplémentaire de radio personnelle.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	Transmettre sur le canal supplémentaire de radio longue portée.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	Pour fermer l'interface de la radio.</French>
+&lt;font color=&quot;#67ED24&quot;&gt;Bouton Push-to-talk de TeamSpeak&lt;/font&gt;	Voix Directe.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Verrouillage Maj&lt;/font&gt;	Pour parler à la radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Verrouillage Maj&lt;/font&gt;	Pour parler à la radio longue portée.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Pour ouvrir l'interface de la radio personnelle (elle doit être dans le slot de radio). Dans le cas où vous avez plusieurs radios vous pouvez choisir celle dont vous voulez ouvrir l'interface. Il est aussi possible de choisir la radio active (celle qui sera utilisé pour les transmissions).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + MAJ + A/D&lt;/font&gt; Passer les radios courtes portées disponibles.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Flèche directionnelle Haut/Gauche/Droite&lt;/font&gt; Changement rapide du mode stéréo de la CP.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Changement rapide de canal sur la radio CP.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Pour ouvrir l'interface de la radio longue portée (Vous devez avoir une radio longue portée sur votre dos, ou vous pouvez utiliser celle d'un véhicule en tant que conducteur, tireur ou copilote). Si plusieurs radios sont disponibles vous devrez en choisir une. Il est aussi possible de choisir la radio active (celle qui sera utilisé pour les transmissions).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + MAJ + A/D&lt;/font&gt; Passer les radios longues portées disponibles.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + Flèche directionnelle Haut/Gauche/Droite&lt;/font&gt; Changement rapide de canal sur la radio longue portée.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt; Changement rapide de canal sur la radio longue portée.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Pour changer le volume de la voix direct. Vous pouvez avoir 3 volumes de voix : Faible, Normale ou Forte. N'affecte pas le volume de la voix en transmission radio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;MAJ + P&lt;/font&gt;	Pour ouvrir l'interface de la radio sous-marine (vous devez porter un recycleur).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Pour parler à la radio sous-marine.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Sélectionnez la radio courte portée suivante.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Sélectionnez la radio courte portée précédente.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Sélectionnez la radio longue portée suivante.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Sélectionnez la radio longue portée précédente.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Transmettre sur le canal additionnel de la radio courte portée.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Transmettre sur le canal additionnel de la radio longue portée.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Pour fermer l'interface de la radio.</French>
                 <German>&lt;br/&gt;
 &lt;font color="#67ED24"&gt;Push-to-talk Taste im TeamSpeak&lt;/font&gt;	Direktes Sprechen.&lt;br/&gt;
 &lt;font color="#67ED24"&gt;Feststelltaste&lt;/font&gt;	Kurzstreckenfunk.&lt;br/&gt;

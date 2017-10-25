@@ -303,7 +303,8 @@ public:
 
 
 
-
+    void addModificationLog(std::string mod);
+    std::vector<std::string> getModificationLog() const;
 
 
 
@@ -345,6 +346,7 @@ private:
     using LockGuard_exclusive = LockGuard_exclusive<ReadWriteLock>;
     mutable ReadWriteLock m_lock;
 
+    std::vector<std::string> modificationLog;
 
     std::string nickname;
 

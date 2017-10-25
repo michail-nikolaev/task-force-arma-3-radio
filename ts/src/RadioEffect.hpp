@@ -1,8 +1,7 @@
-﻿#pragma once
+#pragma once
 #include "DspFilters\Butterworth.h"
 #include "DspFilters\RBJ.h"
 #include <math.h>
-#include <Windows.h>
 #include "helpers.hpp"
 #include <simpleSource/SimpleComp.h>
 #define SAMPLE_RATE 48000

@@ -1,10 +1,9 @@
-﻿#include "Teamspeak.hpp"
+#include "Teamspeak.hpp"
 #include "public_errors.h"
 #include "public_errors_rare.h"
 #include "public_rare_definitions.h"
 #include "ts3_functions.h"
 #include <vector>
-#include <windows.h>
 #include "Logger.hpp"
 #include "task_force_radio.hpp"
 #include "version.h"
@@ -442,12 +441,16 @@ void Teamspeak::hlp_disableVad() {
     }
 }
 
-void Teamspeak::log(std::string message, DWORD errorCode, LogLevel level) {
+void Teamspeak::log(std::string message, unsigned long errorCode, LogLevel level) {
     char* errorBuffer;
     ts3Functions.getErrorMessage(errorCode, &errorBuffer);
     std::string output = std::string(message) + std::string(" : ") + std::string(errorBuffer);
     ts3Functions.freeMemory(errorBuffer);
     Logger::log(LoggerTypes::teamspeakClientlog, output, level);//Default loglevel is Info
+}
+
+void Teamspeak::printMessageToCurrentTab(const char* msg) {
+    ts3Functions.printMessageToCurrentTab(msg);
 }
 
 
@@ -815,10 +818,10 @@ int ts3plugin_onServerPermissionErrorEvent(uint64 serverConnectionHandlerID, con
     return 0;  /* See onServerErrorEvent for return code description */
 }
 
-
-
+ConnectStatus connectState = STATUS_DISCONNECTED;
 void ts3plugin_onConnectStatusChangeEvent(uint64 serverConnectionHandlerID, int newStatus, unsigned int errorNumber) {
     Logger::log(LoggerTypes::pluginCommands, "ts3plugin_onConnectStatusChangeEvent", LogLevel::LogLevel_DEBUG);
+    connectState = static_cast<ConnectStatus>(newStatus);
     Teamspeak::_onConnectStatusChangeEvent(serverConnectionHandlerID, static_cast<ConnectStatus>(newStatus));
 }
 
@@ -858,26 +861,27 @@ void ts3plugin_onClientBanFromServerEvent(uint64 serverConnectionHandlerID, anyI
 }
 
 void ts3plugin_onNewChannelEvent(uint64 serverConnectionHandlerID, uint64 channelID, uint64 channelParentID) {
-    Logger::log(LoggerTypes::pluginCommands, "ts3plugin_onClientBanFromServerEvent", LogLevel::LogLevel_DEBUG);
-    Teamspeak::_updateChanneNameCache(serverConnectionHandlerID);
+    Logger::log(LoggerTypes::pluginCommands, "ts3plugin_onNewChannelEvent", LogLevel::LogLevel_DEBUG);
+    if (connectState != STATUS_CONNECTION_ESTABLISHING)
+        Teamspeak::_updateChanneNameCache(serverConnectionHandlerID);
 }
 
 void ts3plugin_onNewChannelCreatedEvent(uint64 serverConnectionHandlerID, uint64 channelID, uint64 channelParentID, anyID invokerID, const char* invokerName, const char* invokerUniqueIdentifier) {
-    Logger::log(LoggerTypes::pluginCommands, "ts3plugin_onClientBanFromServerEvent", LogLevel::LogLevel_DEBUG);
+    Logger::log(LoggerTypes::pluginCommands, "ts3plugin_onNewChannelCreatedEvent", LogLevel::LogLevel_DEBUG);
     Teamspeak::_updateChanneNameCache(serverConnectionHandlerID);
 }
 
 void ts3plugin_onDelChannelEvent(uint64 serverConnectionHandlerID, uint64 channelID, anyID invokerID, const char* invokerName, const char* invokerUniqueIdentifier) {
-    Logger::log(LoggerTypes::pluginCommands, "ts3plugin_onClientBanFromServerEvent", LogLevel::LogLevel_DEBUG);
+    Logger::log(LoggerTypes::pluginCommands, "ts3plugin_onDelChannelEvent", LogLevel::LogLevel_DEBUG);
     Teamspeak::_updateChanneNameCache(serverConnectionHandlerID);
 }
 
 void ts3plugin_onUpdateChannelEvent(uint64 serverConnectionHandlerID, uint64 channelID) {
-    Logger::log(LoggerTypes::pluginCommands, "ts3plugin_onClientBanFromServerEvent", LogLevel::LogLevel_DEBUG);
+    Logger::log(LoggerTypes::pluginCommands, "ts3plugin_onUpdateChannelEvent", LogLevel::LogLevel_DEBUG);
     Teamspeak::_updateChanneNameCache(serverConnectionHandlerID);
 }
 
 void ts3plugin_onUpdateChannelEditedEvent(uint64 serverConnectionHandlerID, uint64 channelID, anyID invokerID, const char* invokerName, const char* invokerUniqueIdentifier) {
-    Logger::log(LoggerTypes::pluginCommands, "ts3plugin_onClientBanFromServerEvent", LogLevel::LogLevel_DEBUG);
+    Logger::log(LoggerTypes::pluginCommands, "ts3plugin_onUpdateChannelEditedEvent", LogLevel::LogLevel_DEBUG);
     Teamspeak::_updateChanneNameCache(serverConnectionHandlerID);
 }

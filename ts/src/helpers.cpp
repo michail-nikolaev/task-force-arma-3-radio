@@ -46,9 +46,8 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Direct
         size_t leftOver = sampleCount * channels;
         if (CAN_USE_SSE_ON(samples)) {
             leftOver = (sampleCount * channels) % 8;
-            __m128 xmm3;
             float multiplier[4] = { gainFrontLeft ,gainFrontRight , gainFrontLeft, gainFrontRight };//This is limiting to 4 channels max. But If we implement surround sound we don't really need a center
-            xmm3 = _mm_loadu_ps(multiplier);
+            __m128 xmm3 = _mm_loadu_ps(multiplier);
             helpers::shortFloatMultEx(samples, (sampleCount * channels) - leftOver, xmm3);
         }
         for (size_t i = sampleCount * channels - leftOver; i < sampleCount * channels; i += channels) {

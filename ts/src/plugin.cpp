@@ -1,13 +1,8 @@
-﻿/*
+/*
  * TeamSpeak 3 demo plugin
  *
  * Copyright (c) 2008-2013 TeamSpeak Systems GmbH
  */
-
-#ifdef _WIN32
-#pragma warning (disable : 4100)  /* Disable Unreferenced parameter warning */
-#include <Windows.h>
-#endif
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -152,6 +147,7 @@ void ServiceThread() {
             if (TFAR::getInstance().getCurrentlyInGame())
                 Teamspeak::moveToSeriousChannel();//#TODO people may want to leave SeriousChannel on purpose and not be moved back
             lastCheckForExpire = std::chrono::system_clock::now();
+            TFAR::getServerDataDirectory()->verify();
         }
         if ((std::chrono::system_clock::now() - lastInfoUpdate.load()) > 4000ms) {
             updateUserStatusInfo(true);
@@ -483,42 +479,40 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     bool isInSameVehicle = (myVehicleDesriptor.vehicleName == hisVehicleDesriptor.vehicleName);
     float distanceFromClient_ = myPosition.distanceTo(clientData->getClientPosition()) + (2 * clientData->objectInterception); //2m more dist for each obstacle
 
-    if (!isFromMicrophone) {//We cant hear ourselves talking over direct speech. Atleast not via TFAR. So no need to process anything
-        //#### DIRECT SPEECH
-        if (myId != clientID &&
-            !isSpectator && !isNotHearableInNonPureSpectator && //We don't hear spectators and enemy units(if enabled in config)....
-            distanceFromClient_ <= (clientData->voiceVolume + 15)
-            ) {
-            //Direct Speech
-            //process voice
-            auto relativePosition = myPosition.directionTo(clientData->getClientPosition());
-            auto myViewDirection = myData->getViewDirection();
-            //Time differential based on direction
-            clientData->effects.getClunk("voice_clunk")->process(samples, channels, sampleCount, relativePosition, myViewDirection);//interaural time difference
-                                                                                                                                    //Volume differential based on direction
-            helpers::applyILD(samples, sampleCount, channels, myPosition, myViewDirection, clientData->getClientPosition(), clientData->getViewDirection());
+    //#### DIRECT SPEECH
+    if (myId != clientID &&
+        !isSpectator && !isNotHearableInNonPureSpectator && //We don't hear spectators and enemy units(if enabled in config)....
+        distanceFromClient_ <= (clientData->voiceVolume + 15)
+        ) {
+        //Direct Speech
+        //process voice
+        auto relativePosition = myPosition.directionTo(clientData->getClientPosition());
+        auto myViewDirection = myData->getViewDirection();
+        //Time differential based on direction
+        clientData->effects.getClunk("voice_clunk")->process(samples, channels, sampleCount, relativePosition, myViewDirection);//interaural time difference
+                                                                                                                                //Volume differential based on direction
+        helpers::applyILD(samples, sampleCount, channels, myPosition, myViewDirection, clientData->getClientPosition(), clientData->getViewDirection());
 
-            //helpers::applyILD(samples, sampleCount, channels, relativePosition, myViewDirection);//interaural level difference
+        //helpers::applyILD(samples, sampleCount, channels, relativePosition, myViewDirection);//interaural level difference
 
 
-            if (shouldPlayerHear) {
-                if (vehicleVolumeLoss < 0.01 || isInSameVehicle) {
+        if (shouldPlayerHear) {
+            if (vehicleVolumeLoss < 0.01 || isInSameVehicle) {
 
-                    helpers::applyGain(samples, sampleCount, channels, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume));
-                    if (!isInSameVehicle && clientData->objectInterception > 0) {
-                        helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, 1.0f,
-                            clientData->effects.getFilterObjectInterception(clientData->objectInterception)); //getFilterObjectInterception
-                    }
-                } else {
-                    helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), clientData->effects.getFilterVehicle("local_vehicle", vehicleVolumeLoss));
+                helpers::applyGain(samples, sampleCount, channels, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume));
+                if (!isInSameVehicle && clientData->objectInterception > 0) {
+                    helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, 1.0f,
+                        clientData->effects.getFilterObjectInterception(clientData->objectInterception)); //getFilterObjectInterception
                 }
             } else {
-                helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume) * CANT_SPEAK_GAIN, (clientData->effects.getFilterCantSpeak("local_cantspeak")));
+                helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), clientData->effects.getFilterVehicle("local_vehicle", vehicleVolumeLoss));
             }
-
-        } else if (!isHearableInPureSpectator) { //.... unless we are both spectating
-            memset(samples, 0, channels * sampleCount * sizeof(short));
+        } else {
+            helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume) * CANT_SPEAK_GAIN, (clientData->effects.getFilterCantSpeak("local_cantspeak")));
         }
+
+    } else if (!isHearableInPureSpectator) { //.... unless we are both spectating
+        memset(samples, 0, channels * sampleCount * sizeof(short));
     }
 
 

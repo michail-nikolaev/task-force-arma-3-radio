@@ -18,6 +18,8 @@ class RscTitles
             {
                 idc = 1100;
                 text = "";
+                type = 13;
+                style = 0;
                 x = 0.85 * safezoneW + safezoneX;
                 y = 0.9 * safezoneH + safezoneY;
                 w = 0.15 * safezoneW;
@@ -39,6 +41,12 @@ class RscTitles
         class controls {
             class VolumeIndicator: RscPictureKeepAspect {
                 idc= 1112;
+                type = 0;
+                style = "0x30 + 0x800";
+                colorText[] = { 1, 1, 1, 1 };
+                colorBackground[]={0, 0, 0, 0};
+                font = "PuristaMedium";
+                sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
                 text=QPATHTOF(ui\tfar_volume_normal.paa);
                 x="(profilenamespace getvariable [""IGUI_grid_TFAR_Volume_X"",	0.85 * safezoneW + safezoneX])";
                 y="(profilenamespace getvariable [""IGUI_grid_TFAR_Volume_Y"",	0.9 * safezoneH + safezoneY])";

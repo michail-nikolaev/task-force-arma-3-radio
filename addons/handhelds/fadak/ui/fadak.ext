@@ -89,7 +89,7 @@ class clear: HiddenButton
     tooltip = $STR_clear_frequency;
     action = QUOTE(
         ctrlSetText [ARR_2(IDC_FADAK_EDIT, '')];
-        ctrlSetFocus ((findDisplay IDC_FADAK_RADIO_DIALOG_ID) displayCtrl IDC_FADAK_EDIT);
+        ctrlSetFocus ((findDisplay IDD_FADAK_RADIO_DIALOG) displayCtrl IDC_FADAK_EDIT);
     );
 };
 class additional: HiddenButton

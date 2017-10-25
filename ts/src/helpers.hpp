@@ -2,7 +2,6 @@
 #include <ts3_functions.h>
 #include <string>
 #include <vector>
-#include <Windows.h>
 #include "common.hpp"
 #include <map>
 #include "profilers.hpp"
@@ -12,49 +11,52 @@
 #include <emmintrin.h>
 
 constexpr int const_strlen(const char* str) {
-#ifndef VS15
-    return *str ? 1 + const_strlen(str + 1) : 0;
-#else
     if (str == 0)
         return -1;
     uint32_t length = 0;
     while (str[length] != 0) ++length;
     return length;
-#endif
 }
+
 static_assert(const_strlen("hello") == 5, "const_strlen no workerino");
 
-#ifdef VS15
-#ifdef X64BUILD
-typedef uint64_t strHashType;
-#else
-typedef uint32_t strHashType;
-#endif
-constexpr strHashType const_strhash(const char* str) {
-    strHashType hash = 1337;
-    auto length = 0u;
-    while (str[length] != 0) {
-#pragma warning( disable : 4307 ) // integer overflow
-        hash *= str[length];
-        ++length;
+//from MSVC std library just in constexpr
+constexpr size_t _Hash_bytes(const char *_First, size_t _Count) _NOEXCEPT {	// FNV-1a hash function for bytes in [_First, _First + _Count)
+#if defined(_WIN64)
+    static_assert(sizeof(size_t) == 8, "This code is for 64-bit size_t.");
+    const size_t _FNV_offset_basis = 14695981039346656037ULL;
+    const size_t _FNV_prime = 1099511628211ULL;
+
+#else /* defined(_WIN64) */
+    static_assert(sizeof(size_t) == 4, "This code is for 32-bit size_t.");
+    const size_t _FNV_offset_basis = 2166136261U;
+    const size_t _FNV_prime = 16777619U;
+#endif /* defined(_WIN64) */
+
+    size_t _Val = _FNV_offset_basis;
+    for (size_t _Next = 0; _Next < _Count; ++_Next) {	// fold in another byte
+    #pragma warning( disable : 4307 )
+        _Val ^= (size_t) _First[_Next];
+        _Val *= _FNV_prime;
     }
-    return hash;
+    return (_Val);
+    }
+
+using strHashType = size_t;
+
+constexpr strHashType const_strhash(const char* str) {
+    return _Hash_bytes(str, const_strlen(str));
 }
 constexpr strHashType const_strhash(const char* str, size_t length) {
-    strHashType hash = 1337;
-    for (auto i = 0u; i < length; ++i) {
-#pragma warning( disable : 4307 ) // integer overflow
-        hash *= str[i];
-    }
-    return hash;
+    return _Hash_bytes(str, length);
 }
+
 #ifdef X64BUILD
-static_assert(const_strhash("SETCFG") == 0x0000c2ca8962ff68, "const_strhash no workerino");
+static_assert(const_strhash("SETCFG") == 0x9ca67405fc197a4f, "const_strhash no workerino");
 #else
-static_assert(const_strhash("SETCFG") == 0x8962ff68, "const_strhash no workerino");
+static_assert(const_strhash("SETCFG") == 0xb3f7090f, "const_strhash no workerino");
 #endif
 
-#endif
 #define FORCE_COMPILETIME(e) (std::integral_constant<decltype(e), e>::value)
 
 struct FREQ_SETTINGS;

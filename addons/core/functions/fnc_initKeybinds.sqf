@@ -1,16 +1,17 @@
 #include "script_component.hpp"
+#include "\a3\editor_f\Data\Scripts\dikCodes.h"
 #define LOCALIZE_CHANNEL(x,y) y call _fnc_localize##x##Channel
 
-TF_tangent_sw_scancode = 58;
+TF_tangent_sw_scancode = DIK_CAPSLOCK;
 TF_tangent_sw_modifiers = [false,false,false];
 
 TF_tangent_sw_2_scancode = 0;
 TF_tangent_sw_2_modifiers = [false,false,false];
 
-TF_tangent_additional_sw_scancode = 20;
+TF_tangent_additional_sw_scancode = DIK_T;
 TF_tangent_additional_sw_modifiers = [false,false,false];
 
-TF_dialog_sw_scancode = 25;
+TF_dialog_sw_scancode = DIK_P;
 TF_dialog_sw_modifiers = [false, true, false];
 
 TF_sw_cycle_next_scancode = 27;
@@ -19,49 +20,49 @@ TF_sw_cycle_next_modifiers = [false, true, false];
 TF_sw_cycle_prev_scancode = 26;
 TF_sw_cycle_prev_modifiers = [false, true, false];
 
-TF_sw_stereo_both_scancode = 200;
+TF_sw_stereo_both_scancode = DIK_UP;//Arrow up
 TF_sw_stereo_both_modifiers = [false, true, false];
 
-TF_sw_stereo_left_scancode = 203;
+TF_sw_stereo_left_scancode = DIK_LEFT;//Arrow left
 TF_sw_stereo_left_modifiers = [false, true, false];
 
-TF_sw_stereo_right_scancode = 205;
+TF_sw_stereo_right_scancode = DIK_RIGHT;//Arrow right
 TF_sw_stereo_right_modifiers = [false, true, false];
 
-TF_sw_channel_1_scancode = 79;
+TF_sw_channel_1_scancode = 79;//Num 1
 TF_sw_channel_1_modifiers = [false, false, false];
 
-TF_sw_channel_2_scancode = 80;
+TF_sw_channel_2_scancode = 80;//Num 2
 TF_sw_channel_2_modifiers = [false, false, false];
 
-TF_sw_channel_3_scancode = 81;
+TF_sw_channel_3_scancode = 81;//Num 3
 TF_sw_channel_3_modifiers = [false, false, false];
 
-TF_sw_channel_4_scancode = 75;
+TF_sw_channel_4_scancode = 75;//Num 4
 TF_sw_channel_4_modifiers = [false, false, false];
 
-TF_sw_channel_5_scancode = 76;
+TF_sw_channel_5_scancode = 76;//Num 5
 TF_sw_channel_5_modifiers = [false, false, false];
 
-TF_sw_channel_6_scancode = 77;
+TF_sw_channel_6_scancode = 77;//Num 6
 TF_sw_channel_6_modifiers = [false, false, false];
 
-TF_sw_channel_7_scancode = 71;
+TF_sw_channel_7_scancode = 71;//Num 7
 TF_sw_channel_7_modifiers = [false, false, false];
 
-TF_sw_channel_8_scancode = 72;
+TF_sw_channel_8_scancode = 72;//Num 8
 TF_sw_channel_8_modifiers = [false, false, false];
 
-TF_tangent_lr_scancode = 58;
-TF_tangent_lr_modifiers = [false, true, false];
+TF_tangent_lr_scancode = DIK_CAPSLOCK;
+TF_tangent_lr_modifiers = [false, true, false]; //ctrl,shift,alt
 
 TF_tangent_lr_2_scancode = 0;
 TF_tangent_lr_2_modifiers = [false, false, false];
 
-TF_tangent_additional_lr_scancode = 20;
-TF_tangent_additional_lr_modifiers = [false, true, false];
+TF_tangent_additional_lr_scancode = DIK_T;
+TF_tangent_additional_lr_modifiers = [false, true, false]; //shift,ctrl,alt
 
-TF_dialog_lr_scancode = 25;
+TF_dialog_lr_scancode = DIK_P;
 TF_dialog_lr_modifiers = [false, false, true];
 
 TF_lr_cycle_next_scancode = 27;
