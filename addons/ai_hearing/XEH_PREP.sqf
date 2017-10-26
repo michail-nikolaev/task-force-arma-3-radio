@@ -1,1 +1,2 @@
-PREP(initializeAIHearing);
+PREP(onSettingChanged);
+PREP(onSpeak);

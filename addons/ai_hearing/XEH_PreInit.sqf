@@ -9,9 +9,5 @@
     "Task Force Arrowhead Radio",
     false,
     1,
-    {
-        If ((hasInterface)&&{_this}) then {
-            [] call TFAR_fnc_initializeAIHearing;
-        };
-    }
+    FUNC(onSettingChanged)
 ] call CBA_Settings_fnc_init;
