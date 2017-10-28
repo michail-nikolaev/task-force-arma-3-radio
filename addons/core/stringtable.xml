@@ -1307,20 +1307,20 @@
                 <Korean>자동으로 장파 무전기 부여</Korean>
             </Key>
             <Key ID="STR_TFAR_CORE_SETTING_TAKERADIO_HEADER">
-                <English>Taking radio</English>
-                <German>%1 nehmen</German>
+                <English>Taking away radios</English>
+                <German>Funkgeräte wegnehmen</German>
             </Key>
             <Key ID="STR_TFAR_CORE_SETTING_TAKERADIO_DESC">
                 <English>Allows the taking of radios from immobilized units</English>
-                <German>Erlaubt das wegnehmen von Funkgeräten von handlungsunfähigen Personen</German>
+                <German>Erlaubt das Wegnehmen von Funkgeräten von handlungsunfähigen Personen</German>
             </Key>
             <Key ID="STR_TFAR_CORE_SETTING_TAKERADIO_0">
                 <English>Disallow</English>
                 <German>Verbieten</German>
             </Key>
             <Key ID="STR_TFAR_CORE_SETTING_TAKERADIO_1">
-                <English>Only from deadmen</English>
-                <German>Nur von toten Männern</German>
+                <English>Only from dead</English>
+                <German>Nur von Toten</German>
             </Key>
             <Key ID="STR_TFAR_CORE_SETTING_TAKERADIO_2">
                 <English>From immobilized units</English>
