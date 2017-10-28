@@ -1,8 +1,6 @@
 #define COMPONENT ai_hearing
 #include "\z\tfar\addons\core\script_mod.hpp"
 
-#define DEBUG_ENABLED_AI_HEARING
-
 #ifdef DEBUG_ENABLED_AI_HEARING
     #define DEBUG_MODE_FULL
 #endif
