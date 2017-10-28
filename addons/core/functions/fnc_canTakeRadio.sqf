@@ -25,12 +25,12 @@ params ["_target", "_unit", "_radio"];
 
 If (TFAR_takingRadio < 1) exitWith {false};
 
-If ((TFAR_takingRadio isEqualTo 1)&&{alive _target}) exitWith {false};
+If ((TFAR_takingRadio isEqualTo 1) && {alive _target}) exitWith {false};
 
-If ((TFAR_takingRadio > 1)&&{!([_unit, _target, ["isNotSwimming", "isNotDead", "isNotUnconscious"]] call ace_common_fnc_canInteractWith)}) exitWith {false};
+If ((TFAR_takingRadio > 1) && {!([_unit, _target, ["isNotSwimming", "isNotDead", "isNotUnconscious"]] call ace_common_fnc_canInteractWith)}) exitWith {false};
 
 If (_radio isEqualType "") then {
-    (_unit canAdd _radio)
+    _unit canAdd _radio
 } else {
     (backpack _unit) isEqualTo ""
 };
