@@ -21,16 +21,16 @@
 */
 
 If !(hasInterface) exitWith {};
-
+TRACE_1("AI Hearing Settings changed",TFAR_AICanHearPlayer);
 If (_this) then {
     If !(isNil QGVAR(HandlerID)) exitWith {};
 
-    GVAR(HandlerID) = ["TFAR_AI_Detection", "OnSpeak", FUNC(onSpeak), player] call TFAR_fnc_addEventHandler;
+    GVAR(HandlerID) = ["TFAR_event_OnSpeak", FUNC(onSpeak)] call CBA_fnc_addEventHandler;
 
 } else {
     If (isNil QGVAR(HandlerID)) exitWith {};
 
-    [GVAR(HandlerID), "OnSpeak"] call TFAR_fnc_removeEventHandler;
+    ["TFAR_event_OnSpeak", GVAR(HandlerID)] call CBA_fnc_removeEventHandler;
     GVAR(HandlerID) = nil;
 
 };

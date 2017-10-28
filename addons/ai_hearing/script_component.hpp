@@ -1,6 +1,8 @@
 #define COMPONENT ai_hearing
 #include "\z\tfar\addons\core\script_mod.hpp"
 
+#define DEBUG_ENABLED_AI_HEARING
+
 #ifdef DEBUG_ENABLED_AI_HEARING
     #define DEBUG_MODE_FULL
 #endif
@@ -10,3 +12,9 @@
 #endif
 
 #include "\z\tfar\addons\core\script_macros.hpp"
+
+#ifdef PREP
+    #undef PREP
+#endif
+
+#define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
