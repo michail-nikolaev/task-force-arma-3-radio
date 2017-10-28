@@ -25,4 +25,4 @@ params [["_unit", objNull, [objNull]]];
 private _allItems = (assignedItems _unit);
 _allItems append (items _unit);
 
-_allItems select {!([configFile >> "CfgVehicles" >> _classname, "tf_parent", ""] call TFAR_fnc_getConfigProperty) isEqualTo "")}
+_allItems select {!(([configFile >> "CfgVehicles" >> _classname, "tf_parent", ""] call TFAR_fnc_getConfigProperty) isEqualTo "")}
