@@ -18,7 +18,7 @@
         NOTHING
 
     Example:
-        [_tower1,_tower2] call TFAR_fnc_pluginAddRadioTower;
+        [_tower1,_tower2] call TFAR_antennas_fnc_pluginRemoveRadioTower;
 */
 
 for "_y" from 0 to (count _this)-1 step 50 do { //Only 50 per call to not exceed max message length
