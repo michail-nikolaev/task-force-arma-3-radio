@@ -19,15 +19,10 @@
     Example:
     _itemlist = [_player] call TFAR_fnc_getRadioItems;
  */
- 
-params [["_unit", objNull, [objNull]], ["_withoutDuplicated", true, [true]]];
+
+params [["_unit", objNull, [objNull]]];
 
 private _allItems = (assignedItems _unit);
-_allItems append ((getItemCargo (uniformContainer _unit)) select 0);
-_allItems append ((getItemCargo (vestContainer _unit)) select 0);
-_allItems append ((getItemCargo (backpackContainer _unit)) select 0);
-If (_withoutDuplicated) then {
-    _allItems = _allItems arrayIntersect _allItems;//Remove duplicates
-};
+_allItems append (items _unit);
 
-_allItems select {!(getText(configFile >> "CfgWeapons" >> _x >> "tf_parent") isEqualTo "")}
+_allItems select {!([configFile >> "CfgVehicles" >> _classname, "tf_parent", ""] call TFAR_fnc_getConfigProperty) isEqualTo "")}

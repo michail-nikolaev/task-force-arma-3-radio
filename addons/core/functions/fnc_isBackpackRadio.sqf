@@ -23,4 +23,4 @@ params [["_classname",[]]];
 if (_classname isEqualType []) exitWith {false};
 if (_classname isEqualType objNull) then {_classname = typeOf _classname;};
 
-getNumber (configFile >> "CfgVehicles" >> _classname >> "tf_hasLRradio") isEqualTo 1
+[configFile >> "CfgVehicles" >> _classname, "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty

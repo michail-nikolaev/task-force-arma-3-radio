@@ -18,10 +18,10 @@
     Example:
     _hasRadio = [_player] call TFAR_fnc_hasRadio;
  */
- 
+
 params [["_unit", objNull, [objNull]]];
 
 If !(_unit isKindOf "CAManBase") exitWith {false};
 
-(((count ([_unit] call TFAR_fnc_getRadioItems))>0)
-||!((_unit call TFAR_fnc_backpackLr) isEqualTo []))
+(!((_unit call TFAR_fnc_backpackLr) isEqualTo []))
+||{(count ([_unit] call TFAR_fnc_getRadioItems))>0}
