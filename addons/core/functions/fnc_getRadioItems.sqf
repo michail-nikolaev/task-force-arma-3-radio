@@ -25,4 +25,4 @@ params [["_unit", objNull, [objNull]]];
 private _allItems = (assignedItems _unit);
 _allItems append (items _unit);
 
-_allItems select {!((_x call TFAR_fnc_isRadio)||{_x call TFAR_fnc_isPrototypeRadio})}
+_allItems select {((_x call TFAR_fnc_isRadio)||{_x call TFAR_fnc_isPrototypeRadio})}
