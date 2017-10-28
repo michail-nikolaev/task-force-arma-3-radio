@@ -8,6 +8,7 @@ PREP(activeLrRadio);
 PREP(activeSwRadio);
 PREP_SUB(events\handler,addEventHandler);
 PREP(addRadiosToACE);
+PREP(addStereoToACE);
 // B
 PREP(backpackLr);
 // C
