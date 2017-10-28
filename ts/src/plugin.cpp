@@ -422,6 +422,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     auto clientData = clientDataDir->getClientData(clientID);
     if (!clientData) {
         //Should not happen..
+        Teamspeak::printMessageToCurrentTab("TFAR nosim NoCliData");
         log_string(std::string("No info about ") + std::to_string(clientID.baseType()) + " " + Teamspeak::getClientNickname(serverConnectionHandlerID, clientID), LogLevel_ERROR);
         return; //Unknown client
     }
@@ -447,6 +448,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                 log_string(std::string("No plugin enabled for ") + std::to_string(clientID.baseType()) + " " + nickname, LogLevel_DEBUG);
             last_no_info = std::chrono::system_clock::now();
         }
+        Teamspeak::printMessageToCurrentTab("TFAR nosim NoPlugEn");
         return;
     }
     bool canSpeak = clientDataDir->myClientData->canSpeak;
@@ -461,6 +463,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
     if (!isHearableInSpectator && isSeriousModeEnabled(serverConnectionHandlerID, clientID) && (!alive || !clientData->isAlive())) {
         helpers::applyGain(samples, sampleCount, channels, 0.0f);
+        Teamspeak::printMessageToCurrentTab("TFAR Mute !spec && Serious && (!alive||!alive2)");
         return;
     }
     auto myData = clientDataDir->myClientData;
@@ -499,7 +502,11 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         if (shouldPlayerHear) {
             if (vehicleVolumeLoss < 0.01 || isInSameVehicle) {
 
-                helpers::applyGain(samples, sampleCount, channels, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume));
+
+                auto atten = helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume);
+                if (atten < 0.15)
+                    Teamspeak::printMessageToCurrentTab("TFAR SemiMute atten s1 <0.15");
+                helpers::applyGain(samples, sampleCount, channels, atten);
                 if (!isInSameVehicle && clientData->objectInterception > 0) {
                     helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, 1.0f,
                         clientData->effects.getFilterObjectInterception(clientData->objectInterception)); //getFilterObjectInterception
@@ -508,10 +515,12 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                 helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), clientData->effects.getFilterVehicle("local_vehicle", vehicleVolumeLoss));
             }
         } else {
+            Teamspeak::printMessageToCurrentTab("TFAR SemiMute shouldn't hear");
             helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume) * CANT_SPEAK_GAIN, (clientData->effects.getFilterCantSpeak("local_cantspeak")));
         }
 
     } else if (!isHearableInPureSpectator) { //.... unless we are both spectating
+        Teamspeak::printMessageToCurrentTab("TFAR Mute !PureSpec or spec or dist");
         memset(samples, 0, channels * sampleCount * sizeof(short));
     }
 
@@ -523,7 +532,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
     std::vector<LISTED_INFO> listed_info = clientData->isOverRadio(myData, false, false, false);
     float radioDistance = myData->effectiveDistanceTo(clientData);
-
+    if (listed_info.empty() && distanceFromClient_ > 30) Teamspeak::printMessageToCurrentTab("TFAR NOR");
     for (auto& info : listed_info) {
         if (isFromMicrophone && info.on == receivingRadioType::LISTED_ON_INTERCOM) continue; //We don't want to hear ourselves over intercom while doing direct speech
         short* radio_buffer = helpers::allocatePool(sampleCount, channels, original_buffer);
@@ -531,8 +540,11 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         if (info.on < receivingRadioType::LISTED_ON_NONE) {//don't do for onGround or Intercom
 
             //Volume modifier for lowered headset - Placed here because this part of code only applies to actual non-speaker Radios
-            if (TFAR::config.get<bool>(Setting::headsetLowered))
+            if (TFAR::config.get<bool>(Setting::headsetLowered)) {
+                Teamspeak::printMessageToCurrentTab("TFAR RSilent HeadLow");
                 volumeLevel *= 0.1f;
+            }
+                
 
             switch (PTTDelayArguments::stringToSubtype(clientData->getCurrentTransmittingSubtype())) {
                 case PTTDelayArguments::subtypes::digital: {
@@ -564,6 +576,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                     helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, volumeLevel * 10.0f, (clientData->effects.getSpeakerPhone(info.radio_id)));
                     break;
                 default:
+                    Teamspeak::printMessageToCurrentTab("TFAR RMute unkwn subtype");
                     helpers::applyGain(radio_buffer, sampleCount, channels, 0.0f);
                     break;
             }
