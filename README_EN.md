@@ -31,33 +31,36 @@
 <sup><strong><a href="http://www.teamspeak.com/">TeamSpeak</a> integration for Arma 3. TFAR won the 1st place (Addon) in <a href="http://makearmanotwar.com/entry/pMP8c7vSS4#.VA1em_nV9UD">Make Arma Not War</a> contest.</strong></sup>
 </p>
 
-###Installation
- 1. Download and unzip the [0.9.12 radio archive](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.12/0.9.12.zip).
- 2. Copy the contents of `TeamSpeak 3 Client` folder into the root folder of TeamSpeak.
- 3. Copy the contents of `Arma 3` folder into game folder – `...\SteamApps\common\Arma 3`.
+### Installation
+
+1. Download and unzip the [0.9.12 radio archive](https://github.com/michail-nikolaev/task-force-arma-3-radio/releases/download/0.9.12/0.9.12.zip).
+1. Copy the contents of `TeamSpeak 3 Client` folder into the root folder of TeamSpeak.
+1. Copy the contents of `Arma 3` folder into game folder – `...\SteamApps\common\Arma 3`.
 
 > Every release of [TFAR](http://radio.task-force.ru/en/) includes the most recent version of [СBA](http://www.armaholic.com/page.php?id=18767) – Community Base Addons. If you already have CBA installed, but uncertain about its version, then it's better to let Windows replace the existing folder.
 
-###Configuration
- 1. Make sure that <kbd>Caps Lock</kbd> is not used as the push-to-talk key in TeamSpeak.
- 2. In the game settings, to avoid voice doubling, turn off Voice Over Network (VON), or change its assgined key to something other than <kbd>Caps Lock</kbd>.
- 3. Open the plugin list in TeamSpeak – `Settings> Plugins`.
-  1. Enable `Task Force Arma 3 Radio`.
-  2. Disable `ACRE` and other similar radio plugins, if you have them, to avoid possible conflicts.
-  3. Press the `Reload All` (bottom left) to restart all of the current plugins.
- 4. Make sure the volume of alerts is not turned off in TeamSpeak – `Options> Payback> Sound Pack Volume` – set a positive value.
- 5. Start the game with both `@CBA_A3` &amp; `@task_force_radio` addons enabled. You can do this by adding their names to the game shortcut, or right after the `exe` file – `…\arma3.exe -mod=@CBA_A3;@task_force_radio`. However, the game's own menu (`Settings> Expansions`) is a more preferable method of setup.
- 6. Join the same TeamSpeak channel as other players using the radio. While playing in serious mode, the server will have a channel named `TaskForceRadio`, where all participating players will be navigated automatically at the start of a shared mission.
+### Configuration
 
-> During the game, TFAR will change your TeamSpeak nickname to match the one from your current game profile. Make sure your in-game nick is at least 3 characters long.
->
-> We do not recommend using the plugin with simultaneous connections to multiple TeamSpeak servers.
->
-> We recommend disabling the preconfigured alert sounds used by TeamSpeak – `Options> Notifications> Sound Pack: "Sounds Deactivated"`. To apply this change, make sure to restart TeamSpeak afterwards.
+1. Make sure that <kbd>Caps Lock</kbd> is not used as the push-to-talk key in TeamSpeak.
+1. In the game settings, to avoid voice doubling, turn off Voice Over Network (VON), or change its assgined key to something other than <kbd>Caps Lock</kbd>.
+1. Open the plugin list in TeamSpeak – `Settings> Plugins`.
+    1. Enable `Task Force Arma 3 Radio`.
+    1. Disable `ACRE` and other similar radio plugins, if you have them, to avoid possible conflicts.
+    1. Press the `Reload All` (bottom left) to restart all of the current plugins.
+1. Make sure the volume of alerts is not turned off in TeamSpeak – `Options> Payback> Sound Pack Volume` – set a positive value.
+1. Start the game with both `@CBA_A3` &amp; `@task_force_radio` addons enabled. You can do this by adding their names to the game shortcut, or right after the `exe` file – `…\arma3.exe -mod=@CBA_A3;@task_force_radio`. However, the game's own menu (`Settings> Expansions`) is a more preferable method of setup.
+1. Join the same TeamSpeak channel as other players using the radio. While playing in serious mode, the server will have a channel named `TaskForceRadio`, where all participating players will be navigated automatically at the start of a shared mission.
 
-###Controls
+#### Configuration Notes
+
+* During the game, TFAR will change your TeamSpeak nickname to match the one from your current game profile. Make sure your in-game nick is at least 3 characters long.
+* We do not recommend using the plugin with simultaneous connections to multiple TeamSpeak servers.
+* We recommend disabling the preconfigured alert sounds used by TeamSpeak (`Options> Notifications> Sound Pack: "Sounds Deactivated"`). To apply this change, make sure to restart TeamSpeak afterwards.
+
+### Controls
+
 | Keys | Action |
-| :--- | :--- |
+| --- | --- |
 | Push&#8288;-&#8288;to&#8288;-&#8288;talk&nbsp;hotkey&nbsp;in&nbsp;TS&nbsp;&nbsp;&nbsp; | Direct Speech. |
 | <kbd>Caps Lock</kbd> | To talk on a radio. |
 | <kbd>Ctrl</kbd>+<kbd>Caps Lock</kbd> | To talk on a long range radio. |
@@ -78,9 +81,10 @@
 | <kbd>Y</kbd> | Transmit on additional channel of long range radio. |
 | <kbd>Esc</kbd> | To exit from the radio interface. |
 
-###Radios
+### Radios
+
 | Radio | Side | Range /Distance |
-| :--- | :--- | :--- |
+| --- | --- | --- |
 | <kbd>[AN/PRC-152](https://en.wikipedia.org/wiki/AN/PRC-152)</kbd><br><sup>(commander)</sup> | <span style="color:blue">BLUFOR</span> | 30–512 MHz<br>/5 km |
 | <kbd>[RF-7800S-TR](http://rf.harris.com/capabilities/tactical-radios-networking/rf-7800s-tr.asp)</kbd><br><sup>(squadmate)</sup> | <span style="color:blue">BLUFOR</span> | 30–512 MHz<br>/2 km |
 | <kbd>[RT-1523G (ASIP)](https://en.wikipedia.org/wiki/SINCGARS#Models)</kbd><br><sup>(manpack)</sup> | <span style="color:blue">BLUFOR</span> | 30–87 MHz<br>/20 km<br><sup>(30 km for [vehicle-mounted](https://en.wikipedia.org/wiki/Mobile_radio))</sup> |
@@ -95,63 +99,64 @@
 | <kbd>[MR6000L](http://www.rohde-schwarz.com/en/product/mr6000l-productstartpage_63493-9143.html)</kbd><br><sup>(airborne)</sup> | <span style="color:red">OPFOR</span> | 30–87 MHz<br>/40 km |
 | <kbd>Transceiver</kbd><br><sup>(underwater)</sup> | All | 32–41 kHz<br>/70–300 m<br><sup>(depending on waves)</sup> |
 
-> Short range (handheld, of commander or squadmate class) and long range radios (manpack, airborne, vehicle-mounted) of same faction are configured using a common protocol, allowing them to communicate with each other. If the transmission is carried out using a short range radio – the sound will be of high-frequency. In the case of a long range transmission – it will be of low-frequency.
+#### Notes on Radios
 
-> The quality of radio signal is affected by the nature of surrounding terrain. Worst case scenario – you are located at the edge of a steep hill. If you start moving away from the hill's edge, in direction opposite the transmitting player, you will start getting better signal reception. Best case scenario – a direct line of sight to the source of transmission.
+* Short range (handheld, of commander or squadmate class) and long range radios (manpack, airborne, vehicle-mounted) of same faction are configured using a common protocol, allowing them to communicate with each other. If the transmission is carried out using a short range radio – the sound will be of high-frequency. In the case of a long range transmission – it will be of low-frequency.
+* The quality of radio signal is affected by the nature of surrounding terrain. Worst case scenario – you are located at the edge of a steep hill. If you start moving away from the hill's edge, in direction opposite the transmitting player, you will start getting better signal reception. Best case scenario – a direct line of sight to the source of transmission.
+* Commander and long range class of radios support transmitting and receiving on two channels simultaneously. Pressing the "Setup additional channel" switch will mark the currently selected radio channel as additional. After switching to another channel you will hear both – active and additional channels.
 
-> Commander and long range class of radios support transmitting and receiving on two channels simultaneously. Pressing the "Setup additional channel" switch will mark the currently selected radio channel as additional. After switching to another channel you will hear both – active and additional channels.
+#### Distribution of Radios
 
-####Distribution
-* By default, a long range radio is given out to squad leaders. If a given player is initialy wearing a backpack, it will be automatically discarded on the ground in exchange for a distributed radio.
-
+* By default, a long range radio is given out to squad leaders. If a given player is initialy wearing a backpack, it will be automatically discarded on the ground in exchange for a distributed radio.=
 * Short range radios are given out to players who have `ItemRadio` in their inventory. At mission start, the process of radio distribution may take up to a few seconds to fully complete – note the game messages appearing at the center of your screen.
 
-####In vehicles
+#### Radios in Vehicles
+
 * A long range radio is available to driver, commander, gunner, and co-pilot. Not all vehicles support mounted radios.
-
 * Every vehicle slot has its own radio, which has to be configured separately. If you plan to switch seats in a vehicle, then configure the radio for each seat beforehand – for example, at the driver and gunner positions.
-
 * Vehicles are classified into open and closed (isolated) types. If you are in an isolated vehicle, you will barely hear any voices from the outside (and vice versa). However, when turned out, you will be able to hear voices from both, inside and outside of your vehicle.
 
-####Interception
-* Radios can be picked up from dead players, and exchanged between players. In doing so, they retain all their settings (channels, frequency, volume).
+#### Interception
 
-> To bypass the well-known game bug with disappearing world items and pick up a radio safely, we recommend you do so through the inventory screen while standing directly over its position on the ground.
-
+* Radios can be picked up from dead players, and exchanged between players. In doing so, they retain all their settings (channels, frequency, volume). To bypass the well-known game bug with disappearing world items and pick up a radio safely, we recommend you do so through the inventory screen while standing directly over its position on the ground.
 * Settings configured for vehicle-mounted radios are also persistently stored.
 * By default, all radios use an embedded faction-specific encryption code for transmission. In practice, this means that even if you somehow found out the radio frequency of your opponent you would still not be able to intercept their communication by simply switching to it on your own radio. To be able to listen and talk on enemy frequency, you will also need to have a captured enemy radio.
+* While intercepting your opponent's communication using a captured manpack radio, it is preferable to get in and remain inside a friendly vehicle. This way, you'll be able to listen to the enemy chatter using manpack, while at the same time being able to broadcast to your allies using the vehicle-mounted radio as the active one.
 
-> While intercepting your opponent's communication using a captured manpack radio, it is preferable to get in and remain inside a friendly vehicle. This way, you'll be able to listen to the enemy chatter using manpack, while at the same time being able to broadcast to your allies using the vehicle-mounted radio as the active one.
+#### Diver Radios
 
-####Divers
 * You can not talk underwater (even while wearing a diving suit). However, at close distance your communication partner can hear some indistinct speech (exception: if you are underwater in an isolated vehicle).
 * Being underwater, you can faintly hear muffled voices on land.
 * Use an underwater transceiver for communication among divers.
 * You can not use radio communication underwater (neither to talk nor to hear). If you want to pass some message – surface first. Exception: submersible at the periscope depth (divers can use a long range radio there).
 
-###Operation modes
-The plugin supports two operation modes – **serious** and a **lightweight** mode.
+### Operation modes
+
+The plugin supports two operation modes: a **Lightweight** mode and a **Serious** mode.
 
 * **Lightweight** is the default mode. It is designed mainly for cooperative games (PvE). Its special feature is that using the plugin players can hear the dead, users not playing, users playing on a different server and users playing without the plugin avoiding the radio (just like with TeamSpeak). This makes games against people less convenient, but allows your friends to easily find out where you play, what's your frequency, etc. Naturally, those who play on the same server with activated addons and plugins will hear each other according to "radio laws": taking into account the radio frequency and distance.
-
 * **Serious** is designed for organized games played in player versus player (PvP) modes. To enable it, TeamSpeak administrator has to create a channel called `TaskForceRadio` with the password of `123`. Before the game, players upon launching TS, enable the radio plugin, split into teams with each occupying its own side channel and then, after joining the game server commence a briefing on their forthcoming mission. As the mission loads, in a few seconds time, players will be forwarded to `TaskForceRadio` channel. Therein, players can hear only other live players that have TFAR enabled, are on the same server and the same team. Dead players can communicate only among themselves, but once respawned will again adhere to the aforementioned restrictions. After the played mission concludes, all participants are transferred back to the TS channel they used for briefing.
 
-###Problem solving
-* `Pipe error 230` – most likely, it means you forgot to enable the plugin in TeamSpeak.
-* If the plugin is red-marked in TS and does not load – you will probably have to update TeamSpeak.
-* If something doesn't work – try to reload the plugin first.
+### Problem Solving and Troubleshooting
+
+* `Pipe error 230` – most likely, this means you forgot to enable the plugin in TeamSpeak.
+* If the plugin is red-marked in TS and does not load, you will probably have to update TeamSpeak.
+* If something doesn't work try to reload the plugin in TeamSpeak settings first.
 * <kbd>Caps Lock</kbd> actions aren't working – common issue with use of special gaming keyboards, where <kbd>Caps Lock</kbd> code is different. Try changing your key mapping (by editing the <code>userconfig</code>).
 * If due to an error, you are no longer able to hear other players, even outside the game, open `Setup 3D Sound` in TeamSpeak and click `Center All`.
 * To eliminate possible errors with the plugin, developers may require your TeamSpeak logs. To copy it, select `Tools> Client Log`, tick all checkboxes at the top and, by selecting all of the text with <kbd>Ctrl</kbd>+<kbd>A</kbd>, copy it to the clipboard.
 * If TeamSpeak stopped working (Heaven forbid!) while using the plugin – it will show a dialog with instructions on where you can find the dump file (information about an error). I'd appreciate if you attached this file in your bug reports.
 
-####For TS admins
+#### Notes for TS Admins
+
 To be on the safe side, reduce the level of flood protection – `right-click on server> Edit Virtual Server> More> Anti Flood` – set the values at <code>30</code>, <code>300</code> and <code>3000</code> (from the top).
 
-####For developers
+#### Notes for developers
+
 If this plugin ever becomes popular, it would be great if we could avoid having piles of incompatible community forks. For this reason, if you’d like to contribute to the project, contact me – it is very likely that your improvements will be merged into the main branch. Looking forward to your [pull requests](https://github.com/michail-nikolaev/task-force-arma-3-radio/pulls?q=is%3Apr+is%3Aclosed).
 
-###Special Thanks
+### Special Thanks
+
 * [Task Force Arrowhead](http://forum.task-force.ru/) squad for testing, support, patience and all the help.
 * [MTF](http://forum.task-force.ru/index.php?action=profile;u=7) ([varzin](https://github.com/varzin)) for help with graphics and documentation.
 * [Hardckor ](http://forum.task-force.ru/index.php?action=profile;u=14) for help with graphics.
