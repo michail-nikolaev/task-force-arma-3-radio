@@ -83,7 +83,7 @@
     ["Use old Voice Volume Hint","Use old Voice Volume Hint"], 
     "Task Force Arrowhead Radio", 
     false,
-    0,
+    0
 ] call CBA_Settings_fnc_init;
 [
     "TFAR_showTransmittingHint", 
@@ -157,7 +157,7 @@
     [LSTRING(SETTING_TAKERADIO_HEADER),LSTRING(SETTING_TAKERADIO_DESC)],
     "Task Force Arrowhead Radio",
     [[0, 1, 2], [LSTRING(SETTING_TAKERADIO_0), LSTRING(SETTING_TAKERADIO_1), LSTRING(SETTING_TAKERADIO_2)], 2],
-    true
+    1
 ] call CBA_Settings_fnc_init;
 [
     "TFAR_spectatorCanHearEnemyUnits", 
