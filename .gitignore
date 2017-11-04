@@ -41,3 +41,4 @@ ts/src/task_force_radio_plugin.VC.db
 *.ipdb
 
 *.ipch
+*.cache
