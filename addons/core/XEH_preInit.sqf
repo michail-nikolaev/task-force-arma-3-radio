@@ -152,6 +152,14 @@
     1
 ] call CBA_Settings_fnc_init;
 [
+    "TFAR_takingRadio",
+    "LIST",
+    [LSTRING(SETTING_TAKERADIO_HEADER),LSTRING(SETTING_TAKERADIO_DESC)],
+    "Task Force Arrowhead Radio",
+    [[0, 1, 2], [LSTRING(SETTING_TAKERADIO_0), LSTRING(SETTING_TAKERADIO_1), LSTRING(SETTING_TAKERADIO_2)], 2],
+    true
+] call CBA_Settings_fnc_init;
+[
     "TFAR_spectatorCanHearEnemyUnits", 
     "CHECKBOX", 
     ["Spectator can hear enemy units","If disabled a Spectator can't hear direct speech from Units that are considered Enemy to the Spectators original faction"], 
@@ -370,7 +378,7 @@ if (hasInterface) then {//Clientside Variables
     TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_sendFrequencyInfo_lastExec",-1];
     TFAR_ConfigCacheNamespace setVariable ["lastRadioSettingUpdate",-1];
 
-
+    ISNILS(TFAR_takingRadio,2);
 
     TFAR_lastLoadoutChange = 0;
 };
