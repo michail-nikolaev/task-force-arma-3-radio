@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project ID="TFAR">
+    <Package name="ai_hearing">
+        <Container name="misc">
+            <Key ID="STR_TFAR_AI_HEARING_SETTING_HEADER">
+                <English>AI Hearing</English>
+                <German>Hörende KI</German>
+            </Key>
+            <Key ID="STR_TFAR_AI_HEARING_SETTING_DESC">
+                <English>If enabled, the ai is able to detect speaking players.</English>
+                <German>Wenn aktiviert, dann reagiert die KI auf die Gespräche der Spieler.</German>
+            </Key>
+        </Container>
+    </Package>
+</Project>

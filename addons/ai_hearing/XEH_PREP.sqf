@@ -1,0 +1,2 @@
+PREP(onSettingChanged);
+PREP(onSpeak);
