@@ -2,29 +2,246 @@
 
 #include "XEH_PREP.sqf"
 
-// server
-["TFAR_giveLongRangeRadioToGroupLeaders", "CHECKBOX", "STR_radio_auto_long_range_radio", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TFAR_givePersonalRadioToRegularSoldier", "CHECKBOX", "STR_radio_give_personal_radio_to_regular_soldier", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TFAR_giveMicroDagrToSoldier", "CHECKBOX", "STR_radio_give_microdagr_to_soldier", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
-["TFAR_SameSRFrequenciesForSide", "CHECKBOX", "STR_radio_same_sw_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TFAR_SameLRFrequenciesForSide", "CHECKBOX", "STR_radio_same_lr_frequencies_for_side", "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TFAR_fullDuplex", "CHECKBOX", ["STR_TFAR_Mod_FullDuplex","STR_TFAR_Mod_FullDuplexDescription"], "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
-["TFAR_enableIntercom", "CHECKBOX", "Enable vehicle Intercom", "Task Force Arrowhead Radio", true, true,{["intercomEnabled",TFAR_enableIntercom] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_objectInterceptionEnabled", "CHECKBOX", "Enable Object Interception", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
-["TFAR_spectatorCanHearEnemyUnits", "CHECKBOX", ["Spectator can hear enemy units","If disabled a Spectator can't hear direct speech from Units that are considered Enemy to the Spectators original faction"], "Task Force Arrowhead Radio", true, true,{["spectatorNotHearEnemies",!TFAR_spectatorCanHearEnemyUnits] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_spectatorCanHearFriendlies", "CHECKBOX", ["Spectator can hear units","If disabled a Spectator can't hear any Players besides other Spectators"], "Task Force Arrowhead Radio", true, true,{["spectatorCanHearFriendlies",TFAR_spectatorCanHearFriendlies] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 // client
-["TFAR_default_radioVolume", "SLIDER", "STR_radio_default_radioVolume", "Task Force Arrowhead Radio", [1, 9, 7, 0]] call CBA_Settings_fnc_init;
-["TFAR_volumeModifier_forceSpeech", "CHECKBOX", ["Direct speech on volume modifier","Activate directSpeech when pressing volume modifier."], "Task Force Arrowhead Radio", false] call CBA_Settings_fnc_init;//#Stringtable
-["TFAR_intercomVolume", "SLIDER", "Intercom Volume", "Task Force Arrowhead Radio", [0.01, 0.6, 0.3, 3], false, {["intercomVolume",TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_pluginTimeout", "SLIDER", "Plugin Timeout in seconds", "Task Force Arrowhead Radio", [0.5, 10, 4, 3], false, {["pluginTimeout",TFAR_pluginTimeout] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_tangentReleaseDelay", "SLIDER", "tangentReleaseDelay in milliseconds", "Task Force Arrowhead Radio", [0, 500, 0, 0], false, {["tangentReleaseDelay",TFAR_tangentReleaseDelay] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_PosUpdateMode", "LIST", ["Position Update Mode","The higher the quality the lower fps"], "Task Force Arrowhead Radio", [[0,0.1,0.2],["Quality","Normal","Performance"],1], false, {}] call CBA_Settings_fnc_init;
-["TFAR_ShowVolumeHUD", "CHECKBOX", ["Show HUD Voice Volume indicator","If disabled it will pop up for a short time when changing Volume."], "Task Force Arrowhead Radio", false, false, {if (TFAR_ShowVolumeHUD) then {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];} else {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];};}] call CBA_Settings_fnc_init;
-["TFAR_VolumeHudTransparency", "SLIDER", ["Volume Indicator Transparency","Volume Indicator Transparency (0 fully visible - 1 invisible)"], "Task Force Arrowhead Radio", [0, 1, 0, 3], false, {call TFAR_fnc_updateSpeakVolumeUI;}] call CBA_Settings_fnc_init;
-["TFAR_oldVolumeHint", "CHECKBOX", ["Use old Voice Volume Hint","Use old Voice Volume Hint"], "Task Force Arrowhead Radio", false, false] call CBA_Settings_fnc_init;
-["TFAR_showTransmittingHint", "CHECKBOX", ["Show Transmitting Hint","Show the Hint (Bottom right) when you are Transmitting"], "Task Force Arrowhead Radio", true, false] call CBA_Settings_fnc_init;
-["TFAR_showChannelChangedHint", "CHECKBOX", ["Show Channel Changed Hint","Show the Hint (Bottom right) when you switch Channels via UI or Hotkey"], "Task Force Arrowhead Radio", true, false] call CBA_Settings_fnc_init;
+[
+    "TFAR_default_radioVolume",
+    "SLIDER",
+    "STR_radio_default_radioVolume",
+    "Task Force Arrowhead Radio",
+    [1, 9, 7, 0],
+    0
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_volumeModifier_forceSpeech", 
+    "CHECKBOX", 
+    ["Direct speech on volume modifier","Activate directSpeech when pressing volume modifier."], 
+    "Task Force Arrowhead Radio", 
+    false,
+    0
+] call CBA_Settings_fnc_init;//#Stringtable
+[
+    "TFAR_intercomVolume", 
+    "SLIDER", "Intercom Volume",
+    "Task Force Arrowhead Radio", 
+    [0.01, 0.6, 0.3, 3],
+    0,
+    {["intercomVolume",TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_pluginTimeout", 
+    "SLIDER", 
+    "Plugin Timeout in seconds", 
+    "Task Force Arrowhead Radio", 
+    [0.5, 10, 4, 3],
+    0,
+    {["pluginTimeout",TFAR_pluginTimeout] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_tangentReleaseDelay",
+    "SLIDER", 
+    "tangentReleaseDelay in milliseconds", 
+    "Task Force Arrowhead Radio", 
+    [0, 500, 0, 0],
+    0,
+    {["tangentReleaseDelay",TFAR_tangentReleaseDelay] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_PosUpdateMode", 
+    "LIST", 
+    ["Position Update Mode","The higher the quality the lower fps"], 
+    "Task Force Arrowhead Radio", 
+    [[0,0.1,0.2],["Quality","Normal","Performance"],1],
+    0
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_ShowVolumeHUD",
+    "CHECKBOX",
+    ["Show HUD Voice Volume indicator","If disabled it will pop up for a short time when changing Volume."],
+    "Task Force Arrowhead Radio",
+    false,
+    0,
+    {
+        if (TFAR_ShowVolumeHUD) then {
+            (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];
+        } else {
+            (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];
+        };
+    }
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_VolumeHudTransparency", 
+    "SLIDER", 
+    ["Volume Indicator Transparency","Volume Indicator Transparency (0 fully visible - 1 invisible)"], 
+    "Task Force Arrowhead Radio", 
+    [0, 1, 0, 3],
+    0,
+    {call TFAR_fnc_updateSpeakVolumeUI;}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_oldVolumeHint", 
+    "CHECKBOX", 
+    ["Use old Voice Volume Hint","Use old Voice Volume Hint"], 
+    "Task Force Arrowhead Radio", 
+    false,
+    0,
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_showTransmittingHint", 
+    "CHECKBOX", 
+    ["Show Transmitting Hint","Show the Hint (Bottom right) when you are Transmitting"], 
+    "Task Force Arrowhead Radio", 
+    true,
+    0
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_showChannelChangedHint", 
+    "CHECKBOX", 
+    ["Show Channel Changed Hint","Show the Hint (Bottom right) when you switch Channels via UI or Hotkey"], 
+    "Task Force Arrowhead Radio", 
+    true,
+    0
+] call CBA_Settings_fnc_init;
+
+// server
+[
+    "TFAR_giveLongRangeRadioToGroupLeaders", 
+    "CHECKBOX", 
+    "STR_radio_auto_long_range_radio", 
+    "Task Force Arrowhead Radio", 
+    false,
+    1
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_givePersonalRadioToRegularSoldier", 
+    "CHECKBOX", 
+    "STR_radio_give_personal_radio_to_regular_soldier", 
+    "Task Force Arrowhead Radio", 
+    false,
+    1
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_giveMicroDagrToSoldier", 
+    "CHECKBOX", 
+    "STR_radio_give_microdagr_to_soldier", 
+    "Task Force Arrowhead Radio", 
+    true,
+    1
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_fullDuplex", 
+    "CHECKBOX", 
+    ["STR_TFAR_Mod_FullDuplex","STR_TFAR_Mod_FullDuplexDescription"], 
+    "Task Force Arrowhead Radio", 
+    true,
+    1
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_enableIntercom", 
+    "CHECKBOX", 
+    "Enable vehicle Intercom", 
+    "Task Force Arrowhead Radio", 
+    true,
+    1,
+    {["intercomEnabled",TFAR_enableIntercom] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_objectInterceptionEnabled", 
+    "CHECKBOX", "Enable Object Interception", 
+    "Task Force Arrowhead Radio", 
+    true,
+    1
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_spectatorCanHearEnemyUnits", 
+    "CHECKBOX", 
+    ["Spectator can hear enemy units","If disabled a Spectator can't hear direct speech from Units that are considered Enemy to the Spectators original faction"], 
+    "Task Force Arrowhead Radio", 
+    true,
+    1,
+    {["spectatorNotHearEnemies",!TFAR_spectatorCanHearEnemyUnits] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_spectatorCanHearFriendlies", 
+    "CHECKBOX", 
+    ["Spectator can hear units","If disabled a Spectator can't hear any Players besides other Spectators"], 
+    "Task Force Arrowhead Radio", 
+    true,
+    1,
+    {["spectatorCanHearFriendlies",TFAR_spectatorCanHearFriendlies] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_SameSRFrequenciesForSide", 
+    "CHECKBOX",
+    "STR_radio_same_sw_frequencies_for_side", 
+    "Task Force Arrowhead Radio", 
+    false,
+    1
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_defaultFrequencies_sr_west", 
+    "STRING", 
+    ["Default frequencies west","The default frequencies for the west side."], 
+    "Task Force Arrowhead Radio", 
+    "[30.7,51.2,39.3,41.3,56.0,62.2,60.8,55.3,76.4,45.6]",
+    1,
+    {["TFAR_defaultFrequencies_sr_west",_this] call DFUNC(parseDefaultFrequencies);}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_defaultFrequencies_sr_east", 
+    "STRING", 
+    ["Default frequencies east","The default frequencies for the east side."], 
+    "Task Force Arrowhead Radio", 
+    "[58.3,52.0,57.2,51.4,66.2,50.1,54.1,63.9,70.8,57.4]",
+    1,
+    {["TFAR_defaultFrequencies_sr_east",_this] call DFUNC(parseDefaultFrequencies);}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_defaultFrequencies_sr_independent", 
+    "STRING", 
+    ["Default frequencies independent","The default frequencies for the independent side."], 
+    "Task Force Arrowhead Radio", 
+    "[74.4,72.2,41.9,58.5,44.2,72.4,49.8,85.0,31.6,81.5]",
+    1,
+    {["TFAR_defaultFrequencies_sr_independent",_this] call DFUNC(parseDefaultFrequencies);}
+] call CBA_Settings_fnc_init;
+
+[
+    "TFAR_SameLRFrequenciesForSide", 
+    "CHECKBOX", 
+    "STR_radio_same_lr_frequencies_for_side", 
+    "Task Force Arrowhead Radio", 
+    false,
+    1
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_defaultFrequencies_lr_west", 
+    "STRING", 
+    ["Default frequencies west","The default frequencies for the west side."], 
+    "Task Force Arrowhead Radio", 
+    "[468.9,368.3,394.7,350.6,110.0,505.5,287.4,206.8,228.0]",
+    1,
+    {["TFAR_defaultFrequencies_lr_west",_this] call DFUNC(parseDefaultFrequencies);}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_defaultFrequencies_lr_east", 
+    "STRING", 
+    ["Default frequencies east","The default frequencies for the east side."], 
+    "Task Force Arrowhead Radio", 
+    "[69.9,235.2,65.0,356.8,449.0,464.1,170.1,433.4,306.4]",
+    1,
+    {["TFAR_defaultFrequencies_lr_east",_this] call DFUNC(parseDefaultFrequencies);}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_defaultFrequencies_lr_independent", 
+    "STRING", 
+    ["Default frequencies independent","The default frequencies for the independent side."], 
+    "Task Force Arrowhead Radio", 
+    "[160.4,234.9,129.7,102.3,142.7,395.1,324.7,369.2,152.8]",
+    1,
+    {["TFAR_defaultFrequencies_lr_independent",_this] call DFUNC(parseDefaultFrequencies);}
+] call CBA_Settings_fnc_init;
+
+
 
 
 //Global variables
