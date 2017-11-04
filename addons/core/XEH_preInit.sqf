@@ -190,7 +190,7 @@
     "EDITBOX", 
     ["Default frequencies west","The default frequencies for the west side."], 
     "Task Force Arrowhead Radio", 
-    "[30.7,51.2,39.3,41.3,56.0,62.2,60.8,55.3,76.4,45.6]",
+    "[468.9,368.3,394.7,350.6,110.0,505.5,287.4,206.8,228.0]",
     1,
     {["TFAR_defaultFrequencies_sr_west",_this] call DFUNC(parseDefaultFrequencies);}
 ] call CBA_Settings_fnc_init;
@@ -199,7 +199,7 @@
     "EDITBOX", 
     ["Default frequencies east","The default frequencies for the east side."], 
     "Task Force Arrowhead Radio", 
-    "[58.3,52.0,57.2,51.4,66.2,50.1,54.1,63.9,70.8,57.4]",
+    "[69.9,235.2,65.0,356.8,449.0,464.1,170.1,433.4,306.4]",
     1,
     {["TFAR_defaultFrequencies_sr_east",_this] call DFUNC(parseDefaultFrequencies);}
 ] call CBA_Settings_fnc_init;
@@ -208,7 +208,7 @@
     "EDITBOX", 
     ["Default frequencies independent","The default frequencies for the independent side."], 
     "Task Force Arrowhead Radio", 
-    "[74.4,72.2,41.9,58.5,44.2,72.4,49.8,85.0,31.6,81.5]",
+    "[160.4,234.9,129.7,102.3,142.7,395.1,324.7,369.2,152.8]",
     1,
     {["TFAR_defaultFrequencies_sr_independent",_this] call DFUNC(parseDefaultFrequencies);}
 ] call CBA_Settings_fnc_init;
@@ -225,8 +225,8 @@
     "TFAR_setting_defaultFrequencies_lr_west", 
     "EDITBOX", 
     ["Default frequencies west","The default frequencies for the west side."], 
-    "Task Force Arrowhead Radio", 
-    "[468.9,368.3,394.7,350.6,110.0,505.5,287.4,206.8,228.0]",
+    "Task Force Arrowhead Radio",
+    "[30.7,51.2,39.3,41.3,56.0,62.2,60.8,55.3,76.4,45.6]",
     1,
     {["TFAR_defaultFrequencies_lr_west",_this] call DFUNC(parseDefaultFrequencies);}
 ] call CBA_Settings_fnc_init;
@@ -235,7 +235,7 @@
     "EDITBOX", 
     ["Default frequencies east","The default frequencies for the east side."], 
     "Task Force Arrowhead Radio", 
-    "[69.9,235.2,65.0,356.8,449.0,464.1,170.1,433.4,306.4]",
+    "[58.3,52.0,57.2,51.4,66.2,50.1,54.1,63.9,70.8,57.4]",
     1,
     {["TFAR_defaultFrequencies_lr_east",_this] call DFUNC(parseDefaultFrequencies);}
 ] call CBA_Settings_fnc_init;
@@ -244,7 +244,7 @@
     "EDITBOX", 
     ["Default frequencies independent","The default frequencies for the independent side."], 
     "Task Force Arrowhead Radio", 
-    "[160.4,234.9,129.7,102.3,142.7,395.1,324.7,369.2,152.8]",
+    "[74.4,72.2,41.9,58.5,44.2,72.4,49.8,85.0,31.6,81.5]",
     1,
     {["TFAR_defaultFrequencies_lr_independent",_this] call DFUNC(parseDefaultFrequencies);}
 ] call CBA_Settings_fnc_init;

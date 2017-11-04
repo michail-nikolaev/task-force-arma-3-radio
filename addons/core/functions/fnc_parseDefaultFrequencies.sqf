@@ -36,14 +36,14 @@ If ((_settingName find "sr")>0) then {
     If !(({(_x >= TFAR_MIN_SW_FREQ)&&(_x <= TFAR_MAX_SW_FREQ)} count _parsedValue) isEqualTo TFAR_MAX_CHANNELS) then {
         _parsedValue = [TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
     } else {
-        _parsedValue resize TFAR_MAX_CHANNELS;
+        (_parsedValue resize TFAR_MAX_CHANNELS) apply {str _x};
     };
     missionNamespace setVariable [_settingName, _parsedValue, true];
 } else {
-    If !(({(_x >= TFAR_MIN_ASIP_FREQ)&&(_x <= TFAR_MAX_ASIP_FREQ)} count _parsedValue) isEqualTo TFAR_MAX_CHANNELS) then {
+    If !(({(_x >= TFAR_MIN_ASIP_FREQ)&&(_x <= TFAR_MAX_ASIP_FREQ)} count _parsedValue) isEqualTo TFAR_MAX_LR_CHANNELS) then {
         _parsedValue = [TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
     } else {
-        _parsedValue resize TFAR_MAX_LR_CHANNELS;
+        (_parsedValue resize TFAR_MAX_LR_CHANNELS) apply {str _x};
     };
     missionNamespace setVariable [_settingName, _parsedValue, true];
 };
