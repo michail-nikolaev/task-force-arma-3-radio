@@ -74,60 +74,31 @@ if (!isNil "tf_freq_guer_lr") then { \
     TFAR_defaultFrequencies_lr_independent = tf_freq_guer_lr param [2,nil];
 };
 
-
-if (!isNil "TFAR_defaultFrequencies_sr_west") then {
-    TFAR_SameSRFrequenciesForSide = true;
-    TFAR_freq_sr_west = [] call TFAR_fnc_generateSRSettings;
+If (TFAR_SameSRFrequenciesForSide) then {
+    TFAR_freq_sr_west = false call TFAR_fnc_generateSRSettings;
     TFAR_freq_sr_west set [2,TFAR_defaultFrequencies_sr_west];
-};
-
-if (!isNil "TFAR_defaultFrequencies_sr_east") then {
-    TFAR_SameSRFrequenciesForSide = true;
-    TFAR_freq_sr_east = [] call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_east = false call TFAR_fnc_generateSRSettings;
     TFAR_freq_sr_east set [2,TFAR_defaultFrequencies_sr_east];
-};
-
-if (!isNil "TFAR_defaultFrequencies_sr_independent") then {
-    TFAR_SameSRFrequenciesForSide = true;
-    TFAR_freq_sr_independent = [] call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_independent = false call TFAR_fnc_generateSRSettings;
     TFAR_freq_sr_independent set [2,TFAR_defaultFrequencies_sr_independent];
+} else {
+    VARIABLE_DEFAULT(TFAR_freq_sr_west,true call TFAR_fnc_generateSRSettings);
+    VARIABLE_DEFAULT(TFAR_freq_sr_east,true call TFAR_fnc_generateSRSettings);
+    VARIABLE_DEFAULT(TFAR_freq_sr_independent,true call TFAR_fnc_generateSRSettings);
 };
 
-if (!isNil "TFAR_defaultFrequencies_lr_west") then {
-    TFAR_SameLRFrequenciesForSide = true;
-    TFAR_freq_lr_west = [] call TFAR_fnc_generateLrSettings;
+If (TFAR_SameLRFrequenciesForSide) then {
+    TFAR_freq_lr_west = false call TFAR_fnc_generateLrSettings;
     TFAR_freq_lr_west set [2,TFAR_defaultFrequencies_lr_west];
-};
-
-if (!isNil "TFAR_defaultFrequencies_lr_east") then {
-    TFAR_SameLRFrequenciesForSide = true;
-    TFAR_freq_lr_east = [] call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_east = false call TFAR_fnc_generateLrSettings;
     TFAR_freq_lr_east set [2,TFAR_defaultFrequencies_lr_east];
-};
-
-if (!isNil "TFAR_defaultFrequencies_lr_independent") then {
-    TFAR_SameLRFrequenciesForSide = true;
-    TFAR_freq_lr_independent = [] call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_independent = false call TFAR_fnc_generateLrSettings;
     TFAR_freq_lr_independent set [2,TFAR_defaultFrequencies_lr_independent];
+} else {
+    VARIABLE_DEFAULT(TFAR_freq_lr_west,true call TFAR_fnc_generateLrSettings);
+    VARIABLE_DEFAULT(TFAR_freq_lr_east,true call TFAR_fnc_generateLrSettings);
+    VARIABLE_DEFAULT(TFAR_freq_lr_independent,true call TFAR_fnc_generateLrSettings);
 };
-
-
-
-
-
-
-//Default variables
-
-VARIABLE_DEFAULT(TFAR_SameSRFrequenciesForSide,false);
-VARIABLE_DEFAULT(TFAR_SameLRFrequenciesForSide,true);
-
-VARIABLE_DEFAULT(TFAR_freq_sr_west,[] call TFAR_fnc_generateSRSettings);
-VARIABLE_DEFAULT(TFAR_freq_sr_east,[] call TFAR_fnc_generateSRSettings);
-VARIABLE_DEFAULT(TFAR_freq_sr_independent,[] call TFAR_fnc_generateSRSettings);
-
-VARIABLE_DEFAULT(TFAR_freq_lr_west,[] call TFAR_fnc_generateLrSettings);
-VARIABLE_DEFAULT(TFAR_freq_lr_east,[] call TFAR_fnc_generateLrSettings);
-VARIABLE_DEFAULT(TFAR_freq_lr_independent,[] call TFAR_fnc_generateLrSettings);
 
 //Check if all players are running TFAR
 {
@@ -135,7 +106,9 @@ VARIABLE_DEFAULT(TFAR_freq_lr_independent,[] call TFAR_fnc_generateLrSettings);
     waitUntil {sleep 0.1;time > 3};
     if !(isClass(configFile >> "CfgPatches" >> "tfar_core")) exitWith {
         [player, "TASK FORCE RADIO NOT LOADED"] remoteExec ["globalChat", -2];
-        ["LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0"] call "BIS_fnc_guiMessage";
+        If (isNull (uiNamespace getVariable ["BIS_fnc_arsenal_cam", objNull])) then {
+            ["LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0"] call "BIS_fnc_guiMessage";
+        };
     };
 } remoteExec ["BIS_fnc_spawn", -2, true];
 

@@ -2,6 +2,15 @@
 
 #include "XEH_PREP.sqf"
 
+If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
+    ["CBA_settingsInitialized", TFAR_fnc_serverInit] call CBA_fnc_addEventhandler
+};
+/* TODO enable this
+If (hasInterface && {isMultiplayer || is3DENMultiplayer}) then {
+    ["CBA_settingsInitialized", TFAR_fnc_clientInit] call CBA_fnc_addEventhandler
+};
+*/
+
 // client
 [
     "TFAR_default_radioVolume",
@@ -190,10 +199,11 @@
     "EDITBOX", 
     ["Default frequencies west","The default frequencies for the west side."], 
     "Task Force Arrowhead Radio", 
-    "[110.0,206.8,228.0,287.4,350.6,368.3,394.7,468.9,505.5]",
+    "",
     1,
     {
         TFAR_defaultFrequencies_sr_west = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+        publicVariable "TFAR_defaultFrequencies_sr_west";
         TFAR_setting_defaultFrequencies_sr_west = str(TFAR_defaultFrequencies_sr_west apply {parseNumber _x});
     }
 ] call CBA_Settings_fnc_init;
@@ -202,10 +212,11 @@
     "EDITBOX", 
     ["Default frequencies east","The default frequencies for the east side."], 
     "Task Force Arrowhead Radio", 
-    "[65.0,69.9,170.1,235.2,306.4,356.8,433.4,449.0,464.1]",
+    "",
     1,
     {
         TFAR_defaultFrequencies_sr_east = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+        publicVariable "TFAR_defaultFrequencies_sr_east";
         TFAR_setting_defaultFrequencies_sr_east = str(TFAR_defaultFrequencies_sr_east apply {parseNumber _x});
     }
 ] call CBA_Settings_fnc_init;
@@ -214,10 +225,11 @@
     "EDITBOX", 
     ["Default frequencies independent","The default frequencies for the independent side."], 
     "Task Force Arrowhead Radio", 
-    "[102.3,129.7,142.7,152.8,160.4,234.9,324.7,369.2,395.1]",
+    "",
     1,
     {
         TFAR_defaultFrequencies_sr_independent = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+        publicVariable "TFAR_defaultFrequencies_sr_independent";
         TFAR_setting_defaultFrequencies_sr_independent = str(TFAR_defaultFrequencies_sr_independent apply {parseNumber _x});
     }
 ] call CBA_Settings_fnc_init;
@@ -233,36 +245,39 @@
 [
     "TFAR_setting_defaultFrequencies_lr_west", 
     "EDITBOX", 
-    ["Default frequencies west","The default frequencies for the west side."], 
+    ["Default frequencies west","The default frequencies for the west side. e.g. [31.6,41.9,44.2,49.8,58.5,72.2,72.4,74.4,81.5,85.0]"], 
     "Task Force Arrowhead Radio",
-    "[30.7,39.3,41.3,45.6,51.2,55.3,56.0,60.8,62.2,76.4]",
+    "",
     1,
     {
         TFAR_defaultFrequencies_lr_west = [_this, TFAR_MAX_LR_CHANNELS, TFAR_MAX_ASIP_FREQ, TFAR_MIN_ASIP_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+        publicVariable "TFAR_defaultFrequencies_lr_west";
         TFAR_setting_defaultFrequencies_lr_west = str(TFAR_defaultFrequencies_lr_west apply {parseNumber _x});
     }
 ] call CBA_Settings_fnc_init;
 [
     "TFAR_setting_defaultFrequencies_lr_east", 
     "EDITBOX", 
-    ["Default frequencies east","The default frequencies for the east side."], 
+    ["Default frequencies east","The default frequencies for the east side. e.g. [31.6,41.9,44.2,49.8,58.5,72.2,72.4,74.4,81.5,85.0]"], 
     "Task Force Arrowhead Radio", 
-    "[50.1,51.4,52.0,54.1,57.2,57.4,58.3,63.9,66.2,70.8]",
+    "",
     1,
     {
         TFAR_defaultFrequencies_lr_east = [_this, TFAR_MAX_LR_CHANNELS, TFAR_MAX_ASIP_FREQ, TFAR_MIN_ASIP_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+        publicVariable "TFAR_defaultFrequencies_lr_east";
         TFAR_setting_defaultFrequencies_lr_east = str(TFAR_defaultFrequencies_lr_east apply {parseNumber _x});
     }
 ] call CBA_Settings_fnc_init;
 [
     "TFAR_setting_defaultFrequencies_lr_independent", 
     "EDITBOX", 
-    ["Default frequencies independent","The default frequencies for the independent side."], 
-    "Task Force Arrowhead Radio", 
-    "[31.6,41.9,44.2,49.8,58.5,72.2,72.4,74.4,81.5,85.0]",
+    ["Default frequencies independent","The default frequencies for the independent side. e.g. [31.6,41.9,44.2,49.8,58.5,72.2,72.4,74.4,81.5,85.0]"], 
+    "Task Force Arrowhead Radio",
+    "",
     1,
     {
         TFAR_defaultFrequencies_lr_independent = [_this, TFAR_MAX_LR_CHANNELS, TFAR_MAX_ASIP_FREQ, TFAR_MIN_ASIP_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+        publicVariable "TFAR_defaultFrequencies_lr_independent";
         TFAR_setting_defaultFrequencies_lr_independent = str(TFAR_defaultFrequencies_lr_independent apply {parseNumber _x});
     }
 ] call CBA_Settings_fnc_init;
