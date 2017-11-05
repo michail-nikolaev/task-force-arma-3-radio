@@ -81,6 +81,9 @@ If (TFAR_SameSRFrequenciesForSide) then {
     TFAR_freq_sr_east set [2,TFAR_defaultFrequencies_sr_east];
     TFAR_freq_sr_independent = false call TFAR_fnc_generateSRSettings;
     TFAR_freq_sr_independent set [2,TFAR_defaultFrequencies_sr_independent];
+    publicVariable "TFAR_freq_sr_west";
+    publicVariable "TFAR_freq_sr_east";
+    publicVariable "TFAR_freq_sr_independent";
 } else {
     VARIABLE_DEFAULT(TFAR_freq_sr_west,true call TFAR_fnc_generateSRSettings);
     VARIABLE_DEFAULT(TFAR_freq_sr_east,true call TFAR_fnc_generateSRSettings);
@@ -94,6 +97,9 @@ If (TFAR_SameLRFrequenciesForSide) then {
     TFAR_freq_lr_east set [2,TFAR_defaultFrequencies_lr_east];
     TFAR_freq_lr_independent = false call TFAR_fnc_generateLrSettings;
     TFAR_freq_lr_independent set [2,TFAR_defaultFrequencies_lr_independent];
+    publicVariable "TFAR_freq_lr_west";
+    publicVariable "TFAR_freq_lr_east";
+    publicVariable "TFAR_freq_lr_independent";
 } else {
     VARIABLE_DEFAULT(TFAR_freq_lr_west,true call TFAR_fnc_generateLrSettings);
     VARIABLE_DEFAULT(TFAR_freq_lr_east,true call TFAR_fnc_generateLrSettings);

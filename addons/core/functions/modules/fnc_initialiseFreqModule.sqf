@@ -25,37 +25,57 @@ params [
 ];
 
 if (_activated) then {
-    if (count _units == 0) exitWith { hint "TFAR - No units set for Frequency Module";diag_log "TFAR - No units set for Frequency Module";};
-    if (!isServer) exitWith {};
-    private _swFreq = false call TFAR_fnc_generateSRSettings;
-    private _freqs = [(_logic getVariable "PrFreq"),TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
-    _swFreq set [2,_freqs];
+    if (_units isEqualTo []) exitWith {
+        private _msg = "TFAR - No units set for Frequency Module";
+        hint _msg;
+        diag_log _msg;
+    };
+    
+    if (isServer) then {
+        private _swFreq = false call TFAR_fnc_generateSRSettings;
+        private _freqs = [(_logic getVariable "PrFreq"),TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+        _swFreq set [2,_freqs];
 
-    private _lrFreq = false call TFAR_fnc_generateLrSettings;
-    _freqs = [(_logic getVariable "LrFreq"),TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
-    _lrFreq set [2,_freqs];
+        private _lrFreq = false call TFAR_fnc_generateLrSettings;
+        _freqs = [(_logic getVariable "LrFreq"),TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+        _lrFreq set [2,_freqs];
 
-    //Make unique list of groups. In case player assigned module to multiple units of same group
-    private _groups = [];
-    {
-        _groups pushBackUnique (group _x);
-        true;
-    } count _units;
+        _logic setVariable ["tf_sw_frequency", _swFreq, true];
+        _logic setVariable ["tf_lr_frequency", _lrFreq, true];
+    };
+    
+    If (hasInterface) then {
+        private _fnc = {
+            params ["_logic"];
+            private _groups = [];
+            {
+                _groups pushBackUnique (group _x);
+                true;
+            } count _units;
 
-    if (didJIP) then {
-        if (isNil (_x getVariable "tf_sw_frequency")) then {_x setVariable ["tf_sw_frequency", _swFreq, true];};
-        if (isNil (_x getVariable "tf_lr_frequency")) then {_x setVariable ["tf_lr_frequency", _lrFreq, true];};
-    } else {
-        {
-            if (!isNil (_x getVariable "tf_sw_frequency")) then {private _message = format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.", (group _x)];diag_log _message;hint _message;};
-
-            if (!isNil (_x getVariable "tf_lr_frequency")) then {private _message = format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.", (group _x)];diag_log _message;hint _message;};
-
-            _x setVariable ["tf_sw_frequency", _swFreq, true];
-            _x setVariable ["tf_lr_frequency", _lrFreq, true];
-
-            true;
-        } count _groups;
+            private _swFreq = _logic getVariable "tf_sw_frequency";
+            private _lrFreq = _logic getVariable "tf_lr_frequency";
+            {
+                If ((!(isNil "_swFreq")) && {!(isNil {_x getVariable "tf_sw_frequency"})}) then {
+                    _x setVariable ["tf_sw_frequency", _swFreq];
+                };
+                If ((!(isNil "_lrFreq")) && {!(isNil {_x getVariable "tf_lr_frequency"})}) then {
+                    _x setVariable ["tf_lr_frequency", _lrFreq];
+                };
+            } count _groups;
+        };
+        If (isNil {_logic getVariable "tf_lr_frequency"}) then {
+            [
+                {
+                    !(isNil {(_this getVariable "tf_lr_frequency")})
+                },
+                _fnc,
+                _logic,
+                60
+            ] call CBA_fnc_waitUntilAndExecute;
+        } else {
+            _logic call _fnc;
+        };
     };
 };
 
