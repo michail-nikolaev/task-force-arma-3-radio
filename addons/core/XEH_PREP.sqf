@@ -119,7 +119,7 @@ PREP_SUB(events\ui,onSwDialogOpen);
 PREP_SUB(events\ui,onLRDialogOpen);
 PREP_SUB(hint,onGroundHint);
 // P
-PREP(parseDefaultFrequencies);
+PREP(parseFrequenciesInput);
 PREP(preparePositionCoordinates);
 PREP_SUB(events\keys,processSWChannelKeys);
 PREP_SUB(events\keys,processSWCycleKeys);
