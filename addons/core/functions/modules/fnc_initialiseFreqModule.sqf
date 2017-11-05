@@ -28,19 +28,11 @@ if (_activated) then {
     if (count _units == 0) exitWith { hint "TFAR - No units set for Frequency Module";diag_log "TFAR - No units set for Frequency Module";};
     if (!isServer) exitWith {};
     private _swFreq = false call TFAR_fnc_generateSRSettings;
-    private _freqs = call compile (_logic getVariable "PrFreq");
-    private _randomFreqs = [TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
-    while {count _freqs < TFAR_MAX_CHANNELS} do {
-        _freqs pushBack (_randomFreqs select (count _freqs));
-    };
+    private _freqs = [(_logic getVariable "PrFreq"),TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
     _swFreq set [2,_freqs];
 
     private _lrFreq = false call TFAR_fnc_generateLrSettings;
-    _freqs = call compile (_logic getVariable "LrFreq");
-    _randomFreqs = [TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
-    while {count _freqs < TFAR_MAX_LR_CHANNELS} do {
-        _freqs pushBack (_randomFreqs select (count _freqs));
-    };
+    _freqs = [(_logic getVariable "LrFreq"),TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
     _lrFreq set [2,_freqs];
 
     //Make unique list of groups. In case player assigned module to multiple units of same group

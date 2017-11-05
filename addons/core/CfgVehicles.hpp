@@ -21,24 +21,6 @@ class CfgVehicles {
         isTriggerActivated = 0;
 
         class Arguments {
-            class TeamLeaderRadio {
-                displayName = "$STR_TFAR_Mod_GiveTLradio";
-                description = "$STR_TFAR_Mod_GiveTLradioTT";
-                typeName = "BOOL";
-                defaultValue = 0;
-            };
-            class RiflemanRadio {
-                displayName = "$STR_TFAR_Mod_GiveRiflemanRadio";
-                description = "$STR_TFAR_Mod_GiveRiflemanRadioTT";
-                typeName = "BOOL";
-                defaultValue = 0;
-            };
-            class terrain_interception_coefficient {
-                displayName = "$STR_TFAR_Mod_TerrainInterceptionCoefficient";
-                description = "$STR_TFAR_Mod_TerrainInterceptionCoefficientTT";
-                typeName = "NUMBER";
-                defaultValue = 7.0;
-            };
             class radio_channel_name {
                 displayName = "$STR_TFAR_Mod_ChannelName";
                 description = "$STR_TFAR_Mod_ChannelNameTT";
@@ -50,24 +32,6 @@ class CfgVehicles {
                 description = "$STR_TFAR_Mod_ChannelPasswordTT";
                 typeName = "TEXT";
                 defaultValue = "123";
-            };
-            class same_sw_frequencies_for_side {
-                displayName = "$STR_TFAR_Mod_SameSWFrequencies";
-                description = "$STR_TFAR_Mod_SameSWFrequenciesTT";
-                typeName = "BOOL";
-                defaultValue = 0;
-            };
-            class same_lr_frequencies_for_side {
-                displayName = "$STR_TFAR_Mod_SameLrFrequencies";
-                description = "$STR_TFAR_Mod_SameLrFrequenciesTT";
-                typeName = "BOOL";
-                defaultValue = 0;
-            };
-            class full_duplex {
-                displayName = "$STR_TFAR_Mod_FullDuplex";
-                description = "$STR_TFAR_Mod_FullDuplexDescription";
-                typeName = "BOOL";
-                defaultValue = 1;
             };
         };
         class ModuleDescription: ModuleDescription {

@@ -121,6 +121,14 @@ If (hasInterface && {isMultiplayer || is3DENMultiplayer}) then {
     1
 ] call CBA_Settings_fnc_init;
 [
+    "TF_terrain_interception_coefficient", 
+    "SLIDER", 
+    [localize "STR_TFAR_Mod_TerrainInterceptionCoefficient",localize "STR_TFAR_Mod_TerrainInterceptionCoefficientTT"], 
+    "Task Force Arrowhead Radio", 
+    [0, 20, 7, 1],
+    1
+] call CBA_Settings_fnc_init;
+[
     "TFAR_givePersonalRadioToRegularSoldier", 
     "CHECKBOX", 
     "STR_radio_give_personal_radio_to_regular_soldier", 
