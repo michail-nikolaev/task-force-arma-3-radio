@@ -5,11 +5,6 @@
 If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     ["CBA_settingsInitialized", TFAR_fnc_serverInit] call CBA_fnc_addEventhandler
 };
-/* TODO enable this
-If (hasInterface && {isMultiplayer || is3DENMultiplayer}) then {
-    ["CBA_settingsInitialized", TFAR_fnc_clientInit] call CBA_fnc_addEventhandler
-};
-*/
 
 // client
 [
