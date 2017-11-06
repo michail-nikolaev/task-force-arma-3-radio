@@ -12,6 +12,7 @@
     Parameters:
         0: BOOL - is SW radio (Default: true)
         1: Object - the unit (Default: TFAR_currentUnit)
+        2: STRING - the radiotype (only for LR and the usage of group defined radio settings needed)
 
     Returns:
         ARRAY
@@ -45,7 +46,16 @@ if (_isSW) then {
     };
 
 } else {
-    private _value = (group _unit) getVariable "TFAR_freq_lr";
+    private _lrRadioType = _this param [2,""];
+
+    private _value = if (
+            (!(_lrRadioType isEqualTo "")) &&
+            (getText(configFile >> "CfgVehicles" >> _radioType >> "tf_encryptionCode") == toLower (format ["tf_%1_radio_code",(_unit call BIS_fnc_objectSide)]))
+        ) then {
+            (group _unit) getVariable "TFAR_freq_lr";
+        } else {
+            nil
+        };
 
     if ((isNil "_value") && {TFAR_SameSRFrequenciesForSide}) then {
         _value = switch (_unit call BIS_fnc_objectSide) do {

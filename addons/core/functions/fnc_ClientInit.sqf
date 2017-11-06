@@ -218,8 +218,8 @@ if (player call TFAR_fnc_isForcedCurator) then {
 player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 
 player addEventHandler ["killed", {
-    TF_use_saved_sw_setting = true;
-    TF_use_saved_lr_setting = true;
+    GVAR(use_saved_sr_setting) = true;
+    GVAR(use_saved_lr_setting) = true;
     TFAR_RadioReqLinkFirstItem = true;
     call TFAR_fnc_hideHint;
 }];

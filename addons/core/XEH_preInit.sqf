@@ -354,11 +354,11 @@ if (hasInterface) then {//Clientside Variables
 
     MUTEX_INIT(TF_radio_request_mutex);
 
-    TF_use_saved_sw_setting = false;
-    TF_saved_active_sw_settings = nil;
+    GVAR(use_saved_sr_setting) = false;
+    GVAR(saved_active_sr_settings) = nil;
 
-    TF_use_saved_lr_setting = false;
-    TF_saved_active_lr_settings = nil;
+    GVAR(use_saved_lr_setting) = false;
+    GVAR(saved_active_lr_settings) = nil;
 
     TF_curator_backpack_1 = nil;
     TF_curator_backpack_2 = nil;

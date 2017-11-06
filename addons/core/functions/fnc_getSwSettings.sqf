@@ -24,11 +24,11 @@ params[["_radio","",[""]]];
 private _value = TFAR_RadioSettingsNamespace getVariable _radio;
 if (!isNil "_value") exitWith {_value};
 
-if ((isNil "TF_saved_active_sw_settings") || {!TF_use_saved_sw_setting} then  {
+if (isNil QGVAR(saved_active_sr_settings)) then  {
     _value = call DFUNC(getDefaultRadioSettings);
 } else {
-    _value = TF_saved_active_sw_settings;
-    TF_use_saved_sw_setting = false;
+    _value = GVAR(saved_active_sr_settings);
+    GVAR(saved_active_sr_settings) = nil;
 };
 
 //If value doesn't have Radio code set.. Add it //#TODO why can this even happen? //generateXXSettings sets nil as radiocode
