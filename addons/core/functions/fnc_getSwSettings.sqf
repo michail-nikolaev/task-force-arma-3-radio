@@ -25,7 +25,7 @@ private _value = TFAR_RadioSettingsNamespace getVariable _radio;
 if (!isNil "_value") exitWith {_value};
 
 if (isNil QGVAR(saved_active_sr_settings)) then  {
-    _value = call DFUNC(getDefaultRadioSettings);
+    _value = true call DFUNC(getDefaultRadioSettings);
 } else {
     _value = GVAR(saved_active_sr_settings);
     GVAR(saved_active_sr_settings) = nil;

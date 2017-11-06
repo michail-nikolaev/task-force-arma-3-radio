@@ -18,7 +18,7 @@
         ARRAY
 
     Example:
-        _swFrequencies =  call TFAR_fnc_getDefaultRadioSettings;
+        _swFrequencies = true call TFAR_fnc_getDefaultRadioSettings;
         _lrFrequencies = false call TFAR_fnc_getDefaultRadioSettings;
 */
 
@@ -44,6 +44,8 @@ if (_isSW) then {
     if (isNil "_value") then {
         _value = call DFUNC(generateSRSettings);
     };
+
+    _value
 
 } else {
     private _lrRadioType = _this param [2,""];
@@ -74,6 +76,6 @@ if (_isSW) then {
     if (isNil "_value") then {
         _value = call DFUNC(generateLRSettings);
     };
-};
 
-_value
+    _value
+};
