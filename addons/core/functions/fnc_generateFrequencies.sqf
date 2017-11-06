@@ -4,8 +4,7 @@
     Name: TFAR_fnc_generateFrequencies
 
     Author(s):
-        NKey
-        L-H
+        NKey, L-H, Dorbedo
 
     Description:
         Generates frequencies based on the passed parameters to be used in radio settings.
@@ -31,7 +30,7 @@ params ["_channels", "_max_freq", "_min_freq", "_freq_rp"];
 private _frequencies = [];
 
 for "_i" from 0 to _channels step 1 do {
-    _frequencies set [_i, QTFAR_ROUND_FREQUENCYP(((random (_max_freq - _min_freq)) + _min_freq), _freq_rp)]; //#TODO also use toFixed instad of rounding stuff
+    _frequencies pushBack ((random (_max_freq - _min_freq)) + _min_freq);
 };
 
-_frequencies
+_frequencies apply {QTFAR_ROUND_FREQUENCYP(_x, _freq_rp)}
