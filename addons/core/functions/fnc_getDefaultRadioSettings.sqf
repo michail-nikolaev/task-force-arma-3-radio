@@ -23,10 +23,10 @@
 
 params [["_isSW", true, [false]], ["_unit", TFAR_currentUnit, [objNull]]];
 
-If (_isSW) then {
+if (_isSW) then {
     private _value = (group _unit) getVariable "TFAR_freq_sr";
 
-    If ((isNil "_value") && {TFAR_SameSRFrequenciesForSide}) then {
+    if ((isNil "_value") && {TFAR_SameSRFrequenciesForSide}) then {
         _value = switch (_unit call BIS_fnc_objectSide) do {
             case west : {
                 missionNamespace getVariable "TFAR_freq_sr_west";
@@ -47,7 +47,7 @@ If (_isSW) then {
 } else {
     private _value = (group _unit) getVariable "TFAR_freq_lr";
 
-    If ((isNil "_value") && {TFAR_SameSRFrequenciesForSide}) then {
+    if ((isNil "_value") && {TFAR_SameSRFrequenciesForSide}) then {
         _value = switch (_unit call BIS_fnc_objectSide) do {
             case west : {
                 missionNamespace getVariable "TFAR_freq_lr_west";
