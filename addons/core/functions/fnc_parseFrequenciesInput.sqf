@@ -32,8 +32,6 @@ params [
     ["_roundPower",TFAR_FREQ_ROUND_POWER,[TFAR_FREQ_ROUND_POWER]]
 ];
 
-_roundPower = ceil(_roundPower/10);
-
 // add brackets if they are missing
 If !(((_valueString find "[") isEqualTo 0) && {(_valueString find "]") isEqualTo ((count _valueString) - 1)}) then {
     _valueString = format["[%1]",_valueString];
