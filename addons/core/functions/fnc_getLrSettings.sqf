@@ -53,7 +53,7 @@ if (_radio_object isKindOf "Bag_Base") then {
 
 if (!(TF_use_saved_lr_setting) or (isNil "TF_saved_active_lr_settings")) then {
     if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType} or {getText(configFile >> "CfgVehicles" >> _radioType >> "tf_encryptionCode") == toLower (format ["tf_%1_radio_code",(TFAR_currentUnit call BIS_fnc_objectSide)])}) then {
-        _value = (group TFAR_currentUnit) getVariable "tf_lr_frequency";//TODO: FREQ-settings
+        _value = (group TFAR_currentUnit) getVariable "TFAR_freq_lr";
     };
     if (isNil "_value") then {
         _value = [] call TFAR_fnc_generateLrSettings;

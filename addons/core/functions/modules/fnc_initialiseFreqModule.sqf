@@ -25,23 +25,19 @@ params [
 ];
 
 if (_activated) then {
-    if (_units isEqualTo []) exitWith {
-        private _msg = "TFAR - No units set for Frequency Module";
-        hint _msg;
-        diag_log _msg;
-    };
+    if (_units isEqualTo []) exitWith {};
     
     if (isServer) then {
-        private _swFreq = false call TFAR_fnc_generateSRSettings;
+        private _srFreq = false call TFAR_fnc_generateSRSettings;
         private _freqs = [(_logic getVariable "PrFreq"),TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
-        _swFreq set [2,_freqs];
+        _srFreq set [2,_freqs];
 
         private _lrFreq = false call TFAR_fnc_generateLrSettings;
         _freqs = [(_logic getVariable "LrFreq"),TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
         _lrFreq set [2,_freqs];
 
-        _logic setVariable ["tf_sw_frequency", _swFreq, true];
-        _logic setVariable ["tf_lr_frequency", _lrFreq, true];
+        _logic setVariable ["TFAR_freq_sr", _srFreq, true];
+        _logic setVariable ["TFAR_freq_lr", _lrFreq, true];
     };
     
     If (hasInterface) then {
@@ -50,24 +46,24 @@ if (_activated) then {
             private _groups = [];
             {
                 _groups pushBackUnique (group _x);
-                true;
+                nil
             } count _units;
 
-            private _swFreq = _logic getVariable "tf_sw_frequency";
-            private _lrFreq = _logic getVariable "tf_lr_frequency";
+            private _srFreq = _logic getVariable "TFAR_freq_sr";
+            private _lrFreq = _logic getVariable "TFAR_freq_lr";
             {
-                If ((!(isNil "_swFreq")) && {!(isNil {_x getVariable "tf_sw_frequency"})}) then {
-                    _x setVariable ["tf_sw_frequency", _swFreq];
+                If (isNil {_x getVariable "TFAR_freq_sr"}) then {
+                    _x setVariable ["TFAR_freq_sr", _srFreq];
                 };
-                If ((!(isNil "_lrFreq")) && {!(isNil {_x getVariable "tf_lr_frequency"})}) then {
-                    _x setVariable ["tf_lr_frequency", _lrFreq];
+                If (isNil {_x getVariable "TFAR_freq_lr"}) then {
+                    _x setVariable ["TFAR_freq_lr", _lrFreq];
                 };
             } count _groups;
         };
-        If (isNil {_logic getVariable "tf_lr_frequency"}) then {
+        If (isNil {_logic getVariable "TFAR_freq_lr"}) then {
             [
                 {
-                    !(isNil {(_this getVariable "tf_lr_frequency")})
+                    !(isNil {_this getVariable "TFAR_freq_lr"})
                 },
                 _fnc,
                 _logic,

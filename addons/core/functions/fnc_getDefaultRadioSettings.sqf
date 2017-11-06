@@ -24,7 +24,7 @@
 params [["_isSW", true, [false]], ["_unit", TFAR_currentUnit, [objNull]]];
 
 If (_isSW) then {
-    private _value = (group _unit) getVariable "tf_sw_frequency";
+    private _value = (group _unit) getVariable "TFAR_freq_sr";
 
     If ((isNil "_value") && {TFAR_SameSRFrequenciesForSide}) then {
         _value = switch (_unit call BIS_fnc_objectSide) do {
@@ -45,7 +45,7 @@ If (_isSW) then {
     };
 
 } else {
-    private _value = (group _unit) getVariable "tf_lr_frequency";
+    private _value = (group _unit) getVariable "TFAR_freq_lr";
 
     If ((isNil "_value") && {TFAR_SameSRFrequenciesForSide}) then {
         _value = switch (_unit call BIS_fnc_objectSide) do {
