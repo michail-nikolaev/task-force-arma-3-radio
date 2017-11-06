@@ -25,27 +25,7 @@ private _value = TFAR_RadioSettingsNamespace getVariable _radio;
 if (!isNil "_value") exitWith {_value};
 
 if ((isNil "TF_saved_active_sw_settings") || {!TF_use_saved_sw_setting} then  {
-    private _defaultRadios = call TFAR_fnc_getDefaultRadioClasses;
-    private _parent = getText (configFile >> "CfgWeapons" >> _radio >> "tf_parent");
-    if ((_defaultRadios select 1) == _parent or {(_defaultRadios select 2) == _parent}) then {
-        _value = (group TFAR_currentUnit) getVariable "tf_sw_frequency";
-    };
-    If ((isNil "_value") && {TFAR_SameSRFrequenciesForSide}) then {
-        _value = switch (TFAR_currentUnit call BIS_fnc_objectSide) do {
-            case west : {
-                missionNamespace getVariable "TFAR_freq_sr_west";
-            };
-            case east : {
-                missionNamespace getVariable "TFAR_freq_sr_east";
-            };
-            default {
-                missionNamespace getVariable "TFAR_freq_sr_independent";
-            }; //TODO: FREQ-settings
-        };
-    };
-    if (isNil "_value") then {
-        _value = call TFAR_fnc_generateSRSettings;
-    };
+    _value = call DFUNC(getDefaultRadioSettings);
 } else {
     _value = TF_saved_active_sw_settings;
     TF_use_saved_sw_setting = false;

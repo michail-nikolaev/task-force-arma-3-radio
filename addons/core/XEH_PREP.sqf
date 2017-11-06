@@ -67,6 +67,7 @@ PREP(getAdditionalSwChannel);
 PREP(getCurrentSwStereo);
 PREP(getCurrentLrStereo);
 PREP(getDefaultRadioClasses);
+PREP(getDefaultRadioSettings);
 PREP(getRadioOwner);
 PREP(getSwSpeakers);
 PREP(getLrSpeakers);
