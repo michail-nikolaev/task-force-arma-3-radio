@@ -74,7 +74,7 @@ if (!isNil "tf_freq_guer_lr") then { \
     TFAR_defaultFrequencies_lr_independent = tf_freq_guer_lr param [2,nil];
 };
 
-If (TFAR_SameSRFrequenciesForSide) then {
+if (TFAR_SameSRFrequenciesForSide) then {
     TFAR_freq_sr_west = false call DFUNC(generateSRSettings);
     TFAR_freq_sr_west set [2,TFAR_defaultFrequencies_sr_west];
     TFAR_freq_sr_east = false call DFUNC(generateSRSettings);
@@ -90,7 +90,7 @@ If (TFAR_SameSRFrequenciesForSide) then {
     VARIABLE_DEFAULT(TFAR_freq_sr_independent,true call DFUNC(generateSRSettings));
 };
 
-If (TFAR_SameLRFrequenciesForSide) then {
+if (TFAR_SameLRFrequenciesForSide) then {
     TFAR_freq_lr_west = false call DFUNC(generateLrSettings);
     TFAR_freq_lr_west set [2,TFAR_defaultFrequencies_lr_west];
     TFAR_freq_lr_east = false call DFUNC(generateLrSettings);
@@ -112,7 +112,7 @@ If (TFAR_SameLRFrequenciesForSide) then {
     waitUntil {sleep 0.1;time > 3};
     if !(isClass(configFile >> "CfgPatches" >> "tfar_core")) exitWith {
         [player, "TASK FORCE RADIO NOT LOADED"] remoteExec ["globalChat", -2];
-        If (isNull (uiNamespace getVariable ["BIS_fnc_arsenal_cam", objNull])) then {
+        if (isNull (uiNamespace getVariable ["BIS_fnc_arsenal_cam", objNull])) then {
             ["LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0"] call "BIS_fnc_guiMessage";
         };
     };

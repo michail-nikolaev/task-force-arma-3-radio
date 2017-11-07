@@ -40,7 +40,7 @@ if (_activated) then {
         _logic setVariable ["TFAR_freq_lr", _lrFreq, true];
     };
     
-    If (hasInterface) then {
+    if (hasInterface) then {
         private _fnc = {
             params ["_logic"];
             private _groups = [];
@@ -52,15 +52,15 @@ if (_activated) then {
             private _srFreq = _logic getVariable "TFAR_freq_sr";
             private _lrFreq = _logic getVariable "TFAR_freq_lr";
             {
-                If (isNil {_x getVariable "TFAR_freq_sr"}) then {
+                if (isNil {_x getVariable "TFAR_freq_sr"}) then {
                     _x setVariable ["TFAR_freq_sr", _srFreq];
                 };
-                If (isNil {_x getVariable "TFAR_freq_lr"}) then {
+                if (isNil {_x getVariable "TFAR_freq_lr"}) then {
                     _x setVariable ["TFAR_freq_lr", _lrFreq];
                 };
             } count _groups;
         };
-        If (isNil {_logic getVariable "TFAR_freq_lr"}) then {
+        if (isNil {_logic getVariable "TFAR_freq_lr"}) then {
             [
                 {
                     !(isNil {_this getVariable "TFAR_freq_lr"})

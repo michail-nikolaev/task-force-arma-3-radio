@@ -25,7 +25,7 @@ params [
 ];
 
 if (_activated) then {
-    If !(isServer) exitWith {};
+    if !(isServer) exitWith {};
 
     [
         "CBA_beforeSettingsInitialized",

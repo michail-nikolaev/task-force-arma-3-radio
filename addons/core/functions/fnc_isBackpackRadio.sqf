@@ -23,6 +23,6 @@ params [["_classname",[]]];
 if (_classname isEqualType []) exitWith {false};
 if (_classname isEqualType objNull) then {_classname = typeOf _classname;};
 
-If (([_classname, "tf_hasLRradio", 0] call DFUNC(getConfigProperty)) isEqualTo 0) exitWith {false};
+if (([_classname, "tf_hasLRradio", 0] call DFUNC(getConfigProperty)) isEqualTo 0) exitWith {false};
 
 _classname isKindOf "TFAR_Bag_Base"
