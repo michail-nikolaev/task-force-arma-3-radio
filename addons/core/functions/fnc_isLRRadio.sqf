@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_core_isLRRadio
+    Name: TFAR_fnc_isLRRadio
 
     Author(s):
         Dedmen
@@ -15,7 +15,7 @@
         BOOLEAN - True if Longrange, false if handheld radio.
 
     Example:
-        "TFAR_anprc_152" call TFAR_core_isLRRadio;
+        "TFAR_anprc_152" call TFAR_fnc_isLRRadio;
 */
 params ["_classname"];
 
