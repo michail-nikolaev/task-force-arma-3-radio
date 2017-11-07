@@ -292,8 +292,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_rf7800str",
     1,
     {
-        TFAR_DefaultRadio_Rifleman_West = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_rf7800str"};
-        publicVariable "TFAR_DefaultRadio_Rifleman_West";
+        If (isServer) then {
+            TFAR_DefaultRadio_Rifleman_West = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_rf7800str"};
+            publicVariable "TFAR_DefaultRadio_Rifleman_West";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -304,8 +306,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_pnr1000a",
     1,
     {
-        TFAR_DefaultRadio_Rifleman_East = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_pnr1000a"};
-        publicVariable "TFAR_DefaultRadio_Rifleman_East";
+        If (isServer) then {
+            TFAR_DefaultRadio_Rifleman_East = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_pnr1000a"};
+            publicVariable "TFAR_DefaultRadio_Rifleman_East";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -316,8 +320,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_anprc154",
     1,
     {
-        TFAR_DefaultRadio_Rifleman_Independent = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_anprc154"};
-        publicVariable "TFAR_DefaultRadio_Rifleman_Independent";
+        If (isServer) then {
+            TFAR_DefaultRadio_Rifleman_Independent = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_anprc154"};
+            publicVariable "TFAR_DefaultRadio_Rifleman_Independent";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -328,8 +334,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_rf7800str",
     1,
     {
-        TFAR_DefaultRadio_Personal_West = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_rf7800str"};
-        publicVariable "TFAR_DefaultRadio_Personal_West";
+        If (isServer) then {
+            TFAR_DefaultRadio_Personal_West = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_rf7800str"};
+            publicVariable "TFAR_DefaultRadio_Personal_West";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -340,8 +348,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_pnr1000a",
     1,
     {
-        TFAR_DefaultRadio_Personal_East = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_pnr1000a"};
-        publicVariable "TFAR_DefaultRadio_Personal_East";
+        If (isServer) then {
+            TFAR_DefaultRadio_Personal_East = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_pnr1000a"};
+            publicVariable "TFAR_DefaultRadio_Personal_East";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -352,8 +362,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_anprc154",
     1,digital
     {
-        TFAR_DefaultRadio_Personal_Independent = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_anprc154"};
-        publicVariable "TFAR_DefaultRadio_Rifleman_Independent";
+        If (isServer) then {
+            TFAR_DefaultRadio_Personal_Independent = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_anprc154"};
+            publicVariable "TFAR_DefaultRadio_Rifleman_Independent";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -364,8 +376,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_rt1523g",
     1,
     {
-        TFAR_DefaultRadio_Backpack_west = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "digital_lr") then {_this} else {"TFAR_rt1523g"};
-        publicVariable "TFAR_DefaultRadio_Backpack_west";
+        If (isServer) then {
+            TFAR_DefaultRadio_Backpack_west = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "digital_lr") then {_this} else {"TFAR_rt1523g"};
+            publicVariable "TFAR_DefaultRadio_Backpack_west";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -376,8 +390,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_mr3000",
     1,
     {
-        TFAR_DefaultRadio_Backpack_East = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "digital_lr") then {_this} else {"TFAR_mr3000"};
-        publicVariable "TFAR_DefaultRadio_Backpack_East";
+        If (isServer) then {
+            TFAR_DefaultRadio_Backpack_East = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "digital_lr") then {_this} else {"TFAR_mr3000"};
+            publicVariable "TFAR_DefaultRadio_Backpack_East";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -388,8 +404,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_anprc155",
     1,
     {
-        TFAR_DefaultRadio_Backpack_Independent = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "digital_lr") then {_this} else {"TFAR_anprc155"};
-        publicVariable "TFAR_DefaultRadio_Backpack_Independent";
+        If (isServer) then {
+            TFAR_DefaultRadio_Backpack_Independent = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "digital_lr") then {_this} else {"TFAR_anprc155"};
+            publicVariable "TFAR_DefaultRadio_Backpack_Independent";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -400,8 +418,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_anarc210",
     1,
     {
-        TFAR_DefaultRadio_Airborne_West = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "airborne") then {_this} else {"TFAR_anarc210"};
-        publicVariable "TFAR_DefaultRadio_Airborne_West";
+        If (isServer) then {
+            TFAR_DefaultRadio_Airborne_West = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "airborne") then {_this} else {"TFAR_anarc210"};
+            publicVariable "TFAR_DefaultRadio_Airborne_West";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -412,8 +432,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_mr6000l",
     1,
     {
-        TFAR_DefaultRadio_Airborne_east = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "airborne") then {_this} else {"TFAR_mr6000l"};
-        publicVariable "TFAR_DefaultRadio_Airborne_east";
+        If (isServer) then {
+            TFAR_DefaultRadio_Airborne_east = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "airborne") then {_this} else {"TFAR_mr6000l"};
+            publicVariable "TFAR_DefaultRadio_Airborne_east";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -424,8 +446,10 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     "TFAR_anarc164",
     1,
     {
-        TFAR_DefaultRadio_Airborne_Independent = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "airborne") then {_this} else {"TFAR_anarc164"};
-        publicVariable "TFAR_DefaultRadio_Airborne_Independent";
+        If (isServer) then {
+            TFAR_DefaultRadio_Airborne_Independent = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "airborne") then {_this} else {"TFAR_anarc164"};
+            publicVariable "TFAR_DefaultRadio_Airborne_Independent";
+        };
     }
 ] call CBA_Settings_fnc_init;
 [
