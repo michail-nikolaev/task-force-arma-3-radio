@@ -124,22 +124,6 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1
 ] call CBA_Settings_fnc_init;
 [
-    "TFAR_givePersonalRadioToRegularSoldier", 
-    "CHECKBOX", 
-    "STR_radio_give_personal_radio_to_regular_soldier", 
-    "Task Force Arrowhead Radio", 
-    false,
-    1
-] call CBA_Settings_fnc_init;
-[
-    "TFAR_giveMicroDagrToSoldier", 
-    "CHECKBOX", 
-    "STR_radio_give_microdagr_to_soldier", 
-    "Task Force Arrowhead Radio", 
-    true,
-    1
-] call CBA_Settings_fnc_init;
-[
     "TFAR_fullDuplex", 
     "CHECKBOX", 
     ["STR_TFAR_Mod_FullDuplex","STR_TFAR_Mod_FullDuplexDescription"], 
@@ -284,7 +268,170 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
         TFAR_setting_defaultFrequencies_lr_independent = str(TFAR_defaultFrequencies_lr_independent apply {parseNumber _x});
     }
 ] call CBA_Settings_fnc_init;
+[
+    "TFAR_giveMicroDagrToSoldier", 
+    "CHECKBOX", 
+    "STR_radio_give_microdagr_to_soldier", 
+    "Task Force Arrowhead Radio", 
+    true,
+    1
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_givePersonalRadioToRegularSoldier", 
+    "CHECKBOX", 
+    "STR_radio_give_personal_radio_to_regular_soldier", 
+    "Task Force Arrowhead Radio", 
+    false,
+    1
+] call CBA_Settings_fnc_init;
 
+[
+    "TFAR_setting_DefaultRadio_Rifleman_West", 
+    "EDITBOX", 
+    ["Default Rifleman radio","Default RiflemanRadio west description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_rf7800str",
+    1,
+    {
+        TFAR_DefaultRadio_Rifleman_West = If (_this call TFAR_fnc_isRadio) then {_this} else {"TFAR_rf7800str"};
+        publicVariable "TFAR_DefaultRadio_Rifleman_West";
+    }
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_DefaultRadio_Rifleman_East", 
+    "EDITBOX", 
+    ["Default Rifleman radio","Default RiflemanRadio east description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_pnr1000a",
+    1,
+    {
+        TFAR_DefaultRadio_Rifleman_East = If (_this call TFAR_fnc_isRadio) then {_this} else {"TFAR_pnr1000a"};
+        publicVariable "TFAR_DefaultRadio_Rifleman_East";
+    }
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_DefaultRadio_Rifleman_Independent", 
+    "EDITBOX", 
+    ["Default Rifleman radio","Default RiflemanRadio Independent description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_anprc154",
+    1,
+    {
+        TFAR_DefaultRadio_Rifleman_Independent = If (_this call TFAR_fnc_isRadio) then {_this} else {"TFAR_anprc154"};
+        publicVariable "TFAR_DefaultRadio_Rifleman_Independent";
+    }
+] call CBA_Settings_fnc_init;
+
+[
+    "TFAR_setting_DefaultRadio_Personal_West", 
+    "EDITBOX", 
+    ["Default Personal radio","Default PersonalRadio west description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_rf7800str",
+    1,
+    {
+        TFAR_DefaultRadio_Personal_West = If (_this call TFAR_fnc_isRadio) then {_this} else {"TFAR_rf7800str"};
+        publicVariable "TFAR_DefaultRadio_Personal_West";
+    }
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_DefaultRadio_Personal_east", 
+    "EDITBOX", 
+    ["Default Personal radio","Default PersonalRadio east description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_pnr1000a",
+    1,
+    {
+        TFAR_DefaultRadio_Personal_East = If (_this call TFAR_fnc_isRadio) then {_this} else {"TFAR_pnr1000a"};
+        publicVariable "TFAR_DefaultRadio_Personal_East";
+    }
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_DefaultRadio_Personal_Independent", 
+    "EDITBOX", 
+    ["Default Personal radio","Default PersonalRadio Independent description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_anprc154",
+    1,
+    {
+        TFAR_DefaultRadio_Personal_Independent = If (_this call TFAR_fnc_isRadio) then {_this} else {"TFAR_anprc154"};
+        publicVariable "TFAR_DefaultRadio_Rifleman_Independent";
+    }
+] call CBA_Settings_fnc_init;
+
+[
+    "TFAR_setting_DefaultRadio_Backpack_west", 
+    "EDITBOX", 
+    ["Default backpack radio","Default BackpackRadio west description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_rt1523g",
+    1,
+    {
+        TFAR_DefaultRadio_Backpack_west = If (_this call TFAR_fnc_isLRRadio) then {_this} else {"TFAR_rt1523g"};
+        publicVariable "TFAR_DefaultRadio_Backpack_west";
+    }
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_DefaultRadio_Backpack_east", 
+    "EDITBOX", 
+    ["Default backpack radio","Default BackpackRadio west description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_mr3000",
+    1,
+    {
+        TFAR_DefaultRadio_Backpack_East = If (_this call TFAR_fnc_isLRRadio) then {_this} else {"TFAR_mr3000"};
+        publicVariable "TFAR_DefaultRadio_Backpack_East";
+    }
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_DefaultRadio_Backpack_Independent", 
+    "EDITBOX", 
+    ["Default backpack radio","Default BackpackRadio Independent description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_anprc155",
+    1,
+    {
+        TFAR_DefaultRadio_Backpack_Independent = If (_this call TFAR_fnc_isLRRadio) then {_this} else {"TFAR_anprc155"};
+        publicVariable "TFAR_DefaultRadio_Backpack_Independent";
+    }
+] call CBA_Settings_fnc_init;
+
+[
+    "TFAR_setting_DefaultRadio_Airborne_West", 
+    "EDITBOX", 
+    ["Default Airborne radio","Default AirborneRadio west description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_anarc210",
+    1,
+    {
+        TFAR_DefaultRadio_Airborne_West = If (_this call TFAR_fnc_isLRRadio) then {_this} else {"TFAR_anarc210"};
+        publicVariable "TFAR_DefaultRadio_Airborne_West";
+    }
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_DefaultRadio_Airborne_east", 
+    "EDITBOX", 
+    ["Default Airborne radio","Default AirborneRadio east description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_mr6000l",
+    1,
+    {
+        TFAR_DefaultRadio_Airborne_east = If (_this call TFAR_fnc_isLRRadio) then {_this} else {"TFAR_mr6000l"};
+        publicVariable "TFAR_DefaultRadio_Airborne_east";
+    }
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_DefaultRadio_Airborne_Independent", 
+    "EDITBOX", 
+    ["Default Airborne radio","Default AirborneRadio Independent description"], 
+    "Task Force Arrowhead Radio", 
+    "TFAR_anarc164",
+    1,
+    {
+        TFAR_DefaultRadio_Airborne_Independent = If (_this call TFAR_fnc_isLRRadio) then {_this} else {"TFAR_anarc164"};
+        publicVariable "TFAR_DefaultRadio_Airborne_Independent";
+    }
+] call CBA_Settings_fnc_init;
 
 
 
