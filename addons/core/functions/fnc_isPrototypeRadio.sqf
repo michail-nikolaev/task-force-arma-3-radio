@@ -22,16 +22,4 @@
 
 if (_this == "ItemRadio") exitWith {true};
 
-
-//This is the same caching as in fnc_getConfigProperty. But we don't need that special stuff for CfgVehicles in getConfigProperty
-//So we implement the same caching for this more slim function.
-
-private _cacheName = (_this+"tf_prototype");
-private _cachedEntry = TFAR_ConfigCacheNamespace getVariable _cacheName;
-if (!isNil "_cachedEntry") exitWith {_cachedEntry};
-
-private _result = getNumber (configFile >> "CfgWeapons" >> _this >> "tf_prototype");
-if (!isNil "_result") exitWith {TFAR_ConfigCacheNamespace setVariable [_cacheName,_result == 1];_result == 1};
-
-TFAR_ConfigCacheNamespace setVariable [_cacheName,false];
-false
+[_this,"tf_prototype",false] call DFUNC(getConfigWeaponProperty)
