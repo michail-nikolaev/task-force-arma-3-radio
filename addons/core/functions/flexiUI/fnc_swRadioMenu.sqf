@@ -34,9 +34,9 @@ if ((count (TFAR_currentUnit call TFAR_fnc_radiosList) > 1) or {(count (TFAR_cur
             _submenu = "_this call TFAR_fnc_swRadioSubMenu";
         };
         private _position = [
-            getText(configFile >> "CfgWeapons"  >> _x >> "displayName"),
+            ([_x, "displayName", ""] call DFUNC(getConfigWeaponProperty)),
             _command,
-            getText(configFile >> "CfgWeapons"  >> _x >> "picture"),
+            ([_x, "picture", ""] call DFUNC(getConfigWeaponProperty)),
             "",
             _submenu,
             -1,

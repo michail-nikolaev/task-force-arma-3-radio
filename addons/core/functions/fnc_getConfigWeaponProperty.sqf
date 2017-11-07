@@ -8,7 +8,6 @@
 
     Description:
     Gets a config property (getNumber/getText/getArray)
-    If the default value is a bool, a boolean will be cached.
     Only works for CfgWeapon.
 
     Parameters:
@@ -32,15 +31,9 @@ if (!isNil "_cachedEntry") exitWith {_cachedEntry};
 private _cfgProperty = (configFile >> "CfgWeapons" >> _item >> _property);
 
 if (isNumber _cfgProperty) exitWith {
-    If (_default isEqualType true) then {
-        private _value = (getNumber _cfgProperty) isEqualTo 1;
-        TFAR_ConfigWeaponCacheNamespace setVariable [_cacheName,_value];
-        _value;
-    } else {
-        private _value = getNumber _cfgProperty;
-        TFAR_ConfigWeaponCacheNamespace setVariable [_cacheName,_value];
-        _value;
-    };
+    private _value = getNumber _cfgProperty;
+    TFAR_ConfigWeaponCacheNamespace setVariable [_cacheName,_value];
+    _value;
 };
 
 if (isText _cfgProperty) exitWith {

@@ -22,4 +22,12 @@
 
 if (_this == "ItemRadio") exitWith {true};
 
-[_this,"tf_prototype",false] call DFUNC(getConfigWeaponProperty)
+private _cacheName = (_this+"tf_prototypebool");
+private _cachedEntry = TFAR_ConfigWeaponCacheNamespace getVariable _cacheName;
+if (!isNil "_cachedEntry") exitWith {_cachedEntry};
+
+_cachedEntry = ([_this, "tf_prototype", 0] call DFUNC(getConfigWeaponProperty)) isEqualTo 1;
+
+TFAR_ConfigWeaponCacheNamespace setVariable [_cacheName,_cachedEntry];
+
+_cachedEntry

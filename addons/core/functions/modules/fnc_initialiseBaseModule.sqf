@@ -55,7 +55,7 @@ if (_activated) then {
         hint format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
         _LRradio = "-1";
     };
-    if (getNumber (configFile >> "CfgWeapons" >> _radio >> "tf_prototype") != 1) then {
+    if !(_radio call TFAR_fnc_isPrototypeRadio) then {
         diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
         hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
         _radio = "-1";

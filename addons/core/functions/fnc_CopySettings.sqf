@@ -41,7 +41,7 @@ if (_isSLR) then {
     private _settings = _source call TFAR_fnc_GetSwSettings;
     if (!_isDLR) then {
         _settings = []+_settings;
-        _support_additional = getNumber (configFile >> "CfgWeapons" >> _destination >> "tf_additional_channel");
+        _support_additional = [_destination, "tf_additional_channel", 0] call DFUNC(getConfigWeaponProperty);
         if ((isNil "_support_additional") or {_support_additional == 0}) then {
             _settings set [TFAR_ADDITIONAL_CHANNEL_OFFSET, -1];
         };

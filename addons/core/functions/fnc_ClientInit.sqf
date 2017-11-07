@@ -124,7 +124,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
     ["CuratorFrequencyHandler", "OnRadiosReceived", {
         params ["_player","_radios"];
         {
-            _radioClass = getText (configFile >> "CfgWeapons" >> _x >> "tf_parent");
+            _radioClass = [_x, "tf_parent", ""] call DFUNC(getConfigWeaponProperty);
             private _settings = _x call TFAR_fnc_getSwSettings;
             if (isNil "_settings") exitWith {};
             switch (toLower _radioClass) do {
