@@ -75,35 +75,35 @@ if (!isNil "tf_freq_guer_lr") then { \
 };
 
 If (TFAR_SameSRFrequenciesForSide) then {
-    TFAR_freq_sr_west = false call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_west = false call DFUNC(generateSRSettings);
     TFAR_freq_sr_west set [2,TFAR_defaultFrequencies_sr_west];
-    TFAR_freq_sr_east = false call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_east = false call DFUNC(generateSRSettings);
     TFAR_freq_sr_east set [2,TFAR_defaultFrequencies_sr_east];
-    TFAR_freq_sr_independent = false call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_independent = false call DFUNC(generateSRSettings);
     TFAR_freq_sr_independent set [2,TFAR_defaultFrequencies_sr_independent];
     publicVariable "TFAR_freq_sr_west";
     publicVariable "TFAR_freq_sr_east";
     publicVariable "TFAR_freq_sr_independent";
 } else {
-    VARIABLE_DEFAULT(TFAR_freq_sr_west,true call TFAR_fnc_generateSRSettings);
-    VARIABLE_DEFAULT(TFAR_freq_sr_east,true call TFAR_fnc_generateSRSettings);
-    VARIABLE_DEFAULT(TFAR_freq_sr_independent,true call TFAR_fnc_generateSRSettings);
+    VARIABLE_DEFAULT(TFAR_freq_sr_west,true call DFUNC(generateSRSettings));
+    VARIABLE_DEFAULT(TFAR_freq_sr_east,true call DFUNC(generateSRSettings));
+    VARIABLE_DEFAULT(TFAR_freq_sr_independent,true call DFUNC(generateSRSettings));
 };
 
 If (TFAR_SameLRFrequenciesForSide) then {
-    TFAR_freq_lr_west = false call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_west = false call DFUNC(generateLrSettings);
     TFAR_freq_lr_west set [2,TFAR_defaultFrequencies_lr_west];
-    TFAR_freq_lr_east = false call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_east = false call DFUNC(generateLrSettings);
     TFAR_freq_lr_east set [2,TFAR_defaultFrequencies_lr_east];
-    TFAR_freq_lr_independent = false call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_independent = false call DFUNC(generateLrSettings);
     TFAR_freq_lr_independent set [2,TFAR_defaultFrequencies_lr_independent];
     publicVariable "TFAR_freq_lr_west";
     publicVariable "TFAR_freq_lr_east";
     publicVariable "TFAR_freq_lr_independent";
 } else {
-    VARIABLE_DEFAULT(TFAR_freq_lr_west,true call TFAR_fnc_generateLrSettings);
-    VARIABLE_DEFAULT(TFAR_freq_lr_east,true call TFAR_fnc_generateLrSettings);
-    VARIABLE_DEFAULT(TFAR_freq_lr_independent,true call TFAR_fnc_generateLrSettings);
+    VARIABLE_DEFAULT(TFAR_freq_lr_west,true call DFUNC(generateLrSettings));
+    VARIABLE_DEFAULT(TFAR_freq_lr_east,true call DFUNC(generateLrSettings));
+    VARIABLE_DEFAULT(TFAR_freq_lr_independent,true call DFUNC(generateLrSettings));
 };
 
 //Check if all players are running TFAR

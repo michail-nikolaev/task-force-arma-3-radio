@@ -3,7 +3,7 @@
 #include "XEH_PREP.sqf"
 
 If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
-    ["CBA_settingsInitialized", TFAR_fnc_serverInit] call CBA_fnc_addEventhandler
+    ["CBA_settingsInitialized", DFUNC(serverInit)] call CBA_fnc_addEventhandler
 };
 
 // client
@@ -293,7 +293,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Rifleman_West = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_rf7800str"};
+            TFAR_DefaultRadio_Rifleman_West = If (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_rf7800str"};
             publicVariable "TFAR_DefaultRadio_Rifleman_West";
         };
     }
@@ -307,7 +307,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Rifleman_East = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_pnr1000a"};
+            TFAR_DefaultRadio_Rifleman_East = If (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_pnr1000a"};
             publicVariable "TFAR_DefaultRadio_Rifleman_East";
         };
     }
@@ -321,7 +321,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Rifleman_Independent = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_anprc154"};
+            TFAR_DefaultRadio_Rifleman_Independent = If (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_anprc154"};
             publicVariable "TFAR_DefaultRadio_Rifleman_Independent";
         };
     }
@@ -335,7 +335,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Personal_West = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_rf7800str"};
+            TFAR_DefaultRadio_Personal_West = If (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_rf7800str"};
             publicVariable "TFAR_DefaultRadio_Personal_West";
         };
     }
@@ -349,7 +349,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Personal_East = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_pnr1000a"};
+            TFAR_DefaultRadio_Personal_East = If (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_pnr1000a"};
             publicVariable "TFAR_DefaultRadio_Personal_East";
         };
     }
@@ -363,7 +363,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,digital
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Personal_Independent = If (_this call TFAR_fnc_isPrototypeRadio) then {_this} else {"TFAR_anprc154"};
+            TFAR_DefaultRadio_Personal_Independent = If (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_anprc154"};
             publicVariable "TFAR_DefaultRadio_Rifleman_Independent";
         };
     }
@@ -377,7 +377,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Backpack_west = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "digital_lr") then {_this} else {"TFAR_rt1523g"};
+            TFAR_DefaultRadio_Backpack_west = If (([_this,"tf_subtype"] call DFUNC(getConfigProperty)) == "digital_lr") then {_this} else {"TFAR_rt1523g"};
             publicVariable "TFAR_DefaultRadio_Backpack_west";
         };
     }
@@ -391,7 +391,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Backpack_East = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "digital_lr") then {_this} else {"TFAR_mr3000"};
+            TFAR_DefaultRadio_Backpack_East = If (([_this,"tf_subtype"] call DFUNC(getConfigProperty)) == "digital_lr") then {_this} else {"TFAR_mr3000"};
             publicVariable "TFAR_DefaultRadio_Backpack_East";
         };
     }
@@ -405,7 +405,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Backpack_Independent = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "digital_lr") then {_this} else {"TFAR_anprc155"};
+            TFAR_DefaultRadio_Backpack_Independent = If (([_this,"tf_subtype"] call DFUNC(getConfigProperty)) == "digital_lr") then {_this} else {"TFAR_anprc155"};
             publicVariable "TFAR_DefaultRadio_Backpack_Independent";
         };
     }
@@ -419,7 +419,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Airborne_West = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "airborne") then {_this} else {"TFAR_anarc210"};
+            TFAR_DefaultRadio_Airborne_West = If (([_this,"tf_subtype"] call DFUNC(getConfigProperty)) == "airborne") then {_this} else {"TFAR_anarc210"};
             publicVariable "TFAR_DefaultRadio_Airborne_West";
         };
     }
@@ -433,7 +433,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Airborne_east = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "airborne") then {_this} else {"TFAR_mr6000l"};
+            TFAR_DefaultRadio_Airborne_east = If (([_this,"tf_subtype"] call DFUNC(getConfigProperty)) == "airborne") then {_this} else {"TFAR_mr6000l"};
             publicVariable "TFAR_DefaultRadio_Airborne_east";
         };
     }
@@ -447,7 +447,7 @@ If (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     1,
     {
         If (isServer) then {
-            TFAR_DefaultRadio_Airborne_Independent = If (([_this,"tf_subtype"] call TFAR_fnc_getConfigProperty) == "airborne") then {_this} else {"TFAR_anarc164"};
+            TFAR_DefaultRadio_Airborne_Independent = If (([_this,"tf_subtype"] call DFUNC(getConfigProperty)) == "airborne") then {_this} else {"TFAR_anarc164"};
             publicVariable "TFAR_DefaultRadio_Airborne_Independent";
         };
     }

@@ -20,7 +20,8 @@
 */
 //#TODO add optional parameter to specify an array of groups to process. If not defined process all Groups
 
-_allGroups = allGroups;
+//_allGroups = allGroups;
+_allGroups = [];
 //allGroups doesn't include Curators so Add them.
 {
     _allGroups pushBackUnique (group _x);

@@ -45,15 +45,15 @@ if (_activated) then {
 
     private _radio_code = _logic getVariable ["Encryption", ""];
 
-    if !(_LRradio call TFAR_fnc_isLRRadio) then {
+    if !(_LRradio call DFUNC(isLRRadio)) then {
         ERROR_1("Base Module: LR radio is not a radio (%1)", _LRradio);
         _LRradio = "";
     };
-    if !(_radio call TFAR_fnc_isPrototypeRadio) then {
+    if !(_radio call DFUNC(isPrototypeRadio)) then {
         ERROR_1("Base Module: SR radio is not a radio (%1)", _radio);
         _radio = "";
     };
-    if !(_RiflemanRadio call TFAR_fnc_isPrototypeRadio) then {
+    if !(_RiflemanRadio call DFUNC(isPrototypeRadio)) then {
         ERROR_1("Base Module: rifleman radio is not a radio (%1)", _RiflemanRadio);
         _RiflemanRadio = "";
     };
