@@ -192,6 +192,10 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
         if (isServer) then {
             TFAR_defaultFrequencies_sr_west = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
             publicVariable "TFAR_defaultFrequencies_sr_west";
+        } else {
+            If (isNil "TFAR_defaultFrequencies_sr_west") then {
+                TFAR_defaultFrequencies_sr_west = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+            };
         };
     }
 ] call CBA_Settings_fnc_init;
@@ -206,6 +210,10 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
         if (isServer) then {
             TFAR_defaultFrequencies_sr_east = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
             publicVariable "TFAR_defaultFrequencies_sr_east";
+        } else {
+            If (isNil "TFAR_defaultFrequencies_sr_east") then {
+                TFAR_defaultFrequencies_sr_east = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+            };
         };
     }
 ] call CBA_Settings_fnc_init;
@@ -220,6 +228,10 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
         if (isServer) then {
             TFAR_defaultFrequencies_sr_independent = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
             publicVariable "TFAR_defaultFrequencies_sr_independent";
+        } else {
+            If (isNil "TFAR_defaultFrequencies_sr_independent") then {
+                TFAR_defaultFrequencies_sr_independent = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+            };
         };
     }
 ] call CBA_Settings_fnc_init;
