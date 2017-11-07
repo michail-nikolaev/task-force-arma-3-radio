@@ -54,6 +54,7 @@ PREP_SUB(plugin,getTeamspeakPluginVersion);
 PREP_SUB(plugin,getTeamSpeakServerName);
 PREP_SUB(plugin,getTeamSpeakChannelName);
 PREP(getConfigProperty);
+PREP(getConfigWeaponProperty);
 PREP(getCopilot);
 PREP(getLrRadioProperty);
 PREP(getChannelFrequency);
