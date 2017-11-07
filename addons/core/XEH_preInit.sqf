@@ -52,6 +52,8 @@ if (isNil "tf_independent_radio_code") then {
     };
 };
 
+TFAR_ConfigCacheNamespace = false call CBA_fnc_createNamespace;
+TFAR_ConfigWeaponCacheNamespace = false call CBA_fnc_createNamespace;
 
 if (hasInterface) then {//Clientside Variables
     call TFAR_fnc_initKeybinds;
@@ -150,8 +152,6 @@ if (hasInterface) then {//Clientside Variables
 
 
     tf_lastError = false;
-    TFAR_ConfigCacheNamespace = false call CBA_fnc_createNamespace;
-
 
     TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_haveSWRadio_lastCache",-1];
     TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_haveDDRadio_lastCache",-1];
