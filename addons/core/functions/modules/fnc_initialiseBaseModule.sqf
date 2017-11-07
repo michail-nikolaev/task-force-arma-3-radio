@@ -1,4 +1,3 @@
-#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 
 /*
@@ -37,14 +36,14 @@ if (_activated) then {
         }
     ] call CBA_fnc_addEventHandlerArgs;
 
-    private _srFreqs = _logic getVariable ["PrFreq",""];
-    private _lrFreqs = _logic getVariable ["LrFreq",""];
+    private _srFreqs = _logic getVariable ["PrFreq", ""];
+    private _lrFreqs = _logic getVariable ["LrFreq", ""];
 
-    private _LRradio = _logic getVariable ["LRradio",""];
-    private _radio = _logic getVariable ["Radio",""];
-    private _RiflemanRadio = _logic getVariable ["RiflemanRadio",""];
+    private _LRradio = _logic getVariable ["LRradio", ""];
+    private _radio = _logic getVariable ["Radio", ""];
+    private _RiflemanRadio = _logic getVariable ["RiflemanRadio", ""];
 
-    private _radio_code = _logic getVariable ["Encryption",""];
+    private _radio_code = _logic getVariable ["Encryption", ""];
 
     if !(_LRradio call TFAR_fnc_isLRRadio) then {
         ERROR_1("Base Module: LR radio is not a radio (%1)", _LRradio);
