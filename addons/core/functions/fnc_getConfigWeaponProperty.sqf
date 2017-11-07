@@ -29,7 +29,7 @@ private _cacheName = (_item + _property);
 private _cachedEntry = TFAR_ConfigWeaponCacheNamespace getVariable _cacheName;
 if (!isNil "_cachedEntry") exitWith {_cachedEntry};
 
-private _cfgProperty = (configFile >> "CfgVehicles" >> _item >> _property);
+private _cfgProperty = (configFile >> "CfgWeapons" >> _item >> _property);
 
 if (isNumber _cfgProperty) exitWith {
     If (_default isEqualType true) then {
