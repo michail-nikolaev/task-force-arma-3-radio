@@ -103,31 +103,7 @@ class CfgUIGrids { //Thanks ACE guys!
 };
 
 
-class Cfg3DEN {
-    class Object {
-        class AttributeCategories {
-            class TFAR_core_attributes {
-                displayName = "TFAR Options";
-                collapsed = 1;
-                class Attributes {
-                    class TFAR_CuratorCamEars {
-                        property = "TFAR_CuratorCamEars";
-                        control = "Checkbox";
-                        displayName = "Hear Camera when in Curator interface";
-                        tooltip = "Hear voice from Curator Camera when in Curator interface";
-                        expression = QUOTE(if (_value) then {_this setVariable [ARR_2('TFAR_curatorCamEars',_value)]};);
-                        typeName = "BOOL";
-                        condition = "objectBrain";
-                        defaultValue = "false";
-                    };
-                };
-            };
-        };
-    };
-};
-
-
-
+#include "Cfg3DEN.hpp"
 #include "CfgEventHandlers.hpp"
 #include "RadioDialogControls.hpp"
 #include "RscTitles.hpp"

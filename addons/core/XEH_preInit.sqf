@@ -376,7 +376,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     ["Default Personal radio","Default PersonalRadio Independent description"], 
     "Task Force Arrowhead Radio", 
     "TFAR_anprc154",
-    1,digital
+    1,
     {
         TFAR_DefaultRadio_Personal_Independent = if (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_anprc154"};
     }
@@ -511,6 +511,10 @@ if (hasInterface) then {//Clientside Variables
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_West,"TFAR_anarc210");
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_East,"TFAR_mr6000l");
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_Independent,"TFAR_anarc164");
+
+    VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Name,"TaskForceRadio");
+    VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Password,"123");
+
 
     //#depreacted
     /*
