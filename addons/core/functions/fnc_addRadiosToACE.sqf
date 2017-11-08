@@ -34,7 +34,7 @@ private _children = [];
                     call TFAR_fnc_onLrDialogOpen;
                 },
                 {true},
-                {},
+                {(_this select 2) call TFAR_fnc_addStereoToACE},
                 [_unit,_x]
             ] call ACE_Interact_Menu_fnc_createAction,
             [],
@@ -58,7 +58,7 @@ if (_LROnly) exitWith {_children};
                     call TFAR_fnc_onSwDialogOpen;
                 },
                 {true},
-                {},
+                {(_this select 2) call TFAR_fnc_addStereoToACE},
                 [_unit,_x]
             ] call ACE_Interact_Menu_fnc_createAction,
             [],

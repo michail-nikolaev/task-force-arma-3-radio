@@ -16,9 +16,9 @@
         NOTHING
 
     Example:
-        _this call TFAR_fnc_deleteRadioTower;
+        _this call TFAR_antennas_fnc_deleteRadioTower;
 */
 
 [GVAR(radioTowerList), _tower] call CBA_fnc_hashRem;
 
-[_tower] call DFUNC(pluginRemoveRadioTower);
+[_tower] call FUNC(pluginRemoveRadioTower);

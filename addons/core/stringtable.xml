@@ -1044,6 +1044,14 @@
                 <Chinese>打開長程無線電選單</Chinese>
                 <Chinesesimp>打开长程无线电选单</Chinesesimp>
             </Key>
+            <Key ID="STR_TFAR_CORE_RADIOS">
+                <English>Radios</English>
+                <German>Funkgeräte</German>
+            </Key>
+            <Key ID="STR_TFAR_CORE_TAKE">
+                <English>Take %1</English>
+                <German>%1 nehmen</German>
+            </Key>
         </Container>
         <Container name="modules">
             <Key ID="STR_TFAR_Mod_LR_Radio">
@@ -1701,6 +1709,26 @@
                 <Original>Show the Hint (Bottom right) when you switch Channels via UI or Hotkey</Original>
                 <Chinese>當無線電頻道更改時在右下角顯示提示訊息</Chinese>
                 <Chinesesimp>当无线电频道更改时在右下角显示提示讯息</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_CORE_SETTING_TAKERADIO_HEADER">
+                <English>Taking away radios</English>
+                <German>Funkgeräte wegnehmen</German>
+            </Key>
+            <Key ID="STR_TFAR_CORE_SETTING_TAKERADIO_DESC">
+                <English>Allows the taking of radios from immobilized units</English>
+                <German>Erlaubt das Wegnehmen von Funkgeräten von handlungsunfähigen Personen</German>
+            </Key>
+            <Key ID="STR_TFAR_CORE_SETTING_TAKERADIO_0">
+                <English>Disallow</English>
+                <German>Verbieten</German>
+            </Key>
+            <Key ID="STR_TFAR_CORE_SETTING_TAKERADIO_1">
+                <English>Only from dead</English>
+                <German>Nur von Toten</German>
+            </Key>
+            <Key ID="STR_TFAR_CORE_SETTING_TAKERADIO_2">
+                <English>From immobilized units</English>
+                <German>Von bewegungsunfähigen Personen</German>
             </Key>
         </Container>
         <Container name="diary">
