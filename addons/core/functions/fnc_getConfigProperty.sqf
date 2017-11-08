@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getConfigProperty
+    Name: TFAR_fnc_getVehicleConfigProperty
 
     Author(s):
         NKey
@@ -20,7 +20,7 @@
     NUMBER or TEXT or ARRAY - Result
 
     Example:
-        [_LRradio, "tf_hasLrRadio", 0] call TFAR_fnc_getConfigProperty;
+        [_LRradio, "tf_hasLrRadio", 0] call TFAR_fnc_getVehicleConfigProperty;
 */
 
 params ["_item", "_property", ["_default", ""]];
@@ -30,7 +30,7 @@ if ((isNil "_item") or {!(_item isEqualType "") }) exitWith {_default};//This is
 
 //Caching reduces function calltime from ~0.4ms to 0.023ms
 private _cacheName = (_item + _property);
-private _cachedEntry = TFAR_ConfigCacheNamespace getVariable _cacheName;
+private _cachedEntry = GVAR(VehicleConfigCacheNamespace) getVariable _cacheName;
 if (!isNil "_cachedEntry") exitWith {_cachedEntry};
 
 private _cfgApiProperty = (configFile >> "CfgVehicles" >> _item >> _property + "_api");
@@ -42,7 +42,7 @@ if (isNumber _cfgApiProperty) exitWith {
 
 if (isNumber _cfgProperty) exitWith {
     private _value = getNumber _cfgProperty;
-    TFAR_ConfigCacheNamespace setVariable [_cacheName,_value];
+    GVAR(VehicleConfigCacheNamespace) setVariable [_cacheName,_value];
     _value;
 };
 
@@ -52,16 +52,16 @@ if (isText _cfgApiProperty) exitWith {
 
 if (isText _cfgProperty) exitWith {
     private _value = getText _cfgProperty;
-    TFAR_ConfigCacheNamespace setVariable [_cacheName,_value];
+    GVAR(VehicleConfigCacheNamespace) setVariable [_cacheName,_value];
     _value;
 };
 
 if (isArray _cfgProperty) exitWith {
     private _value = getArray _cfgProperty;
-    TFAR_ConfigCacheNamespace setVariable [_cacheName,_value];
+    GVAR(VehicleConfigCacheNamespace) setVariable [_cacheName,_value];
     _value;
 };
 
-TFAR_ConfigCacheNamespace setVariable [_cacheName,_default];
+GVAR(VehicleConfigCacheNamespace) setVariable [_cacheName,_default];
 
 _default

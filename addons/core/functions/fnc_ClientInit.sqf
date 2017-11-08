@@ -124,7 +124,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
     ["CuratorFrequencyHandler", "OnRadiosReceived", {
         params ["_player","_radios"];
         {
-            _radioClass = [_x, "tf_parent", ""] call DFUNC(getConfigWeaponProperty);
+            _radioClass = [_x, "tf_parent", ""] call DFUNC(getWeaponConfigProperty);
             private _settings = _x call TFAR_fnc_getSwSettings;
             if (isNil "_settings") exitWith {};
             switch (toLower _radioClass) do {
@@ -166,7 +166,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
     "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name player]);//Async call will always return "OK"
 
     TFAR_lastLoadoutChange = diag_tickTime; //Switching unit also switches loadout
-    TFAR_ConfigCacheNamespace setVariable ["lastRadioSettingUpdate",diag_tickTime]; //And changes Radios
+    GVAR(VehicleConfigCacheNamespace) setVariable ["lastRadioSettingUpdate",diag_tickTime]; //And changes Radios
 
     if !(TFAR_currentUnit getVariable ["TFAR_HandlersSet",false]) then {
         TFAR_currentUnit addEventHandler ["Take", {
@@ -204,7 +204,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
 ["loadout", {
     //current units loadout changed.. Should invalidate any caches about players loadout.
     TFAR_lastLoadoutChange = diag_tickTime;
-    TFAR_ConfigCacheNamespace setVariable ["lastRadioSettingUpdate",diag_tickTime];//Also updates Radio settings for safety
+    GVAR(VehicleConfigCacheNamespace) setVariable ["lastRadioSettingUpdate",diag_tickTime];//Also updates Radio settings for safety
 },true] call CBA_fnc_addPlayerEventHandler;
 
 

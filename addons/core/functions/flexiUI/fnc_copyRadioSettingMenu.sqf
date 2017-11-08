@@ -27,9 +27,9 @@ private _positions = [];
     if (((_x call TFAR_fnc_getSwRadioCode) == (TF_sw_dialog_radio call TFAR_fnc_getSwRadioCode)) and {TF_sw_dialog_radio != _x}) then {
         private _command = format["['%1',TF_sw_dialog_radio] call TFAR_fnc_copySettings;", _x];
         _position = [
-            ([_x, "displayName", ""] call DFUNC(getConfigWeaponProperty)),
+            ([_x, "displayName", ""] call DFUNC(getWeaponConfigProperty)),
             _command,
-            ([_x, "picture", ""] call DFUNC(getConfigWeaponProperty)),
+            ([_x, "picture", ""] call DFUNC(getWeaponConfigProperty)),
             "",
             "",
             -1,

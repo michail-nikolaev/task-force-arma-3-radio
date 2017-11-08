@@ -21,11 +21,11 @@
 */
 
 private _cacheName = (_this+"tf_radiobool");
-private _cachedEntry = TFAR_ConfigWeaponCacheNamespace getVariable _cacheName;
+private _cachedEntry = GVAR(WeaponConfigCacheNamespace) getVariable _cacheName;
 if (!isNil "_cachedEntry") exitWith {_cachedEntry};
 
-_cachedEntry = ([_this, "tf_radio", 0] call DFUNC(getConfigWeaponProperty)) isEqualTo 1;
+_cachedEntry = ([_this, "tf_radio", 0] call DFUNC(getWeaponConfigProperty)) isEqualTo 1;
 
-TFAR_ConfigWeaponCacheNamespace setVariable [_cacheName,_cachedEntry];
+GVAR(WeaponConfigCacheNamespace) setVariable [_cacheName,_cachedEntry];
 
 _cachedEntry

@@ -50,7 +50,7 @@ if (_activated) then {
 
     private _RiflemanRadio = _logic getVariable "RiflemanRadio";
     private _radio_code = _logic getVariable "Encryption";
-    if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getConfigProperty) != 1) then {
+    if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getVehicleConfigProperty) != 1) then {
         diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
         hint format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
         _LRradio = "-1";

@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getConfigWeaponProperty
+    Name: TFAR_fnc_getWeaponConfigProperty
 
     Author(s):
         Dorbedo
@@ -19,35 +19,35 @@
     NUMBER or TEXT or ARRAY - Result
 
     Example:
-        [_SrRadio, "tf_prototype", 0] call TFAR_fnc_getConfigWeaponProperty;
+        [_SrRadio, "tf_prototype", 0] call TFAR_fnc_getWeaponConfigProperty;
 */
 
 params ["_item", "_property", ["_default", ""]];
 
 private _cacheName = (_item + _property);
-private _cachedEntry = TFAR_ConfigWeaponCacheNamespace getVariable _cacheName;
+private _cachedEntry = GVAR(WeaponConfigCacheNamespace) getVariable _cacheName;
 if (!isNil "_cachedEntry") exitWith {_cachedEntry};
 
 private _cfgProperty = (configFile >> "CfgWeapons" >> _item >> _property);
 
 if (isNumber _cfgProperty) exitWith {
     private _value = getNumber _cfgProperty;
-    TFAR_ConfigWeaponCacheNamespace setVariable [_cacheName,_value];
+    GVAR(WeaponConfigCacheNamespace) setVariable [_cacheName,_value];
     _value;
 };
 
 if (isText _cfgProperty) exitWith {
     private _value = getText _cfgProperty;
-    TFAR_ConfigWeaponCacheNamespace setVariable [_cacheName,_value];
+    GVAR(WeaponConfigCacheNamespace) setVariable [_cacheName,_value];
     _value;
 };
 
 if (isArray _cfgProperty) exitWith {
     private _value = getArray _cfgProperty;
-    TFAR_ConfigWeaponCacheNamespace setVariable [_cacheName,_value];
+    GVAR(WeaponConfigCacheNamespace) setVariable [_cacheName,_value];
     _value;
 };
 
-TFAR_ConfigWeaponCacheNamespace setVariable [_cacheName,_default];
+GVAR(WeaponConfigCacheNamespace) setVariable [_cacheName,_default];
 
 _default

@@ -23,4 +23,4 @@ params [["_classname",[]]];
 if (_classname isEqualType []) exitWith {false};
 if (_classname isEqualType objNull) then {_classname = typeOf _classname;};
 
-([_classname, "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty) isEqualTo 1
+([_classname, "tf_hasLRradio", 0] call TFAR_fnc_getVehicleConfigProperty) isEqualTo 1

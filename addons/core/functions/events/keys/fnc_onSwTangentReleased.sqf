@@ -10,8 +10,8 @@ private _hintText = format[
                             localize "STR_transmit_end",
                             format [
                                     "%1<img size='1.5' image='%2'/>",
-                                    ([_radio, "displayName", ""] call DFUNC(getConfigWeaponProperty)),
-                                    ([_radio, "picture", ""] call DFUNC(getConfigWeaponProperty))
+                                    ([_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty)),
+                                    ([_radio, "picture", ""] call DFUNC(getWeaponConfigProperty))
                                 ],
                             (_radio call TFAR_fnc_getSwChannel) + 1,
                             _currentFrequency
@@ -21,8 +21,8 @@ private _pluginCommand = format[
                                 "TANGENT	RELEASED	%1%2	%3	%4",
                                 _currentFrequency,
                                 _radio call TFAR_fnc_getSwRadioCode,
-                                ([_radio, "tf_range", 0] call DFUNC(getConfigWeaponProperty)) * (call TFAR_fnc_getTransmittingDistanceMultiplicator),
-                                ([_radio, "tf_subtype", ""] call DFUNC(getConfigWeaponProperty))
+                                ([_radio, "tf_range", 0] call DFUNC(getWeaponConfigProperty)) * (call TFAR_fnc_getTransmittingDistanceMultiplicator),
+                                ([_radio, "tf_subtype", ""] call DFUNC(getWeaponConfigProperty))
                             ];
 
 [_hintText,_pluginCommand, [0,nil] select TFAR_showTransmittingHint] call TFAR_fnc_processTangent;

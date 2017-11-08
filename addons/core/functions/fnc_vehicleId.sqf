@@ -36,7 +36,7 @@ private _slot = "cargo";
 tolower _slot
 */
 //Get intercom slot of unit. By default everyone is Cargo
-private _hasIntercom = ([(typeof _vehicle), "TFAR_hasIntercom", 0] call TFAR_fnc_getConfigProperty) > 0;
+private _hasIntercom = ([(typeof _vehicle), "TFAR_hasIntercom", 0] call TFAR_fnc_getVehicleConfigProperty) > 0;
 private _intercomSlot = -1;
 
 if (_hasIntercom) then {
@@ -45,4 +45,4 @@ if (_hasIntercom) then {
 
 //could replace the "turnout" string by 0.0 scalar.. But maybe someday the plugin wants to differentiate between turned out or inside a 0 isolation vehicle
 
-[_netID, if (isTurnedOut _unit) then {"turnout"} else {[(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty}, _intercomSlot, velocity _unit] joinString (toString [16])
+[_netID, if (isTurnedOut _unit) then {"turnout"} else {[(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty}, _intercomSlot, velocity _unit] joinString (toString [16])

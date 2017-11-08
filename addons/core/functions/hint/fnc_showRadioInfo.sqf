@@ -24,8 +24,8 @@
 
 params ["_radio", "_isLrRadio"];
 
-private _name = if(_isLrRadio) then {[typeOf (_radio select 0), "displayName", ""] call DFUNC(getConfigProperty)} else {[_radio, "displayName", ""] call DFUNC(getConfigWeaponProperty)};
-private _picture = if(_isLrRadio) then {[typeOf (_radio select 0), "picture", ""] call DFUNC(getConfigProperty)} else {[_radio, "picture", ""] call DFUNC(getConfigWeaponProperty)};
+private _name = if(_isLrRadio) then {[typeOf (_radio select 0), "displayName", ""] call DFUNC(getVehicleConfigProperty)} else {[_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty)};
+private _picture = if(_isLrRadio) then {[typeOf (_radio select 0), "picture", ""] call DFUNC(getVehicleConfigProperty)} else {[_radio, "picture", ""] call DFUNC(getWeaponConfigProperty)};
 
 private _channel = if(_isLrRadio) then {format[localize "STR_active_lr_channel", (_radio call TFAR_fnc_getLrChannel) + 1]} else {format[localize "STR_active_sw_channel", (_radio call TFAR_fnc_getSwChannel) + 1]};
 private _additional = nil;

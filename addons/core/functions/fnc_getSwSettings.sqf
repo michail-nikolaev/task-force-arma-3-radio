@@ -28,7 +28,7 @@ if (!isNil "_value") exitWith {_value};
 
 if (!(TF_use_saved_sw_setting) or (isNil "TF_saved_active_sw_settings")) then {
     private _defaultRadios = call TFAR_fnc_getDefaultRadioClasses;
-    private _parent = [_radio, "tf_parent", ""] call DFUNC(getConfigWeaponProperty);
+    private _parent = [_radio, "tf_parent", ""] call DFUNC(getWeaponConfigProperty);
     if ((_defaultRadios select 1) == _parent or {(_defaultRadios select 2) == _parent}) then {
         _value = (group TFAR_currentUnit) getVariable "tf_sw_frequency";
     };
@@ -46,10 +46,10 @@ if (TF_use_saved_sw_setting) then {
 private _rc = _value select TFAR_CODE_OFFSET;
 if (isNil "_rc") then {
     _rc = "";
-    private _code = [_radio, "tf_encryptionCode", ""] call DFUNC(getConfigWeaponProperty);
+    private _code = [_radio, "tf_encryptionCode", ""] call DFUNC(getWeaponConfigProperty);
     private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_independent_radio_code"};
     if (_hasDefaultEncryption and {!isServer} and {(TFAR_currentUnit call BIS_fnc_objectSide) != civilian}) then {
-        _parent = [_radio, "tf_parent", ""] call DFUNC(getConfigWeaponProperty);
+        _parent = [_radio, "tf_parent", ""] call DFUNC(getWeaponConfigProperty);
         private _default = call TFAR_fnc_getDefaultRadioClasses;
         if ((_default select 1) == _parent or {(_default select 2) == _parent}) then {
             _rc = missionNamespace getVariable format ["tf_%1_radio_code", (TFAR_currentUnit call BIS_fnc_objectSide)];
