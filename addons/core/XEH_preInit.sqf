@@ -1,3 +1,4 @@
+#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 
 #include "XEH_PREP.sqf"
@@ -192,9 +193,13 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
         if (isServer) then {
             TFAR_defaultFrequencies_sr_west = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
             publicVariable "TFAR_defaultFrequencies_sr_west";
+            TRACE_2("TFAR_setting_defaultFrequencies_sr_west changed on Server",CBA_missiontime,_this);
         } else {
             if (isNil "TFAR_defaultFrequencies_sr_west") then {
+                TRACE_2("TFAR_setting_defaultFrequencies_sr_west changed on Client, Server has not transfered yet",CBA_missiontime,_this);
                 TFAR_defaultFrequencies_sr_west = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+            } else {
+                TRACE_2("TFAR_setting_defaultFrequencies_sr_west changed on Client, Server already transfered",CBA_missiontime,_this);
             };
         };
     }
@@ -210,9 +215,13 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
         if (isServer) then {
             TFAR_defaultFrequencies_sr_east = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
             publicVariable "TFAR_defaultFrequencies_sr_east";
+            TRACE_2("TFAR_setting_defaultFrequencies_sr_east changed on Server",CBA_missiontime,_this);
         } else {
             if (isNil "TFAR_defaultFrequencies_sr_east") then {
+                TRACE_2("TFAR_setting_defaultFrequencies_sr_east changed on Client, Server has not transfered yet",CBA_missiontime,_this);
                 TFAR_defaultFrequencies_sr_east = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+            } else {
+                TRACE_2("TFAR_setting_defaultFrequencies_sr_east changed on Client, Server already transfered",CBA_missiontime,_this);
             };
         };
     }
@@ -228,9 +237,13 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
         if (isServer) then {
             TFAR_defaultFrequencies_sr_independent = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
             publicVariable "TFAR_defaultFrequencies_sr_independent";
+            TRACE_2("TFAR_setting_defaultFrequencies_sr_independent changed on Server",CBA_missiontime,_this);
         } else {
             if (isNil "TFAR_defaultFrequencies_sr_independent") then {
+                TRACE_2("TFAR_setting_defaultFrequencies_sr_independent changed on Client, Server has not transfered yet",CBA_missiontime,_this);
                 TFAR_defaultFrequencies_sr_independent = [_this, TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(parseFrequenciesInput);
+            } else {
+                TRACE_2("TFAR_setting_defaultFrequencies_sr_independent changed on Client, Server already transfered",CBA_missiontime,_this);
             };
         };
     }
