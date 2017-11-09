@@ -29,6 +29,7 @@ class Cfg3DEN {
                             tooltip = "Define the forced Teamspeak Channel Name";
                             property = "TFAR_Teamspeak_Channel_Name";
                             control = "Edit";
+                            expression = QUOTE(_this setVariable [ARR_3('%s',_value,true)];);
                             validate = "none";
                             typeName = "STRING";
                             defaultValue = "''";
@@ -38,6 +39,7 @@ class Cfg3DEN {
                             tooltip = "Define the forced Teamspeak Channel Password";
                             property = "TFAR_Teamspeak_Channel_Password";
                             control = "Edit";
+                            expression = QUOTE(_this setVariable [ARR_3('%s',_value,true)];);
                             validate = "none";
                             typeName = "STRING";
                             defaultValue = "''";
@@ -78,7 +80,7 @@ class Cfg3DEN {
                         control = "Checkbox";
                         displayName = "Hear Camera when in Curator interface";
                         tooltip = "Hear voice from Curator Camera when in Curator interface";
-                        expression = QUOTE(if (_value) then {_this setVariable [ARR_2('TFAR_curatorCamEars',_value)]};);
+                        expression = QUOTE(if (_value) then {_this setVariable [ARR_3('%s',_value,true)]};);
                         typeName = "BOOL";
                         condition = "objectBrain";
                         defaultValue = "false";
