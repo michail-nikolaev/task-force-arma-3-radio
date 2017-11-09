@@ -80,9 +80,6 @@ PREP(haveDDRadio);
 PREP(haveLRRadio);
 PREP(haveSWRadio);
 // I
-PREP_SUB(modules,initialiseBaseModule);
-PREP_SUB(modules,initialiseFreqModule);
-PREP_SUB(modules,initialiseEnforceUsageModule);
 PREP(initKeybinds);
 PREP_SUB(server,instanciateRadios);
 PREP_SUB(hint,inWaterHint);
@@ -136,7 +133,6 @@ PREP_SUB(events\keys,processLRStereoKeys);
 PREP(processPlayerPositions);
 PREP_SUB(events\keys,processCuratorKey);
 PREP_SUB(plugin,processTangent);
-PREP_SUB(server,processGroupFrequencySettings);
 PREP(processRespawn);
 // R
 PREP(radioOn);

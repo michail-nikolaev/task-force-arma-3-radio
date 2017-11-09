@@ -21,11 +21,6 @@
 */
 
 ["TFAR_RadioRequestEvent", {
-    //#TODO Use optional Parameter of TFAR_fnc_processGroupFrequencySettings to always make sure players group is initialized before giving him a Radio
-    if (!TFAR_fnc_processGroupFrequencySettings_running) then {
-        //Curators not yet initialized. But a player wants his radio right now. So we need to get this done
-        call TFAR_fnc_processGroupFrequencySettings;
-    };
     diag_log format["TFAR_RadioRequestEvent %1 %2",_this,diag_tickTime];//#TODO remove
     params [["_radio_request",[]],"_player"];
     private _response = [];
@@ -117,14 +112,3 @@ if (TFAR_SameLRFrequenciesForSide) then {
         };
     };
 } remoteExec ["BIS_fnc_spawn", -2, true];
-
-TFAR_fnc_processGroupFrequencySettings_running = false;
-[  {
-    private _hasCurators = (count allcurators) > 0;
-    private _hasInitializedCurators = (count (call BIS_fnc_listCuratorPlayers)) > 0;
-    private _curatorsInitialized = !_hasCurators || _hasInitializedCurators;
-    ((time > 2) || _curatorsInitialized)
-    },{
-    TFAR_fnc_processGroupFrequencySettings_running = true;
-    [TFAR_fnc_processGroupFrequencySettings,10/*10 seconds*/] call CBA_fnc_addPerFrameHandler;
-}] call CBA_fnc_waitUntilAndExecute;
