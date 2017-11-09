@@ -13,6 +13,33 @@ class CfgVehicles {
     class TFAR_ModuleTaskForceRadio: TFAR_ModuleTaskForceRadioEnforceUsage {};
     class TFAR_ModuleTaskForceRadioFrequencies: TFAR_ModuleTaskForceRadioEnforceUsage {};
 
+    class VirtualMan_F;
+    class VirtualCurator_F : VirtualMan_F {
+        class Attributes {
+            class TFAR_freq_sr {
+                displayName = "Default TFAR SR Freq";
+                tooltip = "define the default SR Freq for this unit";
+                property = "TFAR_freq_sr";
+                control = "EditArray";
+                expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                defaultValue = "[]";
+                unique = 0;
+                condition = "1";
+            };
+            class TFAR_freq_lr {
+                displayName = "Default TFAR LR Freq";
+                tooltip = "define the default LR Freq for this unit";
+                property = "TFAR_freq_lr";
+                control = "EditArray";
+                expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                defaultValue = "[]";
+                unique = 0;
+                condition = "1";
+            };
+        };
+    };
+
+
     //Add radios to vehicles
     class All;
     MACRO_VEC_ISOLATION_LR(AllVehicles,All,0,0);

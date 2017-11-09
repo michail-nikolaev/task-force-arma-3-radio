@@ -60,20 +60,20 @@ class Cfg3DEN {
                         tooltip = "define the default SR Freq for this unit";
                         property = "TFAR_freq_sr";
                         control = "EditArray";
-                        typeName = "STRING";
-                        expression = QUOTE(_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput); if !(_value isEqualTo []) then {_this setVariable [ARR_3('%s',_value,true)];});
-                        defaultValue = "''";
+                        expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                        defaultValue = "[]";
                         unique = 0;
+                        condition = "objectControllable + logicModule";
                     };
                     class TFAR_freq_lr {
                         displayName = "Default LR Freq";
                         tooltip = "define the default LR Freq for this unit";
                         property = "TFAR_freq_lr";
                         control = "EditArray";
-                        typeName = "STRING";
-                        expression = QUOTE(_value=[ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput); if !(_value isEqualTo []) then {_this setVariable [ARR_3('%s',_value,true)];});
-                        defaultValue = "''";
+                        expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                        defaultValue = "[]";
                         unique = 0;
+                        condition = "objectControllable + logicModule";
                     };
                     class TFAR_CuratorCamEars {
                         property = "TFAR_CuratorCamEars";
@@ -99,20 +99,18 @@ class Cfg3DEN {
                         displayName = "Default SR Freq";
                         tooltip = "define the default SR Freq for this group";
                         property = "TFAR_freq_sr";
-                        expression = QUOTE(_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput); if !(_value isEqualTo []) then {_this setVariable [ARR_3('%s',_value,true)];});
+                        expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
                         control = "EditArray";
-                        typeName = "STRING";
-                        defaultValue = "''";
+                        defaultValue = "[]";
                         unique = 0;
                     };
                     class TFAR_freq_lr {
                         displayName = "Default LR Freq";
                         tooltip = "define the default LR Freq for this group";
                         property = "TFAR_freq_lr";
-                        expression = QUOTE(_value=[ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput); if !(_value isEqualTo []) then {_this setVariable [ARR_3('%s',_value,true)];});
+                        expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
                         control = "EditArray";
-                        typeName = "STRING";
-                        defaultValue = "''";
+                        defaultValue = "[]";
                         unique = 0;
                     };
                 };
