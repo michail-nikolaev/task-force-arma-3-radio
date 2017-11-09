@@ -481,23 +481,6 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 ] call CBA_Settings_fnc_init;
 
 
-//Global variables
-VARIABLE_DEFAULT(tf_west_radio_code,"_bluefor");//Server needs Radio codes for static_radios
-VARIABLE_DEFAULT(tf_east_radio_code,"_opfor");
-
-if (isNil "tf_independent_radio_code") then {
-    tf_independent_radio_code = "_independent";
-
-    if (([west, resistance] call BIS_fnc_areFriendly) and {!([east, resistance] call BIS_fnc_areFriendly)}) then {
-        tf_independent_radio_code = "_bluefor";
-    };
-
-    if (([east, resistance] call BIS_fnc_areFriendly) and {!([west, resistance] call BIS_fnc_areFriendly)}) then {
-        tf_independent_radio_code = "_opfor";
-    };
-};
-
-
 if (hasInterface) then {//Clientside Variables
     call TFAR_fnc_initKeybinds;
     //PreInit variablesy
