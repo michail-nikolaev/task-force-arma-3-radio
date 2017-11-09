@@ -37,12 +37,12 @@ if (_isSW) then {
     };
 
     If !(isNil "_defFreq") exitWith {
-        private _return = false call DFUNC(generateSRSettings);
-        _return set [2,_defFreq];
-        _return
+        private _value = false call DFUNC(generateSRSettings);
+        _value set [2,_defFreq];
+        _value
     };
     
-    private _return = if (TFAR_SameSRFrequenciesForSide) then {
+    private _value = if (TFAR_SameSRFrequenciesForSide) then {
         switch (_unit call BIS_fnc_objectSide) do {
             case west : {
                 missionNamespace getVariable "TFAR_freq_sr_west";
@@ -71,10 +71,10 @@ if (_isSW) then {
     private _value = nil;
 
     if (_encryptionCode == (format ["tf_%1_radio_code", (_unit call BIS_fnc_objectSide)])) then {
-        private _defFreq = _unit getVariable "TFAR_freq_sr";
+        private _defFreq = _unit getVariable "TFAR_freq_lr";
 
         if (isNil "_defFreq") then {
-            _defFreq = (group _unit) getVariable "TFAR_freq_sr";
+            _defFreq = (group _unit) getVariable "TFAR_freq_lr";
         };
         
         If !(isNil "_defFreq") then {
