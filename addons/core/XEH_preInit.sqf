@@ -448,6 +448,14 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     }
 ] call CBA_Settings_fnc_init;
 [
+    "GVARMAIN(radioCodesDisabled)", 
+    "CHECKBOX",
+    ["Disable Radio Code","Disables the Radio Encryption (Everyone side can radio with everyone)"], 
+    "Task Force Arrowhead Radio", 
+    false,
+    1
+] call CBA_Settings_fnc_init;
+[
     "tf_west_radio_code", 
     "EDITBOX", 
     ["Default radio code west","Radio encryption west"], 

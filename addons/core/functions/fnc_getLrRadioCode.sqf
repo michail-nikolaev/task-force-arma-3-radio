@@ -22,4 +22,6 @@
     (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrRadioCode;
 */
 
+If (GVARMAIN(radioCodesDisabled)) exitWith {""};
+
 (_this call TFAR_fnc_getLrSettings) param [TFAR_CODE_OFFSET]
