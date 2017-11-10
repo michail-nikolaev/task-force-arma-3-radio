@@ -28,7 +28,7 @@ private _response = [];
     _x params ["_radioBaseClass"];
 
     //get Radio baseclass without ID
-    _radioBaseClass = getText (configFile >> "CfgWeapons" >> _radioBaseClass >> "tf_parent");
+    _radioBaseClass = [_radioBaseClass, "tf_parent", ""] call DFUNC(getWeaponConfigProperty);
 
     //#Deprecated radio classes
     if (_radioBaseClass == "tf_anprc148jem") then {_radioBaseClass = "TFAR_anprc148jem"};

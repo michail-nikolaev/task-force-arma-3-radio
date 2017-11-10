@@ -31,7 +31,7 @@ if (_radio_object isKindOf "Bag_Base") then {
 } else {
     _radioType = _radio_object getVariable "TF_RadioType";
     if (isNil "_radioType") then {
-        _radioType = [typeof _radio_object, "tf_RadioType"] call TFAR_fnc_getConfigProperty;
+        _radioType = [typeof _radio_object, "tf_RadioType"] call TFAR_fnc_getVehicleConfigProperty;
         if ((isNil "_radioType") or {_radioType == ""}) then {
             private _isAirRadio = (typeof(_radio_object) isKindOf "Air");
 

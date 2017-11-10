@@ -47,8 +47,8 @@ private _hintText = format[
                             localize "STR_transmit",
                             format [
                                     "%1<img size='1.5' image='%2'/>",
-                                    getText (configFile >> "CfgWeapons" >> _radio >> "displayName"),
-                                    getText(configFile >> "CfgWeapons"  >> _radio >> "picture")
+                                    ([_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty)),
+                                    ([_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty))
                                     ],
                             (_radio call TFAR_fnc_getSwChannel) + 1,
                             _currentFrequency
@@ -58,8 +58,8 @@ private _pluginCommand = format[
                                 "TANGENT	PRESSED	%1%2	%3	%4	%5",
                                 _currentFrequency,
                                 _radio call TFAR_fnc_getSwRadioCode,
-                                getNumber(configFile >> "CfgWeapons" >> _radio >> "tf_range") * (call TFAR_fnc_getTransmittingDistanceMultiplicator),
-                                getText(configFile >> "CfgWeapons" >> _radio >> "tf_subtype"),
+                                ([_radio, "tf_range", 0] call DFUNC(getWeaponConfigProperty)) * (call TFAR_fnc_getTransmittingDistanceMultiplicator),
+                                ([_radio, "tf_subtype", ""] call DFUNC(getWeaponConfigProperty)),
                                 _radio
                             ];
 
