@@ -51,13 +51,13 @@ if (_activated) then {
     private _RiflemanRadio = _logic getVariable "RiflemanRadio";
     private _radio_code = _logic getVariable "Encryption";
     if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getVehicleConfigProperty) != 1) then {
-        diag_log format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
-        hint format ["TFAR ERROR: %1 is not a valid LR radio", _LRradio];
+        diag_log format [localize "STR_TFAR_WM_BaseModule_LR", _LRradio];
+        hint format [localize "STR_TFAR_WM_BaseModule_LR", _LRradio];
         _LRradio = "-1";
     };
     if !(_radio call TFAR_fnc_isPrototypeRadio) then {
-        diag_log format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
-        hint format ["TFAR ERROR: %1 is not a valid personal radio", _radio];
+        diag_log format [localize "STR_TFAR_WM_BaseModule_PR", _radio];
+        hint format [localize "STR_TFAR_WM_BaseModule_PR", _radio];
         _radio = "-1";
     };
     {
@@ -77,8 +77,8 @@ if (_activated) then {
             };
 
             if (isServer) then {
-                if (!isNil (format ["TFAR_freq_sr_%1", _currentSide])) then {hint "TFAR - TFAR_freq_sr_west already set, module overriding.";diag_log "TFAR - TFAR_freq_sr_west already set, module overriding.";};
-                if (!isNil (format ["TFAR_freq_lr_%1", _currentSide])) then {hint "TFAR - TFAR_freq_lr_west already set, module overriding.";diag_log "TFAR - TFAR_freq_lr_west already set, module overriding.";};
+                if (!isNil (format ["TFAR_freq_sr_%1", _currentSide])) then {hint localize "STR_TFAR_WM_BaseModule_FQMAlreadySet";diag_log localize "STR_TFAR_WM_BaseModule_FQMAlreadySet";};
+                if (!isNil (format ["TFAR_freq_lr_%1", _currentSide])) then {hint localize "STR_TFAR_WM_BaseModule_FQMLR_AlreadySet";diag_log localize "STR_TFAR_WM_BaseModule_FQMLR_AlreadySet";};
                 missionNamespace setVariable [format ["TFAR_freq_sr_%1", _currentSide], _swFreq];
                 missionNamespace setVariable [format ["TFAR_freq_lr_%1", _currentSide], _lrFreq];
             };

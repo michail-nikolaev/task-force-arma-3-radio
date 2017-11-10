@@ -24,16 +24,16 @@
 
 // client
 ["TFAR_default_radioVolume", "SLIDER", "STR_radio_default_radioVolume", "Task Force Arrowhead Radio", [1, 9, 7, 0]] call CBA_Settings_fnc_init;
-["TFAR_volumeModifier_forceSpeech", "CHECKBOX", ["Direct speech on volume modifier","Activate directSpeech when pressing volume modifier."], "Task Force Arrowhead Radio", false] call CBA_Settings_fnc_init;//#Stringtable
-["TFAR_intercomVolume", "SLIDER", "Intercom Volume", "Task Force Arrowhead Radio", [0.01, 0.6, 0.3, 3], false, {["intercomVolume",TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_pluginTimeout", "SLIDER", "Plugin Timeout in seconds", "Task Force Arrowhead Radio", [0.5, 10, 4, 3], false, {["pluginTimeout",TFAR_pluginTimeout] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_tangentReleaseDelay", "SLIDER", "tangentReleaseDelay in milliseconds", "Task Force Arrowhead Radio", [0, 500, 0, 0], false, {["tangentReleaseDelay",TFAR_tangentReleaseDelay] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_PosUpdateMode", "LIST", ["Position Update Mode","The higher the quality the lower fps"], "Task Force Arrowhead Radio", [[0,0.1,0.2],["Quality","Normal","Performance"],1], false, {}] call CBA_Settings_fnc_init;
-["TFAR_ShowVolumeHUD", "CHECKBOX", ["Show HUD Voice Volume indicator","If disabled it will pop up for a short time when changing Volume."], "Task Force Arrowhead Radio", false, false, {if (TFAR_ShowVolumeHUD) then {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];} else {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];};}] call CBA_Settings_fnc_init;
-["TFAR_VolumeHudTransparency", "SLIDER", ["Volume Indicator Transparency","Volume Indicator Transparency (0 fully visible - 1 invisible)"], "Task Force Arrowhead Radio", [0, 1, 0, 3], false, {call TFAR_fnc_updateSpeakVolumeUI;}] call CBA_Settings_fnc_init;
-["TFAR_oldVolumeHint", "CHECKBOX", ["Use old Voice Volume Hint","Use old Voice Volume Hint"], "Task Force Arrowhead Radio", false, false] call CBA_Settings_fnc_init;
-["TFAR_showTransmittingHint", "CHECKBOX", ["Show Transmitting Hint","Show the Hint (Bottom right) when you are Transmitting"], "Task Force Arrowhead Radio", true, false] call CBA_Settings_fnc_init;
-["TFAR_showChannelChangedHint", "CHECKBOX", ["Show Channel Changed Hint","Show the Hint (Bottom right) when you switch Channels via UI or Hotkey"], "Task Force Arrowhead Radio", true, false] call CBA_Settings_fnc_init;
+["TFAR_volumeModifier_forceSpeech", "CHECKBOX", ["STR_radio_directSpeechModifier","STR_radio_directSpeechModifier_desc"], "Task Force Arrowhead Radio", false] call CBA_Settings_fnc_init;
+["TFAR_intercomVolume", "SLIDER", "STR_radio_intercomVolume", "Task Force Arrowhead Radio", [0.01, 0.6, 0.3, 3], false, {["intercomVolume",TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
+["TFAR_pluginTimeout", "SLIDER", "STR_radio_pluginTimeout", "Task Force Arrowhead Radio", [0.5, 10, 4, 3], false, {["pluginTimeout",TFAR_pluginTimeout] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
+["TFAR_tangentReleaseDelay", "SLIDER", "STR_radio_tangentReleaseDelay", "Task Force Arrowhead Radio", [0, 500, 0, 0], false, {["tangentReleaseDelay",TFAR_tangentReleaseDelay] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
+["TFAR_PosUpdateMode", "LIST", ["STR_radio_positionUpdateMode","STR_radio_positionUpdateMode_desc"], "Task Force Arrowhead Radio", [[0,0.1,0.2],["STR_radio_positionUpdateMode_quality","STR_radio_positionUpdateMode_normal","STR_radio_positionUpdateMode_performance"],1], false, {}] call CBA_Settings_fnc_init;
+["TFAR_ShowVolumeHUD", "CHECKBOX", ["STR_radio_hudVolumeIndicator","STR_radio_hudVolumeIndicator_desc"], "Task Force Arrowhead Radio", false, false, {if (TFAR_ShowVolumeHUD) then {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];} else {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];};}] call CBA_Settings_fnc_init;
+["TFAR_VolumeHudTransparency", "SLIDER", ["STR_radio_volumeIndicatorTransparency","STR_radio_volumeIndicatorTransparency_desc"], "Task Force Arrowhead Radio", [0, 1, 0, 3], false, {call TFAR_fnc_updateSpeakVolumeUI;}] call CBA_Settings_fnc_init;
+["TFAR_oldVolumeHint", "CHECKBOX", ["STR_radio_useOldVolumeHint","STR_radio_useOldVolumeHint_desc"], "Task Force Arrowhead Radio", false, false] call CBA_Settings_fnc_init;
+["TFAR_showTransmittingHint", "CHECKBOX", ["STR_radio_showTransmittingHint","STR_radio_showTransmittingHint_desc"], "Task Force Arrowhead Radio", true, false] call CBA_Settings_fnc_init;
+["TFAR_showChannelChangedHint", "CHECKBOX", ["STR_radio_showChannelChangedHint","STR_radio_showChannelChangedHint_desc"], "Task Force Arrowhead Radio", true, false] call CBA_Settings_fnc_init;
 
 
 //Global variables
