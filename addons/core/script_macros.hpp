@@ -62,17 +62,17 @@
     tf_isolatedAmount = isolation; \
         class ACE_SelfActions : ACE_SelfActions { \
             class TFAR_IntercomChannel { \
-                displayName = "Intercom Channel"; \
+                displayName = "$STR_TFAR_Intercom_ACESelfAction_Name"; \
                 condition = QUOTE(true); \
                 statement = ""; \
                 icon = ""; \
                 class TFAR_IntercomChannel_1 { \
-                    displayName = "Cargo"; \
+                    displayName = "$STR_TFAR_Intercom_ACESelfAction_Channel1"; \
                     condition = QUOTE(true); \
                     statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],0,true];"; \
                 }; \
                 class TFAR_IntercomChannel_2 { \
-                    displayName = "Crew"; \
+                    displayName = "$STR_TFAR_Intercom_ACESelfAction_Channel2"; \
                     condition = QUOTE(true); \
                     statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],1,true];"; \
                 }; \

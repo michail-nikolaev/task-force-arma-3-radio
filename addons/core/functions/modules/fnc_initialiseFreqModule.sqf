@@ -25,7 +25,7 @@ params [
 ];
 
 if (_activated) then {
-    if (count _units == 0) exitWith { hint "TFAR - No units set for Frequency Module";diag_log "TFAR - No units set for Frequency Module";};
+    if (count _units == 0) exitWith { hint localize "STR_TFAR_WM_FreqModule_noUnits";diag_log localize "STR_TFAR_WM_FreqModule_noUnits";};
     if (!isServer) exitWith {};
     private _swFreq = false call TFAR_fnc_generateSRSettings;
     private _freqs = call compile (_logic getVariable "PrFreq");
@@ -55,9 +55,9 @@ if (_activated) then {
         if (isNil (_x getVariable "tf_lr_frequency")) then {_x setVariable ["tf_lr_frequency", _lrFreq, true];};
     } else {
         {
-            if (!isNil (_x getVariable "tf_sw_frequency")) then {private _message = format["TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.", (group _x)];diag_log _message;hint _message;};
+            if (!isNil (_x getVariable "tf_sw_frequency")) then {private _message = format[localize "STR_TFAR_WM_FreqModule_FQMSW_AlreadySet", (group _x)];diag_log _message;hint _message;};
 
-            if (!isNil (_x getVariable "tf_lr_frequency")) then {private _message = format["TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.", (group _x)];diag_log _message;hint _message;};
+            if (!isNil (_x getVariable "tf_lr_frequency")) then {private _message = format[localize "STR_TFAR_WM_FreqModule_FQMLR_AlreadySet", (group _x)];diag_log _message;hint _message;};
 
             _x setVariable ["tf_sw_frequency", _swFreq, true];
             _x setVariable ["tf_lr_frequency", _lrFreq, true];

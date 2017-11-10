@@ -3,7 +3,7 @@ class TFAR_anprc155: TFAR_Bag_Base {
     scopeCurator = PUBLIC;
     author = "Raspu, Gandi, Nkey";
     displayName = "AN/PRC-155";
-    descriptionShort = "AN/PRC-155 long range radio 20km";//#Stringtable
+    descriptionShort = "$STR_TFAR_BP_ANPRC155_Desc";
     picture = QPATHTOF(anprc155\ui\155_icon.paa);
     maximumLoad = 160;
     mass = 160;
@@ -17,8 +17,8 @@ class TFAR_anprc155: TFAR_Bag_Base {
 HIDDEN_CLASS(tf_anprc155 : TFAR_anprc155); //#Deprecated dummy class for backwards compat
 class TFAR_anprc155_coyote: TFAR_anprc155 {
     author = "Raspu, Gandi, Nkey";
-    displayName = "AN/PRC-155 Coyote";
-    descriptionShort = "AN/PRC-155 Coyote long range radio 20km";//#Stringtable
+    displayName = "$STR_TFAR_BP_ANPRC155_Coyote";
+    descriptionShort = "$STR_TFAR_BP_ANPRC155_Coyote_Desc";
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_nicecomm2_coyote_co.paa)};
 };

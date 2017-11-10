@@ -2,7 +2,7 @@ class TFAR_anarc164: TFAR_Bag_Base {
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     displayName = "AN/ARC-164";
-    descriptionShort = "AN/ARC-164 airborne radio 40km";//#Stringtable
+    descriptionShort = "$STR_TFAR_BP_ANARC164_Desc";
     picture = QPATHTOF(anarc164\ui\anarc164_icon.paa);
     model = QPATHTOF(models\TFR_BACKPACK);
     hiddenSelections[] = {"camo"};

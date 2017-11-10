@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project ID="Arma2">
     <Package name="core">
         <Container name="misc">
@@ -14,6 +14,8 @@
                 <Turkish>Versiyon uyuşmazlığı. Server versiyonu: %1, Senin versiyonun: %2</Turkish>
                 <Japanese>使っている Task Force Radio のバージョンが違います。サーバー バージョン: %1, あなたのバージョン: %2</Japanese>
                 <Korean>다른 버전의 Task Force Radio가 사용되고 있습니다. 서버 버전: %1, 설치된 버전: %2</Korean>
+                <Chinese>你使用的Task Force Radio版本不對。伺服器版本: %1，你的版本: %2</Chinese>
+                <Chinesesimp>你使用的Task Force Radio版本不对。伺服器版本: %1，你的版本: %2</Chinesesimp>
             </Key>
             <Key ID="STR_stereo_settings">
                 <Original>Stereo settings</Original>
@@ -27,6 +29,8 @@
                 <Turkish>Ses ayarları</Turkish>
                 <Japanese>ステレオ設定</Japanese>
                 <Korean>스테레오 세팅</Korean>
+                <Chinese>立體聲設定</Chinese>
+                <Chinesesimp>立体声设定</Chinesesimp>
             </Key>
             <Key ID="STR_stereo_settings_0">
                 <Original>Left and right</Original>
@@ -40,6 +44,8 @@
                 <Turkish>Sol ve sağ</Turkish>
                 <Japanese>左右</Japanese>
                 <Korean>양쪽</Korean>
+                <Chinese>立體聲道</Chinese>
+                <Chinesesimp>立体声道</Chinesesimp>
             </Key>
             <Key ID="STR_stereo_settings_1">
                 <Original>Left only</Original>
@@ -53,6 +59,8 @@
                 <Turkish>Sadece sol</Turkish>
                 <Japanese>左から</Japanese>
                 <Korean>왼쪽</Korean>
+                <Chinese>左聲道</Chinese>
+                <Chinesesimp>左声道</Chinesesimp>
             </Key>
             <Key ID="STR_stereo_settings_2">
                 <Original>Right only</Original>
@@ -66,6 +74,8 @@
                 <Turkish>Sadece sağ</Turkish>
                 <Japanese>右から</Japanese>
                 <Korean>오른쪽</Korean>
+                <Chinese>右聲道</Chinese>
+                <Chinesesimp>右声道</Chinesesimp>
             </Key>
             <Key ID="STR_speakers_settings_false">
                 <Original>Headphones</Original>
@@ -78,6 +88,8 @@
                 <Spanish>Auriculares</Spanish>
                 <Japanese>ヘッドホン</Japanese>
                 <Korean>헤드폰</Korean>
+                <Chinese>頭戴式耳機</Chinese>
+                <Chinesesimp>头戴式耳机</Chinesesimp>
             </Key>
             <Key ID="STR_speakers_settings_true">
                 <Original>Speakers</Original>
@@ -90,6 +102,8 @@
                 <Spanish>Altavoces</Spanish>
                 <Japanese>スピーカー</Japanese>
                 <Korean>스피커</Korean>
+                <Chinese>擴音器</Chinese>
+                <Chinesesimp>扩音器</Chinesesimp>
             </Key>
             <Key ID="STR_additional_stereo_settings_0">
                 <Original>Additional: Left and right</Original>
@@ -103,6 +117,8 @@
                 <Turkish>Ek: Sol ve sağ</Turkish>
                 <Japanese>追加: 左右</Japanese>
                 <Korean>추가 채널: 양쪽</Korean>
+                <Chinese>附加頻道: 立體聲道</Chinese>
+                <Chinesesimp>附加频道: 立体声道</Chinesesimp>
             </Key>
             <Key ID="STR_additional_stereo_settings_1">
                 <Original>Additional: Left only</Original>
@@ -116,6 +132,8 @@
                 <Turkish>Ek: Sadece sol</Turkish>
                 <Japanese>追加: 左から</Japanese>
                 <Korean>추가 채널: 왼쪽</Korean>
+                <Chinese>附加頻道: 左聲道</Chinese>
+                <Chinesesimp>附加频道: 左声道</Chinesesimp>
             </Key>
             <Key ID="STR_additional_stereo_settings_2">
                 <Original>Additional: Right only</Original>
@@ -129,6 +147,8 @@
                 <Turkish>Ek: Sadece sağ</Turkish>
                 <Japanese>追加: 右から</Japanese>
                 <Korean>추가 채널: 오른쪽</Korean>
+                <Chinese>附加頻道: 右聲道</Chinese>
+                <Chinesesimp>附加频道: 右声道</Chinesesimp>
             </Key>
             <Key ID="STR_no_server">
                 <Original>No Task Force Radio deployed on server!</Original>
@@ -142,6 +162,8 @@
                 <Turkish>Radyo serverda oluşturulamadı!</Turkish>
                 <Japanese>サーバー上で Task Force Radio が動作していません！</Japanese>
                 <Korean>Task Force Radio가 서버에서 사용되고 있지 않습니다!</Korean>
+                <Chinese>伺服器端並未掛載Task Force Radio模組!</Chinese>
+                <Chinesesimp>伺服器端并未挂载Task Force Radio模组!</Chinesesimp>
             </Key>
             <Key ID="STR_current_freq">
                 <Original>Current frequency</Original>
@@ -155,6 +177,8 @@
                 <Turkish>Mevcut frekans</Turkish>
                 <Japanese>現在の周波数</Japanese>
                 <Korean>현재 주파수</Korean>
+                <Chinese>目前頻率</Chinese>
+                <Chinesesimp>目前频率</Chinesesimp>
             </Key>
             <Key ID="STR_current_channel">
                 <Original>Current channel</Original>
@@ -168,6 +192,8 @@
                 <Turkish>Mevcut kanal</Turkish>
                 <Japanese>現在のチャンネル</Japanese>
                 <Korean>현재 채널</Korean>
+                <Chinese>目前頻道</Chinese>
+                <Chinesesimp>目前频道</Chinesesimp>
             </Key>
             <Key ID="STR_set_frequency">
                 <Original>Set frequency</Original>
@@ -181,6 +207,8 @@
                 <Turkish>Frekansı ayarla</Turkish>
                 <Japanese>周波数を設定</Japanese>
                 <Korean>주파수 설정</Korean>
+                <Chinese>設定頻率</Chinese>
+                <Chinesesimp>设定频率</Chinesesimp>
             </Key>
             <Key ID="STR_set_additional">
                 <Original>Set additional channel</Original>
@@ -194,6 +222,8 @@
                 <Turkish>Ek kanal olarak ayarla</Turkish>
                 <Japanese>追加チャンネルを設定</Japanese>
                 <Korean>추가 채널 설정</Korean>
+                <Chinese>設定附加頻道</Chinese>
+                <Chinesesimp>设定附加频道</Chinesesimp>
             </Key>
             <Key ID="STR_clear_frequency">
                 <Original>Clear frequency</Original>
@@ -207,6 +237,8 @@
                 <Turkish>Frekansı temizle</Turkish>
                 <Japanese>周波数を消去</Japanese>
                 <Korean>주파수 지우기</Korean>
+                <Chinese>清除頻率</Chinese>
+                <Chinesesimp>清除频率</Chinesesimp>
             </Key>
             <Key ID="STR_previous_channel">
                 <Original>Previous channel</Original>
@@ -220,6 +252,8 @@
                 <Turkish>Önceki kanal</Turkish>
                 <Japanese>前のチャンネル</Japanese>
                 <Korean>이전 채널</Korean>
+                <Chinese>前一個頻道</Chinese>
+                <Chinesesimp>前一个频道</Chinesesimp>
             </Key>
             <Key ID="STR_next_channel">
                 <Original>Next channel</Original>
@@ -233,6 +267,8 @@
                 <Turkish>Sonraki kanal</Turkish>
                 <Japanese>次のチャンネル</Japanese>
                 <Korean>다음 채널</Korean>
+                <Chinese>下一個頻道</Chinese>
+                <Chinesesimp>下一个频道</Chinesesimp>
             </Key>
             <Key ID="STR_rotator_volume">
                 <Original>Decrease volume | Increase volume</Original>
@@ -246,6 +282,8 @@
                 <Turkish>Sesi azalt | Sesi yükselt</Turkish>
                 <Japanese>音量低下 | 音量増加</Japanese>
                 <Korean>볼륨 낮추기 | 볼륨 높이기</Korean>
+                <Chinese>降低音量 | 提高音量</Chinese>
+                <Chinesesimp>降低音量 | 提高音量</Chinesesimp>
             </Key>
             <Key ID="STR_rotator_channel">
                 <Original>Previous channel | Next channel</Original>
@@ -259,6 +297,8 @@
                 <Turkish>Önceki kanal | Sonraki kanal</Turkish>
                 <Japanese>前のチャンネル | 次のチャンネル</Japanese>
                 <Korean>이전 채널 | 다음 채널</Korean>
+                <Chinese>前一個頻道 | 下一個頻道</Chinese>
+                <Chinesesimp>前一个频道 | 下一个频道</Chinesesimp>
             </Key>
             <Key ID="STR_increase_volume">
                 <Original>Increase volume</Original>
@@ -272,6 +312,8 @@
                 <Turkish>Sesi yükselt</Turkish>
                 <Japanese>音量を上げる</Japanese>
                 <Korean>볼륨 높이기</Korean>
+                <Chinese>提高音量</Chinese>
+                <Chinesesimp>提高音量</Chinesesimp>
             </Key>
             <Key ID="STR_decrease_volume">
                 <Original>Decrease volume</Original>
@@ -285,6 +327,8 @@
                 <Turkish>Sesi azalt</Turkish>
                 <Japanese>音量を下げる</Japanese>
                 <Korean>볼륨 낮추기</Korean>
+                <Chinese>降低音量</Chinese>
+                <Chinesesimp>降低音量</Chinesesimp>
             </Key>
             <Key ID="STR_volume">
                 <Original>Change volume</Original>
@@ -298,6 +342,8 @@
                 <Turkish>Sesi değiştirme</Turkish>
                 <Japanese>音量を変える</Japanese>
                 <Korean>볼륨 바꾸기</Korean>
+                <Chinese>改變音量</Chinese>
+                <Chinesesimp>改变音量</Chinesesimp>
             </Key>
             <Key ID="STR_incorrect_frequency">
                 <Original>Incorrect frequency value, range is %1-%2</Original>
@@ -311,6 +357,8 @@
                 <Turkish>Yanlış frekans değeri, Menzil %1-%2</Turkish>
                 <Japanese>周波数の値が正しくありません。適正値は %1-%2</Japanese>
                 <Korean>잘못된 주파수 값, 범위는 %1-%2입니다.</Korean>
+                <Chinese>不正確的頻率值，頻率範圍為%1-%2</Chinese>
+                <Chinesesimp>不正确的频率值，频率范围为%1-%2</Chinesesimp>
             </Key>
             <Key ID="STR_radio_volume">
                 <Original>Volume: %1</Original>
@@ -324,6 +372,8 @@
                 <Turkish>Ses: %1</Turkish>
                 <Japanese>音量: %1</Japanese>
                 <Korean>볼륨: %1</Korean>
+                <Chinese>音量: %1</Chinese>
+                <Chinesesimp>音量: %1</Chinesesimp>
             </Key>
             <Key ID="STR_radio_channel_1">
                 <Original>Channel 1</Original>
@@ -337,6 +387,8 @@
                 <Turkish>Kanal 1</Turkish>
                 <Japanese>チャンネル 1</Japanese>
                 <Korean>채널 1</Korean>
+                <Chinese>頻道 1</Chinese>
+                <Chinesesimp>频道 1</Chinesesimp>
             </Key>
             <Key ID="STR_radio_channel_2">
                 <Original>Channel 2</Original>
@@ -350,6 +402,8 @@
                 <Turkish>Kanal 2</Turkish>
                 <Japanese>チャンネル 2</Japanese>
                 <Korean>채널 2</Korean>
+                <Chinese>頻道 2</Chinese>
+                <Chinesesimp>频道 2</Chinesesimp>
             </Key>
             <Key ID="STR_radio_channel_3">
                 <Original>Channel 3</Original>
@@ -363,6 +417,8 @@
                 <Turkish>Kanal 3</Turkish>
                 <Japanese>チャンネル 3</Japanese>
                 <Korean>채널 3</Korean>
+                <Chinese>頻道 3</Chinese>
+                <Chinesesimp>频道 3</Chinesesimp>
             </Key>
             <Key ID="STR_radio_channel_4">
                 <Original>Channel 4</Original>
@@ -376,6 +432,8 @@
                 <Turkish>Kanal 4</Turkish>
                 <Japanese>チャンネル 4</Japanese>
                 <Korean>채널 4</Korean>
+                <Chinese>頻道 4</Chinese>
+                <Chinesesimp>频道 4</Chinesesimp>
             </Key>
             <Key ID="STR_radio_channel_5">
                 <Original>Channel 5</Original>
@@ -389,6 +447,8 @@
                 <Turkish>Kanal 5</Turkish>
                 <Japanese>チャンネル 5</Japanese>
                 <Korean>채널 5</Korean>
+                <Chinese>頻道 5</Chinese>
+                <Chinesesimp>频道 5</Chinesesimp>
             </Key>
             <Key ID="STR_radio_channel_6">
                 <Original>Channel 6</Original>
@@ -402,6 +462,8 @@
                 <Turkish>Kanal 6</Turkish>
                 <Japanese>チャンネル 6</Japanese>
                 <Korean>채널 6</Korean>
+                <Chinese>頻道 6</Chinese>
+                <Chinesesimp>频道 6</Chinesesimp>
             </Key>
             <Key ID="STR_radio_channel_7">
                 <Original>Channel 7</Original>
@@ -415,6 +477,8 @@
                 <Turkish>Kanal 7</Turkish>
                 <Japanese>チャンネル 7</Japanese>
                 <Korean>채널 7</Korean>
+                <Chinese>頻道 7</Chinese>
+                <Chinesesimp>频道 7</Chinesesimp>
             </Key>
             <Key ID="STR_radio_channel_8">
                 <Original>Channel 8</Original>
@@ -428,6 +492,8 @@
                 <Turkish>Kanal 8</Turkish>
                 <Japanese>チャンネル 8</Japanese>
                 <Korean>채널 8</Korean>
+                <Chinese>頻道 8</Chinese>
+                <Chinesesimp>频道 8</Chinesesimp>
             </Key>
             <Key ID="STR_radio_channel_9">
                 <Original>Channel 9</Original>
@@ -441,6 +507,8 @@
                 <Turkish>Kanal 9</Turkish>
                 <Japanese>チャンネル 9</Japanese>
                 <Korean>채널 9</Korean>
+                <Chinese>頻道 9</Chinese>
+                <Chinesesimp>频道 9</Chinesesimp>
             </Key>
             <Key ID="STR_depth">
                 <Original>Current depth</Original>
@@ -454,6 +522,8 @@
                 <Turkish>Mevcut derinlik</Turkish>
                 <Japanese>現在の深度</Japanese>
                 <Korean>현재 깊이</Korean>
+                <Chinese>目前深度</Chinese>
+                <Chinesesimp>目前深度</Chinesesimp>
             </Key>
             <Key ID="STR_active_sw_channel">
                 <Original>Channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
@@ -467,6 +537,8 @@
                 <Turkish>Mevcut derinlik: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
                 <Japanese>チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
                 <Korean>채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
+                <Chinese>頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
+                <Chinesesimp>频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_active_additional_sw_channel">
                 <Original>Additional channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
@@ -480,6 +552,8 @@
                 <Turkish>Ek kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
                 <Japanese>追加チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
                 <Korean>추가 채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
+                <Chinese>附加頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
+                <Chinesesimp>附加频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_active_frequency">
                 <Original>Frequency: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
@@ -493,6 +567,8 @@
                 <Turkish>Frekans: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
                 <Japanese>周波数: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
                 <Korean>주파수: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
+                <Chinese>頻率: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
+                <Chinesesimp>频率: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_active_lr_channel">
                 <Original>LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
@@ -506,6 +582,8 @@
                 <Turkish>UM(Uzun Menzil) kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
                 <Japanese>長距離ラジオ チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
                 <Korean>장파 채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
+                <Chinese>長程無線電頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
+                <Chinesesimp>长程无线电频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_active_additional_lr_channel">
                 <Original>Additional LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
@@ -519,6 +597,8 @@
                 <Turkish>Ek UM(Uzun Menzil) kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
                 <Japanese>追加長距離ラジオ チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
                 <Korean>장파 추가 채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
+                <Chinese>長程無線電附加頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
+                <Chinesesimp>长程无线电附加频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_in_water_hint">
                 <Original>&lt;t color='#33ccff'&gt;Can't use radio under WATER&lt;/t&gt;</Original>
@@ -532,6 +612,8 @@
                 <Turkish>&lt;t color='#33ccff'&gt;Bu radyo su altında çalışmaz&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t color='#33ccff'&gt;水中で無線機は使えません&lt;/t&gt;</Japanese>
                 <Korean>&lt;t color='#33ccff'&gt;수중에서는 무전기를 사용 할 수 없습니다&lt;/t&gt;</Korean>
+                <Chinese>&lt;t color='#33ccff'&gt;無法在水下使用無線電&lt;/t&gt;</Chinese>
+                <Chinesesimp>&lt;t color='#33ccff'&gt;无法在水下使用无线电&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_on_ground_hint">
                 <Original>&lt;t color='#993300'&gt;Can't use driver radio on the air&lt;/t&gt;</Original>
@@ -545,6 +627,8 @@
                 <Turkish>&lt;t color='#993300'&gt;Bu radyo sadece su altında çalışır&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t color='#993300'&gt;空中で操縦士用の無線機は使えませんr&lt;/t&gt;</Japanese>
                 <Korean>&lt;t color='#993300'&gt;물 밖에서는 잠수부 무전기를 사용 할 수 없습니다&lt;/t&gt;</Korean>
+                <Chinese>&lt;t color='#993300'&gt;無法在空中使用駕駛座無線電&lt;/t&gt;</Chinese>
+                <Chinesesimp>&lt;t color='#993300'&gt;无法在空中使用驾驶座无线电&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_unable_to_use_hint">
                 <Original>&lt;t color='#FF0000'&gt;you are not able to use the radio&lt;/t&gt;</Original>
@@ -558,6 +642,8 @@
                 <Turkish>&lt;t color='#FF0000'&gt;Radyoyu kullanamazsın&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t color='#FF0000'&gt;無線機は使えません&lt;/t&gt;</Japanese>
                 <Korean>&lt;t color='#FF0000'&gt;이 라디오를 사용 할 수 없습니다.&lt;/t&gt;</Korean>
+                <Chinese>&lt;t color='#FF0000'&gt;你無法使用無線電&lt;/t&gt;</Chinese>
+                <Chinesesimp>&lt;t color='#FF0000'&gt;你无法使用无线电&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_select_action">
                 <Original>Select action</Original>
@@ -571,6 +657,8 @@
                 <Turkish>Eylem seç</Turkish>
                 <Japanese>動作を選択</Japanese>
                 <Korean>동작 선택</Korean>
+                <Chinese>選擇動作</Chinese>
+                <Chinesesimp>选择动作</Chinesesimp>
             </Key>
             <Key ID="STR_select_action_setup">
                 <Original>Settings...</Original>
@@ -584,6 +672,8 @@
                 <Turkish>Ayarlar...</Turkish>
                 <Japanese>設定中</Japanese>
                 <Korean>설정...</Korean>
+                <Chinese>設定...</Chinese>
+                <Chinesesimp>设定...</Chinesesimp>
             </Key>
             <Key ID="STR_select_action_setup_tooltip">
                 <Original>Open settings dialog</Original>
@@ -597,6 +687,8 @@
                 <Turkish>Ayarlar diyaloğunu aç</Turkish>
                 <Japanese>設定画面を開く</Japanese>
                 <Korean>설정 대화 상자 열기</Korean>
+                <Chinese>開啟設定視窗</Chinese>
+                <Chinesesimp>开启设定视窗</Chinesesimp>
             </Key>
             <Key ID="STR_select_action_use">
                 <Original>Set as active</Original>
@@ -610,6 +702,8 @@
                 <Turkish>Aktif olarak ayarla</Turkish>
                 <Japanese>使うように設定</Japanese>
                 <Korean>활성 상태로 설정</Korean>
+                <Chinese>設定為啟用</Chinese>
+                <Chinesesimp>设定为启用</Chinesesimp>
             </Key>
             <Key ID="STR_select_action_use_tooltip">
                 <Original>Use for transmiting</Original>
@@ -623,6 +717,8 @@
                 <Turkish>İletmek için kullan</Turkish>
                 <Japanese>送信に使う</Japanese>
                 <Korean>전송중</Korean>
+                <Chinese>用來發送信號</Chinese>
+                <Chinesesimp>用来发送信号</Chinesesimp>
             </Key>
             <Key ID="STR_select_radio">
                 <Original>Select short range radio</Original>
@@ -636,6 +732,8 @@
                 <Turkish>Kısa menzilli radyo seç</Turkish>
                 <Japanese>短距離無線機として選択</Japanese>
                 <Korean>단파 라디오 선택</Korean>
+                <Chinese>選擇短程無線電</Chinese>
+                <Chinesesimp>选择短程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_select_lr_radio">
                 <Original>Select long range radio</Original>
@@ -649,6 +747,8 @@
                 <Turkish>Uzun menzilli radyo seç</Turkish>
                 <Japanese>長距離無線機として選択</Japanese>
                 <Korean>장파 라디오 선택</Korean>
+                <Chinese>選擇長程無線電</Chinese>
+                <Chinesesimp>选择长程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_transmit">
                 <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
@@ -662,6 +762,8 @@
                 <Turkish>&lt;t size='1' align='center' color='#00FF00'&gt;İletiliyor&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t size='1' align='center' color='#00FF00'&gt;送信中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
                 <Korean>&lt;t size='1' align='center' color='#00FF00'&gt;전송중&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
+                <Chinese>&lt;t size='1' align='center' color='#00FF00'&gt;發送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
+                <Chinesesimp>&lt;t size='1' align='center' color='#00FF00'&gt;发送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_transmit_end">
                 <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
@@ -675,6 +777,8 @@
                 <Turkish>&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t size='1' align='center' color='#FF9900'&gt;送信終了&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
                 <Korean>&lt;t size='1' align='center' color='#FF9900'&gt;송신끝&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
+                <Chinese>&lt;t size='1' align='center' color='#FF9900'&gt;已發送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
+                <Chinesesimp>&lt;t size='1' align='center' color='#FF9900'&gt;已发送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_additional_transmit">
                 <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
@@ -688,6 +792,8 @@
                 <Turkish>&lt;t size='1' align='center' color='#00FF00'&gt;İletiliyor&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t size='1' align='center' color='#00FF00'&gt;送信中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;追加チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
                 <Korean>&lt;t size='1' align='center' color='#00FF00'&gt;전송중&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;추가 채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
+                <Chinese>&lt;t size='1' align='center' color='#00FF00'&gt;發送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
+                <Chinesesimp>&lt;t size='1' align='center' color='#00FF00'&gt;发送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_additional_transmit_end">
                 <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional сhannel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
@@ -701,6 +807,8 @@
                 <Turkish>&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t size='1' align='center' color='#FF9900'&gt;送信終了&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;追加チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
                 <Korean>&lt;t size='1' align='center' color='#FF9900'&gt;전송끝&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;추가 채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
+                <Chinese>&lt;t size='1' align='center' color='#FF9900'&gt;已發送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
+                <Chinesesimp>&lt;t size='1' align='center' color='#FF9900'&gt;已发送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_waiting">
                 <Original>Waiting...</Original>
@@ -714,6 +822,8 @@
                 <Turkish>Bekleniyor...</Turkish>
                 <Japanese>待機中・・・</Japanese>
                 <Korean>대기중...</Korean>
+                <Chinese>請稍待...</Chinese>
+                <Chinesesimp>请稍待...</Chinesesimp>
             </Key>
             <Key ID="STR_voice_volume">
                 <Original>&lt;t align='center' color='#66ff33'&gt;Voice volume: %1&lt;/t&gt;</Original>
@@ -727,6 +837,8 @@
                 <Turkish>&lt;t align='center' color='#66ff33'&gt;Ses seviyesi: %1&lt;/t&gt;</Turkish>
                 <Japanese>&lt;t align='center' color='#66ff33'&gt;声量: %1&lt;/t&gt;</Japanese>
                 <Korean>&lt;t align='center' color='#66ff33'&gt;음성 볼륨: %1&lt;/t&gt;</Korean>
+                <Chinese>&lt;t align='center' color='#66ff33'&gt;語音音量: %1&lt;/t&gt;</Chinese>
+                <Chinesesimp>&lt;t align='center' color='#66ff33'&gt;语音音量: %1&lt;/t&gt;</Chinesesimp>
             </Key>
             <Key ID="STR_voice_normal">
                 <Original>normal</Original>
@@ -740,6 +852,8 @@
                 <Turkish>Normal</Turkish>
                 <Japanese>通常</Japanese>
                 <Korean>보통</Korean>
+                <Chinese>正常</Chinese>
+                <Chinesesimp>正常</Chinesesimp>
             </Key>
             <Key ID="STR_voice_yelling">
                 <Original>yelling</Original>
@@ -753,6 +867,8 @@
                 <Turkish>Bağırma</Turkish>
                 <Japanese>大声</Japanese>
                 <Korean>소리지르기</Korean>
+                <Chinese>嚎叫</Chinese>
+                <Chinesesimp>嚎叫</Chinesesimp>
             </Key>
             <Key ID="STR_voice_whispering">
                 <Original>whispering</Original>
@@ -766,6 +882,8 @@
                 <Turkish>Fısıldama</Turkish>
                 <Japanese>小声</Japanese>
                 <Korean>속삭이기</Korean>
+                <Chinese>耳語</Chinese>
+                <Chinesesimp>耳语</Chinesesimp>
             </Key>
             <Key ID="STR_init">
                 <Original>Initialization...</Original>
@@ -779,6 +897,8 @@
                 <Turkish>Başlatılıyor...</Turkish>
                 <Japanese>初期化中・・・</Japanese>
                 <Korean>초기화...</Korean>
+                <Chinese>初始化中...</Chinese>
+                <Chinesesimp>初始化中...</Chinesesimp>
             </Key>
             <Key ID="STR_select_action_copy_settings_from">
                 <Original>Copy settings from...</Original>
@@ -792,6 +912,8 @@
                 <Turkish>Ayarları kopyala...</Turkish>
                 <Japanese>次から設定をコピー中・・・</Japanese>
                 <Korean>설정 복사중...</Korean>
+                <Chinese>複製設定從...</Chinese>
+                <Chinesesimp>复制设定从...</Chinesesimp>
             </Key>
             <Key ID="STR_select_action_settings_from_tooltip">
                 <Original>Copy settings from another radio with same encryption code</Original>
@@ -805,6 +927,8 @@
                 <Turkish>Aynı şifreleme kodu ile başka bir radyo ayarlarını kopyala</Turkish>
                 <Japanese>他の無線機の設定を、周波数とともにコピーします。</Japanese>
                 <Korean>다른 라디오에서 같은 암호화 코드를 사용하여 설정 복사</Korean>
+                <Chinese>從另一個具有相同加密設定的無線電上複製設定過來</Chinese>
+                <Chinesesimp>从另一个具有相同加密设定的无线电上复制设定过来</Chinesesimp>
             </Key>
             <Key ID="STR_wait_radio">
                 <Original>Waiting for the unique radio from server...</Original>
@@ -818,6 +942,8 @@
                 <Turkish>Sunucu radyoyu kuruyor...</Turkish>
                 <Japanese>サーバーからの個別な無線機を待っています・・・</Japanese>
                 <Korean>서버에서 개별 무전기를 기다리는 중...</Korean>
+                <Chinese>等待伺服器唯一的無線電中...</Chinese>
+                <Chinesesimp>等待伺服器唯一的无线电中...</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_NATO_crate" TODO="move all crates stringtables to core">
                 <Original>TFAR Radio (NATO)</Original>
@@ -829,6 +955,8 @@
                 <Turkish>TFAR Radyo (NATO)</Turkish>
                 <Japanese>TFAR ラジオ (NATO)</Japanese>
                 <Korean>TFAR Radio (NATO)</Korean>
+                <Chinese>TFAR無線電 (北約)</Chinese>
+                <Chinesesimp>TFAR无线电 (北约)</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_EAST_crate">
                 <Original>TFAR Radio (CSAT)</Original>
@@ -840,6 +968,8 @@
                 <Turkish>TFAR Radyo (CSAT)</Turkish>
                 <Japanese>TFAR ラジオ (CSAT)</Japanese>
                 <Korean>TFAR Radio (CSAT)</Korean>
+                <Chinese>TFAR無線電 (廣協同盟)</Chinese>
+                <Chinesesimp>TFAR无线电 (广协同盟)</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_IND_crate">
                 <Original>TFAR Radio (AAF)</Original>
@@ -851,6 +981,68 @@
                 <Turkish>TFAR Radyo (AAF)</Turkish>
                 <Japanese>TFAR ラジオ (AAF)</Japanese>
                 <Korean>TFAR Radio (AAF)</Korean>
+                <Chinese>TFAR無線電 (Altis政府軍)</Chinese>
+                <Chinesesimp>TFAR无线电 (Altis政府军)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Name">
+                <Original>IntercomChannel</Original>
+                <Chinese>對講機頻道</Chinese>
+                <Chinesesimp>对讲机频道</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Channel1">
+                <Original>Cargo</Original>
+                <Chinese>乘客</Chinese>
+                <Chinesesimp>乘客</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Channel2">
+                <Original>Crew</Original>
+                <Chinese>機組員</Chinese>
+                <Chinesesimp>机组员</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Main_Desc">
+                <Original>War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.</Original>
+                <Chinese>戰爭不單單只有移動，等待與交戰。如何溝通也是一項重要的課題。箭頭特遣隊無線電透過與TeamSpeak無縫連動來增加遊戲的擬真度與真實感。</Chinese>
+                <Chinesesimp>战争不单单只有移动，等待与交战。如何沟通也是一项重要的课题。箭头特遣队无线电透过与TeamSpeak无缝连动来增加游戏的拟真度与真实感。</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_VolumeIndicator">
+                <Original>TFAR Volume Indicator</Original>
+                <Chinese>TFAR音量指示器</Chinese>
+                <Chinesesimp>TFAR音量指示器</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Att_Options">
+                <Original>TFAR Options</Original>
+                <Chinese>TFAR設定</Chinese>
+                <Chinesesimp>TFAR设定</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Att_CuratorCamEars">
+                <Original>Hear Camera when in Curator interface</Original>
+                <Chinese>宙斯編輯器聆聽玩家語音</Chinese>
+                <Chinesesimp>宙斯编辑器聆听玩家语音</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Att_CuratorCamEars_Tip">
+                <Original>Hear voice from Curator Camera when in Curator interface</Original>
+                <Chinese>使用宙斯編輯器時可以聆聽到玩家的語音</Chinese>
+                <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_copySetting_LR_SW_Warning">
+                <Original>TFAR - unable to copy from LR to SW</Original>
+                <Chinese>TFAR - 無法從長程無線電複製設定到短程無線電上</Chinese>
+                <Chinesesimp>TFAR - 无法从长程无线电复制设定到短程无线电上</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_copySetting_SW_LR_Warning">
+                <Original>TFAR - unable to copy from SW to LR</Original>
+                <Chinese>TFAR - 無法從短程無線電複製設定到長程無線電上</Chinese>
+                <Chinesesimp>TFAR - 无法从短程无线电复制设定到长程无线电上</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_openSWMenu">
+                <Original>Open SW Radio Menu</Original>
+                <Chinese>打開短程無線電選單</Chinese>
+                <Chinesesimp>打开短程无线电选单</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_openLRMenu">
+                <Original>Open LR Radio Menu</Original>
+                <Chinese>打開長程無線電選單</Chinese>
+                <Chinesesimp>打开长程无线电选单</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_RADIOS">
                 <English>Radios</English>
@@ -873,6 +1065,8 @@
                 <Turkish>UM(Uzun Menzilli) Radyo</Turkish>
                 <Japanese>長距離ラジオ</Japanese>
                 <Korean>장파 무전기</Korean>
+                <Chinese>長程無線電</Chinese>
+                <Chinesesimp>长程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SameSWFrequencies">
                 <Original>Same SW Frequencies for side</Original>
@@ -885,6 +1079,8 @@
                 <Turkish>Taraflar için SW frekansları</Turkish>
                 <Japanese>陣営に同じ SW 周波数</Japanese>
                 <Korean>진영에 같은 단파 주파수 부여</Korean>
+                <Chinese>同陣營使用相同的短程無線電頻率</Chinese>
+                <Chinesesimp>同阵营使用相同的短程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_Rifle_Radio">
                 <Original>Rifleman radio</Original>
@@ -897,6 +1093,8 @@
                 <Turkish>Tüfekçi(rifleman) Radyosu</Turkish>
                 <Japanese>ライフルマン ラジオ</Japanese>
                 <Korean>보병 무전기</Korean>
+                <Chinese>短程步兵無線電</Chinese>
+                <Chinesesimp>短程步兵无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_PR_Radio">
                 <Original>PR Radio</Original>
@@ -909,6 +1107,8 @@
                 <Turkish>KR(Kişisel Radyo) Radyo</Turkish>
                 <Japanese>PR ラジオ</Japanese>
                 <Korean>개인 무전기</Korean>
+                <Chinese>短程個人無線電</Chinese>
+                <Chinesesimp>短程个人无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_PRFrequencyTT">
                 <Original>PR default frequencies (as an SQF array)</Original>
@@ -921,6 +1121,8 @@
                 <Turkish>KR varsayılar senkronize (SQF dizisi olarak)</Turkish>
                 <Japanese>PR の標準周波数 (SQF のアライで設定)</Japanese>
                 <Korean>개인 기본 주파수들 (SQF 이용)</Korean>
+                <Chinese>設定短程個人無線電各頻道的預設頻率 (使用SQF腳本的陣列寫法)</Chinese>
+                <Chinesesimp>设定短程个人无线电各频道的预设频率 (使用SQF脚本的阵列写法)</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
                 <Original>Give rifleman radio</Original>
@@ -933,6 +1135,8 @@
                 <Turkish>Tüfekçi(rifleman) radyosu ver</Turkish>
                 <Japanese>ライフルマン ラジオを与える</Japanese>
                 <Korean>보병 무전기 부여</Korean>
+                <Chinese>給予單兵短程步兵無線電</Chinese>
+                <Chinesesimp>给予单兵短程步兵无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_EnforceUsage_Description">
                 <Original>Enforces usage of TFAR in mission.</Original>
@@ -945,6 +1149,8 @@
                 <Turkish>TFAR görevde kullanmaya zorlama.</Turkish>
                 <Japanese>ミッション内でTFAR を強制使用させます。</Japanese>
                 <Korean>미션에서 TFAR 사용을 강제 합니다.</Korean>
+                <Chinese>配置TFAR在任務中的強制設定。</Chinese>
+                <Chinesesimp>配置TFAR在任务中的强制设定。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SameLrFrequencies">
                 <Original>Same LR Frequencies for side</Original>
@@ -957,6 +1163,8 @@
                 <Turkish>Taraflar için SW UM(Uzun Menzilli) frekansları</Turkish>
                 <Japanese>陣営に同じ長距離ラジオの周波数</Japanese>
                 <Korean>진영에 같은 장파 주파수 부여</Korean>
+                <Chinese>同陣營使用相同的長程無線電頻率</Chinese>
+                <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
                 <Original>Terrain Interception Coefficient</Original>
@@ -969,6 +1177,8 @@
                 <Turkish>Kesişme Alan Katsayısı</Turkish>
                 <Japanese>地形による障害</Japanese>
                 <Korean>지형 방해 계수</Korean>
+                <Chinese>地形影響係數</Chinese>
+                <Chinesesimp>地形影响系数</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_LRFrequencyTT">
                 <Original>LR default frequencies (as an SQF array)</Original>
@@ -981,6 +1191,8 @@
                 <Turkish>UM(Uzun Menzilli) varsayılan senkronize (SQF dizisi olarak)</Turkish>
                 <Japanese>長距離ラジオの標準周波数 (SQF のアライで設定)</Japanese>
                 <Korean>장파 기본 주파수들 (SQF 이용)</Korean>
+                <Chinese>設定長程無線電各頻道的預設頻率 (使用SQF腳本的陣列寫法)</Chinese>
+                <Chinesesimp>设定长程无线电各频道的预设频率 (使用SQF脚本的阵列写法)</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_Rifle_RadioTT">
                 <Original>Rifleman Radio</Original>
@@ -993,6 +1205,8 @@
                 <Turkish>Tüfekçi(rifleman) Radyosu</Turkish>
                 <Japanese>ライフルマン ラジオ</Japanese>
                 <Korean>보병 무전기</Korean>
+                <Chinese>短程步兵無線電</Chinese>
+                <Chinesesimp>短程步兵无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_PR_RadioTT">
                 <Original>Personal radio</Original>
@@ -1005,6 +1219,8 @@
                 <Turkish>Kişisel Radyo</Turkish>
                 <Japanese>パーソナル ラジオ</Japanese>
                 <Korean>개인 무전기</Korean>
+                <Chinese>短程個人無線電</Chinese>
+                <Chinesesimp>短程个人无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_LR_RadioTT">
                 <Original>Long Range radio</Original>
@@ -1017,6 +1233,8 @@
                 <Turkish>Uzun Menzilli radyo</Turkish>
                 <Japanese>長距離ラジオ</Japanese>
                 <Korean>장거리 무전기</Korean>
+                <Chinese>長程無線電</Chinese>
+                <Chinesesimp>长程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveTLradio">
                 <Original>Give team leaders a long range radio</Original>
@@ -1029,6 +1247,8 @@
                 <Turkish>Takım liderine uzun menzil radyo ver</Turkish>
                 <Japanese>チーム リーダーに長距離ラジオを与える</Japanese>
                 <Korean>분대장에게 장파 무전기 부여</Korean>
+                <Chinese>給予隊長長程無線電</Chinese>
+                <Chinesesimp>给予队长长程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_EncryptionCode">
                 <Original>Encryption Code</Original>
@@ -1041,6 +1261,8 @@
                 <Turkish>Şifreleme kodu</Turkish>
                 <Japanese>暗号化コード</Japanese>
                 <Korean>암호화 코드</Korean>
+                <Chinese>加密代碼</Chinese>
+                <Chinesesimp>加密代码</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_Frequencies">
                 <Original>TFAR – Frequencies</Original>
@@ -1053,6 +1275,8 @@
                 <Turkish>TFAR – Frekansları</Turkish>
                 <Japanese>TFAR - 周波数</Japanese>
                 <Korean>TFAR - 주파수</Korean>
+                <Chinese>TFAR – 頻率</Chinese>
+                <Chinesesimp>TFAR – 频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelPassword">
                 <Original>Channel Password</Original>
@@ -1065,6 +1289,8 @@
                 <Turkish>Kanal Şifresi</Turkish>
                 <Japanese>チャンネル パスワード</Japanese>
                 <Korean>채널 비밀번호</Korean>
+                <Chinese>頻道密碼</Chinese>
+                <Chinesesimp>频道密码</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelName">
                 <Original>Channel Name</Original>
@@ -1077,6 +1303,8 @@
                 <Turkish>Kanal Adı</Turkish>
                 <Japanese>チャンネル名</Japanese>
                 <Korean>채널 이름</Korean>
+                <Chinese>頻道名稱</Chinese>
+                <Chinesesimp>频道名称</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
                 <Original>Terrain Interception Coefficient</Original>
@@ -1089,6 +1317,8 @@
                 <Turkish>Kesişme Alan Katsayısı</Turkish>
                 <Japanese>地形による障害</Japanese>
                 <Korean>지형 방해 계수</Korean>
+                <Chinese>設定地形影響無線電通訊品質的係數</Chinese>
+                <Chinesesimp>设定地形影响无线电通讯品质的系数</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SideRadio_Description">
                 <Original>Allows setting of default radios, encryption and frequencies for synced side.</Original>
@@ -1101,6 +1331,8 @@
                 <Turkish>Radyoları varsayılan ayarlarına izin ver, şifreleme ve senkronize için frekanslar.</Turkish>
                 <Japanese>陣営内で標準の無線機や暗号化、周波数を同期する設定を許可します。</Japanese>
                 <Korean>동기화된 진영에서 기본 설정 무전기와 암호화 및 파수를 설정 할 수 있습니다.</Korean>
+                <Chinese>調整被同步陣營的預設無線電，加密代碼與頻率等設定。</Chinese>
+                <Chinesesimp>调整被同步阵营的预设无线电，加密代码与频率等设定。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SideRadio">
                 <Original>TFAR – Side Radio</Original>
@@ -1113,6 +1345,8 @@
                 <Turkish>TFAR – Yan(ikincil) Radyo</Turkish>
                 <Japanese>TFAR - 陣営用無線機</Japanese>
                 <Korean>TFAR - 진영 무전기</Korean>
+                <Chinese>TFAR – 無線電陣營</Chinese>
+                <Chinesesimp>TFAR – 无线电阵营</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
                 <Original>Same LR Frequencies for side</Original>
@@ -1125,6 +1359,8 @@
                 <Turkish>Taraflar için SW UM(Uzun Menzilli) frekansları</Turkish>
                 <Japanese>陣営に同じ長距離ラジオの周波数</Japanese>
                 <Korean>진영에 같은 장파 주파수 부여</Korean>
+                <Chinese>同陣營使用相同的長程無線電頻率</Chinese>
+                <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
                 <Original>Same SW Frequencies for side</Original>
@@ -1137,6 +1373,8 @@
                 <Turkish>Taraflar için SW frekansları</Turkish>
                 <Japanese>陣営に同じ SW の周波数</Japanese>
                 <Korean>진영에 같은 단파 주파수 부여</Korean>
+                <Chinese>同陣營使用相同的短程無線電頻率</Chinese>
+                <Chinesesimp>同阵营使用相同的短程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveTLradioTT">
                 <Original>Give each team leader the appropriate long range radio</Original>
@@ -1149,6 +1387,8 @@
                 <Turkish>Her takım liderine uygun uzun menzilli radyo ver</Turkish>
                 <Japanese>各チーム リーダーに適切な長距離用ラジオを与えます</Japanese>
                 <Korean>각 분대장에게 장거리 무전기 부여</Korean>
+                <Chinese>分發長程無線電給各隊長使用</Chinese>
+                <Chinesesimp>分发长程无线电给各队长使用</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
                 <Original>Give a rifleman radio to regular soldiers</Original>
@@ -1161,6 +1401,8 @@
                 <Turkish>Tüfekçi(rifleman) radyosunu askerlere ver</Turkish>
                 <Japanese>通常の兵士にライフルマン ラジオを与えます</Japanese>
                 <Korean>일반 보병에게 단파 무전기 부여</Korean>
+                <Chinese>分發短程步兵無線電給各單兵使用</Chinese>
+                <Chinesesimp>分发短程步兵无线电给各单兵使用</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelNameTT">
                 <Original>TeamSpeak Channel Name</Original>
@@ -1173,6 +1415,8 @@
                 <Turkish>TeamSpeak Kanal Adı</Turkish>
                 <Japanese>TeamSpeak チャンネル名</Japanese>
                 <Korean>팀스피크 채널 이름</Korean>
+                <Chinese>TeamSpeak作戰用頻道名稱</Chinese>
+                <Chinesesimp>TeamSpeak作战用频道名称</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelPasswordTT">
                 <Original>TeamSpeak Channel Password</Original>
@@ -1185,6 +1429,8 @@
                 <Turkish>TeamSpeak Kanal Şifresi</Turkish>
                 <Japanese>TeamSpeak チャンネル パスワード</Japanese>
                 <Korean>팀스피크의 채널 이름</Korean>
+                <Chinese>TeamSpeak作戰用頻道密碼</Chinese>
+                <Chinesesimp>TeamSpeak作战用频道密码</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_Frequencies_Description">
                 <Original>Allows setting of default frequencies for sides.</Original>
@@ -1197,6 +1443,8 @@
                 <Turkish>Taraflar için varsayılan frekans ayarları.</Turkish>
                 <Japanese>陣営へ標準周波数の設定を許可します。</Japanese>
                 <Korean>진영에 기본 주파수를 설정 합니다.</Korean>
+                <Chinese>調整被同步陣營的無線電預設頻率。</Chinese>
+                <Chinesesimp>调整被同步阵营的无线电预设频率。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_EnforceUsage">
                 <Original>TFAR – Enforce Usage</Original>
@@ -1209,6 +1457,8 @@
                 <Turkish>TFAR – Kullanıma Zorlamak</Turkish>
                 <Japanese>TFAR - 強制使用</Japanese>
                 <Korean>TFAR – 규칙 적용</Korean>
+                <Chinese>TFAR – 強制設定</Chinese>
+                <Chinesesimp>TFAR – 强制设定</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_LRFrequency">
                 <Original>LR Freq.</Original>
@@ -1221,6 +1471,8 @@
                 <Turkish>UM(Uzun Menzilli) Senkronize.</Turkish>
                 <Japanese>長距離ラジオの周波数。</Japanese>
                 <Korean>장파 주파수.</Korean>
+                <Chinese>長程無線電頻率</Chinese>
+                <Chinesesimp>长程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_PRFrequency">
                 <Original>PR Freq.</Original>
@@ -1233,6 +1485,8 @@
                 <Turkish>KR(Kişisel Radyo) Senkronize.</Turkish>
                 <Japanese>パーソナル ラジオの周波数。</Japanese>
                 <Korean>단파 주파수</Korean>
+                <Chinese>短程個人無線電頻率</Chinese>
+                <Chinesesimp>短程个人无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_FullDuplex">
                 <English>Full-Duplex</English>
@@ -1240,6 +1494,9 @@
                 <German>Voll-Duplex</German>
                 <Japanese>全二重通信</Japanese>
                 <Korean>양방향 통신</Korean>
+                <Original>Full-Duplex</Original>
+                <Chinese>全雙工模式</Chinese>
+                <Chinesesimp>全双工模式</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_FullDuplexDescription">
                 <English>Allows Radios to simultaneously receive while transmitting.</English>
@@ -1247,6 +1504,9 @@
                 <German>Erlaubt Funkgeräten gleichzeitig zu senden und zu empfangen.</German>
                 <Japanese>無線機が送信中に受信も同時に行うようにします。</Japanese>
                 <Korean>전송하는 동안 동시에 수신을 가능하게 합니다.</Korean>
+                <Original>Allows Radios to simultaneously receive while transmitting.</Original>
+                <Chinese>允許無線電能同時接收與發送訊號。</Chinese>
+                <Chinesesimp>允许无线电能同时接收与发送讯号。</Chinesesimp>
             </Key>
         </Container>
         <Container name="settings">
@@ -1257,6 +1517,8 @@
                 <Polish>Domyślna głośność radia</Polish>
                 <Japanese>無線機の標準音量</Japanese>
                 <Korean>기본 무전기 볼륨</Korean>
+                <Chinese>預設無線電音量</Chinese>
+                <Chinesesimp>预设无线电音量</Chinesesimp>
             </Key>
             <Key ID="STR_radio_same_dd_frequencies_for_side">
                 <Original>Same DD frequencies for side</Original>
@@ -1265,6 +1527,8 @@
                 <Polish>Takie same częstotliwości DD dla strony</Polish>
                 <Japanese>陣営に同じ DD の周波数</Japanese>
                 <Korean>진영에 같은 수중 주파수</Korean>
+                <Chinese>同陣營使用相同的水下無線電頻率</Chinese>
+                <Chinesesimp>同阵营使用相同的水下无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_radio_same_lr_frequencies_for_side">
                 <Original>Same LR frequencies for side</Original>
@@ -1273,6 +1537,8 @@
                 <Polish>Takie same częstotliwości LR dla strony</Polish>
                 <Japanese>陣営に同じ長距離ラジオの周波数</Japanese>
                 <Korean>진영에 같은 장파 주파수</Korean>
+                <Chinese>同陣營使用相同的長程無線電頻率</Chinese>
+                <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_radio_same_sw_frequencies_for_side">
                 <Original>Same SW frequencies for side</Original>
@@ -1281,6 +1547,8 @@
                 <Polish>Takie same częstotliwości SW dla strony</Polish>
                 <Japanese>陣営に同じ SW の周波数</Japanese>
                 <Korean>진영에 같은 단파 주파수</Korean>
+                <Chinese>同陣營使用相同的短程無線電頻率</Chinese>
+                <Chinesesimp>同阵营使用相同的短程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_radio_give_microdagr_to_soldier">
                 <Original>Give MicroDAGR to soldier</Original>
@@ -1289,6 +1557,8 @@
                 <Polish>Przydziel żołnierzowi MicroDAGR</Polish>
                 <Japanese>兵士に MicroDAGR を与えます</Japanese>
                 <Korean>보병에게 MicroDAGR 부여</Korean>
+                <Chinese>給予士兵微型軍用GPS接收器</Chinese>
+                <Chinesesimp>给予士兵微型军用GPS接收器</Chinesesimp>
             </Key>
             <Key ID="STR_radio_give_personal_radio_to_regular_soldier">
                 <Original>Give personal radio to regular soldier</Original>
@@ -1297,6 +1567,8 @@
                 <Polish>Przydziel podkomendnemu radio PR</Polish>
                 <Japanese>通常の兵士にパーソナル ラジオを与えます</Japanese>
                 <Korean>일반 보병에게 개인 무전기 부여</Korean>
+                <Chinese>給予一般士兵短程個人無線電</Chinese>
+                <Chinesesimp>给予一般士兵短程个人无线电</Chinesesimp>
             </Key>
             <Key ID="STR_radio_auto_long_range_radio">
                 <Original>Automatically give long range radio</Original>
@@ -1305,6 +1577,138 @@
                 <Polish>Przydzielaj automatycznie radia LR</Polish>
                 <Japanese>自動的に長距離ラジオを与えいようにします</Japanese>
                 <Korean>자동으로 장파 무전기 부여</Korean>
+                <Chinese>自動給予長程無線電</Chinese>
+                <Chinesesimp>自动给予长程无线电</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_enable_vehicle_intercom">
+                <Original>Enable vehicle Intercom</Original>
+                <Chinese>啟用載具內對講機</Chinese>
+                <Chinesesimp>启用载具内对讲机</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_enable_object_interception">
+                <Original>Enable Object Interception</Original>
+                <Chinese>啟用物件攔截</Chinese>
+                <Chinesesimp>启用物件拦截</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_spectator_hear_emy">
+                <Original>Spectator can hear enemy units</Original>
+                <Chinese>觀察者可以聽到敵方的語音</Chinese>
+                <Chinesesimp>观察者可以听到敌方的语音</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_spectator_hear_emy_desc">
+                <Original>If disabled a Spectator can't hear direct speech from Units that are considered Enemy to the Spectators original faction</Original>
+                <Chinese>假如本功能關閉的話，觀察者將不能聽到敵隊陣營玩家的語音通訊</Chinese>
+                <Chinesesimp>假如本功能关闭的话，观察者将不能听到敌队阵营玩家的语音通讯</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_spectator_hear">
+                <Original>Spectator can hear units</Original>
+                <Chinese>觀察者可以聽到其他玩家的語音</Chinese>
+                <Chinesesimp>观察者可以听到其他玩家的语音</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_spectator_hear_desc">
+                <Original>If disabled a Spectator can't hear any Players besides other Spectators</Original>
+                <Chinese>假如本功能關閉的話，觀察者將不能聽到其他還活著玩家的語音通訊，只能聽到其他觀察者的聲音</Chinese>
+                <Chinesesimp>假如本功能关闭的话，观察者将不能听到其他还活着玩家的语音通讯，只能听到其他观察者的声音</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_directSpeechModifier">
+                <Original>Direct speech on volume modifier</Original>
+                <Chinese>使用音量修改器來直接發話</Chinese>
+                <Chinesesimp>使用音量修改器来直接发话</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_directSpeechModifier_desc">
+                <Original>Activate directSpeech when pressing volume modifier</Original>
+                <Chinese>按下音量修改器時同時啟動直接發話</Chinese>
+                <Chinesesimp>按下音量修改器时同时启动直接发话</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_intercomVolume">
+                <Original>Intercom Volume</Original>
+                <Chinese>對講機音量</Chinese>
+                <Chinesesimp>对讲机音量</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_pluginTimeout">
+                <Original>Plugin Timeout in seconds</Original>
+                <Chinese>插件超時無回應秒數</Chinese>
+                <Chinesesimp>插件超时无回应秒数</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_tangentReleaseDelay">
+                <Original>tangentReleaseDelay in milliseconds</Original>
+                <Chinese>tangentReleaseDelay (毫秒)</Chinese>
+                <Chinesesimp>tangentReleaseDelay (毫秒)</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_positionUpdateMode">
+                <Original>Position Update Mode</Original>
+                <Chinese>位置更新模式</Chinese>
+                <Chinesesimp>位置更新模式</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_positionUpdateMode_desc">
+                <Original>The higher the quality the lower fps</Original>
+                <Chinese>品質設定越高越影響效能</Chinese>
+                <Chinesesimp>品质设定越高越影响效能</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_positionUpdateMode_quality">
+                <Original>Quality</Original>
+                <Chinese>品質</Chinese>
+                <Chinesesimp>品质</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_positionUpdateMode_normal">
+                <Original>Normal</Original>
+                <Chinese>普通</Chinese>
+                <Chinesesimp>普通</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_positionUpdateMode_performance">
+                <Original>Performance</Original>
+                <Chinese>效能</Chinese>
+                <Chinesesimp>效能</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_hudVolumeIndicator">
+                <Original>Show HUD Voice Volume indicator</Original>
+                <Chinese>在抬頭顯示器上顯示音量指示器</Chinese>
+                <Chinesesimp>在抬头显示器上显示音量指示器</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_hudVolumeIndicator_desc">
+                <Original>If disabled it will pop up for a short time when changing Volume</Original>
+                <Chinese>假如關閉本功能的話，音量切換時的提示訊息只會顯示在螢幕上一下下</Chinese>
+                <Chinesesimp>假如关闭本功能的话，音量切换时的提示讯息只会显示在荧幕上一下下</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_volumeIndicatorTransparency">
+                <Original>Volume Indicator Transparency</Original>
+                <Chinese>音量指示器透明度</Chinese>
+                <Chinesesimp>音量指示器透明度</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_volumeIndicatorTransparency_desc">
+                <Original>Volume Indicator Transparency (0 fully visible - 1 invisible)</Original>
+                <Chinese>音量指示器透明度 (0為完全透明，1為不透明)</Chinese>
+                <Chinesesimp>音量指示器透明度 (0为完全透明，1为不透明)</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_useOldVolumeHint">
+                <Original>Use old Voice Volume Hint</Original>
+                <Chinese>使用舊的語音音量提示</Chinese>
+                <Chinesesimp>使用旧的语音音量提示</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_useOldVolumeHint_desc">
+                <Original>Use old Voice Volume Hint</Original>
+                <Chinese>使用舊的語音音量提示</Chinese>
+                <Chinesesimp>使用旧的语音音量提示</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_showTransmittingHint">
+                <Original>Show Transmitting Hint</Original>
+                <Chinese>顯示無線電發送訊息提示</Chinese>
+                <Chinesesimp>显示无线电发送讯息提示</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_showTransmittingHint_desc">
+                <Original>Show the Hint (Bottom right) when you are Transmitting</Original>
+                <Chinese>當無線電傳送訊息時在右下角顯示提示訊息</Chinese>
+                <Chinesesimp>当无线电传送讯息时在右下角显示提示讯息</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_showChannelChangedHint">
+                <Original>Show Channel Changed Hint</Original>
+                <Chinese>顯示無線電頻道更改提示</Chinese>
+                <Chinesesimp>显示无线电频道更改提示</Chinesesimp>
+            </Key>
+            <Key ID="STR_radio_showChannelChangedHint_desc">
+                <Original>Show the Hint (Bottom right) when you switch Channels via UI or Hotkey</Original>
+                <Chinese>當無線電頻道更改時在右下角顯示提示訊息</Chinese>
+                <Chinesesimp>当无线电频道更改时在右下角显示提示讯息</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_SETTING_TAKERADIO_HEADER">
                 <English>Taking away radios</English>
@@ -1391,6 +1795,12 @@ Araçlar iki türlü sınıflandırılmıştır açık veya kapalı (izole). Eğ
 장파 무전기는 운전석, 지휘관석, 사수석, 부조종석에서 사용 할 수 있습니다. 모든 차량이 무전기를 내장하고 있지는 않습니다.&lt;br/&gt;
 각 차량 슬룻에는 각각의 무전기가 있으며, 별도로 설정해야 합니다. 차량에서 위치를 변경해야 하는 경우 - 미리 다른 슬룻의 무전기를 설정하십시오. (예를 들어 운전석 또는 사수석)&lt;br/&gt;
 차량들은 개방 되거나 밀폐(폐쇄)로 분류 됩니다. 밀폐된 차량 안에 있을 경우 외부의 소리가 들리지 않습니다. (반대의 경우도 같음) 차량에서 내리면 내외부의 소리를 들을 수 있습니다.</Korean>
+                <Chinese>&lt;br/&gt;
+載具的長程無線電可以被駕駛，副駕駛，砲手，指揮官等組員來使用。但並不是所有的載具都有內建無線電。&lt;br/&gt;
+每個載具組員都有自己的載具無線電，所以設定並不共享。如果你想要在任務中隨時切換載具組員位置的話，請事先設定好每個位置上的載具無線電設定。&lt;br/&gt;載具有分為開放式或封閉式(與外界隔離)，假如你在封閉式載具裡面，你將聽不到來自外面的聲音(反之亦然)，不過當你將頭伸出載具外，你將可以同時聽到載具裡面與外面的聲音。</Chinese>
+                <Chinesesimp>&lt;br/&gt;
+载具的长程无线电可以被驾驶，副驾驶，炮手，指挥官等组员来使用。但并不是所有的载具都有内建无线电。&lt;br/&gt;
+每个载具组员都有自己的载具无线电，所以设定并不共享。如果你想要在任务中随时切换载具组员位置的话，请事先设定好每个位置上的载具无线电设定。&lt;br/&gt;载具有分为开放式或封闭式(与外界隔离)，假如你在封闭式载具里面，你将听不到来自外面的声音(反之亦然)，不过当你将头伸出载具外，你将可以同时听到载具里面与外面的声音。</Chinesesimp>
             </Key>
             <Key ID="STR_radio_vehicle">
                 <Original>Vehicles</Original>
@@ -1404,6 +1814,8 @@ Araçlar iki türlü sınıflandırılmıştır açık veya kapalı (izole). Eğ
                 <Turkish>Araçlar</Turkish>
                 <Japanese>車両</Japanese>
                 <Korean>차량</Korean>
+                <Chinese>載具</Chinese>
+                <Chinesesimp>载具</Chinesesimp>
             </Key>
             <Key ID="STR_radio_intercept_text">
                 <Original>&lt;br/&gt;
@@ -1452,6 +1864,14 @@ Varsayılan olarak, her ülke kendi şifreleme kodunu kullanır, yani düşman k
 사망한 플레이어에게서 무전기를 다른 사람이 사용 하게 되면, 사망한 플레이어가 설정한 모든 설정이 유지됩니다. (주파수, 채널, 볼륨 등)&lt;br/&gt;
 차량 무전기 또한 모든 설정이 저장됩니다.&lt;/br&gt;
 디폴트 설정에서, 각 진영의 무전기는 각자의 암호화 코드를 하는데, 적 진영의 플레이어가 사용하는 주파수로 무전을 송신하거나 수신 할 수 없습니다. 적의 무전 네트워크를 듣거나 방수하기 위해 무전소를 점령하거나 노획하는 것이 필요합니다.</Korean>
+                <Chinese>&lt;br/&gt;
+你可以從陣亡的玩家身上拿取無線電，並轉交給任何一個人。與此同時，該無線電將保持著同樣的設定(頻道，頻率，音量)。&lt;br/&gt;
+載具內的無線電設定同樣也會被儲存。&lt;br/&gt;
+在預設的情況下，不同陣營的無線電會使用不同的加密代碼，所以就算你設定與敵方相同的頻率，也無法聽到敵方的聲音!想要竊聽或在敵方的無線電網路中發話，就必須設法得到敵方的無線電設備。</Chinese>
+                <Chinesesimp>&lt;br/&gt;
+你可以从阵亡的玩家身上拿取无线电，并转交给任何一个人。与此同时，该无线电将保持着同样的设定(频道，频率，音量)。&lt;br/&gt;
+载具内的无线电设定同样也会被储存。&lt;br/&gt;
+在预设的情况下，不同阵营的无线电会使用不同的加密代码，所以就算你设定与敌方相同的频率，也无法听到敌方的声音!想要窃听或在敌方的无线电网路中发话，就必须设法得到敌方的无线电设备。</Chinesesimp>
             </Key>
             <Key ID="STR_radio_intercept">
                 <Original>Radio Interception</Original>
@@ -1465,6 +1885,8 @@ Varsayılan olarak, her ülke kendi şifreleme kodunu kullanır, yani düşman k
                 <Turkish>Radyo kesişmesi</Turkish>
                 <Japanese>ラジオの傍受</Japanese>
                 <Korean>무전 방해</Korean>
+                <Chinese>攔截無線電</Chinese>
+                <Chinesesimp>拦截无线电</Chinesesimp>
             </Key>
             <Key ID="STR_radio_diver_text">
                 <Original>&lt;br/&gt;
@@ -1522,6 +1944,16 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
 수중에서의 무전을 위해 수중 트렌시버를 사용하십시오.&lt;br/&gt;
 또 수중에서는 무전기를 사용 할 수 없습니다. (전송도 수신도 불가) 무전을 보내거나 받고 싶다면, 수면이나 지상으로 올라가야 합니다.&lt;br/&gt;
 예외 - 잠수정에서 무전기 전송을 위해 잠망경 심도로 잠항 하십시오. (장파 라디오를 사용 할 수 있습니다.)</Korean>
+                <Chinese>&lt;br/&gt;
+你無法在水下說話(即使穿著潛水服)。然而當你與同伴相當靠近時，仍可以聽到一些模糊的說話聲(如果你們在密閉式水下載具內時，將不受這個效果影響)。&lt;br/&gt;
+即使在水下，你還是依稀可以聽到陸地上低沉的聲音。&lt;br/&gt;
+使用水下收發器來讓潛水員們可以互相通信。&lt;br/&gt;
+你無法在水下使用無線電通訊(不管是說或聽)。你只能浮到水面上來進行通訊。&lt;br/&gt;如果你駕駛潛水艇，你可以上升到潛望鏡深度即可(這時駕駛可以使用長程無線電)。</Chinese>
+                <Chinesesimp>&lt;br/&gt;
+你无法在水下说话(即使穿着潜水服)。然而当你与同伴相当靠近时，仍可以听到一些模糊的说话声(如果你们在密闭式水下载具内时，将不受这个效果影响)。&lt;br/&gt;
+即使在水下，你还是依稀可以听到陆地上低沉的声音。&lt;br/&gt;
+使用水下收发器来让潜水员们可以互相通信。&lt;br/&gt;
+你无法在水下使用无线电通讯(不管是说或听)。你只能浮到水面上来进行通讯。&lt;br/&gt;如果你驾驶潜水艇，你可以上升到潜望镜深度即可(这时驾驶可以使用长程无线电)。</Chinesesimp>
             </Key>
             <Key ID="STR_radio_diver">
                 <Original>For divers</Original>
@@ -1535,56 +1967,58 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Turkish>Dalgıçlar için</Turkish>
                 <Japanese>運転手向け</Japanese>
                 <Korean>잠수용</Korean>
+                <Chinese>潛水員</Chinese>
+                <Chinesesimp>潜水员</Chinesesimp>
             </Key>
             <Key ID="STR_radio_control_text">
                 <Original>&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	Direct Speech.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	To talk on a radio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	To talk on a long range radio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	To open the personal radio interface (the radio must be in the inventory slot). In that case if you have a number of radios - you can select the one needed. It is also possible to set the radio as active (the one that will be used for transmission).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; Cycle through available shortwave radios.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; Rapid switching of shortwave stereo mode.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Rapid switching of shortwave radio channels.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	To open a long range radio interface (a long range radio must be put on your back, or you should be in a vehicle in a position of a driver, shooter, or pilot assistant). If a number of radios are available – you’ll be offered to choose one. Besides, one of them can be set as active.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; Cycle through available long range radios.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; Rapid switching of long range stereo mode.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Rapid switching of long range radio channels.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	To open an underwater transceiver interface (you should be wearing a rebreather).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	To talk on underwater transceiver.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Select next personal radio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Select previous personal radio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Select next long range radio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Select previous long range radio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Change personal radio stereo mode.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Change long range radio stereo mode.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Transmit on additional channel of personal radio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Transmit on additional channel of long range radio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	To exit from the radio interface.</Original>
+&lt;font color="#67ED24"&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	Direct Speech.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	To talk on a radio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt;	To talk on a long range radio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt;	To open the personal radio interface (the radio must be in the inventory slot). In that case if you have a number of radios - you can select the one needed. It is also possible to set the radio as active (the one that will be used for transmission).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + SHIFT + A/D&lt;/font&gt; Cycle through available shortwave radios.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; Rapid switching of shortwave stereo mode.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	Rapid switching of shortwave radio channels.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	To open a long range radio interface (a long range radio must be put on your back, or you should be in a vehicle in a position of a driver, shooter, or pilot assistant). If a number of radios are available – you’ll be offered to choose one. Besides, one of them can be set as active.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + SHIFT + A/D&lt;/font&gt; Cycle through available long range radios.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; Rapid switching of long range stereo mode.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt;	Rapid switching of long range radio channels.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt;	To change the direct speech volume. You can talk: Whispering, Normal or Yelling. Does not affect the signal volume in the radio transmission.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt;	To open an underwater transceiver interface (you should be wearing a rebreather).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt;	To talk on underwater transceiver.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt;	Select next personal radio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt;	Select previous personal radio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt;	Select next long range radio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt;	Select previous long range radio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt;	Change personal radio stereo mode.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	Change long range radio stereo mode.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt;	Transmit on additional channel of personal radio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	Transmit on additional channel of long range radio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	To exit from the radio interface.</Original>
                 <Czech>&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk klávesa v TeamSpeaku&lt;/font&gt;	Přímá řeč.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Mluvení do vysílačky.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Mluvení do vysílačky na dlouhou vzdálenost.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Otevření rozhraní osobní vysílačky (vysílačka musí být ve slotu v inventáři). V případě že máte víc vysílaček - můžete si mezi něma zvolit. Je taky možné nastavit si vysílačku jako aktivní (ta která bude používaná pro vysílání).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; Přepínání mezi dostupnými vysílačkami pro krátkou vzdálenost&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; Rychlé přepínání stereo módu vysílačky.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Rychlá změna kanálů vysílačky.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Otevření rozhraní vysílačky na dlouhou vzdálenost (vysílačka musí být na vašich zádech, nebo ve vozidle na pozici řidiče, pilota, kopilota nebo střelce). V případě že je dostupných víc vysílaček – můžete si mezi něma zvolit. Jedna z nich může být taky nastavená jako aktivní.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; Přepínání mezi dostupnými vysílačkami pro dlouhou vzdálenost.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; Rychlé přepínání stereo módu vysílačky pro dlouhou vzdálenost.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Rychlá změna kanálů vysílačky pro dlouhou vzdálenost.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Změna hlasitosti přímé řeči. Můžete mluvit: Šeptem, Normálně nebo Křičet. Neovlivňuje hlasitost ve vysílačce.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Otevření rozhraní podvodní vysílačky (je potřeba dýchací přístroj).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Mluvení do podvodní vysílačky.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Zvolit následující osobní vysílačku.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Zvolit předchozí osobní vysílačku.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Zvolit následující vysílačku pro dlouhou vzdálenost.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Zvolit předchozí vysílačku pro dlouhou vzdálenost.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Změnit stereo mód u osobní vysílačky.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Změnit stereo mód u vysílačky pro dlouhou vzdálenost.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Vysílání na dodatečném kanálu osobní vysílačky.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Vysílání na dodatečném kanálu vysílačky pro dlouhou vzdálenost.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Opuštění rozhraní vysílačky.</Czech>
+&lt;font color="#67ED24"&gt;Push-to-talk klávesa v TeamSpeaku&lt;/font&gt;	Přímá řeč.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	Mluvení do vysílačky.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt;	Mluvení do vysílačky na dlouhou vzdálenost.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt;	Otevření rozhraní osobní vysílačky (vysílačka musí být ve slotu v inventáři). V případě že máte víc vysílaček - můžete si mezi něma zvolit. Je taky možné nastavit si vysílačku jako aktivní (ta která bude používaná pro vysílání).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + SHIFT + A/D&lt;/font&gt; Přepínání mezi dostupnými vysílačkami pro krátkou vzdálenost&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; Rychlé přepínání stereo módu vysílačky.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	Rychlá změna kanálů vysílačky.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	Otevření rozhraní vysílačky na dlouhou vzdálenost (vysílačka musí být na vašich zádech, nebo ve vozidle na pozici řidiče, pilota, kopilota nebo střelce). V případě že je dostupných víc vysílaček – můžete si mezi něma zvolit. Jedna z nich může být taky nastavená jako aktivní.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + SHIFT + A/D&lt;/font&gt; Přepínání mezi dostupnými vysílačkami pro dlouhou vzdálenost.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; Rychlé přepínání stereo módu vysílačky pro dlouhou vzdálenost.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt;	Rychlá změna kanálů vysílačky pro dlouhou vzdálenost.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt;	Změna hlasitosti přímé řeči. Můžete mluvit: Šeptem, Normálně nebo Křičet. Neovlivňuje hlasitost ve vysílačce.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt;	Otevření rozhraní podvodní vysílačky (je potřeba dýchací přístroj).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt;	Mluvení do podvodní vysílačky.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt;	Zvolit následující osobní vysílačku.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt;	Zvolit předchozí osobní vysílačku.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt;	Zvolit následující vysílačku pro dlouhou vzdálenost.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt;	Zvolit předchozí vysílačku pro dlouhou vzdálenost.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt;	Změnit stereo mód u osobní vysílačky.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	Změnit stereo mód u vysílačky pro dlouhou vzdálenost.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt;	Vysílání na dodatečném kanálu osobní vysílačky.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	Vysílání na dodatečném kanálu vysílačky pro dlouhou vzdálenost.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	Opuštění rozhraní vysílačky.</Czech>
                 <French>&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;Bouton Push-to-talk de TeamSpeak&lt;/font&gt;	Voix Directe.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;Verrouillage Maj&lt;/font&gt;	Pour parler à la radio.&lt;br/&gt;
@@ -1608,188 +2042,236 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
 &lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Transmettre sur le canal additionnel de la radio longue portée.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Pour fermer l'interface de la radio.</French>
                 <German>&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk Taste im TeamSpeak&lt;/font&gt;	Direktes Sprechen.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Feststelltaste&lt;/font&gt;	Kurzstreckenfunk.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + Feststelltaste&lt;/font&gt;	Langstreckenfunk.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + P&lt;/font&gt;	Oberfläche des Kurzstreckenfunks öffnen. Das Funkgerät muss sich im Inventar befinden. Sollten mehrere Funkgerät im Inventar vorhanden sein, wird ein Auswahlmenü angezeigt. Es kann ein Funkgerät als aktiv gesetzt werden, welches dann zum Funken benutzt wird.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + UMSCHALT + A/D&lt;/font&gt; Kurzstreckenfunkgeräte durschalten.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellung für Kurzstreckenfunk.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Kanalwahl für Kurzstreckenfunk.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Oberfläche des Langstreckenfunks öffnen. Sie müsssen sich in einem Fahrzeug befinden oder das Funkgerät als Rucksack einordnen.. Sollten mehrere Funkgerät ansteuerbar sein, wird ein Auswahlmenü angezeigt. Es kann lediglich ein Funkgerät gleichzeitig zum Funken verwendet werden.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + UMSCHALT + A/D&lt;/font&gt; Langstreckenfunkgeräte durchschalten.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellungen für Langstreckenfunk.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + NUM[1-9]&lt;/font&gt;	Kanalauswahl für Langstreckenfunk.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + TAB&lt;/font&gt;	Lautstärkenregelung für das Direkte Sprechen. Es ist möglich leise, normal oder laut sprechen (Unabhänig der Funklautstärke).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;UMSCHALT + P&lt;/font&gt;	Oberfläche des Unterwasser-Sendeempfängers öffnen(benötigt Kreislauftauchgerät).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + ~&lt;/font&gt;	Auf Unterwasser-Sendeempfänger funken.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + ]&lt;/font&gt;	Nächstes Funkgerät wählen.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + [&lt;/font&gt;	Vorheriges Funkgerät wählen.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + ]&lt;/font&gt;	Nächstes Langstreckenfunkgerät wählen.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + ALT + [&lt;/font&gt;	Vorheriges Langstreckenfunkgerät wählen.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;STRG + [←,↑,→]&lt;/font&gt;	Stereoeinstellungen für das Funkgerät ändern.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Stereoeinstellungen für das Langstreckenfunkgerät ändern.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Auf dem zusätzlichen Kanal des Funkgerätes senden.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Auf dem zusätzlichen Kanal des Langstreckenfunkgerätes senden.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Funkoberfläche verlassen.</German>
+&lt;font color="#67ED24"&gt;Push-to-talk Taste im TeamSpeak&lt;/font&gt;	Direktes Sprechen.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Feststelltaste&lt;/font&gt;	Kurzstreckenfunk.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + Feststelltaste&lt;/font&gt;	Langstreckenfunk.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + P&lt;/font&gt;	Oberfläche des Kurzstreckenfunks öffnen. Das Funkgerät muss sich im Inventar befinden. Sollten mehrere Funkgerät im Inventar vorhanden sein, wird ein Auswahlmenü angezeigt. Es kann ein Funkgerät als aktiv gesetzt werden, welches dann zum Funken benutzt wird.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + UMSCHALT + A/D&lt;/font&gt; Kurzstreckenfunkgeräte durschalten.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellung für Kurzstreckenfunk.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	Kanalwahl für Kurzstreckenfunk.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	Oberfläche des Langstreckenfunks öffnen. Sie müsssen sich in einem Fahrzeug befinden oder das Funkgerät als Rucksack einordnen.. Sollten mehrere Funkgerät ansteuerbar sein, wird ein Auswahlmenü angezeigt. Es kann lediglich ein Funkgerät gleichzeitig zum Funken verwendet werden.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + UMSCHALT + A/D&lt;/font&gt; Langstreckenfunkgeräte durchschalten.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + Pfeiltaste Hoch/Links/Rechts&lt;/font&gt; Stereoeinstellungen für Langstreckenfunk.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + NUM[1-9]&lt;/font&gt;	Kanalauswahl für Langstreckenfunk.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + TAB&lt;/font&gt;	Lautstärkenregelung für das Direkte Sprechen. Es ist möglich leise, normal oder laut sprechen (Unabhänig der Funklautstärke).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;UMSCHALT + P&lt;/font&gt;	Oberfläche des Unterwasser-Sendeempfängers öffnen(benötigt Kreislauftauchgerät).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + ~&lt;/font&gt;	Auf Unterwasser-Sendeempfänger funken.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + ]&lt;/font&gt;	Nächstes Funkgerät wählen.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + [&lt;/font&gt;	Vorheriges Funkgerät wählen.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + ALT + ]&lt;/font&gt;	Nächstes Langstreckenfunkgerät wählen.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + ALT + [&lt;/font&gt;	Vorheriges Langstreckenfunkgerät wählen.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;STRG + [←,↑,→]&lt;/font&gt;	Stereoeinstellungen für das Funkgerät ändern.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	Stereoeinstellungen für das Langstreckenfunkgerät ändern.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt;	Auf dem zusätzlichen Kanal des Funkgerätes senden.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	Auf dem zusätzlichen Kanal des Langstreckenfunkgerätes senden.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	Funkoberfläche verlassen.</German>
                 <Italian>&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Bottone Push-to-talk in TeamSpeak&lt;/font&gt;	Voce diretta.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Per parlare in radio onde corte.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Per parlare in radio onde lunghe.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Per aprire l'interfaccia della radio onde corte(la radio deve essere nello slot inventario). Nel caso si abbia il numero della radio - si può selezionare la radio di cui si ha bisogno. E' anche possibile selezionare la radio come attiva ( utilizzata per trasmettere ).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Cambio rapido canali radio onde corte.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Per aprire l'interfaccia della radio onde lunghe (devi indossare una radio ad onde lunghe, o dovresti essere in un veicolo nella posizione di guida, tiratore o copilota). Se un numero di radio è disponibile – ti sarà possibile sceglierne una. Sarà anche possibile quale scegliere come radio attiva ( utilizzata per trasmettere ).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Cambio rapido canali radio onde corte.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Per cambiare il volume con cui si parla. Puoi parlare: bassa voce, normale o gridare. Non cambia il volume di trasmissione in radio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Per aprire l'interfaccia della radio subacquea (devi indossare un respiratore).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Per parlare con la radio subacquea.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Selezionare prossima radio personale.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Selezionare precedente radio personale.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Selezionare prossima lunga portata radio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Selezionare precedente la radio a lungo raggio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Passare alla modalità radio stereo personale.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Passare alla modalità radio stereo lungo raggio.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Trasmettere sul canale aggiuntivo di radio personale.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Trasmettere sul canale supplementare di lunga radiofonica gamma.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Per uscire dalla interfaccia radio.</Italian>
+&lt;font color="#67ED24"&gt;Bottone Push-to-talk in TeamSpeak&lt;/font&gt;	Voce diretta.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	Per parlare in radio onde corte.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt;	Per parlare in radio onde lunghe.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt;	Per aprire l'interfaccia della radio onde corte(la radio deve essere nello slot inventario). Nel caso si abbia il numero della radio - si può selezionare la radio di cui si ha bisogno. E' anche possibile selezionare la radio come attiva ( utilizzata per trasmettere ).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	Cambio rapido canali radio onde corte.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	Per aprire l'interfaccia della radio onde lunghe (devi indossare una radio ad onde lunghe, o dovresti essere in un veicolo nella posizione di guida, tiratore o copilota). Se un numero di radio è disponibile – ti sarà possibile sceglierne una. Sarà anche possibile quale scegliere come radio attiva ( utilizzata per trasmettere ).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt;	Cambio rapido canali radio onde corte.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt;	Per cambiare il volume con cui si parla. Puoi parlare: bassa voce, normale o gridare. Non cambia il volume di trasmissione in radio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt;	Per aprire l'interfaccia della radio subacquea (devi indossare un respiratore).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt;	Per parlare con la radio subacquea.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt;	Selezionare prossima radio personale.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt;	Selezionare precedente radio personale.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt;	Selezionare prossima lunga portata radio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt;	Selezionare precedente la radio a lungo raggio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt;	Passare alla modalità radio stereo personale.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	Passare alla modalità radio stereo lungo raggio.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt;	Trasmettere sul canale aggiuntivo di radio personale.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	Trasmettere sul canale supplementare di lunga radiofonica gamma.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	Per uscire dalla interfaccia radio.</Italian>
                 <Polish>&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	Rozmowa bezpośrednia.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Nadawanie na radiu SW (krótkim).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Nadawanie na radiu LR (długim).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Otwarcie interfejsu radia SW (radio musi być w odpowiednim slocie ekwipunku). Jeśli masz więcej niż jedno - wybierz odpowiadające ci. Istnieje możliwość ustawienia radia jako aktywnego (będzie ono używane do nadawania).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; Przełączanie pomiędzy dostępnymi radiami SW.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; Szybkie przełączanie trybów stereo w radiu SW.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Szybkie przełączanie kanałów w radiu SW.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Otwarcie interfejsu radia LR (radio musi być na twoich plecach lub musisz znajdować się w pojeździe na siedzeniu kierowcy, strzelca, pilota lub co-pilota). Jeśli posiadasz więcej niż jedno - wybierz odpowiadające ci. Tylko jedno radio LR może zostać ustawione jako aktywne.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; Przełączanie pomiędzy dostępnymi radiami LR.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; Szybkie przełączanie trybów stereo w radiu LR.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;   Szybkie przełączanie kanałów w radiu LR.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Zmiana głośności mowy bezpośredniej: szept, normalna, krzyk. Nie wpływa na głośność transmisji radiowych.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Otwarcie interfejsu radia podwodnego (musisz mieć założony akwalung i aparat oddechowy).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Nadawanie na radiu podwodnym.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Wybieranie następnego radia SW.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Wybieranie poprzedniego radia SW.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Wybieranie następnego radia LR.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Wybieranie poprzedniego radia LR.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Zmiana trybu stereo radia SW.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Zmiana trybu stereo radia LR.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Nadawanie na dodatkowym kanale radia SW.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Nadawanie na dodatkowym kanale  radia LR.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Zamknięcie interfejsu radia.</Polish>
+&lt;font color="#67ED24"&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	Rozmowa bezpośrednia.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	Nadawanie na radiu SW (krótkim).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt;	Nadawanie na radiu LR (długim).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt;	Otwarcie interfejsu radia SW (radio musi być w odpowiednim slocie ekwipunku). Jeśli masz więcej niż jedno - wybierz odpowiadające ci. Istnieje możliwość ustawienia radia jako aktywnego (będzie ono używane do nadawania).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + SHIFT + A/D&lt;/font&gt; Przełączanie pomiędzy dostępnymi radiami SW.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; Szybkie przełączanie trybów stereo w radiu SW.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	Szybkie przełączanie kanałów w radiu SW.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	Otwarcie interfejsu radia LR (radio musi być na twoich plecach lub musisz znajdować się w pojeździe na siedzeniu kierowcy, strzelca, pilota lub co-pilota). Jeśli posiadasz więcej niż jedno - wybierz odpowiadające ci. Tylko jedno radio LR może zostać ustawione jako aktywne.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + SHIFT + A/D&lt;/font&gt; Przełączanie pomiędzy dostępnymi radiami LR.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; Szybkie przełączanie trybów stereo w radiu LR.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt;   Szybkie przełączanie kanałów w radiu LR.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt;	Zmiana głośności mowy bezpośredniej: szept, normalna, krzyk. Nie wpływa na głośność transmisji radiowych.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt;	Otwarcie interfejsu radia podwodnego (musisz mieć założony akwalung i aparat oddechowy).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt;	Nadawanie na radiu podwodnym.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt;	Wybieranie następnego radia SW.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt;	Wybieranie poprzedniego radia SW.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt;	Wybieranie następnego radia LR.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt;	Wybieranie poprzedniego radia LR.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt;	Zmiana trybu stereo radia SW.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	Zmiana trybu stereo radia LR.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt;	Nadawanie na dodatkowym kanale radia SW.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	Nadawanie na dodatkowym kanale  radia LR.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	Zamknięcie interfejsu radia.</Polish>
                 <Russian>&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Разговор по рации.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Разговор по рации дальней связи.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Открыть интерфейс личной рации (рация должна быть в слоте инвентаря). В том случае, если у вас имеются несколько раций - вы сможете выбрать требуемую. Также есть возможность установить рацию как активную (ту, которая будет использоваться для передачи.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Быстрое переключение каналов коротковолновой рации.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Открыть интерфейс рации дальней связи (рация дальней связи должна быть одета на спину, либо вы должны быть в технике за водителя, стрелка, командира или помощника пилота). Если доступно несколько рации - вам будет предложено выбрать. Также одну из них можно установить как активную.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Быстрое переключение каналов рации дальней связи.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Изменить громкость прямой речи. Можно говорить шепотом (Whispering), нормально (Normal) и кричать (Yelling). Не влияет на кромкость сигнала в радио передаче.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Открыть интерфейс переговорного устройства для дайверов (на вас должен быть надет ребризер).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Разговор по переговорному устройству для дайверов.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Следующая рация ближней связи.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Предыдущая рация ближней связи.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Следующая рация дальней связи.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Предыдущая рация дальней связи.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Изменение стерео режима рации ближней связи.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Изменение стерео режима рации дальней связи.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Передача на дополнительном канале персональной рации.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Передача на дополнительном канале рации дальней связи.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Выход из интерфейса рации.&lt;br/&gt;</Russian>
+&lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	Разговор по рации.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt;	Разговор по рации дальней связи.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt;	Открыть интерфейс личной рации (рация должна быть в слоте инвентаря). В том случае, если у вас имеются несколько раций - вы сможете выбрать требуемую. Также есть возможность установить рацию как активную (ту, которая будет использоваться для передачи.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	Быстрое переключение каналов коротковолновой рации.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	Открыть интерфейс рации дальней связи (рация дальней связи должна быть одета на спину, либо вы должны быть в технике за водителя, стрелка, командира или помощника пилота). Если доступно несколько рации - вам будет предложено выбрать. Также одну из них можно установить как активную.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt;	Быстрое переключение каналов рации дальней связи.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt;	Изменить громкость прямой речи. Можно говорить шепотом (Whispering), нормально (Normal) и кричать (Yelling). Не влияет на кромкость сигнала в радио передаче.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt;	Открыть интерфейс переговорного устройства для дайверов (на вас должен быть надет ребризер).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt;	Разговор по переговорному устройству для дайверов.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt;	Следующая рация ближней связи.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt;	Предыдущая рация ближней связи.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt;	Следующая рация дальней связи.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt;	Предыдущая рация дальней связи.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt;	Изменение стерео режима рации ближней связи.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	Изменение стерео режима рации дальней связи.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt;	Передача на дополнительном канале персональной рации.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	Передача на дополнительном канале рации дальней связи.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	Выход из интерфейса рации.&lt;br/&gt;</Russian>
                 <Spanish>&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Boton de Pulsar para hablar&lt;/font&gt;	Voz directa.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Block Mayus&lt;/font&gt;	Transmitir por la radio de onda corta.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Block Mayus&lt;/font&gt;	Transmitir por la radio de onda larga.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Para abrir el interfaz de la radio (la radio debe estar en el slot de radio del inventario). En el caso de que tengas mas de una radio - Puede seleccionar la radio que necesites. También es posible selecionar como radio activa (aquella con la que transmites).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; Cambiar a otra radio de onda corta.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Flecha Arriba/Izquierda/Derecha&lt;/font&gt; Cambio rapido del modo stereo.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Cambio rapido de canales de la radio de onda corta.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Para abrir el interfaz de la radio de onda larga (Debes tener una radio de onda larga como mochila o estar en un vehiculo en la posicion de conductor, artillero, comandante or piloto). Si hay varias radios disponibles podras elegir una. Ademas de poder ponerla como radio activa.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; Cambiar radio activa de onda larga.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + Flecha Arriba/Izquierda/Derecha&lt;/font&gt; Cambio rapido de modo stereo en la radio de onda larga.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Cambio rapido de canales de la radio de onda larga.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Para hablar en voz directa. Puedes hablar: Susurrando, Normal or Gritando. Esto no afecta al volumen de voz, si no a la distancia a la que te escuchan los demas jugadores.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Para abrir el interfaz del transmisor submarino (Debes de tener en el inventario un respirado).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Para transmitir por el transmisor submarino.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Seleccionar siguiente radio personal.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Seleccionar radio personal anterior.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Seleccionar siguiente de largo alcance.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Seleccionar radio de largo alcance anterior.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Cambiar modo stero de la radio personal.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Cambiar modo stero de la radio de largo alcance.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Transmitir por el el canal adicional de la radio personal.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Transmitir por el canal adicional de la radio de largo alcance.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Para salir del interfaz de las radios.</Spanish>
+&lt;font color="#67ED24"&gt;Boton de Pulsar para hablar&lt;/font&gt;	Voz directa.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Block Mayus&lt;/font&gt;	Transmitir por la radio de onda corta.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Block Mayus&lt;/font&gt;	Transmitir por la radio de onda larga.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt;	Para abrir el interfaz de la radio (la radio debe estar en el slot de radio del inventario). En el caso de que tengas mas de una radio - Puede seleccionar la radio que necesites. También es posible selecionar como radio activa (aquella con la que transmites).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + SHIFT + A/D&lt;/font&gt; Cambiar a otra radio de onda corta.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Flecha Arriba/Izquierda/Derecha&lt;/font&gt; Cambio rapido del modo stereo.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	Cambio rapido de canales de la radio de onda corta.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	Para abrir el interfaz de la radio de onda larga (Debes tener una radio de onda larga como mochila o estar en un vehiculo en la posicion de conductor, artillero, comandante or piloto). Si hay varias radios disponibles podras elegir una. Ademas de poder ponerla como radio activa.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + SHIFT + A/D&lt;/font&gt; Cambiar radio activa de onda larga.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + Flecha Arriba/Izquierda/Derecha&lt;/font&gt; Cambio rapido de modo stereo en la radio de onda larga.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt;	Cambio rapido de canales de la radio de onda larga.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt;	Para hablar en voz directa. Puedes hablar: Susurrando, Normal or Gritando. Esto no afecta al volumen de voz, si no a la distancia a la que te escuchan los demas jugadores.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt;	Para abrir el interfaz del transmisor submarino (Debes de tener en el inventario un respirado).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt;	Para transmitir por el transmisor submarino.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt;	Seleccionar siguiente radio personal.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt;	Seleccionar radio personal anterior.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt;	Seleccionar siguiente de largo alcance.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt;	Seleccionar radio de largo alcance anterior.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt;	Cambiar modo stero de la radio personal.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	Cambiar modo stero de la radio de largo alcance.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt;	Transmitir por el el canal adicional de la radio personal.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	Transmitir por el canal adicional de la radio de largo alcance.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	Para salir del interfaz de las radios.</Spanish>
                 <Turkish>&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Bas konuş ayarı Teamspeak&lt;/font&gt;	Oyun içi Direct channeldan ses verir.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Radyo ile konuşma.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Uzun menzilli radyo ile konuşma.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Kişisel radyo arayüzünü açma (radyo envanterinizde bulunmalıdır). Birden çok radyonuz varsa bunlardan birini seçmek zorundasınız (seçtiğiniz radyo ile konuşabilirsiniz).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; Cycle through available shortwave radios.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; Rapid switching of shortwave stereo mode.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Rapid switching of shortwave radio channels.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Uzun menzilli radyo arayüzünü açma (sırtınızda uzun menzilli radyo olması gerekir, yada araç içinde bir sürücü,asker veya pilot yardımcısı olmanız gerekir). Araçlarda da uzun menzilli radyo bulunur bunu veya sırtınızda ki radyoyu aktif olarak seçebilirsiniz.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; Uzun menzilli radyoda hızlı kanal değiştirme&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; Uzun menzilli radyoda hızlıca ses modunu değiştirme.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Uzun menzilli radyoda hızlıca kanal değiştirme.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Direk konuşma sesini ayarlama. Şu şekilde konuşabilirsin: Fısıldayarak, Normal or Bağırarak. Radyo ile konuşma sesine etki etmez.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Su altı radyo arayüzünü açma (rebreather giyili olmalıdır).&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Su altı radyosu ile konuşma.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Bir sornaki kişisel radyoyu seç.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Bir önceki kişisel radyoyu seç.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Bir sonraki uzun menzilli radyoyu seç.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Bir önceki kısa menzilli radyoyu seç.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Kişisel radyonda ses modunu değiştirme.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	Uzun menzilli radyoda ses modunu değiştirme.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Kişisel radyonda ek kanak üzerinden iletme.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Uzun menzilli radyonda ek kanal üzerinden iletme.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Radyo arayüzünden çıkma.</Turkish>
+&lt;font color="#67ED24"&gt;Bas konuş ayarı Teamspeak&lt;/font&gt;	Oyun içi Direct channeldan ses verir.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	Radyo ile konuşma.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt;	Uzun menzilli radyo ile konuşma.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt;	Kişisel radyo arayüzünü açma (radyo envanterinizde bulunmalıdır). Birden çok radyonuz varsa bunlardan birini seçmek zorundasınız (seçtiğiniz radyo ile konuşabilirsiniz).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + SHIFT + A/D&lt;/font&gt; Cycle through available shortwave radios.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; Rapid switching of shortwave stereo mode.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	Rapid switching of shortwave radio channels.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	Uzun menzilli radyo arayüzünü açma (sırtınızda uzun menzilli radyo olması gerekir, yada araç içinde bir sürücü,asker veya pilot yardımcısı olmanız gerekir). Araçlarda da uzun menzilli radyo bulunur bunu veya sırtınızda ki radyoyu aktif olarak seçebilirsiniz.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + SHIFT + A/D&lt;/font&gt; Uzun menzilli radyoda hızlı kanal değiştirme&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; Uzun menzilli radyoda hızlıca ses modunu değiştirme.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt;	Uzun menzilli radyoda hızlıca kanal değiştirme.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt;	Direk konuşma sesini ayarlama. Şu şekilde konuşabilirsin: Fısıldayarak, Normal or Bağırarak. Radyo ile konuşma sesine etki etmez.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt;	Su altı radyo arayüzünü açma (rebreather giyili olmalıdır).&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt;	Su altı radyosu ile konuşma.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt;	Bir sornaki kişisel radyoyu seç.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt;	Bir önceki kişisel radyoyu seç.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt;	Bir sonraki uzun menzilli radyoyu seç.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt;	Bir önceki kısa menzilli radyoyu seç.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt;	Kişisel radyonda ses modunu değiştirme.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	Uzun menzilli radyoda ses modunu değiştirme.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt;	Kişisel radyonda ek kanak üzerinden iletme.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	Uzun menzilli radyonda ek kanal üzerinden iletme.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	Radyo arayüzünden çıkma.</Turkish>
                 <Japanese>&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt; color=&quot;#67ED24&quot;&gt;TeamSpeak 内のプッシュ トゥ トーク ボタン&lt;/font&gt;	直接会話。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	無線機を使って話す。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	長距離ラジオを使って話す。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	パーソナル ラジオを開く(インベントリ内にラジオが必要)。複数のラジオを持っている場合、どれか一つを選ぶ必要があります。またラジオを選択することもできます(送信用に)。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; 利用可能な短距離ラジオを順々に選びます。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; 短距離ラジオのステレオ モードを素早く切り替えられます。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	短距離ラジオのチャンネルを素早く切り替えられます。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	長距離ラジオを開く(長距離ラジオを持っているか、運転手や射手、副操縦士など車載無線を使える席に居る必要)。複数のラジオを持っている場合、どれか一つを選ぶ必要があります。またラジオを選択することもできます(送信用に)。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; 利用可能な長距離ラジオを順々に選びます。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; 長距離ラジオのステレオ モードを素早く切り替えられます。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	長距離ラジオのチャンネルを素早く切り替えられます。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	声量を変更できます。小声と通常、大声を選択できますが、無線通信に影響はありません。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	水中ラジオを開く。(リブリーザーを装備している必要があります)&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	水中ラジオを使って話す。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	次のパーソナル ラジオを選択する。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	前ののパーソナル ラジオを選択する。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	次の長距離ラジオを選択する。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	前の長距離ラジオを選択する。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	パーソナル ラジオのステレオ モードを変更。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	長距離ラジオのステレオ モードを変更。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	パーソナル ラジオの追加チャンネルを使って話す。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	長距離ラジオの追加チャンネルを使って話す。&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	ラジオを閉じる。</Japanese>
+&lt;font color="#67ED24"&gt; color="#67ED24"&gt;TeamSpeak 内のプッシュ トゥ トーク ボタン&lt;/font&gt;	直接会話。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	無線機を使って話す。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt;	長距離ラジオを使って話す。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt;	パーソナル ラジオを開く(インベントリ内にラジオが必要)。複数のラジオを持っている場合、どれか一つを選ぶ必要があります。またラジオを選択することもできます(送信用に)。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + SHIFT + A/D&lt;/font&gt; 利用可能な短距離ラジオを順々に選びます。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; 短距離ラジオのステレオ モードを素早く切り替えられます。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	短距離ラジオのチャンネルを素早く切り替えられます。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	長距離ラジオを開く(長距離ラジオを持っているか、運転手や射手、副操縦士など車載無線を使える席に居る必要)。複数のラジオを持っている場合、どれか一つを選ぶ必要があります。またラジオを選択することもできます(送信用に)。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + SHIFT + A/D&lt;/font&gt; 利用可能な長距離ラジオを順々に選びます。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; 長距離ラジオのステレオ モードを素早く切り替えられます。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt;	長距離ラジオのチャンネルを素早く切り替えられます。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt;	声量を変更できます。小声と通常、大声を選択できますが、無線通信に影響はありません。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt;	水中ラジオを開く。(リブリーザーを装備している必要があります)&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt;	水中ラジオを使って話す。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt;	次のパーソナル ラジオを選択する。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt;	前ののパーソナル ラジオを選択する。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt;	次の長距離ラジオを選択する。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt;	前の長距離ラジオを選択する。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt;	パーソナル ラジオのステレオ モードを変更。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	長距離ラジオのステレオ モードを変更。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt;	パーソナル ラジオの追加チャンネルを使って話す。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	長距離ラジオの追加チャンネルを使って話す。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	ラジオを閉じる。</Japanese>
                 <Korean>&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	직접 말하기.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	단파 무전으로 말하기.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	장파 무전으로 말하기.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	개인 무전기 인터페이스 엽니다. (무전기가 인벤토리 슬룻에 있어야 합니다.) 만약 여러개의 무전기가 있다면, 필요한 것을 선택하여 사용 할 수 있습니다. 그리고 전송에 사용될 무전기를 활성 할 수 있습니다.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; 사용 가능한 단파 무전기 순환(바꾸기)&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; 단파 무전기 스테레오 모드 전환 양쪽/왼쪽/오른쪽&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	단파 무전기 채널 전환&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	장파 무전기 인터페이스를 엽니다.(장파 무전기를 등에 매고 있어야 하고, 차량의 운전석, 조종석에 있어야 합니다.) 만약 여러개의 무전기를 가지고 있다면, 그 중 하나를 선택하는 메세지가 출력됩니다. 한 개의 무전기만 활성 할 수 있습니다.(다른 무전기가 스피커 설정 일 때, 듣기 가능)&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; 사용 가능한 장파 무전기 순환 (바꾸기)&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; 장파 무전기 스테레오 모드 전환 양쪽/왼쪽/오른쪽&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	장파 무전기 채널 전환&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	직접 말하기 볼륨을 변경합니다. (보통, 속삭이기, 소리지르기) 무전기의 송신 볼륨에 영향을 주지 않습니다.&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	수중 트렌시버 인터페이스를 엽니다. (수중 호흡기를 착용 해야 합니다)&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	수중 트렌시버로 말하기&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	다음 개인 무전기 선택&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	이전 개인 무전기 선택&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	다음 장파 무전기 선택&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	이전 단파 무전기 선택&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	개인 무전기 스테레오 모드 변경&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	장파 무전기 스테레오 모드 변경&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	개인 무전기의 추가 채널에 말하기&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	장파 무전기의 추가 채널에 말하기&lt;br/&gt;
-&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	무전기 인터페이스에서 나가기</Korean>
+&lt;font color="#67ED24"&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	직접 말하기.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	단파 무전으로 말하기.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt;	장파 무전으로 말하기.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt;	개인 무전기 인터페이스 엽니다. (무전기가 인벤토리 슬룻에 있어야 합니다.) 만약 여러개의 무전기가 있다면, 필요한 것을 선택하여 사용 할 수 있습니다. 그리고 전송에 사용될 무전기를 활성 할 수 있습니다.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + SHIFT + A/D&lt;/font&gt; 사용 가능한 단파 무전기 순환(바꾸기)&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; 단파 무전기 스테레오 모드 전환 양쪽/왼쪽/오른쪽&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	단파 무전기 채널 전환&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	장파 무전기 인터페이스를 엽니다.(장파 무전기를 등에 매고 있어야 하고, 차량의 운전석, 조종석에 있어야 합니다.) 만약 여러개의 무전기를 가지고 있다면, 그 중 하나를 선택하는 메세지가 출력됩니다. 한 개의 무전기만 활성 할 수 있습니다.(다른 무전기가 스피커 설정 일 때, 듣기 가능)&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + SHIFT + A/D&lt;/font&gt; 사용 가능한 장파 무전기 순환 (바꾸기)&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; 장파 무전기 스테레오 모드 전환 양쪽/왼쪽/오른쪽&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt;	장파 무전기 채널 전환&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt;	직접 말하기 볼륨을 변경합니다. (보통, 속삭이기, 소리지르기) 무전기의 송신 볼륨에 영향을 주지 않습니다.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt;	수중 트렌시버 인터페이스를 엽니다. (수중 호흡기를 착용 해야 합니다)&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt;	수중 트렌시버로 말하기&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt;	다음 개인 무전기 선택&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt;	이전 개인 무전기 선택&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt;	다음 장파 무전기 선택&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt;	이전 단파 무전기 선택&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt;	개인 무전기 스테레오 모드 변경&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	장파 무전기 스테레오 모드 변경&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt;	개인 무전기의 추가 채널에 말하기&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	장파 무전기의 추가 채널에 말하기&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	무전기 인터페이스에서 나가기</Korean>
+                <Chinese>&lt;br/&gt;
+&lt;font color="#67ED24"&gt;TeamSpeak按鍵發話&lt;/font&gt;	直接講話。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	短程無線電發話。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt;	長程無線電發話。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt;	開啟短程無線電設定介面(無線電必須在無線電裝備欄位上)。如果你有多把無線電 - 你可以在不同無線電中進行切換，來選擇要傳送訊號的無線電。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + SHIFT + A/D&lt;/font&gt; 循環切換可用的短程無線電。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + 上/左/右 方向鍵&lt;/font&gt; 快速切換短程無線電聲道。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt;	快速切換短程無線電頻道。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt;	開啟長程無線電設定介面(你必須背負一個長程無線電在背上，或者擔任載具的駕駛，副駕駛，砲手，指揮官等職務來使用載具無線電)。如果你有多把無線電 - 你可以在不同無線電中進行切換，來選擇要傳送訊號的無線電。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + SHIFT + A/D&lt;/font&gt; 循環切換可用的長程無線電。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + 上/左/右 方向鍵&lt;/font&gt; 快速切換長程無線電聲道。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt;	快速切換長程無線電頻道.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt;	改變直接講話的音量。你可以選擇: 耳語，正常或嚎叫。此設定並不會影響無線電發話的音量。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt;	開啟水下收發器設定介面(你必須穿著密閉式循環水肺)。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt;	水下收發器發話。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt;	選擇下一把短程無線電。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt;	選擇前一把短程無線電。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt;	選擇下一把長程無線電。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt;	選擇前一把長程無線電。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt;	切換短程無線電聲道模式。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	切換長程無線電聲道模式。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt;	使用短程無線電的附加頻道發話。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt;	使用長程無線電的附加頻道發話。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	離開無線電設定介面。</Chinese>
+                <Chinesesimp>&lt;br/&gt;
+&lt;font color="#67ED24"&gt;TeamSpeak按键发话&lt;/font&gt; 直接讲话。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt; 短程无线电发话。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt; 长程无线电发话。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + P&lt;/font&gt; 开启短程无线电设定介面(无线电必须在无线电装备栏位上)。如果你有多把无线电 - 你可以在不同无线电中进行切换，来选择要传送讯号的无线电。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + SHIFT + A/D&lt;/font&gt; 循环切换可用的短程无线电。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + 上/左/右 方向键&lt;/font&gt; 快速切换短程无线电声道。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;NUM[1-8]&lt;/font&gt; 快速切换短程无线电频道。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + P&lt;/font&gt; 开启长程无线电设定介面(你必须背负一个长程无线电在背上，或者担任载具的驾驶，副驾驶，炮手，指挥官等职务来使用载具无线电)。如果你有多把无线电 - 你可以在不同无线电中进行切换，来选择要传送讯号的无线电。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + SHIFT + A/D&lt;/font&gt; 循环切换可用的长程无线电。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + 上/左/右 方向键&lt;/font&gt; 快速切换长程无线电声道。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + NUM[1-9]&lt;/font&gt; 快速切换长程无线电频道.&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + TAB&lt;/font&gt; 改变直接讲话的音量。你可以选择: 耳语，正常或嚎叫。此设定并不会影响无线电发话的音量。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;SHIFT + P&lt;/font&gt; 开启水下收发器设定介面(你必须穿着密闭式循环水肺)。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ~&lt;/font&gt; 水下收发器发话。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ]&lt;/font&gt; 选择下一把短程无线电。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [&lt;/font&gt; 选择前一把短程无线电。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + ]&lt;/font&gt; 选择下一把长程无线电。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + ALT + [&lt;/font&gt; 选择前一把长程无线电。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;CTRL + [←,↑,→]&lt;/font&gt; 切换短程无线电声道模式。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt; 切换长程无线电声道模式。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;T&lt;/font&gt; 使用短程无线电的附加频道发话。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;Y&lt;/font&gt; 使用长程无线电的附加频道发话。&lt;br/&gt;
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt; 离开无线电设定介面。</Chinesesimp>
             </Key>
             <Key ID="STR_radio_control">
                 <Original>Controls</Original>
@@ -1803,6 +2285,8 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Turkish>Kontroller</Turkish>
                 <Japanese>操作</Japanese>
                 <Korean>조작</Korean>
+                <Chinese>控制</Chinese>
+                <Chinesesimp>控制</Chinesesimp>
             </Key>
             <Key ID="STR_subject_name">
                 <Original>Radio</Original>
@@ -1816,6 +2300,453 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Turkish>Radyo</Turkish>
                 <Japanese>無線機</Japanese>
                 <Korean>무전기</Korean>
+                <Chinese>無線電</Chinese>
+                <Chinesesimp>无线电</Chinesesimp>
+            </Key>
+        </Container>
+        <Container name="Vehicles">
+            <Key ID="STR_TFAR_Veh_CommunicationTower">
+                <Original>Communication Tower (TFAR)</Original>
+                <Chinese>通訊塔 (TFAR)</Chinese>
+                <Chinesesimp>通讯塔 (TFAR)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Veh_RF7800STR_Desc">
+                <Original>RF-7800S-TR rifleman radio 2km</Original>
+                <Chinese>RF-7800S-TR短程步兵無線電，有效距離2公里</Chinese>
+                <Chinesesimp>RF-7800S-TR短程步兵无线电，有效距离2公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Veh_PNR1000A_Desc">
+                <Original>PNR-1000A rifleman radio 2km</Original>
+                <Chinese>PNR-1000A短程步兵無線電，有效距離2公里</Chinese>
+                <Chinesesimp>PNR-1000A短程步兵无线电，有效距离2公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Veh_MicroDagr">
+                <Original>MicroDAGR Radio Programmer</Original>
+                <Chinese>微型軍用GPS接收器 (無線電編碼器)</Chinese>
+                <Chinesesimp>微型军用GPS接收器 (无线电编码器)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Veh_MicroDagr_Desc">
+                <Original>Provides ability to program rifleman radios in the field</Original>
+                <Chinese>使持有人能在戰場上調整短程步兵無線電的頻率設定</Chinese>
+                <Chinesesimp>使持有人能在战场上调整短程步兵无线电的频率设定</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Veh_FADAK_Desc">
+                <Original>FADAK personal radio 5km</Original>
+                <Chinese>FADAK短程個人無線電，有效距離5公里</Chinese>
+                <Chinesesimp>FADAK短程个人无线电，有效距离5公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Veh_ANPRC154_Desc">
+                <Original>AN/PRC-154 rifleman radio 2km</Original>
+                <Chinese>AN/PRC-154短程步兵無線電，有效距離2公里</Chinese>
+                <Chinesesimp>AN/PRC-154短程步兵无线电，有效距离2公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Veh_ANPRC152_Desc">
+                <Original>AN/PRC-152 personal radio 5km</Original>
+                <Chinese>AN/PRC-152短程個人無線電，有效距離5公里</Chinese>
+                <Chinesesimp>AN/PRC-152短程个人无线电，有效距离5公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Handhelds_ANPRC148JEM_Desc">
+                <Original>AN/PRC-148 JEM personal radio 5km</Original>
+                <Chinese>AN/PRC-148 JEM短程個人無線電，有效距離5公里</Chinese>
+                <Chinesesimp>AN/PRC-148 JEM短程个人无线电，有效距离5公里</Chinesesimp>
+            </Key>
+        </Container>
+        <Container name="Zeus">
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_hint">
+                <Original>This has to be used on a Radio</Original>
+                <Chinese>此模塊必須用在無線電上</Chinese>
+                <Chinesesimp>此模块必须用在无线电上</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_FreqTitle">
+                <Original>Frequency</Original>
+                <Chinese>頻率</Chinese>
+                <Chinesesimp>频率</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_ChannelTitle">
+                <Original>Channel</Original>
+                <Chinese>頻道</Chinese>
+                <Chinesesimp>频道</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_SpeakerTitle">
+                <Original>Speaker</Original>
+                <Chinese>擴音器</Chinese>
+                <Chinesesimp>扩音器</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_VolumeTitle">
+                <Original>Volume</Original>
+                <Chinese>音量</Chinese>
+                <Chinesesimp>音量</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_DisplayName">
+                <Original>Static Radio</Original>
+                <Chinese>固定式無線電</Chinese>
+                <Chinesesimp>固定式无线电</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_ATT_Frequency_Tip">
+                <Original>The static Frequencies for this radio</Original>
+                <Chinese>此無線電的固定頻率</Chinese>
+                <Chinesesimp>此无线电的固定频率</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_ATT_Channel_Tip">
+                <Original>The current selected Channel for this radio</Original>
+                <Chinese>當前無線電選擇的頻道</Chinese>
+                <Chinesesimp>当前无线电选择的频道</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_ATT_SpeakerEnabled">
+                <Original>Speaker enabled</Original>
+                <Chinese>開啟擴音器</Chinese>
+                <Chinesesimp>开启扩音器</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_ATT_SpeakerEnabled_Tip">
+                <Original>Whether the Radios Speaker is enabled.</Original>
+                <Chinese>決定是否開啟無線電的擴音器。</Chinese>
+                <Chinesesimp>决定是否开启无线电的扩音器。</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_ATT_RadioVolume">
+                <Original>Radio Volume</Original>
+                <Chinese>無線電音量</Chinese>
+                <Chinesesimp>无线电音量</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_Zeus_moduleStaticRadio_ATT_RadioVolume_Tip">
+                <Original>The normal max for this setting is 10. But for static Radios their volume can be amplified. Be careful using this on Radios that can be picked up by Players! A too high setting can cause performance problems on clients.</Original>
+                <Chinese>此設定在普通的狀態下最大值為10。但對於固定式無線電來說，它們的音量還可以再被放大。請小心使用在可以被玩家撿起來的無線電上!過高的設定可能會影響客戶端電腦的效能。</Chinese>
+                <Chinesesimp>此设定在普通的状态下最大值为10。但对于固定式无线电来说，它们的音量还可以再被放大。请小心使用在可以被玩家捡起来的无线电上!过高的设定可能会影响客户端电脑的效能。</Chinesesimp>
+            </Key>
+        </Container>
+        <Container name="Backpacks">
+            <Key ID="STR_TFAR_BP_RT1523G_Desc">
+                <Original>RT-1523G (ASIP) long range radio 20km</Original>
+                <Chinese>RT-1523G (ASIP)長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>RT-1523G (ASIP)长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_BWMOD_Desc">
+                <Original>RT-1523G (ASIP) BWMOD long range radio 20km</Original>
+                <Chinese>RT-1523G (ASIP) BWMOD長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>RT-1523G (ASIP) BWMOD长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_RHS_Desc">
+                <Original>RT-1523G (ASIP) RHS long range radio 20km</Original>
+                <Chinese>RT-1523G (ASIP) RHS長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>RT-1523G (ASIP) RHS长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_Big">
+                <Original>RT-1523G (ASIP) Big</Original>
+                <Chinese>RT-1523G (ASIP-大型)</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-大型)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_Big_Desc">
+                <Original>RT-1523G (ASIP) Big long range radio 20km</Original>
+                <Chinese>RT-1523G (ASIP-大型)長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-大型)长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_BigBWMOD">
+                <Original>RT-1523G (ASIP) Big BWMOD [Flecktarn]</Original>
+                <Chinese>RT-1523G (ASIP-大型) BWMOD [斑點迷彩]</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-大型) BWMOD [斑点迷彩]</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_BigBWMOD_Desc">
+                <Original>RT-1523G (ASIP) Big BWMOD long range radio 20km</Original>
+                <Chinese>RT-1523G (ASIP-大型) BWMOD長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-大型) BWMOD长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_BigBWMOD_Tropen">
+                <Original>RT-1523G (ASIP) Big BWMOD [Tropentarn]</Original>
+                <Chinese>RT-1523G (ASIP-大型) BWMOD [荒漠斑點迷彩]</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-大型) BWMOD [荒漠斑点迷彩]</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_BigRHS">
+                <Original>RT-1523G (ASIP) Big RHS</Original>
+                <Chinese>RT-1523G (ASIP-大型) RHS</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-大型) RHS</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_BigRHS_Desc">
+                <Original>RT-1523G (ASIP) Big RHS long range radio 20km</Original>
+                <Chinese>RT-1523G (ASIP-大型) RHS長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-大型) RHS长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_Sage">
+                <Original>RT-1523G (ASIP) Sage</Original>
+                <Chinese>RT-1523G (ASIP-草綠色)</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-草绿色)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_Sage_Desc">
+                <Original>RT-1523G (ASIP) Sage long range radio 20km</Original>
+                <Chinese>RT-1523G (ASIP-草綠色)長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-草绿色)长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_Green">
+                <Original>RT-1523G (ASIP) Green</Original>
+                <Chinese>RT-1523G (ASIP-綠色)</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-绿色)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_Green_Desc">
+                <Original>RT-1523G (ASIP) Green long range radio 20km</Original>
+                <Chinese>RT-1523G (ASIP-綠色)長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-绿色)长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_Fabric">
+                <Original>RT-1523G (ASIP) Fabric</Original>
+                <Chinese>RT-1523G (ASIP-布質)</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-布质)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_Fabric_Desc">
+                <Original>RT-1523G (ASIP) Fabric long range radio 20km</Original>
+                <Chinese>RT-1523G (ASIP-布質)長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-布质)长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_Black">
+                <Original>RT-1523G (ASIP) Black</Original>
+                <Chinese>RT-1523G (ASIP-黑色)</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-黑色)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_RT1523G_Black_Desc">
+                <Original>RT-1523G (ASIP) Black long range radio 20km</Original>
+                <Chinese>RT-1523G (ASIP-黑色)長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>RT-1523G (ASIP-黑色)长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_MR6000L_Desc">
+                <Original>MR6000L airborne radio 40km</Original>
+                <Chinese>MR6000L空中載具無線電，有效距離40公里</Chinese>
+                <Chinesesimp>MR6000L空中载具无线电，有效距离40公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_MR3000_Desc">
+                <Original>MR3000 long range radio 20km</Original>
+                <Chinese>MR3000長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>MR3000长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_MR3000_Multicam">
+                <Original>MR3000 Multicam</Original>
+                <Chinese>MR3000 (多地形迷彩)</Chinese>
+                <Chinesesimp>MR3000 (多地形迷彩)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_MR3000_Multicam_Desc">
+                <Original>MR3000 Multicam long range radio 20km</Original>
+                <Chinese>MR3000 (多地形迷彩)長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>MR3000 (多地形迷彩)长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_MR3000_BWMOD">
+                <Original>MR3000 BWMOD [Flecktarn]</Original>
+                <Chinese>MR3000 BWMOD [斑點迷彩]</Chinese>
+                <Chinesesimp>MR3000 BWMOD [斑点迷彩]</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_MR3000_BWMOD_Desc">
+                <Original>MR3000 BWMOD long range radio 20km</Original>
+                <Chinese>MR3000 BWMOD長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>MR3000 BWMOD长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_MR3000_BWMOD_Tropen">
+                <Original>MR3000 BWMOD [Tropentarn]</Original>
+                <Chinese>MR3000 BWMOD [荒漠斑點迷彩]</Chinese>
+                <Chinesesimp>MR3000 BWMOD [荒漠斑点迷彩]</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_MR3000_RHS_Desc">
+                <Original>MR3000 RHS long range radio 20km</Original>
+                <Chinese>MR3000 RHS長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>MR3000 RHS长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_Bussole">
+                <Original>Assault Pack Bussole</Original>
+                <Chinese>突擊背包 (Bussole)</Chinese>
+                <Chinesesimp>突击背包 (Bussole)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_Bussole_Desc">
+                <Original>Bussole long range radio 20km</Original>
+                <Chinese>Bussole長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>Bussole长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_ANPRC155_Desc">
+                <Original>AN/PRC-155 long range radio 20km</Original>
+                <Chinese>AN/PRC 155長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>AN/PRC 155长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_ANPRC155_Coyote">
+                <Original>AN/PRC-155 Coyote</Original>
+                <Chinese>AN/PRC 155 (土狼棕色)</Chinese>
+                <Chinesesimp>AN/PRC 155 (土狼棕色)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_ANPRC155_Coyote_Desc">
+                <Original>AN/PRC-155 Coyote long range radio 20km</Original>
+                <Chinese>AN/PRC 155 (土狼棕色)長程無線電，有效距離20公里</Chinese>
+                <Chinesesimp>AN/PRC 155 (土狼棕色)长程无线电，有效距离20公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_ANARC210_Desc">
+                <Original>AN/ARC-210 airborne radio 40km</Original>
+                <Chinese>AN/ARC-210空中載具無線電，有效距離40公里</Chinese>
+                <Chinesesimp>AN/ARC-210空中载具无线电，有效距离40公里</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_BP_ANARC164_Desc">
+                <Original>AN/ARC-164 airborne radio 40km</Original>
+                <Chinese>AN/ARC-164空中載具無線電，有效距離40公里</Chinese>
+                <Chinesesimp>AN/ARC-164空中载具无线电，有效距离40公里</Chinesesimp>
+            </Key>
+        </Container>
+        <Container name="WarningMessage">
+            <Key ID="STR_TFAR_WM_Singleplayer">
+                <Original>TFAR doesn't work in Singleplayer. Use the Multiplayer Editor if you need to test TFAR stuff.</Original>
+                <Chinese>TFAR無法在單人遊戲模式下運作。請使用多人遊戲預覽模式來在編輯器中測試TFAR的功能。</Chinese>
+                <Chinesesimp>TFAR无法在单人游戏模式下运作。请使用多人游戏预览模式来在编辑器中测试TFAR的功能。</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_NotLoad">
+                <Original>TASK FORCE RADIO NOT LOADED</Original>
+                <Chinese>TFAR模組沒有被載入</Chinese>
+                <Chinesesimp>TFAR模组没有被载入</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_NotLoad_Desc">
+                <Original>LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0</Original>
+                <Chinese>看來TFAR並沒有被載入，或是版本低於1.0</Chinese>
+                <Chinesesimp>看来TFAR并没有被载入，或是版本低于1.0</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_BaseModule_LR">
+                <Original>TFAR ERROR: %1 is not a valid LR radio</Original>
+                <Chinese>TFAR錯誤: %1並不是有效的長程無線電</Chinese>
+                <Chinesesimp>TFAR错误: %1并不是有效的长程无线电</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_BaseModule_PR">
+                <Original>TFAR ERROR: %1 is not a valid personal radio</Original>
+                <Chinese>TFAR錯誤: %1並不是有效的個人無線電</Chinese>
+                <Chinesesimp>TFAR错误: %1并不是有效的个人无线电</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_BaseModule_FQMSR_AlreadySet">
+                <Original>TFAR - TFAR_freq_sr_west already set, module overriding.</Original>
+                <Chinese>TFAR - TFAR_freq_sr_west已經被設置，模塊正在覆蓋。</Chinese>
+                <Chinesesimp>TFAR - TFAR_freq_sr_west已经被设置，模块正在覆盖。</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_BaseModule_FQMLR_AlreadySet">
+                <Original>TFAR - TFAR_freq_lr_west already set, module overriding.</Original>
+                <Chinese>TFAR - TFAR_freq_lr_west已經被設置，模塊正在覆蓋。</Chinese>
+                <Chinesesimp>TFAR - TFAR_freq_lr_west已经被设置，模块正在覆盖。</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_FreqModule_noUnits">
+                <Original>TFAR - No units set for Frequency Module</Original>
+                <Chinese>TFAR - 頻率模塊沒有與任何單位連接上</Chinese>
+                <Chinesesimp>TFAR - 频率模块没有与任何单位连接上</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_FreqModule_FQMSW_AlreadySet">
+                <Original>TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.</Original>
+                <Chinese>TFAR - tf_sw_frequency已經被設置，可能有群組(%1)被多個頻率模塊連接上。或有多個頻率模塊連接上到多個屬於同一群組的單位上。</Chinese>
+                <Chinesesimp>TFAR - tf_sw_frequency已经被设置，可能有群组(%1)被多个频率模块连接上。或有多个频率模块连接上到多个属于同一群组的单位上。</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_WM_FreqModule_FQMLR_AlreadySet">
+                <Original>TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.</Original>
+                <Chinese>TFAR - tf_lr_frequency已經被設置，可能有群組(%1)被多個頻率模塊連接上。或有多個頻率模塊連接上到多個屬於同一群組的單位上。</Chinese>
+                <Chinesesimp>TFAR - tf_lr_frequency已经被设置，可能有群组(%1)被多个频率模块连接上。或有多个频率模块连接上到多个属于同一群组的单位上。</Chinesesimp>
+            </Key>
+        </Container>
+        <Container name="Keybinding">
+            <Key ID="STR_TFAR_key_SW_Channel">
+                <Original>SW Channel</Original>
+                <Chinese>短程無線電頻道</Chinese>
+                <Chinesesimp>短程无线电频道</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_LR_Channel">
+                <Original>LR Channel</Original>
+                <Chinese>長程無線電頻道</Chinese>
+                <Chinesesimp>长程无线电频道</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_ChangeSpeechVolume">
+                <Original>Change Speaking Volume</Original>
+                <Chinese>變更發話音量</Chinese>
+                <Chinesesimp>变更发话音量</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_YellingModifier">
+                <Original>Yelling Modifier</Original>
+                <Chinese>嚎叫音量修改器</Chinese>
+                <Chinesesimp>嚎叫音量修改器</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_WhisperingModifier">
+                <Original>Whispering Modifier</Original>
+                <Chinese>耳語音量修改器</Chinese>
+                <Chinesesimp>耳语音量修改器</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_CycleRightSWRadios">
+                <Original>Cycle Right SW Radios</Original>
+                <Chinese>向右循環短程無線電</Chinese>
+                <Chinesesimp>向右循环短程无线电</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_CycleLeftSWRadios">
+                <Original>Cycle Left SW Radios</Original>
+                <Chinese>向左循環短程無線電</Chinese>
+                <Chinesesimp>向左循环短程无线电</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_CycleRightLRRadios">
+                <Original>Cycle Right LR Radios</Original>
+                <Chinese>向右循環長程無線電</Chinese>
+                <Chinesesimp>向右循环长程无线电</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_CycleLeftLRRadios">
+                <Original>Cycle Left LR Radios</Original>
+                <Chinese>向左循環長程無線電</Chinese>
+                <Chinesesimp>向左循环长程无线电</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_SWStereo_Both">
+                <Original>SW Stereo: Both</Original>
+                <Chinese>短程無線電聲道: 雙聲道</Chinese>
+                <Chinesesimp>短程无线电声道: 双声道</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_SWStereo_Left">
+                <Original>SW Stereo: Left</Original>
+                <Chinese>短程無線電聲道: 左聲道</Chinese>
+                <Chinesesimp>短程无线电声道: 左声道</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_SWStereo_Right">
+                <Original>SW Stereo: Right</Original>
+                <Chinese>短程無線電聲道: 右聲道</Chinese>
+                <Chinesesimp>短程无线电声道: 右声道</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_LRStereo_Both">
+                <Original>LR Stereo: Both</Original>
+                <Chinese>長程無線電聲道: 雙聲道</Chinese>
+                <Chinesesimp>长程无线电声道: 双声道</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_LRStereo_Left">
+                <Original>LR Stereo: Left</Original>
+                <Chinese>長程無線電聲道: 左聲道</Chinese>
+                <Chinesesimp>长程无线电声道: 左声道</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_LRStereo_Right">
+                <Original>LR Stereo: Right</Original>
+                <Chinese>長程無線電聲道: 右聲道</Chinese>
+                <Chinesesimp>长程无线电声道: 右声道</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_SWTransmit">
+                <Original>SW Transmit</Original>
+                <Chinese>短程無線電 發送</Chinese>
+                <Chinesesimp>短程无线电 发送</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_SWTransmitAlt">
+                <Original>SW Transmit Alt</Original>
+                <Chinese>短程無線電備用 發送</Chinese>
+                <Chinesesimp>短程无线电备用 发送</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_SWTransmitAdditional">
+                <Original>SW Transmit Additional</Original>
+                <Chinese>短程無線電附加頻道 發送</Chinese>
+                <Chinesesimp>短程无线电附加频道 发送</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_LRTransmit">
+                <Original>LR Transmit</Original>
+                <Chinese>長程無線電 發送</Chinese>
+                <Chinesesimp>长程无线电 发送</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_LRTransmitAlt">
+                <Original>LR Transmit Alt</Original>
+                <Chinese>長程無線電備用 發送</Chinese>
+                <Chinesesimp>长程无线电备用 发送</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_LRTransmitAdditional">
+                <Original>LR Transmit Additional</Original>
+                <Chinese>長程無線電附加頻道 發送</Chinese>
+                <Chinesesimp>长程无线电附加频道 发送</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_LowerHeadset">
+                <Original>Lower Headset</Original>
+                <Chinese>取下耳機</Chinese>
+                <Chinesesimp>取下耳机</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_key_RaiseHeadset">
+                <Original>Raise Headset</Original>
+                <Chinese>戴上耳機</Chinese>
+                <Chinesesimp>戴上耳机</Chinesesimp>
             </Key>
         </Container>
     </Package>

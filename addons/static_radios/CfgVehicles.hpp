@@ -36,7 +36,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
         };*/
         class FreqTitle: RscText {
             idc=2611803;
-            text="Frequency";
+            text="$STR_TFAR_Zeus_moduleStaticRadio_FreqTitle";
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="1.1 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="6 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
@@ -53,7 +53,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
         };
         class ChannelTitle: RscText {
             idc=2611805;
-            text="Channel";
+            text="$STR_TFAR_Zeus_moduleStaticRadio_ChannelTitle";
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="2.2 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="26 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
@@ -71,7 +71,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
         };
         class SpeakerTitle: RscText {
             idc=2611807;
-            text="Speaker";
+            text="$STR_TFAR_Zeus_moduleStaticRadio_SpeakerTitle";
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="3.3 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="26 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
@@ -89,7 +89,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
 
         class VolumeTitle: RscText {
             idc=2611809;
-            text="Volume";
+            text="$STR_TFAR_Zeus_moduleStaticRadio_VolumeTitle";
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="4.4 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="26 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
@@ -174,7 +174,7 @@ class CfgVehicles {
 
 
         curatorCanAttach = 1;
-        displayName = "Static Radio";
+        displayName = "$STR_TFAR_Zeus_moduleStaticRadio_DisplayName";
         //function = "TFAR_static_radios_fnc_moduleStaticRadio";
         icon = "";//#TODO
 curatorInfoType="RscDisplayAttributesModuleTFARStaticRadio";
