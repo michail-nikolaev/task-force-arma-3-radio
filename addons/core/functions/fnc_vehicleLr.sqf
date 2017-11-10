@@ -40,11 +40,11 @@ switch (_unit) do {
         _result = [_vehicle, "copilot_radio_setting"];
     };
     default {
-        private _turrets = [(typeof _vehicle), "TFAR_AdditionalLR_Turret", []] call TFAR_fnc_getConfigProperty;
+        private _turrets = [(typeof _vehicle), "TFAR_AdditionalLR_Turret", []] call TFAR_fnc_getVehicleConfigProperty;
         private _index = (_turrets apply {(_vehicle turretUnit _x)}) find _unit;
         if (_index != -1) exitWith {_result = [_vehicle, format ["turretUnit_%1_radio_setting",_index]]};
 
-        private _cargos = [(typeof _vehicle), "TFAR_AdditionalLR_Cargo", []] call TFAR_fnc_getConfigProperty;
+        private _cargos = [(typeof _vehicle), "TFAR_AdditionalLR_Cargo", []] call TFAR_fnc_getVehicleConfigProperty;
         private _cargoIndex = _vehicle getCargoIndex _unit;
         if (_cargoIndex in _cargos) exitWith {_result = [_vehicle, format ["cargoUnit_%1_radio_setting",_cargoIndex]]};
     }

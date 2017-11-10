@@ -28,4 +28,4 @@ _radio params ["_radio_object", "_radio_qualifier"];
 
 _radio_object setVariable [_radio_qualifier, + _value, true];
 
-TFAR_ConfigCacheNamespace setVariable ["lastRadioSettingUpdate",diag_tickTime];
+GVAR(VehicleConfigCacheNamespace) setVariable ["lastRadioSettingUpdate",diag_tickTime];
