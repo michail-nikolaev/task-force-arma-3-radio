@@ -9,10 +9,10 @@
 ["TFAR_SameSRFrequenciesForSide", "CHECKBOX", ELSTRING(settings,radio_same_sw_frequencies_for_side), "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TFAR_SameLRFrequenciesForSide", "CHECKBOX", ELSTRING(settings,radio_same_lr_frequencies_for_side), "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
 ["TFAR_fullDuplex", "CHECKBOX", [ELSTRING(settings,FullDuplex),ELSTRING(settings,FullDuplexDescription)], "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
-["TFAR_enableIntercom", "CHECKBOX", "Enable vehicle Intercom", "Task Force Arrowhead Radio", true, true,{["intercomEnabled",TFAR_enableIntercom] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_objectInterceptionEnabled", "CHECKBOX", "Enable Object Interception", "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
-["TFAR_spectatorCanHearEnemyUnits", "CHECKBOX", ["Spectator can hear enemy units","If disabled a Spectator can't hear direct speech from Units that are considered Enemy to the Spectators original faction"], "Task Force Arrowhead Radio", true, true,{["spectatorNotHearEnemies",!TFAR_spectatorCanHearEnemyUnits] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_spectatorCanHearFriendlies", "CHECKBOX", ["Spectator can hear units","If disabled a Spectator can't hear any Players besides other Spectators"], "Task Force Arrowhead Radio", true, true,{["spectatorCanHearFriendlies",TFAR_spectatorCanHearFriendlies] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
+["TFAR_enableIntercom", "CHECKBOX", ELSTRING(settings,radio_enable_vehicle_intercom), "Task Force Arrowhead Radio", true, true,{["intercomEnabled",TFAR_enableIntercom] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
+["TFAR_objectInterceptionEnabled", "CHECKBOX", ELSTRING(settings,radio_enable_object_interception), "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
+["TFAR_spectatorCanHearEnemyUnits", "CHECKBOX", [ELSTRING(settings,radio_spectator_hear_emy),ELSTRING(settings,radio_spectator_hear_emy_desc)], "Task Force Arrowhead Radio", true, true,{["spectatorNotHearEnemies",!TFAR_spectatorCanHearEnemyUnits] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
+["TFAR_spectatorCanHearFriendlies", "CHECKBOX", [ELSTRING(settings,radio_spectator_hear),ELSTRING(settings,radio_spectator_hear_desc)], "Task Force Arrowhead Radio", true, true,{["spectatorCanHearFriendlies",TFAR_spectatorCanHearFriendlies] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
 [
     "TFAR_takingRadio",
     "LIST",
