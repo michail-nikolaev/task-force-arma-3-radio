@@ -68,7 +68,7 @@ class rf7800str_radio_dialog
     	y = 0.6287 * safezoneH + safezoneY;
     	w = 0.0113437 * safezoneW;
     	h = 0.0319 * safezoneH;
-    	tooltip = $STR_previous_channel;
+    	tooltip = ELSTRING(core,previous_channel);
     	action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
     };
     class next_channel: HiddenButton
@@ -78,7 +78,7 @@ class rf7800str_radio_dialog
     	y = 0.5814 * safezoneH + safezoneY;
     	w = 0.0113437 * safezoneW;
     	h = 0.0352 * safezoneH;
-    	tooltip = $STR_next_channel;
+    	tooltip = ELSTRING(core,next_channel);
     	action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
     };
     class speakers: HiddenButton
@@ -88,7 +88,7 @@ class rf7800str_radio_dialog
     	y = 0.4626 * safezoneH + safezoneY;
     	w = 0.0144375 * safezoneW;
     	h = 0.0319 * safezoneH;
-    	tooltip = $STR_speakers_settings_true;
+    	tooltip = ECSTRING(core,speakers_settings_true);
     	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
     };
     class stereo: HiddenButton
@@ -102,7 +102,7 @@ class rf7800str_radio_dialog
             [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
             [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;
         );
-    	tooltip = $STR_stereo_settings;
+    	tooltip = ECSTRING(core,stereo_settings);
     };
     class channel_Switch: HiddenRotator
     {
@@ -111,7 +111,7 @@ class rf7800str_radio_dialog
     	y = 0.3053 * safezoneH + safezoneY;
     	w = 0.0288750 * safezoneW;
     	h = 0.0605 * safezoneH;
-    	tooltip = $STR_rotator_channel;
+    	tooltip = ELSTRING(core,rotator_channel);
     	onMouseButtonDown ="[_this select 1, false] call TFAR_fnc_setChannelViaDialog;";
     };
     class volume_Switch: HiddenRotator
@@ -121,7 +121,7 @@ class rf7800str_radio_dialog
     	y = 0.2899 * safezoneH + safezoneY;
     	w = 0.0314531 * safezoneW;
     	h = 0.0726 * safezoneH;
-    	tooltip = $STR_rotator_volume;
+    	tooltip = ELSTRING(core,rotator_volume);
     	onMouseButtonDown = "[_this select 1, false] call TFAR_fnc_setVolumeViaDialog;";
     };
     	class microdagr_background: RscBackPicture
@@ -146,7 +146,7 @@ class rf7800str_radio_dialog
     	font = "TFAR_font_dots";
     	shadow = 2;
     	canModify = 0;
-    	tooltip = $STR_current_channel;
+    	tooltip = ELSTRING(core,current_channel);
     };
     class edit: RscEditLCD
     {
@@ -160,7 +160,7 @@ class rf7800str_radio_dialog
     	font = "TFAR_font_dots";
     	shadow = 2;
     	canModify = 1;
-    	tooltip = $STR_current_freq;
+    	tooltip = ELSTRING(core,current_freq);
     };
     class clear: HiddenButton
     {
@@ -170,7 +170,7 @@ class rf7800str_radio_dialog
     	y = 0.534113 * safezoneH + safezoneY;
     	w = 0.0402187 * safezoneW;
     	h = 0.0517 * safezoneH;
-    	tooltip = $STR_clear_frequency;
+    	tooltip = ELSTRING(core,clear_frequency);
     	font = "TFAR_font_dots";
     	shadow = 2;
     	action = QUOTE(
@@ -186,7 +186,7 @@ class rf7800str_radio_dialog
     	y = 0.530812 * safezoneH + safezoneY;
     	w = 0.04125 * safezoneW;
     	h = 0.055 * safezoneH;
-    	tooltip = $STR_set_frequency;
+    	tooltip = ELSTRING(core,set_frequency);
     	font = "TFAR_font_dots";
     	shadow = 2;
     	action = QUOTE(
@@ -195,7 +195,7 @@ class rf7800str_radio_dialog
                 [ARR_2(TF_sw_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setSwFrequency;
                 call TFAR_fnc_hideHint;
             } else {
-                hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)]
+                hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)]
             };
             call TFAR_fnc_updateSWDialogToChannel;
         );

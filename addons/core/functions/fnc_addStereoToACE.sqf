@@ -38,7 +38,7 @@ for "_i" from 0 to 2 do {
     _grandchilds pushBack [
         [
             format["TFAR_Stereo_Action_%1_%2", _radio, _i],
-            localize format ["STR_stereo_settings_%1", _i],
+            localize format [LSTRING(stereo_settings_%1), _i],
             "",
             _switchFnc,
             _switchCheck,

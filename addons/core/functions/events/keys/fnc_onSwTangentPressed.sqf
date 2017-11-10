@@ -44,7 +44,7 @@ if !([  TFAR_currentUnit,
 private _currentFrequency = call TFAR_fnc_currentSWFrequency;
 
 private _hintText = format[
-                            localize "STR_transmit",
+                            localize LSTRING(transmit),
                             format [
                                     "%1<img size='1.5' image='%2'/>",
                                     ([_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty)),

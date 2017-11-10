@@ -20,10 +20,10 @@
         Called internally by CBA UI
 */
 [
-    ["secondary", localize "STR_select_action", "buttonList", "", false],
+    ["secondary", localize LSTRING(select_action), "buttonList", "", false],
     [
-        [localize "STR_select_action_setup", "[{call TFAR_fnc_onSwDialogOpen;}, [], 0.2] call CBA_fnc_waitAndExecute;", "", localize "STR_select_action_setup_tooltip", "", -1, true, true],
-        [localize "STR_select_action_use", "TF_sw_dialog_radio call TFAR_fnc_setActiveSwRadio;[(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_showRadioInfo;", "", localize "STR_select_action_use_tooltip", "", -1, true, true],
-        [localize "STR_select_action_copy_settings_from", "", "", localize "STR_select_action_settings_from_tooltip", "_this call TFAR_fnc_copyRadioSettingMenu", -1, true, true]
+        [localize LSTRING(select_action_setup), "[{call TFAR_fnc_onSwDialogOpen;}, [], 0.2] call CBA_fnc_waitAndExecute;", "", localize LSTRING(select_action_setup_tooltip), "", -1, true, true],
+        [localize LSTRING(select_action_use), "TF_sw_dialog_radio call TFAR_fnc_setActiveSwRadio;[(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_showRadioInfo;", "", localize LSTRING(select_action_use_tooltip), "", -1, true, true],
+        [localize LSTRING(select_action_copy_settings_from), "", "", localize LSTRING(select_action_copy_settings_from_tooltip), "_this call TFAR_fnc_copyRadioSettingMenu", -1, true, true]
     ]
 ]

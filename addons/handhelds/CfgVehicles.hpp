@@ -12,7 +12,7 @@ class CfgVehicles {
     class Box_NATO_Support_F;
     class TFAR_NATO_Radio_Crate: Box_NATO_Support_F {
         author = "TFAR";
-        displayName = "$STR_TFAR_NATO_crate";
+        displayName = ECSTRING(core,NATO_crate);
         class TransportItems {
             MACRO_ADDITEM(TFAR_anprc152,40);
             MACRO_ADDITEM(TFAR_rf7800str,40);

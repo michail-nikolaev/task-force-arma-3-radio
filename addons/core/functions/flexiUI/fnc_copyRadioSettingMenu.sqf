@@ -21,7 +21,7 @@
 
 private _menu = [];
 
-private _menuDef = ["main", localize "STR_select_action_copy_settings_from", "buttonList", "", false];
+private _menuDef = ["main", localize LSTRING(select_action_copy_settings_from), "buttonList", "", false];
 private _positions = [];
 {
     if (((_x call TFAR_fnc_getSwRadioCode) == (TF_sw_dialog_radio call TFAR_fnc_getSwRadioCode)) and {TF_sw_dialog_radio != _x}) then {

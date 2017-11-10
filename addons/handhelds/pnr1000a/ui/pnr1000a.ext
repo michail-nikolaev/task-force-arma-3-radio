@@ -71,7 +71,7 @@ class pnr1000a_radio_dialog
     	y = 0.521995 * safezoneH + safezoneY;
     	w = 0.013915 * safezoneW;
     	h = 0.037392 * safezoneH;
-    	tooltip = $STR_previous_channel;
+    	tooltip = ELSTRING(core,previous_channel);
     	action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
     };
     class next_channel: HiddenButton
@@ -81,7 +81,7 @@ class pnr1000a_radio_dialog
     	y = 0.479104 * safezoneH + safezoneY;
     	w = 0.0133996 * safezoneW;
     	h = 0.0406913 * safezoneH;
-    	tooltip = $STR_next_channel;
+    	tooltip = ELSTRING(core,next_channel);
     	action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
     };
     class increase_volume: HiddenButton
@@ -91,7 +91,7 @@ class pnr1000a_radio_dialog
     	y = 0.471406 * safezoneH + safezoneY;
     	w = 0.0134062 * safezoneW;
     	h = 0.0407 * safezoneH;
-    	tooltip = $STR_increase_volume;
+    	tooltip = ELSTRING(core,increase_volume);
     	action = "[1, false] call TFAR_fnc_setVolumeViaDialog;";
     };
     class decrease_volume: HiddenButton
@@ -101,7 +101,7 @@ class pnr1000a_radio_dialog
     	y = 0.526394 * safezoneH + safezoneY;
     	w = 0.0128906 * safezoneW;
     	h = 0.0319 * safezoneH;
-    	tooltip = $STR_decrease_volume;
+    	tooltip = ELSTRING(core,decrease_volume);
     	action = "[0, false] call TFAR_fnc_setVolumeViaDialog;";
     };
     class stereo: HiddenButton
@@ -115,7 +115,7 @@ class pnr1000a_radio_dialog
             [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
             [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;
         );
-    	tooltip = $STR_stereo_settings;
+    	tooltip = ECSTRING(core,stereo_settings);
     };
     class reset_channel: HiddenButton
     {
@@ -124,7 +124,7 @@ class pnr1000a_radio_dialog
     	y = 0.562687 * safezoneH + safezoneY;
     	w = 0.0340144 * safezoneW;
     	h = 0.0307934 * safezoneH;
-    	tooltip = $STR_radio_channel_1;
+    	tooltip = ECSTRING(core,radio_channel_1);
     	action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_showRadioInfo;";
     };
     class speakers: HiddenRotator
@@ -134,7 +134,7 @@ class pnr1000a_radio_dialog
     	y = 0.436214 * safezoneH + safezoneY;
     	w = 0.019584 * safezoneW;
     	h = 0.037392 * safezoneH;
-    	tooltip = $STR_speakers_settings_true;
+    	tooltip = ECSTRING(core,speakers_settings_true);
     	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
     };
     class microdagr_background: RscBackPicture
@@ -159,7 +159,7 @@ class pnr1000a_radio_dialog
     	font = "TFAR_font_dots";
     	shadow = 2;
     	canModify = 0;
-    	tooltip = $STR_current_channel;
+    	tooltip = ELSTRING(core,current_channel);
     };
     class edit: RscEditLCD
     {
@@ -173,7 +173,7 @@ class pnr1000a_radio_dialog
     	font = "TFAR_font_dots";
     	shadow = 2;
     	canModify = 1;
-    	tooltip = $STR_current_freq;
+    	tooltip = ELSTRING(core,current_freq);
     };
     class clear: HiddenButton
     {
@@ -183,7 +183,7 @@ class pnr1000a_radio_dialog
     	y = 0.4329 * safezoneH + safezoneY;
     	w = 0.0402187 * safezoneW;
     	h = 0.0517 * safezoneH;
-    	tooltip = $STR_clear_frequency;
+    	tooltip = ELSTRING(core,clear_frequency);
     	font = "TFAR_font_dots";
     	shadow = 2;
     	action = QUOTE(
@@ -199,7 +199,7 @@ class pnr1000a_radio_dialog
     	y = 0.4318 * safezoneH + safezoneY;
     	w = 0.04125 * safezoneW;
     	h = 0.055 * safezoneH;
-    	tooltip = $STR_set_frequency;
+    	tooltip = ELSTRING(core,set_frequency);
     	font = "TFAR_font_dots";
     	shadow = 2;
     	action = QUOTE(
@@ -208,7 +208,7 @@ class pnr1000a_radio_dialog
                 [ARR_2(TF_sw_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setSwFrequency;
                 call TFAR_fnc_hideHint;
             } else {
-                hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)]
+                hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)]
             };
             call TFAR_fnc_updateSWDialogToChannel;
         );

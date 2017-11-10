@@ -1,336 +1,789 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Project ID="Arma2">
+<Project ID="Arma3">
     <Package name="core">
+        <Key ID="STR_TFAR_CORE_different_version">
+            <Original>Different versions of Task Force Radio are used. Server version: %1, Your version: %2</Original>
+            <Czech>Je používaná jiná verze Task Force Radio. Verze serveru: %1, Vaše verze: %2</Czech>
+            <French>Différentes versions de Task Force Radio sont utilisées. Version du serveur : %1, Votre version : %2</French>
+            <German>Es werden unterschiedliche Versionen von Task Force Radio verwendet. Server-Version: %1, deine Version: %2</German>
+            <Italian>Versioni differenti di Task Force Radio utilizzate. Versione del server : %1, La tua versione : %2</Italian>
+            <Polish>Niewłaściwa wersja Task Force Radio. Na serwerze: %1, Twoja: %2</Polish>
+            <Russian>Несовпадение версий Task Force Radio. Версия на сервере: %1, Ваша версия: %2</Russian>
+            <Spanish>Estas usando diferentes versiones de Task Force Radio. Versión del servidor : %1, Tu versión : %2</Spanish>
+            <Turkish>Versiyon uyuşmazlığı. Server versiyonu: %1, Senin versiyonun: %2</Turkish>
+            <Japanese>使っている Task Force Radio のバージョンが違います。サーバー バージョン: %1, あなたのバージョン: %2</Japanese>
+            <Korean>다른 버전의 Task Force Radio가 사용되고 있습니다. 서버 버전: %1, 설치된 버전: %2</Korean>
+            <Chinese>你使用的Task Force Radio版本不對。伺服器版本: %1，你的版本: %2</Chinese>
+            <Chinesesimp>你使用的Task Force Radio版本不对。伺服器版本: %1，你的版本: %2</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_stereo_settings">
+            <Original>Stereo settings</Original>
+            <Czech>Stereo nastavení</Czech>
+            <French>Configurations stéréo</French>
+            <German>Stereo-Einstellungen</German>
+            <Italian>Configurazione stereo</Italian>
+            <Polish>Ustawienia stereo</Polish>
+            <Russian>Настройки стерео</Russian>
+            <Spanish>Configuración de stereo</Spanish>
+            <Turkish>Ses ayarları</Turkish>
+            <Japanese>ステレオ設定</Japanese>
+            <Korean>스테레오 세팅</Korean>
+            <Chinese>立體聲設定</Chinese>
+            <Chinesesimp>立体声设定</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_stereo_settings_0">
+            <Original>Left and right</Original>
+            <Czech>Vlevo a vpravo</Czech>
+            <French>Gauche et droite</French>
+            <German>Links und rechts</German>
+            <Italian>Sinistra e destra</Italian>
+            <Polish>Lewy i prawy</Polish>
+            <Russian>Левый и правый</Russian>
+            <Spanish>Izquierda y derecha</Spanish>
+            <Turkish>Sol ve sağ</Turkish>
+            <Japanese>左右</Japanese>
+            <Korean>양쪽</Korean>
+            <Chinese>立體聲道</Chinese>
+            <Chinesesimp>立体声道</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_stereo_settings_1">
+            <Original>Left only</Original>
+            <Czech>Pouze vlevo</Czech>
+            <French>Gauche seulement</French>
+            <German>Nur links</German>
+            <Italian>Solo sinistra</Italian>
+            <Polish>Tylko lewy</Polish>
+            <Russian>Только левый</Russian>
+            <Spanish>Izquierda solo</Spanish>
+            <Turkish>Sadece sol</Turkish>
+            <Japanese>左から</Japanese>
+            <Korean>왼쪽</Korean>
+            <Chinese>左聲道</Chinese>
+            <Chinesesimp>左声道</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_stereo_settings_2">
+            <Original>Right only</Original>
+            <Czech>Pouze vpravo</Czech>
+            <French>Droite seulement</French>
+            <German>Nur rechts</German>
+            <Italian>Solo destra</Italian>
+            <Polish>Tylko prawy</Polish>
+            <Russian>Только правый</Russian>
+            <Spanish>Derecha solo</Spanish>
+            <Turkish>Sadece sağ</Turkish>
+            <Japanese>右から</Japanese>
+            <Korean>오른쪽</Korean>
+            <Chinese>右聲道</Chinese>
+            <Chinesesimp>右声道</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_speakers_settings_false">
+            <Original>Headphones</Original>
+            <Czech>Sluchátka</Czech>
+            <French>Écouteurs</French>
+            <German>Kopfhörer</German>
+            <Italian>Сuffia</Italian>
+            <Polish>Słuchawki</Polish>
+            <Russian>Наушники</Russian>
+            <Spanish>Auriculares</Spanish>
+            <Japanese>ヘッドホン</Japanese>
+            <Korean>헤드폰</Korean>
+            <Chinese>頭戴式耳機</Chinese>
+            <Chinesesimp>头戴式耳机</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_speakers_settings_true">
+            <Original>Speakers</Original>
+            <Czech>Reproduktory</Czech>
+            <French>Haut-parleurs</French>
+            <German>Lautsprecher</German>
+            <Italian>Altoparlanti</Italian>
+            <Polish>Głośniki</Polish>
+            <Russian>Динамики</Russian>
+            <Spanish>Altavoces</Spanish>
+            <Japanese>スピーカー</Japanese>
+            <Korean>스피커</Korean>
+            <Chinese>擴音器</Chinese>
+            <Chinesesimp>扩音器</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_additional_stereo_settings_0">
+            <Original>Additional: Left and right</Original>
+            <Czech>Dodatečný: Vlevo a vpravo</Czech>
+            <French>Supplémentaire : Gauche et droite</French>
+            <German>Zusätzlich: Links und rechts</German>
+            <Italian>Addizionale: Sinistra e destra</Italian>
+            <Polish>Dodatkowy: Lewy i prawy</Polish>
+            <Russian>Дополнительный: Левый и правый</Russian>
+            <Spanish>Adicional: Izquierda y derecha</Spanish>
+            <Turkish>Ek: Sol ve sağ</Turkish>
+            <Japanese>追加: 左右</Japanese>
+            <Korean>추가 채널: 양쪽</Korean>
+            <Chinese>附加頻道: 立體聲道</Chinese>
+            <Chinesesimp>附加频道: 立体声道</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_additional_stereo_settings_1">
+            <Original>Additional: Left only</Original>
+            <Czech>Dodatečný: Pouze vlevo</Czech>
+            <French>Supplémentaire : Gauche seulement</French>
+            <German>Zusätzlich: Nur links</German>
+            <Italian>Addizionale: Solo sinistra</Italian>
+            <Polish>Dodatkowy: Tylko lewy</Polish>
+            <Russian>Дополнительный: Только левый</Russian>
+            <Spanish>Adicional: Izquierda solo</Spanish>
+            <Turkish>Ek: Sadece sol</Turkish>
+            <Japanese>追加: 左から</Japanese>
+            <Korean>추가 채널: 왼쪽</Korean>
+            <Chinese>附加頻道: 左聲道</Chinese>
+            <Chinesesimp>附加频道: 左声道</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_additional_stereo_settings_2">
+            <Original>Additional: Right only</Original>
+            <Czech>Dodatečný: Pouze vpravo</Czech>
+            <French>Supplémentaire : Droite seulement</French>
+            <German>Zusätzlich: Nur rechts</German>
+            <Italian>Addizionale: Solo destra</Italian>
+            <Polish>Dodatkowy: Tylko prawy</Polish>
+            <Russian>Дополнительный: Только правый</Russian>
+            <Spanish>Adicional: Derecha solo</Spanish>
+            <Turkish>Ek: Sadece sağ</Turkish>
+            <Japanese>追加: 右から</Japanese>
+            <Korean>추가 채널: 오른쪽</Korean>
+            <Chinese>附加頻道: 右聲道</Chinese>
+            <Chinesesimp>附加频道: 右声道</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_no_server">
+            <Original>No Task Force Radio deployed on server!</Original>
+            <Czech>Task Force Radio není na serveru!</Czech>
+            <French>Il n'y a pas de Task Force Radio déployé sur le serveur !</French>
+            <German>Task Force Radio wird nicht auf dem Server ausgeführt!</German>
+            <Italian>Task Force Radio non è in esecuzione sul server!</Italian>
+            <Polish>Brak Task Force Radio na serwerze!</Polish>
+            <Russian>Не обнаружена серверная часть Task Force Radio!</Russian>
+            <Spanish>¡El servidor no dispone de Task Force Radio!</Spanish>
+            <Turkish>Radyo serverda oluşturulamadı!</Turkish>
+            <Japanese>サーバー上で Task Force Radio が動作していません！</Japanese>
+            <Korean>Task Force Radio가 서버에서 사용되고 있지 않습니다!</Korean>
+            <Chinese>伺服器端並未掛載Task Force Radio模組!</Chinese>
+            <Chinesesimp>伺服器端并未挂载Task Force Radio模组!</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_current_freq">
+            <Original>Current frequency</Original>
+            <Czech>Aktuální frekvence</Czech>
+            <French>Fréquence actuelle</French>
+            <German>Derzeitige Frequenz</German>
+            <Italian>Frequenza attuale</Italian>
+            <Polish>Obecna częstotliwość</Polish>
+            <Russian>Текущая частота</Russian>
+            <Spanish>Frecuencia actual</Spanish>
+            <Turkish>Mevcut frekans</Turkish>
+            <Japanese>現在の周波数</Japanese>
+            <Korean>현재 주파수</Korean>
+            <Chinese>目前頻率</Chinese>
+            <Chinesesimp>目前频率</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_current_channel">
+            <Original>Current channel</Original>
+            <Czech>Aktuální kanál</Czech>
+            <French>Canal actuel</French>
+            <German>Derzeitiger Kanal</German>
+            <Italian>Canale attuale</Italian>
+            <Polish>Obecny kanał</Polish>
+            <Russian>Текущий канал</Russian>
+            <Spanish>Canal actual</Spanish>
+            <Turkish>Mevcut kanal</Turkish>
+            <Japanese>現在のチャンネル</Japanese>
+            <Korean>현재 채널</Korean>
+            <Chinese>目前頻道</Chinese>
+            <Chinesesimp>目前频道</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_set_frequency">
+            <Original>Set frequency</Original>
+            <Czech>Nastavit frekvenci</Czech>
+            <French>Valider la fréquence</French>
+            <German>Frequenz festlegen</German>
+            <Italian>Imposta frequenza</Italian>
+            <Polish>Ustaw częstotliwość</Polish>
+            <Russian>Установить частоту</Russian>
+            <Spanish>Establecer frecuencia</Spanish>
+            <Turkish>Frekansı ayarla</Turkish>
+            <Japanese>周波数を設定</Japanese>
+            <Korean>주파수 설정</Korean>
+            <Chinese>設定頻率</Chinese>
+            <Chinesesimp>设定频率</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_set_additional">
+            <Original>Set additional channel</Original>
+            <Czech>Nastavit dodatečný kanál</Czech>
+            <French>Canal additionnel prévue</French>
+            <German>Zusätzlichen Kanal festlegen</German>
+            <Italian>Impostare canale aggiuntivo</Italian>
+            <Polish>Ustaw dodatkowy kanał</Polish>
+            <Russian>Настроить дополнительный канал</Russian>
+            <Spanish>Ajuste el canal adicional</Spanish>
+            <Turkish>Ek kanal olarak ayarla</Turkish>
+            <Japanese>追加チャンネルを設定</Japanese>
+            <Korean>추가 채널 설정</Korean>
+            <Chinese>設定附加頻道</Chinese>
+            <Chinesesimp>设定附加频道</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_clear_frequency">
+            <Original>Clear frequency</Original>
+            <Czech>Vymazat frekvenci</Czech>
+            <French>Effacer la fréquence</French>
+            <German>Frequenz löschen</German>
+            <Italian>Cancella frequenza</Italian>
+            <Polish>Wyczyść częstotliwość</Polish>
+            <Russian>Стереть частоту</Russian>
+            <Spanish>Reiniciar frecuencia</Spanish>
+            <Turkish>Frekansı temizle</Turkish>
+            <Japanese>周波数を消去</Japanese>
+            <Korean>주파수 지우기</Korean>
+            <Chinese>清除頻率</Chinese>
+            <Chinesesimp>清除频率</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_previous_channel">
+            <Original>Previous channel</Original>
+            <Czech>Předchozí kanál</Czech>
+            <French>Canal précédent</French>
+            <German>Vorheriger Kanal</German>
+            <Italian>Canale precedente</Italian>
+            <Polish>Poprzedni kanał</Polish>
+            <Russian>Предыдущий канал</Russian>
+            <Spanish>Canal anterior</Spanish>
+            <Turkish>Önceki kanal</Turkish>
+            <Japanese>前のチャンネル</Japanese>
+            <Korean>이전 채널</Korean>
+            <Chinese>前一個頻道</Chinese>
+            <Chinesesimp>前一个频道</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_next_channel">
+            <Original>Next channel</Original>
+            <Czech>Následující kanál</Czech>
+            <French>Canal suivant</French>
+            <German>Nächster Kanal</German>
+            <Italian>Canale successivo</Italian>
+            <Polish>Następny kanał</Polish>
+            <Russian>Следующий канал</Russian>
+            <Spanish>Canal siguiente</Spanish>
+            <Turkish>Sonraki kanal</Turkish>
+            <Japanese>次のチャンネル</Japanese>
+            <Korean>다음 채널</Korean>
+            <Chinese>下一個頻道</Chinese>
+            <Chinesesimp>下一个频道</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_rotator_volume">
+            <Original>Decrease volume | Increase volume</Original>
+            <Czech>Zvýšit hlasitost | Snížit hlasitost</Czech>
+            <French>Réduire le volume | Augmenter le volume</French>
+            <German>Lautstärke verringern | Lautstärke erhöhen</German>
+            <Italian>Diminuisce volume | Aumenta volume</Italian>
+            <Polish>Zmniejsz głośność | Zwiększ głośność</Polish>
+            <Russian>Уменьшить громкость | Увеличить громкость</Russian>
+            <Spanish>Reducir volumen | Aumentar volumen</Spanish>
+            <Turkish>Sesi azalt | Sesi yükselt</Turkish>
+            <Japanese>音量低下 | 音量増加</Japanese>
+            <Korean>볼륨 낮추기 | 볼륨 높이기</Korean>
+            <Chinese>降低音量 | 提高音量</Chinese>
+            <Chinesesimp>降低音量 | 提高音量</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_rotator_channel">
+            <Original>Previous channel | Next channel</Original>
+            <Czech>Předchozí kanál | Následující kanál</Czech>
+            <French>Canal précédent | Canal suivant</French>
+            <German>Vorheriger Kanal | Nächster Kanal</German>
+            <Italian>Canale precedente | Canale successivo</Italian>
+            <Polish>Poprzedni kanał | Następny kanał</Polish>
+            <Russian>Следующий канал | Предыдущий канал</Russian>
+            <Spanish>Canal anterior | Canal siguiente</Spanish>
+            <Turkish>Önceki kanal | Sonraki kanal</Turkish>
+            <Japanese>前のチャンネル | 次のチャンネル</Japanese>
+            <Korean>이전 채널 | 다음 채널</Korean>
+            <Chinese>前一個頻道 | 下一個頻道</Chinese>
+            <Chinesesimp>前一个频道 | 下一个频道</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_increase_volume">
+            <Original>Increase volume</Original>
+            <Czech>Zvýšit hlasitost</Czech>
+            <French>Augmenter le volume</French>
+            <German>Lautstärke erhöhen</German>
+            <Italian>Aumenta volume</Italian>
+            <Polish>Zwiększ głośność</Polish>
+            <Russian>Увеличить громкость</Russian>
+            <Spanish>Aumentar volumen</Spanish>
+            <Turkish>Sesi yükselt</Turkish>
+            <Japanese>音量を上げる</Japanese>
+            <Korean>볼륨 높이기</Korean>
+            <Chinese>提高音量</Chinese>
+            <Chinesesimp>提高音量</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_decrease_volume">
+            <Original>Decrease volume</Original>
+            <Czech>Snížit hlasitost</Czech>
+            <French>Réduire le volume</French>
+            <German>Lautstärke verringern</German>
+            <Italian>Diminuisce volume</Italian>
+            <Polish>Zmniejsz głośność</Polish>
+            <Russian>Уменьшить громкость</Russian>
+            <Spanish>Reducir volumen</Spanish>
+            <Turkish>Sesi azalt</Turkish>
+            <Japanese>音量を下げる</Japanese>
+            <Korean>볼륨 낮추기</Korean>
+            <Chinese>降低音量</Chinese>
+            <Chinesesimp>降低音量</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_incorrect_frequency">
+            <Original>Incorrect frequency value, range is %1-%2</Original>
+            <Czech>Nesprávná hodnota pro frekvenci, rozsah je %1-%2</Czech>
+            <French>Valeur de fréquence incorrecte, la plage est de %1 à %2</French>
+            <German>Falsche Frequenz, Frequenzbereich ist %1-%2</German>
+            <Italian>Campo di frequenza non corretto; Campi possibili sono %1-%2</Italian>
+            <Polish>Niepoprawna częstotliwość, skala %1-%2</Polish>
+            <Russian>Неверная частота, диапазон %1-%2</Russian>
+            <Spanish>Frecuencia incorrecta, el rango es %1-%2</Spanish>
+            <Turkish>Yanlış frekans değeri, Menzil %1-%2</Turkish>
+            <Japanese>周波数の値が正しくありません。適正値は %1-%2</Japanese>
+            <Korean>잘못된 주파수 값, 범위는 %1-%2입니다.</Korean>
+            <Chinese>不正確的頻率值，頻率範圍為%1-%2</Chinese>
+            <Chinesesimp>不正确的频率值，频率范围为%1-%2</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_radio_volume">
+            <Original>Volume: %1</Original>
+            <Czech>Hlasitost: %1</Czech>
+            <French>Volume : %1</French>
+            <German>Lautstärke: %1</German>
+            <Italian>Volume: %1</Italian>
+            <Polish>Głośność: %1</Polish>
+            <Russian>Громкость: %1</Russian>
+            <Spanish>Volumen: %1</Spanish>
+            <Turkish>Ses: %1</Turkish>
+            <Japanese>音量: %1</Japanese>
+            <Korean>볼륨: %1</Korean>
+            <Chinese>音量: %1</Chinese>
+            <Chinesesimp>音量: %1</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_radio_channel_1">
+            <Original>Channel 1</Original>
+            <Czech>Kanál 1</Czech>
+            <French>Canal 1</French>
+            <German>Kanal 1</German>
+            <Italian>Canale 1</Italian>
+            <Polish>Kanał 1</Polish>
+            <Russian>Канал 1</Russian>
+            <Spanish>Canal 1</Spanish>
+            <Turkish>Kanal 1</Turkish>
+            <Japanese>チャンネル 1</Japanese>
+            <Korean>채널 1</Korean>
+            <Chinese>頻道 1</Chinese>
+            <Chinesesimp>频道 1</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_radio_channel_2">
+            <Original>Channel 2</Original>
+            <Czech>Kanál 2</Czech>
+            <French>Canal 2</French>
+            <German>Kanal 2</German>
+            <Italian>Canale 2</Italian>
+            <Polish>Kanał 2</Polish>
+            <Russian>Канал 2</Russian>
+            <Spanish>Canal 2</Spanish>
+            <Turkish>Kanal 2</Turkish>
+            <Japanese>チャンネル 2</Japanese>
+            <Korean>채널 2</Korean>
+            <Chinese>頻道 2</Chinese>
+            <Chinesesimp>频道 2</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_radio_channel_3">
+            <Original>Channel 3</Original>
+            <Czech>Kanál 3</Czech>
+            <French>Canal 3</French>
+            <German>Kanal 3</German>
+            <Italian>Canale 3</Italian>
+            <Polish>Kanał 3</Polish>
+            <Russian>Канал 3</Russian>
+            <Spanish>Canal 3</Spanish>
+            <Turkish>Kanal 3</Turkish>
+            <Japanese>チャンネル 3</Japanese>
+            <Korean>채널 3</Korean>
+            <Chinese>頻道 3</Chinese>
+            <Chinesesimp>频道 3</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_radio_channel_4">
+            <Original>Channel 4</Original>
+            <Czech>Kanál 4</Czech>
+            <French>Canal 4</French>
+            <German>Kanal 4</German>
+            <Italian>Canale 4</Italian>
+            <Polish>Kanał 4</Polish>
+            <Russian>Канал 4</Russian>
+            <Spanish>Canal 4</Spanish>
+            <Turkish>Kanal 4</Turkish>
+            <Japanese>チャンネル 4</Japanese>
+            <Korean>채널 4</Korean>
+            <Chinese>頻道 4</Chinese>
+            <Chinesesimp>频道 4</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_radio_channel_5">
+            <Original>Channel 5</Original>
+            <Czech>Kanál 5</Czech>
+            <French>Canal 5</French>
+            <German>Kanal 5</German>
+            <Italian>Canale 5</Italian>
+            <Polish>Kanał 5</Polish>
+            <Russian>Канал 5</Russian>
+            <Spanish>Canal 5</Spanish>
+            <Turkish>Kanal 5</Turkish>
+            <Japanese>チャンネル 5</Japanese>
+            <Korean>채널 5</Korean>
+            <Chinese>頻道 5</Chinese>
+            <Chinesesimp>频道 5</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_radio_channel_6">
+            <Original>Channel 6</Original>
+            <Czech>Kanál 6</Czech>
+            <French>Canal 6</French>
+            <German>Kanal 6</German>
+            <Italian>Canale 6</Italian>
+            <Polish>Kanał 6</Polish>
+            <Russian>Канал 6</Russian>
+            <Spanish>Canal 6</Spanish>
+            <Turkish>Kanal 6</Turkish>
+            <Japanese>チャンネル 6</Japanese>
+            <Korean>채널 6</Korean>
+            <Chinese>頻道 6</Chinese>
+            <Chinesesimp>频道 6</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_radio_channel_7">
+            <Original>Channel 7</Original>
+            <Czech>Kanál 7</Czech>
+            <French>Canal 7</French>
+            <German>Kanal 7</German>
+            <Italian>Canale 7</Italian>
+            <Polish>Kanał 7</Polish>
+            <Russian>Канал 7</Russian>
+            <Spanish>Canal 7</Spanish>
+            <Turkish>Kanal 7</Turkish>
+            <Japanese>チャンネル 7</Japanese>
+            <Korean>채널 7</Korean>
+            <Chinese>頻道 7</Chinese>
+            <Chinesesimp>频道 7</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_radio_channel_8">
+            <Original>Channel 8</Original>
+            <Czech>Kanál 8</Czech>
+            <French>Canal 8</French>
+            <German>Kanal 8</German>
+            <Italian>Canale 8</Italian>
+            <Polish>Kanał 8</Polish>
+            <Russian>Канал 8</Russian>
+            <Spanish>Canal 8</Spanish>
+            <Turkish>Kanal 8</Turkish>
+            <Japanese>チャンネル 8</Japanese>
+            <Korean>채널 8</Korean>
+            <Chinese>頻道 8</Chinese>
+            <Chinesesimp>频道 8</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_radio_channel_9">
+            <Original>Channel 9</Original>
+            <Czech>Kanál 9</Czech>
+            <French>Canal 9</French>
+            <German>Kanal 9</German>
+            <Italian>Canale 9</Italian>
+            <Polish>Kanał 9</Polish>
+            <Russian>Канал 9</Russian>
+            <Spanish>Canal 9</Spanish>
+            <Turkish>Kanal 9</Turkish>
+            <Japanese>チャンネル 9</Japanese>
+            <Korean>채널 9</Korean>
+            <Chinese>頻道 9</Chinese>
+            <Chinesesimp>频道 9</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_active_sw_channel">
+            <Original>Channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
+            <Czech>Kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
+            <French>Canal courte portée : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
+            <German>Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
+            <Italian>Canale onde corte: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
+            <Polish>Kanał: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
+            <Russian>Канал: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Russian>
+            <Spanish>Canal onda corta:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
+            <Turkish>Mevcut derinlik: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
+            <Japanese>チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
+            <Korean>채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
+            <Chinese>頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
+            <Chinesesimp>频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_active_additional_sw_channel">
+            <Original>Additional channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
+            <Czech>Dodatečný kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
+            <French>Canal additionnel : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
+            <German>Zusätzlicher Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
+            <Italian>Canale aggiuntivo: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
+            <Polish>Dodatkowy kanał: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
+            <Russian>Дополнительный канал: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Russian>
+            <Spanish>Canal adicional:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
+            <Turkish>Ek kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
+            <Japanese>追加チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
+            <Korean>추가 채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
+            <Chinese>附加頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
+            <Chinesesimp>附加频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_active_frequency">
+            <Original>Frequency: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
+            <Czech>Frekvence: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
+            <French>Fréquence : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
+            <German>Frequenz: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
+            <Italian>Frequenza: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
+            <Polish>Częstotliwość: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
+            <Russian>Частота: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Russian>
+            <Spanish>Frecuencia:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
+            <Turkish>Frekans: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
+            <Japanese>周波数: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
+            <Korean>주파수: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
+            <Chinese>頻率: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
+            <Chinesesimp>频率: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_active_lr_channel">
+            <Original>LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
+            <Czech>LR kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
+            <French>Canal LP : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
+            <German>LS-Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
+            <Italian>Canale OL: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
+            <Polish>Kanał LR: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
+            <Russian>Kанал ДС: &lt;t color='#ff00ff'&gt;%1&lt;/t&gt;</Russian>
+            <Spanish>Canal RL:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
+            <Turkish>UM(Uzun Menzil) kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
+            <Japanese>長距離ラジオ チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
+            <Korean>장파 채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
+            <Chinese>長程無線電頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
+            <Chinesesimp>长程无线电频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_active_additional_lr_channel">
+            <Original>Additional LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
+            <Czech>Dodatečný LR kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
+            <French>Canal additionnel LP : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
+            <German>Zusätzlicher LS-Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
+            <Italian>Canale aggiuntivo OL: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
+            <Polish>Dodatkowy kanał LR: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
+            <Russian>Дополнительный канал ДС: &lt;t color='#ff00ff'&gt;%1&lt;/t&gt;</Russian>
+            <Spanish>Canal adicional RL:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
+            <Turkish>Ek UM(Uzun Menzil) kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
+            <Japanese>追加長距離ラジオ チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
+            <Korean>장파 추가 채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
+            <Chinese>長程無線電附加頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
+            <Chinesesimp>长程无线电附加频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_in_water_hint">
+            <Original>&lt;t color='#33ccff'&gt;Can't use radio under WATER&lt;/t&gt;</Original>
+            <Czech>&lt;t color='#33ccff'&gt;Není možné použít vysílačku pod VODOU&lt;/t&gt;</Czech>
+            <French>&lt;t color='#33ccff'&gt;Vous ne pouvez pas utiliser de radio sous l'eau !&lt;/t&gt;</French>
+            <German>&lt;t color='#33ccff'&gt;Das Funkgerät kann unter Wasser nicht verwendet werden&lt;/t&gt;</German>
+            <Italian>&lt;t color='#33ccff'&gt;Non puoi usare la radio sott'acqua&lt;/t&gt;</Italian>
+            <Polish>&lt;t color='#33ccff'&gt;Nie możesz używać radia pod wodą&lt;/t&gt;</Polish>
+            <Russian>&lt;t color='#33ccff'&gt;Нельзя использовать данную рацию под водой&lt;/t&gt;</Russian>
+            <Spanish>&lt;t color='#33ccff'&gt;No puedes utilizar radios bajo el agua&lt;/t&gt;</Spanish>
+            <Turkish>&lt;t color='#33ccff'&gt;Bu radyo su altında çalışmaz&lt;/t&gt;</Turkish>
+            <Japanese>&lt;t color='#33ccff'&gt;水中で無線機は使えません&lt;/t&gt;</Japanese>
+            <Korean>&lt;t color='#33ccff'&gt;수중에서는 무전기를 사용 할 수 없습니다&lt;/t&gt;</Korean>
+            <Chinese>&lt;t color='#33ccff'&gt;無法在水下使用無線電&lt;/t&gt;</Chinese>
+            <Chinesesimp>&lt;t color='#33ccff'&gt;无法在水下使用无线电&lt;/t&gt;</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_on_ground_hint">
+            <Original>&lt;t color='#993300'&gt;Can't use driver radio on the air&lt;/t&gt;</Original>
+            <Czech>&lt;t color='#993300'&gt;Can'Není možné použít vysílačku ve vzduchu&lt;/t&gt;</Czech>
+            <French>&lt;t color='#993300'&gt;Vous ne pouvez pas utiliser la radio du véhicule dans les airs !&lt;/t&gt;</French>
+            <German>&lt;t color='#993300'&gt;Fahrzeugfunk kann nicht in der Luft verwendet werden&lt;/t&gt;</German>
+            <Italian>&lt;t color='#993300'&gt;Non puoi usare la radio del veicolo in aria!&lt;/t&gt;</Italian>
+            <Polish>&lt;t color='#993300'&gt;Nie możesz używać radia kierowcy w powietrzu&lt;/t&gt;</Polish>
+            <Russian>&lt;t color='#993300'&gt;Нельзя использовать данную рацию в воздушной среде&lt;/t&gt;</Russian>
+            <Spanish>&lt;t color='#993300'&gt;No puedes utilizar la radio del conductor en el aire&lt;/t&gt;</Spanish>
+            <Turkish>&lt;t color='#993300'&gt;Bu radyo sadece su altında çalışır&lt;/t&gt;</Turkish>
+            <Japanese>&lt;t color='#993300'&gt;空中で操縦士用の無線機は使えませんr&lt;/t&gt;</Japanese>
+            <Korean>&lt;t color='#993300'&gt;물 밖에서는 잠수부 무전기를 사용 할 수 없습니다&lt;/t&gt;</Korean>
+            <Chinese>&lt;t color='#993300'&gt;無法在空中使用駕駛座無線電&lt;/t&gt;</Chinese>
+            <Chinesesimp>&lt;t color='#993300'&gt;无法在空中使用驾驶座无线电&lt;/t&gt;</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_unable_to_use_hint">
+            <Original>&lt;t color='#FF0000'&gt;you are not able to use the radio&lt;/t&gt;</Original>
+            <Czech>&lt;t color='#FF0000'&gt;není možné použít vysílačku&lt;/t&gt;</Czech>
+            <French>&lt;t color='#FF0000'&gt;Vous n'êtes pas en mesure d'utiliser le radio&lt;/t&gt;</French>
+            <German>&lt;t color='#FF0000'&gt;Funkgerät kann nicht benutzt werden&lt;/t&gt;</German>
+            <Italian>&lt;t color='#FF0000'&gt;Non sono in grado di utilizzare il radio&lt;/t&gt;</Italian>
+            <Polish>&lt;t color='#FF0000'&gt;Nie możesz używać tego radia&lt;/t&gt;</Polish>
+            <Russian>&lt;t color='#FF0000'&gt;Вы не способны пользоваться рацией&lt;/t&gt;</Russian>
+            <Spanish>&lt;t color='#FF0000'&gt;Incapaz de usar la radio&lt;/t&gt;</Spanish>
+            <Turkish>&lt;t color='#FF0000'&gt;Radyoyu kullanamazsın&lt;/t&gt;</Turkish>
+            <Japanese>&lt;t color='#FF0000'&gt;無線機は使えません&lt;/t&gt;</Japanese>
+            <Korean>&lt;t color='#FF0000'&gt;이 라디오를 사용 할 수 없습니다.&lt;/t&gt;</Korean>
+            <Chinese>&lt;t color='#FF0000'&gt;你無法使用無線電&lt;/t&gt;</Chinese>
+            <Chinesesimp>&lt;t color='#FF0000'&gt;你无法使用无线电&lt;/t&gt;</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_select_action">
+            <Original>Select action</Original>
+            <Czech>Zvolit akci</Czech>
+            <French>Sélectionner l'action</French>
+            <German>Aktion wählen</German>
+            <Italian>Seleziona l'azione</Italian>
+            <Polish>Wybierz akcję</Polish>
+            <Russian>Выберите действие</Russian>
+            <Spanish>Selecciona acción</Spanish>
+            <Turkish>Eylem seç</Turkish>
+            <Japanese>動作を選択</Japanese>
+            <Korean>동작 선택</Korean>
+            <Chinese>選擇動作</Chinese>
+            <Chinesesimp>选择动作</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_select_action_setup">
+            <Original>Settings...</Original>
+            <Czech>Nastavení...</Czech>
+            <French>Options...</French>
+            <German>Tastenbelegung</German>
+            <Italian>Opzioni</Italian>
+            <Polish>Ustawienia...</Polish>
+            <Russian>Настройки...</Russian>
+            <Spanish>Configuración</Spanish>
+            <Turkish>Ayarlar...</Turkish>
+            <Japanese>設定中</Japanese>
+            <Korean>설정...</Korean>
+            <Chinese>設定...</Chinese>
+            <Chinesesimp>设定...</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_select_action_setup_tooltip">
+            <Original>Open settings dialog</Original>
+            <Czech>Otevřít nastavení</Czech>
+            <French>Ouvre la fenêtre de la radio</French>
+            <German>Einstellungen öffnen</German>
+            <Italian>Apri finestra opzioni</Italian>
+            <Polish>Otwórz ustawienia</Polish>
+            <Russian>Открыть диалог настройки</Russian>
+            <Spanish>Abrir ventana de configuración</Spanish>
+            <Turkish>Ayarlar diyaloğunu aç</Turkish>
+            <Japanese>設定画面を開く</Japanese>
+            <Korean>설정 대화 상자 열기</Korean>
+            <Chinese>開啟設定視窗</Chinese>
+            <Chinesesimp>开启设定视窗</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_select_action_use">
+            <Original>Set as active</Original>
+            <Czech>Nastavit jako aktivní</Czech>
+            <French>Mettre en radio active</French>
+            <German>Als aktiv setzen</German>
+            <Italian>Seleziona come in uso</Italian>
+            <Polish>Ustaw jako aktywne</Polish>
+            <Russian>Сделать активной</Russian>
+            <Spanish>Seleccionar como activa</Spanish>
+            <Turkish>Aktif olarak ayarla</Turkish>
+            <Japanese>使うように設定</Japanese>
+            <Korean>활성 상태로 설정</Korean>
+            <Chinese>設定為啟用</Chinese>
+            <Chinesesimp>设定为启用</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_select_action_use_tooltip">
+            <Original>Use for transmiting</Original>
+            <Czech>Používané pro vysílání</Czech>
+            <French>Choisir comme radio active</French>
+            <German>Zum Senden wählen</German>
+            <Italian>Usa come radio per trasmissioni</Italian>
+            <Polish>Użyj do transmisji</Polish>
+            <Russian>Использовать для передачи</Russian>
+            <Spanish>Usar para transmitir</Spanish>
+            <Turkish>İletmek için kullan</Turkish>
+            <Japanese>送信に使う</Japanese>
+            <Korean>전송중</Korean>
+            <Chinese>用來發送信號</Chinese>
+            <Chinesesimp>用来发送信号</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_select_radio">
+            <Original>Select short range radio</Original>
+            <Czech>Zvolit vysílačku na krátkou vzdálenost</Czech>
+            <French>Selectionner la radio courte portée</French>
+            <German>Kurzstreckenfunkgerät wählen</German>
+            <Italian>Seleziona radio onde corte</Italian>
+            <Polish>Wybierz radio krótkiego zasięgu</Polish>
+            <Russian>Выберите рацию ближней связи</Russian>
+            <Spanish>Seleccionar radio de corto alcance</Spanish>
+            <Turkish>Kısa menzilli radyo seç</Turkish>
+            <Japanese>短距離無線機として選択</Japanese>
+            <Korean>단파 라디오 선택</Korean>
+            <Chinese>選擇短程無線電</Chinese>
+            <Chinesesimp>选择短程无线电</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_select_lr_radio">
+            <Original>Select long range radio</Original>
+            <Czech>Zvolit vysílačku na dlouhou vzdálenost</Czech>
+            <French>Selectionner la radio longue portée</French>
+            <German>Langstreckenfunkgerät wählen</German>
+            <Italian>Seleziona radio onde lunghe</Italian>
+            <Polish>Wybierz radio dalekiego zasięgu</Polish>
+            <Russian>Выберите рацию дальней связи</Russian>
+            <Spanish>Seleccionar radio de largo alcance</Spanish>
+            <Turkish>Uzun menzilli radyo seç</Turkish>
+            <Japanese>長距離無線機として選択</Japanese>
+            <Korean>장파 라디오 선택</Korean>
+            <Chinese>選擇長程無線電</Chinese>
+            <Chinesesimp>选择长程无线电</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_transmit">
+            <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
+            <Czech>&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
+            <French>&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
+            <German>&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
+            <Italian>&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
+            <Polish>&lt;t size='1' align='center' color='#00FF00'&gt;Nadawanie:&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
+            <Russian>&lt;t size='1' align='center' color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
+            <Spanish>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
+            <Turkish>&lt;t size='1' align='center' color='#00FF00'&gt;İletiliyor&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
+            <Japanese>&lt;t size='1' align='center' color='#00FF00'&gt;送信中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
+            <Korean>&lt;t size='1' align='center' color='#00FF00'&gt;전송중&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
+            <Chinese>&lt;t size='1' align='center' color='#00FF00'&gt;發送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
+            <Chinesesimp>&lt;t size='1' align='center' color='#00FF00'&gt;发送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_transmit_end">
+            <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
+            <Czech>&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
+            <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
+            <German>&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
+            <Italian>&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
+            <Polish>&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
+            <Russian>&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
+            <Spanish>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
+            <Turkish>&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
+            <Japanese>&lt;t size='1' align='center' color='#FF9900'&gt;送信終了&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
+            <Korean>&lt;t size='1' align='center' color='#FF9900'&gt;송신끝&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
+            <Chinese>&lt;t size='1' align='center' color='#FF9900'&gt;已發送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
+            <Chinesesimp>&lt;t size='1' align='center' color='#FF9900'&gt;已发送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_additional_transmit">
+            <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
+            <Czech>&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
+            <French>&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio : %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
+            <German>&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
+            <Italian>&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
+            <Polish>&lt;t size='1' align='center' color='#00FF00'&gt;Nadawanie&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
+            <Russian>&lt;t size='1' align='center' color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Дополнительный канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
+            <Spanish>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
+            <Turkish>&lt;t size='1' align='center' color='#00FF00'&gt;İletiliyor&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
+            <Japanese>&lt;t size='1' align='center' color='#00FF00'&gt;送信中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;追加チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
+            <Korean>&lt;t size='1' align='center' color='#00FF00'&gt;전송중&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;추가 채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
+            <Chinese>&lt;t size='1' align='center' color='#00FF00'&gt;發送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
+            <Chinesesimp>&lt;t size='1' align='center' color='#00FF00'&gt;发送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_CORE_additional_transmit_end">
+            <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional сhannel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
+            <Czech>&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
+            <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
+            <German>&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
+            <Italian>&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
+            <Polish>&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
+            <Russian>&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Дополнительный канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
+            <Spanish>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
+            <Turkish>&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
+            <Japanese>&lt;t size='1' align='center' color='#FF9900'&gt;送信終了&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;追加チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
+            <Korean>&lt;t size='1' align='center' color='#FF9900'&gt;전송끝&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;추가 채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
+            <Chinese>&lt;t size='1' align='center' color='#FF9900'&gt;已發送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
+            <Chinesesimp>&lt;t size='1' align='center' color='#FF9900'&gt;已发送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
+        </Key>
+
+
         <Container name="misc">
-            <Key ID="STR_different_version">
-                <Original>Different versions of Task Force Radio are used. Server version: %1, Your version: %2</Original>
-                <Czech>Je používaná jiná verze Task Force Radio. Verze serveru: %1, Vaše verze: %2</Czech>
-                <French>Différentes versions de Task Force Radio sont utilisées. Version du serveur : %1, Votre version : %2</French>
-                <German>Es werden unterschiedliche Versionen von Task Force Radio verwendet. Server-Version: %1, deine Version: %2</German>
-                <Italian>Versioni differenti di Task Force Radio utilizzate. Versione del server : %1, La tua versione : %2</Italian>
-                <Polish>Niewłaściwa wersja Task Force Radio. Na serwerze: %1, Twoja: %2</Polish>
-                <Russian>Несовпадение версий Task Force Radio. Версия на сервере: %1, Ваша версия: %2</Russian>
-                <Spanish>Estas usando diferentes versiones de Task Force Radio. Versión del servidor : %1, Tu versión : %2</Spanish>
-                <Turkish>Versiyon uyuşmazlığı. Server versiyonu: %1, Senin versiyonun: %2</Turkish>
-                <Japanese>使っている Task Force Radio のバージョンが違います。サーバー バージョン: %1, あなたのバージョン: %2</Japanese>
-                <Korean>다른 버전의 Task Force Radio가 사용되고 있습니다. 서버 버전: %1, 설치된 버전: %2</Korean>
-                <Chinese>你使用的Task Force Radio版本不對。伺服器版本: %1，你的版本: %2</Chinese>
-                <Chinesesimp>你使用的Task Force Radio版本不对。伺服器版本: %1，你的版本: %2</Chinesesimp>
-            </Key>
-            <Key ID="STR_stereo_settings">
-                <Original>Stereo settings</Original>
-                <Czech>Stereo nastavení</Czech>
-                <French>Configurations stéréo</French>
-                <German>Stereo-Einstellungen</German>
-                <Italian>Configurazione stereo</Italian>
-                <Polish>Ustawienia stereo</Polish>
-                <Russian>Настройки стерео</Russian>
-                <Spanish>Configuración de stereo</Spanish>
-                <Turkish>Ses ayarları</Turkish>
-                <Japanese>ステレオ設定</Japanese>
-                <Korean>스테레오 세팅</Korean>
-                <Chinese>立體聲設定</Chinese>
-                <Chinesesimp>立体声设定</Chinesesimp>
-            </Key>
-            <Key ID="STR_stereo_settings_0">
-                <Original>Left and right</Original>
-                <Czech>Vlevo a vpravo</Czech>
-                <French>Gauche et droite</French>
-                <German>Links und rechts</German>
-                <Italian>Sinistra e destra</Italian>
-                <Polish>Lewy i prawy</Polish>
-                <Russian>Левый и правый</Russian>
-                <Spanish>Izquierda y derecha</Spanish>
-                <Turkish>Sol ve sağ</Turkish>
-                <Japanese>左右</Japanese>
-                <Korean>양쪽</Korean>
-                <Chinese>立體聲道</Chinese>
-                <Chinesesimp>立体声道</Chinesesimp>
-            </Key>
-            <Key ID="STR_stereo_settings_1">
-                <Original>Left only</Original>
-                <Czech>Pouze vlevo</Czech>
-                <French>Gauche seulement</French>
-                <German>Nur links</German>
-                <Italian>Solo sinistra</Italian>
-                <Polish>Tylko lewy</Polish>
-                <Russian>Только левый</Russian>
-                <Spanish>Izquierda solo</Spanish>
-                <Turkish>Sadece sol</Turkish>
-                <Japanese>左から</Japanese>
-                <Korean>왼쪽</Korean>
-                <Chinese>左聲道</Chinese>
-                <Chinesesimp>左声道</Chinesesimp>
-            </Key>
-            <Key ID="STR_stereo_settings_2">
-                <Original>Right only</Original>
-                <Czech>Pouze vpravo</Czech>
-                <French>Droite seulement</French>
-                <German>Nur rechts</German>
-                <Italian>Solo destra</Italian>
-                <Polish>Tylko prawy</Polish>
-                <Russian>Только правый</Russian>
-                <Spanish>Derecha solo</Spanish>
-                <Turkish>Sadece sağ</Turkish>
-                <Japanese>右から</Japanese>
-                <Korean>오른쪽</Korean>
-                <Chinese>右聲道</Chinese>
-                <Chinesesimp>右声道</Chinesesimp>
-            </Key>
-            <Key ID="STR_speakers_settings_false">
-                <Original>Headphones</Original>
-                <Czech>Sluchátka</Czech>
-                <French>Écouteurs</French>
-                <German>Kopfhörer</German>
-                <Italian>Сuffia</Italian>
-                <Polish>Słuchawki</Polish>
-                <Russian>Наушники</Russian>
-                <Spanish>Auriculares</Spanish>
-                <Japanese>ヘッドホン</Japanese>
-                <Korean>헤드폰</Korean>
-                <Chinese>頭戴式耳機</Chinese>
-                <Chinesesimp>头戴式耳机</Chinesesimp>
-            </Key>
-            <Key ID="STR_speakers_settings_true">
-                <Original>Speakers</Original>
-                <Czech>Reproduktory</Czech>
-                <French>Haut-parleurs</French>
-                <German>Lautsprecher</German>
-                <Italian>Altoparlanti</Italian>
-                <Polish>Głośniki</Polish>
-                <Russian>Динамики</Russian>
-                <Spanish>Altavoces</Spanish>
-                <Japanese>スピーカー</Japanese>
-                <Korean>스피커</Korean>
-                <Chinese>擴音器</Chinese>
-                <Chinesesimp>扩音器</Chinesesimp>
-            </Key>
-            <Key ID="STR_additional_stereo_settings_0">
-                <Original>Additional: Left and right</Original>
-                <Czech>Dodatečný: Vlevo a vpravo</Czech>
-                <French>Supplémentaire : Gauche et droite</French>
-                <German>Zusätzlich: Links und rechts</German>
-                <Italian>Addizionale: Sinistra e destra</Italian>
-                <Polish>Dodatkowy: Lewy i prawy</Polish>
-                <Russian>Дополнительный: Левый и правый</Russian>
-                <Spanish>Adicional: Izquierda y derecha</Spanish>
-                <Turkish>Ek: Sol ve sağ</Turkish>
-                <Japanese>追加: 左右</Japanese>
-                <Korean>추가 채널: 양쪽</Korean>
-                <Chinese>附加頻道: 立體聲道</Chinese>
-                <Chinesesimp>附加频道: 立体声道</Chinesesimp>
-            </Key>
-            <Key ID="STR_additional_stereo_settings_1">
-                <Original>Additional: Left only</Original>
-                <Czech>Dodatečný: Pouze vlevo</Czech>
-                <French>Supplémentaire : Gauche seulement</French>
-                <German>Zusätzlich: Nur links</German>
-                <Italian>Addizionale: Solo sinistra</Italian>
-                <Polish>Dodatkowy: Tylko lewy</Polish>
-                <Russian>Дополнительный: Только левый</Russian>
-                <Spanish>Adicional: Izquierda solo</Spanish>
-                <Turkish>Ek: Sadece sol</Turkish>
-                <Japanese>追加: 左から</Japanese>
-                <Korean>추가 채널: 왼쪽</Korean>
-                <Chinese>附加頻道: 左聲道</Chinese>
-                <Chinesesimp>附加频道: 左声道</Chinesesimp>
-            </Key>
-            <Key ID="STR_additional_stereo_settings_2">
-                <Original>Additional: Right only</Original>
-                <Czech>Dodatečný: Pouze vpravo</Czech>
-                <French>Supplémentaire : Droite seulement</French>
-                <German>Zusätzlich: Nur rechts</German>
-                <Italian>Addizionale: Solo destra</Italian>
-                <Polish>Dodatkowy: Tylko prawy</Polish>
-                <Russian>Дополнительный: Только правый</Russian>
-                <Spanish>Adicional: Derecha solo</Spanish>
-                <Turkish>Ek: Sadece sağ</Turkish>
-                <Japanese>追加: 右から</Japanese>
-                <Korean>추가 채널: 오른쪽</Korean>
-                <Chinese>附加頻道: 右聲道</Chinese>
-                <Chinesesimp>附加频道: 右声道</Chinesesimp>
-            </Key>
-            <Key ID="STR_no_server">
-                <Original>No Task Force Radio deployed on server!</Original>
-                <Czech>Task Force Radio není na serveru!</Czech>
-                <French>Il n'y a pas de Task Force Radio déployé sur le serveur !</French>
-                <German>Task Force Radio wird nicht auf dem Server ausgeführt!</German>
-                <Italian>Task Force Radio non è in esecuzione sul server!</Italian>
-                <Polish>Brak Task Force Radio na serwerze!</Polish>
-                <Russian>Не обнаружена серверная часть Task Force Radio!</Russian>
-                <Spanish>¡El servidor no dispone de Task Force Radio!</Spanish>
-                <Turkish>Radyo serverda oluşturulamadı!</Turkish>
-                <Japanese>サーバー上で Task Force Radio が動作していません！</Japanese>
-                <Korean>Task Force Radio가 서버에서 사용되고 있지 않습니다!</Korean>
-                <Chinese>伺服器端並未掛載Task Force Radio模組!</Chinese>
-                <Chinesesimp>伺服器端并未挂载Task Force Radio模组!</Chinesesimp>
-            </Key>
-            <Key ID="STR_current_freq">
-                <Original>Current frequency</Original>
-                <Czech>Aktuální frekvence</Czech>
-                <French>Fréquence actuelle</French>
-                <German>Derzeitige Frequenz</German>
-                <Italian>Frequenza attuale</Italian>
-                <Polish>Obecna częstotliwość</Polish>
-                <Russian>Текущая частота</Russian>
-                <Spanish>Frecuencia actual</Spanish>
-                <Turkish>Mevcut frekans</Turkish>
-                <Japanese>現在の周波数</Japanese>
-                <Korean>현재 주파수</Korean>
-                <Chinese>目前頻率</Chinese>
-                <Chinesesimp>目前频率</Chinesesimp>
-            </Key>
-            <Key ID="STR_current_channel">
-                <Original>Current channel</Original>
-                <Czech>Aktuální kanál</Czech>
-                <French>Canal actuel</French>
-                <German>Derzeitiger Kanal</German>
-                <Italian>Canale attuale</Italian>
-                <Polish>Obecny kanał</Polish>
-                <Russian>Текущий канал</Russian>
-                <Spanish>Canal actual</Spanish>
-                <Turkish>Mevcut kanal</Turkish>
-                <Japanese>現在のチャンネル</Japanese>
-                <Korean>현재 채널</Korean>
-                <Chinese>目前頻道</Chinese>
-                <Chinesesimp>目前频道</Chinesesimp>
-            </Key>
-            <Key ID="STR_set_frequency">
-                <Original>Set frequency</Original>
-                <Czech>Nastavit frekvenci</Czech>
-                <French>Valider la fréquence</French>
-                <German>Frequenz festlegen</German>
-                <Italian>Imposta frequenza</Italian>
-                <Polish>Ustaw częstotliwość</Polish>
-                <Russian>Установить частоту</Russian>
-                <Spanish>Establecer frecuencia</Spanish>
-                <Turkish>Frekansı ayarla</Turkish>
-                <Japanese>周波数を設定</Japanese>
-                <Korean>주파수 설정</Korean>
-                <Chinese>設定頻率</Chinese>
-                <Chinesesimp>设定频率</Chinesesimp>
-            </Key>
-            <Key ID="STR_set_additional">
-                <Original>Set additional channel</Original>
-                <Czech>Nastavit dodatečný kanál</Czech>
-                <French>Canal additionnel prévue</French>
-                <German>Zusätzlichen Kanal festlegen</German>
-                <Italian>Impostare canale aggiuntivo</Italian>
-                <Polish>Ustaw dodatkowy kanał</Polish>
-                <Russian>Настроить дополнительный канал</Russian>
-                <Spanish>Ajuste el canal adicional</Spanish>
-                <Turkish>Ek kanal olarak ayarla</Turkish>
-                <Japanese>追加チャンネルを設定</Japanese>
-                <Korean>추가 채널 설정</Korean>
-                <Chinese>設定附加頻道</Chinese>
-                <Chinesesimp>设定附加频道</Chinesesimp>
-            </Key>
-            <Key ID="STR_clear_frequency">
-                <Original>Clear frequency</Original>
-                <Czech>Vymazat frekvenci</Czech>
-                <French>Effacer la fréquence</French>
-                <German>Frequenz löschen</German>
-                <Italian>Cancella frequenza</Italian>
-                <Polish>Wyczyść częstotliwość</Polish>
-                <Russian>Стереть частоту</Russian>
-                <Spanish>Reiniciar frecuencia</Spanish>
-                <Turkish>Frekansı temizle</Turkish>
-                <Japanese>周波数を消去</Japanese>
-                <Korean>주파수 지우기</Korean>
-                <Chinese>清除頻率</Chinese>
-                <Chinesesimp>清除频率</Chinesesimp>
-            </Key>
-            <Key ID="STR_previous_channel">
-                <Original>Previous channel</Original>
-                <Czech>Předchozí kanál</Czech>
-                <French>Canal précédent</French>
-                <German>Vorheriger Kanal</German>
-                <Italian>Canale precedente</Italian>
-                <Polish>Poprzedni kanał</Polish>
-                <Russian>Предыдущий канал</Russian>
-                <Spanish>Canal anterior</Spanish>
-                <Turkish>Önceki kanal</Turkish>
-                <Japanese>前のチャンネル</Japanese>
-                <Korean>이전 채널</Korean>
-                <Chinese>前一個頻道</Chinese>
-                <Chinesesimp>前一个频道</Chinesesimp>
-            </Key>
-            <Key ID="STR_next_channel">
-                <Original>Next channel</Original>
-                <Czech>Následující kanál</Czech>
-                <French>Canal suivant</French>
-                <German>Nächster Kanal</German>
-                <Italian>Canale successivo</Italian>
-                <Polish>Następny kanał</Polish>
-                <Russian>Следующий канал</Russian>
-                <Spanish>Canal siguiente</Spanish>
-                <Turkish>Sonraki kanal</Turkish>
-                <Japanese>次のチャンネル</Japanese>
-                <Korean>다음 채널</Korean>
-                <Chinese>下一個頻道</Chinese>
-                <Chinesesimp>下一个频道</Chinesesimp>
-            </Key>
-            <Key ID="STR_rotator_volume">
-                <Original>Decrease volume | Increase volume</Original>
-                <Czech>Zvýšit hlasitost | Snížit hlasitost</Czech>
-                <French>Réduire le volume | Augmenter le volume</French>
-                <German>Lautstärke verringern | Lautstärke erhöhen</German>
-                <Italian>Diminuisce volume | Aumenta volume</Italian>
-                <Polish>Zmniejsz głośność | Zwiększ głośność</Polish>
-                <Russian>Уменьшить громкость | Увеличить громкость</Russian>
-                <Spanish>Reducir volumen | Aumentar volumen</Spanish>
-                <Turkish>Sesi azalt | Sesi yükselt</Turkish>
-                <Japanese>音量低下 | 音量増加</Japanese>
-                <Korean>볼륨 낮추기 | 볼륨 높이기</Korean>
-                <Chinese>降低音量 | 提高音量</Chinese>
-                <Chinesesimp>降低音量 | 提高音量</Chinesesimp>
-            </Key>
-            <Key ID="STR_rotator_channel">
-                <Original>Previous channel | Next channel</Original>
-                <Czech>Předchozí kanál | Následující kanál</Czech>
-                <French>Canal précédent | Canal suivant</French>
-                <German>Vorheriger Kanal | Nächster Kanal</German>
-                <Italian>Canale precedente | Canale successivo</Italian>
-                <Polish>Poprzedni kanał | Następny kanał</Polish>
-                <Russian>Следующий канал | Предыдущий канал</Russian>
-                <Spanish>Canal anterior | Canal siguiente</Spanish>
-                <Turkish>Önceki kanal | Sonraki kanal</Turkish>
-                <Japanese>前のチャンネル | 次のチャンネル</Japanese>
-                <Korean>이전 채널 | 다음 채널</Korean>
-                <Chinese>前一個頻道 | 下一個頻道</Chinese>
-                <Chinesesimp>前一个频道 | 下一个频道</Chinesesimp>
-            </Key>
-            <Key ID="STR_increase_volume">
-                <Original>Increase volume</Original>
-                <Czech>Zvýšit hlasitost</Czech>
-                <French>Augmenter le volume</French>
-                <German>Lautstärke erhöhen</German>
-                <Italian>Aumenta volume</Italian>
-                <Polish>Zwiększ głośność</Polish>
-                <Russian>Увеличить громкость</Russian>
-                <Spanish>Aumentar volumen</Spanish>
-                <Turkish>Sesi yükselt</Turkish>
-                <Japanese>音量を上げる</Japanese>
-                <Korean>볼륨 높이기</Korean>
-                <Chinese>提高音量</Chinese>
-                <Chinesesimp>提高音量</Chinesesimp>
-            </Key>
-            <Key ID="STR_decrease_volume">
-                <Original>Decrease volume</Original>
-                <Czech>Snížit hlasitost</Czech>
-                <French>Réduire le volume</French>
-                <German>Lautstärke verringern</German>
-                <Italian>Diminuisce volume</Italian>
-                <Polish>Zmniejsz głośność</Polish>
-                <Russian>Уменьшить громкость</Russian>
-                <Spanish>Reducir volumen</Spanish>
-                <Turkish>Sesi azalt</Turkish>
-                <Japanese>音量を下げる</Japanese>
-                <Korean>볼륨 낮추기</Korean>
-                <Chinese>降低音量</Chinese>
-                <Chinesesimp>降低音量</Chinesesimp>
-            </Key>
             <Key ID="STR_volume">
+            <!--Depraceted? -->
                 <Original>Change volume</Original>
                 <Czech>Změnit hlasitost</Czech>
                 <French>Changer le volume</French>
@@ -345,172 +798,8 @@
                 <Chinese>改變音量</Chinese>
                 <Chinesesimp>改变音量</Chinesesimp>
             </Key>
-            <Key ID="STR_incorrect_frequency">
-                <Original>Incorrect frequency value, range is %1-%2</Original>
-                <Czech>Nesprávná hodnota pro frekvenci, rozsah je %1-%2</Czech>
-                <French>Valeur de fréquence incorrecte, la plage est de %1 à %2</French>
-                <German>Falsche Frequenz, Frequenzbereich ist %1-%2</German>
-                <Italian>Campo di frequenza non corretto; Campi possibili sono %1-%2</Italian>
-                <Polish>Niepoprawna częstotliwość, skala %1-%2</Polish>
-                <Russian>Неверная частота, диапазон %1-%2</Russian>
-                <Spanish>Frecuencia incorrecta, el rango es %1-%2</Spanish>
-                <Turkish>Yanlış frekans değeri, Menzil %1-%2</Turkish>
-                <Japanese>周波数の値が正しくありません。適正値は %1-%2</Japanese>
-                <Korean>잘못된 주파수 값, 범위는 %1-%2입니다.</Korean>
-                <Chinese>不正確的頻率值，頻率範圍為%1-%2</Chinese>
-                <Chinesesimp>不正确的频率值，频率范围为%1-%2</Chinesesimp>
-            </Key>
-            <Key ID="STR_radio_volume">
-                <Original>Volume: %1</Original>
-                <Czech>Hlasitost: %1</Czech>
-                <French>Volume : %1</French>
-                <German>Lautstärke: %1</German>
-                <Italian>Volume: %1</Italian>
-                <Polish>Głośność: %1</Polish>
-                <Russian>Громкость: %1</Russian>
-                <Spanish>Volumen: %1</Spanish>
-                <Turkish>Ses: %1</Turkish>
-                <Japanese>音量: %1</Japanese>
-                <Korean>볼륨: %1</Korean>
-                <Chinese>音量: %1</Chinese>
-                <Chinesesimp>音量: %1</Chinesesimp>
-            </Key>
-            <Key ID="STR_radio_channel_1">
-                <Original>Channel 1</Original>
-                <Czech>Kanál 1</Czech>
-                <French>Canal 1</French>
-                <German>Kanal 1</German>
-                <Italian>Canale 1</Italian>
-                <Polish>Kanał 1</Polish>
-                <Russian>Канал 1</Russian>
-                <Spanish>Canal 1</Spanish>
-                <Turkish>Kanal 1</Turkish>
-                <Japanese>チャンネル 1</Japanese>
-                <Korean>채널 1</Korean>
-                <Chinese>頻道 1</Chinese>
-                <Chinesesimp>频道 1</Chinesesimp>
-            </Key>
-            <Key ID="STR_radio_channel_2">
-                <Original>Channel 2</Original>
-                <Czech>Kanál 2</Czech>
-                <French>Canal 2</French>
-                <German>Kanal 2</German>
-                <Italian>Canale 2</Italian>
-                <Polish>Kanał 2</Polish>
-                <Russian>Канал 2</Russian>
-                <Spanish>Canal 2</Spanish>
-                <Turkish>Kanal 2</Turkish>
-                <Japanese>チャンネル 2</Japanese>
-                <Korean>채널 2</Korean>
-                <Chinese>頻道 2</Chinese>
-                <Chinesesimp>频道 2</Chinesesimp>
-            </Key>
-            <Key ID="STR_radio_channel_3">
-                <Original>Channel 3</Original>
-                <Czech>Kanál 3</Czech>
-                <French>Canal 3</French>
-                <German>Kanal 3</German>
-                <Italian>Canale 3</Italian>
-                <Polish>Kanał 3</Polish>
-                <Russian>Канал 3</Russian>
-                <Spanish>Canal 3</Spanish>
-                <Turkish>Kanal 3</Turkish>
-                <Japanese>チャンネル 3</Japanese>
-                <Korean>채널 3</Korean>
-                <Chinese>頻道 3</Chinese>
-                <Chinesesimp>频道 3</Chinesesimp>
-            </Key>
-            <Key ID="STR_radio_channel_4">
-                <Original>Channel 4</Original>
-                <Czech>Kanál 4</Czech>
-                <French>Canal 4</French>
-                <German>Kanal 4</German>
-                <Italian>Canale 4</Italian>
-                <Polish>Kanał 4</Polish>
-                <Russian>Канал 4</Russian>
-                <Spanish>Canal 4</Spanish>
-                <Turkish>Kanal 4</Turkish>
-                <Japanese>チャンネル 4</Japanese>
-                <Korean>채널 4</Korean>
-                <Chinese>頻道 4</Chinese>
-                <Chinesesimp>频道 4</Chinesesimp>
-            </Key>
-            <Key ID="STR_radio_channel_5">
-                <Original>Channel 5</Original>
-                <Czech>Kanál 5</Czech>
-                <French>Canal 5</French>
-                <German>Kanal 5</German>
-                <Italian>Canale 5</Italian>
-                <Polish>Kanał 5</Polish>
-                <Russian>Канал 5</Russian>
-                <Spanish>Canal 5</Spanish>
-                <Turkish>Kanal 5</Turkish>
-                <Japanese>チャンネル 5</Japanese>
-                <Korean>채널 5</Korean>
-                <Chinese>頻道 5</Chinese>
-                <Chinesesimp>频道 5</Chinesesimp>
-            </Key>
-            <Key ID="STR_radio_channel_6">
-                <Original>Channel 6</Original>
-                <Czech>Kanál 6</Czech>
-                <French>Canal 6</French>
-                <German>Kanal 6</German>
-                <Italian>Canale 6</Italian>
-                <Polish>Kanał 6</Polish>
-                <Russian>Канал 6</Russian>
-                <Spanish>Canal 6</Spanish>
-                <Turkish>Kanal 6</Turkish>
-                <Japanese>チャンネル 6</Japanese>
-                <Korean>채널 6</Korean>
-                <Chinese>頻道 6</Chinese>
-                <Chinesesimp>频道 6</Chinesesimp>
-            </Key>
-            <Key ID="STR_radio_channel_7">
-                <Original>Channel 7</Original>
-                <Czech>Kanál 7</Czech>
-                <French>Canal 7</French>
-                <German>Kanal 7</German>
-                <Italian>Canale 7</Italian>
-                <Polish>Kanał 7</Polish>
-                <Russian>Канал 7</Russian>
-                <Spanish>Canal 7</Spanish>
-                <Turkish>Kanal 7</Turkish>
-                <Japanese>チャンネル 7</Japanese>
-                <Korean>채널 7</Korean>
-                <Chinese>頻道 7</Chinese>
-                <Chinesesimp>频道 7</Chinesesimp>
-            </Key>
-            <Key ID="STR_radio_channel_8">
-                <Original>Channel 8</Original>
-                <Czech>Kanál 8</Czech>
-                <French>Canal 8</French>
-                <German>Kanal 8</German>
-                <Italian>Canale 8</Italian>
-                <Polish>Kanał 8</Polish>
-                <Russian>Канал 8</Russian>
-                <Spanish>Canal 8</Spanish>
-                <Turkish>Kanal 8</Turkish>
-                <Japanese>チャンネル 8</Japanese>
-                <Korean>채널 8</Korean>
-                <Chinese>頻道 8</Chinese>
-                <Chinesesimp>频道 8</Chinesesimp>
-            </Key>
-            <Key ID="STR_radio_channel_9">
-                <Original>Channel 9</Original>
-                <Czech>Kanál 9</Czech>
-                <French>Canal 9</French>
-                <German>Kanal 9</German>
-                <Italian>Canale 9</Italian>
-                <Polish>Kanał 9</Polish>
-                <Russian>Канал 9</Russian>
-                <Spanish>Canal 9</Spanish>
-                <Turkish>Kanal 9</Turkish>
-                <Japanese>チャンネル 9</Japanese>
-                <Korean>채널 9</Korean>
-                <Chinese>頻道 9</Chinese>
-                <Chinesesimp>频道 9</Chinesesimp>
-            </Key>
             <Key ID="STR_depth">
+                <!--Depraceted? -->
                 <Original>Current depth</Original>
                 <Czech>Aktuální hloubka</Czech>
                 <French>Profondeur actuelle</French>
@@ -525,292 +814,9 @@
                 <Chinese>目前深度</Chinese>
                 <Chinesesimp>目前深度</Chinesesimp>
             </Key>
-            <Key ID="STR_active_sw_channel">
-                <Original>Channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
-                <Czech>Kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
-                <French>Canal courte portée : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
-                <German>Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
-                <Italian>Canale onde corte: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
-                <Polish>Kanał: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
-                <Russian>Канал: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Russian>
-                <Spanish>Canal onda corta:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
-                <Turkish>Mevcut derinlik: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
-                <Japanese>チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
-                <Korean>채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
-                <Chinese>頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
-                <Chinesesimp>频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
-            </Key>
-            <Key ID="STR_active_additional_sw_channel">
-                <Original>Additional channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
-                <Czech>Dodatečný kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
-                <French>Canal additionnel : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
-                <German>Zusätzlicher Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
-                <Italian>Canale aggiuntivo: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
-                <Polish>Dodatkowy kanał: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
-                <Russian>Дополнительный канал: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Russian>
-                <Spanish>Canal adicional:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
-                <Turkish>Ek kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
-                <Japanese>追加チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
-                <Korean>추가 채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
-                <Chinese>附加頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
-                <Chinesesimp>附加频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
-            </Key>
-            <Key ID="STR_active_frequency">
-                <Original>Frequency: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
-                <Czech>Frekvence: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
-                <French>Fréquence : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
-                <German>Frequenz: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
-                <Italian>Frequenza: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
-                <Polish>Częstotliwość: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
-                <Russian>Частота: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Russian>
-                <Spanish>Frecuencia:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
-                <Turkish>Frekans: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
-                <Japanese>周波数: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
-                <Korean>주파수: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
-                <Chinese>頻率: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
-                <Chinesesimp>频率: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
-            </Key>
-            <Key ID="STR_active_lr_channel">
-                <Original>LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
-                <Czech>LR kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
-                <French>Canal LP : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
-                <German>LS-Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
-                <Italian>Canale OL: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
-                <Polish>Kanał LR: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
-                <Russian>Kанал ДС: &lt;t color='#ff00ff'&gt;%1&lt;/t&gt;</Russian>
-                <Spanish>Canal RL:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
-                <Turkish>UM(Uzun Menzil) kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
-                <Japanese>長距離ラジオ チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
-                <Korean>장파 채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
-                <Chinese>長程無線電頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
-                <Chinesesimp>长程无线电频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
-            </Key>
-            <Key ID="STR_active_additional_lr_channel">
-                <Original>Additional LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
-                <Czech>Dodatečný LR kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
-                <French>Canal additionnel LP : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
-                <German>Zusätzlicher LS-Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
-                <Italian>Canale aggiuntivo OL: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
-                <Polish>Dodatkowy kanał LR: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
-                <Russian>Дополнительный канал ДС: &lt;t color='#ff00ff'&gt;%1&lt;/t&gt;</Russian>
-                <Spanish>Canal adicional RL:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
-                <Turkish>Ek UM(Uzun Menzil) kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
-                <Japanese>追加長距離ラジオ チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
-                <Korean>장파 추가 채널: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Korean>
-                <Chinese>長程無線電附加頻道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinese>
-                <Chinesesimp>长程无线电附加频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
-            </Key>
-            <Key ID="STR_in_water_hint">
-                <Original>&lt;t color='#33ccff'&gt;Can't use radio under WATER&lt;/t&gt;</Original>
-                <Czech>&lt;t color='#33ccff'&gt;Není možné použít vysílačku pod VODOU&lt;/t&gt;</Czech>
-                <French>&lt;t color='#33ccff'&gt;Vous ne pouvez pas utiliser de radio sous l'eau !&lt;/t&gt;</French>
-                <German>&lt;t color='#33ccff'&gt;Das Funkgerät kann unter Wasser nicht verwendet werden&lt;/t&gt;</German>
-                <Italian>&lt;t color='#33ccff'&gt;Non puoi usare la radio sott'acqua&lt;/t&gt;</Italian>
-                <Polish>&lt;t color='#33ccff'&gt;Nie możesz używać radia pod wodą&lt;/t&gt;</Polish>
-                <Russian>&lt;t color='#33ccff'&gt;Нельзя использовать данную рацию под водой&lt;/t&gt;</Russian>
-                <Spanish>&lt;t color='#33ccff'&gt;No puedes utilizar radios bajo el agua&lt;/t&gt;</Spanish>
-                <Turkish>&lt;t color='#33ccff'&gt;Bu radyo su altında çalışmaz&lt;/t&gt;</Turkish>
-                <Japanese>&lt;t color='#33ccff'&gt;水中で無線機は使えません&lt;/t&gt;</Japanese>
-                <Korean>&lt;t color='#33ccff'&gt;수중에서는 무전기를 사용 할 수 없습니다&lt;/t&gt;</Korean>
-                <Chinese>&lt;t color='#33ccff'&gt;無法在水下使用無線電&lt;/t&gt;</Chinese>
-                <Chinesesimp>&lt;t color='#33ccff'&gt;无法在水下使用无线电&lt;/t&gt;</Chinesesimp>
-            </Key>
-            <Key ID="STR_on_ground_hint">
-                <Original>&lt;t color='#993300'&gt;Can't use driver radio on the air&lt;/t&gt;</Original>
-                <Czech>&lt;t color='#993300'&gt;Can'Není možné použít vysílačku ve vzduchu&lt;/t&gt;</Czech>
-                <French>&lt;t color='#993300'&gt;Vous ne pouvez pas utiliser la radio du véhicule dans les airs !&lt;/t&gt;</French>
-                <German>&lt;t color='#993300'&gt;Fahrzeugfunk kann nicht in der Luft verwendet werden&lt;/t&gt;</German>
-                <Italian>&lt;t color='#993300'&gt;Non puoi usare la radio del veicolo in aria!&lt;/t&gt;</Italian>
-                <Polish>&lt;t color='#993300'&gt;Nie możesz używać radia kierowcy w powietrzu&lt;/t&gt;</Polish>
-                <Russian>&lt;t color='#993300'&gt;Нельзя использовать данную рацию в воздушной среде&lt;/t&gt;</Russian>
-                <Spanish>&lt;t color='#993300'&gt;No puedes utilizar la radio del conductor en el aire&lt;/t&gt;</Spanish>
-                <Turkish>&lt;t color='#993300'&gt;Bu radyo sadece su altında çalışır&lt;/t&gt;</Turkish>
-                <Japanese>&lt;t color='#993300'&gt;空中で操縦士用の無線機は使えませんr&lt;/t&gt;</Japanese>
-                <Korean>&lt;t color='#993300'&gt;물 밖에서는 잠수부 무전기를 사용 할 수 없습니다&lt;/t&gt;</Korean>
-                <Chinese>&lt;t color='#993300'&gt;無法在空中使用駕駛座無線電&lt;/t&gt;</Chinese>
-                <Chinesesimp>&lt;t color='#993300'&gt;无法在空中使用驾驶座无线电&lt;/t&gt;</Chinesesimp>
-            </Key>
-            <Key ID="STR_unable_to_use_hint">
-                <Original>&lt;t color='#FF0000'&gt;you are not able to use the radio&lt;/t&gt;</Original>
-                <Czech>&lt;t color='#FF0000'&gt;není možné použít vysílačku&lt;/t&gt;</Czech>
-                <French>&lt;t color='#FF0000'&gt;Vous n'êtes pas en mesure d'utiliser le radio&lt;/t&gt;</French>
-                <German>&lt;t color='#FF0000'&gt;Funkgerät kann nicht benutzt werden&lt;/t&gt;</German>
-                <Italian>&lt;t color='#FF0000'&gt;Non sono in grado di utilizzare il radio&lt;/t&gt;</Italian>
-                <Polish>&lt;t color='#FF0000'&gt;Nie możesz używać tego radia&lt;/t&gt;</Polish>
-                <Russian>&lt;t color='#FF0000'&gt;Вы не способны пользоваться рацией&lt;/t&gt;</Russian>
-                <Spanish>&lt;t color='#FF0000'&gt;Incapaz de usar la radio&lt;/t&gt;</Spanish>
-                <Turkish>&lt;t color='#FF0000'&gt;Radyoyu kullanamazsın&lt;/t&gt;</Turkish>
-                <Japanese>&lt;t color='#FF0000'&gt;無線機は使えません&lt;/t&gt;</Japanese>
-                <Korean>&lt;t color='#FF0000'&gt;이 라디오를 사용 할 수 없습니다.&lt;/t&gt;</Korean>
-                <Chinese>&lt;t color='#FF0000'&gt;你無法使用無線電&lt;/t&gt;</Chinese>
-                <Chinesesimp>&lt;t color='#FF0000'&gt;你无法使用无线电&lt;/t&gt;</Chinesesimp>
-            </Key>
-            <Key ID="STR_select_action">
-                <Original>Select action</Original>
-                <Czech>Zvolit akci</Czech>
-                <French>Sélectionner l'action</French>
-                <German>Aktion wählen</German>
-                <Italian>Seleziona l'azione</Italian>
-                <Polish>Wybierz akcję</Polish>
-                <Russian>Выберите действие</Russian>
-                <Spanish>Selecciona acción</Spanish>
-                <Turkish>Eylem seç</Turkish>
-                <Japanese>動作を選択</Japanese>
-                <Korean>동작 선택</Korean>
-                <Chinese>選擇動作</Chinese>
-                <Chinesesimp>选择动作</Chinesesimp>
-            </Key>
-            <Key ID="STR_select_action_setup">
-                <Original>Settings...</Original>
-                <Czech>Nastavení...</Czech>
-                <French>Options...</French>
-                <German>Tastenbelegung</German>
-                <Italian>Opzioni</Italian>
-                <Polish>Ustawienia...</Polish>
-                <Russian>Настройки...</Russian>
-                <Spanish>Configuración</Spanish>
-                <Turkish>Ayarlar...</Turkish>
-                <Japanese>設定中</Japanese>
-                <Korean>설정...</Korean>
-                <Chinese>設定...</Chinese>
-                <Chinesesimp>设定...</Chinesesimp>
-            </Key>
-            <Key ID="STR_select_action_setup_tooltip">
-                <Original>Open settings dialog</Original>
-                <Czech>Otevřít nastavení</Czech>
-                <French>Ouvre la fenêtre de la radio</French>
-                <German>Einstellungen öffnen</German>
-                <Italian>Apri finestra opzioni</Italian>
-                <Polish>Otwórz ustawienia</Polish>
-                <Russian>Открыть диалог настройки</Russian>
-                <Spanish>Abrir ventana de configuración</Spanish>
-                <Turkish>Ayarlar diyaloğunu aç</Turkish>
-                <Japanese>設定画面を開く</Japanese>
-                <Korean>설정 대화 상자 열기</Korean>
-                <Chinese>開啟設定視窗</Chinese>
-                <Chinesesimp>开启设定视窗</Chinesesimp>
-            </Key>
-            <Key ID="STR_select_action_use">
-                <Original>Set as active</Original>
-                <Czech>Nastavit jako aktivní</Czech>
-                <French>Mettre en radio active</French>
-                <German>Als aktiv setzen</German>
-                <Italian>Seleziona come in uso</Italian>
-                <Polish>Ustaw jako aktywne</Polish>
-                <Russian>Сделать активной</Russian>
-                <Spanish>Seleccionar como activa</Spanish>
-                <Turkish>Aktif olarak ayarla</Turkish>
-                <Japanese>使うように設定</Japanese>
-                <Korean>활성 상태로 설정</Korean>
-                <Chinese>設定為啟用</Chinese>
-                <Chinesesimp>设定为启用</Chinesesimp>
-            </Key>
-            <Key ID="STR_select_action_use_tooltip">
-                <Original>Use for transmiting</Original>
-                <Czech>Používané pro vysílání</Czech>
-                <French>Choisir comme radio active</French>
-                <German>Zum Senden wählen</German>
-                <Italian>Usa come radio per trasmissioni</Italian>
-                <Polish>Użyj do transmisji</Polish>
-                <Russian>Использовать для передачи</Russian>
-                <Spanish>Usar para transmitir</Spanish>
-                <Turkish>İletmek için kullan</Turkish>
-                <Japanese>送信に使う</Japanese>
-                <Korean>전송중</Korean>
-                <Chinese>用來發送信號</Chinese>
-                <Chinesesimp>用来发送信号</Chinesesimp>
-            </Key>
-            <Key ID="STR_select_radio">
-                <Original>Select short range radio</Original>
-                <Czech>Zvolit vysílačku na krátkou vzdálenost</Czech>
-                <French>Selectionner la radio courte portée</French>
-                <German>Kurzstreckenfunkgerät wählen</German>
-                <Italian>Seleziona radio onde corte</Italian>
-                <Polish>Wybierz radio krótkiego zasięgu</Polish>
-                <Russian>Выберите рацию ближней связи</Russian>
-                <Spanish>Seleccionar radio de corto alcance</Spanish>
-                <Turkish>Kısa menzilli radyo seç</Turkish>
-                <Japanese>短距離無線機として選択</Japanese>
-                <Korean>단파 라디오 선택</Korean>
-                <Chinese>選擇短程無線電</Chinese>
-                <Chinesesimp>选择短程无线电</Chinesesimp>
-            </Key>
-            <Key ID="STR_select_lr_radio">
-                <Original>Select long range radio</Original>
-                <Czech>Zvolit vysílačku na dlouhou vzdálenost</Czech>
-                <French>Selectionner la radio longue portée</French>
-                <German>Langstreckenfunkgerät wählen</German>
-                <Italian>Seleziona radio onde lunghe</Italian>
-                <Polish>Wybierz radio dalekiego zasięgu</Polish>
-                <Russian>Выберите рацию дальней связи</Russian>
-                <Spanish>Seleccionar radio de largo alcance</Spanish>
-                <Turkish>Uzun menzilli radyo seç</Turkish>
-                <Japanese>長距離無線機として選択</Japanese>
-                <Korean>장파 라디오 선택</Korean>
-                <Chinese>選擇長程無線電</Chinese>
-                <Chinesesimp>选择长程无线电</Chinesesimp>
-            </Key>
-            <Key ID="STR_transmit">
-                <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
-                <Czech>&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
-                <French>&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
-                <German>&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
-                <Italian>&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
-                <Polish>&lt;t size='1' align='center' color='#00FF00'&gt;Nadawanie:&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
-                <Russian>&lt;t size='1' align='center' color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
-                <Spanish>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
-                <Turkish>&lt;t size='1' align='center' color='#00FF00'&gt;İletiliyor&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
-                <Japanese>&lt;t size='1' align='center' color='#00FF00'&gt;送信中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
-                <Korean>&lt;t size='1' align='center' color='#00FF00'&gt;전송중&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
-                <Chinese>&lt;t size='1' align='center' color='#00FF00'&gt;發送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
-                <Chinesesimp>&lt;t size='1' align='center' color='#00FF00'&gt;发送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
-            </Key>
-            <Key ID="STR_transmit_end">
-                <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
-                <Czech>&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
-                <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
-                <German>&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
-                <Italian>&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
-                <Polish>&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
-                <Russian>&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
-                <Spanish>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
-                <Turkish>&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
-                <Japanese>&lt;t size='1' align='center' color='#FF9900'&gt;送信終了&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
-                <Korean>&lt;t size='1' align='center' color='#FF9900'&gt;송신끝&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
-                <Chinese>&lt;t size='1' align='center' color='#FF9900'&gt;已發送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
-                <Chinesesimp>&lt;t size='1' align='center' color='#FF9900'&gt;已发送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
-            </Key>
-            <Key ID="STR_additional_transmit">
-                <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
-                <Czech>&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
-                <French>&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio : %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
-                <German>&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
-                <Italian>&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
-                <Polish>&lt;t size='1' align='center' color='#00FF00'&gt;Nadawanie&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
-                <Russian>&lt;t size='1' align='center' color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Дополнительный канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
-                <Spanish>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitiendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
-                <Turkish>&lt;t size='1' align='center' color='#00FF00'&gt;İletiliyor&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
-                <Japanese>&lt;t size='1' align='center' color='#00FF00'&gt;送信中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;追加チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
-                <Korean>&lt;t size='1' align='center' color='#00FF00'&gt;전송중&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;추가 채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
-                <Chinese>&lt;t size='1' align='center' color='#00FF00'&gt;發送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
-                <Chinesesimp>&lt;t size='1' align='center' color='#00FF00'&gt;发送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
-            </Key>
-            <Key ID="STR_additional_transmit_end">
-                <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional сhannel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
-                <Czech>&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
-                <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
-                <German>&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
-                <Italian>&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
-                <Polish>&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
-                <Russian>&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Дополнительный канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
-                <Spanish>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitido con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Spanish>
-                <Turkish>&lt;t size='1' align='center' color='#FF9900'&gt;İletildi&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radyo: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Ek kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Turkish>
-                <Japanese>&lt;t size='1' align='center' color='#FF9900'&gt;送信終了&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線機: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;追加チャンネル: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;周波数: %3&lt;/t&gt;</Japanese>
-                <Korean>&lt;t size='1' align='center' color='#FF9900'&gt;전송끝&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;무전기: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;추가 채널: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;주파수: %3&lt;/t&gt;</Korean>
-                <Chinese>&lt;t size='1' align='center' color='#FF9900'&gt;已發送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;無線電: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加頻道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;頻率: %3&lt;/t&gt;</Chinese>
-                <Chinesesimp>&lt;t size='1' align='center' color='#FF9900'&gt;已发送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
-            </Key>
+            
             <Key ID="STR_waiting">
+                <!--Depraceted? -->
                 <Original>Waiting...</Original>
                 <Czech>Čekám...</Czech>
                 <French>En attente...</French>
@@ -825,7 +831,7 @@
                 <Chinese>請稍待...</Chinese>
                 <Chinesesimp>请稍待...</Chinesesimp>
             </Key>
-            <Key ID="STR_voice_volume">
+            <Key ID="STR_TFAR_CORE_voice_volume">
                 <Original>&lt;t align='center' color='#66ff33'&gt;Voice volume: %1&lt;/t&gt;</Original>
                 <Czech>&lt;t align='center' color='#66ff33'&gt;Hlasitost hlasu: %1&lt;/t&gt;</Czech>
                 <French>&lt;t align='center' color='#66ff33'&gt;Volume de la voix : %1&lt;/t&gt;</French>
@@ -840,7 +846,7 @@
                 <Chinese>&lt;t align='center' color='#66ff33'&gt;語音音量: %1&lt;/t&gt;</Chinese>
                 <Chinesesimp>&lt;t align='center' color='#66ff33'&gt;语音音量: %1&lt;/t&gt;</Chinesesimp>
             </Key>
-            <Key ID="STR_voice_normal">
+            <Key ID="STR_TFAR_CORE_voice_normal">
                 <Original>normal</Original>
                 <Czech>normální</Czech>
                 <French>Normal</French>
@@ -855,7 +861,7 @@
                 <Chinese>正常</Chinese>
                 <Chinesesimp>正常</Chinesesimp>
             </Key>
-            <Key ID="STR_voice_yelling">
+            <Key ID="STR_TFAR_CORE_voice_yelling">
                 <Original>yelling</Original>
                 <Czech>křičení</Czech>
                 <French>Forte</French>
@@ -870,7 +876,7 @@
                 <Chinese>嚎叫</Chinese>
                 <Chinesesimp>嚎叫</Chinesesimp>
             </Key>
-            <Key ID="STR_voice_whispering">
+            <Key ID="STR_TFAR_CORE_voice_whispering">
                 <Original>whispering</Original>
                 <Czech>šeptání</Czech>
                 <French>Faible</French>
@@ -885,7 +891,7 @@
                 <Chinese>耳語</Chinese>
                 <Chinesesimp>耳语</Chinesesimp>
             </Key>
-            <Key ID="STR_init">
+            <Key ID="STR_TFAR_CORE_init">
                 <Original>Initialization...</Original>
                 <Czech>Inicializace...</Czech>
                 <French>Initialisation...</French>
@@ -900,7 +906,7 @@
                 <Chinese>初始化中...</Chinese>
                 <Chinesesimp>初始化中...</Chinesesimp>
             </Key>
-            <Key ID="STR_select_action_copy_settings_from">
+            <Key ID="STR_TFAR_CORE_select_action_copy_settings_from">
                 <Original>Copy settings from...</Original>
                 <Czech>Okopírovat nastavení od...</Czech>
                 <French>Copiez les réglages d'...</French>
@@ -915,7 +921,7 @@
                 <Chinese>複製設定從...</Chinese>
                 <Chinesesimp>复制设定从...</Chinesesimp>
             </Key>
-            <Key ID="STR_select_action_settings_from_tooltip">
+            <Key ID="STR_TFAR_CORE_select_action_settings_from_tooltip">
                 <Original>Copy settings from another radio with same encryption code</Original>
                 <Czech>Kopíruje nastavení z jiné vysílačky se stejným šifrovacím kódem</Czech>
                 <French>Copiez les réglages d'une autre radio ayant le même code de cryptage</French>
@@ -930,7 +936,7 @@
                 <Chinese>從另一個具有相同加密設定的無線電上複製設定過來</Chinese>
                 <Chinesesimp>从另一个具有相同加密设定的无线电上复制设定过来</Chinesesimp>
             </Key>
-            <Key ID="STR_wait_radio">
+            <Key ID="STR_TFAR_CORE_wait_radio">
                 <Original>Waiting for the unique radio from server...</Original>
                 <Czech>Čekání na unikátní vysílačku od serveru...</Czech>
                 <French>En attente de l'unique radio du serveur...</French>
@@ -945,7 +951,7 @@
                 <Chinese>等待伺服器唯一的無線電中...</Chinese>
                 <Chinesesimp>等待伺服器唯一的无线电中...</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_NATO_crate" TODO="move all crates stringtables to core">
+            <Key ID="STR_TFAR_CORE_NATO_crate">
                 <Original>TFAR Radio (NATO)</Original>
                 <Czech>TFAR Vysílačky (NATO)</Czech>
                 <French>Radio TFAR (OTAN)</French>
@@ -958,7 +964,7 @@
                 <Chinese>TFAR無線電 (北約)</Chinese>
                 <Chinesesimp>TFAR无线电 (北约)</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_EAST_crate">
+            <Key ID="STR_TFAR_CORE_EAST_crate">
                 <Original>TFAR Radio (CSAT)</Original>
                 <Czech>TFAR Vysílačky (CSAT)</Czech>
                 <French>Radio TFAR (CSAT)</French>
@@ -971,7 +977,7 @@
                 <Chinese>TFAR無線電 (廣協同盟)</Chinese>
                 <Chinesesimp>TFAR无线电 (广协同盟)</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_IND_crate">
+            <Key ID="STR_TFAR_CORE_IND_crate">
                 <Original>TFAR Radio (AAF)</Original>
                 <Czech>TFAR Vysílačky (AAF)</Czech>
                 <French>Radio TFAR (AAF)</French>
