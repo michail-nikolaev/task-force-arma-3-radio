@@ -1,4 +1,4 @@
-editorCategory = "TFAR";
+editorCategory = ECSTRING(core,CATEGORY);
 class Attributes {
 
     class staticRadioFrequency {

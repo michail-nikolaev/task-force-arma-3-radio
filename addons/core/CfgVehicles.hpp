@@ -11,9 +11,9 @@ class CfgVehicles {
 
     class TFAR_ModuleTaskForceRadioEnforceUsage: Module_F {
         scope = PUBLIC;
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
         displayName = "$STR_TFAR_Mod_EnforceUsage";
-        category = "TFAR";
+        category = ECSTRING(core,CATEGORY);
 
         function = "TFAR_fnc_initialiseEnforceUsageModule";
         functionPriority = 1;
@@ -76,9 +76,9 @@ class CfgVehicles {
     };
     class TFAR_ModuleTaskForceRadio: Module_F {
         scope = PUBLIC;
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
         displayName = "$STR_TFAR_Mod_SideRadio";
-        category = "TFAR";
+        category = ECSTRING(core,CATEGORY);
 
         function = "TFAR_fnc_initialiseBaseModule";
         functionPriority = 2;
@@ -133,9 +133,9 @@ class CfgVehicles {
 
     class TFAR_ModuleTaskForceRadioFrequencies: Module_F {
         scope = PUBLIC;
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
         displayName = "$STR_TFAR_Mod_Frequencies";
-        category = "TFAR";
+        category = ECSTRING(core,CATEGORY);
 
         function = "TFAR_fnc_initialiseFreqModule";
         functionPriority = 0; // only for server

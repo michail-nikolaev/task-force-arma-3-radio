@@ -152,9 +152,8 @@ class RscDisplayAttributesModuleTFARStaticRadio: RscDisplayAttributes {
 class CfgVehicles {
     class Module_F;
     class TFAR_Module_staticRadio: Module_F {
-        author = "TFAR";
-        //category = "TFAR";
-        category = "TFAR";
+        author = ECSTRING(core,AUTHORS);
+        category = ECSTRING(core,CATEGORY);
         functionPriority = 1;
         isGlobal = 1;
         isTriggerActivated = 0;

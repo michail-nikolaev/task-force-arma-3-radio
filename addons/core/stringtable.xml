@@ -1,6 +1,73 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project ID="Arma3">
     <Package name="core">
+        <Container name="shared">
+            <!-- These strings might be used by other components too -->
+            <Key ID="STR_TFAR_CORE_AUTHORS">
+                <English>Task Force Arrowhead Radio Team</English>
+            </Key>
+            <Key ID="STR_TFAR_CORE_CATEGORY">
+                <English>TFAR</English>
+            </Key>
+            <Key ID="STR_TFAR_CORE_NATO_crate">
+                <English>TFAR Radio (NATO)</English>
+                <Czech>TFAR Vysílačky (NATO)</Czech>
+                <French>Radio TFAR (OTAN)</French>
+                <German>TFAR-Funkgeräte (NATO)</German>
+                <Russian>TFAR Рации (НАТО)</Russian>
+                <Spanish>TFAR Radio (NATO)</Spanish>
+                <Turkish>TFAR Radyo (NATO)</Turkish>
+                <Japanese>TFAR ラジオ (NATO)</Japanese>
+                <Korean>TFAR Radio (NATO)</Korean>
+                <Chinese>TFAR無線電 (北約)</Chinese>
+                <Chinesesimp>TFAR无线电 (北约)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_CORE_EAST_crate">
+                <English>TFAR Radio (CSAT)</English>
+                <Czech>TFAR Vysílačky (CSAT)</Czech>
+                <French>Radio TFAR (CSAT)</French>
+                <German>TFAR-Funkgeräte (CSAT)</German>
+                <Russian>TFAR Рации (CSAT)</Russian>
+                <Spanish>TFAR Radio (CSAT)</Spanish>
+                <Turkish>TFAR Radyo (CSAT)</Turkish>
+                <Japanese>TFAR ラジオ (CSAT)</Japanese>
+                <Korean>TFAR Radio (CSAT)</Korean>
+                <Chinese>TFAR無線電 (廣協同盟)</Chinese>
+                <Chinesesimp>TFAR无线电 (广协同盟)</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_CORE_IND_crate">
+                <English>TFAR Radio (AAF)</English>
+                <Czech>TFAR Vysílačky (AAF)</Czech>
+                <French>Radio TFAR (AAF)</French>
+                <German>TFAR-Funkgeräte (AAF)</German>
+                <Russian>TFAR Рации (AAF)</Russian>
+                <Spanish>TFAR Radio (AAF)</Spanish>
+                <Turkish>TFAR Radyo (AAF)</Turkish>
+                <Japanese>TFAR ラジオ (AAF)</Japanese>
+                <Korean>TFAR Radio (AAF)</Korean>
+                <Chinese>TFAR無線電 (Altis政府軍)</Chinese>
+                <Chinesesimp>TFAR无线电 (Altis政府军)</Chinesesimp>
+            </Key>
+        </Container>
+
+        <Container name="WarningMessage">
+            <Key ID="STR_TFAR_CORE_WM_Singleplayer">
+                <English>TFAR doesn't work in Singleplayer. Use the Multiplayer Editor if you need to test TFAR stuff.</English>
+                <Chinese>TFAR無法在單人遊戲模式下運作。請使用多人遊戲預覽模式來在編輯器中測試TFAR的功能。</Chinese>
+                <Chinesesimp>TFAR无法在单人游戏模式下运作。请使用多人游戏预览模式来在编辑器中测试TFAR的功能。</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_CORE_WM_NotLoad">
+                <English>TASK FORCE RADIO NOT LOADED</English>
+                <Chinese>TFAR模組沒有被載入</Chinese>
+                <Chinesesimp>TFAR模组没有被载入</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_CORE_WM_NotLoad_Desc">
+                <English>LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0</English>
+                <Chinese>看來TFAR並沒有被載入，或是版本低於1.0</Chinese>
+                <Chinesesimp>看来TFAR并没有被载入，或是版本低于1.0</Chinesesimp>
+            </Key>
+        </Container>
+
         <Key ID="STR_TFAR_CORE_different_version">
             <English>Different versions of Task Force Radio are used. Server version: %1, Your version: %2</English>
             <Czech>Je používaná jiná verze Task Force Radio. Verze serveru: %1, Vaše verze: %2</Czech>
@@ -899,45 +966,6 @@
             <Chinese>等待伺服器唯一的無線電中...</Chinese>
             <Chinesesimp>等待伺服器唯一的无线电中...</Chinesesimp>
         </Key>
-        <Key ID="STR_TFAR_CORE_NATO_crate">
-            <English>TFAR Radio (NATO)</English>
-            <Czech>TFAR Vysílačky (NATO)</Czech>
-            <French>Radio TFAR (OTAN)</French>
-            <German>TFAR-Funkgeräte (NATO)</German>
-            <Russian>TFAR Рации (НАТО)</Russian>
-            <Spanish>TFAR Radio (NATO)</Spanish>
-            <Turkish>TFAR Radyo (NATO)</Turkish>
-            <Japanese>TFAR ラジオ (NATO)</Japanese>
-            <Korean>TFAR Radio (NATO)</Korean>
-            <Chinese>TFAR無線電 (北約)</Chinese>
-            <Chinesesimp>TFAR无线电 (北约)</Chinesesimp>
-        </Key>
-        <Key ID="STR_TFAR_CORE_EAST_crate">
-            <English>TFAR Radio (CSAT)</English>
-            <Czech>TFAR Vysílačky (CSAT)</Czech>
-            <French>Radio TFAR (CSAT)</French>
-            <German>TFAR-Funkgeräte (CSAT)</German>
-            <Russian>TFAR Рации (CSAT)</Russian>
-            <Spanish>TFAR Radio (CSAT)</Spanish>
-            <Turkish>TFAR Radyo (CSAT)</Turkish>
-            <Japanese>TFAR ラジオ (CSAT)</Japanese>
-            <Korean>TFAR Radio (CSAT)</Korean>
-            <Chinese>TFAR無線電 (廣協同盟)</Chinese>
-            <Chinesesimp>TFAR无线电 (广协同盟)</Chinesesimp>
-        </Key>
-        <Key ID="STR_TFAR_CORE_IND_crate">
-            <English>TFAR Radio (AAF)</English>
-            <Czech>TFAR Vysílačky (AAF)</Czech>
-            <French>Radio TFAR (AAF)</French>
-            <German>TFAR-Funkgeräte (AAF)</German>
-            <Russian>TFAR Рации (AAF)</Russian>
-            <Spanish>TFAR Radio (AAF)</Spanish>
-            <Turkish>TFAR Radyo (AAF)</Turkish>
-            <Japanese>TFAR ラジオ (AAF)</Japanese>
-            <Korean>TFAR Radio (AAF)</Korean>
-            <Chinese>TFAR無線電 (Altis政府軍)</Chinese>
-            <Chinesesimp>TFAR无线电 (Altis政府军)</Chinesesimp>
-        </Key>
         <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Name">
             <English>IntercomChannel</English>
             <Chinese>對講機頻道</Chinese>
@@ -1803,24 +1831,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>无线电</Chinesesimp>
             </Key>
         </Container>
-        
-        <Container name="WarningMessage">
-            <Key ID="STR_TFAR_CORE_WM_Singleplayer">
-                <English>TFAR doesn't work in Singleplayer. Use the Multiplayer Editor if you need to test TFAR stuff.</English>
-                <Chinese>TFAR無法在單人遊戲模式下運作。請使用多人遊戲預覽模式來在編輯器中測試TFAR的功能。</Chinese>
-                <Chinesesimp>TFAR无法在单人游戏模式下运作。请使用多人游戏预览模式来在编辑器中测试TFAR的功能。</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_CORE_WM_NotLoad">
-                <English>TASK FORCE RADIO NOT LOADED</English>
-                <Chinese>TFAR模組沒有被載入</Chinese>
-                <Chinesesimp>TFAR模组没有被载入</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_CORE_WM_NotLoad_Desc">
-                <English>LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0</English>
-                <Chinese>看來TFAR並沒有被載入，或是版本低於1.0</Chinese>
-                <Chinesesimp>看来TFAR并没有被载入，或是版本低于1.0</Chinesesimp>
-            </Key>
-        </Container>
+
         <Container name="Keybinding">
             <Key ID="STR_TFAR_CORE_key_SW_Channel">
                 <English>SW Channel</English>

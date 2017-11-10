@@ -9,7 +9,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {};
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
     };
 };
 
@@ -17,7 +17,7 @@ class CfgPatches {
 
 #define IntercomMacro class ACE_SelfActions : ACE_SelfActions { \
     class TFAR_IntercomChannel { \
-        displayName = "$STR_TFAR_Core_Intercom_ACESelfAction_Name"; \
+        displayName = CSTRING(Intercom_ACESelfAction_Name); \
         condition = "true"; \
         statement = ""; \
         icon = ""; \
@@ -27,12 +27,12 @@ class CfgPatches {
             statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,-1,true)];); \
         }; \
         class TFAR_IntercomChannel_1 { \
-            displayName = "$STR_TFAR_Core_Intercom_ACESelfAction_Channel1"; \
+            displayName = CSTRING(Intercom_ACESelfAction_Channel1); \
             condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 0); \
             statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,0,true)];); \
         }; \
         class TFAR_IntercomChannel_2 { \
-            displayName = "$STR_TFAR_Core_Intercom_ACESelfAction_Channel2"; \
+            displayName = CSTRING(Intercom_ACESelfAction_Channel2); \
             condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 1); \
             statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,1,true)];); \
         }; \

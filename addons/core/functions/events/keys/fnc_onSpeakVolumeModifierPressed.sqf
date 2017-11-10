@@ -43,7 +43,7 @@ if(_modifierMode == "yelling") then {
 call TFAR_fnc_sendFrequencyInfo;
 
 
-private _localName = localize format["STR_voice_%1", _modifierMode];
+private _localName = localize format[LSTRING(voice_%1), _modifierMode];
 private _hintText = format[localize LSTRING(voice_volume), _localName];
 if (TFAR_oldVolumeHint) then {
     if (TFAR_volumeModifier_forceSpeech) then {

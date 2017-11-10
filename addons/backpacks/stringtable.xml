@@ -100,10 +100,16 @@
             <Chinese>RT-1523G (ASIP-黑色)長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>RT-1523G (ASIP-黑色)长程无线电，有效距离20公里</Chinesesimp>
         </Key>
+        <Key ID="STR_TFAR_backpacks_MR6000L">
+            <English>MR6000L</English>
+        </Key>
         <Key ID="STR_TFAR_backpacks_MR6000L_Desc">
             <English>MR6000L airborne radio 40km</English>
             <Chinese>MR6000L空中載具無線電，有效距離40公里</Chinese>
             <Chinesesimp>MR6000L空中载具无线电，有效距离40公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR3000">
+            <English>MR3000</English>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_Desc">
             <English>MR3000 long range radio 20km</English>
@@ -135,6 +141,9 @@
             <Chinese>MR3000 BWMOD [荒漠斑點迷彩]</Chinese>
             <Chinesesimp>MR3000 BWMOD [荒漠斑点迷彩]</Chinesesimp>
         </Key>
+        <Key ID="STR_TFAR_backpacks_MR3000_RHS">
+            <English>MR3000 RHS</English>
+        </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_RHS_Desc">
             <English>MR3000 RHS long range radio 20km</English>
             <Chinese>MR3000 RHS長程無線電，有效距離20公里</Chinese>
@@ -145,10 +154,16 @@
             <Chinese>突擊背包 (Bussole)</Chinese>
             <Chinesesimp>突击背包 (Bussole)</Chinesesimp>
         </Key>
+        <Key ID="STR_TFAR_backpacks_Bussole">
+            <English>Bussole</English>
+        </Key>
         <Key ID="STR_TFAR_backpacks_Bussole_Desc">
             <English>Bussole long range radio 20km</English>
             <Chinese>Bussole長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>Bussole长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_ANPRC155">
+            <English>AN/PRC-155</English>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANPRC155_Desc">
             <English>AN/PRC-155 long range radio 20km</English>
@@ -165,10 +180,16 @@
             <Chinese>AN/PRC 155 (土狼棕色)長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>AN/PRC 155 (土狼棕色)长程无线电，有效距离20公里</Chinesesimp>
         </Key>
+        <Key ID="STR_TFAR_backpacks_ANARC210">
+            <English>AN/ARC-210</English>
+        </Key>
         <Key ID="STR_TFAR_backpacks_ANARC210_Desc">
             <English>AN/ARC-210 airborne radio 40km</English>
             <Chinese>AN/ARC-210空中載具無線電，有效距離40公里</Chinese>
             <Chinesesimp>AN/ARC-210空中载具无线电，有效距离40公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_ANARC164">
+            <English>AN/ARC-164</English>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANARC164_Desc">
             <English>AN/ARC-164 airborne radio 40km</English>

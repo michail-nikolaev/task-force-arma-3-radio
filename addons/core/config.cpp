@@ -19,7 +19,7 @@ class CfgPatches {
             "cba_settings",
             "A3_Soft_F_Offroad_01" //Offroad_01_base_F we are adding insolation and LR in CfgVehicles
         };
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
     };
 
     class task_force_radio {
@@ -28,7 +28,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {};
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
     };
     class task_force_radio_items {
         name = "TFAR - Legacy Compatibility";
@@ -36,7 +36,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {};
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
     };
 };
 
