@@ -21,9 +21,9 @@
 
 
 //If there is no one near the player this would execute every 2 frames.. which is total overkill
-private _lastExec = TFAR_ConfigCacheNamespace getVariable "TFAR_fnc_sendSpeakerRadioslastExec"; //Magic feat commy2
+private _lastExec = GVAR(VehicleConfigCacheNamespace) getVariable "TFAR_fnc_sendSpeakerRadioslastExec"; //Magic feat commy2
 if ((diag_tickTime - _lastExec) < 0.5) exitWith {TFAR_speakerRadios = [];}; //Don't run if we already ran less than 500ms ago
-TFAR_ConfigCacheNamespace setVariable ["TFAR_fnc_sendSpeakerRadioslastExec",diag_tickTime];
+GVAR(VehicleConfigCacheNamespace) setVariable ["TFAR_fnc_sendSpeakerRadioslastExec",diag_tickTime];
 
 //TFAR_speakerRadios are radios carried by people that are on speaker
 private _speakerRadios = TFAR_speakerRadios;
@@ -48,7 +48,7 @@ private _speakerRadios = TFAR_speakerRadios;
         } count ((getItemCargo _x) select 0);
 
         {
-            if  ((_x getVariable ["TFAR_LRSpeakersEnabled", false]) and {[typeof (_x), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1}) then {
+            if  ((_x getVariable ["TFAR_LRSpeakersEnabled", false]) and {[typeof (_x), "tf_hasLRradio", 0] call TFAR_fnc_getVehicleConfigProperty == 1}) then {
                 private _manpack = [_x, "radio_settings"];
                 if (_manpack call TFAR_fnc_getLrSpeakers) then {
                     private _radioCode = _manpack call TFAR_fnc_getLrRadioCode;
@@ -98,7 +98,7 @@ private _speakerRadios = TFAR_speakerRadios;
                         _frequencies pushBack format["%1%2", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
                     };
                     private _radio_id = netId (_x select 0) + (_x select 1);
-                    private _isolation = netid (_x select 0) + "_" + str ([(typeof (_x select 0)), "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty);
+                    private _isolation = netid (_x select 0) + "_" + str ([(typeof (_x select 0)), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty);
 
                     _speakerRadios pushBack ([_radio_id,_frequencies joinString "|","",_pos,_x call TFAR_fnc_getLrVolume, _isolation] joinString TF_new_line);
                 };

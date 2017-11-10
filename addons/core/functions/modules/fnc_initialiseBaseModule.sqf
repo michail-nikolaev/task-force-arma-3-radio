@@ -50,12 +50,12 @@ if (_activated) then {
 
     private _RiflemanRadio = _logic getVariable "RiflemanRadio";
     private _radio_code = _logic getVariable "Encryption";
-    if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getConfigProperty) != 1) then {
+    if (([_LRradio, "tf_hasLrRadio",0] call TFAR_fnc_getVehicleConfigProperty) != 1) then {
         diag_log format [localize "STR_TFAR_WM_BaseModule_LR", _LRradio];
         hint format [localize "STR_TFAR_WM_BaseModule_LR", _LRradio];
         _LRradio = "-1";
     };
-    if (getNumber (configFile >> "CfgWeapons" >> _radio >> "tf_prototype") != 1) then {
+    if !(_radio call TFAR_fnc_isPrototypeRadio) then {
         diag_log format [localize "STR_TFAR_WM_BaseModule_PR", _radio];
         hint format [localize "STR_TFAR_WM_BaseModule_PR", _radio];
         _radio = "-1";

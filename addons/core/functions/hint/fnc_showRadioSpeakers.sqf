@@ -25,8 +25,8 @@ params ["_radio"];
 
 private _isLrRadio = _radio isEqualType [];
 private _hintText = "";
-private _name = if(_isLrRadio) then {getText (configFile >> "CfgVehicles" >> typeof (_radio select 0) >> "displayName")} else {getText(configFile >> "CfgWeapons" >> _radio >> "displayName")};
-private _picture = if(_isLrRadio) then {getText (configFile >> "CfgVehicles" >> typeof (_radio select 0) >> "picture")} else {getText(configFile >> "CfgWeapons" >> _radio >> "picture")};
+private _name = if(_isLrRadio) then {[typeOf (_radio select 0), "displayName", ""] call DFUNC(getVehicleConfigProperty)} else {[_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty)};
+private _picture = if(_isLrRadio) then {[typeOf (_radio select 0), "picture", ""] call DFUNC(getVehicleConfigProperty)} else {[_radio, "picture", ""] call DFUNC(getWeaponConfigProperty)};
 private _volume = formatText [localize "STR_radio_volume",if(_isLrRadio) then {((_radio call TFAR_fnc_getLrVolume) + 1) * 10} else {((_radio call TFAR_fnc_getSwVolume) + 1) * 10}];
 private _speakers = localize format ["STR_speakers_settings_%1", if(_isLrRadio) then {_radio call TFAR_fnc_getLrSpeakers} else {_radio call TFAR_fnc_getSwSpeakers}];
 
