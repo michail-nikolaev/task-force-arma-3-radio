@@ -2,7 +2,7 @@
 <Project ID="Arma3">
     <Package name="core">
         <Key ID="STR_TFAR_CORE_different_version">
-            <Original>Different versions of Task Force Radio are used. Server version: %1, Your version: %2</Original>
+            <English>Different versions of Task Force Radio are used. Server version: %1, Your version: %2</English>
             <Czech>Je používaná jiná verze Task Force Radio. Verze serveru: %1, Vaše verze: %2</Czech>
             <French>Différentes versions de Task Force Radio sont utilisées. Version du serveur : %1, Votre version : %2</French>
             <German>Es werden unterschiedliche Versionen von Task Force Radio verwendet. Server-Version: %1, deine Version: %2</German>
@@ -17,7 +17,7 @@
             <Chinesesimp>你使用的Task Force Radio版本不对。伺服器版本: %1，你的版本: %2</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_stereo_settings">
-            <Original>Stereo settings</Original>
+            <English>Stereo settings</English>
             <Czech>Stereo nastavení</Czech>
             <French>Configurations stéréo</French>
             <German>Stereo-Einstellungen</German>
@@ -32,7 +32,7 @@
             <Chinesesimp>立体声设定</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_stereo_settings_0">
-            <Original>Left and right</Original>
+            <English>Left and right</English>
             <Czech>Vlevo a vpravo</Czech>
             <French>Gauche et droite</French>
             <German>Links und rechts</German>
@@ -47,7 +47,7 @@
             <Chinesesimp>立体声道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_stereo_settings_1">
-            <Original>Left only</Original>
+            <English>Left only</English>
             <Czech>Pouze vlevo</Czech>
             <French>Gauche seulement</French>
             <German>Nur links</German>
@@ -62,7 +62,7 @@
             <Chinesesimp>左声道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_stereo_settings_2">
-            <Original>Right only</Original>
+            <English>Right only</English>
             <Czech>Pouze vpravo</Czech>
             <French>Droite seulement</French>
             <German>Nur rechts</German>
@@ -77,7 +77,7 @@
             <Chinesesimp>右声道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_speakers_settings_false">
-            <Original>Headphones</Original>
+            <English>Headphones</English>
             <Czech>Sluchátka</Czech>
             <French>Écouteurs</French>
             <German>Kopfhörer</German>
@@ -91,7 +91,7 @@
             <Chinesesimp>头戴式耳机</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_speakers_settings_true">
-            <Original>Speakers</Original>
+            <English>Speakers</English>
             <Czech>Reproduktory</Czech>
             <French>Haut-parleurs</French>
             <German>Lautsprecher</German>
@@ -105,7 +105,7 @@
             <Chinesesimp>扩音器</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_additional_stereo_settings_0">
-            <Original>Additional: Left and right</Original>
+            <English>Additional: Left and right</English>
             <Czech>Dodatečný: Vlevo a vpravo</Czech>
             <French>Supplémentaire : Gauche et droite</French>
             <German>Zusätzlich: Links und rechts</German>
@@ -120,7 +120,7 @@
             <Chinesesimp>附加频道: 立体声道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_additional_stereo_settings_1">
-            <Original>Additional: Left only</Original>
+            <English>Additional: Left only</English>
             <Czech>Dodatečný: Pouze vlevo</Czech>
             <French>Supplémentaire : Gauche seulement</French>
             <German>Zusätzlich: Nur links</German>
@@ -135,7 +135,7 @@
             <Chinesesimp>附加频道: 左声道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_additional_stereo_settings_2">
-            <Original>Additional: Right only</Original>
+            <English>Additional: Right only</English>
             <Czech>Dodatečný: Pouze vpravo</Czech>
             <French>Supplémentaire : Droite seulement</French>
             <German>Zusätzlich: Nur rechts</German>
@@ -150,7 +150,7 @@
             <Chinesesimp>附加频道: 右声道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_no_server">
-            <Original>No Task Force Radio deployed on server!</Original>
+            <English>No Task Force Radio deployed on server!</English>
             <Czech>Task Force Radio není na serveru!</Czech>
             <French>Il n'y a pas de Task Force Radio déployé sur le serveur !</French>
             <German>Task Force Radio wird nicht auf dem Server ausgeführt!</German>
@@ -165,7 +165,7 @@
             <Chinesesimp>伺服器端并未挂载Task Force Radio模组!</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_current_freq">
-            <Original>Current frequency</Original>
+            <English>Current frequency</English>
             <Czech>Aktuální frekvence</Czech>
             <French>Fréquence actuelle</French>
             <German>Derzeitige Frequenz</German>
@@ -180,7 +180,7 @@
             <Chinesesimp>目前频率</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_current_channel">
-            <Original>Current channel</Original>
+            <English>Current channel</English>
             <Czech>Aktuální kanál</Czech>
             <French>Canal actuel</French>
             <German>Derzeitiger Kanal</German>
@@ -195,7 +195,7 @@
             <Chinesesimp>目前频道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_set_frequency">
-            <Original>Set frequency</Original>
+            <English>Set frequency</English>
             <Czech>Nastavit frekvenci</Czech>
             <French>Valider la fréquence</French>
             <German>Frequenz festlegen</German>
@@ -210,7 +210,7 @@
             <Chinesesimp>设定频率</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_set_additional">
-            <Original>Set additional channel</Original>
+            <English>Set additional channel</English>
             <Czech>Nastavit dodatečný kanál</Czech>
             <French>Canal additionnel prévue</French>
             <German>Zusätzlichen Kanal festlegen</German>
@@ -225,7 +225,7 @@
             <Chinesesimp>设定附加频道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_clear_frequency">
-            <Original>Clear frequency</Original>
+            <English>Clear frequency</English>
             <Czech>Vymazat frekvenci</Czech>
             <French>Effacer la fréquence</French>
             <German>Frequenz löschen</German>
@@ -240,7 +240,7 @@
             <Chinesesimp>清除频率</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_previous_channel">
-            <Original>Previous channel</Original>
+            <English>Previous channel</English>
             <Czech>Předchozí kanál</Czech>
             <French>Canal précédent</French>
             <German>Vorheriger Kanal</German>
@@ -255,7 +255,7 @@
             <Chinesesimp>前一个频道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_next_channel">
-            <Original>Next channel</Original>
+            <English>Next channel</English>
             <Czech>Následující kanál</Czech>
             <French>Canal suivant</French>
             <German>Nächster Kanal</German>
@@ -270,7 +270,7 @@
             <Chinesesimp>下一个频道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_rotator_volume">
-            <Original>Decrease volume | Increase volume</Original>
+            <English>Decrease volume | Increase volume</English>
             <Czech>Zvýšit hlasitost | Snížit hlasitost</Czech>
             <French>Réduire le volume | Augmenter le volume</French>
             <German>Lautstärke verringern | Lautstärke erhöhen</German>
@@ -285,7 +285,7 @@
             <Chinesesimp>降低音量 | 提高音量</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_rotator_channel">
-            <Original>Previous channel | Next channel</Original>
+            <English>Previous channel | Next channel</English>
             <Czech>Předchozí kanál | Následující kanál</Czech>
             <French>Canal précédent | Canal suivant</French>
             <German>Vorheriger Kanal | Nächster Kanal</German>
@@ -300,7 +300,7 @@
             <Chinesesimp>前一个频道 | 下一个频道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_increase_volume">
-            <Original>Increase volume</Original>
+            <English>Increase volume</English>
             <Czech>Zvýšit hlasitost</Czech>
             <French>Augmenter le volume</French>
             <German>Lautstärke erhöhen</German>
@@ -315,7 +315,7 @@
             <Chinesesimp>提高音量</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_decrease_volume">
-            <Original>Decrease volume</Original>
+            <English>Decrease volume</English>
             <Czech>Snížit hlasitost</Czech>
             <French>Réduire le volume</French>
             <German>Lautstärke verringern</German>
@@ -330,7 +330,7 @@
             <Chinesesimp>降低音量</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_incorrect_frequency">
-            <Original>Incorrect frequency value, range is %1-%2</Original>
+            <English>Incorrect frequency value, range is %1-%2</English>
             <Czech>Nesprávná hodnota pro frekvenci, rozsah je %1-%2</Czech>
             <French>Valeur de fréquence incorrecte, la plage est de %1 à %2</French>
             <German>Falsche Frequenz, Frequenzbereich ist %1-%2</German>
@@ -345,7 +345,7 @@
             <Chinesesimp>不正确的频率值，频率范围为%1-%2</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_radio_volume">
-            <Original>Volume: %1</Original>
+            <English>Volume: %1</English>
             <Czech>Hlasitost: %1</Czech>
             <French>Volume : %1</French>
             <German>Lautstärke: %1</German>
@@ -360,7 +360,7 @@
             <Chinesesimp>音量: %1</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_radio_channel_1">
-            <Original>Channel 1</Original>
+            <English>Channel 1</English>
             <Czech>Kanál 1</Czech>
             <French>Canal 1</French>
             <German>Kanal 1</German>
@@ -375,7 +375,7 @@
             <Chinesesimp>频道 1</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_radio_channel_2">
-            <Original>Channel 2</Original>
+            <English>Channel 2</English>
             <Czech>Kanál 2</Czech>
             <French>Canal 2</French>
             <German>Kanal 2</German>
@@ -390,7 +390,7 @@
             <Chinesesimp>频道 2</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_radio_channel_3">
-            <Original>Channel 3</Original>
+            <English>Channel 3</English>
             <Czech>Kanál 3</Czech>
             <French>Canal 3</French>
             <German>Kanal 3</German>
@@ -405,7 +405,7 @@
             <Chinesesimp>频道 3</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_radio_channel_4">
-            <Original>Channel 4</Original>
+            <English>Channel 4</English>
             <Czech>Kanál 4</Czech>
             <French>Canal 4</French>
             <German>Kanal 4</German>
@@ -420,7 +420,7 @@
             <Chinesesimp>频道 4</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_radio_channel_5">
-            <Original>Channel 5</Original>
+            <English>Channel 5</English>
             <Czech>Kanál 5</Czech>
             <French>Canal 5</French>
             <German>Kanal 5</German>
@@ -435,7 +435,7 @@
             <Chinesesimp>频道 5</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_radio_channel_6">
-            <Original>Channel 6</Original>
+            <English>Channel 6</English>
             <Czech>Kanál 6</Czech>
             <French>Canal 6</French>
             <German>Kanal 6</German>
@@ -450,7 +450,7 @@
             <Chinesesimp>频道 6</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_radio_channel_7">
-            <Original>Channel 7</Original>
+            <English>Channel 7</English>
             <Czech>Kanál 7</Czech>
             <French>Canal 7</French>
             <German>Kanal 7</German>
@@ -465,7 +465,7 @@
             <Chinesesimp>频道 7</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_radio_channel_8">
-            <Original>Channel 8</Original>
+            <English>Channel 8</English>
             <Czech>Kanál 8</Czech>
             <French>Canal 8</French>
             <German>Kanal 8</German>
@@ -480,7 +480,7 @@
             <Chinesesimp>频道 8</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_radio_channel_9">
-            <Original>Channel 9</Original>
+            <English>Channel 9</English>
             <Czech>Kanál 9</Czech>
             <French>Canal 9</French>
             <German>Kanal 9</German>
@@ -495,7 +495,7 @@
             <Chinesesimp>频道 9</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_active_sw_channel">
-            <Original>Channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
+            <English>Channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</English>
             <Czech>Kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
             <French>Canal courte portée : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
             <German>Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
@@ -510,7 +510,7 @@
             <Chinesesimp>频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_active_additional_sw_channel">
-            <Original>Additional channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
+            <English>Additional channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</English>
             <Czech>Dodatečný kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
             <French>Canal additionnel : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
             <German>Zusätzlicher Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
@@ -525,7 +525,7 @@
             <Chinesesimp>附加频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_active_frequency">
-            <Original>Frequency: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
+            <English>Frequency: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</English>
             <Czech>Frekvence: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
             <French>Fréquence : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
             <German>Frequenz: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
@@ -540,7 +540,7 @@
             <Chinesesimp>频率: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_active_lr_channel">
-            <Original>LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
+            <English>LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</English>
             <Czech>LR kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
             <French>Canal LP : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
             <German>LS-Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
@@ -555,7 +555,7 @@
             <Chinesesimp>长程无线电频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_active_additional_lr_channel">
-            <Original>Additional LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
+            <English>Additional LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</English>
             <Czech>Dodatečný LR kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
             <French>Canal additionnel LP : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
             <German>Zusätzlicher LS-Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
@@ -570,7 +570,7 @@
             <Chinesesimp>长程无线电附加频道: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_in_water_hint">
-            <Original>&lt;t color='#33ccff'&gt;Can't use radio under WATER&lt;/t&gt;</Original>
+            <English>&lt;t color='#33ccff'&gt;Can't use radio under WATER&lt;/t&gt;</English>
             <Czech>&lt;t color='#33ccff'&gt;Není možné použít vysílačku pod VODOU&lt;/t&gt;</Czech>
             <French>&lt;t color='#33ccff'&gt;Vous ne pouvez pas utiliser de radio sous l'eau !&lt;/t&gt;</French>
             <German>&lt;t color='#33ccff'&gt;Das Funkgerät kann unter Wasser nicht verwendet werden&lt;/t&gt;</German>
@@ -585,7 +585,7 @@
             <Chinesesimp>&lt;t color='#33ccff'&gt;无法在水下使用无线电&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_on_ground_hint">
-            <Original>&lt;t color='#993300'&gt;Can't use driver radio on the air&lt;/t&gt;</Original>
+            <English>&lt;t color='#993300'&gt;Can't use driver radio on the air&lt;/t&gt;</English>
             <Czech>&lt;t color='#993300'&gt;Can'Není možné použít vysílačku ve vzduchu&lt;/t&gt;</Czech>
             <French>&lt;t color='#993300'&gt;Vous ne pouvez pas utiliser la radio du véhicule dans les airs !&lt;/t&gt;</French>
             <German>&lt;t color='#993300'&gt;Fahrzeugfunk kann nicht in der Luft verwendet werden&lt;/t&gt;</German>
@@ -600,7 +600,7 @@
             <Chinesesimp>&lt;t color='#993300'&gt;无法在空中使用驾驶座无线电&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_unable_to_use_hint">
-            <Original>&lt;t color='#FF0000'&gt;you are not able to use the radio&lt;/t&gt;</Original>
+            <English>&lt;t color='#FF0000'&gt;you are not able to use the radio&lt;/t&gt;</English>
             <Czech>&lt;t color='#FF0000'&gt;není možné použít vysílačku&lt;/t&gt;</Czech>
             <French>&lt;t color='#FF0000'&gt;Vous n'êtes pas en mesure d'utiliser le radio&lt;/t&gt;</French>
             <German>&lt;t color='#FF0000'&gt;Funkgerät kann nicht benutzt werden&lt;/t&gt;</German>
@@ -615,7 +615,7 @@
             <Chinesesimp>&lt;t color='#FF0000'&gt;你无法使用无线电&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_select_action">
-            <Original>Select action</Original>
+            <English>Select action</English>
             <Czech>Zvolit akci</Czech>
             <French>Sélectionner l'action</French>
             <German>Aktion wählen</German>
@@ -630,7 +630,7 @@
             <Chinesesimp>选择动作</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_select_action_setup">
-            <Original>Settings...</Original>
+            <English>Settings...</English>
             <Czech>Nastavení...</Czech>
             <French>Options...</French>
             <German>Tastenbelegung</German>
@@ -645,7 +645,7 @@
             <Chinesesimp>设定...</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_select_action_setup_tooltip">
-            <Original>Open settings dialog</Original>
+            <English>Open settings dialog</English>
             <Czech>Otevřít nastavení</Czech>
             <French>Ouvre la fenêtre de la radio</French>
             <German>Einstellungen öffnen</German>
@@ -660,7 +660,7 @@
             <Chinesesimp>开启设定视窗</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_select_action_use">
-            <Original>Set as active</Original>
+            <English>Set as active</English>
             <Czech>Nastavit jako aktivní</Czech>
             <French>Mettre en radio active</French>
             <German>Als aktiv setzen</German>
@@ -675,7 +675,7 @@
             <Chinesesimp>设定为启用</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_select_action_use_tooltip">
-            <Original>Use for transmiting</Original>
+            <English>Use for transmiting</English>
             <Czech>Používané pro vysílání</Czech>
             <French>Choisir comme radio active</French>
             <German>Zum Senden wählen</German>
@@ -690,7 +690,7 @@
             <Chinesesimp>用来发送信号</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_select_radio">
-            <Original>Select short range radio</Original>
+            <English>Select short range radio</English>
             <Czech>Zvolit vysílačku na krátkou vzdálenost</Czech>
             <French>Selectionner la radio courte portée</French>
             <German>Kurzstreckenfunkgerät wählen</German>
@@ -705,7 +705,7 @@
             <Chinesesimp>选择短程无线电</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_select_lr_radio">
-            <Original>Select long range radio</Original>
+            <English>Select long range radio</English>
             <Czech>Zvolit vysílačku na dlouhou vzdálenost</Czech>
             <French>Selectionner la radio longue portée</French>
             <German>Langstreckenfunkgerät wählen</German>
@@ -720,7 +720,7 @@
             <Chinesesimp>选择长程无线电</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_transmit">
-            <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
+            <English>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</English>
             <Czech>&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
             <French>&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
             <German>&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
@@ -735,7 +735,7 @@
             <Chinesesimp>&lt;t size='1' align='center' color='#00FF00'&gt;发送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_transmit_end">
-            <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
+            <English>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</English>
             <Czech>&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
             <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
             <German>&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
@@ -750,7 +750,7 @@
             <Chinesesimp>&lt;t size='1' align='center' color='#FF9900'&gt;已发送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_additional_transmit">
-            <Original>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
+            <English>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitting&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional channel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</English>
             <Czech>&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
             <French>&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio : %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
             <German>&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
@@ -765,7 +765,7 @@
             <Chinesesimp>&lt;t size='1' align='center' color='#00FF00'&gt;发送中&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_additional_transmit_end">
-            <Original>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional сhannel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Original>
+            <English>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitted&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Additional сhannel: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</English>
             <Czech>&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
             <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
             <German>&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
@@ -780,7 +780,7 @@
             <Chinesesimp>&lt;t size='1' align='center' color='#FF9900'&gt;已发送&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;无线电: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;附加频道: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;频率: %3&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_voice_volume">
-            <Original>&lt;t align='center' color='#66ff33'&gt;Voice volume: %1&lt;/t&gt;</Original>
+            <English>&lt;t align='center' color='#66ff33'&gt;Voice volume: %1&lt;/t&gt;</English>
             <Czech>&lt;t align='center' color='#66ff33'&gt;Hlasitost hlasu: %1&lt;/t&gt;</Czech>
             <French>&lt;t align='center' color='#66ff33'&gt;Volume de la voix : %1&lt;/t&gt;</French>
             <German>&lt;t align='center' color='#66ff33'&gt;Lautstärke Stimme: %1&lt;/t&gt;</German>
@@ -795,7 +795,7 @@
             <Chinesesimp>&lt;t align='center' color='#66ff33'&gt;语音音量: %1&lt;/t&gt;</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_voice_normal">
-            <Original>normal</Original>
+            <English>normal</English>
             <Czech>normální</Czech>
             <French>Normal</French>
             <German>Normal</German>
@@ -810,7 +810,7 @@
             <Chinesesimp>正常</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_voice_yelling">
-            <Original>yelling</Original>
+            <English>yelling</English>
             <Czech>křičení</Czech>
             <French>Forte</French>
             <German>Schreien</German>
@@ -825,7 +825,7 @@
             <Chinesesimp>嚎叫</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_voice_whispering">
-            <Original>whispering</Original>
+            <English>whispering</English>
             <Czech>šeptání</Czech>
             <French>Faible</French>
             <German>Flüstern</German>
@@ -840,7 +840,7 @@
             <Chinesesimp>耳语</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_init">
-            <Original>Initialization...</Original>
+            <English>Initialization...</English>
             <Czech>Inicializace...</Czech>
             <French>Initialisation...</French>
             <German>Initialisierung...</German>
@@ -855,7 +855,7 @@
             <Chinesesimp>初始化中...</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_select_action_copy_settings_from">
-            <Original>Copy settings from...</Original>
+            <English>Copy settings from...</English>
             <Czech>Okopírovat nastavení od...</Czech>
             <French>Copiez les réglages d'...</French>
             <German>Einstellungen kopieren aus...</German>
@@ -870,7 +870,7 @@
             <Chinesesimp>复制设定从...</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_select_action_settings_from_tooltip">
-            <Original>Copy settings from another radio with same encryption code</Original>
+            <English>Copy settings from another radio with same encryption code</English>
             <Czech>Kopíruje nastavení z jiné vysílačky se stejným šifrovacím kódem</Czech>
             <French>Copiez les réglages d'une autre radio ayant le même code de cryptage</French>
             <German>Einstellungen aus einem anderen Funkgerät derselben Verschlüsselung kopieren</German>
@@ -885,7 +885,7 @@
             <Chinesesimp>从另一个具有相同加密设定的无线电上复制设定过来</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_wait_radio">
-            <Original>Waiting for the unique radio from server...</Original>
+            <English>Waiting for the unique radio from server...</English>
             <Czech>Čekání na unikátní vysílačku od serveru...</Czech>
             <French>En attente de l'unique radio du serveur...</French>
             <German>Warte auf persönliches Funkgerät vom Server...</German>
@@ -900,7 +900,7 @@
             <Chinesesimp>等待伺服器唯一的无线电中...</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_NATO_crate">
-            <Original>TFAR Radio (NATO)</Original>
+            <English>TFAR Radio (NATO)</English>
             <Czech>TFAR Vysílačky (NATO)</Czech>
             <French>Radio TFAR (OTAN)</French>
             <German>TFAR-Funkgeräte (NATO)</German>
@@ -913,7 +913,7 @@
             <Chinesesimp>TFAR无线电 (北约)</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_EAST_crate">
-            <Original>TFAR Radio (CSAT)</Original>
+            <English>TFAR Radio (CSAT)</English>
             <Czech>TFAR Vysílačky (CSAT)</Czech>
             <French>Radio TFAR (CSAT)</French>
             <German>TFAR-Funkgeräte (CSAT)</German>
@@ -926,7 +926,7 @@
             <Chinesesimp>TFAR无线电 (广协同盟)</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_IND_crate">
-            <Original>TFAR Radio (AAF)</Original>
+            <English>TFAR Radio (AAF)</English>
             <Czech>TFAR Vysílačky (AAF)</Czech>
             <French>Radio TFAR (AAF)</French>
             <German>TFAR-Funkgeräte (AAF)</German>
@@ -939,62 +939,62 @@
             <Chinesesimp>TFAR无线电 (Altis政府军)</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Name">
-            <Original>IntercomChannel</Original>
+            <English>IntercomChannel</English>
             <Chinese>對講機頻道</Chinese>
             <Chinesesimp>对讲机频道</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Channel1">
-            <Original>Cargo</Original>
+            <English>Cargo</English>
             <Chinese>乘客</Chinese>
             <Chinesesimp>乘客</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Channel2">
-            <Original>Crew</Original>
+            <English>Crew</English>
             <Chinese>機組員</Chinese>
             <Chinesesimp>机组员</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_Main_Desc">
-            <Original>War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.</Original>
+            <English>War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.</English>
             <Chinese>戰爭不單單只有移動，等待與交戰。如何溝通也是一項重要的課題。箭頭特遣隊無線電透過與TeamSpeak無縫連動來增加遊戲的擬真度與真實感。</Chinese>
             <Chinesesimp>战争不单单只有移动，等待与交战。如何沟通也是一项重要的课题。箭头特遣队无线电透过与TeamSpeak无缝连动来增加游戏的拟真度与真实感。</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_VolumeIndicator">
-            <Original>TFAR Volume Indicator</Original>
+            <English>TFAR Volume Indicator</English>
             <Chinese>TFAR音量指示器</Chinese>
             <Chinesesimp>TFAR音量指示器</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_Att_Options">
-            <Original>TFAR Options</Original>
+            <English>TFAR Options</English>
             <Chinese>TFAR設定</Chinese>
             <Chinesesimp>TFAR设定</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_Att_CuratorCamEars">
-            <Original>Hear Camera when in Curator interface</Original>
+            <English>Hear Camera when in Curator interface</English>
             <Chinese>宙斯編輯器聆聽玩家語音</Chinese>
             <Chinesesimp>宙斯编辑器聆听玩家语音</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_Att_CuratorCamEars_tooltip">
-            <Original>Hear voice from Curator Camera when in Curator interface</Original>
+            <English>Hear voice from Curator Camera when in Curator interface</English>
             <Chinese>使用宙斯編輯器時可以聆聽到玩家的語音</Chinese>
             <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_copySetting_LR_SW_Warning">
-            <Original>TFAR - unable to copy from LR to SW</Original>
+            <English>TFAR - unable to copy from LR to SW</English>
             <Chinese>TFAR - 無法從長程無線電複製設定到短程無線電上</Chinese>
             <Chinesesimp>TFAR - 无法从长程无线电复制设定到短程无线电上</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_copySetting_SW_LR_Warning">
-            <Original>TFAR - unable to copy from SW to LR</Original>
+            <English>TFAR - unable to copy from SW to LR</English>
             <Chinese>TFAR - 無法從短程無線電複製設定到長程無線電上</Chinese>
             <Chinesesimp>TFAR - 无法从短程无线电复制设定到长程无线电上</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_openSWMenu">
-            <Original>Open SW Radio Menu</Original>
+            <English>Open SW Radio Menu</English>
             <Chinese>打開短程無線電選單</Chinese>
             <Chinesesimp>打开短程无线电选单</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_openLRMenu">
-            <Original>Open LR Radio Menu</Original>
+            <English>Open LR Radio Menu</English>
             <Chinese>打開長程無線電選單</Chinese>
             <Chinesesimp>打开长程无线电选单</Chinesesimp>
         </Key>
@@ -1030,7 +1030,7 @@
                 <German>Von bewegungsunfähigen Personen</German>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_default_radioVolume">
-                <Original>Default radio volume</Original>
+                <English>Default radio volume</English>
                 <French>Volume par défaut de la radio</French>
                 <German>Standard Funklautstärke</German>
                 <Polish>Domyślna głośność radia</Polish>
@@ -1040,7 +1040,7 @@
                 <Chinesesimp>预设无线电音量</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_same_dd_frequencies_for_side">
-                <Original>Same DD frequencies for side</Original>
+                <English>Same DD frequencies for side</English>
                 <French>Mêmes fréquences DD pour le camp</French>
                 <German>Gleiche Unterwasser-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości DD dla strony</Polish>
@@ -1050,7 +1050,7 @@
                 <Chinesesimp>同阵营使用相同的水下无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_radio_same_lr_frequencies_for_side">
-                <Original>Same LR frequencies for side</Original>
+                <English>Same LR frequencies for side</English>
                 <French>Mêmes fréquences LP pour l'équipe</French>
                 <German>Gleiche Langstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości LR dla strony</Polish>
@@ -1060,7 +1060,7 @@
                 <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_same_sw_frequencies_for_side">
-                <Original>Same SW frequencies for side</Original>
+                <English>Same SW frequencies for side</English>
                 <French>Mêmes fréquences CP pour le camp</French>
                 <German>Gleiche Kurzstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości SW dla strony</Polish>
@@ -1070,7 +1070,7 @@
                 <Chinesesimp>同阵营使用相同的短程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_give_microdagr_to_soldier">
-                <Original>Give MicroDAGR to soldier</Original>
+                <English>Give MicroDAGR to soldier</English>
                 <French>Donner un MicroDAGR aux soldats</French>
                 <German>MicroDAGR an Soldaten vergeben</German>
                 <Polish>Przydziel żołnierzowi MicroDAGR</Polish>
@@ -1080,7 +1080,7 @@
                 <Chinesesimp>给予士兵微型军用GPS接收器</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_give_personal_radio_to_regular_soldier">
-                <Original>Give personal radio to regular soldier</Original>
+                <English>Give personal radio to regular soldier</English>
                 <French>Donner une radio personnelle aux soldats de base</French>
                 <German>Persönliches Funkgerät an Soldaten vergeben</German>
                 <Polish>Przydziel podkomendnemu radio PR</Polish>
@@ -1090,7 +1090,7 @@
                 <Chinesesimp>给予一般士兵短程个人无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_auto_long_range_radio">
-                <Original>Automatically give long range radio</Original>
+                <English>Automatically give long range radio</English>
                 <French>Donner automatiquement une radio longue portée</French>
                 <German>Langstrecken-Funkgeräte automatisch vergeben</German>
                 <Polish>Przydzielaj automatycznie radia LR</Polish>
@@ -1100,144 +1100,144 @@
                 <Chinesesimp>自动给予长程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_enable_vehicle_intercom">
-                <Original>Enable vehicle Intercom</Original>
+                <English>Enable vehicle Intercom</English>
                 <Chinese>啟用載具內對講機</Chinese>
                 <Chinesesimp>启用载具内对讲机</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_enable_object_interception">
-                <Original>Enable Object Interception</Original>
+                <English>Enable Object Interception</English>
                 <Chinese>啟用物件攔截</Chinese>
                 <Chinesesimp>启用物件拦截</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_spectator_hear_emy">
-                <Original>Spectator can hear enemy units</Original>
+                <English>Spectator can hear enemy units</English>
                 <Chinese>觀察者可以聽到敵方的語音</Chinese>
                 <Chinesesimp>观察者可以听到敌方的语音</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_spectator_hear_emy_desc">
-                <Original>If disabled a Spectator can't hear direct speech from Units that are considered Enemy to the Spectators original faction</Original>
+                <English>If disabled a Spectator can't hear direct speech from Units that are considered Enemy to the Spectators English faction</English>
                 <Chinese>假如本功能關閉的話，觀察者將不能聽到敵隊陣營玩家的語音通訊</Chinese>
                 <Chinesesimp>假如本功能关闭的话，观察者将不能听到敌队阵营玩家的语音通讯</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_spectator_hear">
-                <Original>Spectator can hear units</Original>
+                <English>Spectator can hear units</English>
                 <Chinese>觀察者可以聽到其他玩家的語音</Chinese>
                 <Chinesesimp>观察者可以听到其他玩家的语音</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_spectator_hear_desc">
-                <Original>If disabled a Spectator can't hear any Players besides other Spectators</Original>
+                <English>If disabled a Spectator can't hear any Players besides other Spectators</English>
                 <Chinese>假如本功能關閉的話，觀察者將不能聽到其他還活著玩家的語音通訊，只能聽到其他觀察者的聲音</Chinese>
                 <Chinesesimp>假如本功能关闭的话，观察者将不能听到其他还活着玩家的语音通讯，只能听到其他观察者的声音</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_directSpeechModifier">
-                <Original>Direct speech on volume modifier</Original>
+                <English>Direct speech on volume modifier</English>
                 <Chinese>使用音量修改器來直接發話</Chinese>
                 <Chinesesimp>使用音量修改器来直接发话</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_directSpeechModifier_desc">
-                <Original>Activate directSpeech when pressing volume modifier</Original>
+                <English>Activate directSpeech when pressing volume modifier</English>
                 <Chinese>按下音量修改器時同時啟動直接發話</Chinese>
                 <Chinesesimp>按下音量修改器时同时启动直接发话</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_intercomVolume">
-                <Original>Intercom Volume</Original>
+                <English>Intercom Volume</English>
                 <Chinese>對講機音量</Chinese>
                 <Chinesesimp>对讲机音量</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_pluginTimeout">
-                <Original>Plugin Timeout in seconds</Original>
+                <English>Plugin Timeout in seconds</English>
                 <Chinese>插件超時無回應秒數</Chinese>
                 <Chinesesimp>插件超时无回应秒数</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_tangentReleaseDelay">
-                <Original>tangentReleaseDelay in milliseconds</Original>
+                <English>tangentReleaseDelay in milliseconds</English>
                 <Chinese>tangentReleaseDelay (毫秒)</Chinese>
                 <Chinesesimp>tangentReleaseDelay (毫秒)</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_positionUpdateMode">
-                <Original>Position Update Mode</Original>
+                <English>Position Update Mode</English>
                 <Chinese>位置更新模式</Chinese>
                 <Chinesesimp>位置更新模式</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_positionUpdateMode_desc">
-                <Original>The higher the quality the lower fps</Original>
+                <English>The higher the quality the lower fps</English>
                 <Chinese>品質設定越高越影響效能</Chinese>
                 <Chinesesimp>品质设定越高越影响效能</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_positionUpdateMode_quality">
-                <Original>Quality</Original>
+                <English>Quality</English>
                 <Chinese>品質</Chinese>
                 <Chinesesimp>品质</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_positionUpdateMode_normal">
-                <Original>Normal</Original>
+                <English>Normal</English>
                 <Chinese>普通</Chinese>
                 <Chinesesimp>普通</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_positionUpdateMode_performance">
-                <Original>Performance</Original>
+                <English>Performance</English>
                 <Chinese>效能</Chinese>
                 <Chinesesimp>效能</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_hudVolumeIndicator">
-                <Original>Show HUD Voice Volume indicator</Original>
+                <English>Show HUD Voice Volume indicator</English>
                 <Chinese>在抬頭顯示器上顯示音量指示器</Chinese>
                 <Chinesesimp>在抬头显示器上显示音量指示器</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_hudVolumeIndicator_desc">
-                <Original>If disabled it will pop up for a short time when changing Volume</Original>
+                <English>If disabled it will pop up for a short time when changing Volume</English>
                 <Chinese>假如關閉本功能的話，音量切換時的提示訊息只會顯示在螢幕上一下下</Chinese>
                 <Chinesesimp>假如关闭本功能的话，音量切换时的提示讯息只会显示在荧幕上一下下</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_volumeIndicatorTransparency">
-                <Original>Volume Indicator Transparency</Original>
+                <English>Volume Indicator Transparency</English>
                 <Chinese>音量指示器透明度</Chinese>
                 <Chinesesimp>音量指示器透明度</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_volumeIndicatorTransparency_desc">
-                <Original>Volume Indicator Transparency (0 fully visible - 1 invisible)</Original>
+                <English>Volume Indicator Transparency (0 fully visible - 1 invisible)</English>
                 <Chinese>音量指示器透明度 (0為完全透明，1為不透明)</Chinese>
                 <Chinesesimp>音量指示器透明度 (0为完全透明，1为不透明)</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_useOldVolumeHint">
-                <Original>Use old Voice Volume Hint</Original>
+                <English>Use old Voice Volume Hint</English>
                 <Chinese>使用舊的語音音量提示</Chinese>
                 <Chinesesimp>使用旧的语音音量提示</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_useOldVolumeHint_desc">
-                <Original>Use old Voice Volume Hint</Original>
+                <English>Use old Voice Volume Hint</English>
                 <Chinese>使用舊的語音音量提示</Chinese>
                 <Chinesesimp>使用旧的语音音量提示</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_showTransmittingHint">
-                <Original>Show Transmitting Hint</Original>
+                <English>Show Transmitting Hint</English>
                 <Chinese>顯示無線電發送訊息提示</Chinese>
                 <Chinesesimp>显示无线电发送讯息提示</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_showTransmittingHint_desc">
-                <Original>Show the Hint (Bottom right) when you are Transmitting</Original>
+                <English>Show the Hint (Bottom right) when you are Transmitting</English>
                 <Chinese>當無線電傳送訊息時在右下角顯示提示訊息</Chinese>
                 <Chinesesimp>当无线电传送讯息时在右下角显示提示讯息</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_showChannelChangedHint">
-                <Original>Show Channel Changed Hint</Original>
+                <English>Show Channel Changed Hint</English>
                 <Chinese>顯示無線電頻道更改提示</Chinese>
                 <Chinesesimp>显示无线电频道更改提示</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radio_showChannelChangedHint_desc">
-                <Original>Show the Hint (Bottom right) when you switch Channels via UI or Hotkey</Original>
+                <English>Show the Hint (Bottom right) when you switch Channels via UI or Hotkey</English>
                 <Chinese>當無線電頻道更改時在右下角顯示提示訊息</Chinese>
                 <Chinesesimp>当无线电频道更改时在右下角显示提示讯息</Chinesesimp>
             </Key>
         </Container>
         <Container name="diary">
             <Key ID="STR_TFAR_CORE_radio_vehicle_text">
-                <Original>&lt;br/&gt;
+                <English>&lt;br/&gt;
 A long range radio is available for a driver, commander, shooter, and pilot assistant. Not all the vehicles support built-in radios.
 &lt;br/&gt;
 Each vehicle slot has its own radio, which must be configured separately. If you plan to change the position in a vehicle – configure the radio in all the slots beforehand (for instance, on a driver or shooter slot).
 &lt;br/&gt;
-Vehicles are classified into open and closed (isolated). If you are in an isolated vehicle, you will not hear voices from outside (and vice versa). However, if you turn out of the vehicle, you will hear voices both from inside and outside.</Original>
+Vehicles are classified into open and closed (isolated). If you are in an isolated vehicle, you will not hear voices from outside (and vice versa). However, if you turn out of the vehicle, you will hear voices both from inside and outside.</English>
                 <Czech>&lt;br/&gt;
 Vysílačka pro dlouhou vzdálenost je k dispozici pro řidiče, velitele, střelce a kopilota. Některé vozidla nepodporují zabudované vysílačky.
 &lt;br/&gt;
@@ -1302,7 +1302,7 @@ Araçlar iki türlü sınıflandırılmıştır açık veya kapalı (izole). Eğ
 每个载具组员都有自己的载具无线电，所以设定并不共享。如果你想要在任务中随时切换载具组员位置的话，请事先设定好每个位置上的载具无线电设定。&lt;br/&gt;载具有分为开放式或封闭式(与外界隔离)，假如你在封闭式载具里面，你将听不到来自外面的声音(反之亦然)，不过当你将头伸出载具外，你将可以同时听到载具里面与外面的声音。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_radio_vehicle">
-                <Original>Vehicles</Original>
+                <English>Vehicles</English>
                 <Czech>Vozidla</Czech>
                 <French>Vehicules</French>
                 <German>Fahrzeuge</German>
@@ -1317,10 +1317,10 @@ Araçlar iki türlü sınıflandırılmıştır açık veya kapalı (izole). Eğ
                 <Chinesesimp>载具</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_radio_intercept_text">
-                <Original>&lt;br/&gt;
+                <English>&lt;br/&gt;
 Radio can be taken from killed players, and given to each other. Thus, they retain all the settings (channels, frequency, volume).&lt;br/&gt;
 In vehicles radio settings are also saved.&lt;/br&gt;
-By default, radios of each faction use their own encryption codes, so you will not hear enemy talks, even setting the enemy’s frequency. To listen to the enemy’s net (and talk on the air) - it’s necessary by any means to capture an enemy radio station.</Original>
+By default, radios of each faction use their own encryption codes, so you will not hear enemy talks, even setting the enemy’s frequency. To listen to the enemy’s net (and talk on the air) - it’s necessary by any means to capture an enemy radio station.</English>
                 <Czech>&lt;br/&gt;
 Vysílačku lze vzít od mrtvých hráčů, a předávat si jí mezi sebou. S tím, že jsou zachována veškerá nastavení (kanály, frekvence, hlasitost).&lt;br/&gt;
 Ve vozidlech je nastavení vysílačky také uloženo.&lt;/br&gt;
@@ -1373,7 +1373,7 @@ Varsayılan olarak, her ülke kendi şifreleme kodunu kullanır, yani düşman k
 在预设的情况下，不同阵营的无线电会使用不同的加密代码，所以就算你设定与敌方相同的频率，也无法听到敌方的声音!想要窃听或在敌方的无线电网路中发话，就必须设法得到敌方的无线电设备。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_radio_intercept">
-                <Original>Radio Interception</Original>
+                <English>Radio Interception</English>
                 <Czech>Odposlouchávání vysílačky</Czech>
                 <French>Interception radio</French>
                 <German>Abhören von Funksprüchen</German>
@@ -1388,11 +1388,11 @@ Varsayılan olarak, her ülke kendi şifreleme kodunu kullanır, yani düşman k
                 <Chinesesimp>拦截无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_radio_diver_text">
-                <Original>&lt;br/&gt;
+                <English>&lt;br/&gt;
 You can not talk underwater (even wearing a diving suit). However, at close distance your companion can hear some indistinct speech (exception - if you are underwater in an isolated vehicle).&lt;br/&gt;
 Being underwater, you can faintly hear muffled voices on land.&lt;br/&gt;
 Use an underwater transceiver for communication among divers.&lt;br/&gt;
-You can not use radio communication underwater (neither to talk nor to hear). If you want to pass some message on land - surface. &lt;br/&gt;Exception - submersible at the periscope depth (divers can use a long range radio there).</Original>
+You can not use radio communication underwater (neither to talk nor to hear). If you want to pass some message on land - surface. &lt;br/&gt;Exception - submersible at the periscope depth (divers can use a long range radio there).</English>
                 <Czech>&lt;br/&gt;
 Nemůže mluvit pod vodou (ikdyž máš potápečský oblek). Nicméně, na krátkou vzdálenost vás může váš spoluhráč slyšet, ale jen nezřetelně. (vyjímka - pokud jste pod vodou např. v ponorce).&lt;br/&gt;
 Když jste pod vodou, můžete slyšet nezřetelné hlasy na pevnině.&lt;br/&gt;
@@ -1455,7 +1455,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
 你无法在水下使用无线电通讯(不管是说或听)。你只能浮到水面上来进行通讯。&lt;br/&gt;如果你驾驶潜水艇，你可以上升到潜望镜深度即可(这时驾驶可以使用长程无线电)。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_radio_diver">
-                <Original>For divers</Original>
+                <English>For divers</English>
                 <Czech>Pro potápeče</Czech>
                 <French>Pour les plongeurs</French>
                 <German>Für Taucher</German>
@@ -1470,7 +1470,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>潜水员</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_radio_control_text">
-                <Original>&lt;br/&gt;
+                <English>&lt;br/&gt;
 &lt;font color="#67ED24"&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	Direct Speech.&lt;br/&gt;
 &lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	To talk on a radio.&lt;br/&gt;
 &lt;font color="#67ED24"&gt;CTRL + Caps Lock&lt;/font&gt;	To talk on a long range radio.&lt;br/&gt;
@@ -1493,7 +1493,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
 &lt;font color="#67ED24"&gt;ALT + [←,↑,→]&lt;/font&gt;	Change long range radio stereo mode.&lt;br/&gt;
 &lt;font color="#67ED24"&gt;T&lt;/font&gt;	Transmit on additional channel of personal radio.&lt;br/&gt;
 &lt;font color="#67ED24"&gt;Y&lt;/font&gt;	Transmit on additional channel of long range radio.&lt;br/&gt;
-&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	To exit from the radio interface.</Original>
+&lt;font color="#67ED24"&gt;ESC&lt;/font&gt;	To exit from the radio interface.</English>
                 <Czech>&lt;br/&gt;
 &lt;font color="#67ED24"&gt;Push-to-talk klávesa v TeamSpeaku&lt;/font&gt;	Přímá řeč.&lt;br/&gt;
 &lt;font color="#67ED24"&gt;Caps Lock&lt;/font&gt;	Mluvení do vysílačky.&lt;br/&gt;
@@ -1773,7 +1773,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
 &lt;font color="#67ED24"&gt;ESC&lt;/font&gt; 离开无线电设定介面。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_radio_control">
-                <Original>Controls</Original>
+                <English>Controls</English>
                 <Czech>Ovládání</Czech>
                 <French>Contrôles</French>
                 <German>Steuerung</German>
@@ -1788,7 +1788,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>控制</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_subject_name">
-                <Original>Radio</Original>
+                <English>Radio</English>
                 <Czech>Vysílačka</Czech>
                 <French>Radio</French>
                 <German>Funkgerät</German>
@@ -1806,134 +1806,134 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
         
         <Container name="WarningMessage">
             <Key ID="STR_TFAR_CORE_WM_Singleplayer">
-                <Original>TFAR doesn't work in Singleplayer. Use the Multiplayer Editor if you need to test TFAR stuff.</Original>
+                <English>TFAR doesn't work in Singleplayer. Use the Multiplayer Editor if you need to test TFAR stuff.</English>
                 <Chinese>TFAR無法在單人遊戲模式下運作。請使用多人遊戲預覽模式來在編輯器中測試TFAR的功能。</Chinese>
                 <Chinesesimp>TFAR无法在单人游戏模式下运作。请使用多人游戏预览模式来在编辑器中测试TFAR的功能。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_WM_NotLoad">
-                <Original>TASK FORCE RADIO NOT LOADED</Original>
+                <English>TASK FORCE RADIO NOT LOADED</English>
                 <Chinese>TFAR模組沒有被載入</Chinese>
                 <Chinesesimp>TFAR模组没有被载入</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_WM_NotLoad_Desc">
-                <Original>LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0</Original>
+                <English>LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0</English>
                 <Chinese>看來TFAR並沒有被載入，或是版本低於1.0</Chinese>
                 <Chinesesimp>看来TFAR并没有被载入，或是版本低于1.0</Chinesesimp>
             </Key>
         </Container>
         <Container name="Keybinding">
             <Key ID="STR_TFAR_CORE_key_SW_Channel">
-                <Original>SW Channel</Original>
+                <English>SW Channel</English>
                 <Chinese>短程無線電頻道</Chinese>
                 <Chinesesimp>短程无线电频道</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LR_Channel">
-                <Original>LR Channel</Original>
+                <English>LR Channel</English>
                 <Chinese>長程無線電頻道</Chinese>
                 <Chinesesimp>长程无线电频道</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_ChangeSpeechVolume">
-                <Original>Change Speaking Volume</Original>
+                <English>Change Speaking Volume</English>
                 <Chinese>變更發話音量</Chinese>
                 <Chinesesimp>变更发话音量</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_YellingModifier">
-                <Original>Yelling Modifier</Original>
+                <English>Yelling Modifier</English>
                 <Chinese>嚎叫音量修改器</Chinese>
                 <Chinesesimp>嚎叫音量修改器</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_WhisperingModifier">
-                <Original>Whispering Modifier</Original>
+                <English>Whispering Modifier</English>
                 <Chinese>耳語音量修改器</Chinese>
                 <Chinesesimp>耳语音量修改器</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CycleRightSWRadios">
-                <Original>Cycle Right SW Radios</Original>
+                <English>Cycle Right SW Radios</English>
                 <Chinese>向右循環短程無線電</Chinese>
                 <Chinesesimp>向右循环短程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CycleLeftSWRadios">
-                <Original>Cycle Left SW Radios</Original>
+                <English>Cycle Left SW Radios</English>
                 <Chinese>向左循環短程無線電</Chinese>
                 <Chinesesimp>向左循环短程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CycleRightLRRadios">
-                <Original>Cycle Right LR Radios</Original>
+                <English>Cycle Right LR Radios</English>
                 <Chinese>向右循環長程無線電</Chinese>
                 <Chinesesimp>向右循环长程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CycleLeftLRRadios">
-                <Original>Cycle Left LR Radios</Original>
+                <English>Cycle Left LR Radios</English>
                 <Chinese>向左循環長程無線電</Chinese>
                 <Chinesesimp>向左循环长程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWStereo_Both">
-                <Original>SW Stereo: Both</Original>
+                <English>SW Stereo: Both</English>
                 <Chinese>短程無線電聲道: 雙聲道</Chinese>
                 <Chinesesimp>短程无线电声道: 双声道</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWStereo_Left">
-                <Original>SW Stereo: Left</Original>
+                <English>SW Stereo: Left</English>
                 <Chinese>短程無線電聲道: 左聲道</Chinese>
                 <Chinesesimp>短程无线电声道: 左声道</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWStereo_Right">
-                <Original>SW Stereo: Right</Original>
+                <English>SW Stereo: Right</English>
                 <Chinese>短程無線電聲道: 右聲道</Chinese>
                 <Chinesesimp>短程无线电声道: 右声道</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRStereo_Both">
-                <Original>LR Stereo: Both</Original>
+                <English>LR Stereo: Both</English>
                 <Chinese>長程無線電聲道: 雙聲道</Chinese>
                 <Chinesesimp>长程无线电声道: 双声道</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRStereo_Left">
-                <Original>LR Stereo: Left</Original>
+                <English>LR Stereo: Left</English>
                 <Chinese>長程無線電聲道: 左聲道</Chinese>
                 <Chinesesimp>长程无线电声道: 左声道</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRStereo_Right">
-                <Original>LR Stereo: Right</Original>
+                <English>LR Stereo: Right</English>
                 <Chinese>長程無線電聲道: 右聲道</Chinese>
                 <Chinesesimp>长程无线电声道: 右声道</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWTransmit">
-                <Original>SW Transmit</Original>
+                <English>SW Transmit</English>
                 <Chinese>短程無線電 發送</Chinese>
                 <Chinesesimp>短程无线电 发送</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWTransmitAlt">
-                <Original>SW Transmit Alt</Original>
+                <English>SW Transmit Alt</English>
                 <Chinese>短程無線電備用 發送</Chinese>
                 <Chinesesimp>短程无线电备用 发送</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWTransmitAdditional">
-                <Original>SW Transmit Additional</Original>
+                <English>SW Transmit Additional</English>
                 <Chinese>短程無線電附加頻道 發送</Chinese>
                 <Chinesesimp>短程无线电附加频道 发送</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRTransmit">
-                <Original>LR Transmit</Original>
+                <English>LR Transmit</English>
                 <Chinese>長程無線電 發送</Chinese>
                 <Chinesesimp>长程无线电 发送</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRTransmitAlt">
-                <Original>LR Transmit Alt</Original>
+                <English>LR Transmit Alt</English>
                 <Chinese>長程無線電備用 發送</Chinese>
                 <Chinesesimp>长程无线电备用 发送</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRTransmitAdditional">
-                <Original>LR Transmit Additional</Original>
+                <English>LR Transmit Additional</English>
                 <Chinese>長程無線電附加頻道 發送</Chinese>
                 <Chinesesimp>长程无线电附加频道 发送</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LowerHeadset">
-                <Original>Lower Headset</Original>
+                <English>Lower Headset</English>
                 <Chinese>取下耳機</Chinese>
                 <Chinesesimp>取下耳机</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_RaiseHeadset">
-                <Original>Raise Headset</Original>
+                <English>Raise Headset</English>
                 <Chinese>戴上耳機</Chinese>
                 <Chinesesimp>戴上耳机</Chinesesimp>
             </Key>
@@ -1943,7 +1943,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
 
         <Container name="deprecated">
             <Key ID="STR_volume">
-                <Original>Change volume</Original>
+                <English>Change volume</English>
                 <Czech>Změnit hlasitost</Czech>
                 <French>Changer le volume</French>
                 <German>Lautstärke anpassen</German>
@@ -1958,7 +1958,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>改变音量</Chinesesimp>
             </Key>
             <Key ID="STR_depth">
-                <Original>Current depth</Original>
+                <English>Current depth</English>
                 <Czech>Aktuální hloubka</Czech>
                 <French>Profondeur actuelle</French>
                 <German>Derzeitige Tiefe</German>
@@ -1973,7 +1973,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>目前深度</Chinesesimp>
             </Key>
             <Key ID="STR_waiting">
-                <Original>Waiting...</Original>
+                <English>Waiting...</English>
                 <Czech>Čekám...</Czech>
                 <French>En attente...</French>
                 <German>Warten...</German>
@@ -1988,7 +1988,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>请稍待...</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_LR_Radio">
-                <Original>LR Radio</Original>
+                <English>LR Radio</English>
                 <Czech>LR Vysílačka</Czech>
                 <French>Radio LP</French>
                 <German>LS-Funkgerät</German>
@@ -2002,7 +2002,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>长程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SameSWFrequencies">
-                <Original>Same SW Frequencies for side</Original>
+                <English>Same SW Frequencies for side</English>
                 <Czech>Stejné SW frekvence pro stranu</Czech>
                 <French>Même fréquences CP par camp</French>
                 <German>Gleiche KS-Frequenzen für die Fraktionen</German>
@@ -2016,7 +2016,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>同阵营使用相同的短程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_Rifle_Radio">
-                <Original>Rifleman radio</Original>
+                <English>Rifleman radio</English>
                 <Czech>Klasická (malá) vysílačka</Czech>
                 <French>Radio pour fusilier</French>
                 <German>Kurzstreckenfunkgerät</German>
@@ -2030,7 +2030,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>短程步兵无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_PR_Radio">
-                <Original>PR Radio</Original>
+                <English>PR Radio</English>
                 <Czech>PR Vysílačka</Czech>
                 <French>Radio CP</French>
                 <German>Pers. Funkgerät</German>
@@ -2044,7 +2044,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>短程个人无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_PRFrequencyTT">
-                <Original>PR default frequencies (as an SQF array)</Original>
+                <English>PR default frequencies (as an SQF array)</English>
                 <Czech>Výchozí frekvence osobní vysílačky (jako SQF pole)</Czech>
                 <French>Fréquences par defaut des CP (en tant que liste SQF)</French>
                 <German>Pers. Standardfrequenzen (als SQF-Array)</German>
@@ -2058,7 +2058,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>设定短程个人无线电各频道的预设频率 (使用SQF脚本的阵列写法)</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveRiflemanRadio">
-                <Original>Give rifleman radio</Original>
+                <English>Give rifleman radio</English>
                 <Czech>Dát malou vysílačku vojákům</Czech>
                 <French>Radio personnelle pour les fusiliers</French>
                 <German>Weist ein Kurzstreckenfunkgerät zu</German>
@@ -2072,7 +2072,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>给予单兵短程步兵无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_EnforceUsage_Description">
-                <Original>Enforces usage of TFAR in mission.</Original>
+                <English>Enforces usage of TFAR in mission.</English>
                 <Czech>Vynutí použití TFARU v misi.</Czech>
                 <French>Forcer l'utilisation de TFAR dans une mission.</French>
                 <German>Erzwingt den Gebrauch von TFAR während der Mission.</German>
@@ -2086,7 +2086,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>配置TFAR在任务中的强制设定。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SameLrFrequencies">
-                <Original>Same LR Frequencies for side</Original>
+                <English>Same LR Frequencies for side</English>
                 <Czech>Stejné LR frekvence pro stranu</Czech>
                 <French>Même fréquences LP par camp</French>
                 <German>Gleiche LS-Frequenzen für die Fraktionen</German>
@@ -2100,7 +2100,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
-                <Original>Terrain Interception Coefficient</Original>
+                <English>Terrain Interception Coefficient</English>
                 <Czech>Koeficient rušení terénem</Czech>
                 <French>Coefficient d'interception du terrain</French>
                 <German>Koeffizient für Signalabschwächung durch das Gelände</German>
@@ -2114,7 +2114,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>地形影响系数</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_LRFrequencyTT">
-                <Original>LR default frequencies (as an SQF array)</Original>
+                <English>LR default frequencies (as an SQF array)</English>
                 <Czech>Výchozí frekvence vysílačky pro dlouhou vzdálenost (jako SQF pole)</Czech>
                 <French>Fréquences par defaut des LP (en tant que liste SQF)</French>
                 <German>LS-Standardfrequenzen (als SQF-Array)</German>
@@ -2128,7 +2128,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>设定长程无线电各频道的预设频率 (使用SQF脚本的阵列写法)</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_Rifle_RadioTT">
-                <Original>Rifleman Radio</Original>
+                <English>Rifleman Radio</English>
                 <Czech>Klasická (malá) vysílačka</Czech>
                 <French>Radio pour fusilier</French>
                 <German>Kurzstreckenfunkgerät</German>
@@ -2142,7 +2142,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>短程步兵无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_PR_RadioTT">
-                <Original>Personal radio</Original>
+                <English>Personal radio</English>
                 <Czech>Osobní vysílačka</Czech>
                 <French>Radio courte portée</French>
                 <German>Persönliches Funkgerät</German>
@@ -2156,7 +2156,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>短程个人无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_LR_RadioTT">
-                <Original>Long Range radio</Original>
+                <English>Long Range radio</English>
                 <Czech>Vysílačka na dlouhou vzdálenost</Czech>
                 <French>Radio longue portée</French>
                 <German>Langstreckenfungerät</German>
@@ -2170,7 +2170,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>长程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveTLradio">
-                <Original>Give team leaders a long range radio</Original>
+                <English>Give team leaders a long range radio</English>
                 <Czech>Dát velitelům týmů vysílačku pro dlouhou vzdálenost</Czech>
                 <French>Les chefs d'équipe ont des radios LP</French>
                 <German>Weist dem Gruppenführer ein Langstreckenfunkgerät zu</German>
@@ -2184,7 +2184,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>给予队长长程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_EncryptionCode">
-                <Original>Encryption Code</Original>
+                <English>Encryption Code</English>
                 <Czech>Šifrovací kód</Czech>
                 <French>Code d'encryptage</French>
                 <German>Verschlüsselungscode</German>
@@ -2198,7 +2198,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>加密代码</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_Frequencies">
-                <Original>TFAR – Frequencies</Original>
+                <English>TFAR – Frequencies</English>
                 <Czech>TFAR – Frekvence</Czech>
                 <French>TFAR - Fréquences</French>
                 <German>TFAR – Frequenzen</German>
@@ -2212,7 +2212,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>TFAR – 频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelPassword">
-                <Original>Channel Password</Original>
+                <English>Channel Password</English>
                 <Czech>Heslo kanálu</Czech>
                 <French>Mot de passe du canal</French>
                 <German>Kanalpasswort</German>
@@ -2226,7 +2226,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>频道密码</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelName">
-                <Original>Channel Name</Original>
+                <English>Channel Name</English>
                 <Czech>Název kanálu</Czech>
                 <French>Nom du canal</French>
                 <German>Kanalname</German>
@@ -2240,7 +2240,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>频道名称</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
-                <Original>Terrain Interception Coefficient</Original>
+                <English>Terrain Interception Coefficient</English>
                 <Czech>Koeficient rušení způsobené terénem</Czech>
                 <French>Coefficient d'interception et de brouillage du terrain</French>
                 <German>Koeffizient für Signalabschwächung durch das Gelände</German>
@@ -2254,7 +2254,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>设定地形影响无线电通讯品质的系数</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SideRadio_Description">
-                <Original>Allows setting of default radios, encryption and frequencies for synced side.</Original>
+                <English>Allows setting of default radios, encryption and frequencies for synced side.</English>
                 <Czech>Umožňuje nastavení výchozích vysílaček, šifrování a frekvencí pro určitou stranu.</Czech>
                 <French>Permettre la configuration des radios, du cryptage et des fréquences pour les camps synchronisés.</French>
                 <German>Ermöglicht gleiche Einstellungen der Verschlüsselung und Frequenzen für alle Fraktionen.</German>
@@ -2268,7 +2268,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>调整被同步阵营的预设无线电，加密代码与频率等设定。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SideRadio">
-                <Original>TFAR – Side Radio</Original>
+                <English>TFAR – Side Radio</English>
                 <Czech>TFAR – Vysílačky strany</Czech>
                 <French>TFAR - Radio des camps</French>
                 <German>TFAR – Funk-Fraktionszuweisung</German>
@@ -2282,7 +2282,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>TFAR – 无线电阵营</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SameLrFrequenciesTT">
-                <Original>Same LR Frequencies for side</Original>
+                <English>Same LR Frequencies for side</English>
                 <Czech>Stejné LR frekvence vysílačky pro dlouhou vzdálenost pro stranu</Czech>
                 <French>Chaque camp à les mêmes fréquences longues portées</French>
                 <German>Gleiche LS-Frequenzen für die Fraktionen</German>
@@ -2296,7 +2296,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SameSWFrequenciesTT">
-                <Original>Same SW Frequencies for side</Original>
+                <English>Same SW Frequencies for side</English>
                 <Czech>Stejné SW frekvence vysílačky pro stranu</Czech>
                 <French>Chaque camp à les mêmes fréquences courtes portées</French>
                 <German>Gleiche KS-Frequenzen für die Fraktionen</German>
@@ -2310,7 +2310,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>同阵营使用相同的短程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveTLradioTT">
-                <Original>Give each team leader the appropriate long range radio</Original>
+                <English>Give each team leader the appropriate long range radio</English>
                 <Czech>Dá každému veliteli týmu vhodnou vysílačku pro dlouhou vzdálenost</Czech>
                 <French>Donner à chaque chef d'équipe la radio longue portée approprié</French>
                 <German>Weist jedem Gruppenführer das entsprechende Langstreckenfunkgerät zu</German>
@@ -2324,7 +2324,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>分发长程无线电给各队长使用</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_GiveRiflemanRadioTT">
-                <Original>Give a rifleman radio to regular soldiers</Original>
+                <English>Give a rifleman radio to regular soldiers</English>
                 <Czech>Dá malou vysílačku klasickým vojákům</Czech>
                 <French>Donner une radio de fusilier aux soldats</French>
                 <German>Weist jedem Gruppenmitglied ein Kurzstreckenfunkgerät zu</German>
@@ -2338,7 +2338,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>分发短程步兵无线电给各单兵使用</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelNameTT">
-                <Original>TeamSpeak Channel Name</Original>
+                <English>TeamSpeak Channel Name</English>
                 <Czech>Název kanálu na TeamSpeaku</Czech>
                 <French>Nom du canal TeamSpeak</French>
                 <German>TeamSpeak-Kanalname</German>
@@ -2352,7 +2352,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>TeamSpeak作战用频道名称</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_ChannelPasswordTT">
-                <Original>TeamSpeak Channel Password</Original>
+                <English>TeamSpeak Channel Password</English>
                 <Czech>Heslo kanálu na TeamSpeaku</Czech>
                 <French>Mot de passe du canal TeamSpeak</French>
                 <German>TeamSpeak-Kanalpasswort</German>
@@ -2366,7 +2366,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>TeamSpeak作战用频道密码</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_Frequencies_Description">
-                <Original>Allows setting of default frequencies for sides.</Original>
+                <English>Allows setting of default frequencies for sides.</English>
                 <Czech>Umožňuje nastavit výchozí frekvence pro určité strany.</Czech>
                 <French>Permet la configuration de fréquences par défaut par camps</French>
                 <German>Ermöglicht die Einstellung der Standardfrequenzen für Fraktionen.</German>
@@ -2380,7 +2380,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>调整被同步阵营的无线电预设频率。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_EnforceUsage">
-                <Original>TFAR – Enforce Usage</Original>
+                <English>TFAR – Enforce Usage</English>
                 <Czech>TFAR – Vynutit použití</Czech>
                 <French>TFAR - Forcer l'utilisation</French>
                 <German>TFAR – Erzwingt die Nutzung</German>
@@ -2394,7 +2394,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>TFAR – 强制设定</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_LRFrequency">
-                <Original>LR Freq.</Original>
+                <English>LR Freq.</English>
                 <Czech>LR Frek.</Czech>
                 <French>Fréquence longue portée</French>
                 <German>LS-Freq.</German>
@@ -2408,7 +2408,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>长程无线电频率</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_PRFrequency">
-                <Original>PR Freq.</Original>
+                <English>PR Freq.</English>
                 <Czech>PR Frek.</Czech>
                 <French>Fréquence courte portée</French>
                 <German>Pers. Freq.</German>
@@ -2427,7 +2427,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <German>Voll-Duplex</German>
                 <Japanese>全二重通信</Japanese>
                 <Korean>양방향 통신</Korean>
-                <Original>Full-Duplex</Original>
+                <English>Full-Duplex</English>
                 <Chinese>全雙工模式</Chinese>
                 <Chinesesimp>全双工模式</Chinesesimp>
             </Key>
@@ -2437,34 +2437,34 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <German>Erlaubt Funkgeräten gleichzeitig zu senden und zu empfangen.</German>
                 <Japanese>無線機が送信中に受信も同時に行うようにします。</Japanese>
                 <Korean>전송하는 동안 동시에 수신을 가능하게 합니다.</Korean>
-                <Original>Allows Radios to simultaneously receive while transmitting.</Original>
+                <English>Allows Radios to simultaneously receive while transmitting.</English>
                 <Chinese>允許無線電能同時接收與發送訊號。</Chinese>
                 <Chinesesimp>允许无线电能同时接收与发送讯号。</Chinesesimp>
             </Key>
 
             
             <Key ID="STR_TFAR_WM_FreqModule_FQMSW_AlreadySet">
-                <Original>TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.</Original>
+                <English>TFAR - tf_sw_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.</English>
                 <Chinese>TFAR - tf_sw_frequency已經被設置，可能有群組(%1)被多個頻率模塊連接上。或有多個頻率模塊連接上到多個屬於同一群組的單位上。</Chinese>
                 <Chinesesimp>TFAR - tf_sw_frequency已经被设置，可能有群组(%1)被多个频率模块连接上。或有多个频率模块连接上到多个属于同一群组的单位上。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_WM_FreqModule_FQMLR_AlreadySet">
-                <Original>TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.</Original>
+                <English>TFAR - tf_lr_frequency already set, might be assigning a group (%1) to multiple frequency modules. Or frequency modules to multiple units in the same group.</English>
                 <Chinese>TFAR - tf_lr_frequency已經被設置，可能有群組(%1)被多個頻率模塊連接上。或有多個頻率模塊連接上到多個屬於同一群組的單位上。</Chinese>
                 <Chinesesimp>TFAR - tf_lr_frequency已经被设置，可能有群组(%1)被多个频率模块连接上。或有多个频率模块连接上到多个属于同一群组的单位上。</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_WM_BaseModule_LR">
-                <Original>TFAR ERROR: %1 is not a valid LR radio</Original>
+                <English>TFAR ERROR: %1 is not a valid LR radio</English>
                 <Chinese>TFAR錯誤: %1並不是有效的長程無線電</Chinese>
                 <Chinesesimp>TFAR错误: %1并不是有效的长程无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_WM_BaseModule_PR">
-                <Original>TFAR ERROR: %1 is not a valid personal radio</Original>
+                <English>TFAR ERROR: %1 is not a valid personal radio</English>
                 <Chinese>TFAR錯誤: %1並不是有效的個人無線電</Chinese>
                 <Chinesesimp>TFAR错误: %1并不是有效的个人无线电</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_WM_FreqModule_noUnits">
-                <Original>TFAR - No units set for Frequency Module</Original>
+                <English>TFAR - No units set for Frequency Module</English>
                 <Chinese>TFAR - 頻率模塊沒有與任何單位連接上</Chinese>
                 <Chinesesimp>TFAR - 频率模块没有与任何单位连接上</Chinesesimp>
             </Key>
