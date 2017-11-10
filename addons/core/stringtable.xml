@@ -1257,6 +1257,26 @@
                 <Chinese>當無線電頻道更改時在右下角顯示提示訊息</Chinese>
                 <Chinesesimp>当无线电频道更改时在右下角显示提示讯息</Chinesesimp>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_FullDuplex">
+                <English>Full-Duplex</English>
+                <French>Duplex complet</French>
+                <German>Voll-Duplex</German>
+                <Japanese>全二重通信</Japanese>
+                <Korean>양방향 통신</Korean>
+                <English>Full-Duplex</English>
+                <Chinese>全雙工模式</Chinese>
+                <Chinesesimp>全双工模式</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_FullDuplexDescription">
+                <English>Allows Radios to simultaneously receive while transmitting.</English>
+                <French>Permets aux radios de recevoir et transmettre simultanément.</French>
+                <German>Erlaubt Funkgeräten gleichzeitig zu senden und zu empfangen.</German>
+                <Japanese>無線機が送信中に受信も同時に行うようにします。</Japanese>
+                <Korean>전송하는 동안 동시에 수신을 가능하게 합니다.</Korean>
+                <English>Allows Radios to simultaneously receive while transmitting.</English>
+                <Chinese>允許無線電能同時接收與發送訊號。</Chinese>
+                <Chinesesimp>允许无线电能同时接收与发送讯号。</Chinesesimp>
+            </Key>
         </Container>
         <Container name="diary">
             <Key ID="STR_TFAR_CORE_radio_vehicle_text">

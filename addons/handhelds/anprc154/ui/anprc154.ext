@@ -177,7 +177,7 @@ class anprc154_radio_dialog
     class edit: RscEditLCD
     {
     	idc = IDC_MICRODAGR_EDIT;
-    	text = $STR_A3_anprc154_edit;
+    	text = "";
     	x = 0.476281 * safezoneW + safezoneX;
     	y = 0.3504 * safezoneH + safezoneY;
     	w = 0.0613594 * safezoneW;
