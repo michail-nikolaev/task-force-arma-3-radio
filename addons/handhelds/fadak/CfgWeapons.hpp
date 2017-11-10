@@ -1,6 +1,6 @@
 class TFAR_fadak: ItemRadio {
-    displayName = "FADAK";
-    descriptionShort = "$STR_TFAR_Veh_FADAK_Desc";
+    displayName = CSTRING(FADAK);
+    descriptionShort = CSTRING(FADAK_Desc);
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     model = QPATHTOF(fadak\data\tfr_fadak);

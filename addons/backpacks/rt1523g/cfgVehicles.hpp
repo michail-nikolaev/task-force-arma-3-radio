@@ -2,8 +2,8 @@ class TFAR_rt1523g: TFAR_Bag_Base {
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     author = "Raspu, Gandi, Nkey";
-    displayName = "RT-1523G (ASIP)";
-    descriptionShort = "$STR_TFAR_BP_RT1523G_Desc";
+    displayName = CSTRING(RT1523G);
+    descriptionShort = CSTRING(RT1523G_Desc);
     picture = QPATHTOF(rt1523g\ui\rt1523g_icon.paa);
     model=QPATHTOF(models\clf_prc117g_ap);
     hiddenSelections[] = {"camo"};
@@ -16,23 +16,23 @@ class TFAR_rt1523g: TFAR_Bag_Base {
 };
 HIDDEN_CLASS(tf_rt1523g : TFAR_rt1523g); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_bwmod: TFAR_rt1523g {
-    displayName = "RT-1523G (ASIP) BWMOD";
-    descriptionShort = "$STR_TFAR_BP_RT1523G_BWMOD_Desc";
+    displayName = CSTRING(RT1523G_BWMOD);
+    descriptionShort = CSTRING(RT1523G_BWMOD_Desc);
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_prc117g_bwmod_co.paa)};
 };
 HIDDEN_CLASS(tf_rt1523g_bwmod : TFAR_rt1523g_bwmod); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_rhs: TFAR_rt1523g {
-    displayName = "RT-1523G (ASIP) RHS";
-    descriptionShort = "$STR_TFAR_BP_RT1523G_RHS_Desc";
+    displayName = CSTRING(RT1523G_RHS);
+    descriptionShort = CSTRING(RT1523G_RHS_Desc);
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_prc117g_rhs_co.paa)};
 };
 HIDDEN_CLASS(tf_rt1523g_rhs : TFAR_rt1523g_rhs); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_big: TFAR_rt1523g {
     author = "Raspu, Gandi, Nkey";
-    displayName = "$STR_TFAR_BP_RT1523G_Big";
-    descriptionShort = "$STR_TFAR_BP_RT1523G_Big_Desc";
+    displayName = CSTRING(RT1523G_Big);
+    descriptionShort = CSTRING(RT1523G_Big_Desc);
     maximumLoad = 160;
     mass = 160;
     hiddenSelections[] = {"camo"};
@@ -41,27 +41,27 @@ class TFAR_rt1523g_big: TFAR_rt1523g {
 };
 HIDDEN_CLASS(tf_rt1523g_big : TFAR_rt1523g_big); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_big_bwmod: TFAR_rt1523g_big {
-    displayName = "$STR_TFAR_BP_RT1523G_BigBWMOD";
-    descriptionShort = "$STR_TFAR_BP_RT1523G_BigBWMOD_Desc";
+    displayName = CSTRING(RT1523G_BigBWMOD);
+    descriptionShort = CSTRING(RT1523G_BigBWMOD_Desc);
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_nicecomm2_bwmod_co.paa)};
 };
 HIDDEN_CLASS(tf_rt1523g_big_bwmod : TFAR_rt1523g_big_bwmod); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_big_bwmod_tropen: TFAR_rt1523g_big_bwmod {
-    displayName = "$STR_TFAR_BP_RT1523G_BigBWMOD_Tropen";
+    displayName = CSTRING(RT1523G_BigBWMOD_Tropen);
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\jgbtl14_marcbook_bwmod_tropen_co.paa)};
 };
 HIDDEN_CLASS(tf_rt1523g_big_bwmod_tropen : TFAR_rt1523g_big_bwmod_tropen); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_big_rhs: TFAR_rt1523g_big {
-    displayName = "$STR_TFAR_BP_RT1523G_BigRHS";
-    descriptionShort = "$STR_TFAR_BP_RT1523G_BigRHS_Desc";
+    displayName = CSTRING(RT1523G_BigRHS);
+    descriptionShort = CSTRING(RT1523G_BigRHS_Desc);
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_nicecomm2_rhs_co.paa)};
 };
 HIDDEN_CLASS(tf_rt1523g_big_rhs : TFAR_rt1523g_big_rhs); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_sage: TFAR_rt1523g {
-    displayName = "$STR_TFAR_BP_RT1523G_Sage";
-    descriptionShort = "$STR_TFAR_BP_RT1523G_Sage_Desc";
+    displayName = CSTRING(RT1523G_Sage);
+    descriptionShort = CSTRING(RT1523G_Sage_Desc);
     maximumLoad = 100;
     mass = 120;
     hiddenSelections[] = {"camo"};
@@ -70,22 +70,22 @@ class TFAR_rt1523g_sage: TFAR_rt1523g {
 };
 HIDDEN_CLASS(tf_rt1523g_sage : TFAR_rt1523g_sage); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_green: TFAR_rt1523g_sage {
-    displayName = "$STR_TFAR_BP_RT1523G_Green";
-    descriptionShort = "$STR_TFAR_BP_RT1523G_Green_Desc";
+    displayName = CSTRING(RT1523G_Green);
+    descriptionShort = CSTRING(RT1523G_Green_Desc);
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\camo\backpack_green_co.paa)};
 };
 HIDDEN_CLASS(tf_rt1523g_green : TFAR_rt1523g_green); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_fabric: TFAR_rt1523g_sage {
-    displayName = "$STR_TFAR_BP_RT1523G_Fabric";
-    descriptionShort = "$STR_TFAR_BP_RT1523G_Fabric_Desc";
+    displayName = CSTRING(RT1523G_Fabric);
+    descriptionShort = CSTRING(RT1523G_Fabric_Desc);
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\camo\backpack_fabric_co.paa)};
 };
 HIDDEN_CLASS(tf_rt1523g_fabric : TFAR_rt1523g_fabric); //#Deprecated dummy class for backwards compat
 class TFAR_rt1523g_black: TFAR_rt1523g_sage {
-    displayName = "$STR_TFAR_BP_RT1523G_Black";
-    descriptionShort = "$STR_TFAR_BP_RT1523G_Black_Desc";
+    displayName = CSTRING(RT1523G_Black);
+    descriptionShort = CSTRING(RT1523G_Black_Desc);
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\camo\backpack_black_co.paa)};
 };
