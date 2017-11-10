@@ -36,7 +36,7 @@
         //Handle backpack replacement for group leaders
         if (leader TFAR_currentUnit != TFAR_currentUnit) exitWith {};
         if (!TFAR_giveLongRangeRadioToGroupLeaders or {backpack TFAR_currentUnit == "B_Parachute"} or {player call TFAR_fnc_isForcedCurator}) exitWith {};
-        if ([(backpack TFAR_currentUnit), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1) exitWith {};
+        if ([(backpack TFAR_currentUnit), "tf_hasLRradio", 0] call TFAR_fnc_getVehicleConfigProperty == 1) exitWith {};
 
         private _items = backpackItems TFAR_currentUnit;
         private _backPack = unitBackpack TFAR_currentUnit;

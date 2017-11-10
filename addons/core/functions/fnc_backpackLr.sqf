@@ -20,7 +20,7 @@
 */
 
 private _backpack = backpack _this;
-if (([_backpack, "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty) == 1) exitWith {
+if (([_backpack, "tf_hasLRradio", 0] call TFAR_fnc_getVehicleConfigProperty) == 1) exitWith {
     [unitBackpack _this, "radio_settings"]
 };
 nil

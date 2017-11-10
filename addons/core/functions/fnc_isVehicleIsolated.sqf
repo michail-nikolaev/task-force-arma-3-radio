@@ -23,7 +23,7 @@ params ["_vehicle"];
 private _isolated = _vehicle getVariable ["TFAR_isolatedAmount", scriptNull];
 
 if (_isolated isEqualTo scriptNull) then {
-    _isolated = [typeof _vehicle, "tf_isolatedAmount", 0.0] call TFAR_fnc_getConfigProperty;
+    _isolated = [typeof _vehicle, "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty;
     _vehicle setVariable ["TFAR_isolatedAmount", _isolated];
 };
 
