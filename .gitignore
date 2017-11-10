@@ -1,5 +1,6 @@
 *.pbo
 /release
+/.vscode
 
 /ts/bin/plugins/task_force_radio.ilk
 /ts/bin/plugins/task_force_radio.pdb
