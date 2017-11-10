@@ -16,9 +16,9 @@
 [
     "TFAR_takingRadio",
     "LIST",
-    [LSTRING(TAKERADIO_HEADER),LSTRING(TAKERADIO_DESC)],
+    [ELSTRING(settings,TAKERADIO_HEADER),ELSTRING(settings,TAKERADIO_DESC)],
     "Task Force Arrowhead Radio",
-    [[0, 1, 2], [LSTRING(TAKERADIO_0), LSTRING(TAKERADIO_1), LSTRING(TAKERADIO_2)], 2],
+    [[0, 1, 2], [ELSTRING(settings,TAKERADIO_0), ELSTRING(settings,TAKERADIO_1), ELSTRING(settings,TAKERADIO_2)], 2],
     true
 ] call CBA_Settings_fnc_init;
 
