@@ -73,7 +73,7 @@ class anprc154_radio_dialog
     	y = 0.5869 * safezoneH + safezoneY;
     	w = 0.0273146 * safezoneW;
     	h = 0.0549882 * safezoneH;
-    	tooltip = ELSTRING(core,previous_channel);
+    	tooltip = ECSTRING(core,previous_channel);
     	action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
     };
     class next_channel: HiddenButton
@@ -83,7 +83,7 @@ class anprc154_radio_dialog
     	y = 0.5011 * safezoneH + safezoneY;
     	w = 0.0278437 * safezoneW;
     	h = 0.0528 * safezoneH;
-    	tooltip = ELSTRING(core,next_channel);
+    	tooltip = ECSTRING(core,next_channel);
     	action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
     };
     class increase_volume: HiddenButton
@@ -93,7 +93,7 @@ class anprc154_radio_dialog
     	y = 0.5011 * safezoneH + safezoneY;
     	w = 0.02783 * safezoneW;
     	h = 0.0505892 * safezoneH;
-    	tooltip = ELSTRING(core,increase_volume);
+    	tooltip = ECSTRING(core,increase_volume);
     	action = "[1, false] call TFAR_fnc_setVolumeViaDialog;";
     };
     class decrease_volume: HiddenButton
@@ -103,7 +103,7 @@ class anprc154_radio_dialog
     	y = 0.593489 * safezoneH + safezoneY;
     	w = 0.0262969 * safezoneW;
     	h = 0.0484 * safezoneH;
-    	tooltip = ELSTRING(core,decrease_volume);
+    	tooltip = ECSTRING(core,decrease_volume);
     	action = "[0, false] call TFAR_fnc_setVolumeViaDialog;";
     };
     class stereo: HiddenButton
@@ -172,7 +172,7 @@ class anprc154_radio_dialog
     	font = "TFAR_font_dots";
     	shadow = 2;
     	canModify = 0;
-    	tooltip = ELSTRING(core,current_channel);
+    	tooltip = ECSTRING(core,current_channel);
     };
     class edit: RscEditLCD
     {
@@ -186,7 +186,7 @@ class anprc154_radio_dialog
     	font = "TFAR_font_dots";
     	shadow = 2;
     	canModify = 1;
-    	tooltip = ELSTRING(core,current_freq);
+    	tooltip = ECSTRING(core,current_freq);
     };
     class clear: HiddenButton
     {
@@ -196,7 +196,7 @@ class anprc154_radio_dialog
     	y = 0.4329 * safezoneH + safezoneY;
     	w = 0.0402187 * safezoneW;
     	h = 0.0517 * safezoneH;
-    	tooltip = ELSTRING(core,clear_frequency);
+    	tooltip = ECSTRING(core,clear_frequency);
     	font = "TFAR_font_dots";
     	shadow = 2;
     	action = QUOTE(
@@ -212,7 +212,7 @@ class anprc154_radio_dialog
     	y = 0.4318 * safezoneH + safezoneY;
     	w = 0.04125 * safezoneW;
     	h = 0.055 * safezoneH;
-    	tooltip = ELSTRING(core,set_frequency);
+    	tooltip = ECSTRING(core,set_frequency);
     	font = "TFAR_font_dots";
     	shadow = 2;
     	action = QUOTE(

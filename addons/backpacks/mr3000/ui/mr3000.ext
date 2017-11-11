@@ -87,7 +87,7 @@ class enter: HiddenButton
     y = 0.4208 * safezoneH + safezoneY;
     w = 0.0223125 * safezoneW;
     h = 0.0308069 * safezoneH;
-    tooltip = ELSTRING(core,set_frequency);
+    tooltip = ECSTRING(core,set_frequency);
     action = QUOTE(
         _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_MR3000_EDIT);
         if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {
@@ -106,7 +106,7 @@ class clear: HiddenButton
     y = 0.3548 * safezoneH + safezoneY;
     w = 0.0223125 * safezoneW;
     h = 0.0308069 * safezoneH;
-    tooltip = ELSTRING(core,clear_frequency);
+    tooltip = ECSTRING(core,clear_frequency);
     action = QUOTE(
         ctrlSetText [ARR_2(IDC_MR3000_EDIT, '')];
         ctrlSetFocus ((findDisplay IDD_MR3000_RADIO_DIALOG) displayCtrl IDC_MR3000_EDIT);
@@ -119,7 +119,7 @@ class next_channel: HiddenButton
     y = 0.5396 * safezoneH + safezoneY;
     w = 0.0190313 * safezoneW;
     h = 0.0280062 * safezoneH;
-    tooltip = ELSTRING(core,next_channel);
+    tooltip = ECSTRING(core,next_channel);
     action = "[1, true] call TFAR_fnc_setChannelViaDialog;";
 };
 class previous_channel: HiddenButton
@@ -129,7 +129,7 @@ class previous_channel: HiddenButton
     y = 0.5374 * safezoneH + safezoneY;
     w = 0.0203438 * safezoneW;
     h = 0.0280062 * safezoneH;
-    tooltip = ELSTRING(core,previous_channel);
+    tooltip = ECSTRING(core,previous_channel);
     action = "[0, true] call TFAR_fnc_setChannelViaDialog;";
 };
 class increase_volume: HiddenButton
@@ -139,7 +139,7 @@ class increase_volume: HiddenButton
     y = 0.4989 * safezoneH + safezoneY;
     w = 0.0190313 * safezoneW;
     h = 0.0294066 * safezoneH;
-    tooltip = ELSTRING(core,increase_volume);
+    tooltip = ECSTRING(core,increase_volume);
     action = "[1, true] call TFAR_fnc_setVolumeViaDialog;";
 };
 class decrease_volume: HiddenButton
@@ -150,7 +150,7 @@ class decrease_volume: HiddenButton
     w = 0.021 * safezoneW;
     h = 0.0266059 * safezoneH;
     action = "[0, true] call TFAR_fnc_setVolumeViaDialog;";
-    tooltip = ELSTRING(core,decrease_volume);
+    tooltip = ECSTRING(core,decrease_volume);
 };
 class channel_1: HiddenButton
 {
@@ -252,7 +252,7 @@ class edit: RscEditLCD
     font = "TFAR_font_dots";
     shadow = 1;
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 30) * 1.2)";
-    tooltip = ELSTRING(core,current_freq);
+    tooltip = ECSTRING(core,current_freq);
     canModify = 1;
 };
 class channel_edit: RscEditLCD
@@ -265,7 +265,7 @@ class channel_edit: RscEditLCD
     font = "TFAR_font_dots";
     shadow = 1;
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 30) * 1.2)";
-    tooltip = ELSTRING(core,current_channel);
+    tooltip = ECSTRING(core,current_channel);
     canModify = 0;
 };
 class stereo: HiddenButton
@@ -288,7 +288,7 @@ class additional: HiddenRotator
     y = 0.4197 * safezoneH + safezoneY;
     w = 0.0367463 * safezoneW;
     h = 0.0812181 * safezoneH;
-    tooltip = ELSTRING(core,set_additional);
+    tooltip = ECSTRING(core,set_additional);
     action = QUOTE(
         playSound 'TFAR_rotatorPush';
         [ARR_2(TF_lr_dialog_radio,TF_lr_dialog_radio call TFAR_fnc_getLrChannel)] call TFAR_fnc_setAdditionalLrChannel;
@@ -303,7 +303,7 @@ class volume_switch: HiddenRotator
     y = 0.3218 * safezoneH + safezoneY;
     w = 0.0360938 * safezoneW;
     h = 0.0728162 * safezoneH;
-    tooltip = ELSTRING(core,rotator_volume);
+    tooltip = ECSTRING(core,rotator_volume);
     onMouseButtonDown = "[_this select 1, true] call TFAR_fnc_setVolumeViaDialog;";
 };
 class channel_switch: HiddenRotator
@@ -313,7 +313,7 @@ class channel_switch: HiddenRotator
     y = 0.5407 * safezoneH + safezoneY;
     w = 0.033499 * safezoneW;
     h = 0.0659931 * safezoneH;
-    tooltip = ELSTRING(core,rotator_channel);
+    tooltip = ECSTRING(core,rotator_channel);
     onMouseButtonDown ="[_this select 1, true] call TFAR_fnc_setChannelViaDialog;";
 };
 class speakers: HiddenButton
