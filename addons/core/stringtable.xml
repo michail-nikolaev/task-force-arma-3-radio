@@ -9,6 +9,16 @@
             <Key ID="STR_TFAR_CORE_CATEGORY">
                 <English>TFAR</English>
             </Key>
+            <Key ID="STR_TFAR_CORE_3DEN_Menu">
+                <English>TFAR Preferences</English>
+                <German>TFAR Einstellungen</German>
+            </Key>
+            <Key ID="STR_TFAR_CORE_3DEN_Properties">
+                <English>TFAR properties</English>
+                <German>TFAR Eigenschaften</German>
+                <Chinese>TFAR設定</Chinese>
+                <Chinesesimp>TFAR设定</Chinesesimp>
+            </Key>
             <Key ID="STR_TFAR_CORE_NATO_crate">
                 <English>TFAR Radio (NATO)</English>
                 <Czech>TFAR Vysílačky (NATO)</Czech>
@@ -991,11 +1001,6 @@
             <Chinese>TFAR音量指示器</Chinese>
             <Chinesesimp>TFAR音量指示器</Chinesesimp>
         </Key>
-        <Key ID="STR_TFAR_CORE_Att_Options">
-            <English>TFAR Options</English>
-            <Chinese>TFAR設定</Chinese>
-            <Chinesesimp>TFAR设定</Chinesesimp>
-        </Key>
         <Key ID="STR_TFAR_CORE_Att_CuratorCamEars">
             <English>Hear Camera when in Curator interface</English>
             <Chinese>宙斯編輯器聆聽玩家語音</Chinese>
@@ -1037,6 +1042,34 @@
 
         
         <Container name="settings">
+            <Key ID="STR_TFAR_SETTINGS_TerrainInterceptionCoefficient">
+                <English>Terrain Interception Coefficient</English>
+                <Czech>Koeficient rušení terénem</Czech>
+                <French>Coefficient d'interception du terrain</French>
+                <German>Koeffizient für Signalabschwächung durch das Gelände</German>
+                <Polish>Współczynnik rozpraszania terenu</Polish>
+                <Russian>Коэффициент помех от рельефа</Russian>
+                <Spanish>Coeficiente de intercepción del terreno</Spanish>
+                <Turkish>Kesişme Alan Katsayısı</Turkish>
+                <Japanese>地形による障害</Japanese>
+                <Korean>지형 방해 계수</Korean>
+                <Chinese>地形影響係數</Chinese>
+                <Chinesesimp>地形影响系数</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_TerrainInterceptionCoefficient_tooltip">
+                <English>Terrain Interception Coefficient</English>
+                <Czech>Koeficient rušení způsobené terénem</Czech>
+                <French>Coefficient d'interception et de brouillage du terrain</French>
+                <German>Koeffizient für Signalabschwächung durch das Gelände</German>
+                <Polish>Współczynnik rozpraszania terenu</Polish>
+                <Russian>Коэффициент помех от рельефа</Russian>
+                <Spanish>Coeficiente de intercepción del terreno</Spanish>
+                <Turkish>Kesişme Alan Katsayısı</Turkish>
+                <Japanese>地形による障害</Japanese>
+                <Korean>지형 방해 계수</Korean>
+                <Chinese>設定地形影響無線電通訊品質的係數</Chinese>
+                <Chinesesimp>设定地形影响无线电通讯品质的系数</Chinesesimp>
+            </Key>
             <Key ID="STR_TFAR_SETTINGS_TAKERADIO_HEADER">
                 <English>Taking away radios</English>
                 <German>Funkgeräte wegnehmen</German>
@@ -1276,6 +1309,224 @@
                 <English>Allows Radios to simultaneously receive while transmitting.</English>
                 <Chinese>允許無線電能同時接收與發送訊號。</Chinese>
                 <Chinesesimp>允许无线电能同时接收与发送讯号。</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_radio_showChannelChangedHint_desc">
+                <English>Show the Hint (Bottom right) when you switch Channels via UI or Hotkey</English>
+                <Chinese>當無線電頻道更改時在右下角顯示提示訊息</Chinese>
+                <Chinesesimp>当无线电频道更改时在右下角显示提示讯息</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR">
+                <English>Default SR-settings:</English>
+                <German>Standard Kurzwellen-Frequenzen:</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_desc">
+                <English>Define the default SR-settings for this entity</English>
+                <German>Das Festlegen der Standard Kurzwellenfrequenzen für diese Entität.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR">
+                <English>Default LR-settings:</English>
+                <German>Standard Langwellen-Frequenzen:</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_desc">
+                <English>Define the default LR-settings for this entity</English>
+                <German>Das Festlegen der Standard Langwellenfrequenzen für diese Entität.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_west">
+                <English>Default SR-settings (NATO):</English>
+                <German>Standard Kurzwellen-Frequenzen (NATO):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_west_desc">
+                <English>Define the default SR-settings for the NATO side as a list. e.g.: 99,101,250</English>
+                <German>Das Festlegen der Standard Kurzwellenfrequenzen für die NATO-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_east">
+                <English>Default SR-settings (CSAT):</English>
+                <German>Standard Kurzwellen-Frequenzen (CSAT):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_east_desc">
+                <English>Define the default SR-settings for the CSAT side as a list. e.g.: 99,101,250</English>
+                <German>Das Festlegen der Standard Kurzwellenfrequenzen für die CSAT-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_independent">
+                <English>Default SR-settings (AAF):</English>
+                <German>Standard Kurzwellen-Frequenzen (AAF):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_independent_desc">
+                <English>Define the default SR-settings for the AAF side as a list. e.g.: 99,101,250</English>
+                <German>Das Festlegen der Standard Kurzwellenfrequenzen für die AAF-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_west">
+                <English>Default LR-settings (NATO):</English>
+                <German>Standard Kurzwellen-Frequenzen (NATO):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_west_desc">
+                <English>Define the default LR-settings for the NATO side as a list. e.g.: 99,101,250</English>
+                <German>Das Festlegen der Standard Langwellenfrequenzen für die NATO-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_east">
+                <English>Default LR-settings (CSAT):</English>
+                <German>Standard Kurzwellen-Frequenzen Ost:</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_east_desc">
+                <English>Define the default LR-settings for the (CSAT) side as a list. e.g.: 99,101,250</English>
+                <German>Das Festlegen der Standard Langwellenfrequenzen für die CSAT-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_independent">
+                <English>Default LR-settings (AAF):</English>
+                <German>Standard Langwellen-Frequenzen (AAF):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_independent_desc">
+                <English>Define the default LR-settings for the AAF side as a list. e.g.: 99,101,250</English>
+                <German>Das Festlegen der Standard Langwellenfrequenzen für die AAF-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_west">
+                <English>Default rifleman-radio (NATO):</English>
+                <German>Standard Soldatenfunkgerät (NATO):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_west_desc">
+                <English>Define the default rifleman-radio class for the NATO-side.</English>
+                <German>Lege das Standard-Funkgerät für NATO-Soldaten fest.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_east">
+                <English>Default rifleman-radio (CSAT):</English>
+                <German>Standard Soldatenfunkgerät (CSAT):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_east_desc">
+                <English>Define the default rifleman-radio class for the CAST side.</English>
+                <German>Lege das Standard-Funkgerät für CAST-Soldaten fest.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_independent">
+                <English>Default rifleman-radio (AAF):</English>
+                <German>Standard Soldatenfunkgerät (AAF):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_independent_desc">
+                <English>Define the default rifleman-radio class for the AAF side.</English>
+                <German>Lege das Standard-Funkgerät für AAF-Soldaten fest.</German>
+            </Key>
+
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_west">
+                <English>Default squadlead radio (NATO):</English>
+                <German>Standard Truppführerfunkgerät (NATO):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_west_desc">
+                <English>Define the default squadlead radio class for the NATO-side.</English>
+                <German>Lege das Standard-Funkgerät für NATO-Offiziere fest.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_east">
+                <English>Default squadlead radio (CSAT):</English>
+                <German>Standard Truppführerfunkgerät (CSAT):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_east_desc">
+                <English>Define the default squadlead radio class for the CAST side.</English>
+                <German>Lege das Standard-Funkgerät für CAST-Offiziere fest.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_independent">
+                <English>Default squadlead radio (AAF):</English>
+                <German>Standard Truppführerfunkgerät (AAF):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_independent_desc">
+                <English>Define the default squadlead radio class for the AAF side.</English>
+                <German>Lege das Standard-Funkgerät für AAF-Offiziere fest.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_west">
+                <English>Default backpack-radio (NATO):</English>
+                <German>Standard Rucksackfunkgerät (NATO):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_west_desc">
+                <English>Define the default backpack-radio class for the NATO-side.</English>
+                <German>Lege das Standard-Rucksackfunkgerät für die NATO fest.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_east">
+                <English>Default backpack-radio (CSAT):</English>
+                <German>Standard Rucksackfunkgerät (CSAT):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_east_desc">
+                <English>Define the default backpack-radio class for the CAST side.</English>
+                <German>Lege das Standard-Rucksackfunkgerät für die CSAT fest.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_independent">
+                <English>Default backpack-radio (AAF):</English>
+                <German>Standard Rucksackfunkgerät (AAF):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_independent_desc">
+                <English>Define the default backpack-radio class for the AAF side.</English>
+                <German>Lege das Standard-Rucksackfunkgerät für die AAF fest.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_west">
+                <English>Default airborne-radio (NATO):</English>
+                <German>Standard Flugzeugfunkgerät (NATO):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_west_desc">
+                <English>Define the default airborne-radio class for the NATO-side.</English>
+                <German>Lege das Standard-Flugzeugfunkgerät für NATO-Soldaten fest.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_east">
+                <English>Default airborne-radio (CSAT):</English>
+                <German>Standard Flugzeugfunkgerät (CSAT):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_east_desc">
+                <English>Define the default airborne-radio class for the CAST side.</English>
+                <German>Lege das Standard-Flugzeugfunkgerät für CAST-Soldaten fest.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_independent">
+                <English>Default airborne-radio (AAF):</English>
+                <German>Standard Flugzeugfunkgerät (AAF):</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_independent_desc">
+                <English>Define the default airborne-radio class for the AAF side.</English>
+                <German>Lege das Standard-Flugzeugfunkgerät für AAF-Soldaten fest.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_radioCodesDisabled">
+                <English>Disable Radio Code:</English>
+                <German>Abschalten der Verschlüsselung:</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_radioCodesDisabled_desc">
+                <English>Disables the Radio Encryption (Everyone side can radio with everyone)</English>
+                <German>Schalte die Verschlüsselung für alle Funkgeräte aus. Anschließend können alle Spieler miteinander funken.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_radioCode_west">
+                <English>NATO radio code:</English>
+                <German>NATO-Verschlüsselung:</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_radioCode_west_desc">
+                <English>Define the radio encryption for NATO side.</English>
+                <German>Festlegen der Verschlüsselung für alle NATO-Funkgeräte.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_radioCode_east">
+                <English>CSAT radio code:</English>
+                <German>CSAT-Verschlüsselung:</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_radioCode_east_desc">
+                <English>Define the radio encryption for CSAT side.</English>
+                <German>Festlegen der Verschlüsselung für alle CSAT-Funkgeräte.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_radioCode_independent">
+                <English>AAF radio code:</English>
+                <German>AAF-Verschlüsselung:</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_radioCode_independent_desc">
+                <English>Define the radio encryption for AAF side.</English>
+                <German>Festlegen der Verschlüsselung für alle AAF-Funkgeräte.</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_TeamspeakChannel">
+                <English>Teamspeak Channel</English>
+                <German>Teamspeak Kanal</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_TeamspeakChannel_name">
+                <English>TS-channel name:</English>
+                <German>TS-Channel Name:</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_TeamspeakChannel_name_desc">
+                <English>Define the teamspeak channel name for the default channel switching.</English>
+                <German>Festlegen des Teamspeak-Kanalnamens für den autoswitch</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_TeamspeakChannel_password">
+                <English>TS-channel password:</English>
+                <German>TS-Channel Passwort:</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_TeamspeakChannel_password">
+                <English>Define the teamspeak channel password for the default channel switching.</English>
+                <German>Festlegen des Teamspeak-Kanalpasswortes für den autoswitch</German>
             </Key>
         </Container>
         <Container name="diary">
@@ -2130,20 +2381,6 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>同陣營使用相同的長程無線電頻率</Chinese>
                 <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficient">
-                <English>Terrain Interception Coefficient</English>
-                <Czech>Koeficient rušení terénem</Czech>
-                <French>Coefficient d'interception du terrain</French>
-                <German>Koeffizient für Signalabschwächung durch das Gelände</German>
-                <Polish>Współczynnik rozpraszania terenu</Polish>
-                <Russian>Коэффициент помех от рельефа</Russian>
-                <Spanish>Coeficiente de intercepción del terreno</Spanish>
-                <Turkish>Kesişme Alan Katsayısı</Turkish>
-                <Japanese>地形による障害</Japanese>
-                <Korean>지형 방해 계수</Korean>
-                <Chinese>地形影響係數</Chinese>
-                <Chinesesimp>地形影响系数</Chinesesimp>
-            </Key>
             <Key ID="STR_TFAR_Mod_LRFrequencyTT">
                 <English>LR default frequencies (as an SQF array)</English>
                 <Czech>Výchozí frekvence vysílačky pro dlouhou vzdálenost (jako SQF pole)</Czech>
@@ -2269,20 +2506,6 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>채널 이름</Korean>
                 <Chinese>頻道名稱</Chinese>
                 <Chinesesimp>频道名称</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_Mod_TerrainInterceptionCoefficientTT">
-                <English>Terrain Interception Coefficient</English>
-                <Czech>Koeficient rušení způsobené terénem</Czech>
-                <French>Coefficient d'interception et de brouillage du terrain</French>
-                <German>Koeffizient für Signalabschwächung durch das Gelände</German>
-                <Polish>Współczynnik rozpraszania terenu</Polish>
-                <Russian>Коэффициент помех от рельефа</Russian>
-                <Spanish>Coeficiente de intercepción del terreno</Spanish>
-                <Turkish>Kesişme Alan Katsayısı</Turkish>
-                <Japanese>地形による障害</Japanese>
-                <Korean>지형 방해 계수</Korean>
-                <Chinese>設定地形影響無線電通訊品質的係數</Chinese>
-                <Chinesesimp>设定地形影响无线电通讯品质的系数</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_Mod_SideRadio_Description">
                 <English>Allows setting of default radios, encryption and frequencies for synced side.</English>

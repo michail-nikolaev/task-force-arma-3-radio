@@ -7,7 +7,7 @@ class display3DEN {
                     items[] += {"TFAR_Preferences"};
                 };
                 class TFAR_Preferences {
-                    text = "TFAR Preferences";
+                    text = ECSTRING(core,3DEN_Menu);
                     action = "edit3DENMissionAttributes 'TFAR_Preferences';";
                     picture = QPATHTOF(task_force_arrowhead_logo.paa);
                 };
@@ -18,15 +18,15 @@ class display3DEN {
 class Cfg3DEN {
     class Mission {
         class TFAR_Preferences {
-            displayName = "TFAR Preferences";
+            displayName = ECSTRING(core,3DEN_Menu);
             class AttributeCategories {
                 class TFAR_Teamspeak_Channel {
-                    displayName = "Teamspeak Channel";
+                    displayName = ECSTRING(core,TeamspeakChannel);
                     collapsed = 0;
                     class Attributes {
                         class TFAR_Teamspeak_Channel_Name {
-                            displayName = "Name:";
-                            tooltip = "Define the forced Teamspeak Channel Name";
+                            displayName = ECSTRING(settings,TeamspeakChannel_name);
+                            tooltip = ECSTRING(settings,TeamspeakChannel_name_desc);
                             property = "TFAR_Teamspeak_Channel_Name";
                             control = "Edit";
                             expression = QUOTE(_this setVariable [ARR_3('%s',_value,true)];);
@@ -35,8 +35,8 @@ class Cfg3DEN {
                             defaultValue = "''";
                         };
                         class TFAR_Teamspeak_Channel_Password {
-                            displayName = "Password:";
-                            tooltip = "Define the forced Teamspeak Channel Password";
+                            displayName = ECSTRING(settings,TeamspeakChannel_password);
+                            tooltip = ECSTRING(settings,TeamspeakChannel_password_desc);
                             property = "TFAR_Teamspeak_Channel_Password";
                             control = "Edit";
                             expression = QUOTE(_this setVariable [ARR_3('%s',_value,true)];);
@@ -52,12 +52,12 @@ class Cfg3DEN {
     class Object {
         class AttributeCategories {
             class TFAR_attributes {
-                displayName = CSTRING(Att_Options);
+                displayName = ECSTRING(core,3DEN_Properties);
                 collapsed = 1;
                 class Attributes {
                     class TFAR_freq_sr {
-                        displayName = "Default SR Freq";
-                        tooltip = "define the default SR Freq for this unit";
+                        displayName = ECSTRING(core,DefaultRadioFrequencies_SR);
+                        tooltip = ECSTRING(core,DefaultRadioFrequencies_SR_desc);
                         property = "TFAR_freq_sr";
                         control = "EditArray";
                         expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
@@ -66,8 +66,8 @@ class Cfg3DEN {
                         condition = "objectControllable + logicModule";
                     };
                     class TFAR_freq_lr {
-                        displayName = "Default LR Freq";
-                        tooltip = "define the default LR Freq for this unit";
+                        displayName = ECSTRING(core,DefaultRadioFrequencies_LR);
+                        tooltip = ECSTRING(core,DefaultRadioFrequencies_LR_desc);
                         property = "TFAR_freq_lr";
                         control = "EditArray";
                         expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
@@ -92,12 +92,12 @@ class Cfg3DEN {
     class Group {
         class AttributeCategories {
             class TFAR_attributes {
-                displayName = "TFAR Options";
+                displayName = ECSTRING(core,3DEN_Properties);
                 collapsed = 1;
                 class Attributes {
                     class TFAR_freq_sr {
-                        displayName = "Default SR Freq";
-                        tooltip = "define the default SR Freq for this group";
+                        displayName = ECSTRING(core,DefaultRadioFrequencies_SR);
+                        tooltip = ECSTRING(core,DefaultRadioFrequencies_SR_desc);
                         property = "TFAR_freq_sr";
                         expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
                         control = "EditArray";
@@ -105,8 +105,8 @@ class Cfg3DEN {
                         unique = 0;
                     };
                     class TFAR_freq_lr {
-                        displayName = "Default LR Freq";
-                        tooltip = "define the default LR Freq for this group";
+                        displayName = ECSTRING(core,DefaultRadioFrequencies_LR);
+                        tooltip = ECSTRING(core,DefaultRadioFrequencies_LR_desc);
                         property = "TFAR_freq_lr";
                         expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
                         control = "EditArray";
