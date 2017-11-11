@@ -34,8 +34,8 @@ if (_isSLR) then {
     if (_isDLR) then {
         [_destination,[]+_settings] call TFAR_fnc_SetLRSettings;
     } else {
-        diag_log "TFAR - unable to copy from LR to SW";
-        hint "TFAR - unable to copy from LR to SW";
+        diag_log localize LSTRING(copySetting_LR_SW_Warning);
+        hint localize LSTRING(copySetting_LR_SW_Warning);
     };
 } else {
     private _settings = _source call TFAR_fnc_GetSwSettings;
@@ -47,7 +47,7 @@ if (_isSLR) then {
         };
         [_destination, _settings] call TFAR_fnc_SetSwSettings;
     } else {
-        diag_log "TFAR - unable to copy from SW to LR";
-        hint "TFAR - unable to copy from SW to LR";
+        diag_log localize LSTRING(copySetting_SW_LR_Warning);
+        hint localize LSTRING(copySetting_SW_LR_Warning);
     };
 };

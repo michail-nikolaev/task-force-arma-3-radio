@@ -11,7 +11,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_default_radioVolume",
     "SLIDER",
-    "STR_radio_default_radioVolume",
+    ELSTRING(settings,radio_default_radioVolume),
     "Task Force Arrowhead Radio",
     [1, 9, 7, 0],
     0
@@ -19,14 +19,15 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_volumeModifier_forceSpeech", 
     "CHECKBOX", 
-    ["Direct speech on volume modifier","Activate directSpeech when pressing volume modifier."], 
+    [ELSTRING(settings,radio_directSpeechModifier),ELSTRING(settings,radio_directSpeechModifier_desc)], 
     "Task Force Arrowhead Radio", 
     false,
     0
 ] call CBA_Settings_fnc_init;//#Stringtable
 [
     "TFAR_intercomVolume", 
-    "SLIDER", "Intercom Volume",
+    "SLIDER",
+    ELSTRING(settings,radio_intercomVolume),
     "Task Force Arrowhead Radio", 
     [0.01, 0.6, 0.3, 3],
     0,
@@ -35,7 +36,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_pluginTimeout", 
     "SLIDER", 
-    "Plugin Timeout in seconds", 
+    ELSTRING(settings,radio_pluginTimeout), 
     "Task Force Arrowhead Radio", 
     [0.5, 10, 4, 3],
     0,
@@ -44,7 +45,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_tangentReleaseDelay",
     "SLIDER", 
-    "tangentReleaseDelay in milliseconds", 
+    ELSTRING(settings,radio_tangentReleaseDelay), 
     "Task Force Arrowhead Radio", 
     [0, 500, 0, 0],
     0,
@@ -53,7 +54,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_PosUpdateMode", 
     "LIST", 
-    ["Position Update Mode","The higher the quality the lower fps"], 
+    [ELSTRING(settings,radio_positionUpdateMode), ELSTRING(settings,radio_positionUpdateMode_desc)], 
     "Task Force Arrowhead Radio", 
     [[0,0.1,0.2],["Quality","Normal","Performance"],1],
     0
@@ -61,7 +62,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_ShowVolumeHUD",
     "CHECKBOX",
-    ["Show HUD Voice Volume indicator","If disabled it will pop up for a short time when changing Volume."],
+    [ELSTRING(settings,radio_hudVolumeIndicator),ELSTRING(settings,radio_hudVolumeIndicator_desc)],
     "Task Force Arrowhead Radio",
     false,
     0,
@@ -76,7 +77,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_VolumeHudTransparency", 
     "SLIDER", 
-    ["Volume Indicator Transparency","Volume Indicator Transparency (0 fully visible - 1 invisible)"], 
+    [ELSTRING(settings,radio_volumeIndicatorTransparency),ELSTRING(settings,radio_volumeIndicatorTransparency_desc)], 
     "Task Force Arrowhead Radio", 
     [0, 1, 0, 3],
     0,
@@ -85,7 +86,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_oldVolumeHint", 
     "CHECKBOX", 
-    ["Use old Voice Volume Hint","Use old Voice Volume Hint"], 
+    [ELSTRING(settings,radio_useOldVolumeHint),ELSTRING(settings,radio_useOldVolumeHint_desc)], 
     "Task Force Arrowhead Radio", 
     false,
     0
@@ -93,7 +94,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_showTransmittingHint", 
     "CHECKBOX", 
-    ["Show Transmitting Hint","Show the Hint (Bottom right) when you are Transmitting"], 
+    [ELSTRING(settings,radio_showTransmittingHint),ELSTRING(settings,radio_showTransmittingHint_desc)], 
     "Task Force Arrowhead Radio", 
     true,
     0
@@ -101,7 +102,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_showChannelChangedHint", 
     "CHECKBOX", 
-    ["Show Channel Changed Hint","Show the Hint (Bottom right) when you switch Channels via UI or Hotkey"], 
+    [ELSTRING(settings,radio_showChannelChangedHint),ELSTRING(settings,radio_showChannelChangedHint_desc)], 
     "Task Force Arrowhead Radio", 
     true,
     0
@@ -111,7 +112,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_giveLongRangeRadioToGroupLeaders", 
     "CHECKBOX", 
-    "STR_radio_auto_long_range_radio", 
+    ELSTRING(settings,radio_auto_long_range_radio), 
     "Task Force Arrowhead Radio", 
     false,
     1
@@ -151,7 +152,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_takingRadio",
     "LIST",
-    [LSTRING(SETTING_TAKERADIO_HEADER),LSTRING(SETTING_TAKERADIO_DESC)],
+    [ELSTRING(settings,TAKERADIO_HEADER),ELSTRING(settings,TAKERADIO_DESC)],
     "Task Force Arrowhead Radio",
     [[0, 1, 2], [LSTRING(SETTING_TAKERADIO_0), LSTRING(SETTING_TAKERADIO_1), LSTRING(SETTING_TAKERADIO_2)], 2],
     1
@@ -159,7 +160,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_spectatorCanHearEnemyUnits", 
     "CHECKBOX", 
-    ["Spectator can hear enemy units","If disabled a Spectator can't hear direct speech from Units that are considered Enemy to the Spectators original faction"], 
+    [ELSTRING(settings,radio_spectator_hear_emy),ELSTRING(settings,radio_spectator_hear_emy_desc)], 
     "Task Force Arrowhead Radio", 
     true,
     1,
@@ -168,7 +169,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_spectatorCanHearFriendlies", 
     "CHECKBOX", 
-    ["Spectator can hear units","If disabled a Spectator can't hear any Players besides other Spectators"], 
+    [ELSTRING(settings,radio_spectator_hear),ELSTRING(settings,radio_spectator_hear_desc)], 
     "Task Force Arrowhead Radio", 
     true,
     1,
@@ -177,7 +178,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_SameSRFrequenciesForSide", 
     "CHECKBOX",
-    "STR_radio_same_sw_frequencies_for_side", 
+    ELSTRING(settings,radio_same_sw_frequencies_for_side), 
     "Task Force Arrowhead Radio", 
     false,
     1
@@ -252,7 +253,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_SameLRFrequenciesForSide", 
     "CHECKBOX", 
-    "STR_radio_same_lr_frequencies_for_side", 
+    ELSTRING(settings,radio_same_lr_frequencies_for_side), 
     "Task Force Arrowhead Radio", 
     false,
     1
@@ -302,7 +303,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_giveMicroDagrToSoldier", 
     "CHECKBOX", 
-    "STR_radio_give_microdagr_to_soldier", 
+    ELSTRING(settings,radio_give_microdagr_to_soldier), 
     "Task Force Arrowhead Radio", 
     true,
     1
@@ -310,7 +311,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 [
     "TFAR_givePersonalRadioToRegularSoldier", 
     "CHECKBOX", 
-    "STR_radio_give_personal_radio_to_regular_soldier", 
+    ELSTRING(settings,radio_give_personal_radio_to_regular_soldier), 
     "Task Force Arrowhead Radio", 
     false,
     1
@@ -448,7 +449,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     }
 ] call CBA_Settings_fnc_init;
 [
-    "GVARMAIN(radioCodesDisabled)", 
+    QGVARMAIN(radioCodesDisabled), 
     "CHECKBOX",
     ["Disable Radio Code","Disables the Radio Encryption (Everyone side can radio with everyone)"], 
     "Task Force Arrowhead Radio", 

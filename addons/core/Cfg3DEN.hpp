@@ -52,7 +52,7 @@ class Cfg3DEN {
     class Object {
         class AttributeCategories {
             class TFAR_attributes {
-                displayName = "TFAR Options";
+                displayName = CSTRING(Att_Options);
                 collapsed = 1;
                 class Attributes {
                     class TFAR_freq_sr {
@@ -78,8 +78,8 @@ class Cfg3DEN {
                     class TFAR_CuratorCamEars {
                         property = "TFAR_CuratorCamEars";
                         control = "Checkbox";
-                        displayName = "Hear Camera when in Curator interface";
-                        tooltip = "Hear voice from Curator Camera when in Curator interface";
+                        displayName = CSTRING(Att_CuratorCamEars);
+                        tooltip = CSTRING(Att_CuratorCamEars_tooltip);
                         expression = QUOTE(if (_value) then {_this setVariable [ARR_3('%s',_value,true)]};);
                         typeName = "BOOL";
                         condition = "objectBrain";

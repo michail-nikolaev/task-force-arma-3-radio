@@ -106,9 +106,9 @@ if (TFAR_SameLRFrequenciesForSide) then {
     if(isServer) exitWith {};
     waitUntil {sleep 0.1;time > 3};
     if !(isClass(configFile >> "CfgPatches" >> "tfar_core")) exitWith {
-        [player, "TASK FORCE RADIO NOT LOADED"] remoteExec ["globalChat", -2];
+        [player, localize LSTRING(WM_NotLoad)] remoteExec ["globalChat", -2];
         if (isNull (uiNamespace getVariable ["BIS_fnc_arsenal_cam", objNull])) then {
-            ["LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0"] call "BIS_fnc_guiMessage";
+            [localize LSTRING(WM_NotLoad_Desc)] call "BIS_fnc_guiMessage";
         };
     };
 } remoteExec ["BIS_fnc_spawn", -2, true];

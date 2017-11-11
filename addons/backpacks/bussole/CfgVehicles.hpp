@@ -2,8 +2,8 @@ class TFAR_bussole: TFAR_Bag_Base {
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     author = "Raspu";
-    displayName = "Assault Pack Bussole";//#Stringtable
-    descriptionShort = "Bussole long range radio 20km";//#Stringtable
+    displayName = CSTRING(Bussole);
+    descriptionShort = CSTRING(Bussole_Desc);
     picture = QPATHTOF(bussole\ui\bussole_icon.paa);
     maximumLoad = 30;
     mass = 120;

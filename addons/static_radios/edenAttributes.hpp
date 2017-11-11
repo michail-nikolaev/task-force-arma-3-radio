@@ -1,9 +1,9 @@
-editorCategory = "TFAR";
+editorCategory = ECSTRING(core,CATEGORY);
 class Attributes {
 
     class staticRadioFrequency {
-        displayName = "Frequencies"; // Name assigned to UI control class Title
-        tooltip = "The static Frequencies for this radio"; // Tooltip assigned to UI control class Title
+        displayName = CSTRING(moduleStaticRadio_FreqTitle); // Name assigned to UI control class Title
+        tooltip = CSTRING(moduleStaticRadio_ATT_Frequency_tooltip); // Tooltip assigned to UI control class Title
         property = "staticRadioFrequency"; // Unique config property name saved in SQM
         control = "Edit"; // UI control base class displayed in Edit Attributes window, points to Cfg3DEN >> Attributes
 
@@ -16,8 +16,8 @@ class Attributes {
         typeName = "STRING"; // Defines data type of saved value, can be STRING, NUMBER or BOOL. Used only when control is "Combo", "Edit" or their variants
     };
     class staticRadioChannel {
-        displayName = "Channel";
-        tooltip = "The current selected Channel for this radio";
+        displayName = CSTRING(moduleStaticRadio_ChannelTitle);
+        tooltip = CSTRING(moduleStaticRadio_ATT_Channel_tooltip);
         property = "staticRadioChannel";
         control = "Edit";
 
@@ -30,8 +30,8 @@ class Attributes {
         typeName = "NUMBER";
     };
     class staticRadioSpeaker {
-        displayName = "Speaker enabled"; // Name assigned to UI control class Title
-        tooltip = "Whether the Radios Speaker is enabled. Doesn't work on Static LR Radio backpacks yet (#1169).";
+        displayName = CSTRING(moduleStaticRadio_ATT_SpeakerEnabled); // Name assigned to UI control class Title
+        tooltip = CSTRING(moduleStaticRadio_ATT_SpeakerEnabled_tooltip); //#TODO Doesn't work on Static LR Radio backpacks yet (#1169).
         property = "staticRadioSpeaker";
         control = "Checkbox";
 
@@ -44,8 +44,8 @@ class Attributes {
         typeName = "NUMBER";
     };
     class staticRadioVolume {
-        displayName = "Radio Volume";
-        tooltip = "The normal max for this setting is 10. But for static Radios their volume can be amplified. Be careful using this on Radios that can be picked up by Players! A too high setting can cause performance problems on clients."; //#Stringtable
+        displayName = CSTRING(moduleStaticRadio_ATT_RadioVolume);
+        tooltip = CSTRING(moduleStaticRadio_ATT_RadioVolume_tooltip);
         property = "staticRadioVolume";
         control = "tfar_static_radios_volumeSlider"; //Thanks Baermitumlaut :3
 

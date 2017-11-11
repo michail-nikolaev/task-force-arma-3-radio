@@ -1,7 +1,7 @@
 class TFAR_anprc154: ItemRadio {
     author = "Raspu";
-    displayName = "AN/PRC-154";
-    descriptionShort = "AN/PRC-154 rifleman radio 2km";//#Stringtable
+    displayName = CSTRING(ANPRC154);
+    descriptionShort = CSTRING(ANPRC154_Desc);
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     model = QPATHTOF(anprc154\data\tfr_anprc154);

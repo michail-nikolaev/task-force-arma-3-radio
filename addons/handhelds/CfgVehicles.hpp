@@ -11,8 +11,8 @@ class CfgVehicles {
 
     class Box_NATO_Support_F;
     class TFAR_NATO_Radio_Crate: Box_NATO_Support_F {
-        author = "TFAR";
-        displayName = "$STR_TFAR_NATO_crate";
+        author = ECSTRING(core,AUTHORS);
+        displayName = ECSTRING(core,NATO_crate);
         class TransportItems {
             MACRO_ADDITEM(TFAR_anprc152,40);
             MACRO_ADDITEM(TFAR_rf7800str,40);
@@ -26,8 +26,8 @@ class CfgVehicles {
 
     class Box_EAST_Support_F;
     class TFAR_EAST_Radio_Crate: Box_EAST_Support_F {
-        author = QUOTE(AUTHORS);
-        displayName = "$STR_TFAR_EAST_crate";
+        author = ECSTRING(core,AUTHORS);
+        displayName = ECSTRING(core,EAST_crate);
         class TransportItems {
             MACRO_ADDITEM(TFAR_fadak,40);
             MACRO_ADDITEM(TFAR_pnr1000a,40);
@@ -41,8 +41,8 @@ class CfgVehicles {
 
     class Box_IND_Support_F;
     class TFAR_IND_Radio_Crate: Box_IND_Support_F {
-        author = QUOTE(AUTHORS);
-        displayName = "$STR_TFAR_IND_crate";
+        author = ECSTRING(core,AUTHORS);
+        displayName = ECSTRING(core,IND_crate);
         class TransportItems {
             MACRO_ADDITEM(TFAR_anprc148jem,40);
             MACRO_ADDITEM(TFAR_anprc154,40);

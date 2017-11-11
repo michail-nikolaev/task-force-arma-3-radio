@@ -29,7 +29,7 @@ private _unit = (attachedTo _logic);
 private _classname =  ((getItemCargo _unit) select 0) select 0;
 
 if !((_unit call TFAR_fnc_isLRRadio) || {(_classname call TFAR_fnc_isPrototypeRadio)} || {(_classname call TFAR_fnc_isRadio)}) exitWith {
-    hint "This has to be used on a Radio";
+    hint localize LSTRING(moduleStaticRadio_hint);
     _display closeDisplay 0;
     deleteVehicle _logic;
 };
@@ -83,7 +83,7 @@ private _VolumeEditControl = _display displayCtrl 2611811;
 //Edit volume control
 _VolumeControl sliderSetRange [1, 50];
 _VolumeControl sliderSetPosition TFAR_default_radioVolume;
-_VolumeControl ctrlSetTooltip "The normal max for this setting is 10. But for static Radios their volume can be amplified. Be careful using this on Radios that can be picked up by Players! A too high setting can cause performance problems on clients.";//#Stringtable
+_VolumeControl ctrlSetTooltip (localize LSTRING(moduleStaticRadio_ATT_RadioVolume_tooltip));
 _VolumeControl ctrlAddEventHandler ["SliderPosChanged", {
     params ["_slider"];
     private _edit = (ctrlParent _slider) displayCtrl 2611811;

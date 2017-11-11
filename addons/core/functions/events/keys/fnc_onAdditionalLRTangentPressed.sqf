@@ -38,7 +38,7 @@ if !([  TFAR_currentUnit,
 private _currentFrequency = [_radio, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency;
 
 private _hintText = format[
-                            localize "STR_additional_transmit",
+                            localize LSTRING(additional_transmit),
                             format ["%1<img size='1.5' image='%2'/>",
                                     [_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty,
                                     getText(configFile >> "CfgVehicles" >> typeof (_radio select 0) >> "picture")

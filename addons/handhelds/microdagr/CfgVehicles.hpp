@@ -1,7 +1,7 @@
 class Item_TFAR_microdagr: Item_Base_F {
     scope = PUBLIC;
     scopeCurator = PUBLIC;
-    displayName = "MicroDAGR Radio Programmer"; //#Stringtable
+    displayName = CSTRING(MicroDagr);
     author = "Nkey";
     vehicleClass = "Items";
     class TransportItems {

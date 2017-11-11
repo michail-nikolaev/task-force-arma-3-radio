@@ -1,6 +1,6 @@
 class TFAR_fadak: ItemRadio {
-    displayName = "FADAK";
-    descriptionShort = "FADAK personal radio 5km";//#Stringtable
+    displayName = CSTRING(FADAK);
+    descriptionShort = CSTRING(FADAK_Desc);
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     model = QPATHTOF(fadak\data\tfr_fadak);

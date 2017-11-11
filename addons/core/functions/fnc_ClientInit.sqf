@@ -32,7 +32,7 @@ DEPRECATE_VARIABLE(tf_radio_channel_name,TFAR_Teamspeak_Channel_Name);
 DEPRECATE_VARIABLE(tf_radio_channel_password,TFAR_Teamspeak_Channel_Password);
 
 TFAR_currentUnit = call TFAR_fnc_currentUnit;
-[parseText(localize ("STR_init")), 5] call TFAR_fnc_showHint;
+[parseText(localize LSTRING(init)), 5] call TFAR_fnc_showHint;
 
 // loadout cleaning on initialization to avoid duplicate radios ids in Arsenal
 [] spawn TFAR_fnc_loadoutReplaceProcess;//Yes we spawn this. Because it is time intensive and doesn't need to be finished before continuing
@@ -237,10 +237,10 @@ call TFAR_fnc_processRespawn; //Handle our current spawn
 [   {!((isNil "TF_server_addon_version") and (time < 20))},
     {
         if (isNil "TF_server_addon_version") then {
-            hintC (localize "STR_no_server");
+            hintC (localize LSTRING(no_server));
         } else {
             if (TF_server_addon_version != TFAR_ADDON_VERSION) then {
-                hintC format[localize "STR_different_version", TF_server_addon_version, TFAR_ADDON_VERSION];
+                hintC format[localize LSTRING(different_version), TF_server_addon_version, TFAR_ADDON_VERSION];
             };
         };
 }] call CBA_fnc_waitUntilAndExecute;

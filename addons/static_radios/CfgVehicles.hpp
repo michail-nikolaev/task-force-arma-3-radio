@@ -36,7 +36,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
         };*/
         class FreqTitle: RscText {
             idc=2611803;
-            text="Frequency";
+            text=CSTRING(moduleStaticRadio_FreqTitle);
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="1.1 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="6 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
@@ -53,7 +53,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
         };
         class ChannelTitle: RscText {
             idc=2611805;
-            text="Channel";
+            text=CSTRING(moduleStaticRadio_ChannelTitle);
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="2.2 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="26 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
@@ -71,7 +71,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
         };
         class SpeakerTitle: RscText {
             idc=2611807;
-            text="Speaker";
+            text=CSTRING(moduleStaticRadio_SpeakerTitle);
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="3.3 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="26 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
@@ -89,7 +89,7 @@ class RscAttributeTFARStaticRadioThingy: RscControlsGroupNoScrollbars {
 
         class VolumeTitle: RscText {
             idc=2611809;
-            text="Volume";
+            text=CSTRING(moduleStaticRadio_VolumeTitle);
             x="0 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
             y="4.4 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             w="26 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
@@ -149,44 +149,21 @@ class RscDisplayAttributesModuleTFARStaticRadio: RscDisplayAttributes {
     };
 };
 
-
-
-
-
-
-
-
-
-
-
-
 class CfgVehicles {
     class Module_F;
     class TFAR_Module_staticRadio: Module_F {
-        author = "TFAR";
-        //category = "TFAR";
-        category = "TFAR";
+        author = ECSTRING(core,AUTHORS);
+        category = ECSTRING(core,CATEGORY);
         functionPriority = 1;
         isGlobal = 1;
         isTriggerActivated = 0;
         scope = 1;
         scopeCurator = 2;
 
-
         curatorCanAttach = 1;
-        displayName = "Static Radio";
+        displayName = CSTRING(moduleStaticRadio_DisplayName);
         //function = "TFAR_static_radios_fnc_moduleStaticRadio";
         icon = "";//#TODO
-curatorInfoType="RscDisplayAttributesModuleTFARStaticRadio";
-
-
-
-
-
-
-
+        curatorInfoType="RscDisplayAttributesModuleTFARStaticRadio";
     };
-
-
-
 };

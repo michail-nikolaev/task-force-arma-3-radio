@@ -19,7 +19,7 @@ class CfgPatches {
             "cba_settings",
             "A3_Soft_F_Offroad_01" //Offroad_01_base_F we are adding insolation and LR in CfgVehicles
         };
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
     };
 
     class task_force_radio {
@@ -28,7 +28,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {};
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
     };
     class task_force_radio_items {
         name = "TFAR - Legacy Compatibility";
@@ -36,7 +36,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {};
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
     };
 };
 
@@ -56,7 +56,7 @@ class CfgMods {
         requiresRestart = 0;
         action = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
         actionName = "Website";
-        description = "War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.";
+        description = CSTRING(main_desc);
     };
 
 };
@@ -92,8 +92,8 @@ class CfgUIGrids { //Thanks ACE guys!
         };
         class Variables {
             class grid_TFAR_Volume{
-                displayName = "TFAR volume Indicator";
-                description = "TFAR Volume Indicator";
+                displayName = CSTRING(VolumeIndicator);
+                description = CSTRING(VolumeIndicator);
                 preview = QPATHTOF(ui\tfar_volume_normal.paa);
                 saveToProfile[] = {0,1,2,3};
                 canResize = 1;
