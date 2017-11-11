@@ -3,8 +3,10 @@
 #include "XEH_PREP.sqf"
 
 if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
-    ["CBA_settingsInitialized", DFUNC(serverInit)] call CBA_fnc_addEventhandler
+    ["CBA_settingsInitialized", DFUNC(serverInit)] call CBA_fnc_addEventhandler;
 };
+GVAR(SettingsInitialized) = false;
+["CBA_settingsInitialized", {GVAR(SettingsInitialized) = true;}] call CBA_fnc_addEventhandler;
 
 #include "CBA_Settings.sqf"
 

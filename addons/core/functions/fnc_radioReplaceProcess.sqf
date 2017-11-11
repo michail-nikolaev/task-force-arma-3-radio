@@ -19,6 +19,8 @@
         [TFAR_fnc_radioReplaceProcess, 2] call CBA_fnc_addPerFrameHandler;
 */
 
+If !(GVAR(SettingsInitialized)) exitWith {};
+
 if (GVAR(use_saved_sr_setting) && {isNil QGVAR(saved_active_sr_settings)}) then {
     if ((alive TFAR_currentUnit) && {call TFAR_fnc_haveSWRadio}) then {
         private _active_sr_radio = call TFAR_fnc_activeSwRadio;
