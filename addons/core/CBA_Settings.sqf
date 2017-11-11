@@ -101,14 +101,6 @@
 
 // server
 [
-    "TFAR_giveLongRangeRadioToGroupLeaders", 
-    "CHECKBOX", 
-    ELSTRING(settings,radio_auto_long_range_radio), 
-    "Task Force Arrowhead Radio", 
-    false,
-    1
-] call CBA_Settings_fnc_init;
-[
     "TF_terrain_interception_coefficient", 
     "SLIDER", 
     [ELSTRING(settings,TerrainInterceptionCoefficient), ELSTRING(settings,TerrainInterceptionCoefficient_tooltip)], 
@@ -304,6 +296,14 @@
     "TFAR_givePersonalRadioToRegularSoldier", 
     "CHECKBOX", 
     ELSTRING(settings,radio_give_personal_radio_to_regular_soldier), 
+    "Task Force Arrowhead Radio", 
+    false,
+    1
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_giveLongRangeRadioToGroupLeaders", 
+    "CHECKBOX", 
+    [ELSTRING(settings,radio_auto_long_range_radio),ELSTRING(settings,radio_auto_long_range_radio_desc)], 
     "Task Force Arrowhead Radio", 
     false,
     1
