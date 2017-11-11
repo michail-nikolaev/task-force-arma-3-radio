@@ -64,7 +64,7 @@ class anarc164_radio_dialog
         font = "TFAR_font_segments";
         shadow = 1;
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2)";
-        tooltip = ELSTRING(core,current_channel);
+        tooltip = ECSTRING(core,current_channel);
         canModify = 0;
     };
     class edit: RscEditLCD
@@ -80,7 +80,7 @@ class anarc164_radio_dialog
         font = "TFAR_font_segments";
         shadow = 1;
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 23) * 1.2)";
-        tooltip = ELSTRING(core,current_freq);
+        tooltip = ECSTRING(core,current_freq);
         canModify = 1;
     };
     class enter: HiddenRotator
@@ -90,7 +90,7 @@ class anarc164_radio_dialog
         y = 0.4373 * safezoneH + safezoneY;
         w = 0.037125 * safezoneW;
         h = 0.0693 * safezoneH;
-        tooltip = ELSTRING(core,set_frequency);
+        tooltip = ECSTRING(core,set_frequency);
         action = QUOTE(
             playSound 'TFAR_rotatorPush';
             _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANARC164_EDIT);
@@ -110,7 +110,7 @@ class anarc164_radio_dialog
         y = 0.4362 * safezoneH + safezoneY;
         w = 0.0376406 * safezoneW;
         h = 0.0715 * safezoneH;
-        tooltip = ELSTRING(core,clear_frequency);
+        tooltip = ECSTRING(core,clear_frequency);
         action = QUOTE(
             playSound 'TFAR_rotatorPush';
             ctrlSetText [ARR_2(IDC_ANARC164_EDIT,'')];
@@ -124,7 +124,7 @@ class anarc164_radio_dialog
         y = 0.4384 * safezoneH + safezoneY;
         w = 0.0360937 * safezoneW;
         h = 0.0671 * safezoneH;
-        tooltip = ELSTRING(core,rotator_channel);
+        tooltip = ECSTRING(core,rotator_channel);
         onMouseButtonDown = "[_this select 1, true, '%1'] call TFAR_fnc_setChannelViaDialog;";
     };
     class increase_volume: HiddenRotator
@@ -134,7 +134,7 @@ class anarc164_radio_dialog
         y = 0.5451 * safezoneH + safezoneY;
         w = 0.02475 * safezoneW;
         h = 0.0462 * safezoneH;
-        tooltip = ELSTRING(core,rotator_volume);
+        tooltip = ECSTRING(core,rotator_volume);
         onMouseButtonDown = "[_this select 1, true] call TFAR_fnc_setVolumeViaDialog;";
     };
     class stereo: HiddenRotator
@@ -158,7 +158,7 @@ class anarc164_radio_dialog
         y = 0.434185 * safezoneH + safezoneY;
         w = 0.0374025 * safezoneW;
         h = 0.0700156 * safezoneH;
-        tooltip = ELSTRING(core,set_additional);
+        tooltip = ECSTRING(core,set_additional);
         action ="playSound 'TFAR_rotatorPush';[TF_lr_dialog_radio,TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel;call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     };
     class speakers: HiddenFlip
