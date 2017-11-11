@@ -8,7 +8,7 @@ private _radio = call TFAR_fnc_activeLrRadio;
 private _currentFrequency = call TFAR_fnc_currentLRFrequency;
 
 private _hintText = format[
-                            localize "STR_transmit_end",
+                            localize LSTRING(transmit_end),
                             format [
                                 "%1<img size='1.5' image='%2'/>",
                                 [_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty,

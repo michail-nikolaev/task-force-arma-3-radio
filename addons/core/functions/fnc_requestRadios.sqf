@@ -88,7 +88,7 @@ if (_radiosToRequest isEqualTo []) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mut
 
 }] call CBA_fnc_addEventHandlerArgs;
 
-[parseText(localize ("STR_wait_radio")), 10] call TFAR_fnc_showHint;
+[parseText(localize LSTRING(wait_radio)), 10] call TFAR_fnc_showHint;
 TFAR_beta_RadioRequestStart = diag_tickTime;//#TODO remove on release
 //Send request
 diag_log ["TFAR_SendRadioRequest",_radiosToRequest,TF_respawnedAt,time];

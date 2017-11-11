@@ -1,7 +1,7 @@
 class TFAR_anprc148jem: ItemRadio {
     author = "Raspu";
-    displayName = "AN/PRC-148 JEM";
-    descriptionShort = "$STR_TFAR_Handhelds_ANPRC148JEM_Desc";
+    displayName = CSTRING(ANPRC148JEM);
+    descriptionShort = CSTRING(ANPRC148JEM_Desc);
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     model = QPATHTOF(anprc148jem\data\tfr_anprc148);

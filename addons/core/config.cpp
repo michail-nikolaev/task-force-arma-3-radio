@@ -19,7 +19,7 @@ class CfgPatches {
             "cba_settings",
             "A3_Soft_F_Offroad_01" //Offroad_01_base_F we are adding insolation and LR in CfgVehicles
         };
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
     };
 
     class task_force_radio {
@@ -28,7 +28,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {};
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
     };
     class task_force_radio_items {
         name = "TFAR - Legacy Compatibility";
@@ -36,7 +36,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {};
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
     };
 };
 
@@ -56,7 +56,7 @@ class CfgMods {
         requiresRestart = 0;
         action = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
         actionName = "Website";
-        description = "$STR_TFAR_Main_Desc";
+        description = CSTRING(main_desc);
     };
 
 };
@@ -92,8 +92,8 @@ class CfgUIGrids { //Thanks ACE guys!
         };
         class Variables {
             class grid_TFAR_Volume{
-                displayName = "$STR_TFAR_VolumeIndicator";
-                description = "$STR_TFAR_VolumeIndicator";
+                displayName = CSTRING(VolumeIndicator);
+                description = CSTRING(VolumeIndicator);
                 preview = QPATHTOF(ui\tfar_volume_normal.paa);
                 saveToProfile[] = {0,1,2,3};
                 canResize = 1;
@@ -107,14 +107,14 @@ class Cfg3DEN {
     class Object {
         class AttributeCategories {
             class TFAR_core_attributes {
-                displayName = "$STR_TFAR_Att_Options";
+                displayName = CSTRING(Att_Options);
                 collapsed = 1;
                 class Attributes {
                     class TFAR_CuratorCamEars {
                         property = "TFAR_CuratorCamEars";
                         control = "Checkbox";
-                        displayName = "$STR_TFAR_Att_CuratorCamEars";
-                        tooltip = "$STR_TFAR_Att_CuratorCamEars_Tip";
+                        displayName = CSTRING(Att_CuratorCamEars);
+                        tooltip = CSTRING(Att_CuratorCamEars_tooltip);
                         expression = QUOTE(if (_value) then {_this setVariable [ARR_2('TFAR_curatorCamEars',_value)]};);
                         typeName = "BOOL";
                         condition = "objectBrain";

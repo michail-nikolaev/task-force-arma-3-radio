@@ -2,7 +2,7 @@
 
 private _menu = [];
 if (count (TFAR_currentUnit call TFAR_fnc_lrRadiosList) > 1) then {
-    private _menuDef = ["main", localize "STR_select_lr_radio", "buttonList", "", false];
+    private _menuDef = ["main", localize LSTRING(select_lr_radio), "buttonList", "", false];
     private _positions = [];
     private _pos = 0;
 

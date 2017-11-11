@@ -1,7 +1,7 @@
 class TFAR_rf7800str: ItemRadio {
     author = "Raspu";
-    displayName = "RF-7800S-TR";
-    descriptionShort = "$STR_TFAR_Veh_RF7800STR_Desc";
+    displayName = CSTRING(RF7800STR);
+    descriptionShort = CSTRING(RF7800STR_Desc);
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     model = QPATHTOF(rf7800\data\tfr_rf7800);

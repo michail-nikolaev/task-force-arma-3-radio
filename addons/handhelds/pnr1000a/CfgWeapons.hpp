@@ -1,6 +1,6 @@
 class TFAR_pnr1000a: ItemRadio {
-    displayName = "PNR-1000A";
-    descriptionShort = "$STR_TFAR_Veh_PNR1000A_Desc";
+    displayName = CSTRING(PNR1000A);
+    descriptionShort = CSTRING(PNR1000A_Desc);
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     model = QPATHTOF(pnr1000a\data\tfr_pnr1000a);
