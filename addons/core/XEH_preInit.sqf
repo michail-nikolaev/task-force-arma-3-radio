@@ -6,6 +6,18 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     ["CBA_settingsInitialized", DFUNC(serverInit)] call CBA_fnc_addEventhandler
 };
 
+if (hasInterface && {isMultiplayer || is3DENMultiplayer}) then {
+    [
+        "CBA_settingsInitialized",
+        {
+            [
+                {time > 0 && !(isNull player)},
+                DFUNC(clientInit)
+            ] call CBA_fnc_waitUntilAndExecute;
+        }
+    ] call CBA_fnc_addEventhandler
+};
+
 #include "CBA_Settings.sqf"
 
 GVAR(VehicleConfigCacheNamespace) = false call CBA_fnc_createNamespace;
