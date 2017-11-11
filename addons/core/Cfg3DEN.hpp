@@ -21,7 +21,7 @@ class Cfg3DEN {
             displayName = ECSTRING(core,3DEN_Menu);
             class AttributeCategories {
                 class TFAR_Teamspeak_Channel {
-                    displayName = ECSTRING(core,TeamspeakChannel);
+                    displayName = ECSTRING(settings,TeamspeakChannel);
                     collapsed = 0;
                     class Attributes {
                         class TFAR_Teamspeak_Channel_Name {

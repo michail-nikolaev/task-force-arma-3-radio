@@ -138,7 +138,7 @@
     "LIST",
     [ELSTRING(settings,TAKERADIO_HEADER), ELSTRING(settings,TAKERADIO_DESC)],
     "Task Force Arrowhead Radio",
-    [[0, 1, 2], [LSTRING(SETTING_TAKERADIO_0), LSTRING(SETTING_TAKERADIO_1), LSTRING(SETTING_TAKERADIO_2)], 2],
+    [[0, 1, 2], [ELSTRING(settings,TAKERADIO_0), ELSTRING(settings,TAKERADIO_1), ELSTRING(settings,TAKERADIO_2)], 2],
     1
 ] call CBA_Settings_fnc_init;
 [
@@ -162,7 +162,7 @@
 [
     "TFAR_SameSRFrequenciesForSide", 
     "CHECKBOX",
-    ELSTRING(settings,radio_same_sw_frequencies_for_side), 
+    [ELSTRING(settings,radio_same_sw_frequencies_for_side),ELSTRING(settings,radio_same_sw_frequencies_for_side)], 
     "Task Force Arrowhead Radio", 
     false,
     1
