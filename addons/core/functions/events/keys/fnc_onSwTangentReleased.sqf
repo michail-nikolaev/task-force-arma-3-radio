@@ -7,7 +7,7 @@ private _radio = call TFAR_fnc_activeSwRadio;
 
 private _currentFrequency = call TFAR_fnc_currentSWFrequency;
 private _hintText = format[
-                            localize "STR_transmit_end",
+                            localize LSTRING(transmit_end),
                             format [
                                     "%1<img size='1.5' image='%2'/>",
                                     ([_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty)),

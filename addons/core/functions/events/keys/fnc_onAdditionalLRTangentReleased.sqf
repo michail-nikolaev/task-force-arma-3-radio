@@ -29,7 +29,7 @@ if (_additionalChannel < 0) exitWith {true}; // No Additional Channel set
 private _currentFrequency = [_radio, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency;
 
 private _hintText = format[
-                            localize "STR_additional_transmit_end",
+                            localize LSTRING(additional_transmit_end),
                             format [
                                 "%1<img size='1.5' image='%2'/>",
                                 [_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty,

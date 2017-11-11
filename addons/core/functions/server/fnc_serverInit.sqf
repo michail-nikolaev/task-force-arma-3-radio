@@ -134,8 +134,8 @@ VARIABLE_DEFAULT(TFAR_freq_lr_independent,[] call TFAR_fnc_generateLrSettings);
     if(isServer) exitWith {};
     waitUntil {sleep 0.1;time > 3};
     if !(isClass(configFile >> "CfgPatches" >> "tfar_core")) exitWith {
-        [player, localize "STR_TFAR_WM_NotLoad"] remoteExec ["globalChat", -2];
-        [localize "STR_TFAR_WM_NotLoad_Desc"] call "BIS_fnc_guiMessage";
+        [player, localize LSTRING(WM_NotLoad)] remoteExec ["globalChat", -2];
+        [localize LSTRING(WM_NotLoad_Desc)] call "BIS_fnc_guiMessage";
     };
 } remoteExec ["BIS_fnc_spawn", -2, true];
 

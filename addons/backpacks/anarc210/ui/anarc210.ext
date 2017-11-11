@@ -80,7 +80,7 @@ class anarc210_radio_dialog
         font = "TFAR_font_segments";
         shadow = 1;
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 32) * 1.2)";
-        tooltip = $STR_current_channel;
+        tooltip = ELSTRING(core,current_channel);
         canModify = 0;
     };
     class edit: RscEditLCD
@@ -96,7 +96,7 @@ class anarc210_radio_dialog
         font = "TFAR_font_segments";
         shadow = 1;
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 32) * 1.2)";
-        tooltip = $STR_current_freq;
+        tooltip = ELSTRING(core,current_freq);
         canModify = 1;
     };
     class enter: HiddenButton
@@ -106,14 +106,14 @@ class anarc210_radio_dialog
         y = 0.3394 * safezoneH + safezoneY;
         w = 0.03 * safezoneW;
         h = 0.05 * safezoneH;
-        tooltip = $STR_set_frequency;
+        tooltip = ELSTRING(core,set_frequency);
         action = QUOTE(
             _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANPRC210_EDIT);
             if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {
                 [ARR_2(TF_lr_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setLrFrequency;
                 call TFAR_fnc_hideHint;
             } else {
-                hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ)]
+                hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ)]
             };
             ["CH%1"] call TFAR_fnc_updateLRDialogToChannel;
         );
@@ -125,7 +125,7 @@ class anarc210_radio_dialog
         y = 0.522 * safezoneH + safezoneY;
         w = 0.03 * safezoneW;
         h = 0.05 * safezoneH;
-        tooltip = $STR_clear_frequency;
+        tooltip = ELSTRING(core,clear_frequency);
         action = QUOTE(
             ctrlSetText [ARR_2(IDC_ANPRC210_EDIT, '')];
             ctrlSetFocus ((findDisplay IDD_ANPRC210_RADIO_DIALOG) displayCtrl IDC_ANPRC210_EDIT);
@@ -138,7 +138,7 @@ class anarc210_radio_dialog
         y = 0.5176 * safezoneH + safezoneY;
         w = 0.04 * safezoneW;
         h = 0.06 * safezoneH;
-        tooltip = $STR_rotator_volume;
+        tooltip = ELSTRING(core,rotator_volume);
         onMouseButtonDown = QUOTE([ARR_2(_this select 1, true)] call TFAR_fnc_setVolumeViaDialog;);
     };
     class stereo: HiddenButton
@@ -152,7 +152,7 @@ class anarc210_radio_dialog
             [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;
             [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;
         );
-        tooltip = $STR_stereo_settings;
+        tooltip = ECSTRING(core,stereo_settings);
     };
     class channel_01: HiddenButton
     {
@@ -162,7 +162,7 @@ class anarc210_radio_dialog
         w = 0.0335156 * safezoneW;
         h = 0.0484 * safezoneH;
         action = "[TF_lr_dialog_radio, 0] call TFAR_fnc_setLrChannel;[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
-        tooltip = $STR_radio_channel_1;
+        tooltip = ECSTRING(core,radio_channel_1);
     };
     class channel_02: HiddenButton
     {
@@ -172,7 +172,7 @@ class anarc210_radio_dialog
         w = 0.0335156 * safezoneW;
         h = 0.0484 * safezoneH;
         action = "[TF_lr_dialog_radio, 1] call TFAR_fnc_setLrChannel;[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
-        tooltip = $STR_radio_channel_2;
+        tooltip = ECSTRING(core,radio_channel_2);
     };
     class channel_03: HiddenButton
     {
@@ -182,7 +182,7 @@ class anarc210_radio_dialog
         w = 0.0335156 * safezoneW;
         h = 0.0484 * safezoneH;
         action = "[TF_lr_dialog_radio, 2] call TFAR_fnc_setLrChannel;[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
-        tooltip = $STR_radio_channel_3;
+        tooltip = ECSTRING(core,radio_channel_3);
     };
     class channel_04: HiddenButton
     {
@@ -192,7 +192,7 @@ class anarc210_radio_dialog
         w = 0.0335156 * safezoneW;
         h = 0.0484 * safezoneH;
         action = "[TF_lr_dialog_radio, 3] call TFAR_fnc_setLrChannel;[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
-        tooltip = $STR_radio_channel_4;
+        tooltip = ECSTRING(core,radio_channel_4);
     };
     class channel_05: HiddenButton
     {
@@ -202,7 +202,7 @@ class anarc210_radio_dialog
         w = 0.0335156 * safezoneW;
         h = 0.0484 * safezoneH;
         action = "[TF_lr_dialog_radio, 4] call TFAR_fnc_setLrChannel;[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
-        tooltip = $STR_radio_channel_5;
+        tooltip = ECSTRING(core,radio_channel_5);
     };
     class channel_06: HiddenButton
     {
@@ -212,7 +212,7 @@ class anarc210_radio_dialog
         w = 0.0335156 * safezoneW;
         h = 0.0484 * safezoneH;
         action = "[TF_lr_dialog_radio, 5] call TFAR_fnc_setLrChannel;[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
-        tooltip = $STR_radio_channel_6;
+        tooltip = ECSTRING(core,radio_channel_6);
     };
     class channel_07: HiddenButton
     {
@@ -222,7 +222,7 @@ class anarc210_radio_dialog
         w = 0.0335156 * safezoneW;
         h = 0.0484 * safezoneH;
         action = "[TF_lr_dialog_radio, 6] call TFAR_fnc_setLrChannel;[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
-        tooltip = $STR_radio_channel_7;
+        tooltip = ECSTRING(core,radio_channel_7);
     };
     class channel_08: HiddenButton
     {
@@ -232,7 +232,7 @@ class anarc210_radio_dialog
         w = 0.0335156 * safezoneW;
         h = 0.0484 * safezoneH;
         action = "[TF_lr_dialog_radio, 7] call TFAR_fnc_setLrChannel;[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
-        tooltip = $STR_radio_channel_8;
+        tooltip = ECSTRING(core,radio_channel_8);
     };
     class channel_09: HiddenButton
     {
@@ -242,7 +242,7 @@ class anarc210_radio_dialog
         w = 0.0335156 * safezoneW;
         h = 0.0484 * safezoneH;
         action = "[TF_lr_dialog_radio, 8] call TFAR_fnc_setLrChannel;[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
-        tooltip = $STR_radio_channel_9;
+        tooltip = ECSTRING(core,radio_channel_9);
     };
 
     class channel_Switch: HiddenRotator
@@ -252,7 +252,7 @@ class anarc210_radio_dialog
         y = 0.2547 * safezoneH + safezoneY;
         w = 0.0510469 * safezoneW;
         h = 0.0957 * safezoneH;
-        tooltip = $STR_rotator_channel;
+        tooltip = ELSTRING(core,rotator_channel);
         onMouseButtonDown = "[_this select 1, true] call TFAR_fnc_setChannelViaDialog;";
     };
     class additional: HiddenButton
@@ -262,7 +262,7 @@ class anarc210_radio_dialog
         y = 0.4021 * safezoneH + safezoneY;
         w = 0.0367463 * safezoneW;
         h = 0.0462103 * safezoneH;
-        tooltip = $STR_set_additional;
+        tooltip = ELSTRING(core,set_additional);
         action = "[TF_lr_dialog_radio,TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel;call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     };
     class speakers: HiddenButton
@@ -272,7 +272,7 @@ class anarc210_radio_dialog
         y = 0.5231 * safezoneH + safezoneY;
         w = 0.0304219 * safezoneW;
         h = 0.0495 * safezoneH;
-        tooltip = $STR_speakers_settings_true;
+        tooltip = ECSTRING(core,speakers_settings_true);
         action = "playSound 'TFAR_rotatorPush';TF_lr_dialog_radio call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_showRadioSpeakers";
     };
     ////////////////////////////////////////////////////////

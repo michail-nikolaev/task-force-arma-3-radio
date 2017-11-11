@@ -1,8 +1,8 @@
 class ItemWatch;
 class TFAR_microdagr: ItemWatch {
     author = "Raspu, Nkey";
-    displayName = "$STR_TFAR_Veh_MicroDagr";
-    descriptionShort = "$STR_TFAR_Veh_MicroDagr_Desc";
+    displayName = CSTRING(MicroDagr);
+    descriptionShort = CSTRING(MicroDagr_Desc);
     scope = PUBLIC;
     scopeCurator = PUBLIC;
     picture = QPATHTOF(microdagr\ui\microdagr_icon.paa);

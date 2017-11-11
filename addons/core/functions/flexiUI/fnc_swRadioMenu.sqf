@@ -23,7 +23,7 @@
 
 private _menu = [];
 if ((count (TFAR_currentUnit call TFAR_fnc_radiosList) > 1) or {(count (TFAR_currentUnit call TFAR_fnc_radiosList) == 1) and !(call TFAR_fnc_haveSWRadio)}) then {
-    private _menuDef = ["main", localize "STR_select_radio", "buttonList", "", false];
+    private _menuDef = ["main", localize LSTRING(select_radio), "buttonList", "", false];
     private _positions = [];
     {
         private _command = format["TF_sw_dialog_radio = '%1';[{call TFAR_fnc_onSwDialogOpen;}, [], 0.2] call CBA_fnc_waitAndExecute;", _x];

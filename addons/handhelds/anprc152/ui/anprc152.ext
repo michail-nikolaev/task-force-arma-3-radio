@@ -68,7 +68,7 @@ class edit: RscEditLCD
     h = 0.043175 * safezoneH;
     font = "TFAR_font_dots";
     shadow = 2;
-    tooltip = $STR_current_freq;
+    tooltip = ELSTRING(core,current_freq);
     canModify = 1;
 };
 class channel_edit: RscEditLCD
@@ -81,7 +81,7 @@ class channel_edit: RscEditLCD
     h = 0.044275 * safezoneH;
     font = "TFAR_font_dots";
     shadow = 2;
-    tooltip = $STR_current_channel;
+    tooltip = ELSTRING(core,current_channel);
     canModify = 0;
 };
 class enter: HiddenButton
@@ -91,14 +91,14 @@ class enter: HiddenButton
     y = 0.60285 * safezoneH + safezoneY;
     w = 0.0144375 * safezoneW;
     h = 0.017875 * safezoneH;
-    tooltip = $STR_set_frequency;
+    tooltip = ELSTRING(core,set_frequency);
     action = QUOTE(
         _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANPRC152_EDIT);
         if ((_f >= TFAR_MIN_SW_FREQ) and (_f <= TFAR_MAX_SW_FREQ)) then {
             [ARR_2(TF_sw_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setSwFrequency;
             call TFAR_fnc_hideHint;
         } else {
-            hint formatText [ARR_3(localize 'STR_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)];
+            hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)];
         };
         call TFAR_fnc_updateSWDialogToChannel;
     );
@@ -110,7 +110,7 @@ class clear: HiddenButton
     y = 0.56985 * safezoneH + safezoneY;
     w = 0.0146438 * safezoneW;
     h = 0.0198 * safezoneH;
-    tooltip = $STR_clear_frequency;
+    tooltip = ELSTRING(core,clear_frequency);
     action = QUOTE(
         ctrlSetText [ARR_2(IDC_ANPRC152_EDIT, '')];
         ctrlSetFocus ((findDisplay IDD_ANPRC152_RADIO_DIALOG) displayCtrl IDC_ANPRC152_EDIT);
@@ -123,7 +123,7 @@ class additional: HiddenButton
     y = 0.658675 * safezoneH + safezoneY;
     w = 0.0169125 * safezoneW;
     h = 0.023925 * safezoneH;
-    tooltip = $STR_set_additional;
+    tooltip = ELSTRING(core,set_additional);
     action = "[TF_sw_dialog_radio, TF_sw_dialog_radio call TFAR_fnc_getSwChannel] call TFAR_fnc_setAdditionalSwChannel; call TFAR_fnc_updateSWDialogToChannel; [TF_sw_dialog_radio, false] call TFAR_fnc_showRadioInfo;";
 };
 class speakers: HiddenButton
@@ -133,7 +133,7 @@ class speakers: HiddenButton
     y = 0.659225 * safezoneH + safezoneY;
     w = 0.0179438 * safezoneW;
     h = 0.0231 * safezoneH;
-    tooltip = $STR_speakers_settings_true;
+    tooltip = ECSTRING(core,speakers_settings_true);
     action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
 };
 class next_channel: HiddenButton
@@ -143,7 +143,7 @@ class next_channel: HiddenButton
     y = 0.63035 * safezoneH + safezoneY;
     w = 0.0154688 * safezoneW;
     h = 0.020075 * safezoneH;
-    tooltip = $STR_next_channel;
+    tooltip = ELSTRING(core,next_channel);
     action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
 };
 class prev_channel: HiddenButton
@@ -153,7 +153,7 @@ class prev_channel: HiddenButton
     y = 0.6584 * safezoneH + safezoneY;
     w = 0.0154688 * safezoneW;
     h = 0.023375 * safezoneH;
-    tooltip = $STR_previous_channel;
+    tooltip = ELSTRING(core,previous_channel);
     action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
 };
 class stereo: HiddenButton
@@ -167,7 +167,7 @@ class stereo: HiddenButton
         [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
         [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;
     );
-    tooltip = $STR_stereo_settings;
+    tooltip = ECSTRING(core,stereo_settings);
 };
 class volume_Switch: HiddenRotator
 {
@@ -176,7 +176,7 @@ class volume_Switch: HiddenRotator
     y = 0.0762632 * safezoneH + safezoneY;
     w = 0.0400125 * safezoneW;
     h = 0.201575 * safezoneH;
-    tooltip = $STR_rotator_volume;
+    tooltip = ELSTRING(core,rotator_volume);
     onMouseButtonDown = "[_this select 1, false] call TFAR_fnc_setVolumeViaDialog;";
 };
 ////////////////////////////////////////////////////////
