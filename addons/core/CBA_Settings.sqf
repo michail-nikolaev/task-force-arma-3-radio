@@ -2,7 +2,7 @@
 [
     "TFAR_default_radioVolume",
     "SLIDER",
-    ELSTRING(settings,radio_default_radioVolume),
+    ELSTRING(settings,default_radioVolume),
     "Task Force Arrowhead Radio",
     [1, 9, 7, 0],
     0
@@ -10,7 +10,7 @@
 [
     "TFAR_volumeModifier_forceSpeech", 
     "CHECKBOX", 
-    [ELSTRING(settings,radio_directSpeechModifier), ELSTRING(settings,radio_directSpeechModifier_desc)], 
+    [ELSTRING(settings,directSpeechModifier), ELSTRING(settings,directSpeechModifier_desc)], 
     "Task Force Arrowhead Radio", 
     false,
     0
@@ -18,7 +18,7 @@
 [
     "TFAR_intercomVolume", 
     "SLIDER",
-    ELSTRING(settings,radio_intercomVolume),
+    ELSTRING(settings,intercomVolume),
     "Task Force Arrowhead Radio", 
     [0.01, 0.6, 0.3, 3],
     0,
@@ -27,7 +27,7 @@
 [
     "TFAR_pluginTimeout", 
     "SLIDER", 
-    ELSTRING(settings,radio_pluginTimeout), 
+    ELSTRING(settings,pluginTimeout), 
     "Task Force Arrowhead Radio", 
     [0.5, 10, 4, 3],
     0,
@@ -36,7 +36,7 @@
 [
     "TFAR_tangentReleaseDelay",
     "SLIDER", 
-    ELSTRING(settings,radio_tangentReleaseDelay), 
+    ELSTRING(settings,tangentReleaseDelay), 
     "Task Force Arrowhead Radio", 
     [0, 500, 0, 0],
     0,
@@ -45,7 +45,7 @@
 [
     "TFAR_PosUpdateMode", 
     "LIST", 
-    [ELSTRING(settings,radio_positionUpdateMode), ELSTRING(settings,radio_positionUpdateMode_desc)], 
+    [ELSTRING(settings,positionUpdateMode), ELSTRING(settings,positionUpdateMode_desc)], 
     "Task Force Arrowhead Radio", 
     [[0, 0.1, 0.2], ["Quality", "Normal", "Performance"], 1],
     0
@@ -53,7 +53,7 @@
 [
     "TFAR_ShowVolumeHUD",
     "CHECKBOX",
-    [ELSTRING(settings,radio_hudVolumeIndicator), ELSTRING(settings,radio_hudVolumeIndicator_desc)],
+    [ELSTRING(settings,hudVolumeIndicator), ELSTRING(settings,hudVolumeIndicator_desc)],
     "Task Force Arrowhead Radio",
     false,
     0,
@@ -68,7 +68,7 @@
 [
     "TFAR_VolumeHudTransparency", 
     "SLIDER", 
-    [ELSTRING(settings,radio_volumeIndicatorTransparency), ELSTRING(settings,radio_volumeIndicatorTransparency_desc)], 
+    [ELSTRING(settings,volumeIndicatorTransparency), ELSTRING(settings,volumeIndicatorTransparency_desc)], 
     "Task Force Arrowhead Radio", 
     [0, 1, 0, 3],
     0,
@@ -77,7 +77,7 @@
 [
     "TFAR_oldVolumeHint", 
     "CHECKBOX", 
-    [ELSTRING(settings,radio_useOldVolumeHint), ELSTRING(settings,radio_useOldVolumeHint_desc)], 
+    [ELSTRING(settings,useOldVolumeHint), ELSTRING(settings,useOldVolumeHint_desc)], 
     "Task Force Arrowhead Radio", 
     false,
     0
@@ -85,7 +85,7 @@
 [
     "TFAR_showTransmittingHint", 
     "CHECKBOX", 
-    [ELSTRING(settings,radio_showTransmittingHint), ELSTRING(settings,radio_showTransmittingHint_desc)], 
+    [ELSTRING(settings,showTransmittingHint), ELSTRING(settings,showTransmittingHint_desc)], 
     "Task Force Arrowhead Radio", 
     true,
     0
@@ -93,7 +93,7 @@
 [
     "TFAR_showChannelChangedHint", 
     "CHECKBOX", 
-    [ELSTRING(settings,radio_showChannelChangedHint), ELSTRING(settings,radio_showChannelChangedHint_desc)], 
+    [ELSTRING(settings,showChannelChangedHint), ELSTRING(settings,showChannelChangedHint_desc)], 
     "Task Force Arrowhead Radio", 
     true,
     0
@@ -119,7 +119,7 @@
 [
     "TFAR_enableIntercom", 
     "CHECKBOX",
-    ELSTRING(settings,radio_enable_vehicle_intercom),
+    ELSTRING(settings,enable_vehicle_intercom),
     "Task Force Arrowhead Radio", 
     true,
     1,
@@ -128,7 +128,7 @@
 [
     "TFAR_objectInterceptionEnabled", 
     "CHECKBOX",
-    ELSTRING(settings,radio_enable_object_interception), 
+    ELSTRING(settings,enable_object_interception), 
     "Task Force Arrowhead Radio", 
     true,
     1
@@ -144,7 +144,7 @@
 [
     "TFAR_spectatorCanHearEnemyUnits", 
     "CHECKBOX", 
-    [ELSTRING(settings,radio_spectator_hear_emy), ELSTRING(settings,radio_spectator_hear_emy_desc)], 
+    [ELSTRING(settings,spectator_hear_emy), ELSTRING(settings,spectator_hear_emy_desc)], 
     "Task Force Arrowhead Radio", 
     true,
     1,
@@ -153,7 +153,7 @@
 [
     "TFAR_spectatorCanHearFriendlies", 
     "CHECKBOX", 
-    [ELSTRING(settings,radio_spectator_hear), ELSTRING(settings,radio_spectator_hear_desc)], 
+    [ELSTRING(settings,spectator_hear), ELSTRING(settings,spectator_hear_desc)], 
     "Task Force Arrowhead Radio", 
     true,
     1,
@@ -162,7 +162,7 @@
 [
     "TFAR_SameSRFrequenciesForSide", 
     "CHECKBOX",
-    [ELSTRING(settings,radio_same_sw_frequencies_for_side),ELSTRING(settings,radio_same_sw_frequencies_for_side)], 
+    ELSTRING(settings,same_sw_frequencies_for_side), 
     "Task Force Arrowhead Radio", 
     false,
     1
@@ -237,7 +237,7 @@
 [
     "TFAR_SameLRFrequenciesForSide", 
     "CHECKBOX", 
-    ELSTRING(settings,radio_same_lr_frequencies_for_side), 
+    ELSTRING(settings,same_lr_frequencies_for_side), 
     "Task Force Arrowhead Radio", 
     false,
     1
@@ -287,7 +287,7 @@
 [
     "TFAR_giveMicroDagrToSoldier", 
     "CHECKBOX", 
-    ELSTRING(settings,radio_give_microdagr_to_soldier), 
+    ELSTRING(settings,give_microdagr_to_soldier), 
     "Task Force Arrowhead Radio", 
     true,
     1
@@ -295,7 +295,7 @@
 [
     "TFAR_givePersonalRadioToRegularSoldier", 
     "CHECKBOX", 
-    ELSTRING(settings,radio_give_personal_radio_to_regular_soldier), 
+    ELSTRING(settings,give_personal_radio_to_regular_soldier), 
     "Task Force Arrowhead Radio", 
     false,
     1
@@ -303,7 +303,7 @@
 [
     "TFAR_giveLongRangeRadioToGroupLeaders", 
     "CHECKBOX", 
-    [ELSTRING(settings,radio_auto_long_range_radio), ELSTRING(settings,radio_auto_long_range_radio_desc)], 
+    [ELSTRING(settings,auto_long_range_radio), ELSTRING(settings,auto_long_range_radio_desc)], 
     "Task Force Arrowhead Radio", 
     false,
     1

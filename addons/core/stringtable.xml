@@ -1090,7 +1090,7 @@
                 <English>From immobilized units</English>
                 <German>Von bewegungsunfähigen Personen</German>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_default_radioVolume">
+            <Key ID="STR_TFAR_SETTINGS_default_radioVolume">
                 <English>Default radio volume</English>
                 <French>Volume par défaut de la radio</French>
                 <German>Standard Funklautstärke</German>
@@ -1100,7 +1100,7 @@
                 <Chinese>預設無線電音量</Chinese>
                 <Chinesesimp>预设无线电音量</Chinesesimp>
             </Key>
-            <Key ID="STR_radio_same_lr_frequencies_for_side">
+            <Key ID="STR_TFAR_SETTINGS_same_lr_frequencies_for_side">
                 <English>Same LR frequencies for side</English>
                 <French>Mêmes fréquences LP pour l'équipe</French>
                 <German>Gleiche Langstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
@@ -1110,7 +1110,7 @@
                 <Chinese>同陣營使用相同的長程無線電頻率</Chinese>
                 <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_same_sw_frequencies_for_side">
+            <Key ID="STR_TFAR_SETTINGS_same_sw_frequencies_for_side">
                 <English>Same SW frequencies for side</English>
                 <French>Mêmes fréquences CP pour le camp</French>
                 <German>Gleiche Kurzstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
@@ -1120,7 +1120,7 @@
                 <Chinese>同陣營使用相同的短程無線電頻率</Chinese>
                 <Chinesesimp>同阵营使用相同的短程无线电频率</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_give_microdagr_to_soldier">
+            <Key ID="STR_TFAR_SETTINGS_give_microdagr_to_soldier">
                 <English>Give MicroDAGR to soldier</English>
                 <French>Donner un MicroDAGR aux soldats</French>
                 <German>MicroDAGR an Soldaten vergeben</German>
@@ -1130,7 +1130,7 @@
                 <Chinese>給予士兵微型軍用GPS接收器</Chinese>
                 <Chinesesimp>给予士兵微型军用GPS接收器</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_give_personal_radio_to_regular_soldier">
+            <Key ID="STR_TFAR_SETTINGS_give_personal_radio_to_regular_soldier">
                 <English>Give personal radio to regular soldier</English>
                 <French>Donner une radio personnelle aux soldats de base</French>
                 <German>Persönliches Funkgerät an Soldaten vergeben</German>
@@ -1140,7 +1140,7 @@
                 <Chinese>給予一般士兵短程個人無線電</Chinese>
                 <Chinesesimp>给予一般士兵短程个人无线电</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_auto_long_range_radio">
+            <Key ID="STR_TFAR_SETTINGS_auto_long_range_radio">
                 <English>Automatically give long range radio</English>
                 <French>Donner automatiquement une radio longue portée</French>
                 <German>Langstrecken-Funkgeräte automatisch vergeben</German>
@@ -1150,7 +1150,7 @@
                 <Chinese>自動給予長程無線電</Chinese>
                 <Chinesesimp>自动给予长程无线电</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_auto_long_range_radio_desc">
+            <Key ID="STR_TFAR_SETTINGS_auto_long_range_radio_desc">
                 <English>Give each team leader the appropriate long range radio</English>
                 <Czech>Dá každému veliteli týmu vhodnou vysílačku pro dlouhou vzdálenost</Czech>
                 <French>Donner à chaque chef d'équipe la radio longue portée approprié</French>
@@ -1164,132 +1164,132 @@
                 <Chinese>分發長程無線電給各隊長使用</Chinese>
                 <Chinesesimp>分发长程无线电给各队长使用</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_enable_vehicle_intercom">
+            <Key ID="STR_TFAR_SETTINGS_enable_vehicle_intercom">
                 <English>Enable vehicle Intercom</English>
                 <Chinese>啟用載具內對講機</Chinese>
                 <Chinesesimp>启用载具内对讲机</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_enable_object_interception">
+            <Key ID="STR_TFAR_SETTINGS_enable_object_interception">
                 <English>Enable Object Interception</English>
                 <Chinese>啟用物件攔截</Chinese>
                 <Chinesesimp>启用物件拦截</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_spectator_hear_emy">
+            <Key ID="STR_TFAR_SETTINGS_spectator_hear_emy">
                 <English>Spectator can hear enemy units</English>
                 <Chinese>觀察者可以聽到敵方的語音</Chinese>
                 <Chinesesimp>观察者可以听到敌方的语音</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_spectator_hear_emy_desc">
+            <Key ID="STR_TFAR_SETTINGS_spectator_hear_emy_desc">
                 <English>If disabled a Spectator can't hear direct speech from Units that are considered Enemy to the Spectators English faction</English>
                 <Chinese>假如本功能關閉的話，觀察者將不能聽到敵隊陣營玩家的語音通訊</Chinese>
                 <Chinesesimp>假如本功能关闭的话，观察者将不能听到敌队阵营玩家的语音通讯</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_spectator_hear">
+            <Key ID="STR_TFAR_SETTINGS_spectator_hear">
                 <English>Spectator can hear units</English>
                 <Chinese>觀察者可以聽到其他玩家的語音</Chinese>
                 <Chinesesimp>观察者可以听到其他玩家的语音</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_spectator_hear_desc">
+            <Key ID="STR_TFAR_SETTINGS_spectator_hear_desc">
                 <English>If disabled a Spectator can't hear any Players besides other Spectators</English>
                 <Chinese>假如本功能關閉的話，觀察者將不能聽到其他還活著玩家的語音通訊，只能聽到其他觀察者的聲音</Chinese>
                 <Chinesesimp>假如本功能关闭的话，观察者将不能听到其他还活着玩家的语音通讯，只能听到其他观察者的声音</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_directSpeechModifier">
+            <Key ID="STR_TFAR_SETTINGS_directSpeechModifier">
                 <English>Direct speech on volume modifier</English>
                 <Chinese>使用音量修改器來直接發話</Chinese>
                 <Chinesesimp>使用音量修改器来直接发话</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_directSpeechModifier_desc">
+            <Key ID="STR_TFAR_SETTINGS_directSpeechModifier_desc">
                 <English>Activate directSpeech when pressing volume modifier</English>
                 <Chinese>按下音量修改器時同時啟動直接發話</Chinese>
                 <Chinesesimp>按下音量修改器时同时启动直接发话</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_intercomVolume">
+            <Key ID="STR_TFAR_SETTINGS_intercomVolume">
                 <English>Intercom Volume</English>
                 <Chinese>對講機音量</Chinese>
                 <Chinesesimp>对讲机音量</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_pluginTimeout">
+            <Key ID="STR_TFAR_SETTINGS_pluginTimeout">
                 <English>Plugin Timeout in seconds</English>
                 <Chinese>插件超時無回應秒數</Chinese>
                 <Chinesesimp>插件超时无回应秒数</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_tangentReleaseDelay">
+            <Key ID="STR_TFAR_SETTINGS_tangentReleaseDelay">
                 <English>tangentReleaseDelay in milliseconds</English>
                 <Chinese>tangentReleaseDelay (毫秒)</Chinese>
                 <Chinesesimp>tangentReleaseDelay (毫秒)</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_positionUpdateMode">
+            <Key ID="STR_TFAR_SETTINGS_positionUpdateMode">
                 <English>Position Update Mode</English>
                 <Chinese>位置更新模式</Chinese>
                 <Chinesesimp>位置更新模式</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_positionUpdateMode_desc">
+            <Key ID="STR_TFAR_SETTINGS_positionUpdateMode_desc">
                 <English>The higher the quality the lower fps</English>
                 <Chinese>品質設定越高越影響效能</Chinese>
                 <Chinesesimp>品质设定越高越影响效能</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_positionUpdateMode_quality">
+            <Key ID="STR_TFAR_SETTINGS_positionUpdateMode_quality">
                 <English>Quality</English>
                 <Chinese>品質</Chinese>
                 <Chinesesimp>品质</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_positionUpdateMode_normal">
+            <Key ID="STR_TFAR_SETTINGS_positionUpdateMode_normal">
                 <English>Normal</English>
                 <Chinese>普通</Chinese>
                 <Chinesesimp>普通</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_positionUpdateMode_performance">
+            <Key ID="STR_TFAR_SETTINGS_positionUpdateMode_performance">
                 <English>Performance</English>
                 <Chinese>效能</Chinese>
                 <Chinesesimp>效能</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_hudVolumeIndicator">
+            <Key ID="STR_TFAR_SETTINGS_hudVolumeIndicator">
                 <English>Show HUD Voice Volume indicator</English>
                 <Chinese>在抬頭顯示器上顯示音量指示器</Chinese>
                 <Chinesesimp>在抬头显示器上显示音量指示器</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_hudVolumeIndicator_desc">
+            <Key ID="STR_TFAR_SETTINGS_hudVolumeIndicator_desc">
                 <English>If disabled it will pop up for a short time when changing Volume</English>
                 <Chinese>假如關閉本功能的話，音量切換時的提示訊息只會顯示在螢幕上一下下</Chinese>
                 <Chinesesimp>假如关闭本功能的话，音量切换时的提示讯息只会显示在荧幕上一下下</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_volumeIndicatorTransparency">
+            <Key ID="STR_TFAR_SETTINGS_volumeIndicatorTransparency">
                 <English>Volume Indicator Transparency</English>
                 <Chinese>音量指示器透明度</Chinese>
                 <Chinesesimp>音量指示器透明度</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_volumeIndicatorTransparency_desc">
+            <Key ID="STR_TFAR_SETTINGS_volumeIndicatorTransparency_desc">
                 <English>Volume Indicator Transparency (0 fully visible - 1 invisible)</English>
                 <Chinese>音量指示器透明度 (0為完全透明，1為不透明)</Chinese>
                 <Chinesesimp>音量指示器透明度 (0为完全透明，1为不透明)</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_useOldVolumeHint">
+            <Key ID="STR_TFAR_SETTINGS_useOldVolumeHint">
                 <English>Use old Voice Volume Hint</English>
                 <Chinese>使用舊的語音音量提示</Chinese>
                 <Chinesesimp>使用旧的语音音量提示</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_useOldVolumeHint_desc">
+            <Key ID="STR_TFAR_SETTINGS_useOldVolumeHint_desc">
                 <English>Use old Voice Volume Hint</English>
                 <Chinese>使用舊的語音音量提示</Chinese>
                 <Chinesesimp>使用旧的语音音量提示</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_showTransmittingHint">
+            <Key ID="STR_TFAR_SETTINGS_showTransmittingHint">
                 <English>Show Transmitting Hint</English>
                 <Chinese>顯示無線電發送訊息提示</Chinese>
                 <Chinesesimp>显示无线电发送讯息提示</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_showTransmittingHint_desc">
+            <Key ID="STR_TFAR_SETTINGS_showTransmittingHint_desc">
                 <English>Show the Hint (Bottom right) when you are Transmitting</English>
                 <Chinese>當無線電傳送訊息時在右下角顯示提示訊息</Chinese>
                 <Chinesesimp>当无线电传送讯息时在右下角显示提示讯息</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_showChannelChangedHint">
+            <Key ID="STR_TFAR_SETTINGS_showChannelChangedHint">
                 <English>Show Channel Changed Hint</English>
                 <Chinese>顯示無線電頻道更改提示</Chinese>
                 <Chinesesimp>显示无线电频道更改提示</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_showChannelChangedHint_desc">
+            <Key ID="STR_TFAR_SETTINGS_showChannelChangedHint_desc">
                 <English>Show the Hint (Bottom right) when you switch Channels via UI or Hotkey</English>
                 <Chinese>當無線電頻道更改時在右下角顯示提示訊息</Chinese>
                 <Chinesesimp>当无线电频道更改时在右下角显示提示讯息</Chinesesimp>
@@ -1314,7 +1314,7 @@
                 <Chinese>允許無線電能同時接收與發送訊號。</Chinese>
                 <Chinesesimp>允许无线电能同时接收与发送讯号。</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_radio_showChannelChangedHint_desc">
+            <Key ID="STR_TFAR_SETTINGS_showChannelChangedHint_desc">
                 <English>Show the Hint (Bottom right) when you switch Channels via UI or Hotkey</English>
                 <Chinese>當無線電頻道更改時在右下角顯示提示訊息</Chinese>
                 <Chinesesimp>当无线电频道更改时在右下角显示提示讯息</Chinesesimp>
