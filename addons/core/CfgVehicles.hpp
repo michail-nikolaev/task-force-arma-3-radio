@@ -3,7 +3,7 @@ class CfgVehicles {
     class Module_F;
     class TFAR_ModuleTaskForceRadioEnforceUsage: Module_F {
         scope = 1;
-        author = QUOTE(AUTHORS);
+        author = ECSTRING(core,AUTHORS);
         displayName = ECSTRING(CORE,DEPRECATED);
         category = ECSTRING(CORE,CATEGORY);
         function = "";
