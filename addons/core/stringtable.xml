@@ -1905,7 +1905,8 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>潜水员</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_radio_control_text">
-                <English>&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	Direct Speech.&lt;br/&gt;
+                <English>&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Push-to-talk button in TeamSpeak&lt;/font&gt;	Direct Speech.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	To talk on a radio.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	To talk on a long range radio.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	To open the personal radio interface (the radio must be in the inventory slot). In that case if you have a number of radios - you can select the one needed. It is also possible to set the radio as active (the one that will be used for transmission).&lt;br/&gt;
