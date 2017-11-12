@@ -4,8 +4,8 @@ class CfgVehicles {
     class TFAR_ModuleTaskForceRadioEnforceUsage: Module_F {
         scope = 1;
         author = QUOTE(AUTHORS);
-        displayName = "TFAR - Deprecated Module";
-        category = "TFAR";
+        displayName = ECSTRING(CORE,DEPRECATED);
+        category = ECSTRING(CORE,CATEGORY);
         function = "";
         functionPriority = 0;
         isGlobal = 0;

@@ -13,6 +13,9 @@
                 <English>TFAR Preferences</English>
                 <German>TFAR Einstellungen</German>
             </Key>
+            <Key ID="STR_TFAR_CORE_DEPRECATED">
+                <English>TFAR-Deprecated</English>
+            </Key>
             <Key ID="STR_TFAR_CORE_3DEN_Properties">
                 <English>TFAR properties</English>
                 <German>TFAR Eigenschaften</German>
