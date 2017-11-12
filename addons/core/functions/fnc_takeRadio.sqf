@@ -23,7 +23,7 @@
 
 params ["_target", "_unit", "_radio"];
 
-If (_radio isEqualType "") then {
+if (_radio isEqualType "") then {
     if (_radio in (assignedItems _target)) then {
         _target unlinkItem _radio;
     } else {

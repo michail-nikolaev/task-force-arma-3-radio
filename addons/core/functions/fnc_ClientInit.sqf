@@ -28,7 +28,8 @@ DEPRECATE_VARIABLE(TF_defaultWestBackpack,TFAR_DefaultRadio_Backpack_West);
 DEPRECATE_VARIABLE(TF_defaultEastBackpack,TFAR_DefaultRadio_Backpack_East);
 DEPRECATE_VARIABLE(TF_defaultGuerBackpack,TFAR_DefaultRadio_Backpack_Independent);
 
-
+DEPRECATE_VARIABLE(tf_radio_channel_name,TFAR_Teamspeak_Channel_Name);
+DEPRECATE_VARIABLE(tf_radio_channel_password,TFAR_Teamspeak_Channel_Password);
 
 TFAR_currentUnit = call TFAR_fnc_currentUnit;
 [parseText(localize LSTRING(init)), 5] call TFAR_fnc_showHint;
@@ -224,8 +225,8 @@ if (player call TFAR_fnc_isForcedCurator) then {
 player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 
 player addEventHandler ["killed", {
-    TF_use_saved_sw_setting = true;
-    TF_use_saved_lr_setting = true;
+    GVAR(use_saved_sr_setting) = true;
+    GVAR(use_saved_lr_setting) = true;
     TFAR_RadioReqLinkFirstItem = true;
     call TFAR_fnc_hideHint;
 }];

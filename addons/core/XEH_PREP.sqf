@@ -68,6 +68,7 @@ PREP(getAdditionalSwChannel);
 PREP(getCurrentSwStereo);
 PREP(getCurrentLrStereo);
 PREP(getDefaultRadioClasses);
+PREP(getDefaultRadioSettings);
 PREP(getRadioOwner);
 PREP(getSwSpeakers);
 PREP(getLrSpeakers);
@@ -80,9 +81,6 @@ PREP(haveDDRadio);
 PREP(haveLRRadio);
 PREP(haveSWRadio);
 // I
-PREP_SUB(modules,initialiseBaseModule);
-PREP_SUB(modules,initialiseFreqModule);
-PREP_SUB(modules,initialiseEnforceUsageModule);
 PREP(initKeybinds);
 PREP_SUB(server,instanciateRadios);
 PREP_SUB(hint,inWaterHint);
@@ -125,6 +123,7 @@ PREP_SUB(events\ui,onSwDialogOpen);
 PREP_SUB(events\ui,onLRDialogOpen);
 PREP_SUB(hint,onGroundHint);
 // P
+PREP(parseFrequenciesInput);
 PREP(preparePositionCoordinates);
 PREP_SUB(events\keys,processSWChannelKeys);
 PREP_SUB(events\keys,processSWCycleKeys);
@@ -135,7 +134,6 @@ PREP_SUB(events\keys,processLRStereoKeys);
 PREP(processPlayerPositions);
 PREP_SUB(events\keys,processCuratorKey);
 PREP_SUB(plugin,processTangent);
-PREP_SUB(server,processGroupFrequencySettings);
 PREP(processRespawn);
 // R
 PREP(radioOn);

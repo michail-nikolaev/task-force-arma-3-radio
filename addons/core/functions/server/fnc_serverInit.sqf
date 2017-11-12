@@ -21,11 +21,6 @@
 */
 
 ["TFAR_RadioRequestEvent", {
-    //#TODO Use optional Parameter of TFAR_fnc_processGroupFrequencySettings to always make sure players group is initialized before giving him a Radio
-    if (!TFAR_fnc_processGroupFrequencySettings_running) then {
-        //Curators not yet initialized. But a player wants his radio right now. So we need to get this done
-        call TFAR_fnc_processGroupFrequencySettings;
-    };
     diag_log format["TFAR_RadioRequestEvent %1 %2",_this,diag_tickTime];//#TODO remove
     params [["_radio_request",[]],"_player"];
     private _response = [];
@@ -74,60 +69,37 @@ if (!isNil "tf_freq_guer_lr") then { \
     TFAR_defaultFrequencies_lr_independent = tf_freq_guer_lr param [2,nil];
 };
 
-
-if (!isNil "TFAR_defaultFrequencies_sr_west") then {
-    TFAR_SameSRFrequenciesForSide = true;
-    TFAR_freq_sr_west = [] call TFAR_fnc_generateSRSettings;
+if (TFAR_SameSRFrequenciesForSide) then {
+    TFAR_freq_sr_west = false call DFUNC(generateSRSettings);
     TFAR_freq_sr_west set [2,TFAR_defaultFrequencies_sr_west];
-};
-
-if (!isNil "TFAR_defaultFrequencies_sr_east") then {
-    TFAR_SameSRFrequenciesForSide = true;
-    TFAR_freq_sr_east = [] call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_east = false call DFUNC(generateSRSettings);
     TFAR_freq_sr_east set [2,TFAR_defaultFrequencies_sr_east];
-};
-
-if (!isNil "TFAR_defaultFrequencies_sr_independent") then {
-    TFAR_SameSRFrequenciesForSide = true;
-    TFAR_freq_sr_independent = [] call TFAR_fnc_generateSRSettings;
+    TFAR_freq_sr_independent = false call DFUNC(generateSRSettings);
     TFAR_freq_sr_independent set [2,TFAR_defaultFrequencies_sr_independent];
+    publicVariable "TFAR_freq_sr_west";
+    publicVariable "TFAR_freq_sr_east";
+    publicVariable "TFAR_freq_sr_independent";
+} else {
+    VARIABLE_DEFAULT(TFAR_freq_sr_west,true call DFUNC(generateSRSettings));
+    VARIABLE_DEFAULT(TFAR_freq_sr_east,true call DFUNC(generateSRSettings));
+    VARIABLE_DEFAULT(TFAR_freq_sr_independent,true call DFUNC(generateSRSettings));
 };
 
-if (!isNil "TFAR_defaultFrequencies_lr_west") then {
-    TFAR_SameLRFrequenciesForSide = true;
-    TFAR_freq_lr_west = [] call TFAR_fnc_generateLrSettings;
+if (TFAR_SameLRFrequenciesForSide) then {
+    TFAR_freq_lr_west = false call DFUNC(generateLrSettings);
     TFAR_freq_lr_west set [2,TFAR_defaultFrequencies_lr_west];
-};
-
-if (!isNil "TFAR_defaultFrequencies_lr_east") then {
-    TFAR_SameLRFrequenciesForSide = true;
-    TFAR_freq_lr_east = [] call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_east = false call DFUNC(generateLrSettings);
     TFAR_freq_lr_east set [2,TFAR_defaultFrequencies_lr_east];
-};
-
-if (!isNil "TFAR_defaultFrequencies_lr_independent") then {
-    TFAR_SameLRFrequenciesForSide = true;
-    TFAR_freq_lr_independent = [] call TFAR_fnc_generateLrSettings;
+    TFAR_freq_lr_independent = false call DFUNC(generateLrSettings);
     TFAR_freq_lr_independent set [2,TFAR_defaultFrequencies_lr_independent];
+    publicVariable "TFAR_freq_lr_west";
+    publicVariable "TFAR_freq_lr_east";
+    publicVariable "TFAR_freq_lr_independent";
+} else {
+    VARIABLE_DEFAULT(TFAR_freq_lr_west,true call DFUNC(generateLrSettings));
+    VARIABLE_DEFAULT(TFAR_freq_lr_east,true call DFUNC(generateLrSettings));
+    VARIABLE_DEFAULT(TFAR_freq_lr_independent,true call DFUNC(generateLrSettings));
 };
-
-
-
-
-
-
-//Default variables
-
-VARIABLE_DEFAULT(TFAR_SameSRFrequenciesForSide,false);
-VARIABLE_DEFAULT(TFAR_SameLRFrequenciesForSide,true);
-
-VARIABLE_DEFAULT(TFAR_freq_sr_west,[] call TFAR_fnc_generateSRSettings);
-VARIABLE_DEFAULT(TFAR_freq_sr_east,[] call TFAR_fnc_generateSRSettings);
-VARIABLE_DEFAULT(TFAR_freq_sr_independent,[] call TFAR_fnc_generateSRSettings);
-
-VARIABLE_DEFAULT(TFAR_freq_lr_west,[] call TFAR_fnc_generateLrSettings);
-VARIABLE_DEFAULT(TFAR_freq_lr_east,[] call TFAR_fnc_generateLrSettings);
-VARIABLE_DEFAULT(TFAR_freq_lr_independent,[] call TFAR_fnc_generateLrSettings);
 
 //Check if all players are running TFAR
 {
@@ -135,17 +107,8 @@ VARIABLE_DEFAULT(TFAR_freq_lr_independent,[] call TFAR_fnc_generateLrSettings);
     waitUntil {sleep 0.1;time > 3};
     if !(isClass(configFile >> "CfgPatches" >> "tfar_core")) exitWith {
         [player, localize LSTRING(WM_NotLoad)] remoteExec ["globalChat", -2];
-        [localize LSTRING(WM_NotLoad_Desc)] call "BIS_fnc_guiMessage";
+        if (isNull (uiNamespace getVariable ["BIS_fnc_arsenal_cam", objNull])) then {
+            [localize LSTRING(WM_NotLoad_Desc)] call "BIS_fnc_guiMessage";
+        };
     };
 } remoteExec ["BIS_fnc_spawn", -2, true];
-
-TFAR_fnc_processGroupFrequencySettings_running = false;
-[  {
-    private _hasCurators = (count allcurators) > 0;
-    private _hasInitializedCurators = (count (call BIS_fnc_listCuratorPlayers)) > 0;
-    private _curatorsInitialized = !_hasCurators || _hasInitializedCurators;
-    ((time > 2) || _curatorsInitialized)
-    },{
-    TFAR_fnc_processGroupFrequencySettings_running = true;
-    [TFAR_fnc_processGroupFrequencySettings,10/*10 seconds*/] call CBA_fnc_addPerFrameHandler;
-}] call CBA_fnc_waitUntilAndExecute;

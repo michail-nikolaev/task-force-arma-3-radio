@@ -51,20 +51,13 @@ if (_radio_object isKindOf "Bag_Base") then {
 };
 
 
-if (!(TF_use_saved_lr_setting) or (isNil "TF_saved_active_lr_settings")) then {
-    if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType} or {getText(configFile >> "CfgVehicles" >> _radioType >> "tf_encryptionCode") == toLower (format ["tf_%1_radio_code",(TFAR_currentUnit call BIS_fnc_objectSide)])}) then {
-        _value = (group TFAR_currentUnit) getVariable "tf_lr_frequency";
-    };
-    if (isNil "_value") then {
-        _value = [] call TFAR_fnc_generateLrSettings;
-    };
+if (isNil QGVAR(saved_active_lr_settings)) then {
+    _value = false call DFUNC(getDefaultRadioSettings)
 } else {
-    _value = TF_saved_active_lr_settings;
+    _value = GVAR(saved_active_lr_settings);
+    GVAR(saved_active_lr_settings) = nil;
 };
 
-if (TF_use_saved_lr_setting) then {
-    TF_use_saved_lr_setting = false;
-};
 
 private _radioCode = _value select TFAR_CODE_OFFSET;
 if (isNil "_radioCode") then {
