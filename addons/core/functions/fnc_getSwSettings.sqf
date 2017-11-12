@@ -24,24 +24,13 @@ params[["_radio","",[""]]];
 private _value = TFAR_RadioSettingsNamespace getVariable _radio;
 if (!isNil "_value") exitWith {_value};
 
-
-
-if (!(TF_use_saved_sw_setting) or (isNil "TF_saved_active_sw_settings")) then {
-    private _defaultRadios = call TFAR_fnc_getDefaultRadioClasses;
-    private _parent = [_radio, "tf_parent", ""] call DFUNC(getWeaponConfigProperty);
-    if ((_defaultRadios select 1) == _parent or {(_defaultRadios select 2) == _parent}) then {
-        _value = (group TFAR_currentUnit) getVariable "tf_sw_frequency";
-    };
-    if (isNil "_value") then {
-        _value = call TFAR_fnc_generateSRSettings;
-    };
+if (isNil QGVAR(saved_active_sr_settings)) then  {
+    _value = true call DFUNC(getDefaultRadioSettings);
 } else {
-    _value = TF_saved_active_sw_settings;
+    _value = GVAR(saved_active_sr_settings);
+    GVAR(saved_active_sr_settings) = nil;
 };
 
-if (TF_use_saved_sw_setting) then {
-    TF_use_saved_sw_setting = false;
-};
 //If value doesn't have Radio code set.. Add it //#TODO why can this even happen? //generateXXSettings sets nil as radiocode
 private _rc = _value select TFAR_CODE_OFFSET;
 if (isNil "_rc") then {
@@ -66,7 +55,5 @@ if (isNil "_rc") then {
 };
 
 [_radio, _value, true] call TFAR_fnc_setSwSettings;
-
-
 
 _value

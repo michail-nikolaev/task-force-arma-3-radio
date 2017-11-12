@@ -1,169 +1,45 @@
 class CfgVehicles {
-    class Logic;
-    class Module_F: Logic {
-        class ArgumentsBaseUnits {
-            class Units;
-        };
-        class ModuleDescription {
-            class AnyBrain;
-        };
-    };
 
+    class Module_F;
     class TFAR_ModuleTaskForceRadioEnforceUsage: Module_F {
-        scope = PUBLIC;
+        scope = 1;
         author = ECSTRING(core,AUTHORS);
-        displayName = "$STR_TFAR_Mod_EnforceUsage";
-        category = ECSTRING(core,CATEGORY);
-
-        function = "TFAR_fnc_initialiseEnforceUsageModule";
-        functionPriority = 1;
-        isGlobal = 1;
-        isTriggerActivated = 0;
-
-        class Arguments {
-            class TeamLeaderRadio {
-                displayName = "$STR_TFAR_Mod_GiveTLradio";
-                description = "$STR_TFAR_Mod_GiveTLradioTT";
-                typeName = "BOOL";
-                defaultValue = 0;
-            };
-            class RiflemanRadio {
-                displayName = "$STR_TFAR_Mod_GiveRiflemanRadio";
-                description = "$STR_TFAR_Mod_GiveRiflemanRadioTT";
-                typeName = "BOOL";
-                defaultValue = 0;
-            };
-            class terrain_interception_coefficient {
-                displayName = "$STR_TFAR_Mod_TerrainInterceptionCoefficient";
-                description = "$STR_TFAR_Mod_TerrainInterceptionCoefficientTT";
-                typeName = "NUMBER";
-                defaultValue = 7.0;
-            };
-            class radio_channel_name {
-                displayName = "$STR_TFAR_Mod_ChannelName";
-                description = "$STR_TFAR_Mod_ChannelNameTT";
-                typeName = "TEXT";
-                defaultValue = "TaskForceRadio";
-            };
-            class radio_channel_password {
-                displayName = "$STR_TFAR_Mod_ChannelPassword";
-                description = "$STR_TFAR_Mod_ChannelPasswordTT";
-                typeName = "TEXT";
-                defaultValue = "123";
-            };
-            class same_sw_frequencies_for_side {
-                displayName = "$STR_TFAR_Mod_SameSWFrequencies";
-                description = "$STR_TFAR_Mod_SameSWFrequenciesTT";
-                typeName = "BOOL";
-                defaultValue = 0;
-            };
-            class same_lr_frequencies_for_side {
-                displayName = "$STR_TFAR_Mod_SameLrFrequencies";
-                description = "$STR_TFAR_Mod_SameLrFrequenciesTT";
-                typeName = "BOOL";
-                defaultValue = 0;
-            };
-            class full_duplex {
-                displayName = "$STR_TFAR_Mod_FullDuplex";
-                description = "$STR_TFAR_Mod_FullDuplexDescription";
-                typeName = "BOOL";
-                defaultValue = 1;
-            };
-        };
-        class ModuleDescription: ModuleDescription {
-            description = "$STR_TFAR_Mod_EnforceUsage_Description";
-        };
+        displayName = ECSTRING(CORE,DEPRECATED);
+        category = ECSTRING(CORE,CATEGORY);
+        function = "";
+        functionPriority = 0;
+        isGlobal = 0;
     };
-    class TFAR_ModuleTaskForceRadio: Module_F {
-        scope = PUBLIC;
-        author = ECSTRING(core,AUTHORS);
-        displayName = "$STR_TFAR_Mod_SideRadio";
-        category = ECSTRING(core,CATEGORY);
+    class TFAR_ModuleTaskForceRadio: TFAR_ModuleTaskForceRadioEnforceUsage {};
+    class TFAR_ModuleTaskForceRadioFrequencies: TFAR_ModuleTaskForceRadioEnforceUsage {};
 
-        function = "TFAR_fnc_initialiseBaseModule";
-        functionPriority = 2;
-
-        isGlobal = 1;
-
-        class Arguments: ArgumentsBaseUnits {
-            class Units: Units {};
-            class Encryption {
-                displayName = "$STR_TFAR_Mod_EncryptionCode";
-                description = "$STR_TFAR_Mod_EncryptionCode";
-                typeName = "TEXT";
-                defaultValue = "DSH&G^G";
+    class VirtualMan_F;
+    class VirtualCurator_F : VirtualMan_F {
+        class Attributes {
+            class TFAR_freq_sr {
+                displayName = ECSTRING(core,DefaultRadioFrequencies_SR);
+                tooltip = ECSTRING(core,DefaultRadioFrequencies_SR_desc);
+                property = "TFAR_freq_sr";
+                control = "EditArray";
+                expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                defaultValue = "[]";
+                unique = 0;
+                condition = "1";
             };
-            class LRradio {
-                displayName = "$STR_TFAR_Mod_LR_Radio";
-                description = "$STR_TFAR_Mod_LR_RadioTT";
-                typeName = "TEXT";
-                defaultValue = "TFAR_rt1523g";
+            class TFAR_freq_lr {
+                displayName = ECSTRING(core,DefaultRadioFrequencies_LR);
+                tooltip = ECSTRING(core,DefaultRadioFrequencies_LR_desc);
+                property = "TFAR_freq_lr";
+                control = "EditArray";
+                expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                defaultValue = "[]";
+                unique = 0;
+                condition = "1";
             };
-            class Radio {
-                displayName = "$STR_TFAR_Mod_PR_Radio";
-                description = "$STR_TFAR_Mod_PR_RadioTT";
-                typeName = "TEXT";
-                defaultValue = "TFAR_anprc154";
-            };
-            class RiflemanRadio {
-                displayName = "$STR_TFAR_Mod_Rifle_Radio";
-                description = "$STR_TFAR_Mod_Rifle_RadioTT";
-                typeName = "TEXT";
-                defaultValue = "TFAR_rf7800str";
-            };
-            class PrFreq {
-                displayName = "$STR_TFAR_Mod_PRFrequency";
-                description = "$STR_TFAR_Mod_PRFrequencyTT";
-                typeName = "TEXT";
-                defaultValue = "[""70.2"",""127.1""]";
-            };
-            class LrFreq {
-                displayName = "$STR_TFAR_Mod_LRFrequency";
-                description = "$STR_TFAR_Mod_LRFrequencyTT";
-                typeName = "TEXT";
-                defaultValue = "[""54.2"",""73.1""]";
-            };
-        };
-
-        class ModuleDescription: ModuleDescription {
-            description = "$STR_TFAR_Mod_SideRadio_Description";
-            sync[] = {"AnyPerson"};
         };
     };
 
-    class TFAR_ModuleTaskForceRadioFrequencies: Module_F {
-        scope = PUBLIC;
-        author = ECSTRING(core,AUTHORS);
-        displayName = "$STR_TFAR_Mod_Frequencies";
-        category = ECSTRING(core,CATEGORY);
 
-        function = "TFAR_fnc_initialiseFreqModule";
-        functionPriority = 0; // only for server
-
-        isGlobal = 1;
-        isTriggerActivated = 1;
-
-        class Arguments: ArgumentsBaseUnits {
-            class Units: Units {};
-            class PrFreq {
-                displayName = "$STR_TFAR_Mod_PRFrequency";
-                description = "$STR_TFAR_Mod_PRFrequencyTT";
-                typeName = "TEXT";
-                defaultValue = "[""70.2"",""127.1""]";
-            };
-            class LrFreq {
-                displayName = "$STR_TFAR_Mod_LRFrequency";
-                description = "$STR_TFAR_Mod_LRFrequencyTT";
-                typeName = "TEXT";
-                defaultValue = "[""54.2"",""73.1""]";
-            };
-        };
-
-        class ModuleDescription: ModuleDescription {
-            description = "$STR_TFAR_Mod_Frequencies_Description";
-            sync[] = {"AnyPerson"};
-        };
-    };
     //Add radios to vehicles
     class All;
     MACRO_VEC_ISOLATION_LR(AllVehicles,All,0,0);

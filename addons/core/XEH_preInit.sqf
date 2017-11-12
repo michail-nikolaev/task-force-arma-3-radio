@@ -2,55 +2,13 @@
 
 #include "XEH_PREP.sqf"
 
-// server
-["TFAR_giveLongRangeRadioToGroupLeaders", "CHECKBOX", ELSTRING(settings,radio_auto_long_range_radio), "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TFAR_givePersonalRadioToRegularSoldier", "CHECKBOX", ELSTRING(settings,radio_give_personal_radio_to_regular_soldier), "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TFAR_giveMicroDagrToSoldier", "CHECKBOX", ELSTRING(settings,radio_give_microdagr_to_soldier), "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
-["TFAR_SameSRFrequenciesForSide", "CHECKBOX", ELSTRING(settings,radio_same_sw_frequencies_for_side), "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TFAR_SameLRFrequenciesForSide", "CHECKBOX", ELSTRING(settings,radio_same_lr_frequencies_for_side), "Task Force Arrowhead Radio", false, true] call CBA_Settings_fnc_init;
-["TFAR_fullDuplex", "CHECKBOX", [ELSTRING(settings,FullDuplex),ELSTRING(settings,FullDuplexDescription)], "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
-["TFAR_enableIntercom", "CHECKBOX", ELSTRING(settings,radio_enable_vehicle_intercom), "Task Force Arrowhead Radio", true, true,{["intercomEnabled",TFAR_enableIntercom] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_objectInterceptionEnabled", "CHECKBOX", ELSTRING(settings,radio_enable_object_interception), "Task Force Arrowhead Radio", true, true] call CBA_Settings_fnc_init;
-["TFAR_spectatorCanHearEnemyUnits", "CHECKBOX", [ELSTRING(settings,radio_spectator_hear_emy),ELSTRING(settings,radio_spectator_hear_emy_desc)], "Task Force Arrowhead Radio", true, true,{["spectatorNotHearEnemies",!TFAR_spectatorCanHearEnemyUnits] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_spectatorCanHearFriendlies", "CHECKBOX", [ELSTRING(settings,radio_spectator_hear),ELSTRING(settings,radio_spectator_hear_desc)], "Task Force Arrowhead Radio", true, true,{["spectatorCanHearFriendlies",TFAR_spectatorCanHearFriendlies] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-[
-    "TFAR_takingRadio",
-    "LIST",
-    [ELSTRING(settings,TAKERADIO_HEADER),ELSTRING(settings,TAKERADIO_DESC)],
-    "Task Force Arrowhead Radio",
-    [[0, 1, 2], [ELSTRING(settings,TAKERADIO_0), ELSTRING(settings,TAKERADIO_1), ELSTRING(settings,TAKERADIO_2)], 2],
-    true
-] call CBA_Settings_fnc_init;
-
-// client
-["TFAR_default_radioVolume", "SLIDER", ELSTRING(settings,radio_default_radioVolume), "Task Force Arrowhead Radio", [1, 9, 7, 0]] call CBA_Settings_fnc_init;
-["TFAR_volumeModifier_forceSpeech", "CHECKBOX", [ELSTRING(settings,radio_directSpeechModifier),ELSTRING(settings,radio_directSpeechModifier_desc)], "Task Force Arrowhead Radio", false] call CBA_Settings_fnc_init;
-["TFAR_intercomVolume", "SLIDER", ELSTRING(settings,radio_intercomVolume), "Task Force Arrowhead Radio", [0.01, 0.6, 0.3, 3], false, {["intercomVolume",TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_pluginTimeout", "SLIDER", ELSTRING(settings,radio_pluginTimeout), "Task Force Arrowhead Radio", [0.5, 10, 4, 3], false, {["pluginTimeout",TFAR_pluginTimeout] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_tangentReleaseDelay", "SLIDER", ELSTRING(settings,radio_tangentReleaseDelay), "Task Force Arrowhead Radio", [0, 500, 0, 0], false, {["tangentReleaseDelay",TFAR_tangentReleaseDelay] call TFAR_fnc_setPluginSetting;}] call CBA_Settings_fnc_init;
-["TFAR_PosUpdateMode", "LIST", [ELSTRING(settings,radio_positionUpdateMode),ELSTRING(settings,radio_positionUpdateMode_desc)], "Task Force Arrowhead Radio", [[0,0.1,0.2],[ELSTRING(settings,radio_positionUpdateMode_quality),ELSTRING(settings,radio_positionUpdateMode_normal),ELSTRING(settings,radio_positionUpdateMode_performance)],1], false, {}] call CBA_Settings_fnc_init;
-["TFAR_ShowVolumeHUD", "CHECKBOX", [ELSTRING(settings,radio_hudVolumeIndicator),ELSTRING(settings,radio_hudVolumeIndicator_desc)], "Task Force Arrowhead Radio", false, false, {if (TFAR_ShowVolumeHUD) then {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];} else {(QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];};}] call CBA_Settings_fnc_init;
-["TFAR_VolumeHudTransparency", "SLIDER", [ELSTRING(settings,radio_volumeIndicatorTransparency),ELSTRING(settings,radio_volumeIndicatorTransparency_desc)], "Task Force Arrowhead Radio", [0, 1, 0, 3], false, {call TFAR_fnc_updateSpeakVolumeUI;}] call CBA_Settings_fnc_init;
-["TFAR_oldVolumeHint", "CHECKBOX", [ELSTRING(settings,radio_useOldVolumeHint),ELSTRING(settings,radio_useOldVolumeHint_desc)], "Task Force Arrowhead Radio", false, false] call CBA_Settings_fnc_init;
-["TFAR_showTransmittingHint", "CHECKBOX", [ELSTRING(settings,radio_showTransmittingHint),ELSTRING(settings,radio_showTransmittingHint_desc)], "Task Force Arrowhead Radio", true, false] call CBA_Settings_fnc_init;
-["TFAR_showChannelChangedHint", "CHECKBOX", [ELSTRING(settings,radio_showChannelChangedHint),ELSTRING(settings,radio_showChannelChangedHint_desc)], "Task Force Arrowhead Radio", true, false] call CBA_Settings_fnc_init;
-
-
-//Global variables
-VARIABLE_DEFAULT(tf_west_radio_code,"_bluefor");//Server needs Radio codes for static_radios
-VARIABLE_DEFAULT(tf_east_radio_code,"_opfor");
-
-if (isNil "tf_independent_radio_code") then {
-    tf_independent_radio_code = "_independent";
-
-    if (([west, resistance] call BIS_fnc_areFriendly) and {!([east, resistance] call BIS_fnc_areFriendly)}) then {
-        tf_independent_radio_code = "_bluefor";
-    };
-
-    if (([east, resistance] call BIS_fnc_areFriendly) and {!([west, resistance] call BIS_fnc_areFriendly)}) then {
-        tf_independent_radio_code = "_opfor";
-    };
+if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
+    ["CBA_settingsInitialized", DFUNC(serverInit)] call CBA_fnc_addEventhandler;
 };
+GVAR(SettingsInitialized) = false;
+["CBA_settingsInitialized", {GVAR(SettingsInitialized) = true;}] call CBA_fnc_addEventhandler;
+
+#include "CBA_Settings.sqf"
 
 GVAR(VehicleConfigCacheNamespace) = false call CBA_fnc_createNamespace;
 GVAR(WeaponConfigCacheNamespace) = false call CBA_fnc_createNamespace;
@@ -77,33 +35,18 @@ if (hasInterface) then {//Clientside Variables
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_East,"TFAR_mr6000l");
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_Independent,"TFAR_anarc164");
 
-    //#depreacted
-    VARIABLE_DEFAULT(TF_defaultWestBackpack,"TFAR_rt1523g");
-    VARIABLE_DEFAULT(TF_defaultEastBackpack,"TFAR_mr3000");
-    VARIABLE_DEFAULT(TF_defaultGuerBackpack,"TFAR_anprc155");
-
-    VARIABLE_DEFAULT(TF_defaultWestPersonalRadio,"TFAR_anprc152");
-    VARIABLE_DEFAULT(TF_defaultEastPersonalRadio,"TFAR_fadak");
-    VARIABLE_DEFAULT(TF_defaultGuerPersonalRadio,"TFAR_anprc148jem");
-
-    VARIABLE_DEFAULT(TF_defaultWestRiflemanRadio,"TFAR_rf7800str");
-    VARIABLE_DEFAULT(TF_defaultEastRiflemanRadio,"TFAR_pnr1000a");
-    VARIABLE_DEFAULT(TF_defaultGuerRiflemanRadio,"TFAR_anprc154");
-
-    VARIABLE_DEFAULT(TF_defaultWestAirborneRadio,"TFAR_anarc210");
-    VARIABLE_DEFAULT(TF_defaultEastAirborneRadio,"TFAR_mr6000l");
-    VARIABLE_DEFAULT(TF_defaultGuerAirborneRadio,"TFAR_anarc164");
-
+    VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Name,"TaskForceRadio");
+    VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Password,"123");
 
     VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
 
     MUTEX_INIT(TF_radio_request_mutex);
 
-    TF_use_saved_sw_setting = false;
-    TF_saved_active_sw_settings = nil;
+    GVAR(use_saved_sr_setting) = false;
+    GVAR(saved_active_sr_settings) = nil;
 
-    TF_use_saved_lr_setting = false;
-    TF_saved_active_lr_settings = nil;
+    GVAR(use_saved_lr_setting) = false;
+    GVAR(saved_active_lr_settings) = nil;
 
     TF_curator_backpack_1 = nil;
     TF_curator_backpack_2 = nil;

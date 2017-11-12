@@ -23,16 +23,16 @@
 
 params ["_target", "_unit", "_radio"];
 
-If (TFAR_takingRadio < 1) exitWith {false};
+if (TFAR_takingRadio < 1) exitWith {false};
 
-If ((TFAR_takingRadio isEqualTo 1) && ((!(_target getVariable ["ACE_isDead", true])) || {alive _target})) exitWith {false};
+if ((TFAR_takingRadio isEqualTo 1) && ((!(_target getVariable ["ACE_isDead", true])) || {alive _target})) exitWith {false};
 
-If ((TFAR_takingRadio > 1) && 
+if ((TFAR_takingRadio > 1) && 
     {_target call ace_common_fnc_isAwake} && 
     {!(_target getVariable ["ace_captives_isHandcuffed", false])} && 
     {!(_target getVariable ["ace_captives_isSurrendering", false])}) exitWith {false};
 
-If (_radio isEqualType "") then {
+if (_radio isEqualType "") then {
     _unit canAdd _radio
 } else {
     (backpack _unit) isEqualTo ""
