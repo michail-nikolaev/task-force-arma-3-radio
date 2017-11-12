@@ -56,8 +56,8 @@ class Cfg3DEN {
                 collapsed = 1;
                 class Attributes {
                     class TFAR_freq_sr {
-                        displayName = ECSTRING(core,DefaultRadioFrequencies_SR);
-                        tooltip = ECSTRING(core,DefaultRadioFrequencies_SR_desc);
+                        displayName = ECSTRING(settings,DefaultRadioFrequencies_SR);
+                        tooltip = ECSTRING(settings,DefaultRadioFrequencies_SR_desc);
                         property = "TFAR_freq_sr";
                         control = "EditArray";
                         expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
@@ -96,8 +96,8 @@ class Cfg3DEN {
                 collapsed = 1;
                 class Attributes {
                     class TFAR_freq_sr {
-                        displayName = ECSTRING(core,DefaultRadioFrequencies_SR);
-                        tooltip = ECSTRING(core,DefaultRadioFrequencies_SR_desc);
+                        displayName = ECSTRING(settings,DefaultRadioFrequencies_SR);
+                        tooltip = ECSTRING(settings,DefaultRadioFrequencies_SR_desc);
                         property = "TFAR_freq_sr";
                         expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
                         control = "EditArray";
