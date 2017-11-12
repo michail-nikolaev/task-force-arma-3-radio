@@ -245,4 +245,4 @@ call TFAR_fnc_processRespawn; //Handle our current spawn
         };
 }] call CBA_fnc_waitUntilAndExecute;
 
-call TFAR_fnc_sendPluginConfig;
+[{GVAR(SettingsInitialized)}, DFUNC(sendPluginConfig), []] call CBA_fnc_waitUntilAndExecute;
