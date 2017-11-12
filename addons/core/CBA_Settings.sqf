@@ -382,7 +382,7 @@
     "TFAR_rt1523g",
     1,
     {
-        TFAR_DefaultRadio_Backpack_west = if (([_this, "tf_subtype"] call DFUNC(getConfigProperty)) == "digital_lr") then {_this} else {"TFAR_rt1523g"};
+        TFAR_DefaultRadio_Backpack_west = if (([_this, "tf_subtype"] call DFUNC(getVehicleConfigProperty)) == "digital_lr") then {_this} else {"TFAR_rt1523g"};
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -393,7 +393,7 @@
     "TFAR_mr3000",
     1,
     {
-        TFAR_DefaultRadio_Backpack_East = if (([_this, "tf_subtype"] call DFUNC(getConfigProperty)) == "digital_lr") then {_this} else {"TFAR_mr3000"};
+        TFAR_DefaultRadio_Backpack_East = if (([_this, "tf_subtype"] call DFUNC(getVehicleConfigProperty)) == "digital_lr") then {_this} else {"TFAR_mr3000"};
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -404,7 +404,7 @@
     "TFAR_anprc155",
     1,
     {
-        TFAR_DefaultRadio_Backpack_Independent = if (([_this, "tf_subtype"] call DFUNC(getConfigProperty)) == "digital_lr") then {_this} else {"TFAR_anprc155"};
+        TFAR_DefaultRadio_Backpack_Independent = if (([_this, "tf_subtype"] call DFUNC(getVehicleConfigProperty)) == "digital_lr") then {_this} else {"TFAR_anprc155"};
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -415,7 +415,7 @@
     "TFAR_anarc210",
     1,
     {
-        TFAR_DefaultRadio_Airborne_West = if (([_this, "tf_subtype"] call DFUNC(getConfigProperty)) == "airborne") then {_this} else {"TFAR_anarc210"};
+        TFAR_DefaultRadio_Airborne_West = if (([_this, "tf_subtype"] call DFUNC(getVehicleConfigProperty)) == "airborne") then {_this} else {"TFAR_anarc210"};
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -426,7 +426,7 @@
     "TFAR_mr6000l",
     1,
     {
-        TFAR_DefaultRadio_Airborne_east = if (([_this, "tf_subtype"] call DFUNC(getConfigProperty)) == "airborne") then {_this} else {"TFAR_mr6000l"};
+        TFAR_DefaultRadio_Airborne_east = if (([_this, "tf_subtype"] call DFUNC(getVehicleConfigProperty)) == "airborne") then {_this} else {"TFAR_mr6000l"};
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -437,7 +437,7 @@
     "TFAR_anarc164",
     1,
     {
-        TFAR_DefaultRadio_Airborne_Independent = if (([_this, "tf_subtype"] call DFUNC(getConfigProperty)) == "airborne") then {_this} else {"TFAR_anarc164"};
+        TFAR_DefaultRadio_Airborne_Independent = if (([_this, "tf_subtype"] call DFUNC(getVehicleConfigProperty)) == "airborne") then {_this} else {"TFAR_anarc164"};
     }
 ] call CBA_Settings_fnc_init;
 [
