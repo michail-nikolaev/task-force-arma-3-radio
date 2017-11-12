@@ -66,7 +66,7 @@ if (_isSW) then {
 
 } else {
 
-    private _encryptionCode = [(_this param [2, "", [""]]), "tf_encryptionCode"] call DFUNC(getConfigProperty);
+    private _encryptionCode = [(_this param [2, "", [""]]), "tf_encryptionCode"] call DFUNC(getVehicleConfigProperty);
 
     private _value = nil;
 
