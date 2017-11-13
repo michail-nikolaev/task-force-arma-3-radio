@@ -27,8 +27,8 @@ class CfgVehicles {
                 condition = "1";
             };
             class TFAR_freq_lr {
-                displayName = ECSTRING(core,DefaultRadioFrequencies_LR);
-                tooltip = ECSTRING(core,DefaultRadioFrequencies_LR_desc);
+                displayName = ECSTRING(settings,DefaultRadioFrequencies_LR);
+                tooltip = ECSTRING(settings,DefaultRadioFrequencies_LR_desc);
                 property = "TFAR_freq_lr";
                 control = "EditArray";
                 expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
