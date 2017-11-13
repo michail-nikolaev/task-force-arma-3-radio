@@ -245,7 +245,7 @@
             <Russian>Не обнаружена серверная часть Task Force Radio!</Russian>
             <Spanish>¡El servidor no dispone de Task Force Radio!</Spanish>
             <Turkish>Radyo serverda oluşturulamadı!</Turkish>
-            <Japanese>サーバー上でタスクフォース ラジオが動作していません！</Japanese>
+            <Japanese>サーバー上でタスクフォース ラジオが動作していません!</Japanese>
             <Korean>Task Force Radio가 서버에서 사용되고 있지 않습니다!</Korean>
             <Chinese>伺服器端並未掛載Task Force Radio模組!</Chinese>
             <Chinesesimp>伺服器端并未挂载Task Force Radio模组!</Chinesesimp>
@@ -995,7 +995,7 @@
             <English>Cargo</English>
             <Chinese>乘客</Chinese>
             <Chinesesimp>乘客</Chinesesimp>
-            <Japanese>カーゴ</Japanese>
+            <Japanese>後部座席</Japanese>
         </Key>
         <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Channel2">
             <English>Crew</English>
@@ -1130,7 +1130,7 @@
                 <French>Mêmes fréquences LP pour l'équipe</French>
                 <German>Gleiche Langstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości LR dla strony</Polish>
-                <Japanese>陣営に同じ長距離無線機の周波数</Japanese>
+                <Japanese>陣営の長距離無線機に同一の周波数</Japanese>
                 <Korean>진영에 같은 장파 주파수</Korean>
                 <Chinese>同陣營使用相同的長程無線電頻率</Chinese>
                 <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
@@ -1140,7 +1140,7 @@
                 <French>Mêmes fréquences CP pour le camp</French>
                 <German>Gleiche Kurzstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości SW dla strony</Polish>
-                <Japanese>陣営に同じ短距離無線機の周波数</Japanese>
+                <Japanese>陣営の短距離無線機に同一の周波数</Japanese>
                 <Korean>진영에 같은 단파 주파수</Korean>
                 <Chinese>同陣營使用相同的短程無線電頻率</Chinese>
                 <Chinesesimp>同阵营使用相同的短程无线电频率</Chinesesimp>
@@ -1271,13 +1271,13 @@
                 <English>Quality</English>
                 <Chinese>品質</Chinese>
                 <Chinesesimp>品质</Chinesesimp>
-                <Japanese>品質</Japanese>
+                <Japanese>クオリティ</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_positionUpdateMode_normal">
                 <English>Normal</English>
                 <Chinese>普通</Chinese>
                 <Chinesesimp>普通</Chinesesimp>
-                <Japanese>普通</Japanese>
+                <Japanese>ノーマル</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_positionUpdateMode_performance">
                 <English>Performance</English>
@@ -1371,7 +1371,7 @@
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_desc">
                 <English>Define the default SR-settings for this entity</English>
                 <German>Das Festlegen der Standard Kurzwellenfrequenzen für diese Entität.</German>
-                <Japanese>短距離無線機の標準設定:をこのエントリで定義します</Japanese>
+                <Japanese>短距離無線機の標準設定をこのエントリで定義します</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR">
                 <English>Default LR-settings:</English>
@@ -1381,7 +1381,7 @@
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_desc">
                 <English>Define the default LR-settings for this entity</English>
                 <German>Das Festlegen der Standard Langwellenfrequenzen für diese Entität.</German>
-                <Japanese>長距離無線機の標準設定:をこのエントリで定義します</Japanese>
+                <Japanese>長距離無線機の標準設定をこのエントリで定義します</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_west">
                 <English>Default SR-settings (NATO):</English>
@@ -1406,7 +1406,7 @@
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_independent">
                 <English>Default SR-settings (AAF):</English>
                 <German>Standard Kurzwellen-Frequenzen (AAF):</German>
-                <Japanese>短距離無線機の標準設定 (AAF)::</Japanese>
+                <Japanese>短距離無線機の標準設定 (AAF):</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_independent_desc">
                 <English>Define the default SR-settings for the AAF side as a list. e.g.: 99,101,250</English>
@@ -1436,7 +1436,7 @@
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_independent">
                 <English>Default LR-settings (AAF):</English>
                 <German>Standard Langwellen-Frequenzen (AAF):</German>
-                <Japanese>長距離無線機の標準設定 (AAF)::</Japanese>
+                <Japanese>長距離無線機の標準設定 (AAF):</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_independent_desc">
                 <English>Define the default LR-settings for the AAF side as a list. e.g.: 99,101,250</English>
