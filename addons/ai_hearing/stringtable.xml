@@ -4,10 +4,12 @@
         <Key ID="STR_TFAR_AI_HEARING_SETTING_HEADER">
             <English>AI Hearing</English>
             <German>Hörende KI</German>
+            <Japanese>AI の聴覚</Japanese>
         </Key>
         <Key ID="STR_TFAR_AI_HEARING_SETTING_DESC">
             <English>If enabled, the ai is able to detect speaking players.</English>
             <German>Wenn aktiviert, dann reagiert die KI auf die Gespräche der Spieler.</German>
+            <Japanese>有効化すると、このユニットはプレイヤーの話し声を検知します。</Japanese>
         </Key>
     </Package>
 </Project>
