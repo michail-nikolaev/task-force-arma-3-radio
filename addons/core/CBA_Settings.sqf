@@ -14,7 +14,7 @@
     "Task Force Arrowhead Radio", 
     false,
     0
-] call CBA_Settings_fnc_init;//#Stringtable
+] call CBA_Settings_fnc_init;
 [
     "TFAR_intercomVolume", 
     "SLIDER",
