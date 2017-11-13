@@ -16,8 +16,8 @@ GVAR(WeaponConfigCacheNamespace) = false call CBA_fnc_createNamespace;
 if (hasInterface) then {//Clientside Variables
     call TFAR_fnc_initKeybinds;
     //PreInit variablesy
-    VARIABLE_DEFAULT(tf_radio_channel_name,"TaskForceRadio");
-    VARIABLE_DEFAULT(tf_radio_channel_password,"123");
+    VARIABLE_DEFAULT(TFAR_radio_channel_name,"TaskForceRadio");
+    VARIABLE_DEFAULT(TFAR_radio_channel_password,"123");
 
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_West,"TFAR_rt1523g");
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_East,"TFAR_mr3000");
