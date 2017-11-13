@@ -2,53 +2,53 @@
 <Project ID="TFAR">
     <Package name="backpacks">
         <Key ID="STR_TFAR_handhelds_RF7800STR">
-            <Original>RF-7800S-TR</Original>
+            <English>RF-7800S-TR</English>
             <Japanese>RF-7800S-TR</Japanese>
         </Key>
         <Key ID="STR_TFAR_handhelds_RF7800STR_Desc">
-            <Original>RF-7800S-TR rifleman radio 2km</Original>
+            <English>RF-7800S-TR rifleman radio 2km</English>
             <Chinese>RF-7800S-TR短程步兵無線電，有效距離2公里</Chinese>
             <Chinesesimp>RF-7800S-TR短程步兵无线电，有效距离2公里</Chinesesimp>
             <Japanese>RF-7800S-TR 小銃手用無線機 2km</Japanese>
         </Key>
         <Key ID="STR_TFAR_handhelds_PNR1000A">
-            <Original>PNR-1000A</Original>
+            <English>PNR-1000A</English>
             <Japanese>PNR-1000A</Japanese>
         </Key>
         <Key ID="STR_TFAR_handhelds_PNR1000A_Desc">
-            <Original>PNR-1000A rifleman radio 2km</Original>
+            <English>PNR-1000A rifleman radio 2km</English>
             <Chinese>PNR-1000A短程步兵無線電，有效距離2公里</Chinese>
             <Chinesesimp>PNR-1000A短程步兵无线电，有效距离2公里</Chinesesimp>
             <Japanese>PNR-1000A 小銃手用無線機 2km</Japanese>
         </Key>
         <Key ID="STR_TFAR_handhelds_MicroDagr">
-            <Original>MicroDAGR Radio Programmer</Original>
+            <English>MicroDAGR Radio Programmer</English>
             <Chinese>微型軍用GPS接收器 (無線電編碼器)</Chinese>
             <Chinesesimp>微型军用GPS接收器 (无线电编码器)</Chinesesimp>
             <Japanese>マイクロDAGR 設定器</Japanese>
         </Key>
         <Key ID="STR_TFAR_handhelds_MicroDagr_Desc">
-            <Original>Provides ability to program rifleman radios in the field</Original>
+            <English>Provides ability to program rifleman radios in the field</English>
             <Chinese>使持有人能在戰場上調整短程步兵無線電的頻率設定</Chinese>
             <Chinesesimp>使持有人能在战场上调整短程步兵无线电的频率设定</Chinesesimp>
             <Japanese>戦場において小銃手用無線機の設定が可能になります</Japanese>
         </Key>
         <Key ID="STR_TFAR_handhelds_FADAK">
-            <Original>FADAK</Original>
+            <English>FADAK</English>
             <Japanese>FADAK</Japanese>
         </Key>
         <Key ID="STR_TFAR_handhelds_FADAK_Desc">
-            <Original>FADAK personal radio 5km</Original>
+            <English>FADAK personal radio 5km</English>
             <Chinese>FADAK短程個人無線電，有效距離5公里</Chinese>
             <Chinesesimp>FADAK短程个人无线电，有效距离5公里</Chinesesimp>
             <Japanese>FADAK 個人用無線機 5km</Japanese>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC154">
-            <Original>AN/PRC-154</Original>
+            <English>AN/PRC-154</English>
             <Japanese>AN/PRC-154</Japanese>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC154_Desc">
-            <Original>AN/PRC-154 rifleman radio 2km</Original>
+            <English>AN/PRC-154 rifleman radio 2km</English>
             <Chinese>AN/PRC-154短程步兵無線電，有效距離2公里</Chinese>
             <Chinesesimp>AN/PRC-154短程步兵无线电，有效距离2公里</Chinesesimp>
             <Japanese>AN/PRC-154 小銃手用無線機 2km</Japanese>
@@ -58,17 +58,17 @@
             <Japanese>AN/PRC-152</Japanese>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC152_Desc">
-            <Original>AN/PRC-152 personal radio 5km</Original>
+            <English>AN/PRC-152 personal radio 5km</English>
             <Chinese>AN/PRC-152短程個人無線電，有效距離5公里</Chinese>
             <Chinesesimp>AN/PRC-152短程个人无线电，有效距离5公里</Chinesesimp>
             <Japanese>AN/PRC-152 個人用無線機 5km</Japanese>
         </Key>
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM">
-            <Original>AN/PRC-148 JEM</Original>
+            <English>AN/PRC-148 JEM</English>
             <Japanese>AN/PRC-148 JEM</Japanese>
         </Key>
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM_Desc">
-            <Original>AN/PRC-148 JEM personal radio 5km</Original>
+            <English>AN/PRC-148 JEM personal radio 5km</English>
             <Chinese>AN/PRC-148 JEM短程個人無線電，有效距離5公里</Chinese>
             <Chinesesimp>AN/PRC-148 JEM短程个人无线电，有效距离5公里</Chinesesimp>
             <Japanese>AN/PRC-148 JEM 個人用無線機 5km</Japanese>
