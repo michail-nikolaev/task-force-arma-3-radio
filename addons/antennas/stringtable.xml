@@ -2,6 +2,7 @@
 <Project ID="TFAR">
     <Package name="antennas">
         <Key ID="STR_TFAR_ANTENNAS_TOWERNAME">
+            <Original>Communication Tower (TFAR)</Original>
             <English>Communication Tower (TFAR)</English>
             <Chinese>通訊塔 (TFAR)</Chinese>
             <French>Tour de communication (TFAR)</French>
