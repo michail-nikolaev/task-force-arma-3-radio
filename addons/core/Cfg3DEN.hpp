@@ -29,7 +29,7 @@ class Cfg3DEN {
                             tooltip = ECSTRING(settings,TeamspeakChannel_name_desc);
                             property = "TFAR_Teamspeak_Channel_Name";
                             control = "Edit";
-                            expression = QUOTE(_this setVariable [ARR_3('%s',_value,true)];);
+                            expression = QUOTE(If ((isNil '%s') || {!(_value isEqualTo '')}) then {missionNamespace setVariable [ARR_3('%s',_value,true)];};);
                             validate = "none";
                             typeName = "STRING";
                             defaultValue = "''";
@@ -39,7 +39,7 @@ class Cfg3DEN {
                             tooltip = ECSTRING(settings,TeamspeakChannel_password_desc);
                             property = "TFAR_Teamspeak_Channel_Password";
                             control = "Edit";
-                            expression = QUOTE(_this setVariable [ARR_3('%s',_value,true)];);
+                            expression = QUOTE(If ((isNil '%s') || {!(_value isEqualTo '')}) then {missionNamespace setVariable [ARR_3('%s',_value,true)];};);
                             validate = "none";
                             typeName = "STRING";
                             defaultValue = "''";

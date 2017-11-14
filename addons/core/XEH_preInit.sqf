@@ -13,11 +13,13 @@ GVAR(SettingsInitialized) = false;
 GVAR(VehicleConfigCacheNamespace) = false call CBA_fnc_createNamespace;
 GVAR(WeaponConfigCacheNamespace) = false call CBA_fnc_createNamespace;
 
+VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Name,"");
+VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Password,"");
+
+
 if (hasInterface) then {//Clientside Variables
     call TFAR_fnc_initKeybinds;
     //PreInit variablesy
-    VARIABLE_DEFAULT(TFAR_radio_channel_name,"TaskForceRadio");
-    VARIABLE_DEFAULT(TFAR_radio_channel_password,"123");
 
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_West,"TFAR_rt1523g");
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_East,"TFAR_mr3000");
@@ -34,9 +36,6 @@ if (hasInterface) then {//Clientside Variables
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_West,"TFAR_anarc210");
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_East,"TFAR_mr6000l");
     VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_Independent,"TFAR_anarc164");
-
-    VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Name,"TaskForceRadio");
-    VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Password,"123");
 
     VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
 
