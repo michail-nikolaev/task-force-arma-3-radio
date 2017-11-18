@@ -48,7 +48,7 @@ private _hintText = format[
                             format [
                                     "%1<img size='1.5' image='%2'/>",
                                     ([_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty)),
-                                    ([_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty))
+                                    ([_radio, "picture", ""] call DFUNC(getWeaponConfigProperty))
                                     ],
                             (_radio call TFAR_fnc_getSwChannel) + 1,
                             _currentFrequency

@@ -78,7 +78,7 @@
             <Chinesesimp>无线电音量</Chinesesimp>
             <Japanese>無線機の音量</Japanese>
         </Key>
-        <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_RadioVolume_Tip">
+        <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_RadioVolume_tooltip">
             <Original>The normal max for this setting is 10. But for static Radios their volume can be amplified. Be careful using this on Radios that can be picked up by Players! A too high setting can cause performance problems on clients.</Original>
             <English>The normal max for this setting is 10. But for static Radios their volume can be amplified. Be careful using this on Radios that can be picked up by Players! A too high setting can cause performance problems on clients.</English>
             <Chinese>此設定在普通的狀態下最大值為10。但對於固定式無線電來說，它們的音量還可以再被放大。請小心使用在可以被玩家撿起來的無線電上!過高的設定可能會影響客戶端電腦的效能。</Chinese>
