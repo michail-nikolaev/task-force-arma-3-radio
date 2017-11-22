@@ -1,3 +1,4 @@
+/*
 class ctrlMenuStrip;
 class display3DEN {
     class Controls {
@@ -15,40 +16,18 @@ class display3DEN {
         };
     };
 };
+*/
 class Cfg3DEN {
+    /*
     class Mission {
         class TFAR_Preferences {
             displayName = ECSTRING(core,3DEN_Menu);
             class AttributeCategories {
-                class TFAR_Teamspeak_Channel {
-                    displayName = ECSTRING(settings,TeamspeakChannel);
-                    collapsed = 0;
-                    class Attributes {
-                        class TFAR_Teamspeak_Channel_Name {
-                            displayName = ECSTRING(settings,TeamspeakChannel_name);
-                            tooltip = ECSTRING(settings,TeamspeakChannel_name_desc);
-                            property = "TFAR_Teamspeak_Channel_Name";
-                            control = "Edit";
-                            expression = QUOTE(If ((isNil '%s') || {!(_value isEqualTo '')}) then {missionNamespace setVariable [ARR_3('%s',_value,true)];};);
-                            validate = "none";
-                            typeName = "STRING";
-                            defaultValue = "''";
-                        };
-                        class TFAR_Teamspeak_Channel_Password {
-                            displayName = ECSTRING(settings,TeamspeakChannel_password);
-                            tooltip = ECSTRING(settings,TeamspeakChannel_password_desc);
-                            property = "TFAR_Teamspeak_Channel_Password";
-                            control = "Edit";
-                            expression = QUOTE(If ((isNil '%s') || {!(_value isEqualTo '')}) then {missionNamespace setVariable [ARR_3('%s',_value,true)];};);
-                            validate = "none";
-                            typeName = "STRING";
-                            defaultValue = "''";
-                        };
-                    };
-                };
+                
             };
         };
     };
+    */
     class Object {
         class AttributeCategories {
             class TFAR_attributes {
