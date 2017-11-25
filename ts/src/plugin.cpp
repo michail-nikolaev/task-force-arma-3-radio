@@ -407,6 +407,9 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
     TFAR::getInstance().getPlaybackHandler()->onEditMixedPlaybackVoiceDataEvent(samples, sampleCount, channels, channelSpeakerArray, channelFillMask);
 }
 
+#define LOG3DMUTE //Teamspeak::printMessageToCurrentTab
+
+
 void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID, short* samples, int sampleCount, int channels, bool isFromMicrophone = false) {
     if (!TFAR::getInstance().getCurrentlyInGame())
         return;
@@ -422,7 +425,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     auto clientData = clientDataDir->getClientData(clientID);
     if (!clientData) {
         //Should not happen..
-        Teamspeak::printMessageToCurrentTab("TFAR nosim NoCliData");
+        LOG3DMUTE("TFAR nosim NoCliData");
         log_string(std::string("No info about ") + std::to_string(clientID.baseType()) + " " + Teamspeak::getClientNickname(serverConnectionHandlerID, clientID), LogLevel_ERROR);
         return; //Unknown client
     }
@@ -448,7 +451,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                 log_string(std::string("No plugin enabled for ") + std::to_string(clientID.baseType()) + " " + nickname, LogLevel_DEBUG);
             last_no_info = std::chrono::system_clock::now();
         }
-        Teamspeak::printMessageToCurrentTab((senderNickname+" TFAR nosim NoPlugEn").c_str());
+        LOG3DMUTE((senderNickname+" TFAR nosim NoPlugEn").c_str());
         return;
     }
     bool canSpeak = clientDataDir->myClientData->canSpeak;
@@ -463,7 +466,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
     if (!isHearableInSpectator && isSeriousModeEnabled(serverConnectionHandlerID, clientID) && (!alive || !clientData->isAlive())) {
         helpers::applyGain(samples, sampleCount, channels, 0.0f);
-        Teamspeak::printMessageToCurrentTab((senderNickname + "TFAR Mute !spec && Serious && (!alive||!alive2)").c_str());
+        LOG3DMUTE((senderNickname + "TFAR Mute !spec && Serious && (!alive||!alive2)").c_str());
         return;
     }
     auto myData = clientDataDir->myClientData;
@@ -505,7 +508,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
                 auto atten = helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume);
                 if (atten < 0.15)
-                    Teamspeak::printMessageToCurrentTab((senderNickname + "TFAR SemiMute atten s1 <0.15").c_str());
+                    LOG3DMUTE((senderNickname + "TFAR SemiMute atten s1 <0.15").c_str());
                 helpers::applyGain(samples, sampleCount, channels, atten);
                 if (!isInSameVehicle && clientData->objectInterception > 0) {
                     helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, 1.0f,
@@ -515,12 +518,12 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                 helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), clientData->effects.getFilterVehicle("local_vehicle", vehicleVolumeLoss));
             }
         } else {
-            Teamspeak::printMessageToCurrentTab((senderNickname + "TFAR SemiMute shouldn't hear").c_str());
+            LOG3DMUTE((senderNickname + "TFAR SemiMute shouldn't hear").c_str());
             helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume) * CANT_SPEAK_GAIN, (clientData->effects.getFilterCantSpeak("local_cantspeak")));
         }
 
     } else if (!isHearableInPureSpectator) { //.... unless we are both spectating
-        Teamspeak::printMessageToCurrentTab((senderNickname + "TFAR Mute !PureSpec or spec or dist").c_str());
+        LOG3DMUTE((senderNickname + "TFAR Mute !PureSpec or spec or dist").c_str());
         memset(samples, 0, channels * sampleCount * sizeof(short));
     }
 
@@ -809,6 +812,7 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     senderClientData->range = pressed ? range : 0; //Setting range to 0 on transmit end helps identifying if he is currently sending
 
     auto clientId = senderClientData->clientId;
+    bool transmissionCounted = false;
 
     //Check where we can Receive him. Radios or Speakers
     if (pressed)
@@ -823,9 +827,11 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
 
             float gain = helpers::volumeMultiplifier(static_cast<float>(listedInfo.volume)) * TFAR::getInstance().m_gameData.globalVolume;
 
-            if (playPressed) {
+            if (playPressed && !transmissionCounted) {
                 myClientData->receivingTransmission += 1; //Set that we are receiving a transmission. For the EventHandler
                 myClientData->receivingFrequencies.emplace(frequency);
+                transmissionCounted = true;//prevent from multiple adds if you have multiple radios on same freq
+                Teamspeak::printMessageToCurrentTab((nickname + " TPEH Recv g=" + std::to_string(gain)).c_str());
             }
 
             switch (PTTDelayArguments::stringToSubtype(subtype)) {
@@ -839,11 +845,13 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
                     TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/ab/remote_start" : "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
             }
+
         }
     }
     if (!playPressed) {
         myClientData->receivingTransmission -= 1;
         myClientData->receivingFrequencies.erase(frequency);
+        Teamspeak::printMessageToCurrentTab((nickname + " TPEH NRecv g=").c_str());
     }
 
     setGameClientMuteStatus(serverId, clientId, { true,!listedInfos.empty() });
