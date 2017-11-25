@@ -40,36 +40,6 @@ public:
 };
 
 template<>
-class LockGuard_exclusive<CRITICAL_SECTION> {
-    CRITICAL_SECTION* m_lock;
-    bool isLocked;
-public:
-    explicit LockGuard_exclusive(CRITICAL_SECTION* _cs) : m_lock(_cs) { EnterCriticalSection(m_lock); isLocked = true; }
-    ~LockGuard_exclusive() { if (isLocked) LeaveCriticalSection(m_lock); }
-    void unlock() {
-        if (isLocked) {
-            LeaveCriticalSection(m_lock);
-            isLocked = false;
-        };
-    }
-};
-
-template<>
-class LockGuard_exclusive<SRWLOCK> {
-    SRWLOCK* m_lock;
-    bool isLocked;
-public:
-    explicit LockGuard_exclusive(SRWLOCK* _cs) : m_lock(_cs) { AcquireSRWLockExclusive(m_lock); isLocked = true; }
-    ~LockGuard_exclusive() { if (isLocked) ReleaseSRWLockExclusive(m_lock); }
-    void unlock() {
-        if (isLocked) {
-            ReleaseSRWLockExclusive(m_lock);
-            isLocked = false;
-        };
-    }
-};
-
-template<>
 class LockGuard_exclusive<CriticalSectionLock> {
     CriticalSectionLock* m_lock;
     bool isLocked;
@@ -100,21 +70,6 @@ public:
 };
 
 template<>
-class LockGuard_shared<CRITICAL_SECTION> { //There is no "shared" CriticalSection. So we do the same as exclusive
-    CRITICAL_SECTION* m_lock;
-    bool isLocked;
-public:
-    explicit LockGuard_shared(CRITICAL_SECTION* _cs) : m_lock(_cs) { EnterCriticalSection(m_lock); isLocked = true; }
-    ~LockGuard_shared() { if (isLocked) LeaveCriticalSection(m_lock); }
-    void unlock() {
-        if (isLocked) {
-            LeaveCriticalSection(m_lock);
-            isLocked = false;
-        };
-    }
-};
-
-template<>
 class LockGuard_shared<CriticalSectionLock> {   //There is no "shared" CriticalSection. So we do the same as exclusive
     CriticalSectionLock* m_lock;
     bool isLocked;
@@ -124,21 +79,6 @@ public:
     void unlock() {
         if (isLocked) {
             LeaveCriticalSection(&m_lock->m_lock);
-            isLocked = false;
-        };
-    }
-};
-
-template<>
-class LockGuard_shared<SRWLOCK> {
-    SRWLOCK* m_lock;
-    bool isLocked;
-public:
-    explicit LockGuard_shared(SRWLOCK* _cs) : m_lock(_cs) { AcquireSRWLockShared(m_lock); isLocked = true; }
-    ~LockGuard_shared() { if (isLocked) ReleaseSRWLockShared(m_lock); }
-    void unlock() {
-        if (isLocked) {
-            ReleaseSRWLockShared(m_lock);
             isLocked = false;
         };
     }

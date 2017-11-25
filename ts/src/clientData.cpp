@@ -74,6 +74,10 @@ bool clientData::isAlive() {
     return !timeout;
 }
 
+clientData* lastORCheck = nullptr;
+#include "Teamspeak.hpp"
+#define DIAGLOG(x) if (lastORCheck != this) Teamspeak::printMessageToCurrentTab((x).c_str())
+
 LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent, AntennaConnection& antennaConnection) {
     //Sender is this
     LISTED_INFO result;
@@ -83,9 +87,10 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     result.waveZ = 1.0f;
     if (!myData) return result;
 
+    std::string senderNickname = getNickname();
+
     Position3D myPosition = myData->getClientPosition();
     Position3D clientPosition = getClientPosition();
-
 
     //If we are underwater and can still use SWRadio then we are in a vehicle
     bool receiverUnderwater = myPosition.getHeight() < 0 && !myData->canUseSWRadio;
@@ -99,6 +104,10 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     } else if ((currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_LR || ignoreLrTangent) && canUseLRRadio) {//Sending from LR
         result.over = sendingRadioType::LISTEN_TO_LR;
     } else {
+        DIAGLOG(senderNickname + " IOLR No Send? ttot="+std::to_string((int) currentTransmittingTangentOverType)+" CURF="+
+            std::to_string(canUseSWRadio) +
+            std::to_string(canUseDDRadio) +
+            std::to_string(canUseLRRadio));
         //He isn't actually sending on anything... 
         return result;
     }
@@ -114,11 +123,15 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     //Sender is sending on a Frequency we are listening to on our SW Radio
     bool senderOnSWFrequency = TFAR::getInstance().m_gameData.mySwFrequencies.count(senderFrequency) != 0;
     countLock.unlock();
-    if (!senderOnSWFrequency && !senderOnLRFrequency) return result; //He's not on any frequency we can receive on
+    if (!senderOnSWFrequency && !senderOnLRFrequency) {
+        DIAGLOG(senderNickname + " IOLR No freq sf=" + senderFrequency);
+        return result; //He's not on any frequency we can receive on
+    }
 
     float effectiveDist = myData->effectiveDistanceTo(this);
 
     if (isUnderwater) {
+        DIAGLOG(senderNickname + " IOLR underwater");
         float underwaterDist = myPosition.distanceUnderwater(clientPosition);
         //Seperate distance underwater and distance overwater.
         effectiveDist = underwaterDist * (range / helpers::distanceForDiverRadio()) + (effectiveDist - underwaterDist);
@@ -134,8 +147,11 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
         }
     }
 
-    if (effectiveDist > range) //Out of range
+    if (effectiveDist > range) {    //Out of range
+        DIAGLOG(senderNickname + " IOLR No reach ed=" + std::to_string(effectiveDist) + " rng=" + std::to_string(range));
         return result;
+    }
+        
     //#TODO always have a "valid" antenna connection in the end result. Just to transmit the connectionLoss to not have to calculate it again
     result.antennaConnection = antennaConnection;
 
@@ -150,28 +166,39 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
         auto &frequencyInfo = TFAR::getInstance().m_gameData.myLrFrequencies[senderFrequency];
         if (!TFAR::config.get<bool>(Setting::full_duplex) && //If we are currently transmitting on that Radio we can't hear so we return before result gets valid
             frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0) {
+            DIAGLOG(senderNickname + " IOLR No duplex LR RECV");
             return result;
         }
         result.on = receivingRadioType::LISTED_ON_LR;
         result.volume = frequencyInfo.volume;
         result.stereoMode = frequencyInfo.stereoMode;
+        DIAGLOG(senderNickname + " IOLR RECV! RC=" + frequencyInfo.radioClassname);
     } else if (senderOnSWFrequency && myData->canUseSWRadio) {//to our SW
         LockGuard_shared lock(&TFAR::getInstance().m_gameData.m_lock);
         auto &frequencyInfo = TFAR::getInstance().m_gameData.mySwFrequencies[senderFrequency];
         if (!TFAR::config.get<bool>(Setting::full_duplex) && //If we are currently transmitting on that Radio we can't hear so we return before result gets valid
             frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0) {
+            DIAGLOG(senderNickname + " IOLR No duplex SR RECV");
             return result;
         }
         result.on = receivingRadioType::LISTED_ON_SW;
         result.volume = frequencyInfo.volume;
         result.stereoMode = frequencyInfo.stereoMode;
+        DIAGLOG(senderNickname + " IOLR RECV! RC="+ frequencyInfo.radioClassname);
     }
     return result;
 }
 
 std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent) {
+    execAtReturn setLastOr([this](){
+        lastORCheck = this;
+    });
+    std::string senderNickname = getNickname();
     std::vector<LISTED_INFO> result;
-    if (!myData) return result;
+    if (!myData) {
+        DIAGLOG(senderNickname+ " IOR No Data");
+        return result;
+    }
     //Intercom has to be here because it has to be before range==0 check
     //vehicle intercom
     auto vecDescriptor = getVehicleDescriptor();
@@ -181,25 +208,30 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
         vecDescriptor.vehicleName != "no" && vecDescriptor.vehicleName == myVecDescriptor.vehicleName //In same vehicle 
         && vecDescriptor.intercomSlot != -1 && vecDescriptor.intercomSlot == myVecDescriptor.intercomSlot) { //On same Intercom Channel
         result.emplace_back(
-            sendingRadioType::LISTEN_TO_SW,	//unused
+            sendingRadioType::LISTEN_TO_SW, //unused
             receivingRadioType::LISTED_ON_INTERCOM,
-            7,	//unused
-            stereoMode::stereo,	 //unused
-            "intercom",	  //unused
+            7,  //unused
+            stereoMode::stereo,  //unused
+            "intercom",   //unused
             Position3D(0, 0, 0), //unused
-            0.f,		 //unused
+            0.f,     //unused
             getVehicleDescriptor());  //unused
     }
 
 
 
-    if (range == 0) return result; //If we are sending range is set to Radio's range. Always!
+    if (range == 0) {
+        DIAGLOG(senderNickname + " IOR No Range");
+        return result; //If we are sending range is set to Radio's range. Always!
+    }
     auto antennaConnection = (clientId != myData->clientId) ? TFAR::getAntennaManager()->findConnection(getClientPosition(), static_cast<float>(range), myData->getClientPosition()) : AntennaConnection();
     //check if we receive him over a radio we have on us
     if (clientId != myData->clientId) {//We don't hear ourselves over our Radio ^^
         LISTED_INFO local = isOverLocalRadio(myData, ignoreSwTangent, ignoreLrTangent, ignoreDdTangent, antennaConnection);
         if (local.on != receivingRadioType::LISTED_ON_NONE && local.over != sendingRadioType::LISTEN_TO_NONE) {
             result.push_back(local);
+        } else {
+            DIAGLOG(senderNickname + " IOR No Local Radio");
         }
     }
 
@@ -207,8 +239,11 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
     //check if we receive him over a radio laying on ground
 
     //We reuse the antennaConnection for a nearby speaker. Technically antennaConnection measures connection to our body. But a speaker Radio is not that far away from us anyway
-    if (effectiveDistance_ > range && antennaConnection.isNull())//does senders range reach to us?
-        return result;	 //His distance > range and no suitable Antenna
+    if (effectiveDistance_ > range && antennaConnection.isNull()) { //does senders range reach to us?
+        DIAGLOG(senderNickname + " IOR No Range & no Ant efDist="+std::to_string(effectiveDistance_)+" rng="+std::to_string(range));
+        return result; //His distance > range and no suitable Antenna
+    }
+
 
     if (
         (canUseSWRadio && (currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_SW || ignoreSwTangent)) || //Sending over SW
@@ -238,6 +273,9 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
 
         });
 
+    } else {
+        DIAGLOG(senderNickname + " IOR No spk? cusw=" + std::to_string(canUseSWRadio) + " culr=" + std::to_string(canUseLRRadio)+ " ttot="+std::to_string((int)currentTransmittingTangentOverType)
+        +" tfrq="+ getCurrentTransmittingFrequency());
     }
     return result;
 
