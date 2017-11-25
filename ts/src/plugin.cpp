@@ -533,7 +533,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     // process radio here
     processCompressor(&clientData->effects.compressor, original_buffer, channels, sampleCount);
 
-    std::vector<LISTED_INFO> listed_info = clientData->isOverRadio(myData, false, false, false);
+    std::vector<LISTED_INFO> listed_info = isSpectator ? std::vector<LISTED_INFO>{} : clientData->isOverRadio(myData, false, false, false);
     float radioDistance = myData->effectiveDistanceTo(clientData);
     if (listed_info.empty() && distanceFromClient_ > 30) Teamspeak::printMessageToCurrentTab((senderNickname + "TFAR NOR").c_str());
     for (auto& info : listed_info) {
