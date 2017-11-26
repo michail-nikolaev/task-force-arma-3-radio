@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ID="TFAR">
     <Package name="ai_hearing">
         <Key ID="STR_TFAR_AI_HEARING_SETTING_HEADER">
@@ -6,12 +6,14 @@
             <English>AI Hearing</English>
             <German>Hörende KI</German>
             <Japanese>AI の聴覚</Japanese>
+            <Korean>AI 듣기</Korean>
         </Key>
         <Key ID="STR_TFAR_AI_HEARING_SETTING_DESC">
             <Original>If enabled, the ai is able to detect speaking players.</Original>
             <English>If enabled, the ai is able to detect speaking players.</English>
             <German>Wenn aktiviert, dann reagiert die KI auf die Gespräche der Spieler.</German>
             <Japanese>有効化すると、このユニットはプレイヤーの話し声を検知します。</Japanese>
+            <Korean>활성되면 AI가 말하고 있는 플레이어를 감지합니다.</Korean>
         </Key>
     </Package>
 </Project>
