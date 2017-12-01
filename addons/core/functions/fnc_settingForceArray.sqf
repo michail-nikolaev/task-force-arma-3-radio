@@ -7,10 +7,10 @@
         Dorbedo
 
     Description:
-        Forces the input into an array format
+        Forces the input into an array format and removes invalid input
 
     Parameters:
-    0: STRING - Radio
+    0: STRING - frequencies input
 
     Returns:
         STRING
