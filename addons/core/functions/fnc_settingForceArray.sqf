@@ -31,9 +31,9 @@ _inputArray = _inputArray apply {
     // filter for numbers and dots
     private _filtered = toString ((toArray _x) select {(_x >= 48 && _x <= 57)||{_x isEqualTo 46}});
     // decimal value
-    If ((_filtered find ".") >= 0) then {
+    if ((_filtered find ".") >= 0) then {
         private _decimal = _filtered splitString ".";
-        If ((count _decimal) isEqualTo 2) then {
+        if ((count _decimal) isEqualTo 2) then {
             _decimal set [1, (_decimal select 1) select [0,1]];
         } else {
             _decimal pushBack "";
