@@ -9,7 +9,10 @@ disableSerialization;
 
 //#API Variables
 DEPRECATE_VARIABLE(tf_give_personal_radio_to_regular_soldier,TFAR_givePersonalRadioToRegularSoldier);
-DEPRECATE_VARIABLE(tf_no_auto_long_range_radio,TFAR_giveLongRangeRadioToGroupLeaders);
+if (!isNil "tf_no_auto_long_range_radio") then {
+    WARNING('Deprecated variable used: tf_no_auto_long_range_radio (new: TFAR_giveLongRangeRadioToGroupLeaders) in ADDON');
+    TFAR_giveLongRangeRadioToGroupLeaders = !tf_no_auto_long_range_radio;
+};
 DEPRECATE_VARIABLE(tf_give_microdagr_to_soldier,TFAR_giveMicroDagrToSoldier);
 
 DEPRECATE_VARIABLE(tf_defaultWestPersonalRadio,TFAR_DefaultRadio_Personal_West);
