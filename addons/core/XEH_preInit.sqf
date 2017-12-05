@@ -8,7 +8,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 GVAR(SettingsInitialized) = false;
 ["CBA_settingsInitialized", {GVAR(SettingsInitialized) = true;}] call CBA_fnc_addEventhandler;
 
-#include "CBA_Settings.sqf"
+[] call DFUNC(initCBASettings);
 
 GVAR(VehicleConfigCacheNamespace) = false call CBA_fnc_createNamespace;
 GVAR(WeaponConfigCacheNamespace) = false call CBA_fnc_createNamespace;

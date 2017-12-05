@@ -82,6 +82,7 @@ PREP(haveLRRadio);
 PREP(haveSWRadio);
 // I
 PREP(initKeybinds);
+PREP(initCBASettings);
 PREP_SUB(server,instanciateRadios);
 PREP_SUB(hint,inWaterHint);
 PREP(isAbleToUseRadio);
