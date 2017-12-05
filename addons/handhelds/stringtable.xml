@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ID="TFAR">
     <Package name="backpacks">
         <Key ID="STR_TFAR_handhelds_RF7800STR">
             <Original>RF-7800S-TR</Original>
             <English>RF-7800S-TR</English>
             <Japanese>RF-7800S-TR</Japanese>
+            <Korean>RF-7800S-TR</Korean>
         </Key>
         <Key ID="STR_TFAR_handhelds_RF7800STR_Desc">
             <Original>RF-7800S-TR rifleman radio 2km</Original>
@@ -12,11 +13,13 @@
             <Chinese>RF-7800S-TR短程步兵無線電，有效距離2公里</Chinese>
             <Chinesesimp>RF-7800S-TR短程步兵无线电，有效距离2公里</Chinesesimp>
             <Japanese>RF-7800S-TR 小銃手用無線機 2km</Japanese>
+            <Korean>RF-7800S-TR 개인 무전기 2km</Korean>
         </Key>
         <Key ID="STR_TFAR_handhelds_PNR1000A">
             <Original>PNR-1000A</Original>
             <English>PNR-1000A</English>
             <Japanese>PNR-1000A</Japanese>
+            <Korean>PNR-1000A</Korean>
         </Key>
         <Key ID="STR_TFAR_handhelds_PNR1000A_Desc">
             <Original>PNR-1000A rifleman radio 2km</Original>
@@ -24,6 +27,7 @@
             <Chinese>PNR-1000A短程步兵無線電，有效距離2公里</Chinese>
             <Chinesesimp>PNR-1000A短程步兵无线电，有效距离2公里</Chinesesimp>
             <Japanese>PNR-1000A 小銃手用無線機 2km</Japanese>
+            <Korean>PNR-1000A 개인 무전기 2km</Korean>
         </Key>
         <Key ID="STR_TFAR_handhelds_MicroDagr">
             <Original>MicroDAGR Radio Programmer</Original>
@@ -31,6 +35,7 @@
             <Chinese>微型軍用GPS接收器 (無線電編碼器)</Chinese>
             <Chinesesimp>微型军用GPS接收器 (无线电编码器)</Chinesesimp>
             <Japanese>マイクロDAGR 設定器</Japanese>
+            <Korean>MicroDAGR 무전 설정기</Korean>
         </Key>
         <Key ID="STR_TFAR_handhelds_MicroDagr_Desc">
             <Original>Provides ability to program rifleman radios in the field</Original>
@@ -38,11 +43,13 @@
             <Chinese>使持有人能在戰場上調整短程步兵無線電的頻率設定</Chinese>
             <Chinesesimp>使持有人能在战场上调整短程步兵无线电的频率设定</Chinesesimp>
             <Japanese>戦場において小銃手用無線機の設定が可能になります</Japanese>
+            <Korean>야전에서 개인 무전기를 설정할 수 있습니다.</Korean>
         </Key>
         <Key ID="STR_TFAR_handhelds_FADAK">
             <Original>FADAK</Original>
             <English>FADAK</English>
             <Japanese>FADAK</Japanese>
+            <Korean>FADAK</Korean>
         </Key>
         <Key ID="STR_TFAR_handhelds_FADAK_Desc">
             <Original>FADAK personal radio 5km</Original>
@@ -50,11 +57,13 @@
             <Chinese>FADAK短程個人無線電，有效距離5公里</Chinese>
             <Chinesesimp>FADAK短程个人无线电，有效距离5公里</Chinesesimp>
             <Japanese>FADAK 個人用無線機 5km</Japanese>
+            <Korean>FADAK 개인 무전기 5km</Korean>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC154">
             <Original>AN/PRC-154</Original>
             <English>AN/PRC-154</English>
             <Japanese>AN/PRC-154</Japanese>
+            <Korean>AN/PRC-154</Korean>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC154_Desc">
             <Original>AN/PRC-154 rifleman radio 2km</Original>
@@ -62,11 +71,13 @@
             <Chinese>AN/PRC-154短程步兵無線電，有效距離2公里</Chinese>
             <Chinesesimp>AN/PRC-154短程步兵无线电，有效距离2公里</Chinesesimp>
             <Japanese>AN/PRC-154 小銃手用無線機 2km</Japanese>
+            <Korean>AN/PRC-154 개인 무전기 2km</Korean>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC152">
             <Original>AN/PRC-152</Original>
             <English>AN/PRC-152</English>
             <Japanese>AN/PRC-152</Japanese>
+            <Korean>AN/PRC-152</Korean>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC152_Desc">
             <Original>AN/PRC-152 personal radio 5km</Original>
@@ -74,11 +85,13 @@
             <Chinese>AN/PRC-152短程個人無線電，有效距離5公里</Chinese>
             <Chinesesimp>AN/PRC-152短程个人无线电，有效距离5公里</Chinesesimp>
             <Japanese>AN/PRC-152 個人用無線機 5km</Japanese>
+            <Korean>AN/PRC-152 개인 무전기 5km</Korean>
         </Key>
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM">
             <Original>AN/PRC-148 JEM</Original>
             <English>AN/PRC-148 JEM</English>
             <Japanese>AN/PRC-148 JEM</Japanese>
+            <Korean>AN/PRC-148 JEM</Korean>
         </Key>
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM_Desc">
             <Original>AN/PRC-148 JEM personal radio 5km</Original>
@@ -86,6 +99,7 @@
             <Chinese>AN/PRC-148 JEM短程個人無線電，有效距離5公里</Chinese>
             <Chinesesimp>AN/PRC-148 JEM短程个人无线电，有效距离5公里</Chinesesimp>
             <Japanese>AN/PRC-148 JEM 個人用無線機 5km</Japanese>
+            <Korean>AN/PRC-148 JEM 개인 무전기 5km</Korean>
         </Key>
     </Package>
 </Project>
