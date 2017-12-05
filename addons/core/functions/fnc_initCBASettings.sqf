@@ -114,7 +114,8 @@
     [ELSTRING(settings,FullDuplex), ELSTRING(settings,FullDuplexDescription)], 
     "Task Force Arrowhead Radio", 
     true,
-    1
+    1,
+    {["full_duplex", _this] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
 [
     "TFAR_enableIntercom", 
