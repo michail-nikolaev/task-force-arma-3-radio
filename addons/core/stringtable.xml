@@ -1736,8 +1736,8 @@
                 <Japanese>無線コードを無効化</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radioCodesDisabled_desc">
-                <Original>Disables the Radio Encryption (Everyone side can radio with everyone)</Original>
-                <English>Disables the Radio Encryption (Everyone side can radio with everyone)</English>
+                <Original>Disables the Radio Encryption (everyone can radio with everyone)</Original>
+                <English>Disables the Radio Encryption (everyone can radio with everyone)</English>
                 <German>Schalte die Verschlüsselung für alle Funkgeräte aus. Anschließend können alle Spieler miteinander funken.</German>
                 <Japanese>無線の暗号化を無効化 (誰しもがどの陣営用無線を使えるように)</Japanese>
             </Key>
