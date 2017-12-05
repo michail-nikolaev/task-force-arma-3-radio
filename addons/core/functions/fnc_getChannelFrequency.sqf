@@ -10,17 +10,17 @@
         Returns the frequency for the passed channel and radio.
 
     Parameters:
-    0: OBJECT/String - Radio
-    1: NUMBER - Channel
+        0: OBJECT/String - Radio
+        1: NUMBER - Channel
 
     Returns:
-    STRING - Frequency
+        STRING - Frequency
 
     Example:
-    // LR radio - channel 1
-    [(call TFAR_fnc_activeLrRadio), 1] call TFAR_fnc_getChannelFrequency;
-    // SW radio - channel 1
-    [(call TFAR_fnc_activeSwRadio), 1] call TFAR_fnc_getChannelFrequency;
+        // LR radio - channel 1
+        [(call TFAR_fnc_activeLrRadio), 1] call TFAR_fnc_getChannelFrequency;
+        // SW radio - channel 1
+        [(call TFAR_fnc_activeSwRadio), 1] call TFAR_fnc_getChannelFrequency;
 */
 
 params ["_radio", "_channel"];

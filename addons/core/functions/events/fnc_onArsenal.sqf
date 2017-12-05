@@ -4,20 +4,20 @@
     Name: TFAR_fnc_onArsenal
 
     Author(s):
-    Dedmen
+        Dedmen
 
     Description:
-    Eventhandler for Opening/Closing of Arsenal.
-    Currently handles workaround for https://feedback.bistudio.com/T120517
+        Eventhandler for Opening/Closing of Arsenal.
+        Currently handles workaround for https://feedback.bistudio.com/T120517
 
     Parameters:
-    0: STRING - Type of Event
+        0: STRING - Type of Event
 
     Returns:
-    Nothing
+        Nothing
 
     Example:
-    "PreOpen" call TFAR_fnc_onArsenal;
+        "PreOpen" call TFAR_fnc_onArsenal;
 */
 
 params ["_eventType"];

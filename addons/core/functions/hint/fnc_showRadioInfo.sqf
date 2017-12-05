@@ -9,17 +9,17 @@
     Description:
 
     Parameters:
-    0: OBJECT/STRING - Radio
-    1: BOOLEAN - is LR radio
+        0: OBJECT/STRING - Radio
+        1: BOOLEAN - is LR radio
 
     Returns:
-    Nothing
+        Nothing
 
     Example:
-    // LR radio
-    [(call TFAR_fnc_activeLrRadio), true] call TFAR_fnc_showRadioInfo;
-    // SW radio
-    [(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_showRadioInfo;
+        // LR radio
+        [(call TFAR_fnc_activeLrRadio), true] call TFAR_fnc_showRadioInfo;
+        // SW radio
+        [(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_showRadioInfo;
 */
 
 params ["_radio", "_isLrRadio"];

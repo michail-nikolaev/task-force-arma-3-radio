@@ -17,7 +17,7 @@
         ARRAY - the radioitems of a unit
 
     Example:
-    _itemlist = [_player] call TFAR_fnc_getRadioItems;
+        _itemlist = [_player] call TFAR_fnc_getRadioItems;
  */
 
 params [["_unit", objNull, [objNull]]];

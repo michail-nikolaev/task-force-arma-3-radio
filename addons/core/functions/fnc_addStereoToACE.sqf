@@ -17,7 +17,7 @@
         An array of children ACE actions.
 
     Example:
-    _grandchildren = [_player,_player,[_radio,0]] call TFAR_fnc_addStereoToACE;
+        _grandchildren = [_player,_player,[_radio,0]] call TFAR_fnc_addStereoToACE;
  */
 
 params ["_unit", "_radio"];

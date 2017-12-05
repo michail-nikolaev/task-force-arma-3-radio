@@ -10,7 +10,7 @@
         Sets the speakers setting for the SW radio
 
     Parameters:
-    0: STRING - Radio
+        0: STRING - Radio
 
     Returns:
         Nothing

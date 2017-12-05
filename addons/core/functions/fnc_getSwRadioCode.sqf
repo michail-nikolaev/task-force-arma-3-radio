@@ -10,8 +10,8 @@
     Description:
         Returns the encryption code for the passed radio.
 
-        Parameters:
-    0: STRING - Radio classname
+    Parameters:
+        0: STRING - Radio classname
 
     Returns:
         STRING - Encryption code

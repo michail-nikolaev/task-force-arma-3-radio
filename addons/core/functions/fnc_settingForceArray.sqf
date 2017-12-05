@@ -10,7 +10,7 @@
         Forces the input into an array format and removes invalid input
 
     Parameters:
-    0: STRING - frequencies input
+        0: STRING - frequencies input
 
     Returns:
         STRING
