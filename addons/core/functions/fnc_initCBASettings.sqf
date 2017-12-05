@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 // client Settings
 [
     "TFAR_default_radioVolume",
