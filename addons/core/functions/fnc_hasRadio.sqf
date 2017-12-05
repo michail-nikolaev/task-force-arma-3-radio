@@ -16,7 +16,7 @@
         the unit has a radio
 
     Example:
-    _hasRadio = [_player] call TFAR_fnc_hasRadio;
+        _hasRadio = [_player] call TFAR_fnc_hasRadio;
  */
 
 params [["_unit", objNull, [objNull]]];

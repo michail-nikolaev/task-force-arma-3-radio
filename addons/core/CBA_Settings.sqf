@@ -190,7 +190,7 @@
     "EDITBOX", 
     [ELSTRING(settings,DefaultRadioFrequencies_SR_west), ELSTRING(settings,DefaultRadioFrequencies_SR_west_desc)], 
     "Task Force Arrowhead Radio", 
-    "",
+    ["", false, DFUNC(settingForceArray)],
     1,
     {
         if (isServer) then {
@@ -212,7 +212,7 @@
     "EDITBOX", 
     [ELSTRING(settings,DefaultRadioFrequencies_SR_east), ELSTRING(settings,DefaultRadioFrequencies_SR_east_desc)], 
     "Task Force Arrowhead Radio", 
-    "",
+    ["", false, DFUNC(settingForceArray)],
     1,
     {
         if (isServer) then {
@@ -234,7 +234,7 @@
     "EDITBOX", 
     [ELSTRING(settings,DefaultRadioFrequencies_SR_independent), ELSTRING(settings,DefaultRadioFrequencies_SR_independent_desc)],
     "Task Force Arrowhead Radio", 
-    "",
+    ["", false, DFUNC(settingForceArray)],
     1,
     {
         if (isServer) then {
@@ -265,7 +265,7 @@
     "EDITBOX", 
     [ELSTRING(settings,DefaultRadioFrequencies_LR_west), ELSTRING(settings,DefaultRadioFrequencies_LR_west_desc)],
     "Task Force Arrowhead Radio",
-    "",
+    ["", false, DFUNC(settingForceArray)],
     1,
     {
         if (isServer) then {
@@ -279,7 +279,7 @@
     "EDITBOX", 
     [ELSTRING(settings,DefaultRadioFrequencies_LR_east), ELSTRING(settings,DefaultRadioFrequencies_LR_east_desc)],
     "Task Force Arrowhead Radio", 
-    "",
+    ["", false, DFUNC(settingForceArray)],
     1,
     {
         if (isServer) then {
@@ -293,7 +293,7 @@
     "EDITBOX", 
     [ELSTRING(settings,DefaultRadioFrequencies_LR_independent), ELSTRING(settings,DefaultRadioFrequencies_LR_independent_desc)],
     "Task Force Arrowhead Radio",
-    "",
+    ["", false, DFUNC(settingForceArray)],
     1,
     {
         if (isServer) then {

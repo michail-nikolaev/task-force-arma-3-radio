@@ -17,7 +17,7 @@
         An array of children ACE actions.
 
     Example:
-    _children = [_target, _player] call TFAR_fnc_addTakeToACE;
+        _children = [_target, _player] call TFAR_fnc_addTakeToACE;
  */
 params ["_target", "_unit"];
 

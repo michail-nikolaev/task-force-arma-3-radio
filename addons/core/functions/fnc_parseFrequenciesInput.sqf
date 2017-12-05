@@ -12,7 +12,7 @@
 
     Parameters:
         STRING: value string
-        SCALAR: amount of channels
+        SCALAR: min amount of channels
         SCALAR: min freq
         SCALAR: max freq
         SCALAR: round power
@@ -21,12 +21,12 @@
         NOTHING
 
     Example:
-        ["[50.16549, 51122, 52, 53, 4, 5, 56, 57, 58, 59, ""asd"", asd, "88"]", 8, 87, 40] call TFAR_fnc_parseFrequenciesInput;
+        ["[50.16549, 51122, 52, 53, 4, 5, 56, 57, 58, 59, ""asd"", asd, ""88""]", 8, 87, 40] call TFAR_fnc_parseFrequenciesInput;
 */
 
 params [
     ["_valueString","",[""]],
-    ["_maxChannels",TFAR_MAX_CHANNELS,[TFAR_MAX_CHANNELS]],
+    ["_minChannels",TFAR_MAX_CHANNELS,[TFAR_MAX_CHANNELS]],
     ["_maxFreq",TFAR_MAX_SW_FREQ,[TFAR_MAX_SW_FREQ]],
     ["_minFreq",TFAR_MIN_SW_FREQ,[TFAR_MIN_SW_FREQ]],
     ["_roundPower",TFAR_FREQ_ROUND_POWER,[TFAR_FREQ_ROUND_POWER]]
@@ -49,14 +49,11 @@ _parsedValue = _parsedValue select {
 
 _parsedValue = _parsedValue apply {QTFAR_ROUND_FREQUENCYP(_x,_roundPower)};
 
-if ((count _parsedValue) > _maxChannels) then {
-    _parsedValue resize _maxChannels;
-};
 
-if !((count _parsedValue) isEqualTo _maxChannels) then {
-    private _randomized = [_maxChannels,_maxFreq,_minFreq,_roundPower] call DFUNC(generateFrequencies);
+if !((count _parsedValue) < _minChannels) then {
+    private _randomized = [_minChannels,_maxFreq,_minFreq,_roundPower] call DFUNC(generateFrequencies);
     _parsedValue append _randomized;
-    _parsedValue resize _maxChannels;
+    _parsedValue resize _minChannels;
 };
 
 _parsedValue

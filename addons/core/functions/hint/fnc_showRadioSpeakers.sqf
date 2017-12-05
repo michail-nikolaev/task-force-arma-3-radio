@@ -10,16 +10,16 @@
     Description:
 
     Parameters:
-    0: OBJECT/STRING - Radio
+        0: OBJECT/STRING - Radio
 
     Returns:
-    Nothing
+        Nothing
 
     Example:
-    // LR radio
-    [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioSpeakers;
-    // SW radio
-    [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioSpeakers;
+        // LR radio
+        [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioSpeakers;
+        // SW radio
+        [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioSpeakers;
 */
 params ["_radio"];
 

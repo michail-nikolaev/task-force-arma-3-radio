@@ -11,13 +11,13 @@
         Returns the current settings for the passed radio.
 
     Parameters:
-    0: String - Radio classname
+        0: String - Radio classname
 
     Returns:
-    ARRAY - settings.
+        ARRAY - settings.
 
     Example:
-    (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings;
+        (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings;
 */
 params[["_radio","",[""]]];
 

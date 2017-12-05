@@ -7,16 +7,16 @@
         Dorbedo
 
     Description:
-    Gets a config property (getNumber/getText/getArray)
-    Only works for CfgWeapon.
+        Gets a config property (getNumber/getText/getArray)
+        Only works for CfgWeapon.
 
     Parameters:
-    0: STRING - Item classname
-    1: STRING - property
-    2: ANYTHING - Default (Optional)
+        0: STRING - Item classname
+        1: STRING - property
+        2: ANYTHING - Default (Optional)
 
     Returns:
-    NUMBER or TEXT or ARRAY - Result
+        NUMBER or TEXT or ARRAY - Result
 
     Example:
         [_SrRadio, "tf_prototype", 0] call TFAR_fnc_getWeaponConfigProperty;

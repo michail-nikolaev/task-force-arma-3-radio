@@ -14,7 +14,7 @@
         OPTIONAL: BOOLEAN - false to generate settings without generating frequencies.
 
     Returns:
-        ARRAY: Settings [
+        ARRAY: Settings
             0: NUMBER - Active channel,
             1: NUMBER - Volume,
             2: ARRAY - Frequencies for channels,
@@ -25,7 +25,6 @@
             7: NIL
             8: NUMBER - Speaker mode,
             9: BOOLEAN - On
-        ]
 
     Example:
         _settings = call TFAR_fnc_generateLrSettings;
