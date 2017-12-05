@@ -164,7 +164,8 @@ if (player call TFAR_fnc_isForcedCurator) then {
     };
 
     TFAR_currentUnit = (_this select 0);
-    "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name player]);//Async call will always return "OK"
+    player call TFAR_fnc_releaseAllTangents;
+    TFAR_currentUnit call TFAR_fnc_releaseAllTangents;//Shouldn't be needed. But it doesn't hurt
 
     TFAR_lastLoadoutChange = diag_tickTime; //Switching unit also switches loadout
     GVAR(VehicleConfigCacheNamespace) setVariable ["lastRadioSettingUpdate",diag_tickTime]; //And changes Radios

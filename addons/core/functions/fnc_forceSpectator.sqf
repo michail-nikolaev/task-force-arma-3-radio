@@ -24,6 +24,8 @@
 
 params ["_player", "_value"];
 
+_player call TFAR_fnc_releaseAllTangents; //Stop all radio transmissions
+
 _player setVariable ["TFAR_forceSpectator", _value, true];
 _player setVariable ["TFAR_spectatorName", profileName, true];
 
