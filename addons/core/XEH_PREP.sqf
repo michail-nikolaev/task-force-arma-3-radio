@@ -139,6 +139,7 @@ PREP(processRespawn);
 PREP(radioOn);
 PREP_SUB(events\handler,removeEventHandler);
 PREP(radioReplaceProcess);
+PREP_SUB(plugin,releaseAllTangents);
 PREP(requestRadios);
 PREP(radioToRequestCount);
 PREP(radiosList);
