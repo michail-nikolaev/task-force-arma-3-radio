@@ -160,6 +160,24 @@
     {["spectatorCanHearFriendlies", TFAR_spectatorCanHearFriendlies] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
 [
+    "TFAR_Teamspeak_Channel_Name", 
+    "EDITBOX", 
+    [ELSTRING(settings,TeamspeakChannel_name), ELSTRING(settings,TeamspeakChannel_name_desc)], 
+    "Task Force Arrowhead Radio", 
+    "",
+    1,
+    {["serious_channelName",_this]] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_Teamspeak_Channel_Password", 
+    "EDITBOX", 
+    [ELSTRING(settings,TeamspeakChannel_password), ELSTRING(settings,TeamspeakChannel_password_desc)], 
+    "Task Force Arrowhead Radio", 
+    ["", true],
+    1,
+    {["serious_channelPassword",_this]] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+[
     "TFAR_SameSRFrequenciesForSide", 
     "CHECKBOX",
     ELSTRING(settings,same_sw_frequencies_for_side), 
