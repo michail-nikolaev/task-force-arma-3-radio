@@ -1556,10 +1556,10 @@
                 <Japanese>長距離無線機の標準設定 (NATO):</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_west_desc">
-                <Original>Define the default LR-settings for the NATO side as a list. e.g.: 99,101,250</Original>
-                <English>Define the default LR-settings for the NATO side as a list. e.g.: 99,101,250</English>
-                <German>Das Festlegen der Standard Langwellenfrequenzen für die NATO-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
-                <Japanese>NATO 側で使われる長距離無線機の標準設定をリストで定義します。(例: 99, 101, 250)</Japanese>
+                <Original>Define the default LR-settings for the NATO side as a list. e.g.: 45, 47, 70</Original>
+                <English>Define the default LR-settings for the NATO side as a list. e.g.: 45, 47, 70</English>
+                <German>Das Festlegen der Standard Langwellenfrequenzen für die NATO-Streitkräfte erfolgt als Liste. z.B.: 45, 47, 70</German>
+                <Japanese>NATO 側で使われる長距離無線機の標準設定をリストで定義します。(例: 45, 47, 70)</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_east">
                 <Original>Default LR-settings (CSAT):</Original>
@@ -1568,10 +1568,10 @@
                 <Japanese>長距離無線機の標準設定 (CSAT):</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_east_desc">
-                <Original>Define the default LR-settings for the CSAT side as a list. e.g.: 99,101,250</Original>
-                <English>Define the default LR-settings for the CSAT side as a list. e.g.: 99,101,250</English>
-                <German>Das Festlegen der Standard Langwellenfrequenzen für die CSAT-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
-                <Japanese>CSAT 側で使われる長距離無線機の標準設定をリストで定義します。(例: 99, 101, 250)</Japanese>
+                <Original>Define the default LR-settings for the CSAT side as a list. e.g.: 45, 47, 70</Original>
+                <English>Define the default LR-settings for the CSAT side as a list. e.g.: 45, 47, 70</English>
+                <German>Das Festlegen der Standard Langwellenfrequenzen für die CSAT-Streitkräfte erfolgt als Liste. z.B.: 45, 47, 70</German>
+                <Japanese>CSAT 側で使われる長距離無線機の標準設定をリストで定義します。(例: 45, 47, 70)</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_independent">
                 <Original>Default LR-settings (AAF):</Original>
@@ -1580,10 +1580,10 @@
                 <Japanese>長距離無線機の標準設定 (AAF):</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_independent_desc">
-                <Original>Define the default LR-settings for the AAF side as a list. e.g.: 99,101,250</Original>
-                <English>Define the default LR-settings for the AAF side as a list. e.g.: 99,101,250</English>
-                <German>Das Festlegen der Standard Langwellenfrequenzen für die AAF-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
-                <Japanese>AAF 側で使われる長距離無線機の標準設定をリストで定義します。(例: 99, 101, 250)</Japanese>
+                <Original>Define the default LR-settings for the AAF side as a list. e.g.: 45, 47, 70</Original>
+                <English>Define the default LR-settings for the AAF side as a list. e.g.: 45, 47, 70</English>
+                <German>Das Festlegen der Standard Langwellenfrequenzen für die AAF-Streitkräfte erfolgt als Liste. z.B.: 45, 47, 70</German>
+                <Japanese>AAF 側で使われる長距離無線機の標準設定をリストで定義します。(例: 45, 47, 70)</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_west">
                 <Original>Default rifleman-radio (NATO):</Original>

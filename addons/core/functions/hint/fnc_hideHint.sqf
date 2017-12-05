@@ -7,16 +7,16 @@
         L-H
 
     Description:
-    Removes the hint from the bottom right
+        Removes the hint from the bottom right
 
     Parameters:
-    Nothing
+        Nothing
 
     Returns:
-    Nothing
+        Nothing
 
     Example:
-    call TFAR_fnc_hideHint;
+        call TFAR_fnc_hideHint;
  */
 
 ("TFAR_HintLayer" call BIS_fnc_rscLayer) cutText ["", "PLAIN"];

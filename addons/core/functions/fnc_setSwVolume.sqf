@@ -10,8 +10,8 @@
         Sets the volume for the SW radio
 
     Parameters:
-    0: STRING - Radio
-    1: NUMBER - Volume : Range (0,10)
+        0: STRING - Radio
+        1: NUMBER - Volume : Range (0,10)
 
     Returns:
         Nothing

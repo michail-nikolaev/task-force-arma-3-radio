@@ -6,16 +6,16 @@
     Author(s):
 
     Description:
-    Returns whether the player has a programmer
+        Returns whether the player has a programmer
 
     Parameters:
-    Nothing
+        Nothing
 
     Returns:
-    BOOLEAN
+        BOOLEAN
 
     Example:
-    _hasProgrammer = call TFAR_fnc_haveProgrammator;
+        _hasProgrammer = call TFAR_fnc_haveProgrammator;
 */
 
 if (isNil {TFAR_currentUnit} || {isNull (TFAR_currentUnit)}) exitWith {false};

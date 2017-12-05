@@ -15,7 +15,7 @@
         An array of children ACE actions.
 
     Example:
-    _children = [_player] call TFAR_fnc_addRadiosToACE;
+        _children = [_player] call TFAR_fnc_addRadiosToACE;
  */
 params ["_unit",["_LROnly",false]];
 

@@ -9,13 +9,13 @@
         Returns whether the player has a LR radio
 
     Parameters:
-    Nothing
+        Nothing
 
     Returns:
-    BOOLEAN
+        BOOLEAN
 
     Example:
-    _hasLR = call TFAR_fnc_haveLRRadio;
+        _hasLR = call TFAR_fnc_haveLRRadio;
  */
 
 if (isNil "TFAR_currentUnit" || {isNull (TFAR_currentUnit)}) exitWith {false};

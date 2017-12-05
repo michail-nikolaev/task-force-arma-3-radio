@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
-   Name: TFAR_fnc_radioOn
+    Name: TFAR_fnc_radioOn
 
-   Author(s):
-    L-H
+    Author(s):
+        L-H
 
-   Description:
-    Gets the passed radio's on status or switches the radio's status if a boolean is passed as the second parameter.
+    Description:
+        Gets the passed radio's on status or switches the radio's status if a boolean is passed as the second parameter.
 
-  Parameters:
-    0: STRING/Array - Radio
-    1: BOOLEAN - (Optional) On Status
+    Parameters:
+        0: STRING/Array - Radio
+        1: BOOLEAN - (Optional) On Status
 
-   Returns:
-    BOOLEAN - On Status
+    Returns:
+        BOOLEAN - On Status
 
-   Example:
-    [call TFAR_fnc_activeSWRadio,true] call TFAR_fnc_radioOn;
+    Example:
+        [call TFAR_fnc_activeSWRadio,true] call TFAR_fnc_radioOn;
 */
 
 params ["_radio", ["_status", false]];

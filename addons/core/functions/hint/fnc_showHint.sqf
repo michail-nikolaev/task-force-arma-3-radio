@@ -7,18 +7,18 @@
         L-H
 
     Description:
-    Displays a hint at the bottom right of the screen.
+        Displays a hint at the bottom right of the screen.
 
     Parameters:
-    0: Structured Text - Text to display
-    1: Number - Time to display the hint (-1 for infinite)
+        0: Structured Text - Text to display
+        1: Number - Time to display the hint (-1 for infinite)
 
     Returns:
-    Nothing
+        Nothing
 
     Example:
-    [parseText "Hello", 3] call TFAR_fnc_showHint;
-    [parseText "Hello", -1] call TFAR_fnc_showHint;
+        [parseText "Hello", 3] call TFAR_fnc_showHint;
+        [parseText "Hello", -1] call TFAR_fnc_showHint;
  */
 
 params ["_text", "_time"];

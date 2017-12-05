@@ -16,10 +16,10 @@
             1: STRING - Radio ID
 
     Returns:
-    STRING - Encryption code
+        STRING - Encryption code
 
     Example:
-    (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrRadioCode;
+        (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrRadioCode;
 */
 
 If (GVARMAIN(radioCodesDisabled)) exitWith {""};
