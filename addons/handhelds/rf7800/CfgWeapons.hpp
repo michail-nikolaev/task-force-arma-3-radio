@@ -16,4 +16,4 @@ class TFAR_rf7800str: ItemRadio {
     tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
 };
 HIDDEN_CLASS(tf_rf7800str : TFAR_rf7800str); //#Deprecated dummy class for backwards compat
-TF_RADIO_IDS(TFAR_rf7800str,RF-7800S-TR)
+TF_RADIO_ID_LIST(TFAR_rf7800str,RF-7800S-TR)

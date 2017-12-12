@@ -27,11 +27,7 @@ class fadak_radio_dialog
     controlsBackground[] = { };
     objects[] = { };
     onUnload = "['OnRadioOpen', [player, TF_sw_dialog_radio, false, 'fadak_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-    onLoad = QUOTE(
-        if (sunOrMoon < 0.2) then {
-            ((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText QPATHTOF(fadak\ui\fadak_n.paa);
-        };
-    );
+    onLoad = QUOTE(if (sunOrMoon < 0.2) then {((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText 'PATHTOF(fadak\ui\fadak_n.paa)';};);
 controls[]=
 {
     background,
@@ -68,16 +64,7 @@ class enter: HiddenButton
     w = 0.0170625 * safezoneW;
     h = 0.0252056 * safezoneH;
     tooltip = ECSTRING(core,set_frequency);
-    action = QUOTE(
-        _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_FADAK_EDIT);
-        if ((_f >= TFAR_MIN_SW_FREQ) and (_f <= TFAR_MAX_SW_FREQ)) then {
-            [ARR_2(TF_sw_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setSwFrequency;
-            call TFAR_fnc_hideHint;
-        } else {
-            hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)]
-        };
-        call TFAR_fnc_updateSWDialogToChannel;
-    );
+    action = QUOTE(_f = TFAR_CONFIG_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_FADAK_EDIT);if ((_f >= TFAR_MIN_SW_FREQ) and (_f <= TFAR_MAX_SW_FREQ)) then {[ARR_2(TF_sw_dialog_radio, 'TFAR_ROUND_FREQUENCY(_f)')] call TFAR_fnc_setSwFrequency;call TFAR_fnc_hideHint;} else {hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)]};call TFAR_fnc_updateSWDialogToChannel;);
 };
 class clear: HiddenButton
 {
@@ -87,10 +74,7 @@ class clear: HiddenButton
     w = 0.0150938 * safezoneW;
     h = 0.0280062 * safezoneH;
     tooltip = ECSTRING(core,clear_frequency);
-    action = QUOTE(
-        ctrlSetText [ARR_2(IDC_FADAK_EDIT, '')];
-        ctrlSetFocus ((findDisplay IDD_FADAK_RADIO_DIALOG) displayCtrl IDC_FADAK_EDIT);
-    );
+    action = QUOTE(ctrlSetText [ARR_2(IDC_FADAK_EDIT, '')];ctrlSetFocus ((findDisplay IDD_FADAK_RADIO_DIALOG) displayCtrl IDC_FADAK_EDIT););
 };
 class additional: HiddenButton
 {
@@ -163,10 +147,7 @@ class stereo: HiddenButton
     y = 0.6738 * safezoneH + safezoneY;
     w = 0.0164063 * safezoneW;
     h = 0.0252056 * safezoneH;
-    action = QUOTE(
-        [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
-        [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;
-    );
+    action = QUOTE([ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;);
     tooltip = ECSTRING(core,stereo_settings);
 };
 class channel_switch: HiddenRotator

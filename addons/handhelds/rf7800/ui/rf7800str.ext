@@ -25,13 +25,7 @@ class rf7800str_radio_dialog
     controlsBackground[] = { };
     objects[] = { };
     onUnload = "['OnRadioOpen', [player, TF_sw_dialog_radio, false, 'rf7800str_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-    onLoad = QUOTE(
-        if (sunOrMoon < 0.2) then {
-            ((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText QPATHTOF(rf7800\ui\rf7800str_n.paa);
-            ((_this select 0) displayCtrl IDC_MICRODAGR_BACKGROUND) ctrlSetText QPATHTOF(microdagr\ui\microdagr_n.paa);
-        };
-        _this call TFAR_fnc_updateProgrammatorDialog;
-    );
+    onLoad = QUOTE(if (sunOrMoon < 0.2) then {((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText 'PATHTOF(rf7800\ui\rf7800str_n.paa)';((_this select 0) displayCtrl IDC_MICRODAGR_BACKGROUND) ctrlSetText 'PATHTOF(microdagr\ui\microdagr_n.paa)';};_this call TFAR_fnc_updateProgrammatorDialog;);
     controls[]=
     {
     	background,
@@ -98,10 +92,7 @@ class rf7800str_radio_dialog
     	y = 0.4186 * safezoneH + safezoneY;
     	w = 0.015 * safezoneW;
     	h = 0.02 * safezoneH;
-    	action = QUOTE(
-            [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
-            [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;
-        );
+    	action = QUOTE([ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;);
     	tooltip = ECSTRING(core,stereo_settings);
     };
     class channel_Switch: HiddenRotator
@@ -173,10 +164,7 @@ class rf7800str_radio_dialog
     	tooltip = ECSTRING(core,clear_frequency);
     	font = "TFAR_font_dots";
     	shadow = 2;
-    	action = QUOTE(
-            ctrlSetText [ARR_2(IDC_MICRODAGR_EDIT, '')];
-            ctrlSetFocus ((findDisplay IDD_RF7800STR_RADIO_DIALOG) displayCtrl IDC_MICRODAGR_EDIT);
-        );
+    	action = QUOTE(ctrlSetText [ARR_2(IDC_MICRODAGR_EDIT, '')];ctrlSetFocus ((findDisplay IDD_RF7800STR_RADIO_DIALOG) displayCtrl IDC_MICRODAGR_EDIT););
     };
     class enter: HiddenButton
     {
@@ -189,16 +177,7 @@ class rf7800str_radio_dialog
     	tooltip = ECSTRING(core,set_frequency);
     	font = "TFAR_font_dots";
     	shadow = 2;
-    	action = QUOTE(
-            _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANPRC152_EDIT);
-            if ((_f >= TFAR_MIN_SW_FREQ) and (_f <= TFAR_MAX_SW_FREQ)) then {
-                [ARR_2(TF_sw_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setSwFrequency;
-                call TFAR_fnc_hideHint;
-            } else {
-                hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)]
-            };
-            call TFAR_fnc_updateSWDialogToChannel;
-        );
+    	action = QUOTE(_f = TFAR_CONFIG_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANPRC152_EDIT);if ((_f >= TFAR_MIN_SW_FREQ) and (_f <= TFAR_MAX_SW_FREQ)) then {[ARR_2(TF_sw_dialog_radio, 'TFAR_ROUND_FREQUENCY(_f)')] call TFAR_fnc_setSwFrequency;call TFAR_fnc_hideHint;} else {hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)];};call TFAR_fnc_updateSWDialogToChannel;);
     };
     ////////////////////////////////////////////////////////
     // GUI EDITOR OUTPUT END
