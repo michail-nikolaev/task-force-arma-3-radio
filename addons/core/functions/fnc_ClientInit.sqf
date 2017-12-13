@@ -49,8 +49,6 @@ TF_respawnedAt = time;//first spawn so.. respawned now
         (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
 
         if (isMultiplayer) then {
-            (TFAR_currentUnit call TFAR_fnc_radiosList) apply { [_x, getPlayerUID player] call TFAR_fnc_setRadioOwner };            
-
             call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
             if (isNil "INTERCEPT_TFAR") then {
                 [PROFCONTEXT_NORTN(TFAR_fnc_processPlayerPositions), TFAR_PosUpdateMode] call CBA_fnc_addPerFrameHandler;
@@ -176,9 +174,6 @@ if (player call TFAR_fnc_isForcedCurator) then {
     if !(TFAR_currentUnit getVariable ["TFAR_HandlersSet",false]) then {
         TFAR_currentUnit addEventHandler ["Take", {
             params ["_unit", "", "_item"];
-            if (_item call TFAR_fnc_isRadio) then {
-                [_item, getPlayerUID _unit] call TFAR_fnc_setRadioOwner;
-            };
             if (_item call TFAR_fnc_isPrototypeRadio) then {
                 private _classes = _unit call TFAR_fnc_getDefaultRadioClasses;                
                 [_unit, _classes select 2] remoteExec ["TFAR_fnc_replaceSwRadiosServer", 2];
@@ -204,13 +199,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
     GVAR(VehicleConfigCacheNamespace) setVariable ["lastRadioSettingUpdate",diag_tickTime];//Also updates Radio settings for safety
 },true] call CBA_fnc_addPlayerEventHandler;
 
-["AssignOwnerToRadios", "OnRadiosReceived", {
-    params ["_player","_radios"];
-    {
-        [_x, getPlayerUID _player] call TFAR_fnc_setRadioOwner;
-        true
-    } count _radios;
-}, player] call TFAR_fnc_addEventHandler;
+
 
 
 ["ACE_arsenal_displayOpened", {

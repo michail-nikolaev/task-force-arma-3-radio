@@ -63,6 +63,4 @@ private _fetchItems = {
     };
 } forEach (_unit call _fetchItems);
 
-if(isPlayer _unit) then {
-    ["TFAR_event_OnRadiosReceived",[_unit,_replacedRadios], _unit] call CBA_fnc_targetEvent;
-};
+["TFAR_event_OnRadiosReceived",[_unit,_replacedRadios], _unit] call CBA_fnc_targetEvent;
