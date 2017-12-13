@@ -25,7 +25,7 @@ _radioClass = (((getItemCargo _radioContainer) select 0) select 0);
 if (_radioContainer call TFAR_fnc_isLRRadio) exitWith {_radioContainer};
 if !(_radioClass call TFAR_fnc_isPrototypeRadio) exitWith {_radioClass};
 
-_radioInstanciated = ([_radioClass] call TFAR_fnc_instanciateRadios select 0);
+_radioInstanciated = ([_radioClass] call TFAR_fnc_instanciateRadio);
 
 if (_radioInstanciated != _radioClass) then {
     _radioContainer addWeaponCargoGlobal ["arifle_MX_F", 1];

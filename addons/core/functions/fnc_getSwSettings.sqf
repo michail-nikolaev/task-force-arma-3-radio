@@ -39,7 +39,7 @@ if (isNil "_rc") then {
     private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_independent_radio_code"};
     if (_hasDefaultEncryption and {!isServer} and {(TFAR_currentUnit call BIS_fnc_objectSide) != civilian}) then {
         _parent = [_radio, "tf_parent", ""] call DFUNC(getWeaponConfigProperty);
-        private _default = call TFAR_fnc_getDefaultRadioClasses;
+        private _default = TFAR_currentUnit call TFAR_fnc_getDefaultRadioClasses;
         if ((_default select 1) == _parent or {(_default select 2) == _parent}) then {
             _rc = missionNamespace getVariable format ["tf_%1_radio_code", (TFAR_currentUnit call BIS_fnc_objectSide)];
         } else {

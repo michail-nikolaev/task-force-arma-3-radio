@@ -65,7 +65,8 @@ if (isNil "_radioCode") then {
     private _code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
     private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_independent_radio_code"};
     if (_hasDefaultEncryption and {!isServer} and {((TFAR_currentUnit call BIS_fnc_objectSide) != civilian)}) then {
-        if (((call TFAR_fnc_getDefaultRadioClasses select 0) == _radioType) or {(call TFAR_fnc_getDefaultRadioClasses select 3) == _radioType} or {_radio_object call TFAR_fnc_getVehicleSide == TFAR_currentUnit call BIS_fnc_objectSide}) then {
+        private _default = TFAR_currentUnit call TFAR_fnc_getDefaultRadioClasses;
+        if (((_default select 0) == _radioType) or {(_default select 3) == _radioType} or {_radio_object call TFAR_fnc_getVehicleSide == TFAR_currentUnit call BIS_fnc_objectSide}) then {
             _radioCode = missionNamespace getVariable format ["tf_%1_radio_code",(TFAR_currentUnit call BIS_fnc_objectSide)];
         } else {
             _radioCode = missionNamespace getVariable [_code, ""];
