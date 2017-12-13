@@ -208,7 +208,8 @@ if (player call TFAR_fnc_isForcedCurator) then {
     params ["_player","_radios"];
     {
         [_x, getPlayerUID _player] call TFAR_fnc_setRadioOwner;
-    } forEach _radios;
+        true
+    } count _radios;
 }, player] call TFAR_fnc_addEventHandler;
 
 
