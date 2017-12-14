@@ -13,8 +13,8 @@ GVAR(SettingsInitialized) = false;
 GVAR(VehicleConfigCacheNamespace) = false call CBA_fnc_createNamespace;
 GVAR(WeaponConfigCacheNamespace) = false call CBA_fnc_createNamespace;
 
-VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Name,"");
-VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Password,"");
+VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Name,"TaskForceRadio");
+VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Password,"123");
 
 
 if (hasInterface) then {//Clientside Variables
