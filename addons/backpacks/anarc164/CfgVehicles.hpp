@@ -10,7 +10,7 @@ class TFAR_anarc164: TFAR_Bag_Base {
     maximumLoad = 20;
     mass = 160;
     tf_range = 40000;
-    tf_encryptionCode = "tf_independent_radio_code";
+    tf_encryptionCode = "tf_guer_radio_code";
     tf_dialog = "anarc164_radio_dialog";
     tf_subtype = "airborne";
     tf_dialogUpdate = "[""%1""] call TFAR_fnc_updateLRDialogToChannel;";

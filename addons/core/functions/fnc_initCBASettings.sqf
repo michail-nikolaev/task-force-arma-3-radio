@@ -485,7 +485,7 @@
     1
 ] call CBA_Settings_fnc_init;
 [
-    "tf_independent_radio_code", 
+    "tf_guer_radio_code", 
     "EDITBOX",
     [ELSTRING(settings,radioCode_independent), ELSTRING(settings,radioCode_independent_desc)],
     "Task Force Arrowhead Radio", 

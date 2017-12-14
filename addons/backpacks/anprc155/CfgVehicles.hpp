@@ -10,7 +10,7 @@ class TFAR_anprc155: TFAR_Bag_Base {
     model=QPATHTOF(models\clf_nicecomm2);
     hiddenSelections[] = {"camo"};
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_nicecomm2_aff_digital_co.paa)};
-    tf_encryptionCode = "tf_independent_radio_code";
+    tf_encryptionCode = "tf_guer_radio_code";
     tf_dialog = "anprc155_radio_dialog";
     tf_subtype = "digital_lr";
 };
