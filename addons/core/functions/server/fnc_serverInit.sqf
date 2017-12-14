@@ -97,5 +97,4 @@ if (TFAR_SameLRFrequenciesForSide) then {
     };
 } remoteExec ["BIS_fnc_spawn", -2, true];
 
-
-
+{_x call TFAR_fnc_processRadiosServer} forEach playableUnits;

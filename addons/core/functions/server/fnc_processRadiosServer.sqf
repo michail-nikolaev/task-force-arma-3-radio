@@ -18,10 +18,7 @@
 */
 params ["_unit"];
  if (alive _unit) then {
-    private _classes = _unit call TFAR_fnc_getDefaultRadioClasses;
-    private _lrRadio = _classes select 0;
-    private _personalRadio = _classes select 1;
-    private _riflemanRadio = _classes select 2;
+    (_unit call TFAR_fnc_getDefaultRadioClasses) params ["_lrRadio", "_personalRadio", "_riflemanRadio"];
     private _defaultRadio = _riflemanRadio;
     
 
@@ -49,7 +46,7 @@ params ["_unit"];
         _unit linkItem "TFAR_microdagr";
     };
 
-    //SW Radios
+    //SR Radios
     if ((TF_give_personal_radio_to_regular_soldier) or {leader _unit == _unit} or {rankId _unit >= 2}) then {
         _defaultRadio = _personalRadio;
     };

@@ -10,7 +10,7 @@
         Return array of default radio classes for player.
 
     Parameters:
-        0: OBJECT - Unit        
+        0: OBJECT (optional) - Unit, default TFAR_currentUnit
 
     Returns:
         ARRAY - [defaultLR, defaultPersonal, defaultRifleman, defaultAirborne]
@@ -18,7 +18,7 @@
     Example:
         _classes = call TFAR_fnc_getDefaultRadioClasses;
 */
-params ["_unit"];
+params [["_unit", TFAR_currentUnit]];
 
 private _defaultLRRadio = TFAR_DefaultRadio_Backpack_Independent;
 private _defaultPersonalRadio = TFAR_DefaultRadio_Personal_Independent;

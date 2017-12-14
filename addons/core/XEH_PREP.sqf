@@ -136,10 +136,10 @@ PREP(processPlayerPositions);
 PREP_SUB(events\keys,processCuratorKey);
 PREP_SUB(plugin,processTangent);
 PREP(processRespawn);
+PREP_SUB(server,processRadiosServer);
 // R
 PREP(radioOn);
 PREP_SUB(events\handler,removeEventHandler);
-PREP_SUB(server,processRadiosServer);
 PREP_SUB(server,replaceSwRadiosServer);
 PREP(radioReplaceProcess);
 PREP_SUB(plugin,releaseAllTangents);

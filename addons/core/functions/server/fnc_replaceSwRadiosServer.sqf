@@ -9,6 +9,7 @@
 
     Parameters:
         0: OBJECT - unit to replace radios
+        1: STRING - default radio class to replace ItemRadio
 
     Returns:
         Nothing
@@ -20,12 +21,11 @@ params ["_unit", "_defaultRadio"];
 private _replacedRadios = [];
 
 private _replaceRadio = {
-	params ["_radio"];
-	if (_radio == "ItemRadio") then {
-		_radio = _defaultRadio;
-	};
-
-	_radio call TFAR_fnc_instanciateRadio
+    params ["_radio"];
+    if (_radio == "ItemRadio") then {
+        _radio = _defaultRadio;
+    };
+    _radio call TFAR_fnc_instanciateRadio
 };
 
 private _fetchItems = {
@@ -46,20 +46,19 @@ private _fetchItems = {
 
 {
     if (_x call TFAR_fnc_isPrototypeRadio) then {
-		//replace		
-		private _r = (_x call _replaceRadio);
-		_unit linkItem _r;
-		_replacedRadios pushBack _r;
-
+        //replace		
+        private _radio = (_x call _replaceRadio);
+        _unit linkItem _radio;
+        _replacedRadios pushBack _radio;
     };	
 } forEach (assignedItems _unit);
 
 {
     if (_x call TFAR_fnc_isPrototypeRadio) then {
-		_unit removeItem _x;					
-		private _r = (_x call _replaceRadio);
-		_unit addItem _r;
-		_replacedRadios pushBack _r;
+        _unit removeItem _x;
+        private _radio = (_x call _replaceRadio);
+        _unit addItem _radio;
+        _replacedRadios pushBack _radio;
     };
 } forEach (_unit call _fetchItems);
 

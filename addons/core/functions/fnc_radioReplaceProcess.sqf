@@ -40,19 +40,19 @@ if (GVAR(use_saved_lr_setting) && {isNil QGVAR(saved_active_lr_settings)}) then 
 };
 
 if ((time - TF_respawnedAt > 5) and {alive TFAR_currentUnit}) then {
-    private _countPrototypes = {
-        private _allItems = (assignedItems _this);
-        _allItems append ((getItemCargo (uniformContainer _this)) select 0);
-        _allItems append ((getItemCargo (vestContainer _this)) select 0);
-        _allItems append ((getItemCargo (backpackContainer _this)) select 0);
-        _allItems = _allItems arrayIntersect _allItems;//Remove duplicates
+    private _hasPrototype = false;
+    private _allItems = (assignedItems TFAR_currentUnit);
+    _allItems append ((getItemCargo (uniformContainer TFAR_currentUnit)) select 0);
+    _allItems append ((getItemCargo (vestContainer TFAR_currentUnit)) select 0);
+    _allItems append ((getItemCargo (backpackContainer TFAR_currentUnit)) select 0);
+    _allItems = _allItems arrayIntersect _allItems;//Remove duplicates
 
-        {
-            _x call TFAR_fnc_isPrototypeRadio
-        } count _allItems
+    for "_i" from 0 to (count _allItems - 1) do {
+        _hasPrototype = (_allItems select _i) call TFAR_fnc_isPrototypeRadio;
+        if(_hasPrototype) then { breakOut "" };
     };
     
-    if( TFAR_currentUnit call _countPrototypes > 0) then {
+    if (_hasPrototype) then {
         private _classes = TFAR_currentUnit call TFAR_fnc_getDefaultRadioClasses;
         [TFAR_currentUnit, _classes select 2] remoteExec ["TFAR_fnc_replaceSwRadiosServer", 2];
     };

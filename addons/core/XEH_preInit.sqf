@@ -33,6 +33,7 @@ VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_East,"TFAR_mr6000l");
 VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_Independent,"TFAR_anarc164");
 
 VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
+
 TF_speakerDistance = 20;
 TF_speak_volume_meters = TFAR_VOLUME_NORMAL;
 TF_min_voice_volume = TFAR_VOLUME_WHISPERING;

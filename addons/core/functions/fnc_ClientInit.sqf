@@ -200,8 +200,6 @@ if (player call TFAR_fnc_isForcedCurator) then {
 },true] call CBA_fnc_addPlayerEventHandler;
 
 
-
-
 ["ACE_arsenal_displayOpened", {
     "PrePreOpen" call TFAR_fnc_onArsenal;
 }] call CBA_fnc_addEventHandler;
