@@ -172,31 +172,31 @@ if (player call TFAR_fnc_isForcedCurator) then {
 
     if !(TFAR_currentUnit getVariable ["TFAR_HandlersSet",false]) then {
         TFAR_currentUnit addEventHandler ["Take", {
-            private _class = configFile >> "CfgWeapons" >> (_this select 2);
-            if !(isClass _class) exitWith {};
-            if (isNumber (_class >> "tf_radio")) exitWith {
+            if ((_this select 2) call TFAR_fnc_isRadio) exitWith {
                 [(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;
             };
-            if (isNumber (_class >> "tf_prototype")) then {
+            if ((_this select 2) call TFAR_fnc_isPrototypeRadio) then {
                 call TFAR_fnc_radioReplaceProcess;
             };
         }];
         TFAR_currentUnit addEventHandler ["Put", {
-            private _class = configFile >> "CfgWeapons" >> (_this select 2);
-            if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+            If ((_this select 2) call TFAR_fnc_isRadio) then {
                 [(_this select 2), ""] call TFAR_fnc_setRadioOwner;
             };
         }];
         TFAR_currentUnit addEventHandler ["Killed", {
             params ["_unit"];
-            private _items = (assignedItems _unit) + (items _unit);
+            private _allItems = (assignedItems _unit);
+            _allItems append ((getItemCargo (uniformContainer _unit)) select 0);
+            _allItems append ((getItemCargo (vestContainer _unit)) select 0);
+            _allItems append ((getItemCargo (backpackContainer _unit)) select 0);
+            _allItems = _allItems arrayIntersect _allItems;
             {
-                _class = configFile >> "CfgWeapons" >> _x;
-                if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
+                if (_x call TFAR_fnc_isRadio) then {
                     [_x, ""] call TFAR_fnc_setRadioOwner;
                 };
-                true;
-            } count _items;
+                nil
+            } count _allItems;
         }];
         TFAR_currentUnit setVariable ["TFAR_HandlersSet", true];
     };
@@ -232,7 +232,6 @@ player addEventHandler ["killed", {
     call TFAR_fnc_hideHint;
 }];
 
-call TFAR_fnc_processRespawn; //Handle our current spawn
 
 
 [   {!((isNil "TF_server_addon_version") and (time < 20))},
