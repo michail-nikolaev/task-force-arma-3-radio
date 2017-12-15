@@ -11,3 +11,11 @@
     1,
     FUNC(onSettingChanged)
 ] call CBA_Settings_fnc_init;
+
+
+[
+    QGVAR(reveal),
+    {
+        (_this select 0) reveal [(_this select 1), 1.5];
+    }
+] call CBA_fnc_addEventHandler;

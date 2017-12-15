@@ -25,7 +25,7 @@ private _nearHostiles = _unit nearEntities [["Car", "Motorcycle", "Tank", "CAMan
 
     if (!(isPlayer _x) && {!isNull _x} && {!((vehicle _x) call TFAR_fnc_isVehicleIsolated)} && {_x knowsAbout _unit <= 1.5}) then {
         //#TODO the farther away the unit is the lower reveal it should have
-        [_x,[_unit,1.5]] remoteExec ["reveal", _x];
+        [QGVAR(reveal), [_x, _unit], _x] call CBA_fnc_targetEvent;
         #ifdef DEBUG_MODE_FULL
             systemChat format["TFAR Revealing %1 to %2 (%3).",_unit,_x,_x knowsAbout _unit];
         #endif
