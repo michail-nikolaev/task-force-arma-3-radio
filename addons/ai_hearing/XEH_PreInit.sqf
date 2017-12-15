@@ -16,6 +16,6 @@
 [
     QGVAR(reveal),
     {
-        (_this select 0) reveal [(_this select 1), 1.5];
+        (_this select 0) reveal [(_this select 1), (_this select 2)];
     }
 ] call CBA_fnc_addEventHandler;
