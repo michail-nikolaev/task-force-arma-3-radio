@@ -3,7 +3,7 @@
 #include "XEH_PREP.sqf"
 
 if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
-    ["CBA_settingsInitialized", DFUNC(serverInit)] call CBA_fnc_addEventhandler;
+    [] call DFUNC(serverInit);
 };
 GVAR(SettingsInitialized) = false;
 ["CBA_settingsInitialized", {GVAR(SettingsInitialized) = true;}] call CBA_fnc_addEventhandler;
@@ -113,7 +113,7 @@ if (!isMultiplayer && !is3DENMultiplayer) exitWith {}; //Don't do anything more 
 
 if (isServer) then {//Serverside variables
     missionNamespace setVariable ["TF_server_addon_version",TFAR_ADDON_VERSION,true];
-    TFAR_RadioCountHash = [] call CBA_fnc_hashCreate;
+    TFAR_RadioCountNamespace = false call CBA_fnc_createNamespace;
     TFAR_RadioSettingsNamespace = true call CBA_fnc_createNamespace;
     publicVariable "TFAR_RadioSettingsNamespace";
 }
