@@ -23,9 +23,13 @@
 
 params ["_radio", "_owner", ["_local", false, [true]]];
 
+If !(GVAR(SettingsInitialized)) exitWith {
+    [{GVAR(SettingsInitialized)}, TFAR_fnc_setRadioOwner, _this] call CBA_fnc_waitUntilAndExecute;
+};
+
 private _settings = _radio call TFAR_fnc_getSwSettings;
 _settings set [RADIO_OWNER, _owner];
 [_radio, _settings, _local] call TFAR_fnc_setSwSettings;
 
-//							owner, radio ID
+// owner, radio ID
 ["OnRadioOwnerSet", [TFAR_currentUnit, _radio]] call TFAR_fnc_fireEventHandlers;
