@@ -39,7 +39,6 @@ TFAR_currentUnit = call TFAR_fnc_currentUnit;
 
 tf_lastNearFrameTick = diag_tickTime;
 tf_lastFarFrameTick = diag_tickTime;
-TFAR_RadioReqLinkFirstItem = true;//Radio Request Link first Item
 TF_respawnedAt = time;//first spawn so.. respawned now
 
 [   {!(isNull (findDisplay 46))},
@@ -228,7 +227,6 @@ player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 player addEventHandler ["killed", {
     GVAR(use_saved_sr_setting) = true;
     GVAR(use_saved_lr_setting) = true;
-    TFAR_RadioReqLinkFirstItem = true;
     call TFAR_fnc_hideHint;
 }];
 
