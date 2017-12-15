@@ -36,6 +36,7 @@ private _rc = _value select TFAR_CODE_OFFSET;
 if (isNil "_rc") then {
     _rc = "";
     private _code = [_radio, "tf_encryptionCode", ""] call DFUNC(getWeaponConfigProperty);
+    if (_code == "tf_guer_radio_code") then {_encryptionCode = "tf_independent_radio_code"};
     private _hasDefaultEncryption = (_code == "tf_west_radio_code") or {_code == "tf_east_radio_code"} or {_code == "tf_independent_radio_code"};
     if (_hasDefaultEncryption and {!isServer} and {(TFAR_currentUnit call BIS_fnc_objectSide) != civilian}) then {
         _parent = [_radio, "tf_parent", ""] call DFUNC(getWeaponConfigProperty);
