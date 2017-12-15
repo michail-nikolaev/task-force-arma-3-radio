@@ -15,4 +15,4 @@ class TFAR_pnr1000a: ItemRadio {
     tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
 };
 HIDDEN_CLASS(tf_pnr1000a : TFAR_pnr1000a); //#Deprecated dummy class for backwards compat
-TF_RADIO_IDS(TFAR_pnr1000a,PNR-1000A)
+TF_RADIO_ID_LIST(TFAR_pnr1000a,PNR-1000A)

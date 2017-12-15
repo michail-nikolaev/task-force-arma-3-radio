@@ -26,6 +26,7 @@
 #define QTFAR_ROUND_FREQUENCY(frequency) QTFAR_ROUND_FREQUENCYP(frequency,TFAR_FREQ_ROUND_POWER)
 
 #define TFAR_FREQUENCYSTRING_TO_FREQNUMBER(frequency) parseNumber ( ((frequency) splitString ",.") joinString "." )
+#define TFAR_CONFIG_FREQUENCYSTRING_TO_FREQNUMBER(frequency) parseNumber(((frequency) splitString "",."") joinString ""."")
 
 #define TFAR_MAX_CHANNELS 8
 #define TFAR_MIN_SW_FREQ 30

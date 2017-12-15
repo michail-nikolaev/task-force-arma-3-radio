@@ -25,11 +25,7 @@ class anprc152_radio_dialog
     controlsBackground[] = { };
     objects[] = { };
     onUnload = "['OnRadioOpen', [player, TF_sw_dialog_radio, false, 'anprc152_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-    onLoad = QUOTE(
-        if (sunOrMoon < 0.2) then {
-            ((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText QPATHTOF(anprc152\ui\152_n.paa);
-        };
-    );
+    onLoad = QUOTE(if (sunOrMoon < 0.2) then {((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText 'PATHTOF(anprc152\ui\152_n.paa)';};);
     controls[]=
 {
     background,
@@ -92,17 +88,7 @@ class enter: HiddenButton
     w = 0.0144375 * safezoneW;
     h = 0.017875 * safezoneH;
     tooltip = ECSTRING(core,set_frequency);
-    action = QUOTE(
-        _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANPRC152_EDIT);
-        if ((_f >= TFAR_MIN_SW_FREQ) and (_f <= TFAR_MAX_SW_FREQ)) then {
-            [ARR_2(TF_sw_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setSwFrequency;
-            call TFAR_fnc_hideHint;
-        } else {
-            hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)];
-        };
-        call TFAR_fnc_updateSWDialogToChannel;
-    );
-};
+    action = QUOTE(_f = TFAR_CONFIG_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANPRC152_EDIT);if ((_f >= TFAR_MIN_SW_FREQ) and (_f <= TFAR_MAX_SW_FREQ)) then {[ARR_2(TF_sw_dialog_radio, str TFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setSwFrequency;call TFAR_fnc_hideHint;} else {hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)];};call TFAR_fnc_updateSWDialogToChannel;);};
 class clear: HiddenButton
 {
     idc = IDC_ANPRC152_CLEAR;
@@ -111,10 +97,7 @@ class clear: HiddenButton
     w = 0.0146438 * safezoneW;
     h = 0.0198 * safezoneH;
     tooltip = ECSTRING(core,clear_frequency);
-    action = QUOTE(
-        ctrlSetText [ARR_2(IDC_ANPRC152_EDIT, '')];
-        ctrlSetFocus ((findDisplay IDD_ANPRC152_RADIO_DIALOG) displayCtrl IDC_ANPRC152_EDIT);
-    );
+    action = QUOTE(ctrlSetText [ARR_2(IDC_ANPRC152_EDIT, '')];ctrlSetFocus ((findDisplay IDD_ANPRC152_RADIO_DIALOG) displayCtrl IDC_ANPRC152_EDIT););
 };
 class additional: HiddenButton
 {
@@ -163,10 +146,7 @@ class stereo: HiddenButton
     y = 0.65895 * safezoneH + safezoneY;
     w = 0.0198 * safezoneW;
     h = 0.024475 * safezoneH;
-    action = QUOTE(
-        [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;
-        [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;
-    );
+    action = QUOTE([ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;);
     tooltip = ECSTRING(core,stereo_settings);
 };
 class volume_Switch: HiddenRotator

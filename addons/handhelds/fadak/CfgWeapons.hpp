@@ -15,4 +15,4 @@ class TFAR_fadak: ItemRadio {
     tf_additional_channel = 1;
 };
 HIDDEN_CLASS(tf_fadak : TFAR_fadak); //#Deprecated dummy class for backwards compat
-TF_RADIO_IDS(TFAR_fadak,FADAK)
+TF_RADIO_ID_LIST(TFAR_fadak,FADAK)
