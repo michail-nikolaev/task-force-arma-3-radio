@@ -28,22 +28,6 @@ private _replaceRadio = {
     _radio call TFAR_fnc_instanciateRadio
 };
 
-private _fetchItems = {
-    private _allItems = ((getItemCargo (uniformContainer _this)) select 0);
-    _allItems append ((getItemCargo (vestContainer _this)) select 0);
-    _allItems append ((getItemCargo (backpackContainer _this)) select 0);
-    _allItems = _allItems arrayIntersect _allItems;//Remove duplicates
-
-    private _result = [];
-    {
-        if (_x call TFAR_fnc_isPrototypeRadio) then {
-            _result pushBack _x;
-        };
-        true;
-    } count _allItems;
-    _result
-};
-
 {
     if (_x call TFAR_fnc_isPrototypeRadio) then {
         //replace		
