@@ -62,22 +62,6 @@ _radiosToRequest = _radiosToRequest apply {
 
         diag_log ["TFAR_ReceiveRadioRequestResponse",_response];
 
-        private _fnc_CopySettings = {
-            params ["_settingsCount", "_copyIndex", "_destination","_TF_SettingsToCopy"];
-
-            if (_settingsCount > _copyIndex) then {
-                if ([_destination, _TF_SettingsToCopy select _copyIndex] call TFAR_fnc_isSameRadio) then {
-                    private _source = _TF_SettingsToCopy select _copyIndex;
-                    private _variableName = format["%1_local", _source];
-                    private _localSettings = TFAR_RadioSettingsNamespace getVariable _variableName;
-                    if !(isNil "_variableName") then {
-                        [_destination, _localSettings, true] call TFAR_fnc_setSwSettings;
-                    };
-                };
-            };
-            (_copyIndex + 1)
-        };
-
         {
             if ((_x call TFAR_fnc_isRadio) || {_x == "ItemRadio"}) then {
                 private _index = _radiosToReplace find _x;
