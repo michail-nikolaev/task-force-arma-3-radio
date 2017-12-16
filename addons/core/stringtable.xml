@@ -1146,6 +1146,16 @@
             <Japanese>%1 を取る</Japanese>
         </Key>
         <Container name="settings">
+            <Key ID="STR_TFAR_SETTINGS_clientside">
+                <Original>TFAR - clientside settings</Original>
+                <English>TFAR - clientside settings</English>
+                <German>TFAR - Benutzereinstellungen</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_global">
+                <Original>TFAR - global settings</Original>
+                <English>TFAR - global settings</English>
+                <German>TFAR - Allgemeine Einstellungen</German>
+            </Key>
             <Key ID="STR_TFAR_SETTINGS_TerrainInterceptionCoefficient">
                 <Original>Terrain Interception Coefficient</Original>
                 <English>Terrain Interception Coefficient</English>
