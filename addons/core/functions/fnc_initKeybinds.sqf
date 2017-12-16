@@ -176,3 +176,9 @@ private _fnc_localizeLRChannel = {
 
 ["TFAR", "LowerHeadset", [localize LSTRING(key_LowerHeadset), localize LSTRING(key_LowerHeadset)], {}, {true call TFAR_fnc_setHeadsetLowered;}, [0, [false, false, false]], false] call cba_fnc_addKeybind;
 ["TFAR", "RaiseHeadset", [localize LSTRING(key_RaiseHeadset), localize LSTRING(key_RaiseHeadset)], {}, {false call TFAR_fnc_setHeadsetLowered;}, [0, [false, false, false]], false] call cba_fnc_addKeybind;
+
+["TFAR", "TSDebugLog", ["TS Debug Log", "Makes TS collect debug info into one folder"], {}, {
+    "task_force_radio_pipe" callExtension "collectDebugInfo~";
+    systemChat "I logged stuff! Look in TS for path";
+    hint "I logged stuff! Look in TS for path";
+},[0, [false, false, false]], false] call cba_fnc_addKeybind;

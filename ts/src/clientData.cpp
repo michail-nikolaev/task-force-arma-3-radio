@@ -2,6 +2,28 @@
 #include "Logger.hpp"
 #include "task_force_radio.hpp"
 #include "antennaManager.h"
+#include <iomanip>
+
+#define logParam(x) str << #x << " " << x << "\n"
+#define logParamN(n,x) str << #n << " " << x << "\n"
+
+void LISTED_INFO::operator<<(std::ostream& str) const {
+
+    logParamN(over, static_cast<uint32_t>(over));
+    logParamN(on, static_cast<uint32_t>(on));
+    logParam(volume);
+    logParamN(stereoMode, static_cast<uint32_t>(stereoMode));
+    logParam(radio_id);
+    logParamN(pos, pos.toString());
+    logParam(waveZ);
+
+    str << "vehicle:\n";
+    str << "\tvehicleName " << vehicle.vehicleName << "\n";
+    str << "\tvehicleIsolation " << vehicle.vehicleIsolation << "\n";
+    str << "\tintercomSlot " << vehicle.intercomSlot << "\n";
+
+    str << "antennaConnection:\n" << antennaConnection << "\n";
+}
 
 void clientData::updatePosition(const unitPositionPacket & packet) {
     LockGuard_exclusive lock(&m_lock);
@@ -76,7 +98,7 @@ bool clientData::isAlive() {
 
 clientData* lastORCheck = nullptr;
 #include "Teamspeak.hpp"
-#define DIAGLOG(x) if (lastORCheck != this) Teamspeak::printMessageToCurrentTab((x).c_str())
+#define DIAGLOG(x) if (lastORCheck != this) circularLog(x)
 
 LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, bool ignoreDdTangent, AntennaConnection& antennaConnection) {
     //Sender is this
@@ -104,7 +126,7 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     } else if ((currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_LR || ignoreLrTangent) && canUseLRRadio) {//Sending from LR
         result.over = sendingRadioType::LISTEN_TO_LR;
     } else {
-        DIAGLOG(senderNickname + " IOLR No Send? ttot="+std::to_string((int) currentTransmittingTangentOverType)+" CURF="+
+        DIAGLOG("IOLR No Send? ttot="+std::to_string((int) currentTransmittingTangentOverType)+" CURF="+
             std::to_string(canUseSWRadio) +
             std::to_string(canUseDDRadio) +
             std::to_string(canUseLRRadio));
@@ -124,14 +146,14 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     bool senderOnSWFrequency = TFAR::getInstance().m_gameData.mySwFrequencies.count(senderFrequency) != 0;
     countLock.unlock();
     if (!senderOnSWFrequency && !senderOnLRFrequency) {
-        DIAGLOG(senderNickname + " IOLR No freq sf=" + senderFrequency);
+        DIAGLOG("IOLR No freq sf=" + senderFrequency);
         return result; //He's not on any frequency we can receive on
     }
 
     float effectiveDist = myData->effectiveDistanceTo(this);
 
     if (isUnderwater) {
-        DIAGLOG(senderNickname + " IOLR underwater");
+        DIAGLOG("IOLR underwater");
         float underwaterDist = myPosition.distanceUnderwater(clientPosition);
         //Seperate distance underwater and distance overwater.
         effectiveDist = underwaterDist * (range / helpers::distanceForDiverRadio()) + (effectiveDist - underwaterDist);
@@ -148,7 +170,7 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     }
 
     if (effectiveDist > range) {    //Out of range
-        DIAGLOG(senderNickname + " IOLR No reach ed=" + std::to_string(effectiveDist) + " rng=" + std::to_string(range));
+        DIAGLOG("IOLR No reach ed=" + std::to_string(effectiveDist) + " rng=" + std::to_string(range));
         return result;
     }
         
@@ -166,25 +188,25 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
         auto &frequencyInfo = TFAR::getInstance().m_gameData.myLrFrequencies[senderFrequency];
         if (!TFAR::config.get<bool>(Setting::full_duplex) && //If we are currently transmitting on that Radio we can't hear so we return before result gets valid
             frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0) {
-            DIAGLOG(senderNickname + " IOLR No duplex LR RECV");
+            DIAGLOG("IOLR No duplex LR RECV");
             return result;
         }
         result.on = receivingRadioType::LISTED_ON_LR;
         result.volume = frequencyInfo.volume;
         result.stereoMode = frequencyInfo.stereoMode;
-        DIAGLOG(senderNickname + " IOLR RECV! RC=" + frequencyInfo.radioClassname);
+        DIAGLOG("IOLR RECV! RC=" + frequencyInfo.radioClassname);
     } else if (senderOnSWFrequency && myData->canUseSWRadio) {//to our SW
         LockGuard_shared lock(&TFAR::getInstance().m_gameData.m_lock);
         auto &frequencyInfo = TFAR::getInstance().m_gameData.mySwFrequencies[senderFrequency];
         if (!TFAR::config.get<bool>(Setting::full_duplex) && //If we are currently transmitting on that Radio we can't hear so we return before result gets valid
             frequencyInfo.radioClassname.compare(currentTransmittingRadio) == 0) {
-            DIAGLOG(senderNickname + " IOLR No duplex SR RECV");
+            DIAGLOG("IOLR No duplex SR RECV");
             return result;
         }
         result.on = receivingRadioType::LISTED_ON_SW;
         result.volume = frequencyInfo.volume;
         result.stereoMode = frequencyInfo.stereoMode;
-        DIAGLOG(senderNickname + " IOLR RECV! RC="+ frequencyInfo.radioClassname);
+        DIAGLOG("IOLR RECV! RC="+ frequencyInfo.radioClassname);
     }
     return result;
 }
@@ -196,7 +218,7 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
     std::string senderNickname = getNickname();
     std::vector<LISTED_INFO> result;
     if (!myData) {
-        DIAGLOG(senderNickname+ " IOR No Data");
+        DIAGLOG("IOR No Data");
         return result;
     }
     //Intercom has to be here because it has to be before range==0 check
@@ -221,7 +243,7 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
 
 
     if (range == 0) {
-        DIAGLOG(senderNickname + " IOR No Range");
+        DIAGLOG("IOR No Radio Transmit");
         return result; //If we are sending range is set to Radio's range. Always!
     }
     auto antennaConnection = (clientId != myData->clientId) ? TFAR::getAntennaManager()->findConnection(getClientPosition(), static_cast<float>(range), myData->getClientPosition()) : AntennaConnection();
@@ -231,7 +253,7 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
         if (local.on != receivingRadioType::LISTED_ON_NONE && local.over != sendingRadioType::LISTEN_TO_NONE) {
             result.push_back(local);
         } else {
-            DIAGLOG(senderNickname + " IOR No Local Radio");
+            DIAGLOG("IOR No Local Radio");
         }
     }
 
@@ -240,7 +262,7 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
 
     //We reuse the antennaConnection for a nearby speaker. Technically antennaConnection measures connection to our body. But a speaker Radio is not that far away from us anyway
     if (effectiveDistance_ > range && antennaConnection.isNull()) { //does senders range reach to us?
-        DIAGLOG(senderNickname + " IOR No Range & no Ant efDist="+std::to_string(effectiveDistance_)+" rng="+std::to_string(range));
+        DIAGLOG("IOR No Range & no Ant efDist="+std::to_string(effectiveDistance_)+" rng="+std::to_string(range));
         return result; //His distance > range and no suitable Antenna
     }
 
@@ -274,7 +296,7 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
         });
 
     } else {
-        DIAGLOG(senderNickname + " IOR No spk? cusw=" + std::to_string(canUseSWRadio) + " culr=" + std::to_string(canUseLRRadio)+ " ttot="+std::to_string((int)currentTransmittingTangentOverType)
+        DIAGLOG("IOR No spk? cusw=" + std::to_string(canUseSWRadio) + " culr=" + std::to_string(canUseLRRadio)+ " ttot="+std::to_string((int)currentTransmittingTangentOverType)
         +" tfrq="+ getCurrentTransmittingFrequency());
     }
     return result;
@@ -291,4 +313,65 @@ void clientData::addModificationLog(std::string mod) {
 std::vector<std::string> clientData::getModificationLog() const {
     LockGuard_shared lock(&m_lock);
     return modificationLog;
+}
+
+void clientData::circularLog(const std::string& message) {
+    std::stringstream msg;
+    auto now = std::chrono::system_clock::now();
+    auto in_time_t = std::chrono::system_clock::to_time_t(now);
+    msg << std::put_time(std::localtime(&in_time_t), "%H:%M:%S") << " " << message;
+    LockGuard_exclusive lock(&m_lock);
+    messages.push_back(msg.str());
+    if (++offset > messageCount) offset = 0;
+
+}
+
+void clientData::verboseDataLog(std::ostream& str) {
+    LockGuard_shared lock(&m_lock);
+
+    logParam(pluginEnabled);
+    logParamN(clientId,clientId.baseType());
+    logParamN(currentTransmittingTangentOverType,(uint32_t) currentTransmittingTangentOverType);
+    logParam(voiceVolume);
+    logParam(range);
+    logParam(canSpeak);
+    logParam(clientTalkingNow);
+    logParam(dataFrame);
+    logParam(canUseSWRadio);
+    logParam(canUseLRRadio);
+    logParam(canUseDDRadio);
+    logParam(terrainInterception);
+    logParam(objectInterception);
+    logParam(voiceVolumeMultiplifier);
+    logParam(isSpectating);
+    logParam(isEnemyToPlayer);
+    logParamN(receivingTransmission,(uint32_t)receivingTransmission);
+
+    str << "receivingFrequencies:\n";
+
+    for (auto& it : receivingFrequencies) {
+        str << "\t" << it << "\n";
+    }
+    str << "modificationLog:\n";
+
+    for (auto& it : modificationLog) {
+        str << "\t" << it << "\n";
+    }
+    logParam(nickname);
+    logParamN(clientPosition, clientPosition.toString());
+    logParamN(viewDirection, viewDirection.toString());
+
+
+    auto in_time_t = std::chrono::system_clock::to_time_t(lastPositionUpdateTime);
+    str << "lastPositionUpdateTime " << std::put_time(std::localtime(&in_time_t), "%H:%M:%S") << "\n";
+
+    logParam(currentTransmittingFrequency);
+    logParam(currentTransmittingSubtype);
+
+    str << "vehicleId:\n";
+    str << "\tvehicleName " << vehicleId.vehicleName << "\n";
+    str << "\tvehicleIsolation " << vehicleId.vehicleIsolation << "\n";
+    str << "\tintercomSlot " << vehicleId.intercomSlot << "\n";
+
+    logParamN(velocity,velocity.toString());
 }

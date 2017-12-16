@@ -32,6 +32,15 @@ void TeamspeakLogger::log(const std::string& message, LogLevel _loglevel) {
     ts3Functions.logMessage(message.c_str(), _loglevel, "task_force_radio", 141);
 }
 
+void CircularLogger::log(const std::string& message) {
+    messages[offset] = message;
+    if (++offset > messageCount) offset = 0;
+}
+
+void CircularLogger::log(const std::string& message, LogLevel _loglevel) {
+    log(message);
+}
+
 void Logger::registerLogger(LoggerTypes type, std::shared_ptr<ILogger> logger) {
     getInstance()._registerLogger(type, logger);
 }
@@ -49,6 +58,13 @@ void Logger::log(LoggerTypes type, const std::string & message, LogLevel _loglev
         (_loglevel != LogLevel_DEVEL && _loglevel != LogLevel_DEBUG))
     #endif
         getInstance()._log(type, message, _loglevel);
+}
+
+std::vector<std::shared_ptr<ILogger>> Logger::getLogger(LoggerTypes type) {
+    auto found = getInstance().registeredLoggers.find(type);
+    if (found != getInstance().registeredLoggers.end())
+        return found->second;
+    return {};
 }
 
 void Logger::_registerLogger(LoggerTypes type, std::shared_ptr<ILogger> logger) {
