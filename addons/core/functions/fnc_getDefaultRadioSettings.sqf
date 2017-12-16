@@ -67,7 +67,7 @@ if (_isSW) then {
 } else {
 
     private _encryptionCode = [(_this param [2, "", [""]]), "tf_encryptionCode"] call DFUNC(getVehicleConfigProperty);
-
+    if (_encryptionCode == "tf_guer_radio_code") then {_encryptionCode = "tf_independent_radio_code"};
     private _value = nil;
 
     if (_encryptionCode == (format ["tf_%1_radio_code", (_unit call BIS_fnc_objectSide)])) then {

@@ -5,6 +5,7 @@
         scopeCurator = 1; \
         tf_prototype = 0; \
         tf_radio = 1; \
+        ace_arsenal_uniqueBase = baseClass; \
     };
 
 
