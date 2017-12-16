@@ -9,6 +9,7 @@
 #include "version.h"
 #include <ctime> // localtime
 #include <iomanip> // put_time
+#include <filesystem>
 using namespace dataType;
 struct TS3Functions ts3Functions;
 
@@ -766,6 +767,60 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
         std::stringstream diag;
         TFAR::getInstance().doTypeDiagReport("pos",diag);
         ts3Functions.printMessageToCurrentTab(diag.str().c_str());
+        return 0; /* Plugin handled command */
+    }
+    if (std::string(command,4).compare("full") == 0) {
+        std::stringstream date;
+        auto now = std::chrono::system_clock::now();
+        auto in_time_t = std::chrono::system_clock::to_time_t(now);
+        date << std::put_time(std::localtime(&in_time_t), "%d-%m_%H-%M-%S");
+        auto dateString = date.str();
+
+        auto basePath = std::string(getenv("appdata")) + "\\TS3Client\\logs\\"+ dateString +"\\";
+        std::error_code err;
+
+        std::experimental::filesystem::create_directories(basePath, err);
+
+        std::experimental::filesystem::copy(std::string(getenv("appdata")) + "\\TS3Client\\TFAR_pluginCommands.log", basePath + "TFAR_pluginCommands.log", err);
+        TSServerID currentServerConnectionHandlerID = Teamspeak::getCurrentServerConnection();
+        auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(currentServerConnectionHandlerID);
+        if (!clientDataDir) return 1;
+        clientDataDir->forEachClient([&basePath](const std::shared_ptr<clientData>& cli) {
+            auto messages = std::move(cli->messages);
+            cli->offset = 0;
+            std::string nick = cli->getNickname();
+            std::string illegalChars = "\\/:?\"<>|";
+            for (auto it = nick.begin(); it < nick.end(); ++it) {
+                bool found = illegalChars.find(*it) != std::string::npos;
+                if (found) {
+                    *it = ' ';
+                }
+            }
+
+            std::ofstream fs(basePath + "CL_" + nick + ".log");
+            for (auto& msg : messages) {
+                fs << msg << '\n';
+            }
+
+            std::ofstream vdl(basePath + "VDL_" + nick + ".log");
+            cli->verboseDataLog(vdl);
+        });
+
+
+        std::stringstream diag;
+        diag << "diag from " << dateString << "\n";
+        TFAR::getInstance().doDiagReport(diag);
+
+        std::ofstream fsd(basePath + "diag.log");
+        fsd << command << "\n" << diag.str() ;
+
+        std::stringstream pos;
+        TFAR::getInstance().doTypeDiagReport("pos", diag);
+        std::ofstream fsp(basePath + "pos.log");
+        fsp << command << "\n" << diag.str();
+
+
+        ts3Functions.printMessageToCurrentTab((std::string("logged to ")+ basePath).c_str());
         return 0; /* Plugin handled command */
     }
     return 1;  /* Plugin didn't handle command */

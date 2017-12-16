@@ -52,11 +52,25 @@ public:
     void log(const std::string& message, LogLevel _loglevel) override;
 };
 
+class CircularLogger : public ILogger {
+public:
+    explicit CircularLogger(uint32_t _messageCount) : messageCount(_messageCount) {};
+    virtual ~CircularLogger() {}
+
+    void log(const std::string& message) override;
+    void log(const std::string& message, LogLevel _loglevel) override;
+
+    std::vector <std::string> messages;
+    uint32_t offset{0};
+    uint32_t messageCount;
+};
+
 enum class LoggerTypes {
     profiler,
     gameCommands,
     pluginCommands,
-    teamspeakClientlog
+    teamspeakClientlog,
+    internalCircularLog
 };
 
 //this stuff is missing a lot of features.. Especially Loglevels. I just made this for debugging purposes
@@ -67,7 +81,7 @@ public:
     //#TODO log function that takes message as rvalue reference to avoid copy (&&)
     static void log(LoggerTypes type, const std::string& message);
     static void log(LoggerTypes type, const std::string& message, LogLevel _loglevel);
-
+    static std::vector<std::shared_ptr<ILogger>> getLogger(LoggerTypes type);
 private:
     Logger();
     ~Logger();
