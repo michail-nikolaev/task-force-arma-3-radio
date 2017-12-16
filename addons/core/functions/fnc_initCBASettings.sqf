@@ -166,7 +166,7 @@
     "EDITBOX", 
     [ELSTRING(settings,TeamspeakChannel_name), ELSTRING(settings,TeamspeakChannel_name_desc)], 
     localize ELSTRING(settings,global), 
-    "",
+    "TaskForceRadio",
     1,
     {["serious_channelName",_this] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
@@ -175,7 +175,7 @@
     "EDITBOX", 
     [ELSTRING(settings,TeamspeakChannel_password), ELSTRING(settings,TeamspeakChannel_password_desc)], 
     localize ELSTRING(settings,global), 
-    ["", true],
+    ["123", true],
     1,
     {["serious_channelPassword",_this] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
