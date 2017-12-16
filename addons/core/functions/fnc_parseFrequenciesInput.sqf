@@ -50,7 +50,7 @@ _parsedValue = _parsedValue select {
 _parsedValue = _parsedValue apply {QTFAR_ROUND_FREQUENCYP(_x,_roundPower)};
 
 
-if !((count _parsedValue) < _minChannels) then {
+if ((count _parsedValue) < _minChannels) then {
     private _randomized = [_minChannels,_maxFreq,_minFreq,_roundPower] call DFUNC(generateFrequencies);
     _parsedValue append _randomized;
     _parsedValue resize _minChannels;
