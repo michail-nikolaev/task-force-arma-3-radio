@@ -6,7 +6,7 @@
     "TFAR_AICanHearPlayer",
     "CHECKBOX",
     [LSTRING(SETTING_HEADER), LSTRING(SETTING_DESC)],
-    "Task Force Arrowhead Radio",
+    localize ELSTRING(settings,global),
     false,
     1,
     FUNC(onSettingChanged)
