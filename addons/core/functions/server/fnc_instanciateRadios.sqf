@@ -28,7 +28,7 @@ private _response = [];
     _x params ["_radioBaseClass"];
 
     if (_radioBaseClass == "ItemRadio") then {
-        _radioBaseClass = missionNamespace getVariable [format["TFAR_DefaultRadio_Rifleman_West", side _requestingUnit], ""];        
+        _radioBaseClass = missionNamespace getVariable [format["TFAR_DefaultRadio_Rifleman_%1", side _requestingUnit], ""];
     } else {
         //get Radio baseclass without ID
         _radioBaseClass = [_radioBaseClass, "tf_parent", ""] call DFUNC(getWeaponConfigProperty);
