@@ -31,7 +31,7 @@ private _fnc_tryResolveFactionClass = {
 
     if (isText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"))) exitWith {
         missionNamespace setVariable [(format["%1_%2_tf_faction_radio", _faction, _prefix]), getText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"))];
-        getText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"));
+        getText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api")); //#Deprecated
     };
 
     if (isText (configFile >> "CfgFactionClasses" >> _faction >> _prefix + "_tf_faction_radio")) exitWith {
