@@ -16,4 +16,4 @@ class TFAR_anprc154: ItemRadio {
     tf_additional_channel = 0;
 };
 HIDDEN_CLASS(tf_anprc154 : TFAR_anprc154); //#Deprecated dummy class for backwards compat
-TF_RADIO_ID_LIST(TFAR_anprc154,AN/PRC-154)
+TF_RADIO_IDS(TFAR_anprc154,AN/PRC-154)
