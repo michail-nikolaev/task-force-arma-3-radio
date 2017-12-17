@@ -65,6 +65,7 @@ def main():
         else:
             path_armake = os.path.normpath(projectpath + "/tools/armake_w32.exe")
     else:
+        USEARMAKE = True
         path_armake = "armake"
         work_drive = "/mnt/p"
 
