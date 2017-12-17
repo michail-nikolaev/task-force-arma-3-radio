@@ -3,10 +3,13 @@
 import os
 import sys
 import subprocess
+import struct
+import platform
 
 ######## GLOBALS #########
 MAINPREFIX = "z"
 PREFIX = "tfar_"
+USEARMAKE = True
 ##########################
 
 def mod_time(path):
@@ -19,15 +22,26 @@ def mod_time(path):
 
 
 def check_for_changes(addonspath, module):
-    if not os.path.exists(os.path.join(addonspath, "{}{}.pbo".format(PREFIX,module))):
+    if not os.path.exists(os.path.join(addonspath, "{}{}.pbo".format(PREFIX, module))):
         return True
-    return mod_time(os.path.join(addonspath, module)) > mod_time(os.path.join(addonspath, "{}{}.pbo".format(PREFIX,module)))
+    return mod_time(os.path.join(addonspath, module)) > mod_time(os.path.join(addonspath, \
+        "{}{}.pbo".format(PREFIX, module)))
 
 def check_for_obsolete_pbos(addonspath, file):
     module = file[len(PREFIX):-4]
     if not os.path.exists(os.path.join(addonspath, module)):
         return True
     return False
+
+def getArmake():
+    if platform.system() == "Windows":
+        if struct.calcsize("P") == 8:
+            path_armake = os.path.normpath(projectpath + "/tools/armake_w64.exe")
+        else:
+            path_armake = os.path.normpath(projectpath + "/tools/armake_w32.exe")
+    else:
+        path_armake = "armake"
+    return path_armake
 
 def main():
     print("""
@@ -53,6 +67,17 @@ def main():
                 removed += 1
                 print("  Removing obsolete file => " + file)
                 os.remove(file)
+
+    if platform.system() == "Windows":
+        work_drive = "P:\\"
+        if struct.calcsize("P") == 8:
+            path_armake = os.path.normpath(projectpath + "/tools/armake_w64.exe")
+        else:
+            path_armake = os.path.normpath(projectpath + "/tools/armake_w32.exe")
+    else:
+        path_armake = "armake"
+        work_drive = "/mnt/p"
+
     print("")
 
     for p in os.listdir(addonspath):
@@ -69,13 +94,21 @@ def main():
         print("# Making {} ...".format(p))
 
         try:
-            subprocess.check_output([
-                "makepbo",
-                "-NUP",
-                "-@={}\\{}\\addons\\{}".format(MAINPREFIX,PREFIX.rstrip("_"),p),
-                p,
-                "{}{}.pbo".format(PREFIX,p)
-            ], stderr=subprocess.STDOUT)
+            if USEARMAKE:
+                command = path_armake + " build -i " + os.path.normpath(work_drive) + \
+                    " -w unquoted-string" + " -w redefinition-wo-undef" + \
+                    " -f " + os.path.normpath(addonspath + "/" + p) + " " + \
+                    os.path.normpath(addonspath + "/" + PREFIX + p + ".pbo")
+                subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
+
+            else:
+                subprocess.check_output([
+                    "makepbo",
+                    "-NUP",
+                    "-@={}\\{}\\addons\\{}".format(MAINPREFIX, PREFIX.rstrip("_"), p),
+                    p,
+                    "{}{}.pbo".format(PREFIX, p)
+                ], stderr=subprocess.STDOUT)
         except:
             failed += 1
             print("  Failed to make {}.".format(p))
@@ -84,7 +117,8 @@ def main():
             print("  Successfully made {}.".format(p))
 
     print("\n# Done.")
-    print("  Made {}, skipped {}, removed {}, failed to make {}.".format(made, skipped, removed, failed))
+    print("  Made {}, skipped {}, removed {}, failed to make {}.".format(made, \
+        skipped, removed, failed))
 
 
 if __name__ == "__main__":
