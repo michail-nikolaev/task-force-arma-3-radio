@@ -90,6 +90,9 @@ namespace dataType {
         Vector3D(const Vector3D& vec) : m_x(vec.m_x), m_y(vec.m_y), m_z(vec.m_z) {};
 
         std::tuple<float, float, float> get() const; //#TODO instead of using get.. how about operator[] ?
+        std::string toString() const;
+
+
         float length() const;
         float lengthSqr() const;
         float dotProduct(const Vector3D& other) const;
@@ -105,7 +108,6 @@ namespace dataType {
         bool operator< (const Vector3D& other) const;
         bool operator== (const Vector3D& other) const;
         Vector3D operator/(float div) const;
-
     protected:
         float m_x = 0.f;
         float m_y = 0.f;
@@ -194,7 +196,7 @@ namespace dataType {
         }
         bool isNull() const { return objID == 0; }
         int getCreator() const { return creator; }
-        int getobjID() const { return objID; }
+        int getObjID() const { return objID; }
     private:
         int creator{ 0 };
         int objID{ 0 };

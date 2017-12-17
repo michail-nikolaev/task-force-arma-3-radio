@@ -10,6 +10,8 @@
 #include "Teamspeak.hpp"
 #include "antennaManager.h"
 #include "version.h"
+#include <iomanip>
+#include <filesystem>
 
 volatile bool vadEnabled = false;
 volatile bool skipTangentOff = false;
@@ -119,37 +121,26 @@ gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textComman
     switch (hash) {
         case FORCE_COMPILETIME(const_strhash("POS")):
             return gameCommand::POS;
-            break;
         case FORCE_COMPILETIME(const_strhash("IS_SPEAKING")):
             return gameCommand::IS_SPEAKING;
-            break;
         case FORCE_COMPILETIME(const_strhash("TS_INFO")):
             return gameCommand::TS_INFO;
-            break;
         case FORCE_COMPILETIME(const_strhash("FREQ")):
             return gameCommand::FREQ;
-            break;
         case FORCE_COMPILETIME(const_strhash("KILLED")):
             return gameCommand::KILLED;
-            break;
         case FORCE_COMPILETIME(const_strhash("DFRAME")):
             return gameCommand::DFRAME;
-            break;
         case FORCE_COMPILETIME(const_strhash("TRACK")):
             return gameCommand::TRACK;
-            break;
         case FORCE_COMPILETIME(const_strhash("SPEAKERS")):
             return gameCommand::SPEAKERS;
-            break;
         case FORCE_COMPILETIME(const_strhash("RELEASE_ALL_TANGENTS")):
             return gameCommand::RELEASE_ALL_TANGENTS;
-            break;
         case FORCE_COMPILETIME(const_strhash("MISSIONEND")):
             return gameCommand::MISSIONEND;
-            break;
         case FORCE_COMPILETIME(const_strhash("SETCFG")):
             return gameCommand::SETCFG;
-            break;
         case FORCE_COMPILETIME(const_strhash("TANGENT")):
         case FORCE_COMPILETIME(const_strhash("TANGENT_LR")):
         case FORCE_COMPILETIME(const_strhash("TANGENT_DD")):
@@ -158,9 +149,8 @@ gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textComman
             return gameCommand::AddRadioTower;
         case FORCE_COMPILETIME(const_strhash("RadioTwrDel")):
             return gameCommand::DeleteRadioTower;
-        case FORCE_COMPILETIME(const_strhash("RECV_FREQS")):
-            return gameCommand::RECV_FREQS;
-            break;
+        case FORCE_COMPILETIME(const_strhash("collectDebugInfo")):
+            return gameCommand::collectDebugInfo;
     };
     return gameCommand::unknown;
 }
@@ -377,11 +367,56 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
             return;
 
         }
+        case gameCommand::collectDebugInfo: {
+            std::stringstream date;
+            auto now = std::chrono::system_clock::now();
+            auto in_time_t = std::chrono::system_clock::to_time_t(now);
+            date << std::put_time(std::localtime(&in_time_t), "%d-%m_%H-%M-%S");
+            auto dateString = date.str();
+
+            auto basePath = std::string(getenv("appdata")) + "\\TS3Client\\logs\\" + dateString + "\\";
+            std::error_code err;
+
+            std::experimental::filesystem::create_directories(basePath,err);
+
+            std::experimental::filesystem::copy(std::string(getenv("appdata")) + "\\TS3Client\\TFAR_pluginCommands.log", basePath + "TFAR_pluginCommands.log",err);
+
+            clientDataDir->forEachClient([&basePath](const std::shared_ptr<clientData>& cli) {
+                auto messages = std::move(cli->messages);
+                cli->offset = 0;
+                std::string nick = cli->getNickname();
+                std::string illegalChars = "\\/:?\"<>|";
+                for (auto it = nick.begin(); it < nick.end(); ++it) {
+                    bool found = illegalChars.find(*it) != std::string::npos;
+                    if (found) {
+                        *it = ' ';
+                    }
+                }
+
+                std::ofstream fs(basePath + "CL_" + nick + ".log");
+                for (auto& msg : messages) {
+                    fs << msg << '\n';
+                }
+
+                std::ofstream vdl(basePath + "VDL_" + nick + ".log");
+                cli->verboseDataLog(vdl);
+            });
 
 
+            std::stringstream diag;
+            diag << "diag from " << dateString << "\n";
+            TFAR::getInstance().doDiagReport(diag);
 
+            std::ofstream fsd(basePath + "diag.log");
+            fsd << diag.str();
 
+            std::stringstream pos;
+            TFAR::getInstance().doTypeDiagReport("pos", diag);
+            std::ofstream fsp(basePath + "pos.log");
+            fsp << diag.str();
+            Teamspeak::printMessageToCurrentTab((std::string("logged to ") + basePath).c_str());
 
+        }
     }
 }
 
