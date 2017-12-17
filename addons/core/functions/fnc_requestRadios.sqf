@@ -75,7 +75,7 @@ _radiosToRequest = _radiosToRequest apply {
 
             If (_newID > 0) then {
                 If (_OldItem == "ItemRadio") then {
-                    _OldItem = (call TFAR_fnc_getDefaultRadioClasses) param [[2,1] select ((TFAR_givePersonalRadioToRegularSoldier) or {leader _requestedUnit == _requestedUnit} or {rankId _requestedUnit >= 2}), ""];
+                    _OldItem = (call TFAR_fnc_getDefaultRadioClasses) param [[2, 1] select ((TFAR_givePersonalRadioToRegularSoldier) or {leader _requestedUnit == _requestedUnit} or {rankId _requestedUnit >= 2}), ""];
                 };
                 private _NewItem = format["%1_%2", [_OldItem, "tf_parent", ""] call DFUNC(getWeaponConfigProperty), _newID];
                 _requestedUnit linkItem _NewItem;
@@ -105,7 +105,7 @@ _radiosToRequest = _radiosToRequest apply {
             _requestedUnit removeItem _OldItem;
 
             If (_OldItem == "ItemRadio") then {
-                _OldItem = (call TFAR_fnc_getDefaultRadioClasses) param [[2,1] select ((TFAR_givePersonalRadioToRegularSoldier) or {leader _requestedUnit == _requestedUnit} or {rankId _requestedUnit >= 2}), ""];
+                _OldItem = (call TFAR_fnc_getDefaultRadioClasses) param [[2, 1] select ((TFAR_givePersonalRadioToRegularSoldier) or {leader _requestedUnit == _requestedUnit} or {rankId _requestedUnit >= 2}), ""];
             };
 
             private _NewItem = format["%1_%2", [_OldItem, "tf_parent", ""] call DFUNC(getWeaponConfigProperty), _newID];
@@ -132,7 +132,7 @@ _radiosToRequest = _radiosToRequest apply {
         ["OnRadiosReceived", [_requestedUnit, _newRadios]] call TFAR_fnc_fireEventHandlers;
 
         ["TFAR_RadioRequestResponseEvent", _thisId] call CBA_fnc_removeEventHandler;
-        [[15,"radioRequest",round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release
+        [[15, "radioRequest", round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release
     },
     [_radiosToRequest, _linkFirstItem, TFAR_currentUnit]
 ] call CBA_fnc_addEventHandlerArgs;
