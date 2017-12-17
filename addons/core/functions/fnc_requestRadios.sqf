@@ -52,7 +52,7 @@ _radiosToRequest = _radiosToRequest apply {
 
 
 //Answer EH
-[
+GVAR(lastRadioRequestEH_ID) = [
     "TFAR_RadioRequestResponseEvent",
     {
         params [["_response", [], [[]]]];
@@ -64,6 +64,10 @@ _radiosToRequest = _radiosToRequest apply {
             [[15, "radioRequest", round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release
         };
         _thisArgs params ["_radiosToReplace", "_linkFirstItem", "_requestedUnit"];
+
+        If !(_thisId isEqualTo GVAR(lastRadioRequestEH_ID)) exitWith {
+            ["TFAR_RadioRequestResponseEvent", _thisId] call CBA_fnc_removeEventHandler;
+        };
 
         diag_log ["TFAR_ReceiveRadioRequestResponse", _response]; //#TODO remove on release
 
@@ -141,6 +145,6 @@ _radiosToRequest = _radiosToRequest apply {
 
 TFAR_beta_RadioRequestStart = diag_tickTime;//#TODO remove on release
 //Send request
-diag_log ["TFAR_SendRadioRequest",_radiosToRequest,TF_respawnedAt,time];
+diag_log ["TFAR_SendRadioRequest", _radiosToRequest, TF_respawnedAt,time];
 ["TFAR_RadioRequestEvent", [_radiosToRequest,TFAR_currentUnit]] call CBA_fnc_serverEvent;
 //MUTEX_UNLOCK(TF_radio_request_mutex);
