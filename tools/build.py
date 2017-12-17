@@ -9,7 +9,7 @@ import platform
 ######## GLOBALS #########
 MAINPREFIX = "z"
 PREFIX = "tfar_"
-USEARMAKE = True
+USEARMAKE = False
 ##########################
 
 def mod_time(path):
@@ -32,16 +32,6 @@ def check_for_obsolete_pbos(addonspath, file):
     if not os.path.exists(os.path.join(addonspath, module)):
         return True
     return False
-
-def getArmake():
-    if platform.system() == "Windows":
-        if struct.calcsize("P") == 8:
-            path_armake = os.path.normpath(projectpath + "/tools/armake_w64.exe")
-        else:
-            path_armake = os.path.normpath(projectpath + "/tools/armake_w32.exe")
-    else:
-        path_armake = "armake"
-    return path_armake
 
 def main():
     print("""
