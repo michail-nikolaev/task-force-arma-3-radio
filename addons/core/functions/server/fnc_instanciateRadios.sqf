@@ -28,7 +28,7 @@ private _response = [];
     _x params ["_radioBaseClass"];
 
     if (_radioBaseClass == "ItemRadio") then {
-        _radioBaseClass = (_requestingUnit call TFAR_fnc_getDefaultRadioClasses) param [[2,1] select ((TFAR_givePersonalRadioToRegularSoldier) or {leader _requestedUnit == _requestedUnit} or {rankId _requestedUnit >= 2}), ""];
+        _radioBaseClass = (_requestingUnit call TFAR_fnc_getDefaultRadioClasses) param [[2,1] select ((TFAR_givePersonalRadioToRegularSoldier) or {leader _requestingUnit == _requestingUnit} or {rankId _requestingUnit >= 2}), ""];
     } else {
         //get Radio baseclass without ID
         _radioBaseClass = [_radioBaseClass, "tf_parent", ""] call DFUNC(getWeaponConfigProperty);
