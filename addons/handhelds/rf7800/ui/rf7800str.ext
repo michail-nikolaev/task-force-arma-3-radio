@@ -177,7 +177,8 @@ class rf7800str_radio_dialog
     	tooltip = ECSTRING(core,set_frequency);
     	font = "TFAR_font_dots";
     	shadow = 2;
-    	action = QUOTE(_f = TFAR_CONFIG_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANPRC152_EDIT);if ((_f >= TFAR_MIN_SW_FREQ) and (_f <= TFAR_MAX_SW_FREQ)) then {[ARR_2(TF_sw_dialog_radio, str TFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setSwFrequency;call TFAR_fnc_hideHint;} else {hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_SW_FREQ, TFAR_MAX_SW_FREQ)];};call TFAR_fnc_updateSWDialogToChannel;);
+		onButtonClick = QUOTE([((ctrlParent (_this select 0))) displayCtrl IDC_MICRODAGR_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter;);
+		action = "";
     };
     ////////////////////////////////////////////////////////
     // GUI EDITOR OUTPUT END

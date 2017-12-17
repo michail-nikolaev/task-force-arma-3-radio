@@ -91,7 +91,8 @@ class anarc164_radio_dialog
         w = 0.037125 * safezoneW;
         h = 0.0693 * safezoneH;
         tooltip = ECSTRING(core,set_frequency);
-        action = QUOTE(playSound 'TFAR_rotatorPush';_f = TFAR_CONFIG_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANARC164_EDIT);if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {[ARR_2(TF_lr_dialog_radio, str TFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setLrFrequency;call TFAR_fnc_hideHint;} else {hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ)];};['%1'] call TFAR_fnc_updateLRDialogToChannel;);
+        onButtonClick = QUOTE(playSound 'TFAR_rotatorPush';[((ctrlParent (_this select 0))) displayCtrl IDC_ANARC164_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter;);
+        action = "";
     };
     class clear: HiddenRotator
     {
