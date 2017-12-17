@@ -21,6 +21,10 @@
         call TFAR_fnc_requestRadios;
 */
 
+If (isDedicated) exitWith {
+    ERROR("This function should never be called on a dedicated Server");
+};
+
 //#TODO somehow remove mutexing :x
 //MUTEX_LOCK(TF_radio_request_mutex);
 private _lastExec = GVAR(VehicleConfigCacheNamespace) getVariable "TFAR_fnc_requestRadios_lastExec";
@@ -29,7 +33,7 @@ private _lastExec = GVAR(VehicleConfigCacheNamespace) getVariable "TFAR_fnc_requ
 if (_lastExec > TFAR_lastLoadoutChange  || GVAR(currentlyInArsenal)) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mutex);*/};
 GVAR(VehicleConfigCacheNamespace) setVariable ["TFAR_fnc_requestRadios_lastExec", diag_tickTime-0.1];
 
-(_this call TFAR_fnc_radioToRequestCount) params ["_radiosToRequest","_TF_SettingsToCopy"];
+(_this call TFAR_fnc_radioToRequestCount) params ["_radiosToRequest", "_linkFirstItem"];
 
 if (_radiosToRequest isEqualTo []) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mutex);*/};
 
@@ -51,105 +55,89 @@ _radiosToRequest = _radiosToRequest apply {
 [
     "TFAR_RadioRequestResponseEvent",
     {
-        if !(params [["_response", [], [[]]]]) exitWith {
-            diag_log ["TFAR_ReceiveRadioRequestResponse",_response];
+        params [["_response", [], [[]]]];
+        if ((_response isEqualTo []) || {(_response select 0) isEqualTo "ERROR:47"}) exitWith {
+            diag_log ["TFAR_ReceiveRadioRequestResponse", _response];
             hintC _response;
             call TFAR_fnc_hideHint;
             ["TFAR_RadioRequestResponseEvent", _thisId] call CBA_fnc_removeEventHandler;
-            [[15,"radioRequest",round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release
+            [[15, "radioRequest", round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release
         };
-        _thisArgs params ["_radiosToReplace", "_TF_SettingsToCopy", "_requestedUnit"];
+        _thisArgs params ["_radiosToReplace", "_linkFirstItem", "_requestedUnit"];
 
-        diag_log ["TFAR_ReceiveRadioRequestResponse",_response];
+        diag_log ["TFAR_ReceiveRadioRequestResponse", _response]; //#TODO remove on release
 
+        private _newRadios = [];
+
+        If (_linkFirstItem) then {
+            private _OldItem = _radiosToReplace deleteAt 0;
+            private _newID = _response deleteAt 0;
+
+            If (_newID > 0) then {
+                If (_OldItem == "ItemRadio") then {
+                    _OldItem = (call TFAR_fnc_getDefaultRadioClasses) param [[2,1] select ((TFAR_givePersonalRadioToRegularSoldier) or {leader _requestedUnit == _requestedUnit} or {rankId _requestedUnit >= 2}), ""];
+                };
+                private _NewItem = format["%1_%2", [_OldItem, "tf_parent", ""] call DFUNC(getWeaponConfigProperty), _newID];
+                _requestedUnit linkItem _NewItem;
+
+                _newRadios pushBack _NewItem;
+
+                private _settings = _TF_SettingsToCopy deleteAt _index;
+                if ([_NewItem, _OldItem] call TFAR_fnc_isSameRadio) then {
+                    private _localSettings = TFAR_RadioSettingsNamespace getVariable (format["%1_local", _settings]);
+                    if !(isNil "_localSettings") then {
+                        [_NewItem, _OldItem, true] call TFAR_fnc_setSwSettings;
+                    };
+                };
+
+            } else {
+                _requestedUnit unassignItem _OldItem;
+                _requestedUnit removeItem _OldItem;
+            };
+        };
+
+
+        private _OldItem = _radiosToReplace deleteAt 0;
         {
-            if ((_x call TFAR_fnc_isRadio) || {_x == "ItemRadio"}) then {
-                private _index = _radiosToReplace find _x;
-                If (_index >= 0) then {
-                    private _newRadioClass = _response deleteAt _index;
-                    If (_newRadioClass isEqualTo "") then {
-                        _requestedUnit unassignItem _x;
-                        _requestedUnit removeItem _x;
-                    } else {
-                        _requestedUnit linkItem _newRadioClass;
-                    };
+            private _OldItem = _x;
+            private _newID = _response deleteAt 0;
 
-                    _radiosToReplace deleteAt _index;
-                    private _settings = _TF_SettingsToCopy deleteAt _index;
-                    if ([_newRadioClass, _settings] call TFAR_fnc_isSameRadio) then {
-                        private _localSettings = TFAR_RadioSettingsNamespace getVariable (format["%1_local", _settings]);
-                        if !(isNil "_localSettings") then {
-                            [_newRadioClass, _localSettings, true] call TFAR_fnc_setSwSettings;
-                        };
-                    };
+            _requestedUnit removeItem _OldItem;
 
-                    [_newRadioClass, getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
+            If (_OldItem == "ItemRadio") then {
+                _OldItem = (call TFAR_fnc_getDefaultRadioClasses) param [[2,1] select ((TFAR_givePersonalRadioToRegularSoldier) or {leader _requestedUnit == _requestedUnit} or {rankId _requestedUnit >= 2}), ""];
+            };
+
+            private _NewItem = format["%1_%2", [_OldItem, "tf_parent", ""] call DFUNC(getWeaponConfigProperty), _newID];
+
+            If (_requestedUnit canAdd _NewItem) then {
+                _requestedUnit AddItem _NewItem;
+                _newRadios pushBack _NewItem;
+            };
+
+            private _settings = _TF_SettingsToCopy deleteAt _index;
+            if ([_NewItem, _OldItem] call TFAR_fnc_isSameRadio) then {
+                private _localSettings = TFAR_RadioSettingsNamespace getVariable (format["%1_local", _settings]);
+                if !(isNil "_localSettings") then {
+                    [_NewItem, _OldItem, true] call TFAR_fnc_setSwSettings;
                 };
             };
+
             nil
-        } count (assignedItems _requestedUnit);
-
-        private _allItems = ((getItemCargo (uniformContainer TFAR_currentUnit)) select 0);
-        _allItems append ((getItemCargo (vestContainer TFAR_currentUnit)) select 0);
-        _allItems append ((getItemCargo (backpackContainer TFAR_currentUnit)) select 0);
-
-        {
-            
-            if (_radiosToReplace isEqualTo []) exitWith {};
-
-            if ((_x call TFAR_fnc_isRadio) || {_x == "ItemRadio"}) then {
-                private _index = _radiosToReplace find _x;
-                If (_index >= 0) then {
-                    private _newRadioClass = _response deleteAt _index;
-
-                    _requestedUnit removeItem _x;
-                    If (_requestedUnit canAdd _newRadioClass) then {
-                        _requestedUnit addItem _newRadioClass;
-                    };
-
-                    _radiosToReplace deleteAt _index;
-                    private _settings = _TF_SettingsToCopy deleteAt _index;
-                    if ([_newRadioClass, _settings] call TFAR_fnc_isSameRadio) then {
-                        private _localSettings = TFAR_RadioSettingsNamespace getVariable (format["%1_local", _settings]);
-                        if !(isNil "_localSettings") then {
-                            [_newRadioClass, _localSettings, true] call TFAR_fnc_setSwSettings;
-                        };
-                    };
-
-                    [_newRadioClass, getPlayerUID player, true] call TFAR_fnc_setRadioOwner;
-                };
-            };
-            nil
-        } count _allItems;
+        } count _radiosToReplace;
 
 
         call TFAR_fnc_hideHint;
 
-        ["OnRadiosReceived", [TFAR_currentUnit, _response]] call TFAR_fnc_fireEventHandlers;
+        ["OnRadiosReceived", [_requestedUnit, _newRadios]] call TFAR_fnc_fireEventHandlers;
 
         ["TFAR_RadioRequestResponseEvent", _thisId] call CBA_fnc_removeEventHandler;
         [[15,"radioRequest",round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release
     },
-    [_radiosToRequest, _TF_SettingsToCopy, TFAR_currentUnit]
+    [_radiosToRequest, _linkFirstItem, TFAR_currentUnit]
 ] call CBA_fnc_addEventHandlerArgs;
 
 [parseText(localize LSTRING(wait_radio)), 10] call TFAR_fnc_showHint;
-
-// after the settings are initialized, we can replace the itemradio with the default class
-If (GVAR(SettingsInitialized)) then {
-    private _classes = call TFAR_fnc_getDefaultRadioClasses;
-    private _personalRadio = _classes select 1;
-    private _riflemanRadio = _classes select 2;
-    private _defaultRadio = _riflemanRadio;
-
-    if ((TFAR_givePersonalRadioToRegularSoldier) or {leader TFAR_currentUnit == TFAR_currentUnit} or {rankId TFAR_currentUnit >= 2}) then {
-        _defaultRadio = _personalRadio;
-    };
-
-    _radiosToRequest = _radiosToRequest apply {If (_x == "ItemRadio") then {_defaultRadio} else {_x}};
-};
-
-
 
 TFAR_beta_RadioRequestStart = diag_tickTime;//#TODO remove on release
 //Send request
