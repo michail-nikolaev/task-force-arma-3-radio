@@ -9,7 +9,7 @@ import platform
 ######## GLOBALS #########
 MAINPREFIX = "z"
 PREFIX = "tfar_"
-USEARMAKE = False
+USEARMAKE = True
 ##########################
 
 def mod_time(path):
@@ -65,7 +65,6 @@ def main():
         else:
             path_armake = os.path.normpath(projectpath + "/tools/armake_w32.exe")
     else:
-        USEARMAKE = True
         path_armake = "armake"
         work_drive = "/mnt/p"
 
@@ -85,7 +84,7 @@ def main():
         print("# Making {} ...".format(p))
 
         try:
-            if USEARMAKE:
+            if bool(USEARMAKE) or platform.system() != "Windows":
                 command = path_armake + " build -i " + os.path.normpath(work_drive) + \
                     " -w unquoted-string" + " -w redefinition-wo-undef" + \
                     " -f " + os.path.normpath(addonspath + "/" + p) + " " + \
