@@ -18,40 +18,38 @@
     Example:
         call TFAR_fnc_processPlayerPositions;
 */
-if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW! (Keeps PFH from firing after server disconnect)"};
-//if (isNull (findDisplay 46)) exitWith {};
-//if (isNull TFAR_currentUnit) exitWith {};
+if (getClientStateNumber != 10) exitWith {};
+
 private _startTime = diag_tickTime;
 
 //Process queued Near Players
 if (!TFAR_currentNearPlayersProcessed) then {
+
+    if (TFAR_currentNearPlayersProcessing isEqualTo []) exitWith {TFAR_currentNearPlayersProcessed = true};
+
     private _nearPlayersCount = count TFAR_currentNearPlayersProcessing;
-    if (_nearPlayersCount == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
-    private _playersToProcess = _nearPlayersCount min 30;//Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
+
+    private _playersToProcess = _nearPlayersCount min 30; //Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
     if (_playersToProcess == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
 
     {
         private _controlled = _x getVariable ["TFAR_controlledUnit", objNull];
         private _unitName = name _x;
-        if (_x getVariable ["TFAR_forceSpectator",false]) then {
-            _unitName = _x getVariable ["TFAR_spectatorName",_unitName];
+        if (_x getVariable ["TFAR_forceSpectator", false]) then {
+            _unitName = _x getVariable ["TFAR_spectatorName", _unitName];
         };
         if (isNull _controlled) then {
             [_x, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         } else {
             [_controlled, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         };
-    } forEach (TFAR_currentNearPlayersProcessing select [0,_playersToProcess]); //commy2
-
-    //private _startIndex = _nearPlayersCount - _playersToProcess; //Is min 0
-    //for "_y" from _startIndex to _nearPlayersCount-1 step 1 do {
-    //    private _unit = (TFAR_currentNearPlayersProcessing select _y);
-    //};
+        nil
+    } count (TFAR_currentNearPlayersProcessing select [0, _playersToProcess]); //commy2
 
     //Remove processed Units from array
-    TFAR_currentNearPlayersProcessing deleteRange [0,_playersToProcess];
+    TFAR_currentNearPlayersProcessing deleteRange [0, _playersToProcess];
     //We just processed the last players
-    if ((_nearPlayersCount - _playersToProcess) == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
+    if ((_nearPlayersCount - _playersToProcess) isEqualTo 0) exitWith {TFAR_currentNearPlayersProcessed = true};
 };
 
 //Don't process anymore if we already blocked too long (5 millisec)
@@ -59,39 +57,45 @@ if ((diag_tickTime - _startTime) > 0.005) exitWith {};
 
 //Process queued Far players
 if (!TFAR_currentFarPlayersProcessed) then {
+    if (TFAR_currentFarPlayersProcessing isEqualTo []) exitWith {
+        TFAR_lastFarPlayerProcessTime = diag_tickTime;
+        TFAR_currentFarPlayersProcessed = true;
+    };
+
     private _farPlayersCount = count TFAR_currentFarPlayersProcessing;
-    if (_farPlayersCount == 0) exitWith {TFAR_lastFarPlayerProcessTime = diag_tickTime;TFAR_currentFarPlayersProcessed = true};
-    private _playersToProcess = _farPlayersCount min 50;//Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
-    if (_playersToProcess == 0) exitWith {TFAR_lastFarPlayerProcessTime = diag_tickTime;TFAR_currentFarPlayersProcessed = true};
+    private _playersToProcess = _farPlayersCount min 50; //Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
+    if (_playersToProcess isEqualTo 0) exitWith {
+        TFAR_lastFarPlayerProcessTime = diag_tickTime;
+        TFAR_currentFarPlayersProcessed = true;
+    };
 
     {
         private _controlled = _x getVariable ["TFAR_controlledUnit", objNull];
         private _unitName = name _x;
-        if (_x getVariable ["TFAR_forceSpectator",false]) then {
-            _unitName = _x getVariable ["TFAR_spectatorName",_unitName];
+        if (_x getVariable ["TFAR_forceSpectator", false]) then {
+            _unitName = _x getVariable ["TFAR_spectatorName", _unitName];
         };
         if (isNull _controlled) then {
             [_x, false, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         } else {
             [_controlled, false, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         };
-    } forEach (TFAR_currentFarPlayersProcessing select [0,_playersToProcess]); //commy2
-
-    //private _startIndex = _farPlayersCount - _playersToProcess; //Is min 0
-    //for "_y" from _startIndex to _farPlayersCount-1 step 1 do {
-    //    private _unit = (TFAR_currentFarPlayersProcessing select _y);
-    //};
+        nil
+    } count (TFAR_currentFarPlayersProcessing select [0, _playersToProcess]); //commy2
 
     //Remove processed Units from array
-    TFAR_currentFarPlayersProcessing deleteRange [0,_playersToProcess];
+    TFAR_currentFarPlayersProcessing deleteRange [0, _playersToProcess];
     //We just processed the last players
-    if ((_farPlayersCount - _playersToProcess) == 0) exitWith {TFAR_lastFarPlayerProcessTime = diag_tickTime;TFAR_currentFarPlayersProcessed = true};
+    if ((_farPlayersCount - _playersToProcess) isEqualTo 0) exitWith {
+        TFAR_lastFarPlayerProcessTime = diag_tickTime;
+        TFAR_currentFarPlayersProcessed = true;
+    };
 };
 
 
 
 //Rescan Players
-private _needNearPlayerScan = ((diag_tickTime - TFAR_lastPlayerScanTime) > TFAR_PLAYER_RESCAN_TIME) && TFAR_currentNearPlayersProcessed;
+private _needNearPlayerScan = TFAR_currentNearPlayersProcessed && {(diag_tickTime - TFAR_lastPlayerScanTime) > TFAR_PLAYER_RESCAN_TIME};
 
 if (_needNearPlayerScan) then {
     TFAR_currentNearPlayers = call TFAR_fnc_getNearPlayers;
