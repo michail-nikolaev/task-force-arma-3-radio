@@ -43,7 +43,6 @@ if (!TFAR_currentNearPlayersProcessed) then {
         } else {
             [_controlled, true, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         };
-        nil
     } count (TFAR_currentNearPlayersProcessing select [0, _playersToProcess]); //commy2
 
     //Remove processed Units from array
@@ -80,7 +79,6 @@ if (!TFAR_currentFarPlayersProcessed) then {
         } else {
             [_controlled, false, _unitName] call PROFCONTEXT_NORTN(TFAR_fnc_sendPlayerInfo);
         };
-        nil
     } count (TFAR_currentFarPlayersProcessing select [0, _playersToProcess]); //commy2
 
     //Remove processed Units from array
