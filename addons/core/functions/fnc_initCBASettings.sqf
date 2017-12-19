@@ -53,11 +53,7 @@
     {
         If (!isNil QGVAR(EHID_processPlayerPositions)) then {
             [GVAR(EHID_processPlayerPositions)] call CBA_fnc_removePerFrameHandler;
-            if (isNil "INTERCEPT_TFAR") then {
-                GVAR(EHID_processPlayerPositions) = [PROFCONTEXT_NORTN(TFAR_fnc_processPlayerPositions), TFAR_PosUpdateMode] call CBA_fnc_addPerFrameHandler;
-            } else {
-                GVAR(EHID_processPlayerPositions) = [compile "isNil {itfarprocP []}", TFAR_PosUpdateMode] call CBA_fnc_addPerFrameHandler;
-            };
+            GVAR(EHID_processPlayerPositions) = [PROFCONTEXT_NORTN(TFAR_fnc_processPlayerPositions), TFAR_PosUpdateMode] call CBA_fnc_addPerFrameHandler;
         };
     }
 ] call CBA_Settings_fnc_init;
