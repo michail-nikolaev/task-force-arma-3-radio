@@ -1,6 +1,7 @@
 #include "datatypes.hpp"
 #include "helpers.hpp"
 #include <math.h>
+#include <sstream>
 
 
 float dataType::fast_invsqrt(float number) {
@@ -130,6 +131,13 @@ bool dataType::Vector3D::isNull() const {
     //Is initialized. Used to check if FromString was successful
     //May optimize this by storing whether FromString was success but fpOps are fast enough
     return m_x == 0.f && m_y == 0.f && m_z == 0.f;
+}
+
+std::string Vector3D::toString() const {
+    auto[x, y, z] = get();
+    std::stringstream out;
+    out << "[" << x << "," << y << "," << z << "]";
+    return out.str();
 }
 
 dataType::Position3D::operator TS3_VECTOR*() {

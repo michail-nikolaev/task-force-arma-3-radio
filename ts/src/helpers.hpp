@@ -63,7 +63,7 @@ struct FREQ_SETTINGS;
 
 struct vehicleDescriptor {
     std::string vehicleName;
-    float vehicleIsolation;
+    float vehicleIsolation{0.f};
     enum class vehiclePosition {
         driver,
         commander,

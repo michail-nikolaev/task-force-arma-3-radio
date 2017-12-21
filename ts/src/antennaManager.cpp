@@ -7,7 +7,7 @@ AntennaManager::AntennaManager() {
         diag << "AM:\n";
         for (auto& it : antennas) {
             auto [x, y, z] = it->getPos().get();
-            diag << TS_INDENT << it->getID().getCreator() << " "<< it->getID().getobjID() << " (" << x << "," << y << "," << z << ") " << it->getRange() << " " << it->hasSatelliteUplink() << "\n";
+            diag << TS_INDENT << it->getID().getCreator() << " "<< it->getID().getObjID() << " (" << x << "," << y << "," << z << ") " << it->getRange() << " " << it->hasSatelliteUplink() << "\n";
         }
     });
 }

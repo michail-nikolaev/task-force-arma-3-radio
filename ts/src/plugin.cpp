@@ -407,8 +407,7 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
     TFAR::getInstance().getPlaybackHandler()->onEditMixedPlaybackVoiceDataEvent(samples, sampleCount, channels, channelSpeakerArray, channelFillMask);
 }
 
-#define LOG3DMUTE //Teamspeak::printMessageToCurrentTab
-
+#define LOG3DMUTE(x)  clientData->circularLog(x);
 
 void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID, short* samples, int sampleCount, int channels, bool isFromMicrophone = false) {
     if (!TFAR::getInstance().getCurrentlyInGame())
@@ -425,11 +424,11 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     auto clientData = clientDataDir->getClientData(clientID);
     if (!clientData) {
         //Should not happen..
-        LOG3DMUTE("TFAR nosim NoCliData");
+        Teamspeak::printMessageToCurrentTab("TFAR nosim NoCliData"); //#Release remove
         log_string(std::string("No info about ") + std::to_string(clientID.baseType()) + " " + Teamspeak::getClientNickname(serverConnectionHandlerID, clientID), LogLevel_ERROR);
         return; //Unknown client
     }
-    std::string senderNickname = clientData->getNickname();
+
     bool alive = TFAR::getInstance().m_gameData.alive && clientDataDir->myClientData;//If i don't know who i am... I am not alive
 
     bool hasPluginEnabled = isPluginEnabledForUser(serverConnectionHandlerID, clientID);
@@ -451,7 +450,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                 log_string(std::string("No plugin enabled for ") + std::to_string(clientID.baseType()) + " " + nickname, LogLevel_DEBUG);
             last_no_info = std::chrono::system_clock::now();
         }
-        LOG3DMUTE((senderNickname+" TFAR nosim NoPlugEn").c_str());
+        LOG3DMUTE("TFAR nosim NoPlugEn");
         return;
     }
     bool canSpeak = clientDataDir->myClientData->canSpeak;
@@ -466,7 +465,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
     if (!isHearableInSpectator && isSeriousModeEnabled(serverConnectionHandlerID, clientID) && (!alive || !clientData->isAlive())) {
         helpers::applyGain(samples, sampleCount, channels, 0.0f);
-        LOG3DMUTE((senderNickname + "TFAR Mute !spec && Serious && (!alive||!alive2)").c_str());
+        LOG3DMUTE("TFAR Mute !spec && Serious && (!alive||!alive2)");
         return;
     }
     auto myData = clientDataDir->myClientData;
@@ -508,7 +507,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
                 auto atten = helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume);
                 if (atten < 0.15)
-                    LOG3DMUTE((senderNickname + "TFAR SemiMute atten s1 <0.15").c_str());
+                    LOG3DMUTE("TFAR SemiMute atten s1 <0.15");
                 helpers::applyGain(samples, sampleCount, channels, atten);
                 if (!isInSameVehicle && clientData->objectInterception > 0) {
                     helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, 1.0f,
@@ -518,12 +517,12 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                 helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), clientData->effects.getFilterVehicle("local_vehicle", vehicleVolumeLoss));
             }
         } else {
-            LOG3DMUTE((senderNickname + "TFAR SemiMute shouldn't hear").c_str());
+            LOG3DMUTE("TFAR SemiMute shouldn't hear");
             helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume) * CANT_SPEAK_GAIN, (clientData->effects.getFilterCantSpeak("local_cantspeak")));
         }
 
     } else if (!isHearableInPureSpectator) { //.... unless we are both spectating
-        LOG3DMUTE((senderNickname + "TFAR Mute !PureSpec or spec or dist").c_str());
+        LOG3DMUTE("TFAR Mute !PureSpec or spec or dist");
         memset(samples, 0, channels * sampleCount * sizeof(short));
     }
 
@@ -535,16 +534,20 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
     std::vector<LISTED_INFO> listed_info = isSpectator ? std::vector<LISTED_INFO>{} : clientData->isOverRadio(myData, false, false, false);
     float radioDistance = myData->effectiveDistanceTo(clientData);
-    if (listed_info.empty() && distanceFromClient_ > 30) Teamspeak::printMessageToCurrentTab((senderNickname + "TFAR NOR").c_str());
+    if (listed_info.empty() && distanceFromClient_ > 30) LOG3DMUTE("TFAR NOR");
     for (auto& info : listed_info) {
         if (isFromMicrophone && info.on == receivingRadioType::LISTED_ON_INTERCOM) continue; //We don't want to hear ourselves over intercom while doing direct speech
         short* radio_buffer = helpers::allocatePool(sampleCount, channels, original_buffer);
         float volumeLevel = helpers::volumeMultiplifier(static_cast<float>(info.volume));
+        if (volumeLevel < 0.5) {
+            LOG3DMUTE("VOL Low b="+std::to_string(info.volume)+ " mp ="+std::to_string(volumeLevel) + " efmp =" + std::to_string(volumeLevel* 0.35f));
+        }
+
         if (info.on < receivingRadioType::LISTED_ON_NONE) {//don't do for onGround or Intercom
 
             //Volume modifier for lowered headset - Placed here because this part of code only applies to actual non-speaker Radios
             if (TFAR::config.get<bool>(Setting::headsetLowered)) {
-                Teamspeak::printMessageToCurrentTab((senderNickname + "TFAR RSilent HeadLow").c_str());
+                LOG3DMUTE("TFAR RSilent HeadLow");
                 volumeLevel *= 0.1f;
             }
                 
@@ -579,7 +582,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                     helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, volumeLevel * 10.0f, (clientData->effects.getSpeakerPhone(info.radio_id)));
                     break;
                 default:
-                    Teamspeak::printMessageToCurrentTab((senderNickname + "TFAR RMute unkwn subtype").c_str());
+                    LOG3DMUTE("TFAR RMute unkwn subtype");
                     helpers::applyGain(radio_buffer, sampleCount, channels, 0.0f);
                     break;
             }
@@ -804,11 +807,12 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     //tell his clientData where he is transmitting from
     if (pressed) {
         senderClientData->currentTransmittingTangentOverType = sendingRadioType;
+        senderClientData->setCurrentTransmittingFrequency(frequency);
     } else {
         senderClientData->currentTransmittingTangentOverType = sendingRadioType::LISTEN_TO_NONE;
+        senderClientData->setCurrentTransmittingFrequency("prev_"+frequency);
     }
 
-    senderClientData->setCurrentTransmittingFrequency(frequency);
     senderClientData->range = pressed ? range : 0; //Setting range to 0 on transmit end helps identifying if he is currently sending
 
     auto clientId = senderClientData->clientId;
@@ -818,6 +822,8 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     if (pressed)
         listedInfos = senderClientData->isOverRadio(myClientData, senderClientData->canUseSWRadio, senderClientData->canUseLRRadio, senderClientData->canUseDDRadio);
     for (LISTED_INFO & listedInfo : listedInfos) {
+        std::stringstream recvLog;
+        recvLog << "RECV\n##\n" << listedInfo << "##\n";
 
         if (alive && listedInfo.on != receivingRadioType::LISTED_ON_NONE && listedInfo.on != receivingRadioType::LISTED_ON_INTERCOM) {
             auto vehicleDescriptor = myClientData->getVehicleDescriptor();
@@ -826,12 +832,17 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
             bool vehicleCheck = (vehicleDescriptor.vehicleName == listedInfo.vehicle.vehicleName);
 
             float gain = helpers::volumeMultiplifier(static_cast<float>(listedInfo.volume)) * TFAR::getInstance().m_gameData.globalVolume;
+            recvLog << "gain " << gain << "\n";
+            recvLog << "gvol " << TFAR::getInstance().m_gameData.globalVolume << "\n";
+            recvLog << "vehicleCheck " << vehicleCheck << "\n";
+            recvLog << "vehicleVolumeLoss " << vehicleVolumeLoss << "\n";
+            recvLog << "gain " << gain << "\n";
 
             if (playPressed && !transmissionCounted) {
                 myClientData->receivingTransmission += 1; //Set that we are receiving a transmission. For the EventHandler
                 myClientData->receivingFrequencies.emplace(frequency);
                 transmissionCounted = true;//prevent from multiple adds if you have multiple radios on same freq
-                Teamspeak::printMessageToCurrentTab((nickname + " TPEH Recv g=" + std::to_string(gain)).c_str());
+                senderClientData->circularLog(nickname + " TPEH Recv g=" + std::to_string(gain));
             }
 
             switch (PTTDelayArguments::stringToSubtype(subtype)) {
@@ -847,11 +858,13 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
             }
 
         }
+        recvLog << "END\n";
+        senderClientData->circularLog(recvLog.str());
     }
     if (!playPressed) {
         myClientData->receivingTransmission -= 1;
         myClientData->receivingFrequencies.erase(frequency);
-        Teamspeak::printMessageToCurrentTab((nickname + " TPEH NRecv g=").c_str());
+        senderClientData->circularLog("TPEH NRecv");
     }
 
     setGameClientMuteStatus(serverId, clientId, { true,!listedInfos.empty() });

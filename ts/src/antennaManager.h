@@ -42,6 +42,17 @@ public:
     bool operator==(const NetID& antID) const {
         return id == antID;
     }
+
+    std::ostream& operator<<(std::ostream& str) const {
+        str << "id" << id.getCreator() << ":" << id.getObjID() << "\n";
+        str << "pos" << pos.toString() << "\n";
+        str << "range" << range << "\n";
+        str << "rangeSquared" << rangeSquared << "\n";
+        str << "satUplink" << satUplink << "\n";
+        return str;
+    }
+
+
     //Conversions
     operator Position3D&() { return pos; }
     operator NetID&() { return id; }
@@ -62,8 +73,12 @@ private:
     Position3D pos;
     float range{ 0 };
     float rangeSquared{ 0 };
-    bool satUplink{ 0 }; //future functionality
+    bool satUplink{ false }; //future functionality
 };
+
+inline std::ostream& operator<<(std::ostream &os, const Antenna& w) {
+    return w.operator<<(os);
+}
 
 class AntennaConnection {
 public:
@@ -72,6 +87,18 @@ public:
     float getLoss() const { return loss; }
     bool isNull() const { return loss == 7.f; }//Magic number. Loss will never be >1
     std::shared_ptr<Antenna> getAntenna() const { return overAntenna; }
+
+    std::ostream&  operator<<(std::ostream& str) const {
+        if (overAntenna)
+            str << "overAntenna " << *overAntenna<< "\n";
+        else
+            str << "overAntenna <null> \n";
+        str << "from" << from.toString() << "\n";
+        str << "to" << to.toString() << "\n";
+        str << "loss" << loss << "\n";
+        return str;
+    }
+
 private:
     Position3D from;
     std::shared_ptr<Antenna> overAntenna;
@@ -79,6 +106,9 @@ private:
     float loss {7.f};
 };
 
+inline std::ostream& operator<<(std::ostream &os, const AntennaConnection& w) {
+    return w.operator<<(os);
+}
 
 class AntennaManager {
 public:
