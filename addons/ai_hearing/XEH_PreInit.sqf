@@ -5,13 +5,21 @@
 [
     "TFAR_AICanHearPlayer",
     "CHECKBOX",
-    [LSTRING(SETTING_HEADER), LSTRING(SETTING_DESC)],
+    [LSTRING(SETTING1_HEADER), LSTRING(SETTING1_DESC)],
     "Task Force Arrowhead Radio",
     false,
     1,
     FUNC(onSettingChanged)
 ] call CBA_Settings_fnc_init;
-
+[
+    "TFAR_AICanHearSpeaker",
+    "CHECKBOX",
+    [LSTRING(SETTING2_HEADER), LSTRING(SETTING2_DESC)],
+    "Task Force Arrowhead Radio",
+    false,
+    1,
+    FUNC(onSettingChanged)
+] call CBA_Settings_fnc_init;
 
 [
     QGVAR(reveal),
