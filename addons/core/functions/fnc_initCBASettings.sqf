@@ -102,12 +102,13 @@
 
 // server
 [
-    "TF_terrain_interception_coefficient", 
+    QGVARMAIN(terrain_interception_coefficient),
     "SLIDER", 
     [ELSTRING(settings,TerrainInterceptionCoefficient), ELSTRING(settings,TerrainInterceptionCoefficient_tooltip)], 
     localize ELSTRING(settings,global), 
     [0, 20, 7, 1],
-    1
+    1,
+    {TF_terrain_interception_coefficient = TFAR_terrain_interception_coefficient;}
 ] call CBA_Settings_fnc_init;
 [
     "TFAR_fullDuplex", 
@@ -469,26 +470,29 @@
     1
 ] call CBA_Settings_fnc_init;
 [
-    "tf_west_radio_code", 
+    QGVARMAIN(radiocode_west),
     "EDITBOX",
     [ELSTRING(settings,radioCode_west), ELSTRING(settings,radioCode_west_desc)],
     localize ELSTRING(settings,global), 
     "_bluefor",
-    1
+    1,
+    {tf_west_radio_code = GVARMAIN(radiocode_west);}
 ] call CBA_Settings_fnc_init;
 [
-    "tf_east_radio_code", 
+    QGVARMAIN(radiocode_east),
     "EDITBOX",
     [ELSTRING(settings,radioCode_east), ELSTRING(settings,radioCode_east_desc)],
     localize ELSTRING(settings,global), 
     "_opfor",
-    1
+    1,
+    {tf_east_radio_code = GVARMAIN(radiocode_east);}
 ] call CBA_Settings_fnc_init;
 [
-    "tf_independent_radio_code", 
+    QGVARMAIN(radiocode_independent),
     "EDITBOX",
     [ELSTRING(settings,radioCode_independent), ELSTRING(settings,radioCode_independent_desc)],
     localize ELSTRING(settings,global), 
     "_independent",
-    1
+    1,
+    {tf_independent_radio_code = GVARMAIN(radiocode_independent);}
 ] call CBA_Settings_fnc_init;
