@@ -108,7 +108,7 @@
     localize ELSTRING(settings,global), 
     [0, 20, 7, 1],
     1,
-    {TF_terrain_interception_coefficient = TFAR_terrain_interception_coefficient;}
+    {TF_terrain_interception_coefficient = GVARMAIN(terrain_interception_coefficient);}
 ] call CBA_Settings_fnc_init;
 [
     "TFAR_fullDuplex", 
