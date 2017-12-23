@@ -27,7 +27,7 @@ switch (_thisSetting) do {
     case "TFAR_AICanHearPlayer": {
         if (_this) then {
             if !(isNil QGVAR(HandlerID_speak)) exitWith {};
-            GVAR(HandlerID_receive) = ["TFAR_event_OnRadioReceive", FUNC(OnRadioReceive)] call CBA_fnc_addEventHandler;
+            GVAR(HandlerID_speak) = ["TFAR_event_OnSpeak", FUNC(onSpeak)] call CBA_fnc_addEventHandler;
         } else {
             if (isNil QGVAR(HandlerID_speak)) exitWith {};
             ["TFAR_event_OnSpeak", GVAR(HandlerID_speak)] call CBA_fnc_removeEventHandler;
@@ -41,7 +41,7 @@ switch (_thisSetting) do {
         } else {
             if (isNil QGVAR(HandlerID_receive)) exitWith {};
             ["TFAR_event_OnRadioReceive", GVAR(HandlerID_receive)] call CBA_fnc_removeEventHandler;
-            GVAR(HandlerID_speak) = nil;
+            GVAR(HandlerID_receive) = nil;
         };
     };
 };
