@@ -21,7 +21,7 @@
 */
 
 if !(hasInterface) exitWith {};
-TRACE_1("AI Hearing Settings changed",TFAR_AICanHearPlayer);
+TRACE_2("AI Hearing Settings changed:",_thisSetting,_this);
 
 switch (_thisSetting) do {
     case "TFAR_AICanHearPlayer": {
