@@ -27,11 +27,10 @@ if (isNull _vehicle || {!(_vehicle call TFAR_fnc_hasVehicleRadio)}) exitWith {[]
 private _result = [[_vehicle, "gunner_radio_settings"],[_vehicle, "driver_radio_settings"],[_vehicle, "commander_radio_settings"],[_vehicle, "copilot_radio_setting"]];
         
 private _turrets = [(typeof _vehicle), "TFAR_AdditionalLR_Turret", []] call TFAR_fnc_getVehicleConfigProperty;
-private _turrets = _turrets apply {[_vehicle, format ["turretUnit_%1_radio_setting",_x]]};
-_result append _turrets;
+{_result pushBack [_vehicle, format["turretUnit_%1_radio_setting",_forEachIndex]] } forEach _turrets;
 
 private _cargos = [(typeof _vehicle), "TFAR_AdditionalLR_Cargo", []] call TFAR_fnc_getVehicleConfigProperty;
-private _cargos = _cargos apply {[_vehicle, format ["cargoUnit_%1_radio_setting",_x]]};
+_cargos = _cargos apply {[_vehicle, format ["cargoUnit_%1_radio_setting",_x]]};
 _result append _cargos;
 
 _result
