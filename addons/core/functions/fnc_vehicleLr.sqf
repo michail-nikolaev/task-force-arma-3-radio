@@ -20,9 +20,9 @@
     Example:
         _radio = player call TFAR_fnc_VehicleLR;
 */
-params ["_unit"];
+params [["_unit", objNull, [objNull]]];
 
-if (isNull (objectParent _unit) || {!((objectParent _this) call TFAR_fnc_hasVehicleRadio)}) exitWith {nil};//Unit is not in vehicle or vehicle doesn't have LR Radio
+if (isNull (objectParent _unit) || {!((objectParent _this) call TFAR_fnc_hasVehicleRadio)}) exitWith {nil};
 
 private _result = nil;
 private _vehicle = vehicle _unit;
