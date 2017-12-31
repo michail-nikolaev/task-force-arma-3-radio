@@ -18,7 +18,7 @@
     Example:
         call TFAR_fnc_processPlayerPositions;
 */
-if !(getClientStateNumber isEqualTo 10) exitWith {};
+if (getClientStateNumber != 10) exitWith {};
 
 private _startTime = diag_tickTime;
 
