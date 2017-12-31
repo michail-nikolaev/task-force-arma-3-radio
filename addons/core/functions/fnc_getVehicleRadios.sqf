@@ -13,7 +13,7 @@
         0: Object - vehicle
 
     Returns:
-         Array of radios in format: 
+         Array of LR radio arrays in format: 
              0 - Object - Vehicle, 1 - String - Radio Settings ID
          or empty array if no vehicle radios found
 
