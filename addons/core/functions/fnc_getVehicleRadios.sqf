@@ -20,7 +20,7 @@
     Example:
         _radios = _vehicle call TFAR_fnc_getVehicleRadios;
 */
-params ["_vehicle",0];
+params [["_vehicle",0]];
 if !(_vehicle isEqualType objNull) exitWith { ["TFAR: Vehicle must be passed to getVehicleRadios. %1 was passed instead.",_vehicle] call BIS_fnc_error };
 if (isNull _vehicle || {!(_vehicle call TFAR_fnc_hasVehicleRadio)}) exitWith {[]};
 
