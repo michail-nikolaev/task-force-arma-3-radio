@@ -21,7 +21,7 @@
         _radios = _vehicle call TFAR_fnc_getVehicleRadios;
 */
 params [["_vehicle",0]];
-if !(_vehicle isEqualType objNull) exitWith { ["TFAR: Vehicle must be passed to getVehicleRadios. %1 was passed instead.",_vehicle] call BIS_fnc_error };
+if !(_vehicle isEqualType objNull) exitWith { ERROR(format ["Vehicle must be passed to getVehicleRadios. %1 was passed instead.",_vehicle]) };
 if (isNull _vehicle || {!(_vehicle call TFAR_fnc_hasVehicleRadio)}) exitWith {[]};
 
 private _result = [[_vehicle, "gunner_radio_settings"],[_vehicle, "driver_radio_settings"],[_vehicle, "commander_radio_settings"],[_vehicle, "copilot_radio_setting"]];
