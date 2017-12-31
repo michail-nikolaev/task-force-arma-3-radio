@@ -22,7 +22,7 @@
 */
 params ["_vehicle"];
 
-if (isNull _vehicle || {!(_vehicle call TFAR_fnc_hasVehicleRadio)}) exitWith {[]};//Vehicle is null or vehicle doesn't have LR Radio
+if (isNull _vehicle || {!(_vehicle call TFAR_fnc_hasVehicleRadio)}) exitWith {[]};
 
 private _result = [[_vehicle, "gunner_radio_settings"],[_vehicle, "driver_radio_settings"],[_vehicle, "commander_radio_settings"],[_vehicle, "copilot_radio_setting"]];
         
