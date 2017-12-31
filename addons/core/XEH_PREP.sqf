@@ -72,6 +72,7 @@ PREP(getDefaultRadioSettings);
 PREP(getRadioOwner);
 PREP(getSwSpeakers);
 PREP(getLrSpeakers);
+PREP(getVehicleRadios);
 // H
 PREP(hasRadio);
 PREP(hasVehicleRadio);
