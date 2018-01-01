@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_ai_hearing_fnc_onSettingChanged
-
-    Author(s):
-        Dedmen
-
-    Description:
-        initializes/deinitializes the AI-Hearing
-        This function should only be called via CBA_Settings
-
-    Parameters:
-        BOOL: enable the setting
-
-    Returns:
-        NOTHING
-
-    Example:
-        true call TFAR_ai_hearing_fnc_onSettingChanged;
-*/
+ * Name: TFAR_ai_hearing_fnc_onSettingChanged
+ *
+ * Author: Dorbedo
+ * initializes/deinitializes the AI-Hearing
+ * This function should only be called via CBA_Settings
+ *
+ * Arguments:
+ * 0: enable the setting <BOOL>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * true call TFAR_ai_hearing_fnc_onSettingChanged;
+ *
+ * Public: yes
+ */
 
 if !(hasInterface) exitWith {};
 TRACE_1("AI Hearing Settings changed",TFAR_AICanHearPlayer);
