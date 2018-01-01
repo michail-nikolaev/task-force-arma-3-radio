@@ -1,25 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_antennas_fnc_pluginAddRadioTower
-
-    Author(s):
-        Dedmen
-
-    Description:
-        Tells Teamspeak that there is a new Tower
-        Performancewise it's best to collect towers and pass multiple in one call.
-
-    Parameters:
-        ARRAY:
-            OBJECT: the Tower
-
-    Returns:
-        NOTHING
-
-    Example:
-        [_tower1,_tower2] call TFAR_antennas_fnc_pluginAddRadioTower;
-*/
+ * Name: TFAR_antennas_fnc_pluginAddRadioTower
+ *
+ * Author: Dedmen
+ * Tells Teamspeak that there is a new Tower
+ * Performancewise it's best to collect towers and pass multiple in one call.
+ *
+ * Arguments:
+ * 0: the Tower <OBJECT>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [_tower1, _tower2] call TFAR_antennas_fnc_pluginAddRadioTower;
+ *
+ * Public: yes
+ */
 
 TRACE_1("TFAR_antennas_fnc_pluginAddRadioTower", _this);
 
