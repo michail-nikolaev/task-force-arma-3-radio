@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_activeSwRadio
-
-    Author(s):
-        NKey
-
-    Description:
-        Returns the active SW radio.
-
-    Parameters:
-        Nothing
-
-    Returns:
-        STRING: Active SW radio
-
-    Example:
-        _radio = call TFAR_fnc_activeSwRadio;
-*/
+ * Name: TFAR_fnc_activeSwRadio
+ *
+ * Author: NKey
+ * returns the active SR radio
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * active SR radio <STRING>
+ *
+ * Example:
+ * call TFAR_fnc_activeSwRadio;
+ *
+ * Public: Yes
+ */
 
 private _result = nil;
 {

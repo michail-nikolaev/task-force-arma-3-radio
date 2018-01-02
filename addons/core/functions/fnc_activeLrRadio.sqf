@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_activeLrRadio
-
-    Author(s):
-        NKey
-
-    Description:
-        Returns the active LR radio.
-
-    Parameters:
-        Nothing
-
-    Returns:
-        ARRAY: Active LR radio
-
-    Example:
-        _radio = call TFAR_fnc_activeLRRadio;
-*/
+ * Name: TFAR_fnc_activeLrRadio
+ *
+ * Author: NKey
+ * Returns the active LR radio.
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * active LR radio <ARRAY>
+ *
+ * Example:
+ * _radio = call TFAR_fnc_activeLRRadio;
+ *
+ * Public: Yes
+ */
 
 private _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
 
