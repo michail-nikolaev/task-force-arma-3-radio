@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_removeEventHandler
-
-    Author(s):
-        L-H, Dedmen
-
-    Description:
-        Removes an EventHandler
-
-    Parameters:
-        0: STRING - ID for custom handler
-        1: STRING - ID for event
-    Returns:
-        NOTHING
-
-    Example:
-        ["MyID", "OnSpeak"] call TFAR_fnc_removeEventHandler;
-*/
+ * Name: TFAR_fnc_removeEventHandler
+ *
+ * Author: L-H, Dedmen
+ * removes an eventhandler
+ *
+ * Arguments:
+ * 0: custom event ID <STRING>
+ * 1: event ID <STRING>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * ["MyID", "OnSpeak"] call TFAR_fnc_removeEventHandler;
+ *
+ * Public: Yes
+ */
 
 params ["_customID", "_eventName"];
 

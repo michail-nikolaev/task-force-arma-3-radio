@@ -1,29 +1,28 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_addEventHandler
-
-    Author(s):
-        L-H, Dedmen
-
-    Description:
-        Adds an Eventhandler. Optionally only to a specific unit.
-
-    Parameters:
-        0: STRING - ID for custom handler - used for TFAR_fnc_removeEventHandler
-        1: STRING - Name of event
-        2: CODE - Code to execute when event is fired.
-        (OPTIONAL) 3: OBJECT - Unit to use as filter. Only executes Handler if causing unit equals this.
-
-    Returns:
-        NUMBER: Unique ID of the event handler (can be used with CBA_fnc_removeEventHandler).
-
-    Example:
-        ["MyID", "OnSpeak", {
-            params ["_unit","_volume"];
-            hint format ["%1 is speaking %2", name _unit, _volume];
-        }, player] call TFAR_fnc_addEventHandler;
-*/
+ * Name: TFAR_fnc_addEventHandler
+ *
+ * Author: L-H, Dedmen
+ * Adds an Eventhandler. Optionally only to a specific unit.
+ *
+ * Arguments:
+ * 0: ID for custom handler <STRING>
+ * 1: event name <STRING>
+ * 2: Code to execute when event is fired. <CODE>
+ * 3: Unit to use as filter. <OBJECT> (Optional)
+ *
+ * Return Value:
+ * Unique ID of the event handler <NUMBER>
+ *
+ * Example:
+ * ["MyID", "OnSpeak", {
+ *     params ["_unit","_volume"];
+ *     hint format ["%1 is speaking %2", name _unit, _volume];
+ * }, player] call TFAR_fnc_addEventHandler;
+ *
+ * Public: Yes
+ */
 
 params ["_customID", "_eventName", "_code", ["_filterUnit",ObjNull]];
 private "_eventID";//don't "optimize" this by putting private before the variable assignment
