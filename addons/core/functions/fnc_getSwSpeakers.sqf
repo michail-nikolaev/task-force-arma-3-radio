@@ -7,7 +7,7 @@
  * Gets the speakers setting of the passed radio
  *
  * Arguments:
- * 0: Radio classname <STRING>
+ * Radio classname <STRING>
  *
  * Return Value:
  * speakers or headphones <BOOL>

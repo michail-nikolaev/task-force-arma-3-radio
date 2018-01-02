@@ -7,7 +7,7 @@
  * Gets the owner of a SR radio.
  *
  * Arguments:
- * 0: radio classname <STRING>
+ * radio classname <STRING>
  *
  * Return Value:
  * UID of owner of radio <STRING>

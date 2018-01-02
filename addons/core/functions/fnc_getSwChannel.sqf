@@ -7,7 +7,7 @@
  * Gets the channel for the passed radio
  *
  * Arguments:
- * 0: Radio classname <STRING>
+ * Radio classname <STRING>
  *
  * Return Value:
  * Channel <NUMBER>

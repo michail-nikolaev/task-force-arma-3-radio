@@ -7,7 +7,7 @@
  * Gets the stereo setting of the passed radio
  *
  * Arguments:
- * 0: Radio classname <STRING>
+ * Radio classname <STRING>
  *
  * Return Value:
  * Stereo setting : Range (0,2) (0 - Both, 1 - Left, 2 - Right) <NUMBER>

@@ -7,7 +7,7 @@
  * Returns the encryption code for the passed radio.
  *
  * Arguments:
- * 0: Radio classname <STRING>
+ * Radio classname <STRING>
  *
  * Return Value:
  * Encryption code <STRING>

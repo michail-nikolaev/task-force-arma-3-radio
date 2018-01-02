@@ -1,25 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_swRadioMenu
-
-    Author(s):
-        NKey
-        Garth de Wet (L-H)
-
-    Description:
-        Returns a list of SW radios if more than one is on the player.
-
-    Parameters:
-        Nothing
-
-    Returns:
-        ARRAY:
-            CBA UI menu.
-
-    Example:
-        Called internally by CBA UI
-*/
+ * Name: TFAR_fnc_swRadioMenu
+ *
+ * Author: NKey, Garth de Wet (L-H)
+ * Returns a list of SW radios if more than one is on the player.
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * Flexi-menu <ARRAY>
+ *
+ * Example:
+ * call TFAR_fnc_swRadioMenu;
+ *
+ * Public: No
+ */
 
 private _menu = [];
 if ((count (TFAR_currentUnit call TFAR_fnc_radiosList) > 1) or {(count (TFAR_currentUnit call TFAR_fnc_radiosList) == 1) and !(call TFAR_fnc_haveSWRadio)}) then {

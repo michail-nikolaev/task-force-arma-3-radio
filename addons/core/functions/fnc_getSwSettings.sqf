@@ -7,7 +7,7 @@
  * Returns the current settings for the passed radio.
  *
  * Arguments:
- * 0: Radio classname <STRING>
+ * Radio classname <STRING>
  *
  * Return Value:
  * settings <ARRAY>

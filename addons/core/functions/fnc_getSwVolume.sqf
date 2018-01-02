@@ -7,7 +7,7 @@
  * Gets the volume of the passed radio
  *
  * Arguments:
- * 0: Radio classname <STRING>
+ * Radio classname <STRING>
  *
  * Return Value:
  * Volume : range (0,10) <NUMBER>
