@@ -11,11 +11,12 @@
     1,
     FUNC(onSettingChanged)
 ] call CBA_Settings_fnc_init;
+
 [
     "TFAR_AICanHearSpeaker",
     "CHECKBOX",
     [LSTRING(SETTING_SPEAKER_HEADER), LSTRING(SETTING_SPEAKER_DESC)],
-    "Task Force Arrowhead Radio",
+    localize ELSTRING(settings,global),
     false,
     1,
     FUNC(onSettingChanged)

@@ -1,4 +1,4 @@
-PREP(OnRadioReceive);
+PREP(onRadioReceive);
 PREP(onSettingChanged);
 PREP(onSpeak);
 PREP(revealInArea);
