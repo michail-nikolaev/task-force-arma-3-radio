@@ -1,24 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_static_radios_fnc_generateFrequencies
-
-    Author(s):
-        Dedmen
-
-    Description:
-        Generates default frequencies for a static Radio
-        Internal use only!
-
-    Parameters:
-        OBJECT - The weaponholder containing the Radio
-
-    Returns:
-        ARRAY - of frequencies
-
-    Example:
-        _this call TFAR_static_radios_fnc_generateFrequencies;
-*/
+ * Name: TFAR_static_radios_fnc_generateFrequencies
+ *
+ * Author: Dedmen
+ * Generates default frequencies for a static Radio
+ *
+ * Arguments:
+ * 0: The weaponholder containing the Radio <OBJECT>
+ *
+ * Return Value:
+ * frequencies <ARRAY>
+ *
+ * Example:
+ * _this call TFAR_static_radios_fnc_generateFrequencies;
+ *
+ * Public: No
+ */
 params ["_radioClass"];
 
 if (_radioClass call TFAR_fnc_isLRRadio) exitWith {

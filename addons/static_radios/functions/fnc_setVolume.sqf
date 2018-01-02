@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_static_radios_fnc_setVolume
-
-    Author(s):
-        Dedmen
-
-    Description:
-        Sets the static Radio's Volume
-
-    Parameters:
-        0: OBJECT - The weaponholder containing the Radio
-        1: SCALAR - selected Volume
-
-    Returns:
-        NOTHING
-
-    Example:
-        ["TFAR_anprc_152_3",1] call TFAR_static_radios_fnc_setVolume;
-*/
+ * Name: TFAR_static_radios_fnc_setVolume
+ *
+ * Author: Dedmen
+ * sets the static radio's volume
+ *
+ * Arguments:
+ * 0: the weaponholder containing the radio <OBJECT>
+ * 1: selected volume <SCALAR>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * ["TFAR_anprc_152_3",1] call TFAR_static_radios_fnc_setVolume;
+ *
+ * Public: Yes
+ */
 
 params ["_radioContainer","_volume"];
 
