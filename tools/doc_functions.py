@@ -13,7 +13,7 @@ Supported header sections:
  - Public (by default function will only be documented if set to "Yes")
 
 EXAMPLES
-    document_functions core --debug
+    doc_functions core --debug
         Crawl only functions in addons/core and only reports debug messages.
 
 """
@@ -107,7 +107,7 @@ class FunctionFile:
 
         # Process return
         if return_value_raw:
-            self.return_value = self.process_return_value(return_value_raw)
+            self.return_value = self.process_arguments(return_value_raw)
 
         # Process example
         if example_raw:
@@ -167,20 +167,19 @@ class FunctionFile:
 
         arguments = []
         for argument in lines:
-            valid = re.match(r"^(\d+):\s(.+?)\<([\s\w]+?)\>(\s\(default: (.+)\))?$", argument)
+            valid = re.match(r"^((\d+):\s)?(.+?)\<([\s\w\/]+?)\>(\s\(default: (.+?)\))?(.+?)?$", argument)
 
             if valid:
-                arg_index = valid.group(1)
-                arg_name = valid.group(2)
-                arg_types = valid.group(3)
-                arg_default = valid.group(5)
-                arg_notes = []
+                arg_index = valid.group(2)
+                arg_name = valid.group(3)
+                arg_types = valid.group(4)
+                arg_default = valid.group(6)
+                arg_notes = valid.group(7)
 
-                if arg_index != str(len(arguments)):
-                    self.feedback("Argument index {} does not match listed order".format(arg_index), 1)
-
-                if arg_default == None:
+                if arg_default is None:
                     arg_default = ""
+                if arg_notes is None:
+                    arg_notes = ""
 
                 arguments.append([arg_index, arg_name, arg_types, arg_default, arg_notes])
             else:
@@ -188,7 +187,7 @@ class FunctionFile:
                 # Only applies if there exists an above argument
                 if re.match(r"^(\d+):", argument) or not arguments:
                     self.feedback("Malformed argument \"{}\"".format(argument), 2)
-                    arguments.append(["?", "Malformed", "?", "?", []])
+                    arguments.append(["?", "Malformed", "?", "?", "?"])
                 else:
                     arguments[-1][-1].append(argument)
 
@@ -235,19 +234,26 @@ class FunctionFile:
         str_list.append("        <ol start=\"0\">\n")
         if self.arguments:
             for argument in self.arguments:
-                str_list.append("          <li><kbd>{2}</kbd> - {1}</li>\n".format(*argument))
+                if argument[0]:
+                    str_list.append("          <li><kbd>{2}</kbd> - {1}</li>\n".format(*argument))
+                else:
+                    str_list.append("          <kbd>{2}</kbd> - {1}\n".format(*argument))
         else:
-            str_list.append("          <br>None\n")
-
+            str_list.append("          None\n")
         str_list.append("        </ol>\n")
         str_list.append("      </td>\n")
         str_list.append("      <td valign=\"top\" width=\"50%\">\n")
         str_list.append("        <strong><sub>Returns</sub></strong>\n")
+        str_list.append("        <ol start=\"0\">\n")
         if self.return_value:
-            str_list.append("          <li><kbd>{1}</kbd> - {0}</li>\n".format(*self.return_value))
+            for argument in self.return_value:
+                if argument[0]:
+                    str_list.append("          <li><kbd>{2}</kbd> - {1}</li>\n".format(*argument))
+                else:
+                    str_list.append("          <kbd>{2}</kbd> - {1}\n".format(*argument))
         else:
-            str_list.append("          <br>None\n")
-
+            str_list.append("          None\n")
+        str_list.append("        </ol>\n")
         str_list.append("      </td>\n")
         str_list.append("    </tr>\n")
         str_list.append("    <tr>\n")
@@ -291,7 +297,7 @@ class FunctionFile:
         print("".join(to_print))
 
 
-def documentcontents(componentfunctions):
+def document_contents(componentfunctions):
     str_list = []
     str_list.append("<h2>Index of API functions</h2>\n")
     str_list.append("<table border=\"1\">\n")
@@ -311,42 +317,47 @@ def documentcontents(componentfunctions):
     str_list.append("</table>\n<br>\n<hr>\n")
     return ''.join(str_list)
 
-def document_functions(components):
-    os.makedirs('../docs/functions/', exist_ok=True)
-
-    for component in components:
-        output = os.path.join('../docs/functions/',component) + ".md"
-        with open(output, "w") as file:
-            file.write(documentcontents(components[component]))
+def document(components, debug=False):
+    """create the documentation files"""
+    if not debug:
+        os.makedirs('../docs/functions/', exist_ok=True)
+        for component in components:
+            output = os.path.join('../docs/functions/',component) + ".md"
+            with open(output, "w") as file:
+                file.write(document_contents(components[component]))
+                for function in components[component]:
+                    file.write(function.document(component))
+    else:
+        for component in components:
+            print(document_contents(components[component]))
             for function in components[component]:
-                file.write(function.document(component))
+                print(function.document(component))
 
-def crawl_dir(directory, debug=False):
-    components = {}
 
-    for root, dirs, files in os.walk(directory):
+def crawl_component(component_dir, allcomponents, debug=False):
+    """Crawls through component and detects all valid functions"""
+    component_name = os.path.basename(component_dir)
+    for root, dirs, files in os.walk(component_dir):
         for file in files:
             if file.endswith(".sqf"):
                 file_path = os.path.join(root, file)
 
                 # Attempt to import the header from file
-                function = FunctionFile(directory)
+                function = FunctionFile(component_dir)
                 function.import_header(file_path)
 
                 # Undergo data extraction and detailed debug
                 if function.has_header():
                     function.process_header(debug)
 
-                    if function.is_public() and not debug:
+                    if function.is_public():
                         # Add functions to component key (initalise key if necessary)
-                        component = os.path.basename(os.path.dirname(root))
-                        components.setdefault(component,[]).append(function)
+                        allcomponents.setdefault(component_name,[]).append(function)
 
                         function.feedback("Publicly documented")
 
-    document_functions(components)
-
 def main():
+    """Main"""
     print("""
     #########################
     # Documenting Functions #
@@ -354,18 +365,25 @@ def main():
     """)
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('directory', nargs="?", type=str, default=".", help='only crawl specified module addon folder')
-    parser.add_argument('--debug', action="store_true", help='only check for header debug messages')
+    parser.add_argument('directory', nargs="?", type=str, default="", \
+        help='only crawl specified component addon folder')
+    parser.add_argument('--debug', action="store_true", help='run dry without creating files')
     args = parser.parse_args()
 
-    # abspath is just used for the terminal output
-    prospective_dir = os.path.abspath(os.path.join('../addons/',args.directory))
-    if os.path.isdir(prospective_dir):
-        print("Directory: {}\n".format(prospective_dir))
-        crawl_dir(prospective_dir, args.debug)
+    addonsdir = os.path.abspath(os.path.normpath(__file__ + '/../../addons'))
+    if os.path.isdir(os.path.join(addonsdir, args.directory)):
+        components = {}
+        if args.directory == "":
+            print("Directory: {}\n".format(addonsdir))
+            for folder in os.listdir(addonsdir):
+                if os.path.isdir(os.path.join(addonsdir, folder)):
+                    crawl_component(os.path.join(addonsdir, folder), components, args.debug)
+        else:
+            print("Directory: {}\n".format(os.path.join(addonsdir, args.directory)))
+            crawl_component(os.path.join(addonsdir, args.directory), components, args.debug)
+        document(components, args.debug)
     else:
-        print("Invalid directory: {}".format(prospective_dir))
+        print("Invalid directory: {}".format(os.path.join(addonsdir, args.directory)))
 
 if __name__ == "__main__":
     main()
-
