@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_addRadiosToACE
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * Used to provide an array of ace actions to be used as children actions in the interact menu.
  *
  * Arguments:

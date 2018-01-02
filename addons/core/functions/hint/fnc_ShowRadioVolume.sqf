@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_ShowRadioVolume
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * shows the radio volume
  *
  * Arguments:

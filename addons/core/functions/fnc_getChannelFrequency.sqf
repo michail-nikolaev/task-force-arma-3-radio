@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_getChannelFrequency
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * Returns the frequency for the passed channel and radio.
  *
  * Arguments:

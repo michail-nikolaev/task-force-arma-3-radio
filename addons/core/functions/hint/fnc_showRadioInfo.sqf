@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_showRadioInfo
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * shows the radio info
  *
  * Arguments:

@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_getLrFrequency
  *
- * Author: NKey, L-H
+ * Author: NKey, Garth de Wet (L-H)
  * Gets the frequency for the active channel.
  *
  * Arguments:

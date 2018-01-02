@@ -5,7 +5,7 @@
 
     Author(s):
         NKey
-        L-H
+        Garth de Wet (L-H)
 
     Description:
         Handles getting switching radios, handles whether a manpack must be added to the player or not.

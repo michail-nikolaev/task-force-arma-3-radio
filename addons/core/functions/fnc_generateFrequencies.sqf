@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_generateFrequencies
  *
- * Author: NKey, L-H, Dorbedo
+ * Author: NKey, Garth de Wet (L-H), Dorbedo
  * Generates frequencies based on the passed parameters to be used in radio settings.
  *
  * Arguments:

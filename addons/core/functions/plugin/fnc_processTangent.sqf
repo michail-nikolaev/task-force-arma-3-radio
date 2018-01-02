@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_processTangent
  *
- * Author: NKey, L-H
+ * Author: NKey, Garth de Wet (L-H)
  * Called when tangent is released.
  *
  * Arguments:

@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_isSpeaking
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * Check whether a unit is speaking
  *
  * Arguments:

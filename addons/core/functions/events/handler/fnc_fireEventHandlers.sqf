@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_fireEventHandlers
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * Fires all eventhandlers associated with the passed unit
  *
  * Arguments:

@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_showRadioSpeakers
  *
- * Author: L-H, Nkey
+ * Author: Garth de Wet (L-H), Nkey
  * shows the speaker hint
  *
  * Arguments:

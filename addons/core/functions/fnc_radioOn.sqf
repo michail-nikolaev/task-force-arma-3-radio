@@ -4,7 +4,7 @@
     Name: TFAR_fnc_radioOn
 
     Author(s):
-        L-H
+        Garth de Wet (L-H)
 
     Description:
         Gets the passed radio's on status or switches the radio's status if a boolean is passed as the second parameter.

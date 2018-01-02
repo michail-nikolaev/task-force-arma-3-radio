@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_getVehicleConfigProperty
  *
- * Author: NKey, L-H
+ * Author: NKey, Garth de Wet (L-H)
  * Gets a config property (getNumber/getText)
  * Only works for CfgVehicles.
  *

@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_removeEventHandler
  *
- * Author: L-H, Dedmen
+ * Author: Garth de Wet (L-H), Dedmen
  * removes an eventhandler
  *
  * Arguments:

@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_processLRChannelKeys
  *
- * Author: Nkey, L-H
+ * Author: Nkey, Garth de Wet (L-H)
  * Switches the active LR radio to the passed channel.
  *
  * Arguments:

@@ -5,7 +5,7 @@
 
     Author(s):
         NKey
-        L-H
+        Garth de Wet (L-H)
 
     Description:
         Searches through all the items assigned to and on the player and checks if it is a prototype radio

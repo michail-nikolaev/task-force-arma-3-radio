@@ -5,7 +5,7 @@
 
     Author(s):
         NKey
-        L-H
+        Garth de Wet (L-H)
 
     Description:
         Sets the frequency for the currently active channel

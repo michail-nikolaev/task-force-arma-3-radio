@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_serverInit
  *
- * Author: NKey, L-H
+ * Author: NKey, Garth de Wet (L-H)
  * Initialises the server and the server loop.
  *
  * Arguments:

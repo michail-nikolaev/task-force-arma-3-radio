@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_getLrRadioCode
  *
- * Author: NKey, L-H
+ * Author: NKey, Garth de Wet (L-H)
  * Returns the encryption code for the passed radio.
  *
  * Arguments:

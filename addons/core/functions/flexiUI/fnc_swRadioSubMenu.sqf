@@ -5,7 +5,7 @@
 
     Author(s):
         NKey
-        L-H
+        Garth de Wet (L-H)
 
     Description:
         Returns a sub menu for a particular radio.

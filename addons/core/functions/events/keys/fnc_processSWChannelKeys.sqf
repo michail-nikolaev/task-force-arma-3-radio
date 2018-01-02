@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_processSRChannelKeys
  *
- * Author: Nkey, L-H
+ * Author: Nkey, Garth de Wet (L-H)
  * Switches the active SR radio to the passed channel.
  *
  * Arguments:

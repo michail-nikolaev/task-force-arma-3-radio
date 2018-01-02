@@ -4,7 +4,7 @@
     Name: TFAR_fnc_setRadioOwner
 
     Author(s):
-        L-H
+        Garth de Wet (L-H)
 
     Description:
         Sets the owner of a SW radio.

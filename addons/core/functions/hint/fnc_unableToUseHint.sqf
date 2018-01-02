@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_unableToUseHint
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * shows the "unable to use" hint
  *
  * Arguments:

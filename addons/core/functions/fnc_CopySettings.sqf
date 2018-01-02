@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_CopySettings
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * Copies the settings from a radio to another.
  *
  * Arguments:

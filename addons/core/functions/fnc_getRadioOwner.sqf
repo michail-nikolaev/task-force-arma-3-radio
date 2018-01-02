@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_getRadioOwner
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * Gets the owner of a SR radio.
  *
  * Arguments:

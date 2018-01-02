@@ -4,7 +4,7 @@
     Name: TFAR_fnc_setSwRadioCode
 
     Author(s):
-        L-H
+        Garth de Wet (L-H)
 
     Description:
         Allows setting of the encryption code for individual radios.

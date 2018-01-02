@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_getLrRadioProperty
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * returns specified radio property
  *
  * Arguments:

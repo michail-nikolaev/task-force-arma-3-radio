@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_addEventHandler
  *
- * Author: L-H, Dedmen
+ * Author: Garth de Wet (L-H), Dedmen
  * Adds an Eventhandler. Optionally only to a specific unit.
  *
  * Arguments:

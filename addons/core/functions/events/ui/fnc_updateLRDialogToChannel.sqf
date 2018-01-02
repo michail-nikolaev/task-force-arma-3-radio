@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_updateLRDialogToChannel
  *
- * Author: NKey, L-H
+ * Author: NKey, Garth de Wet (L-H)
  * Updates the LR dialog to the channel if switched.
  *
  * Arguments:

@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_getSideRadio
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * Returns the default radio for the passed side.
  *
  * Arguments:

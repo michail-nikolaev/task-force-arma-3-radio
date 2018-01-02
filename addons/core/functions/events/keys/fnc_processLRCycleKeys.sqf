@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_processLRCycleKeys
  *
- * Author: JonBons, Nkey, L-H
+ * Author: JonBons, Nkey, Garth de Wet (L-H)
  * Allows rotating through the list of LR radios with keys.
  *
  * Arguments:

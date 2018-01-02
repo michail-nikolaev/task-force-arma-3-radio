@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_processSWStereoKeys
  *
- * Author: JonBons, Nkey, L-H
+ * Author: JonBons, Nkey, Garth de Wet (L-H)
  * Switches the LR stereo setting on the active LR radio.
  *
  * Arguments:

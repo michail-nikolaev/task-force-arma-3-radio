@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_getNearPlayers
  *
- * Author: NKey, L-H, Dedmen
+ * Author: NKey, Garth de Wet (L-H), Dedmen
  * returns near players
  *
  * Arguments:

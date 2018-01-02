@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_inWaterHint
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * shows the "in water" hint
  *
  * Arguments:

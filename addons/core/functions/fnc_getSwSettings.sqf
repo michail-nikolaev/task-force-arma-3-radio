@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_getSwSettings
  *
- * Author: NKey, L-H
+ * Author: NKey, Garth de Wet (L-H)
  * Returns the current settings for the passed radio.
  *
  * Arguments:

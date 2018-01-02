@@ -4,7 +4,7 @@
     Name: TFAR_fnc_setChannelFrequency
 
     Author(s):
-        L-H
+        Garth de Wet (L-H)
 
     Description:
         Sets the frequency for the channel on the passed radio.

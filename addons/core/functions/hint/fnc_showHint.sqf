@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_showHint
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * Displays a hint at the bottom right of the screen.
  *
  * Arguments:

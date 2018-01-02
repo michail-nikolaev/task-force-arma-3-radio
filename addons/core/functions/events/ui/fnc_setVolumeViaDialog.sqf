@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_setVolumeViaDialog
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * sets the volume of the current dialog radio.
  *
  * Arguments:

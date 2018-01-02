@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_eyeDepth
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * returns the eyepos of a unit
  *
  * Arguments:

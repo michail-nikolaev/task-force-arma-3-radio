@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_setChannelViaDialog
  *
- * Author: L-H
+ * Author: Garth de Wet (L-H)
  * Sets the channel of the current Dialog radio.
  *
  * Arguments:

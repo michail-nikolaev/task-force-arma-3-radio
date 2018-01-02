@@ -3,7 +3,7 @@
 /*
  * Name: TFAR_fnc_generateLrSettings
  *
- * Author: NKey, L-H
+ * Author: NKey, Garth de Wet (L-H)
  * Generates settings for the LR radio
  *
  * Arguments:
