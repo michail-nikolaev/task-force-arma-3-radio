@@ -1,25 +1,25 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_showRadioVolume
-
-    Author(s):
-        L-H
-
-    Description:
-
-    Parameters:
-        0: OBJECT/STRING - Radio
-
-    Returns:
-        Nothing
-
-    Example:
-        // LR radio
-        [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioVolume;
-        // SW radio
-        [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioVolume;
-*/
+ * Name: TFAR_fnc_ShowRadioVolume
+ *
+ * Author: L-H
+ * shows the radio volume
+ *
+ * Arguments:
+ * 0: Radio <OBJECT/STRING>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ *      // LR radio
+ *      [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioVolume;
+ *      // SW radio
+ *      [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioVolume;
+ *
+ * Public: Yes
+ */
 params ["_radio"];
 
 private _isLrRadio = _radio isEqualType [];

@@ -1,26 +1,25 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_showRadioSpeakers
-
-    Author(s):
-        L-H
-        Nkey
-
-    Description:
-
-    Parameters:
-        0: OBJECT/STRING - Radio
-
-    Returns:
-        Nothing
-
-    Example:
-        // LR radio
-        [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioSpeakers;
-        // SW radio
-        [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioSpeakers;
-*/
+ * Name: TFAR_fnc_showRadioSpeakers
+ *
+ * Author: L-H, Nkey
+ * shows the speaker hint
+ *
+ * Arguments:
+ * 0: Radio <OBJECT/STRING>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ *      // LR radio
+ *      [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioSpeakers;
+ *      // SW radio
+ *      [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioSpeakers;
+ *
+ * Public: Yes
+ */
 params ["_radio"];
 
 private _isLrRadio = _radio isEqualType [];
