@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_COMPONENT_fnc_getTeamSpeakServerName
+ * Name: TFAR_fnc_getTeamSpeakServerName
  *
  * Author: NKey
  * Returns TeamSpeak server name.
@@ -13,7 +13,7 @@
  * name of the server <STRING>
  *
  * Example:
- * call TFAR_COMPONENT_fnc_getTeamSpeakServerName;
+ * call TFAR_fnc_getTeamSpeakServerName;
  *
  * Public: Yes
  */
