@@ -18,6 +18,8 @@
  * Public: yes
  */
 
+params ["_tower"];
+
 [GVAR(radioTowerList), _tower] call CBA_fnc_hashRem;
 
 [_tower] call FUNC(pluginRemoveRadioTower);
