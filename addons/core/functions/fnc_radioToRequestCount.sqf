@@ -1,27 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_radioToRequestCount
-
-    Author(s):
-        NKey
-        Garth de Wet (L-H)
-
-    Description:
-        Searches through all the items assigned to and on the player and checks if it is a prototype radio
-        and then creates an array of all the classnames of the prototype radios and returns it.
-
-    Parameters:
-        BOOLEAN - Regardless of whether the radio is prototype or not, return it as a radio to be replaced.
-
-    Returns:
-        ARRAY
-            0: ARRAY - List of all radio classes to be replaced.
-            1: ARRAY - List of settings to be copied
-
-    Example:
-        (false call TFAR_fnc_radioToRequestCount) params ["_radiosToReplace","_TF_SettingsToCopy"];
-*/
+ * Name: TFAR_fnc_radioToRequestCount
+ *
+ * Author: NKey, Garth de Wet (L-H)
+ * Searches through all the items assigned to and on the player and checks if it is a prototype radio
+ * and then creates an array of all the classnames of the prototype radios and returns it.
+ *
+ * Arguments:
+ * Regardless of whether the radio is prototype or not, return it as a radio to be replaced. <BOOL>
+ *
+ * Return Value:
+ * 0: List of all radio classes to be replaced. <ARRAY>
+ * 1: List of settings to be copied. <ARRAY>
+ *
+ * Example:
+ * (false call TFAR_fnc_radioToRequestCount) params ["_radiosToReplace","_TF_SettingsToCopy"];
+ *
+ * Public: Yes
+ */
 
 private _to_remove = [];
 private _allRadios = _this;

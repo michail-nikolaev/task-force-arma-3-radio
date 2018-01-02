@@ -1,22 +1,22 @@
 #include "script_component.hpp"
+
 /*
-    Name: TFAR_fnc_updateSpeakVolumeUI
-
-    Author(s):
-        Dedmen
-
-    Description:
-        Updates UI speak volume indicator
-
-    Parameters:
-        Nothing
-
-    Returns:
-        Nothing
-
-    Example:
-        call TFAR_fnc_updateSpeakVolumeUI;
-*/
+ * Name: TFAR_fnc_updateSpeakVolumeUI
+ *
+ * Author: Dedmen
+ * Updates UI speak volume indicator
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * call TFAR_fnc_updateSpeakVolumeUI;
+ *
+ * Public: Yes
+ */
 
 _icon = "";
 _display = uiNamespace getVariable [QGVAR(HUDVolumeIndicatorRscDisplay),displayNull];

@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_vehicleID
-
-    Author(s):
-        NKey
-
-    Description:
-        Returns a string with information about the player vehicle, used at the plugin side.
-
-    Parameters:
-        0: OBJECT - The unit to check.
-
-    Returns:
-        STRING - NetworkID, Turned out
-
-    Example:
-        _vehicleID = player call TFAR_fnc_vehicleID;
-*/
+ * Name: TFAR_fnc_vehicleId
+ *
+ * Author: NKey
+ * Returns a string with information about the player vehicle, used at the plugin side.
+ *
+ * Arguments:
+ * 0: The unit to check. <OBJECT>
+ *
+ * Return Value:
+ * NetworkID, Turned out <STRING>
+ *
+ * Example:
+ * _vehicleID = player call TFAR_fnc_vehicleID;
+ *
+ * Public: Yes
+ */
 params ["_unit"];
 
 if (isNull (objectParent _unit)) exitWith {"no"};//Unit is not in vehicle
