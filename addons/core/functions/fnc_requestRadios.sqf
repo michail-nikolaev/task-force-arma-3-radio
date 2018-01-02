@@ -40,7 +40,7 @@ if (_radiosToRequest isEqualTo []) exitWith {/*MUTEX_UNLOCK(TF_radio_request_mut
 //#Deprecated radio classes
 _radiosToRequest = _radiosToRequest apply {
     switch (_x) do {
-        case "tf_anprc148jem" : {"TFAR_anprc148jem"}
+        case "tf_anprc148jem" : {"TFAR_anprc148jem"};
         case "tf_anprc152" : {"TFAR_anprc152"};
         case "tf_anprc154" : {"TFAR_anprc154"};
         case "tf_fadak" : {"TFAR_fadak"};
