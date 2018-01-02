@@ -16,7 +16,7 @@
  * Example:
  * true call TFAR_ai_hearing_fnc_onSettingChanged;
  *
- * Public: yes
+ * Public: No
  */
 
 if !(hasInterface) exitWith {};

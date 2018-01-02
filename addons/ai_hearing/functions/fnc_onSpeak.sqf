@@ -16,7 +16,7 @@
  * Example:
  * [_unit, true] call TFAR_ai_hearing_fnc_onSpeak;
  *
- * Public: Yes
+ * Public: No
  */
 
 #include "script_component.hpp"

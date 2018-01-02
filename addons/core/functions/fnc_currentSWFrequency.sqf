@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_currentLWFrequency
-
-    Author(s):
-        NKey
-
-    Description:
-        Returns current Frequency of the active SW Radio
-
-    Parameters:
-
-    Returns:
-        0: STRING: Frequency of active SW Radio
-
-    Example:
-        _SWFrequency = call TFAR_fnc_currentSWFrequency
-*/
+ * Name: TFAR_fnc_currentSWFrequency
+ *
+ * Author: NKey
+ * Returns current Frequency of the active SR Radio
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * Frequency of active SR Radio <STRING>
+ *
+ * Example:
+ * _SRFrequency = call TFAR_fnc_currentSWFrequency
+ *
+ * Public: Yes
+ */
 
 (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwFrequency

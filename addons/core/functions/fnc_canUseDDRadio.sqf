@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_canUseDDRadio
-
-    Author(s):
-        NKey
-
-    Description:
-        Checks whether it is possible for the DD radio to be used at the current height and isolated status.
-
-    Parameters:
-        0: NUMBER - Depth
-        1: BOOLEAN - Isolated and inside
-
-    Returns:
-        BOOLEAN
-
-    Example:
-        _canUseDD = [-12,true] call TFAR_fnc_canUseDDRadio;
-*/
+ * Name: TFAR_fnc_canUseDDRadio
+ *
+ * Author: NKey
+ * Checks whether it is possible for the DD radio to be used at the current height and isolated status.
+ *
+ * Arguments:
+ * 0: Depth <NUMBER>
+ * 1: Isolated and inside <BOOL>
+ *
+ * Return Value:
+ * radio can be used <BOOL>
+ *
+ * Example:
+ * _canUseDD = [-12,true] call TFAR_fnc_canUseDDRadio;
+ *
+ * Public: Yes
+ */
 
 params ["_depth", "_isolated_and_inside"];
 
