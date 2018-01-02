@@ -27,7 +27,7 @@ private _fnc_tryResolveFactionClass = {
     private _result = missionNamespace getVariable (format["%1_%2_tf_faction_radio", _faction, _prefix]);
 
     if (_result isEqualTo "") exitWith {_default};
-    if (!isNil "_result") exitWith {_result};    
+    if (!isNil "_result") exitWith {_result};
 
     if (isText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"))) exitWith {
         missionNamespace setVariable [(format["%1_%2_tf_faction_radio", _faction, _prefix]), getText (configFile >> "CfgFactionClasses" >> _faction >> (_prefix + "_tf_faction_radio_api"))];
