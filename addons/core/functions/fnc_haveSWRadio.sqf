@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_haveSWRadio
-
-    Author(s):
-
-    Description:
-        Returns whether the player has a SW radio
-
-    Parameters:
-    Nothing
-
-    Returns:
-    BOOLEAN
-
-    Example:
-    _hasSW = call TFAR_fnc_haveSWRadio;
+ * Name: TFAR_fnc_haveSWRadio
+ *
+ * Author: NKey, Garth de Wet (L-H)
+ * Returns whether the player has a SR radio
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * has SR <BOOL>
+ *
+ * Example:
+ * _hasSW = call TFAR_fnc_haveSWRadio;
+ *
+ * Public: Yes
  */
 
 //Caching

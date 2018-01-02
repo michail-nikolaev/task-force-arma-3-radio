@@ -1,6 +1,26 @@
 #include "script_component.hpp"
 
 /*
+ * Name: TFAR_fnc_isPrototypeRadio
+ *
+ * Author: Garth de Wet (L-H)
+ * description
+ *
+ * Arguments:
+ * 0: argument name <TYPENAME>
+ *
+ * Return Value:
+ * return name <TYPENAME>
+ *
+ * Example:
+ * [parameter] call TFAR_fnc_isPrototypeRadio;
+ *
+ * Public: Yes
+ */
+
+
+
+/*
     Name: TFAR_fnc_isPrototypeRadio
 
     Author(s):

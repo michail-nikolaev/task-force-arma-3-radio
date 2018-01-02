@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_haveDDRadio
-
-    Author(s):
-
-    Description:
-        Returns whether the player has a DD radio.
-
-    Parameters:
-        Nothing
-
-    Returns:
-        Bool
-
-    Example:
-        _hasDD = call TFAR_fnc_haveDDRadio;
+ * Name: TFAR_fnc_haveDDRadio
+ *
+ * Author: NKey, Garth de Wet (L-H)
+ * Returns whether the player has a DD radio.
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * has a DD <BOOL>
+ *
+ * Example:
+ * _hasDD = call TFAR_fnc_haveDDRadio;
+ *
+ * Public: Yes
  */
-
 
  private _lastCache = GVAR(VehicleConfigCacheNamespace) getVariable "TFAR_fnc_haveDDRadio_lastCache";
  if (_lastCache > TFAR_lastLoadoutChange) exitWith {GVAR(VehicleConfigCacheNamespace) getVariable "TFAR_fnc_haveDDRadio_CachedResult"};

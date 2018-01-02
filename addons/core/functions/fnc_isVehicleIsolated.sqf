@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_isVehicleIsolated
-
-    Author(s):
-        NKey
-
-    Description:
-        Checks whether the vehicle is isolated.
-
-    Parameters:
-        OBJECT - The vehicle
-
-    Returns:
-        BOOLEAN
-
-    Example:
-        _isolated = (vehicle player) call TFAR_fnc_isVehicleIsolated;
-*/
+ * Name: TFAR_fnc_isVehicleIsolated
+ *
+ * Author: NKey
+ * checks wether the vehicle is isolated
+ *
+ * Arguments:
+ * 0: the vehicle <OBJECT>
+ *
+ * Return Value:
+ * is isolated <BOOL>
+ *
+ * Example:
+ * _isolated = (vehicle player) call TFAR_fnc_isVehicleIsolated;
+ *
+ * Public: Yes
+ */
 params ["_vehicle"];
 
 private _isolated = _vehicle getVariable ["TFAR_isolatedAmount", scriptNull];

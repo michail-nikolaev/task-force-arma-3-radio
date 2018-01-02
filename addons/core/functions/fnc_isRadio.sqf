@@ -5,7 +5,7 @@
 
     Author(s):
         NKey
-        L-H
+        Garth de Wet (L-H)
 
     Description:
         Checks whether the passed radio is a TFAR radio.
