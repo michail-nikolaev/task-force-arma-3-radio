@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_onSwTangentPressed
-
-    Author(s):
-        NKey
-
-    Description:
-        Fired when the keybinding for SW is pressed.
-
-    Parameters:
-
-    Returns:
-        BOOLEAN
-
-    Example:
-        call TFAR_fnc_onSwTangentPressed;
-*/
+ * Name: TFAR_fnc_onSwTangentPressed
+ *
+ * Author: NKey
+ * Fired when the keybinding for SR is pressed.
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * Whether or not the event was handled <BOOL>
+ *
+ * Example:
+ * call TFAR_fnc_onSwTangentPressed;
+ *
+ * Public: No
+ */
 
 if (time - TF_last_lr_tangent_press < 0.5) exitWith {true};
 if (((TF_tangent_lr_pressed or TF_tangent_sw_pressed)) or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveSWRadio}) exitWith {true};

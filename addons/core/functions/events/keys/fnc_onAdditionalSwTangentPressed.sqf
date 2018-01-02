@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_onAdditionalSwTangentPressed
-
-    Author(s):
-        NKey
-
-    Description:
-        Fired when the additional keybinding for SW is pressed.
-
-    Parameters:
-
-    Returns:
-        BOOLEAN
-
-    Example:
-        call TFAR_fnc_onAdditionalSwTangentPressed;
-*/
+ * Name: TFAR_fnc_onAdditionalSwTangentPressed
+ *
+ * Author: NKey
+ * Fired when the additional keybinding for SR is pressed.
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * Whether or not the event was handled <BOOL>
+ *
+ * Example:
+ * call TFAR_fnc_onAdditionalSwTangentPressed;
+ *
+ * Public: No
+ */
 //#TODO overhaul Additional Tangent functions
 
 

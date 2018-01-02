@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_onSpeakVolumeModifierPressed
-
-    Author(s):
-        ACyprus
-
-    Description:
-        Transiently changes the volume for the player's voice in game to either Yelling or Whisper
-
-    Parameters:
-        0: STRING - Volume level : VALUES ("yelling" or "whispering")
-
-    Returns:
-        BOOLEAN - Whether or not the event was handled
-
-    Example:
-        ["yelling"] call TFAR_fnc_onSpeakVolumeModifierPressed;
-*/
+ * Name: TFAR_fnc_onSpeakVolumeModifierPressed
+ *
+ * Author: ACyprus
+ * Transiently changes the volume for the player's voice in game to either Yelling or Whisper
+ *
+ * Arguments:
+ * 0: Volume level : VALUES ("yelling" or "whispering") <STRING>
+ *
+ * Return Value:
+ * Whether or not the event was handled <BOOL>
+ *
+ * Example:
+ * ["yelling"] call TFAR_fnc_onSpeakVolumeModifierPressed;
+ *
+ * Public: No
+ */
 
 params ["_modifierMode"];
 

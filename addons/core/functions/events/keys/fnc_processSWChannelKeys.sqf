@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_processSWChannelKeys
-
-    Author(s):
-        NKey
-
-    Description:
-        Switches the active SW radio to the passed channel.
-
-    Parameters:
-        0: NUMBER - Channel : Range (0,7)
-
-    Returns:
-        BOOLEAN - If the event was handled by this function.
-
-    Example:
-        Called by CBA.
-*/
+ * Name: TFAR_fnc_processSRChannelKeys
+ *
+ * Author: Nkey, L-H
+ * Switches the active SR radio to the passed channel.
+ *
+ * Arguments:
+ * 0: Channel : Range (0,7) <NUMBER>
+ *
+ * Return Value:
+ * Whether or not the event was handled <BOOL>
+ *
+ * Example:
+ * call TFAR_fnc_processSRChannelKeys;
+ *
+ * Public: No
+ */
 
 params ["_sw_channel_number"];
 
