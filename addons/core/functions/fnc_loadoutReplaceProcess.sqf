@@ -1,21 +1,22 @@
+#include "script_component.hpp"
+
 /*
- 	Name: TFAR_fnc_loadoutReplaceProcess
-
- 	Author(s):
-		zgmrvn
-
- 	Description:
- 		iterates through player's loadouts and replaces actual radios with prototypes
-
-	Parameters:
-		Nothing
-
- 	Returns:
-		Nothing
-
- 	Example:
-		[] call TFAR_fnc_loadoutReplaceProcess;
-*/
+ * Name: TFAR_fnc_loadoutReplaceProcess
+ *
+ * Author: zgmrvn
+ * iterates through player's loadouts and replaces actual radios with prototypes
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * call TFAR_fnc_loadoutReplaceProcess;
+ *
+ * Public: Yes
+ */
 scriptName "TFAR_fnc_loadoutReplaceProcess";
 
 private _loadouts = profileNamespace getVariable ["bis_fnc_saveinventory_data", []];

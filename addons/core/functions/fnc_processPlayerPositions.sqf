@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_processPlayerPositions
-
-    Author(s):
-        NKey
-
-    Description:
-        Process some player positions on each call and sends it to the plugin.
-
-    Parameters:
-        Nothing
-
-    Returns:
-        Nothing
-
-    Example:
-        call TFAR_fnc_processPlayerPositions;
-*/
+ * Name: TFAR_fnc_processPlayerPositions
+ *
+ * Author: NKey
+ * Process some player positions on each call and sends it to the plugin.
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * call TFAR_fnc_processPlayerPositions;
+ *
+ * Public: No
+ */
 if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW! (Keeps PFH from firing after server disconnect)"};
 //if (isNull (findDisplay 46)) exitWith {};
 //if (isNull TFAR_currentUnit) exitWith {};

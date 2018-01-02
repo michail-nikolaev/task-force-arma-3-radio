@@ -1,25 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_preparePositionCoordinates
-
-    Author(s):
-        NKey
-
-    Description:
-        Prepares the position coordinates of the passed unit.
-
-    Parameters:
-        0: OBJECT - unit
-        1: BOOLEAN - Is near player
-        3: STRING - Unit name
-
-    Returns:
-        String
-
-    Example:
-
-*/
+ * Name: TFAR_fnc_preparePositionCoordinates
+ *
+ * Author: NKey
+ * Prepares the position coordinates of the passed unit.
+ *
+ * Arguments:
+ * 0: unit <OBJECT>
+ * 1: Is near player <BOOL>
+ * 2: Unit name <STRING>
+ *
+ * Return Value:
+ * prepared Data <STRING>
+ *
+ * Example:
+ * [parameter] call TFAR_fnc_preparePositionCoordinates;
+ *
+ * Public: No
+ */
 params ["_unit", "_nearPlayer","_unitName"];
 
 private _pos = call (_unit getVariable ["TF_fnc_position", TFAR_fnc_defaultPositionCoordinates]); //_this get's forwarded without specifying it - perf improvement

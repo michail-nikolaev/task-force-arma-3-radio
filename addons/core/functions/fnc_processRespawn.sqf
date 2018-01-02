@@ -1,25 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_processRespawn
+ * Name: TFAR_fnc_processRespawn
+ *
+ * Author: NKey, Garth de Wet (L-H)
+ * Handles getting switching radios, handles whether a manpack must be added to the player or not.
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * call TFAR_fnc_processRespawn;
+ *
+ * Public: No
+ */
 
-    Author(s):
-        NKey
-        Garth de Wet (L-H)
-
-    Description:
-        Handles getting switching radios, handles whether a manpack must be added to the player or not.
-
-    Parameters:
-        Nothing
-
-    Returns:
-        Nothing
-
-    Example:
-        call TFAR_fnc_processRespawn;
-*/
-[{!(isNull player)},{
+[{!(isNull player)}, {
     TFAR_currentUnit = call TFAR_fnc_currentUnit;
 
     TF_respawnedAt = time;
