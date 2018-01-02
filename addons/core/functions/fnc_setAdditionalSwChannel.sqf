@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setAdditionalSwChannel
-
-    Author(s):
-        NKey
-
-    Description:
-        Sets the additional channel for the passed radio or disables it (if additional channel in arguments).
-
-    Parameters:
-        0: STRING - Radio classname
-        1: NUMBER - Channel
-
-    Returns:
-        Nothing
-
-    Example:
-        [(call TFAR_fnc_activeSwRadio), 2] call TFAR_fnc_setAdditionalSwChannel;
-*/
+ * Name: TFAR_fnc_setAdditionalSwChannel
+ *
+ * Author: NKey
+ * Sets the additional channel for the passed radio or disables it (if additional channel in arguments).
+ *
+ * Arguments:
+ * 0: Radio classname <STRING>
+ * 1: Channel <NUMBER>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [(call TFAR_fnc_activeSwRadio), 2] call TFAR_fnc_setAdditionalSwChannel;
+ *
+ * Public: Yes
+ */
 
 params ["_radio_id", "_channel_to_set"];
 
