@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_sessionTracker
-
-    Author(s):
-        NKey, Dedmen
-
-    Description:
-        Collects some statistic information to help make TFAR better.
-
-    Parameters:
-        Nothing
-
-    Returns:
-        Nothing
-
-    Example:
-        call TFAR_fnc_sessionTracker
-*/
+ * Name: TFAR_fnc_sessionTracker
+ *
+ * Author: NKey, Dedmen
+ * Collects some statistic information to help make TFAR great.
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * call TFAR_fnc_sessionTracker;
+ *
+ * Public: No
+ */
 
 private _variables = [
                         [1, "group"                     ,count (units group player)],

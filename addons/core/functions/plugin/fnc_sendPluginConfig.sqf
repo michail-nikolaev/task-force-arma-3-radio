@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_sendPluginConfig
-
-    Author(s):
-        Dedmen
-
-    Description:
-        Transmitts all Plugin settings to Plugin
-
-    Parameters:
-
-    Returns:
-        Nothing
-
-    Example:
-        call TFAR_fnc_sendPluginConfig;
-*/
+ * Name: TFAR_fnc_sendPluginConfig
+ *
+ * Author: Dedmen
+ * transmitts all pluginsettings to plugin
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * call TFAR_fnc_sendPluginConfig;
+ *
+ * Public: Yes
+ */
 
 ["full_duplex",missionNamespace getVariable ["TFAR_fullDuplex",true]] call TFAR_fnc_setPluginSetting;
 ["addon_version",TFAR_ADDON_VERSION] call TFAR_fnc_setPluginSetting;

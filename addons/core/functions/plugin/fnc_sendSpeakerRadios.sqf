@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_sendSpeakerRadios
-
-    Author(s):
-        Dedmen
-
-    Description:
-        Send infos about SpeakerRadios to Teamspeak Plugin
-
-    Parameters:
-        Nothing
-
-    Returns:
-        Nothing
-
-    Example:
-        call TFAR_fnc_sendSpeakerRadios;
-*/
+ * Name: TFAR_fnc_sendSpeakerRadios
+ *
+ * Author: Dedmen
+ * sends infos about speakerradios to plugin
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * call TFAR_fnc_sendSpeakerRadios;
+ *
+ * Public: Yes
+ */
 
 
 //If there is no one near the player this would execute every 2 frames.. which is total overkill

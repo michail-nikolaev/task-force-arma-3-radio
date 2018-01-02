@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setPluginSetting
-
-    Author(s):
-        Dedmen
-
-    Description:
-        Sets a Teamspeak Plugin config variable
-
-    Parameters:
-        0: STRING - setting Name
-        1: STRING,BOOL,SCALAR - value of setting
-
-    Returns:
-        Nothing
-
-    Example:
-        ["half_duplex",true] call TFAR_fnc_setPluginSetting;
-*/
+ * Name: TFAR_fnc_setPluginSetting
+ *
+ * Author: Dedmen
+ * Sets a teamspeak plugin config variable
+ *
+ * Arguments:
+ * 0: setting name <STRING>
+ * 1: value <STRING/BOOL/SCALAR>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * ["half_duplex",true] call TFAR_fnc_setPluginSetting;
+ *
+ * Public: Yes
+ */
 
 //This is needed because CBA will call SettingChanged eventhandler in briefing screen.. Which would init the Plugin too soon
 if (getClientStateNumber != 10) exitWith {"Exit if ran before mission started"};
