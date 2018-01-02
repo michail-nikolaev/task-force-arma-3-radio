@@ -1,24 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_serverInit
-
-    Author(s):
-        NKey
-        L-H
-
-    Description:
-        Initialises the server and the server loop.
-
-    Parameters:
-        Nothing
-
-    Returns:
-        Nothing
-
-    Example:
-        call TFAR_fnc_serverInit;
-*/
+ * Name: TFAR_fnc_serverInit
+ *
+ * Author: NKey, L-H
+ * Initialises the server and the server loop.
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * call TFAR_fnc_serverInit;
+ *
+ * Public: No
+ */
 
 ["TFAR_RadioRequestEvent", {
     diag_log format["TFAR_RadioRequestEvent %1 %2",_this,diag_tickTime];//#TODO remove

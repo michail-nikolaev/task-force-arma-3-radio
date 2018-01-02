@@ -1,24 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_instanciateRadios
-
-    Author(s):
-        Dedmen
-
-    Description:
-        Takes Radio classnames and returns instanciated classnames (With _ID appended)
-        Internal use only!
-
-    Parameters:
-        ARRAY - classnames of prototype Radios
-
-    Returns:
-        ARRAY - classnames of instanciated Radios
-
-    Example:
-        ["TFAR_anprc_152"] call TFAR_fnc_instanciateRadios;
-*/
+ * Name: TFAR_fnc_instanciateRadios
+ *
+ * Author: Dedmen
+ * Takes Radio classnames and returns instanciated classnames (With _ID appended)
+ *
+ * Arguments:
+ * classnames of prototype radios <ARRAY>
+ *
+ * Return Value:
+ * classnames of instanciated radios <ARRAY>
+ *
+ * Example:
+ * ["TFAR_anprc_152"] call TFAR_fnc_instanciateRadios;
+ *
+ * Public: No
+ */
 
 //params [ ["_radio_request", [], [[]] ] ];
 _radio_request = _this; //Params doesn't work because it turns ["test"] into "test" cuz its dumb
