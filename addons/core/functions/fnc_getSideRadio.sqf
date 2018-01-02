@@ -1,26 +1,25 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getSideRadio
-
-    Author(s):
-        L-H
-
-    Description:
-        Returns the default radio for the passed side.
-
-    Parameters:
-        0: SIDE - side
-        1: NUMBER - radio type : Range [0,2] (0 - LR, 1 - SW, 2 - Rifleman)
-
-    Returns:
-        STRING/OBJECT - Default Radio
-
-    Example:
-        _defaultLRRadio = [side player, 0] call TFAR_fnc_getSideRadio;
-        _defaultSWRadio = [side player, 1] call TFAR_fnc_getSideRadio;
-        _defaultRiflemanRadio = [side player, 2] call TFAR_fnc_getSideRadio;
-*/
+ * Name: TFAR_fnc_getSideRadio
+ *
+ * Author: L-H
+ * Returns the default radio for the passed side.
+ *
+ * Arguments:
+ * 0: side <SIDE>
+ * 1: radio type : Range [0,2] (0 - LR, 1 - SW, 2 - Rifleman) <NUMBER>
+ *
+ * Return Value:
+ * Default Radio <STRING/OBJECT>
+ *
+ * Example:
+ *    _defaultLRRadio = [side player, 0] call TFAR_fnc_getSideRadio;
+ *    _defaultSWRadio = [side player, 1] call TFAR_fnc_getSideRadio;
+ *    _defaultRiflemanRadio = [side player, 2] call TFAR_fnc_getSideRadio;
+ *
+ * Public: Yes
+ */
 
 params ["_side", "_radioType"];
 

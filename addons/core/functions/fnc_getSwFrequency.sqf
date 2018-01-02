@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getSwFrequency
+ * Name: TFAR_fnc_getSwFrequency
+ *
+ * Author: NKey, L-H
+ * Gets the frequency for the active channel.
+ *
+ * Arguments:
+ * 0: Radio classname <STRING>
+ *
+ * Return Value:
+ * Frequency <NUMBER>
+ *
+ * Example:
+ * _frequency = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwFrequency;
+ *
+ * Public: Yes
+ */
 
-    Author(s):
-        NKey
-        L-H
-
-    Description:
-        Gets the frequency for the active channel.
-
-    Parameters:
-        STRING: Radio classname
-
-    Returns:
-        NUMBER: Frequency
-
-    Example:
-        _frequency = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwFrequency;
-*/
-params[["_radio","",[""]]];
+params[["_radio", "", [""]]];
 
 [_radio, ((_radio call TFAR_fnc_getSwSettings) param [ACTIVE_CHANNEL_OFFSET,0])+1] call TFAR_fnc_getChannelFrequency;

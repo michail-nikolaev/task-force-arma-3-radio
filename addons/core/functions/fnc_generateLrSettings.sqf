@@ -1,35 +1,33 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_generateLrSettings
+ * Name: TFAR_fnc_generateLrSettings
+ *
+ * Author: NKey, L-H
+ * Generates settings for the LR radio
+ *
+ * Arguments:
+ * 0: false to generate settings without generating frequencies. <BOOL> (Default: true)
+ *
+ * Return Value:
+ * 0: active channel <NUMBER>
+ * 1: Volume <NUMBER>
+ * 2: Frequencies for channels <ARRAY>
+ * 3: Stereo setting <NUMBER>
+ * 4: Encryption code <STRING>
+ * 5: Additional active channel <NUMBER>
+ * 6: Additional active channel stereo mode <NUMBER>
+ * 7: Empty <NIL>
+ * 8: Speaker mode <NUMBER>
+ * 9: turned on <BOOL>
+ *
+ * Example:
+ * _settings = call TFAR_fnc_generateLrSettings;
+ *
+ * Public: Yes
+ */
 
-    Author(s):
-        NKey
-        L-H
-
-    Description:
-        Generates settings for the LR radio
-
-    Parameters:
-        OPTIONAL: BOOLEAN - false to generate settings without generating frequencies.
-
-    Returns:
-        ARRAY: Settings
-            0: NUMBER - Active channel,
-            1: NUMBER - Volume,
-            2: ARRAY - Frequencies for channels,
-            3: NUMBER - Stereo setting,
-            4: STRING - Encryption code,
-            5: NUMBER - Additional active channel,
-            6: NUMBER - Additional active channel stereo mode,
-            7: NIL
-            8: NUMBER - Speaker mode,
-            9: BOOLEAN - On
-
-    Example:
-        _settings = call TFAR_fnc_generateLrSettings;
-*/
-params [["_generateFrequencies",true,[true]]];
+params [["_generateFrequencies", true, [true]]];
 
 private _lr_settings = [0, TFAR_default_radioVolume, [], 0, nil, -1, 0, nil, false, true];
 private _lr_frequencies = [];

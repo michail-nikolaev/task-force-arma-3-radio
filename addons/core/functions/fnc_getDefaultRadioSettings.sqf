@@ -1,31 +1,30 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getDefaultRadioSettings
-
-    Author(s):
-        Dorbedo
-
-    Description:
-        Return array of default radio classes for player.
-        The order is:
-            1. User-specific frequencies (for LR, an radio with the side-encryptionCode is needed)
-            2. Group-specific frequencies (for LR, an radio with the side-encryptionCode is needed)
-            3. Side-specific frequencies (if same Frequencies for side is enabled)
-            4. Randomized frequencies
-
-    Parameters:
-        0: BOOL - is SW radio (Default: true)
-        1: Object - the unit (Default: TFAR_currentUnit)
-        2: STRING - the radiotype (only for LR and the usage of group defined radio settings needed)
-
-    Returns:
-        ARRAY
-
-    Example:
-        _swFrequencies = true call TFAR_fnc_getDefaultRadioSettings;
-        _lrFrequencies = false call TFAR_fnc_getDefaultRadioSettings;
-*/
+ * Name: TFAR_fnc_getDefaultRadioSettings
+ *
+ * Author: Dorbedo
+ * Return array of default radio classes for player.
+ * The order is:
+ * 1. User-specific frequencies (for LR, an radio with the side-encryptionCode is needed)
+ * 2. Group-specific frequencies (for LR, an radio with the side-encryptionCode is needed)
+ * 3. Side-specific frequencies (if same Frequencies for side is enabled)
+ * 4. Randomized frequencies
+ *
+ * Arguments:
+ * 0: is SR radio <BOOL> (Default: true)
+ * 1: the unit (Default: TFAR_currentUnit) <OBJECT> (Default: TFAR_currentUnit)
+ * 2: the radiotype (only for LR and the usage of group defined radio settings needed) <STRING>
+ *
+ * Return Value:
+ * default settings <TYPENAME>
+ *
+ * Example:
+ * _SRSettings = true call TFAR_fnc_getDefaultRadioSettings;
+ * _LRSettings = false call TFAR_fnc_getDefaultRadioSettings;
+ *
+ * Public: Yes
+ */
 
 params [["_isSW", true, [false]], ["_unit", TFAR_currentUnit, [objNull]]];
 
@@ -41,7 +40,7 @@ if (_isSW) then {
         _value set [2,_defFreq];
         _value
     };
-    
+
     private _value = if (TFAR_SameSRFrequenciesForSide) then {
         switch (_unit call BIS_fnc_objectSide) do {
             case west : {
@@ -76,7 +75,7 @@ if (_isSW) then {
         if (isNil "_defFreq") then {
             _defFreq = (group _unit) getVariable "TFAR_freq_lr";
         };
-        
+
         If !(isNil "_defFreq") then {
             _value = false call DFUNC(generateLRSettings);
             _value set [2,_defFreq];

@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getRadioOwner
+ * Name: TFAR_fnc_getRadioOwner
+ *
+ * Author: L-H
+ * Gets the owner of a SR radio.
+ *
+ * Arguments:
+ * 0: radio classname <STRING>
+ *
+ * Return Value:
+ * UID of owner of radio <STRING>
+ *
+ * Example:
+ * _owner = (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getRadioOwner;
+ *
+ * Public: Yes
+ */
+params[["_radio", "", [""]]];
 
-    Author(s):
-        L-H
-
-    Description:
-        Gets the owner of a SW radio.
-
-    Parameters:
-        STRING - radio classname
-
-    Returns:
-        STRING - UID of owner of radio
-
-    Example:
-        _owner = (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getRadioOwner;
-*/
-params[["_radio","",[""]]];
-
-(_radio call TFAR_fnc_getSwSettings) param [RADIO_OWNER,""]
+(_radio call TFAR_fnc_getSwSettings) param [RADIO_OWNER, ""]

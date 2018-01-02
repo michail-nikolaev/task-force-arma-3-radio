@@ -1,5 +1,23 @@
 #include "script_component.hpp"
 
+/*
+ * Name: TFAR_fnc_getNearPlayers
+ *
+ * Author: NKey, L-H, Dedmen
+ * returns near players
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * near players <ARRAY>
+ *
+ * Example:
+ * call TFAR_fnc_getNearPlayers;
+ *
+ * Public: No
+ */
+
 if ((!alive TFAR_currentUnit) && {!(TFAR_currentUnit getVariable ["TFAR_forceSpectator",false])}) exitWith {[]};
 
 private _players_in_group = count (units (group TFAR_currentUnit));
