@@ -1,25 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_takeRadio
-
-    Author(s):
-        Dorbedo
-
-    Description:
-        Removes the radio from the target unit and adds the radio to another unit
-
-    Parameters:
-        0: OBJECT - the unit who gets the radio
-        1: OBJECT - the unit who loses the radio
-        2: STRING/ARRAY - the radio to be taken
-
-    Returns:
-        Nothing
-
-    Example:
-        [_target, _player, "TFAR_anprc_152_12"] call TFAR_fnc_takeRadio;
-*/
+ * Name: TFAR_fnc_takeRadio
+ *
+ * Author: Dorbedo
+ * Removes the radio from the target unit and adds the radio to another unit
+ *
+ * Arguments:
+ * 0: the unit who gets the radio <OBJECT>
+ * 1: the unit who loses the radio <OBJECT>
+ * 2: the radio to be taken <STRING/ARRAY>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [_target, _player, "TFAR_anprc_152_12"] call TFAR_fnc_takeRadio;
+ *
+ * Public: No
+ */
 
 params ["_target", "_unit", "_radio"];
 
