@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_vehicleLr
+ * Name: TFAR_fnc_vehicleLR
  *
  * Author: NKey
  * Gets the LR radio of the vehicle and the settings for it depending on the player's position within the vehicle
@@ -19,9 +19,9 @@
  *
  * Public: Yes
  */
-params ["_unit"];
+params [["_unit", objNull, [objNull]]];
 
-if (isNull (objectParent _unit) || {!((objectParent _this) call TFAR_fnc_hasVehicleRadio)}) exitWith {nil};//Unit is not in vehicle or vehicle doesn't have LR Radio
+if (isNull (objectParent _unit) || {!((objectParent _this) call TFAR_fnc_hasVehicleRadio)}) exitWith {nil};
 
 private _result = nil;
 private _vehicle = vehicle _unit;
