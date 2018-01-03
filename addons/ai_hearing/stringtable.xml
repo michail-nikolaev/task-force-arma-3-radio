@@ -13,5 +13,15 @@
             <German>Wenn aktiviert, dann reagiert die KI auf die Gespräche der Spieler.</German>
             <Japanese>有効化すると、このユニットはプレイヤーの話し声を検知します。</Japanese>
         </Key>
+        <Key ID="STR_TFAR_AI_HEARING_SETTING_SPEAKER_HEADER">
+            <Original>AI Hearing Speakers</Original>
+            <English>AI Hearing Speakers</English>
+            <German>Lautsprecher hörende KI</German>
+        </Key>
+        <Key ID="STR_TFAR_AI_HEARING_SETTING_SPEAKER_DESC">
+            <Original>If enabled, the ai is able to detect active speakers.\n Currently the ai detects if they receive a call and have ANY speaker active.</Original>
+            <English>If enabled, the ai is able to detect active speakers.\n Currently the ai detects if they receive a call and have ANY speaker active.</English>
+            <German>Wenn aktiviert, dann reagiert die KI auf die aktive Lautsprecher der Spieler.\n Aktuell reagiert die KI auf eingehende Funksprüche, wenn ein BELIEBIGER Lautsprecher eingeschaltet ist.</German>
+        </Key>
     </Package>
 </Project>
