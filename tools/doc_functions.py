@@ -32,7 +32,7 @@ def main():
 
     parser = argparse.ArgumentParser(prog='Document SQF functions')
     parser.add_argument('directory', nargs="?", type=str, help='only crawl specified component addon folder')
-    parser.add_argument('--output', default='ace', choices=['tfar', 'ace'], help='The style of the output')
+    parser.add_argument('--output', default='tfar', choices=['tfar', 'ace'], help='The style of the output')
     parser.add_argument('--loglevel', default=30, type=int, help='The Loglevel (default: 30)')
     parser.add_argument('--logfile', type=str, help='Write log to file')
     parser.add_argument('--version', action='version', version='%(prog)s 1.0')
@@ -135,7 +135,21 @@ class FunctionFile:
         # Detailed debugging occurs here so value is set
 
         # Preemptively cut away the comment characters (and leading/trailing whitespace)
-        header_text = "\n".join([x[3:].strip() for x in self.header.splitlines()])
+
+        header_text = self.header.strip()
+        if header_text.startswith('/*'):
+            header_text = header_text[2:]
+        if header_text.endswith('*/'):
+            header_text = header_text[:-2]
+
+        result = []
+        for line in header_text.splitlines():
+            line = line.strip()
+            if line.startswith('*'):
+                result.append(line[1:])
+            else:
+                result.append(line)
+        header_text = '\n'.join(result)
 
         # Split the header into expected sections
         self.sections = re.split(r"^(Name|Author|Argument|Return Value|Example|Public)s?:\s?", header_text, 0, re.M)
