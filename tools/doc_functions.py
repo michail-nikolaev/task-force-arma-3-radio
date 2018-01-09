@@ -30,11 +30,12 @@ import logging
 def main():
     """Main"""
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(prog='Document SQF functions')
     parser.add_argument('directory', nargs="?", type=str, help='only crawl specified component addon folder')
-    parser.add_argument('--output', default='tfar', choices=['tfar', 'ace'], help='The style of the output')
+    parser.add_argument('--output', default='ace', choices=['tfar', 'ace'], help='The style of the output')
     parser.add_argument('--loglevel', default=30, type=int, help='The Loglevel (default: 30)')
     parser.add_argument('--logfile', type=str, help='Write log to file')
+    parser.add_argument('--version', action='version', version='%(prog)s 1.0')
     args = parser.parse_args()
 
     logging.basicConfig(format='%(levelname)s:%(message)s', level=args.loglevel, filename=args.logfile)
@@ -42,7 +43,7 @@ def main():
     logging.debug(args)
 
     addonsdir = os.path.abspath(os.path.normpath(__file__ + '/../../addons'))
-    docfolder = os.path.abspath(os.path.normpath(__file__ + '/../../docs'))
+    docfolder = os.path.abspath(os.path.normpath(__file__ + '/../../docs/functions'))
 
     logging.debug("AddOn path: %s", addonsdir)
     logging.debug("Document path: %s", docfolder)
@@ -257,10 +258,11 @@ class FunctionFile:
                 # Notes about the above argument won't start with an index
                 # Only applies if there exists an above argument
                 if arguments or re.match(r"^(\d+):", argument):
-                    logging.warning('   Malformed argument "%s"', argument)
+                    logging.warning('Malformed argument "%s" in %s', argument, self.path)
                     arguments.append(["?", "Malformed", "?", "?", "?"])
                 else:
-                    arguments[-1][-1].append(argument)
+                    if arguments:
+                        arguments[-1][-1].append(argument)
 
         return arguments
 
@@ -357,8 +359,8 @@ def document_function_ace(function):
                 str_list.append("{} | {} | {} | {}\n".format(*argument))
             str_list.append("\n")
         else:
-            str_list.append("__Return Value__\n\nDescription | Datatype(s) | Default value\n--- | --- | ---\n{} | {} | {} \n\n".format(\
-                function.return_value[0][1], function.return_value[0][2], function.return_value[0][3]))
+            str_list.append("__Return Value__\n\nDescription | Datatype(s)\n--- | ---\n{} | {} \n\n".format(\
+                function.return_value[0][1], function.return_value[0][2]))
     else:
         str_list.append("__Return Value__\n\nNone\n\n")
 
