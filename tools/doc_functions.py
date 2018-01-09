@@ -33,16 +33,20 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('directory', nargs="?", type=str, help='only crawl specified component addon folder')
     parser.add_argument('--output', default='tfar', choices=['tfar', 'ace'], help='The style of the output')
-    parser.add_argument('--log', default=20, type=int, help='Loglevel')
+    parser.add_argument('--loglevel', default=30, type=int, help='The Loglevel (default: 30)')
     parser.add_argument('--logfile', type=str, help='Write log to file')
     args = parser.parse_args()
 
-    logging.basicConfig(format='%(levelname)s:%(message)s', level=args.log, filename=args.logfile)
+    logging.basicConfig(format='%(levelname)s:%(message)s', level=args.loglevel, filename=args.logfile)
     logging.info('Creating documentation')
     logging.debug(args)
 
     addonsdir = os.path.abspath(os.path.normpath(__file__ + '/../../addons'))
-    logging.debug(addonsdir)
+    docfolder = os.path.abspath(os.path.normpath(__file__ + '/../../docs'))
+
+    logging.debug("AddOn path: %s", addonsdir)
+    logging.debug("Document path: %s", docfolder)
+
     all_components = {}
     if args.directory:
         logging.info('Documenting only component: %s', args.directory)
@@ -61,13 +65,12 @@ def main():
 
     if all_components:
         logging.debug(all_components)
-        create_documentations(all_components)
+        create_documentations(all_components, docfolder)
     else:
         logging.debug('No components found')
 
-def create_documentations(all_components):
+def create_documentations(all_components, docfolder):
     """Document all components"""
-    docfolder = os.path.abspath(os.path.normpath(__file__ + '/../../docs'))
     if not os.path.exists(docfolder):
         logging.debug("Creating folder: %s", docfolder)
         os.makedirs(docfolder)
@@ -92,7 +95,7 @@ class FunctionFile:
     def __init__(self, filepath):
 
         logging.debug("Processing: %s", filepath)
-        
+
         self.path = filepath
         self.header = ""
         self.import_header()
@@ -141,7 +144,7 @@ class FunctionFile:
         # If public section is missing we can't continue
         public_raw = self.get_section("Public")
         if not public_raw:
-            logging.warning('   Public value undefined')
+            logging.warning('Public value undefined in %s', self.path)
             return
 
         # Determine whether the header is public
@@ -150,7 +153,7 @@ class FunctionFile:
         # Don't bother to process the rest if private
         # Unless in debug mode
         if not self.public:
-            logging.debug("   Function is not public: %s", self.path)
+            logging.debug("Function is not public: %s", self.path)
             return
 
         # Retrieve the raw sections text for processing
@@ -164,7 +167,7 @@ class FunctionFile:
         if author_raw:
             self.authors = self.process_author(author_raw)
             self.description = self.process_description(author_raw)
-            logging.debug("   Description:", self.description)
+            logging.debug("   Description: %s", self.description)
 
         if name_raw:
             self.name = self.process_name(name_raw)
@@ -181,11 +184,12 @@ class FunctionFile:
             self.example = example_raw.strip()
 
     def get_section(self, section_name):
+        """returns a header section"""
         try:
             section_text = self.sections[self.sections.index(section_name) + 1]
             return section_text
         except ValueError:
-            logging.warning('   Missing "%s" header section', section_name)
+            logging.debug('   Missing "%s" header section in %s', section_name, self.path)
             return ""
 
     def process_public(self, raw):
@@ -202,19 +206,22 @@ class FunctionFile:
         return self.public
 
     def process_author(self, raw):
+        """process the author"""
         # Authors are listed on the first line
         authors_text = raw.splitlines()[0]
         # Seperate authors are divided by commas
         return authors_text.split(", ")
 
     def process_name(self, raw):
-        # Functionname
+        """process the functionname"""
         return raw.splitlines()[0]
 
     def process_description(self, raw):
+        """process the description"""
         # Just use all the lines after the authors line
         return [line.rstrip() for line in raw.splitlines(1)[1:]]
     def process_arguments(self, raw):
+        """process the arguments"""
         lines = raw.splitlines()
 
         if lines[0] == "None":
@@ -269,7 +276,7 @@ class FunctionFile:
             return_name = valid.group(1)
             return_types = valid.group(2)
         else:
-            logging.warning("   Malformed return value \"{}\"".format(return_value))
+            logging.warning('   Malformed return value "%s"', return_value)
             return ["Malformed", ""]
 
         return [return_name, return_types]
@@ -308,7 +315,7 @@ class Component:
                             logging.debug("Function %s is not public", function.name)
                             del function
                     else:
-                        logging.debug("Function %s has NO header", function.path)
+                        logging.debug("Function %s has NO header", file_path)
                         del function
                     if 'function' in locals():
                         logging.info("Documenting file: %s", file_path)
@@ -367,23 +374,17 @@ def document_function_ace(function):
     return ''.join(str_list)
 
 def document_component(component):
-    """Document the component"""
+    """Document the component header"""
     str_list = []
     if component.style == 'tfar':
+        # TFAR header
         str_list.append('<h2>Index of API functions</h2>\n')
-        str_list.append('<table border=\"1\">\n')
-        str_list.append('    <tbody>\n')
-        str_list.append('        <tr>\n')
-        str_list.append('            <td>\n')
-        str_list.append('                <ul style=\"list-style-type:square\">\n')
+        str_list.append('<table border="1">\n  <tbody>\n    <tr>\n      <td>\n        <ul style="list-style-type:square">\n')
         for function in component.functions:
-            str_list.append('                   <li><code><a href=\"{0}\">{0}</a></code></li>\n'.format(function.name))
-        str_list.append('                </ul>\n')
-        str_list.append('            </td>\n')
-        str_list.append('        </tr>\n')
-        str_list.append('    </tbody>\n')
-        str_list.append('</table>\n<br><hr>\n')
+            str_list.append('          <li><code><a href="{0}">{0}</a></code></li>\n'.format(function.name))
+        str_list.append('        </ul>\n      </td>\n    </tr>\n  </tbody>\n</table>\n<br><hr>\n')
     elif component.style == 'ace':
+        # ACE header
         str_list.append('')
     logging.debug("Contents: %s", str_list)
     return ''.join(str_list)
@@ -393,65 +394,65 @@ def document_function_tfar(function):
     str_list = []
 
     # Title
-    str_list.append("<table border=\"1\">\n")
-    str_list.append("  <thead>\n")
-    str_list.append("    <tr>\n")
-    str_list.append("      <th scope=\"colgroup\" colspan=\"2\" width=\"640px\">\n")
-    str_list.append("        <a name=\"{0}\">{0}</a>\n".format(function.name))
-    str_list.append("      </th>\n")
-    str_list.append("    </tr>\n")
-    str_list.append("  </thead>\n")
-    str_list.append("  <tbody>\n")
-    str_list.append("    <tr>\n")
-    str_list.append("      <td colspan=\"2\" align=\"left\">\n")
-    str_list.append("        <p>{}</p>\n".format('<br>'.join(function.description)))
-    str_list.append("      </td>\n")
-    str_list.append("    </tr>\n")
-    str_list.append("    <tr>\n")
-    str_list.append("      <td valign=\"top\" width=\"50%\">\n")
-    str_list.append("        <strong><sub>Parameters</sub></strong>\n")
-    str_list.append("        <ol start=\"0\">\n")
+    str_list.append('<table border="1">\n')
+    str_list.append('  <thead>\n')
+    str_list.append('    <tr>\n')
+    str_list.append('      <th scope="colgroup" colspan="2" width="640px">\n')
+    str_list.append('        <a name="{0}">{0}</a>\n'.format(function.name))
+    str_list.append('      </th>\n')
+    str_list.append('    </tr>\n')
+    str_list.append('  </thead>\n')
+    str_list.append('  <tbody>\n')
+    str_list.append('    <tr>\n')
+    str_list.append('      <td colspan="2" align="left">\n')
+    str_list.append('        <p>{}</p>\n'.format('<br>'.join(function.description)))
+    str_list.append('      </td>\n')
+    str_list.append('    </tr>\n')
+    str_list.append('    <tr>\n')
+    str_list.append('      <td valign="top" width="50%">\n')
+    str_list.append('        <strong><sub>Parameters</sub></strong>\n')
+    str_list.append('        <ol start=\"0\">\n')
     if function.arguments:
         for argument in function.arguments:
             if argument[0]:
-                str_list.append("          <li><kbd>{2}</kbd> - {1}</li>\n".format(*argument))
+                str_list.append('          <li><kbd>{2}</kbd> - {1}</li>\n'.format(*argument))
             else:
-                str_list.append("          <kbd>{2}</kbd> - {1}\n".format(*argument))
+                str_list.append('          <kbd>{2}</kbd> - {1}\n'.format(*argument))
     else:
-        str_list.append("          None\n")
-    str_list.append("        </ol>\n")
-    str_list.append("      </td>\n")
-    str_list.append("      <td valign=\"top\" width=\"50%\">\n")
-    str_list.append("        <strong><sub>Returns</sub></strong>\n")
-    str_list.append("        <ol start=\"0\">\n")
+        str_list.append('          None\n')
+    str_list.append('        </ol>\n')
+    str_list.append('      </td>\n')
+    str_list.append('      <td valign="top" width="50%">\n')
+    str_list.append('        <strong><sub>Returns</sub></strong>\n')
+    str_list.append('        <ol start="0">\n')
     if function.return_value:
         for argument in function.return_value:
             if argument[0]:
-                str_list.append("          <li><kbd>{2}</kbd> - {1}</li>\n".format(*argument))
+                str_list.append('          <li><kbd>{2}</kbd> - {1}</li>\n'.format(*argument))
             else:
-                str_list.append("          <kbd>{2}</kbd> - {1}\n".format(*argument))
+                str_list.append('          <kbd>{2}</kbd> - {1}\n'.format(*argument))
     else:
-        str_list.append("          None\n")
-    str_list.append("        </ol>\n")
-    str_list.append("      </td>\n")
-    str_list.append("    </tr>\n")
-    str_list.append("    <tr>\n")
-    str_list.append("      <td colspan=\"2\" align=\"left\">\n")
-    str_list.append("        <strong>Example</strong>\n")
-    str_list.append("        <pre><code>{}</code></pre>\n".format(function.example))
-    str_list.append("      </td>\n")
-    str_list.append("    </tr>\n")
+        str_list.append('          None\n')
+    str_list.append('        </ol>\n')
+    str_list.append('      </td>\n')
+    str_list.append('    </tr>\n')
+    str_list.append('    <tr>\n')
+    str_list.append('      <td colspan="2" align="left">\n')
+    str_list.append('        <strong>Example</strong>\n')
+    str_list.append('        <pre><code>{}</code></pre>\n'.format(function.example))
+    str_list.append('      </td>\n')
+    str_list.append('    </tr>\n')
 
-    str_list.append("    <tr>\n")
-    str_list.append("      <td colspan=\"2\" align=\"left\">\n")
-    str_list.append("        <strong>Author(s):</strong>\n")
+    str_list.append('    <tr>\n')
+    str_list.append('      <td colspan="2" align="left">\n')
+    str_list.append('        <strong>Author(s):</strong>\n')
     for author in function.authors:
-        str_list.append("          <li>{}</li>\n".format(author))
-    str_list.append("      </td>\n")
-    str_list.append("    </tr>\n")
-    str_list.append("  </tbody>\n")
-    str_list.append("</table>\n")
-    str_list.append("\n<hr>\n")
+        str_list.append('          <li>{}</li>\n'.format(author))
+    str_list.append('      </td>\n')
+    str_list.append('    </tr>\n')
+    str_list.append('  </tbody>\n')
+    str_list.append('</table>\n')
+    str_list.append('\n<hr>\n')
 
     return ''.join(str_list)
 
