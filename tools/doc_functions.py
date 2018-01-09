@@ -75,7 +75,7 @@ def create_documentations(all_components, docfolder):
     if not os.path.exists(docfolder):
         logging.debug("Creating folder: %s", docfolder)
         os.makedirs(docfolder)
-    for item in all_components:
+    for item in sorted(all_components.keys()):
         filepath = os.path.join(docfolder, '{}.md'.format(all_components[item].name))
         if os.path.exists(filepath):
             logging.debug("Removing old file: %s", filepath)
@@ -305,6 +305,7 @@ class Component:
         self.functions = []
         self.style = ''
         self.get_functions()
+        self.functions.sort(key=lambda func: func.name.lower(), reverse=False)
         logging.debug("Component %s functions: %s", self.name, self.functions)
         if not self.functions:
             del self
