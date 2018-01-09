@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_processLRChannelKeys
- *
- * Author: Nkey, Garth de Wet (L-H)
- * Switches the active LR radio to the passed channel.
- *
- * Arguments:
- * 0: Channel : Range (0,8) <NUMBER>
- *
- * Return Value:
- * Whether or not the event was handled <BOOL>
- *
- * Example:
- * call TFAR_fnc_processLRChannelKeys;
- *
- * Public: No
+  Name: TFAR_fnc_processLRChannelKeys
+
+  Author: Nkey, Garth de Wet (L-H)
+    Switches the active LR radio to the passed channel.
+
+  Arguments:
+    0: Channel : Range (0,8) <NUMBER>
+
+  Return Value:
+    Whether or not the event was handled <BOOL>
+
+  Example:
+    call TFAR_fnc_processLRChannelKeys;
+
+  Public: No
  */
 
 params ["_lr_channel_number"];

@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_initCBASettings
- *
- * Author: Dorbedo, Dedmen
- * initializes the CBA-Settings
- *
- * Arguments:
- * None
- *
- * Return Value:
- * None
- *
- * Example:
- * call TFAR_fnc_initCBASettings;
- *
- * Public: No
+  Name: TFAR_fnc_initCBASettings
+
+  Author: Dorbedo, Dedmen
+    initializes the CBA-Settings
+
+  Arguments:
+    None
+
+  Return Value:
+    None
+
+  Example:
+    call TFAR_fnc_initCBASettings;
+
+  Public: No
  */
 
 // client Settings

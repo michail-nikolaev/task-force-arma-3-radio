@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_vehicleLR
- *
- * Author: NKey
- * Gets the LR radio of the vehicle and the settings for it depending on the player's position within the vehicle
- * returns nil, if no Vehicle radio was found
- *
- * Arguments:
- * 0: unit <OBJECT>
- *
- * Return Value:
- * 0: Vehicle <OBJECT>
- * 1: Radio Settings ID <STRING>
- *
- * Example:
- * _radio = player call TFAR_fnc_VehicleLR;
- *
- * Public: Yes
+  Name: TFAR_fnc_vehicleLR
+
+  Author: NKey
+    Gets the LR radio of the vehicle and the settings for it depending on the player's position within the vehicle
+    returns nil, if no Vehicle radio was found
+
+  Arguments:
+    0: unit <OBJECT>
+
+  Return Value:
+    0: Vehicle <OBJECT>
+    1: Radio Settings ID <STRING>
+
+  Example:
+    _radio = player call TFAR_fnc_VehicleLR;
+
+  Public: Yes
  */
 params [["_unit", objNull, [objNull]]];
 

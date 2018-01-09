@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_sendPlayerKilled
- *
- * Author: NKey
- * Notifies the plugin that a unit has been killed.
- *
- * Arguments:
- * killed unit <OBJECT>
- *
- * Return Value:
- * None
- *
- * Example:
- * player call TFAR_fnc_sendPlayerKilled;
- *
- * Public: Yes
+  Name: TFAR_fnc_sendPlayerKilled
+
+  Author: NKey
+    Notifies the plugin that a unit has been killed.
+
+  Arguments:
+    killed unit <OBJECT>
+
+  Return Value:
+    None
+
+  Example:
+    player call TFAR_fnc_sendPlayerKilled;
+
+  Public: Yes
  */
 
 _this setRandomLip false;

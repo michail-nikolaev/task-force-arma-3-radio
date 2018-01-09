@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_getLrSettings
- *
- * Author: NKey, Garth de Wet (L-H)
- * Returns the current settings for the passed radio.
- *
- * Arguments:
- * 0: Radio object <OBJECT>
- * 1: Radio ID <STRING>
- *
- * Return Value:
- * settings <ARRAY>
- *
- * Example:
- * (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrSettings;
- *
- * Public: Yes
+  Name: TFAR_fnc_getLrSettings
+
+  Author: NKey, Garth de Wet (L-H)
+    Returns the current settings for the passed radio.
+
+  Arguments:
+    0: Radio object <OBJECT>
+    1: Radio ID <STRING>
+
+  Return Value:
+    settings <ARRAY>
+
+  Example:
+    (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrSettings;
+
+  Public: Yes
  */
 params ["_radio_object", "_radio_id"];
 

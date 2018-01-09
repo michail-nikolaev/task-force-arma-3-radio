@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_betaTracker
- *
- * Author: Dedmen
- * Collects some statistic information to help make TFAR-beta better.
- *
- * Arguments:
- * None
- *
- * Return Value:
- * None
- *
- * Example:
- * [1,"test",test] call TFAR_fnc_betaTracker
- *
- * Public: No
+  Name: TFAR_fnc_betaTracker
+
+  Author: Dedmen
+    Collects some statistic information to help make TFAR-beta better.
+
+  Arguments:
+    None
+
+  Return Value:
+    None
+
+  Example:
+    [1,"test",test] call TFAR_fnc_betaTracker
+
+  Public: No
  */
 
 private _variables = [

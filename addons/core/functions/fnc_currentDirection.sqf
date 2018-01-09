@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_currentDirection
- *
- * Author: NKey, Dedmen
- * Returns current direction of Units head.
- *
- * Arguments:
- * 0: unit to get the Head direction from. <UNIT> (Default: TFAR_currentUnit)
- *
- * Return Value:
- * current look direction in Normalized 3D Vector <ARRAY>
- *
- * Example:
- * TFAR_currentUnit call TFAR_fnc_currentDirection;
- *
- * Public: Yes
+  Name: TFAR_fnc_currentDirection
+
+  Author: NKey, Dedmen
+    Returns current direction of Units head.
+
+  Arguments:
+    0: unit to get the Head direction from. <UNIT> (Default: TFAR_currentUnit)
+
+  Return Value:
+    current look direction in Normalized 3D Vector <ARRAY>
+
+  Example:
+    TFAR_currentUnit call TFAR_fnc_currentDirection;
+
+  Public: Yes
  */
 params [["_unit", TFAR_currentUnit, [objNull]]];
 

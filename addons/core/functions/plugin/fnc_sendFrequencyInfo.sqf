@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_sendFrequencyInfo
- *
- * Author: NKey
- * Notifies the plugin about the radios currently being used by the player and various settings active on the radio.
- *
- * Arguments:
- * None
- *
- * Return Value:
- * None
- *
- * Example:
- * call TFAR_fnc_sendFrequencyInfo;
- *
- * Public: Yes
+  Name: TFAR_fnc_sendFrequencyInfo
+
+  Author: NKey
+    Notifies the plugin about the radios currently being used by the player and various settings active on the radio.
+
+  Arguments:
+    None
+
+  Return Value:
+    None
+
+  Example:
+    call TFAR_fnc_sendFrequencyInfo;
+
+  Public: Yes
  */
 
 if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW! (Keeps PFH from firing after server disconnect)"};

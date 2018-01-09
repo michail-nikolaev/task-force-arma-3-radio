@@ -1,24 +1,24 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_updateLRDialogToChannel
- *
- * Author: NKey, Garth de Wet (L-H)
- * Updates the LR dialog to the channel if switched.
- *
- * Arguments:
- * 0: Format to display channel with. Requires %1. <STRING> (Optional)
- *
- * Return Value:
- * None
- *
- * Example:
- *      // No custom format.
- *      call TFAR_fnc_updateLRDialogToChannel;
- *      // Custom format
- *      ["CH: %1"] call TFAR_fnc_updateLRDialogToChannel;
- *
- * Public: Yes
+  Name: TFAR_fnc_updateLRDialogToChannel
+
+  Author: NKey, Garth de Wet (L-H)
+    Updates the LR dialog to the channel if switched.
+
+  Arguments:
+    0: Format to display channel with. Requires %1. <STRING> (Optional)
+
+  Return Value:
+    None
+
+  Example:
+    // No custom format.
+    call TFAR_fnc_updateLRDialogToChannel;
+    // Custom format
+    ["CH: %1"] call TFAR_fnc_updateLRDialogToChannel;
+
+  Public: Yes
  */
 
 private _formatText = "CH:%1";

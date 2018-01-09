@@ -1,45 +1,24 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_isPrototypeRadio
- *
- * Author: Garth de Wet (L-H)
- * description
- *
- * Arguments:
- * 0: argument name <TYPENAME>
- *
- * Return Value:
- * return name <TYPENAME>
- *
- * Example:
- * [parameter] call TFAR_fnc_isPrototypeRadio;
- *
- * Public: Yes
+  Name: TFAR_fnc_isPrototypeRadio
+
+  Author: Garth de Wet (L-H)
+    Returns if a radio is a prototype radio.
+
+  Arguments:
+    0: Radio classname <STRING>
+
+  Return Value:
+    is Prototype radio <BOOL>
+
+  Example:
+    if ("TFAR_anprc148jem" call TFAR_fnc_isPrototypeRadio) then {
+        hint "Prototype";
+    };
+
+  Public: Yes
  */
-
-
-
-/*
-    Name: TFAR_fnc_isPrototypeRadio
-
-    Author(s):
-        Garth de Wet (LH)
-
-    Description:
-        Returns if a radio is a prototype radio.
-
-    Parameters:
-        0: STRING - Radio classname
-
-    Returns:
-        BOOLEAN - True if prototype, false if actual radio.
-
-    Example:
-        if ("TFAR_anprc148jem" call TFAR_fnc_isPrototypeRadio) then {
-            hint "Prototype";
-        };
-*/
 
 if (_this == "ItemRadio") exitWith {true};
 

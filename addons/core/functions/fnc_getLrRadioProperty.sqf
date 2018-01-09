@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_getLrRadioProperty
- *
- * Author: Garth de Wet (L-H)
- * returns specified radio property
- *
- * Arguments:
- * 0: Backpack/vehicle <OBJECT>
- * 1: Property name <STRING>
- *
- * Return Value:
- * Value of property <NUMBER/TEXT>
- *
- * Example:
- * [(vehicle player), "TF_hasLRradio"] call TFAR_fnc_getLrRadioProperty;
- *
- * Public: Yes
+  Name: TFAR_fnc_getLrRadioProperty
+
+  Author: Garth de Wet (L-H)
+    returns specified radio property
+
+  Arguments:
+    0: Backpack/vehicle <OBJECT>
+    1: Property name <STRING>
+
+  Return Value:
+    Value of property <NUMBER/TEXT>
+
+  Example:
+    [(vehicle player), "TF_hasLRradio"] call TFAR_fnc_getLrRadioProperty;
+
+  Public: Yes
  */
 
 params ["_radio", "_property"];

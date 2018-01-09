@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_onAdditionalSwTangentReleased
- *
- * Author: NKey
- * Fired when the additional keybinding for SR is relesed.
- *
- * Arguments:
- * None
- *
- * Return Value:
- * Whether or not the event was handled <BOOL>
- *
- * Example:
- * call TFAR_fnc_onAdditionalSwTangentReleased;
- *
- * Public: No
+  Name: TFAR_fnc_onAdditionalSwTangentReleased
+
+  Author: NKey
+    Fired when the additional keybinding for SR is relesed.
+
+  Arguments:
+    None
+
+  Return Value:
+    Whether or not the event was handled <BOOL>
+
+  Example:
+    call TFAR_fnc_onAdditionalSwTangentReleased;
+
+  Public: No
  */
 
 

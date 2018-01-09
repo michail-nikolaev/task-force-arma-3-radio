@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_getNearPlayers
- *
- * Author: NKey, Garth de Wet (L-H), Dedmen
- * returns near players
- *
- * Arguments:
- * None
- *
- * Return Value:
- * near players <ARRAY>
- *
- * Example:
- * call TFAR_fnc_getNearPlayers;
- *
- * Public: No
+  Name: TFAR_fnc_getNearPlayers
+ 
+  Author: NKey, Garth de Wet (L-H), Dedmen
+    returns near players
+
+  Arguments:
+    None
+
+  Return Value:
+    near players <ARRAY>
+
+  Example:
+    call TFAR_fnc_getNearPlayers;
+
+  Public: No
  */
 
 if ((!alive TFAR_currentUnit) && {!(TFAR_currentUnit getVariable ["TFAR_forceSpectator",false])}) exitWith {[]};

@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_swRadioMenu
- *
- * Author: NKey, Garth de Wet (L-H)
- * Returns a list of SW radios if more than one is on the player.
- *
- * Arguments:
- * None
- *
- * Return Value:
- * Flexi-menu <ARRAY>
- *
- * Example:
- * call TFAR_fnc_swRadioMenu;
- *
- * Public: No
+  Name: TFAR_fnc_swRadioMenu
+
+  Author: NKey, Garth de Wet (L-H)
+    Returns a list of SW radios if more than one is on the player.
+
+  Arguments:
+    None
+
+  Return Value:
+    Flexi-menu <ARRAY>
+
+  Example:
+    call TFAR_fnc_swRadioMenu;
+
+  Public: No
  */
 
 private _menu = [];

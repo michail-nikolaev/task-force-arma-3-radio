@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_setHeadsetLowered
- *
- * Author: Dedmen
- * Sets if the Headset is currently lowered
- *
- * Arguments:
- * 0: Headset lowered <BOOL>
- *
- * Return Value:
- * None
- *
- * Example:
- * true call TFAR_fnc_setHeadsetLowered;
- *
- * Public: Yes
+  Name: TFAR_fnc_setHeadsetLowered
+
+  Author: Dedmen
+    Sets if the Headset is currently lowered
+
+  Arguments:
+    0: Headset lowered <BOOL>
+
+  Return Value:
+    None
+
+  Example:
+    true call TFAR_fnc_setHeadsetLowered;
+
+  Public: Yes
  */
 params [["_lowered", false, [false]]];
 

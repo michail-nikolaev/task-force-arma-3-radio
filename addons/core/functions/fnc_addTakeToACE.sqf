@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_addTakeToACE
- *
- * Author: Dorbedo
- * Used to provide an array of ace actions to be used as children actions in the interact menu.
- *
- * Arguments:
- * 0: the unit who gets the radio <OBJECT>
- * 1: the unit who loses the radio <OBJECT>
- *
- * Return Value:
- * children ACE actions. <ARRAY>
- *
- * Example:
- * _children = [_target, _player] call TFAR_fnc_addTakeToACE;
- *
- * Public: No
+  Name: TFAR_fnc_addTakeToACE
+
+  Author: Dorbedo
+    Used to provide an array of ace actions to be used as children actions in the interact menu.
+
+  Arguments:
+    0: the unit who gets the radio <OBJECT>
+    1: the unit who loses the radio <OBJECT>
+
+  Return Value:
+    children ACE actions. <ARRAY>
+
+  Example:
+    _children = [_target, _player] call TFAR_fnc_addTakeToACE;
+
+  Public: No
  */
 params ["_target", "_unit"];
 

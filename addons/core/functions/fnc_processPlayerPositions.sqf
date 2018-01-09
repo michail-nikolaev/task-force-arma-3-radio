@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_processPlayerPositions
- *
- * Author: NKey
- * Process some player positions on each call and sends it to the plugin.
- *
- * Arguments:
- * None
- *
- * Return Value:
- * None
- *
- * Example:
- * call TFAR_fnc_processPlayerPositions;
- *
- * Public: No
+  Name: TFAR_fnc_processPlayerPositions
+
+  Author: NKey
+    Process some player positions on each call and sends it to the plugin.
+
+  Arguments:
+    None
+
+  Return Value:
+    None
+
+  Example:
+    call TFAR_fnc_processPlayerPositions;
+
+  Public: No
  */
 
 if (getClientStateNumber != 10) exitWith {};

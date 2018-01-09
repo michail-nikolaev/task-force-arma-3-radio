@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_static_radios_fnc_moduleStaticRadio
- *
- * Author: Dedmen
- * Handles placing Static Radio for Zeus module
- *
- * Arguments:
- * 0: The control given by the EventHandler <CONTROL>
- *
- * Return Value:
- * None
- *
- * Example:
- * _this call TFAR_static_radios_fnc_moduleStaticRadio;
- *
- * Public: No
+  Name: TFAR_static_radios_fnc_moduleStaticRadio
+
+  Author: Dedmen
+    Handles placing Static Radio for Zeus module
+
+  Arguments:
+    0: The control given by the EventHandler <CONTROL>
+
+  Return Value:
+    None
+
+  Example:
+    _this call TFAR_static_radios_fnc_moduleStaticRadio;
+
+  Public: No
  */
 
 

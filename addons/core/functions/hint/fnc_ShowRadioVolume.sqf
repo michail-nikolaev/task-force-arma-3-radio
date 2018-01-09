@@ -1,24 +1,24 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_ShowRadioVolume
- *
- * Author: Garth de Wet (L-H)
- * shows the radio volume
- *
- * Arguments:
- * 0: Radio <OBJECT/STRING>
- *
- * Return Value:
- * None
- *
- * Example:
- *      // LR radio
- *      [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioVolume;
- *      // SW radio
- *      [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioVolume;
- *
- * Public: Yes
+  Name: TFAR_fnc_ShowRadioVolume
+
+  Author: Garth de Wet (L-H)
+    shows the radio volume
+
+  Arguments:
+    0: Radio <OBJECT/STRING>
+
+  Return Value:
+    None
+
+  Example:
+    // LR radio
+    [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioVolume;
+    // SW radio
+    [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioVolume;
+
+  Public: Yes
  */
 params ["_radio"];
 

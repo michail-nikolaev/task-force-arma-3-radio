@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_sendSpeakerRadios
- *
- * Author: Dedmen
- * sends infos about speakerradios to plugin
- *
- * Arguments:
- * None
- *
- * Return Value:
- * None
- *
- * Example:
- * call TFAR_fnc_sendSpeakerRadios;
- *
- * Public: Yes
+  Name: TFAR_fnc_sendSpeakerRadios
+
+  Author: Dedmen
+    sends infos about speakerradios to plugin
+
+  Arguments:
+    None
+
+  Return Value:
+    None
+
+  Example:
+    call TFAR_fnc_sendSpeakerRadios;
+
+  Public: Yes
  */
 
 

@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_copyRadioSettingMenu
- *
- * Author: NKey
- * Returns a sub menu for radio settings copying.
- *
- * Arguments:
- * None
- *
- * Return Value:
- * Flexi-menu <ARRAY>
- *
- * Example:
- * call TFAR_fnc_copyRadioSettingMenu;
- *
- * Public: No
+  Name: TFAR_fnc_copyRadioSettingMenu
+
+  Author: NKey
+    Returns a sub menu for radio settings copying.
+
+  Arguments:
+    None
+
+  Return Value:
+    Flexi-menu <ARRAY>
+
+  Example:
+    call TFAR_fnc_copyRadioSettingMenu;
+
+  Public: No
  */
 
 private _menu = [];

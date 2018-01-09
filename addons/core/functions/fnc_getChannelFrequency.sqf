@@ -1,24 +1,24 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_getChannelFrequency
- *
- * Author: Garth de Wet (L-H)
- * Returns the frequency for the passed channel and radio.
- *
- * Arguments:
- * 0: Radio <OBJECT/STRING>
- *
- * Return Value:
- * Frequency <STRING>
- *
- * Example:
- *      // LR radio - channel 1
- *      [(call TFAR_fnc_activeLrRadio), 1] call TFAR_fnc_getChannelFrequency;
- *      // SW radio - channel 1
- *      [(call TFAR_fnc_activeSwRadio), 1] call TFAR_fnc_getChannelFrequency;
- *
- * Public: Yes
+  Name: TFAR_fnc_getChannelFrequency
+
+  Author: Garth de Wet (L-H)
+    Returns the frequency for the passed channel and radio.
+
+  Arguments:
+    0: Radio <OBJECT/STRING>
+
+  Return Value:
+    Frequency <STRING>
+
+  Example:
+    // LR radio - channel 1
+    [(call TFAR_fnc_activeLrRadio), 1] call TFAR_fnc_getChannelFrequency;
+    // SW radio - channel 1
+    [(call TFAR_fnc_activeSwRadio), 1] call TFAR_fnc_getChannelFrequency;
+
+  Public: Yes
  */
 
 params ["_radio", "_channel"];

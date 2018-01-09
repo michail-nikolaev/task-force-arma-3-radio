@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_onSwTangentPressed
- *
- * Author: NKey
- * Fired when the keybinding for SR is pressed.
- *
- * Arguments:
- * None
- *
- * Return Value:
- * Whether or not the event was handled <BOOL>
- *
- * Example:
- * call TFAR_fnc_onSwTangentPressed;
- *
- * Public: No
+  Name: TFAR_fnc_onSwTangentPressed
+
+  Author: NKey
+    Fired when the keybinding for SR is pressed.
+
+  Arguments:
+    None
+
+  Return Value:
+    Whether or not the event was handled <BOOL>
+
+  Example:
+    call TFAR_fnc_onSwTangentPressed;
+
+  Public: No
  */
 
 if (time - TF_last_lr_tangent_press < 0.5) exitWith {true};

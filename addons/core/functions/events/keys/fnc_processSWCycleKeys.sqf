@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_processSWCycleKeys
- *
- * Author: JonBons, Nkey, Garth de Wet (L-H)
- * Allows rotating through the list of SR radios with keys.
- *
- * Arguments:
- * 0: Direction to cycle : VALUES (next, prev) <STRING>
- *
- * Return Value:
- * Whether or not the event was handled <BOOL>
- *
- * Example:
- * call TFAR_fnc_processSWCycleKeys;
- *
- * Public: No
+  Name: TFAR_fnc_processSWCycleKeys
+
+  Author: JonBons, Nkey, Garth de Wet (L-H)
+    Allows rotating through the list of SR radios with keys.
+
+  Arguments:
+    0: Direction to cycle : VALUES (next, prev) <STRING>
+
+  Return Value:
+    Whether or not the event was handled <BOOL>
+
+  Example:
+    call TFAR_fnc_processSWCycleKeys;
+
+  Public: No
  */
 
 params ["_sw_cycle_direction"];

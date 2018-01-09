@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_isBackpackRadio
- *
- * Author: Dorbedo
- * Returns if a radio is a backpacked radio.
- *
- * Arguments:
- * 0: Radio classname <STRING>
- *
- * Return Value:
- * Radio classname <BOOL>
- *
- * Example:
- * "TFAR_anprc_152" call TFAR_fnc_isBackpackRadio;
- *
- * Public: Yes
+  Name: TFAR_fnc_isBackpackRadio
+
+  Author: Dorbedo
+    Returns if a radio is a backpacked radio.
+
+  Arguments:
+    0: Radio classname <STRING>
+
+  Return Value:
+    Radio classname <BOOL>
+
+  Example:
+    "TFAR_anprc_152" call TFAR_fnc_isBackpackRadio;
+
+  Public: Yes
  */
 params [["_classname", []]];
 

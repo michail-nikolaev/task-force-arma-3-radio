@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_revealInArea
- *
- * Author: Dimitri Yuri, 2600K, Dedmen, Dorbedo
- * Event called upon receving a radio call
- *
- * Arguments:
- * 0: unit to be revealed <OBJECT>
- * 1: distance <OBJECT/ARRAY>
- *
- * Return Value:
- * None
- *
- * Example:
- * [_unit, 50] call TFAR_ai_hearing_fnc_revealInArea;
- *
- * Public: Yes
+  Name: TFAR_fnc_revealInArea
+
+  Author: Dimitri Yuri, 2600K, Dedmen, Dorbedo
+    Event called upon receving a radio call
+
+  Arguments:
+    0: unit to be revealed <OBJECT>
+    1: distance <OBJECT/ARRAY>
+
+  Return Value:
+    None
+  
+  Example:
+    [_unit, 50] call TFAR_ai_hearing_fnc_revealInArea;
+  
+  Public: Yes
  */
 
 params [["_unit", objNull, [objNull, []]], ["_distance", 5, [0]]];

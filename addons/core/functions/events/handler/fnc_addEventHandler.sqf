@@ -1,27 +1,27 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_addEventHandler
- *
- * Author: Garth de Wet (L-H), Dedmen
- * Adds an Eventhandler. Optionally only to a specific unit.
- *
- * Arguments:
- * 0: ID for custom handler <STRING>
- * 1: event name <STRING>
- * 2: Code to execute when event is fired. <CODE>
- * 3: Unit to use as filter. <OBJECT> (Optional)
- *
- * Return Value:
- * Unique ID of the event handler <NUMBER>
- *
- * Example:
- * ["MyID", "OnSpeak", {
- *     params ["_unit","_volume"];
- *     hint format ["%1 is speaking %2", name _unit, _volume];
- * }, player] call TFAR_fnc_addEventHandler;
- *
- * Public: Yes
+  Name: TFAR_fnc_addEventHandler
+
+  Author: Garth de Wet (L-H), Dedmen
+    Adds an Eventhandler. Optionally only to a specific unit.
+
+  Arguments:
+    0: ID for custom handler <STRING>
+    1: event name <STRING>
+    2: Code to execute when event is fired. <CODE>
+    3: Unit to use as filter. <OBJECT> (Optional)
+
+  Return Value:
+    Unique ID of the event handler <NUMBER>
+
+  Example:
+    ["MyID", "OnSpeak", {
+        params ["_unit","_volume"];
+        hint format ["%1 is speaking %2", name _unit, _volume];
+    }, player] call TFAR_fnc_addEventHandler;
+
+  Public: Yes
  */
 
 params ["_customID", "_eventName", "_code", ["_filterUnit",ObjNull]];

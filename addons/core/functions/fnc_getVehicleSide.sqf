@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_getVehicleSide
- *
- * Author: NKey
- * Returns the side of the vehicle, based on the vehicle model and not who has captured it.
- * Also takes into account a variable on the vehicle (tf_side)
- *
- * Arguments:
- * 0: vehicle <OBJECT>
- *
- * Return Value:
- * side of vehicle <SIDE>
- *
- * Example:
- * _vehicleSide = (vehicle player) call TFAR_fnc_getVehicleSide;
- *
- * Public: Yes
+  Name: TFAR_fnc_getVehicleSide
+
+  Author: NKey
+    Returns the side of the vehicle, based on the vehicle model and not who has captured it.
+    Also takes into account a variable on the vehicle (tf_side)
+
+  Arguments:
+    0: vehicle <OBJECT>
+
+  Return Value:
+    side of vehicle <SIDE>
+
+  Example:
+    _vehicleSide = (vehicle player) call TFAR_fnc_getVehicleSide;
+
+  Public: Yes
  */
 params [["_vehicle", objNull, [objNull]]];
 

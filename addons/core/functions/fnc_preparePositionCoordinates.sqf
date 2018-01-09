@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_preparePositionCoordinates
- *
- * Author: NKey
- * Prepares the position coordinates of the passed unit.
- *
- * Arguments:
- * 0: unit <OBJECT>
- * 1: Is near player <BOOL>
- * 2: Unit name <STRING>
- *
- * Return Value:
- * prepared Data <STRING>
- *
- * Example:
- * [parameter] call TFAR_fnc_preparePositionCoordinates;
- *
- * Public: No
+  Name: TFAR_fnc_preparePositionCoordinates
+
+  Author: NKey
+    Prepares the position coordinates of the passed unit.
+
+  Arguments:
+    0: unit <OBJECT>
+    1: Is near player <BOOL>
+    2: Unit name <STRING>
+
+  Return Value:
+    prepared Data <STRING>
+
+  Example:
+    [parameter] call TFAR_fnc_preparePositionCoordinates;
+
+  Public: No
  */
 params ["_unit", "_nearPlayer","_unitName"];
 

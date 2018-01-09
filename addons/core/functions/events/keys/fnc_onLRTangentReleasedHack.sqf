@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_onLRTangentReleasedHack
- *
- * Author: Nkey
- * Hack to also trigger LR transmit while sprinting or holding down other modifiers
- *
- * Arguments:
- * None
- *
- * Return Value:
- * false <BOOL>
- *
- * Example:
- * call TFAR_fnc_onLRTangentReleasedHack;
- *
- * Public: No
+  Name: TFAR_fnc_onLRTangentReleasedHack
+
+  Author: Nkey
+    Hack to also trigger LR transmit while sprinting or holding down other modifiers
+
+  Arguments:
+    None
+
+  Return Value:
+    false <BOOL>
+
+  Example:
+    call TFAR_fnc_onLRTangentReleasedHack;
+
+  Public: No
  */
 
 

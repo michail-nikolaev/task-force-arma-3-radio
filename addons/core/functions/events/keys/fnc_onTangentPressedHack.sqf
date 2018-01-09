@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_onTangentPressedHack
- *
- * Author: Nkey
- * Hack to also trigger SR/LR transmit while sprinting or holding down other modifiers
- *
- * Arguments:
- * None
- *
- * Return Value:
- * Whether or not the event was handled <BOOL>
- *
- * Example:
- * call TFAR_fnc_onTangentPressedHack;
- *
- * Public: No
+  Name: TFAR_fnc_onTangentPressedHack
+
+  Author: Nkey
+    Hack to also trigger SR/LR transmit while sprinting or holding down other modifiers
+
+  Arguments:
+    None
+
+  Return Value:
+    Whether or not the event was handled <BOOL>
+
+  Example:
+    call TFAR_fnc_onTangentPressedHack;
+ 
+  Public: No
  */
 
 params ["","_scancode","_shift","_ctrl","_alt"];

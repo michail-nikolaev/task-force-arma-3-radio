@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_antennas_fnc_deleteRadioTower
- *
- * Author: Dedmen
- * De-initializes a Radio Tower
- *
- * Arguments:
- * 0: the tower <OBJECT>
- *
- * Return Value:
- * None
- *
- * Example:
- * _this call TFAR_antennas_fnc_deleteRadioTower;
- *
- * Public: yes
+   Name: TFAR_antennas_fnc_deleteRadioTower
+  
+   Author: Dedmen
+   De-initializes a Radio Tower
+  
+   Arguments:
+   0: the tower <OBJECT>
+  
+   Return Value:
+   None
+  
+   Example:
+   _this call TFAR_antennas_fnc_deleteRadioTower;
+  
+   Public: yes
  */
 
 params ["_tower"];

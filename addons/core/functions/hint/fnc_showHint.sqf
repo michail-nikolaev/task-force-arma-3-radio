@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_showHint
- *
- * Author: Garth de Wet (L-H)
- * Displays a hint at the bottom right of the screen.
- *
- * Arguments:
- * 0: structured text to display <TEXT>
- * 1:  Time to display the hint (-1 for infinite) <SCALAR>
- *
- * Return Value:
- * None
- *
- * Example:
- * [parseText "Hello", 3] call TFAR_fnc_showHint;
- * [parseText "Hello", -1] call TFAR_fnc_showHint;
- *
- * Public: Yes
+  Name: TFAR_fnc_showHint
+
+  Author: Garth de Wet (L-H)
+    Displays a hint at the bottom right of the screen.
+
+  Arguments:
+    0: structured text to display <TEXT>
+    1:  Time to display the hint (-1 for infinite) <SCALAR>
+
+  Return Value:
+    None
+
+  Example:
+    [parseText "Hello", 3] call TFAR_fnc_showHint;
+    [parseText "Hello", -1] call TFAR_fnc_showHint;
+
+  Public: Yes
  */
 
 params ["_text", "_time"];

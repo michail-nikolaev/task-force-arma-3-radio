@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_canTakeRadio
- *
- * Author: Dorbedo
- * Checks if a radio from the target unit can be taken
- *
- * Arguments:
- * 0: the unit who gets the radio <OBJECT>
- * 1: the unit who loses the radio <OBJECT>
- * 2: the radio to be taken <STRING/ARRAY>
- *
- * Return Value:
- * the radio can be taken <BOOL>
- *
- * Example:
- * [_target, _player, "TFAR_anprc_152"] call TFAR_fnc_canTakeRadio;
- *
- * Public: Yes
+  Name: TFAR_fnc_canTakeRadio
+
+  Author: Dorbedo
+    Checks if a radio from the target unit can be taken
+
+  Arguments:
+    0: the unit who gets the radio <OBJECT>
+    1: the unit who loses the radio <OBJECT>
+    2: the radio to be taken <STRING/ARRAY>
+
+  Return Value:
+    the radio can be taken <BOOL>
+
+  Example:
+    [_target, _player, "TFAR_anprc_152"] call TFAR_fnc_canTakeRadio;
+
+  Public: Yes
  */
 
 params ["_target", "_unit", "_radio"];

@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_settingForceArray
- *
- * Author: Dorbedo
- * Forces the input into an array format and removes invalid input
- *
- * Arguments:
- * 0: frequencies input <STRING>
- *
- * Return Value:
- * cleaned input <STRING>
- *
- * Example:
- * ["123 123 , 332 23"] call TFAR_fnc_settingForceArray;
- *
- * Public: No
+  Name: TFAR_fnc_settingForceArray
+
+  Author: Dorbedo
+    Forces the input into an array format and removes invalid input
+
+  Arguments:
+    0: frequencies input <STRING>
+ 
+  Return Value:
+    cleaned input <STRING>
+
+  Example:
+    ["123 123 , 332 23"] call TFAR_fnc_settingForceArray;
+
+  Public: No
  */
 
 params [["_input", "", [""]]];

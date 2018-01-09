@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_isTurnedOut
- *
- * Author: NKey
- * returns if a unit is turened out
- *
- * Arguments:
- * 0: unit <OBJECT>
- *
- * Return Value:
- * is turned out <BOOL>
- *
- * Example:
- * [_unit] call TFAR_fnc_isTurnedOut;
- *
- * Public: No
+  Name: TFAR_fnc_isTurnedOut
+
+  Author: NKey
+    returns if a unit is turened out
+
+  Arguments:
+    0: unit <OBJECT>
+
+  Return Value:
+    is turned out <BOOL>
+
+  Example:
+    [_unit] call TFAR_fnc_isTurnedOut;
+
+  Public: No
  */
 
 params ["_unit"];

@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_updateSpeakVolumeUI
- *
- * Author: Dedmen
- * Updates UI speak volume indicator
- *
- * Arguments:
- * None
- *
- * Return Value:
- * None
- *
- * Example:
- * call TFAR_fnc_updateSpeakVolumeUI;
- *
- * Public: Yes
+  Name: TFAR_fnc_updateSpeakVolumeUI
+
+  Author: Dedmen
+    Updates UI speak volume indicator
+
+  Arguments:
+    None
+
+  Return Value:
+    None
+
+  Example:
+    call TFAR_fnc_updateSpeakVolumeUI;
+
+  Public: Yes
  */
 
 _icon = "";

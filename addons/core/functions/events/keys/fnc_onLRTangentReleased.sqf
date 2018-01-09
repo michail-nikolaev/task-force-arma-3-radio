@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_onLRTangentReleased
- *
- * Author: NKey
- * Fired when the keybinding for LR is released.
- *
- * Arguments:
- * None
- *
- * Return Value:
- * Whether or not the event was handled <BOOL>
- *
- * Example:
- * call TFAR_fnc_onLRTangentReleased;
- *
- * Public: No
+  Name: TFAR_fnc_onLRTangentReleased
+
+  Author: NKey
+    Fired when the keybinding for LR is released.
+
+  Arguments:
+    None
+
+  Return Value:
+    Whether or not the event was handled <BOOL>
+
+  Example:
+    call TFAR_fnc_onLRTangentReleased;
+
+  Public: No
  */
 
 if (!(TF_tangent_lr_pressed) or {!alive TFAR_currentUnit}) exitWith {true};

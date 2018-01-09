@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_setSwStereo
- *
- * Author: NKey
- * Sets the stereo setting for the SW radio
- *
- * Arguments:
- * 0: Radio <STRING>
- * 1: Stereo Range (0,2) (0 - Both, 1 - Left, 2 - Right) <NUMBER>
- *
- * Return Value:
- * return name <TYPENAME>
- *
- * Example:
- * [call TFAR_fnc_activeSWRadio, 2] call TFAR_fnc_setSwStereo;
- *
- * Public: Yes
+  Name: TFAR_fnc_setSwStereo
+
+  Author: NKey
+    Sets the stereo setting for the SW radio
+
+  Arguments:
+    0: Radio <STRING>
+    1: Stereo Range (0,2) (0 - Both, 1 - Left, 2 - Right) <NUMBER>
+
+  Return Value:
+    return name <TYPENAME>
+
+  Example:
+    [call TFAR_fnc_activeSWRadio, 2] call TFAR_fnc_setSwStereo;
+
+  Public: Yes
  */
 
 params ["_radio_id", "_value_to_set"];

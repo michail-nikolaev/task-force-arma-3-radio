@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_initKeybinds
- *
- * Author: NKey, Garth de Wet (L-H), Dedmen
- * initializes the CBA-Keybinds
- *
- * Arguments:
- * None
- *
- * Return Value:
- * None
- *
- * Example:
- * call TFAR_fnc_initKeybinds;
- *
- * Public: No
+  Name: TFAR_fnc_initKeybinds
+
+  Author: NKey, Garth de Wet (L-H), Dedmen
+  initializes the CBA-Keybinds
+
+  Arguments:
+  None
+
+  Return Value:
+  None
+
+  Example:
+  call TFAR_fnc_initKeybinds;
+
+  Public: No
  */
 #include "\a3\editor_f\Data\Scripts\dikCodes.h"
 #define LOCALIZE_CHANNEL(x,y) y call _fnc_localize##x##Channel

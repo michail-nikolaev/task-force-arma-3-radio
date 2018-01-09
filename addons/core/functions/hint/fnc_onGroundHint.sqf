@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_onGroundHint
- *
- * Author: TFAR
- * * shows the "on ground" hint
- *
- * Arguments:
- * None
- *
- * Return Value:
- * None
- *
- * Example:
- * call TFAR_fnc_onGroundHint;
- *
- * Public: No
+  Name: TFAR_fnc_onGroundHint
+
+  Author: TFAR
+    shows the "on ground" hint
+
+  Arguments:
+    None
+
+  Return Value:
+    None
+
+  Example:
+    call TFAR_fnc_onGroundHint;
+
+  Public: No
  */
 
 

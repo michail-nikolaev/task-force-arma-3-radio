@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_instanciateRadios
- *
- * Author: Dedmen
- * Takes Radio classnames and returns instanciated classnames (With _ID appended)
- *
- * Arguments:
- * classnames of prototype radios <ARRAY>
- *
- * Return Value:
- * classnames of instanciated radios <ARRAY>
- *
- * Example:
- * ["TFAR_anprc_152"] call TFAR_fnc_instanciateRadios;
- *
- * Public: No
+  Name: TFAR_fnc_instanciateRadios
+
+  Author: Dedmen
+    Takes Radio classnames and returns instanciated classnames (With _ID appended)
+
+  Arguments:
+    classnames of prototype radios <ARRAY>
+
+  Return Value:
+    classnames of instanciated radios <ARRAY>
+
+  Example:
+    ["TFAR_anprc_152"] call TFAR_fnc_instanciateRadios;
+
+  Public: No
  */
 
 //params [ ["_radio_request", [], [[]] ] ];

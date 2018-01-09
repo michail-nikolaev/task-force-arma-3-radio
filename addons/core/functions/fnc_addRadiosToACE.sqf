@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_addRadiosToACE
- *
- * Author: Garth de Wet (L-H)
- * Used to provide an array of ace actions to be used as children actions in the interact menu.
- *
- * Arguments:
- * 0: unit <OBJECT>
- * 1: only LR <BOOL>
- *
- * Return Value:
- * children ACE actions <ARRAY>
- *
- * Example:
- * _children = [_player] call TFAR_fnc_addRadiosToACE;
- *
- * Public: No
+  Name: TFAR_fnc_addRadiosToACE
+
+  Author: Garth de Wet (L-H)
+    Used to provide an array of ace actions to be used as children actions in the interact menu.
+
+  Arguments:
+    0: unit <OBJECT>
+    1: only LR <BOOL>
+
+  Return Value:
+    children ACE actions <ARRAY>
+
+  Example:
+    _children = [_player] call TFAR_fnc_addRadiosToACE;
+
+  Public: No
  */
 
 params ["_unit", ["_LROnly", false]];

@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_setLrSpeakers
- *
- * Author: NKey
- * Sets the speakers setting for the passed radio
- *
- * Arguments:
- * 0: Radio object <OBJECT>
- * 1: Radio ID <STRING>
- *
- * Return Value:
- * None
- *
- * Example:
- * (call TFAR_fnc_activeLrRadio) call TFAR_fnc_setLrSpeakers;
- *
- * Public: Yes
+  Name: TFAR_fnc_setLrSpeakers
+
+  Author: NKey
+    Sets the speakers setting for the passed radio
+
+  Arguments:
+    0: Radio object <OBJECT>
+    1: Radio ID <STRING>
+
+  Return Value:
+    None
+
+  Example:
+    (call TFAR_fnc_activeLrRadio) call TFAR_fnc_setLrSpeakers;
+
+  Public: Yes
  */
 
 params ["_radio_object", "_radio_qualifier"];

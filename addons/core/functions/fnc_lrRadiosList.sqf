@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_lrRadiosList
- *
- * Author: NKey
- * List of all the players LR radios
- *
- * Arguments:
- * unit <OBJECT>
- *
- * Return Value:
- * List of all the player's LR radios <ARRAY>
- *
- * Example:
- * _radios = TFAR_currentUnit call TFAR_fnc_LRRadiosList;
- *
- * Public: Yes
+  Name: TFAR_fnc_lrRadiosList
+
+  Author: NKey
+    List of all the players LR radios
+
+  Arguments:
+    unit <OBJECT>
+
+  Return Value:
+    List of all the player's LR radios <ARRAY>
+
+  Example:
+    _radios = TFAR_currentUnit call TFAR_fnc_LRRadiosList;
+
+  Public: Yes
  */
 
 private _result = [];

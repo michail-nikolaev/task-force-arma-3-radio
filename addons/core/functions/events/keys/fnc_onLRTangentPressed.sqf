@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
- * Name: TFAR_fnc_onLRTangentPressed
- *
- * Author: NKey
- * Fired when the keybinding for LR is pressed.
- *
- * Arguments:
- * None
- *
- * Return Value:
- * Whether or not the event was handled <BOOL>
- *
- * Example:
- * call TFAR_fnc_onLRTangentPressed;
- *
- * Public: No
+  Name: TFAR_fnc_onLRTangentPressed
+ 
+  Author: NKey
+    Fired when the keybinding for LR is pressed.
+ 
+  Arguments:
+    None
+ 
+  Return Value:
+    Whether or not the event was handled <BOOL>
+
+  Example:
+    call TFAR_fnc_onLRTangentPressed;
+
+  Public: No
  */
 if (time - TF_last_lr_tangent_press < 0.1) exitWith {TF_last_lr_tangent_press = time;true};
 TF_last_lr_tangent_press = time;
