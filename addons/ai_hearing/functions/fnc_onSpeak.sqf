@@ -19,8 +19,6 @@
   Public: No
  */
 
-#include "script_component.hpp"
-
 params [["_unit", objNull, [objNull]], ["_isSpeaking", false, [true]]];
 
 if ((!local _unit) || {!alive _unit} || {(vehicle _unit) call TFAR_fnc_isVehicleIsolated}) exitWith {};
