@@ -20,63 +20,128 @@ EXAMPLES
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 # pylint: disable=W0702
+# pylint: disable=C0301
 
 import os
-import sys
 import re
 import argparse
+import logging
+
+def main():
+    """Main"""
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('directory', nargs="?", type=str, help='only crawl specified component addon folder')
+    parser.add_argument('--output', default='tfar', choices=['tfar', 'ace'], help='The style of the output')
+    parser.add_argument('--log', default=20, type=int, help='Loglevel')
+    parser.add_argument('--logfile', type=str, help='Write log to file')
+    args = parser.parse_args()
+
+    logging.basicConfig(format='%(levelname)s:%(message)s', level=args.log, filename=args.logfile)
+    logging.info('Creating documentation')
+    logging.debug(args)
+
+    addonsdir = os.path.abspath(os.path.normpath(__file__ + '/../../addons'))
+    logging.debug(addonsdir)
+    all_components = {}
+    if args.directory:
+        logging.info('Documenting only component: %s', args.directory)
+        cur_component = Component(os.path.join(addonsdir, args.directory))
+        if cur_component.functions:
+            all_components[cur_component.name] = cur_component
+            cur_component.style = args.output
+    else:
+        logging.info('Documenting all components')
+        for folder in os.listdir(addonsdir):
+            if os.path.isdir(os.path.join(addonsdir, folder)):
+                cur_component = Component(os.path.join(addonsdir, folder))
+                if cur_component.functions:
+                    all_components[cur_component.name] = cur_component
+                    cur_component.style = args.output
+
+    if all_components:
+        logging.debug(all_components)
+        create_documentations(all_components)
+    else:
+        logging.debug('No components found')
+
+def create_documentations(all_components):
+    """Document all components"""
+    docfolder = os.path.abspath(os.path.normpath(__file__ + '/../../docs'))
+    if not os.path.exists(docfolder):
+        logging.debug("Creating folder: %s", docfolder)
+        os.makedirs(docfolder)
+    for item in all_components:
+        filepath = os.path.join(docfolder, '{}.md'.format(all_components[item].name))
+        if os.path.exists(filepath):
+            logging.debug("Removing old file: %s", filepath)
+            os.remove(filepath)
+        logging.debug("Writing Component: %s", all_components[item].name)
+        docfile = open(filepath, 'w+')
+        docfile.write(document_component(all_components[item]))
+        for function in all_components[item].functions:
+            logging.debug("Writing function: %s", function.name)
+            if all_components[item].style == 'ace':
+                docfile.write(document_function_ace(function))
+            else:
+                docfile.write(document_function_tfar(function))
+        docfile.close()
 
 class FunctionFile:
-    def __init__(self, directory="."):
-        self.directory = directory
+    """Function"""
+    def __init__(self, filepath):
 
-        # False unless specified in processing
-        self.debug = False
-
-        # Empty until imported from file
-        self.path = ""
+        logging.debug("Processing: %s", filepath)
+        
+        self.path = filepath
         self.header = ""
+        self.import_header()
+        self.component = ""
 
-        # Defaults until header is processed
+        self.name = ""
         self.public = False
         self.authors = []
-        self.description = ""
+        self.description = []
         self.arguments = []
         self.return_value = []
         self.example = ""
 
-        # Filepath should only be logged once
-        self.logged = False
+    def import_header(self):
+        """imports the header"""
+        logging.debug("   Importing Header: %s", self.path)
+        file = open(self.path)
+        code = file.read()
+        file.close()
 
-    def import_header(self, file_path):
-        self.path = file_path
-
-        with open(file_path) as file:
-            code = file.read()
-
-        header_match = re.match(r"#include\s\"script_component.hpp\"\n\n\s*/\*.+?\*/", code, re.S)
+        header_match = re.match(r"(#include\s\"script_component.hpp\"\n\n\s*)?(/\*.+?\*/)", code, re.S)
         if header_match:
-            self.header = header_match.group(0)
+            logging.debug("   Header is matching")
+            self.header = header_match.group(2)
         else:
-            self.feedback("Missing header", 3)
+            logging.debug("   Header is not matching")
 
     def has_header(self):
+        """Function has a header"""
         return bool(self.header)
 
-    def process_header(self, debug=False):
+    def process_header(self):
+        """Analyze the header"""
+
+        logging.debug("   Processing header")
         # Detailed debugging occurs here so value is set
-        self.debug = debug
 
         # Preemptively cut away the comment characters (and leading/trailing whitespace)
-        self.header_text = "\n".join([x[3:].strip() for x in self.header.splitlines()])
+        header_text = "\n".join([x[3:].strip() for x in self.header.splitlines()])
 
         # Split the header into expected sections
-        self.sections = re.split(r"^(Name|Author|Argument|Return Value|Example|Public)s?:\s?", self.header_text, 0, re.M)
+        self.sections = re.split(r"^(Name|Author|Argument|Return Value|Example|Public)s?:\s?", header_text, 0, re.M)
+
+        logging.debug("   Header Sections: %s", self.sections)
 
         # If public section is missing we can't continue
         public_raw = self.get_section("Public")
         if not public_raw:
-            self.feedback("Public value undefined", 3)
+            logging.warning('   Public value undefined')
             return
 
         # Determine whether the header is public
@@ -84,7 +149,8 @@ class FunctionFile:
 
         # Don't bother to process the rest if private
         # Unless in debug mode
-        if not self.public and not self.debug:
+        if not self.public:
+            logging.debug("   Function is not public: %s", self.path)
             return
 
         # Retrieve the raw sections text for processing
@@ -98,6 +164,7 @@ class FunctionFile:
         if author_raw:
             self.authors = self.process_author(author_raw)
             self.description = self.process_description(author_raw)
+            logging.debug("   Description:", self.description)
 
         if name_raw:
             self.name = self.process_name(name_raw)
@@ -118,25 +185,25 @@ class FunctionFile:
             section_text = self.sections[self.sections.index(section_name) + 1]
             return section_text
         except ValueError:
-            self.feedback("Missing \"{}\" header section".format(section_name), 2)
+            logging.warning('   Missing "%s" header section', section_name)
             return ""
 
     def process_public(self, raw):
-        # Raw just includes an EOL character
+        """Raw just includes an EOL character"""
         public_text = raw[:-1]
 
         if not re.match(r"(Yes|No)", public_text, re.I):
-            self.feedback("Invalid public value \"{}\"".format(public_text), 2)
+            logging.warning('   Invalid public value "%s"', public_text)
 
         return public_text.capitalize() == "Yes"
 
     def is_public(self):
+        """function is public"""
         return self.public
 
     def process_author(self, raw):
         # Authors are listed on the first line
         authors_text = raw.splitlines()[0]
-
         # Seperate authors are divided by commas
         return authors_text.split(", ")
 
@@ -146,10 +213,7 @@ class FunctionFile:
 
     def process_description(self, raw):
         # Just use all the lines after the authors line
-        description_text = "<br>".join(raw.splitlines(1)[1:])
-
-        return description_text
-
+        return [line.rstrip() for line in raw.splitlines(1)[1:]]
     def process_arguments(self, raw):
         lines = raw.splitlines()
 
@@ -157,13 +221,13 @@ class FunctionFile:
             return []
 
         if lines.count("") == len(lines):
-            self.feedback("No arguments provided (use \"None\" where appropriate)", 2)
+            logging.warning("   No arguments provided (use \"None\" where appropriate)")
             return []
 
         if lines[-1] == "":
             lines.pop()
         else:
-            self.feedback("No blank line after arguments list", 1)
+            logging.warning("   No blank line after arguments list")
 
         arguments = []
         for argument in lines:
@@ -185,8 +249,8 @@ class FunctionFile:
             else:
                 # Notes about the above argument won't start with an index
                 # Only applies if there exists an above argument
-                if re.match(r"^(\d+):", argument) or not arguments:
-                    self.feedback("Malformed argument \"{}\"".format(argument), 2)
+                if arguments or re.match(r"^(\d+):", argument):
+                    logging.warning('   Malformed argument "%s"', argument)
                     arguments.append(["?", "Malformed", "?", "?", "?"])
                 else:
                     arguments[-1][-1].append(argument)
@@ -205,185 +269,191 @@ class FunctionFile:
             return_name = valid.group(1)
             return_types = valid.group(2)
         else:
-            self.feedback("Malformed return value \"{}\"".format(return_value), 2)
-            return ["Malformed",""]
+            logging.warning("   Malformed return value \"{}\"".format(return_value))
+            return ["Malformed", ""]
 
         return [return_name, return_types]
 
-    def document(self, component):
-        str_list = []
+class Component:
+    """defines a component to be defined"""
+    def __init__(self, path_to_component):
+        self.path = path_to_component
+        self.name = self.get_componentname()
+        self.functions = []
+        self.style = ''
+        self.get_functions()
+        logging.debug("Component %s functions: %s", self.name, self.functions)
+        if not self.functions:
+            del self
 
-        # Title
-        str_list.append("<table border=\"1\">\n")
-        str_list.append("  <thead>\n")
-        str_list.append("    <tr>\n")
-        str_list.append("      <th scope=\"colgroup\" colspan=\"2\" width=\"640px\">\n")
-        str_list.append("        <a name=\"{0}\">{0}</a>\n".format(self.name))
-        str_list.append("      </th>\n")
-        str_list.append("    </tr>\n")
-        str_list.append("  </thead>\n")
-        str_list.append("  <tbody>\n")
-        str_list.append("    <tr>\n")
-        str_list.append("      <td colspan=\"2\" align=\"left\">\n")
-        str_list.append("        <p>{}</p>\n".format(self.description))
-        str_list.append("      </td>\n")
-        str_list.append("    </tr>\n")
-        str_list.append("    <tr>\n")
-        str_list.append("      <td valign=\"top\" width=\"50%\">\n")
-        str_list.append("        <strong><sub>Parameters</sub></strong>\n")
-        str_list.append("        <ol start=\"0\">\n")
-        if self.arguments:
-            for argument in self.arguments:
-                if argument[0]:
-                    str_list.append("          <li><kbd>{2}</kbd> - {1}</li>\n".format(*argument))
-                else:
-                    str_list.append("          <kbd>{2}</kbd> - {1}\n".format(*argument))
-        else:
-            str_list.append("          None\n")
-        str_list.append("        </ol>\n")
-        str_list.append("      </td>\n")
-        str_list.append("      <td valign=\"top\" width=\"50%\">\n")
-        str_list.append("        <strong><sub>Returns</sub></strong>\n")
-        str_list.append("        <ol start=\"0\">\n")
-        if self.return_value:
-            for argument in self.return_value:
-                if argument[0]:
-                    str_list.append("          <li><kbd>{2}</kbd> - {1}</li>\n".format(*argument))
-                else:
-                    str_list.append("          <kbd>{2}</kbd> - {1}\n".format(*argument))
-        else:
-            str_list.append("          None\n")
-        str_list.append("        </ol>\n")
-        str_list.append("      </td>\n")
-        str_list.append("    </tr>\n")
-        str_list.append("    <tr>\n")
-        str_list.append("      <td colspan=\"2\" align=\"left\">\n")
-        str_list.append("        <strong>Example</strong>\n")
-        str_list.append("        <pre><code>{}</code></pre>\n".format(self.example))
-        str_list.append("      </td>\n")
-        str_list.append("    </tr>\n")
+    def get_functions(self):
+        """gets all functions from inside a component"""
+        for root, dirs, files in os.walk(self.path):
+            for file in files:
+                if file.endswith(".sqf"):
+                    file_path = os.path.join(root, file)
 
-        str_list.append("    <tr>\n")
-        str_list.append("      <td colspan=\"2\" align=\"left\">\n")
-        str_list.append("        <strong>Author(s):</strong>\n")
-        for author in self.authors:
-            str_list.append("          <li>{}</li>\n".format(author))
-        str_list.append("      </td>\n")
-        str_list.append("    </tr>\n")
-        str_list.append("  </tbody>\n")
-        str_list.append("</table>\n")
-        str_list.append("\n<hr>\n")
+                    function = FunctionFile(file_path)
+                    function.component = self.name
+                    function.import_header()
 
-        return ''.join(str_list)
+                    if function.has_header():
+                        logging.debug("Function %s has header", function.path)
+                        function.process_header()
 
-    def log_file(self, error=False):
-        # When in debug mode we only want to see the files with errors
-        if not self.debug or error:
-            if not self.logged:
-                rel_path = os.path.relpath(self.path, self.directory)
+                        if function.is_public():
+                            logging.debug("Function %s is public", function.name)
+                            self.functions.append(function)
+                        else:
+                            logging.debug("Function %s is not public", function.name)
+                            del function
+                    else:
+                        logging.debug("Function %s has NO header", function.path)
+                        del function
+                    if 'function' in locals():
+                        logging.info("Documenting file: %s", file_path)
+                    else:
+                        logging.info("Skipping file: %s", file_path)
 
-                self.write("Processing... {}".format(rel_path), 1)
-                self.logged = True
+    def get_componentname(self):
+        """returns the name of the component"""
+        #component_file = open(os.path.join(self.path, "script_component.hpp"), 'r')
+        name = os.path.basename(self.path)
+        return name
 
-    def feedback(self, message, level=0):
-        priority_str = ["Info","Warning","Error","Aborted"][level]
-
-        self.log_file(level > 0)
-        self.write("{0}: {1}".format(priority_str, message))
-
-    def write(self, message, indent=2):
-        to_print = ["  "]*indent
-        to_print.append(message)
-        print("".join(to_print))
-
-
-def document_contents(componentfunctions):
+def document_function_ace(function):
+    """returns the function documentation in the style of ace"""
     str_list = []
-    str_list.append("<h2>Index of API functions</h2>\n")
+
+    # Title
+    str_list.append("\n## ace_{}_fnc_{}\n".format(function.component, os.path.basename(function.path)[4:-4]))
+    # Description
+    str_list.append("__Description__\n\n" + '\n'.join(function.description) + '\n')
+    # Arguments
+    if function.arguments:
+        if function.arguments[0][0]:
+            str_list.append("__Parameters__\n\nIndex | Description | Datatype(s) | Default Value\n--- | --- | --- | ---\n")
+            for argument in function.arguments:
+                str_list.append("{} | {} | {} | {}\n".format(*argument))
+            str_list.append("\n")
+        else:
+            str_list.append("__Parameters__\n\nDescription | Datatype(s) | Default value\n--- | --- | ---\n{} | {} | {} \n\n".format(\
+                function.arguments[0][1], function.arguments[0][2], function.arguments[0][3]))
+    else:
+        str_list.append("__Parameters__\n\nNone\n\n")
+
+    # Return Value
+    if function.return_value:
+        if function.return_value[0][0]:
+            str_list.append("__Return Value__\n\nIndex | Description | Datatype(s) | Default Value\n--- | --- | --- | ---\n")
+            for argument in function.return_value:
+                str_list.append("{} | {} | {} | {}\n".format(*argument))
+            str_list.append("\n")
+        else:
+            str_list.append("__Return Value__\n\nDescription | Datatype(s) | Default value\n--- | --- | ---\n{} | {} | {} \n\n".format(\
+                function.return_value[0][1], function.return_value[0][2], function.return_value[0][3]))
+    else:
+        str_list.append("__Return Value__\n\nNone\n\n")
+
+    # Example
+    str_list.append("__Example__\n\n```sqf\n{}\n```\n\n".format(function.example))
+    # Authors
+    str_list.append("\n__Authors__\n\n")
+    for author in function.authors:
+        str_list.append("- {}\n".format(author))
+    # Horizontal rule
+    str_list.append("\n---\n")
+
+    return ''.join(str_list)
+
+def document_component(component):
+    """Document the component"""
+    str_list = []
+    if component.style == 'tfar':
+        str_list.append('<h2>Index of API functions</h2>\n')
+        str_list.append('<table border=\"1\">\n')
+        str_list.append('    <tbody>\n')
+        str_list.append('        <tr>\n')
+        str_list.append('            <td>\n')
+        str_list.append('                <ul style=\"list-style-type:square\">\n')
+        for function in component.functions:
+            str_list.append('                   <li><code><a href=\"{0}\">{0}</a></code></li>\n'.format(function.name))
+        str_list.append('                </ul>\n')
+        str_list.append('            </td>\n')
+        str_list.append('        </tr>\n')
+        str_list.append('    </tbody>\n')
+        str_list.append('</table>\n<br><hr>\n')
+    elif component.style == 'ace':
+        str_list.append('')
+    logging.debug("Contents: %s", str_list)
+    return ''.join(str_list)
+
+def document_function_tfar(function):
+    """Document the function"""
+    str_list = []
+
+    # Title
     str_list.append("<table border=\"1\">\n")
+    str_list.append("  <thead>\n")
+    str_list.append("    <tr>\n")
+    str_list.append("      <th scope=\"colgroup\" colspan=\"2\" width=\"640px\">\n")
+    str_list.append("        <a name=\"{0}\">{0}</a>\n".format(function.name))
+    str_list.append("      </th>\n")
+    str_list.append("    </tr>\n")
+    str_list.append("  </thead>\n")
     str_list.append("  <tbody>\n")
     str_list.append("    <tr>\n")
-    str_list.append("      <td>\n")
-    str_list.append("        <ul style=\"list-style-type:square\">\n")
+    str_list.append("      <td colspan=\"2\" align=\"left\">\n")
+    str_list.append("        <p>{}</p>\n".format('<br>'.join(function.description)))
+    str_list.append("      </td>\n")
+    str_list.append("    </tr>\n")
+    str_list.append("    <tr>\n")
+    str_list.append("      <td valign=\"top\" width=\"50%\">\n")
+    str_list.append("        <strong><sub>Parameters</sub></strong>\n")
+    str_list.append("        <ol start=\"0\">\n")
+    if function.arguments:
+        for argument in function.arguments:
+            if argument[0]:
+                str_list.append("          <li><kbd>{2}</kbd> - {1}</li>\n".format(*argument))
+            else:
+                str_list.append("          <kbd>{2}</kbd> - {1}\n".format(*argument))
+    else:
+        str_list.append("          None\n")
+    str_list.append("        </ol>\n")
+    str_list.append("      </td>\n")
+    str_list.append("      <td valign=\"top\" width=\"50%\">\n")
+    str_list.append("        <strong><sub>Returns</sub></strong>\n")
+    str_list.append("        <ol start=\"0\">\n")
+    if function.return_value:
+        for argument in function.return_value:
+            if argument[0]:
+                str_list.append("          <li><kbd>{2}</kbd> - {1}</li>\n".format(*argument))
+            else:
+                str_list.append("          <kbd>{2}</kbd> - {1}\n".format(*argument))
+    else:
+        str_list.append("          None\n")
+    str_list.append("        </ol>\n")
+    str_list.append("      </td>\n")
+    str_list.append("    </tr>\n")
+    str_list.append("    <tr>\n")
+    str_list.append("      <td colspan=\"2\" align=\"left\">\n")
+    str_list.append("        <strong>Example</strong>\n")
+    str_list.append("        <pre><code>{}</code></pre>\n".format(function.example))
+    str_list.append("      </td>\n")
+    str_list.append("    </tr>\n")
 
-    for function in componentfunctions:
-        str_list.append("          <li><code><a href=\"{0}\">{0}</a></code></li>\n". \
-            format(function.name))
-
-    str_list.append("        </ul>\n")
+    str_list.append("    <tr>\n")
+    str_list.append("      <td colspan=\"2\" align=\"left\">\n")
+    str_list.append("        <strong>Author(s):</strong>\n")
+    for author in function.authors:
+        str_list.append("          <li>{}</li>\n".format(author))
     str_list.append("      </td>\n")
     str_list.append("    </tr>\n")
     str_list.append("  </tbody>\n")
-    str_list.append("</table>\n<br>\n<hr>\n")
+    str_list.append("</table>\n")
+    str_list.append("\n<hr>\n")
+
     return ''.join(str_list)
-
-def document(components, debug=False):
-    """create the documentation files"""
-    if not debug:
-        os.makedirs('../docs/functions/', exist_ok=True)
-        for component in components:
-            output = os.path.join('../docs/functions/',component) + ".md"
-            with open(output, "w") as file:
-                file.write(document_contents(components[component]))
-                for function in components[component]:
-                    file.write(function.document(component))
-    else:
-        for component in components:
-            print(document_contents(components[component]))
-            for function in components[component]:
-                print(function.document(component))
-
-
-def crawl_component(component_dir, allcomponents, debug=False):
-    """Crawls through component and detects all valid functions"""
-    component_name = os.path.basename(component_dir)
-    for root, dirs, files in os.walk(component_dir):
-        for file in files:
-            if file.endswith(".sqf"):
-                file_path = os.path.join(root, file)
-
-                # Attempt to import the header from file
-                function = FunctionFile(component_dir)
-                function.import_header(file_path)
-
-                # Undergo data extraction and detailed debug
-                if function.has_header():
-                    function.process_header(debug)
-
-                    if function.is_public():
-                        # Add functions to component key (initalise key if necessary)
-                        allcomponents.setdefault(component_name,[]).append(function)
-
-                        function.feedback("Publicly documented")
-
-def main():
-    """Main"""
-    print("""
-    #########################
-    # Documenting Functions #
-    #########################
-    """)
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('directory', nargs="?", type=str, default="", \
-        help='only crawl specified component addon folder')
-    parser.add_argument('--debug', action="store_true", help='run dry without creating files')
-    args = parser.parse_args()
-
-    addonsdir = os.path.abspath(os.path.normpath(__file__ + '/../../addons'))
-    if os.path.isdir(os.path.join(addonsdir, args.directory)):
-        components = {}
-        if args.directory == "":
-            print("Directory: {}\n".format(addonsdir))
-            for folder in os.listdir(addonsdir):
-                if os.path.isdir(os.path.join(addonsdir, folder)):
-                    crawl_component(os.path.join(addonsdir, folder), components, args.debug)
-        else:
-            print("Directory: {}\n".format(os.path.join(addonsdir, args.directory)))
-            crawl_component(os.path.join(addonsdir, args.directory), components, args.debug)
-        document(components, args.debug)
-    else:
-        print("Invalid directory: {}".format(os.path.join(addonsdir, args.directory)))
 
 if __name__ == "__main__":
     main()
