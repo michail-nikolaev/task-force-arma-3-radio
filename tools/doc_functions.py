@@ -13,7 +13,7 @@ Supported header sections:
  - Public (by default function will only be documented if set to "Yes")
 
 EXAMPLES
-    doc_functions core --debug
+    doc_functions core --output tfar
         Crawl only functions in addons/core and only reports debug messages.
 
 """
