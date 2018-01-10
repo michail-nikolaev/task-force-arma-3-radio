@@ -38,7 +38,7 @@ GVAR(instanciationIsReady) = false;
 [
     {!(
         (isNil "TFAR_DefaultRadio_Rifleman_West") && {isNil "TFAR_DefaultRadio_Rifleman_East"} && {isNil "TFAR_DefaultRadio_Rifleman_Independent"} &&
-        {isNil "TFAR_givePersonalRadioToRegularSoldier"} && {isNil "TFAR_instantiate_asap"}
+        {isNil "TFAR_givePersonalRadioToRegularSoldier"} && {isNil "TFAR_instantiate_instantiateAtBriefing"}
     )},
     {
         ["TFAR_RadioRequestEvent", {
@@ -60,7 +60,7 @@ GVAR(instanciationIsReady) = false;
         }] call CBA_fnc_addEventHandler;
         GVAR(instanciationIsReady) = true;
 
-        if (TFAR_instantiate_asap) then {
+        if (TFAR_instantiate_instantiateAtBriefing) then {
             // instantiate the radio only on server
             [] call DFUNC(instanciateRadios);
         };

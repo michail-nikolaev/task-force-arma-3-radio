@@ -503,9 +503,9 @@
     {tf_independent_radio_code = GVARMAIN(radiocode_independent);}
 ] call CBA_Settings_fnc_init;
 [
-    "TFAR_instantiate_asap", 
+    "TFAR_instantiate_instantiateAtBriefing", 
     "CHECKBOX", 
-    [ELSTRING(settings,instantiateasap), ELSTRING(settings,instantiateasap_desc)], 
+    [ELSTRING(settings,instantiateAtBriefing), ELSTRING(settings,instantiateAtBriefing_desc)], 
     localize ELSTRING(settings,global), 
     false,
     1
