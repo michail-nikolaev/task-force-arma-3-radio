@@ -506,7 +506,7 @@
     "TFAR_instantiate_asap", 
     "CHECKBOX", 
     [ELSTRING(settings,instantiateasap), ELSTRING(settings,instantiateasap_desc)], 
-    "Task Force Arrowhead Radio", 
+    localize ELSTRING(settings,global), 
     false,
     1
 ] call CBA_Settings_fnc_init;

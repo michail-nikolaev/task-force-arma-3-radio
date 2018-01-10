@@ -37,8 +37,8 @@ GVAR(instanciationIsReady) = false;
 // after the default radios are set, it's save to instanciate the radios
 [
     {!(
-        (isNil "TFAR_DefaultRadio_Rifleman_West") && (isNil "TFAR_DefaultRadio_Rifleman_East") && (isNil "TFAR_DefaultRadio_Rifleman_Independent") &&
-        (isNil "TFAR_givePersonalRadioToRegularSoldier")
+        (isNil "TFAR_DefaultRadio_Rifleman_West") && {isNil "TFAR_DefaultRadio_Rifleman_East"} && {isNil "TFAR_DefaultRadio_Rifleman_Independent"} &&
+        {isNil "TFAR_givePersonalRadioToRegularSoldier"} && {isNil "TFAR_instantiate_asap"}
     )},
     {
         ["TFAR_RadioRequestEvent", {
@@ -59,6 +59,11 @@ GVAR(instanciationIsReady) = false;
             */
         }] call CBA_fnc_addEventHandler;
         GVAR(instanciationIsReady) = true;
+
+        if (TFAR_instantiate_asap) then {
+            // instantiate the radio only on server
+            [] call DFUNC(instanciateRadios);
+        };
     }
 ] call CBA_fnc_waitUntilAndExecute;
 
