@@ -22,6 +22,7 @@ enum class gameCommand {
     AddRadioTower,
     DeleteRadioTower,
     RECV_FREQS,
+    collectDebugInfo, //Async
     unknown
 };
 

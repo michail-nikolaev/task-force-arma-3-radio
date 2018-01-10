@@ -42,7 +42,13 @@ struct LISTED_INFO {
     float waveZ = 0.f;
     vehicleDescriptor vehicle;//Vehiclename and isolation
     AntennaConnection antennaConnection;
+    void operator <<(std::ostream& str) const;
 };
+
+inline std::ostream& operator<<(std::ostream &os, const LISTED_INFO& w) {
+    w.operator<<(os);
+    return os;
+}
 
 struct unitPositionPacket {
     std::string nickname;
@@ -271,7 +277,7 @@ public:
     auto getNickname() const { LockGuard_shared lock(&m_lock); return nickname; }
     void setNickname(const std::string& val) { LockGuard_exclusive lock(&m_lock); nickname = val; }
     Position3D getClientPosition() const;       
-    Position3D getClientPositionRaw() { LockGuard_shared lock(&m_lock); return clientPosition; }
+    Position3D getClientPositionRaw() const { LockGuard_shared lock(&m_lock); return clientPosition; }
     void setClientPosition(const Position3D& val) { LockGuard_exclusive lock(&m_lock); clientPosition = val; }
     auto getViewDirection() const { LockGuard_shared lock(&m_lock); return viewDirection; }
     void setViewDirection(const Direction3D& val) { LockGuard_exclusive lock(&m_lock); viewDirection = val; }
@@ -305,17 +311,13 @@ public:
 
     void addModificationLog(std::string mod);
     std::vector<std::string> getModificationLog() const;
+    void circularLog(const std::string& message);
 
+    void verboseDataLog(std::ostream& str);
 
-
-
-
-
-
-
-
-
-
+    std::vector <std::string> messages;
+    uint32_t offset{ 0 };
+    uint32_t messageCount{2048};
 
     //Types that are small enough not to need locks
     bool pluginEnabled = false;
@@ -336,8 +338,8 @@ public:
     int terrainInterception = 0;
     int objectInterception = 0;
     float voiceVolumeMultiplifier = 1.f;
-    bool isSpectating;
-    bool isEnemyToPlayer;
+    bool isSpectating{ false };
+    bool isEnemyToPlayer{ false };
     uint8_t receivingTransmission = 0; //This unit is currently receiving a transmission. Only works for local player
     std::set<std::string> receivingFrequencies;
     clientDataEffects effects;
