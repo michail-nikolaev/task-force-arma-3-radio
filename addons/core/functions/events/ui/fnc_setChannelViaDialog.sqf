@@ -9,7 +9,7 @@
   Arguments:
     0: Mouse button pressed (0,1) <NUMBER>
     1: LR radio <BOOL>
-    2: Update formatting. <STRING> (Optional)
+    2: Update formatting. <STRING> (default: nil)
 
   Return Value:
     None

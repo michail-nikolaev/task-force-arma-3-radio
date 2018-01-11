@@ -11,7 +11,7 @@
     1: radio type : Range [0,2] (0 - LR, 1 - SW, 2 - Rifleman) <NUMBER>
 
   Return Value:
-    Default Radio <STRING/OBJECT>
+    Default Radio <STRING|OBJECT>
 
   Example:
     _defaultLRRadio = [side player, 0] call TFAR_fnc_getSideRadio;

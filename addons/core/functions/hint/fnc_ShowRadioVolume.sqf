@@ -7,7 +7,7 @@
     shows the radio volume
 
   Arguments:
-    0: Radio <OBJECT/STRING>
+    0: Radio <OBJECT|STRING>
 
   Return Value:
     None

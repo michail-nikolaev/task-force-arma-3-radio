@@ -7,7 +7,7 @@
     Returns the frequency for the passed channel and radio.
 
   Arguments:
-    0: Radio <OBJECT/STRING>
+    0: Radio <OBJECT|STRING>
 
   Return Value:
     Frequency <STRING>

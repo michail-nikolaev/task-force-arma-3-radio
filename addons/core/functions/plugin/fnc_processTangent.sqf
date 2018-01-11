@@ -9,7 +9,7 @@
   Arguments:
     0: Hint text <STRING>
     1: Request string <STRING>
-    2: Hint display time - 0 won't show a hint <STRING> (Optional)
+    2: Hint display time - 0 won't show a hint <STRING> (default: 2.5)
 
   Return Value:
     None

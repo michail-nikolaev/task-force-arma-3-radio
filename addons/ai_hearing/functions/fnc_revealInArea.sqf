@@ -8,7 +8,7 @@
 
   Arguments:
     0: unit to be revealed <OBJECT>
-    1: distance <OBJECT/ARRAY>
+    1: distance <OBJECT|ARRAY>
 
   Return Value:
     None

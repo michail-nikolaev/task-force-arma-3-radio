@@ -7,7 +7,7 @@
     shows the radio info
 
   Arguments:
-    0: Radio <OBJECT/STRING>
+    0: Radio <OBJECT|STRING>
     1: is LR radio <BOOL>
 
   Return Value:

@@ -8,7 +8,7 @@
 
   Arguments:
     0: the unit <OBJECT>
-    1: the radio <STRING/ARRAY>
+    1: the radio <STRING|ARRAY>
 
   Return Value:
     children ACE actions <ARRAY>

@@ -8,7 +8,7 @@
 
   Arguments:
     0: setting name <STRING>
-    1: value <STRING/BOOL/SCALAR>
+    1: value <STRING|BOOL|SCALAR>
 
   Return Value:
     None

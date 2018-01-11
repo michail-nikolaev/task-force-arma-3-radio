@@ -7,8 +7,8 @@
     Gets the passed radio's on status or switches the radio's status if a boolean is passed as the second parameter.
 
   Arguments:
-    0: Radio <STRING/ARRAY>
-    1: On Status <BOOL> (Optional)
+    0: Radio <STRING|ARRAY>
+    1: On Status <BOOL> (default: false)
 
   Return Value:
     On Status <BOOL>

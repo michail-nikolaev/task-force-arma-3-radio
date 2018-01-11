@@ -7,7 +7,7 @@
     Sets the frequency for the channel on the passed radio.
 
   Arguments:
-    0: Radio <OBJECT/STRING>
+    0: Radio <OBJECT|STRING>
     1: Channel <NUMBER>
     2: Frequency <STRING>
 

@@ -10,7 +10,7 @@
     0: ID for custom handler <STRING>
     1: event name <STRING>
     2: Code to execute when event is fired. <CODE>
-    3: Unit to use as filter. <OBJECT> (Optional)
+    3: Unit to use as filter. <OBJECT> (default: nil)
 
   Return Value:
     Unique ID of the event handler <NUMBER>

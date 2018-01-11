@@ -11,7 +11,7 @@
     1: Property name <STRING>
 
   Return Value:
-    Value of property <NUMBER/TEXT>
+    Value of property <NUMBER|TEXT>
 
   Example:
     [(vehicle player), "TF_hasLRradio"] call TFAR_fnc_getLrRadioProperty;

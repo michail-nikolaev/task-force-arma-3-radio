@@ -9,7 +9,7 @@
   Arguments:
     0: the unit who gets the radio <OBJECT>
     1: the unit who loses the radio <OBJECT>
-    2: the radio to be taken <STRING/ARRAY>
+    2: the radio to be taken <STRING|ARRAY>
 
   Return Value:
     None

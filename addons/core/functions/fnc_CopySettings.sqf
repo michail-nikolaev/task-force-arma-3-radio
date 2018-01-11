@@ -7,8 +7,8 @@
     Copies the settings from a radio to another.
 
   Arguments:
-    0: Source Radio (SR/LR) <ARRAY/STRING>
-    1: Destination Radio (SR/LR) <ARRAY/STRING>
+    0: Source Radio (SR/LR) <ARRAY|STRING>
+    1: Destination Radio (SR/LR) <ARRAY|STRING>
 
   Return Value:
     None

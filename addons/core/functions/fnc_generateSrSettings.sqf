@@ -7,7 +7,7 @@
     Generates settings for the LR radio
 
   Arguments:
-    0: false to generate settings without generating frequencies. <BOOL> (Default: true)
+    0: false to generate settings without generating frequencies. <BOOL> (default: true)
 
   Return Value:
     0: active channel <NUMBER>

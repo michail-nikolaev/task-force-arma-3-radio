@@ -8,7 +8,7 @@
 
   Arguments:
     0: the unit <OBJECT>
-    1: without duplicates <BOOL> (Default: true)
+    1: without duplicates <BOOL> (default: true)
 
   Return Value:
     the radioitems of a unit <ARRAY>

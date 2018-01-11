@@ -7,7 +7,7 @@
     Updates the LR dialog to the channel if switched.
 
   Arguments:
-    0: Format to display channel with. Requires %1. <STRING> (Optional)
+    0: Format to display channel with. Requires %1. <STRING> (default: "CH:%1")
 
   Return Value:
     None
