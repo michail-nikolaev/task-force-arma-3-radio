@@ -288,7 +288,9 @@ int ts3plugin_init() {
     Logger::registerLogger(LoggerTypes::teamspeakClientlog, std::make_shared<TeamspeakLogger>(LogLevel::LogLevel_INFO));
 #endif
 #if !ENABLE_API_PROFILER && ENABLE_PLUGIN_LOGS
+    //#TODO disable both logs on release. Maybe add 2k ring buffered logger for /tfar full
     Logger::registerLogger(LoggerTypes::pluginCommands, std::make_shared<FileLogger>(std::string(getenv("appdata")) + "\\TS3Client\\TFAR_pluginCommands.log"));
+    Logger::registerLogger(LoggerTypes::gameCommands, std::make_shared<FileLogger>(std::string(getenv("appdata")) + "\\TS3Client\\TFAR_gameCommands.log"));
 #endif
 
     TFAR::getInstance().setPluginPath(pluginPath);
@@ -402,6 +404,7 @@ bool isPluginEnabledForUser(TSServerID serverConnectionHandlerID, TSClientID cli
     return result;
 }
 
+#pragma region VoiceProcessing
 //packet receive ->	decode -> onEditPlaybackVoiceDataEvent -> 3D positioning -> onEditPostProcessVoiceDataEvent -> mixing -> onEditMixedPlaybackVoiceDataEvent -> speaker output
 void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
     TFAR::getInstance().getPlaybackHandler()->onEditMixedPlaybackVoiceDataEvent(samples, sampleCount, channels, channelSpeakerArray, channelFillMask);
@@ -465,7 +468,12 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
     if (!isHearableInSpectator && isSeriousModeEnabled(serverConnectionHandlerID, clientID) && (!alive || !clientData->isAlive())) {
         helpers::applyGain(samples, sampleCount, channels, 0.0f);
-        LOG3DMUTE("TFAR Mute !spec && Serious && (!alive||!alive2)");
+        std::string message = "TFAR Mute L470";
+        message += " isHearableInSpectator=" + std::to_string(isHearableInSpectator);
+        message += " alive=" + std::to_string(alive);
+        message += " cdalive=" + std::to_string(clientData->isAlive());
+
+        LOG3DMUTE(message);
         return;
     }
     auto myData = clientDataDir->myClientData;
@@ -522,7 +530,14 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         }
 
     } else if (!isHearableInPureSpectator) { //.... unless we are both spectating
-        LOG3DMUTE("TFAR Mute !PureSpec or spec or dist");
+
+        std::string message = "TFAR Mute L534";
+        message += " isSpectator=" + std::to_string(isSpectator);
+        message += " isNotHearableInNonPureSpectator=" + std::to_string(isNotHearableInNonPureSpectator);
+        message += " distanceFromClient_=" + std::to_string(distanceFromClient_);
+        message += " <= voiceVolume=" + std::to_string(clientData->voiceVolume + 15);
+
+        LOG3DMUTE(message);
         memset(samples, 0, channels * sampleCount * sizeof(short));
     }
 
@@ -693,6 +708,9 @@ void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHa
     *volume = 1.0f;	// custom gain applied
 }
 
+#pragma endregion VoiceProcessing
+
+#pragma region pluginCommands
 /* Clientlib rare */
 void ts3plugin_onClientSelfVariableUpdateEvent(uint64 serverConnectionHandlerID, int flag, const char* oldValue, const char* newValue) {
     if (flag == CLIENT_FLAG_TALKING && TFAR::getInstance().getCurrentlyInGame()) {
@@ -926,3 +944,5 @@ void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char
         Logger::log(LoggerTypes::teamspeakClientlog, "Plugin command unknown ID", LogLevel_ERROR);
     }
 }
+
+#pragma endregion pluginCommands
