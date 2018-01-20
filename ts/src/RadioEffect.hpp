@@ -208,26 +208,23 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
     }
     float* buffer = new float[sampleCount];
     for (int i = 0; i < sampleCount * channels; i += channels) {
-        // prepare mono for radio						
-        long long no3D = 0;
+        // prepare mono for radio
+        float monoCombined = 0.f;
         for (int j = 0; j < channels; j++) {
-            no3D += samples[i + j];
+            monoCombined += samples[i + j];
         }
 
-        short to_process = (short) (no3D / channels);
-        buffer[i / channels] = ((float) to_process / (float) SHRT_MAX) * gain;
+        buffer[i / channels] = (static_cast<float>(monoCombined) * gain) / (32766.f * channels);
     }
     effect->process(buffer, sampleCount);
-    for (int i = 0; i < sampleCount * channels; i += channels) {
-        // put mixed output to stream			
-        for (int j = 0; j < channels; j++) samples[i + j] = 0;
 
+    memset(samples, 0, sampleCount * channels * sizeof(short));
+    for (int i = 0; i < sampleCount * channels; i += channels) {
+        // put mixed output to stream
+
+        float sample = buffer[i / channels];
+        auto newValue = static_cast<short>(std::clamp(sample, -1.f, 1.f) * 32766.f);
         for (int j = startChannel; j < endChannel; j++) {
-            float sample = buffer[i / channels];
-            short newValue;
-            if (sample > 1.0) newValue = SHRT_MAX;
-            else if (sample < -1.0) newValue = SHRT_MIN;
-            else newValue = (short) (sample * (SHRT_MAX - 1));
             samples[i + j] = newValue;
         }
     }

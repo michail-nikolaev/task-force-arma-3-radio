@@ -171,6 +171,18 @@ void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const ch
         helpers::applyGain(samples, sampleCount, channels, gain);
     });
 
+
+    //processors.push_back([gain](short* samples, size_t sampleCount, uint8_t channels) {
+    //    std::ofstream f("P:/out.raw", std::ios::binary);
+    //    for (size_t i = sampleCount; i < sampleCount * channels; i++)
+    //        samples[i] = std::numeric_limits<short>::lowest();
+    //
+    //
+    //    for (size_t i = 0; i < sampleCount * channels; i++)
+    //        f.write((char*)&samples[i],2);
+    //    f.close();
+    //});
+
     auto myClientData = clientDataDir->myClientData;
 
     execAtReturn ret([this, &id, &to_play, &processors]() {
@@ -213,16 +225,17 @@ void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, const ch
         }
 
         //3D Positioning
-        processors.push_back([position, myClientDataWeak = std::weak_ptr<clientData>(myClientData), id](short* samples, size_t sampleCount, uint8_t channels) {
-            auto myClientData = myClientDataWeak.lock();
-            if (!myClientData) return;
-            auto pClunk = myClientData->effects.getClunk(id);
-            auto relativePos = myClientData->getClientPosition().directionTo(position);
-            auto viewDirection = myClientData->getViewDirection().toAngle();
-            pClunk->process(samples, channels, static_cast<int>(sampleCount), relativePos, viewDirection); //interaural time difference
-            helpers::applyILD(samples, sampleCount, channels, relativePos, viewDirection);	//interaural level difference
-            myClientData->effects.removeClunk(id);
-        });
+        if (!position.isNull())
+            processors.push_back([position, myClientDataWeak = std::weak_ptr<clientData>(myClientData), id](short* samples, size_t sampleCount, uint8_t channels) {
+                auto myClientData = myClientDataWeak.lock();
+                if (!myClientData) return;
+                auto pClunk = myClientData->effects.getClunk(id);
+                auto relativePos = myClientData->getClientPosition().directionTo(position);
+                auto viewDirection = myClientData->getViewDirection().toAngle();
+                pClunk->process(samples, channels, static_cast<int>(sampleCount), relativePos, viewDirection); //interaural time difference
+                helpers::applyILD(samples, sampleCount, channels, relativePos, viewDirection); //interaural level difference
+                myClientData->effects.removeClunk(id);
+            });
 
     } else {
         //muting for stereo mode
