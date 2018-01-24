@@ -814,7 +814,10 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     if (!myClientData) //if we don't know who we are we also can't hear anything
         return;
 
-    senderClientData->circularLog("Inc Tangent" + command);
+    if (myClientData == senderClientData) //We received our own tangent press.
+        return;
+
+    senderClientData->circularLog("Inc Tangent " + command);
 
     auto time = std::chrono::system_clock::now();
     bool pressed = (tokens[1] == "PRESSED");
@@ -891,10 +894,24 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
         recvLog << "RECV\n##\n" << listedInfo << "##\n";
 
         if (alive && listedInfo.on != receivingRadioType::LISTED_ON_NONE && listedInfo.on != receivingRadioType::LISTED_ON_INTERCOM) {
+            auto vehicleDescriptor = myClientData->getVehicleDescriptor();
+
+            float vehicleVolumeLoss = 0.f;
+            bool vehicleCheck = true;
+
+            if (listedInfo.on == receivingRadioType::LISTED_ON_GROUND) {
+                vehicleVolumeLoss = std::clamp(vehicleDescriptor.vehicleIsolation + listedInfo.vehicle.vehicleIsolation, 0.0f, 0.99f);
+                vehicleCheck = (vehicleDescriptor.vehicleName == listedInfo.vehicle.vehicleName);
+            }
 
             float gain = helpers::volumeMultiplifier(static_cast<float>(listedInfo.volume)) * TFAR::getInstance().m_gameData.globalVolume;
             recvLog << "gain " << gain << "\n";
             recvLog << "gvol " << TFAR::getInstance().m_gameData.globalVolume << "\n";
+            if (listedInfo.on == receivingRadioType::LISTED_ON_GROUND) {
+                recvLog << "vehicleCheck " << vehicleCheck << "\n";
+                recvLog << "vehicleVolumeLoss " << vehicleVolumeLoss << "\n";
+            }
+            
 
             if (playPressed && !transmissionCounted) {
                 myClientData->receivingTransmission += 1; //Set that we are receiving a transmission. For the EventHandler
@@ -905,13 +922,13 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
 
             switch (PTTDelayArguments::stringToSubtype(subtype)) {
                 case PTTDelayArguments::subtypes::digital:
-                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/sw/remote_start" : "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, 0.f, true, listedInfo.stereoMode);
+                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/sw/remote_start" : "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
                 case PTTDelayArguments::subtypes::digital_lr:
-                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/lr/remote_start" : "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, 0.f, true, listedInfo.stereoMode);
+                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/lr/remote_start" : "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
                 case PTTDelayArguments::subtypes::airborne:
-                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/ab/remote_start" : "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, 0.f, true, listedInfo.stereoMode);
+                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/ab/remote_start" : "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
             }
 
@@ -946,11 +963,11 @@ void processPluginCommand(std::string command) {
         auto clientData = clientDataDir->getClientData(nickname);
         if (!clientData) return; //Don't know who the sender is.. so we don't care
 
-        std::string volume = tokens[2];
+        const std::string volume = tokens[2];
         bool start = helpers::isTrue(tokens[3]);
         bool myCommand = clientData == clientDataDir->myClientData;
 
-        clientData->voiceVolume = std::stoi(volume.c_str());
+        clientData->voiceVolume = std::stoi(volume);
         clientData->pluginEnabled = true;
         clientData->pluginEnabledCheck = std::chrono::system_clock::now();
         clientData->clientTalkingNow = start;
