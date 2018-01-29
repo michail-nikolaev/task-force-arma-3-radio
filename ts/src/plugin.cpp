@@ -466,6 +466,21 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     bool isHearableInPureSpectator = clientDataDir->myClientData->isSpectating && clientData->isSpectating;
     bool isHearableInSpectator = isHearableInPureSpectator || !isNotHearableInNonPureSpectator;
 
+
+
+    bool filterWeird = false;
+    for (size_t i = 0; i < sampleCount * channels; i++) {
+        if (samples[i] > 20000 || samples[i] < -20000) {
+            filterWeird = true;
+            break;
+        }
+    }
+
+    if (filterWeird) {
+        Teamspeak::printMessageToCurrentTab("Weird audio PRECHECK FAIL Pre voice (This is bad)");
+    }
+
+
     if (!isHearableInSpectator && isSeriousModeEnabled(serverConnectionHandlerID, clientID) && (!alive || !clientData->isAlive())) {
         helpers::applyGain(samples, sampleCount, channels, 0.0f);
         std::string message = "TFAR Mute L470";
@@ -542,10 +557,24 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     }
 
 
+
+    filterWeird = false;
+    for (size_t i = 0; i < sampleCount * channels; i++) {
+        if (samples[i] > 20000 || samples[i] < -20000) {
+            filterWeird = true;
+            break;
+        }
+    }
+
+    if (filterWeird) {
+        Teamspeak::printMessageToCurrentTab("Weird audio PRECHECK FAIL Post voice (This is bad)");
+    }
+
+
     //#### RADIOS AND SPEAKERS
 
     // process radio here
-    processCompressor(&clientData->effects.compressor, original_buffer, channels, sampleCount);
+    //processCompressor(&clientData->effects.compressor, original_buffer, channels, sampleCount); //#FIXME reenable
 
     std::vector<LISTED_INFO> listed_info = isSpectator ? std::vector<LISTED_INFO>{} : clientData->isOverRadio(myData, false, false, false);
     float radioDistance = myData->effectiveDistanceTo(clientData);
@@ -557,9 +586,12 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         if (volumeLevel < 0.2) {
             LOG3DMUTE("VOL Low b=" + std::to_string(info.volume) + " mp =" + std::to_string(volumeLevel) + " efmp =" + std::to_string(volumeLevel* 0.35f));
         }
+
+        helpers::applyGain(radio_buffer, sampleCount, channels, volumeLevel);//#FIXME remove
         std::stringstream processLog;
 
-        if (info.on < receivingRadioType::LISTED_ON_NONE) {//don't do for onGround or Intercom
+        //#FIXME reenable
+        if (false && info.on < receivingRadioType::LISTED_ON_NONE) {//don't do for onGround or Intercom
 
             //Volume modifier for lowered headset - Placed here because this part of code only applies to actual non-speaker Radios
             if (TFAR::config.get<bool>(Setting::headsetLowered)) {
@@ -608,6 +640,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                     break;
             }
         }
+
         if (info.on == receivingRadioType::LISTED_ON_GROUND) {
 
             float distance_from_radio = myPosition.distanceTo(info.pos);
@@ -636,24 +669,6 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
             processRadioEffect(radio_buffer, channels, sampleCount, TFAR::config.get<float>(Setting::intercomVolume), clientData->effects.getLrRadioEffect("intercom"), stereoMode::stereo);
         }
 
-        bool filterWeird = false;
-        for (size_t i = 0; i < sampleCount * channels; i++) {
-            if (samples[i] > 20000 || samples[i] < -20000) {
-                filterWeird = true;
-                break;
-            }
-        }
-
-        if (filterWeird) {
-            Teamspeak::printMessageToCurrentTab(("Weird audio process ;" + processLog.str()).c_str());
-            LOG3DMUTE("Weird audio process ;" + processLog.str());
-            clientData->effects.resetRadioEffect();
-        }
-
-
-
-
-
 
         helpers::mix(samples, radio_buffer, sampleCount, channels);//Mix current Radio into samples
 
@@ -665,6 +680,20 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
     helpers::applyGain(samples, sampleCount, channels, globalGain);
 
+
+    filterWeird = false;
+    for (size_t i = 0; i < sampleCount * channels; i++) {
+        if (samples[i] > 20000 || samples[i] < -20000) {
+            filterWeird = true;
+            break;
+        }
+    }
+
+    if (filterWeird) {
+        Teamspeak::printMessageToCurrentTab("Weird audio process post?;");
+        LOG3DMUTE("Weird audio process ;");
+        clientData->effects.resetRadioEffect();
+    }
 
 }
 
