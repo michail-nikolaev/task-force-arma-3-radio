@@ -830,6 +830,7 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
         if (!clientDataDir) return 1;
         clientDataDir->forEachClient([](const std::shared_ptr<clientData>& cli) {
             cli->effects.resetRadioEffect();
+            ts3Functions.printMessageToCurrentTab((std::string("filter reset ") + cli->getNickname()).c_str());
         });
         return 0; /* Plugin handled command */
     }

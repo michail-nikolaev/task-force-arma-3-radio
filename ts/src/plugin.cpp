@@ -559,7 +559,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     //#### RADIOS AND SPEAKERS
 
     // process radio here
-    //processCompressor(&clientData->effects.compressor, original_buffer, channels, sampleCount); //#FIXME reenable
+    processCompressor(&clientData->effects.compressor, original_buffer, channels, sampleCount); //#FIXME reenable
 
     std::vector<LISTED_INFO> listed_info = isSpectator ? std::vector<LISTED_INFO>{} : clientData->isOverRadio(myData, false, false, false);
     float radioDistance = myData->effectiveDistanceTo(clientData);
@@ -574,6 +574,19 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
         helpers::applyGain(radio_buffer, sampleCount, channels, volumeLevel);//#FIXME remove
         std::stringstream processLog;
+        if (info.on < receivingRadioType::LISTED_ON_NONE) {//#FIXME remove
+            if (info.stereoMode == stereoMode::leftOnly) {
+                for (size_t i = 0; i < sampleCount * channels; i += channels) {
+                    radio_buffer[i + 1] = 0;
+                }
+            } else if (info.stereoMode == stereoMode::rightOnly) {
+                for (size_t i = 0; i < sampleCount * channels; i += channels) {
+                    radio_buffer[i] = 0;
+                }
+            }
+        }
+
+
 
         //#FIXME reenable
         if (false && info.on < receivingRadioType::LISTED_ON_NONE) {//don't do for onGround or Intercom
