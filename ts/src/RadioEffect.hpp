@@ -216,7 +216,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 
         buffer[i / channels] = (static_cast<float>(monoCombined) * gain) / (32766.f * channels);
     }
-    effect->process(buffer, sampleCount);
+    //effect->process(buffer, sampleCount);//#TODO reenable
 
     memset(samples, 0, sampleCount * channels * sizeof(short));
     for (int i = 0; i < sampleCount * channels; i += channels) {
