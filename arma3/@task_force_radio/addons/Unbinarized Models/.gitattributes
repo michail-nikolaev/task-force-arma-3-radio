@@ -1,1 +1,0 @@
-*.p3d filter=lfs diff=lfs merge=lfs -text

@@ -3,9 +3,10 @@
 **Task Force Radio Version:** `x.x.x` (stable / dev + commit hash)
 
 **Mods:**
-- `@CBA_A3`
-- `@task_force_radio
-
+```
+- @CBA_A3
+- @task_force_radio
+```
 **Description:**
 - Add a detailed description of the error. This makes it easier for us to fix the issue.
 
@@ -13,7 +14,7 @@
 - Add the steps needed to reproduce the issue.
 
 **Where did the issue occur?**
-- Dedicated / Self-Hosted Multiplayer
+- Dedicated / Self-Hosted Multiplayer / Editor (Multiplayer)
 
 **RPT log file:**
 - Add a link ([gist](https://gist.github.com) or [pastebin](http://pastebin.com)) to the client and/or server RPT file. An instruction to find your RPT files can be found [here](https://community.bistudio.com/wiki/Crash_Files#Arma_3).
