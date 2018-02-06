@@ -2,7 +2,6 @@
 
 if (!isMultiplayer && !is3DENMultiplayer) exitWith {}; //Don't do anything in Singleplayer
 
-
 if (hasInterface) then {
     [   {time > 0 && !(isNull player)},
         TFAR_fnc_clientInit

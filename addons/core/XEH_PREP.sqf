@@ -83,7 +83,7 @@ PREP(haveSWRadio);
 // I
 PREP(initKeybinds);
 PREP(initCBASettings);
-PREP_SUB(server,instanciateRadios);
+PREP_SUB(server,instanciateRadio);
 PREP_SUB(hint,inWaterHint);
 PREP(isAbleToUseRadio);
 PREP(isBackpackRadio);
@@ -136,13 +136,13 @@ PREP(processPlayerPositions);
 PREP_SUB(events\keys,processCuratorKey);
 PREP_SUB(plugin,processTangent);
 PREP(processRespawn);
+PREP_SUB(server,processRadiosServer);
 // R
 PREP(radioOn);
 PREP_SUB(events\handler,removeEventHandler);
+PREP_SUB(server,replaceSwRadiosServer);
 PREP(radioReplaceProcess);
 PREP_SUB(plugin,releaseAllTangents);
-PREP(requestRadios);
-PREP(radioToRequestCount);
 PREP(radiosList);
 PREP(radiosListSorted);
 // S

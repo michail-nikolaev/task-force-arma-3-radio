@@ -20,22 +20,6 @@
         call TFAR_fnc_serverInit;
 */
 
-["TFAR_RadioRequestEvent", {
-    diag_log format["TFAR_RadioRequestEvent %1 %2",_this,diag_tickTime];//#TODO remove
-    params [["_radio_request",[]],"_player"];
-    private _response = [];
-    if (_radio_request isEqualType []) then {
-        _response = (_radio_request call TFAR_fnc_instanciateRadios);
-    } else {
-        _response = "ERROR:47";
-        diag_log format ["TFAR - ERROR:47 - Request Content: %1; Requested By: %2", _radio_reqest, _player];
-    };
-    diag_log format["Send TFAR_RadioRequestResponseEvent %1 %2",_response,diag_tickTime];//#TODO remove
-    //Answer request _response is an array of ["baseclass_ID","baseclass_ID"] of all radios requested
-    ["TFAR_RadioRequestResponseEvent", [_response], _player] call CBA_fnc_targetEvent;
-}] call CBA_fnc_addEventHandler;
-
-
 //Handle API variables
 
 //Deprecated ones first.
@@ -112,3 +96,5 @@ if (TFAR_SameLRFrequenciesForSide) then {
         };
     };
 } remoteExec ["BIS_fnc_spawn", -2, true];
+
+{_x call TFAR_fnc_processRadiosServer} forEach playableUnits;

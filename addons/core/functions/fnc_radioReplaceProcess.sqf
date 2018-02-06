@@ -40,5 +40,20 @@ if (GVAR(use_saved_lr_setting) && {isNil QGVAR(saved_active_lr_settings)}) then 
 };
 
 if ((time - TF_respawnedAt > 5) and {alive TFAR_currentUnit}) then {
-    false call DFUNC(requestRadios);
+    private _hasPrototype = false;
+    private _allItems = (assignedItems TFAR_currentUnit);
+    _allItems append ((getItemCargo (uniformContainer TFAR_currentUnit)) select 0);
+    _allItems append ((getItemCargo (vestContainer TFAR_currentUnit)) select 0);
+    _allItems append ((getItemCargo (backpackContainer TFAR_currentUnit)) select 0);
+    _allItems = _allItems arrayIntersect _allItems;//Remove duplicates
+
+    for "_i" from 0 to (count _allItems - 1) do {
+        _hasPrototype = (_allItems select _i) call TFAR_fnc_isPrototypeRadio;
+        if(_hasPrototype) then { breakOut "" };
+    };
+    
+    if (_hasPrototype) then {
+        private _classes = TFAR_currentUnit call TFAR_fnc_getDefaultRadioClasses;
+        [TFAR_currentUnit, _classes select 2] remoteExec ["TFAR_fnc_replaceSwRadiosServer", 2];
+    };
 };

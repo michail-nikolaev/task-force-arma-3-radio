@@ -16,28 +16,37 @@ GVAR(WeaponConfigCacheNamespace) = false call CBA_fnc_createNamespace;
 VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Name,"TaskForceRadio");
 VARIABLE_DEFAULT(TFAR_Teamspeak_Channel_Password,"123");
 
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_West,"TFAR_rt1523g");
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_East,"TFAR_mr3000");
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_Independent,"TFAR_anprc155");
+
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Personal_West,"TFAR_anprc152");
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Personal_East,"TFAR_fadak");
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Personal_Independent,"TFAR_anprc148jem");
+
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Rifleman_West,"TFAR_rf7800str");
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Rifleman_East,"TFAR_pnr1000a");
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Rifleman_Independent,"TFAR_anprc154");
+
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_West,"TFAR_anarc210");
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_East,"TFAR_mr6000l");
+VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_Independent,"TFAR_anarc164");
+
+VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
+
+TF_speakerDistance = 20;
+TF_speak_volume_meters = TFAR_VOLUME_NORMAL;
+TF_min_voice_volume = TFAR_VOLUME_WHISPERING;
+TF_max_voice_volume = TFAR_VOLUME_YELLING;
+
+TF_UNDERWATER_RADIO_DEPTH = -3;//Depth at which LR Radio will still work. Also underwater vehicle LR Radios
+TF_MAX_SW_VOLUME = 10;
+TF_MAX_LR_VOLUME = 10;
 
 if (hasInterface) then {//Clientside Variables
     call TFAR_fnc_initKeybinds;
     //PreInit variablesy
 
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_West,"TFAR_rt1523g");
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_East,"TFAR_mr3000");
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Backpack_Independent,"TFAR_anprc155");
-
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Personal_West,"TFAR_anprc152");
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Personal_East,"TFAR_fadak");
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Personal_Independent,"TFAR_anprc148jem");
-
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Rifleman_West,"TFAR_rf7800str");
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Rifleman_East,"TFAR_pnr1000a");
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Rifleman_Independent,"TFAR_anprc154");
-
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_West,"TFAR_anarc210");
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_East,"TFAR_mr6000l");
-    VARIABLE_DEFAULT(TFAR_DefaultRadio_Airborne_Independent,"TFAR_anarc164");
-
-    VARIABLE_DEFAULT(TF_terrain_interception_coefficient,7.0);
 
     MUTEX_INIT(TF_radio_request_mutex);
 
@@ -51,10 +60,7 @@ if (hasInterface) then {//Clientside Variables
     TF_curator_backpack_2 = nil;
     TF_curator_backpack_3 = nil;
 
-    TF_MAX_SW_VOLUME = 10;
-    TF_MAX_LR_VOLUME = 10;
 
-    TF_UNDERWATER_RADIO_DEPTH = -3;//Depth at which LR Radio will still work. Also underwater vehicle LR Radios
 
     TF_new_line = toString [0xA];
     TF_vertical_tab = toString [0xB];
@@ -66,11 +72,7 @@ if (hasInterface) then {//Clientside Variables
     TF_tangent_sw_pressed = false;
     TF_tangent_lr_pressed = false;
 
-    TF_speakerDistance = 20;
     TF_speak_volume_level = "normal";
-    TF_speak_volume_meters = TFAR_VOLUME_NORMAL;
-    TF_min_voice_volume = TFAR_VOLUME_WHISPERING;
-    TF_max_voice_volume = TFAR_VOLUME_YELLING;
     TF_sw_dialog_radio = nil;
 
     TF_last_speak_volume_level = TF_speak_volume_level;

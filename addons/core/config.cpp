@@ -102,7 +102,14 @@ class CfgUIGrids { //Thanks ACE guys!
     };
 };
 
-
+class CfgRemoteExec
+{
+        class Functions
+        {
+                class TFAR_fnc_processRadiosServer {allowedTargets = 2;};   //execute only on server 
+                class TFAR_fnc_replaceSwRadiosServer {allowedTargets = 2;};   //execute only on server 
+        };
+};
 #include "Cfg3DEN.hpp"
 #include "CfgEventHandlers.hpp"
 #include "RadioDialogControls.hpp"
