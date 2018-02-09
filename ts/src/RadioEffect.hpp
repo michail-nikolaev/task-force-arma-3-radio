@@ -90,12 +90,13 @@ public:
 
         for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);
         for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], errorLevel);
-        for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], (float) (0.3f * (1.0f - errorLevel) * x));
+        //#FIXME reenable
+        //for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], (float) (0.3f * (1.0f - errorLevel) * x));
 
-        processFilter(filterSpeakerHP, buffer, samplesNumber);
-        processFilter(filterSpeakerLP, buffer, samplesNumber);
+        //processFilter(filterSpeakerHP, buffer, samplesNumber);
+        //processFilter(filterSpeakerLP, buffer, samplesNumber);
 
-        for (int q = 0; q < samplesNumber; q++) buffer[q] *= 30.f;
+        //for (int q = 0; q < samplesNumber; q++) buffer[q] *= 30.f;
     }
 
 
@@ -216,7 +217,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 
         buffer[i / channels] = (static_cast<float>(monoCombined) * gain) / (32766.f * channels);
     }
-    //effect->process(buffer, sampleCount);//#TODO reenable
+    effect->process(buffer, sampleCount);//#TODO reenable
 
     memset(samples, 0, sampleCount * channels * sizeof(short));
     for (int i = 0; i < sampleCount * channels; i += channels) {
