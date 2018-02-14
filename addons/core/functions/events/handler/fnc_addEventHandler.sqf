@@ -22,7 +22,7 @@
     }, player] call TFAR_fnc_addEventHandler;
 
   Public: Yes
- */
+*/
 
 params ["_customID", "_eventName", "_code", ["_filterUnit",ObjNull]];
 private "_eventID";//don't "optimize" this by putting private before the variable assignment

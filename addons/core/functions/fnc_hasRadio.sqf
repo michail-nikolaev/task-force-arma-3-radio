@@ -16,7 +16,7 @@
     _hasRadio = [_player] call TFAR_fnc_hasRadio;
 
   Public: Yes
- */
+*/
 
 params [["_unit", objNull, [objNull]]];
 

@@ -17,7 +17,7 @@
     [call TFAR_fnc_activeLrRadio, "NewEncryptionCode"] call TFAR_fnc_setLrRadioCode;
 
   Public: Yes
- */
+*/
 params [["_radio", [], [[]], 2], ["_value", "", [""]]];
 _radio params ["_radio_object", "_radio_qualifier"];
 

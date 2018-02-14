@@ -18,6 +18,6 @@
     };
 
   Public: Yes
- */
+*/
 
 (("task_force_radio_pipe" callExtension format ["IS_SPEAKING	%1", name _this]) == "SPEAKING")

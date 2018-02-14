@@ -16,7 +16,7 @@
     _frequency = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwFrequency;
 
   Public: Yes
- */
+*/
 
 params[["_radio", "", [""]]];
 

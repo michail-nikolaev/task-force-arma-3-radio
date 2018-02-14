@@ -18,7 +18,7 @@
     [parameter] call TFAR_fnc_preparePositionCoordinates;
 
   Public: No
- */
+*/
 params ["_unit", "_nearPlayer","_unitName"];
 
 private _pos = call (_unit getVariable ["TF_fnc_position", TFAR_fnc_defaultPositionCoordinates]); //_this get's forwarded without specifying it - perf improvement

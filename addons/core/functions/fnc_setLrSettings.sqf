@@ -20,7 +20,7 @@
     [call TFAR_fnc_activeLrRadio, _settings] call TFAR_fnc_setLrSettings;
 
   Public: Yes
- */
+*/
 
 params [["_radio", [], [[]], 2], ["_value", [], [[]]]];
 _radio params ["_radio_object", "_radio_qualifier"];

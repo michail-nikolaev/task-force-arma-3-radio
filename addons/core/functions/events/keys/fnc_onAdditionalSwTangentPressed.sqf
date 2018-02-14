@@ -16,7 +16,7 @@
     call TFAR_fnc_onAdditionalSwTangentPressed;
 
   Public: No
- */
+*/
 //#TODO overhaul Additional Tangent functions
 
 

@@ -16,7 +16,7 @@
     _vehicleID = player call TFAR_fnc_vehicleID;
 
   Public: Yes
- */
+*/
 params ["_unit"];
 
 if (isNull (objectParent _unit)) exitWith {"no"};//Unit is not in vehicle

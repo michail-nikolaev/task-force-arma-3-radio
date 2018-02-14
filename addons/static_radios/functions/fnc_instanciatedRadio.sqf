@@ -16,7 +16,7 @@
     _this call TFAR_static_radios_fnc_instanciatedRadio;
 
   Public: No
- */
+*/
 params ["_radioContainer"];
 
 _radioClass = (((getItemCargo _radioContainer) select 0) select 0);

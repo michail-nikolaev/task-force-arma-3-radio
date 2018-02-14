@@ -8,7 +8,7 @@
 
   Arguments:
     0: frequencies input <STRING>
- 
+
   Return Value:
     cleaned input <STRING>
 
@@ -16,7 +16,7 @@
     ["123 123 , 332 23"] call TFAR_fnc_settingForceArray;
 
   Public: No
- */
+*/
 
 params [["_input", "", [""]]];
 

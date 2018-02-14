@@ -16,6 +16,6 @@
     call TFAR_fnc_getTransmittingDistanceMultiplicator;
 
   Public: Yes
- */
+*/
 
 TFAR_currentUnit getVariable ["tf_sendingDistanceMultiplicator", 1.0];

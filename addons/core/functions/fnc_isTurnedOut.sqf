@@ -16,7 +16,7 @@
     [_unit] call TFAR_fnc_isTurnedOut;
 
   Public: No
- */
+*/
 
 params ["_unit"];
 

@@ -2,13 +2,13 @@
 
 /*
   Name: TFAR_fnc_onLRTangentPressed
- 
+
   Author: NKey
     Fired when the keybinding for LR is pressed.
- 
+
   Arguments:
     None
- 
+
   Return Value:
     Whether or not the event was handled <BOOL>
 
@@ -16,7 +16,7 @@
     call TFAR_fnc_onLRTangentPressed;
 
   Public: No
- */
+*/
 if (time - TF_last_lr_tangent_press < 0.1) exitWith {TF_last_lr_tangent_press = time;true};
 TF_last_lr_tangent_press = time;
 if ((TF_tangent_lr_pressed or TF_tangent_sw_pressed) or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveLRRadio}) exitWith {true};

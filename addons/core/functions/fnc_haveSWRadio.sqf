@@ -16,7 +16,7 @@
     _hasSW = call TFAR_fnc_haveSWRadio;
 
   Public: Yes
- */
+*/
 
 //Caching
 private _lastCache = GVAR(VehicleConfigCacheNamespace) getVariable "TFAR_fnc_haveSWRadio_lastCache";

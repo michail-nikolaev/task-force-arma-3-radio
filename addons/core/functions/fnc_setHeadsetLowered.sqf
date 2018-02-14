@@ -16,7 +16,7 @@
     true call TFAR_fnc_setHeadsetLowered;
 
   Public: Yes
- */
+*/
 params [["_lowered", false, [false]]];
 
 //Using Plugin settngs framework because its easier to use for this. And doesn't cludder FREQ command

@@ -16,7 +16,7 @@
     _radios = TFAR_currentUnit call TFAR_fnc_radiosList;
 
   Public: Yes
- */
+*/
 
 private _fetchItems = {
     private _allItems = (assignedItems _this);

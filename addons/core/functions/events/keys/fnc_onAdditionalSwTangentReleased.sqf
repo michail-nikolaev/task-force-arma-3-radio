@@ -16,7 +16,7 @@
     call TFAR_fnc_onAdditionalSwTangentReleased;
 
   Public: No
- */
+*/
 
 
 if ((!TF_tangent_sw_pressed) or {!alive TFAR_currentUnit}) exitWith {true};

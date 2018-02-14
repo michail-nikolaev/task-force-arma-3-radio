@@ -18,7 +18,7 @@
     [player, true, "Guy"] call TFAR_fnc_sendPlayerInfo;
 
   Public: Yes
- */
+*/
 
 params ["_player"];
 

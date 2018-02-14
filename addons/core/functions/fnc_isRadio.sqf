@@ -16,7 +16,7 @@
     _isRadio = "NotARadioClass" call TFAR_fnc_isRadio;
 
   Public: Yes
- */
+*/
 
 private _cacheName = (_this+"tf_radiobool");
 private _cachedEntry = GVAR(WeaponConfigCacheNamespace) getVariable _cacheName;

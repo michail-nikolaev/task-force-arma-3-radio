@@ -16,6 +16,6 @@
     player call TFAR_fnc_releaseAllTangents;
 
   Public: Yes
- */
+*/
 
 "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name _this]);//Async call will always return "OK"

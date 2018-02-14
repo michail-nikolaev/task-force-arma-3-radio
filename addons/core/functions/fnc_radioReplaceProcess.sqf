@@ -16,7 +16,7 @@
     [TFAR_fnc_radioReplaceProcess, 2] call CBA_fnc_addPerFrameHandler;
 
   Public: Yes
- */
+*/
 
 if !(GVAR(SettingsInitialized)) exitWith {};
 

@@ -16,7 +16,7 @@
     _stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getCurrentSwStereo;
 
   Public: Yes
- */
+*/
 params[["_radio", "", [""]]];
 
 if ((_this call TFAR_fnc_getAdditionalSwChannel) == (_this call TFAR_fnc_getSwChannel)) exitWith {

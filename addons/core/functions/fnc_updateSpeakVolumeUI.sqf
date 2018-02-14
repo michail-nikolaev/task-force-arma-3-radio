@@ -16,7 +16,7 @@
     call TFAR_fnc_updateSpeakVolumeUI;
 
   Public: Yes
- */
+*/
 
 _icon = "";
 _display = uiNamespace getVariable [QGVAR(HUDVolumeIndicatorRscDisplay),displayNull];

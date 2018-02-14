@@ -16,7 +16,7 @@
     _isolated = (vehicle player) call TFAR_fnc_isVehicleIsolated;
 
   Public: Yes
- */
+*/
 params ["_vehicle"];
 
 private _isolated = _vehicle getVariable ["TFAR_isolatedAmount", scriptNull];

@@ -17,7 +17,7 @@
     ["half_duplex",true] call TFAR_fnc_setPluginSetting;
 
   Public: Yes
- */
+*/
 
 //This is needed because CBA will call SettingChanged eventhandler in briefing screen.. Which would init the Plugin too soon
 if (getClientStateNumber != 10) exitWith {"Exit if ran before mission started"};

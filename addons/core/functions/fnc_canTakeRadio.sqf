@@ -18,7 +18,7 @@
     [_target, _player, "TFAR_anprc_152"] call TFAR_fnc_canTakeRadio;
 
   Public: Yes
- */
+*/
 
 params ["_target", "_unit", "_radio"];
 

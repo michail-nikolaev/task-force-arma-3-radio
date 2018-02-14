@@ -16,7 +16,7 @@
     call TFAR_fnc_processLRStereoKeys;
 
   Public: No
- */
+*/
 
 params ["_lr_stereo_number"];
 

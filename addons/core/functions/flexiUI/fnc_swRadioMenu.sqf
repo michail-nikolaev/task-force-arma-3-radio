@@ -16,7 +16,7 @@
     call TFAR_fnc_swRadioMenu;
 
   Public: No
- */
+*/
 
 private _menu = [];
 if ((count (TFAR_currentUnit call TFAR_fnc_radiosList) > 1) or {(count (TFAR_currentUnit call TFAR_fnc_radiosList) == 1) and !(call TFAR_fnc_haveSWRadio)}) then {

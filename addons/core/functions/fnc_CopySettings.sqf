@@ -20,7 +20,7 @@
     [(call TFAR_fnc_activeSwRadio),"TFAR_anprc148jem_20"] call TFAR_fnc_copySettings
 
   Public: Yes
- */
+*/
 
 params ["_source", "_destination"];
 

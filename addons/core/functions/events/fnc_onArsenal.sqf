@@ -17,7 +17,7 @@
     "PreOpen" call TFAR_fnc_onArsenal;
 
   Public: No
- */
+*/
 
 params ["_eventType"];
 

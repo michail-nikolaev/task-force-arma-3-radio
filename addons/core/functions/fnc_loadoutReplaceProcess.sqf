@@ -16,7 +16,7 @@
     call TFAR_fnc_loadoutReplaceProcess;
 
   Public: Yes
- */
+*/
 scriptName "TFAR_fnc_loadoutReplaceProcess";
 
 private _loadouts = profileNamespace getVariable ["bis_fnc_saveinventory_data", []];

@@ -2,7 +2,7 @@
 
 /*
   Name: TFAR_fnc_getNearPlayers
- 
+
   Author: NKey, Garth de Wet (L-H), Dedmen
     returns near players
 
@@ -16,7 +16,7 @@
     call TFAR_fnc_getNearPlayers;
 
   Public: No
- */
+*/
 
 if ((!alive TFAR_currentUnit) && {!(TFAR_currentUnit getVariable ["TFAR_forceSpectator",false])}) exitWith {[]};
 

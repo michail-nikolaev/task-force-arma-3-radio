@@ -16,7 +16,7 @@
     _radio = call TFAR_fnc_activeLRRadio;
 
   Public: Yes
- */
+*/
 
 private _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
 

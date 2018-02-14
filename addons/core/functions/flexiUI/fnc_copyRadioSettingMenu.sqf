@@ -16,7 +16,7 @@
     call TFAR_fnc_copyRadioSettingMenu;
 
   Public: No
- */
+*/
 
 private _menu = [];
 

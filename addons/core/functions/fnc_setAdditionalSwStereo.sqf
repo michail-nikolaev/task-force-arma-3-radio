@@ -17,7 +17,7 @@
     [(call TFAR_fnc_activeSWRadio), 2] call TFAR_fnc_setAdditionalSwStereo;
 
   Public: Yes
- */
+*/
 params [["_radio", "", [""]], ["_value", 0, [0]]];
 
 private _settings = _radio call TFAR_fnc_getSwSettings;

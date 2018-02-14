@@ -16,7 +16,7 @@
     "TFAR_anprc_152" call TFAR_fnc_isBackpackRadio;
 
   Public: Yes
- */
+*/
 params [["_classname", []]];
 
 if (_classname isEqualType []) exitWith {false};

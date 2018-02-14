@@ -17,7 +17,7 @@
     [player, false] call TFAR_fnc_defaultPositionCoordinates;
 
   Public: Yes
- */
+*/
 
 params ["_unit", "_isNearPlayer"];
 

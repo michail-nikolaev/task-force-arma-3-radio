@@ -16,7 +16,7 @@
     call TFAR_fnc_swRadioSubMenu;
 
   Public: No
- */
+*/
 
 [
     ["secondary", localize LSTRING(select_action), "buttonList", "", false],

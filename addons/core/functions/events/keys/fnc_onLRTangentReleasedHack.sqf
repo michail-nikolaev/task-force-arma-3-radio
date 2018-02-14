@@ -16,7 +16,7 @@
     call TFAR_fnc_onLRTangentReleasedHack;
 
   Public: No
- */
+*/
 
 
 private _scancode = _this select 1;

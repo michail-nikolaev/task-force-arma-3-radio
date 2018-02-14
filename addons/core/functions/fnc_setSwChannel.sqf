@@ -17,7 +17,7 @@
     [call TFAR_fnc_activeSwRadio, 2] call TFAR_fnc_setSwChannel;
 
   Public: Yes
- */
+*/
 
 params ["_radio_id", "_channel_to_set"];
 

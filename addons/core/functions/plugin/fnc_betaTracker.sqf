@@ -16,7 +16,7 @@
     [1,"test",test] call TFAR_fnc_betaTracker
 
   Public: No
- */
+*/
 
 private _variables = [
                         [1, "playableUnits"             ,count playableUnits],

@@ -18,7 +18,7 @@
     _radio = player call TFAR_fnc_VehicleLR;
 
   Public: Yes
- */
+*/
 params [["_unit", objNull, [objNull]]];
 
 if (isNull (objectParent _unit) || {!((objectParent _this) call TFAR_fnc_hasVehicleRadio)}) exitWith {nil};

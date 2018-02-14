@@ -18,7 +18,7 @@
     (false call TFAR_fnc_radioToRequestCount) params ["_radiosToReplace","_TF_SettingsToCopy"];
 
   Public: Yes
- */
+*/
 
 private _to_remove = [];
 private _allRadios = _this;
