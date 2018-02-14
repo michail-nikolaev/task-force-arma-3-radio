@@ -1,27 +1,26 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setVolumeViaDialog
+  Name: TFAR_fnc_setVolumeViaDialog
 
-    Author(s):
-        L-H
+  Author: Garth de Wet (L-H)
+    sets the volume of the current dialog radio.
 
-    Description:
-        Sets the volume of the current Dialog radio.
+  Arguments:
+    0: Mouse button pressed (0,1) <NUMBER>
+    1: LR radio (0,1) <BOOL>
 
-    Parameters:
-        0: NUMBER - Mouse button pressed (0,1)
-        1: BOOL - LR radio
+  Return Value:
+    None
 
-    Returns:
-        NOTHING
+  Example:
+    // LR radio
+    [_this select 1, true] call TFAR_fnc_setVolumeViaDialog;
+    // SW radio
+    [_this select 1, false] call TFAR_fnc_setVolumeViaDialog;
 
-    Example:
-        // LR radio
-        [_this select 1, true] call TFAR_fnc_setVolumeViaDialog;
-        // SW radio
-        [_this select 1, false] call TFAR_fnc_setVolumeViaDialog;
-*/
+  Public: Yes
+ */
 
 playSound "TFAR_rotatorPush";
 

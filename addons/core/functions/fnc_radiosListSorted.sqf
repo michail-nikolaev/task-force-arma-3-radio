@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_radiosListSorted
+  Name: TFAR_fnc_radiosListSorted
 
-    Author(s):
+  Author: JonBons, NKey, Garth de Wet (L-H)
+    Sorts the SW radio list alphabetically.
 
-    Description:
-        Sorts the SW radio list alphabetically.
+  Arguments:
+    Unit <OBJECT>
 
-    Parameters:
-        0: OBJECT: Unit
+  Return Value:
+    Radio list sorted. <ARRAY>
 
-    Returns:
-        ARRAY - Radio list sorted.
+  Example:
+    _radios = TFAR_currentUnit call TFAR_fnc_radiosListSorted;
 
-    Example:
-        _radios = TFAR_currentUnit call TFAR_fnc_radiosListSorted;
-*/
+  Public: Yes
+ */
 
 (_this call TFAR_fnc_radiosList) call BIS_fnc_sortAlphabetically

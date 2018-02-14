@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getRadioItems
+  Name: TFAR_fnc_getRadioItems
 
-    Author(s):
-        Dorbedo
+  Author: Dorbedo
+    returns the TFAR radio items of a unit (without backpack)
 
-    Description:
-        returns the TFAR radio items of a unit (without backpack)
+  Arguments:
+    0: the unit <OBJECT>
+    1: without duplicates <BOOL> (default: true)
 
-    Parameters:
-        0: OBJECT - the unit
-        1: BOOL - without duplicates (default: true)
+  Return Value:
+    the radioitems of a unit <ARRAY>
 
-    Returns:
-        ARRAY - the radioitems of a unit
+  Example:
+    _itemlist = [_player] call TFAR_fnc_getRadioItems;
 
-    Example:
-        _itemlist = [_player] call TFAR_fnc_getRadioItems;
+  Public: Yes
  */
 
 params [["_unit", objNull, [objNull]]];

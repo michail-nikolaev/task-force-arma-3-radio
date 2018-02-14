@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_calcTerrainInterception
+  Name: TFAR_fnc_calcTerrainInterception
 
-    Author(s):
-        NKey
+  Author: NKey
+    Calculates the terrain interception between the player and the passed unit.
 
-    Description:
-        Calculates the terrain interception between the player and the passed unit.
+  Arguments:
+    0: Unit to calculate terrain interception with. <OBJECT>
 
-    Parameters:
-        OBJECT - Unit to calculate terrain interception with.
+  Return Value:
+    Terrain Interception <SCALAR>
 
-    Returns:
-        NUMBER - Terrain Interception
+  Example:
+    _interception = soldier2 call TFAR_fnc_calcTerrainInterception;
 
-    Example:
-        _interception = soldier2 call TFAR_fnc_calcTerrainInterception;
-*/
+  Public: No
+ */
 
 private _result = 0;
 private _p1 = eyePos TFAR_currentUnit;

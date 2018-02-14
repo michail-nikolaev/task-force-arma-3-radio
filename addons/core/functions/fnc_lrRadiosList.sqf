@@ -1,27 +1,25 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_lrRadiosList
+  Name: TFAR_fnc_lrRadiosList
 
-    Author(s):
-        NKey
+  Author: NKey
+    List of all the players LR radios
 
-    Description:
-        List of all the player's LR radios.
+  Arguments:
+    unit <OBJECT>
 
-    Parameters:
-        0: OBJECT: unit
+  Return Value:
+    List of all the player's LR radios <ARRAY>
 
-    Returns:
-        ARRAY - List of all the player's LR radios.
+  Example:
+    _radios = TFAR_currentUnit call TFAR_fnc_LRRadiosList;
 
-    Example:
-        _radios = TFAR_currentUnit call TFAR_fnc_LRRadiosList;
-*/
-
+  Public: Yes
+ */
 
 private _result = [];
-private _active_lr = missionNamespace getVariable ["TF_lr_active_radio",objNull];
+private _active_lr = missionNamespace getVariable ["TF_lr_active_radio", objNull];
 
 private _vehicle_lr = [_this call TFAR_fnc_vehicleLr];
 

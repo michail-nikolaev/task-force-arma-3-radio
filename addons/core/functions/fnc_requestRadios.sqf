@@ -1,25 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_requestRadios
+  Name: TFAR_fnc_requestRadios
 
-    Author(s):
-        NKey
-        L-H
+  Author: NKey, Garth de Wet (L-H)
+    Checks whether the player needs to have radios converted to "instanced" versions,
+    handles waiting for response from server with radio classnames and applying them to the player.
+ 
+  Arguments:
+    0: Replace already instanced Radios <BOOL>
+ 
+  Return Value:
+    None
 
-    Description:
-        Checks whether the player needs to have radios converted to "instanced" versions,
-        handles waiting for response from server with radio classnames and applying them to the player.
+  Example:
+    call TFAR_fnc_requestRadios;
 
-    Parameters:
-        BOOLEAN - Replace already instanced Radios
-
-    Returns:
-        Nothing
-
-    Example:
-        call TFAR_fnc_requestRadios;
-*/
+  Public: Yes
+ */
 
 //#TODO somehow remove mutexing :x
 //MUTEX_LOCK(TF_radio_request_mutex);

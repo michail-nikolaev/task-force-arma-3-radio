@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_processSWStereoKeys
+  Name: TFAR_fnc_processSWStereoKeys
 
-    Author(s):
+  Author: JonBons, Nkey, Garth de Wet (L-H)
+    Switches the LR stereo setting on the active LR radio.
 
+  Arguments:
+    0: Stereo number : Range (0,2) (0 - Both, 1 - Left, 2 - Right) <NUMBER>
 
-    Description:
-        Switches the SW stereo setting on the active SW radio.
+  Return Value:
+    Whether or not the event was handled <BOOL>
 
-    Parameters:
-        0: NUMBER - Stereo number : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
+  Example:
+    call TFAR_fnc_processSWStereoKeys;
 
-    Returns:
-        BOOLEAN - if handled or not.
-
-    Example:
-        Called via CBA onKey EventHandler
-*/
+  Public: No
+ */
 
 params ["_sw_stereo_number"];
 

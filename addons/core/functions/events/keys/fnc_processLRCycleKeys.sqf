@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_processLRCycleKeys
+  Name: TFAR_fnc_processLRCycleKeys
 
-    Author(s):
+  Author: JonBons, Nkey, Garth de Wet (L-H)
+    Allows rotating through the list of LR radios with keys.
 
+  Arguments:
+    0: Direction to cycle : VALUES (next, prev) <STRING>
 
-    Description:
-        Allows rotating through the list of LR radios with keys.
+  Return Value:
+    Whether or not the event was handled <BOOL>
 
-    Parameters:
-        0: STRING - Direction to cycle : VALUES (next, prev)
+  Example:
+    call TFAR_fnc_processLRCycleKeys;
 
-    Returns:
-        BOOLEAN - If the event was handled or not.
-
-    Example:
-        Handled via CBA's onKey eventhandler.
-*/
+  Public: No
+ */
 
 params ["_lr_cycle_direction"];
 

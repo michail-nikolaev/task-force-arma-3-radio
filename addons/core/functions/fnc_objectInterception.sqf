@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_objectInterception
+  Name: TFAR_fnc_objectInterception
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    Returns the number of voice-blocking Objects between player and _unit
 
-    Description:
-        Returns the number of voice-blocking Objects between player and _unit
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    amount of objects between player and _unit <NUMBER>
 
-    Returns:
-        NUMBER: amount of objects between player and _unit
+  Example:
+    _unit call TFAR_fnc_objectInterception;
 
-    Example:
-        _unit call TFAR_fnc_objectInterception;
-*/
+  Public: Yes
+ */
 //#TODO check isKindOf "House" and other types and transmit that. Houses isolate stronger than freestanding walls
 private _ins = lineIntersectsSurfaces [
     eyepos TFAR_currentUnit,

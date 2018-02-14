@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_haveLRRadio
+  Name: TFAR_fnc_haveLRRadio
 
-    Author(s):
+  Author: NKey, Garth de Wet (L-H)
+    Returns whether the player has a LR radio
 
-    Description:
-        Returns whether the player has a LR radio
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    None
 
-    Returns:
-        BOOLEAN
+  Example:
+    _hasLR = call TFAR_fnc_haveLRRadio;
 
-    Example:
-        _hasLR = call TFAR_fnc_haveLRRadio;
+  Public: Yes
  */
 
 if (isNil "TFAR_currentUnit" || {isNull (TFAR_currentUnit)}) exitWith {false};

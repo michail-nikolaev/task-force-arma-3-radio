@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_onMissionEnd
+  Name: TFAR_fnc_onMissionEnd
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    Tells the Teamspeak plugin that we are not ingame anymore
 
-    Description:
-        Tells the Teamspeak plugin that we are not ingame anymore
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    call TFAR_fnc_onMissionEnd;
 
-    Example:
-        call TFAR_fnc_onMissionEnd;
-*/
+  Public: Yes
+ */
 
 "task_force_radio_pipe" callExtension "MISSIONEND~"

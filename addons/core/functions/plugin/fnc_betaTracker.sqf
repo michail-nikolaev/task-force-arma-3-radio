@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_betaTracker
+  Name: TFAR_fnc_betaTracker
 
-    Author(s):
-         Dedmen
+  Author: Dedmen
+    Collects some statistic information to help make TFAR-beta better.
 
-    Description:
-        Collects some statistic information to help make TFAR-beta better.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    [1,"test",test] call TFAR_fnc_betaTracker
 
-    Example:
-        [1,"test",test] call TFAR_fnc_betaTracker
-*/
+  Public: No
+ */
 
 private _variables = [
                         [1, "playableUnits"             ,count playableUnits],

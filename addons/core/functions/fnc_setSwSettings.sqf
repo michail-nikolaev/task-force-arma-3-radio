@@ -1,27 +1,26 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setSwSettings
+  Name: TFAR_fnc_setSwSettings
 
-    Author(s):
-        NKey
+  Author: NKey
+    Saves the settings for the passed radio and broadcasts it to all clients and the server.
 
-    Description:
-        Saves the settings for the passed radio and broadcasts it to all clients and the server.
+  Arguments:
+    0: Radio classname <STRING>
+    1: Settings, usually acquired via TFAR_fnc_getSwSettings and then changed. <ARRAY>
+    2: Set local only <BOOL>
 
-    Parameters:
-        0: STRING - Radio classname
-        1: ARRAY - Settings, usually acquired via TFAR_fnc_getSwSettings and then changed.
-        2: BOOLEAN - Set local only
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    _settings = (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings;
+    _settings set [0, 2]; // sets the active channel to 2
+    [call TFAR_fnc_activeSwRadio, _settings] call TFAR_fnc_setSwSettings;
 
-    Example:
-        _settings = (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings;
-        _settings set [0, 2]; // sets the active channel to 2
-        [call TFAR_fnc_activeSwRadio, _settings] call TFAR_fnc_setSwSettings;
-*/
+  Public: Yes
+ */
 
 params ["_radio_id", "_value", ["_local", false, [true]]];
 

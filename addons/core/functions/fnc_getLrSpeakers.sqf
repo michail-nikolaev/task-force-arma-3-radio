@@ -1,24 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getLrSpeakers
+  Name: TFAR_fnc_getLrSpeakers
 
-    Author(s):
-        NKey
+  Author: NKey
+    Gets the speakers setting of the passed radio
 
-    Description:
-        Gets the speakers setting of the passed radio
+  Arguments:
+    0: Radio object <OBJECT>
+    1: Radio ID <STRING>
 
-    Parameters:
-        Array: Radio
-            0: OBJECT - Radio object
-            1: STRING - Radio ID
+  Return Value:
+    speakers or headphones <BOOL>
 
-    Returns:
-        BOOLEAN : speakers or headphones
+  Example:
+    _speakers = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrSpeakers;
 
-    Example:
-        _speakers = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrSpeakers;
-*/
+  Public: Yes
+ */
 
 (_this call TFAR_fnc_getLrSettings) param [TFAR_LR_SPEAKER_OFFSET,false]

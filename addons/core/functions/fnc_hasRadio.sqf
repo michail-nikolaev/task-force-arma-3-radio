@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_hasRadio
+  Name: TFAR_fnc_hasRadio
 
-    Author(s):
-        Dorbedo
+  Author: Dorbedo
+    Check if a unit has a radio
 
-    Description:
-        Check if a unit has a radio
+  Arguments:
+    0: the unit <OBJECT>
 
-    Parameters:
-        0: OBJECT - the unit
+  Return Value:
+    the unit has a radio <BOOL>
 
-    Returns:
-        the unit has a radio
+  Example:
+    _hasRadio = [_player] call TFAR_fnc_hasRadio;
 
-    Example:
-        _hasRadio = [_player] call TFAR_fnc_hasRadio;
+  Public: Yes
  */
 
 params [["_unit", objNull, [objNull]]];

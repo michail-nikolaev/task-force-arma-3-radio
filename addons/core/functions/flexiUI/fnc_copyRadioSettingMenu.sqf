@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_copyRadioSettingMenu
+  Name: TFAR_fnc_copyRadioSettingMenu
 
-    Author(s):
-        NKey
+  Author: NKey
+    Returns a sub menu for radio settings copying.
 
-    Description:
-        Returns a sub menu for radio settings copying.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    Flexi-menu <ARRAY>
 
-    Returns:
-        ARRAY: CBA UI menu.
+  Example:
+    call TFAR_fnc_copyRadioSettingMenu;
 
-    Example:
-        Called internally by CBA UI
-*/
+  Public: No
+ */
 
 private _menu = [];
 
