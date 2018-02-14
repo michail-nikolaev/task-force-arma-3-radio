@@ -1,25 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_antennas_fnc_pluginRemoveRadioTower
+  Name: TFAR_antennas_fnc_pluginRemoveRadioTower
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    Tells Teamspeak that a Tower disappeared
+    Performancewise it's best to collect towers and pass multiple in one call.
 
-    Description:
-        Tells Teamspeak that a Tower disappeared
-        Performancewise it's best to collect towers and pass multiple in one call.
+  Arguments:
+    0: the Tower <OBJECT>
 
-    Parameters:
-        ARRAY:
-            OBJECT: the Tower
+  Return Value:
+    None
 
-    Returns:
-        NOTHING
+  Example:
+    [_tower1, _tower2] call TFAR_antennas_fnc_pluginRemoveRadioTower;
 
-    Example:
-        [_tower1,_tower2] call TFAR_antennas_fnc_pluginRemoveRadioTower;
-*/
+  Public: yes
+ */
 
 for "_y" from 0 to (count _this)-1 step 50 do { //Only 50 per call to not exceed max message length
     private _towersToProcess = (_this select [_y,50]);

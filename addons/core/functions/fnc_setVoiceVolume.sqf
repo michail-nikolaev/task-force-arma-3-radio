@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setVoiceVolume
+  Name: TFAR_fnc_setVoiceVolume
 
-    Author(s):
-        NKey
+  Author: NKey
+    Sets the volume for the player's voice in game
 
-    Description:
-        Sets the volume for the player's voice in game
+  Arguments:
+    Volume - Range (0,TF_max_voice_volume) <NUMBER>
 
-    Parameters:
-        0: NUMBER - Volume : Range (0,TF_max_voice_volume)
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    30 call TFAR_fnc_setVoiceVolume;
 
-    Example:
-        30 call TFAR_fnc_setVoiceVolume;
+  Public: Yes
  */
 
 TF_speak_volume_meters = TF_max_voice_volume min _this;

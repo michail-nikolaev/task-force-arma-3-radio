@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_onAdditionalLRTangentReleased
+  Name: TFAR_fnc_onAdditionalLRTangentReleased
 
-    Author(s):
-        NKey
+  Author: NKey
+    Fired when the additional keybinding for LR is relesed.
 
-    Description:
-        Fired when the additional keybinding for LR is released.
+  Arguments:
+    None
 
-    Parameters:
+  Return Value:
+    Whether or not the event was handled <BOOL>
 
-    Returns:
-        BOOLEAN
+  Example:
+    call TFAR_fnc_onAdditionalLRTangentReleased;
 
-    Example:
-        call TFAR_fnc_onAdditionalLRTangentReleased;
-*/
+  Public: No
+ */
 
 if (!(TF_tangent_lr_pressed) or {!alive TFAR_currentUnit}) exitWith {true};
 private _radio = call TFAR_fnc_activeLrRadio;

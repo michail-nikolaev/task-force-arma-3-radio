@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getTransmittingDistanceMultiplicator
+  Name: TFAR_fnc_getTransmittingDistanceMultiplicator
 
-    Author(s):
-        NKey
+  Author: NKey
+    Return multiplicator for sending distance of radio.
 
-    Description:
-        Return multiplicator for sending distance of radio.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    call TFAR_fnc_getTransmittingDistanceMultiplicator;
 
-    Example:
-        call TFAR_fnc_getTransmittingDistanceMultiplicator;
-*/
+  Public: Yes
+ */
 
-TFAR_currentUnit getVariable ["tf_sendingDistanceMultiplicator",1.0];
+TFAR_currentUnit getVariable ["tf_sendingDistanceMultiplicator", 1.0];

@@ -1,20 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_isAbleToUseRadio
+  Name: TFAR_fnc_isAbleToUseRadio
 
-    Author(s):
+  Author: NKey, Garth de Wet (L-H)
+    Checks whether the current unit is able to use their radio.
 
-    Description:
-        Checks whether the current unit is able to use their radio.
+  Arguments:
+    None
 
-    Parameters:
+  Return Value:
+    is able to use <BOOL>
 
-    Returns:
-        BOOLEAN
+  Example:
+    _ableToUseRadio = call TFAR_fnc_isAbleToUseRadio;
 
-    Example:
-        _ableToUseRadio = call TFAR_fnc_isAbleToUseRadio;
-*/
+  Public: Yes
+ */
 
 !(TFAR_currentUnit getVariable ["tf_unable_to_use_radio", false])//Externally used Variable. Don't change name

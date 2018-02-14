@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_swRadioSubMenu
+  Name: TFAR_fnc_swRadioSubMenu
 
-    Author(s):
-        NKey
-        L-H
+  Author: NKey, Garth de Wet (L-H)
+    Returns a sub menu for a particular radio.
 
-    Description:
-        Returns a sub menu for a particular radio.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    Flexi-menu <ARRAY>
 
-    Returns:
-        ARRAY: CBA UI menu.
+  Example:
+    call TFAR_fnc_swRadioSubMenu;
 
-    Example:
-        Called internally by CBA UI
-*/
+  Public: No
+ */
+
 [
     ["secondary", localize LSTRING(select_action), "buttonList", "", false],
     [

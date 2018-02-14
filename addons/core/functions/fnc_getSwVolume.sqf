@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getSwVolume
+  Name: TFAR_fnc_getSwVolume
 
-    Author(s):
-        NKey
+  Author: NKey
+    Gets the volume of the passed radio
 
-    Description:
-        Gets the volume of the passed radio
+  Arguments:
+    Radio classname <STRING>
 
-    Parameters:
-        STRING: Radio classname
+  Return Value:
+    Volume : range (0,10) <NUMBER>
 
-    Returns:
-        NUMBER: Volume : range (0,10)
+  Example:
+    _volume = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwVolume;
 
-    Example:
-        _volume = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwVolume;
-*/
-params[["_radio","",[""]]];
+  Public: Yes
+ */
 
-(_radio call TFAR_fnc_getSwSettings) param [VOLUME_OFFSET,false]
+params[["_radio", "", [""]]];
+
+(_radio call TFAR_fnc_getSwSettings) param [VOLUME_OFFSET, false]

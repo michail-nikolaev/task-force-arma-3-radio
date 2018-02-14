@@ -1,28 +1,27 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setChannelFrequency
+  Name: TFAR_fnc_setChannelFrequency
 
-    Author(s):
-        L-H
+  Author: Garth de Wet (L-H)
+    Sets the frequency for the channel on the passed radio.
 
-    Description:
-        Sets the frequency for the channel on the passed radio.
+  Arguments:
+    0: Radio <OBJECT|STRING>
+    1: Channel <NUMBER>
+    2: Frequency <STRING>
 
-    Parameters:
-        0: OBJECT/String - Radio
-        1: NUMBER - Channel
-        2: STRING - Frequency
+  Return Value:
+    None
+ 
+  Example:
+    // LR radio - channel 1
+    [(call TFAR_fnc_activeLrRadio), 1, "56.2"] call TFAR_fnc_setChannelFrequency;
+    // SW radio - channel 1
+    [(call TFAR_fnc_activeSwRadio), 1, "84.3"] call TFAR_fnc_setChannelFrequency;
 
-    Returns:
-        Nothing
-
-    Example:
-        // LR radio - channel 1
-        [(call TFAR_fnc_activeLrRadio), 1, "56.2"] call TFAR_fnc_setChannelFrequency;
-        // SW radio - channel 1
-        [(call TFAR_fnc_activeSwRadio), 1, "84.3"] call TFAR_fnc_setChannelFrequency;
-*/
+  Public: Yes
+ */
 
 params [["_radio","",[[],""]], "_channel", "_frequency"];
 _channel = _channel - 1;

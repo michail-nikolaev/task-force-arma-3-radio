@@ -1,27 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setLrStereo
+  Name: TFAR_fnc_setLrStereo
 
-    Author(s):
-        NKey
+  Author: NKey
+    Sets the stereo setting for the passed radio
 
-    Description:
-        Sets the stereo setting for the passed radio
+  Arguments:
+    0: LR Radio <ARRAY>
+    1:  Stereo setting  Range (0,2) (0 - Both, 1 - Left, 2 - Right) <NUMBER>
 
-    Parameters:
-        0: ARRAY - Radio
-            0: OBJECT- Radio object
-            1: STRING - Radio ID
-        1: NUMBER - Stereo setting : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    [call TFAR_fnc_activeLrRadio, 1] call TFAR_fnc_setLrStereo;
 
-    Example:
-        [call TFAR_fnc_activeLrRadio, 1] call TFAR_fnc_setLrStereo;
-*/
-params [["_radio",[],[[]],2],["_value",0,[0]]];
+  Public: Yes
+ */
+params [["_radio", [], [[]], 2], ["_value", 0, [0]]];
 _radio params ["_radio_object", "_radio_qualifier"];
 
 if ((_radio call TFAR_fnc_getAdditionalLrChannel) == (_radio call TFAR_fnc_getLrChannel)) exitWith {

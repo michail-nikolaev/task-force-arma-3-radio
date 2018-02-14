@@ -1,28 +1,27 @@
 #include "script_component.hpp"
 
 /*
-     Name: TFAR_fnc_setChannelViaDialog
+  Name: TFAR_fnc_setChannelViaDialog
 
-     Author(s):
-        L-H
+  Author: Garth de Wet (L-H)
+    Sets the channel of the current Dialog radio.
 
-     Description:
-        Sets the channel of the current Dialog radio.
+  Arguments:
+    0: Mouse button pressed (0,1) <NUMBER>
+    1: LR radio <BOOL>
+    2: Update formatting. <STRING> (default: nil)
 
-    Parameters:
-        0: NUMBER - Mouse button pressed (0,1)
-        1: BOOL - LR radio
-        2: STRING - (OPTIONAL) Update formatting.
+  Return Value:
+    None
 
-     Returns:
-        NOTHING
+  Example:
+    // LR radio
+    [_this select 1, true] call TFAR_fnc_setChannelViaDialog;
+    // SW radio
+    [_this select 1, false] call TFAR_fnc_setChannelViaDialog;
 
-     Example:
-        // LR radio
-        [_this select 1, true] call TFAR_fnc_setChannelViaDialog;
-        // SW radio
-        [_this select 1, false] call TFAR_fnc_setChannelViaDialog;
-*/
+  Public: Yes
+ */
 
 params ["_btn", "_lr", ["_format", ""]];
 

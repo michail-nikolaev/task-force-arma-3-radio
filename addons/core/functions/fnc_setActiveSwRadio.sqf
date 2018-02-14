@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setActiveSwRadio
+  Name: TFAR_fnc_setActiveSwRadio
 
-    Author(s):
-        NKey
+  Author: NKey
+    Sets the active SR radio.
 
-    Description:
-        Sets the active SW radio.
+  Arguments:
+    0: Radio ID <STRING>
 
-    Parameters:
-        STRING - Radio ID
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    "TFAR_anprc148jem_1" call TFAR_fnc_setActiveSwRadio;
 
-    Example:
-        "TFAR_anprc148jem_1" call TFAR_fnc_setActiveSwRadio;
-*/
+  Public: Yes
+ */
+
 private _old = (call TFAR_fnc_activeSwRadio);
 private _couldAdd = TFAR_currentUnit canAdd _old;
 TFAR_currentUnit unassignItem _old;

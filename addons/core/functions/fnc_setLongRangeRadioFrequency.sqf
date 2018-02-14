@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setLongRangeRadioFrequency
+  Name: TFAR_fnc_setLongRangeRadioFrequency
 
-    Author(s):
-        NKey
+  Author: NKey
+    Sets the frequency for the active channel on the active LR radio.
 
-    Description:
-        Sets the frequency for the active channel on the active LR radio.
+  Arguments:
+    Frequency <STRING>
 
-    Parameters:
-        STRING - Frequency
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    "45.48" call TFAR_fnc_setLongRangeRadioFrequency;
 
-    Example:
-        "45.48" call TFAR_fnc_setLongRangeRadioFrequency;
-*/
+  Public: Yes
+ */
 
 if (call TFAR_fnc_haveLRRadio) then {
     [call TFAR_fnc_activeLrRadio, _this] call TFAR_fnc_setLrFrequency;

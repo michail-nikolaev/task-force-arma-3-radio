@@ -1,24 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getLrChannel
+  Name: TFAR_fnc_getLrChannel
 
-    Author(s):
-        NKey
+  Author: NKey
+    Gets the channel for the passed radio
 
-    Description:
-        Gets the channel for the passed radio
+  Arguments:
+    0: Radio object <OBJECT>
+    1: Radio ID <STRING>
 
-    Parameters:
-        Array: Radio
-            0: OBJECT - Radio object
-            1: STRING - Radio ID
+  Return Value:
+    Channel <NUMBER>
 
-    Returns:
-        NUMBER: Channel
+  Example:
+    _channel = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrChannel;
 
-    Example:
-        _channel = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrChannel;
-*/
+  Public: Yes
+ */
 
 (_this call TFAR_fnc_getLrSettings) param [ACTIVE_CHANNEL_OFFSET]

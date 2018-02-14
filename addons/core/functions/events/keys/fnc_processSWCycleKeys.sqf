@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_processSWCycleKeys
+  Name: TFAR_fnc_processSWCycleKeys
 
-    Author(s):
+  Author: JonBons, Nkey, Garth de Wet (L-H)
+    Allows rotating through the list of SR radios with keys.
 
+  Arguments:
+    0: Direction to cycle : VALUES (next, prev) <STRING>
 
-    Description:
-        Allows rotating through the list of SW radios with keys.
+  Return Value:
+    Whether or not the event was handled <BOOL>
 
-    Parameters:
-        0: STRING - Direction to cycle : VALUES (next, prev)
+  Example:
+    call TFAR_fnc_processSWCycleKeys;
 
-    Returns:
-        BOOLEAN - If the event was handled or not.
-
-    Example:
-        Handled via CBA's onKey eventhandler.
-*/
+  Public: No
+ */
 
 params ["_sw_cycle_direction"];
 

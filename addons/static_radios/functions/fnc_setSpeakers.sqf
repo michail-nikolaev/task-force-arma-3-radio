@@ -1,25 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_static_radios_fnc_setSpeakers
+  Name: TFAR_static_radios_fnc_setSpeakers
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    takes radio classnames and returns instanciated classnames (with _ID appended)
 
-    Description:
-        Takes Radio classnames and returns instanciated classnames (With _ID appended)
-        Internal use only!
+  Arguments:
+    0: the weaponholder containing the radio <OBJECT>
+    1: speaker enabled <BOOL>
 
-    Parameters:
-        0: OBJECT - The weaponholder containing the Radio
-        1: BOOL - Speaker enabled
+  Return Value:
+    None
 
-    Returns:
-        NOTHING
+  Example:
+    ["TFAR_anprc_152_3",true] call TFAR_static_radios_fnc_setSpeakers;
 
-    Example:
-        ["TFAR_anprc_152_3",true] call TFAR_static_radios_fnc_setSpeakers;
-*/
+  Public: No
+ */
 params ["_radioContainer","_enabled"];
 
 _radio_id = _radioContainer call TFAR_static_radios_fnc_instanciatedRadio;
