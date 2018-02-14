@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_fireEventHandlers
+  Name: TFAR_fnc_fireEventHandlers
 
-    Author(s):
-        L-H
+  Author: Garth de Wet (L-H)
+    Fires all eventhandlers associated with the passed unit
 
-    Description:
-        Fires all eventhandlers associated with the passed unit
+  Arguments:
+    0: ID for event <STRING>
+    1: parameters <ANY>
 
-    Parameters:
-        0: STRING - ID for event
-        2: ANY - parameters
+  Return Value:
+    None
 
-    Returns:
-        NOTHING
+  Example:
+    ["OnSpeak", [player, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
 
-    Example:
-        ["OnSpeak", [player, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
+  Public: Yes
 */
 
 params ["_eventName", "_parameters"];

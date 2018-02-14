@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_isLRRadio
+  Name: TFAR_fnc_isLRRadio
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    Returns if a radio is a Longrange radio.
 
-    Description:
-        Returns if a radio is a Longrange radio.
+  Arguments:
+    0: Radio classname <STRING>
 
-    Parameters:
-        0: STRING - Radio classname
-    Returns:
-        BOOLEAN - True if Longrange, false if handheld radio.
+  Return Value:
+    True if Longrange, false if handheld radio. <BOOL>
 
-    Example:
-        "TFAR_anprc_152" call TFAR_fnc_isLRRadio;
+  Example:
+    "TFAR_anprc_152" call TFAR_fnc_isLRRadio;
+
+  Public: Yes
 */
 params ["_classname"];
 

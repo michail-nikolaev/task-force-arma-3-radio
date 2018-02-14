@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_onCuratorInterface
+  Name: TFAR_fnc_onCuratorInterface
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    Eventhandler that fires when opening the Curator Interface
 
-    Description:
-        Eventhandler that fires when opening the Curator Interface
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    call TFAR_fnc_onCuratorInterface;
 
-    Example:
-        call TFAR_fnc_onCuratorInterface;
+  Public: No
 */
 params [["_display",displayNull],["_eventType","Close"]];
 

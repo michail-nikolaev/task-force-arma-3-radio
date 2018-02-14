@@ -1,35 +1,34 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_parseFrequenciesInput
+  Name: TFAR_fnc_parseFrequenciesInput
 
-    Author(s):
-        Dorbedo
+  Author: Dorbedo
+    parses a frequencies array and fills it up with default values
+    does a valuecheck and ignores wrong values
 
-    Description:
-        parses a frequencies array and fills it up with default values
-        does a valuecheck and ignores wrong values
+  Arguments:
+    0: argument name <STRING>
+    1: min amount of channels <NUMBER>
+    2: min freq <NUMBER>
+    3: max freq <NUMBER>
+    4: round power <NUMBER>
 
-    Parameters:
-        STRING: value string
-        SCALAR: min amount of channels
-        SCALAR: min freq
-        SCALAR: max freq
-        SCALAR: round power
+  Return Value:
+    parsed frequencies <ARRAY>
 
-    Returns:
-        NOTHING
+  Example:
+    ["[50.16549, 51122, 52, 53, 4, 5, 56, 57, 58, 59, ""asd"", asd, ""88""]", 8, 87, 40] call TFAR_fnc_parseFrequenciesInput;
 
-    Example:
-        ["[50.16549, 51122, 52, 53, 4, 5, 56, 57, 58, 59, ""asd"", asd, ""88""]", 8, 87, 40] call TFAR_fnc_parseFrequenciesInput;
+  Public: Yes
 */
 
 params [
-    ["_valueString","",[""]],
-    ["_minChannels",TFAR_MAX_CHANNELS,[TFAR_MAX_CHANNELS]],
-    ["_maxFreq",TFAR_MAX_SW_FREQ,[TFAR_MAX_SW_FREQ]],
-    ["_minFreq",TFAR_MIN_SW_FREQ,[TFAR_MIN_SW_FREQ]],
-    ["_roundPower",TFAR_FREQ_ROUND_POWER,[TFAR_FREQ_ROUND_POWER]]
+    ["_valueString", "", [""]],
+    ["_minChannels", TFAR_MAX_CHANNELS, [TFAR_MAX_CHANNELS]],
+    ["_maxFreq", TFAR_MAX_SW_FREQ, [TFAR_MAX_SW_FREQ]],
+    ["_minFreq", TFAR_MIN_SW_FREQ, [TFAR_MIN_SW_FREQ]],
+    ["_roundPower", TFAR_FREQ_ROUND_POWER, [TFAR_FREQ_ROUND_POWER]]
 ];
 
 // add brackets if they are missing

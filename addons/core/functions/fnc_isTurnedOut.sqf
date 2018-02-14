@@ -1,4 +1,23 @@
 #include "script_component.hpp"
+
+/*
+  Name: TFAR_fnc_isTurnedOut
+
+  Author: NKey
+    returns if a unit is turened out
+
+  Arguments:
+    0: unit <OBJECT>
+
+  Return Value:
+    is turned out <BOOL>
+
+  Example:
+    [_unit] call TFAR_fnc_isTurnedOut;
+
+  Public: No
+*/
+
 params ["_unit"];
 
 //This is bad performance.. prefer using isTurnedOut directly

@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_isPrototypeRadio
+  Name: TFAR_fnc_isPrototypeRadio
 
-    Author(s):
-        Garth de Wet (LH)
+  Author: Garth de Wet (L-H)
+    Returns if a radio is a prototype radio.
 
-    Description:
-        Returns if a radio is a prototype radio.
+  Arguments:
+    0: Radio classname <STRING>
 
-    Parameters:
-        0: STRING - Radio classname
+  Return Value:
+    is Prototype radio <BOOL>
 
-    Returns:
-        BOOLEAN - True if prototype, false if actual radio.
+  Example:
+    if ("TFAR_anprc148jem" call TFAR_fnc_isPrototypeRadio) then {
+        hint "Prototype";
+    };
 
-    Example:
-        if ("TFAR_anprc148jem" call TFAR_fnc_isPrototypeRadio) then {
-            hint "Prototype";
-        };
+  Public: Yes
 */
 
 if (_this == "ItemRadio") exitWith {true};

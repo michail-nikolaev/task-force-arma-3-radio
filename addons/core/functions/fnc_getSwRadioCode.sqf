@@ -1,26 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getSwRadioCode
+  Name: TFAR_fnc_getSwRadioCode
 
-    Author(s):
-        NKey
-        L-H
+  Author: NKey, Garth de Wet (L-H)
+    Returns the encryption code for the passed radio.
 
-    Description:
-        Returns the encryption code for the passed radio.
+  Arguments:
+    Radio classname <STRING>
 
-    Parameters:
-        0: STRING - Radio classname
+  Return Value:
+    Encryption code <STRING>
 
-    Returns:
-        STRING - Encryption code
+  Example:
+    (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwRadioCode;
 
-    Example:
-        (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwRadioCode;
+  Public: Yes
 */
-params[["_radio","",[""]]];
+params[["_radio", "", [""]]];
 
 If (GVARMAIN(radioCodesDisabled)) exitWith {""};
 
-(_radio call TFAR_fnc_getSwSettings) param [TFAR_CODE_OFFSET,""]
+(_radio call TFAR_fnc_getSwSettings) param [TFAR_CODE_OFFSET, ""]

@@ -1,25 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_sendPlayerInfo
+  Name: TFAR_fnc_sendPlayerInfo
 
-    Author(s):
-        NKey
+  Author: NKey
+    Notifies the plugin about a player
 
-    Description:
-        Notifies the plugin about a player
+  Arguments:
+    0: Unit <OBJECT>
+    1: Is unit close to player <BOOL>
+    2: Unit name <STRING>
 
-    Parameters:
-        1: OBJECT - Unit
-        2: BOOLEAN - Is unit close to player
-        3: STRING - Unit name
+  Return Value:
+    None
 
+  Example:
+    [player, true, "Guy"] call TFAR_fnc_sendPlayerInfo;
 
-    Returns:
-        Nothing
-
-    Example:
-        [player] call TFAR_fnc_sendPlayerInfo;
+  Public: Yes
 */
 
 params ["_player"];

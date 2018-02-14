@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_addStereoToACE
+  Name: TFAR_fnc_addStereoToACE
 
-    Author(s):
-        Dorbedo
+  Author: Dorbedo
+    Used to provide an array of ace actions to be used as children actions in the interact menu.
 
-    Description:
-        Used to provide an array of ace actions to be used as children actions in the interact menu.
+  Arguments:
+    0: the unit <OBJECT>
+    1: the radio <STRING|ARRAY>
 
-    Parameters:
-        0: OBJECT - Unit
-        1: STRING/ARRAY - the radio
+  Return Value:
+    children ACE actions <ARRAY>
 
-    Returns:
-        An array of children ACE actions.
+  Example:
+    _grandchildren = [_player,_player,[_radio,0]] call TFAR_fnc_addStereoToACE;
 
-    Example:
-        _grandchildren = [_player,_player,[_radio,0]] call TFAR_fnc_addStereoToACE;
- */
+  Public: No
+*/
 
 params ["_unit", "_radio"];
 

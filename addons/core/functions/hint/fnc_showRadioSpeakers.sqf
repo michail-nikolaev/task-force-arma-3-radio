@@ -1,25 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_showRadioSpeakers
+  Name: TFAR_fnc_showRadioSpeakers
 
-    Author(s):
-        L-H
-        Nkey
+  Author: Garth de Wet (L-H), Nkey
+    shows the speaker hint
 
-    Description:
+  Arguments:
+    0: Radio <OBJECT|STRING>
 
-    Parameters:
-        0: OBJECT/STRING - Radio
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    // LR radio
+    [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioSpeakers;
+    // SW radio
+    [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioSpeakers;
 
-    Example:
-        // LR radio
-        [(call TFAR_fnc_activeLrRadio)] call TFAR_fnc_showRadioSpeakers;
-        // SW radio
-        [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioSpeakers;
+  Public: Yes
 */
 params ["_radio"];
 

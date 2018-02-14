@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_vehicleIsIsolatedAndInside
+  Name: TFAR_fnc_vehicleIsIsolatedAndInside
 
-    Author(s):
-        NKey
+  Author: NKey
+    Checks whether a unit is in an isolated vehicle and not turned out.
 
-    Description:
-        Checks whether a unit is in an isolated vehicle and not turned out.
+  Arguments:
+    0: The unit to check. <OBJECT>
 
-    Parameters:
-        0: OBJECT - The unit to check.
+  Return Value:
+    True if isolated and not turned out, false if turned out or vehicle is not isolated. <BOOL>
 
-    Returns:
-        BOOLEAN - True if isolated and not turned out, false if turned out or vehicle is not isolated.
+  Example:
+    _isolated = player call TFAR_fnc_vehicleIsIsolatedAndInside;
 
-    Example:
-        _isolated = player call TFAR_fnc_vehicleIsIsolatedAndInside;
+  Public: Yes
 */
 params ["_unit"];
 

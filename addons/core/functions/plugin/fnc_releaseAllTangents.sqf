@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_releaseAllTangents
+  Name: TFAR_fnc_releaseAllTangents
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    Stops all outgoing radio transmissions
 
-    Description:
-        Stops all outgoing Radio transmissions
+  Arguments:
+    the player <OBJECT>
 
-    Parameters:
-        OBJECT: the player
+  Return Value:
+    None
 
-    Returns:
-        NOTHING
+  Example:
+    player call TFAR_fnc_releaseAllTangents;
 
-    Example:
-        player call TFAR_fnc_releaseAllTangents;
+  Public: Yes
 */
 
 "task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name _this]);//Async call will always return "OK"

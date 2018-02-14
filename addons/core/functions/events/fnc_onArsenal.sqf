@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_onArsenal
+  Name: TFAR_fnc_onArsenal
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    Eventhandler for Opening/Closing of Arsenal.
+    Currently handles workaround for https://feedback.bistudio.com/T120517
 
-    Description:
-        Eventhandler for Opening/Closing of Arsenal.
-        Currently handles workaround for https://feedback.bistudio.com/T120517
+  Arguments:
+    0: Type of Event <STRING>
 
-    Parameters:
-        0: STRING - Type of Event
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    "PreOpen" call TFAR_fnc_onArsenal;
 
-    Example:
-        "PreOpen" call TFAR_fnc_onArsenal;
+  Public: No
 */
 
 params ["_eventType"];

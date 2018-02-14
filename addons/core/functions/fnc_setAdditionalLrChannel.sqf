@@ -1,27 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setAdditionalLrChannel
+  Name: TFAR_fnc_setAdditionalLrChannel
 
-    Author(s):
-        NKey
+  Author: NKey
+    Sets the radio to the passed channel or disables it (if current additional passed).
 
-    Description:
-        Sets the radio to the passed channel or disables it (if current additional passed).
+  Arguments:
+    0: LR Radio <ARRAY>
+    1: Channel Range (0,8) <NUMBER>
 
-    Parameters:
-        0: ARRAY - Radio
-            0: OBJECT- Radio object
-            1: STRING - Radio ID
-        2: NUMBER - Channel : Range (0,8)
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    [call TFAR_fnc_activeLrRadio, 4] call TFAR_fnc_setAdditionalLrChannel;
 
-    Example:
-        [call TFAR_fnc_activeLrRadio, 4] call TFAR_fnc_setAdditionalLrChannel;
+  Public: Yes
 */
-params [["_radio",[],[[]],2],["_value",0,[0]]];
+params [["_radio", [], [[]] , 2], ["_value", 0, [0]]];
 _radio params ["_radio_object", "_radio_qualifier"];
 
 private _settings = _radio call TFAR_fnc_getLrSettings;

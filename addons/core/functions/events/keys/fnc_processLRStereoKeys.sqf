@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_processLRStereoKeys
+  Name: TFAR_fnc_processLRStereoKeys
 
-    Author(s):
+  Author: JonBons, Nkey, Garth de Wet (L-H)
+    Switches the LR stereo setting on the active LR radio.
 
+  Arguments:
+    0: Stereo number : Range (0,2) (0 - Both, 1 - Left, 2 - Right) <NUMBER>
 
-    Description:
-        Switches the LR stereo setting on the active LR radio.
+  Return Value:
+    Whether or not the event was handled <BOOL>
 
-    Parameters:
-        0: NUMBER - Stereo number : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
+  Example:
+    call TFAR_fnc_processLRStereoKeys;
 
-    Returns:
-        BOOLEAN - if handled or not.
-
-    Example:
-        Called via CBA onKey EventHandler
+  Public: No
 */
 
 params ["_lr_stereo_number"];

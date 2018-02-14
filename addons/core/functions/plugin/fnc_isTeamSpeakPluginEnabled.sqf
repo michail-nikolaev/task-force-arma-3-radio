@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_isTeamSpeakPluginEnabled
+  Name: TFAR_fnc_isTeamSpeakPluginEnabled
 
-    Author(s):
-        NKey
+  Author: NKey
+    Returns is TeamSpeak plugin enabled on client.
 
-    Description:
-        Returns is TeamSpeak plugin enabled on client.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    is enabled <BOOL>
 
-    Returns:
-        BOOLEAN: enabled or not
+  Example:
+    call TFAR_fnc_isTeamSpeakPluginEnabled;
 
-    Example:
-        call TFAR_fnc_isTeamSpeakPluginEnabled;
+  Public: Yes
 */
 
 ("task_force_radio_pipe" callExtension "TS_INFO	PING") == "PONG"

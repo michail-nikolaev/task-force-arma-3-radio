@@ -1,24 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getLrVolume
+  Name: TFAR_fnc_getLrVolume
 
-    Author(s):
-        NKey
+  Author: NKey
+    Gets the volume of the passed radio
 
-    Description:
-        Gets the volume of the passed radio
+  Arguments:
+    0: Radio object <OBJECT>
+    1: Radio ID <STRING>
 
-    Parameters:
-        Array: Radio
-            0: OBJECT - Radio object
-            1: STRING - Radio ID
+  Return Value:
+    Volume : range (0,10) <NUMBER>
 
-    Returns:
-        NUMBER: Volume : range (0,10)
+  Example:
+    _volume = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrVolume;
 
-    Example:
-        _volume = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrVolume;
+  Public: Yes
 */
 
 (_this call TFAR_fnc_getLrSettings) param [VOLUME_OFFSET,0]

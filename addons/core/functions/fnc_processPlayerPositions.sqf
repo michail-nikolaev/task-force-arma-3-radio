@@ -1,23 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_processPlayerPositions
+  Name: TFAR_fnc_processPlayerPositions
 
-    Author(s):
-        NKey
+  Author: NKey
+    Process some player positions on each call and sends it to the plugin.
 
-    Description:
-        Process some player positions on each call and sends it to the plugin.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    call TFAR_fnc_processPlayerPositions;
 
-    Example:
-        call TFAR_fnc_processPlayerPositions;
+  Public: No
 */
+
 if (getClientStateNumber != 10) exitWith {};
 
 private _startTime = diag_tickTime;
@@ -100,7 +100,7 @@ if (_needNearPlayerScan) then {
     /*
     Want to process Curators on NearPlayers because even if they are not near,
     their controlled unit may be.
-    */
+   */
     {
         TFAR_currentNearPlayers pushBackUnique _x;
         true;

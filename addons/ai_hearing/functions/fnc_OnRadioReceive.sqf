@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_ai_hearing_fnc_onRadioReceive
+  Name: TFAR_fnc_OnRadioReceive
 
-    Author(s):
-        Dorbedo
+  Author: Dorbedo
+    Event called upon receving a radio call
 
-    Description:
-        Event called upon receving a radio call
+  Arguments:
+    0: receving unit <OBJECT>
+    1: is receving <BOOL>
 
-    Parameters:
-        0: the receving Unit <OBJECT>
-        1: is receiving <BOOL>
+  Return Value:
+    None
 
-    Returns:
-        NOTHING
+  Example:
+    [_unit, _isReceiving] call TFAR_ai_hearing_fnc_onRadioReceive;
 
-    Example:
-        [_unit, _isReceiving] call TFAR_ai_hearing_fnc_onRadioReceive;
+  Public: No
 */
 
 params [["_unit", objNull, [objNull]], ["_isReceiving", false, [true]]];

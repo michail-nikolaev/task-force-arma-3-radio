@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_vehicleID
+  Name: TFAR_fnc_vehicleId
 
-    Author(s):
-        NKey
+  Author: NKey
+    Returns a string with information about the player vehicle, used at the plugin side.
 
-    Description:
-        Returns a string with information about the player vehicle, used at the plugin side.
+  Arguments:
+    0: The unit to check. <OBJECT>
 
-    Parameters:
-        0: OBJECT - The unit to check.
+  Return Value:
+    NetworkID, Turned out <STRING>
 
-    Returns:
-        STRING - NetworkID, Turned out
+  Example:
+    _vehicleID = player call TFAR_fnc_vehicleID;
 
-    Example:
-        _vehicleID = player call TFAR_fnc_vehicleID;
+  Public: Yes
 */
 params ["_unit"];
 

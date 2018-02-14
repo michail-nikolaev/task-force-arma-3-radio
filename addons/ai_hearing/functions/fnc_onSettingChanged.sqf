@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_ai_hearing_fnc_onSettingChanged
+  Name: TFAR_ai_hearing_fnc_onSettingChanged
 
-    Author(s):
-        Dedmen
+  Author: Dorbedo
+    initializes/deinitializes the AI-Hearing
+    This function should only be called via CBA_Settings
 
-    Description:
-        initializes/deinitializes the AI-Hearing
-        This function should only be called via CBA_Settings
+  Arguments:
+    0: enable the setting <BOOL>
 
-    Parameters:
-        BOOL: enable the setting
+  Return Value:
+    None
 
-    Returns:
-        NOTHING
+  Example:
+    true call TFAR_ai_hearing_fnc_onSettingChanged;
 
-    Example:
-        true call TFAR_ai_hearing_fnc_onSettingChanged;
+  Public: No
 */
 
 if !(hasInterface) exitWith {};

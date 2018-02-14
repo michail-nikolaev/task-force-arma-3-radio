@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_antennas_fnc_initRadioTower
+  Name: TFAR_antennas_fnc_initRadioTower
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    Initializes a Radio Tower
 
-    Description:
-        Initializes a Radio Tower
+  Arguments:
+    0: the tower <OBJECT>
+    1: the Transmitting Range of the Tower <SCALAR>
 
-    Parameters:
-        OBJECT: the Tower
-        NUMBER: the Transmitting Range of the Tower
+  Return Value:
+    None
 
-    Returns:
-        NOTHING
+  Example:
+    [_this, 50000] call TFAR_antennas_fnc_initRadioTower;
 
-    Example:
-        [_this,50000] call TFAR_antennas_fnc_initRadioTower;
+  Public: yes
 */
 params ["_tower","_range"];
 

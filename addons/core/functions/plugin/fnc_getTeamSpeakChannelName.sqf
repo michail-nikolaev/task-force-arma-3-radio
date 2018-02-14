@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getTeamSpeakChannelName
+  Name: TFAR_fnc_getTeamSpeakChannelName
 
-    Author(s):
-        NKey
+  Author: NKey
+    Returns TeamSpeak channel name.
 
-    Description:
-        Returns TeamSpeak channel name.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    name of the channel <STRING>
 
-    Returns:
-        STRING: name of channel
+  Example:
+    call TFAR_fnc_getTeamSpeakChannelName;
 
-    Example:
-        call TFAR_fnc_getTeamSpeakChannelName;
+  Public: Yes
 */
 
 "task_force_radio_pipe" callExtension "TS_INFO	CHANNEL"

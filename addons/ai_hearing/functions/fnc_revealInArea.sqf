@@ -1,28 +1,26 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_ai_hearing_fnc_revealInArea
+  Name: TFAR_fnc_revealInArea
 
-    Author(s):
-        By Dimitri Yuri edited by 2600K
-        Dedmen, Dorbedo
+  Author: Dimitri Yuri, 2600K, Dedmen, Dorbedo
+    Event called upon receving a radio call
 
-    Description:
-        Event called upon receving a radio call
+  Arguments:
+    0: unit to be revealed <OBJECT>
+    1: distance <OBJECT|ARRAY>
 
-    Parameters:
-        0: the centerposition <OBJECT/ARRAY>
-        1: distance <SCALAR>
-
-    Returns:
-        NOTHING
-
-    Example:
-        [_unit, _isReceiving] call TFAR_ai_hearing_fnc_revealInArea;
+  Return Value:
+    None
+  
+  Example:
+    [_unit, 50] call TFAR_ai_hearing_fnc_revealInArea;
+  
+  Public: Yes
 */
 
-params [["_center", objNull, [objNull, []]], ["_distance", 5, [0]]];
-TRACE_2(_center,_distance);
+params [["_unit", objNull, [objNull, []]], ["_distance", 5, [0]]];
+TRACE_2(_unit,_distance);
 {
     if (!(isPlayer _x) &&
         {!((vehicle _x) call TFAR_fnc_isVehicleIsolated)} &&

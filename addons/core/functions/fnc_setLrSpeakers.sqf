@@ -1,29 +1,27 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setLrSpeakers
+  Name: TFAR_fnc_setLrSpeakers
 
-    Author(s):
-        NKey
+  Author: NKey
+    Sets the speakers setting for the passed radio
 
-    Description:
-        Sets the speakers setting for the passed radio
+  Arguments:
+    0: Radio object <OBJECT>
+    1: Radio ID <STRING>
 
-    Parameters:
-        0: ARRAY - Radio
-            0: OBJECT- Radio object
-            1: STRING - Radio ID
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    (call TFAR_fnc_activeLrRadio) call TFAR_fnc_setLrSpeakers;
 
-    Example:
-        (call TFAR_fnc_activeLrRadio) call TFAR_fnc_setLrSpeakers;
+  Public: Yes
 */
 
 params ["_radio_object", "_radio_qualifier"];
 
-private _settings = [_radio_object,_radio_qualifier] call TFAR_fnc_getLrSettings;
+private _settings = [_radio_object, _radio_qualifier] call TFAR_fnc_getLrSettings;
 private _currentlyEnabled = _settings select TFAR_LR_SPEAKER_OFFSET;
 if (_currentlyEnabled) then {
     _settings set [TFAR_LR_SPEAKER_OFFSET, false];

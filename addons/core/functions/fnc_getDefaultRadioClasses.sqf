@@ -1,22 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getDefaultRadioClasses
+  Name: TFAR_fnc_getDefaultRadioClasses
 
-    Author(s):
-        NKey, Dorbedo
+  Author: NKey, Dorbedo
+    Return array of default radio classes for player.
 
-    Description:
-        Return array of default radio classes for player.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    0: default LR <STRING>
+    1: defaultPersonal <STRING>
+    2: defaultRifleman <STRING>
+    3: defaultAirborne <STRING>
 
-    Returns:
-        ARRAY - [defaultLR, defaultPersonal, defaultRifleman, defaultAirborne]
+  Example:
+    _classes = call TFAR_fnc_getDefaultRadioClasses;
 
-    Example:
-        _classes = call TFAR_fnc_getDefaultRadioClasses;
+  Public: Yes
 */
 
 params ["_unit", TFAR_currentUnit];
