@@ -16,7 +16,7 @@
     _unit call TFAR_fnc_objectInterception;
 
   Public: Yes
- */
+*/
 //#TODO check isKindOf "House" and other types and transmit that. Houses isolate stronger than freestanding walls
 private _ins = lineIntersectsSurfaces [
     eyepos TFAR_currentUnit,

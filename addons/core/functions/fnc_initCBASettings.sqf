@@ -16,7 +16,7 @@
     call TFAR_fnc_initCBASettings;
 
   Public: No
- */
+*/
 
 // client Settings
 [

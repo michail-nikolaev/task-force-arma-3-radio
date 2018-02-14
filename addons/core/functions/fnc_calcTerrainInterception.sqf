@@ -16,7 +16,7 @@
     _interception = soldier2 call TFAR_fnc_calcTerrainInterception;
 
   Public: No
- */
+*/
 
 private _result = 0;
 private _p1 = eyePos TFAR_currentUnit;

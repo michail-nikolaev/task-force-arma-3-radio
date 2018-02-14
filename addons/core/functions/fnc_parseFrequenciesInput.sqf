@@ -21,7 +21,7 @@
     ["[50.16549, 51122, 52, 53, 4, 5, 56, 57, 58, 59, ""asd"", asd, ""88""]", 8, 87, 40] call TFAR_fnc_parseFrequenciesInput;
 
   Public: Yes
- */
+*/
 
 params [
     ["_valueString", "", [""]],

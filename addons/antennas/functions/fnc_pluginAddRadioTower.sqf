@@ -17,7 +17,7 @@
     [_tower1, _tower2] call TFAR_antennas_fnc_pluginAddRadioTower;
 
   Public: yes
- */
+*/
 
 TRACE_1("TFAR_antennas_fnc_pluginAddRadioTower", _this);
 

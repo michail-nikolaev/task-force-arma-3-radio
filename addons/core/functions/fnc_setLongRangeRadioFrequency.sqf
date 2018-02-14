@@ -16,7 +16,7 @@
     "45.48" call TFAR_fnc_setLongRangeRadioFrequency;
 
   Public: Yes
- */
+*/
 
 if (call TFAR_fnc_haveLRRadio) then {
     [call TFAR_fnc_activeLrRadio, _this] call TFAR_fnc_setLrFrequency;

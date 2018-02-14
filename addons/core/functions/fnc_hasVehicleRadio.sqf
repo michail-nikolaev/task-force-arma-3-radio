@@ -16,7 +16,7 @@
     _present = (vehicle player) call TFAR_fnc_hasVehicleRadio;
 
   Public: Yes
- */
+*/
 
 params [["_vehicle", objNull, [objNull]]];
 

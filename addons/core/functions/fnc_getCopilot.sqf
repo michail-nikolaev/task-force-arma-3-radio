@@ -16,7 +16,7 @@
     _copilot = (vehicle player) call TFAR_fnc_getCopilot;
 
   Public: Yes
- */
+*/
 
 // default co-pilot turret
 private _copilotTurret = 0;

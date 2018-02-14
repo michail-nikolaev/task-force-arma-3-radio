@@ -19,7 +19,7 @@
     [_LRradio, "tf_hasLrRadio", 0] call TFAR_fnc_getVehicleConfigProperty;
 
   Public: Yes
- */
+*/
 
 params ["_item", "_property", ["_default", ""]];
 

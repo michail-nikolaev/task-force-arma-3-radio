@@ -19,7 +19,7 @@
     [_SrRadio, "tf_prototype", 0] call TFAR_fnc_getWeaponConfigProperty;
 
   Public: Yes
- */
+*/
 
 params ["_item", "_property", ["_default", ""]];
 

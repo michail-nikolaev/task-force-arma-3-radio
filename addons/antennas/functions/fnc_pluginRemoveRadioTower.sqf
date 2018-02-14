@@ -17,7 +17,7 @@
     [_tower1, _tower2] call TFAR_antennas_fnc_pluginRemoveRadioTower;
 
   Public: yes
- */
+*/
 
 for "_y" from 0 to (count _this)-1 step 50 do { //Only 50 per call to not exceed max message length
     private _towersToProcess = (_this select [_y,50]);

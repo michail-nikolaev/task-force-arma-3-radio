@@ -16,6 +16,6 @@
     call TFAR_fnc_onMissionEnd;
 
   Public: Yes
- */
+*/
 
 "task_force_radio_pipe" callExtension "MISSIONEND~"

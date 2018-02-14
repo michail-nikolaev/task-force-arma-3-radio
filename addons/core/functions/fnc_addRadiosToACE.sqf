@@ -17,7 +17,7 @@
     _children = [_player] call TFAR_fnc_addRadiosToACE;
 
   Public: No
- */
+*/
 
 params ["_unit", ["_LROnly", false]];
 

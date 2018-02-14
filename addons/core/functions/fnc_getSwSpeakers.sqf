@@ -16,7 +16,7 @@
     _stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwSpeakers;
 
   Public: Yes
- */
+*/
 params[["_radio", "", [""]]];
 
 (_radio call TFAR_fnc_getSwSettings) param [TFAR_SW_SPEAKER_OFFSET, false]

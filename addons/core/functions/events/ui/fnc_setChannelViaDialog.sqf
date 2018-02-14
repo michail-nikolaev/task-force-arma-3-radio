@@ -21,7 +21,7 @@
     [_this select 1, false] call TFAR_fnc_setChannelViaDialog;
 
   Public: Yes
- */
+*/
 
 params ["_btn", "_lr", ["_format", ""]];
 

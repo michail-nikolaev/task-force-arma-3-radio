@@ -16,7 +16,7 @@
     call TFAR_fnc_sendFrequencyInfo;
 
   Public: Yes
- */
+*/
 
 if (getClientStateNumber != 10) exitWith {"BI HAS CRAPPY WEIRD BUGS U KNOW! (Keeps PFH from firing after server disconnect)"};
 

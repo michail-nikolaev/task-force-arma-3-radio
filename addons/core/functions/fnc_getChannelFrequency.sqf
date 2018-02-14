@@ -19,7 +19,7 @@
     [(call TFAR_fnc_activeSwRadio), 1] call TFAR_fnc_getChannelFrequency;
 
   Public: Yes
- */
+*/
 
 params ["_radio", "_channel"];
 

@@ -16,7 +16,7 @@
     call TFAR_fnc_unableToUseHint;
 
   Public: No
- */
+*/
 
 
 [parseText (localize LSTRING(unable_to_use_hint)), 5] call TFAR_fnc_showHint;

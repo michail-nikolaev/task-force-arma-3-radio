@@ -16,7 +16,7 @@
     call TFAR_fnc_processSWStereoKeys;
 
   Public: No
- */
+*/
 
 params ["_sw_stereo_number"];
 

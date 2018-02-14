@@ -24,7 +24,7 @@
     _LRSettings = false call TFAR_fnc_getDefaultRadioSettings;
 
   Public: Yes
- */
+*/
 
 params [["_isSW", true, [false]], ["_unit", TFAR_currentUnit, [objNull]]];
 

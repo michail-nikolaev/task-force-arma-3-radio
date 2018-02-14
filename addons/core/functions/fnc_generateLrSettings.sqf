@@ -25,7 +25,7 @@
     _settings = call TFAR_fnc_generateLrSettings;
 
   Public: Yes
- */
+*/
 
 params [["_generateFrequencies", true, [true]]];
 

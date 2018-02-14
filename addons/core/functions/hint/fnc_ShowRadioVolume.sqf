@@ -19,7 +19,7 @@
     [(call TFAR_fnc_activeSwRadio)] call TFAR_fnc_showRadioVolume;
 
   Public: Yes
- */
+*/
 params ["_radio"];
 
 private _isLrRadio = _radio isEqualType [];

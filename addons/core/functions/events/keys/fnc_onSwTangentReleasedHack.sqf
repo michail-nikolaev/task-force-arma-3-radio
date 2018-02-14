@@ -16,7 +16,7 @@
     call TFAR_fnc_onSwTangentReleasedHack;
 
   Public: No
- */
+*/
 
 private _scancode = _this select 1;
 private _keybind = ["TFAR", "SWTransmit"] call cba_fnc_getKeybind;

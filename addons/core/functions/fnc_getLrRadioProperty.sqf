@@ -17,7 +17,7 @@
     [(vehicle player), "TF_hasLRradio"] call TFAR_fnc_getLrRadioProperty;
 
   Public: Yes
- */
+*/
 
 params ["_radio", "_property"];
 

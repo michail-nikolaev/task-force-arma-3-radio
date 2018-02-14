@@ -16,7 +16,7 @@
     call TFAR_fnc_sendPluginConfig;
 
   Public: Yes
- */
+*/
 
 ["full_duplex",missionNamespace getVariable ["TFAR_fullDuplex",true]] call TFAR_fnc_setPluginSetting;
 ["addon_version",TFAR_ADDON_VERSION] call TFAR_fnc_setPluginSetting;

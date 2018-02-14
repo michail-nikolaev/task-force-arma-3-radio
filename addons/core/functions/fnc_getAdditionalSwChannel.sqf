@@ -16,7 +16,7 @@
     _channel = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getAdditionalSwChannel;
 
   Public: Yes
- */
+*/
 params[["_radio", "", [""]]];
 
 (_radio call TFAR_fnc_getSwSettings) param [TFAR_ADDITIONAL_CHANNEL_OFFSET]

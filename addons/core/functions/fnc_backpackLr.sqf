@@ -16,7 +16,7 @@
     _radio = player call TFAR_fnc_backpackLR;
 
   Public: Yes
- */
+*/
 
 private _backpack = backpack _this;
 if (([_backpack, "tf_hasLRradio", 0] call TFAR_fnc_getVehicleConfigProperty) == 1) exitWith {

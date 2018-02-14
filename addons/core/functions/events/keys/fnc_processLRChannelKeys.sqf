@@ -16,7 +16,7 @@
     call TFAR_fnc_processLRChannelKeys;
 
   Public: No
- */
+*/
 
 params ["_lr_channel_number"];
 

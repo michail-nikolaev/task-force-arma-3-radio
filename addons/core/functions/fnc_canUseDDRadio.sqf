@@ -17,7 +17,7 @@
     _canUseDD = [-12,true] call TFAR_fnc_canUseDDRadio;
 
   Public: Yes
- */
+*/
 
 params ["_depth", "_isolated_and_inside"];
 

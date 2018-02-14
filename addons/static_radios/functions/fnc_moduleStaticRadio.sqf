@@ -16,7 +16,7 @@
     _this call TFAR_static_radios_fnc_moduleStaticRadio;
 
   Public: No
- */
+*/
 
 
 params ["_control"];

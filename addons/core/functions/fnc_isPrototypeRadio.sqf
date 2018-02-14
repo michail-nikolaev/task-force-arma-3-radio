@@ -18,7 +18,7 @@
     };
 
   Public: Yes
- */
+*/
 
 if (_this == "ItemRadio") exitWith {true};
 

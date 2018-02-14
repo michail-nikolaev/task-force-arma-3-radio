@@ -14,9 +14,9 @@
 
   Example:
     call TFAR_fnc_onTangentPressedHack;
- 
+
   Public: No
- */
+*/
 
 params ["","_scancode","_shift","_ctrl","_alt"];
 

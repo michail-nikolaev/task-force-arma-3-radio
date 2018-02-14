@@ -18,7 +18,7 @@
     [call TFAR_fnc_activeSwRadio, getPlayerUID player] call TFAR_fnc_setRadioOwner;
 
   Public: Yes
- */
+*/
 
 params ["_radio", "_owner", ["_local", false, [true]]];
 

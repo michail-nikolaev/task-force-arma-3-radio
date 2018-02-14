@@ -16,6 +16,6 @@
     _LRFrequency = call TFAR_fnc_currentLRFrequency
 
   Public: Yes
- */
+*/
 
 (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrFrequency

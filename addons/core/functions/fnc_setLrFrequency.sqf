@@ -17,7 +17,7 @@
     [call TFAR_fnc_activeLrRadio, "45.48"] call TFAR_fnc_setLrFrequency;
 
   Public: Yes
- */
+*/
 
 params [["_radio", [], [[]], 2], ["_frequency", "", [""]]];
 

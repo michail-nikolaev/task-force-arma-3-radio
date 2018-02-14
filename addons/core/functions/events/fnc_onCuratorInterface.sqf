@@ -16,7 +16,7 @@
     call TFAR_fnc_onCuratorInterface;
 
   Public: No
- */
+*/
 params [["_display",displayNull],["_eventType","Close"]];
 
 switch _eventType do {

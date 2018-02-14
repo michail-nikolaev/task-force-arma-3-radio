@@ -16,7 +16,7 @@
     call TFAR_fnc_sendSpeakerRadios;
 
   Public: Yes
- */
+*/
 
 
 //If there is no one near the player this would execute every 2 frames.. which is total overkill

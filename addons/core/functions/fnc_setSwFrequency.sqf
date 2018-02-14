@@ -17,7 +17,7 @@
     [call TFAR_fnc_activeSwRadio, "76.2"] call TFAR_fnc_setSwFrequency;
 
   Public: Yes
- */
+*/
 
 params ["_radio", "_freq"];
 

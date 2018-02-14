@@ -19,7 +19,7 @@
     _classes = call TFAR_fnc_getDefaultRadioClasses;
 
   Public: Yes
- */
+*/
 
 private _defaultLRRadio = TFAR_DefaultRadio_Backpack_Independent;
 private _defaultPersonalRadio = TFAR_DefaultRadio_Personal_Independent;

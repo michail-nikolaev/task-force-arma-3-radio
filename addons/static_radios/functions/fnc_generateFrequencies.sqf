@@ -16,7 +16,7 @@
     _this call TFAR_static_radios_fnc_generateFrequencies;
 
   Public: No
- */
+*/
 params ["_radioClass"];
 
 if (_radioClass call TFAR_fnc_isLRRadio) exitWith {

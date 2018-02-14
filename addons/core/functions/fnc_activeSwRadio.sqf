@@ -16,7 +16,7 @@
     call TFAR_fnc_activeSwRadio;
 
   Public: Yes
- */
+*/
 
 private _result = nil;
 {

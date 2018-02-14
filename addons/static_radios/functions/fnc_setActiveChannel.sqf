@@ -17,7 +17,7 @@
     ["TFAR_anprc_152_3",3] call TFAR_static_radios_fnc_setActiveChannel;
 
   Public: Yes
- */
+*/
 params ["_radioContainer","_channel"];
 
 _radio_id = _radioContainer call TFAR_static_radios_fnc_instanciatedRadio;

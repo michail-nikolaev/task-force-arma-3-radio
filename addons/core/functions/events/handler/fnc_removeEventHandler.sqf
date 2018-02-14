@@ -17,7 +17,7 @@
     ["MyID", "OnSpeak"] call TFAR_fnc_removeEventHandler;
 
   Public: Yes
- */
+*/
 
 params ["_customID", "_eventName"];
 

@@ -17,7 +17,7 @@
     [_this, 50000] call TFAR_antennas_fnc_initRadioTower;
 
   Public: yes
- */
+*/
 params ["_tower","_range"];
 
 TRACE_1("TFAR_antennas_fnc_initRadioTower",_this);

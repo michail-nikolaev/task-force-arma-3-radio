@@ -16,7 +16,7 @@
     call TFAR_fnc_processSRChannelKeys;
 
   Public: No
- */
+*/
 
 params ["_sw_channel_number"];
 

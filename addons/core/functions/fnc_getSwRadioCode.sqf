@@ -16,7 +16,7 @@
     (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwRadioCode;
 
   Public: Yes
- */
+*/
 params[["_radio", "", [""]]];
 
 If (GVARMAIN(radioCodesDisabled)) exitWith {""};

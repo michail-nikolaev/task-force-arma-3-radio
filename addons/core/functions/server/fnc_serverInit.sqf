@@ -16,7 +16,7 @@
     call TFAR_fnc_serverInit;
 
   Public: No
- */
+*/
 
 ["TFAR_RadioRequestEvent", {
     diag_log format["TFAR_RadioRequestEvent %1 %2",_this,diag_tickTime];//#TODO remove
