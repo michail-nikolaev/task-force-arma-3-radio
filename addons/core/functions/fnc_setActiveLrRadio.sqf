@@ -17,7 +17,7 @@
     TF_lr_dialog_radio call TFAR_fnc_setActiveLrRadio;
 
   Public: Yes
- */
+*/
 private _old = TF_lr_active_radio;
 TF_lr_active_radio = _this;
 if (TFAR_currentUnit == player) then {

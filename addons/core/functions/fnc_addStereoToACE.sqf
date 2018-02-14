@@ -17,7 +17,7 @@
     _grandchildren = [_player,_player,[_radio,0]] call TFAR_fnc_addStereoToACE;
 
   Public: No
- */
+*/
 
 params ["_unit", "_radio"];
 

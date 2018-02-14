@@ -17,7 +17,7 @@
     [call TFAR_fnc_activeSWRadio, 10] call TFAR_fnc_setSwVolume;
 
   Public: Yes
- */
+*/
 
 params ["_radio_id", "_value"];
 

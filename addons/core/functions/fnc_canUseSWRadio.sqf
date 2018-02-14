@@ -19,7 +19,7 @@
     _canUseSW = [player, false, false, 10] call TFAR_fnc_canUseSWRadio;
 
   Public: Yes
- */
+*/
 
 params ["_player", "_isolated_and_inside", "_can_speak", "_depth"];
 

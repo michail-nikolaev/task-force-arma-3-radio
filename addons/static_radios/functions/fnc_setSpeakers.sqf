@@ -17,7 +17,7 @@
     ["TFAR_anprc_152_3",true] call TFAR_static_radios_fnc_setSpeakers;
 
   Public: No
- */
+*/
 params ["_radioContainer","_enabled"];
 
 _radio_id = _radioContainer call TFAR_static_radios_fnc_instanciatedRadio;

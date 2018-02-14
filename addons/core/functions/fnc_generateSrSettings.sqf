@@ -25,7 +25,7 @@
     _settings = call TFAR_fnc_generateSRSettings;
 
   Public: Yes
- */
+*/
 //#TODO set default Radio code instead of using nil
 private _sw_settings = [0, TFAR_default_radioVolume, [], 0, nil, -1, 0, getPlayerUID player, false, true];
 private _set = false;

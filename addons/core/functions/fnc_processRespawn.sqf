@@ -16,7 +16,7 @@
     call TFAR_fnc_processRespawn;
 
   Public: No
- */
+*/
 
 [{!(isNull player)}, {
     TFAR_currentUnit = call TFAR_fnc_currentUnit;

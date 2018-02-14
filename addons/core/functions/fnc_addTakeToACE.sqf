@@ -17,7 +17,7 @@
     _children = [_target, _player] call TFAR_fnc_addTakeToACE;
 
   Public: No
- */
+*/
 params ["_target", "_unit"];
 
 private _children = [];

@@ -17,7 +17,7 @@
     ["TFAR_anprc_152_3",1] call TFAR_static_radios_fnc_setVolume;
 
   Public: Yes
- */
+*/
 
 params ["_radioContainer","_volume"];
 

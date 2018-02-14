@@ -16,6 +16,6 @@
     call TFAR_fnc_currentUnit;
 
   Public: Yes
- */
+*/
 
 missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player]

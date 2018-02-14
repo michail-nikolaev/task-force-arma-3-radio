@@ -140,7 +140,7 @@ class FunctionFile:
         if header_text.startswith('/*'):
             header_text = header_text[2:]
         if header_text.endswith('*/'):
-            header_text = header_text[:-2]
+            header_text = header_text[:-1]
 
         result = []
         for line in header_text.splitlines():
@@ -159,7 +159,8 @@ class FunctionFile:
         # If public section is missing we can't continue
         public_raw = self.get_section("Public")
         if not public_raw:
-            logging.warning('Public value undefined in %s', self.path)
+            logging.warning('Public value undefined')
+            logging.warning('   in file: %s', self.path)
             return
 
         # Determine whether the header is public
@@ -212,7 +213,8 @@ class FunctionFile:
         public_text = raw[:-1]
 
         if not re.match(r"(Yes|No)", public_text, re.I):
-            logging.warning('   Invalid public value "%s"', public_text)
+            logging.warning('Invalid public value "%s"', public_text)
+            logging.warning('   in file: %s', self.path)
 
         return public_text.capitalize() == "Yes"
 
@@ -243,13 +245,15 @@ class FunctionFile:
             return []
 
         if lines.count("") == len(lines):
-            logging.warning("   No arguments provided (use \"None\" where appropriate)")
+            logging.warning("No arguments provided (use \"None\" where appropriate)")
+            logging.warning('   in file: %s', self.path)
             return []
 
         if lines[-1] == "":
             lines.pop()
         else:
-            logging.warning("   No blank line after arguments list")
+            logging.warning("No blank line after arguments list")
+            logging.warning('   in file: %s', self.path)
 
         arguments = []
         for argument in lines:
@@ -272,7 +276,8 @@ class FunctionFile:
                 # Notes about the above argument won't start with an index
                 # Only applies if there exists an above argument
                 if arguments or re.match(r"^(\d+):", argument):
-                    logging.warning('Malformed argument "%s" in %s', argument, self.path)
+                    logging.warning('Malformed argument "%s"', argument)
+                    logging.warning('   in file: %s', self.path)
                     arguments.append(["?", "Malformed", "?", "?", "?"])
                 else:
                     if arguments:
@@ -292,7 +297,8 @@ class FunctionFile:
             return_name = valid.group(1)
             return_types = valid.group(2)
         else:
-            logging.warning('   Malformed return value "%s"', return_value)
+            logging.warning('Malformed return value "%s"', return_value)
+            logging.warning('   in file: %s', self.path)
             return ["Malformed", ""]
 
         return [return_name, return_types]

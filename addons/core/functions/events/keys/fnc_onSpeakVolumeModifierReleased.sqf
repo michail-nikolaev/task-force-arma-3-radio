@@ -16,7 +16,7 @@
     call TFAR_fnc_onSpeakVolumeModifierReleased;
 
   Public: No
- */
+*/
 
 TF_speak_volume_level = TF_last_speak_volume_level;
 TF_speak_volume_meters = TF_last_speak_volume_meters;

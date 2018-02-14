@@ -20,7 +20,7 @@
     [(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_showRadioInfo;
 
   Public: Yes
- */
+*/
 
 params ["_radio", "_isLrRadio"];
 

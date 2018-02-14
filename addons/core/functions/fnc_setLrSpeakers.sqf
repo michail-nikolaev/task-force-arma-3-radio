@@ -17,7 +17,7 @@
     (call TFAR_fnc_activeLrRadio) call TFAR_fnc_setLrSpeakers;
 
   Public: Yes
- */
+*/
 
 params ["_radio_object", "_radio_qualifier"];
 

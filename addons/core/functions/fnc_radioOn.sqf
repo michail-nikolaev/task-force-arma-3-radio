@@ -17,7 +17,7 @@
     [call TFAR_fnc_activeSWRadio,true] call TFAR_fnc_radioOn;
 
   Public: Yes
- */
+*/
 
 params ["_radio", ["_status", false]];
 

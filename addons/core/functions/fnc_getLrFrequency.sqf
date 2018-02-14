@@ -17,6 +17,6 @@
     _frequency = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrFrequency;
 
   Public: Yes
- */
+*/
 
 [_this, ((_this call TFAR_fnc_getLrSettings) param [ACTIVE_CHANNEL_OFFSET])+1] call TFAR_fnc_getChannelFrequency;

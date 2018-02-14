@@ -17,7 +17,7 @@
     [call TFAR_fnc_activeLrRadio, 1] call TFAR_fnc_setAdditionalLrStereo;
 
   Public: Yes
- */
+*/
 params [["_radio", [], [[]], 2], ["_value", 0, [0]]];
 _radio params ["_radio_object", "_radio_qualifier"];
 

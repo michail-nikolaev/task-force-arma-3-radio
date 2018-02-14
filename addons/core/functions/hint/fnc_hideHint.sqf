@@ -16,6 +16,6 @@
     call TFAR_fnc_hideHint;
 
   Public: Yes
- */
+*/
 
 ("TFAR_HintLayer" call BIS_fnc_rscLayer) cutText ["", "PLAIN"];

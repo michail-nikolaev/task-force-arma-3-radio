@@ -16,7 +16,7 @@
     _radios = TFAR_currentUnit call TFAR_fnc_LRRadiosList;
 
   Public: Yes
- */
+*/
 
 private _result = [];
 private _active_lr = missionNamespace getVariable ["TF_lr_active_radio", objNull];

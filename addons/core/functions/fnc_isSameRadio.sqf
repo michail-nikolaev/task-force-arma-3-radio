@@ -19,7 +19,7 @@
     };
 
   Public: Yes
- */
+*/
 
 params ["_radio1", "_radio2"];
 

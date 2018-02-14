@@ -16,7 +16,7 @@
     _hasLR = call TFAR_fnc_haveLRRadio;
 
   Public: Yes
- */
+*/
 
 if (isNil "TFAR_currentUnit" || {isNull (TFAR_currentUnit)}) exitWith {false};
 

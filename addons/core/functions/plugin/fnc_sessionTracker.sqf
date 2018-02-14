@@ -16,7 +16,7 @@
     call TFAR_fnc_sessionTracker;
 
   Public: No
- */
+*/
 
 private _variables = [
                         [1, "group"                     ,count (units group player)],

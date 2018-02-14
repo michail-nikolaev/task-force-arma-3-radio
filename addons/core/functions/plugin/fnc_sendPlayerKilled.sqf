@@ -16,7 +16,7 @@
     player call TFAR_fnc_sendPlayerKilled;
 
   Public: Yes
- */
+*/
 
 _this setRandomLip false;
 

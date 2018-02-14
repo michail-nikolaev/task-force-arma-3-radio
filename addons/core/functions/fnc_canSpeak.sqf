@@ -17,7 +17,7 @@
     _canSpeak = [false, -12] call TFAR_fnc_canSpeak;
 
   Public: Yes
- */
+*/
 
 params ["_vehIsolation", "_eyeDepth"];
 

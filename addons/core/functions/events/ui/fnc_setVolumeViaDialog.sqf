@@ -20,7 +20,7 @@
     [_this select 1, false] call TFAR_fnc_setVolumeViaDialog;
 
   Public: Yes
- */
+*/
 
 playSound "TFAR_rotatorPush";
 

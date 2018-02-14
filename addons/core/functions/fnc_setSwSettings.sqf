@@ -20,7 +20,7 @@
     [call TFAR_fnc_activeSwRadio, _settings] call TFAR_fnc_setSwSettings;
 
   Public: Yes
- */
+*/
 
 params ["_radio_id", "_value", ["_local", false, [true]]];
 

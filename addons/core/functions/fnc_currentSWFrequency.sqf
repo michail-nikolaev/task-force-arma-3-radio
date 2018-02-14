@@ -16,6 +16,6 @@
     _SRFrequency = call TFAR_fnc_currentSWFrequency
 
   Public: Yes
- */
+*/
 
 (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwFrequency

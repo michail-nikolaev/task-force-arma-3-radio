@@ -16,7 +16,7 @@
     _isolated = player call TFAR_fnc_vehicleIsIsolatedAndInside;
 
   Public: Yes
- */
+*/
 params ["_unit"];
 
 if (isNull (objectParent _unit)) exitWith {false};//Unit is not in vehicle

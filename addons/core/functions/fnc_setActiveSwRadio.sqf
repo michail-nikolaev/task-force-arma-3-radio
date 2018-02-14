@@ -16,7 +16,7 @@
     "TFAR_anprc148jem_1" call TFAR_fnc_setActiveSwRadio;
 
   Public: Yes
- */
+*/
 
 private _old = (call TFAR_fnc_activeSwRadio);
 private _couldAdd = TFAR_currentUnit canAdd _old;

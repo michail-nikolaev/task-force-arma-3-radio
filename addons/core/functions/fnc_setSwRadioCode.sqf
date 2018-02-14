@@ -17,7 +17,7 @@
     [call TFAR_fnc_activeSwRadio, "NewEncryptionCode"] call TFAR_fnc_setSwRadioCode;
 
   Public: Yes
- */
+*/
 
 params ["_radio_id", "_code_to_set"];
 

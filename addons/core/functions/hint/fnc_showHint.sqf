@@ -18,7 +18,7 @@
     [parseText "Hello", -1] call TFAR_fnc_showHint;
 
   Public: Yes
- */
+*/
 
 params ["_text", "_time"];
 if (_time == 0) exitWith {};

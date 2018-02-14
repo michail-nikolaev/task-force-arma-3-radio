@@ -13,7 +13,7 @@
 
   Return Value:
     None
- 
+
   Example:
     // LR radio - channel 1
     [(call TFAR_fnc_activeLrRadio), 1, "56.2"] call TFAR_fnc_setChannelFrequency;
@@ -21,7 +21,7 @@
     [(call TFAR_fnc_activeSwRadio), 1, "84.3"] call TFAR_fnc_setChannelFrequency;
 
   Public: Yes
- */
+*/
 
 params [["_radio","",[[],""]], "_channel", "_frequency"];
 _channel = _channel - 1;

@@ -16,7 +16,7 @@
   call TFAR_fnc_initKeybinds;
 
   Public: No
- */
+*/
 #include "\a3\editor_f\Data\Scripts\dikCodes.h"
 #define LOCALIZE_CHANNEL(x,y) y call _fnc_localize##x##Channel
 

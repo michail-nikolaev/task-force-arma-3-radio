@@ -19,7 +19,7 @@
     ["CH: %1"] call TFAR_fnc_updateSWDialogToChannel;
 
   Public: Yes
- */
+*/
 
 private _formatText = "C%1";
 

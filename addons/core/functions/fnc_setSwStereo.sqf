@@ -17,7 +17,7 @@
     [call TFAR_fnc_activeSWRadio, 2] call TFAR_fnc_setSwStereo;
 
   Public: Yes
- */
+*/
 
 params ["_radio_id", "_value_to_set"];
 

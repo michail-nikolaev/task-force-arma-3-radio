@@ -16,7 +16,7 @@
     player call TFAR_fnc_isForcedCurator;
 
   Public: Yes
- */
+*/
 
 private _result = _this getVariable "tf_forcedCurator";
 if (!isNil "_result") exitWith {_result};

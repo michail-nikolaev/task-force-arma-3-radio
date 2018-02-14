@@ -16,7 +16,7 @@
     [call TFAR_fnc_activeSWRadio] call TFAR_fnc_setSwSpeakers;
 
   Public: Yes
- */
+*/
 
 params ["_radio_id"];
 

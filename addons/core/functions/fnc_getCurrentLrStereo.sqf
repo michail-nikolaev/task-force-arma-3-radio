@@ -17,7 +17,7 @@
     _stereo = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getCurrentLrStereo;
 
   Public: Yes
- */
+*/
 
 if ((_this call TFAR_fnc_getAdditionalLrChannel) == (_this call TFAR_fnc_getLrChannel)) exitWith {
     _this call TFAR_fnc_getAdditionalLrStereo;

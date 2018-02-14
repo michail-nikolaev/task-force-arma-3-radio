@@ -22,7 +22,7 @@
     _sw_frequencies = [TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
 
   Public: Yes
- */
+*/
 
 params ["_channels", "_max_freq", "_min_freq", "_freq_rp"];
 

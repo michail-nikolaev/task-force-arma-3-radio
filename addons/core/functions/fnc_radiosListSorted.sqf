@@ -16,6 +16,6 @@
     _radios = TFAR_currentUnit call TFAR_fnc_radiosListSorted;
 
   Public: Yes
- */
+*/
 
 (_this call TFAR_fnc_radiosList) call BIS_fnc_sortAlphabetically

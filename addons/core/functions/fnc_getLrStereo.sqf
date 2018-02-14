@@ -17,6 +17,6 @@
     _stereo = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrStereo;
 
   Public: Yes
- */
+*/
 
 (_this call TFAR_fnc_getLrSettings) param [TFAR_LR_STEREO_OFFSET,0]

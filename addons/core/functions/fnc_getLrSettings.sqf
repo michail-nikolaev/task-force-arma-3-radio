@@ -17,7 +17,7 @@
     (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrSettings;
 
   Public: Yes
- */
+*/
 params ["_radio_object", "_radio_id"];
 
 private _value = _radio_object getVariable _radio_id;

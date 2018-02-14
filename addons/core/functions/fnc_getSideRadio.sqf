@@ -19,7 +19,7 @@
     _defaultRiflemanRadio = [side player, 2] call TFAR_fnc_getSideRadio;
 
   Public: Yes
- */
+*/
 
 params ["_side", "_radioType"];
 

@@ -16,7 +16,7 @@
     call TFAR_fnc_processLRCycleKeys;
 
   Public: No
- */
+*/
 
 params ["_lr_cycle_direction"];
 

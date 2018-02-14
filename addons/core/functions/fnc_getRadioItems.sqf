@@ -17,7 +17,7 @@
     _itemlist = [_player] call TFAR_fnc_getRadioItems;
 
   Public: Yes
- */
+*/
 
 params [["_unit", objNull, [objNull]]];
 

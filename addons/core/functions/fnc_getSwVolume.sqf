@@ -16,7 +16,7 @@
     _volume = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwVolume;
 
   Public: Yes
- */
+*/
 
 params[["_radio", "", [""]]];
 

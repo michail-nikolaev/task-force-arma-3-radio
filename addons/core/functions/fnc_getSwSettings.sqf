@@ -16,7 +16,7 @@
     (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings;
 
   Public: Yes
- */
+*/
 params[["_radio", "", [""]]];
 
 private _value = TFAR_RadioSettingsNamespace getVariable _radio;

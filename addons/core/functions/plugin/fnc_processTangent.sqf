@@ -22,7 +22,7 @@
     [_hintText, _request] call TFAR_fnc_processTangent;
 
   Public: Yes
- */
+*/
 params ["_hintText","_request",["_timer",2.5]];
 //private _timer = 2.5;
 

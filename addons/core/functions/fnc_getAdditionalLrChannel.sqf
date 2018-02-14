@@ -17,6 +17,6 @@
     _channel = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getAdditionalLrChannel;
 
   Public: Yes
- */
+*/
 
 (_this call TFAR_fnc_getLrSettings) param [TFAR_ADDITIONAL_CHANNEL_OFFSET,-1]

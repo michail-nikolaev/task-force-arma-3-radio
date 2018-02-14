@@ -16,7 +16,7 @@
     call TFAR_fnc_onAdditionalLRTangentReleased;
 
   Public: No
- */
+*/
 
 if (!(TF_tangent_lr_pressed) or {!alive TFAR_currentUnit}) exitWith {true};
 private _radio = call TFAR_fnc_activeLrRadio;

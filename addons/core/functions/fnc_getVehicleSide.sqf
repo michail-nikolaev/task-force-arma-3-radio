@@ -17,7 +17,7 @@
     _vehicleSide = (vehicle player) call TFAR_fnc_getVehicleSide;
 
   Public: Yes
- */
+*/
 params [["_vehicle", objNull, [objNull]]];
 
 private _side = _vehicle getVariable "tf_side";

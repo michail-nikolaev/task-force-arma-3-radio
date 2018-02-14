@@ -16,6 +16,6 @@
     call TFAR_fnc_getTeamSpeakChannelName;
 
   Public: Yes
- */
+*/
 
 "task_force_radio_pipe" callExtension "TS_INFO	CHANNEL"

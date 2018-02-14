@@ -16,7 +16,7 @@
     call TFAR_fnc_processSWCycleKeys;
 
   Public: No
- */
+*/
 
 params ["_sw_cycle_direction"];
 

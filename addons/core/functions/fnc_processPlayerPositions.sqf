@@ -16,7 +16,7 @@
     call TFAR_fnc_processPlayerPositions;
 
   Public: No
- */
+*/
 
 if (getClientStateNumber != 10) exitWith {};
 
@@ -100,7 +100,7 @@ if (_needNearPlayerScan) then {
     /*
     Want to process Curators on NearPlayers because even if they are not near,
     their controlled unit may be.
-    */
+   */
     {
         TFAR_currentNearPlayers pushBackUnique _x;
         true;

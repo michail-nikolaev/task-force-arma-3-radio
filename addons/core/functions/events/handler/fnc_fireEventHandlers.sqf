@@ -17,7 +17,7 @@
     ["OnSpeak", [player, TF_speak_volume_meters]] call TFAR_fnc_fireEventHandlers;
 
   Public: Yes
- */
+*/
 
 params ["_eventName", "_parameters"];
 

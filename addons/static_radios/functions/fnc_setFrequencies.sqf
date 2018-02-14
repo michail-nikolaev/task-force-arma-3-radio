@@ -17,7 +17,7 @@
     ["TFAR_anprc_152_3",["72.4","60","66.4",...]] call TFAR_static_radios_fnc_setFrequencies;
 
   Public: No
- */
+*/
 params ["_radioContainer","_frequencies"];
 
 _radio_id = _radioContainer call TFAR_static_radios_fnc_instanciatedRadio;

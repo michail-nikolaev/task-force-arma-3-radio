@@ -16,6 +16,6 @@
     _ableToUseRadio = call TFAR_fnc_isAbleToUseRadio;
 
   Public: Yes
- */
+*/
 
 !(TFAR_currentUnit getVariable ["tf_unable_to_use_radio", false])//Externally used Variable. Don't change name

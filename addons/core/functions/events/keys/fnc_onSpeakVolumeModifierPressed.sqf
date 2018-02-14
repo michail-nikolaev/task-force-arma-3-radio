@@ -16,7 +16,7 @@
     ["yelling"] call TFAR_fnc_onSpeakVolumeModifierPressed;
 
   Public: No
- */
+*/
 
 params ["_modifierMode"];
 
