@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setPersonalRadioFrequency
+  Name: TFAR_fnc_setPersonalRadioFrequency
 
-    Author(s):
-        NKey
+  Author: NKey
+    Sets the frequency for the active SW radio to passed frequency
 
-    Description:
-        Sets the frequency for the active SW radio to passed frequency
+  Arguments:
+    Frequency <STRING>
 
-    Parameters:
-        STRING - Frequency
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    "65.12" call TFAR_fnc_setPersonalRadioFrequency;
 
-    Example:
-        "65.12" call TFAR_fnc_setPersonalRadioFrequency;
-*/
+  Public: Yes
+ */
 
 if (call TFAR_fnc_haveSWRadio) then {
     [(call TFAR_fnc_activeSwRadio), _this] call TFAR_fnc_setSwFrequency;

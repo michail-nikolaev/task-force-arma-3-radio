@@ -1,24 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_static_radios_fnc_instanciatedRadio
+  Name: TFAR_static_radios_fnc_instanciatedRadio
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    Instanciates Radio if it isn't already
 
-    Description:
-        Instanciates Radio if it isn't already.
-        Internal use only!
+  Arguments:
+    0: The weaponholder containing the Radio <OBJECT>
 
-    Parameters:
-        OBJECT - The weaponholder containing the Radio
+  Return Value:
+    classname of instanciate Radio <STRING>
 
-    Returns:
-        STRING - classname of instanciate Radio
+  Example:
+    _this call TFAR_static_radios_fnc_instanciatedRadio;
 
-    Example:
-        _this call TFAR_static_radios_fnc_instanciatedRadio;
-*/
+  Public: No
+ */
 params ["_radioContainer"];
 
 _radioClass = (((getItemCargo _radioContainer) select 0) select 0);

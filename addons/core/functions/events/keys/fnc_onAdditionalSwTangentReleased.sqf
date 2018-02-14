@@ -1,22 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_onAdditionalSwTangentReleased
+  Name: TFAR_fnc_onAdditionalSwTangentReleased
 
-    Author(s):
-        NKey
+  Author: NKey
+    Fired when the additional keybinding for SR is relesed.
 
-    Description:
-        Fired when the additional keybinding for SW is released.
+  Arguments:
+    None
 
-    Parameters:
+  Return Value:
+    Whether or not the event was handled <BOOL>
 
-    Returns:
-        BOOLEAN
+  Example:
+    call TFAR_fnc_onAdditionalSwTangentReleased;
 
-    Example:
-        call TFAR_fnc_onAdditionalSwTangentReleased;
-*/
+  Public: No
+ */
 
 
 if ((!TF_tangent_sw_pressed) or {!alive TFAR_currentUnit}) exitWith {true};

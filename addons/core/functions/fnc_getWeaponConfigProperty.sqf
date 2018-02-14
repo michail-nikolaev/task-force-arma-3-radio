@@ -1,26 +1,25 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getWeaponConfigProperty
+  Name: TFAR_fnc_getVehicleConfigProperty
 
-    Author(s):
-        Dorbedo
+  Author: NKey, Garth de Wet (L-H), Dorbedo
+    Gets a config property (getNumber/getText)
+    Only works for CfgWeapon.
 
-    Description:
-        Gets a config property (getNumber/getText/getArray)
-        Only works for CfgWeapon.
+  Arguments:
+    0: Item classname <STRING>
+    1: property <STRING>
+    2: Default Value <ANY> (default: "")
 
-    Parameters:
-        0: STRING - Item classname
-        1: STRING - property
-        2: ANYTHING - Default (Optional)
+  Return Value:
+    value <NUMBER|TEXT|ARRAY>
 
-    Returns:
-        NUMBER or TEXT or ARRAY - Result
+  Example:
+    [_SrRadio, "tf_prototype", 0] call TFAR_fnc_getWeaponConfigProperty;
 
-    Example:
-        [_SrRadio, "tf_prototype", 0] call TFAR_fnc_getWeaponConfigProperty;
-*/
+  Public: Yes
+ */
 
 params ["_item", "_property", ["_default", ""]];
 

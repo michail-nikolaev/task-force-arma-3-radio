@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getCopilot
+  Name: TFAR_fnc_getCopilot
 
-    Author(s):
-        Gundy
+  Author: Grundy
+    Returns the unit in the passed vehicle's co-pilot seat
 
-    Description:
-        Returns the unit in the passed vehicle's co-pilot seat
+  Arguments:
+    0: Vehicle <OBJECT>
 
-    Parameters:
-        0: Object - Vehicle
+  Return Value:
+    Unit occupying the vehicle's co-pilot seat, objNull if there is no co-pilot <OBJECT>
 
-    Returns:
-        OBJECT - Unit occupying the vehicle's co-pilot seat, objNull if there is no co-pilot
+  Example:
+    _copilot = (vehicle player) call TFAR_fnc_getCopilot;
 
-    Example:
-        _copilot = (vehicle player) call TFAR_fnc_getCopilot;
-*/
+  Public: Yes
+ */
 
 // default co-pilot turret
 private _copilotTurret = 0;

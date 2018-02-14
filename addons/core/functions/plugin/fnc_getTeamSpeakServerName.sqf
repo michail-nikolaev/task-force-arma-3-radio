@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getTeamSpeakServerName
+  Name: TFAR_fnc_getTeamSpeakServerName
 
-    Author(s):
-        NKey
+  Author: NKey
+    Returns TeamSpeak server name.
 
-    Description:
-        Returns TeamSpeak server name.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    name of the server <STRING>
 
-    Returns:
-        STRING: name of server
+  Example:
+    call TFAR_fnc_getTeamSpeakServerName;
 
-    Example:
-        call TFAR_fnc_getTeamSpeakServerName;
-*/
+  Public: Yes
+ */
 
 "task_force_radio_pipe" callExtension "TS_INFO	SERVER"

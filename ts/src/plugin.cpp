@@ -79,14 +79,12 @@ void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID cl
         auto myData = clientDataDir->myClientData;
 
         if (clientData && myData && ((TFAR::getInstance().m_gameData.alive && clientData->isAlive()) || myData->isSpectating)) {
-            bool isOnRadio = isOverRadio.first ? isOverRadio.second : !clientData->isOverRadio(myData, false, false, false).empty();
-
-            if (!isOnRadio) {
-                bool isTalk = clientData->clientTalkingNow || Teamspeak::isTalking(serverConnectionHandlerID, clientData->clientId);
-                auto distance = myData->getClientPosition().distanceTo(clientData->getClientPosition());
-                mute = distance > (clientData->voiceVolume + 15) || !isTalk;
-            } else {
-                mute = false;
+            auto distance = myData->getClientPosition().distanceTo(clientData->getClientPosition());
+            mute = distance > (clientData->voiceVolume + 15);
+            
+            if (mute) {//If he is in range we don't need to check if we can hear him over radio as we can hear anyway.
+                bool isOnRadio = isOverRadio.first ? isOverRadio.second : !clientData->isOverRadio(myData, false, false, false).empty();
+                mute = !isOnRadio;
             }
         } else {
             mute = true;

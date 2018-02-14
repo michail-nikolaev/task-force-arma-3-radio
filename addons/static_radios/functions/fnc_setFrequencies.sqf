@@ -1,26 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_static_radios_fnc_setFrequencies
+  Name: TFAR_static_radios_fnc_setFrequencies
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    takes radio classnames and returns instanciated classnames (with _ID appended)
 
-    Description:
-        Takes Radio classnames and returns instanciated classnames (With _ID appended)
-        Internal use only!
+  Arguments:
+    0: the weaponholder containing the radio <OBJECT>
+    1: 9 channels of frequencies <ARRAY>
 
-    Parameters:
-        0: OBJECT - The weaponholder containing the Radio
-        1: ARRAY:   - 9 Channels of frequencies
-                STRING  - Channels frequency
+  Return Value:
+    None
 
-    Returns:
-        NOTHING
+  Example:
+    ["TFAR_anprc_152_3",["72.4","60","66.4",...]] call TFAR_static_radios_fnc_setFrequencies;
 
-    Example:
-        ["TFAR_anprc_152_3",["72.4","60","66.4",...]] call TFAR_static_radios_fnc_setFrequencies;
-*/
+  Public: No
+ */
 params ["_radioContainer","_frequencies"];
 
 _radio_id = _radioContainer call TFAR_static_radios_fnc_instanciatedRadio;

@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setSwVolume
+  Name: TFAR_fnc_setSwVolume
 
-    Author(s):
-        NKey
+  Author: NKey
+    Sets the volume for the SW radio
 
-    Description:
-        Sets the volume for the SW radio
+  Arguments:
+    0: Radio <STRING>
+    1: Volume Range (0,10) <NUMBER>
 
-    Parameters:
-        0: STRING - Radio
-        1: NUMBER - Volume : Range (0,10)
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    [call TFAR_fnc_activeSWRadio, 10] call TFAR_fnc_setSwVolume;
 
-    Example:
-        [call TFAR_fnc_activeSWRadio, 10] call TFAR_fnc_setSwVolume;
-*/
+  Public: Yes
+ */
 
 params ["_radio_id", "_value"];
 

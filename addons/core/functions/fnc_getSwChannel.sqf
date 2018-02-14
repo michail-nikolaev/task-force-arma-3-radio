@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getSwChannel
+  Name: TFAR_fnc_getSwChannel
 
-    Author(s):
-        NKey
+  Author: NKey
+    Gets the channel for the passed radio
 
-    Description:
-        Gets the channel for the passed radio
+  Arguments:
+    Radio classname <STRING>
 
-    Parameters:
-        STRING: Radio classname
+  Return Value:
+    Channel <NUMBER>
 
-    Returns:
-        NUMBER: Channel
+  Example:
+    _channel = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwChannel;
 
-    Example:
-        _channel = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwChannel;
-*/
-params[["_radio","",[""]]];
+  Public: Yes
+ */
+params[["_radio", "", [""]]];
 
-(_radio call TFAR_fnc_getSwSettings) param [ACTIVE_CHANNEL_OFFSET,0]
+(_radio call TFAR_fnc_getSwSettings) param [ACTIVE_CHANNEL_OFFSET, 0]

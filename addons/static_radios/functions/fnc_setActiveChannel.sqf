@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_static_radios_fnc_setActiveChannel
+  Name: TFAR_static_radios_fnc_setActiveChannel
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    sets the static radio's active channel
 
-    Description:
-        Sets the static Radio's active Channel
+  Arguments:
+    0: the weaponholder containing the radio <OBJECT>
+    1: selected channel <SCALAR>
 
-    Parameters:
-        0: OBJECT - The weaponholder containing the Radio
-        1: SCALAR - selected Channel
+  Return Value:
+    None
 
-    Returns:
-        NOTHING
+  Example:
+    ["TFAR_anprc_152_3",3] call TFAR_static_radios_fnc_setActiveChannel;
 
-    Example:
-        ["TFAR_anprc_152_3",3] call TFAR_static_radios_fnc_setActiveChannel;
-*/
+  Public: Yes
+ */
 params ["_radioContainer","_channel"];
 
 _radio_id = _radioContainer call TFAR_static_radios_fnc_instanciatedRadio;

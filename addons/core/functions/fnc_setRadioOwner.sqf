@@ -1,25 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setRadioOwner
+  Name: TFAR_fnc_setRadioOwner
 
-    Author(s):
-        L-H
+  Author: Garth de Wet (L-H)
+    Sets the owner of a SW radio.
 
-    Description:
-        Sets the owner of a SW radio.
+  Arguments:
+    0: radio classname <STRING>
+    1: UID of owner <STRING>
+    2: Local only <BOOL>
 
-    Parameters:
-        0: STRING - radio classname
-        1: STRING - UID of owner
-        2: BOOLEAN - Local only
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    [call TFAR_fnc_activeSwRadio, getPlayerUID player] call TFAR_fnc_setRadioOwner;
 
-    Example:
-        [call TFAR_fnc_activeSwRadio, getPlayerUID player] call TFAR_fnc_setRadioOwner;
-*/
+  Public: Yes
+ */
 
 params ["_radio", "_owner", ["_local", false, [true]]];
 

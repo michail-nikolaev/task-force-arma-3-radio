@@ -1,24 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_isRadio
+  Name: TFAR_fnc_isRadio
 
-    Author(s):
-        NKey
-        L-H
+  Author: NKey, Garth de Wet (L-H)
+    Checks whether the passed radio is a TFAR radio.
 
-    Description:
-        Checks whether the passed radio is a TFAR radio.
+  Arguments:
+    0: Radio classname <STRING>
 
-    Parameters:
-        STRING - Radio classname
+  Return Value:
+    is a radio <BOOL>
 
-    Returns:
-        BOOLEAN
+  Example:
+    _isRadio = "NotARadioClass" call TFAR_fnc_isRadio;
 
-    Example:
-        _isRadio = "NotARadioClass" call TFAR_fnc_isRadio;
-*/
+  Public: Yes
+ */
 
 private _cacheName = (_this+"tf_radiobool");
 private _cachedEntry = GVAR(WeaponConfigCacheNamespace) getVariable _cacheName;

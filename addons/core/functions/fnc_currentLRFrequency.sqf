@@ -1,21 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_currentLRFrequency
+  Name: TFAR_fnc_currentLRFrequency
 
-    Author(s):
-        NKey
+  Author: NKey
+    Returns current Frequency of the active LR Radio
 
-    Description:
-        Returns current Frequency of the active LR Radio
+  Arguments:
+    None
 
-    Parameters:
+  Return Value:
+    Frequency of active LR Radio <STRING>
 
-    Returns:
-        0: STRING: Frequency of active LR Radio
+  Example:
+    _LRFrequency = call TFAR_fnc_currentLRFrequency
 
-    Example:
-        _LRFrequency = call TFAR_fnc_currentLRFrequency
-*/
+  Public: Yes
+ */
 
 (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrFrequency
