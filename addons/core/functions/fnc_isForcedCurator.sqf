@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_isForcedCurator
+  Name: TFAR_fnc_isForcedCurator
 
-    Author(s):
-        Nkey
+  Author: NKey
+    Return if unit if forced curator.
 
-    Description:
-        Return if unit if forced curator.
+  Arguments:
+    0: unit to check <OBJECT>
 
-    Parameters:
-        OBJECT: unit to check
+  Return Value:
+    is unit forced curator <BOOL>
 
-    Returns:
-        BOOLEN: is unit forced curator
+  Example:
+    player call TFAR_fnc_isForcedCurator;
 
-    Example:
-        player call TFAR_fnc_isForcedCurator;
+  Public: Yes
 */
 
 private _result = _this getVariable "tf_forcedCurator";

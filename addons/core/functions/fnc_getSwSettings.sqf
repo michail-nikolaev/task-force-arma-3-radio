@@ -1,25 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getSwSettings
+  Name: TFAR_fnc_getSwSettings
 
-    Author(s):
-        NKey
-        L-H
+  Author: NKey, Garth de Wet (L-H)
+    Returns the current settings for the passed radio.
 
-    Description:
-        Returns the current settings for the passed radio.
+  Arguments:
+    Radio classname <STRING>
 
-    Parameters:
-        0: String - Radio classname
+  Return Value:
+    settings <ARRAY>
 
-    Returns:
-        ARRAY - settings.
+  Example:
+    (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings;
 
-    Example:
-        (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings;
+  Public: Yes
 */
-params[["_radio","",[""]]];
+params[["_radio", "", [""]]];
 
 private _value = TFAR_RadioSettingsNamespace getVariable _radio;
 if (!isNil "_value") exitWith {_value};

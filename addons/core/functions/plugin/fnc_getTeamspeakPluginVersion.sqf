@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getTeamspeakPluginVersion
+  Name: TFAR_fnc_getTeamspeakPluginVersion
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    Returns TeamSpeak Plugin version.
 
-    Description:
-        Returns TeamSpeak Plugin version.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    version <STRING>
 
-    Returns:
-        STRING: version
+  Example:
+    call TFAR_fnc_getTeamspeakPluginVersion;
 
-    Example:
-        call TFAR_fnc_getTeamspeakPluginVersion;
+  Public: Yes
 */
 
 "task_force_radio_pipe" callExtension "TS_INFO	VERSION"

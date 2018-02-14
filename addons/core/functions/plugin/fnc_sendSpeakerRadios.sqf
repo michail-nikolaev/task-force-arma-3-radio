@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_sendSpeakerRadios
+  Name: TFAR_fnc_sendSpeakerRadios
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    sends infos about speakerradios to plugin
 
-    Description:
-        Send infos about SpeakerRadios to Teamspeak Plugin
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    call TFAR_fnc_sendSpeakerRadios;
 
-    Example:
-        call TFAR_fnc_sendSpeakerRadios;
+  Public: Yes
 */
 
 

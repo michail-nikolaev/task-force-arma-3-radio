@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_isBackpackRadio
+  Name: TFAR_fnc_isBackpackRadio
 
-    Author(s):
-        Dorbedo
+  Author: Dorbedo
+    Returns if a radio is a backpacked radio.
 
-    Description:
-        Returns if a radio is a backpacked radio.
+  Arguments:
+    0: Radio classname <STRING>
 
-    Parameters:
-        0: STRING - Radio classname
+  Return Value:
+    Radio classname <BOOL>
 
-    Returns:
-        BOOLEAN - True if backpack radio
+  Example:
+    "TFAR_anprc_152" call TFAR_fnc_isBackpackRadio;
 
-    Example:
-        "TFAR_anprc_152" call TFAR_fnc_isBackpackRadio;
+  Public: Yes
 */
-params [["_classname",[]]];
+params [["_classname", []]];
 
 if (_classname isEqualType []) exitWith {false};
 if (_classname isEqualType objNull) then {_classname = typeOf _classname;};

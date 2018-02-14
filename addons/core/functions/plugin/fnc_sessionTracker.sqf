@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_sessionTracker
+  Name: TFAR_fnc_sessionTracker
 
-    Author(s):
-        NKey, Dedmen
+  Author: NKey, Dedmen
+    Collects some statistic information to help make TFAR great.
 
-    Description:
-        Collects some statistic information to help make TFAR better.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    call TFAR_fnc_sessionTracker;
 
-    Example:
-        call TFAR_fnc_sessionTracker
+  Public: No
 */
 
 private _variables = [

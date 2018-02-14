@@ -1,25 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_forceSpectator
+  Name: TFAR_fnc_forceSpectator
 
-    Author(s):
-        NKey
+  Author: NKey
+    If second parameter is true player will moved to spectator mode
+    If false - normal behaviour will be restored.
 
-    Description:
-        If second parameter is true player will moved to spectator mode
-        If false - normal behaviour will be restored.
+  Arguments:
+    0: player <OBJECT>
+    1: force <BOOL>
 
-    Parameters:
-        ARRAY:
-            0 - Object - Player
-            1 - Boolean - Force or not
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    [player, true] call TFAR_fnc_forceSpectator;
 
-    Example:
-        [player, true] call TFAR_fnc_forceSpectator;
+  Public: Yes
 */
 
 params ["_player", "_value"];

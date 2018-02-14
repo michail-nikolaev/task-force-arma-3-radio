@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_radioReplaceProcess
+  Name: TFAR_fnc_radioReplaceProcess
 
-    Author(s):
-        NKey, Dorbedo
+  Author: NKey, Dorbedo
+    Replaces a player's radios if there are any prototype radios.
 
-    Description:
-        Replaces a player's radios if there are any prototype radios.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    [TFAR_fnc_radioReplaceProcess, 2] call CBA_fnc_addPerFrameHandler;
 
-    Example:
-        [TFAR_fnc_radioReplaceProcess, 2] call CBA_fnc_addPerFrameHandler;
+  Public: Yes
 */
 
 if !(GVAR(SettingsInitialized)) exitWith {};

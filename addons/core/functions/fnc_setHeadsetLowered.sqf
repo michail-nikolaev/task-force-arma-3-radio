@@ -1,26 +1,25 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setHeadsetLowered
+  Name: TFAR_fnc_setHeadsetLowered
 
-    Author(s):
-        Dedmen
+  Author: Dedmen
+    Sets if the Headset is currently lowered
 
-    Description:
-        Sets if the Headset is currently lowered
+  Arguments:
+    0: Headset lowered <BOOL>
 
-    Parameters:
-        BOOL - Headset lowered
+  Return Value:
+    None
 
-    Returns:
-        NOTHING
+  Example:
+    true call TFAR_fnc_setHeadsetLowered;
 
-    Example:
-        true call TFAR_fnc_setHeadsetLowered;
- */
-params [["_lowered",false,[false]] ];
+  Public: Yes
+*/
+params [["_lowered", false, [false]]];
 
 //Using Plugin settngs framework because its easier to use for this. And doesn't cludder FREQ command
 //Benchmarking this returned 0.024ms per call
 GVAR(isHeadsetLowered) = _lowered;
-["headsetLowered",_lowered] call TFAR_fnc_setPluginSetting;
+["headsetLowered", _lowered] call TFAR_fnc_setPluginSetting;

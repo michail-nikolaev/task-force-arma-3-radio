@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setSwSpeakers
+  Name: TFAR_fnc_setSwSpeakers
 
-    Author(s):
-        NKey
+  Author: NKey
+    Sets the speakers setting for the SW radio
 
-    Description:
-        Sets the speakers setting for the SW radio
+  Arguments:
+    0: Radio <STRING>
 
-    Parameters:
-        0: STRING - Radio
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    [call TFAR_fnc_activeSWRadio] call TFAR_fnc_setSwSpeakers;
 
-    Example:
-        [call TFAR_fnc_activeSWRadio] call TFAR_fnc_setSwSpeakers;
+  Public: Yes
 */
 
 params ["_radio_id"];

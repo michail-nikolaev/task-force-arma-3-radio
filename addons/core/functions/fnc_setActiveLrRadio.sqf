@@ -1,24 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_setActiveLrRadio
+  Name: TFAR_fnc_setActiveLrRadio
 
-    Author(s):
-        NKey
+  Author: NKey
+    Sets the active LR radio to the passed radio
 
-    Description:
-        Sets the active LR radio to the passed radio
+  Arguments:
+    0: Radio <OBJECT>
+    1: Radio ID <OBJECT>
 
-    Parameters:
-        ARRAY:
-            0: OBJECT - Radio
-            1: STRING - Radio ID
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    TF_lr_dialog_radio call TFAR_fnc_setActiveLrRadio;
 
-    Example:
-        TF_lr_dialog_radio call TFAR_fnc_setActiveLrRadio;
+  Public: Yes
 */
 private _old = TF_lr_active_radio;
 TF_lr_active_radio = _this;

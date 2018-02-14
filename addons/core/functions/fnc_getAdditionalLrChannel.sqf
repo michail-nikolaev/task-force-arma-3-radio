@@ -1,24 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getAdditionalLrChannel
+  Name: TFAR_fnc_getAdditionalLrChannel
 
-    Author(s):
-        NKey
+  Author: NKey
+    Gets the additional channel for the passed radio
 
-    Description:
-        Gets the additional channel for the passed radio
+  Arguments:
+    0: Radio object <OBJECT>
+    1: Radio ID <STRING>
 
-    Parameters:
-        Array: Radio
-            0: OBJECT - Radio object
-            1: STRING - Radio ID
+  Return Value:
+    Channel <NUMBER>
 
-    Returns:
-        NUMBER: Channel
+  Example:
+    _channel = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getAdditionalLrChannel;
 
-    Example:
-        _channel = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getAdditionalLrChannel;
+  Public: Yes
 */
 
 (_this call TFAR_fnc_getLrSettings) param [TFAR_ADDITIONAL_CHANNEL_OFFSET,-1]

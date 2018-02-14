@@ -1,20 +1,21 @@
+#include "script_component.hpp"
+
 /*
- 	Name: TFAR_fnc_loadoutReplaceProcess
+  Name: TFAR_fnc_loadoutReplaceProcess
 
- 	Author(s):
-		zgmrvn
+  Author: zgmrvn
+    iterates through player's loadouts and replaces actual radios with prototypes
 
- 	Description:
- 		iterates through player's loadouts and replaces actual radios with prototypes
+  Arguments:
+    None
 
-	Parameters:
-		Nothing
+  Return Value:
+    None
 
- 	Returns:
-		Nothing
+  Example:
+    call TFAR_fnc_loadoutReplaceProcess;
 
- 	Example:
-		[] call TFAR_fnc_loadoutReplaceProcess;
+  Public: Yes
 */
 scriptName "TFAR_fnc_loadoutReplaceProcess";
 

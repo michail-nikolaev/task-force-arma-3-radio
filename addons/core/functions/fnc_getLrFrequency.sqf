@@ -1,25 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getLrFrequency
+  Name: TFAR_fnc_getLrFrequency
 
-    Author(s):
-        NKey
-        L-H
+  Author: NKey, Garth de Wet (L-H)
+    Gets the frequency for the active channel.
 
-    Description:
-        Gets the frequency for the active channel.
+  Arguments:
+    0: Radio object <OBJECT>
+    1: Radio ID <STRING>
 
-    Parameters:
-        Array: Radio
-            0: OBJECT - Radio object
-            1: STRING - Radio ID
+  Return Value:
+    Frequency <NUMBER>
 
-    Returns:
-        NUMBER: Frequency
+  Example:
+    _frequency = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrFrequency;
 
-    Example:
-        _frequency = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrFrequency;
+  Public: Yes
 */
 
 [_this, ((_this call TFAR_fnc_getLrSettings) param [ACTIVE_CHANNEL_OFFSET])+1] call TFAR_fnc_getChannelFrequency;

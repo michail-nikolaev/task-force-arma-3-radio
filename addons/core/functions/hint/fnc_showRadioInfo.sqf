@@ -1,25 +1,25 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_showRadioInfo
+  Name: TFAR_fnc_showRadioInfo
 
-    Author(s):
-        L-H
+  Author: Garth de Wet (L-H)
+    shows the radio info
 
-    Description:
+  Arguments:
+    0: Radio <OBJECT|STRING>
+    1: is LR radio <BOOL>
 
-    Parameters:
-        0: OBJECT/STRING - Radio
-        1: BOOLEAN - is LR radio
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    // LR radio
+    [(call TFAR_fnc_activeLrRadio), true] call TFAR_fnc_showRadioInfo;
+    // SW radio
+    [(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_showRadioInfo;
 
-    Example:
-        // LR radio
-        [(call TFAR_fnc_activeLrRadio), true] call TFAR_fnc_showRadioInfo;
-        // SW radio
-        [(call TFAR_fnc_activeSwRadio), false] call TFAR_fnc_showRadioInfo;
+  Public: Yes
 */
 
 params ["_radio", "_isLrRadio"];

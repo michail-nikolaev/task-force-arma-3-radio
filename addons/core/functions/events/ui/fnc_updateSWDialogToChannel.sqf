@@ -1,26 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_updateSWDialogToChannel
+  Name: TFAR_fnc_updateSWDialogToChannel
 
-    Author(s):
-        NKey
-        L-H
+  Author: NKey, Garth de Wet (L-H)
+    Updates the SR dialog to the channel if switched.
 
-    Description:
-        Updates the SW dialog to the channel if switched.
+  Arguments:
+    0: Format to display channel with. Requires %1. <STRING> (default: "C%1")
 
-    Parameters:
-        0: STRING - Format to display channel with. Requires %1. (Optional)
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    // No custom format.
+    call TFAR_fnc_updateSWDialogToChannel;
+    // Custom format
+    ["CH: %1"] call TFAR_fnc_updateSWDialogToChannel;
 
-    Example:
-        // No custom format.
-        call TFAR_fnc_updateSWDialogToChannel;
-        // Custom format
-        ["CH: %1"] call TFAR_fnc_updateSWDialogToChannel;
+  Public: Yes
 */
 
 private _formatText = "C%1";

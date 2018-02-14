@@ -1,23 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_serverInit
+  Name: TFAR_fnc_serverInit
 
-    Author(s):
-        NKey
-        L-H
+  Author: NKey, Garth de Wet (L-H)
+    Initialises the server and the server loop.
 
-    Description:
-        Initialises the server and the server loop.
+  Arguments:
+    None
 
-    Parameters:
-        Nothing
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    call TFAR_fnc_serverInit;
 
-    Example:
-        call TFAR_fnc_serverInit;
+  Public: No
 */
 
 ["TFAR_RadioRequestEvent", {

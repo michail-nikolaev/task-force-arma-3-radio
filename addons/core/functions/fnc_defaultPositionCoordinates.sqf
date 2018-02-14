@@ -1,23 +1,22 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_defaultPositionCoordinates
+  Name: TFAR_fnc_defaultPositionCoordinates
 
-    Author(s):
-        NKey
+  Author: NKey
+    Prepares the position coordinates of the passed unit.
 
-    Description:
-        Prepares the position coordinates of the passed unit.
+  Arguments:
+    0: unit <OBJECT>
+    1: Is near player <BOOL>
 
-    Parameters:
-        0: OBJECT - unit
-        1: BOOLEAN - Is near player
+  Return Value:
+    position ASL <ARRAY>
 
-    Returns:
-        Nothing
+  Example:
+    [player, false] call TFAR_fnc_defaultPositionCoordinates;
 
-    Example:
-
+  Public: Yes
 */
 
 params ["_unit", "_isNearPlayer"];

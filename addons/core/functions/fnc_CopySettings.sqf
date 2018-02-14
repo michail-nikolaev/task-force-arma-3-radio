@@ -1,26 +1,25 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_copySettings
+  Name: TFAR_fnc_CopySettings
 
-    Author(s):
-        L-H
+  Author: Garth de Wet (L-H)
+    Copies the settings from a radio to another.
 
-    Description:
-        Copies the settings from a radio to another.
+  Arguments:
+    0: Source Radio (SR/LR) <ARRAY|STRING>
+    1: Destination Radio (SR/LR) <ARRAY|STRING>
 
-    Parameters:
-        0:ARRAY/STRING - Source Radio (SW/LR)
-        1:ARRAY/STRING - Destination Radio (SW/LR)
+  Return Value:
+    None
 
-    Returns:
-        Nothing
+  Example:
+    // LR - LR
+    [(call TFAR_fnc_activeLrRadio),[(vehicle player), "driver"]] call TFAR_fnc_copySettings;
+    // SW - SW
+    [(call TFAR_fnc_activeSwRadio),"TFAR_anprc148jem_20"] call TFAR_fnc_copySettings
 
-    Example:
-        // LR - LR
-        [(call TFAR_fnc_activeLrRadio),[(vehicle player), "driver"]] call TFAR_fnc_copySettings;
-        // SW - SW
-        [(call TFAR_fnc_activeSwRadio),"TFAR_anprc148jem_20"] call TFAR_fnc_copySettings
+  Public: Yes
 */
 
 params ["_source", "_destination"];

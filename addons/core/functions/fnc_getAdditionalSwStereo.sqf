@@ -1,24 +1,23 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getAdditionalSwStereo
+  Name: TFAR_fnc_getAdditionalSwStereo
 
-    Author(s):
-        NKey
+  Author: NKey
+    Gets the stereo setting of additional channel of the passed radio
 
-    Description:
-        Gets the stereo setting of additional channel of the passed radio
+  Arguments:
+    0: Radio classname <STRING>
 
-    Parameters:
-        STRING: Radio classname
+  Return Value:
+    Stereo setting : Range (0,2) (0 - Both, 1 - Left, 2 - Right) <NUMBER>
 
-    Returns:
-        NUMBER: Stereo setting : Range (0,2) (0 - Both, 1 - Left, 2 - Right)
+  Example:
+    _stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getAdditionalSwStereo;
 
-    Example:
-        _stereo = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getAdditionalSwStereo;
+  Public: Yes
 */
 
-params[["_radio","",[""]]];
+params[["_radio", "", [""]]];
 
 (_radio call TFAR_fnc_getSwSettings) param [TFAR_ADDITIONAL_STEREO_OFFSET]

@@ -171,7 +171,8 @@ void CommandProcessor::threadRun() {
 
 DEFINE_API_PROFILER(processAsynchronousCommand);
 void CommandProcessor::processAsynchronousCommand(const std::string& command) {
-    Logger::log(LoggerTypes::gameCommands, command);
+    if (command.substr(0,3) != "POS") //else double log as POS is also logged in sync processing
+        Logger::log(LoggerTypes::gameCommands, command);
     API_PROFILER(processAsynchronousCommand);
     std::vector<std::string> tokens; tokens.reserve(18);
     helpers::split(command, '\t', tokens); //may not be used in nickname	
@@ -218,8 +219,8 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                 helpers::parseArmaNumberToInt(tokens[9]),	//terrainInterception
                 helpers::parseArmaNumber(tokens[10]),		//voiceVolume
                 helpers::parseArmaNumberToInt(tokens[11]),	//objectInterception
-                helpers::isTrue(tokens[12]),
-                helpers::isTrue(tokens[13])
+                helpers::isTrue(tokens[12]),                //isSpectating
+                helpers::isTrue(tokens[13])                 //isEnemyToPlayer
             };
 
             processUnitPosition(currentServerConnectionHandlerID, packet);
@@ -380,6 +381,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
             std::experimental::filesystem::create_directories(basePath,err);
 
             std::experimental::filesystem::copy(std::string(getenv("appdata")) + "\\TS3Client\\TFAR_pluginCommands.log", basePath + "TFAR_pluginCommands.log",err);
+            std::experimental::filesystem::copy(std::string(getenv("appdata")) + "\\TS3Client\\TFAR_gameCommands.log", basePath + "TFAR_gameCommands.log", err);
 
             clientDataDir->forEachClient([&basePath](const std::shared_ptr<clientData>& cli) {
                 auto messages = std::move(cli->messages);
@@ -584,7 +586,7 @@ std::string CommandProcessor::convertNickname(const std::string& nickname) {
         if (nickname.back() == ' ') {
             newName.replace(nickname.find_last_not_of(' ') + 1, newName.length() - nickname.find_last_not_of(' ') - 1, newName.length() - nickname.find_last_not_of(' ') - 1, '_');
         }
-        return std::move(newName);
+        return newName;
     }
     return nickname;
 }

@@ -1,5 +1,24 @@
 #include "script_component.hpp"
 
+/*
+  Name: TFAR_fnc_onLRTangentReleasedHack
+
+  Author: Nkey
+    Hack to also trigger LR transmit while sprinting or holding down other modifiers
+
+  Arguments:
+    None
+
+  Return Value:
+    false <BOOL>
+
+  Example:
+    call TFAR_fnc_onLRTangentReleasedHack;
+
+  Public: No
+*/
+
+
 private _scancode = _this select 1;
 private _keybind = ["TFAR", "LRTransmit"] call cba_fnc_getKeybind;
 if !(isNil "_keybind") then {

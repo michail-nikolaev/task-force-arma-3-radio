@@ -1,26 +1,24 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_getVehicleConfigProperty
+  Name: TFAR_fnc_getVehicleConfigProperty
 
-    Author(s):
-        NKey
-        L-H
+  Author: NKey, Garth de Wet (L-H)
+    Gets a config property (getNumber/getText)
+    Only works for CfgVehicles.
 
-    Description:
-        Gets a config property (getNumber/getText)
-        Only works for CfgVehicles.
+  Arguments:
+    0: Item classname <STRING>
+    1: property <STRING>
+    2: Default Value <ANY> (default: "")
 
-    Parameters:
-        0: STRING - Item classname
-        1: STRING - property
-        2: ANYTHING - Default (Optional)
+  Return Value:
+    value <NUMBER|TEXT|ARRAY>
 
-    Returns:
-        NUMBER or TEXT or ARRAY - Result
+  Example:
+    [_LRradio, "tf_hasLrRadio", 0] call TFAR_fnc_getVehicleConfigProperty;
 
-    Example:
-        [_LRradio, "tf_hasLrRadio", 0] call TFAR_fnc_getVehicleConfigProperty;
+  Public: Yes
 */
 
 params ["_item", "_property", ["_default", ""]];
