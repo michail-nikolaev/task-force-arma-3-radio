@@ -3,7 +3,9 @@
 #include "public_definitions.h"
 #include <chrono>
 #include "datatypes.hpp"
+#include <string_view>
 using namespace dataType;
+using namespace std::literals::string_view_literals;
 using namespace std::literals;
 
 #define RADIO_GAIN_LR 5
@@ -25,7 +27,7 @@ using namespace std::literals;
 #define DD_MIN_DISTANCE 70
 #define DD_MAX_DISTANCE 300
 
-#define UNDERWATER_LEVEL -1.1f
+#define UNDERWATER_LEVEL (-1.1f)
 
 #define CANT_SPEAK_DISTANCE 5
 #define SPEAKER_GAIN 4
@@ -75,5 +77,5 @@ struct PTTDelayArguments {
         phone,
         invalid
     };
-    static subtypes stringToSubtype(const std::string& type);
+    static subtypes stringToSubtype(std::string_view type);
 };

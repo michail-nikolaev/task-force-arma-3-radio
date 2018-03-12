@@ -736,7 +736,6 @@
     <ClInclude Include="settings.hpp" />
     <ClInclude Include="SharedMemoryHandler.hpp" />
     <ClInclude Include="SignalSlot.hpp" />
-    <ClInclude Include="string_ref.hpp" />
     <ClInclude Include="task_force_radio.hpp" />
     <ClInclude Include="Teamspeak.hpp" />
     <ClInclude Include="version.h" />

@@ -2,7 +2,6 @@
 #include "helpers.hpp"
 #include "serverData.hpp"
 #include "task_force_radio.hpp"
-#include <public_errors.h>
 #include "Logger.hpp"
 #include "PlaybackHandler.hpp"
 #include <public_rare_definitions.h>
@@ -12,6 +11,9 @@
 #include "version.h"
 #include <iomanip>
 #include <filesystem>
+#include <string_view>
+
+using namespace std::literals::string_view_literals;
 
 volatile bool vadEnabled = false;
 volatile bool skipTangentOff = false;
@@ -67,9 +69,9 @@ DEFINE_API_PROFILER(processCommand);
 std::string CommandProcessor::processCommand(const std::string& command) {
     Logger::log(LoggerTypes::gameCommands, command);
     API_PROFILER(processCommand);
-    std::vector<boost::string_ref> tokens; tokens.reserve(18);
-    helpers::split(command, '\t', tokens); //may not be used in nickname	
-    auto gameCommand = toGameCommand(tokens[0], tokens.size());
+    std::vector<std::string_view> tokens; tokens.reserve(18);
+    helpers::split(command, '\t', tokens); //may not be used in nickname
+    const auto gameCommand = toGameCommand(tokens[0], tokens.size());
     if (gameCommand == gameCommand::unknown) return "UNKNOWN COMMAND";
 
 
@@ -80,25 +82,23 @@ std::string CommandProcessor::processCommand(const std::string& command) {
             queueCommand(command);//do processing async
             //This will automatically continue to IS_SPEAKING which is what we want
         case gameCommand::IS_SPEAKING: {
-            std::string nickname = convertNickname(tokens[1].to_string());
-            TSServerID currentServerConnectionHandlerID = Teamspeak::getCurrentServerConnection();
-            auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(currentServerConnectionHandlerID);
+            const auto nickname = convertNickname(tokens[1]);
+            const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
             if (!clientDataDir) return "00";
-            auto clientData = clientDataDir->getClientData(nickname);
+            const auto clientData = clientDataDir->getClientData(nickname);
             if (!clientData)
                 return "00";
-            bool receivingTransmission = clientData->receivingTransmission > 0;
+            const bool receivingTransmission = clientData->receivingTransmission > 0;
 
-            bool clientTalkingOnRadio = clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE;
+            const bool clientTalkingOnRadio = clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE;
             if (clientData->clientTalkingNow || clientTalkingOnRadio)
                 return std::string("1").append(receivingTransmission ? "1" : "0", 1);
             return  std::string("0").append(receivingTransmission ? "1" : "0", 1);
         }
         case gameCommand::RECV_FREQS: {
-            TSServerID currentServerConnectionHandlerID = Teamspeak::getCurrentServerConnection();
-            auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(currentServerConnectionHandlerID);
+            const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
             if (!clientDataDir) return "[]";
-            auto clientData = clientDataDir->myClientData;
+            const auto clientData = clientDataDir->myClientData;
             if (!clientData)
                 return "[]";
             std::stringstream str;
@@ -106,7 +106,7 @@ std::string CommandProcessor::processCommand(const std::string& command) {
             for (auto& it : clientData->receivingFrequencies) {
                 str << '"' << it << "\",";
             }
-            str.seekg(-1, str.cur);
+            str.seekg(-1, std::stringstream::cur);
             str << "]";
         }
     }
@@ -114,42 +114,42 @@ std::string CommandProcessor::processCommand(const std::string& command) {
     return "ASYNC COMMAND SENT IN SYNC CONTEXT";
 }
 
-const std::string constTangent("TANGENT");
-gameCommand CommandProcessor::toGameCommand(const boost::string_ref & textCommand, size_t tokenCount) {
+
+gameCommand CommandProcessor::toGameCommand(std::string_view textCommand, size_t tokenCount) {
     if (textCommand.length() < 3) return gameCommand::unknown;
-    auto hash = const_strhash(textCommand.data(), textCommand.length());
+    const auto hash = const_strhash(textCommand.data(), textCommand.length());
     switch (hash) {
-        case FORCE_COMPILETIME(const_strhash("POS")):
+        case FORCE_COMPILETIME(const_strhash("POS"sv)):
             return gameCommand::POS;
-        case FORCE_COMPILETIME(const_strhash("IS_SPEAKING")):
+        case FORCE_COMPILETIME(const_strhash("IS_SPEAKING"sv)):
             return gameCommand::IS_SPEAKING;
-        case FORCE_COMPILETIME(const_strhash("TS_INFO")):
+        case FORCE_COMPILETIME(const_strhash("TS_INFO"sv)):
             return gameCommand::TS_INFO;
-        case FORCE_COMPILETIME(const_strhash("FREQ")):
+        case FORCE_COMPILETIME(const_strhash("FREQ"sv)):
             return gameCommand::FREQ;
-        case FORCE_COMPILETIME(const_strhash("KILLED")):
+        case FORCE_COMPILETIME(const_strhash("KILLED"sv)):
             return gameCommand::KILLED;
-        case FORCE_COMPILETIME(const_strhash("DFRAME")):
+        case FORCE_COMPILETIME(const_strhash("DFRAME"sv)):
             return gameCommand::DFRAME;
-        case FORCE_COMPILETIME(const_strhash("TRACK")):
+        case FORCE_COMPILETIME(const_strhash("TRACK"sv)):
             return gameCommand::TRACK;
-        case FORCE_COMPILETIME(const_strhash("SPEAKERS")):
+        case FORCE_COMPILETIME(const_strhash("SPEAKERS"sv)):
             return gameCommand::SPEAKERS;
-        case FORCE_COMPILETIME(const_strhash("RELEASE_ALL_TANGENTS")):
+        case FORCE_COMPILETIME(const_strhash("RELEASE_ALL_TANGENTS"sv)):
             return gameCommand::RELEASE_ALL_TANGENTS;
-        case FORCE_COMPILETIME(const_strhash("MISSIONEND")):
+        case FORCE_COMPILETIME(const_strhash("MISSIONEND"sv)):
             return gameCommand::MISSIONEND;
-        case FORCE_COMPILETIME(const_strhash("SETCFG")):
+        case FORCE_COMPILETIME(const_strhash("SETCFG"sv)):
             return gameCommand::SETCFG;
-        case FORCE_COMPILETIME(const_strhash("TANGENT")):
-        case FORCE_COMPILETIME(const_strhash("TANGENT_LR")):
-        case FORCE_COMPILETIME(const_strhash("TANGENT_DD")):
+        case FORCE_COMPILETIME(const_strhash("TANGENT"sv)):
+        case FORCE_COMPILETIME(const_strhash("TANGENT_LR"sv)):
+        case FORCE_COMPILETIME(const_strhash("TANGENT_DD"sv)):
             return gameCommand::TANGENT;
-        case FORCE_COMPILETIME(const_strhash("RadioTwrAdd")):
+        case FORCE_COMPILETIME(const_strhash("RadioTwrAdd"sv)):
             return gameCommand::AddRadioTower;
-        case FORCE_COMPILETIME(const_strhash("RadioTwrDel")):
+        case FORCE_COMPILETIME(const_strhash("RadioTwrDel"sv)):
             return gameCommand::DeleteRadioTower;
-        case FORCE_COMPILETIME(const_strhash("collectDebugInfo")):
+        case FORCE_COMPILETIME(const_strhash("collectDebugInfo"sv)):
             return gameCommand::collectDebugInfo;
     };
     return gameCommand::unknown;
@@ -161,22 +161,22 @@ void CommandProcessor::threadRun() {
         std::unique_lock<std::mutex> lock(theadMutex);
         threadWorkCondition.wait(lock, [this] {return !commandQueue.empty() || !shouldRun; });
         if (!shouldRun) return;
-        std::string command(std::move(commandQueue.front())); commandQueue.pop();
+        const auto command(std::move(commandQueue.front()));
+        commandQueue.pop();
         lock.unlock();
         processAsynchronousCommand(command);
-
     }
 }
 
 
 DEFINE_API_PROFILER(processAsynchronousCommand);
-void CommandProcessor::processAsynchronousCommand(const std::string& command) {
+void CommandProcessor::processAsynchronousCommand(const std::string& command) const {
     if (command.substr(0,3) != "POS") //else double log as POS is also logged in sync processing
         Logger::log(LoggerTypes::gameCommands, command);
     API_PROFILER(processAsynchronousCommand);
-    std::vector<std::string> tokens; tokens.reserve(18);
-    helpers::split(command, '\t', tokens); //may not be used in nickname	
-    auto gameCommand = toGameCommand(tokens[0], tokens.size());
+    std::vector<std::string_view> tokens; tokens.reserve(18);
+    helpers::split(command, '\t', tokens); //may not be used in nickname
+    const auto gameCommand = toGameCommand(tokens[0], tokens.size());
     if (gameCommand == gameCommand::unknown) return;
     TSServerID currentServerConnectionHandlerID = Teamspeak::getCurrentServerConnection();
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(currentServerConnectionHandlerID);
@@ -208,17 +208,17 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
         case gameCommand::POS: {
             //POS nickname [x,y,z] [viewdirUnitvector(x,y,z)] canSpeak canUseSWRadio canUseLRRadio canUseDDRadio vehicleID terrainInterception voiceVolume objectInterception
             unitPositionPacket packet{
-                convertNickname(tokens[1]),					//nickname
-                Position3D(tokens[2]),						//position
-                Direction3D(tokens[3]),						//direction
-                helpers::isTrue(tokens[4]),					//canSpeak
-                helpers::isTrue(tokens[5]),					//canUseSWRadio
-                helpers::isTrue(tokens[6]),					//canUseLRRadio
-                helpers::isTrue(tokens[7]),					//canUseDDRadio
-                tokens[8],									//vehicleID
-                helpers::parseArmaNumberToInt(tokens[9]),	//terrainInterception
-                helpers::parseArmaNumber(tokens[10]),		//voiceVolume
-                helpers::parseArmaNumberToInt(tokens[11]),	//objectInterception
+                convertNickname(tokens[1]),                 //nickname
+                Position3D(tokens[2]),                      //position
+                Direction3D(tokens[3]),                     //direction
+                helpers::isTrue(tokens[4]),                 //canSpeak
+                helpers::isTrue(tokens[5]),                 //canUseSWRadio
+                helpers::isTrue(tokens[6]),                 //canUseLRRadio
+                helpers::isTrue(tokens[7]),                 //canUseDDRadio
+                tokens[8],                                  //vehicleID
+                helpers::parseArmaNumberToInt(tokens[9]),   //terrainInterception
+                helpers::parseArmaNumber(tokens[10]),       //voiceVolume
+                helpers::parseArmaNumberToInt(tokens[11]),  //objectInterception
                 helpers::isTrue(tokens[12]),                //isSpectating
                 helpers::isTrue(tokens[13])                 //isEnemyToPlayer
             };
@@ -233,7 +233,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
             return;
         case gameCommand::DFRAME:
             TFAR::getInstance().m_gameData.currentDataFrame++;
-            return;;
+            return;
         case gameCommand::SPEAKERS:
             processSpeakers(tokens);
             return;
@@ -242,30 +242,30 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
             auto myClientData = clientDataDir->myClientData;
             if (!myClientData) return; //safety first
 
-            bool pressed = (tokens[1] == "PRESSED");
+            const bool pressed = (tokens[1] == "PRESSED"sv);
 
-            std::string subtype = tokens[4];
+            const auto subtype = tokens[4];
 
-            bool changed = (TFAR::getInstance().m_gameData.tangentPressed != pressed);
+            const bool changed = (TFAR::getInstance().m_gameData.tangentPressed != pressed);
             TFAR::getInstance().m_gameData.tangentPressed = pressed;
 
             myClientData->setCurrentTransmittingSubtype(subtype);
 
-            float globalVolume = TFAR::getInstance().m_gameData.globalVolume;//used for playing radio sounds
+            const float globalVolume = TFAR::getInstance().m_gameData.globalVolume;//used for playing radio sounds
 
             if (!changed) //If nothing changed there is nothing to do.
                 return;
-            std::string commandToBroadcast = command + "\t" + (myClientData->canUseSWRadio ? "1\t" : "0\t") + (myClientData->canUseDDRadio ? "1\t" : "0\t") + myClientData->getNickname();
-            std::string frequency = tokens[2];
+            const auto commandToBroadcast = command + "\t" + (myClientData->canUseSWRadio ? "1\t" : "0\t") + (myClientData->canUseDDRadio ? "1\t" : "0\t") + myClientData->getNickname();
+            auto frequency = tokens[2];
             //convenience function to remove duplicate code
-            auto playRadioSound = [currentServerConnectionHandlerID, globalVolume, &frequency](const char* fileNameWithoutExtension,
-                const std::map<std::string, FREQ_SETTINGS>& frequencyMap) {
+            const auto playRadioSound = [currentServerConnectionHandlerID, globalVolume, &frequency](const char* fileNameWithoutExtension,
+                const std::map<std::string, FREQ_SETTINGS, std::less<>>& frequencyMap) {
                 auto found = frequencyMap.find(frequency);
                 if (found != frequencyMap.end()) {
-                    const FREQ_SETTINGS& freq = found->second;
-                    TFAR::getInstance().getPlaybackHandler()->playWavFile(currentServerConnectionHandlerID, fileNameWithoutExtension, helpers::volumeMultiplifier(static_cast<float>(freq.volume)) * globalVolume, freq.stereoMode);
+                    const auto& freq = found->second;
+                    TFAR::getPlaybackHandler()->playWavFile(currentServerConnectionHandlerID, fileNameWithoutExtension, helpers::volumeMultiplifier(static_cast<float>(freq.volume)) * globalVolume, freq.stereoMode);
                 } else {
-                    TFAR::getInstance().getPlaybackHandler()->playWavFile(fileNameWithoutExtension);
+                    TFAR::getPlaybackHandler()->playWavFile(fileNameWithoutExtension);
                 }
             };
 
@@ -292,7 +292,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                 if (!waitingForTangentOff) {
                     vadEnabled = Teamspeak::hlp_checkVad();
                     if (vadEnabled) Teamspeak::hlp_disableVad();
-                    // broadcast info about tangent pressed over all client										
+                    // broadcast info about tangent pressed over all client
                     disableVoiceAndSendCommand(commandToBroadcast, currentServerConnectionHandlerID, pressed);
                 } else skipTangentOff = true;
             } else {
@@ -302,7 +302,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
                 args.subtype = subtype;
                 args.pttDelay = TFAR::getInstance().m_gameData.pttDelay;
                 args.tangentReleaseDelay = std::chrono::milliseconds(static_cast<int>(TFAR::config.get<float>(Setting::tangentReleaseDelay)));
-                std::thread([this, args]() {process_tangent_off(args); }).detach();
+                std::thread([args]() {process_tangent_off(args); }).detach();
                 LockGuard_shared<ReadWriteLock> frequencyLock(&TFAR::getInstance().m_gameData.m_lock);
                 switch (PTTDelayArguments::stringToSubtype(subtype)) {
                     case PTTDelayArguments::subtypes::digital_lr:
@@ -323,22 +323,22 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
             }
         }; return;
         case gameCommand::RELEASE_ALL_TANGENTS: {
-            std::string commandToSend = "RELEASE_ALL_TANGENTS\t" + convertNickname(tokens[1]);
+            const auto commandToSend = "RELEASE_ALL_TANGENTS\t" + convertNickname(tokens[1]);
             Teamspeak::sendPluginCommand(Teamspeak::getCurrentServerConnection(), TFAR::getInstance().getPluginID(), commandToSend, PluginCommandTarget_CURRENT_CHANNEL);
-        };	return;
+        } return;
         case gameCommand::SETCFG: {//async
-            std::string key = tokens[1];
-            std::string value = tokens[2];
-            Setting keyEnum(key);
-            if (!TFAR::config.isValidKey(keyEnum)) {
-                MessageBoxA(0, ("Used invalid config key: " + key).c_str(), "Task Force Radio", MB_OK);
+            const auto key = tokens[1];
+            const auto value = tokens[2];
+            const Setting keyEnum(key);
+            if (!settings::isValidKey(keyEnum)) {
+                MessageBoxA(0, std::string("Used invalid config key: ").append(key).c_str(), "Task Force Radio", MB_OK);
                 return;
             }
             if (tokens.size() == 4) {
-                std::string type = tokens[3];
-                if (type == "BOOL") {
-                    TFAR::config.set(key, value == "true" || value == "TRUE");
-                } else if (type == "SCALAR") {
+                const auto type = tokens[3];
+                if (type == "BOOL"sv) {
+                    TFAR::config.set(key, value == "true"sv || value == "TRUE"sv);
+                } else if (type == "SCALAR"sv) {
                     TFAR::config.set(key, helpers::parseArmaNumber(value));
                 } else {//unsupported type or STRING
                     TFAR::config.set(key, value);
@@ -370,27 +370,26 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
         }
         case gameCommand::collectDebugInfo: {
             std::stringstream date;
-            auto now = std::chrono::system_clock::now();
-            auto in_time_t = std::chrono::system_clock::to_time_t(now);
+            const auto now = std::chrono::system_clock::now();
+            const auto in_time_t = std::chrono::system_clock::to_time_t(now);
             date << std::put_time(std::localtime(&in_time_t), "%d-%m_%H-%M-%S");
-            auto dateString = date.str();
+            const auto dateString = date.str();
 
-            auto basePath = std::string(getenv("appdata")) + "\\TS3Client\\logs\\" + dateString + "\\";
+            auto basePath = std::string(getenv("appdata")) + R"(\TS3Client\logs\)" + dateString + "\\";
             std::error_code err;
 
             std::experimental::filesystem::create_directories(basePath,err);
 
-            std::experimental::filesystem::copy(std::string(getenv("appdata")) + "\\TS3Client\\TFAR_pluginCommands.log", basePath + "TFAR_pluginCommands.log",err);
-            std::experimental::filesystem::copy(std::string(getenv("appdata")) + "\\TS3Client\\TFAR_gameCommands.log", basePath + "TFAR_gameCommands.log", err);
+            std::experimental::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_pluginCommands.log)", basePath + "TFAR_pluginCommands.log",err);
+            std::experimental::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_gameCommands.log)", basePath + "TFAR_gameCommands.log", err);
 
             clientDataDir->forEachClient([&basePath](const std::shared_ptr<clientData>& cli) {
                 auto messages = std::move(cli->messages);
                 cli->offset = 0;
-                std::string nick = cli->getNickname();
-                std::string illegalChars = "\\/:?\"<>|";
+                auto nick = cli->getNickname();
+                constexpr auto illegalChars = R"(\/:?"<>|)"sv;
                 for (auto it = nick.begin(); it < nick.end(); ++it) {
-                    bool found = illegalChars.find(*it) != std::string::npos;
-                    if (found) {
+                    if (illegalChars.find(*it) != std::string::npos) {
                         *it = ' ';
                     }
                 }
@@ -422,7 +421,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) {
     }
 }
 
-void CommandProcessor::processSpeakers(std::vector<std::string>& tokens) {
+void CommandProcessor::processSpeakers(std::vector<std::string_view>& tokens) const {
     //#TODO we don't really need to send Speakers every time.. Their pos is always static. Either on a person or on ground
     LockGuard_exclusive<ReadWriteLock> lock(&TFAR::getInstance().m_gameData.m_lock);
     TFAR::getInstance().m_gameData.speakers.clear();
@@ -430,17 +429,17 @@ void CommandProcessor::processSpeakers(std::vector<std::string>& tokens) {
         return;
 
     //if you switch TS tab... You don't get speakers bro!
-    auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
+    const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
     if (!clientDataDir) return;
 
-    for (const std::string& speaker : helpers::split(tokens[1], 0xB)) {
+    for (auto& speaker : helpers::split(tokens[1], 0xB)) {
         if (speaker.empty()) continue;
 
-        std::vector<std::string> parts; parts.reserve(7);
+        std::vector<std::string_view> parts; parts.reserve(7);
         helpers::split(speaker, 0xA, parts);
         if (parts.size() < 6) return;
         //parts radio_id,nickname,pos,volume,vehicle,(waveZ)
-        auto clientData = clientDataDir->getClientData(convertNickname(parts[2]));
+        const auto clientData = clientDataDir->getClientData(convertNickname(parts[2]));
 
         SPEAKER_DATA data;
         data.radio_id = parts[0];
@@ -451,19 +450,18 @@ void CommandProcessor::processSpeakers(std::vector<std::string>& tokens) {
         if (parts.size() > 6)
             data.waveZ = helpers::parseArmaNumber(parts[6]);
         else
-            data.waveZ = data.pos.isNull() ? 1 : std::get<2>(data.pos.get());
+            data.waveZ = data.pos.isNull() ? 1 : data.pos[2];
 
-        for (const std::string & freq : helpers::split(parts[1], '|')) {
+        for (auto& freq : helpers::split(parts[1], '|')) {
             TFAR::getInstance().m_gameData.speakers.insert(std::pair<std::string, SPEAKER_DATA>(freq, data));
         }
     }
 }
 
-void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverConnection) {
-    auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
+void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverConnection) const {
+    const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
     if (clientDataDir) {
-        auto clientData = clientDataDir->getClientData(name);
-        if (clientData) {
+        if (const auto clientData = clientDataDir->getClientData(name); clientData) {
             clientData->dataFrame = INVALID_DATA_FRAME;
         }
     }
@@ -471,14 +469,14 @@ void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverCo
     if (!clientDataDir)
         return;
 
-    bool isSeriousMode = isSeriousModeEnabled(serverConnection, Teamspeak::getMyId(serverConnection));
+    const bool isSeriousMode = isSeriousModeEnabled(serverConnection, Teamspeak::getMyId(serverConnection));
 
     if (clientDataDir->myClientData) {
         if (clientDataDir->myClientData->dataFrame == INVALID_DATA_FRAME)
             TFAR::getInstance().m_gameData.alive = false;
     }
 
-    std::vector<TSClientID> clientsIds = Teamspeak::getChannelClients(serverConnection, Teamspeak::getChannelOfClient(serverConnection));
+    const auto clientsIds = Teamspeak::getChannelClients(serverConnection, Teamspeak::getChannelOfClient(serverConnection));
 
     if (!isSeriousMode && !TFAR::getInstance().m_gameData.alive) {
         //If not seriousMode we can hear everyone when Dead
@@ -486,16 +484,16 @@ void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverCo
         return;
     }
 
-    auto myId = Teamspeak::getMyId(serverConnection);
+    const auto myId = Teamspeak::getMyId(serverConnection);
     std::vector<TSClientID> aliveClients; aliveClients.reserve(clientsIds.size());
     std::vector<TSClientID> deadClients;  deadClients.reserve(clientsIds.size());
-    for (auto & Id : clientsIds) {
-        if (Id == myId) continue;
-        auto clientData = clientDataDir->getClientData(Id);
+    for (auto& id : clientsIds) {
+        if (id == myId) continue;
+        auto clientData = clientDataDir->getClientData(id);
         if (clientData && clientData->isAlive()) {
-            aliveClients.push_back(Id);
+            aliveClients.push_back(id);
         } else {
-            deadClients.push_back(Id);
+            deadClients.push_back(id);
         }
     }
     /*
@@ -521,9 +519,9 @@ void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverCo
 
 DEFINE_API_PROFILER(processUnitPosition);
 
-void CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet) const {
+void CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet) {
     API_PROFILER(processUnitPosition);
-    auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
+    const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
     if (!clientDataDir) return;
 
     auto clientData = clientDataDir->getClientData(packet.nickname);
@@ -542,7 +540,7 @@ void CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPosi
     }
 }
 
-std::string CommandProcessor::ts_info(const boost::string_ref &command) {
+std::string CommandProcessor::ts_info(std::string_view command) {
     if (command == "SERVER") {
         return Teamspeak::getServerName();
     } else if (command == "CHANNEL") {
@@ -564,7 +562,7 @@ void CommandProcessor::process_tangent_off(PTTDelayArguments arguments) {
 
     LockGuard_exclusive<CriticalSectionLock> lock(&tangentCriticalSection);
     if (!skipTangentOff) {
-        if (vadEnabled)	Teamspeak::hlp_enableVad();
+        if (vadEnabled) Teamspeak::hlp_enableVad();
         disableVoiceAndSendCommand(arguments.commandToBroadcast, arguments.currentServerConnectionHandlerID, false);
         waitingForTangentOff = false;
     } else {
@@ -572,12 +570,12 @@ void CommandProcessor::process_tangent_off(PTTDelayArguments arguments) {
     }
 }
 
-void CommandProcessor::disableVoiceAndSendCommand(std::string commandToBroadcast, TSServerID currentServerConnectionHandlerID, bool pressed) {
-    Teamspeak::setVoiceDisabled(currentServerConnectionHandlerID, pressed || vadEnabled ? false : true);
+void CommandProcessor::disableVoiceAndSendCommand(std::string_view commandToBroadcast, TSServerID currentServerConnectionHandlerID, bool pressed) {
+    Teamspeak::setVoiceDisabled(currentServerConnectionHandlerID, !(pressed || vadEnabled));
     Teamspeak::sendPluginCommand(Teamspeak::getCurrentServerConnection(), TFAR::getInstance().getPluginID(), commandToBroadcast, PluginCommandTarget_CURRENT_CHANNEL);
 }
 
-std::string CommandProcessor::convertNickname(const std::string& nickname) {
+std::string CommandProcessor::convertNickname(std::string_view nickname) {
     if (!nickname.empty() && (nickname.front() == ' ' || nickname.back() == ' ')) {
         std::string newName(nickname);
         if (nickname.front() == ' ') {
@@ -588,5 +586,5 @@ std::string CommandProcessor::convertNickname(const std::string& nickname) {
         }
         return newName;
     }
-    return nickname;
+    return std::string(nickname);
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include <stdint.h>
+#include <cstdint>
 #include <string>
 #include "settings.hpp"
 #include "SignalSlot.hpp"
@@ -21,8 +21,7 @@ struct SPEAKER_DATA {
     std::weak_ptr<clientData> client;
     Position3D getPos() const {
         if (pos.isNull()) {
-            auto owner = client.lock();
-            if (owner)
+            if (const auto owner = client.lock(); owner)
                 return owner->getClientPosition();
         }
         return pos;
@@ -44,7 +43,7 @@ struct SPEAKER_DATA {
 class gameData {
 public:
 
-    void setFreqInfos(const std::vector<std::string>& tokens) {
+    void setFreqInfos(const std::vector<std::string_view>& tokens) {
         //FREQ, str(_freq), str(_freq_lr)
         //_alive, speakVolume, _nickname, 
         //waves, TF_terrain_interception_coefficient, _globalVolume,
@@ -68,8 +67,8 @@ public:
         speakerDistance = helpers::parseArmaNumber(tokens[10]);
     }
     mutable ReadWriteLock m_lock;
-    std::map<std::string, FREQ_SETTINGS> mySwFrequencies;
-    std::map<std::string, FREQ_SETTINGS> myLrFrequencies;
+    std::map<std::string, FREQ_SETTINGS, std::less<>> mySwFrequencies;
+    std::map<std::string, FREQ_SETTINGS, std::less<>> myLrFrequencies;
 
     std::multimap<std::string, SPEAKER_DATA> speakers;
 
@@ -85,7 +84,7 @@ public:
 
 
     std::string getCurrentTransmittingRadio() const { LockGuard_shared<ReadWriteLock> lock(&m_lock); return currentTransmittingRadio; }
-    void setCurrentTransmittingRadio(std::string val) { LockGuard_exclusive<ReadWriteLock> lock(&m_lock); currentTransmittingRadio = val; }
+    void setCurrentTransmittingRadio(std::string_view val) { LockGuard_exclusive<ReadWriteLock> lock(&m_lock); currentTransmittingRadio = val; }
     bool tangentPressed{ false };
     std::chrono::milliseconds pttDelay{ 0ms };
 private:
@@ -96,12 +95,12 @@ private:
 class TFAR {
 public:
     TFAR();
-    ~TFAR();
+    ~TFAR() = default;
 
 
     static TFAR& getInstance();
 
-    static void trackPiwik(const std::vector<std::string>& piwikData);
+    static void trackPiwik(const std::vector<std::string_view>& piwikData);
     static void createCheckForUpdateThread();
     static std::shared_ptr<CommandProcessor>& getCommandProcessor();
     static std::shared_ptr<PlaybackHandler>& getPlaybackHandler();
@@ -128,9 +127,9 @@ public:
     Signal<void(TSServerID serverID, TSClientID clientID, const std::string& clientNickname)> onTeamspeakClientJoined;
     Signal<void(TSServerID serverID, TSClientID clientID)> onTeamspeakClientLeft; //If clientID == -2 all clients Left (aka channel switched)
     Signal<void(TSServerID serverID, TSClientID clientID, const std::string& clientNickname)> onTeamspeakClientUpdated; //Some variable about him updated. Probably his nickname
-	Signal<void(TSServerID serverID, TSChannelID channelID)> onTeamspeakChannelSwitched;
+    Signal<void(TSServerID serverID, TSChannelID channelID)> onTeamspeakChannelSwitched;
 
-	Signal<void(bool currentSeriousModeSetting)> onSeriousModeChanged;
+    Signal<void(bool currentSeriousModeSetting)> onSeriousModeChanged;
 
     //Variable accessors
     std::string getPluginPath() const { return pluginPath; }
@@ -164,7 +163,7 @@ public:
     };
 
 private:
-	void checkIfSeriousModeEnabled(TSServerID serverID);
+    void checkIfSeriousModeEnabled(TSServerID serverID);
     std::string pluginPath;
     std::string pluginID;
     static bool isUpdateAvailable();
@@ -172,8 +171,8 @@ private:
     std::shared_ptr<CommandProcessor> m_commandProcessor;
     std::shared_ptr<serverDataDirectory> m_serverData;
     std::shared_ptr<AntennaManager> m_antennaManger;
-    bool currentlyInGame;
-	bool isSeriousMode;
+    bool currentlyInGame{ false };
+    bool isSeriousMode{ false };
 
 };
 

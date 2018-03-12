@@ -1,7 +1,6 @@
 #pragma once
 #include "common.hpp"
 #include <map>
-#include <ts3_functions.h>
 #include "RadioEffect.hpp"
 #include "Clunk.h"
 #include <clunk/wav_file.h>
@@ -32,7 +31,7 @@ struct LISTED_INFO {
         Position3D _pos, float _waveZ, vehicleDescriptor _vehicle, AntennaConnection _antCon = AntennaConnection())
         :over(_over), on(_on), volume(_volume), stereoMode(_stereoMode), radio_id(std::move(_radio_id)),
         pos(std::move(_pos)), waveZ(_waveZ), vehicle(std::move(_vehicle)), antennaConnection(std::move(_antCon)) {}
-    LISTED_INFO() {}
+    LISTED_INFO() = default;
     sendingRadioType over = sendingRadioType::LISTEN_TO_NONE;//What radiotype the Sender is using
     receivingRadioType on = receivingRadioType::LISTED_ON_NONE;//What radiotype we are receiving on
     int volume = 0;
@@ -58,7 +57,7 @@ struct unitPositionPacket {
     bool canUseSWRadio;
     bool canUseLRRadio;
     bool canUseDDRadio;
-    std::string vehicleID;
+    std::string_view vehicleID;
     int terrainInterception;
     float voiceVolume;
     int objectInterception;
@@ -67,7 +66,7 @@ struct unitPositionPacket {
 
 
 
-    bool myData; //Has to be last element
+    bool myData{false}; //Has to be last element
 };
 
 class clientDataEffects {
@@ -83,12 +82,10 @@ public:
 
         resetRadioEffect();
     }
-    ~clientDataEffects() {
-
-    }
+    ~clientDataEffects() = default;
 
 
-    Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* getSpeakerPhone(std::string key) {
+    Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>* getSpeakerPhone(const std::string& key) {
         LockGuard_shared lock_shared(&m_lock);
         if (!filtersPhone.count(key)) {
             lock_shared.unlock();
@@ -99,7 +96,7 @@ public:
         return filtersPhone[key].get();
     }
 
-    Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>* getSpeakerFilter(std::string key) {
+    Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>* getSpeakerFilter(const std::string& key) {
         LockGuard_shared lock_shared(&m_lock);
         if (!filtersSpeakers.count(key)) {
             lock_shared.unlock();
@@ -110,12 +107,12 @@ public:
         return filtersSpeakers[key].get();
     }
 
-    void removeSpeakerFilter(std::string key) {
+    void removeSpeakerFilter(const std::string& key) {
         LockGuard_exclusive lock_shared(&m_lock);
         filtersSpeakers.erase(key);
     }
 
-    PersonalRadioEffect* getSwRadioEffect(std::string key) {
+    PersonalRadioEffect* getSwRadioEffect(const std::string& key) {
         LockGuard_shared lock_shared(&m_lock);
         if (!swEffects.count(key)) {
             lock_shared.unlock();
@@ -125,7 +122,7 @@ public:
         return swEffects[key].get();
     }
 
-    LongRangeRadioEffect* getLrRadioEffect(std::string key) {
+    LongRangeRadioEffect* getLrRadioEffect(const std::string& key) {
         LockGuard_shared lock_shared(&m_lock);
         if (!lrEffects.count(key)) {
             lock_shared.unlock();
@@ -135,7 +132,7 @@ public:
         return lrEffects[key].get();
     }
 
-    AirborneRadioEffect* getAirborneRadioEffect(std::string key) {
+    AirborneRadioEffect* getAirborneRadioEffect(const std::string& key) {
         LockGuard_shared lock_shared(&m_lock);
         if (!airborneEffects.count(key)) {
             lock_shared.unlock();
@@ -146,7 +143,7 @@ public:
     }
 
 
-    UnderWaterRadioEffect* getUnderwaterRadioEffect(std::string key) {
+    UnderWaterRadioEffect* getUnderwaterRadioEffect(const std::string& key) {
         LockGuard_shared lock_shared(&m_lock);
         if (!ddEffects.count(key)) {
             lock_shared.unlock();
@@ -156,7 +153,7 @@ public:
         return ddEffects[key].get();
     }
 
-    Clunk* getClunk(std::string key) {
+    Clunk* getClunk(const std::string& key) {
         LockGuard_shared lock_shared(&m_lock);
         if (!clunks.count(key)) {
             lock_shared.unlock();
@@ -166,12 +163,12 @@ public:
         return clunks[key].get();
     }
 
-    void removeClunk(std::string key) {
+    void removeClunk(const std::string& key) {
         LockGuard_exclusive lock(&m_lock);
         clunks.erase(key);
     }
 
-    Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* getFilterCantSpeak(std::string key) {
+    Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>* getFilterCantSpeak(const std::string& key) {
         LockGuard_shared lock_shared(&m_lock);
         if (!filtersCantSpeak.count(key)) {
             lock_shared.unlock();
@@ -182,13 +179,13 @@ public:
         return filtersCantSpeak[key].get();
     }
 
-    void removeFilterCantSpeak(std::string key) {
+    void removeFilterCantSpeak(const std::string& key) {
         LockGuard_exclusive lock(&m_lock);
         filtersCantSpeak.erase(key);
     }
 
-    Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>* getFilterVehicle(std::string key, float vehicleVolumeLoss) {
-        std::string byKey = key + std::to_string(vehicleVolumeLoss);
+    Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>* getFilterVehicle(const std::string& key, float vehicleVolumeLoss) {
+        const auto byKey = key + std::to_string(vehicleVolumeLoss);
         LockGuard_shared lock_shared(&m_lock);
         if (!filtersVehicle.count(byKey)) {
             lock_shared.unlock();
@@ -199,7 +196,7 @@ public:
         return filtersVehicle[byKey].get();
     }
 
-    void removeFilterVehicle(std::string key) {
+    void removeFilterVehicle(const std::string& key) {
         LockGuard_exclusive lock(&m_lock);
         filtersVehicle.erase(key);
     }
@@ -242,7 +239,7 @@ private:
 
     //Filters and Effects
     template<typename T>
-    using effectMap = std::map<std::string, std::unique_ptr<T>>;
+    using effectMap = std::map<std::string, std::unique_ptr<T>, std::less<>>;
 
     effectMap<PersonalRadioEffect> swEffects;
     effectMap<LongRangeRadioEffect> lrEffects;
@@ -275,7 +272,7 @@ public:
 
 
     auto getNickname() const { LockGuard_shared lock(&m_lock); return nickname; }
-    void setNickname(const std::string& val) { LockGuard_exclusive lock(&m_lock); nickname = val; }
+    void setNickname(std::string val) { LockGuard_exclusive lock(&m_lock); nickname = std::move(val); }
     Position3D getClientPosition() const;       
     Position3D getClientPositionRaw() const { LockGuard_shared lock(&m_lock); return clientPosition; }
     void setClientPosition(const Position3D& val) { LockGuard_exclusive lock(&m_lock); clientPosition = val; }
@@ -284,9 +281,9 @@ public:
     auto getLastPositionUpdateTime() const { LockGuard_shared lock(&m_lock); return lastPositionUpdateTime; }
     void setLastPositionUpdateTime(const std::chrono::system_clock::time_point& val) { LockGuard_exclusive lock(&m_lock); lastPositionUpdateTime = val; }
     auto getCurrentTransmittingFrequency() const { LockGuard_shared lock(&m_lock); return currentTransmittingFrequency; }
-    void setCurrentTransmittingFrequency(const std::string&val) { LockGuard_exclusive lock(&m_lock); currentTransmittingFrequency = val; }
+    void setCurrentTransmittingFrequency(std::string_view val) { LockGuard_exclusive lock(&m_lock); currentTransmittingFrequency = val; }
     auto getCurrentTransmittingSubtype() const { LockGuard_shared lock(&m_lock); return currentTransmittingSubtype; }
-    void setCurrentTransmittingSubtype(const std::string& val) { LockGuard_exclusive lock(&m_lock); currentTransmittingSubtype = val; }
+    void setCurrentTransmittingSubtype(std::string_view val) { LockGuard_exclusive lock(&m_lock); currentTransmittingSubtype = val; }
     //Returns distance respecting TerrainInterception and Coefficients
     float effectiveDistanceTo(std::shared_ptr<clientData>& other) const;
     float effectiveDistanceTo(clientData* other) const;
@@ -341,7 +338,7 @@ public:
     bool isSpectating{ false };
     bool isEnemyToPlayer{ false };
     uint8_t receivingTransmission = 0; //This unit is currently receiving a transmission. Only works for local player
-    std::set<std::string> receivingFrequencies;
+    std::set<std::string, std::less<>> receivingFrequencies;
     clientDataEffects effects;
 private:
     using LockGuard_shared = LockGuard_shared<ReadWriteLock>;
@@ -362,7 +359,7 @@ private:
     vehicleDescriptor vehicleId;
     Vector3D velocity;
 
-    void setVehicleId(const std::string& val) {
+    void setVehicleId(std::string_view val) {
         //"2:390\x100.6\x10gunner"
         if (val == "no") {
             vehicleId.vehicleName = "no";

@@ -2,20 +2,21 @@
 #include <thread>
 #include "task_force_radio.hpp"
 #include "settings.hpp"
+#include "Logger.hpp"
 using namespace SharedMemoryHandlerInternal;
 
 bool SharedMemoryHandlerInternal::SharedMemoryData::getAsyncRequest(std::string& req) {
     setLastPluginTick();
-    SharedMemString* asyncBase = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128 + sizeof(SharedMemString) * 2);
+    const auto asyncBase = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128 + sizeof(SharedMemString) * 2);
     if (nextFreeAsyncMessage == 0)
         return false;
-    auto position = (nextFreeAsyncMessage--) - 1;//Don't want next but last
+    const auto position = (nextFreeAsyncMessage--) - 1;//Don't want next but last
     return asyncBase[position].assignToAndClear(req);
 }
 
 bool SharedMemoryHandlerInternal::SharedMemoryData::getSyncRequest(std::string& req) {
     setLastPluginTick();
-    SharedMemString* syncReq = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128);
+    auto syncReq = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128);
     return syncReq->assignToAndClear(req);
 }
 
@@ -26,7 +27,7 @@ void SharedMemoryHandlerInternal::SharedMemoryData::setSyncResponse(const std::s
         __debugbreak();//Response bigger than max allowed size
         return;
     }
-    SharedMemString* syncResp = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128 + sizeof(SharedMemString));
+    const auto syncResp = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128 + sizeof(SharedMemString));
     *syncResp = response;
 }
 
@@ -35,14 +36,14 @@ bool SharedMemoryHandlerInternal::SharedMemoryData::hasAsyncRequest() const {
 }
 
 bool SharedMemoryHandlerInternal::SharedMemoryData::hasSyncRequest() const {
-    const SharedMemString* syncResp = reinterpret_cast<const SharedMemString*>(reinterpret_cast<const char*>(this) + 128);
+    const auto syncResp = reinterpret_cast<const SharedMemString*>(reinterpret_cast<const char*>(this) + 128);
     return syncResp->length > 0;
 }
 
 std::string GetLastErrorString() {
     LPSTR messageBuffer = nullptr;
-    size_t size = FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-        NULL, GetLastError(), MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR) &messageBuffer, 0, NULL);
+    const size_t size = FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+                                       nullptr, GetLastError(), MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), reinterpret_cast<LPSTR>(&messageBuffer), 0, nullptr);
     std::string message(messageBuffer, size);
 
     //Free the buffer.
@@ -101,7 +102,7 @@ SharedMemoryHandler::SharedMemoryHandler() {
 
         diag << TS_INDENT << TS_INDENT << "hasAsyncRequest: " << pData->hasAsyncRequest() << "\n";
         diag << TS_INDENT << TS_INDENT << "hasSyncRequest: " << pData->hasSyncRequest() << "\n";
-        diag << TS_INDENT << TS_INDENT << "lastGameTick: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now()-pData->getLastGameTick()).count() << u8"µs" << "\n";
+        diag << TS_INDENT << TS_INDENT << "lastGameTick: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now()-pData->getLastGameTick()).count() << u8"Âµs" << "\n";
     });
 
 }
@@ -109,7 +110,7 @@ SharedMemoryHandler::SharedMemoryHandler() {
 
 SharedMemoryHandler::~SharedMemoryHandler() {
     if (pMapView) {
-        SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
+        auto pData = static_cast<SharedMemoryData*>(pMapView);
         pData->onShutdown();
         UnmapViewOfFile(pMapView);
     }
@@ -138,14 +139,14 @@ bool SharedMemoryHandler::sendData(const char* data, size_t length) {
 bool SharedMemoryHandler::hasRequests() {
     if (!isReady()) return false;
     MutexLock lock(hMutex);
-    SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
+    const auto pData = static_cast<SharedMemoryData*>(pMapView);
     return pData->hasAsyncRequest() || pData->hasSyncRequest();
 }
 
 bool SharedMemoryHandler::answerSyncRequest(const std::string& answer) {
     if (!isReady()) return false;
     MutexLock lock(hMutex);
-    SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
+    auto pData = static_cast<SharedMemoryData*>(pMapView);
     pData->setSyncResponse(answer);
     //pData->setSyncReady(true);
     SetEvent(hEventResponse);
@@ -158,7 +159,7 @@ bool SharedMemoryHandler::waitForRequest(std::chrono::milliseconds timeout) {
     }
     if (hasRequests())
         return true;
-    auto waited = WaitForSingleObject(hEventRequest, static_cast<DWORD>(timeout.count()));
+    const auto waited = WaitForSingleObject(hEventRequest, static_cast<DWORD>(timeout.count()));
     ResetEvent(hEventRequest);
     return waited == WAIT_OBJECT_0;
 }
@@ -166,25 +167,25 @@ bool SharedMemoryHandler::waitForRequest(std::chrono::milliseconds timeout) {
 bool SharedMemoryHandler::getSyncRequest(std::string& request) {
     if (!isReady()) return false;
     MutexLock lock(hMutex);
-    SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
+    auto pData = static_cast<SharedMemoryData*>(pMapView);
     return pData->getSyncRequest(request);
 }
 
 bool SharedMemoryHandler::getAsyncRequest(std::string& request) {
     if (!isReady()) return false;
     MutexLock lock(hMutex);
-    SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
+    auto* pData = static_cast<SharedMemoryData*>(pMapView);
     return pData->getAsyncRequest(request);
 }
 
 bool SharedMemoryHandler::isConnected() {
-    std::chrono::milliseconds timeout = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<float>(TFAR::config.get<float>(Setting::pluginTimeout)));
+    const auto timeout = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<float>(TFAR::config.get<float>(Setting::pluginTimeout)));
     MutexLock lock(hMutex);
-    SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
+    auto pData = static_cast<SharedMemoryData*>(pMapView);
     pData->setLastPluginTick();
-    auto lastGameTick = pData->getLastGameTick();
+    const auto lastGameTick = pData->getLastGameTick();
     lock.unlock();
-    bool isCurrentlyConnected = (std::chrono::system_clock::now() - lastGameTick) < timeout;
+    const auto isCurrentlyConnected = (std::chrono::system_clock::now() - lastGameTick) < timeout;
     if ((std::chrono::system_clock::now() - lastConnectedEvent) < 500ms)
         return isCurrentlyConnected;
     if (wasConnected && !isCurrentlyConnected) {
@@ -199,14 +200,14 @@ bool SharedMemoryHandler::isConnected() {
 }
 
 void SharedMemoryHandler::setConfigNeedsRefresh(bool param1) const {
-    SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
+    auto pData = static_cast<SharedMemoryData*>(pMapView);
     pData->setConfigNeedsRefresh(param1);
 }
 
 void SharedMemoryHandler::setGameDisconnected() {
     if (!isReady()) return;
     MutexLock lock(hMutex);
-    SharedMemoryData* pData = static_cast<SharedMemoryData*>(pMapView);
+    auto pData = static_cast<SharedMemoryData*>(pMapView);
     pData->setLastGameTick(std::chrono::system_clock::time_point(0us));
 }
 

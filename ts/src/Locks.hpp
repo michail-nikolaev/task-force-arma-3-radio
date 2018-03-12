@@ -1,6 +1,6 @@
 #pragma once
-#include "common.hpp"
-#include <windows.h>
+
+#include <Windows.h>
 //#CStandart On C++17 use http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0091r2.html for lock guards
 /*
 This will make

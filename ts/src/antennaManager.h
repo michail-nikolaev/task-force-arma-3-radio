@@ -2,23 +2,24 @@
 #include "datatypes.hpp"
 #include "Locks.hpp"
 #include <memory>
+#include <string>
 
 using namespace dataType;
 class Antenna {
 public:
-    Antenna(NetID _id, Position3D _pos, float _range) : id(_id), pos(_pos), range(_range), rangeSquared(_range*_range) {}
-    Antenna(Antenna&& other) : id(std::move(other.id)), pos(std::move(other.pos)), range(std::move(other.range)), rangeSquared(std::move(other.rangeSquared)) { }
+    Antenna(NetID _id, Position3D _pos, float _range) : id(_id), pos(std::move(_pos)), range(_range), rangeSquared(_range*_range) {}
+    Antenna(Antenna&& other) noexcept : id(other.id), pos(std::move(other.pos)), range(other.range), rangeSquared(other.rangeSquared) { }
 
     float distanceTo(const Position3D& other) const { return pos.distanceTo(other); }
     float lossTo(const Position3D& other) const {
         if (!range) return 1.f;
-        auto dist = pos.distanceTo(other);
+        const auto dist = pos.distanceTo(other);
         if (dist > range) return 1.f;
         return dist / range;
     };
     float lossFrom(const Position3D& from, float maxDistance) const {
         if (!maxDistance) return 1.f;
-        auto dist = pos.distanceTo(from);
+        const auto dist = pos.distanceTo(from);
         if (dist > maxDistance) return 1.f;
         return dist / maxDistance;
     };
@@ -32,12 +33,13 @@ public:
         return lossTo(to) + lossFrom(from, maxDistanceToAnt);
     }
     //Operators
-    void operator=(Antenna&& ant) {
-        id = std::move(ant.id);
+    Antenna& operator=(Antenna&& ant) noexcept {
+        id = ant.id;
         pos = std::move(ant.pos);
-        range = std::move(ant.range);
-        rangeSquared = std::move(ant.rangeSquared);
-        satUplink = std::move(ant.satUplink);
+        range = ant.range;
+        rangeSquared = ant.rangeSquared;
+        satUplink = ant.satUplink;
+        return *this;
     }
     bool operator==(const NetID& antID) const {
         return id == antID;
@@ -59,7 +61,7 @@ public:
 
     //Setters
     void setID(NetID _id) { id = _id; }
-    void setPos(Position3D _pos) { pos = _pos; }
+    void setPos(Position3D _pos) { pos = std::move(_pos); }
     void setRange(float _range) { range = _range; }
     void setSatelliteUplink(bool hasUplink) { satUplink = hasUplink; }
     //Getters
@@ -82,8 +84,9 @@ inline std::ostream& operator<<(std::ostream &os, const Antenna& w) {
 
 class AntennaConnection {
 public:
-    AntennaConnection(){}
-    AntennaConnection(Position3D _from, std::shared_ptr<Antenna> _overAntenna,Position3D _to,float _loss) : from(_from),overAntenna(_overAntenna),to(_to),loss(_loss){}
+    AntennaConnection() = default;
+    AntennaConnection(Position3D _from, std::shared_ptr<Antenna> _overAntenna,Position3D _to,float _loss) : 
+        from(std::move(_from)), overAntenna(std::move(_overAntenna)), to(std::move(_to)), loss(_loss) {}
     float getLoss() const { return loss; }
     bool isNull() const { return loss == 7.f; }//Magic number. Loss will never be >1
     std::shared_ptr<Antenna> getAntenna() const { return overAntenna; }
@@ -113,7 +116,7 @@ inline std::ostream& operator<<(std::ostream &os, const AntennaConnection& w) {
 class AntennaManager {
 public:
     AntennaManager();
-    ~AntennaManager();
+    ~AntennaManager() = default;
 
     AntennaConnection findConnection(const Position3D& from, float maxDistanceToAnt, const Position3D& to);
     void addAntenna(Antenna ant);

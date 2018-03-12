@@ -1,8 +1,7 @@
 #pragma once
 #include <string>
 #include "common.hpp"
-#include <windows.h>
-#include "Logger.hpp"
+#include <Windows.h>
 #include "SignalSlot.hpp"
 /*
 Shared Mem layout
@@ -13,8 +12,8 @@ offset 1152: Asynchronous Messages array of SharedMemString[500]
 */
 
 #define SHAREDMEM_ASYNCMSG_COUNT 300
-#define SHAREDMEM_MAX_STRINGSIZE sizeof(SharedMemString) -4
-#define SHAREDMEM_BUFSIZE 128+sizeof(SharedMemString)+sizeof(SharedMemString)+(sizeof(SharedMemString) * SHAREDMEM_ASYNCMSG_COUNT) //Header+SyncReq+SyncAnsw+AsyncMessages
+#define SHAREDMEM_MAX_STRINGSIZE (sizeof(SharedMemString) -4)
+#define SHAREDMEM_BUFSIZE (128+sizeof(SharedMemString)+sizeof(SharedMemString)+(sizeof(SharedMemString) * SHAREDMEM_ASYNCMSG_COUNT)) //Header+SyncReq+SyncAnsw+AsyncMessages
 
 namespace SharedMemoryHandlerInternal {
     struct SharedMemString {
@@ -63,7 +62,7 @@ namespace SharedMemoryHandlerInternal {
         volatile uint16_t nextFreeAsyncMessage{ 0 };
         std::chrono::system_clock::time_point lastGameTick;
         std::chrono::system_clock::time_point lastPluginTick;
-        bool configNeedsRefresh;
+        bool configNeedsRefresh{ false };
     };
     static_assert(sizeof(SharedMemoryData) < 128, "SharedMemoryData is bigger than space allocated to it in SHAMEM");
     class MutexLock {
@@ -82,7 +81,7 @@ namespace SharedMemoryHandlerInternal {
         }
         void lock() {
             if (m_isLocked) return;
-            DWORD dwWaitResult = WaitForSingleObject(
+            const auto dwWaitResult = WaitForSingleObject(
                 hMutex,    // handle to mutex
                 INFINITE);  // no time-out interval
             if (dwWaitResult == WAIT_OBJECT_0) {
