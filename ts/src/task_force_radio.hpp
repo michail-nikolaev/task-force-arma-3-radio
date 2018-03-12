@@ -146,7 +146,11 @@ public:
         explicit Version(std::string versionStr) {
             auto split = helpers::split(versionStr, '.');
             for (auto& it : split) {
-                versionNumbers.push_back(std::stoi(it));
+                try {
+                    versionNumbers.push_back(std::stoi(it));
+                } catch(...) {
+                    versionNumbers.push_back(-1);
+                }
             }
         }
 
