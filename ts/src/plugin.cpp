@@ -592,7 +592,8 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                     processLog << "digital ";
                     if (info.over == sendingRadioType::LISTEN_TO_SW) {
                         processLog << "sw rd=" << radioDistance << " rn="<< clientData->range;
-                        auto errorLevel = info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss();
+                        auto errorLevel = std::min(info.antennaConnection.getLoss(), effectErrorFromDistance(info.over, radioDistance, clientData));
+                        
                         processLog << " rl=" << errorLevel;
                         clientData->effects.getSwRadioEffect(info.radio_id)->setErrorLeveL(errorLevel);
 
@@ -601,21 +602,21 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                         processLog << "uw ";
                         float underwaterDist = myPosition.distanceUnderwater(clientData->getClientPosition());
                         float normalDist = myPosition.distanceTo(clientData->getClientPosition());
-                        clientData->effects.getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ?
-                            (underwaterDist * (clientData->range / helpers::distanceForDiverRadio()) + (normalDist - underwaterDist)) / clientData->range
-                            : info.antennaConnection.getLoss()
+                        clientData->effects.getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(
+                            std::min((underwaterDist * (clientData->range / helpers::distanceForDiverRadio()) + (normalDist - underwaterDist)) / clientData->range
+                            , info.antennaConnection.getLoss())
                         );
                         processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getUnderwaterRadioEffect(info.radio_id), info.stereoMode);
                     }
                 }
                                                            break;
                 case PTTDelayArguments::subtypes::airborne:
-                    clientData->effects.getAirborneRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss());
+                    clientData->effects.getAirborneRadioEffect(info.radio_id)->setErrorLeveL(std::min(info.antennaConnection.getLoss(), effectErrorFromDistance(info.over, radioDistance, clientData)));
                     processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getAirborneRadioEffect(info.radio_id), info.stereoMode);
                     break;
                 case PTTDelayArguments::subtypes::digital_lr:
                     processLog << "lr rd=" << radioDistance << " rn=" << clientData->range;
-                    clientData->effects.getLrRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss());
+                    clientData->effects.getLrRadioEffect(info.radio_id)->setErrorLeveL(std::min(info.antennaConnection.getLoss(), effectErrorFromDistance(info.over, radioDistance, clientData)));
                     processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getLrRadioEffect(info.radio_id), info.stereoMode);
                     break;
                 case  PTTDelayArguments::subtypes::phone:
