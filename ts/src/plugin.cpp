@@ -10,7 +10,7 @@
 #include <string>
 #include <assert.h>
 #include <math.h>
-#include <iostream>
+#include <numeric>
 #include <sstream>
 #include <map>
 #include <vector>
@@ -331,6 +331,12 @@ int ts3plugin_init() {
         });
     });
 
+
+
+    RadioEffect::onError = [](std::string err) {
+        Teamspeak::printMessageToCurrentTab(err.c_str());
+    };
+
     return 0;
 }
 
@@ -464,6 +470,14 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     bool isHearableInPureSpectator = clientDataDir->myClientData->isSpectating && clientData->isSpectating;
     bool isHearableInSpectator = isHearableInPureSpectator || !isNotHearableInNonPureSpectator;
 
+
+    auto minmax = std::minmax_element(samples, samples + (sampleCount * channels));
+
+    if (*minmax.first < -20000 || *minmax.second > 20000) {
+        Teamspeak::printMessageToCurrentTab(("Weird audio PRECHECK FAIL Pre voice (This is bad) " + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)).c_str());
+    }
+
+
     if (!isHearableInSpectator && isSeriousModeEnabled(serverConnectionHandlerID, clientID) && (!alive || !clientData->isAlive())) {
         helpers::applyGain(samples, sampleCount, channels, 0.0f);
         std::string message = "TFAR Mute L470";
@@ -476,7 +490,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     }
     auto myData = clientDataDir->myClientData;
     auto myPosition = myData->getClientPosition();
-    float globalGain = TFAR::getInstance().m_gameData.globalVolume;
+
     if (!clientData || !myData) return;
     helpers::applyGain(samples, sampleCount, channels, clientData->voiceVolumeMultiplifier);
     short* original_buffer = helpers::allocatePool(sampleCount, channels, samples);
@@ -539,6 +553,12 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         memset(samples, 0, channels * sampleCount * sizeof(short));
     }
 
+    minmax = std::minmax_element(samples, samples + (sampleCount * channels));
+
+    if (*minmax.first < -20000 || *minmax.second > 20000) {
+        Teamspeak::printMessageToCurrentTab(("Weird audio PRECHECK FAIL Post voice (This is bad) "+std::to_string(*minmax.first)+"|"+ std::to_string(*minmax.second)).c_str());
+    }
+
 
     //#### RADIOS AND SPEAKERS
 
@@ -555,6 +575,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         if (volumeLevel < 0.2) {
             LOG3DMUTE("VOL Low b=" + std::to_string(info.volume) + " mp =" + std::to_string(volumeLevel) + " efmp =" + std::to_string(volumeLevel* 0.35f));
         }
+
         std::stringstream processLog;
 
         if (info.on < receivingRadioType::LISTED_ON_NONE) {//don't do for onGround or Intercom
@@ -606,6 +627,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                     break;
             }
         }
+
         if (info.on == receivingRadioType::LISTED_ON_GROUND) {
 
             float distance_from_radio = myPosition.distanceTo(info.pos);
@@ -630,27 +652,28 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
             helpers::applyILD(radio_buffer, sampleCount, channels, relativePosition, myViewDirection);//interaural level difference
 
         } else if (info.on == receivingRadioType::LISTED_ON_INTERCOM) {
+
+
+            minmax = std::minmax_element(samples, samples + (sampleCount * channels));
+
+            if (*minmax.first < -20000 || *minmax.second > 20000) {
+                Teamspeak::printMessageToCurrentTab(("prefilter " + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)).c_str());
+            }
+
             clientData->effects.getLrRadioEffect("intercom")->setErrorLeveL(0.f);
             processRadioEffect(radio_buffer, channels, sampleCount, TFAR::config.get<float>(Setting::intercomVolume), clientData->effects.getLrRadioEffect("intercom"), stereoMode::stereo);
-        }
+       
 
-        bool filterWeird = false;
-        for (size_t i = 0; i < sampleCount * channels; i++) {
-            if (samples[i] > 20000 || samples[i] < -20000) {
-                filterWeird = true;
-                break;
+            minmax = std::minmax_element(samples, samples + (sampleCount * channels));
+
+            if (*minmax.first < -20000 || *minmax.second > 20000) {
+                Teamspeak::printMessageToCurrentTab(("postfilter " + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)).c_str());
             }
+
+        
+        
+        
         }
-
-        if (filterWeird) {
-            Teamspeak::printMessageToCurrentTab(("Weird audio process ;" + processLog.str()).c_str());
-            LOG3DMUTE("Weird audio process ;" + processLog.str());
-            clientData->effects.resetRadioEffect();
-        }
-
-
-
-
 
 
         helpers::mix(samples, radio_buffer, sampleCount, channels);//Mix current Radio into samples
@@ -661,8 +684,17 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
     delete[] original_buffer;
 
+    float globalGain = TFAR::getInstance().m_gameData.globalVolume;
     helpers::applyGain(samples, sampleCount, channels, globalGain);
 
+
+
+
+    minmax = std::minmax_element(samples, samples + (sampleCount * channels));
+
+    if (*minmax.first < -20000 || *minmax.second > 20000) {
+        Teamspeak::printMessageToCurrentTab(("Weird audio post? " + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)).c_str());
+    }
 
 }
 
@@ -686,6 +718,12 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 
     if (!TFAR::getInstance().getCurrentlyInGame())
         return;
+
+    auto minmax = std::minmax_element(samples, samples + (sampleCount * channels));
+
+    if (*minmax.first < -20000 || *minmax.second > 20000) {
+        Teamspeak::printMessageToCurrentTab(("PRE Mixdown " + std::to_string(channels) + "|" + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)+"|a"+std::to_string(std::accumulate(samples, samples + (sampleCount * channels),0.0)/ (sampleCount * channels))).c_str());
+    }
 
     if (channels != 2) {
         short* stereo = new short[sampleCount * 2];

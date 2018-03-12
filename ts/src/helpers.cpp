@@ -9,7 +9,9 @@
 #include "task_force_radio.hpp"
 #include <bitset>
 #include <public_errors.h>
-#define CAN_USE_SSE_ON(x) (IsProcessorFeaturePresent(PF_XMMI64_INSTRUCTIONS_AVAILABLE) && (reinterpret_cast<uintptr_t>(x) % 16 == 0))
+#define CAN_USE_SSE_ON(x) false
+//#TODO reenable
+//(IsProcessorFeaturePresent(PF_XMMI64_INSTRUCTIONS_AVAILABLE) && (reinterpret_cast<uintptr_t>(x) % 16 == 0))
 
 void helpers::applyGain(short * samples, size_t sampleCount, int channels, float directTalkingVolume) {
     if (directTalkingVolume == 0.0f) {
@@ -283,7 +285,7 @@ short* helpers::allocatePool(int sampleCount, int channels, short* samples) {
 
 void helpers::mix(short* to, short* from, int sampleCount, int channels) {//#TODO SSE2 implementation
     for (int q = 0; q < sampleCount * channels; q++) {
-        int sum = to[q] + from[q];
+        int sum = (int)to[q] + (int)from[q];
 
         to[q] = std::clamp(sum, SHRT_MIN, SHRT_MAX);
     }
