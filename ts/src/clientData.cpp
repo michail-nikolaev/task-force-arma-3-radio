@@ -69,13 +69,7 @@ Position3D clientData::getClientPosition() const {
 }
 
 float clientData::effectiveDistanceTo(std::shared_ptr<clientData>& other) const {
-    const float d = getClientPosition().distanceTo(other->getClientPosition());
-    // (bob distance player) + (bob call TFAR_fnc_calcTerrainInterception) * 7 + (bob call TFAR_fnc_calcTerrainInterception) * 7 * ((bob distance player) / 2000.0)
-    float result = d +
-        +(other->terrainInterception * TFAR::getInstance().m_gameData.terrainIntersectionCoefficient)
-        + (other->terrainInterception * TFAR::getInstance().m_gameData.terrainIntersectionCoefficient * d / 2000.0f);
-    result *= TFAR::getInstance().m_gameData.receivingDistanceMultiplicator;
-    return result;
+    return effectiveDistanceTo(other.get());
 }
 
 float clientData::effectiveDistanceTo(clientData* other) const {
