@@ -178,7 +178,13 @@ void Teamspeak::setClientMute(TSServerID serverConnectionHandlerID, std::vector<
 }
 
 void Teamspeak::moveToSeriousChannel(TSServerID serverConnectionHandlerID) {
-    auto seriousChannelID = findChannelByName(serverConnectionHandlerID, TFAR::config.get<std::string>(Setting::serious_channelName));
+    std::string seriousChannelName = TFAR::config.get<std::string>(Setting::serious_channelName);
+
+    auto seriousChannelID = 
+        helpers::startsWith("ID:", seriousChannelName) ? 
+        helpers::parseArmaNumberToInt(seriousChannelName.substr(3)) :
+        findChannelByName(serverConnectionHandlerID, TFAR::config.get<std::string>(Setting::serious_channelName));
+
     if (!seriousChannelID) //Channel not found
         return;
     const auto currentChannel = getChannelOfClient(serverConnectionHandlerID, getMyId(serverConnectionHandlerID));
@@ -457,6 +463,10 @@ TSClientID Teamspeak::getMyId(TSServerID serverConnectionHandlerID) {
 }
 
 bool Teamspeak::isInChannel(TSServerID serverConnectionHandlerID, TSClientID clientId, const std::string& channelToCheck) {
+    auto currentChannelID = getChannelOfClient(serverConnectionHandlerID, clientId);
+    if (helpers::startsWith("ID:", channelToCheck))
+        return currentChannelID.baseType() == helpers::parseArmaNumberToInt(channelToCheck.substr(3));
+
     return getChannelOfClient(serverConnectionHandlerID, clientId) == getInstance().serverData[serverConnectionHandlerID].getChannelIDFromName(channelToCheck);
 }
 
@@ -487,6 +497,19 @@ dataType::TSChannelID Teamspeak::getChannelOfClient(TSServerID serverConnectionH
 std::string Teamspeak::getServerName(TSServerID serverConnectionHandlerID) {
     char* name;
     DWORD error = ts3Functions.getServerVariableAsString(serverConnectionHandlerID.baseType(), VIRTUALSERVER_NAME, &name);
+    if (error != ERROR_ok) {
+        log("Can't get server name", error, LogLevel_ERROR);
+        return "ERROR_GETTING_SERVER_NAME";
+    } else {
+        std::string result(name);
+        ts3Functions.freeMemory(name);
+        return result;
+    }
+}
+
+std::string Teamspeak::getServerUID(TSServerID serverConnectionHandlerID) {
+    char* name;
+    DWORD error = ts3Functions.getServerVariableAsString(serverConnectionHandlerID.baseType(), VIRTUALSERVER_UNIQUE_IDENTIFIER, &name);
     if (error != ERROR_ok) {
         log("Can't get server name", error, LogLevel_ERROR);
         return "ERROR_GETTING_SERVER_NAME";

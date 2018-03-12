@@ -541,15 +541,18 @@ void CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPosi
 }
 
 std::string CommandProcessor::ts_info(std::string_view command) {
-    if (command == "SERVER") {
+    if (command == "SERVER")
         return Teamspeak::getServerName();
-    } else if (command == "CHANNEL") {
+    if (command == "SERVERUID") 
+        return Teamspeak::getServerUID();
+    if (command == "CHANNEL")
         return Teamspeak::getChannelName();
-    } else if (command == "PING") {
+    if (command == "CHANNELID")
+        return std::to_string(Teamspeak::getChannelOfClient().baseType());
+    if (command == "PING")
         return "PONG";
-    } else if (command == "VERSION") {
+    if (command == "VERSION")
         return PLUGIN_VERSION;
-    }
     return "FAIL";
 }
 

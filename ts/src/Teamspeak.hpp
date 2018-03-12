@@ -62,6 +62,7 @@ public:
     static std::string getChannelName(TSServerID serverConnectionHandlerID = getCurrentServerConnection(), TSClientID clientId = getMyId());
     static TSChannelID getChannelOfClient(TSServerID serverConnectionHandlerID = getCurrentServerConnection(), TSClientID clientId = getMyId());
     static std::string getServerName(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
+    static std::string getServerUID(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
     static bool isTalking(TSServerID currentServerConnectionHandlerID, TSClientID clientID);
     static std::vector<TSClientID> getChannelClients(TSServerID serverConnectionHandlerID, TSChannelID channelId);
     static std::string getMyNickname(TSServerID serverConnectionHandlerID);
