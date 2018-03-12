@@ -11,8 +11,8 @@
 
 class TeamspeakServerData {
 public:
-    TeamspeakServerData();
-    ~TeamspeakServerData();
+    TeamspeakServerData() = default;
+    ~TeamspeakServerData() = default;
     std::vector<dataType::TSClientID> getMutedClients();
     void setClientMuteStatus(dataType::TSClientID, bool muted);
     void clearMutedClients();
@@ -45,11 +45,11 @@ private:
 class Teamspeak {
 public:
     Teamspeak();
-    ~Teamspeak();
+    ~Teamspeak() = default;;
     static TSServerID getCurrentServerConnection();
     static void unmuteAll(TSServerID serverConnectionHandlerID = Teamspeak::getCurrentServerConnection());
-    static void setClientMute(TSServerID serverConnectionHandlerID, TSClientID clientId, bool mute);
-    static void setClientMute(TSServerID serverConnectionHandlerID, std::vector<TSClientID> clientId, bool mute);
+    static void setClientMute(TSServerID serverConnectionHandlerID, TSClientID clientID, bool mute);
+    static void setClientMute(TSServerID serverConnectionHandlerID, std::vector<TSClientID> clientIds, bool mute);
     static void moveToSeriousChannel(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
     static void moveFromSeriousChannel(TSServerID serverConnectionHandlerID = getCurrentServerConnection());
     static bool setMyNicknameToGameName(TSServerID serverConnectionHandlerID, const std::string& nickname);
@@ -74,7 +74,7 @@ public:
     static void setMyClient3DPosition(TSServerID serverConnectionHandlerID, Position3D pos);
     static void setClient3DPosition(TSServerID serverConnectionHandlerID, TSClientID clientId, Position3D pos);
 
-    static void sendPluginCommand(TSServerID serverConnectionHandlerID, const std::string& pluginID, const std::string& command, PluginTargetMode targetMode, std::vector<TSClientID> targets = {});
+    static void sendPluginCommand(TSServerID serverConnectionHandlerID, std::string_view pluginID, std::string_view command, PluginTargetMode targetMode, std::vector<TSClientID> targets = {});
     static void playWavFile(const std::string& filePath);
 
     static void setVoiceDisabled(TSServerID serverConnectionHandlerID, bool disabled);

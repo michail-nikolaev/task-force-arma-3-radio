@@ -1,7 +1,5 @@
 #pragma once
 #include <cstddef>      // For size_t.
-#include <cstring>      // For strcspn, strncpy.
-#include <limits>       // std::numeric_limits
 
 //http://stackoverflow.com/questions/28828957/enum-to-string-in-modern-c-and-future-c17-c20/31362042#31362042
 
@@ -44,7 +42,7 @@ struct ignore_assign {
     constexpr explicit ignore_assign(U value) : _value(value) {}
     constexpr operator U() const { return _value; }
 
-    constexpr const ignore_assign& operator =(int dummy) const { return *this; }
+    constexpr ignore_assign& operator =(int dummy) const { return *this; }
 
     U   _value;
 };
@@ -52,7 +50,7 @@ struct ignore_assign {
 
 
 // Prepends "(ignore_assign<_underlying>)" to each argument.
-#define IGNORE_ASSIGN_SINGLE(e) (ignore_assign<_underlying>)e,
+#define IGNORE_ASSIGN_SINGLE(e) (ignore_assign<_underlying>)(e),
 #define IGNORE_ASSIGN(...) \
     IDENTITY(MAP(IGNORE_ASSIGN_SINGLE, __VA_ARGS__))
 
@@ -140,7 +138,7 @@ struct EnumName {                                                     \
                 return _trimmed_names()[index];                       \
         }                                                             \
                                                                       \
-        return "";													  \
+        return "";                                                    \
     }                                                                 \
                                                                       \
     constexpr static EnumName _from_string(const char *s,             \

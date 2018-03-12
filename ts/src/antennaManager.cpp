@@ -12,9 +12,6 @@ AntennaManager::AntennaManager() {
     });
 }
 
-
-AntennaManager::~AntennaManager() {}
-
 AntennaConnection AntennaManager::findConnection(const Position3D& from, float maxDistanceToAnt, const Position3D& to) {
     LockGuard_shared slock(&m_lock);
     //Prefilter antennas that can be reached by sender / reach to receiver
@@ -23,14 +20,14 @@ AntennaConnection AntennaManager::findConnection(const Position3D& from, float m
     float lowestLoss = 1.f;
 
     //#TODO better algo...?
-    float maxDistToAntSquared = maxDistanceToAnt*maxDistanceToAnt;
+    const float maxDistToAntSquared = maxDistanceToAnt*maxDistanceToAnt;
     for (auto& ant : antennas) {
         if (ant->canBeReachedBy(from, maxDistToAntSquared) && ant->canReach(to))
             reachableAntennas.push_back(ant);
     }
 
     for (auto& ant : reachableAntennas) {
-        auto loss = ant->connectionLoss(from, maxDistanceToAnt, to);
+        const auto loss = ant->connectionLoss(from, maxDistanceToAnt, to);
         if (loss < lowestLoss) {
             bestAntenna = ant;
             lowestLoss = loss;
@@ -46,7 +43,7 @@ AntennaConnection AntennaManager::findConnection(const Position3D& from, float m
 void AntennaManager::addAntenna(Antenna ant) {
     if (ant.getID().isNull()) return;
     LockGuard_shared slock(&m_lock);
-    auto found = findAntenna(ant);
+    const auto found = findAntenna(ant);
     slock.unlock();
     LockGuard_exclusive lock(&m_lock);
     if (found != antennas.end()) {
@@ -59,7 +56,7 @@ void AntennaManager::addAntenna(Antenna ant) {
 void AntennaManager::removeAntenna(const NetID& antennaID) {
     if (antennaID.isNull()) return;
     LockGuard_shared slock(&m_lock);
-    auto found = findAntenna(antennaID);
+    const auto found = findAntenna(antennaID);
     slock.unlock();
     LockGuard_exclusive lock(&m_lock);
     if (found == antennas.end()) return;

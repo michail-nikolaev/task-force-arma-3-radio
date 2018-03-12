@@ -265,9 +265,6 @@
     <ClInclude Include="..\include\clunk\locker.h">
       <Filter>externals\clunk</Filter>
     </ClInclude>
-    <ClInclude Include="string_ref.hpp">
-      <Filter>externals</Filter>
-    </ClInclude>
     <ClInclude Include="antennaManager.h" />
   </ItemGroup>
   <ItemGroup>
