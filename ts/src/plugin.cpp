@@ -965,8 +965,12 @@ void processTangentPress(TSServerID serverId, const std::vector<std::string_view
         senderClientData->circularLog(recvLog.str());
     }
     if (!playPressed) {
-        myClientData->receivingTransmission -= 1;
-        myClientData->receivingFrequencies.erase(myClientData->receivingFrequencies.find(frequency));
+        auto found = myClientData->receivingFrequencies.find(frequency);
+        if (found != myClientData->receivingFrequencies.end()) {
+            myClientData->receivingTransmission -= 1;
+            myClientData->receivingFrequencies.erase(found);
+        }
+
         senderClientData->circularLog("TPEH NRecv");
     }
 

@@ -190,7 +190,7 @@ bool TFAR::isUpdateAvailable() {
     }
 }
 #include <sstream>
-void TFAR::trackPiwik(const std::vector<std::string_view>& piwikData) {
+void TFAR::trackPiwik(const std::vector<std::string_view>& piwikDataIn) {
 
     /*
     piwikData
@@ -202,9 +202,11 @@ void TFAR::trackPiwik(const std::vector<std::string_view>& piwikData) {
      }
 
     */
+    std::vector<std::string> piwikData;
+    for (auto& it : piwikDataIn)
+        piwikData.emplace_back(it);
 
-
-    std::thread([piwikData]() {
+    std::thread([piwikData = std::move(piwikData)]() {
 
         struct trackerCustomVariable {
             unsigned int customVarID;
