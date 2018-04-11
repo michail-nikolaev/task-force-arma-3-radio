@@ -215,13 +215,23 @@ void TFAR::trackPiwik(const std::vector<std::string_view>& piwikDataIn) {
         };
         auto parseCustomVariables = [](std::string_view customVarArray) -> std::vector<trackerCustomVariable> {
             std::vector<trackerCustomVariable> out;
-            std::istringstream inStream;
-            inStream.rdbuf()->pubsetbuf(const_cast<char*>(customVarArray.data()), customVarArray.length());
+
+            //https://stackoverflow.com/questions/1448467/initializing-a-c-stdistringstream-from-an-in-memory-buffer
+            struct OneShotReadBuf : public std::streambuf
+            {
+                OneShotReadBuf(char* s, std::size_t n)
+                {
+                    setg(s, s, s + n);
+                }
+            };
+
+            OneShotReadBuf buf(const_cast<char*>(customVarArray.data()), customVarArray.length());
+            std::istream inStream(&buf);
             char curChar;
             //   [[1,"name","value"], [2, "name2", "value2"]]
             inStream >> curChar;//should be [
             //  [[1,"name","value"], [2, "name2", "value2"]]
-            while (curChar != '[') inStream >> curChar;//but we still wait till [ in case input starts with whitespace
+            while (curChar != '[' && !inStream.eof()) inStream >> curChar;//but we still wait till [ in case input starts with whitespace
             //[1,"name","value"], [2, "name2", "value2"]]
 
 

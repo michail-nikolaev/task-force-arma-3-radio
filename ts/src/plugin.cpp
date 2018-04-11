@@ -426,7 +426,6 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     auto clientData = clientDataDir->getClientData(clientID);
     if (!clientData) {
         //Should not happen..
-        //Teamspeak::printMessageToCurrentTab("TFAR nosim NoCliData"); //#Release remove
         log_string(std::string("No info about ") + std::to_string(clientID.baseType()) + " " + Teamspeak::getClientNickname(serverConnectionHandlerID, clientID), LogLevel_ERROR);
         return; //Unknown client
     }
@@ -464,14 +463,6 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     //Other player is also a spectator. So we always hear him without 3D positioning
     const bool isHearableInPureSpectator = clientDataDir->myClientData->isSpectating && clientData->isSpectating;
     const bool isHearableInSpectator = isHearableInPureSpectator || !isNotHearableInNonPureSpectator;
-
-
-    auto minmax = std::minmax_element(samples, samples + (sampleCount * channels));
-
-    if (*minmax.first < -20000 || *minmax.second > 20000) {
-        Teamspeak::printMessageToCurrentTab(("Weird audio PRECHECK FAIL Pre voice (This is bad) " + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)).c_str());
-    }
-
 
     if (!isHearableInSpectator && isSeriousModeEnabled(serverConnectionHandlerID, clientID) && (!alive || !clientData->isAlive())) {
         helpers::applyGain(samples, sampleCount, channels, 0.0f);
@@ -547,13 +538,6 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         LOG3DMUTE(message);
         memset(samples, 0, channels * sampleCount * sizeof(short));
     }
-
-    minmax = std::minmax_element(samples, samples + (sampleCount * channels));
-
-    if (*minmax.first < -20000 || *minmax.second > 20000) {
-        Teamspeak::printMessageToCurrentTab(("Weird audio PRECHECK FAIL Post voice (This is bad) "+std::to_string(*minmax.first)+"|"+ std::to_string(*minmax.second)).c_str());
-    }
-
 
     //#### RADIOS AND SPEAKERS
 
@@ -648,22 +632,8 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
             helpers::applyILD(radio_buffer, sampleCount, channels, relativePosition, myViewDirection);//interaural level difference
 
         } else if (info.on == receivingRadioType::LISTED_ON_INTERCOM) {
-
-            minmax = std::minmax_element(samples, samples + (sampleCount * channels));
-
-            if (*minmax.first < -20000 || *minmax.second > 20000) {
-                Teamspeak::printMessageToCurrentTab(("prefilter " + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)).c_str());
-            }
-
             clientData->effects.getLrRadioEffect("intercom")->setErrorLeveL(0.f);
             processRadioEffect(radio_buffer, channels, sampleCount, TFAR::config.get<float>(Setting::intercomVolume), clientData->effects.getLrRadioEffect("intercom"), stereoMode::stereo);
-
-            minmax = std::minmax_element(samples, samples + (sampleCount * channels));
-
-            if (*minmax.first < -20000 || *minmax.second > 20000) {
-                Teamspeak::printMessageToCurrentTab(("postfilter " + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)).c_str());
-            }
-
         }
 
 
@@ -681,11 +651,11 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
 
 
-    minmax = std::minmax_element(samples, samples + (sampleCount * channels));
-
-    if (*minmax.first < -20000 || *minmax.second > 20000) {
-        Teamspeak::printMessageToCurrentTab(("Weird audio post? " + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)).c_str());
-    }
+    //minmax = std::minmax_element(samples, samples + (sampleCount * channels));
+    //
+    //if (*minmax.first < -20000 || *minmax.second > 20000) {
+    //    Teamspeak::printMessageToCurrentTab(("Weird audio post? " + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)).c_str());
+    //}
 
 }
 
@@ -709,12 +679,6 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 
     if (!TFAR::getInstance().getCurrentlyInGame())
         return;
-
-    const auto minmax = std::minmax_element(samples, samples + (sampleCount * channels));
-
-    if (*minmax.first < -20000 || *minmax.second > 20000) {
-        Teamspeak::printMessageToCurrentTab(("PRE Mixdown " + std::to_string(channels) + "|" + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)+"|a"+std::to_string(std::accumulate(samples, samples + (sampleCount * channels),0.0)/ (sampleCount * channels))).c_str());
-    }
 
     if (channels != 2) {
         short* stereo = new short[sampleCount * 2];

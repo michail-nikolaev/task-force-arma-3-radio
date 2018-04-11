@@ -8,9 +8,7 @@
 #include "task_force_radio.hpp"
 #include <bitset>
 
-#define CAN_USE_SSE_ON(x) false
-//#TODO reenable
-//(IsProcessorFeaturePresent(PF_XMMI64_INSTRUCTIONS_AVAILABLE) && (reinterpret_cast<uintptr_t>(x) % 16 == 0))
+#define CAN_USE_SSE_ON(x) (IsProcessorFeaturePresent(PF_XMMI64_INSTRUCTIONS_AVAILABLE) && (reinterpret_cast<uintptr_t>(x) % 16 == 0))
 
 void helpers::applyGain(short * samples, size_t sampleCount, int channels, float directTalkingVolume) {
     if (directTalkingVolume == 0.0f) {

@@ -102,16 +102,15 @@ public:
 
         //for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);
         //for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], errorLevel);
+        //for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], static_cast<float>(0.3f * (1.0f - errorLevel) * x));
+        if (errorLevel > 1.f || errorLevel < 0.f) onError("errorLevel out of bounds");
 
+
+        for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], static_cast<float>(0.3f * (1.0f - errorLevel) * x));
         for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(delay(buffer[q] *= 30.f), errorLevel);
-
-        //#FIXME reenable
-        //for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], (float) (0.3f * (1.0f - errorLevel) * x));
 
         processFilter(filterSpeakerHP, buffer, samplesNumber);
         processFilter(filterSpeakerLP, buffer, samplesNumber);
-
-
     }
 
 
@@ -144,9 +143,9 @@ protected:
 
         const auto result = from + (to - from) * (errorLevel - part / 10.f);
         if (result > levels.back() || result < levels.front()) { //#Release disable on release
-            onError(std::string("errorLevel out of bounds! err:")+std::to_string(errorLevel)+"/"+std::to_string(result));
+            onError(std::string("TFAR: errorLevel out of bounds! err:")+std::to_string(errorLevel)+"/"+std::to_string(result));
         }
-        return result;  
+        return result;
     }
 
 

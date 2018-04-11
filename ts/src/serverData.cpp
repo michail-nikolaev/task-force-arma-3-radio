@@ -216,7 +216,7 @@ void serverData::verify() {
             slock.unlock();
             LockGuard_exclusive lock(&m_lock);
 
-            auto message = "HASH mismatch! Tell Dedmen! " + nick + "=" + std::to_string(std::hash<indexedType>()(nick)) + " IDX " + std::to_string(std::get<0>(*i));
+            auto message = "TFAR: HASH mismatch! Tell Dedmen! " + nick + "=" + std::to_string(std::hash<indexedType>()(nick)) + " IDX " + std::to_string(std::get<0>(*i));
             
             for (auto& it : cData->getModificationLog()) {
                 message += "\n" + it;

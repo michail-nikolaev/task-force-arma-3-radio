@@ -415,7 +415,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
             TFAR::getInstance().doTypeDiagReport("pos", diag);
             std::ofstream fsp(basePath + "pos.log");
             fsp << diag.str();
-            Teamspeak::printMessageToCurrentTab((std::string("logged to ") + basePath).c_str());
+            Teamspeak::printMessageToCurrentTab((std::string("TFAR: logged to ") + basePath).c_str());
 
         }
     }
