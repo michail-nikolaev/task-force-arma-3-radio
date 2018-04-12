@@ -198,6 +198,7 @@ If this plugin ever becomes popular, it would be great if we could avoid having 
 * [Macusercom](https://github.com/Macusercom) for translations.
 * [SzwedzikPL] (http://arma3coop.pl) or translation into Polish.
 * [SniperOne] (http://steamcommunity.com/groups/SniperAliens-M18X/) for French translation.
+* [nomisum] (https://github.com/orgs/gruppe-adler/people/nomisum) for Volume Icons
 * The development team of [RHS](http://www.rhsmods.org/), for their help with integration.
 * Everyone who made videos or wrote review articles.
 * All the players who use TFAR, especially those taking out their time to report bugs.
