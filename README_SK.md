@@ -178,6 +178,7 @@ Ak sa tato implementácia niekdy stane populárnou bolo by dobré, keby sa doká
 * [Tourorist](https://github.com/Tourorist) za pomoc s dokumentáciou.
 * [marc_book](https://github.com/MarcBook)
 * [Macusercom](https://github.com/Macusercom)
+* [nomisum] (https://github.com/orgs/gruppe-adler/people/nomisum) for Volume Icons
 * Každému kto robil video alebo článok s recenziou modu.
 * Všetkým užívateľom (hlavne tým, ktorí hlásia chyby modu).
 * Ospravedlňte ma, ak som niekho náhodou zabudol.
