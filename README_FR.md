@@ -194,6 +194,7 @@ Si jamais ce plugin devient populaire, ce serait bien si on pouvait eviter d'avo
 * [ViperMaul](http://forums.bistudio.com/member.php?45090-ViperMaul) pour l'aide avec CBA.
 * [Armatech](http://forums.bistudio.com/member.php?48510-armatech) pour l'aide avec CBA.
 * [marc_book](https://github.com/MarcBook) pour les textures BWMOD.
+* [nomisum] (https://github.com/orgs/gruppe-adler/people/nomisum) pour Volume Icons
 * L'equipe de developpement de[RHS](http://www.rhsmods.org/), pour leur aide avec l'integration.
 * Chacun de ceux qui ont fait des videos ou ont ecrit des articles de revue.
 * Tous les joueurs qui utilisent TFAR, specialement ceux qui prennent de leur temps pour rapporter les bugs.
