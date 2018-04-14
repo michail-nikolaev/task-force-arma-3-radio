@@ -406,6 +406,7 @@ bool isPluginEnabledForUser(TSServerID serverConnectionHandlerID, TSClientID cli
 #pragma region VoiceProcessing
 //packet receive -> decode -> onEditPlaybackVoiceDataEvent -> 3D positioning -> onEditPostProcessVoiceDataEvent -> mixing -> onEditMixedPlaybackVoiceDataEvent -> speaker output
 void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
+    if (Teamspeak::getCurrentServerConnection() != serverConnectionHandlerID) return;
     TFAR::getPlaybackHandler()->onEditMixedPlaybackVoiceDataEvent(samples, sampleCount, channels, channelSpeakerArray, channelFillMask);
 }
 
