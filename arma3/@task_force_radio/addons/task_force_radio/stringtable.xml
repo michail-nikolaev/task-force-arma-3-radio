@@ -30,6 +30,9 @@
 				<Polish>
 					Niewłaściwa wersja Task Force Radio. Wersja serwerowa: %1, Twoja wersja: %2
 				</Polish>
+				<Portuguese>
+					Diferentes versões do Task Force Radio estão em uso. Versão do Servidor: %1, Sua Versão: %2
+				</Portuguese>
 			</Key>
 			<Key ID="STR_stereo_settings">
 				<Original>
@@ -59,6 +62,9 @@
 				<Polish>
 					Ustawienia stereo
 				</Polish>
+				<Portuguese>
+					Configurações de Estéreo
+				</Portuguese>
 			</Key>
 			<Key ID="STR_stereo_settings_0">
 				<Original>
@@ -88,6 +94,9 @@
 				<Polish>
 					Lewy i prawy
 				</Polish>
+				<Portuguese>
+					Esquerda e Direita
+				</Portuguese>
 			</Key>
 			<Key ID="STR_stereo_settings_1">
 				<Original>
@@ -117,6 +126,9 @@
 				<Polish>
 					Tylko lewy
 				</Polish>
+				<Portuguese>
+					Esquerda Somente
+				</Portuguese>
 			</Key>
 			<Key ID="STR_stereo_settings_2">
 				<Original>
@@ -146,6 +158,9 @@
 				<Polish>
 					Tylko prawy
 				</Polish>
+				<Portuguese>
+					Direita Somente
+				</Portuguese>
 			</Key>
 			<Key ID="STR_speakers_settings_false">
 				<Original>
@@ -172,6 +187,9 @@
 				<Polish>
 					Słuchawki
 				</Polish>
+				<Portuguese>
+					Fones de Ouvido
+				</Portuguese>
 			</Key>
 			<Key ID="STR_speakers_settings_true">
 				<Original>
@@ -198,6 +216,9 @@
 				<Polish>
 					Głośniki
 				</Polish>
+				<Portuguese>
+					Alto falante
+				</Portuguese>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_0">
 				<Original>
@@ -227,6 +248,9 @@
 				<Polish>
 					Dodatkowy: Lewy oraz prawy
 				</Polish>
+				<Portuguese>
+					Adicional: Esquerda e Direita
+				</Portuguese>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_1">
 				<Original>
@@ -256,6 +280,9 @@
 				<Polish>
 					Dodatkowy: Tylko lewy
 				</Polish>
+				<Portuguese>
+					Adicional: Esquerda Somente
+				</Portuguese>
 			</Key>
 			<Key ID="STR_additional_stereo_settings_2">
 				<Original>
@@ -285,6 +312,9 @@
 				<Polish>
 					Dodatkowy: Tylko prawy
 				</Polish>
+				<Portuguese>
+					Adicional: Direita Somente
+				</Portuguese>
 			</Key>
 			<Key ID="STR_no_server">
 				<Original>
@@ -314,6 +344,9 @@
 				<Polish>
 					Na serwerze nie ma Task Force Radio!
 				</Polish>
+				<Portuguese>
+					O Task Force Radio nao foi encontrado no servidor!
+				</Portuguese>
 			</Key>
 			<Key ID="STR_current_freq">
 				<Original>
@@ -343,6 +376,9 @@
 				<Polish>
 					Obecna częstotliwość
 				</Polish>
+				<Portuguese>
+					Frequência atual
+				</Portuguese>
 			</Key>
 			<Key ID="STR_current_channel">
 				<Original>
@@ -372,6 +408,9 @@
 				<Polish>
 					Obecny kanał
 				</Polish>
+				<Portuguese>
+					Canal atual
+				</Portuguese>
 			</Key>
 			<Key ID="STR_set_frequency">
 				<Original>
@@ -401,6 +440,9 @@
 				<Polish>
 					Ustaw częstotliwość
 				</Polish>
+				<Portuguese>
+					Definir frequência
+				</Portuguese>
 			</Key>
 			<Key ID="STR_set_additional">
 				<Original>
@@ -430,6 +472,9 @@
 				<Polish>
 					Ustaw dodatkowy kanał
 				</Polish>
+				<Portuguese>
+					Definir frequência adicional
+				</Portuguese>
 			</Key>
 			<Key ID="STR_clear_frequency">
 				<Original>
@@ -459,6 +504,9 @@
 				<Polish>
 					Wyczyść częstotliwość
 				</Polish>
+				<Portuguese>
+					Apagar frequência
+				</Portuguese>
 			</Key>
 			<Key ID="STR_previous_channel">
 				<Original>
@@ -488,6 +536,9 @@
 				<Polish>
 					Poprzedni kanał
 				</Polish>
+				<Portuguese>
+					Canal anterior
+				</Portuguese>
 			</Key>
 			<Key ID="STR_next_channel">
 				<Original>
@@ -517,6 +568,9 @@
 				<Polish>
 					Następny kanał
 				</Polish>
+				<Portuguese>
+					Próximo Canal
+				</Portuguese>
 			</Key>
 			<Key ID="STR_rotator_volume">
 				<Original>
@@ -546,6 +600,9 @@
 				<Polish>
 					Zmniejsz głośność | Zwiększ głośność
 				</Polish>
+				<Portuguese>
+					Diminuir voluma | Aumentar volume
+				</Portuguese>
 			</Key>
 			<Key ID="STR_rotator_channel">
 				<Original>
@@ -575,6 +632,9 @@
 				<Polish>
 					Poprzedni kanał | Następny kanał
 				</Polish>
+				<Portuguese>
+					Canal anterior | Próximo Canal
+				</Portuguese>
 			</Key>
 			<Key ID="STR_increase_volume">
 				<Original>
@@ -604,6 +664,9 @@
 				<Polish>
 					Zwiększ głośność
 				</Polish>
+				<Portuguese>
+					Aumentar Volume
+				</Portuguese>
 			</Key>
 			<Key ID="STR_decrease_volume">
 				<Original>
@@ -633,6 +696,9 @@
 				<Polish>
 					Zmniejsz głośność
 				</Polish>
+				<Portuguese>
+					Diminuir volume
+				</Portuguese>
 			</Key>
 			<Key ID="STR_volume">
 				<Original>
@@ -662,6 +728,9 @@
 				<Polish>
 					Ustaw głośność
 				</Polish>
+				<Portuguese>
+					Mudar volume
+				</Portuguese>
 			</Key>
 			<Key ID="STR_incorrect_frequency">
 				<Original>
@@ -691,6 +760,9 @@
 				<Polish>
 					Niepoprawna częstotliwość, skala %1-%2
 				</Polish>
+				<Portuguese>
+					Frequência incorrete, deve ser de %1-%2
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_volume">
 				<Original>
@@ -720,6 +792,9 @@
 				<Polish>
 					Głośność: %1
 				</Polish>
+				<Portuguese>
+					Volume: %1
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_channel_1">
 				<Original>
@@ -749,6 +824,9 @@
 				<Polish>
 					Kanał 1
 				</Polish>
+				<Portuguese>
+					Canal 1
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_channel_2">
 				<Original>
@@ -778,6 +856,9 @@
 				<Polish>
 					Kanał 2
 				</Polish>
+				<Portuguese>
+					Canal 2
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_channel_3">
 				<Original>
@@ -807,6 +888,9 @@
 				<Polish>
 					Kanał 3
 				</Polish>
+				<Portuguese>
+					Canal 3
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_channel_4">
 				<Original>
@@ -836,6 +920,9 @@
 				<Polish>
 					Kanał 4
 				</Polish>
+				<Portuguese>
+					Canal 4
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_channel_5">
 				<Original>
@@ -865,6 +952,9 @@
 				<Polish>
 					Kanał 5
 				</Polish>
+				<Portuguese>
+					Canal 5
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_channel_6">
 				<Original>
@@ -894,6 +984,9 @@
 				<Polish>
 					Kanał 6
 				</Polish>
+				<Portuguese>
+					Canal 6
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_channel_7">
 				<Original>
@@ -923,6 +1016,9 @@
 				<Polish>
 					Kanał 7
 				</Polish>
+				<Portuguese>
+					Canal 7
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_channel_8">
 				<Original>
@@ -952,6 +1048,9 @@
 				<Polish>
 					Kanał 8
 				</Polish>
+				<Portuguese>
+					Canal 8
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_channel_9">
 				<Original>
@@ -981,6 +1080,9 @@
 				<Polish>
 					Kanał 9
 				</Polish>
+				<Portuguese>
+					Canal 9
+				</Portuguese>
 			</Key>
 			<Key ID="STR_depth">
 				<Original>
@@ -1010,6 +1112,9 @@
 				<Polish>
 					Aktualna głębokość
 				</Polish>
+				<Portuguese>
+					 Profundidade atual
+				</Portuguese>
 			</Key>
 			<Key ID="STR_active_sw_channel">
 				<Original>
@@ -1039,6 +1144,9 @@
 				<Polish>
 					Kanał: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					 Canal: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Portuguese>
 			</Key>
 			<Key ID="STR_active_additional_sw_channel">
 				<Original>
@@ -1068,6 +1176,9 @@
 				<Polish>
 					Dodatkowy kanał: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					 Canal adicional: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Portuguese>
 			</Key>
 			<Key ID="STR_active_frequency">
 				<Original>
@@ -1097,6 +1208,9 @@
 				<Polish>
 					Częstotliwość: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					 Frenquência: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Portuguese>
 			</Key>
 			<Key ID="STR_active_lr_channel">
 				<Original>
@@ -1126,6 +1240,9 @@
 				<Polish>
 					LR kanał: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					 Canal de longa: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Portuguese>
 			</Key>
 			<Key ID="STR_active_additional_lr_channel">
 				<Original>
@@ -1155,6 +1272,9 @@
 				<Polish>
 					Dodatkowy kanał LR: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					 Canal adicional de longa: &lt;t color=&apos;#ffff00&apos;&gt;%1&lt;/t&gt;
+				</Portuguese>
 			</Key>
 			<Key ID="STR_in_water_hint">
 				<Original>
@@ -1184,6 +1304,9 @@
 				<Polish>
 					&lt;t color=&apos;#33ccff&apos;&gt;Nie możesz używać radia pod wodą&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					 &lt;t color=&apos;#33ccff&apos;&gt;Não é possivel usar o radio embaixo d&apos;água&lt;/t&gt;
+				</Portuguese>
 			</Key>
 			<Key ID="STR_on_ground_hint">
 				<Original>
@@ -1213,6 +1336,10 @@
 				<Polish>
 					&lt;t color=&apos;#993300&apos;&gt;Nie możesz używać radia w powietrzu&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					 &lt;t color=&apos;#993300&apos;&gt;Não é possivel usar o rádio do motorista fora do solo&lt;/t&gt;
+				</Portuguese>
+				
 			</Key>
 			<Key ID="STR_unable_to_use_hint">
 				<Original>
@@ -1242,6 +1369,10 @@
 				<Polish>
 					&lt;t color=&apos;#FF0000&apos;&gt;Nie możesz używać tego radia&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					&lt;t color=&apos;#FF0000&apos;&gt;Você não pode usar o rádio&lt;/t&gt;
+				</Portuguese>
+				
 			</Key>
 			<Key ID="STR_select_action">
 				<Original>
@@ -1271,6 +1402,9 @@
 				<Polish>
 					Wybierz akcję
 				</Polish>
+				<Portuguese>
+					Seleciona uma ação
+				</Portuguese>
 			</Key>
 			<Key ID="STR_select_action_setup">
 				<Original>
@@ -1300,6 +1434,9 @@
 				<Polish>
 					Ustawienia...
 				</Polish>
+				<Portuguese>
+					Confiurações
+				</Portuguese>
 			</Key>
 			<Key ID="STR_select_action_setup_tooltip">
 				<Original>
@@ -1329,6 +1466,9 @@
 				<Polish>
 					Otwórz ustawienia
 				</Polish>
+				<Portuguese>
+					Abrir tela de configuração
+				</Portuguese>
 			</Key>
 			<Key ID="STR_select_action_use">
 				<Original>
@@ -1358,6 +1498,9 @@
 				<Polish>
 					Wybierz jako aktywne
 				</Polish>
+				<Portuguese>
+					Definir como ativo
+				</Portuguese>
 			</Key>
 			<Key ID="STR_select_action_use_tooltip">
 				<Original>
@@ -1387,6 +1530,9 @@
 				<Polish>
 					Użyj do transmisji
 				</Polish>
+				<Portuguese>
+					Usar como transmissor
+				</Portuguese>
 			</Key>
 			<Key ID="STR_select_radio">
 				<Original>
@@ -1416,6 +1562,9 @@
 				<Polish>
 					Wybierz radio krótkiego zasięgu
 				</Polish>
+				<Portuguese>
+					Selecione o rádio de curta
+				</Portuguese>
 			</Key>
 			<Key ID="STR_select_lr_radio">
 				<Original>
@@ -1445,6 +1594,9 @@
 				<Polish>
 					Wybierz radio dalekiego zasięgu
 				</Polish>
+				<Portuguese>
+					Selecione o rádio de Longa
+				</Portuguese>
 			</Key>
 			<Key ID="STR_transmit">
 				<Original>
@@ -1474,6 +1626,9 @@
 				<Polish>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Transmisja&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitindo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Rádio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
+				</Portuguese>
 			</Key>
 			<Key ID="STR_transmit_end">
 				<Original>
@@ -1503,6 +1658,9 @@
 				<Polish>
 					&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitindo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Rádio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
+				</Portuguese>
 			</Key>
 			<Key ID="STR_additional_transmit">
 				<Original>
@@ -1532,6 +1690,9 @@
 				<Polish>
 					&lt;t size='1' align='center' color='#00FF00'&gt;Transmisja&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					&lt;t size='1' align='center' color='#00FF00'&gt;Transmitindo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Rádio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal Adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
+				</Portuguese>
 			</Key>
 			<Key ID="STR_additional_transmit_end">
 				<Original>
@@ -1561,6 +1722,9 @@
 				<Polish>
 					&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częstotliwość: %3&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					&lt;t size='1' align='center' color='#FF9900'&gt;Transmitindo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Rádio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;
+				</Portuguese>
 			</Key>
 			<Key ID="STR_waiting">
 				<Original>
@@ -1590,6 +1754,9 @@
 				<Polish>
 					Oczekuję...
 				</Polish>
+				<Portuguese>
+					Aguardando...
+				</Portuguese>
 			</Key>
 			<Key ID="STR_voice_volume">
 				<Original>
@@ -1619,6 +1786,9 @@
 				<Polish>
 					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Głośność głosu: %1&lt;/t&gt;
 				</Polish>
+				<Portuguese>
+					&lt;t align='center' color=&apos;#66ff33&apos;&gt;Volume de voz: %1&lt;/t&gt;
+				</Portuguese>
 			</Key>
 			<Key ID="STR_voice_normal">
 				<Original>
@@ -1648,6 +1818,9 @@
 				<Polish>
 					Normalny
 				</Polish>
+				<Portuguese>
+					Normal
+				</Portuguese>
 			</Key>
 			<Key ID="STR_voice_yelling">
 				<Original>
@@ -1677,6 +1850,9 @@
 				<Polish>
 					krzyk
 				</Polish>
+				<Portuguese>
+					Voz alta
+				</Portuguese>
 			</Key>
 			<Key ID="STR_voice_whispering">
 				<Original>
@@ -1706,6 +1882,9 @@
 				<Polish>
 					szept
 				</Polish>
+				<Portuguese>
+					Sussurrando
+				</Portuguese>
 			</Key>
 			<Key ID="STR_init">
 				<Original>
@@ -1735,6 +1914,9 @@
 				<Polish>
 					Inicjalizacja...
 				</Polish>
+				<Portuguese>
+					Incializando...
+				</Portuguese>
 			</Key>
 			<Key ID="STR_subject_name">
 				<Original>
@@ -1764,6 +1946,9 @@
 				<Polish>
 					Radio
 				</Polish>
+				<Portuguese>
+					Rádio
+				</Portuguese>
 			</Key>
 			<Key ID="STR_select_action_copy_settings_from">
 				<Original>
@@ -1793,6 +1978,9 @@
 				<Polish>
 					Kopiuj ustawienia od...
 				</Polish>
+				<Portuguese>
+					Copiar configurações de....
+				</Portuguese>
 			</Key>
 			<Key ID="STR_select_action_settings_from_tooltip">
 				<Original>
@@ -1822,6 +2010,9 @@
 				<Polish>
 					Skopiuj ustawienia z innego radia z tym samym kodem
 				</Polish>
+				<Portuguese>
+					Copiar configurações de outro rádio com o mesmo códico de encriptação
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_control">
 				<Original>
@@ -1851,6 +2042,9 @@
 				<Polish>
 					Klawiszologia
 				</Polish>
+				<Portuguese>
+					Controles
+				</Portuguese>
 			</Key>
 			<Key ID="STR_wait_radio">
 				<Original>
@@ -1880,6 +2074,9 @@
 				<Polish>
 					Oczekiwanie na unikalne radio z serwera...
 				</Polish>
+				<Portuguese>
+					Aguardando resposta de rádio do servidor...
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_control_text">
 				<Original>
@@ -2096,6 +2293,32 @@
 &lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Nadawaj na dodatkowym kanale radia dalekiego zasięgu.&lt;br/&gt;
 &lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Wyłącz interfejs radia
 				</Polish>
+				<Portuguese>
+					&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Botão Push-to-talk no TeamSpeak&lt;/font&gt;	Falar diretamente.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Caps Lock&lt;/font&gt;	Para falar no rádio.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Caps Lock&lt;/font&gt;	Para falar no rádio de longa.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + P&lt;/font&gt;	Tpara abrir a interface do rádio (você deve ter o rádio no inventário). Caso você tenha mais de um rádio, deverá selecionar o desejado. Se possível, defina um como ativo (este será usado para transmitir).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + SHIFT + A/D&lt;/font&gt; Navegar pelas frequências de curta.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + Up/Left/Right Arrow&lt;/font&gt; Mudança das configurações de estéreo.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;NUM[1-8]&lt;/font&gt;	Mudança rápida dos canais de curta&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + P&lt;/font&gt;	Para abrir a interface do rádio de lonfa (você deve estar carregando um, ou estar na possição de motorista. atirador ou co-piloto). Se você tiver mais de um rádio disponíveç, você deve selecionar um e definir ele como ativo.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + SHIFT + A/D&lt;/font&gt; Navegar pelas frenquências de longa.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + Up/Left/Right Arrow&lt;/font&gt; Mudança rápida do estéreo do rádio de longa.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + NUM[1-9]&lt;/font&gt;	Mudança rápida da frequência de longa.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + TAB&lt;/font&gt;	Para mudar o volume da fala. Você pode: Sussurrar, Normal ou Falar em Voz Alta. Isso não afeta o volume da transmissão.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;SHIFT + P&lt;/font&gt;	Abrir a interface de rádio submarino(você deve usar um rebreather).&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ~&lt;/font&gt;	Para falar embaixa d'água.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ]&lt;/font&gt;	Selecionar próximo rádio de curta.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [&lt;/font&gt;	Selecionar rádio de curta anterior.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + ]&lt;/font&gt;	Selecionar próximo rádio de longa.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + ALT + [&lt;/font&gt;	Selecionar rádio de longa anterior.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;CTRL + [←,↑,→]&lt;/font&gt;	Mudar configurações de estéreo para o rádio de curta.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ALT + [←,↑,→]&lt;/font&gt;	udar configurações de estéreo para o rádio de longa.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;T&lt;/font&gt;	Transmitir no canal adicional do rádio de curta.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;Y&lt;/font&gt;	Transmitir no canal adicional do rádio de longa.&lt;br/&gt;
+&lt;font color=&quot;#67ED24&quot;&gt;ESC&lt;/font&gt;	Sair da interface de rádio.
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_diver">
 				<Original>
@@ -2125,6 +2348,9 @@
 				<Polish>
 					Dla nurków
 				</Polish>
+				<Portuguese>
+					Para os motoristas
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_diver_text">
 				<Original>
@@ -2189,6 +2415,14 @@ Użyj podwodnego nadajnika do komunikacji wśród nurków .&lt;br/&gt;
 Nie możesz używać komunikacji radiowej pod wodą (ani do nadawania, ani do odbierania). Jeśli chcesz przekazać jakąś wiadomość na powieszchnię - wynurz się. &lt;br/&gt;
 Wyjątek - możesz użyć długiego radia będąc kierowcą łodzi podwodnej znajdując się na głębokości peryskopowej.
 				</Polish>
+				<Portuguese>
+&lt;br/&gt;
+Você não pode falar embaixo da água (a não ser que esteja usando um traje de mergulho). Entretanto, a curta distância alguns resmungos (exceto se você estiver em um veículo fechado).
+&lt;br/&gt;
+Dentro da água, você escutar as vozes abafadas.&lt;br/&gt;
+Use um rebreather para falar com os outros mergulhadores.&lt;br/&gt;
+Você não pode usar comunicação de rádio debaixo d'água (nem para falar nem para ouvir). Se você quiser passar alguma mensagem na superfície da terra. &lt;br/&gt;Exceção - submersível na profundidade do periscópio (os mergulhadores podem usar um rádio de longo alcance).
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_intercept">
 				<Original>
@@ -2218,6 +2452,9 @@ Wyjątek - możesz użyć długiego radia będąc kierowcą łodzi podwodnej zna
 				<Polish>
 					Przechwytywanie sygnału
 				</Polish>
+				<Portuguese>
+					Interceptação de Rádio
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_intercept_text">
 				<Original>
@@ -2276,6 +2513,13 @@ Radio można zabierać od zabitych graczy i przekazywać sobie nawzajem. Radio z
 W pojazdach ustawienia radia również pozostaną niezmienione.&lt;/br&gt;
 Domyślnie radia wszystkich frakcji mają swoje kody szyfrujące, więc nie usłyszysz rozmów przeciwnika, nawet na tej samej częstotliwości. Aby przechwycić komunikaty przeciwnika (lub nadawać własne) musisz zdobyć ich radiostację.
 				</Polish>
+				<Portuguese>
+&lt;br/&gt;
+O rádio pode ser pego e dado à inimigos mortos. Ele manterá todas as configurações (canais, frequência e volume),
+&lt;br/&gt;
+Nos veículos as configurações também ficam salvas.&lt;/br&gt;
+Por padrão, cada facção te, seus códigos de encriptação, então você nao vai ouvir o inimigo falar, mesmo que defina a frequência. Para ouvir as comunicações inimigas (e falar), é necessário que você capture uma estação de rádio inimiga.
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_vehicle">
 				<Original>
@@ -2305,6 +2549,9 @@ Domyślnie radia wszystkich frakcji mają swoje kody szyfrujące, więc nie usł
 				<Polish>
 					Pojazdy
 				</Polish>
+				<Portuguese>
+					Veículos
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_vehicle_text">
 				<Original>
@@ -2379,6 +2626,14 @@ Każdy slot w pojeździe ma swoje radio, które musi być skonfigurowane oddziel
 &lt;br/&gt;
 Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkniętym pojeździe, nie będziesz słyszał głosów z zewnątrz (i vice versa). Jeśli jednak wychylisz się z pojazdu, będziesz słyszał wszystko, zarówno z zewnątrz jak i z wewnątrz.
 				</Polish>
+				<Portugese>
+&lt;br/&gt;
+O rádio de longa está disponível para os motoristas, comandantes, atirador e assistente do piloto. Nem todos os veículos vem com o rádio de longa.
+&lt;br/&gt;
+Cada posição do veículo tem seu próprio rádio, o mesmo deve ser configurado separado. Você planeja mudar de posição no veículo, configure o rádios de antemão.
+&lt;br/&gt;
+Os veículos são classificados como abertos e fechados(isolados). Se você está em um veículo fechado, você nao vai ouvir o que falarem fora do véiculo e vice-versa. No entanto, se você sair do veículo, ouvirá vozes fora e dentro.
+				</Portugese>
 			</Key>
 			<!-- CBA Settings -->
 			<Key ID="STR_radio_no_auto_long_range_radio">
@@ -2394,6 +2649,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Nie przydzielaj automatycznie długiego radia
 				</Polish>
+				<Portuguese>
+					Não entregar automáticamente o rádio.
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_give_personal_radio_to_regular_soldier">
 				<Original>
@@ -2408,6 +2666,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Przydziel PMR
 				</Polish>
+				<Portuguese>
+					Entregar automáticamente o rádio para os soldados.
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_give_microdagr_to_soldier">
 				<Original>
@@ -2422,6 +2683,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Przydziel MicroDAGR
 				</Polish>
+				<Portuguese>
+					Entregar o MicroDAGR para os soldados
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_same_sw_frequencies_for_side">
 				<Original>
@@ -2436,6 +2700,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Takie same częstotliwości SW dla strony
 				</Polish>
+				<Portuguese>
+					Usar as mesmas frequências de curta para os lados
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_same_lr_frequencies_for_side">
 				<Original>
@@ -2450,6 +2717,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Takie same częstotliwości LR dla strony
 				</Polish>
+				<Portuguese>
+					Usar as mesmas frequências de longa para os lados
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_same_dd_frequencies_for_side">
 				<Original>
@@ -2464,6 +2734,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Takie same częstotliwości DD dla strony
 				</Polish>
+				<Portuguese>
+					Usar as mesmas frequências subamarinas para os lados
+				</Portuguese>
 			</Key>
 			<Key ID="STR_radio_default_radioVolume">
 				<Original>
@@ -2478,6 +2751,9 @@ Pojazdy dzielą się na otwarte i zamknięte (izolowane). Jeśli jesteś w zamkn
 				<Polish>
 					Domyślna głośność radia
 				</Polish>
+				<Portuguese>
+					Volume padrão do Rádio
+				</Portuguese>
 			</Key>
 		</Container>
 	</Package>
