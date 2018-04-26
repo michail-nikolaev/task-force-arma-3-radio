@@ -8,7 +8,6 @@
 
   Arguments:
     0: the unit <OBJECT>
-    1: without duplicates <BOOL> (default: true)
 
   Return Value:
     the radioitems of a unit <ARRAY>
@@ -22,6 +21,7 @@
 params [["_unit", objNull, [objNull]]];
 
 private _allItems = (assignedItems _unit);
-_allItems append (items _unit);
+_allItems append ((getItemCargo (uniformContainer _unit)) select 0);
+_allItems append ((getItemCargo (vestContainer _unit)) select 0);
 
 _allItems select {((_x call TFAR_fnc_isRadio)||{_x call TFAR_fnc_isPrototypeRadio})}
