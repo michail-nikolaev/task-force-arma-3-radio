@@ -167,31 +167,25 @@ if (player call TFAR_fnc_isForcedCurator) then {
 
     if !(TFAR_currentUnit getVariable ["TFAR_HandlersSet",false]) then {
         TFAR_currentUnit addEventHandler ["Take", {
-            if ((_this select 2) call TFAR_fnc_isRadio) exitWith {
-                [(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;
+            params ["", "", "_item"];
+            if (_item call TFAR_fnc_isRadio) exitWith {
+                [_item, getPlayerUID player] call TFAR_fnc_setRadioOwner;
             };
-            if ((_this select 2) call TFAR_fnc_isPrototypeRadio) then {
+            if (_item call TFAR_fnc_isPrototypeRadio) then {
                 call TFAR_fnc_radioReplaceProcess;
             };
         }];
         TFAR_currentUnit addEventHandler ["Put", {
-            If ((_this select 2) call TFAR_fnc_isRadio) then {
-                [(_this select 2), ""] call TFAR_fnc_setRadioOwner;
+            params ["", "", "_item"];
+            if (_item call TFAR_fnc_isRadio) then {
+                [_item, ""] call TFAR_fnc_setRadioOwner;
             };
         }];
         TFAR_currentUnit addEventHandler ["Killed", {
             params ["_unit"];
-            private _allItems = (assignedItems _unit);
-            _allItems append ((getItemCargo (uniformContainer _unit)) select 0);
-            _allItems append ((getItemCargo (vestContainer _unit)) select 0);
-            _allItems append ((getItemCargo (backpackContainer _unit)) select 0);
-            _allItems = _allItems arrayIntersect _allItems;
             {
-                if (_x call TFAR_fnc_isRadio) then {
-                    [_x, ""] call TFAR_fnc_setRadioOwner;
-                };
-                nil
-            } count _allItems;
+                [_x, ""] call TFAR_fnc_setRadioOwner;
+            } forEach ([_unit] call CBA_fnc_uniqueUnitItems) select {_x call TFAR_fnc_isRadio};
         }];
         TFAR_currentUnit setVariable ["TFAR_HandlersSet", true];
     };

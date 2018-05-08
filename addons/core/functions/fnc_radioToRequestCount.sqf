@@ -22,43 +22,32 @@
 
 params[["_allRadios", false, [true]]];
 
-private _radiosToRequest = [];
-{
-    if (_x call TFAR_fnc_isPrototypeRadio) then {
-        _radiosToRequest pushBack _x;
-    } else {
-        if (_x call TFAR_fnc_isRadio) then {
-            if ((_x call TFAR_fnc_getRadioOwner) == "") then {
-                [_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
-            };
-            if (((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios) then {
-                _radiosToRequest pushBack _x;
-            };
-        };
-    };
-    nil
-} count (assignedItems TFAR_currentUnit);
 
+private _radioSelector = {
+    (_x call TFAR_fnc_isPrototypeRadio) || {//select all non-instanciated radios, or..
+        (_x call TFAR_fnc_isRadio) && {//...if they are already instanciated...
+            private _radioOwner = _x call TFAR_fnc_getRadioOwner;
+            private _playerUID = getPlayerUID player;
+            if (_radioOwner == "") then {//...but not owned by anyone, just take ownership
+                [_x, _playerUID] call TFAR_fnc_setRadioOwner;
+                _radioOwner = _playerUID;
+            };
+            //...and owned by someone else then we want to select it to be replaced, to give the unit it's own Radio
+            _allRadios || {_radioOwner != _playerUID}
+        }
+    }
+};
+
+private _radiosToRequest = (assignedItems TFAR_currentUnit) select _radioSelector;
+
+//If we had a Radio assigned to the Radio slot before, then we want to assign one to it again when we get the instanciated radios back
 private _linkFirstItem = !(_radiosToRequest isEqualTo []);
 
+//could use CBA_fnc_uniqueUnitItems here but we don't want assignedItems
 private _allItems = ((getItemCargo (uniformContainer TFAR_currentUnit)) select 0);
 _allItems append ((getItemCargo (vestContainer TFAR_currentUnit)) select 0);
 _allItems append ((getItemCargo (backpackContainer TFAR_currentUnit)) select 0);
 
-{
-    if (_x call TFAR_fnc_isPrototypeRadio) then {
-        _radiosToRequest pushBack _x;
-    } else {
-        if (_x call TFAR_fnc_isRadio) then {
-            if ((_x call TFAR_fnc_getRadioOwner) == "") then {
-                [_x, getPlayerUID player] call TFAR_fnc_setRadioOwner;
-            };
-            if (((_x call TFAR_fnc_getRadioOwner) != (getPlayerUID player)) or _allRadios) then {
-                _radiosToRequest pushBack _x;
-            };
-        };
-    };
-    nil
-} count _allItems;
+_radiosToRequest append (_allItems select _radioSelector)
 
 [_radiosToRequest, _linkFirstItem]

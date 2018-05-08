@@ -22,7 +22,7 @@
 
 params ["_radio", "_owner", ["_local", false, [true]]];
 
-If !(GVAR(SettingsInitialized)) exitWith {
+if !(GVAR(SettingsInitialized)) exitWith {
     [{GVAR(SettingsInitialized)}, TFAR_fnc_setRadioOwner, _this] call CBA_fnc_waitUntilAndExecute;
 };
 

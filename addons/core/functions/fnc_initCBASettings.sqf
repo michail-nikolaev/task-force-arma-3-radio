@@ -70,7 +70,7 @@
     [[0, 0.1, 0.2], ["Quality", "Normal", "Performance"], 1],
     2,
     {
-        If ((!isNil QGVAR(EHID_processPlayerPositions)) && {hasInterface} && {isMultiplayer}) then {
+        if ((!isNil QGVAR(EHID_processPlayerPositions)) && {hasInterface} && {isMultiplayer}) then {
             [GVAR(EHID_processPlayerPositions)] call CBA_fnc_removePerFrameHandler;
             GVAR(EHID_processPlayerPositions) = [PROFCONTEXT_NORTN(TFAR_fnc_processPlayerPositions), TFAR_PosUpdateMode] call CBA_fnc_addPerFrameHandler;
         };

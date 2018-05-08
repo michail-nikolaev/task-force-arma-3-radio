@@ -42,7 +42,7 @@ GVAR(instanciationIsReady) = false;
         ["TFAR_RadioRequestEvent", {
             diag_log format["TFAR_RadioRequestEvent %1 %2",_this,diag_tickTime];//#TODO remove
 
-            If !(params [["_radio_request", [], [[]]],"_requestingUnit"]) exitWith {
+            if !(params [["_radio_request", [], [[]]],"_requestingUnit"]) exitWith {
                 diag_log format ["TFAR - ERROR:47 - Request Content: %1; Requested By: %2", _radio_reqest, _requestingUnit];
                 ["TFAR_RadioRequestResponseEvent", ["ERROR:47"], _requestingUnit] call CBA_fnc_targetEvent;
             };
