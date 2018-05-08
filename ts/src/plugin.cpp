@@ -507,6 +507,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
         //helpers::applyILD(samples, sampleCount, channels, relativePosition, myViewDirection);//interaural level difference
 
+        processCompressor(&clientData->effects.compressor, samples, channels, sampleCount);
 
         if (shouldPlayerHear) {
             if (vehicleVolumeLoss < 0.01 || isInSameVehicle) {
