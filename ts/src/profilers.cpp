@@ -29,7 +29,7 @@ void APIProfiler::Flush(int64_t end) {
         s_ooFrequency = 1.0f / freq.QuadPart;
         LONG Barrier;
         _InterlockedOr(&Barrier, 0);
-        s_reportInterval = (INT64) (freq.QuadPart * APIProfiler_ReportIntervalSecs);
+        s_reportInterval = static_cast<INT64>(freq.QuadPart * APIProfiler_ReportIntervalSecs);
     }
 
     // Avoid garbage timing on first call by initializing a new interval:
@@ -39,8 +39,8 @@ void APIProfiler::Flush(int64_t end) {
     }
 
     // Enough time has elapsed. Print statistics to console:
-    float interval = (end - m_threadInfo->lastReportTime) * s_ooFrequency;
-    float measured = m_threadInfo->accumulator * s_ooFrequency;
+    const auto interval = (end - m_threadInfo->lastReportTime) * s_ooFrequency;
+    const auto measured = m_threadInfo->accumulator * s_ooFrequency;
     char buffer[512];
     snprintf(buffer, "TID 0x%zu time spent in \"%s\": %.3f/%.3f ms %.1f%% %llux %.5f microsec per-call",
         std::hash<std::thread::id>()(std::this_thread::get_id()),

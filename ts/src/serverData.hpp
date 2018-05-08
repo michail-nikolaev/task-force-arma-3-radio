@@ -11,14 +11,12 @@ public:
 
 
     bool hasClientData(TSClientID clientID) const;
-    std::shared_ptr<clientData> getClientData(const std::string& nickname) const;
+    std::shared_ptr<clientData> getClientData(std::string_view nickname) const;
     std::shared_ptr<clientData> getClientData(TSClientID clientID) const;
-	void forEachClient(std::function<void(const std::shared_ptr<clientData>&)> func);
+    void forEachClient(const std::function<void(const std::shared_ptr<clientData>&)>& func);
     std::shared_ptr<clientData> myClientData;//No lock needed. Its only changed once on serverconnect
 
-    serverData() {
-
-    }
+    serverData() = default;
 private:
     using LockGuard_shared = LockGuard_shared<ReadWriteLock>;
     using LockGuard_exclusive = LockGuard_exclusive<ReadWriteLock>;
@@ -29,6 +27,7 @@ private:
 
     //Should really make a template out of this..... Buuut... meh
     using indexedType = std::string;//Is always the first element in tuple and always hashed
+    using indexedHasher = std::hash<std::string_view>;
     using nonIndexedType = TSClientID;//Is always the second element in tuple
     using clientDataDirectoryElement = std::tuple<size_t, TSClientID, std::shared_ptr<clientData>>;
 
@@ -38,13 +37,22 @@ private:
     void debugPrint(std::stringstream& diag, bool withPos = false) const;
 
     auto findClientData(const indexedType& idx) const {
-        auto range = std::equal_range(data.begin(), data.end(), std::make_tuple(std::hash<indexedType>()(idx), 0, nullptr), [](const auto& lhs, const auto& rhs) {
+        auto range = std::equal_range(data.begin(), data.end(), std::make_tuple(indexedHasher()(idx), 0, nullptr), [](const auto& lhs, const auto& rhs) {
             return std::get<0>(lhs) < std::get<0>(rhs);
         });
         if (range.first == range.second) return data.end();
         return range.first;
     }
 
+    std::enable_if_t<std::is_same_v<indexedType,std::string>, std::vector<clientDataDirectoryElement>::const_iterator>
+        findClientData(std::string_view idx) const {
+        auto range = std::equal_range(data.begin(), data.end(), std::make_tuple(indexedHasher()(idx), 0, nullptr), [](const auto& lhs, const auto& rhs) {
+            return std::get<0>(lhs) < std::get<0>(rhs);
+        });
+        if (range.first == range.second) return data.end();
+        return range.first;
+    }
+    
     auto findClientData(const nonIndexedType& cid) const {
         return std::find_if(data.begin(), data.end(), [&cid](const auto& lhs) {
             return std::get<1>(lhs) == cid;
@@ -67,7 +75,7 @@ private:
 
     template <typename ...T>
     auto insertInData(const indexedType& idx, T &&... args) {
-        auto hash = std::hash<indexedType>()(idx);
+        auto hash = indexedHasher()(idx);
         return data.emplace(std::upper_bound(data.begin(), data.end(), hash, [](const auto& hash, const auto& tup) {
             return hash < std::get<0>(tup);
         }), hash, std::forward<T>(args)...);

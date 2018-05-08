@@ -17,10 +17,14 @@
 
   Public: Yes
 */
+params ["_new"];
 
 private _old = (call TFAR_fnc_activeSwRadio);
+if (_old == _new) exitWith {false};
+
 private _couldAdd = TFAR_currentUnit canAdd _old;
 TFAR_currentUnit unassignItem _old;
-TFAR_currentUnit assignItem _this;
+TFAR_currentUnit assignItem _new;
+
 if (!_couldAdd) then {TFAR_currentUnit addItem _old}; //We couldn't put it into inventory before but now we have space for sure.
-["OnSWChange", [TFAR_currentUnit, _this, _old]] call TFAR_fnc_fireEventHandlers;
+["OnSWChange", [TFAR_currentUnit, _new, _old]] call TFAR_fnc_fireEventHandlers;

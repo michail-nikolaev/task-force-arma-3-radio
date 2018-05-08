@@ -463,7 +463,7 @@ auto speedTestGainTransformPar() {
         if (directTalkingVolume == 1.0f) //no change in gain
             return;
         if (channels == 4) {
-            auto& func = [directTalkingVolume](short* start, short* end) {
+            auto func = [directTalkingVolume](short* start, short* end) {
                 std::transform(start, end, start, [directTalkingVolume](auto samp) {return samp * directTalkingVolume; });
             };
 

@@ -3,17 +3,16 @@
 #include "profilers.hpp"
 #include <ctime>
 #include <iomanip> // put_time
+#include <utility>
 
 extern struct TS3Functions ts3Functions;
-FileLogger::FileLogger(std::string filePath) : file(filePath) {}
-
-FileLogger::~FileLogger() {}
+FileLogger::FileLogger(const std::string& filePath) : file(filePath) {}
 
 void FileLogger::log(const std::string& message) {
     if (file.is_open()) {
-        auto now = std::chrono::system_clock::now();
-        auto in_time_t = std::chrono::system_clock::to_time_t(now);
-        file << std::put_time(std::localtime(&in_time_t), "%H:%M:%S") << " " << message;
+        const auto now = std::chrono::system_clock::now();
+        auto inTimeT = std::chrono::system_clock::to_time_t(now);
+        file << std::put_time(std::localtime(&inTimeT), "%H:%M:%S") << " " << message;
         file.flush();
     }
 }
@@ -22,7 +21,7 @@ void FileLogger::log(const std::string& message, LogLevel _loglevel) {
     log(message); //#TODO add prefix according to loglevel
 }
 
-TeamspeakLogger::TeamspeakLogger(enum LogLevel _loglevel) : level(_loglevel) {}
+TeamspeakLogger::TeamspeakLogger(enum LogLevel defaultLoglevel) : level(defaultLoglevel) {}
 
 void TeamspeakLogger::log(const std::string& message) {
     ts3Functions.logMessage(message.c_str(), level, "task_force_radio", 141);
@@ -42,7 +41,7 @@ void CircularLogger::log(const std::string& message, LogLevel _loglevel) {
 }
 
 void Logger::registerLogger(LoggerTypes type, std::shared_ptr<ILogger> logger) {
-    getInstance()._registerLogger(type, logger);
+    getInstance()._registerLogger(type, std::move(logger));
 }
 
 void Logger::log(LoggerTypes type, const std::string& message) {
@@ -61,18 +60,18 @@ void Logger::log(LoggerTypes type, const std::string & message, LogLevel _loglev
 }
 
 std::vector<std::shared_ptr<ILogger>> Logger::getLogger(LoggerTypes type) {
-    auto found = getInstance().registeredLoggers.find(type);
+    const auto found = getInstance().registeredLoggers.find(type);
     if (found != getInstance().registeredLoggers.end())
         return found->second;
     return {};
 }
 
 void Logger::_registerLogger(LoggerTypes type, std::shared_ptr<ILogger> logger) {
-    registeredLoggers[type].push_back(logger);
+    registeredLoggers[type].emplace_back(logger);
 }
 
 void Logger::_log(LoggerTypes type, const std::string& message) const {
-    auto found = registeredLoggers.find(type);
+    const auto found = registeredLoggers.find(type);
     if (found != registeredLoggers.end()) {
         for (const std::shared_ptr<ILogger>& it : registeredLoggers.at(type)) {
             it->log(message.back() == '\n' ? message : message + '\n');
@@ -82,7 +81,7 @@ void Logger::_log(LoggerTypes type, const std::string& message) const {
 }
 
 void Logger::_log(LoggerTypes type, const std::string& message, LogLevel _loglevel) const {
-    auto found = registeredLoggers.find(type);
+    const auto found = registeredLoggers.find(type);
     if (found != registeredLoggers.end()) {
         for (const std::shared_ptr<ILogger>& it : registeredLoggers.at(type)) {
             it->log(message.back() == '\n' ? message : message + '\n', _loglevel);
@@ -90,11 +89,6 @@ void Logger::_log(LoggerTypes type, const std::string& message, LogLevel _loglev
     }
     //If not found exit silently
 }
-
-Logger::Logger() {}
-
-
-Logger::~Logger() {}
 
 void DebugStringLogger::log(const std::string & message) { OutputDebugStringA(message.c_str()); printf("%s", message.c_str()); }
 

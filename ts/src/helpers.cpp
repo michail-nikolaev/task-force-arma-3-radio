@@ -3,12 +3,11 @@
 #ifndef _USE_MATH_DEFINES
 #define _USE_MATH_DEFINES
 #endif
-#include <math.h>
+#include <cmath>
 #include <algorithm>
-#include <sstream>
 #include "task_force_radio.hpp"
 #include <bitset>
-#include <public_errors.h>
+
 #define CAN_USE_SSE_ON(x) (IsProcessorFeaturePresent(PF_XMMI64_INSTRUCTIONS_AVAILABLE) && (reinterpret_cast<uintptr_t>(x) % 16 == 0))
 
 void helpers::applyGain(short * samples, size_t sampleCount, int channels, float directTalkingVolume) {
@@ -80,8 +79,8 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Positi
    
     std::tie(listener.OrientFront.x, listener.OrientFront.y, listener.OrientFront.z) = myViewDirection.get();
     //listener.OrientFront.z = std::clamp(listener.OrientFront.z, -0.65f, 1.f);
-    listener.OrientFront.x = listener.OrientFront.x;//East and West are mixed up
-    listener.OrientFront.y = listener.OrientFront.y;//North and South are mixed up   
+    //listener.OrientFront.x = listener.OrientFront.x;//East and West are mixed up
+    //listener.OrientFront.y = listener.OrientFront.y;//North and South are mixed up   
     //listener.OrientFront.z = 0;
 
 
@@ -113,10 +112,10 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     
     //listener.OrientTop = { 0,0,1 };
     std::tie(listener.Position.x, listener.Position.y, listener.Position.z) = emitterPosition.get();
-    listener.pCone = NULL;
+    listener.pCone = nullptr;
 
     X3DAUDIO_EMITTER emitter{};
-    emitter.pCone = NULL;
+    emitter.pCone = nullptr;
     std::tie(emitter.Position.x, emitter.Position.y, emitter.Position.z) = myPosition.get();
     std::tie(emitter.OrientFront.x, emitter.OrientFront.y, emitter.OrientFront.z) = emitterViewDirection.get();
     //emitter.OrientFront = { 0,1,0 };
@@ -129,7 +128,7 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
 
     output.SrcChannelCount = 1;
     output.DstChannelCount = channels;
-    float* volumeMatrix = new float[channels];	//#X3DAudio minimum 2 channels
+    float* volumeMatrix = new float[channels];//#X3DAudio minimum 2 channels
     output.pMatrixCoefficients = volumeMatrix;
 
 
@@ -147,8 +146,8 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     float gainFrontLeft = volumeMatrix[0];
     float gainFrontRight = volumeMatrix[1];
     delete[] volumeMatrix;
-    float mult = 1.25f / (gainFrontRight + gainFrontLeft);
-    gainFrontLeft *= mult; //make sure left+right = 1.0 else it would decrease overall volume which we don't want
+    const float mult = 1.25f / (gainFrontRight + gainFrontLeft);
+    gainFrontLeft *= mult; //make sure left+right = 1.25 else it would decrease overall volume too much which we don't want
     gainFrontRight *= mult;
 
     size_t leftOver = sampleCount * channels;
@@ -178,13 +177,12 @@ void helpers::shortFloatMultEx(short * data, size_t elementCount, __m128 multPac
 
     for (size_t i = 0; i < elementCount; i += 8) {
         __m128i xmm0;
-        __m128i xmm1;
         __m128i xmm2;
-        __m128i xmm4{ 0 };
+        const __m128i xmm4{ 0 };
 
 
         _mm_store_si128(&xmm2, xmm4);
-        xmm1 = _mm_load_si128((__m128i*) (data + i));
+        __m128i xmm1 = _mm_load_si128(reinterpret_cast<__m128i*>(data + i));
         xmm2 = _mm_cmpgt_epi16(xmm2, xmm1);
         _mm_store_si128(&xmm0, xmm1);
         xmm1 = _mm_unpackhi_epi16(xmm1, xmm2);
@@ -202,25 +200,21 @@ void helpers::shortFloatMultEx(short * data, size_t elementCount, __m128 multPac
         xmm0 = _mm_unpacklo_epi16(xmm0, xmm2);
         xmm1 = _mm_unpackhi_epi16(xmm1, xmm2);
         xmm0 = _mm_unpacklo_epi16(xmm0, xmm1);
-        _mm_store_si128((__m128i*) (data + i), xmm0);
+        _mm_store_si128(reinterpret_cast<__m128i*>(data + i), xmm0);
     }
 }
 
-inline float helpers::parseArmaNumber(const std::string& armaNumber) {
-    return parseArmaNumber(armaNumber.c_str());
+inline float helpers::parseArmaNumber(std::string_view armaNumber) {
+    return static_cast<float>(std::strtof(armaNumber.data(),nullptr));
 }
 
-inline float helpers::parseArmaNumber(const char* armaNumber) {
-    return static_cast<float>(std::atof(armaNumber));
-}
-
-inline int helpers::parseArmaNumberToInt(const std::string& armaNumber) {
+inline int helpers::parseArmaNumberToInt(std::string_view armaNumber) {
     return static_cast<int>(std::round(parseArmaNumber(armaNumber)));
 }
 
 bool helpers::startsWith(const std::string& shouldStartWith, const  std::string& startIn) {
     if (startIn.size() >= shouldStartWith.size()) {
-        auto res = std::mismatch(shouldStartWith.begin(), shouldStartWith.end(), startIn.begin());
+        const auto res = std::mismatch(shouldStartWith.begin(), shouldStartWith.end(), startIn.begin());
         return (res.first == shouldStartWith.end());
     } else {
         return false;
@@ -229,10 +223,11 @@ bool helpers::startsWith(const std::string& shouldStartWith, const  std::string&
 
 //http://stackoverflow.com/a/5506223
 std::vector<std::string>& helpers::split(const std::string& s, char delim, std::vector<std::string>& elems) {
-    std::string::size_type pos, lastPos = 0, length = s.length();
+    std::string::size_type lastPos = 0;
+    const std::string::size_type length = s.length();
 
     while (lastPos < length + 1) {
-        pos = s.find_first_of(delim, lastPos);
+        std::string::size_type pos = s.find_first_of(delim, lastPos);
         if (pos == std::string::npos) {
             pos = length;
         }
@@ -246,20 +241,22 @@ std::vector<std::string>& helpers::split(const std::string& s, char delim, std::
     return elems;
 }
 
-std::vector<boost::string_ref>& helpers::split(boost::string_ref s, char delim, std::vector<boost::string_ref>& elems) {
-    std::string::size_type pos, lastPos = 0, length = s.length();
+std::vector<std::string_view>& helpers::split(std::string_view s, char delim, std::vector<std::string_view>& elems) {
+    std::string::size_type lastPos = 0;
+    const std::string::size_type length = s.length();
 
     while (lastPos < length + 1) {
-        pos = s.substr(lastPos).find_first_of(delim);
+        std::string::size_type pos = s.find_first_of(delim, lastPos);
         if (pos == std::string::npos) {
             pos = length;
         }
 
-        // if (pos != lastPos /*|| !trimEmpty*/)
-        elems.push_back(s.substr(lastPos, lastPos + pos - lastPos));
+        //if (pos != lastPos || !trimEmpty)
+        elems.emplace_back(s.data() + lastPos, pos - lastPos);
 
-        lastPos += pos + 1;
+        lastPos = pos + 1;
     }
+
     return elems;
 }
 
@@ -269,8 +266,14 @@ std::vector<std::string> helpers::split(const std::string& s, char delim) {
     return elems;
 }
 
-bool helpers::isTrue(std::string& string) {
-    if (string.length() != 4)	//small speed optimization
+std::vector<std::string_view> helpers::split(std::string_view s, char delim) {
+    std::vector<std::string_view> elems;
+    split(s, delim, elems);
+    return elems;
+}
+
+bool helpers::isTrue(std::string_view string) {
+    if (string.length() != 4)//small speed optimization
         return string.length() == 1 && string.at(0) == '1';
     return string == "true";
 }
@@ -281,48 +284,51 @@ short* helpers::allocatePool(int sampleCount, int channels, short* samples) {
     return result;
 }
 
-void helpers::mix(short* to, short* from, int sampleCount, int channels) {//#TODO SSE2 implementation
+void helpers::mix(short* to, const short* from, int sampleCount, int channels) {//#TODO SSE2 implementation
     for (int q = 0; q < sampleCount * channels; q++) {
-        int sum = to[q] + from[q];
+        int sum = static_cast<int>(to[q]) + static_cast<int>(from[q]);
 
         to[q] = std::clamp(sum, SHRT_MIN, SHRT_MAX);
     }
 }
 
 float helpers::volumeMultiplifier(const float volumeValue) {
-    float normalized = (volumeValue + 1) / 10.0f;
+    const auto normalized = (volumeValue + 1) / 10.0f;
     return pow(normalized, 4);
 }
 
-std::map<std::string, FREQ_SETTINGS> helpers::parseFrequencies(const std::string& string) {
-    std::map<std::string, FREQ_SETTINGS> result;
-    std::string sub = string.substr(1, string.length() - 2);
+std::map<std::string, FREQ_SETTINGS, std::less<>> helpers::parseFrequencies(std::string_view string) {
+    std::map<std::string, FREQ_SETTINGS, std::less<>> result;
+    auto sub = string.substr(1, string.length() - 2);
     if (sub.empty()) return result;
-    std::vector<std::string> v = split(sub, ',');
-    for (const std::string& xs : v) {
-        std::vector<std::string> parts = split(xs.substr(1, xs.length() - 2), '|');
+    std::vector<std::string_view> v;
+    v.reserve(4);
+    split(sub, ',', v);
+    for (std::string_view xs : v) {
+        auto parts = split(xs.substr(1, xs.length() - 2), '|');
         if (parts.size() == 3 || parts.size() == 4) {
             FREQ_SETTINGS settings;
             settings.volume = parseArmaNumberToInt(parts[1]);
             settings.stereoMode = static_cast<stereoMode>(parseArmaNumberToInt(parts[2]));
             if (parts.size() == 4)
                 settings.radioClassname = parts[3];
-            result[parts[0]] = settings;
+            result.insert_or_assign(std::string(parts[0]),settings);
         }
     }
     return result;
 }
 
-vehicleDescriptor helpers::getVehicleDescriptor(const std::string& vehicleID) {
+#include <utility>
+
+vehicleDescriptor helpers::getVehicleDescriptor(std::string_view vehicleID) {
     vehicleDescriptor result;
-    result.vehicleName == ""; // hear vehicle
-    result.vehicleIsolation = 0.0f; // hear 
     if (vehicleID.find("_turnout") != std::string::npos) {
         result.vehicleName = vehicleID.substr(0, vehicleID.find("_turnout"));
     } else {
-        if (vehicleID.find_last_of("_") != std::string::npos) {
-            result.vehicleName = vehicleID.substr(0, vehicleID.find_last_of("_"));
-            result.vehicleIsolation = std::stof(vehicleID.substr(vehicleID.find_last_of("_") + 1));
+        if (vehicleID.find_last_of('_') != std::string::npos) {
+            result.vehicleName = vehicleID.substr(0, vehicleID.find_last_of('_'));
+           
+            result.vehicleIsolation = std::atof(vehicleID.substr(vehicleID.find_last_of('_') + 1).data()); //#TODO  std::from_chars()
         } else {
             result.vehicleName = vehicleID;
         }

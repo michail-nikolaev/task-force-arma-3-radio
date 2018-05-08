@@ -46,6 +46,7 @@
 * [SniperOne](http://steamcommunity.com/groups/SniperAliens-M18X/) for French translation.
 * [Dedmen](https://github.com/dedmen) for improvements with the Teamspeak-Plugin and other help.
 * [Yourstruly](https://github.com/theYoursTruly) for exceptional help while testing the 1.0 Beta.
+* [nomisum] (https://github.com/orgs/gruppe-adler/people/nomisum) for Volume Icons
 * The development team of [RHS](http://www.rhsmods.org/), for their help with integration.
 * Everyone who made videos or wrote review articles.
 * All the players who use TFAR, especially those taking out their time to report bugs.

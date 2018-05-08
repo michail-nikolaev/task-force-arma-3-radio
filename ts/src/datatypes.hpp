@@ -2,7 +2,6 @@
 #include "public_definitions.h"
 #include <cstdint>
 #include <vector>
-#include "string_ref.hpp"
 #include <chrono>
 
 #define M_PI_FLOAT 3.14159265358979323846f
@@ -82,14 +81,22 @@ namespace dataType {
 
     class Vector3D {
     public:
-        Vector3D() {};
+        Vector3D() = default;
         Vector3D(float x, float y, float z);
         Vector3D(const std::vector<float>& vec);
-        Vector3D(const boost::string_ref& coordinateString);
-        Vector3D(Vector3D&& vec) : m_x(std::move(vec.m_x)), m_y(std::move(vec.m_y)), m_z(std::move(vec.m_z)) {};
-        Vector3D(const Vector3D& vec) : m_x(vec.m_x), m_y(vec.m_y), m_z(vec.m_z) {};
+        Vector3D(std::string_view coordinateString);
+        Vector3D(Vector3D&& vec) noexcept : m_x(vec.m_x), m_y(vec.m_y), m_z(vec.m_z) {};
+        Vector3D(const Vector3D& vec) = default;
 
         std::tuple<float, float, float> get() const; //#TODO instead of using get.. how about operator[] ?
+        float& operator[](int offs) {
+            switch (offs) {
+                case 0: return m_x;
+                case 1: return m_y;
+                case 2: return m_z;
+                default: throw std::out_of_range("Index out of range. A 3D vector only has 3 values.");
+            }
+        }
         std::string toString() const;
 
 
@@ -97,12 +104,12 @@ namespace dataType {
         float lengthSqr() const;
         float dotProduct(const Vector3D& other) const;
         Vector3D crossProduct(const Vector3D& other) const;
-        Vector3D normalized();
+        Vector3D normalized() const;
         bool isNull() const;
         Vector3D operator*(float multiplier) const {
             return{ m_x *multiplier,m_y *multiplier ,m_z *multiplier };
         }
-        Vector3D& operator=(const Vector3D& other);
+        Vector3D& operator=(const Vector3D& other) = default;
         Vector3D operator-(const Vector3D& other) const;
         Vector3D operator+(const Vector3D& other) const;
         bool operator< (const Vector3D& other) const;
@@ -120,14 +127,14 @@ namespace dataType {
     public:
         using Vector3D::Vector3D;
         //Initializers
-        Position3D() {};
+        Position3D() = default;
         Position3D(const Vector3D& other) : Vector3D(other) {}
         //explicit Position3D(const Position3D &obj) = delete;
         //explicit Position3D(const TS3_VECTOR& vec) :m_x(vec.x), m_y(vec.y), m_z(vec.z) {}
         //Conversions
         operator TS3_VECTOR*();
         //Operators
-		Position3D operator+(const Vector3D& other) const;
+        Position3D operator+(const Vector3D& other) const;
         //Functions
         float getHeight() const;
         float distanceTo(const Position3D& other) const;
@@ -135,7 +142,6 @@ namespace dataType {
         float distanceUnderwater(const Position3D& other) const;
         Direction3D directionTo(const Position3D& other) const;
         Position3D crossProduct(const Position3D& other) const;
-        Position3D normalized() {};
     };
 
     //Unit direction Vector
@@ -160,10 +166,10 @@ namespace dataType {
     public:
         using Vector3D::operator*;
         //Initializers
-        Velocity3D() {};
-        Velocity3D(Vector3D other) : Vector3D(other) {};
+        Velocity3D() = default;
+        Velocity3D(Vector3D other) : Vector3D(std::move(other)) {};
         //Operators
-        Velocity3D operator*(const std::chrono::duration<float>& time);
+        Velocity3D operator*(const std::chrono::duration<float>& time) const;
 
         //Functions
 
@@ -178,10 +184,10 @@ namespace dataType {
 
     class NetID {
     public:
-        NetID(const std::string& netIDStr) {
-            const char *idStr = strchr(netIDStr.c_str(), ':');
+        NetID(std::string_view netIDStr) {
+            const char *idStr = strchr(netIDStr.data(), ':');
             if (idStr) {
-                creator = atoi(netIDStr.c_str());
+                creator = atoi(netIDStr.data());
                 objID = atoi(idStr + 1);
             }
         }

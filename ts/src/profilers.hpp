@@ -1,10 +1,12 @@
 #pragma once
 #include <chrono>
 #include "common.hpp"
-#include <windows.h>
+#include <Windows.h>
 #include <memory>
-#include <fstream>
+#include <utility>
 #include "version.h"
+#include <string>
+
 namespace profiler {
     void log(const std::string& message);
 }
@@ -23,17 +25,17 @@ namespace profiler {
 
 class speedTest {
 public:
-    explicit speedTest(const std::string & name_, bool willPrintOnDestruct_ = true) :start(std::chrono::high_resolution_clock::now()), name(name_), willPrintOnDestruct(willPrintOnDestruct_) {}
+    explicit speedTest(std::string  name_, bool willPrintOnDestruct_ = true) :start(std::chrono::high_resolution_clock::now()), name(std::move(name_)), willPrintOnDestruct(willPrintOnDestruct_) {}
     ~speedTest() { if (willPrintOnDestruct) log(); }
     void log() const {
-        std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
+        const auto now = std::chrono::high_resolution_clock::now();
+        const auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
         profiler::log(name + " " + std::to_string(duration) + " microsecs");
     }
     void log(const std::string & text) {
-        std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
-        std::string message = name + "-" + text + " " + std::to_string(duration) + " microsecs";
+        const auto now = std::chrono::high_resolution_clock::now();
+        const auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - start).count();
+        const auto message = name + "-" + text + " " + std::to_string(duration) + " microsecs";
         profiler::log(message);
         start += std::chrono::high_resolution_clock::now() - now; //compensate time for call to log func
     }
@@ -41,7 +43,7 @@ public:
         start = std::chrono::high_resolution_clock::now();
     }
     std::chrono::microseconds getCurrentElapsedTime() const {
-        std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+        const auto now = std::chrono::high_resolution_clock::now();
         return std::chrono::duration_cast<std::chrono::microseconds>(now - start);
     }
     std::chrono::high_resolution_clock::time_point start;

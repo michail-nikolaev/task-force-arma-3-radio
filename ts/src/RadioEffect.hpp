@@ -1,9 +1,9 @@
 #pragma once
 #include "DspFilters\Butterworth.h"
 #include "DspFilters\RBJ.h"
-#include <math.h>
 #include "helpers.hpp"
 #include <simpleSource/SimpleComp.h>
+#include <numeric>
 #define SAMPLE_RATE 48000
 
 
@@ -13,33 +13,44 @@
 class RadioEffect {
 public:
 
-    RadioEffect() {
-        for (int q = 0; q < DELAY_SAMPLES; q++) delayLine[q] = 0.0f;
-        delayPosition = 0;
-    }
-
     virtual void process(float* buffer, int samplesNumber) = 0;
+
+    //void delay(float* buffer, size_t samplesNumber) {
+    //
+    //    //copy from delayBuffer into buffer.
+    //
+    //    size_t lengthTillEnd = std::min(static_cast<size_t>(std::distance(delayLine.end(), delayPosition)), samplesNumber);
+    //    size_t leftOver = samplesNumber - lengthTillEnd;
+    //
+    //    delayPosition = std::copy(buffer, buffer + lengthTillEnd, delayPosition);
+    //    if (delayPosition > delayLine.end())
+    //        delayPosition = delayLine.begin();
+    //    if (leftOver)
+    //        delayPosition = std::copy(buffer + lengthTillEnd, buffer + samplesNumber, delayPosition);
+    //}
 
     float delay(float input) {
         delayLine[delayPosition] = input;
-        int position = (delayPosition + 1) % DELAY_SAMPLES;
-        float value = delayLine[position];
-        delayPosition++;
-        if (delayPosition >= DELAY_SAMPLES) delayPosition = 0;
-        return value;
+        delayPosition = (delayPosition + 1) % DELAY_SAMPLES;
+        return delayLine[delayPosition];
     }
+
 
     template<class T>
     static void processFilter(T& filter, float* buffer, int samplesNumber) {
-        filter.process<float>(samplesNumber, &buffer); //need a float** here so we use &buffer
+        filter.template process<float>(samplesNumber, &buffer); //need a float** here so we use &buffer
     }
 
     virtual void setErrorLeveL(float errorLevel) = 0;
 
-    ~RadioEffect() {}
+    virtual ~RadioEffect() = default;
+
+    static inline std::function<void(std::string)> onError;
+
 private:
-    float delayLine[DELAY_SAMPLES];
-    int delayPosition{ 0 };
+    std::array<float, DELAY_SAMPLES> delayLine{0.f};
+    //std::array<float, DELAY_SAMPLES>::iterator delayPosition{ delayLine.begin() };
+    size_t delayPosition{ 0 };
 };
 
 class UnderWaterRadioEffect : public RadioEffect {
@@ -50,19 +61,19 @@ public:
         errorLessThan = 0;
     }
 
-    virtual void process(float* buffer, int samplesNumber) {
-        for (int q = 0; q < samplesNumber; q++) {
+    void process(float* buffer, int samplesNumber) override {
+        for (auto q = 0; q < samplesNumber; q++) {
             if (rand() < errorLessThan) {
                 buffer[q] = 0.0f;
             }
         }
         processFilter(filterDD, buffer, samplesNumber);
-        for (int q = 0; q < samplesNumber; q++) buffer[q] *= 30;
+        for (auto q = 0; q < samplesNumber; q++) buffer[q] *= 30;
     }
 
-    virtual void setErrorLeveL(float errorLevel) {
+    void setErrorLeveL(float errorLevel) override {
         this->errorLevel = errorLevel;
-        errorLessThan = (int) (RAND_MAX * errorLevel);
+        errorLessThan = static_cast<int>(RAND_MAX * errorLevel);
     }
 
 private:
@@ -79,28 +90,31 @@ public:
         errorLevel = 0;
     }
 
-    virtual void process(float* buffer, int samplesNumber) {
-        double acc = 0.0;
-        for (int q = 0; q < samplesNumber; q++) acc += fabs(buffer[q]);
-        double avg = acc / samplesNumber;
-        double base = 0.005;
+    void process(float* buffer, int samplesNumber) override {
+        auto acc = 0.0;
+        for (auto q = 0; q < samplesNumber; q++) acc += fabs(buffer[q]);
+        const auto avg = acc / samplesNumber;
+        const auto base = 0.005;
 
-        double x = avg / base;
+        const auto x = avg / base;
+
+        //for (int q = 0; q < samplesNumber; q++) buffer[q] *= 30.f; //preamplify
+
+        //for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);
+        //for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], errorLevel);
+        //for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], static_cast<float>(0.3f * (1.0f - errorLevel) * x));
+        if (errorLevel > 1.f || errorLevel < 0.f) onError("errorLevel out of bounds");
 
 
-        for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);
-        for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], errorLevel);
-        for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], (float) (0.3f * (1.0f - errorLevel) * x));
+        for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], static_cast<float>(0.3f * (1.0f - errorLevel) * x));
+        for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(delay(buffer[q] *= 30.f), errorLevel);
 
         processFilter(filterSpeakerHP, buffer, samplesNumber);
         processFilter(filterSpeakerLP, buffer, samplesNumber);
-
-        for (int q = 0; q < samplesNumber; q++) buffer[q] *= 30.f;
     }
 
 
-
-    virtual void setErrorLeveL(float errorLevel) {
+    void setErrorLeveL(float errorLevel) override {
         this->errorLevel = calcErrorLevel(errorLevel);
     }
 
@@ -109,27 +123,29 @@ protected:
 
 
     /*
-    0.0	0.0
-    0.1	0.150000006
-    0.2	0.300000012
-    0.3	0.600000024
-    0.4	0.899999976
-    0.5	0.950000048
-    0.6	0.960000038
-    0.7	0.970000029
-    0.8	0.980000019
-    0.9	0.995000005
-    1.0	0.997799993*/
+    0.0 0.0
+    0.1 0.150000006
+    0.2 0.300000012
+    0.3 0.600000024
+    0.4 0.899999976
+    0.5 0.950000048
+    0.6 0.960000038
+    0.7 0.970000029
+    0.8 0.980000019
+    0.9 0.995000005
+    1.0 0.997799993*/
     static float calcErrorLevel(float errorLevel) {
-        double levels[] = { 0.0, 0.150000006, 0.300000012, 0.600000024, 0.899999976, 0.950000048, 0.960000038, 0.970000029, 0.980000019, 0.995000005, 0.997799993, 0.998799993, 0.999 };
+        static const std::array<float,13> levels{ 0.0, 0.150000006, 0.300000012, 0.600000024, 0.899999976, 0.950000048, 0.960000038, 0.970000029, 0.980000019, 0.995000005, 0.997799993, 0.998799993, 0.999 };
 
-        int part = (int) (errorLevel * 10.0);
-        part = std::clamp(part, 0, 12);
-        double from = levels[part];
-        double to = levels[part + 1];
+        const auto part = std::clamp(static_cast<size_t>(errorLevel * 10.f), size_t{0}, levels.size()-2);
+        const auto from = levels[part];
+        const auto to = levels[part + 1];
 
-        double result = from + (from - to) * (errorLevel - part / 10.0);
-        return static_cast<float>(result);
+        const auto result = from + (to - from) * (errorLevel - part / 10.f);
+        if (result > levels.back() || result < levels.front()) { //#Release disable on release
+            onError(std::string("TFAR: errorLevel out of bounds! err:")+std::to_string(errorLevel)+"/"+std::to_string(result));
+        }
+        return result;
     }
 
 
@@ -142,12 +158,27 @@ protected:
     }
 
     float ringmodulation(float in, float mix) {
-        float multiple = in * sin(phase * PI_2);
+        const auto multiple = in * sin(phase * PI_2);
         phase += (90.0f * 1.0f / static_cast<float>(SAMPLE_RATE));
         if (phase > 1.0f) phase = 0.0f;
         return in * (1.0f - mix) + multiple * mix;
     }
 
+    //template <size_t len>
+    //class staticRingmodSin {
+    //public:
+    //    constexpr staticRingmodSin() {}
+    //
+    //    static constexpr float generate(size_t offs) {
+    //        float phase = offs * (90.0f * 1.0f / static_cast<float>(len));
+    //        return sin(phase * PI_2);
+    //    }
+    //
+    //    std::array<float,len> arr { generate(1), ..., generate(len) };
+    //};
+
+
+    //static constexpr staticRingmodSin<SAMPLE_RATE> ringmodSin{};
 
     float errorLevel;
     float phase;
@@ -175,22 +206,24 @@ public:
 class PersonalRadioEffect : public SimpleRadioEffect {
 public:
     PersonalRadioEffect() {
-        filterSpeakerHP.setup(SAMPLE_RATE, 520, 0.97);
-        filterSpeakerLP.setup(SAMPLE_RATE, 4300, 2.0);
+        //filterSpeakerHP.setup(SAMPLE_RATE, 520, 0.97);
+        //filterSpeakerLP.setup(SAMPLE_RATE, 4300, 2.0);
+        filterSpeakerHP.setup(SAMPLE_RATE, 900, 0.85);
+        filterSpeakerLP.setup(SAMPLE_RATE, 3000, 2.0);
 
-        filterMicHP.setup(SAMPLE_RATE, 900, 0.85);
-        filterMicLP.setup(SAMPLE_RATE, 3000, 2.0);
+        //filterMicHP.setup(SAMPLE_RATE, 900, 0.85);
+        //filterMicLP.setup(SAMPLE_RATE, 3000, 2.0);
     }
 
-    virtual void process(float* buffer, int samplesNumber) {
-        processFilter(filterMicHP, buffer, samplesNumber);
-        processFilter(filterMicLP, buffer, samplesNumber);
+    void process(float* buffer, int samplesNumber) override {
+        //processFilter(filterMicHP, buffer, samplesNumber);
+        //processFilter(filterMicLP, buffer, samplesNumber);
         SimpleRadioEffect::process(buffer, samplesNumber);
     }
 
 private:
-    Dsp::SimpleFilter<Dsp::RBJ::HighPass, 1> filterMicHP;
-    Dsp::SimpleFilter<Dsp::RBJ::LowPass, 1> filterMicLP;
+    //Dsp::SimpleFilter<Dsp::RBJ::HighPass, 1> filterMicHP;
+    //Dsp::SimpleFilter<Dsp::RBJ::LowPass, 1> filterMicLP;
 };
 
 template<class T>
@@ -207,10 +240,10 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
         gain *= 1.5f;
     }
     float* buffer = new float[sampleCount];
-    for (int i = 0; i < sampleCount * channels; i += channels) {
+    for (auto i = 0; i < sampleCount * channels; i += channels) {
         // prepare mono for radio
-        float monoCombined = 0.f;
-        for (int j = 0; j < channels; j++) {
+        auto monoCombined = 0.f;
+        for (auto j = 0; j < channels; j++) {
             monoCombined += samples[i + j];
         }
 
@@ -219,11 +252,11 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
     effect->process(buffer, sampleCount);
 
     memset(samples, 0, sampleCount * channels * sizeof(short));
-    for (int i = 0; i < sampleCount * channels; i += channels) {
+    for (auto i = 0; i < sampleCount * channels; i += channels) {
         // put mixed output to stream
 
         float sample = buffer[i / channels];
-        auto newValue = static_cast<short>(std::clamp(sample, -1.f, 1.f) * 32766.f);
+        const auto newValue = static_cast<short>(std::clamp(sample, -1.f, 1.f) * 32766.f);
         for (int j = startChannel; j < endChannel; j++) {
             samples[i + j] = newValue;
         }
@@ -233,7 +266,7 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 
 inline void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples, int channels, int sampleCount) {
     if (channels >= 2) {
-        for (int q = 0; q < sampleCount; q++) {
+        for (auto q = 0; q < sampleCount; q++) {
             double left = samples[channels * q];
             double right = samples[channels * q + 1];
             compressor->process(left, right);
