@@ -4,18 +4,18 @@
         <Key ID="STR_TFAR_ANTENNAS_TOWERNAME">
             <Original>Communication Tower (TFAR)</Original>
             <English>Communication Tower (TFAR)</English>
-            <Chinese>通訊塔 (TFAR)</Chinese>
+            <Czech>Vysílač (TFAR)</Czech>
             <French>Tour de communication (TFAR)</French>
-            <Spanish>Torre de comunicaciones (TFAR)</Spanish>
+            <German>Kommunikationsturm (TFAR)</German>
             <Italian>Torre comunicazioni (TFAR)</Italian>
             <Polish>Wieża komunikacyjna (TFAR)</Polish>
-            <Russian>Радиовышка (TFAR)</Russian>
-            <German>Kommunikationsturm (TFAR)</German>
-            <Czech>Vysílač (TFAR)</Czech>
             <Portuguese>Torre de comunicação (TFAR)</Portuguese>
-            <Korean>통신탑 (TFAR)</Korean>
-            <Chinesesimp>通信塔 (TFAR)</Chinesesimp>
+            <Russian>Радиовышка (TFAR)</Russian>
+            <Spanish>Torre de comunicaciones (TFAR)</Spanish>
             <Japanese>電波塔 (TFAR)</Japanese>
+            <Korean>통신탑 (TFAR)</Korean>
+            <Chinese>通訊塔 (TFAR)</Chinese>
+            <Chinesesimp>通信塔 (TFAR)</Chinesesimp>
         </Key>
     </Package>
 </Project>
