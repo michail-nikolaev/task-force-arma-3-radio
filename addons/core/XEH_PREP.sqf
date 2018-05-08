@@ -125,7 +125,6 @@ PREP_SUB(events\keys,onSpeakVolumeModifierPressed);
 PREP_SUB(events\keys,onSpeakVolumeModifierReleased);
 PREP_SUB(events\ui,onSwDialogOpen);
 PREP_SUB(events\ui,onLRDialogOpen);
-PREP_SUB(hint,onGroundHint);
 // P
 PREP(parseFrequenciesInput);
 PREP(preparePositionCoordinates);
