@@ -7,6 +7,7 @@
             <Chinese>此模塊必須用在無線電上</Chinese>
             <Chinesesimp>此模块必须用在无线电上</Chinesesimp>
             <Japanese>これは無線機で使う必要があります</Japanese>
+            <Korean>이 오브젝트는 무전기로 사용됨</Korean>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_FreqTitle">
             <Original>Frequency</Original>
@@ -14,6 +15,7 @@
             <Chinese>頻率</Chinese>
             <Chinesesimp>频率</Chinesesimp>
             <Japanese>周波数</Japanese>
+            <Korean>주파수</Korean>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ChannelTitle">
             <Original>Channel</Original>
@@ -21,6 +23,7 @@
             <Chinese>頻道</Chinese>
             <Chinesesimp>频道</Chinesesimp>
             <Japanese>チャンネル</Japanese>
+            <Korean>채널</Korean>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_SpeakerTitle">
             <Original>Speaker</Original>
@@ -28,6 +31,7 @@
             <Chinese>擴音器</Chinese>
             <Chinesesimp>扩音器</Chinesesimp>
             <Japanese>スピーカー</Japanese>
+            <Korean>스피커</Korean>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_VolumeTitle">
             <Original>Volume</Original>
@@ -35,6 +39,7 @@
             <Chinese>音量</Chinese>
             <Chinesesimp>音量</Chinesesimp>
             <Japanese>音量</Japanese>
+            <Korean>음량</Korean>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_DisplayName">
             <Original>Static Radio</Original>
@@ -42,6 +47,7 @@
             <Chinese>固定式無線電</Chinese>
             <Chinesesimp>固定式无线电</Chinesesimp>
             <Japanese>固定型無線機</Japanese>
+            <Korean>고정 무전기</Korean>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_Frequency_tooltip">
             <Original>The static Frequencies for this radio</Original>
@@ -49,6 +55,7 @@
             <Chinese>此無線電的固定頻率</Chinese>
             <Chinesesimp>此无线电的固定频率</Chinesesimp>
             <Japanese>この無線機に周波数を固定</Japanese>
+            <Korean>고정 무전기의 주파수</Korean>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_Channel_tooltip">
             <Original>The current selected Channel for this radio</Original>
@@ -56,6 +63,7 @@
             <Chinese>當前無線電選擇的頻道</Chinese>
             <Chinesesimp>当前无线电选择的频道</Chinesesimp>
             <Japanese>この無線機で選択されるチャンネル</Japanese>
+            <Korean>이 무전기의 선택된 채널</Korean>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_SpeakerEnabled">
             <Original>Speaker enabled</Original>
@@ -63,6 +71,7 @@
             <Chinese>開啟擴音器</Chinese>
             <Chinesesimp>开启扩音器</Chinesesimp>
             <Japanese>スピーカー有効化</Japanese>
+            <Korean>스피커 활성</Korean>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_SpeakerEnabled_tooltip">
             <Original>Whether the Radios Speaker is enabled.</Original>
@@ -70,6 +79,7 @@
             <Chinese>決定是否開啟無線電的擴音器。</Chinese>
             <Chinesesimp>决定是否开启无线电的扩音器。</Chinesesimp>
             <Japanese>無線機からスピーカーを使えるようにします。</Japanese>
+            <Korean>무전기 스피커 사용여부</Korean>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_RadioVolume">
             <Original>Radio Volume</Original>
@@ -77,6 +87,7 @@
             <Chinese>無線電音量</Chinese>
             <Chinesesimp>无线电音量</Chinesesimp>
             <Japanese>無線機の音量</Japanese>
+            <Korean>무전기 음량</Korean>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_RadioVolume_tooltip">
             <Original>The normal max for this setting is 10. But for static Radios their volume can be amplified. Be careful using this on Radios that can be picked up by Players! A too high setting can cause performance problems on clients.</Original>
@@ -84,6 +95,7 @@
             <Chinese>此設定在普通的狀態下最大值為10。但對於固定式無線電來說，它們的音量還可以再被放大。請小心使用在可以被玩家撿起來的無線電上!過高的設定可能會影響客戶端電腦的效能。</Chinese>
             <Chinesesimp>此设定在普通的状态下最大值为10。但对于固定式无线电来说，它们的音量还可以再被放大。请小心使用在可以被玩家捡起来的无线电上!过高的设定可能会影响客户端电脑的效能。</Chinesesimp>
             <Japanese>音量は通常では最大で 10 ですが、固定型無線機では音量を増幅できます。プレイヤーが無線機を取得できる場合は注意してください。あまりにも音量が高すぎると、クライアント上でパフォーマンスの問題が発生します。</Japanese>
+            <Korean>이 설정의 일반 최대 값은 10입니다. 그러나 고정 무전기의 경우 해당 볼륨이 증폭 될 수 있습니다. 플레이어가 집어들 수있는 무전기에서 이것을 사용하는 것에 주의하십시오! 설정이 너무 높으면 클라이언트에서 성능 문제가 발생할 수 있습니다.</Korean>
         </Key>
     </Package>
 </Project>
