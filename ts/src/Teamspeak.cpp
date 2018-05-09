@@ -833,6 +833,10 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
         });
         return 0; /* Plugin handled command */
     }
+    if (std::string(command) == "debug") {
+        TFAR::debugUI.run();
+        return 0; /* Plugin handled command */
+    }
     return 1;  /* Plugin didn't handle command */
 }
 

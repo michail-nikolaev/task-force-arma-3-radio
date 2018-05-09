@@ -4,6 +4,7 @@
 #include "settings.hpp"
 #include "SignalSlot.hpp"
 #include "serverData.hpp"
+#include "DebugUI.h"
 
 class PlaybackHandler;
 class CommandProcessor;
@@ -107,7 +108,7 @@ public:
     static std::shared_ptr<serverDataDirectory>& getServerDataDirectory();
     static std::shared_ptr<AntennaManager>& getAntennaManager();
     static settings config;//I'd like to use settings as the variable name. But... meh
-
+    static DebugUI debugUI;
 
     Signal<void()> onGameStart;
     Signal<void()> onGameEnd;

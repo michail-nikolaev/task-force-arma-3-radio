@@ -228,8 +228,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_GLFW_WIN32;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -261,7 +261,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='C++17Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>VS15;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -294,7 +294,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;X64BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -323,7 +323,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='C++17Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>VS15;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;X64BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -351,8 +351,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_GLFW_WIN32;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -363,6 +363,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
@@ -382,7 +383,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='C++17Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>VS15;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -413,7 +414,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='C++17ReleaseExe|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>VS15;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -446,8 +447,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='C++17DebugExe|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>VS15;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_GLFW_WIN32;VS15;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -460,6 +461,7 @@
       <Optimization>Disabled</Optimization>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -479,8 +481,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;X64BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_GLFW_WIN32;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;X64BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -515,7 +517,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='C++17Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>VS15;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;X64BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -552,7 +554,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='C++17ReleaseExe|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>VS15;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;X64BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -589,7 +591,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='C++17DebugExe|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>VS15;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;X64BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -657,6 +659,35 @@
     <ClCompile Include="..\include\dspfilters\source\RBJ.cpp" />
     <ClCompile Include="..\include\dspfilters\source\RootFinder.cpp" />
     <ClCompile Include="..\include\dspfilters\source\State.cpp" />
+    <ClCompile Include="..\include\glad\src\glad.c" />
+    <ClCompile Include="..\include\glfw\src\context.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">glfw_context.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='C++17Release|Win32'">glfw_context.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">glfw_context.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='C++17Debug|Win32'">glfw_context.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='C++17DebugExe|Win32'">glfw_context.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='C++17ReleaseExe|Win32'">glfw_context.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='C++17Release|x64'">glfw_context.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">glfw_context.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='C++17Debug|x64'">glfw_context.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='C++17DebugExe|x64'">glfw_context.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='C++17ReleaseExe|x64'">glfw_context.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">glfw_context.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\egl_context.c" />
+    <ClCompile Include="..\include\glfw\src\init.c" />
+    <ClCompile Include="..\include\glfw\src\input.c" />
+    <ClCompile Include="..\include\glfw\src\monitor.c" />
+    <ClCompile Include="..\include\glfw\src\osmesa_context.c" />
+    <ClCompile Include="..\include\glfw\src\vulkan.c" />
+    <ClCompile Include="..\include\glfw\src\wgl_context.c" />
+    <ClCompile Include="..\include\glfw\src\win32_init.c" />
+    <ClCompile Include="..\include\glfw\src\win32_joystick.c" />
+    <ClCompile Include="..\include\glfw\src\win32_monitor.c" />
+    <ClCompile Include="..\include\glfw\src\win32_thread.c" />
+    <ClCompile Include="..\include\glfw\src\win32_time.c" />
+    <ClCompile Include="..\include\glfw\src\win32_window.c" />
+    <ClCompile Include="..\include\glfw\src\window.c" />
     <ClCompile Include="..\include\simpleSource\SimpleComp.cpp" />
     <ClCompile Include="..\include\simpleSource\SimpleEnvelope.cpp" />
     <ClCompile Include="..\include\simpleSource\SimpleGate.cpp" />
@@ -676,6 +707,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='C++17Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="DebugUI.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="pipe_handler.cpp" />
@@ -686,6 +718,7 @@
     <ClCompile Include="SharedMemoryHandler.cpp" />
     <ClCompile Include="task_force_radio.cpp" />
     <ClCompile Include="Teamspeak.cpp" />
+    <ClCompile Include="TextRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\clientlib_publicdefinitions.h" />
@@ -723,6 +756,7 @@
     <ClInclude Include="CommandProcessor.hpp" />
     <ClInclude Include="common.hpp" />
     <ClInclude Include="datatypes.hpp" />
+    <ClInclude Include="DebugUI.h" />
     <ClInclude Include="enum.hpp" />
     <ClInclude Include="helpers.hpp" />
     <ClInclude Include="Locks.hpp" />
@@ -734,10 +768,12 @@
     <ClInclude Include="plugin.h" />
     <ClInclude Include="serverData.hpp" />
     <ClInclude Include="settings.hpp" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="SharedMemoryHandler.hpp" />
     <ClInclude Include="SignalSlot.hpp" />
     <ClInclude Include="task_force_radio.hpp" />
     <ClInclude Include="Teamspeak.hpp" />
+    <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>

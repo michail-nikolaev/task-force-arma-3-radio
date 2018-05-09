@@ -293,7 +293,6 @@ int ts3plugin_init() {
 
     Teamspeak::_onInit();
 
-
     exitThread = false;
     threadPipeHandle = std::thread(&PipeThread);
     threadService = std::thread(&ServiceThread);

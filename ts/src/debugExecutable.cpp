@@ -97,21 +97,21 @@ auto speedTestStringSplit() {
 }
 
 auto speedTestStringSplitRef() {
-    std::vector<boost::string_ref> splitted;
-    splitted.reserve(50);
-    std::string toSplit("test\tTHIS is a\ttest\ttest\t\t\ttest\ttest\test");
-    static size_t results[32];
-    std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
-    for (auto i = 0; i < 1000000; ++i) {
-        helpers::split(boost::string_ref(toSplit), '\t', splitted);
-        results[0] = splitted.size();
-        splitted.clear();
-    }
-    std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
-    ASSERT(results[0] > 1);
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(now - start);
-    profiler::log(std::to_string(duration.count() / 1000000) + " nanoseconds per iteration");
-    return duration;
+    //std::vector<boost::string_ref> splitted;
+    //splitted.reserve(50);
+    //std::string toSplit("test\tTHIS is a\ttest\ttest\t\t\ttest\ttest\test");
+    //static size_t results[32];
+    //std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
+    //for (auto i = 0; i < 1000000; ++i) {
+    //    helpers::split(boost::string_ref(toSplit), '\t', splitted);
+    //    results[0] = splitted.size();
+    //    splitted.clear();
+    //}
+    //std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+    //ASSERT(results[0] > 1);
+    //auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(now - start);
+    //profiler::log(std::to_string(duration.count() / 1000000) + " nanoseconds per iteration");
+    //return duration;
 }
 
 auto clientDataMapAccess() {
@@ -422,7 +422,6 @@ auto speedTestGainTransform() {
     profiler::log(std::to_string(duration.count() / 1000000) + " nanoseconds per iteration");
     return duration;
 }
-#include "concurrentqueue.h"
 #include <future>
 //class threadPoolTest {
 //public:
@@ -476,10 +475,10 @@ auto speedTestGainTransformPar() {
             auto fut2 = tsk2.get_future();
             auto fut3 = tsk3.get_future();
             auto fut4 = tsk4.get_future();
-            threadPool.addTask(std::move(tsk1));
-            threadPool.addTask(std::move(tsk2));
-            threadPool.addTask(std::move(tsk3));
-            threadPool.addTask(std::move(tsk4));
+            //threadPool.addTask(std::move(tsk1));
+            //threadPool.addTask(std::move(tsk2));
+            //threadPool.addTask(std::move(tsk3));
+            //threadPool.addTask(std::move(tsk4));
 
             //std::thread th1(std::move(tsk1), samples, samples + sampleCount);
             //std::thread th2(std::move(tsk2), samples + sampleCount, samples + sampleCount * 2);
@@ -550,30 +549,30 @@ auto speedTestVector3DDiv() {
 }
 
 int main() {
-    Logger::registerLogger(LoggerTypes::profiler, std::make_shared<DebugStringLogger>());
+    //Logger::registerLogger(LoggerTypes::profiler, std::make_shared<DebugStringLogger>());
     //auto durationStringToGameCommand = speedTestStringToGameCommand(); //should be < 300ns release <1300 ns debug
     //auto durationStringSplit = speedTestStringSplit(); //should be < 260ns release
     //auto durationStringSplit2 = speedTestStringSplitRef(); //should be < 140ns release
     //clientDataVectorAccess();//150ns
     //clientDataMapAccess();//250ns
     //speedTestGainOrig();
-    speedTestGainOrigInt();
-    speedTestGainOrigInt2();
+    //speedTestGainOrigInt();
+    //speedTestGainOrigInt2();
     //auto durationApplyGainOrig = speedTestGainOrig();
     //auto durationApplyGainTrans = speedTestGainTransform();
     //auto durationApplyGainTransPar = speedTestGainTransformPar();
-    speedTestVector3DDiv();
-    ASSERT(TFAR::Version("0.9.9") > TFAR::Version("0.9.8"));
-    ASSERT(TFAR::Version("0.9.13") > TFAR::Version("0.9.12"));
-    ASSERT(TFAR::Version("1.0.0.0") > TFAR::Version("0.9.8"));
-    ASSERT(TFAR::Version("1.0.0.0") > TFAR::Version("0.9.12"));
-    ASSERT(TFAR::Version("1.0.0") > TFAR::Version("0.9.12"));
+    //speedTestVector3DDiv();
+    //ASSERT(TFAR::Version("0.9.9") > TFAR::Version("0.9.8"));
+    //ASSERT(TFAR::Version("0.9.13") > TFAR::Version("0.9.12"));
+    //ASSERT(TFAR::Version("1.0.0.0") > TFAR::Version("0.9.8"));
+    //ASSERT(TFAR::Version("1.0.0.0") > TFAR::Version("0.9.12"));
+    //ASSERT(TFAR::Version("1.0.0") > TFAR::Version("0.9.12"));
 
     Position3D above(10, 10, 10);
     Position3D below(-10, -10, -10);
     float dist = above.distanceUnderwater(below);
 
-
+    TFAR::debugUI.run();
 
     getchar();
 

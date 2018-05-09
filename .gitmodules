@@ -1,3 +1,12 @@
 [submodule "tools/cba"]
 	path = tools/cba
 	url = https://github.com/CBATeam/CBA_A3
+[submodule "ts/include/glm"]
+	path = ts/include/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "ts/include/glfw"]
+	path = ts/include/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "ts/include/freetype"]
+	path = ts/include/freetype
+	url = git://git.sv.nongnu.org/freetype/freetype2.git
