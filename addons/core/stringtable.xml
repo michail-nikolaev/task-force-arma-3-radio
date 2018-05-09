@@ -1854,9 +1854,9 @@
                 <Chinesesimp>TeamSpeak作战用频道密码</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_instantiateAtBriefing">
-                <Original>Instantiate during briefing(not recommended)</Original>
-                <English>Instantiate during briefing(not recommended)</English>
-                <German>Funkgeräte während des Briefings instanziieren (not recommended)</German>
+                <Original>Instantiate during briefing (not recommended)</Original>
+                <English>Instantiate during briefing (not recommended)</English>
+                <German>Funkgeräte während des Briefings instanziieren (nicht empfohlen)</German>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_instantiateAtBriefing_desc">
                 <Original>Instantiate the radios as soon as possible. This is intended to be used ONLY in non persistent big missions > 100 players.</Original>
