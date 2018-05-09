@@ -133,6 +133,60 @@
     </ClCompile>
     <ClCompile Include="debugExecutable.cpp" />
     <ClCompile Include="antennaManager.cpp" />
+    <ClCompile Include="DebugUI.cpp">
+      <Filter>DebugUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\egl_context.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\osmesa_context.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\wgl_context.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_init.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_joystick.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_monitor.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_thread.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_time.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_window.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glad\src\glad.c">
+      <Filter>DebugUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\context.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\init.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\input.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\monitor.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\vulkan.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\window.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>DebugUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugin.h" />
@@ -266,6 +320,15 @@
       <Filter>externals\clunk</Filter>
     </ClInclude>
     <ClInclude Include="antennaManager.h" />
+    <ClInclude Include="DebugUI.h">
+      <Filter>DebugUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRenderer.h">
+      <Filter>DebugUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>DebugUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="externals">
@@ -294,6 +357,12 @@
     </Filter>
     <Filter Include="Misc">
       <UniqueIdentifier>{c64d3f43-52e8-4b0f-8dc5-789f81dbd86f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DebugUI">
+      <UniqueIdentifier>{b61a9cc7-6307-47c8-8254-6fd01d192006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DebugUI\glfw">
+      <UniqueIdentifier>{a961bdd4-a963-48a6-9679-366da13b7f5a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

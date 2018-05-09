@@ -115,7 +115,14 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     listener.pCone = nullptr;
 
     X3DAUDIO_EMITTER emitter{};
-    emitter.pCone = nullptr;
+    X3DAUDIO_CONE emitterCone{};
+
+    emitterCone.InnerAngle = 0.f;
+    emitterCone.OuterAngle = DegToRad(90);
+    emitterCone.InnerVolume = 2.f;
+    emitterCone.OuterVolume = 1.f;
+
+    emitter.pCone = &emitterCone;
     std::tie(emitter.Position.x, emitter.Position.y, emitter.Position.z) = myPosition.get();
     std::tie(emitter.OrientFront.x, emitter.OrientFront.y, emitter.OrientFront.z) = emitterViewDirection.get();
     //emitter.OrientFront = { 0,1,0 };
@@ -146,7 +153,7 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     float gainFrontLeft = volumeMatrix[0];
     float gainFrontRight = volumeMatrix[1];
     delete[] volumeMatrix;
-    const float mult = 1.25f / (gainFrontRight + gainFrontLeft);
+    const float mult = 1.35f / (gainFrontRight + gainFrontLeft);
     gainFrontLeft *= mult; //make sure left+right = 1.25 else it would decrease overall volume too much which we don't want
     gainFrontRight *= mult;
 

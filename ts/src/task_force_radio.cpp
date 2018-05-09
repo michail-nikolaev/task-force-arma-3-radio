@@ -70,6 +70,7 @@ TFAR::TFAR() {
         onTeamspeakClientJoined.removeAllSlots();
         onTeamspeakClientLeft.removeAllSlots();
         onTeamspeakClientUpdated.removeAllSlots();
+        debugUI.stop();
     });
     config.configValueSet.connect([this](const Setting& setting) {
         static std::chrono::system_clock::time_point lastMove;
@@ -147,6 +148,7 @@ TFAR& TFAR::getInstance() {
 }
 
 settings TFAR::config;//declaring the static config
+DebugUI TFAR::debugUI;//declaring the static config
 
 void TFAR::checkIfSeriousModeEnabled(TSServerID serverID) {
     std::string serious_mod_channel_name = TFAR::config.get<std::string>(Setting::serious_channelName);
