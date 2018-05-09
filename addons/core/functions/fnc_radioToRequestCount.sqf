@@ -13,15 +13,17 @@
   Return Value:
     0: List of all radio classes to be replaced. <ARRAY>
     1: List of settings to be copied. <ARRAY>
+    2: Should the first Item be linked to Radio slot? <BOOL>
 
   Example:
-    (false call TFAR_fnc_radioToRequestCount) params ["_radiosToReplace","_TF_SettingsToCopy"];
+    (false call TFAR_fnc_radioToRequestCount) params ["_radiosToReplace","_settingsToCopy","_linkFirstItem"];
 
   Public: Yes
 */
 
 params[["_allRadios", false, [true]]];
 
+private _settingsToCopy = [];
 
 private _radioSelector = {
     (_x call TFAR_fnc_isPrototypeRadio) || {//select all non-instanciated radios, or..
@@ -33,7 +35,9 @@ private _radioSelector = {
                 _radioOwner = _playerUID;
             };
             //...and owned by someone else then we want to select it to be replaced, to give the unit it's own Radio
-            _allRadios || {_radioOwner != _playerUID}
+            private _condition = _allRadios || {_radioOwner != _playerUID};
+            if (_condition) then {_settingsToCopy pushBackUnique _x};
+            _condition;
         }
     }
 };
@@ -50,4 +54,4 @@ _allItems append ((getItemCargo (backpackContainer TFAR_currentUnit)) select 0);
 
 _radiosToRequest append (_allItems select _radioSelector)
 
-[_radiosToRequest, _linkFirstItem]
+[_radiosToRequest, _settingsToCopy, _linkFirstItem]

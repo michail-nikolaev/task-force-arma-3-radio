@@ -29,7 +29,7 @@ private _lastExec = GVAR(VehicleConfigCacheNamespace) getVariable "TFAR_fnc_requ
 if (_lastExec > TFAR_lastLoadoutChange  || GVAR(currentlyInArsenal)) exitWith {};
 GVAR(VehicleConfigCacheNamespace) setVariable ["TFAR_fnc_requestRadios_lastExec", diag_tickTime-0.1];
 
-(_this call TFAR_fnc_radioToRequestCount) params ["_radiosToRequest", "_linkFirstItem"];
+(_this call TFAR_fnc_radioToRequestCount) params ["_radiosToRequest", "_settingsToCopy", "_linkFirstItem"];
 
 if (_radiosToRequest isEqualTo []) exitWith {};
 
@@ -60,7 +60,7 @@ GVAR(lastRadioRequestEH_ID) = [
             [[15, "radioRequest", round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release
         };
 
-        _thisArgs params ["_radiosToReplace", "_linkFirstItem", "_requestedUnit"];
+        _thisArgs params ["_radiosToReplace", "_linkFirstItem", "_settingsToCopy", "_requestedUnit"];
 
         //Got a outdated result
         if !(_thisId isEqualTo GVAR(lastRadioRequestEH_ID)) exitWith {
@@ -86,11 +86,11 @@ GVAR(lastRadioRequestEH_ID) = [
                 _requestedUnit linkItem _newItem;
                 _newRadios pushBack _newItem;
 
-                private _settings = _TF_SettingsToCopy deleteAt _index;
-                if ([_newItem, _oldItem] call TFAR_fnc_isSameRadio) then {
+                private _settings = _settingsToCopy param [_settingsToCopy find _oldItem, objNull];
+                if (!isNull _settings) then {
                     private _localSettings = TFAR_RadioSettingsNamespace getVariable (format["%1_local", _settings]);
                     if !(isNil "_localSettings") then {
-                        [_newItem, _oldItem, true] call TFAR_fnc_setSwSettings;
+                        [_newItem, _localSettings, true] call TFAR_fnc_setSwSettings;
                     };
                 };
 
@@ -119,11 +119,11 @@ GVAR(lastRadioRequestEH_ID) = [
                 _newRadios pushBack _newItem;
             };
 
-            private _settings = _TF_SettingsToCopy deleteAt _index;
-            if ([_newItem, _oldItem] call TFAR_fnc_isSameRadio) then {
+            private _settings = _settingsToCopy param [_settingsToCopy find _oldItem, objNull];
+            if (!isNull _settings) then {
                 private _localSettings = TFAR_RadioSettingsNamespace getVariable (format["%1_local", _settings]);
                 if !(isNil "_localSettings") then {
-                    [_newItem, _oldItem, true] call TFAR_fnc_setSwSettings;
+                    [_newItem, _localSettings, true] call TFAR_fnc_setSwSettings;
                 };
             };
         } forEach _radiosToReplace;
@@ -135,7 +135,7 @@ GVAR(lastRadioRequestEH_ID) = [
 
         ["TFAR_RadioRequestResponseEvent", _thisId] call CBA_fnc_removeEventHandler;
         [[15, "radioRequest", round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release
-    }, [_radiosToRequest, _linkFirstItem, TFAR_currentUnit]
+    }, [_radiosToRequest, _linkFirstItem, _settingsToCopy, TFAR_currentUnit]
 ] call CBA_fnc_addEventHandlerArgs;
 
 [parseText(localize LSTRING(wait_radio)), 10] call TFAR_fnc_showHint;
