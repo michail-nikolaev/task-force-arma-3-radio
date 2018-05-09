@@ -88,7 +88,7 @@ public:
     static void applyGain(short * samples, size_t sampleCount, int channels, float directTalkingVolume);
     static void applyILD(short * samples, size_t sampleCount, int channels, Direction3D direction, AngleRadians viewAngle); //interaural level difference
 
-    static void applyILD(short * samples, size_t sampleCount, int channels, Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection); //interaural level difference
+    static void applyILD(short * samples, size_t sampleCount, int channels, Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection, bool shouldPlayerHear, int emitterVoiceVolume); //interaural level difference
 
     static void shortFloatMultEx(short* data, size_t elementCount, __m128 multPack);
 

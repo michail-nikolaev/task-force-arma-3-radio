@@ -61,7 +61,7 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Direct
 X3DAUDIO_HANDLE x3d_handle;
 bool x3d_initialized = false;
 
-void helpers::applyILD(short * samples, size_t sampleCount, int channels, Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection) {
+void helpers::applyILD(short * samples, size_t sampleCount, int channels, Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection, bool shouldPlayerHear, int emitterVoiceVolume) {
     if (!x3d_initialized) {
         X3DAudioInitialize(
             SPEAKER_FRONT_LEFT | SPEAKER_FRONT_RIGHT,
@@ -117,19 +117,53 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     X3DAUDIO_EMITTER emitter{};
     X3DAUDIO_CONE emitterCone{};
 
-    emitterCone.InnerAngle = 0.f;
-    emitterCone.OuterAngle = DegToRad(90);
-    emitterCone.InnerVolume = 2.f;
+    emitterCone.InnerAngle = DegToRad(90);
+    emitterCone.OuterAngle = DegToRad(135); //https://www.researchgate.net/figure/Directivity-diagrams-Top-row-Azimuth-directivity-diagrams-for-EE-mouth-clicks-at-40cm_fig3_319413904
+    emitterCone.InnerVolume = 1.8f;
     emitterCone.OuterVolume = 1.f;
 
     emitter.pCone = &emitterCone;
     std::tie(emitter.Position.x, emitter.Position.y, emitter.Position.z) = myPosition.get();
-    std::tie(emitter.OrientFront.x, emitter.OrientFront.y, emitter.OrientFront.z) = emitterViewDirection.get();
+    std::tie(emitter.OrientFront.x, emitter.OrientFront.y, emitter.OrientFront.z) = emitterViewDirection.normalized().get();
+    emitter.OrientFront.y *= -1.f;
+    emitter.OrientFront.x *= -1.f;
+
+    auto emitterRightVector = emitterViewDirection.normalized().crossProduct({ 0,0,1 });
+    auto emitterUpVector = emitterRightVector.crossProduct(emitterViewDirection.normalized());
     //emitter.OrientFront = { 0,1,0 };
-    //std::tie(emitter.OrientTop.x, emitter.OrientTop.y, emitter.OrientTop.z) = emitterRotation.up.get();
+    std::tie(emitter.OrientTop.x, emitter.OrientTop.y, emitter.OrientTop.z) = emitterUpVector.get();
     emitter.ChannelCount = 1;
     emitter.CurveDistanceScaler = 1.f;
     emitter.ChannelRadius = 1.f;
+
+    const float volumePerMeter = emitterVoiceVolume / 19.f;
+    std::array<X3DAUDIO_DISTANCE_CURVE_POINT, 20> distanceCurves{
+        X3DAUDIO_DISTANCE_CURVE_POINT{0.f, 1.f},
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter, volumeAttenuation(volumePerMeter, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*2, volumeAttenuation(volumePerMeter*2, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*3, volumeAttenuation(volumePerMeter*3, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*4, volumeAttenuation(volumePerMeter*4, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*5, volumeAttenuation(volumePerMeter*5, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*6, volumeAttenuation(volumePerMeter*6, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*7, volumeAttenuation(volumePerMeter*7, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*8, volumeAttenuation(volumePerMeter*8, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*9, volumeAttenuation(volumePerMeter*9, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*10, volumeAttenuation(volumePerMeter*10, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*11, volumeAttenuation(volumePerMeter*11, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*12, volumeAttenuation(volumePerMeter*12, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*13, volumeAttenuation(volumePerMeter*13, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*14, volumeAttenuation(volumePerMeter*14, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*15, volumeAttenuation(volumePerMeter*15, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*16, volumeAttenuation(volumePerMeter*16, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*17, volumeAttenuation(volumePerMeter*17, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*18, volumeAttenuation(volumePerMeter*18, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ volumePerMeter*19, volumeAttenuation(volumePerMeter*19, shouldPlayerHear, emitterVoiceVolume) }
+    };
+    X3DAUDIO_DISTANCE_CURVE dCurve;
+    dCurve.pPoints = distanceCurves.data();
+    dCurve.PointCount = distanceCurves.size();
+    emitter.pVolumeCurve = &dCurve;
+
 
     X3DAUDIO_DSP_SETTINGS output{ 0 };
 
@@ -153,7 +187,12 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     float gainFrontLeft = volumeMatrix[0];
     float gainFrontRight = volumeMatrix[1];
     delete[] volumeMatrix;
-    const float mult = 1.35f / (gainFrontRight + gainFrontLeft);
+    const float totalVolume = (gainFrontRight + gainFrontLeft);
+    float mult = 1.35f;
+    if (totalVolume > 1.f) {
+        mult *= 1.f / totalVolume;
+    }
+    //OutputDebugStringA((std::to_string(gainFrontLeft) + "_" + std::to_string(gainFrontRight) + "_" + std::to_string(mult)+" total: "+std::to_string(totalVolume*mult)+ "\n").c_str());
     gainFrontLeft *= mult; //make sure left+right = 1.25 else it would decrease overall volume too much which we don't want
     gainFrontRight *= mult;
 

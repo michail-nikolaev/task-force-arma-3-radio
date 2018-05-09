@@ -502,7 +502,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         //Time differential based on direction
         clientData->effects.getClunk("voice_clunk")->process(samples, channels, sampleCount, relativePosition, myViewDirection);//interaural time difference
         //Volume differential based on direction
-        helpers::applyILD(samples, sampleCount, channels, myPosition, myViewDirection, clientData->getClientPosition(), clientData->getViewDirection());
+        helpers::applyILD(samples, sampleCount, channels, myPosition, myViewDirection, clientData->getClientPosition(), clientData->getViewDirection(), shouldPlayerHear, clientData->voiceVolume);
 
         //helpers::applyILD(samples, sampleCount, channels, relativePosition, myViewDirection);//interaural level difference
 
@@ -512,10 +512,10 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
             if (vehicleVolumeLoss < 0.01 || isInSameVehicle) {
 
 
-                auto atten = helpers::volumeAttenuation(distanceFromClient, shouldPlayerHear, clientData->voiceVolume);
-                if (atten < 0.15)
-                    LOG3DMUTE("TFAR SemiMute atten s1 <0.15");
-                helpers::applyGain(samples, sampleCount, channels, atten);
+                //auto atten = helpers::volumeAttenuation(distanceFromClient, shouldPlayerHear, clientData->voiceVolume);
+                //if (atten < 0.15)
+                //    LOG3DMUTE("TFAR SemiMute atten s1 <0.15");
+                //helpers::applyGain(samples, sampleCount, channels, atten);
                 if (!isInSameVehicle && clientData->objectInterception > 0) {
                     helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, 1.0f,
                         clientData->effects.getFilterObjectInterception(clientData->objectInterception)); //getFilterObjectInterception
