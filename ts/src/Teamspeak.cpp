@@ -178,6 +178,13 @@ void Teamspeak::setClientMute(TSServerID serverConnectionHandlerID, std::vector<
 }
 
 void Teamspeak::moveToSeriousChannel(TSServerID serverConnectionHandlerID) {
+    auto foregroundHWND = GetForegroundWindow();
+    if (foregroundHWND) {
+        wchar_t buffer[MAX_PATH];
+        std::wstring foregroundFilePath(buffer, GetWindowTextW(foregroundHWND, buffer, MAX_PATH));
+        std::transform(foregroundFilePath.begin(), foregroundFilePath.end(), foregroundFilePath.begin(), ::tolower);
+        if (foregroundFilePath.find(L"arma") == std::string::npos) return; //No switch when no Arma
+    }
     std::string seriousChannelName = TFAR::config.get<std::string>(Setting::serious_channelName);
 
     auto seriousChannelID = 
