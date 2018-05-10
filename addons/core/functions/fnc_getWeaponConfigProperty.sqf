@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-  Name: TFAR_fnc_getVehicleConfigProperty
+  Name: TFAR_fnc_getWeaponConfigProperty
 
   Author: NKey, Garth de Wet (L-H), Dorbedo
     Gets a config property (getNumber/getText)
