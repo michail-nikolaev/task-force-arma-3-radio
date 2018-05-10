@@ -87,6 +87,7 @@ PREP(haveSWRadio);
 PREP(initKeybinds);
 PREP(initCBASettings);
 PREP_SUB(server,instanciateRadios);
+PREP_SUB(server,instanciateRadiosServer);
 PREP_SUB(hint,inWaterHint);
 PREP(isAbleToUseRadio);
 PREP(isBackpackRadio);

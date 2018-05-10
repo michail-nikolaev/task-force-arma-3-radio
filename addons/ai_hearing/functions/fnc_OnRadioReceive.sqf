@@ -21,8 +21,8 @@
 
 params [["_unit", objNull, [objNull]], ["_isReceiving", false, [true]]];
 
-If !(_isReceiving) exitWith {};
+if !(_isReceiving) exitWith {};
 
-If ((_unit getVariable ["TFAR_LRSpeakersEnabled", false]) || {_unit getVariable ["TFAR_SRSpeakersEnabled", false]}) exitWith {
+if ((_unit getVariable ["TFAR_LRSpeakersEnabled", false]) || {_unit getVariable ["TFAR_SRSpeakersEnabled", false]}) exitWith {
     [_unit, TF_speakerDistance] call FUNC(revealInArea);
 };
