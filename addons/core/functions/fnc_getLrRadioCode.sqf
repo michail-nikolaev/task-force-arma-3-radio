@@ -19,6 +19,6 @@
   Public: Yes
 */
 
-If (GVARMAIN(radioCodesDisabled)) exitWith {""};
+if (GVARMAIN(radioCodesDisabled)) exitWith {""};
 
 (_this call TFAR_fnc_getLrSettings) param [TFAR_CODE_OFFSET]

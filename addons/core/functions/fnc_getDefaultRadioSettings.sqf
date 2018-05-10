@@ -35,7 +35,7 @@ if (_isSW) then {
         _defFreq = (group _unit) getVariable "TFAR_freq_sr";
     };
 
-    If !(isNil "_defFreq") exitWith {
+    if !(isNil "_defFreq") exitWith {
         private _value = false call DFUNC(generateSRSettings);
         _value set [2,_defFreq];
         _value
@@ -76,7 +76,7 @@ if (_isSW) then {
             _defFreq = (group _unit) getVariable "TFAR_freq_lr";
         };
 
-        If !(isNil "_defFreq") then {
+        if !(isNil "_defFreq") then {
             _value = false call DFUNC(generateLRSettings);
             _value set [2,_defFreq];
         };
