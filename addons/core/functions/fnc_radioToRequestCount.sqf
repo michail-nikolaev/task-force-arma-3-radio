@@ -52,6 +52,6 @@ private _allItems = ((getItemCargo (uniformContainer TFAR_currentUnit)) select 0
 _allItems append ((getItemCargo (vestContainer TFAR_currentUnit)) select 0);
 _allItems append ((getItemCargo (backpackContainer TFAR_currentUnit)) select 0);
 
-_radiosToRequest append (_allItems select _radioSelector)
+_radiosToRequest append (_allItems select _radioSelector);
 
 [_radiosToRequest, _settingsToCopy, _linkFirstItem]
