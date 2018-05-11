@@ -21,7 +21,7 @@
 if(isServer) exitWith {};
 waitUntil {sleep 0.1;time > 3};
 if !(isClass(configFile >> "CfgPatches" >> "tfar_core")) exitWith {
-    player globalChat format["%1: LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0", name player];
+    [player, format["%1: LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0", name player]] remoteExec ["globalChat", -2];
     if (isNull (uiNamespace getVariable ["BIS_fnc_arsenal_cam", objNull])) then {
         ["LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0"] call BIS_fnc_guiMessage;
     };
