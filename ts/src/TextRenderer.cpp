@@ -4,6 +4,7 @@
 #include <freetype/include/ft2build.h>
 #include FT_FREETYPE_H  
 #include <iostream>
+#include "helpers.hpp"
 
 
 const char* textShader_vs = "\
@@ -13,9 +14,10 @@ const char* textShader_vs = "\
                                                                          \n \
         uniform mat4 projection;                                         \n \
         uniform mat4 view;                                         \n \
+        uniform mat4 model;                                         \n \
                                                                          \n \
         void main() {                                                    \n \
-            gl_Position = projection * vec4(vertex.xy, 0, 1.0);        \n \
+            gl_Position = projection * view * model * vec4(vertex.xy, 0, 1);        \n \
             TexCoords = vertex.zw;                                       \n \
         }";
 
@@ -35,7 +37,6 @@ const char* textShader_fs = "\
 
 TextRenderer::TextRenderer() : textShader(textShader_vs, textShader_fs) {
     textShader.use();
-    textShader.setMat4("projection", glm::ortho(0.0f, static_cast<GLfloat>(800), 0.0f, static_cast<GLfloat>(600)));
     // FreeType
     FT_Library ft;
     // All functions return a value different than 0 whenever an error occurred
@@ -115,10 +116,10 @@ TextRenderer::~TextRenderer() {
 
 void TextRenderer::setScreensize(GLfloat width, GLfloat height) {
     textShader.use();
-    textShader.setMat4("projection", glm::ortho(0.0f, width, 0.0f, height));
+    //textShader.setMat4("projection", glm::ortho(0.0f, width, 0.0f, height));
 }
 
-void TextRenderer::addTextQueue(std::string text, glm::vec2 offset, GLfloat scale, glm::vec3 color) {
+void TextRenderer::addTextQueue(std::string text, glm::vec3 offset, GLfloat scale, glm::vec3 color) {
     textQueue.emplace_back(queueElement{ text, offset, scale, color });
 }
 
@@ -131,7 +132,15 @@ void TextRenderer::drawQueue() {
     glBindVertexArray(TVAO);
 
     for (auto& [text, offset, scale, color] : textQueue) {
+        //glm::mat4 model = glm::lookAt(offset, offset+glm::vec3(0.0f, 1.f, 0.f), glm::vec3(0.0f, 0.0f, 1.0f));
         textShader.setVec3("textColor", color);
+        glm::mat4 scal = glm::scale(glm::mat4(1.0), { scale,scale,scale });
+
+
+        glm::mat4 rot = glm::rotate(scal, DegToRad(-90), glm::vec3(1.0f, 0.f, 0.f));
+        glm::mat4 trans = glm::translate(glm::mat4(1.0f), glm::vec3{ -offset.z,-offset.y + 1,offset.x });
+
+        textShader.setMat4("model", trans*rot);
         float xOffset = 0.f;
         float yOffset = 0.f;
         // Iterate through all characters
@@ -139,18 +148,18 @@ void TextRenderer::drawQueue() {
         for (c = text.begin(); c != text.end(); c++) {
             if (*c == '\n') {
                 xOffset = 0;
-                yOffset -= 45*scale;
+                yOffset -= 45;
                 continue;
             }
 
 
             Character ch = Characters[*c];
 
-            GLfloat xpos = offset.x + xOffset + ch.Bearing.x * scale;
-            GLfloat ypos = offset.y + yOffset - (ch.Size.y - ch.Bearing.y) * scale;
+            GLfloat xpos = xOffset + ch.Bearing.x;
+            GLfloat ypos = yOffset - (ch.Size.y - ch.Bearing.y);
 
-            GLfloat w = ch.Size.x * scale;
-            GLfloat h = ch.Size.y * scale;
+            GLfloat w = ch.Size.x;
+            GLfloat h = ch.Size.y;
             // Update VBO for each character
             GLfloat vertices[6][4] = {
                 {xpos, ypos + h, 0.0, 0.0},
@@ -172,7 +181,7 @@ void TextRenderer::drawQueue() {
             // Render quad
             glDrawArrays(GL_TRIANGLES, 0, 6);
             // Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-            xOffset += (ch.Advance >> 6) * scale;
+            xOffset += (ch.Advance >> 6);
             // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
         }
     }
