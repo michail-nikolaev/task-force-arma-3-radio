@@ -101,11 +101,11 @@ GVAR(instanciationIsReady) = false;
 
         if (TFAR_SameSRFrequenciesForSide) then {
             TFAR_freq_sr_west = false call DFUNC(generateSRSettings);
-            TFAR_freq_sr_west set [2,TFAR_defaultFrequencies_sr_west];
+            TFAR_freq_sr_west set [2, TFAR_defaultFrequencies_sr_west];
             TFAR_freq_sr_east = false call DFUNC(generateSRSettings);
-            TFAR_freq_sr_east set [2,TFAR_defaultFrequencies_sr_east];
+            TFAR_freq_sr_east set [2, TFAR_defaultFrequencies_sr_east];
             TFAR_freq_sr_independent = false call DFUNC(generateSRSettings);
-            TFAR_freq_sr_independent set [2,TFAR_defaultFrequencies_sr_independent];
+            TFAR_freq_sr_independent set [2, TFAR_defaultFrequencies_sr_independent];
             publicVariable "TFAR_freq_sr_west";
             publicVariable "TFAR_freq_sr_east";
             publicVariable "TFAR_freq_sr_independent";
@@ -117,11 +117,11 @@ GVAR(instanciationIsReady) = false;
 
         if (TFAR_SameLRFrequenciesForSide) then {
             TFAR_freq_lr_west = false call DFUNC(generateLrSettings);
-            TFAR_freq_lr_west set [2,TFAR_defaultFrequencies_lr_west];
+            TFAR_freq_lr_west set [2, TFAR_defaultFrequencies_lr_west];
             TFAR_freq_lr_east = false call DFUNC(generateLrSettings);
-            TFAR_freq_lr_east set [2,TFAR_defaultFrequencies_lr_east];
+            TFAR_freq_lr_east set [2, TFAR_defaultFrequencies_lr_east];
             TFAR_freq_lr_independent = false call DFUNC(generateLrSettings);
-            TFAR_freq_lr_independent set [2,TFAR_defaultFrequencies_lr_independent];
+            TFAR_freq_lr_independent set [2, TFAR_defaultFrequencies_lr_independent];
             publicVariable "TFAR_freq_lr_west";
             publicVariable "TFAR_freq_lr_east";
             publicVariable "TFAR_freq_lr_independent";

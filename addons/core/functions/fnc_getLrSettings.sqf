@@ -35,13 +35,13 @@ if (_radio_object isKindOf "Bag_Base") then {
 
             switch (_radio call TFAR_fnc_getVehicleSide) do {
                 case west: {
-                    _radioType = [TFAR_DefaultRadio_Backpack_West,TFAR_DefaultRadio_Airborne_West] select _isAirRadio;
+                    _radioType = [TFAR_DefaultRadio_Backpack_West, TFAR_DefaultRadio_Airborne_West] select _isAirRadio;
                 };
                 case east: {
-                    _radioType = [TFAR_DefaultRadio_Backpack_East,TFAR_DefaultRadio_Airborne_East] select _isAirRadio;
+                    _radioType = [TFAR_DefaultRadio_Backpack_East, TFAR_DefaultRadio_Airborne_East] select _isAirRadio;
                 };
                 default {
-                    _radioType = [TFAR_DefaultRadio_Backpack_Independent,TFAR_DefaultRadio_Airborne_Independent] select _isAirRadio;
+                    _radioType = [TFAR_DefaultRadio_Backpack_Independent, TFAR_DefaultRadio_Airborne_Independent] select _isAirRadio;
                 };
             };
         };
@@ -50,24 +50,10 @@ if (_radio_object isKindOf "Bag_Base") then {
 
 
 if (isNil QGVAR(saved_active_lr_settings)) then {
-    _value = false call DFUNC(getDefaultRadioSettings)
+    _value = [false, TFAR_currentUnit, _radioType] call DFUNC(getDefaultRadioSettings)
 } else {
     _value = GVAR(saved_active_lr_settings);
     GVAR(saved_active_lr_settings) = nil;
-};
-
-
-private _radioCode = _value select TFAR_CODE_OFFSET;
-if (isNil "_radioCode") then {
-    private _code = [_radio_object, "tf_encryptionCode"] call TFAR_fnc_getLrRadioProperty;
-
-    if (_code == "tf_guer_radio_code") then {_code = "tf_independent_radio_code"};
-
-    If (_code != "") then {
-        _value set [TFAR_CODE_OFFSET, missionNamespace getVariable [_code, ""]];
-    } else {
-        _value set [TFAR_CODE_OFFSET, ""];
-    };
 };
 
 [[_radio_object, _radio_id], + _value] call TFAR_fnc_setLrSettings;
