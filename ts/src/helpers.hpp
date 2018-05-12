@@ -82,6 +82,9 @@ struct vehicleDescriptor {
     }
 };
 
+constexpr float DegToRad(float deg) {
+    return deg * (static_cast<float>(3.14159265358979323846) / 180);
+}
 
 class helpers {
 public:

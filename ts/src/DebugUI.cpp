@@ -327,17 +327,35 @@ void DebugUI::threadRun() {
         //glBindTexture(GL_TEXTURE_2D, 148);
 
         // activate shader
+
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 10000.0f);
+        glm::mat4 view = camera.GetViewMatrix();
+
+
+        textRenderer->textShader.use();
+        textRenderer->textShader.setMat4("projection", projection);
+        textRenderer->textShader.setMat4("view", view);
+
+
         ourShader.use();
 
         // pass projection matrix to shader (note that in this case it could change every frame)
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 10000.0f);
+
         //glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
         ourShader.setMat4("projection", projection);
-        ourShader.use();
-
         // camera/view transformation
-        glm::mat4 view = camera.GetViewMatrix();
         ourShader.setMat4("view", view);
+
+        glBindVertexArray(VAO);
+
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, 148);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, 148);
+
+
 #if 1
         const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
         if (clientDataDir) {
@@ -351,17 +369,7 @@ void DebugUI::threadRun() {
 
             //glUseProgram(shaderProgram);
             // render boxes
-            ourShader.use();
-            glBindVertexArray(VAO);
-
-            glBindBuffer(GL_ARRAY_BUFFER, VBO);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, 148);
-            glActiveTexture(GL_TEXTURE1);
-            glBindTexture(GL_TEXTURE_2D, 148);
-
-
+            std::vector<glm::vec3> lineConnects;
             clientDataDir->forEachClient([&](const std::shared_ptr<clientData>& cli) {
                 // calculate the model matrix for each object and pass it to shader before drawing
                 auto pos = myPos- cli->getClientPosition();
@@ -383,38 +391,38 @@ void DebugUI::threadRun() {
 
                 glDrawArrays(GL_TRIANGLES, 0, 18);
 
-                auto proj = glm::project(position, view*model, projection, glm::vec4{ 0,0,SCR_WIDTH,SCR_HEIGHT });
+                lineConnects.emplace_back(glm::vec3{ 0,0,0 });
+                lineConnects.emplace_back(glm::vec3{ -position.x,-position.y ,-position.z });
+
+
                 std::stringstream text;
                 text << cli->getNickname() << "(" << pos.length() <<"m) freq: " << cli->getCurrentTransmittingFrequency() << "\n subtype: " << cli->getCurrentTransmittingSubtype() << '\n';
-
-
+                
                 if (cli->objectInterception > 0)
                     text << "object interception: " << cli->objectInterception << '\n';
                 auto vehDesc = cli->getVehicleDescriptor();
                 text << "vehicle: " << vehDesc.vehicleName << " iso: " << vehDesc.vehicleIsolation << " intercom:" << vehDesc.intercomSlot << '\n';
 
 
-                textRenderer->addTextQueue(text.str(), proj, .4f, cli->clientTalkingNow ? glm::vec3(1.f, 0.f, 0.2f) : glm::vec3(0.5, 0.8f, 0.2f));
+                textRenderer->addTextQueue(text.str(), position, .01f, cli->clientTalkingNow ? glm::vec3(1.f, 0.f, 0.2f) : glm::vec3(0.5, 0.8f, 0.2f));
 
             });
+
+            glm::mat4 model = glm::lookAt(glm::vec3(), glm::vec3(1.0f, 0.f, 0.f), glm::vec3(0.0f, 1.0f, 0.0f));
+            ourShader.setMat4("model", model);
+            glLineWidth(5);
+            glBufferData(GL_ARRAY_BUFFER, lineConnects.size() * sizeof(glm::vec3), lineConnects.data(), GL_STATIC_DRAW);
+            glDrawArrays(GL_LINES, 0, lineConnects.size());
+
         } else {
             glClearColor(0.7f, 0.3f, 0.3f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         }
 #else
+
+        std::vector<glm::vec3> lineConnects;
         for (auto& it : cubePositions) {
-            ourShader.use();
-            glBindVertexArray(VAO);
-        
-            glBindBuffer(GL_ARRAY_BUFFER, VBO);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, 148);
-            glActiveTexture(GL_TEXTURE1);
-            glBindTexture(GL_TEXTURE_2D, 148);
-        
-        
-        
+
             // calculate the model matrix for each object and pass it to shader before drawing
             glm::mat4 model = glm::lookAt(it, it + glm::vec3(1.0f, 0.f, 0.f), glm::vec3(0.0f, 1.0f, 0.0f));
             //model = glm::scale(model, { 1,0.7f,0.2f });
@@ -425,10 +433,19 @@ void DebugUI::threadRun() {
             //ourShader.setVec3("model", it);
         
             glDrawArrays(GL_TRIANGLES, 0, 18);
-        
-            auto proj = glm::project(it, view*model, projection, glm::vec4{ 0,0,SCR_WIDTH,SCR_HEIGHT });
-            textRenderer->addTextQueue("proj\n2", proj, 1.0f, glm::vec3(0.5, 0.8f, 0.2f));
+
+            lineConnects.emplace_back(glm::vec3{ 0,0,0 });
+            lineConnects.emplace_back(glm::vec3{ -it.x,-it.y ,-it.z });
+            
+
+            //auto proj = glm::project(it, model,projection, glm::vec4{ 0,0,SCR_WIDTH,SCR_HEIGHT });
+            textRenderer->addTextQueue("proj\n" + std::to_string(it.x), it, 0.01f, glm::vec3(0.5, 0.8f, 0.2f));
         }
+        glm::mat4 model = glm::lookAt(glm::vec3(),  glm::vec3(1.0f, 0.f, 0.f), glm::vec3(0.0f, 1.0f, 0.0f));
+        ourShader.setMat4("model", model);
+        glLineWidth(5);
+        glBufferData(GL_ARRAY_BUFFER, lineConnects.size()*sizeof(glm::vec3), lineConnects.data(), GL_STATIC_DRAW);
+        glDrawArrays(GL_LINES, 0, lineConnects.size());
 #endif
 
         textRenderer->drawQueue();
@@ -496,7 +513,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     lastX = xpos;
     lastY = ypos;
 
-    //camera.ProcessMouseMovement(xoffset, yoffset);
+    camera.ProcessMouseMovement(xoffset, yoffset);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
