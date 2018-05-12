@@ -20,12 +20,12 @@ public:
     };
 
     GLuint TVAO, TVBO;
-    void addTextQueue(std::string text, glm::vec2 offset, GLfloat scale, glm::vec3 color);
+    void addTextQueue(std::string text, glm::vec3 offset, GLfloat scale, glm::vec3 color);
     void drawQueue();
 
     struct queueElement {
         std::string text;
-        glm::vec2 offset;
+        glm::vec3 offset;
         GLfloat scale;
         glm::vec3 color;
     };
