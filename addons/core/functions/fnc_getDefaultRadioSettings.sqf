@@ -55,7 +55,7 @@ if (_isSR) then {
             _return = true call DFUNC(generateSRSettings);
         } else {
             _return = false call DFUNC(generateSRSettings);
-            _return set [2, _frequencies];
+            _return set [2, +_frequencies];
         };
     };
 
@@ -85,7 +85,7 @@ if (_isSR) then {
             _return = true call DFUNC(generateLRSettings);
         } else {
             _return = false call DFUNC(generateLRSettings);
-            _return set [2, _frequencies];
+            _return set [2, +_frequencies];
         };
     };
 
