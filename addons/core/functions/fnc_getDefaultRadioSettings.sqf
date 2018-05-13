@@ -41,13 +41,13 @@ if (_isSR) then {
     if (TFAR_SameSRFrequenciesForSide && {isNil "_frequencies"}) then {
         _return = switch (_unit call BIS_fnc_objectSide) do {
             case west : {
-                missionNamespace getVariable "TFAR_freq_sr_west";
+                +(missionNamespace getVariable "TFAR_freq_sr_west");
             };
             case east : {
-                missionNamespace getVariable "TFAR_freq_sr_east";
+                +(missionNamespace getVariable "TFAR_freq_sr_east");
             };
             default {
-                missionNamespace getVariable "TFAR_freq_sr_independent";
+                +(missionNamespace getVariable "TFAR_freq_sr_independent");
             };
         };
     } else {
@@ -71,13 +71,13 @@ if (_isSR) then {
     if (TFAR_SameLRFrequenciesForSide && {isNil "_frequencies"}) then {
         _return = switch (_unit call BIS_fnc_objectSide) do {
             case west : {
-                missionNamespace getVariable "TFAR_freq_lr_west";
+                +(missionNamespace getVariable "TFAR_freq_lr_west");
             };
             case east : {
-                missionNamespace getVariable "TFAR_freq_lr_east";
+                +(missionNamespace getVariable "TFAR_freq_lr_east");
             };
             default {
-                missionNamespace getVariable "TFAR_freq_lr_independent";
+                +(missionNamespace getVariable "TFAR_freq_lr_independent");
             };
         };
     } else {
