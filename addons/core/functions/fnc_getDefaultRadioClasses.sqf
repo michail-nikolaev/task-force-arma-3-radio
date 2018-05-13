@@ -7,7 +7,7 @@
     Return array of default radio classes for player.
 
   Arguments:
-    None
+    0: unit <OBJECT> (Default: TFAR_currentUnit)
 
   Return Value:
     0: default LR <STRING>
@@ -21,7 +21,7 @@
   Public: Yes
 */
 
-params ["_unit", TFAR_currentUnit];
+params [["_unit", TFAR_currentUnit, [objNull]]];
 
 private _fnc_tryResolveFactionClass = {
     params ["_prefix", "_default"];
