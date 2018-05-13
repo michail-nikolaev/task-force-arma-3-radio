@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
 /*
-    Name: TFAR_fnc_instanciateRadiosServer
+  Name: TFAR_fnc_instanciateRadios
 
-    Author(s):
-        Dorbedo
+  Author: Dorbedo
+    Replaces all prototype radios
 
-    Description:
-        Replaces all prototype radios
+  Arguments:
+    None
 
-    Parameters:
-        None
+  Return Value:
+    None
 
-    Returns:
-        None
+  Example:
+    call TFAR_fnc_instanciateRadiosServer;
 
-    Example:
-        call TFAR_fnc_instanciateRadiosServer;
+  Public: No
 */
 
 if !(isServer) exitWith {};

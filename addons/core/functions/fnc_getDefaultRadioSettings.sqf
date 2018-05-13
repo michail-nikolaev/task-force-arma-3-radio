@@ -13,8 +13,8 @@
 
   Arguments:
     0: is SR radio <BOOL> (Default: true)
-    1: the unit (Default: TFAR_currentUnit) <OBJECT> (Default: TFAR_currentUnit)
-    2: the radiotype (only for LR and the usage of group defined radio settings needed) <STRING>
+    1: the unit <OBJECT> (Default: TFAR_currentUnit)
+    2: the radiotype <STRING> (Default: "")
 
   Return Value:
     default settings <TYPENAME>
@@ -26,80 +26,74 @@
   Public: Yes
 */
 
-params [["_isSW", true, [false]], ["_unit", TFAR_currentUnit, [objNull]]];
+params [
+    ["_isSR", true, [false]],
+    ["_unit", TFAR_currentUnit, [objNull]],
+    ["_radioClass", "", [""]]
+];
 
-if (_isSW) then {
+private "_return";
 
-    private _defFreq = _unit getVariable "TFAR_freq_sr";
-    if (isNil "_defFreq") then {
-        _defFreq = (group _unit) getVariable "TFAR_freq_sr";
-    };
+if (_isSR) then {
 
-    if !(isNil "_defFreq") exitWith {
-        private _value = false call DFUNC(generateSRSettings);
-        _value set [2,_defFreq];
-        _value
-    };
+    private _frequencies = _unit getVariable ["TFAR_freq_sr", (group _unit) getVariable "TFAR_freq_sr"];
 
-    private _value = if (TFAR_SameSRFrequenciesForSide) then {
-        switch (_unit call BIS_fnc_objectSide) do {
+    if (TFAR_SameSRFrequenciesForSide && {isNil "_frequencies"}) then {
+        _return = switch (_unit call BIS_fnc_objectSide) do {
             case west : {
-                missionNamespace getVariable "TFAR_freq_sr_west";
+                +(missionNamespace getVariable "TFAR_freq_sr_west");
             };
             case east : {
-                missionNamespace getVariable "TFAR_freq_sr_east";
+                +(missionNamespace getVariable "TFAR_freq_sr_east");
             };
             default {
-                missionNamespace getVariable "TFAR_freq_sr_independent";
+                +(missionNamespace getVariable "TFAR_freq_sr_independent");
             };
         };
     } else {
-        nil
+        if (isNil "_frequencies") then {
+            _return = true call DFUNC(generateSRSettings);
+        } else {
+            _return = false call DFUNC(generateSRSettings);
+            _return set [2, +_frequencies];
+        };
     };
 
-    if (isNil "_value") then {
-        _value = [] call DFUNC(generateSRSettings);
-    };
+    private _encryptionCode = [_radioClass, "tf_encryptionCode", ""] call DFUNC(getWeaponConfigProperty);
+    if (_encryptionCode == "tf_guer_radio_code") then {_encryptionCode = "tf_independent_radio_code"};
 
-    _value
+    _return set [TFAR_CODE_OFFSET, _encryptionCode];
 
 } else {
 
-    private _encryptionCode = [(_this param [2, "", [""]]), "tf_encryptionCode"] call DFUNC(getVehicleConfigProperty);
-    if (_encryptionCode == "tf_guer_radio_code") then {_encryptionCode = "tf_independent_radio_code"};
-    private _value = nil;
+    private _frequencies = _unit getVariable ["TFAR_freq_lr", (group _unit) getVariable "TFAR_freq_lr"];
 
-    if (_encryptionCode == (format ["tf_%1_radio_code", (_unit call BIS_fnc_objectSide)])) then {
-        private _defFreq = _unit getVariable "TFAR_freq_lr";
-
-        if (isNil "_defFreq") then {
-            _defFreq = (group _unit) getVariable "TFAR_freq_lr";
-        };
-
-        if !(isNil "_defFreq") then {
-            _value = false call DFUNC(generateLRSettings);
-            _value set [2,_defFreq];
-        };
-    };
-
-    if ((isNil "_value") && {TFAR_SameSRFrequenciesForSide}) then {
-        switch (_unit call BIS_fnc_objectSide) do {
+    if (TFAR_SameLRFrequenciesForSide && {isNil "_frequencies"}) then {
+        _return = switch (_unit call BIS_fnc_objectSide) do {
             case west : {
-                _value = missionNamespace getVariable "TFAR_freq_lr_west";
+                +(missionNamespace getVariable "TFAR_freq_lr_west");
             };
             case east : {
-                _value = missionNamespace getVariable "TFAR_freq_lr_east";
+                +(missionNamespace getVariable "TFAR_freq_lr_east");
             };
             default {
-                _value = missionNamespace getVariable "TFAR_freq_lr_independent";
+                +(missionNamespace getVariable "TFAR_freq_lr_independent");
             };
+        };
+    } else {
+        if (isNil "_frequencies") then {
+            _return = true call DFUNC(generateLRSettings);
+        } else {
+            _return = false call DFUNC(generateLRSettings);
+            _return set [2, +_frequencies];
         };
     };
 
-    if (isNil "_value") then {
-        _value = true call DFUNC(generateLRSettings);
-    };
+    private _encryptionCode = [_radioClass, "tf_encryptionCode", ""] call DFUNC(getVehicleConfigProperty);
+    if (_encryptionCode == "tf_guer_radio_code") then {_encryptionCode = "tf_independent_radio_code"};
 
-    _value
+    _return set [TFAR_CODE_OFFSET, _encryptionCode];
 
 };
+
+_return
