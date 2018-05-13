@@ -4,23 +4,19 @@
  * Copyright (c) 2008-2013 TeamSpeak Systems GmbH
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <string>
-#include <assert.h>
-#include <math.h>
-#include <iostream>
+#include <numeric>
 #include <sstream>
 #include <map>
 #include <vector>
 #include <algorithm>
-#include "public_errors.h"
-#include "public_errors_rare.h"
 #include "public_rare_definitions.h"
 #include "ts3_functions.h"
 #include "plugin.h"
-#include <DspFilters/Butterworth.h>
+#include <dspfilters/Butterworth.h>
 #include "sqlite3/sqlite3.h"
 
 
@@ -54,12 +50,12 @@ void log_string(std::string message, LogLevel level) {
 }
 
 bool isSeriousModeEnabled(TSServerID serverConnectionHandlerID, TSClientID clientId) {
-    std::string	serious_mod_channel_name = TFAR::config.get<std::string>(Setting::serious_channelName);
+    std::string serious_mod_channel_name = TFAR::config.get<std::string>(Setting::serious_channelName);
     return (!serious_mod_channel_name.empty()) && Teamspeak::isInChannel(serverConnectionHandlerID, clientId, serious_mod_channel_name);
 }
 
 float effectErrorFromDistance(sendingRadioType radioType, float distance, std::shared_ptr<clientData>& data) {
-    float maxD = 1.0f;//We don't want division by 0 do we?
+    auto maxD = 1.0f;//We don't want division by 0 do we?
     switch (radioType) {
         case sendingRadioType::LISTEN_TO_SW: maxD = static_cast<float>(data->range); break;
         case sendingRadioType::LISTEN_TO_LR: maxD = static_cast<float>(data->range);
@@ -72,7 +68,7 @@ void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID cl
     bool mute = false;
     if (isSeriousModeEnabled(serverConnectionHandlerID, clientID)) {
 
-        auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
+        const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
         std::shared_ptr<clientData> clientData;
         if (clientDataDir)
             clientData = clientDataDir->getClientData(clientID);
@@ -83,7 +79,7 @@ void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID cl
             mute = distance > (clientData->voiceVolume + 15);
             
             if (mute) {//If he is in range we don't need to check if we can hear him over radio as we can hear anyway.
-                bool isOnRadio = isOverRadio.first ? isOverRadio.second : !clientData->isOverRadio(myData, false, false, false).empty();
+                const bool isOnRadio = isOverRadio.first ? isOverRadio.second : !clientData->isOverRadio(myData, false, false, false).empty();
                 mute = !isOnRadio;
             }
         } else {
@@ -115,13 +111,13 @@ void updateUserStatusInfo(bool pluginEnabled) {
     Teamspeak::setMyMetaData(result);
 }
 
-PTTDelayArguments::subtypes PTTDelayArguments::stringToSubtype(const std::string& type) {
+PTTDelayArguments::subtypes PTTDelayArguments::stringToSubtype(std::string_view type) {
     switch (type.length()) {
-        case const_strlen("dd"): return subtypes::dd;
-        case const_strlen("digital"): return subtypes::digital;
-        case const_strlen("airborne"): return subtypes::airborne;
-        case const_strlen("digital_lr"): return subtypes::digital_lr;
-        case const_strlen("phone"): return subtypes::phone;
+        case "dd"sv.length(): return subtypes::dd;
+        case "digital"sv.length(): return subtypes::digital;
+        case "airborne"sv.length(): return subtypes::airborne;
+        case "digital_lr"sv.length(): return subtypes::digital_lr;
+        case "phone"sv.length(): return subtypes::phone;
         default: return subtypes::invalid;
     }
 }
@@ -189,29 +185,30 @@ void PipeThread() {
         }
 
     #ifdef USE_SHAREDMEM
-        pipeHandler.setConfigNeedsRefresh(TFAR::config.needsRefresh());	//#TODO Signal/Slot ?
+        pipeHandler.setConfigNeedsRefresh(TFAR::config.needsRefresh());//#TODO Signal/Slot ?
     #endif
         if (!pipeHandler.getData(command, 20ms))//This will still wait. 1ms if SHAMEM error. 20ms if game unconnected
             continue;
 
         speedTest gameCommandIn("gameCommandInPipe", false);
-        bool dataReturned = false;
+
         if (command.back() == '~') {//a ~ at the end identifies an Async call
             command.pop_back();//removes ~ from end
         #ifdef USE_SHAREDMEM
-            TFAR::getInstance().getCommandProcessor()->queueCommand(command);
+            TFAR::getCommandProcessor()->queueCommand(command);
         #else
+            bool dataReturned = false;
             if (pipeHandler.sendData("OK", 2)) {
                 log_string("Info to ARMA send async", LogLevel_DEBUG);
                 dataReturned = true;
             } else {
                 log_string("Can't send info to ARMA async", LogLevel_ERROR);
             }
-        #endif	
+        #endif
         } else {
             gameCommandIn.reset();
         #ifdef USE_SHAREDMEM
-            std::string commandResult = TFAR::getInstance().getCommandProcessor()->processCommand(command);
+            const auto commandResult = TFAR::getCommandProcessor()->processCommand(command);
             pipeHandler.sendData(commandResult);
             if (gameCommandIn.getCurrentElapsedTime().count() >
             #ifdef _DEBUG
@@ -240,17 +237,17 @@ void PipeThread() {
 
 int pttCallback(void *arg, int argc, char **argv, char **azColName) {
     bool pttDelay = false;
-    std::chrono::milliseconds pttDelayMs = 0ms;
+    auto pttDelayMs = 0ms;
     if (argc != 1) return 1;
     if (argv[0] != NULL) {
-        std::vector<std::string> v = helpers::split(argv[0], '\n');
-        for (const std::string i : v) {
+        auto v = helpers::split(std::string_view(argv[0]), '\n');
+        for (auto i : v) {
             if (i == "delay_ptt=true") {
                 pttDelay = true;
             }
             if (i.substr(0, const_strlen("delay_ptt_msecs")) == "delay_ptt_msecs") {
-                std::vector<std::string> values = helpers::split(i, '=');
-                pttDelayMs = std::chrono::milliseconds(std::stoi(values[1]));
+                auto values = helpers::split(i, '=');
+                pttDelayMs = std::chrono::milliseconds(std::atoi(values[1].data()));//#TODO proper string_view to i
             }
         }
     }
@@ -273,7 +270,7 @@ int ts3plugin_init() {
     char pluginPath[PATH_BUFSIZE];
     if (ts3plugin_apiVersion() <= 20) {
         ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE);
-    } else {	//Compatibility hack for API version > 21
+    } else {//Compatibility hack for API version > 21
         typedef  void(*getPluginPath_20)(char* path, size_t maxLen, const char* pluginID);
         static_cast<getPluginPath_20>(static_cast<void*>(ts3Functions.getPluginPath))(pluginPath, PATH_BUFSIZE, TFAR::getInstance().getPluginID().c_str()); //This is ugly but keeps compatibility
     }
@@ -296,7 +293,6 @@ int ts3plugin_init() {
 
     Teamspeak::_onInit();
 
-
     exitThread = false;
     threadPipeHandle = std::thread(&PipeThread);
     threadService = std::thread(&ServiceThread);
@@ -311,8 +307,8 @@ int ts3plugin_init() {
     ts3Functions.getConfigPath(path, MAX_PATH);
     strcat_s(path, MAX_PATH, "settings.db");
 
-    sqlite3 *db = 0;
-    char *err = 0;
+    sqlite3 *db = nullptr;
+    char *err = nullptr;
     if (!sqlite3_open(path, &db)) {
         sqlite3_exec(db, "SELECT value FROM Profiles WHERE key='Capture/Default/PreProcessing'", pttCallback, NULL, &err);
         sqlite3_close(db);
@@ -323,20 +319,24 @@ int ts3plugin_init() {
     });
 
     TFAR::getInstance().onSeriousModeChanged.connect([](bool isSerious) {
-        TSServerID serverID = Teamspeak::getCurrentServerConnection();
-        TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection())->forEachClient(
+        auto serverID = Teamspeak::getCurrentServerConnection();
+        TFAR::getServerDataDirectory()->getClientDataDirectory(serverID)->forEachClient(
             [serverID](const std::shared_ptr<clientData>& client) {
             if (client)
                 setGameClientMuteStatus(serverID, client->clientId, { false, false });
         });
     });
 
+    RadioEffect::onError = [](std::string err) {
+        Teamspeak::printMessageToCurrentTab(err.c_str());
+    };
+
     return 0;
 }
 
 /* Custom code called right before the plugin is unloaded */
 void ts3plugin_shutdown() {
-    if (!pluginInitialized) return;	//For some reason shutdown is called before init.
+    if (!pluginInitialized) return;//For some reason shutdown is called before init.
     pluginInitialized = false;
     /* Your plugin cleanup code here */
     Logger::log(LoggerTypes::teamspeakClientlog, "shutdown...", LogLevel_DEVEL);
@@ -403,9 +403,10 @@ bool isPluginEnabledForUser(TSServerID serverConnectionHandlerID, TSClientID cli
 }
 
 #pragma region VoiceProcessing
-//packet receive ->	decode -> onEditPlaybackVoiceDataEvent -> 3D positioning -> onEditPostProcessVoiceDataEvent -> mixing -> onEditMixedPlaybackVoiceDataEvent -> speaker output
+//packet receive -> decode -> onEditPlaybackVoiceDataEvent -> 3D positioning -> onEditPostProcessVoiceDataEvent -> mixing -> onEditMixedPlaybackVoiceDataEvent -> speaker output
 void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
-    TFAR::getInstance().getPlaybackHandler()->onEditMixedPlaybackVoiceDataEvent(samples, sampleCount, channels, channelSpeakerArray, channelFillMask);
+    if (Teamspeak::getCurrentServerConnection() != serverConnectionHandlerID) return;
+    TFAR::getPlaybackHandler()->onEditMixedPlaybackVoiceDataEvent(samples, sampleCount, channels, channelSpeakerArray, channelFillMask);
 }
 
 #define LOG3DMUTE(x)  clientData->circularLog(x);
@@ -416,23 +417,22 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
     _mm_setcsr((_mm_getcsr() & ~0x0040) | (0x0040));//_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
     static std::chrono::system_clock::time_point last_no_info;
-    auto myId = Teamspeak::getMyId(serverConnectionHandlerID);
-    std::string myNickname = Teamspeak::getMyNickname(serverConnectionHandlerID);
+    const auto myId = Teamspeak::getMyId(serverConnectionHandlerID);
+    auto myNickname = Teamspeak::getMyNickname(serverConnectionHandlerID);
 
-    auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
-    if (!clientDataDir) return;	//Unknown server
+    const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
+    if (!clientDataDir) return;//Unknown server
     //Senders Data
     auto clientData = clientDataDir->getClientData(clientID);
     if (!clientData) {
         //Should not happen..
-        //Teamspeak::printMessageToCurrentTab("TFAR nosim NoCliData"); //#Release remove
         log_string(std::string("No info about ") + std::to_string(clientID.baseType()) + " " + Teamspeak::getClientNickname(serverConnectionHandlerID, clientID), LogLevel_ERROR);
         return; //Unknown client
     }
 
-    bool alive = TFAR::getInstance().m_gameData.alive && clientDataDir->myClientData;//If i don't know who i am... I am not alive
+    const bool alive = TFAR::getInstance().m_gameData.alive && clientDataDir->myClientData;//If i don't know who i am... I am not alive
 
-    bool hasPluginEnabled = isPluginEnabledForUser(serverConnectionHandlerID, clientID);
+    const bool hasPluginEnabled = isPluginEnabledForUser(serverConnectionHandlerID, clientID);
 
     if (!clientData || !clientDataDir->myClientData || !hasPluginEnabled) {
         if (clientID == myId) {
@@ -454,15 +454,15 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         LOG3DMUTE("TFAR nosim NoPlugEn");
         return;
     }
-    bool canSpeak = clientDataDir->myClientData->canSpeak;
+    const bool canSpeak = clientDataDir->myClientData->canSpeak;
     //If we are dead we can't hear anyone in seriousMode. And if we are alive we can't hear the dead.
 
-    bool isSpectator = clientData->isSpectating;
+    const bool isSpectator = clientData->isSpectating;
     //NonPure normalPlayer->Spectator
-    bool isNotHearableInNonPureSpectator = clientDataDir->myClientData->isSpectating && (clientData->isEnemyToPlayer && TFAR::config.get<bool>(Setting::spectatorNotHearEnemies)) && TFAR::config.get<bool>(Setting::spectatorCanHearFriendlies);
+    const bool isNotHearableInNonPureSpectator = clientDataDir->myClientData->isSpectating && (clientData->isEnemyToPlayer && TFAR::config.get<bool>(Setting::spectatorNotHearEnemies)) && TFAR::config.get<bool>(Setting::spectatorCanHearFriendlies);
     //Other player is also a spectator. So we always hear him without 3D positioning
-    bool isHearableInPureSpectator = clientDataDir->myClientData->isSpectating && clientData->isSpectating;
-    bool isHearableInSpectator = isHearableInPureSpectator || !isNotHearableInNonPureSpectator;
+    const bool isHearableInPureSpectator = clientDataDir->myClientData->isSpectating && clientData->isSpectating;
+    const bool isHearableInSpectator = isHearableInPureSpectator || !isNotHearableInNonPureSpectator;
 
     if (!isHearableInSpectator && isSeriousModeEnabled(serverConnectionHandlerID, clientID) && (!alive || !clientData->isAlive())) {
         helpers::applyGain(samples, sampleCount, channels, 0.0f);
@@ -476,55 +476,56 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     }
     auto myData = clientDataDir->myClientData;
     auto myPosition = myData->getClientPosition();
-    float globalGain = TFAR::getInstance().m_gameData.globalVolume;
+
     if (!clientData || !myData) return;
     helpers::applyGain(samples, sampleCount, channels, clientData->voiceVolumeMultiplifier);
-    short* original_buffer = helpers::allocatePool(sampleCount, channels, samples);
+    const auto originalBuffer = helpers::allocatePool(sampleCount, channels, samples);
 
-    bool shouldPlayerHear = (clientData->canSpeak && canSpeak);
+    const bool shouldPlayerHear = (clientData->canSpeak && canSpeak);
 
-    auto myVehicleDescriptor = myData->getVehicleDescriptor();
-    auto hisVehicleDesriptor = clientData->getVehicleDescriptor();
+    const auto myVehicleDescriptor = myData->getVehicleDescriptor();
+    const auto hisVehicleDesriptor = clientData->getVehicleDescriptor();
 
-    const float vehicleVolumeLoss = std::clamp(myVehicleDescriptor.vehicleIsolation + hisVehicleDesriptor.vehicleIsolation, 0.0f, 0.99f);
-    bool isInSameVehicle = (myVehicleDescriptor.vehicleName == hisVehicleDesriptor.vehicleName);
-    float distanceFromClient_ = myPosition.distanceTo(clientData->getClientPosition()) + (2 * clientData->objectInterception); //2m more dist for each obstacle
+    const auto vehicleVolumeLoss = std::clamp(myVehicleDescriptor.vehicleIsolation + hisVehicleDesriptor.vehicleIsolation, 0.0f, 0.99f);
+    const bool isInSameVehicle = (myVehicleDescriptor.vehicleName == hisVehicleDesriptor.vehicleName);
+    const auto distanceFromClient = myPosition.distanceTo(clientData->getClientPosition()) + (2 * clientData->objectInterception); //2m more dist for each obstacle
 
     //#### DIRECT SPEECH
     if (myId != clientID &&
         !isSpectator && !isNotHearableInNonPureSpectator && //We don't hear spectators and enemy units(if enabled in config)....
-        distanceFromClient_ <= (clientData->voiceVolume + 15)
+        distanceFromClient <= (clientData->voiceVolume + 15)
         ) {
         //Direct Speech
         //process voice
-        auto relativePosition = myPosition.directionTo(clientData->getClientPosition());
-        auto myViewDirection = myData->getViewDirection();
+        const auto relativePosition = myPosition.directionTo(clientData->getClientPosition());
+        const auto myViewDirection = myData->getViewDirection();
         //Time differential based on direction
         clientData->effects.getClunk("voice_clunk")->process(samples, channels, sampleCount, relativePosition, myViewDirection);//interaural time difference
         //Volume differential based on direction
-        helpers::applyILD(samples, sampleCount, channels, myPosition, myViewDirection, clientData->getClientPosition(), clientData->getViewDirection());
+        helpers::applyILD(samples, sampleCount, channels, myPosition, myViewDirection, clientData->getClientPosition(), clientData->getViewDirection(), shouldPlayerHear, clientData->voiceVolume);
 
         //helpers::applyILD(samples, sampleCount, channels, relativePosition, myViewDirection);//interaural level difference
 
+        processCompressor(&clientData->effects.compressor, samples, channels, sampleCount);
 
         if (shouldPlayerHear) {
             if (vehicleVolumeLoss < 0.01 || isInSameVehicle) {
 
 
-                auto atten = helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume);
-                if (atten < 0.15)
-                    LOG3DMUTE("TFAR SemiMute atten s1 <0.15");
-                helpers::applyGain(samples, sampleCount, channels, atten);
+                //auto atten = helpers::volumeAttenuation(distanceFromClient, shouldPlayerHear, clientData->voiceVolume);
+                //if (atten < 0.15)
+                //    LOG3DMUTE("TFAR SemiMute atten s1 <0.15");
+                //helpers::applyGain(samples, sampleCount, channels, atten);
                 if (!isInSameVehicle && clientData->objectInterception > 0) {
                     helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, 1.0f,
                         clientData->effects.getFilterObjectInterception(clientData->objectInterception)); //getFilterObjectInterception
                 }
             } else {
-                helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), clientData->effects.getFilterVehicle("local_vehicle", vehicleVolumeLoss));
+                helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient, shouldPlayerHear, clientData->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), clientData->effects.getFilterVehicle("local_vehicle", vehicleVolumeLoss));
             }
         } else {
             LOG3DMUTE("TFAR SemiMute shouldn't hear");
-            helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient_, shouldPlayerHear, clientData->voiceVolume) * CANT_SPEAK_GAIN, (clientData->effects.getFilterCantSpeak("local_cantspeak")));
+            helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(samples, channels, sampleCount, helpers::volumeAttenuation(distanceFromClient, shouldPlayerHear, clientData->voiceVolume) * CANT_SPEAK_GAIN, (clientData->effects.getFilterCantSpeak("local_cantspeak")));
         }
 
     } else if (!isHearableInPureSpectator) { //.... unless we are both spectating
@@ -532,29 +533,29 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         std::string message = "TFAR Mute L534";
         message += " isSpectator=" + std::to_string(isSpectator);
         message += " isNotHearableInNonPureSpectator=" + std::to_string(isNotHearableInNonPureSpectator);
-        message += " distanceFromClient_=" + std::to_string(distanceFromClient_);
+        message += " distanceFromClient_=" + std::to_string(distanceFromClient);
         message += " <= voiceVolume=" + std::to_string(clientData->voiceVolume + 15);
 
         LOG3DMUTE(message);
         memset(samples, 0, channels * sampleCount * sizeof(short));
     }
 
-
     //#### RADIOS AND SPEAKERS
 
     // process radio here
-    processCompressor(&clientData->effects.compressor, original_buffer, channels, sampleCount);
+    processCompressor(&clientData->effects.compressor, originalBuffer, channels, sampleCount);
 
     std::vector<LISTED_INFO> listed_info = isSpectator ? std::vector<LISTED_INFO>{} : clientData->isOverRadio(myData, false, false, false);
-    float radioDistance = myData->effectiveDistanceTo(clientData);
-    if (listed_info.empty() && distanceFromClient_ > 30) LOG3DMUTE("TFAR NOR");
+    const auto radioDistance = myData->effectiveDistanceTo(clientData);
+    if (listed_info.empty() && distanceFromClient > 30) LOG3DMUTE("TFAR NOR");
     for (auto& info : listed_info) {
         if (isFromMicrophone && info.on == receivingRadioType::LISTED_ON_INTERCOM) continue; //We don't want to hear ourselves over intercom while doing direct speech
-        short* radio_buffer = helpers::allocatePool(sampleCount, channels, original_buffer);
-        float volumeLevel = helpers::volumeMultiplifier(static_cast<float>(info.volume));
+        short* radio_buffer = helpers::allocatePool(sampleCount, channels, originalBuffer);
+        auto volumeLevel = helpers::volumeMultiplifier(static_cast<float>(info.volume));
         if (volumeLevel < 0.2) {
             LOG3DMUTE("VOL Low b=" + std::to_string(info.volume) + " mp =" + std::to_string(volumeLevel) + " efmp =" + std::to_string(volumeLevel* 0.35f));
         }
+
         std::stringstream processLog;
 
         if (info.on < receivingRadioType::LISTED_ON_NONE) {//don't do for onGround or Intercom
@@ -571,30 +572,31 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                     processLog << "digital ";
                     if (info.over == sendingRadioType::LISTEN_TO_SW) {
                         processLog << "sw rd=" << radioDistance << " rn="<< clientData->range;
-                        auto errorLevel = info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss();
+                        const auto errorLevel = std::min(info.antennaConnection.getLoss(), effectErrorFromDistance(info.over, radioDistance, clientData));
+                        
                         processLog << " rl=" << errorLevel;
                         clientData->effects.getSwRadioEffect(info.radio_id)->setErrorLeveL(errorLevel);
 
                         processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getSwRadioEffect(info.radio_id), info.stereoMode);
                     } else {
                         processLog << "uw ";
-                        float underwaterDist = myPosition.distanceUnderwater(clientData->getClientPosition());
-                        float normalDist = myPosition.distanceTo(clientData->getClientPosition());
-                        clientData->effects.getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ?
-                            (underwaterDist * (clientData->range / helpers::distanceForDiverRadio()) + (normalDist - underwaterDist)) / clientData->range
-                            : info.antennaConnection.getLoss()
+                        const auto underwaterDist = myPosition.distanceUnderwater(clientData->getClientPosition());
+                        const auto normalDist = myPosition.distanceTo(clientData->getClientPosition());
+                        clientData->effects.getUnderwaterRadioEffect(info.radio_id)->setErrorLeveL(
+                            std::min((underwaterDist * (clientData->range / helpers::distanceForDiverRadio()) + (normalDist - underwaterDist)) / clientData->range
+                            , info.antennaConnection.getLoss())
                         );
                         processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getUnderwaterRadioEffect(info.radio_id), info.stereoMode);
                     }
                 }
                                                            break;
                 case PTTDelayArguments::subtypes::airborne:
-                    clientData->effects.getAirborneRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss());
+                    clientData->effects.getAirborneRadioEffect(info.radio_id)->setErrorLeveL(std::min(info.antennaConnection.getLoss(), effectErrorFromDistance(info.over, radioDistance, clientData)));
                     processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getAirborneRadioEffect(info.radio_id), info.stereoMode);
                     break;
                 case PTTDelayArguments::subtypes::digital_lr:
                     processLog << "lr rd=" << radioDistance << " rn=" << clientData->range;
-                    clientData->effects.getLrRadioEffect(info.radio_id)->setErrorLeveL(info.antennaConnection.isNull() ? effectErrorFromDistance(info.over, radioDistance, clientData) : info.antennaConnection.getLoss());
+                    clientData->effects.getLrRadioEffect(info.radio_id)->setErrorLeveL(std::min(info.antennaConnection.getLoss(), effectErrorFromDistance(info.over, radioDistance, clientData)));
                     processRadioEffect(radio_buffer, channels, sampleCount, volumeLevel * 0.35f, clientData->effects.getLrRadioEffect(info.radio_id), info.stereoMode);
                     break;
                 case  PTTDelayArguments::subtypes::phone:
@@ -606,25 +608,26 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                     break;
             }
         }
+
         if (info.on == receivingRadioType::LISTED_ON_GROUND) {
 
-            float distance_from_radio = myPosition.distanceTo(info.pos);
+            const auto distanceFromRadio = myPosition.distanceTo(info.pos);
 
-            const float radioVehicleVolumeLoss = std::clamp(myVehicleDescriptor.vehicleIsolation + info.vehicle.vehicleIsolation, 0.0f, 0.99f);
+            const auto radioVehicleVolumeLoss = std::clamp(myVehicleDescriptor.vehicleIsolation + info.vehicle.vehicleIsolation, 0.0f, 0.99f);
 
             helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, SPEAKER_GAIN, (clientData->effects.getSpeakerFilter(info.radio_id)));
             //Special handling for Radios that are louder than normal max. == statically placed radios
-            float speakerDistance = (info.volume < 20) ? (info.volume / 10.f) * TFAR::getInstance().m_gameData.speakerDistance : info.volume*1.9f;
+            const auto speakerDistance = (info.volume < 20) ? (info.volume / 10.f) * TFAR::getInstance().m_gameData.speakerDistance : info.volume*1.9f;
             if (radioVehicleVolumeLoss < 0.01f || isInSameVehicle) {
-                helpers::applyGain(radio_buffer, sampleCount, channels, helpers::volumeAttenuation(distance_from_radio, shouldPlayerHear, speakerDistance));
+                helpers::applyGain(radio_buffer, sampleCount, channels, helpers::volumeAttenuation(distanceFromRadio, shouldPlayerHear, speakerDistance));
             } else {
-                helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, helpers::volumeAttenuation(distance_from_radio, shouldPlayerHear, speakerDistance, 1.0f - radioVehicleVolumeLoss) * pow((1.0f - radioVehicleVolumeLoss), 1.2f), (clientData->effects.getFilterVehicle(info.radio_id, radioVehicleVolumeLoss)));
+                helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, helpers::volumeAttenuation(distanceFromRadio, shouldPlayerHear, speakerDistance, 1.0f - radioVehicleVolumeLoss) * pow((1.0f - radioVehicleVolumeLoss), 1.2f), (clientData->effects.getFilterVehicle(info.radio_id, radioVehicleVolumeLoss)));
             }
             if (info.waveZ < UNDERWATER_LEVEL) {
                 helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(radio_buffer, channels, sampleCount, CANT_SPEAK_GAIN, (clientData->effects.getFilterCantSpeak(info.radio_id)));
             }
-            auto relativePosition = myPosition.directionTo(info.pos);
-            auto myViewDirection = myData->getViewDirection();
+            const auto relativePosition = myPosition.directionTo(info.pos);
+            const auto myViewDirection = myData->getViewDirection();
 
             clientData->effects.getClunk(info.radio_id)->process(radio_buffer, channels, sampleCount, relativePosition, myViewDirection);//interaural time difference
             helpers::applyILD(radio_buffer, sampleCount, channels, relativePosition, myViewDirection);//interaural level difference
@@ -634,24 +637,6 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
             processRadioEffect(radio_buffer, channels, sampleCount, TFAR::config.get<float>(Setting::intercomVolume), clientData->effects.getLrRadioEffect("intercom"), stereoMode::stereo);
         }
 
-        bool filterWeird = false;
-        for (size_t i = 0; i < sampleCount * channels; i++) {
-            if (samples[i] > 20000 || samples[i] < -20000) {
-                filterWeird = true;
-                break;
-            }
-        }
-
-        if (filterWeird) {
-            Teamspeak::printMessageToCurrentTab(("Weird audio process ;" + processLog.str()).c_str());
-            LOG3DMUTE("Weird audio process ;" + processLog.str());
-            clientData->effects.resetRadioEffect();
-        }
-
-
-
-
-
 
         helpers::mix(samples, radio_buffer, sampleCount, channels);//Mix current Radio into samples
 
@@ -659,14 +644,23 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         delete[] radio_buffer;
     }
 
-    delete[] original_buffer;
+    delete[] originalBuffer;
 
+    const auto globalGain = TFAR::getInstance().m_gameData.globalVolume;
     helpers::applyGain(samples, sampleCount, channels, globalGain);
 
 
+
+
+    //minmax = std::minmax_element(samples, samples + (sampleCount * channels));
+    //
+    //if (*minmax.first < -20000 || *minmax.second > 20000) {
+    //    Teamspeak::printMessageToCurrentTab(("Weird audio post? " + std::to_string(*minmax.first) + "|" + std::to_string(*minmax.second)).c_str());
+    //}
+
 }
 
-//packet receive ->	decode -> onEditPlaybackVoiceDataEvent -> 3D positioning -> onEditPostProcessVoiceDataEvent -> mixing -> onEditMixedPlaybackVoiceDataEvent -> speaker output
+//packet receive -> decode -> onEditPlaybackVoiceDataEvent -> 3D positioning -> onEditPostProcessVoiceDataEvent -> mixing -> onEditMixedPlaybackVoiceDataEvent -> speaker output
 //Data from other clients to us. After 3D processing
 void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask) {
 
@@ -689,16 +683,16 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 
     if (channels != 2) {
         short* stereo = new short[sampleCount * 2];
-        for (int q = 0; q < sampleCount; q++) {
-            for (int g = 0; g < 2; g++)
+        for (auto q = 0; q < sampleCount; q++) {
+            for (auto g = 0; g < 2; g++)
                 stereo[q * 2 + g] = samples[q * channels + g];
         }
 
         processVoiceData(serverConnectionHandlerID, clientID, stereo, sampleCount, 2);
-        for (int q = 0; q < sampleCount; q++) {
-            for (int g = 0; g < 2; g++)
+        for (auto q = 0; q < sampleCount; q++) {
+            for (auto g = 0; g < 2; g++)
                 samples[q * channels + g] = stereo[q * 2 + g];
-            for (int g = 2; g < channels; g++)
+            for (auto g = 2; g < channels; g++)
                 samples[q * channels + g] = 0;
         }
         delete[] stereo;
@@ -719,7 +713,7 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
     //processVoiceData is always modifying data so we need copy.
     short* voice = new short[sampleCount * 2];
     if (channels == 1) {  //copy to stereo
-        for (int q = 0; q < sampleCount; q++) {
+        for (auto q = 0; q < sampleCount; q++) {
             voice[q * 2] = samples[q];
             voice[q * 2 + 1] = samples[q];
         }
@@ -727,7 +721,7 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
         memcpy(voice, samples, sampleCount * 2 * sizeof(short));
     } else {
         uint32_t posInTarget = 0;
-        for (int32_t q = 0; q < sampleCount*channels; q += channels) {
+        for (auto q = 0; q < sampleCount*channels; q += channels) {
             voice[posInTarget++] = samples[q];//copy left channel
             voice[posInTarget++] = samples[q + 1];//copy right channel
         }
@@ -736,12 +730,12 @@ void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, sh
 
     processVoiceData(serverConnectionHandlerID, clientDataDir->myClientData->clientId, voice, sampleCount, 2, true);
 
-    TFAR::getInstance().getPlaybackHandler()->appendPlayback("my_radio_voice", voice, sampleCount, 2);
+    TFAR::getPlaybackHandler()->appendPlayback("my_radio_voice", voice, sampleCount, 2);
     delete[] voice;
 }
 
 void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHandlerID, anyID clientID, float distance, float* volume) {
-    *volume = 1.0f;	// custom gain applied
+    *volume = 1.0f;// custom gain applied
 }
 
 #pragma endregion VoiceProcessing
@@ -751,15 +745,15 @@ void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHa
 void ts3plugin_onClientSelfVariableUpdateEvent(uint64 serverConnectionHandlerID, int flag, const char* oldValue, const char* newValue) {
     if (flag == CLIENT_FLAG_TALKING && TFAR::getInstance().getCurrentlyInGame()) {
         std::string one = "1";
-        bool start = (one == newValue);
+        const bool start = (one == newValue);
 
-        auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
+        const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
         if (clientDataDir && clientDataDir->myClientData) {
             clientDataDir->myClientData->clientTalkingNow = start;
         }
-        TSServerID serverId = Teamspeak::getCurrentServerConnection();
-        std::string myNickname = Teamspeak::getMyNickname(serverId);
-        std::string command = "VOLUME\t" + myNickname + "\t" + std::to_string(TFAR::getInstance().m_gameData.myVoiceVolume) + "\t" + (start ? "true" : "false");
+        const auto serverId = Teamspeak::getCurrentServerConnection();
+        const auto myNickname = Teamspeak::getMyNickname(serverId);
+        const auto command = "VOLUME\t" + myNickname + "\t" + std::to_string(TFAR::getInstance().m_gameData.myVoiceVolume) + "\t" + (start ? "true" : "false");
         Logger::log(LoggerTypes::pluginCommands, "Send " + command);
         Teamspeak::sendPluginCommand(serverId, TFAR::getInstance().getPluginID(), command, PluginCommandTarget_CURRENT_CHANNEL);
     }
@@ -773,8 +767,7 @@ void ts3plugin_onClientSelfVariableUpdateEvent(uint64 serverConnectionHandlerID,
             set_talk_to_true = true;
         }
         if (set_talk_to_true) {
-            //TODO:
-            /*DWORD error;
+            / *DWORD error;
             if ((error = ts3Functions.setClientSelfVariableAsInt(ts3Functions.getCurrentServerConnectionHandlerID(), CLIENT_INPUT_DEACTIVATED, INPUT_ACTIVE)) != ERROR_ok) {
                 log("Can't active talking by tangent", error);
             }
@@ -787,25 +780,25 @@ void ts3plugin_onClientSelfVariableUpdateEvent(uint64 serverConnectionHandlerID,
     */
 }
 
-void processAllTangentRelease(TSServerID serverId, std::vector<std::string> &tokens) {
-    auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverId);
+void processAllTangentRelease(TSServerID serverId, const std::vector<std::string_view> &tokens) {
+    const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverId);
     if (!clientDataDir) return;
-    const std::string nickname = tokens[1];//only copying for readability.. hope compiler optimizes that out
+    const auto nickname = tokens[1];//only copying for readability.. hope compiler optimizes that out
     auto clientData = clientDataDir->getClientData(nickname);
     if (!clientData) return;
 
     clientData->currentTransmittingTangentOverType = sendingRadioType::LISTEN_TO_NONE;
 }
 
-void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, std::string &command) {
+void processTangentPress(TSServerID serverId, const std::vector<std::string_view> &tokens, std::string_view command) {
     std::vector<LISTED_INFO> listedInfos;
-    std::string nickname = tokens.back();
+    const auto nickname = tokens.back();
     //Input validation first.
-    auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverId);
+    const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverId);
     if (!clientDataDir) return;
     auto senderClientData = clientDataDir->getClientData(nickname);
     if (!senderClientData) {
-        log_string(std::string("PLUGIN FROM UNKNOWN NICKNAME ") + nickname);
+        log_string(std::string("PLUGIN FROM UNKNOWN NICKNAME ").append(nickname));
         return;
     }
     auto myClientData = clientDataDir->myClientData;
@@ -815,10 +808,10 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     if (myClientData == senderClientData) //We received our own tangent press.
         return;
 
-    senderClientData->circularLog("Inc Tangent " + command);
+    senderClientData->circularLog(std::string("Inc Tangent ").append(command));
 
-    auto time = std::chrono::system_clock::now();
-    bool pressed = (tokens[1] == "PRESSED");
+    const auto time = std::chrono::system_clock::now();
+    const bool pressed = (tokens[1] == "PRESSED");
 
     if (!pressed) //Need to do this before we reset all his variables because after that we won't receive him anymore
         listedInfos = senderClientData->isOverRadio(myClientData, senderClientData->canUseSWRadio, senderClientData->canUseLRRadio, senderClientData->canUseDDRadio);
@@ -829,13 +822,14 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
     else
         sendingRadioType = sendingRadioType::LISTEN_TO_SW;
 
-    std::string subtype = tokens[4];
-    int range = helpers::parseArmaNumberToInt(tokens[3]);
+    auto frequency = tokens[2];
+    const auto range = helpers::parseArmaNumberToInt(tokens[3]);
+    const auto subtype = tokens[4];
 
-    std::string frequency = tokens[2];
-    bool playPressed = false;
 
-    bool alive = TFAR::getInstance().m_gameData.alive;
+    auto playPressed = false;
+
+    const auto alive = TFAR::getInstance().m_gameData.alive;
 
 
 
@@ -867,12 +861,13 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
         senderClientData->setCurrentTransmittingFrequency(frequency);
     } else {
         senderClientData->currentTransmittingTangentOverType = sendingRadioType::LISTEN_TO_NONE;
-        senderClientData->setCurrentTransmittingFrequency("prev_" + frequency);
+        //prev_ is just for debugging. Might aswell be empty string
+        senderClientData->setCurrentTransmittingFrequency(std::string("prev_").append(frequency));
     }
 
     senderClientData->range = pressed ? range : 0; //Setting range to 0 on transmit end helps identifying if he is currently sending
 
-    auto clientId = senderClientData->clientId;
+    const auto clientId = senderClientData->clientId;
     bool transmissionCounted = false;
 
     std::stringstream tangLog;
@@ -892,9 +887,9 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
         recvLog << "RECV\n##\n" << listedInfo << "##\n";
 
         if (alive && listedInfo.on != receivingRadioType::LISTED_ON_NONE && listedInfo.on != receivingRadioType::LISTED_ON_INTERCOM) {
-            auto vehicleDescriptor = myClientData->getVehicleDescriptor();
+            const auto vehicleDescriptor = myClientData->getVehicleDescriptor();
 
-            float vehicleVolumeLoss = 0.f;
+            auto vehicleVolumeLoss = 0.f;
             bool vehicleCheck = true;
 
             if (listedInfo.on == receivingRadioType::LISTED_ON_GROUND) {
@@ -902,7 +897,7 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
                 vehicleCheck = (vehicleDescriptor.vehicleName == listedInfo.vehicle.vehicleName);
             }
 
-            float gain = helpers::volumeMultiplifier(static_cast<float>(listedInfo.volume)) * TFAR::getInstance().m_gameData.globalVolume;
+            const auto gain = helpers::volumeMultiplifier(static_cast<float>(listedInfo.volume)) * TFAR::getInstance().m_gameData.globalVolume;
             recvLog << "gain " << gain << "\n";
             recvLog << "gvol " << TFAR::getInstance().m_gameData.globalVolume << "\n";
             if (listedInfo.on == receivingRadioType::LISTED_ON_GROUND) {
@@ -920,13 +915,13 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
 
             switch (PTTDelayArguments::stringToSubtype(subtype)) {
                 case PTTDelayArguments::subtypes::digital:
-                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/sw/remote_start" : "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
+                    TFAR::getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/sw/remote_start" : "radio-sounds/sw/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
                 case PTTDelayArguments::subtypes::digital_lr:
-                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/lr/remote_start" : "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
+                    TFAR::getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/lr/remote_start" : "radio-sounds/lr/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
                 case PTTDelayArguments::subtypes::airborne:
-                    TFAR::getInstance().getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/ab/remote_start" : "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
+                    TFAR::getPlaybackHandler()->playWavFile(serverId, playPressed ? "radio-sounds/ab/remote_start" : "radio-sounds/ab/remote_end", gain, listedInfo.pos, listedInfo.on == receivingRadioType::LISTED_ON_GROUND, listedInfo.volume, listedInfo.waveZ < UNDERWATER_LEVEL, vehicleVolumeLoss, vehicleCheck, listedInfo.stereoMode);
                     break;
             }
 
@@ -935,54 +930,58 @@ void processTangentPress(TSServerID serverId, std::vector<std::string> &tokens, 
         senderClientData->circularLog(recvLog.str());
     }
     if (!playPressed) {
-        myClientData->receivingTransmission -= 1;
-        myClientData->receivingFrequencies.erase(frequency);
+        auto found = myClientData->receivingFrequencies.find(frequency);
+        if (found != myClientData->receivingFrequencies.end()) {
+            myClientData->receivingTransmission -= 1;
+            myClientData->receivingFrequencies.erase(found);
+        }
+
         senderClientData->circularLog("TPEH NRecv");
     }
 
     setGameClientMuteStatus(serverId, clientId, { true,!listedInfos.empty() });
 }
 
-void processPluginCommand(std::string command) {
-    std::vector<std::string> tokens = helpers::split(command, '\t'); // may not be used in nickname
-    TSServerID serverId = Teamspeak::getCurrentServerConnection();
+void processPluginCommand(std::string_view command) {
+    auto tokens = helpers::split(command, '\t'); // may not be used in nickname
+    const auto serverId = Teamspeak::getCurrentServerConnection();
 
-    auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverId);
+    const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverId);
     if (!clientDataDir) return;
 
 
-    //PRESSED is 7 tokens with half-duplex	plus 2 tokens for canUseDD and canUseSW
-    if ((tokens.size() == 8 || tokens.size() == 9) && (tokens[0] == "TANGENT" || tokens[0] == "TANGENT_LR" || tokens[0] == "TANGENT_DD")) {
+    //PRESSED is 7 tokens with half-duplex plus 2 tokens for canUseDD and canUseSW
+    if ((tokens.size() == 8 || tokens.size() == 9) && (tokens[0] == "TANGENT"sv || tokens[0] == "TANGENT_LR"sv || tokens[0] == "TANGENT_DD"sv)) {
         processTangentPress(serverId, tokens, command);
-    } else if (tokens.size() == 2 && tokens[0] == "RELEASE_ALL_TANGENTS") {
+    } else if (tokens.size() == 2 && tokens[0] == "RELEASE_ALL_TANGENTS"sv) {
         processAllTangentRelease(serverId, tokens);
-    } else if (tokens.size() == 4 && tokens[0] == "VOLUME") {
-        std::string nickname = tokens[1];
+    } else if (tokens.size() == 4 && tokens[0] == "VOLUME"sv) {
+        auto nickname = tokens[1];
         auto clientData = clientDataDir->getClientData(nickname);
         if (!clientData) return; //Don't know who the sender is.. so we don't care
 
-        const std::string volume = tokens[2];
-        bool start = helpers::isTrue(tokens[3]);
-        bool myCommand = clientData == clientDataDir->myClientData;
+        const auto volume = tokens[2];
+        const bool start = helpers::isTrue(tokens[3]);
+        const bool myCommand = clientData == clientDataDir->myClientData;
 
-        clientData->voiceVolume = std::stoi(volume);
+        clientData->voiceVolume = std::atoi(volume.data());
         clientData->pluginEnabled = true;
         clientData->pluginEnabledCheck = std::chrono::system_clock::now();
         clientData->clientTalkingNow = start;
         if (!myCommand) {
             setGameClientMuteStatus(serverId, clientData->clientId);
         }
-    } else if (tokens.size() == 2 && tokens[0] == "REQVOL") {//#TODO request volume onGameStart for each client not currently known
-        TSClientID clientID = std::stoi(tokens[1]);
+    } else if (tokens.size() == 2 && tokens[0] == "REQVOL"sv) {//#TODO request volume onGameStart for each client not currently known
         if (!clientDataDir->myClientData)
             return;
-        std::string myNickname = clientDataDir->myClientData->getNickname();
-        bool curTalking = clientDataDir->myClientData->clientTalkingNow;
-        std::string cmd = "VOLUME\t" + myNickname + "\t" + std::to_string(TFAR::getInstance().m_gameData.myVoiceVolume) + "\t" + (curTalking ? "true" : "false");
+        const TSClientID clientID = std::atoi(tokens[1].data());
+        const auto myNickname = clientDataDir->myClientData->getNickname();
+        const bool curTalking = clientDataDir->myClientData->clientTalkingNow;
+        const auto cmd = "VOLUME\t" + myNickname + "\t" + std::to_string(TFAR::getInstance().m_gameData.myVoiceVolume) + "\t" + (curTalking ? "true" : "false");
 
         Teamspeak::sendPluginCommand(Teamspeak::getCurrentServerConnection(), TFAR::getInstance().getPluginID(), cmd, PluginCommandTarget_CLIENT, { clientID });
     } else {
-        log_string(std::string("UNKNOWN PLUGIN COMMAND ") + command);
+        log_string(std::string("UNKNOWN PLUGIN COMMAND ").append(command));
     }
 }
 
@@ -991,7 +990,7 @@ void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char
     log_string(std::string("ON PLUGIN COMMAND ") + pluginName + " " + pluginCommand, LogLevel_DEVEL);
     if (Teamspeak::getCurrentServerConnection() == serverConnectionHandlerID) {
         if (strncmp(pluginName, PLUGIN_NAME, strlen(PLUGIN_NAME)) == 0) {
-            processPluginCommand(std::string(pluginCommand));
+            processPluginCommand(std::string_view(pluginCommand));
         } else {
             Logger::log(LoggerTypes::teamspeakClientlog, "Plugin command event failure", LogLevel_ERROR);
         }
@@ -1004,7 +1003,7 @@ void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char
 
 
 void testFunc() {
-    TFAR::getInstance().getPlaybackHandler()->playWavFile(Teamspeak::getCurrentServerConnection(),
+    TFAR::getPlaybackHandler()->playWavFile(Teamspeak::getCurrentServerConnection(),
         "radio-sounds/lr/remote_start",
         //0.2401f
         0.f

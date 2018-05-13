@@ -1,13 +1,11 @@
 #pragma once
-#include <stdint.h>
+#include <cstdint>
 #include <map>
-#include <deque>
 #include <atomic>
 #include <vector>
 #include "clunk/wav_file.h"
 #include "common.hpp"
 #include <memory>
-#include <chrono>
 #include <functional>
 #include <thread>
 #include "Locks.hpp"
@@ -29,16 +27,16 @@ enum class playbackType {
 
 class playbackBase {
 protected:
-    playbackBase() {}
-    ~playbackBase() {}
+    playbackBase() = default;
+    ~playbackBase() = default;
 public:
     //************************************
     // Method:    getSamples
     // FullName:  playbackBase::getSamples
     // Returns:   uint32_t availableSamples - the actual amount of samples available in data
     // Parameter: short * & data - will contain pointer to data after call
-    // Description:	Used to retrieve a Pointer to the beginning of the internal buffer.	 
-    //				After processing cleanSamples should be called with the amount of availableSamples returned by this function 
+    // Description: Used to retrieve a Pointer to the beginning of the internal buffer.	 
+    //              After processing cleanSamples should be called with the amount of availableSamples returned by this function 
     //************************************
     virtual size_t getSamples(const short*& data) = 0;
     //************************************
@@ -76,8 +74,8 @@ public:
 
 //************************************
 // Class:    playbackWavStereo
-// Description:	A basic wav playback that only has processing for setting the stereo channel.
-//				Construction is slow because processing stereo of setting is done in constructor.
+// Description: A basic wav playback that only has processing for setting the stereo channel.
+//              Construction is slow because processing stereo of setting is done in constructor.
 //************************************
 class playbackWavStereo : public playbackBase {
 public:
@@ -99,8 +97,8 @@ public:
     // FullName:  playbackWavStereo::getSamples
     // Returns:   uint32_t availableSamples - the actual amount of samples available in data
     // Parameter: short * & data - will contain pointer to data after call
-    // Description:	Used to retrieve a Pointer to the beginning of the internal buffer.	 
-    //				After processing cleanSamples should be called with the amount of availableSamples returned by this function 
+    // Description: Used to retrieve a Pointer to the beginning of the internal buffer.	 
+    //              After processing cleanSamples should be called with the amount of availableSamples returned by this function 
     //************************************
     size_t getSamples(const short*& data) override;
     //************************************
@@ -116,8 +114,8 @@ public:
     // FullName:  playbackWavStereo::samplesReady
     // Returns:   bool ready - If all samples are processed and ready for playback
     // Description: This can be used to determine if a playback that has effects applied to it 
-    //				has all samples processed and is ready to output them.
-    //				If this returns false then getSamples would block till the thread doing the processing is done. 
+    //              has all samples processed and is ready to output them.
+    //              If this returns false then getSamples would block till the thread doing the processing is done. 
     //************************************
     bool samplesReady() override { return true; }
     //************************************
@@ -148,8 +146,8 @@ private:
 class playbackWavRaw : public playbackBase {
 public:
     //playbackWavRaw(short* samples, size_t sampleCount, uint8_t channels); //#DOCS
-    playbackWavRaw();; //#DOCS
-    virtual ~playbackWavRaw() {};
+    playbackWavRaw(); //#DOCS
+    virtual ~playbackWavRaw() = default;
     //************************************
     // Method:    getSamples
     // FullName:  playbackWavRaw::getSamples
@@ -215,9 +213,9 @@ public:
     // FullName:  playbackWavProcessing::getSamples
     // Returns:   uint32_t availableSamples - the actual amount of samples available in data
     // Parameter: short * & data - will contain pointer to data after call
-    // Description:	Used to retrieve a Pointer to the beginning of the internal buffer.	 
-    //				After processing cleanSamples should be called with the amount of availableSamples returned by this function
-    //				If multithreading is enabled this can block until all processing is done!
+    // Description: Used to retrieve a Pointer to the beginning of the internal buffer.	 
+    //              After processing cleanSamples should be called with the amount of availableSamples returned by this function
+    //              If multithreading is enabled this can block until all processing is done!
     //************************************
     size_t getSamples(const short*& data) override;
     //************************************
@@ -233,8 +231,8 @@ public:
     // FullName:  playbackWavProcessing::samplesReady
     // Returns:   bool ready - If all samples are processed and ready for playback
     // Description: This can be used to determine if a playback that has effects applied to it 
-    //				has all samples processed and is ready to output them.
-    //				If this returns false then getSamples would block till the thread doing the processing is done. 
+    //              has all samples processed and is ready to output them.
+    //              If this returns false then getSamples would block till the thread doing the processing is done. 
     //************************************
     bool samplesReady() override;
     //************************************
@@ -266,7 +264,7 @@ private:
 class PlaybackHandler {
 public:
     PlaybackHandler();
-    ~PlaybackHandler();
+    ~PlaybackHandler() = default;
 
     void onEditMixedPlaybackVoiceDataEvent(short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask);
     void appendPlayback(std::string name, short* samples, int sampleCount, int channels);
@@ -279,7 +277,7 @@ public:
 
 
     void playWavFile(TSServerID serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, Position3D position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode = stereoMode::stereo);
-    void playWavFile(const char* fileNameWithoutExtension) const;
+    static void playWavFile(const char* fileNameWithoutExtension);
     void playWavFile(TSServerID serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, stereoMode stereo);
 private:
     using LockGuard_shared = LockGuard_shared<CriticalSectionLock>;

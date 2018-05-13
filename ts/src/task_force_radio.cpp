@@ -1,6 +1,6 @@
 #include "task_force_radio.hpp"
 #include <Windows.h>
-#include <wininet.h>
+#include <WinInet.h>
 #include "common.hpp"
 #include <thread>
 #include <locale>
@@ -19,7 +19,7 @@ TFAR::TFAR() {
         Logger::log(LoggerTypes::profiler, "On Game Disconnected", LogLevel_DEVEL);
         Teamspeak::unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
         if (getCurrentlyInGame()) {
-            TFAR::getInstance().getPlaybackHandler()->playWavFile("radio-sounds/off");
+            TFAR::getPlaybackHandler()->playWavFile("radio-sounds/off");
             onGameEnd();
             TFAR::config.setRefresh();
         }
@@ -37,7 +37,7 @@ TFAR::TFAR() {
 
     });
 
-    onGameStart.connect([this]() {
+    onGameStart.connect([]() {
         Logger::log(LoggerTypes::profiler, "On Respawn", LogLevel_DEVEL);
         if (!Teamspeak::isConnected())
             return;
@@ -45,10 +45,9 @@ TFAR::TFAR() {
         Teamspeak::moveToSeriousChannel();
     });
 
-    onGameEnd.connect([this]() {
+    onGameEnd.connect([]() {
         Logger::log(LoggerTypes::profiler, "On Game End", LogLevel_DEVEL);
         TSServerID currentServer = ts3Functions.getCurrentServerConnectionHandlerID();
-        TSClientID myClientID = Teamspeak::getMyId(currentServer);
         Teamspeak::moveFromSeriousChannel(currentServer);
         Teamspeak::resetMyNickname(currentServer);
         Teamspeak::unmuteAll(currentServer); //this may be called twice. If End was caused by PluginDisconnect. But will return immediatly if there are no muted clients
@@ -71,6 +70,7 @@ TFAR::TFAR() {
         onTeamspeakClientJoined.removeAllSlots();
         onTeamspeakClientLeft.removeAllSlots();
         onTeamspeakClientUpdated.removeAllSlots();
+        debugUI.stop();
     });
     config.configValueSet.connect([this](const Setting& setting) {
         static std::chrono::system_clock::time_point lastMove;
@@ -110,7 +110,7 @@ TFAR::TFAR() {
         diag << TS_INDENT << TS_INDENT << "tangentPressed: " << m_gameData.tangentPressed << "\n";
         diag << TS_INDENT << TS_INDENT << "pttDelay: " << m_gameData.pttDelay.count() << "ms\n";
 
-        std::array<char*, 3> stereoModeToString{ "stereo","left","right" };
+        std::array<std::string_view, 3> stereoModeToString{ "stereo"sv, "left"sv, "right"sv };
         diag << TS_INDENT << TS_INDENT << "mySRFreq:\n";
         for (auto& it : m_gameData.mySwFrequencies) {
             diag << TS_INDENT << TS_INDENT << TS_INDENT << it.first << ":\n";
@@ -142,18 +142,16 @@ TFAR::TFAR() {
 
 }
 
-
-TFAR::~TFAR() {}
-
 TFAR& TFAR::getInstance() {
     static TFAR tfarSingleton;
     return tfarSingleton;
 }
 
 settings TFAR::config;//declaring the static config
+DebugUI TFAR::debugUI;//declaring the static config
 
 void TFAR::checkIfSeriousModeEnabled(TSServerID serverID) {
-    std::string	serious_mod_channel_name = TFAR::config.get<std::string>(Setting::serious_channelName);
+    std::string serious_mod_channel_name = TFAR::config.get<std::string>(Setting::serious_channelName);
     bool isSerious = false;
     if (!serious_mod_channel_name.empty() && Teamspeak::isInChannel(serverID, Teamspeak::getMyId(serverID), serious_mod_channel_name)) isSerious = true;
     if (isSeriousMode != isSerious) {
@@ -171,9 +169,9 @@ bool TFAR::isUpdateAvailable() {
     if (!InternetGetConnectedState(&r, 0)) return false;
     if (r & INTERNET_CONNECTION_OFFLINE) return false;
 
-    HINTERNET Initialize = InternetOpen(L"TFAR", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
-    HINTERNET Connection = InternetConnect(Initialize, UPDATE_URL, INTERNET_DEFAULT_HTTP_PORT, NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0);
-    HINTERNET File = HttpOpenRequest(Connection, NULL, UPDATE_FILE, NULL, NULL, NULL, 0, 0);
+    const HINTERNET Initialize = InternetOpen(L"TFAR", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+    const HINTERNET Connection = InternetConnect(Initialize, UPDATE_URL, INTERNET_DEFAULT_HTTP_PORT, NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0);
+    const HINTERNET File = HttpOpenRequest(Connection, NULL, UPDATE_FILE, NULL, NULL, NULL, 0, 0);
 
     if (HttpSendRequest(File, NULL, 0, NULL, 0)) {
         while (InternetReadFile(File, &ch, 1, &dwBytes)) {
@@ -186,7 +184,7 @@ bool TFAR::isUpdateAvailable() {
     InternetCloseHandle(Connection);
     InternetCloseHandle(Initialize);
 
-    std::string currentVersion = PLUGIN_VERSION;
+    const std::string currentVersion = PLUGIN_VERSION;
     if (pluginVersion.length() > 3) {
         return Version(pluginVersion) > Version(currentVersion);
     } else {
@@ -194,7 +192,7 @@ bool TFAR::isUpdateAvailable() {
     }
 }
 #include <sstream>
-void TFAR::trackPiwik(const std::vector<std::string>& piwikData) {
+void TFAR::trackPiwik(const std::vector<std::string_view>& piwikDataIn) {
 
     /*
     piwikData
@@ -202,27 +200,40 @@ void TFAR::trackPiwik(const std::vector<std::string>& piwikData) {
          0 "TRACK",
          1 string actiontype,
          2 string uid,
-         3 array customVariables	[1,"name","value"]
+         3 array customVariables    [1,"name","value"]
      }
 
     */
+    std::vector<std::string> piwikData;
+    for (auto& it : piwikDataIn)
+        piwikData.emplace_back(it);
 
-
-    std::thread([piwikData]() {
+    std::thread([piwikData = std::move(piwikData)]() {
 
         struct trackerCustomVariable {
             unsigned int customVarID;
             std::string name;
             std::string value;
         };
-        auto parseCustomVariables = [](const std::string& customVarArray) -> std::vector<trackerCustomVariable> {
+        auto parseCustomVariables = [](std::string_view customVarArray) -> std::vector<trackerCustomVariable> {
             std::vector<trackerCustomVariable> out;
-            std::istringstream inStream(customVarArray);
+
+            //https://stackoverflow.com/questions/1448467/initializing-a-c-stdistringstream-from-an-in-memory-buffer
+            struct OneShotReadBuf : public std::streambuf
+            {
+                OneShotReadBuf(char* s, std::size_t n)
+                {
+                    setg(s, s, s + n);
+                }
+            };
+
+            OneShotReadBuf buf(const_cast<char*>(customVarArray.data()), customVarArray.length());
+            std::istream inStream(&buf);
             char curChar;
             //   [[1,"name","value"], [2, "name2", "value2"]]
             inStream >> curChar;//should be [
             //  [[1,"name","value"], [2, "name2", "value2"]]
-            while (curChar != '[') inStream >> curChar;	//but we still wait till [ in case input starts with whitespace
+            while (curChar != '[' && !inStream.eof()) inStream >> curChar;//but we still wait till [ in case input starts with whitespace
             //[1,"name","value"], [2, "name2", "value2"]]
 
 
@@ -283,7 +294,7 @@ void TFAR::trackPiwik(const std::vector<std::string>& piwikData) {
         std::vector<trackerCustomVariable> customVariables = parseCustomVariables(piwikData[3]);
         if (customVariables.empty()) return;
         std::stringstream request;
-        if (piwikData[1] == "beta")		 //#Release remove on release
+        if (piwikData[1] == "beta")//#Release remove on release
             request << "piwik.php?idsite=2&rec=1&url=\"piwik.dedmen.de\"";
         else
             request << "piwik.php?idsite=2&rec=1&url=\"radio.task-force.ru\"";

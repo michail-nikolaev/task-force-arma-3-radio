@@ -70,7 +70,7 @@
     [[0, 0.1, 0.2], ["Quality", "Normal", "Performance"], 1],
     2,
     {
-        If ((!isNil QGVAR(EHID_processPlayerPositions)) && {hasInterface} && {isMultiplayer}) then {
+        if ((!isNil QGVAR(EHID_processPlayerPositions)) && {hasInterface} && {isMultiplayer}) then {
             [GVAR(EHID_processPlayerPositions)] call CBA_fnc_removePerFrameHandler;
             GVAR(EHID_processPlayerPositions) = [PROFCONTEXT_NORTN(TFAR_fnc_processPlayerPositions), TFAR_PosUpdateMode] call CBA_fnc_addPerFrameHandler;
         };
@@ -520,4 +520,12 @@
     "_independent",
     1,
     {tf_independent_radio_code = GVARMAIN(radiocode_independent);}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_instantiate_instantiateAtBriefing", 
+    "CHECKBOX", 
+    [ELSTRING(settings,instantiateAtBriefing), ELSTRING(settings,instantiateAtBriefing_desc)], 
+    localize ELSTRING(settings,global), 
+    false,
+    1
 ] call CBA_Settings_fnc_init;

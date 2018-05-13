@@ -8,7 +8,7 @@
 #include "teamlog/logtypes.h"
 class ILogger {
 protected:
-    ~ILogger() {}
+    ~ILogger() = default;
 
 public:
     virtual void log(const std::string& message) = 0;
@@ -23,8 +23,8 @@ public:
 
 class FileLogger : public ILogger {
 public:
-    explicit FileLogger(std::string filePath);
-    virtual ~FileLogger();
+    explicit FileLogger(const std::string& filePath);
+    virtual ~FileLogger() = default;
 
     void log(const std::string& message) override;
     void log(const std::string& message, LogLevel _loglevel) override;
@@ -35,7 +35,7 @@ private:
 class TeamspeakLogger : public ILogger {
 public:
     explicit TeamspeakLogger(enum LogLevel defaultLoglevel);
-    virtual ~TeamspeakLogger() {}
+    virtual ~TeamspeakLogger() = default;
 
     void log(const std::string& message) override;
     void log(const std::string& message, LogLevel _loglevel) override;
@@ -45,8 +45,8 @@ private:
 
 class DebugStringLogger : public ILogger {
 public:
-    explicit DebugStringLogger() {};
-    virtual ~DebugStringLogger() {}
+    explicit DebugStringLogger() = default;
+    virtual ~DebugStringLogger() = default;
 
     void log(const std::string& message) override;
     void log(const std::string& message, LogLevel _loglevel) override;
@@ -55,7 +55,7 @@ public:
 class CircularLogger : public ILogger {
 public:
     explicit CircularLogger(uint32_t _messageCount) : messageCount(_messageCount) {};
-    virtual ~CircularLogger() {}
+    virtual ~CircularLogger() = default;
 
     void log(const std::string& message) override;
     void log(const std::string& message, LogLevel _loglevel) override;
@@ -83,8 +83,8 @@ public:
     static void log(LoggerTypes type, const std::string& message, LogLevel _loglevel);
     static std::vector<std::shared_ptr<ILogger>> getLogger(LoggerTypes type);
 private:
-    Logger();
-    ~Logger();
+    Logger() = default;
+    ~Logger() = default;
     void _registerLogger(LoggerTypes type, std::shared_ptr<ILogger> logger);
     void _log(LoggerTypes type, const std::string& message) const;
     void _log(LoggerTypes type, const std::string& message, LogLevel _loglevel) const;

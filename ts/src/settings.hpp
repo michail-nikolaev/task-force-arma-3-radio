@@ -31,7 +31,7 @@ public:
         Settings(EnumEntry),
         Setting_MAX
     };
-    static constexpr std::array<char*, static_cast<size_t>(Setting_MAX)> SettingStrings{
+    static constexpr std::array<const char*, static_cast<size_t>(Setting_MAX)> SettingStrings{
         Settings(EnumString)
     };
 
@@ -47,7 +47,8 @@ public:
     Setting() = delete;
     constexpr Setting(_enum value) : _value((value < _enum::Setting_MAX) ? value : (throw std::logic_error("invalid Enum value"))) {}
     Setting(const char* str) : _value(_from_string(str)) {}
-    Setting(const std::string&s) : _value(_from_string(s.c_str())) {}
+    Setting(const std::string& s) : _value(_from_string(s.c_str())) {}
+    Setting(std::string_view s) : _value(_from_string(s.data())) {}
     constexpr operator _enum() const { return _value; }
     _enum     _value;
 };
@@ -67,19 +68,21 @@ public:
     settingValue(const float& value) : type(settingType::t_float), floatValue(value) {}
     settingValue(const std::string& value) : type(settingType::t_string), stringValue(new std::string(value)) {}
     settingValue(const char* value) : type(settingType::t_string), stringValue(new std::string(value)) {}
-    void operator=(const bool& value) {
+    settingValue& operator=(const bool& value) {
         switch (type) {
             case settingType::t_bool: boolValue = value;        break;
             case settingType::t_float: floatValue = value ? 1.f : 0.f;  break;
             case settingType::t_string: stringValue->assign(value ? "true" : "false");  break;
         }
+        return *this;
     }
-    void operator=(const float& value) {
+    settingValue& operator=(const float& value) {
         switch (type) {
             case settingType::t_bool: boolValue = value > 0.f; break;
             case settingType::t_float: floatValue = value; break;
             case settingType::t_string: stringValue->assign(std::to_string(value)); break;
         }
+        return *this;
     }
     void setString(const std::string& value) const {
         stringValue->assign(value);
@@ -127,8 +130,8 @@ private:
 
 class settings {
 public:
-    settings() {}
-    ~settings() {}
+    settings() = default;
+    ~settings() = default;
 
     static bool isValidKey(Setting key) {
         return key < Setting::Setting_MAX;
@@ -148,10 +151,17 @@ public:
         configValueSet(key);
     }
 
+    void set(Setting key, std::string_view value) {
+        LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
+        values[key].setString(std::string(value));
+        needRefresh = false;
+        configValueSet(key);
+    }
+
     template<typename TYPE>
     TYPE get(Setting key) {
         //Using an invalid key on get will crash. But get is only used with compile-time known keys for now anyway.
-        if (std::is_same<TYPE, std::string>::value) {	//Only lock for types that are big enough to need mutex
+        if (std::is_same<TYPE, std::string>::value) {//Only lock for types that are big enough to need mutex
             LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
             return values[key];
         }

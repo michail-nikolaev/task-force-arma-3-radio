@@ -7,22 +7,22 @@
 struct unitPositionPacket;
 
 enum class gameCommand {
-    TS_INFO,//Synchronous
-    POS,//Synchronous
-    IS_SPEAKING,//Synchronous
-    FREQ,	 //Async
-    KILLED,	 //Async
-    TRACK,	 //Async
-    DFRAME,	 //Async
-    SPEAKERS,//Async
-    TANGENT, //Async //TANGENT or TANGENT_LR or TANGENT_DD
-    RELEASE_ALL_TANGENTS, //Async
-    SETCFG,	//Async
-    MISSIONEND,	//Async
+    TS_INFO,                //Synchronous
+    POS,                    //Synchronous
+    IS_SPEAKING,            //Synchronous
+    FREQ,                   //Async
+    KILLED,                 //Async
+    TRACK,                  //Async
+    DFRAME,                 //Async
+    SPEAKERS,               //Async
+    TANGENT,                //Async //TANGENT or TANGENT_LR or TANGENT_DD
+    RELEASE_ALL_TANGENTS,   //Async
+    SETCFG,                 //Async
+    MISSIONEND,             //Async
     AddRadioTower,
     DeleteRadioTower,
     RECV_FREQS,
-    collectDebugInfo, //Async
+    collectDebugInfo,       //Async
     unknown
 };
 
@@ -34,22 +34,22 @@ public:
     void queueCommand(const std::string& command);
     std::string processCommand(const std::string& command);
 
-    static gameCommand toGameCommand(const boost::string_ref& textCommand, size_t tokenCount);
+    static gameCommand toGameCommand(std::string_view textCommand, size_t tokenCount);
 private:
     void threadRun();
-    void processAsynchronousCommand(const std::string& command);//Called inside thread
+    void processAsynchronousCommand(const std::string& command) const;//Called inside thread
 
-    void processSpeakers(std::vector<std::string>& tokens);
-    void processUnitKilled(std::string &&name, TSServerID serverConnection);
+    void processSpeakers(std::vector<std::string_view>& tokens) const;
+    void processUnitKilled(std::string &&name, TSServerID serverConnection) const;
 
-    void processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet) const;
-    static std::string ts_info(const boost::string_ref &command);
+    static void processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet);
+    static std::string ts_info(std::string_view command);
 
     static void process_tangent_off(PTTDelayArguments arguments);
 
-    static void disableVoiceAndSendCommand(std::string commandToBroadcast, dataType::TSServerID currentServerConnectionHandlerID, bool pressed);
+    static void disableVoiceAndSendCommand(std::string_view commandToBroadcast, dataType::TSServerID currentServerConnectionHandlerID, bool pressed);
 
-    static std::string convertNickname(const std::string& nickname);
+    static std::string convertNickname(std::string_view nickname);
 
 
     std::queue<std::string> commandQueue;

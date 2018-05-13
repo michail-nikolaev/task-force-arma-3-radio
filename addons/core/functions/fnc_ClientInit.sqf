@@ -39,7 +39,6 @@ TFAR_currentUnit = call TFAR_fnc_currentUnit;
 
 tf_lastNearFrameTick = diag_tickTime;
 tf_lastFarFrameTick = diag_tickTime;
-TFAR_RadioReqLinkFirstItem = true;//Radio Request Link first Item
 TF_respawnedAt = time;//first spawn so.. respawned now
 
 [   {!(isNull (findDisplay 46))},
@@ -168,31 +167,25 @@ if (player call TFAR_fnc_isForcedCurator) then {
 
     if !(TFAR_currentUnit getVariable ["TFAR_HandlersSet",false]) then {
         TFAR_currentUnit addEventHandler ["Take", {
-            private _class = configFile >> "CfgWeapons" >> (_this select 2);
-            if !(isClass _class) exitWith {};
-            if (isNumber (_class >> "tf_radio")) exitWith {
-                [(_this select 2), getPlayerUID player] call TFAR_fnc_setRadioOwner;
+            params ["", "", "_item"];
+            if (_item call TFAR_fnc_isRadio) exitWith {
+                [_item, getPlayerUID player] call TFAR_fnc_setRadioOwner;
             };
-            if (isNumber (_class >> "tf_prototype")) then {
+            if (_item call TFAR_fnc_isPrototypeRadio) then {
                 call TFAR_fnc_radioReplaceProcess;
             };
         }];
         TFAR_currentUnit addEventHandler ["Put", {
-            private _class = configFile >> "CfgWeapons" >> (_this select 2);
-            if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
-                [(_this select 2), ""] call TFAR_fnc_setRadioOwner;
+            params ["", "", "_item"];
+            if (_item call TFAR_fnc_isRadio) then {
+                [_item, ""] call TFAR_fnc_setRadioOwner;
             };
         }];
         TFAR_currentUnit addEventHandler ["Killed", {
             params ["_unit"];
-            private _items = (assignedItems _unit) + (items _unit);
             {
-                _class = configFile >> "CfgWeapons" >> _x;
-                if (isClass _class AND {isNumber (_class >> "tf_radio")}) then {
-                    [_x, ""] call TFAR_fnc_setRadioOwner;
-                };
-                true;
-            } count _items;
+                [_x, ""] call TFAR_fnc_setRadioOwner;
+            } forEach ([_unit] call CBA_fnc_uniqueUnitItems) select {_x call TFAR_fnc_isRadio};
         }];
         TFAR_currentUnit setVariable ["TFAR_HandlersSet", true];
     };
@@ -221,14 +214,16 @@ if (player call TFAR_fnc_isForcedCurator) then {
 
 player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 
+if (getMissionConfigValue["respawnOnStart", 0] >= 0) then {
+    call TFAR_fnc_processRespawn;
+};
+
 player addEventHandler ["killed", {
     GVAR(use_saved_sr_setting) = true;
     GVAR(use_saved_lr_setting) = true;
-    TFAR_RadioReqLinkFirstItem = true;
     call TFAR_fnc_hideHint;
 }];
 
-call TFAR_fnc_processRespawn; //Handle our current spawn
 
 
 [   {!((isNil "TF_server_addon_version") and (time < 20))},

@@ -83,30 +83,27 @@ void serverDataDirectory::verify() {
 }
 
 bool serverData::hasClientData(TSClientID clientID) const {
-    auto clientData = getClientData(clientID);//using public function so we have our lock
+    const auto clientData = getClientData(clientID);//using public function so we have our lock
     if (!clientData) return false;
-    if (abs(TFAR::getInstance().m_gameData.currentDataFrame - clientData->dataFrame) <= 1) {
-        return true;
-    }
-    return false;
+    return abs(TFAR::getInstance().m_gameData.currentDataFrame - clientData->dataFrame) <= 1;
 }
 
 std::shared_ptr<clientData> serverData::getClientData(TSClientID clientID) const {
     LockGuard_shared lock(&m_lock);
 
-    auto found = findClientData(clientID);
+    const auto found = findClientData(clientID);
     if (found != data.end()) return std::get<2>(*found);
     return std::shared_ptr<clientData>();
 }
 
-std::shared_ptr<clientData> serverData::getClientData(const std::string& nickname) const {
+std::shared_ptr<clientData> serverData::getClientData(std::string_view nickname) const {
     LockGuard_shared lock(&m_lock);
-    auto found = findClientData(nickname);
+    const auto found = findClientData(nickname);
     if (found != data.end()) return std::get<2>(*found);
     return std::shared_ptr<clientData>();
 }
 
-void serverData::forEachClient(std::function<void(const std::shared_ptr<clientData>&)> func) {
+void serverData::forEachClient(const std::function<void(const std::shared_ptr<clientData>&)>& func) {
     LockGuard_shared lock(&m_lock);
     for (auto& cl : data) {
         func(std::get<2>(cl));
@@ -116,7 +113,7 @@ void serverData::forEachClient(std::function<void(const std::shared_ptr<clientDa
 void serverData::clientJoined(TSClientID clientID, const std::string& clientNickname) {
     LockGuard_exclusive lock(&m_lock);
     if (containsClientData(clientID)) {
-        auto found = findClientData(clientID);
+        const auto found = findClientData(clientID);
         if (!std::get<2>(*found)) {//std::shared_ptr is nullptr
             std::get<2>(*found) = std::make_shared<clientData>(clientID);//Give it a valid clientData
         }
@@ -143,7 +140,7 @@ void serverData::clientJoined(TSClientID clientID, const std::string& clientNick
 
 void serverData::clientLeft(TSClientID clientID) {
     LockGuard_exclusive lock(&m_lock);
-    if (clientID == -2) {	 //handle -2 clientID to remove all clients
+    if (clientID == -2) {//handle -2 clientID to remove all clients
         data.clear();
         if (myClientData) {
             insertInData(myClientData->getNickname(), myClientData->clientId, myClientData);//We will always stay on server unless we disconnect
@@ -153,7 +150,7 @@ void serverData::clientLeft(TSClientID clientID) {
     if (myClientData && myClientData->clientId == clientID) return; //Don't remove my ID... Thats removed only when it really changes.. serverreconnect
     if (!containsClientData(clientID))
         return;
-    auto clientData = findClientData(clientID);
+    const auto clientData = findClientData(clientID);
     std::get<2>(*clientData)->addModificationLog(std::string("clientLeft ") + std::to_string(clientID.baseType()));
     data.erase(clientData);
 }
@@ -162,7 +159,7 @@ void serverData::clientUpdated(TSClientID clientID, const std::string& clientNic
     LockGuard_shared lock_shared(&m_lock);
     if (!containsClientData(clientID))
         return;
-    auto clientDataIterator = findClientData(clientID);
+    const auto clientDataIterator = findClientData(clientID);
     auto clientData = std::get<2>(*clientDataIterator);
     if (clientData->getNickname() == clientNickname)
         return;
@@ -182,7 +179,7 @@ void serverData::clientUpdated(TSClientID clientID, const std::string& clientNic
 void serverData::debugPrint(std::stringstream& diag, bool withPos) const {
     //Logger::log(LoggerTypes::pluginCommands, "DebugPrintStart###");
     for (auto& it : data) {
-        std::shared_ptr<clientData> cData = std::get<2>(it);
+        const auto& cData = std::get<2>(it);
 
 
         diag << TS_INDENT << TS_INDENT << TS_INDENT << cData << ":\n";
@@ -213,20 +210,20 @@ void serverData::debugPrint(std::stringstream& diag, bool withPos) const {
 void serverData::verify() {
     LockGuard_shared slock(&m_lock);
     for (auto i = data.begin(); i < data.end(); ++i) {
-        std::shared_ptr<clientData> cData = std::get<2>(*i);
-        auto nick = cData->getNickname();
+        const auto cData = std::get<2>(*i);
+        const auto nick = cData->getNickname();
         if (std::get<0>(*i) != std::hash<indexedType>()(nick)) {
             slock.unlock();
             LockGuard_exclusive lock(&m_lock);
 
-            std::string message = "HASH mismatch! Tell Dedmen! " + nick + "=" + std::to_string(std::hash<indexedType>()(nick)) + " IDX " + std::to_string(std::get<0>(*i));
+            auto message = "TFAR: HASH mismatch! Tell Dedmen! " + nick + "=" + std::to_string(std::hash<indexedType>()(nick)) + " IDX " + std::to_string(std::get<0>(*i));
             
             for (auto& it : cData->getModificationLog()) {
                 message += "\n" + it;
             }
             
             Teamspeak::printMessageToCurrentTab(message.c_str());
-            auto cid = cData->clientId;
+            const auto cid = cData->clientId;
             data.erase(i);
             lock.unlock();
             clientJoined(cid, nick);

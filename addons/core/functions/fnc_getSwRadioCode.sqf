@@ -19,6 +19,6 @@
 */
 params[["_radio", "", [""]]];
 
-If (GVARMAIN(radioCodesDisabled)) exitWith {""};
+if (GVARMAIN(radioCodesDisabled)) exitWith {""};
 
 (_radio call TFAR_fnc_getSwSettings) param [TFAR_CODE_OFFSET, ""]
