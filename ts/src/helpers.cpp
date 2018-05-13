@@ -191,8 +191,8 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     if (totalVolume > 1.f) {
         mult *= 1.f / totalVolume;
     }
-    static uint64_t ind = 0;
-    ind++;
+    //static uint64_t ind = 0;
+    //ind++;
     //if (ind % 128)
     //    OutputDebugStringA((std::to_string(gainFrontLeft) + "_" + std::to_string(gainFrontRight) + "_" + std::to_string(mult)+" total: "+std::to_string(totalVolume*mult)+ "\n").c_str());
     gainFrontLeft *= mult; //make sure left+right = 1.25 else it would decrease overall volume too much which we don't want

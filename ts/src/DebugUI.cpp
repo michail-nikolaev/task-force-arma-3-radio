@@ -173,7 +173,7 @@ void DebugUI::threadRun() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+    glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 
     GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "TFAR Debug UI", nullptr, nullptr); // Windowed
     if (window == nullptr) {
@@ -247,11 +247,11 @@ void DebugUI::threadRun() {
 
     //Init verticies
     glm::vec3 vertList[] = {
-        { 2.0000, -0.0000, -0.0000 },
-        { 0.0000, 1.0000, 1.0000 },
-        { -0.0000, -1.0000, 1.0000 },
-        { -0.0000, -1.0000, -1.0000 },
-        { 0.0000, 1.0000, -1.0000 }
+        { 1.0000, -0.0000, -0.0000 },
+        { 0.0000, 0.25, 0.25 },
+        { -0.0000, -0.25, 0.25 },
+        { -0.0000, -0.25, -0.25 },
+        { 0.0000, 0.25, -0.25 }
     };
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -404,7 +404,7 @@ void DebugUI::threadRun() {
                 text << "vehicle: " << vehDesc.vehicleName << " iso: " << vehDesc.vehicleIsolation << " intercom:" << vehDesc.intercomSlot << '\n';
 
 
-                textRenderer->addTextQueue(text.str(), position, .01f, cli->clientTalkingNow ? glm::vec3(1.f, 0.f, 0.2f) : glm::vec3(0.5, 0.8f, 0.2f));
+                textRenderer->addTextQueue(text.str(), position, .005f, cli->clientTalkingNow ? glm::vec3(1.f, 0.f, 0.2f) : glm::vec3(0.5, 0.8f, 0.2f));
 
             });
 
@@ -513,7 +513,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     lastX = xpos;
     lastY = ypos;
 
-    camera.ProcessMouseMovement(xoffset, yoffset);
+    //camera.ProcessMouseMovement(xoffset, yoffset);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
