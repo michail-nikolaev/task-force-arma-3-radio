@@ -29,7 +29,7 @@ if (!TFAR_currentNearPlayersProcessed) then {
 
     private _nearPlayersCount = count TFAR_currentNearPlayersProcessing;
 
-    private _playersToProcess = _nearPlayersCount min 30; //Plugin POS info takes about 10 microseconds meaning 10 position updates block for 0.1 ms
+    private _playersToProcess = _nearPlayersCount min 30; //Plugin POS info takes about 100 microseconds meaning 10 position updates block for 1 ms
     if (_playersToProcess == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
 
     {

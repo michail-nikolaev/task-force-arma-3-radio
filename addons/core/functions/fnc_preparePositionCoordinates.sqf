@@ -21,7 +21,9 @@
 */
 params ["_unit", "_nearPlayer","_unitName"];
 
-private _pos = call (_unit getVariable ["TF_fnc_position", TFAR_fnc_defaultPositionCoordinates]); //_this get's forwarded without specifying it - perf improvement
+private _isSpectating = _unit getVariable ["TFAR_forceSpectator",false];
+
+(call (_unit getVariable ["TF_fnc_position", TFAR_fnc_defaultPositionCoordinates])) params ["_pos", "_curViewDir"]; //_this get's forwarded without specifying it - perf improvement
 
 private _isolated_and_inside = false; //_isInVehicle && {_unit call TFAR_fnc_vehicleIsIsolatedAndInside};
 private _vehicle = "no"; //if (_isInVehicle) then {_unit call TFAR_fnc_vehicleId} else {"no"};
@@ -58,8 +60,7 @@ if (_nearPlayer) then {
                     private _radio_id = netId (_x select 0);
                     TFAR_speakerRadios pushBack ([_radio_id,_frequencies joinString "|",_unitName,[], _x call TFAR_fnc_getLrVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);
                 };
-                true;
-            } count (_unit call TFAR_fnc_lrRadiosList);
+            } forEach (_unit call TFAR_fnc_lrRadiosList);
         };
 
         if (_unit getVariable ["TFAR_SRSpeakersEnabled", false] && _useSw) then {
@@ -70,11 +71,10 @@ if (_nearPlayer) then {
                     if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
                         _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
                     };
-                    private _radio_id = _x;
-                    TFAR_speakerRadios pushBack ([_radio_id,_frequencies joinString "|",_unitName,[], _x call TFAR_fnc_getSwVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);
+
+                    TFAR_speakerRadios pushBack ([_x,_frequencies joinString "|",_unitName,[], _x call TFAR_fnc_getSwVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);
                 };
-                true;
-            } count (_unit call TFAR_fnc_radiosList);
+            } forEach (_unit call TFAR_fnc_radiosList);
         };
     };
 
@@ -85,16 +85,12 @@ if (_nearPlayer) then {
     _terrainInterception = _unit call TFAR_fnc_calcTerrainInterception;
 };
 
-private _isSpectating = _unit getVariable ["TFAR_forceSpectator",false];
 private _isEnemy = false;
 if (_isRemotePlayer && {TFAR_currentUnit getVariable ["TFAR_forceSpectator",false]}) then { //If we are not spectating we are not interested if he is enemy
     _isEnemy = [playerSide, side _unit] call BIS_fnc_sideIsEnemy;
 };
 
-private _curViewDir = if (_isSpectating) then {(positionCameraToWorld [0,0,1]) vectorDiff (positionCameraToWorld [0,0,0])} else {getCameraViewDirection _unit};//Inlined version of TFAR_fnc_currentDirection
-
 private _data = [
-    //"POS",
     "POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12	%13",
     _unitName,
     _pos, _curViewDir,//Position
