@@ -47,7 +47,7 @@ GVAR(instanciationIsReady) = false;
                 ["TFAR_RadioRequestResponseEvent", ["ERROR:47"], _requestingUnit] call CBA_fnc_targetEvent;
             };
 
-            private _response = [_radio_request, side _requestingUnit] call TFAR_fnc_instanciateRadios;
+            private _response = [_radio_request, _requestingUnit] call TFAR_fnc_instanciateRadios;
             diag_log format["Send TFAR_RadioRequestResponseEvent %1 %2",_response,diag_tickTime]; //#TODO remove
             ["TFAR_RadioRequestResponseEvent", [_response], _requestingUnit] call CBA_fnc_targetEvent;
 
