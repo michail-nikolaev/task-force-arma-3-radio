@@ -844,6 +844,16 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
         TFAR::debugUI.run();
         return 0; /* Plugin handled command */
     }
+    if (std::string(command).compare("rstflt") == 0) {
+        TSServerID currentServerConnectionHandlerID = Teamspeak::getCurrentServerConnection();
+        auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(currentServerConnectionHandlerID);
+        if (!clientDataDir) return 1;
+        clientDataDir->forEachClient([](const std::shared_ptr<clientData>& cli) {
+            cli->effects.resetRadioEffect();
+            ts3Functions.printMessageToCurrentTab((std::string("filter reset ") + cli->getNickname()).c_str());
+        });
+        return 0; /* Plugin handled command */
+    }
     return 1;  /* Plugin didn't handle command */
 }
 

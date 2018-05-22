@@ -65,9 +65,10 @@ class RscEditLCD;
 class HiddenButton;
 class HiddenRotator;
 class HiddenFlip;
-#include "anprc148jem\ui\anprc148jem.ext"
-#include "anprc152\ui\anprc152.ext"
-#include "anprc154\ui\anprc154.ext"
-#include "fadak\ui\fadak.ext"
-#include "pnr1000a\ui\pnr1000a.ext"
-#include "rf7800\ui\rf7800str.ext"
+
+#include "anprc148jem\ui\anprc148jem.hpp"
+#include "anprc152\ui\anprc152.hpp"
+#include "anprc154\ui\anprc154.hpp"
+#include "fadak\ui\fadak.hpp"
+#include "pnr1000a\ui\pnr1000a.hpp"
+#include "rf7800\ui\rf7800str.hpp"

@@ -107,16 +107,8 @@ class anarc210_radio_dialog
         w = 0.03 * safezoneW;
         h = 0.05 * safezoneH;
         tooltip = ECSTRING(core,set_frequency);
-        action = QUOTE(
-            _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANPRC210_EDIT);
-            if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {
-                [ARR_2(TF_lr_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setLrFrequency;
-                call TFAR_fnc_hideHint;
-            } else {
-                hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ)]
-            };
-            ["CH%1"] call TFAR_fnc_updateLRDialogToChannel;
-        );
+        onButtonClick = QUOTE([((ctrlParent (_this select 0))) displayCtrl IDC_ANPRC210_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter;);
+        action = "";
     };
     class clear: HiddenButton
     {
@@ -126,10 +118,7 @@ class anarc210_radio_dialog
         w = 0.03 * safezoneW;
         h = 0.05 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE(
-            ctrlSetText [ARR_2(IDC_ANPRC210_EDIT, '')];
-            ctrlSetFocus ((findDisplay IDD_ANPRC210_RADIO_DIALOG) displayCtrl IDC_ANPRC210_EDIT);
-        );
+        action = QUOTE(ctrlSetText [ARR_2(IDC_ANPRC210_EDIT, '')];ctrlSetFocus ((findDisplay IDD_ANPRC210_RADIO_DIALOG) displayCtrl IDC_ANPRC210_EDIT););
     };
     class increase_volume: HiddenRotator
     {
@@ -148,10 +137,7 @@ class anarc210_radio_dialog
         y = 0.5253 * safezoneH + safezoneY;
         w = 0.03 * safezoneW;
         h = 0.05 * safezoneH;
-        action = QUOTE(
-            [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;
-            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;
-        );
+        action = QUOTE([ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;[TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;);
         tooltip = ECSTRING(core,stereo_settings);
     };
     class channel_01: HiddenButton
