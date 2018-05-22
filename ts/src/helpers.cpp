@@ -7,8 +7,10 @@
 #include <algorithm>
 #include "task_force_radio.hpp"
 #include <bitset>
-
-#define CAN_USE_SSE_ON(x) (IsProcessorFeaturePresent(PF_XMMI64_INSTRUCTIONS_AVAILABLE) && (reinterpret_cast<uintptr_t>(x) % 16 == 0))
+#include <public_errors.h>
+#define CAN_USE_SSE_ON(x) false
+//#TODO reenable
+//(IsProcessorFeaturePresent(PF_XMMI64_INSTRUCTIONS_AVAILABLE) && (reinterpret_cast<uintptr_t>(x) % 16 == 0))
 
 void helpers::applyGain(short * samples, size_t sampleCount, int channels, float directTalkingVolume) {
     if (directTalkingVolume == 0.0f) {
@@ -74,11 +76,11 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Positi
     X3DAUDIO_LISTENER listener{};
 
 
-   
+
     std::tie(listener.OrientFront.x, listener.OrientFront.y, listener.OrientFront.z) = myViewDirection.get();
     //listener.OrientFront.z = std::clamp(listener.OrientFront.z, -0.65f, 1.f);
     //listener.OrientFront.x = listener.OrientFront.x;//East and West are mixed up
-    //listener.OrientFront.y = listener.OrientFront.y;//North and South are mixed up   
+    //listener.OrientFront.y = listener.OrientFront.y;//North and South are mixed up
     //listener.OrientFront.z = 0;
 
 
@@ -103,11 +105,11 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
 
 
     std::tie(listener.OrientTop.x, listener.OrientTop.y, listener.OrientTop.z) = myUpVector.get();// Direction3D(0/*-std::get<0>(myViewDirection.get())*/, -std::get<2>(myViewDirection.get()), std::get<1>(myViewDirection.get())).get();
-    
+
     //std::tie(listener.OrientTop.x, listener.OrientTop.y, listener.OrientTop.z) = Direction3D(-std::get<0>(myViewDirection.get()), -std::get<1>(myViewDirection.get()), 1.f).get();
 
-    
-    
+
+
     //listener.OrientTop = { 0,0,1 };
     std::tie(listener.Position.x, listener.Position.y, listener.Position.z) = emitterPosition.get();
     listener.pCone = nullptr;
@@ -334,7 +336,7 @@ short* helpers::allocatePool(int sampleCount, int channels, short* samples) {
 
 void helpers::mix(short* to, const short* from, int sampleCount, int channels) {//#TODO SSE2 implementation
     for (int q = 0; q < sampleCount * channels; q++) {
-        int sum = static_cast<int>(to[q]) + static_cast<int>(from[q]);
+        int sum = (int)to[q] + (int)from[q];
 
         to[q] = std::clamp(sum, SHRT_MIN, SHRT_MAX);
     }
@@ -375,7 +377,7 @@ vehicleDescriptor helpers::getVehicleDescriptor(std::string_view vehicleID) {
     } else {
         if (vehicleID.find_last_of('_') != std::string::npos) {
             result.vehicleName = vehicleID.substr(0, vehicleID.find_last_of('_'));
-           
+
             result.vehicleIsolation = std::atof(vehicleID.substr(vehicleID.find_last_of('_') + 1).data()); //#TODO  std::from_chars()
         } else {
             result.vehicleName = vehicleID;
