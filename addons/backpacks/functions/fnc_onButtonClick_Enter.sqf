@@ -1,23 +1,21 @@
-#include "\z\tfar\addons\backpacks\script_component.hpp"
+#include "script_component.hpp"
 
 /*
-    Name: TFAR_backpacks_fnc_onButtonClick_Enter
+  Name: TFAR_backpacks_fnc_onButtonClick_Enter
 
-    Author(s):
+  Author: Dorbedo
+    Button "Enter" was pressed
 
+  Arguments:
+    0: Edit control or IDC <CONTROL/SCALAR>
 
-    Description:
-        Button "Enter" was pressed
+  Return Value:
+    Nothing
 
-    Parameters:
-        0: CONTROL/SCALAR - Edit control or IDC
+  Example:
+    [TF_lr_dialog_radio displayCtrl IDC_ANPRC152_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter;
 
-    Returns:
-        Nothing
-
-    Example:
-        [TF_lr_dialog_radio displayCtrl IDC_ANPRC152_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter;
-
+  Public: No
 */
 
 params [["_ctrlEdit", 0, [0, controlNull]]];
