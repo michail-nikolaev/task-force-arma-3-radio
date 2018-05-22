@@ -1,3 +1,3 @@
 #include "script_component.hpp"
 
-PREP(updateProgrammatorDialog);
+#include "XEH_PREP.sqf"
