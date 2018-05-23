@@ -16,171 +16,155 @@ $[
     [1609,"enter",[1,"SET",["0.542776 * safezoneW + safezoneX","0.530812 * safezoneH + safezoneY","0.04125 * safezoneW","0.055 * safezoneH"],[0,0,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
-
-
-class rf7800str_radio_dialog
-{
+class rf7800str_radio_dialog {
     idd = IDD_RF7800STR_RADIO_DIALOG;
     movingEnable = 1;
     controlsBackground[] = { };
     objects[] = { };
     onUnload = "['OnRadioOpen', [player, TF_sw_dialog_radio, false, 'rf7800str_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-    onLoad = QUOTE(if (sunOrMoon < 0.2) then {((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText 'PATHTOF(rf7800\ui\rf7800str_n.paa)';((_this select 0) displayCtrl IDC_MICRODAGR_BACKGROUND) ctrlSetText 'PATHTOF(microdagr\ui\microdagr_n.paa)';};_this call TFAR_fnc_updateProgrammatorDialog;);
-    controls[]=
-    {
-    	background,
-    	channel_Switch,
-    	stereo,
-    	next_channel,
-    	prev_channel,
-    	speakers,
-    	volume_Switch,
-    	microdagr_background,
-    	channel_edit,
-    	edit,
-    	clear,
-    	enter
+    onLoad = QUOTE(if (sunOrMoon < 0.2) then { \
+            ((_this select 0) displayCtrl TF_IDD_BACKGROUND) ctrlSetText 'PATHTOF(rf7800\ui\rf7800str_n.paa)'; \
+            ((_this select 0) displayCtrl IDC_MICRODAGR_BACKGROUND) ctrlSetText 'PATHTOF(microdagr\ui\microdagr_n.paa)'; \
+        }; \
+        _this call TFAR_fnc_updateProgrammatorDialog;);
+    controls[]= {
+        background,
+        channel_Switch,
+        stereo,
+        next_channel,
+        prev_channel,
+        speakers,
+        volume_Switch,
+        microdagr_background,
+        channel_edit,
+        edit,
+        clear,
+        enter
     };
-    ////////////////////////////////////////////////////////
-    // GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Vogijo)
-    ////////////////////////////////////////////////////////
 
-    class background: RscBackPicture
-    {
-    	idc = IDC_RF7800STR_BACKGROUND;
-    	text = QPATHTOF(rf7800\ui\rf7800str.paa);
-    	x = -0.0207812 * safezoneW + safezoneX;
-    	y = -0.5373 * safezoneH + safezoneY;
-    	w = 0.418172 * safezoneW;
-    	h = 1.551 * safezoneH;
-    	moving = 1;
+    class background: RscBackPicture {
+        idc = IDC_RF7800STR_BACKGROUND;
+        text = QPATHTOF(rf7800\ui\rf7800str.paa);
+        x = -0.0207812 * safezoneW + safezoneX;
+        y = -0.5373 * safezoneH + safezoneY;
+        w = 0.418172 * safezoneW;
+        h = 1.551 * safezoneH;
+        moving = 1;
     };
-    class prev_channel: HiddenButton
-    {
-    	idc = IDC_RF7800STR_PREV_CHANNEL;
-    	x = 0.265391 * safezoneW + safezoneX;
-    	y = 0.6287 * safezoneH + safezoneY;
-    	w = 0.0113437 * safezoneW;
-    	h = 0.0319 * safezoneH;
-    	tooltip = ECSTRING(core,previous_channel);
-    	action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
+    class prev_channel: HiddenButton {
+        idc = IDC_RF7800STR_PREV_CHANNEL;
+        x = 0.265391 * safezoneW + safezoneX;
+        y = 0.6287 * safezoneH + safezoneY;
+        w = 0.0113437 * safezoneW;
+        h = 0.0319 * safezoneH;
+        tooltip = ECSTRING(core,previous_channel);
+        action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
     };
-    class next_channel: HiddenButton
-    {
-    	idc = IDC_RF7800STR_NEXT_CHANNEL;
-    	x = 0.265906 * safezoneW + safezoneX;
-    	y = 0.5814 * safezoneH + safezoneY;
-    	w = 0.0113437 * safezoneW;
-    	h = 0.0352 * safezoneH;
-    	tooltip = ECSTRING(core,next_channel);
-    	action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
+    class next_channel: HiddenButton {
+        idc = IDC_RF7800STR_NEXT_CHANNEL;
+        x = 0.265906 * safezoneW + safezoneX;
+        y = 0.5814 * safezoneH + safezoneY;
+        w = 0.0113437 * safezoneW;
+        h = 0.0352 * safezoneH;
+        tooltip = ECSTRING(core,next_channel);
+        action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
     };
-    class speakers: HiddenButton
-    {
-    	idc = IDC_RF7800STR_INCREASE_VOLUME;
-    	x = 0.267453 * safezoneW + safezoneX;
-    	y = 0.4626 * safezoneH + safezoneY;
-    	w = 0.0144375 * safezoneW;
-    	h = 0.0319 * safezoneH;
-    	tooltip = ECSTRING(core,speakers_settings_true);
-    	action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
+    class speakers: HiddenButton {
+        idc = IDC_RF7800STR_INCREASE_VOLUME;
+        x = 0.267453 * safezoneW + safezoneX;
+        y = 0.4626 * safezoneH + safezoneY;
+        w = 0.0144375 * safezoneW;
+        h = 0.0319 * safezoneH;
+        tooltip = ECSTRING(core,speakers_settings_true);
+        action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
     };
-    class stereo: HiddenButton
-    {
-    	idc = IDC_RF7800STR_STEREO;
-    	x = 0.265391 * safezoneW + safezoneX;
-    	y = 0.4186 * safezoneH + safezoneY;
-    	w = 0.015 * safezoneW;
-    	h = 0.02 * safezoneH;
-    	action = QUOTE([ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo;[TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;);
-    	tooltip = ECSTRING(core,stereo_settings);
+    class stereo: HiddenButton {
+        idc = IDC_RF7800STR_STEREO;
+        x = 0.265391 * safezoneW + safezoneX;
+        y = 0.4186 * safezoneH + safezoneY;
+        w = 0.015 * safezoneW;
+        h = 0.02 * safezoneH;
+        action = QUOTE([ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo; \
+            [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;);
+        tooltip = ECSTRING(core,stereo_settings);
     };
-    class channel_Switch: HiddenRotator
-    {
-    	idc = IDC_RF7800STR_PREV_CHANNEL;
-    	x = 0.122047 * safezoneW + safezoneX;
-    	y = 0.3053 * safezoneH + safezoneY;
-    	w = 0.0288750 * safezoneW;
-    	h = 0.0605 * safezoneH;
-    	tooltip = ECSTRING(core,rotator_channel);
-    	onMouseButtonDown ="[_this select 1, false] call TFAR_fnc_setChannelViaDialog;";
+    class channel_Switch: HiddenRotator {
+        idc = IDC_RF7800STR_PREV_CHANNEL;
+        x = 0.122047 * safezoneW + safezoneX;
+        y = 0.3053 * safezoneH + safezoneY;
+        w = 0.0288750 * safezoneW;
+        h = 0.0605 * safezoneH;
+        tooltip = ECSTRING(core,rotator_channel);
+        onMouseButtonDown ="[_this select 1, false] call TFAR_fnc_setChannelViaDialog;";
     };
-    class volume_Switch: HiddenRotator
-    {
-    	idc = IDC_RF7800STR_SPEAKERS;
-    	x = 0.172578 * safezoneW + safezoneX;
-    	y = 0.2899 * safezoneH + safezoneY;
-    	w = 0.0314531 * safezoneW;
-    	h = 0.0726 * safezoneH;
-    	tooltip = ECSTRING(core,rotator_volume);
-    	onMouseButtonDown = "[_this select 1, false] call TFAR_fnc_setVolumeViaDialog;";
+    class volume_Switch: HiddenRotator {
+        idc = IDC_RF7800STR_SPEAKERS;
+        x = 0.172578 * safezoneW + safezoneX;
+        y = 0.2899 * safezoneH + safezoneY;
+        w = 0.0314531 * safezoneW;
+        h = 0.0726 * safezoneH;
+        tooltip = ECSTRING(core,rotator_volume);
+        onMouseButtonDown = "[_this select 1, false] call TFAR_fnc_setVolumeViaDialog;";
     };
-    	class microdagr_background: RscBackPicture
-    {
-    	idc = IDC_MICRODAGR_BACKGROUND;
-    	text = QPATHTOF(microdagr\ui\microdagr.paa);
-    	x = 0.263445 * safezoneW + safezoneX;
-    	y = -0.0601101 * safezoneH + safezoneY;
-    	w = 0.551203 * safezoneW;
-    	h = 1.1484 * safezoneH;
-    	moving = 1;
+    class microdagr_background: RscBackPicture {
+        idc = IDC_MICRODAGR_BACKGROUND;
+        text = QPATHTOF(microdagr\ui\microdagr.paa);
+        x = 0.263445 * safezoneW + safezoneX;
+        y = -0.0601101 * safezoneH + safezoneY;
+        w = 0.551203 * safezoneW;
+        h = 1.1484 * safezoneH;
+        moving = 1;
     };
-    class channel_edit: RscEditLCD
-    {
-    	idc = IDC_MICRODAGR_CHANNEL_EDIT;
-    	text = "CH1";
-    	x = 0.481962 * safezoneW + safezoneX;
-    	y = 0.450481 * safezoneH + safezoneY;
-    	w = 0.0381562 * safezoneW;
-    	h = 0.0528 * safezoneH;
-    	moving = 1;
-    	font = "TFAR_font_dots";
-    	shadow = 2;
-    	canModify = 0;
-    	tooltip = ECSTRING(core,current_channel);
+    class channel_edit: RscEditLCD {
+        idc = IDC_MICRODAGR_CHANNEL_EDIT;
+        text = "CH1";
+        x = 0.481962 * safezoneW + safezoneX;
+        y = 0.450481 * safezoneH + safezoneY;
+        w = 0.0381562 * safezoneW;
+        h = 0.0528 * safezoneH;
+        moving = 1;
+        font = "TFAR_font_dots";
+        shadow = 2;
+        canModify = 0;
+        tooltip = ECSTRING(core,current_channel);
     };
-    class edit: RscEditLCD
-    {
-    	idc = IDC_MICRODAGR_EDIT;
-    	text = "";
-    	x = 0.522161 * safezoneW + safezoneX;
-    	y = 0.450481 * safezoneH + safezoneY;
-    	w = 0.0613594 * safezoneW;
-    	h = 0.0528 * safezoneH;
-    	moving = 1;
-    	font = "TFAR_font_dots";
-    	shadow = 2;
-    	canModify = 1;
-    	tooltip = ECSTRING(core,current_freq);
+    class edit: RscEditLCD {
+        idc = IDC_MICRODAGR_EDIT;
+        text = "";
+        x = 0.522161 * safezoneW + safezoneX;
+        y = 0.450481 * safezoneH + safezoneY;
+        w = 0.0613594 * safezoneW;
+        h = 0.0528 * safezoneH;
+        moving = 1;
+        font = "TFAR_font_dots";
+        shadow = 2;
+        canModify = 1;
+        tooltip = ECSTRING(core,current_freq);
     };
-    class clear: HiddenButton
-    {
-    	idc = IDC_MICRODAGR_CLEAR;
-    	text = "CLR";
-    	x = 0.480931 * safezoneW + safezoneX;
-    	y = 0.534113 * safezoneH + safezoneY;
-    	w = 0.0402187 * safezoneW;
-    	h = 0.0517 * safezoneH;
-    	tooltip = ECSTRING(core,clear_frequency);
-    	font = "TFAR_font_dots";
-    	shadow = 2;
-    	action = QUOTE(ctrlSetText [ARR_2(IDC_MICRODAGR_EDIT, '')];ctrlSetFocus ((findDisplay IDD_RF7800STR_RADIO_DIALOG) displayCtrl IDC_MICRODAGR_EDIT););
+    class clear: HiddenButton {
+        idc = IDC_MICRODAGR_CLEAR;
+        text = "CLR";
+        x = 0.480931 * safezoneW + safezoneX;
+        y = 0.534113 * safezoneH + safezoneY;
+        w = 0.0402187 * safezoneW;
+        h = 0.0517 * safezoneH;
+        tooltip = ECSTRING(core,clear_frequency);
+        font = "TFAR_font_dots";
+        shadow = 2;
+        action = QUOTE(ctrlSetText [ARR_2(IDC_MICRODAGR_EDIT, '')]; \
+            ctrlSetFocus ((findDisplay IDD_RF7800STR_RADIO_DIALOG) displayCtrl IDC_MICRODAGR_EDIT););
     };
-    class enter: HiddenButton
-    {
-    	idc = IDC_MICRODAGR_ENTER;
-    	text = "ENT";
-    	x = 0.542776 * safezoneW + safezoneX;
-    	y = 0.530812 * safezoneH + safezoneY;
-    	w = 0.04125 * safezoneW;
-    	h = 0.055 * safezoneH;
-    	tooltip = ECSTRING(core,set_frequency);
-    	font = "TFAR_font_dots";
-    	shadow = 2;
-		onButtonClick = QUOTE([((ctrlParent (_this select 0))) displayCtrl IDC_MICRODAGR_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter;);
-		action = "";
+    class enter: HiddenButton {
+        idc = IDC_MICRODAGR_ENTER;
+        text = "ENT";
+        x = 0.542776 * safezoneW + safezoneX;
+        y = 0.530812 * safezoneH + safezoneY;
+        w = 0.04125 * safezoneW;
+        h = 0.055 * safezoneH;
+        tooltip = ECSTRING(core,set_frequency);
+        font = "TFAR_font_dots";
+        shadow = 2;
+        onButtonClick = QUOTE([((ctrlParent (_this select 0))) displayCtrl IDC_MICRODAGR_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter;);
+        action = "";
     };
-    ////////////////////////////////////////////////////////
-    // GUI EDITOR OUTPUT END
-    ////////////////////////////////////////////////////////
 };
