@@ -34,15 +34,6 @@ def check_for_obsolete_pbos(addonspath, file):
         return True
     return False
 
-def check_workdrive(path, addonspath):
-    workdrivepath = os.path.normpath("{}/{}/{}/".format(path, MAINPREFIX, PREFIX.rstrip("_")))
-    if not os.path.exists(workdrivepath):
-        os.makedirs(workdrivepath)
-    workdrivepath = os.path.normpath(workdrivepath + "/addons")
-    if not os.path.exists(os.path.normpath(workdrivepath + "/core")):
-        os.symlink(addonspath, workdrivepath)
-    return True
-
 def main():
     print("""
   ####################
@@ -53,13 +44,6 @@ def main():
     scriptpath = os.path.realpath(__file__)
     projectpath = os.path.dirname(os.path.dirname(scriptpath))
     addonspath = os.path.join(projectpath, "addons")
-    try:
-        check_workdrive(os.path.normpath(projectpath + "/include"), addonspath)
-    except:
-        print("The virtual workdrive could not be checked.")
-        print("Please link '/addons' to 'include/{}/{}/addons'".\
-            format(MAINPREFIX, PREFIX.rstrip("_")))
-        print("or run this script as administrator")
 
     os.chdir(addonspath)
 
