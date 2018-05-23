@@ -97,7 +97,7 @@ class anarc210_radio_dialog {
         w = 0.03 * safezoneW;
         h = 0.05 * safezoneH;
         tooltip = ECSTRING(core,set_frequency);
-        onButtonClick = QUOTE([((ctrlParent (_this select 0))) displayCtrl IDC_ANPRC210_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter;);
+        onButtonClick = QUOTE([((ctrlParent (_this select 0))) displayCtrl IDC_ANPRC210_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter;);
         action = "";
     };
     class clear: HiddenButton {

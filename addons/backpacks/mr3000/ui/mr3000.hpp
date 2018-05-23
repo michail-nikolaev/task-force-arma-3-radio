@@ -76,7 +76,7 @@ class mr3000_radio_dialog {
         w = 0.0223125 * safezoneW;
         h = 0.0308069 * safezoneH;
         tooltip = ECSTRING(core,set_frequency);
-        onButtonClick = QUOTE([((ctrlParent (_this select 0))) displayCtrl IDC_MR3000_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter;);
+        onButtonClick = QUOTE([((ctrlParent (_this select 0))) displayCtrl IDC_MR3000_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter;);
         action = "";
     };
     class clear: HiddenButton {

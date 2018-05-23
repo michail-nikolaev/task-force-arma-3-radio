@@ -95,7 +95,7 @@ class bussole_radio_dialog {
         w = 0.0211406 * safezoneW;
         h = 0.0286 * safezoneH;
         tooltip = ECSTRING(core,set_frequency);
-        onButtonClick = QUOTE([((ctrlParent (_this select 0))) displayCtrl IDC_BUSSOLE_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter;);
+        onButtonClick = QUOTE([((ctrlParent (_this select 0))) displayCtrl IDC_BUSSOLE_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter;);
         action = "";
     };
     class clear: HiddenButton {

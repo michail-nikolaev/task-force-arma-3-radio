@@ -81,7 +81,7 @@ class anarc164_radio_dialog {
         h = 0.0693 * safezoneH;
         tooltip = ECSTRING(core,set_frequency);
         onButtonClick = QUOTE(playSound 'TFAR_rotatorPush'; \
-            [((ctrlParent (_this select 0))) displayCtrl IDC_ANARC164_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter;);
+            [((ctrlParent (_this select 0))) displayCtrl IDC_ANARC164_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter;);
         action = "";
     };
     class clear: HiddenRotator {
