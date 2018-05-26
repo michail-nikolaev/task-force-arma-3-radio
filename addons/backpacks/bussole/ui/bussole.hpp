@@ -105,7 +105,10 @@ class bussole_radio_dialog {
         w = 0.020625 * safezoneW;
         h = 0.0286 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE(ctrlSetText [ARR_2(IDC_BUSSOLE_EDIT, '')];ctrlSetFocus ((findDisplay IDD_BUSSOLE_RADIO_DIALOG) displayCtrl IDC_BUSSOLE_EDIT););
+        action = QUOTE( \
+            ctrlSetText [ARR_2(IDC_BUSSOLE_EDIT, '')]; \
+            ctrlSetFocus ((findDisplay IDD_BUSSOLE_RADIO_DIALOG) displayCtrl IDC_BUSSOLE_EDIT); \
+        );
     };
     class prev_channel: HiddenButton {
         idc = IDC_BUSSOLE_PREV_CHANNEL;

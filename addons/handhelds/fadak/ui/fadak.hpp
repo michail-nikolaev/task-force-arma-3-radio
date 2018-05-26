@@ -63,8 +63,10 @@ class fadak_radio_dialog {
         w = 0.0150938 * safezoneW;
         h = 0.0280062 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE(ctrlSetText [ARR_2(IDC_FADAK_EDIT, '')]; \
-            ctrlSetFocus ((findDisplay IDD_FADAK_RADIO_DIALOG) displayCtrl IDC_FADAK_EDIT););
+        action = QUOTE( \
+            ctrlSetText [ARR_2(IDC_FADAK_EDIT, '')]; \
+            ctrlSetFocus ((findDisplay IDD_FADAK_RADIO_DIALOG) displayCtrl IDC_FADAK_EDIT); \
+        );
     };
     class additional: HiddenButton {
         idc = IDC_FADAK_ADDITIONAL;
@@ -130,8 +132,10 @@ class fadak_radio_dialog {
         y = 0.6738 * safezoneH + safezoneY;
         w = 0.0164063 * safezoneW;
         h = 0.0252056 * safezoneH;
-        action = QUOTE([ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo; \
-            [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;);
+        action = QUOTE( \
+            [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo; \
+            [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume; \
+        );
         tooltip = ECSTRING(core,stereo_settings);
     };
     class channel_switch: HiddenRotator {

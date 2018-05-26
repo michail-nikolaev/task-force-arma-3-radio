@@ -87,7 +87,8 @@ class mr3000_radio_dialog {
         h = 0.0308069 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
         action = QUOTE(ctrlSetText [ARR_2(IDC_MR3000_EDIT, '')]; \
-            ctrlSetFocus ((findDisplay IDD_MR3000_RADIO_DIALOG) displayCtrl IDC_MR3000_EDIT););
+            ctrlSetFocus ((findDisplay IDD_MR3000_RADIO_DIALOG) displayCtrl IDC_MR3000_EDIT); \
+        );
     };
     class next_channel: HiddenButton {
         idc = IDC_MR3000_NEXT_CHANNEL;
@@ -236,8 +237,10 @@ class mr3000_radio_dialog {
         y = 0.5572 * safezoneH + safezoneY;
         w = 0.0216563 * safezoneW;
         h = 0.0308069 * safezoneH;
-        action = QUOTE([ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo; \
-            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;);
+        action = QUOTE( \
+            [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo; \
+            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume; \
+        );
         tooltip = ECSTRING(core,stereo_settings);
     };
     class additional: HiddenRotator {
@@ -247,9 +250,12 @@ class mr3000_radio_dialog {
         w = 0.0367463 * safezoneW;
         h = 0.0812181 * safezoneH;
         tooltip = ECSTRING(core,set_additional);
-        action = QUOTE(playSound 'TFAR_rotatorPush';[ARR_2(TF_lr_dialog_radio,TF_lr_dialog_radio call TFAR_fnc_getLrChannel)] call TFAR_fnc_setAdditionalLrChannel; \
+        action = QUOTE( \
+            playSound 'TFAR_rotatorPush'; \
+            [ARR_2(TF_lr_dialog_radio,TF_lr_dialog_radio call TFAR_fnc_getLrChannel)] call TFAR_fnc_setAdditionalLrChannel; \
             call TFAR_fnc_updateLRDialogToChannel; \
-            [ARR_2(TF_lr_dialog_radio, true)] call TFAR_fnc_showRadioInfo;);
+            [ARR_2(TF_lr_dialog_radio, true)] call TFAR_fnc_showRadioInfo; \
+        );
     };
     class volume_switch: HiddenRotator {
         idc = IDC_MR3000_VOLUME_SWITCH;

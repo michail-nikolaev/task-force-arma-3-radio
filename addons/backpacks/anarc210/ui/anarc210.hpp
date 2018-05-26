@@ -107,8 +107,10 @@ class anarc210_radio_dialog {
         w = 0.03 * safezoneW;
         h = 0.05 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE(ctrlSetText [ARR_2(IDC_ANPRC210_EDIT, '')]; \
-            ctrlSetFocus ((findDisplay IDD_ANPRC210_RADIO_DIALOG) displayCtrl IDC_ANPRC210_EDIT););
+        action = QUOTE( \
+            ctrlSetText [ARR_2(IDC_ANPRC210_EDIT, '')]; \
+            ctrlSetFocus ((findDisplay IDD_ANPRC210_RADIO_DIALOG) displayCtrl IDC_ANPRC210_EDIT); \
+        );
     };
     class increase_volume: HiddenRotator {
         idc = IDC_ANPRC210_INCREASE_VOLUME;
@@ -125,8 +127,10 @@ class anarc210_radio_dialog {
         y = 0.5253 * safezoneH + safezoneY;
         w = 0.03 * safezoneW;
         h = 0.05 * safezoneH;
-        action = QUOTE([ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo; \
-            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;);
+        action = QUOTE( \
+            [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo; \
+            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume; \
+        );
         tooltip = ECSTRING(core,stereo_settings);
     };
     class channel_01: HiddenButton {

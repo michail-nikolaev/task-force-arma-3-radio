@@ -84,7 +84,10 @@ class anprc155_radio_dialog {
         w = 0.0180469 * safezoneW;
         h = 0.0286 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE(ctrlSetText [ARR_2(IDC_ANPRC155_EDIT, '')];ctrlSetFocus ((findDisplay IDD_ANPRC155_RADIO_DIALOG) displayCtrl IDC_ANPRC155_EDIT););
+        action = QUOTE( \
+            ctrlSetText [ARR_2(IDC_ANPRC155_EDIT, '')]; \
+            ctrlSetFocus ((findDisplay IDD_ANPRC155_RADIO_DIALOG) displayCtrl IDC_ANPRC155_EDIT); \
+        );
     };
     class prev_channel: HiddenButton {
         idc = IDC_ANPRC155_PREV_CHANNEL;
@@ -119,8 +122,10 @@ class anprc155_radio_dialog {
         y = 0.5363 * safezoneH + safezoneY;
         w = 0.0180469 * safezoneW;
         h = 0.0275 * safezoneH;
-        action = QUOTE([ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo; \
-            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;);
+        action = QUOTE( \
+            [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo; \
+            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume; \
+        );
         tooltip = ECSTRING(core,stereo_settings);
     };
     class additional: HiddenButton {

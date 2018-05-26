@@ -65,8 +65,10 @@ class anprc148jem_radio_dialog {
         w = 0.0249375 * safezoneW;
         h = 0.0280062 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE(ctrlSetText [ARR_2(IDC_ANPRC148JEM_EDIT, '')]; \
-            ctrlSetFocus ((findDisplay IDD_ANPRC148JEM_RADIO_DIALOG) displayCtrl IDC_ANPRC148JEM_EDIT););
+        action = QUOTE( \
+            ctrlSetText [ARR_2(IDC_ANPRC148JEM_EDIT, '')]; \
+            ctrlSetFocus ((findDisplay IDD_ANPRC148JEM_RADIO_DIALOG) displayCtrl IDC_ANPRC148JEM_EDIT); \
+        );
     };
     class edit: RscEditLCD {
         idc = IDC_ANPRC148JEM_EDIT;
@@ -134,8 +136,10 @@ class anprc148jem_radio_dialog {
         y = 0.5726 * safezoneH + safezoneY;
         w = 0.0201094 * safezoneW;
         h = 0.0363 * safezoneH;
-        action = QUOTE([ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo; \
-            [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume;);
+        action = QUOTE( \
+            [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo; \
+            [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume; \
+        );
         tooltip = ECSTRING(core,stereo_settings);
     };
     class volume_Switch: HiddenRotator {

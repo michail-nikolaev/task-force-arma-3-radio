@@ -93,8 +93,10 @@ class rt1523g_radio_dialog {
         w = 0.036975 * safezoneW;
         h = 0.0403769 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE(ctrlSetText [ARR_2(IDC_RT1523G_EDIT, '')]; \
-            ctrlSetFocus ((findDisplay IDD_RT1523G_RADIO_DIALOG) displayCtrl IDC_RT1523G_EDIT););
+        action = QUOTE( \
+            ctrlSetText [ARR_2(IDC_RT1523G_EDIT, '')]; \
+            ctrlSetFocus ((findDisplay IDD_RT1523G_RADIO_DIALOG) displayCtrl IDC_RT1523G_EDIT); \
+        );
     };
     class enter: HiddenButton {
         idc = IDC_RT1523G_ENTER;
@@ -211,8 +213,10 @@ class rt1523g_radio_dialog {
         y = 0.627078 * safezoneH + safezoneY;
         w = 0.030975 * safezoneW;
         h = 0.0318571 * safezoneH;
-        action = QUOTE([ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo; \
-            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;);
+        action = QUOTE( \
+            [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo; \
+            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume; \
+        );
         tooltip = ECSTRING(core,stereo_settings);
     };
     class additional: HiddenButton {
