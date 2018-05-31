@@ -166,6 +166,8 @@ bool firstMouse = true;
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
+std::shared_ptr<clientData> centerTarget;
+
 void DebugUI::threadRun() {
     // glfw: initialize and configure
     // ------------------------------
@@ -356,10 +358,17 @@ void DebugUI::threadRun() {
         glBindTexture(GL_TEXTURE_2D, 148);
 
 
+      
+
 #if 1
         const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
         if (clientDataDir) {
-            auto myPos = clientDataDir->myClientData->getClientPosition();
+            if (!centerTarget) centerTarget = clientDataDir->myClientData;
+            auto localPos = clientDataDir->myClientData->getClientPosition();
+
+            textRenderer->addTextQueue("currentTarget:" + centerTarget->getNickname() + " Arrow Right/Left to change.", glm::vec3{-5,0,5}, .01f, glm::vec3(0.5, 0.8f, 0.2f));
+
+            auto myPos = centerTarget->getClientPosition();
             //camera.Position = { myPos[0], camera.Position.y, myPos[1] };
             glm::mat4 view = camera.GetViewMatrix();
             //view = glm::translate(view, { myPos[0],myPos[2], myPos[1] });
@@ -396,7 +405,7 @@ void DebugUI::threadRun() {
 
 
                 std::stringstream text;
-                text << cli->getNickname() << "(" << pos.length() <<"m) freq: " << cli->getCurrentTransmittingFrequency() << "\n subtype: " << cli->getCurrentTransmittingSubtype() << '\n';
+                text << cli->getNickname() << "(" << localPos.distanceTo(cli->getClientPosition()) <<"m) freq: " << cli->getCurrentTransmittingFrequency() << "\n subtype: " << cli->getCurrentTransmittingSubtype() << '\n';
                 
                 if (cli->objectInterception > 0)
                     text << "object interception: " << cli->objectInterception << '\n';
@@ -476,17 +485,49 @@ void processInput(GLFWwindow *window) {
     float mult = glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ? 10.f : 1.f;
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera.ProcessKeyboard(FORWARD, deltaTime * mult);
+        camera.ProcessKeyboard(up, deltaTime * mult);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera.ProcessKeyboard(BACKWARD, deltaTime* mult);
+        camera.ProcessKeyboard(down, deltaTime* mult);
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
         camera.ProcessKeyboard(LEFT, deltaTime* mult);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime* mult);
     if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
-        camera.ProcessKeyboard(up, deltaTime* mult);
+        camera.ProcessKeyboard(BACKWARD, deltaTime* mult);
     if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
-        camera.ProcessKeyboard(down, deltaTime* mult);
+        camera.ProcessKeyboard(FORWARD, deltaTime* mult);
+
+   
+
+    const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
+    if (!centerTarget) centerTarget = clientDataDir->myClientData;
+
+    std::vector<std::shared_ptr<clientData>> clientList;
+    clientDataDir->forEachClient([&](const std::shared_ptr<clientData>&d ) {
+       clientList.push_back(d);
+    });
+   
+    auto found = std::find(clientList.begin(), clientList.end(), centerTarget);
+    if (found == clientList.end()) found = clientList.begin();
+    static int press = 0;
+
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS && press!=1) {
+        ++found;
+        if (found == clientList.end()) found = clientList.begin();
+        centerTarget = *found;
+        press = 1;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS && press != 2) {
+        if (found == clientList.begin()) found = clientList.end();
+        --found;
+        centerTarget = *found;
+        press = 2;
+    }
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_RELEASE && press == 2) press = 0;
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_RELEASE && press == 1) press = 0;
+
+
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
