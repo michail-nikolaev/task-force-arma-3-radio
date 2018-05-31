@@ -25,18 +25,13 @@ $[
 ]
 */
 
-
-
-
-class mr6000l_radio_dialog
-{
+class mr6000l_radio_dialog {
     idd = IDD_MR6000L_RADIO_DIALOG;
     movingEnable = 1;
     controlsBackground[] = { };
     objects[] = { };
     onUnload = "['OnRadioOpen', [player, TF_lr_dialog_radio, true, 'mr6000l_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-    controls[]=
-    {
+    controls[]= {
         background,
         enter,
         channel_edit,
@@ -58,12 +53,7 @@ class mr6000l_radio_dialog
         additional,
         speakers
     };
-    ////////////////////////////////////////////////////////
-    // GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Vuviro)
-    ////////////////////////////////////////////////////////
-
-    class background: RscBackPicture
-    {
+    class background: RscBackPicture {
         idc = IDC_MR6000L_BACKGROUND;
         text = QPATHTOF(mr6000l\ui\mr6000l.paa);
         x = 0.0413536 * safezoneW + safezoneX;
@@ -72,8 +62,7 @@ class mr6000l_radio_dialog
         h = 0.926251 * safezoneH;
         moving = 1;
     };
-    class channel_edit: RscEditLCD
-    {
+    class channel_edit: RscEditLCD {
         idc = IDC_MR6000L_CHANNEL_EDIT;
         text = "";
         x = 0.188905 * safezoneW + safezoneX;
@@ -88,8 +77,7 @@ class mr6000l_radio_dialog
         tooltip = ECSTRING(core,current_channel);
         canModify = 0;
     };
-    class edit: RscEditLCD
-    {
+    class edit: RscEditLCD {
         idc = IDC_MR6000L_EDIT;
         x = 0.189421 * safezoneW + safezoneX;
         y = 0.329491 * safezoneH + safezoneY;
@@ -103,39 +91,29 @@ class mr6000l_radio_dialog
         tooltip = ECSTRING(core,current_freq);
         canModify = 1;
     };
-    class enter: HiddenButton
-    {
+    class enter: HiddenButton {
         idc = IDC_MR6000L_ENTER;
         x = 0.405588 * safezoneW + safezoneX;
         y = 0.610006 * safezoneH + safezoneY;
         w = 0.0500435 * safezoneW;
         h = 0.0880048 * safezoneH;
         tooltip = ECSTRING(core,set_frequency);
-        action = QUOTE(
-        _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_MR6000L_EDIT);
-        if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {
-            [ARR_2(TF_lr_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setLrFrequency;
-            call TFAR_fnc_hideHint;
-        } else {
-            hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ)]};
-            ["PRE %1"] call TFAR_fnc_updateLRDialogToChannel;
-        );
+        onButtonClick = QUOTE([((ctrlParent (_this select 0))) displayCtrl IDC_MR6000L_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter;);
+        action = "";
     };
-    class clear: HiddenButton
-    {
+    class clear: HiddenButton {
         idc = IDC_MR6000L_CLEAR;
         x = 0.23998 * safezoneW + safezoneX;
         y = 0.5011 * safezoneH + safezoneY;
         w = 0.03 * safezoneW;
         h = 0.05 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE(
-            ctrlSetText [ARR_2(IDC_MR6000L_EDIT, '')];
-            ctrlSetFocus ((findDisplay IDD_MR6000L_RADIO_DIALOG) displayCtrl IDC_MR6000L_EDIT);
+        action = QUOTE( \
+            ctrlSetText [ARR_2(IDC_MR6000L_EDIT, '')]; \
+            ctrlSetFocus ((findDisplay IDD_MR6000L_RADIO_DIALOG) displayCtrl IDC_MR6000L_EDIT); \
         );
     };
-    class prev_channel: HiddenButton
-    {
+    class prev_channel: HiddenButton {
         idc = IDC_MR6000L_PREV_CHANNEL;
         x = 0.347271 * safezoneW + safezoneX;
         y = 0.610006 * safezoneH + safezoneY;
@@ -144,8 +122,7 @@ class mr6000l_radio_dialog
         tooltip = ECSTRING(core,previous_channel);
         action = "[0, true, 'PRE %1'] call TFAR_fnc_setChannelViaDialog;";
     };
-    class next_channel: HiddenButton
-    {
+    class next_channel: HiddenButton {
         idc = IDC_MR6000L_NEXT_CHANNEL;
         x = 0.461822 * safezoneW + safezoneX;
         y = 0.611106 * safezoneH + safezoneY;
@@ -154,8 +131,7 @@ class mr6000l_radio_dialog
         tooltip = ECSTRING(core,next_channel);
         action = "[1, true, 'PRE %1'] call TFAR_fnc_setChannelViaDialog;";
     };
-    class increase_volume: HiddenRotator
-    {
+    class increase_volume: HiddenRotator {
         idc = IDC_MR6000L_INCREASE_VOLUME;
         x = 0.117193 * safezoneW + safezoneX;
         y = 0.326191 * safezoneH + safezoneY;
@@ -164,32 +140,29 @@ class mr6000l_radio_dialog
         tooltip = ECSTRING(core,rotator_volume);
         onMouseButtonDown = "[_this select 1, true] call TFAR_fnc_setVolumeViaDialog;";
     };
-    class stereo: HiddenRotator
-    {
+    class stereo: HiddenRotator {
         idc = IDC_MR6000L_STEREO;
         x = 0.114613 * safezoneW + safezoneX;
         y = 0.572604 * safezoneH + safezoneY;
         w = 0.0665527 * safezoneW;
         h = 0.110006 * safezoneH;
-        action = QUOTE(
-            playSound 'TFAR_rotatorPush';
-            [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;
-            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;
+        action = QUOTE( \
+            playSound 'TFAR_rotatorPush'; \
+            [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo; \
+            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume; \
         );
         tooltip = ECSTRING(core,stereo_settings);
     };
-    class channel_01: HiddenButton
-    {
+    class channel_01: HiddenButton {
         idc = IDC_MR6000L_CHANNEL_01;
         x = 0.347806 * safezoneW + safezoneX;
         y = 0.31079 * safezoneH + safezoneY;
         w = 0.0469481 * safezoneW;
         h = 0.0814044 * safezoneH;
-        action = "[TF_lr_dialog_radio, 0)] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
+        action = "[TF_lr_dialog_radio, 0] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
         tooltip = ECSTRING(core,radio_channel_1);
     };
-    class channel_02: HiddenButton
-    {
+    class channel_02: HiddenButton {
         idc = IDC_MR6000L_CHANNEL_02;
         x = 0.40662 * safezoneW + safezoneX;
         y = 0.30859 * safezoneH + safezoneY;
@@ -198,8 +171,7 @@ class mr6000l_radio_dialog
         action = "[TF_lr_dialog_radio, 1] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
         tooltip = ECSTRING(core,radio_channel_2);
     };
-    class channel_03: HiddenButton
-    {
+    class channel_03: HiddenButton {
         idc = IDC_MR6000L_CHANNEL_03;
         x = 0.46337 * safezoneW + safezoneX;
         y = 0.30969 * safezoneH + safezoneY;
@@ -208,8 +180,7 @@ class mr6000l_radio_dialog
         action = "[TF_lr_dialog_radio, 2] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
         tooltip = ECSTRING(core,radio_channel_3);
     };
-    class channel_04: HiddenButton
-    {
+    class channel_04: HiddenButton {
         idc = IDC_MR6000L_CHANNEL_04;
         x = 0.348838 * safezoneW + safezoneX;
         y = 0.408695 * safezoneH + safezoneY;
@@ -218,8 +189,7 @@ class mr6000l_radio_dialog
         action = "[TF_lr_dialog_radio, 3] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
         tooltip = ECSTRING(core,radio_channel_4);
     };
-    class channel_05: HiddenButton
-    {
+    class channel_05: HiddenButton {
         idc = IDC_MR6000L_CHANNEL_05;
         x = 0.406104 * safezoneW + safezoneX;
         y = 0.410895 * safezoneH + safezoneY;
@@ -228,8 +198,7 @@ class mr6000l_radio_dialog
         action = "[TF_lr_dialog_radio, 4] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
         tooltip = ECSTRING(core,radio_channel_5);
     };
-    class channel_06: HiddenButton
-    {
+    class channel_06: HiddenButton {
         idc = IDC_MR6000L_CHANNEL_06;
         x = 0.464402 * safezoneW + safezoneX;
         y = 0.410895 * safezoneH + safezoneY;
@@ -238,8 +207,7 @@ class mr6000l_radio_dialog
         action = "[TF_lr_dialog_radio, 5] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
         tooltip = ECSTRING(core,radio_channel_6);
     };
-    class channel_07: HiddenButton
-    {
+    class channel_07: HiddenButton {
         idc = IDC_MR6000L_CHANNEL_07;
         x = 0.347806 * safezoneW + safezoneX;
         y = 0.509901 * safezoneH + safezoneY;
@@ -248,8 +216,7 @@ class mr6000l_radio_dialog
         action = "[TF_lr_dialog_radio, 6] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
         tooltip = ECSTRING(core,radio_channel_7);
     };
-    class channel_08: HiddenButton
-    {
+    class channel_08: HiddenButton {
         idc = IDC_MR6000L_CHANNEL_08;
         x = 0.407652 * safezoneW + safezoneX;
         y = 0.511001 * safezoneH + safezoneY;
@@ -258,8 +225,7 @@ class mr6000l_radio_dialog
         action = "[TF_lr_dialog_radio, 7] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
         tooltip = ECSTRING(core,radio_channel_8);
     };
-    class channel_09: HiddenButton
-    {
+    class channel_09: HiddenButton {
         idc = IDC_MR6000L_CHANNEL_09;
         x = 0.462338 * safezoneW + safezoneX;
         y = 0.512101 * safezoneH + safezoneY;
@@ -268,8 +234,7 @@ class mr6000l_radio_dialog
         action = "[TF_lr_dialog_radio, 8] call TFAR_fnc_setLrChannel; [""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
         tooltip = ECSTRING(core,radio_channel_9);
     };
-    class additional: HiddenFlip
-    {
+    class additional: HiddenFlip {
         idc = IDC_MR6000L_RADIO_DIALOG_ADDITIONAL;
         x = 0.127943 * safezoneW + safezoneX;
         y = 0.464992 * safezoneH + safezoneY;
@@ -278,8 +243,7 @@ class mr6000l_radio_dialog
         tooltip = ECSTRING(core,set_additional);
         action = "[TF_lr_dialog_radio,TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel; call TFAR_fnc_updateLRDialogToChannel; [TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     };
-    class speakers: HiddenButton
-    {
+    class speakers: HiddenButton {
         idc = IDC_MR6000L_RADIO_DIALOG_SPEAKERS;
         x = 0.195417 * safezoneW + safezoneX;
         y = 0.584691 * safezoneH + safezoneY;
@@ -288,8 +252,4 @@ class mr6000l_radio_dialog
         tooltip = ECSTRING(core,speakers_settings_true);
         action = "TF_lr_dialog_radio call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
     };
-    ////////////////////////////////////////////////////////
-    // GUI EDITOR OUTPUT END
-    ////////////////////////////////////////////////////////
-
 };

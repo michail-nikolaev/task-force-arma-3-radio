@@ -45,3 +45,4 @@ ts/src/task_force_radio_plugin.VC.db
 *.cache
 
 *.db
+*.exe

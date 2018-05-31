@@ -1,30 +1,30 @@
-#define TF_RADIO_ID_full(baseClass,displayNameBase,index) class baseClass##_##index : baseClass \
+#define TF_RADIO_ID_full(baseClass,displayNameBase) class baseClass##_1 : baseClass \
     { \
-        displayName = displayNameBase index; \
+        displayName = QUOTE(displayNameBase index); \
         scope = 1; \
         scopeCurator = 1; \
         tf_prototype = 0; \
         tf_radio = 1; \
-        ace_arsenal_uniqueBase = baseClass; \
+        ace_arsenal_uniqueBase = QUOTE(baseClass); \
     };
 
 
-#define TF_RADIO_IDS_1(baseClass,displayNameBase,index,one) class baseClass##_##index : baseClass##_##one \
+#define TF_RADIO_IDS_1(baseClass,displayNameBase,index) class baseClass##_##index : baseClass##_1 \
 { \
-    displayName = displayNameBase index; \
+    displayName = QUOTE(displayNameBase index); \
 };
 
 #define TF_RADIO_IDS_10(baseClass,displayNameBase,index10) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##0,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##1,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##2,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##3,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##4,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##5,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##6,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##7,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##8,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##9,1)
+    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##0) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##1) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##2) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##3) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##4) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##5) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##6) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##7) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##8) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,index10##9)
 
 #define TF_RADIO_IDS_100(baseClass,displayNameBase,index100) \
     TF_RADIO_IDS_10(baseClass,displayNameBase,index100##0) \
@@ -40,14 +40,14 @@
 
 
 #define TF_RADIO_IDS_999(baseClass,displayNameBase) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,2,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,3,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,4,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,5,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,6,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,7,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,8,1) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,9,1) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,2) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,3) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,4) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,5) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,6) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,7) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,8) \
+    TF_RADIO_IDS_1(baseClass,displayNameBase,9) \
     TF_RADIO_IDS_10(baseClass,displayNameBase,1) \
     TF_RADIO_IDS_10(baseClass,displayNameBase,2) \
     TF_RADIO_IDS_10(baseClass,displayNameBase,3) \
@@ -66,8 +66,8 @@
     TF_RADIO_IDS_100(baseClass,displayNameBase,7) \
     TF_RADIO_IDS_100(baseClass,displayNameBase,8) \
     TF_RADIO_IDS_100(baseClass,displayNameBase,9) \
-    TF_RADIO_IDS_1(baseClass,displayNameBase,1000,1)
+    TF_RADIO_IDS_1(baseClass,displayNameBase,1000)
 
 #define TF_RADIO_IDS(baseClass,displayNameBase) \
-    TF_RADIO_ID_full(baseClass,displayNameBase,1) \
+    TF_RADIO_ID_full(baseClass,displayNameBase) \
     TF_RADIO_IDS_999(baseClass,displayNameBase)
