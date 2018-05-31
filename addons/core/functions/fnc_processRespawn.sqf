@@ -45,7 +45,7 @@
         //In my tests in editor it took 0.89 seconds till the backpack is down
         [{backpack TFAR_currentUnit == ""},
         {
-            TFAR_currentUnit addBackpack ((call TFAR_fnc_getDefaultRadioClasses) select 0);
+            TFAR_currentUnit addBackpack ((TFAR_currentUnit call TFAR_fnc_getDefaultRadioClasses) select 0);
             {
                 if (TFAR_currentUnit canAddItemToBackpack _x) then {
                     TFAR_currentUnit addItemToBackpack _x;

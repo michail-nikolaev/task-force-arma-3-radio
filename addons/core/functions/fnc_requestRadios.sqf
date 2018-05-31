@@ -79,10 +79,10 @@ GVAR(lastRadioRequestEH_ID) = [
 
             if (_newID > 0) then {
                 if (_oldItem == "ItemRadio") then {
-                    _oldItem = (call TFAR_fnc_getDefaultRadioClasses) param [[2, 1] select ((TFAR_givePersonalRadioToRegularSoldier) || {leader _requestedUnit == _requestedUnit} || {rankId _requestedUnit >= 2}), ""];
+                    _oldItem = (TFAR_currentUnit call TFAR_fnc_getDefaultRadioClasses) param [[2, 1] select ((TFAR_givePersonalRadioToRegularSoldier) || {leader _requestedUnit == _requestedUnit} || {rankId _requestedUnit >= 2}), ""];
                 };
                 private _newItem = format["%1_%2", [_oldItem, "tf_parent", ""] call DFUNC(getWeaponConfigProperty), _newID];
-               
+
                 _requestedUnit linkItem _newItem;
                 _newRadios pushBack _newItem;
 
@@ -109,7 +109,7 @@ GVAR(lastRadioRequestEH_ID) = [
             _requestedUnit removeItem _oldItem;
 
             if (_oldItem == "ItemRadio") then {
-                _oldItem = (call TFAR_fnc_getDefaultRadioClasses) param [[2, 1] select ((TFAR_givePersonalRadioToRegularSoldier) or {leader _requestedUnit == _requestedUnit} or {rankId _requestedUnit >= 2}), ""];
+                _oldItem = (TFAR_currentUnit call TFAR_fnc_getDefaultRadioClasses) param [[2, 1] select ((TFAR_givePersonalRadioToRegularSoldier) or {leader _requestedUnit == _requestedUnit} or {rankId _requestedUnit >= 2}), ""];
             };
 
             private _newItem = format["%1_%2", [_oldItem, "tf_parent", ""] call DFUNC(getWeaponConfigProperty), _newID];

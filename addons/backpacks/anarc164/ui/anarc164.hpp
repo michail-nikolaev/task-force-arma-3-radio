@@ -15,17 +15,13 @@ $[
 ]
 */
 
-
-
-class anarc164_radio_dialog
-{
+class anarc164_radio_dialog {
     idd = IDD_ANARC164_RADIO_DIALOG;
     movingEnable = 1;
     controlsBackground[] = { };
     onUnload = "['OnRadioOpen', [player, TF_lr_dialog_radio, true, 'anarc164_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
-    objects[] = { };
-    controls[]=
-    {
+    objects[] = {};
+    controls[]= {
         background,
         enter,
         channel_edit,
@@ -37,12 +33,8 @@ class anarc164_radio_dialog
         additional,
         speakers
     };
-    ////////////////////////////////////////////////////////
-    // GUI EDITOR OUTPUT START (by Kavinsky, v1.063, #Vyxuta)
-    ////////////////////////////////////////////////////////
 
-    class background: RscBackPicture
-    {
+    class background: RscBackPicture {
         idc = IDC_ANARC164_BACKGROUND;
         text = QPATHTOF(anarc164\ui\anarc164.paa);
         x = 0.0413536 * safezoneW + safezoneX;
@@ -51,8 +43,7 @@ class anarc164_radio_dialog
         h = 0.7513 * safezoneH;
         moving = 1;
     };
-    class channel_edit: RscEditLCD
-    {
+    class channel_edit: RscEditLCD {
         idc = IDC_ANARC164_CHANNEL_EDIT;
         x = 0.288078 * safezoneW + safezoneX;
         y = 0.2382 * safezoneH + safezoneY;
@@ -67,8 +58,7 @@ class anarc164_radio_dialog
         tooltip = ECSTRING(core,current_channel);
         canModify = 0;
     };
-    class edit: RscEditLCD
-    {
+    class edit: RscEditLCD {
         idc = IDC_ANARC164_EDIT;
         x = 0.201969 * safezoneW + safezoneX;
         y = 0.3515 * safezoneH + safezoneY;
@@ -83,42 +73,33 @@ class anarc164_radio_dialog
         tooltip = ECSTRING(core,current_freq);
         canModify = 1;
     };
-    class enter: HiddenRotator
-    {
+    class enter: HiddenRotator {
         idc = IDC_ANARC164_ENTER;
         x = 0.233422 * safezoneW + safezoneX;
         y = 0.4373 * safezoneH + safezoneY;
         w = 0.037125 * safezoneW;
         h = 0.0693 * safezoneH;
         tooltip = ECSTRING(core,set_frequency);
-        action = QUOTE(
-            playSound 'TFAR_rotatorPush';
-            _f = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText IDC_ANARC164_EDIT);
-            if ((_f >= TFAR_MIN_ASIP_FREQ) and (_f <= TFAR_MAX_ASIP_FREQ)) then {
-                [ARR_2(TF_lr_dialog_radio, QTFAR_ROUND_FREQUENCY(_f))] call TFAR_fnc_setLrFrequency;
-                call TFAR_fnc_hideHint;
-            } else {
-                hint formatText [ARR_3(localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ)]
-            };
-            ["%1"] call TFAR_fnc_updateLRDialogToChannel;
-          );
+        onButtonClick = QUOTE( \
+            playSound 'TFAR_rotatorPush'; \
+            [((ctrlParent (_this select 0))) displayCtrl IDC_ANARC164_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter; \
+        );
+        action = "";
     };
-    class clear: HiddenRotator
-    {
+    class clear: HiddenRotator {
         idc = IDC_ANARC164_CLEAR;
         x = 0.168453 * safezoneW + safezoneX;
         y = 0.4362 * safezoneH + safezoneY;
         w = 0.0376406 * safezoneW;
         h = 0.0715 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE(
-            playSound 'TFAR_rotatorPush';
-            ctrlSetText [ARR_2(IDC_ANARC164_EDIT,'')];
-            ctrlSetFocus ((findDisplay IDD_ANARC164_RADIO_DIALOG) displayCtrl IDC_ANARC164_EDIT);
+        action = QUOTE( \
+            playSound 'TFAR_rotatorPush'; \
+            ctrlSetText [ARR_2(IDC_ANARC164_EDIT,'')]; \
+            ctrlSetFocus ((findDisplay IDD_ANARC164_RADIO_DIALOG) displayCtrl IDC_ANARC164_EDIT); \
         );
     };
-    class prev_channel: HiddenRotator
-    {
+    class prev_channel: HiddenRotator {
         idc = IDC_ANARC164_PREV_CHANNEL;
         x = 0.297875 * safezoneW + safezoneX;
         y = 0.4384 * safezoneH + safezoneY;
@@ -127,8 +108,7 @@ class anarc164_radio_dialog
         tooltip = ECSTRING(core,rotator_channel);
         onMouseButtonDown = "[_this select 1, true, '%1'] call TFAR_fnc_setChannelViaDialog;";
     };
-    class increase_volume: HiddenRotator
-    {
+    class increase_volume: HiddenRotator {
         idc = IDC_ANARC164_INCREASE_VOLUME;
         x = 0.239094 * safezoneW + safezoneX;
         y = 0.5451 * safezoneH + safezoneY;
@@ -137,22 +117,20 @@ class anarc164_radio_dialog
         tooltip = ECSTRING(core,rotator_volume);
         onMouseButtonDown = "[_this select 1, true] call TFAR_fnc_setVolumeViaDialog;";
     };
-    class stereo: HiddenRotator
-    {
+    class stereo: HiddenRotator {
         idc = IDC_ANARC164_STEREO;
         x = 0.115344 * safezoneW + safezoneX;
         y = 0.566 * safezoneH + safezoneY;
         w = 0.0665527 * safezoneW;
         h = 0.110006 * safezoneH;
-        action = QUOTE(
-            playSound 'TFAR_rotatorPush';
-            [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo;
-            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume;
+        action = QUOTE( \
+            playSound 'TFAR_rotatorPush'; \
+            [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo; \
+            [TF_lr_dialog_radio] call TFAR_fnc_showRadioVolume; \
         );
         tooltip = ECSTRING(core,stereo_settings);
     };
-    class additional: HiddenRotator
-    {
+    class additional: HiddenRotator {
         idc = IDC_ANARC164_ADDITIONAL;
         x = 0.103008 * safezoneW + safezoneX;
         y = 0.434185 * safezoneH + safezoneY;
@@ -161,8 +139,7 @@ class anarc164_radio_dialog
         tooltip = ECSTRING(core,set_additional);
         action ="playSound 'TFAR_rotatorPush';[TF_lr_dialog_radio,TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel;call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     };
-    class speakers: HiddenFlip
-    {
+    class speakers: HiddenFlip {
         idc = IDC_ANARC164_SPEAKERS;
         x = 0.27633 * safezoneW + safezoneX;
         y = 0.630886 * safezoneH + safezoneY;
@@ -171,8 +148,4 @@ class anarc164_radio_dialog
         tooltip = ECSTRING(core,speakers_settings_true);
         action = "TF_lr_dialog_radio call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
     };
-    ////////////////////////////////////////////////////////
-    // GUI EDITOR OUTPUT END
-    ////////////////////////////////////////////////////////
-
 };
