@@ -62,7 +62,7 @@ if (_isSR) then {
     private _encryptionCode = [_radioClass, "tf_encryptionCode", ""] call DFUNC(getWeaponConfigProperty);
     if (_encryptionCode == "tf_guer_radio_code") then {_encryptionCode = "tf_independent_radio_code"};
 
-    _return set [TFAR_CODE_OFFSET, _encryptionCode];
+    _return set [TFAR_CODE_OFFSET, missionNamespace getVariable [_encryptionCode, ""]];
 
 } else {
 
@@ -92,7 +92,7 @@ if (_isSR) then {
     private _encryptionCode = [_radioClass, "tf_encryptionCode", ""] call DFUNC(getVehicleConfigProperty);
     if (_encryptionCode == "tf_guer_radio_code") then {_encryptionCode = "tf_independent_radio_code"};
 
-    _return set [TFAR_CODE_OFFSET, _encryptionCode];
+    _return set [TFAR_CODE_OFFSET, missionNamespace getVariable [_encryptionCode, ""]];
 
 };
 
