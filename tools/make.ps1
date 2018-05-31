@@ -28,6 +28,14 @@ function Compare-VersionNewerThan {
     $newer
 }
 
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+function Unzip
+{
+    param([string]$zipfile, [string]$outpath)
+
+    [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
+}
+
 
 function Get-InstalledArmakeVersion {
     if (Test-Path $armake) {
@@ -72,7 +80,7 @@ function Update-Armake {
     $client.dispose()
 
     Write-Output "Download complete, unpacking..."
-    Expand-Archive "$PSScriptRoot\temp\armake.zip" "$PSScriptRoot\temp\armake"
+    Unzip "$PSScriptRoot\temp\armake.zip" "$PSScriptRoot\temp\armake"
     Remove-Item "$PSScriptRoot\temp\armake.zip"
 
     if ([Environment]::Is64BitProcess) {
