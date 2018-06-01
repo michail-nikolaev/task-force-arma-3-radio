@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#From https://github.com/acemod/ACE3
 
 import fnmatch
 import os
