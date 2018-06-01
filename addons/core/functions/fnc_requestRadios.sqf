@@ -86,7 +86,7 @@ GVAR(lastRadioRequestEH_ID) = [
                 _requestedUnit linkItem _newItem;
                 _newRadios pushBack _newItem;
 
-                private _settings = _settingsToCopy param [_settingsToCopy find _oldItem, ""];
+                private _settings = _settingsToCopy param [_settingsToCopy find _oldItem, "", [""]];
                 if !(_settings isEqualTo "") then {
                     private _localSettings = TFAR_RadioSettingsNamespace getVariable (format["%1_local", _settings]);
                     if !(isNil "_localSettings") then {
@@ -119,7 +119,7 @@ GVAR(lastRadioRequestEH_ID) = [
                 _newRadios pushBack _newItem;
             };
 
-            private _settings = _settingsToCopy param [_settingsToCopy find _oldItem, ""];
+            private _settings = _settingsToCopy param [_settingsToCopy find _oldItem, "", [""]];
             if !(_settings isEqualTo "") then {
                 private _localSettings = TFAR_RadioSettingsNamespace getVariable (format["%1_local", _settings]);
                 if !(isNil "_localSettings") then {
