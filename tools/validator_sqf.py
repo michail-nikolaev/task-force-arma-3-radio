@@ -154,9 +154,9 @@ def main():
 
     # Allow running from root directory as well as from inside the tools directory
 
-    rootDir = "../missions"
-    if (os.path.exists("missions")):
-        rootDir = "missions"
+    rootDir = "../optionals"
+    if (os.path.exists("optionals")):
+        rootDir = "optionals"
     for root, dirnames, filenames in os.walk(rootDir + '/' + args.module):
         for filename in fnmatch.filter(filenames, '*.sqf'):
             sqf_list.append(os.path.join(root, filename))
