@@ -1,31 +1,13 @@
 class Man;
 class CAManBase: Man {
     class ACE_SelfActions {
-        class ACE_Equipment {
-            class TFAR_Radio {
-                displayName = CSTRING(RADIOS);
-                condition = "(([] call TFAR_fnc_haveSWRadio)||([] call TFAR_fnc_haveLRRadio))";
-                exceptions[] = {"isNotInside", "isNotSitting", "isNotSwimming"};
-                statement = "";
-                icon = QPATHTOF(ui\ACE_Interaction_Radio_Icon.paa);
-                insertChildren = QUOTE([_player] call FUNC(getOwnRadiosChildren));
-            };
-            class TFAR_LowerHeadset {
-                displayName = "Lower Headset";
-                condition = "(!(missionNamespace getVariable ['TFAR_core_isHeadsetLowered',false])) && {call TFAR_fnc_haveSWRadio || call TFAR_fnc_haveLRRadio}";
-                exceptions[] = {"isNotInside", "isNotSitting", "isNotSwimming"};
-                statement = "true call TFAR_fnc_setHeadsetLowered;";
-                //showDisabled = 0;
-                icon = "";
-            };
-            class TFAR_RaiseHeadset {
-                displayName = "Raise Headset";
-                condition = "(missionNamespace getVariable ['TFAR_core_isHeadsetLowered',false]) && {call TFAR_fnc_haveSWRadio || call TFAR_fnc_haveLRRadio}";
-                exceptions[] = {"isNotInside", "isNotSitting", "isNotSwimming"};
-                statement = "false call TFAR_fnc_setHeadsetLowered;";
-                //showDisabled = 0;
-                icon = "";
-            };
+        class TFAR_Radio {
+            displayName = CSTRING(RADIOS);
+            condition = "(([] call TFAR_fnc_haveSWRadio)||([] call TFAR_fnc_haveLRRadio))";
+            exceptions[] = {"isNotInside", "isNotSitting", "isNotSwimming"};
+            statement = "";
+            icon = QPATHTOF(ui\ACE_Interaction_Radio_Icon.paa);
+            insertChildren = QUOTE([_player] call FUNC(getOwnRadiosChildren));
         };
     };
     class ACE_Actions {

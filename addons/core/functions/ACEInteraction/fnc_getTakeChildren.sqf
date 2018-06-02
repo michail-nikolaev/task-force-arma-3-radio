@@ -25,8 +25,8 @@ params ["_target", "_radio"];
         format["TFAR_takeRadio_%1",_radio],
         localize LSTRING(TAKE),
         "\a3\ui_f\data\igui\cfg\actions\take_ca.paa",
-        {call TFAR_fnc_takeRadio},
-        {call TFAR_fnc_canTakeRadio},
+        {call TFAR_core_fnc_takeRadio},
+        {call TFAR_core_fnc_canTakeRadio},
         {},
         _radio
     ] call ACE_Interact_Menu_fnc_createAction,

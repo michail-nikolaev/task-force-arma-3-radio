@@ -36,7 +36,7 @@ private _children = [];
                     call TFAR_fnc_onLrDialogOpen;
                 },
                 {true},
-                {/*(_this select 2) call FUNC(getStereoChildren)*/},
+                {(_this select 2) call FUNC(getStereoChildren)},
                 [_unit,_x]
             ] call ACE_Interact_Menu_fnc_createAction,
             [],
@@ -65,5 +65,32 @@ if (_LROnly) exitWith {_children};
             _unit
         ];
 } forEach (_unit call TFAR_fnc_radiosList);
+
+_children pushBack [
+        [
+            "TFAR_LowerHeadset",
+            localize LSTRING(key_LowerHeadset),
+            "\a3\ui_f\data\igui\cfg\actions\arrow_up_gs.paa",
+            {true call TFAR_fnc_setHeadsetLowered;},
+            {(!(missionNamespace getVariable ['TFAR_core_isHeadsetLowered',false])) && {call TFAR_fnc_haveSWRadio || call TFAR_fnc_haveLRRadio}},
+            {},
+            []
+        ] call ACE_Interact_Menu_fnc_createAction,
+        [],
+        _unit
+    ];
+_children pushBack [
+        [
+            "TFAR_RaiseHeadset",
+            localize LSTRING(key_RaiseHeadset),
+            "\a3\ui_f\data\igui\cfg\actions\arrow_down_gs.paa",
+            {false call TFAR_fnc_setHeadsetLowered;},
+            {(missionNamespace getVariable ['TFAR_core_isHeadsetLowered',false]) && {call TFAR_fnc_haveSWRadio || call TFAR_fnc_haveLRRadio}},
+            {},
+            []
+        ] call ACE_Interact_Menu_fnc_createAction,
+        [],
+        _unit
+    ];
 
 _children

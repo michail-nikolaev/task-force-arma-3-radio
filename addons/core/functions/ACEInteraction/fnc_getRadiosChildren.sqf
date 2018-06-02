@@ -33,9 +33,9 @@ private _children = [];
                 [_radiotype, "picture", ""] call TFAR_fnc_getVehicleConfigProperty,
                 {},
                 {true},
-                {
-                    ([_target, _x] call FUNC(getTakeChildren))
-                },
+                {[
+                    ([_target, _this select 2] call FUNC(getTakeChildren))
+                ]},
                 _x
             ] call ACE_Interact_Menu_fnc_createAction,
             [],
@@ -52,9 +52,9 @@ private _children = [];
                 [_x, "picture", ""] call TFAR_fnc_getWeaponConfigProperty,
                 {},
                 {true},
-                {
-                    ([_target, _x] call FUNC(getTakeChildren))
-                },
+                {[
+                    ([_target, _this select 2] call FUNC(getTakeChildren))
+                ]},
                 _x
             ] call ACE_Interact_Menu_fnc_createAction,
             [],

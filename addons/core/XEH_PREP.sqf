@@ -1,10 +1,10 @@
 // /ACE
-PREP_SUB2(ace,canTakeRadio);
-PREP_SUB2(ace,getOwnRadiosChildren);
-PREP_SUB2(ace,getRadiosChildren);
-PREP_SUB2(ace,getStereoChildren);
-PREP_SUB2(ace,getTakeChildren);
-PREP_SUB2(ace,takeRadio);
+PREP_SUB2(ACEInteraction,canTakeRadio);
+PREP_SUB2(ACEInteraction,getOwnRadiosChildren);
+PREP_SUB2(ACEInteraction,getRadiosChildren);
+PREP_SUB2(ACEInteraction,getStereoChildren);
+PREP_SUB2(ACEInteraction,getTakeChildren);
+PREP_SUB2(ACEInteraction,takeRadio);
 
 // /Events
 PREP_SUB(events\handler,addEventHandler);
