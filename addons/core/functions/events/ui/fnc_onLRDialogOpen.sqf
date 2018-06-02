@@ -7,6 +7,16 @@ private _dialog_to_open = ([_radio, "tf_dialog"] call TFAR_fnc_getLrRadioPropert
 private _dialog_update = ([_radio, "tf_dialogUpdate"] call TFAR_fnc_getLrRadioProperty);
 private _externalUser = _radio getVariable [QGVAR(usedExternallyBy), objNull];
 
+if (!(isNil "TFAR_OverrideActiveLRRadio") && {(TFAR_currentUnit distance (TFAR_OverrideActiveLRRadio select 0)) > TFAR_MAXREMOTELRRADIODISTANCE}) exitWith {
+    [] call TFAR_core_fnc_stopExternalUsage;
+    true
+};
+
+if (!(isNil "TFAR_OverrideActiveLRRadio") && {!(_radio isEqualTo TFAR_OverrideActiveLRRadio)}) then {
+    [] call TFAR_core_fnc_stopExternalUsage;
+};
+
+
 if !((_externalUser isEqualTo objNull) || {_externalUser isEqualTo TFAR_currentUnit}) then {
     [QGVARMAIN(stopExternalUsage), [], _radio getVariable [QGVAR(usedExternallyBy), objNull]] call CBA_fnc_targetEvent;
 };
