@@ -77,6 +77,14 @@
     }
 ] call CBA_Settings_fnc_init;
 [
+    "TFAR_AllowExternalUsageDefault",
+    "CHECKBOX",
+    ELSTRING(settings,AllowExternalUsageDefault),
+    localize ELSTRING(settings,clientside),
+    true,
+    2
+] call CBA_Settings_fnc_init;
+[
     "TFAR_ShowVolumeHUD",
     "CHECKBOX",
     [ELSTRING(settings,hudVolumeIndicator), ELSTRING(settings,hudVolumeIndicator_desc)],
@@ -522,10 +530,10 @@
     {tf_independent_radio_code = GVARMAIN(radiocode_independent);}
 ] call CBA_Settings_fnc_init;
 [
-    "TFAR_instantiate_instantiateAtBriefing", 
-    "CHECKBOX", 
-    [ELSTRING(settings,instantiateAtBriefing), ELSTRING(settings,instantiateAtBriefing_desc)], 
-    localize ELSTRING(settings,global), 
+    "TFAR_instantiate_instantiateAtBriefing",
+    "CHECKBOX",
+    [ELSTRING(settings,instantiateAtBriefing), ELSTRING(settings,instantiateAtBriefing_desc)],
+    localize ELSTRING(settings,global),
     false,
     1
 ] call CBA_Settings_fnc_init;

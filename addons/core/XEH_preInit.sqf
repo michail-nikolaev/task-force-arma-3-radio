@@ -7,6 +7,7 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
 };
 GVAR(SettingsInitialized) = false;
 ["CBA_settingsInitialized", {GVAR(SettingsInitialized) = true;}] call CBA_fnc_addEventhandler;
+[QGVARMAIN(stopExternalUsage), FUNC(stopExternalUsage)] call CBA_fnc_addEventhandler;
 
 [] call DFUNC(initCBASettings);
 

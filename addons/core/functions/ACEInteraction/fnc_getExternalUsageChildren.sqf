@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-  Name: TFAR_core_fnc_getTakeChildren
+  Name: TFAR_core_fnc_getExternalUsageChildren
 
   Author: Dorbedo
     Used to provide an array of ace actions to be used as children actions in the interact menu.
@@ -14,19 +14,19 @@
     children ACE actions. <ARRAY>
 
   Example:
-    _children = [_target, _radio] call TFAR_core_fnc_getTakeChildren;
+    _children = [_target, _radio] call TFAR_core_fnc_getExternalUsageChildren;
 
   Public: No
 */
-params ["_target", "_radio"];
+params ["_target", "_unit", "_radio"];
 
 [
     [
-        format["TFAR_takeRadio_%1",_radio],
-        localize LSTRING(TAKE),
-        "\a3\ui_f\data\igui\cfg\actions\take_ca.paa",
-        {call TFAR_core_fnc_takeRadio},
-        {call TFAR_core_fnc_canTakeRadio},
+        format["TFAR_useExternal_%1",_radio],
+        localize LSTRING(useExternally),
+        "",
+        {call FUNC(startExternalUsage)},
+        {call FUNC(canUseExternal)},
         {},
         _radio
     ] call ACE_Interact_Menu_fnc_createAction,

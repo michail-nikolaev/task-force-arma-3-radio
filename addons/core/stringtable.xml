@@ -392,6 +392,10 @@
                 <Chinese>效能</Chinese>
                 <Chinesesimp>效能</Chinesesimp>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_AllowExternalUsageDefault">
+                <Original>Allow external usage by default</Original>
+                <English>Allow external usage by default</English>
+            </Key>
             <Key ID="STR_TFAR_SETTINGS_hudVolumeIndicator">
                 <Original>Show HUD Voice Volume indicator</Original>
                 <English>Show HUD Voice Volume indicator</English>
@@ -2857,6 +2861,10 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <German>Nehmen</German>
             <Japanese>を取る</Japanese>
             <Korean>들기</Korean>
+        </Key>
+        <Key ID="STR_TFAR_SETTINGS_useExternally">
+            <Original>Use Radio</Original>
+            <English>Use Radio</English>
         </Key>
     </Package>
 </Project>

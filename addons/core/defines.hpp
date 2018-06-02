@@ -47,6 +47,8 @@
 #define TFAR_LR_SPEAKER_OFFSET 8
 #define TFAR_SW_SPEAKER_OFFSET 8
 
+#define TFAR_LR_ALLOWEXTERNALUSAGE 10
+
 
 #define TFAR_PLAYER_RESCAN_TIME 1//Interval between Rescans of Players
 

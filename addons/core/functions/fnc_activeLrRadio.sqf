@@ -18,15 +18,19 @@
   Public: Yes
 */
 
-private _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
+if (!isNil "TFAR_OverrideActiveLRRadio") exitWith {
+    if (!(((TFAR_OverrideActiveLRRadio select 0) getVariable [QGVAR(usedExternallyBy), objNull]) isEqualTo TFAR_currentUnit) ||
+        {TFAR_currentUnit distance (TFAR_OverrideActiveLRRadio select 0) > TFAR_MAXREMOTELRRADIODISTANCE}) then {
 
-if (!isNil "TFAR_OverrideActiveLRRadio") then {
-    if (TFAR_currentUnit distance (TFAR_OverrideActiveLRRadio select 0) > TFAR_MAXREMOTELRRADIODISTANCE) then {
-        TFAR_OverrideActiveLRRadio = nil;
+        [] call FUNC(stopExternalUsage);
+        call TFAR_fnc_activeLrRadio
+
     } else {
-        if (true) exitWith {TFAR_OverrideActiveLRRadio};
+        TFAR_OverrideActiveLRRadio
     };
 };
+
+private _radios = (TFAR_currentUnit call TFAR_fnc_lrRadiosList) select {!(isNull ((_x select 0) getVariable [QGVAR(usedExternallyBy), objNull]))};
 
 if (isNil "TF_lr_active_radio") then {
     TF_lr_active_radio = _radios param [0,nil];
