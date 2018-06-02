@@ -17,7 +17,7 @@
   Example:
     [_target, _player, "TFAR_anprc_152"] call TFAR_fnc_canTakeRadio;
 
-  Public: Yes
+  Public: No
 */
 
 params ["_target", "_unit", "_radio"];

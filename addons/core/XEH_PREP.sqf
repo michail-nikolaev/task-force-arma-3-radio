@@ -1,3 +1,11 @@
+// /ACE
+PREP_SUB2(ace,canTakeRadio);
+PREP_SUB2(ace,getOwnRadiosChildren);
+PREP_SUB2(ace,getRadiosChildren);
+PREP_SUB2(ace,getStereoChildren);
+PREP_SUB2(ace,getTakeChildren);
+PREP_SUB2(ace,takeRadio);
+
 // /Events
 PREP_SUB(events\handler,addEventHandler);
 PREP_SUB(events\handler,fireEventHandlers);
@@ -81,15 +89,11 @@ PREP_SUB(server,serverInit);
 // A
 PREP(activeLrRadio);
 PREP(activeSwRadio);
-PREP(addRadiosToACE);
-PREP(addStereoToACE);
-PREP(addTakeToACE);
 // B
 PREP(backpackLr);
 // C
 PREP(calcTerrainInterception);
 PREP(canSpeak);
-PREP(canTakeRadio);
 PREP(canUseSWRadio);
 PREP(canUseLRRadio);
 PREP(canUseDDRadio);
@@ -207,8 +211,6 @@ PREP(setChannelFrequency);
 PREP(setRadioOwner);
 PREP(setLrSpeakers);
 PREP(settingForceArray);
-// T
-PREP(takeRadio);
 // U
 PREP(updateSpeakVolumeUI);
 // V
