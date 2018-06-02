@@ -70,7 +70,7 @@ _children pushBack [
         [
             "TFAR_LowerHeadset",
             localize LSTRING(key_LowerHeadset),
-            "\a3\ui_f\data\igui\cfg\actions\arrow_up_gs.paa",
+            "\a3\ui_f\data\igui\cfg\actions\arrow_down_gs.paa",
             {true call TFAR_fnc_setHeadsetLowered;},
             {(!(missionNamespace getVariable ['TFAR_core_isHeadsetLowered',false])) && {call TFAR_fnc_haveSWRadio || call TFAR_fnc_haveLRRadio}},
             {},
@@ -83,7 +83,7 @@ _children pushBack [
         [
             "TFAR_RaiseHeadset",
             localize LSTRING(key_RaiseHeadset),
-            "\a3\ui_f\data\igui\cfg\actions\arrow_down_gs.paa",
+            "\a3\ui_f\data\igui\cfg\actions\arrow_up_gs.paa",
             {false call TFAR_fnc_setHeadsetLowered;},
             {(missionNamespace getVariable ['TFAR_core_isHeadsetLowered',false]) && {call TFAR_fnc_haveSWRadio || call TFAR_fnc_haveLRRadio}},
             {},
