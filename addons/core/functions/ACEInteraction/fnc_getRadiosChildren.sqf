@@ -34,8 +34,8 @@ private _children = [];
                 {},
                 {true},
                 {[
-                    ([_target, _this select 2] call FUNC(getTakeChildren)) +
-                    ([_target, _this select 2] call FUNC(getExternalUsageChildren))
+                    [_target, _this select 2] call FUNC(getTakeChildren),
+                    [_target, _this select 2] call FUNC(getExternalUsageChildren)
                 ]},
                 _x
             ] call ACE_Interact_Menu_fnc_createAction,

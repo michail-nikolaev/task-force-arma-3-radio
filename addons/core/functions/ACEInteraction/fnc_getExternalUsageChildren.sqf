@@ -18,7 +18,7 @@
 
   Public: No
 */
-params ["_target", "_unit", "_radio"];
+params ["_target", "_radio"];
 
 [
     [

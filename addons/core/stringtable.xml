@@ -2862,7 +2862,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Japanese>を取る</Japanese>
             <Korean>들기</Korean>
         </Key>
-        <Key ID="STR_TFAR_SETTINGS_useExternally">
+        <Key ID="STR_TFAR_Core_useExternally">
             <Original>Use Radio</Original>
             <English>Use Radio</English>
         </Key>
