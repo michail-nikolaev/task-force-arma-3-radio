@@ -46,9 +46,9 @@ for "_i" from ((count _loadouts) - 1) to 0 step -2 do {
         true
     } count [
         (_inventory select 0) select 1, // uniform content
-        (_inventory select 1) select 1,	// vest content
-        (_inventory select 2) select 1,	// backpack content
-        _inventory select 9				// assigned items
+        (_inventory select 1) select 1, // vest content
+        (_inventory select 2) select 1, // backpack content
+        _inventory select 9             // assigned items
     ];
 };
 

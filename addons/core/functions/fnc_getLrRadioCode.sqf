@@ -21,4 +21,4 @@
 
 if (GVARMAIN(radioCodesDisabled)) exitWith {""};
 
-(_this call TFAR_fnc_getLrSettings) param [TFAR_CODE_OFFSET]
+(_this call TFAR_fnc_getLrSettings) param [TFAR_CODE_OFFSET, ""]
