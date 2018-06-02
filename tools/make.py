@@ -1051,7 +1051,7 @@ See the make.cfg file for additional build options.
         print ("No cache found.")
         cache = {}
 
-    # Check the build version (from main) with cached version - forces a full rebuild when version changes
+    # Check the build version (from core) with cached version - forces a full rebuild when version changes
     cacheVersion = "None";
     if 'cacheVersion' in cache:
         cacheVersion = cache['cacheVersion']
