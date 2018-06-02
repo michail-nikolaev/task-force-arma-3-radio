@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Project ID="TFAR">
+<Project name="TFAR">
     <Package name="ai_hearing">
         <Key ID="STR_TFAR_AI_HEARING_SETTING_HEADER">
             <Original>AI Hearing</Original>

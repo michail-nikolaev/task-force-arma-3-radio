@@ -5,7 +5,7 @@ class Item_TFAR_fadak: Item_Base_F {
     author = "Nkey";
     vehicleClass = "Items";
     class TransportItems {
-    	MACRO_ADDITEM(TFAR_fadak,1);
+        MACRO_ADDITEM(TFAR_fadak,1);
     };
     #include "\z\tfar\addons\static_radios\edenAttributes.hpp"
 };

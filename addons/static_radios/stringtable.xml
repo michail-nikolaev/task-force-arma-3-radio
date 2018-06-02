@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Project ID="TFAR">
+<Project name="TFAR">
     <Package name="static_radios">
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_hint">
             <Original>This has to be used on a Radio</Original>

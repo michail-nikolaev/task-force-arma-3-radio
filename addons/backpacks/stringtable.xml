@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Project ID="TFAR">
+<Project name="TFAR">
     <Package name="backpacks">
         <Key ID="STR_TFAR_backpacks_RT1523G">
             <Original>RT-1523G (ASIP)</Original>
