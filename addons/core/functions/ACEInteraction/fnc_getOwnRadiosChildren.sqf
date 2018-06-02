@@ -3,7 +3,7 @@
 /*
   Name: TFAR_core_fnc_getOwnRadiosChildren
 
-  Author: Garth de Wet (L-H)
+  Author: Garth de Wet (L-H), Dorbedo
     Used to provide an array of ace actions to be used as children actions in the interact menu.
 
   Arguments:
