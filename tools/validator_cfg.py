@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 #From https://github.com/acemod/ACE3
+
 import fnmatch
 import os
 import re
@@ -7,17 +8,7 @@ import ntpath
 import sys
 import argparse
 
-def validKeyWordAfterCode(content, index):
-    keyWords = ["for", "do", "count", "each", "forEach", "else", "and", "not", "isEqualTo", "in", "call", "spawn", "execVM", "catch", "param", "select", "apply"];
-    for word in keyWords:
-        try:
-            subWord = content.index(word, index, index+len(word))
-            return True;
-        except:
-            pass
-    return False
-
-def check_sqf_syntax(filepath):
+def check_config_style(filepath):
     bad_count_file = 0
     def pushClosing(t):
         closingStack.append(closing.expr)
@@ -57,8 +48,6 @@ def check_sqf_syntax(filepath):
         for c in content:
             if (lastIsCurlyBrace):
                 lastIsCurlyBrace = False
-                checkForSemiColumn = True
-
             if c == '\n': # Keeping track of our line numbers
                 lineNumber += 1 # so we can print accurate line number information when we detect a possible error
             if (isInString): # while we are in a string, we can ignore everything else, except the end of the string
@@ -83,21 +72,19 @@ def check_sqf_syntax(filepath):
                         if (c == '"' or c == "'"):
                             isInString = True
                             inStringType = c
-                        elif (c == '#'):
-                            ignoreTillEndOfLine = True
                         elif (c == '/'):
                             checkIfInComment = True
                         elif (c == '('):
                             brackets_list.append('(')
                         elif (c == ')'):
-                            if (brackets_list[-1] in ['{', '[']):
+                            if (len(brackets_list) > 0 and brackets_list[-1] in ['{', '[']):
                                 print("ERROR: Possible missing round bracket ')' detected at {0} Line number: {1}".format(filepath,lineNumber))
                                 bad_count_file += 1
                             brackets_list.append(')')
                         elif (c == '['):
                             brackets_list.append('[')
                         elif (c == ']'):
-                            if (brackets_list[-1] in ['{', '(']):
+                            if (len(brackets_list) > 0 and brackets_list[-1] in ['{', '(']):
                                 print("ERROR: Possible missing square bracket ']' detected at {0} Line number: {1}".format(filepath,lineNumber))
                                 bad_count_file += 1
                             brackets_list.append(']')
@@ -105,20 +92,13 @@ def check_sqf_syntax(filepath):
                             brackets_list.append('{')
                         elif (c == '}'):
                             lastIsCurlyBrace = True
-                            if (brackets_list[-1] in ['(', '[']):
+                            if (len(brackets_list) > 0 and brackets_list[-1] in ['(', '[']):
                                 print("ERROR: Possible missing curly brace '}}' detected at {0} Line number: {1}".format(filepath,lineNumber))
                                 bad_count_file += 1
                             brackets_list.append('}')
                         elif (c== '\t'):
                             print("ERROR: Tab detected at {0} Line number: {1}".format(filepath,lineNumber))
                             bad_count_file += 1
-
-                        if (checkForSemiColumn):
-                            if (c not in [' ', '\t', '\n', '/']): # keep reading until no white space or comments
-                                checkForSemiColumn = False
-                                if (c not in [']', ')', '}', ';', ',', '&', '!', '|', '='] and not validKeyWordAfterCode(content, indexOfCharacter)): # , 'f', 'd', 'c', 'e', 'a', 'n', 'i']):
-                                    print("ERROR: Possible missing semi-column ';' detected at {0} Line number: {1}".format(filepath,lineNumber))
-                                    bad_count_file += 1
 
             else: # Look for the end of our comment block
                 if (c == '*'):
@@ -143,7 +123,7 @@ def check_sqf_syntax(filepath):
 
 def main():
 
-    print("Validating SQF")
+    print("Validating Config Style")
 
     sqf_list = []
     bad_count = 0
@@ -153,23 +133,32 @@ def main():
     args = parser.parse_args()
 
     # Allow running from root directory as well as from inside the tools directory
+    rootDir = "../optionals"
+    if (os.path.exists("optionals")):
+        rootDir = "optionals"
+    for root, dirnames, filenames in os.walk(rootDir + '/' + args.module):
+        for filename in fnmatch.filter(filenames, '*.cpp'):
+            sqf_list.append(os.path.join(root, filename))
+        for filename in fnmatch.filter(filenames, '*.hpp'):
+            sqf_list.append(os.path.join(root, filename))
+
     rootDir = "../addons"
     if (os.path.exists("addons")):
         rootDir = "addons"
-
     for root, dirnames, filenames in os.walk(rootDir + '/' + args.module):
-      for filename in fnmatch.filter(filenames, '*.sqf'):
-        sqf_list.append(os.path.join(root, filename))
+        for filename in fnmatch.filter(filenames, '*.cpp'):
+            sqf_list.append(os.path.join(root, filename))
+        for filename in fnmatch.filter(filenames, '*.hpp'):
+            sqf_list.append(os.path.join(root, filename))
 
     for filename in sqf_list:
-        bad_count = bad_count + check_sqf_syntax(filename)
-
+        bad_count = bad_count + check_config_style(filename)
 
     print("------\nChecked {0} files\nErrors detected: {1}".format(len(sqf_list), bad_count))
     if (bad_count == 0):
-        print("SQF validation PASSED")
+        print("Config validation PASSED")
     else:
-        print("SQF validation FAILED")
+        print("Config validation FAILED")
 
     return bad_count
 
