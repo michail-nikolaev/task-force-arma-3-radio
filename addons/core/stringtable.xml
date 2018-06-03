@@ -2852,11 +2852,11 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>무전기</Korean>
         </Key>
         <Key ID="STR_TFAR_CORE_TAKE">
-            <Original>Take %1</Original>
-            <English>Take %1</English>
-            <German>%1 nehmen</German>
-            <Japanese>%1 を取る</Japanese>
-            <Korean>%1 들기</Korean>
+            <Original>Take</Original>
+            <English>Take</English>
+            <German>Nehmen</German>
+            <Japanese>を取る</Japanese>
+            <Korean>들기</Korean>
         </Key>
     </Package>
 </Project>
