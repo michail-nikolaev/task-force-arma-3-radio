@@ -15,7 +15,7 @@
   Example:
     _return = [] call TFAR_core_fnc_stopExternalUsage;
 
-  Public: Yes
+  Public: No
 */
 
 if (isNil "TFAR_OverrideActiveLRRadio") exitWith {};

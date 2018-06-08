@@ -17,7 +17,7 @@
   Example:
     [_radio] call TFAR_core_fnc_startExternalUsage;
 
-  Public: Yes
+  Public: No
 */
 
 params ["_target", "_unit", "_radio"];

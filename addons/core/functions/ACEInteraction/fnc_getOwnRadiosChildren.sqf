@@ -25,8 +25,7 @@ private _children = [];
 
 {
     private _radiotype = typeOf (_x select 0);
-    _children pushBack
-        [
+    _children pushBack [
             [
                 format["TFAR_selfinteraction_LRradio_%1", _radiotype],
                 [_radiotype, "displayName", ""] call TFAR_fnc_getVehicleConfigProperty,
@@ -47,8 +46,7 @@ private _children = [];
 if (_LROnly) exitWith {_children};
 
 {
-    _children pushBack
-        [
+    _children pushBack [
             [
                 format["TFAR_selfinteraction_SRradio_%1", _x],
                 [_x, "displayName", ""] call TFAR_fnc_getWeaponConfigProperty,

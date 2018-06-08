@@ -16,7 +16,7 @@
   Example:
     _return = _lrRadio call TFAR_fnc_getLRExternalUsage;
 
-  Public: Yes
+  Public: No
 */
 
 (_this call TFAR_fnc_getLrSettings) param [TFAR_LR_ALLOWEXTERNALUSAGE, false, [false]]

@@ -25,8 +25,7 @@ private _children = [];
 
 {
     private _radiotype = typeOf (_x select 0);
-    _children pushBack
-        [
+    _children pushBack [
             [
                 format["TFAR_interaction_LRradio_%1", _radiotype],
                 [_radiotype, "displayName", ""] call TFAR_fnc_getVehicleConfigProperty,
@@ -45,8 +44,7 @@ private _children = [];
 } forEach ((_target call TFAR_fnc_lrRadiosList) select {(_x select 0) call TFAR_fnc_isBackpackRadio});
 
 {
-    _children pushBack
-        [
+    _children pushBack [
             [
                 format["TFAR_interaction_SRradio_%1", _x],
                 [_x, "displayName", ""] call TFAR_fnc_getWeaponConfigProperty,

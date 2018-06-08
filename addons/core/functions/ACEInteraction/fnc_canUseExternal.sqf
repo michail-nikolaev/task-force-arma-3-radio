@@ -17,7 +17,7 @@
   Example:
     _return = [] call TFAR_core_fnc_canUseExternal;
 
-  Public: Yes
+  Public: No
 */
 
 params ["_target", "_unit", "_radio"];
