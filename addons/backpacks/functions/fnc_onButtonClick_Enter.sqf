@@ -24,7 +24,7 @@ If (IS_NUMBER(_ctrlEdit)) then {
     _ctrlEdit = TF_lr_dialog_radio displayCtrl _ctrlEdit;
 };
 
-private _frequency = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText _edit_IDC);
+private _frequency = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText _ctrlEdit);
 if ((_frequency >= TFAR_MIN_ASIP_FREQ) and {_frequency <= TFAR_MAX_ASIP_FREQ}) then {
     [TF_lr_dialog_radio, QTFAR_ROUND_FREQUENCY(_frequency)] call TFAR_fnc_setLrFrequency;
     call TFAR_fnc_hideHint;
