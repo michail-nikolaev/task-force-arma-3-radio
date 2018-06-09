@@ -215,7 +215,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
 player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
 
 if (getMissionConfigValue["respawnOnStart", 0] >= 0) then {
-    call TFAR_fnc_processRespawn;
+    [{GVAR(SettingsInitialized) && (alive TFAR_currentUnit)}, TFAR_fnc_processRespawn, []] call CBA_fnc_waitUntilAndExecute;
 };
 
 player addEventHandler ["killed", {
