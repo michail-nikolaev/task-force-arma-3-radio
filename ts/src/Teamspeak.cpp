@@ -857,7 +857,7 @@ void ts3plugin_currentServerConnectionChanged(uint64 serverConnectionHandlerID) 
 
 /* Static title shown in the left column in the info frame */
 const char* ts3plugin_infoTitle() {
-    auto info = std::string("Task Force Radio Status (") + PLUGIN_VERSION + ")";
+    auto info = std::string("Task Force Radio Status");
     const size_t maxLen = info.length() + 1;
     const auto result = static_cast<char*>(malloc(maxLen * sizeof(char)));
     memset(result, 0, maxLen);
