@@ -1,6 +1,6 @@
 #define TF_RADIO_ID_full(baseClass,displayNameBase) class baseClass##_1 : baseClass \
     { \
-        displayName = QUOTE(displayNameBase index); \
+        displayName = QUOTE(displayNameBase 1); \
         scope = 1; \
         scopeCurator = 1; \
         tf_prototype = 0; \
