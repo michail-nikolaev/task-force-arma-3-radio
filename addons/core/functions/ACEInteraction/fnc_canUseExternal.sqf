@@ -20,9 +20,19 @@
   Public: No
 */
 
-params ["_target", "_unit", ["_radio", [], [[]], [2]]];
-!(
-    (_radio isEqualTo []) ||
-    {!(((_radio select 0) getVariable [QGVAR(usedExternallyBy), objNull]) isEqualTo objNull)} ||
-    {(_unit distance (_radio select 0)) > TFAR_MAXREMOTELRRADIODISTANCE}
-)
+params ["_target", "_unit", ["_radio", [], [[]]]];
+
+if (_radio isEqualTo []) exitWith {false};
+
+if ((_radio select 0) call TFAR_fnc_isStaticRadio) then {
+    !(
+        (!(((_radio select 0) getVariable [QGVAR(usedExternallyBy), objNull]) isEqualTo objNull)) ||
+        {(_unit distance (_radio select 0)) > TFAR_MAXREMOTELRRADIODISTANCE}
+    )
+} else {
+    !(
+        (!(((_radio select 0) getVariable [QGVAR(usedExternallyBy), objNull]) isEqualTo objNull)) ||
+        {(_unit distance objectParent(_radio select 0)) > TFAR_MAXREMOTELRRADIODISTANCE} ||
+        {_radio call FUNC(getLRExternalUsage)}
+    )
+};

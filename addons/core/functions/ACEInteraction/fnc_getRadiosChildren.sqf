@@ -44,25 +44,6 @@ private _children = [];
 } forEach ((_target call TFAR_fnc_lrRadiosList) select {((_x select 0) call TFAR_fnc_isBackpackRadio)});
 
 {
-    private _radiotype = typeOf (_x select 0);
-    _children pushBack [
-            [
-                format["TFAR_interaction_LRradio_%1", _radiotype],
-                [_radiotype, "displayName", ""] call TFAR_fnc_getVehicleConfigProperty,
-                [_radiotype, "picture", ""] call TFAR_fnc_getVehicleConfigProperty,
-                {},
-                {true},
-                {[
-                    [_target, _this select 2] call FUNC(getExternalUsageChildren)
-                ]},
-                _x
-            ] call ACE_Interact_Menu_fnc_createAction,
-            [],
-            _target
-        ];
-} forEach ((_target call TFAR_fnc_lrRadiosList) select {((_x select 0) call DFUNC(isStaticRadio))});
-
-{
     _children pushBack [
             [
                 format["TFAR_interaction_SRradio_%1", _x],

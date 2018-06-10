@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-  Name: TFAR_fnc_getLRExternalUsage
+  Name: TFAR_core_fnc_getLRExternalUsage
 
   Author: Dorbedo
     returns the LR External Usage
@@ -14,7 +14,7 @@
     Allowed to use externally <BOOL>
 
   Example:
-    _return = _lrRadio call TFAR_fnc_getLRExternalUsage;
+    _return = _lrRadio call TFAR_core_fnc_getLRExternalUsage;
 
   Public: No
 */

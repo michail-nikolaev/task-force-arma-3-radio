@@ -164,6 +164,7 @@ class CfgVehicles {
         curatorCanAttach = 1;
         displayName = CSTRING(moduleStaticRadio_DisplayName);
         //function = "TFAR_static_radios_fnc_moduleStaticRadio";
+        picture = "";
         icon = "";//#TODO
         curatorInfoType="RscDisplayAttributesModuleTFARStaticRadio";
     };
@@ -179,14 +180,21 @@ class CfgVehicles {
         scopeCurator = 0;
         class ACE_Actions {
             class ACE_MainActions {
+                displayName = "ace_interaction_MainAction";
+                distance = 5;
+                condition = "true";
+                statement = "";
+                icon = "\a3\ui_f\data\IGUI\Cfg\Actions\eject_ca.paa";
+                selection = "";
+
                 class TFAR_Radio {
                     displayName = ECSTRING(CORE,RADIOS);
                     distance = 2;
-                    condition = "_player call TFAR_fnc_hasRadio";
+                    condition = "true";
                     exceptions[] = {};
                     statement = "";
-                    icon = QPATHTOF(ui\ACE_Interaction_Radio_Icon.paa);
-                    insertChildren = QUOTE(_this call EFUNC(core,getRadiosChildren));
+                    icon = QPATHTOEF(core,ui\ACE_Interaction_Radio_Icon.paa);
+                    insertChildren = QUOTE(_this call EFUNC(core,getStaticRadiosChildren));
                 };
             };
         };
@@ -202,6 +210,7 @@ class CfgVehicles {
         displayName = "Portable Long-range Radio (NATO)";
         model = "\A3\Structures_F\Items\Electronics\SurvivalRadio_F.p3d";
         icon = "iconObject_4x1";
+        picture = QPATHTOEF(backpacks,rt1523g\ui\rt1523g_icon.paa);
         editorCategory = ECSTRING(core,CATEGORY);
         cost = 1000;
 

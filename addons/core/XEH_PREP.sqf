@@ -5,6 +5,7 @@ PREP_SUB2(ACEInteraction,getExternalUsageChildren);
 PREP_SUB2(ACEInteraction,getLRExternalUsage);
 PREP_SUB2(ACEInteraction,getOwnRadiosChildren);
 PREP_SUB2(ACEInteraction,getRadiosChildren);
+PREP_SUB2(ACEInteraction,getStaticRadiosChildren);
 PREP_SUB2(ACEInteraction,getStereoChildren);
 PREP_SUB2(ACEInteraction,getTakeChildren);
 PREP_SUB2(ACEInteraction,startExternalUsage);
