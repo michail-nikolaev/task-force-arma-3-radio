@@ -12,8 +12,14 @@ if (!(isNil "TFAR_OverrideActiveLRRadio") && {(TFAR_currentUnit distance (TFAR_O
     true
 };
 
-if (!(isNil "TFAR_OverrideActiveLRRadio") && {!(_radio isEqualTo TFAR_OverrideActiveLRRadio)}) then {
-    [] call TFAR_core_fnc_stopExternalUsage;
+if !((isNil "TFAR_OverrideActiveLRRadio") || {}) then {
+    If ([objNull, TFAR_currentUnit, TF_lr_dialog_radio] call FUNC(canUseExternal)) then {
+        [] call TFAR_core_fnc_stopExternalUsage;
+        if (call TFAR_fnc_haveLRRadio) then {
+            TF_lr_dialog_radio = call TFAR_fnc_activeLrRadio;
+            call TFAR_fnc_onLrDialogOpen;
+        };
+    };
 };
 
 
