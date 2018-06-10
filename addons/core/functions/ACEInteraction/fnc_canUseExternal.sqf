@@ -20,10 +20,9 @@
   Public: No
 */
 
-params ["_target", "_unit", "_radio"];
+params ["_target", "_unit", ["_radio", [], [[]], [2]]];
 !(
-    (_radio isEqualTo "") ||
-    {(backpack _unit) isEqualTo ""} ||
+    (_radio isEqualTo []) ||
     {!(((_radio select 0) getVariable [QGVAR(usedExternallyBy), objNull]) isEqualTo objNull)} ||
     {(_unit distance (_radio select 0)) > TFAR_MAXREMOTELRRADIODISTANCE}
 )

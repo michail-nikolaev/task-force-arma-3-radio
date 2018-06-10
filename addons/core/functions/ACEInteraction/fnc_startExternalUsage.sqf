@@ -20,12 +20,14 @@
   Public: No
 */
 
-params ["_target", "_unit", "_radio"];
+params ["_target", "_unit", "_radio", ["_openDialog", false, [true]]];
 
 TFAR_OverrideActiveLRRadio = _radio;
 (_radio select 0) setVariable [QGVAR(usedExternallyBy), _unit, true];
 
 _radio call TFAR_fnc_setActiveLrRadio;
 
-TF_lr_dialog_radio = _radio;
-call TFAR_fnc_onLrDialogOpen;
+If (_openDialog) then {
+    TF_lr_dialog_radio = _radio;
+    call TFAR_fnc_onLrDialogOpen;
+};

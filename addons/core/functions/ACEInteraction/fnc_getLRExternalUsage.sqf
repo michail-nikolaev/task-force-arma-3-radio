@@ -19,4 +19,4 @@
   Public: No
 */
 
-(_this call TFAR_fnc_getLrSettings) param [TFAR_LR_ALLOWEXTERNALUSAGE, false, [false]]
+(_this call TFAR_fnc_getLrSettings) param [TFAR_LR_ALLOWEXTERNALUSAGE, True, [false]]
