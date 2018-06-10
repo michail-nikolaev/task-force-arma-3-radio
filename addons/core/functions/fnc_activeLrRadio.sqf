@@ -19,12 +19,9 @@
 */
 
 if (!isNil "TFAR_OverrideActiveLRRadio") exitWith {
-    if (!(((TFAR_OverrideActiveLRRadio select 0) getVariable [QGVAR(usedExternallyBy), objNull]) isEqualTo TFAR_currentUnit) ||
-        {TFAR_currentUnit distance (TFAR_OverrideActiveLRRadio select 0) > TFAR_MAXREMOTELRRADIODISTANCE}) then {
-
-        [] call FUNC(stopExternalUsage);
-        call TFAR_fnc_activeLrRadio
-
+    If !([objNull, TFAR_currentUnit, TFAR_OverrideActiveLRRadio] call FUNC(canUseExternal)) then {
+        [TFAR_OverrideActiveLRRadio] call FUNC(stopExternalUsage);
+        call TFAR_fnc_activeLrRadio;
     } else {
         TFAR_OverrideActiveLRRadio
     };

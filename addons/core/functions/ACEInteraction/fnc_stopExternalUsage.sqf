@@ -18,7 +18,13 @@
   Public: No
 */
 
-if (isNil "TFAR_OverrideActiveLRRadio") exitWith {};
+params [["_LRradio", TFAR_OverrideActiveLRRadio, [[]], [2]]];
 
-TFAR_OverrideActiveLRRadio = nil;
-(TFAR_OverrideActiveLRRadio select 0) setVariable [QGVAR(usedExternallyBy), objNull, true];
+If (TFAR_OverrideActiveLRRadio isEqualTo _LRradio) then {
+    TFAR_OverrideActiveLRRadio = nil;
+    (_LRradio select 0) setVariable [QGVAR(usedExternallyBy), objNull, true];
+    [false, true] call DFUNC(stopExternalUsage);
+} else {
+    [QGVAR(stopExternalUsage), [_LRradio]] call CBA_fnc_targetEvent;
+    (_LRradio select 0) setVariable [QGVAR(usedExternallyBy), objNull, true];
+};

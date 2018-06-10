@@ -216,6 +216,7 @@ PREP(setChannelFrequency);
 PREP(setRadioOwner);
 PREP(setLrSpeakers);
 PREP(settingForceArray);
+PREP(stopRadioUsage);
 // U
 PREP(updateSpeakVolumeUI);
 // V

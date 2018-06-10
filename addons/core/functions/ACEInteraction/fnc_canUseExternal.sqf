@@ -24,5 +24,6 @@ params ["_target", "_unit", "_radio"];
 !(
     (_radio isEqualTo "") ||
     {(backpack _unit) isEqualTo ""} ||
-    {!(((_radio select 0) getVariable [QGVAR(usedExternallyBy), objNull]) isEqualTo objNull)}
+    {!(((_radio select 0) getVariable [QGVAR(usedExternallyBy), objNull]) isEqualTo objNull)} ||
+    {(_unit distance (_radio select 0)) > TFAR_MAXREMOTELRRADIODISTANCE}
 )
