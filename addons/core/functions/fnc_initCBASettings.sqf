@@ -124,6 +124,15 @@
     true,
     0
 ] call CBA_Settings_fnc_init;
+[
+    "TFAR_moveWhileTabbedOut",
+    "CHECKBOX",
+    ["Move while tabbed out", "Move to TFAR channel even while the Arma window is not in focus"], //#TODO translation
+    localize ELSTRING(settings,clientside),
+    false,
+    0,
+    {["moveWhileTabbedOut", TFAR_moveWhileTabbedOut] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
 
 // server
 [

@@ -9,17 +9,18 @@
 
 //Was originally using enum.hpp. But it had to be edited to allow more than 8 settings.. at that was too tedious
 #define Settings(XX) \
-   XX(full_duplex,true), \
-   XX(addon_version,"unknown"), \
-   XX(serious_channelName,""), \
-   XX(serious_channelPassword,""), \
-   XX(intercomVolume,0.3f), \
-   XX(intercomEnabled,true), \
-   XX(pluginTimeout,4.f), \
-   XX(headsetLowered,false), \
-   XX(spectatorNotHearEnemies,false), \
-   XX(spectatorCanHearFriendlies, true), \
-   XX(tangentReleaseDelay, 0.f)
+    XX(full_duplex,true), \
+    XX(addon_version,"unknown"), \
+    XX(serious_channelName,""), \
+    XX(serious_channelPassword,""), \
+    XX(intercomVolume,0.3f), \
+    XX(intercomEnabled,true), \
+    XX(pluginTimeout,4.f), \
+    XX(headsetLowered,false), \
+    XX(spectatorNotHearEnemies,false), \
+    XX(spectatorCanHearFriendlies, true), \
+    XX(tangentReleaseDelay, 0.f), \
+    XX(moveWhileTabbedOut, false)
 
 #define EnumEntry(x,y) x
 #define EnumString(x,y) #x
