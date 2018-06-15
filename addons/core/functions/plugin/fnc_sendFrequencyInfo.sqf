@@ -97,7 +97,7 @@ private _nickname = if (_alive) then {name player} else {profileName};
 
 private _globalVolume = TFAR_currentUnit getVariable ["tf_globalVolume",1.0];//used API variable. Don't change
 
-private _receivingDistanceMultiplicator = TFAR_currentUnit getVariable ["tf_receivingDistanceMultiplicator",1.0];
+private _receivingDistanceMultiplicator = (TFAR_currentUnit getVariable ["tf_receivingDistanceMultiplicator",1.0]) * TFAR_globalRadioRangeCoef;
 //Async call will always return "OK"
 private _request = format["FREQ	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10~",//#TODO reorder
     str(_freq), str(_freq_lr),
