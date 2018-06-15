@@ -224,6 +224,17 @@ bool Teamspeak::setMyNicknameToGameName(TSServerID serverConnectionHandlerID, co
     if (getMyNickname(serverConnectionHandlerID) != getInstance().serverData[serverConnectionHandlerID].getMyOriginalNickname())
         getInstance().serverData[serverConnectionHandlerID].setMyOriginalNickname(getMyNickname(serverConnectionHandlerID));
 
+    static auto shortNameNotify = false;
+    if (nickname.length() < 3 && !shortNameNotify) {//Minimum name length for Teamspeak
+        shortNameNotify = true;
+        std::thread([length = nickname.length()]() { //Create thread because MessageBox is blocking
+            auto message = "Your in-game name is too short(" + std::to_string(length) + " characters).\nIt needs to be atleast 3 characters long.\nThis is a Teamspeak limitation, TFAR will not work properly until you change your ingame name.";
+            MessageBoxA(nullptr, message.c_str(), "Task Force Arrowhead Radio", MB_ICONERROR);
+        }).detach();
+        return false;
+    }
+
+
     DWORD error;
     if ((error = ts3Functions.setClientSelfVariableAsString(serverConnectionHandlerID.baseType(), CLIENT_NICKNAME, nickname.c_str())) != ERROR_ok) {
         log("Error setting client nickname", error);
@@ -677,7 +688,7 @@ int ts3plugin_apiVersion() {
     const short version = HIWORD(vsfi->dwFileVersionLS);
     const short minor = LOWORD(vsfi->dwFileVersionMS);
     delete[] versionInfo;
-    if (minor == 1) return 21;//Teamspeak 3.1 
+    if (minor == 1) return 22;//Teamspeak 3.1 
     switch (version) {
         case 9: return 19;
         case 10: return 19;
