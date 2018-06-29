@@ -409,10 +409,10 @@
     "EDITBOX",
     [ELSTRING(settings,DefaultRadioPersonal_west), ELSTRING(settings,DefaultRadioPersonal_west_desc)],
     localize ELSTRING(settings,global),
-    "TFAR_rf7800str",
+    "TFAR_anprc152",
     1,
     {
-        TFAR_DefaultRadio_Personal_West = if (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_rf7800str"};
+        TFAR_DefaultRadio_Personal_West = if (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_anprc152"};
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -420,10 +420,10 @@
     "EDITBOX",
     [ELSTRING(settings,DefaultRadioPersonal_east), ELSTRING(settings,DefaultRadioPersonal_east_desc)],
     localize ELSTRING(settings,global),
-    "TFAR_pnr1000a",
+    "TFAR_fadak",
     1,
     {
-        TFAR_DefaultRadio_Personal_East = if (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_pnr1000a"};
+        TFAR_DefaultRadio_Personal_East = if (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_fadak"};
     }
 ] call CBA_Settings_fnc_init;
 [
@@ -431,10 +431,10 @@
     "EDITBOX",
     [ELSTRING(settings,DefaultRadioPersonal_independent), ELSTRING(settings,DefaultRadioPersonal_independent_desc)],
     localize ELSTRING(settings,global),
-    "TFAR_anprc154",
+    "TFAR_anprc148jem",
     1,
     {
-        TFAR_DefaultRadio_Personal_Independent = if (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_anprc154"};
+        TFAR_DefaultRadio_Personal_Independent = if (_this call DFUNC(isPrototypeRadio)) then {_this} else {"TFAR_anprc148jem"};
     }
 ] call CBA_Settings_fnc_init;
 [
