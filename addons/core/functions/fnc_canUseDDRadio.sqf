@@ -7,7 +7,7 @@
     Checks whether it is possible for the DD radio to be used at the current height and isolated status.
 
   Arguments:
-    0: Depth <NUMBER>
+    0: Eye height ASL <NUMBER>
     1: Isolated and inside <BOOL>
 
   Return Value:

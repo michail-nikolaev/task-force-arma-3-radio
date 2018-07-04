@@ -39,7 +39,7 @@ struct LISTED_INFO {
     std::string radio_id;
     Position3D pos;
     float waveZ = 0.f;
-    vehicleDescriptor vehicle;//Vehiclename and isolation
+    vehicleDescriptor vehicle;//Only set for local_radio and is always the players vehicle
     AntennaConnection antennaConnection;
     void operator <<(std::ostream& str) const;
 };
