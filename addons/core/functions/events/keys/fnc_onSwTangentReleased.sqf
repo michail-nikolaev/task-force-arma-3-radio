@@ -18,7 +18,7 @@
   Public: No
 */
 
-if ((!TF_tangent_sw_pressed) or {!alive TFAR_currentUnit}) exitWith {true};
+if ((!TF_tangent_sw_pressed) or {!alive TFAR_currentUnit}) exitWith {false};
 private _radio = call TFAR_fnc_activeSwRadio;
 
 ["OnBeforeTangent", [TFAR_currentUnit, _radio, 0, false, false]] call TFAR_fnc_fireEventHandlers;
@@ -48,5 +48,4 @@ private _pluginCommand = format[
 TF_tangent_sw_pressed = false;
 //						unit, radio, radioType, additional, buttonDown
 ["OnTangent", [TFAR_currentUnit, _radio, 0, false, false]] call TFAR_fnc_fireEventHandlers;
-
-true
+false

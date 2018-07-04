@@ -18,21 +18,21 @@
   Public: No
 */
 
-if ((TF_tangent_lr_pressed or TF_tangent_sw_pressed) or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveLRRadio}) exitWith {true};
+if ((TF_tangent_lr_pressed or TF_tangent_sw_pressed) or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveLRRadio}) exitWith {false};
 
-if (!isMultiplayer) exitWith {_x = localize LSTRING(WM_Singleplayer);systemChat _x;hint _x;};
+if (!isMultiplayer) exitWith {_x = localize LSTRING(WM_Singleplayer);systemChat _x;hint _x; false};
 
-if (!call TFAR_fnc_isAbleToUseRadio) exitWith {call TFAR_fnc_unableToUseHint;true};
+if (!call TFAR_fnc_isAbleToUseRadio) exitWith {call TFAR_fnc_unableToUseHint;false};
 
 private _radio = call TFAR_fnc_activeLrRadio;
 private _additionalChannel = _radio call TFAR_fnc_getAdditionalLrChannel;
-if (_additionalChannel < 0) exitWith {true}; // No Additional Channel set
-if (!([_radio] call TFAR_fnc_RadioOn)) exitWith {true};
+if (_additionalChannel < 0) exitWith {false}; // No Additional Channel set
+if (!([_radio] call TFAR_fnc_RadioOn)) exitWith {false};
 
 if !([  TFAR_currentUnit,
         TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside,
         TFAR_currentUnit call TFAR_fnc_eyeDepth
-    ] call TFAR_fnc_canUseLRRadio) exitWith {call TFAR_fnc_inWaterHint;true};
+    ] call TFAR_fnc_canUseLRRadio) exitWith {call TFAR_fnc_inWaterHint;false};
 
 
 
