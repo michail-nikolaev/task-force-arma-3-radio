@@ -58,7 +58,7 @@
     "SLIDER",
     ELSTRING(settings,pluginTimeout),
     localize ELSTRING(settings,clientside),
-    [0.5, 10, 4, 3],
+    [0.5, 15, 4, 3],
     2,
     {["pluginTimeout",TFAR_pluginTimeout] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
