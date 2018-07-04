@@ -18,6 +18,11 @@
   Public: No
 */
 
+params ["_newUnit", "_corpse"]; //_this implicitly passed from the EH
+
+//Arma might lag behind and others still see the unit as alive and think it's a spectator
+_corpse setVariable ["TFAR_forceSpectator", false, true];
+
 [{!(isNull player)}, {
     TFAR_currentUnit = call TFAR_fnc_currentUnit;
 
