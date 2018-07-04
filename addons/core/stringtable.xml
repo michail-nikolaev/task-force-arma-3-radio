@@ -336,6 +336,12 @@
                 <Chinese>對講機音量</Chinese>
                 <Chinesesimp>对讲机音量</Chinesesimp>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_intercomDucking">
+                <Original>Intercom Ducking</Original>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_intercomDucking_desc">
+                <Original>Intercom volume reduction on incoming vehicle radio transmission</Original>
+            </Key>
             <Key ID="STR_TFAR_SETTINGS_pluginTimeout">
                 <Original>Plugin Timeout in seconds</Original>
                 <English>Plugin Timeout in seconds</English>

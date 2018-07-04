@@ -20,7 +20,8 @@
     XX(spectatorNotHearEnemies,false), \
     XX(spectatorCanHearFriendlies, true), \
     XX(tangentReleaseDelay, 0.f), \
-    XX(moveWhileTabbedOut, false)
+    XX(moveWhileTabbedOut, false), \
+    XX(intercomDucking, 0.2f)
 
 #define EnumEntry(x,y) x
 #define EnumString(x,y) #x

@@ -23,6 +23,7 @@
 ["serious_channelName",missionNamespace getVariable ["TFAR_Teamspeak_Channel_Name","TaskForceRadio"]] call TFAR_fnc_setPluginSetting;//#TODO wiki entry
 ["serious_channelPassword",missionNamespace getVariable ["TFAR_Teamspeak_Channel_Password","123"]] call TFAR_fnc_setPluginSetting;
 ["intercomVolume",missionNamespace getVariable ["TFAR_intercomVolume",0.3]] call TFAR_fnc_setPluginSetting;
+["intercomDucking",missionNamespace getVariable ["TFAR_intercomDucking",0.2]] call TFAR_fnc_setPluginSetting;
 ["intercomEnabled",missionNamespace getVariable ["TFAR_enableIntercom",true]] call TFAR_fnc_setPluginSetting;
 ["pluginTimeout",missionNamespace getVariable ["TFAR_pluginTimeout",4]] call TFAR_fnc_setPluginSetting;
 ["spectatorNotHearEnemies",!(missionNamespace getVariable ["TFAR_spectatorCanHearEnemyUnits",false])] call TFAR_fnc_setPluginSetting;

@@ -21,7 +21,7 @@ constexpr int const_strlen(const char* str) {
 static_assert(const_strlen("hello") == 5, "const_strlen no workerino");
 
 //from MSVC std library just in constexpr
-constexpr size_t _Hash_bytes(const char *_First, size_t _Count) _NOEXCEPT {// FNV-1a hash function for bytes in [_First, _First + _Count)
+constexpr size_t _Hash_bytes(const char *_First, size_t _Count) noexcept {// FNV-1a hash function for bytes in [_First, _First + _Count)
 #if defined(_WIN64)
     static_assert(sizeof(size_t) == 8, "This code is for 64-bit size_t.");
     const size_t _FNV_offset_basis = 14695981039346656037ULL;

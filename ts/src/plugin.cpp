@@ -634,7 +634,20 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
         } else if (info.on == receivingRadioType::LISTED_ON_INTERCOM) {
             clientData->effects.getLrRadioEffect("intercom")->setErrorLeveL(0.f);
-            processRadioEffect(radio_buffer, channels, sampleCount, TFAR::config.get<float>(Setting::intercomVolume), clientData->effects.getLrRadioEffect("intercom"), stereoMode::stereo);
+            auto intercomVolume = TFAR::config.get<float>(Setting::intercomVolume);
+            if (TFAR::config.get<bool>(Setting::headsetLowered)) {
+                intercomVolume *= 0.1f;
+            }
+
+            //Duck intercom if you have incoming transmission on LR
+            if (
+                std::find_if(listed_info.begin(), listed_info.end(), [](const LISTED_INFO& it) {
+                    return it.on == receivingRadioType::LISTED_ON_LR && it.volume > 2;
+                    }) != listed_info.end()
+                )
+                intercomVolume *= 1.f - TFAR::config.get<float>(Setting::intercomDucking);
+
+            processRadioEffect(radio_buffer, channels, sampleCount, intercomVolume, clientData->effects.getLrRadioEffect("intercom"), stereoMode::stereo);
         }
 
 

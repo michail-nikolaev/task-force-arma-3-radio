@@ -45,6 +45,15 @@
     {["intercomVolume", TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
 [
+    "TFAR_intercomDucking",
+    "SLIDER",
+    [ELSTRING(settings,intercomDucking), ELSTRING(settings,intercomDucking_desc)],
+    localize ELSTRING(settings,clientside),
+    [0.0, 1.0, 0.2, 2],
+    2,
+    {["intercomDucking", TFAR_intercomDucking] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+[
     "TFAR_pluginTimeout",
     "SLIDER",
     ELSTRING(settings,pluginTimeout),
