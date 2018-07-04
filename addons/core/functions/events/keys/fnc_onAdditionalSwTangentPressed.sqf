@@ -20,17 +20,17 @@
 //#TODO overhaul Additional Tangent functions
 
 
-if (((TF_tangent_lr_pressed or TF_tangent_sw_pressed)) or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveSWRadio}) exitWith {true};
+if (((TF_tangent_lr_pressed or TF_tangent_sw_pressed)) or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveSWRadio}) exitWith {false};
 
-if (!isMultiplayer) exitWith {_x = localize LSTRING(WM_Singleplayer);systemChat _x;hint _x;};
+if (!isMultiplayer) exitWith {_x = localize LSTRING(WM_Singleplayer);systemChat _x;hint _x;false};
 
-if (!call TFAR_fnc_isAbleToUseRadio) exitWith {call TFAR_fnc_unableToUseHint;true};
+if (!call TFAR_fnc_isAbleToUseRadio) exitWith {call TFAR_fnc_unableToUseHint;false};
 
 private _radio = call TFAR_fnc_activeSwRadio;
 
 private _additonalChannel = _radio call TFAR_fnc_getAdditionalSwChannel;
-if (_additonalChannel < 0) exitWith {true}; //No Additional Channel set
-if (!([_radio] call TFAR_fnc_RadioOn)) exitWith {true};
+if (_additonalChannel < 0) exitWith {false}; //No Additional Channel set
+if (!([_radio] call TFAR_fnc_RadioOn)) exitWith {false};
 
 private _depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
 private _isolatedAndInside = TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside;
@@ -42,7 +42,7 @@ if !([  TFAR_currentUnit,
     ] call TFAR_fnc_canUseSWRadio
     ||
     {([_depth,_isolatedAndInside] call TFAR_fnc_canUseDDRadio)}
-    ) exitWith {call TFAR_fnc_inWaterHint;true};
+    ) exitWith {call TFAR_fnc_inWaterHint;false};
 
 ["OnBeforeTangent", [TFAR_currentUnit, _radio, 0, true, true]] call TFAR_fnc_fireEventHandlers;
 private _currentFrequency = [_radio, _additonalChannel + 1] call TFAR_fnc_getChannelFrequency;

@@ -18,11 +18,11 @@
   Public: No
 */
 
-if (!(TF_tangent_lr_pressed) or {!alive TFAR_currentUnit}) exitWith {true};
+if (!(TF_tangent_lr_pressed) or {!alive TFAR_currentUnit}) exitWith {false};
 private _radio = call TFAR_fnc_activeLrRadio;
 
 private _additionalChannel = _radio call TFAR_fnc_getAdditionalLrChannel;
-if (_additionalChannel < 0) exitWith {true}; // No Additional Channel set
+if (_additionalChannel < 0) exitWith {false}; // No Additional Channel set
 
 ["OnBeforeTangent", [TFAR_currentUnit, _radio, 1, true, false]] call TFAR_fnc_fireEventHandlers;
 
@@ -51,4 +51,4 @@ private _pluginCommand = format[
 TF_tangent_lr_pressed = false;
 //						unit, radio, radioType, additional, buttonDown
 ["OnTangent", [TFAR_currentUnit, _radio, 1, true, false]] call TFAR_fnc_fireEventHandlers;
-true
+false
