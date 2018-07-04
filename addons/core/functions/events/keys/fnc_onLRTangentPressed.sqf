@@ -20,6 +20,9 @@
 if (time - TF_last_lr_tangent_press < 0.1) exitWith {TF_last_lr_tangent_press = time;true};
 TF_last_lr_tangent_press = time;
 if ((TF_tangent_lr_pressed or TF_tangent_sw_pressed) or {!alive TFAR_currentUnit} or {!call TFAR_fnc_haveLRRadio}) exitWith {true};
+
+if (!isMultiplayer) exitWith {_x = localize LSTRING(WM_Singleplayer);systemChat _x;hint _x;};
+
 if (!call TFAR_fnc_isAbleToUseRadio) exitWith {call TFAR_fnc_unableToUseHint;true};
 private _radio = call TFAR_fnc_activeLrRadio;
 if (!([_radio] call TFAR_fnc_RadioOn)) exitWith {true};
