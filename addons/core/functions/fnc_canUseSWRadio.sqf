@@ -10,7 +10,7 @@
     0: Unit <OBJECT>
     1: Isolated and inside <BOOL>
     2: Can Speak <BOOL>
-    3: Depth <NUMBER>
+    3: Eye height ASL <NUMBER>
 
   Return Value:
     radio can be used <BOOL>

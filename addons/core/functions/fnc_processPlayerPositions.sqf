@@ -100,16 +100,13 @@ if (_needNearPlayerScan) then {
     /*
     Want to process Curators on NearPlayers because even if they are not near,
     their controlled unit may be.
-   */
-    {
-        TFAR_currentNearPlayers pushBackUnique _x;
-        true;
-    } count (call BIS_fnc_listCuratorPlayers);//Add curators
+    */
 
+    TFAR_currentNearPlayers append (allCurators apply {getAssignedCuratorUnit _x} select {!isNull _x});//Add curators
 
-    private _other_units = allPlayers - TFAR_currentNearPlayers;
+    TFAR_currentNearPlayers = TFAR_currentNearPlayers arrayIntersect TFAR_currentNearPlayers; //Remove duplicates
 
-    TFAR_currentFarPlayers = _other_units select {isPlayer _x};
+    TFAR_currentFarPlayers = (allPlayers - TFAR_currentNearPlayers) select {isPlayer _x};
 
     TFAR_lastPlayerScanTime = diag_tickTime;
 };
