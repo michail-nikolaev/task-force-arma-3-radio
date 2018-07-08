@@ -8,13 +8,14 @@
 
   Arguments:
     0: Radio classname <STRING>
-    1: Channel <NUMBER>
+    1: 0-based Channel number <NUMBER>
 
   Return Value:
     None
 
   Example:
-    [(call TFAR_fnc_activeSwRadio), 2] call TFAR_fnc_setAdditionalSwChannel;
+    // SW Radio - Channel 2
+    [(call TFAR_fnc_activeSwRadio), 1] call TFAR_fnc_setAdditionalSwChannel;
 
   Public: Yes
 */

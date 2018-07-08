@@ -8,7 +8,7 @@
 
   Arguments:
     0: Radio <OBJECT|STRING>
-    1: Channel <NUMBER>
+    1: 1-based Channel number <NUMBER>
     2: Frequency <STRING>
 
   Return Value:
