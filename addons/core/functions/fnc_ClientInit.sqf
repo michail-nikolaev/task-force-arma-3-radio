@@ -56,7 +56,7 @@ TF_respawnedAt = time;//first spawn so.. respawned now
             //Only want this to run after initial spawn was processed
             [
                 {(time - TF_respawnedAt > 5)},
-                {[PROFCONTEXT_NORTN(TFAR_fnc_radioReplaceProcess),2/*2 seconds*/] call CBA_fnc_addPerFrameHandler;}
+                {GVAR(EHID_radioReplaceProcess) = [PROFCONTEXT_NORTN(TFAR_fnc_radioReplaceProcess),2/*2 seconds*/] call CBA_fnc_addPerFrameHandler;}
             ] call CBA_fnc_waitUntilAndExecute;
         };
 }] call CBA_fnc_waitUntilAndExecute;
