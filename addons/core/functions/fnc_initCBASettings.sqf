@@ -154,7 +154,7 @@
     {TF_terrain_interception_coefficient = GVARMAIN(terrain_interception_coefficient);}
 ] call CBA_Settings_fnc_init;
 [
-    TFAR_globalRadioRangeCoef,
+    "TFAR_globalRadioRangeCoef",
     "SLIDER",
     ["Radio range coef", "A global coefficient to control any radio range. This is multiplied with the tf_receivingDistanceMultiplicator(default 100%) unit variable"],
     localize ELSTRING(settings,global),
