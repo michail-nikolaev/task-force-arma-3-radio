@@ -288,7 +288,6 @@ int ts3plugin_init() {
     Logger::registerLogger(LoggerTypes::gameCommands, std::make_shared<FileLogger>(std::string(getenv("appdata")) + "\\TS3Client\\TFAR_gameCommands.log"));
 #endif
 
-    TFAR::getInstance().setPluginPath(pluginPath);
     TFAR::getServerDataDirectory();//initializes the ServerdataDirectory so it connects its Slots to TFAR's Signals
 
     Teamspeak::_onInit();
