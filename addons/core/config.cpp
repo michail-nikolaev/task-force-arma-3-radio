@@ -20,6 +20,7 @@ class CfgPatches {
             "A3_Soft_F_Offroad_01" //Offroad_01_base_F we are adding insolation and LR in CfgVehicles
         };
         author = ECSTRING(core,AUTHORS);
+        server_api = SERVER_API_VERSION;
     };
 
     class task_force_radio {
@@ -65,7 +66,7 @@ class CfgSettings {
    class CBA {
       class Versioning {
          class TFAR {
-           main_addon = "tfar_core";
+            main_addon = "tfar_core";
             class Dependencies {
                CBA[]={"cba_main", {3,1,0}, "true"};
             };
