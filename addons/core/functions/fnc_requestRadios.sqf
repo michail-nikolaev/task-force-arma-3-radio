@@ -100,8 +100,6 @@ GVAR(lastRadioRequestEH_ID) = [
             };
         };
 
-
-        private _oldItem = _radiosToReplace deleteAt 0;
         {
             private _oldItem = _x;
             private _newID = _response deleteAt 0;
