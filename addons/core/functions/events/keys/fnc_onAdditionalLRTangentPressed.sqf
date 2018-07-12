@@ -54,7 +54,7 @@ private _pluginCommand = format[
                                 _currentFrequency,
                                 _radio call TFAR_fnc_getLrRadioCode,
                                 ([_radio select 0, "tf_range"] call TFAR_fnc_getLrRadioProperty)  * (call TFAR_fnc_getTransmittingDistanceMultiplicator),
-                                [_radio select 0, "tf_subtype"] call TFAR_fnc_getLrRadioProperty,
+                                [_radio select 0, "tf_subtype", "digital_lr"] call TFAR_fnc_getLrRadioProperty,
                                 typeOf (_radio select 0)
                             ];
 

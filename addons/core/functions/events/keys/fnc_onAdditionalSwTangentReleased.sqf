@@ -45,7 +45,7 @@ private _pluginCommand = format[
                                 _currentFrequency,
                                 _radio call TFAR_fnc_getSwRadioCode,
                                 ([_radio, "tf_range", 0] call DFUNC(getWeaponConfigProperty)) * (call TFAR_fnc_getTransmittingDistanceMultiplicator),
-                                ([_radio, "tf_subtype", ""] call DFUNC(getWeaponConfigProperty))
+                                ([_radio, "tf_subtype", "digital"] call DFUNC(getWeaponConfigProperty))
                             ];
 
 [_hintText,_pluginCommand, [0,nil] select TFAR_showTransmittingHint] call TFAR_fnc_processTangent;
