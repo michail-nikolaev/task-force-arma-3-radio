@@ -5,8 +5,8 @@ class CfgVehicles {
         scope = PUBLIC;
         scopeCurator = PUBLIC;
         author = ECSTRING(core,AUTHORS);
-        category = ECSTRING(core,CATEGORY);
-        editorCategory = ECSTRING(core,CATEGORY);
+        category = "TFAR";
+        editorCategory = "TFAR";
         displayName = CSTRING(TowerName);
     };
 };
