@@ -77,7 +77,7 @@ class CfgSettings {
 
 class CfgEditorCategories {
     class TFAR {
-        displayName = "TFAR"; // Name visible in the list
+        displayName = ECSTRING(core,CATEGORY); // Name visible in the list
     };
 };
 

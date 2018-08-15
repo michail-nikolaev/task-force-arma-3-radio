@@ -5,7 +5,7 @@ class CfgVehicles {
         scope = 1;
         author = ECSTRING(core,AUTHORS);
         displayName = ECSTRING(CORE,DEPRECATED);
-        category = ECSTRING(CORE,CATEGORY);
+        category = "TFAR";
         function = "";
         functionPriority = 0;
         isGlobal = 0;
