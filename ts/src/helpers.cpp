@@ -187,7 +187,7 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     float gainFrontRight = volumeMatrix[1];
     delete[] volumeMatrix;
     const float totalVolume = (gainFrontRight + gainFrontLeft);
-    float mult = 1.35f;
+    float mult = 1.50f;
     if (totalVolume > 1.f) {
         mult *= 1.f / totalVolume;
     }
