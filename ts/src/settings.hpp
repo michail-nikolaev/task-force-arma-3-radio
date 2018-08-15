@@ -140,8 +140,10 @@ public:
     }
     template<typename TYPE>
     void set(Setting key, const TYPE& value) {
+        LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
         values[key] = value;
         needRefresh = false;
+        lock.unlock();
         configValueSet(key);
     }
 
@@ -150,6 +152,7 @@ public:
         LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
         values[key].setString(value);
         needRefresh = false;
+        lock.unlock();
         configValueSet(key);
     }
 
@@ -157,6 +160,7 @@ public:
         LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
         values[key].setString(std::string(value));
         needRefresh = false;
+        lock.unlock();
         configValueSet(key);
     }
 
