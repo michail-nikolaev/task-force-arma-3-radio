@@ -986,7 +986,7 @@ void processPluginCommand(std::string_view command) {
     } else if (tokens.size() == 2 && tokens[0] == "REQVOL"sv) {//#TODO request volume onGameStart for each client not currently known
         if (!clientDataDir->myClientData)
             return;
-        const TSClientID clientID = std::atoi(tokens[1].data());
+        const TSClientID clientID = std::stoi(std::string(tokens[1].data(), tokens[1].length()));
         const auto myNickname = clientDataDir->myClientData->getNickname();
         const bool curTalking = clientDataDir->myClientData->clientTalkingNow;
         const auto cmd = "VOLUME\t" + myNickname + "\t" + std::to_string(TFAR::getInstance().m_gameData.myVoiceVolume) + "\t" + (curTalking ? "true" : "false");

@@ -135,7 +135,7 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     emitter.ChannelRadius = 1.f;
 
     const float volumePerMeter = emitterVoiceVolume / 20.f;
-    std::array<X3DAUDIO_DISTANCE_CURVE_POINT, 21> distanceCurves{
+    std::array<X3DAUDIO_DISTANCE_CURVE_POINT, 25> distanceCurves{
         X3DAUDIO_DISTANCE_CURVE_POINT{0.f, 1.f},
         X3DAUDIO_DISTANCE_CURVE_POINT{ 0.05, volumeAttenuation(volumePerMeter, shouldPlayerHear, emitterVoiceVolume) },
         X3DAUDIO_DISTANCE_CURVE_POINT{ 0.10, volumeAttenuation(volumePerMeter*2, shouldPlayerHear, emitterVoiceVolume) },
@@ -156,7 +156,11 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
         X3DAUDIO_DISTANCE_CURVE_POINT{ 0.85, volumeAttenuation(volumePerMeter*17, shouldPlayerHear, emitterVoiceVolume) },
         X3DAUDIO_DISTANCE_CURVE_POINT{ 0.90, volumeAttenuation(volumePerMeter*18, shouldPlayerHear, emitterVoiceVolume) },
         X3DAUDIO_DISTANCE_CURVE_POINT{ 0.95, volumeAttenuation(volumePerMeter*19, shouldPlayerHear, emitterVoiceVolume) },
-        X3DAUDIO_DISTANCE_CURVE_POINT{ 1.0f, volumeAttenuation(volumePerMeter*20, shouldPlayerHear, emitterVoiceVolume) }
+        X3DAUDIO_DISTANCE_CURVE_POINT{ 1.05, volumeAttenuation(volumePerMeter*20, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ 1.10, volumeAttenuation(volumePerMeter*24, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ 1.15, volumeAttenuation(volumePerMeter*28, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ 1.20, volumeAttenuation(volumePerMeter*32, shouldPlayerHear, emitterVoiceVolume) },
+        X3DAUDIO_DISTANCE_CURVE_POINT{ 1.25, 0.0 }
     };
     X3DAUDIO_DISTANCE_CURVE dCurve;
     dCurve.pPoints = distanceCurves.data();
@@ -187,9 +191,9 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     float gainFrontRight = volumeMatrix[1];
     delete[] volumeMatrix;
     const float totalVolume = (gainFrontRight + gainFrontLeft);
-    float mult = 1.50f;
+    float mult = 2.f;
     if (totalVolume > 1.f) {
-        mult *= 1.f / totalVolume;
+        mult *= 2.f / totalVolume;
     }
     //static uint64_t ind = 0;
     //ind++;
