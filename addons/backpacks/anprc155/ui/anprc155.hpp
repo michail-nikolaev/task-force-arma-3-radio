@@ -47,7 +47,7 @@ class anprc155_radio_dialog {
     };
     class channel_edit: RscEditLCD {
         idc = IDC_ANPRC155_CHANNEL_EDIT;
-        x = 0.337578 * safezoneW + safezoneX;
+        x = 0.327 * safezoneW + safezoneX;
         y = 0.3416 * safezoneH + safezoneY;
         w = 0.0485625 * safezoneW;
         h = 0.0658147 * safezoneH;
@@ -60,7 +60,7 @@ class anprc155_radio_dialog {
         idc = IDC_ANPRC155_EDIT;
         x = 0.374187 * safezoneW + safezoneX;
         y = 0.3416 * safezoneH + safezoneY;
-        w = 0.0427969 * safezoneW;
+        w = 0.06 * safezoneW;
         h = 0.066 * safezoneH;
         font = "TFAR_font_segments";
         tooltip = ECSTRING(core,current_freq);
