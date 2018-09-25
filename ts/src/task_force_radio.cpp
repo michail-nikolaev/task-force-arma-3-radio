@@ -74,7 +74,7 @@ TFAR::TFAR() {
     });
     config.configValueSet.connect([this](const Setting& setting) {
         static std::chrono::system_clock::time_point lastMove;
-        if ((setting == Setting::serious_channelName || setting == Setting::serious_channelPassword)
+        if (setting == Setting::serious_channelName
             && std::chrono::system_clock::now() - lastMove > 10ms) { //Teamspeak needs a little time to update currentChannel. This prevents doublejoin
             Teamspeak::moveToSeriousChannel();
             lastMove = std::chrono::system_clock::now();
