@@ -220,7 +220,7 @@
     localize ELSTRING(settings,global),
     "TaskForceRadio",
     1,
-    {["serious_channelName",_this] call TFAR_fnc_setPluginSetting;}
+    {["serious_channelName", _this] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
 [
     "TFAR_Teamspeak_Channel_Password",
@@ -229,7 +229,7 @@
     localize ELSTRING(settings,global),
     ["123", true],
     1,
-    {["serious_channelPassword",_this] call TFAR_fnc_setPluginSetting;}
+    {["serious_channelPassword", _this] call TFAR_fnc_setPluginSetting; ["serious_channelName", _this] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
 [
     "TFAR_SameSRFrequenciesForSide",
