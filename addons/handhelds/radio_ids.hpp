@@ -3,6 +3,7 @@
         displayName = QUOTE(displayNameBase 1); \
         scope = 1; \
         scopeCurator = 1; \
+        scopeArsenal = 1; \
         tf_prototype = 0; \
         tf_radio = 1; \
         ace_arsenal_uniqueBase = QUOTE(baseClass); \
