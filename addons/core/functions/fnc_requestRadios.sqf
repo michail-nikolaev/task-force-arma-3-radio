@@ -33,20 +33,6 @@ GVAR(VehicleConfigCacheNamespace) setVariable ["TFAR_fnc_requestRadios_lastExec"
 
 if (_radiosToRequest isEqualTo []) exitWith {};
 
-//#Deprecated radio classes
-_radiosToRequest = _radiosToRequest apply {
-    switch (_x) do {
-        case "tf_anprc148jem" : {"TFAR_anprc148jem"};
-        case "tf_anprc152" : {"TFAR_anprc152"};
-        case "tf_anprc154" : {"TFAR_anprc154"};
-        case "tf_fadak" : {"TFAR_fadak"};
-        case "tf_pnr1000a" : {"TFAR_pnr1000a"};
-        case "tf_rf7800str" : {"TFAR_rf7800str"};
-        default {_x};
-    };
-};
-
-
 //Answer EH. The server sent us instanciated radios
 GVAR(lastRadioRequestEH_ID) = [
     "TFAR_RadioRequestResponseEvent", {
