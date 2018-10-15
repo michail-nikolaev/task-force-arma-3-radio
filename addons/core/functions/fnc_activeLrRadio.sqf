@@ -29,7 +29,7 @@ if (isNil "TF_lr_active_radio") then {
     };
 };
 
-if (!isNil "TFAR_OverrideActiveLRRadio") then {
+if (!isNil "TFAR_OverrideActiveLRRadio") exitWith {
     private _radioObject = TFAR_OverrideActiveLRRadio select 0;
     private _distObject = [objectParent _radioObject, _radioObject] select isNull objectParent _radioObject;
 
@@ -41,3 +41,4 @@ if (!isNil "TFAR_OverrideActiveLRRadio") then {
     };
 };
 
+TF_lr_active_radio
