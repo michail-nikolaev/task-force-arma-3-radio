@@ -64,7 +64,7 @@ private _speakerRadios = TFAR_speakerRadios;
         } count (everyBackpack _x);
     };
     true;
-} count (nearestObjects [getPos TFAR_currentUnit, ["WeaponHolder", "WeaponHolderSimulated"], TF_speakerDistance]);
+} count ((TFAR_currentUnit nearSupplies TF_speakerDistance) - [TFAR_currentUnit]);
 //#TODO doesn't catch static LRRadio backpacks on ground because they are not in any Holder
 //Are you sure? nearestObjects seems to return a container and backpacks returns radio backpacks.. Should verify that again It may not see them because of TFAR_LRSpeakersEnabled not set
 
