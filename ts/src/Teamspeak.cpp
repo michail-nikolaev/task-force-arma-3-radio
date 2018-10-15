@@ -713,7 +713,7 @@ void ts3plugin_setFunctionPointers(const struct TS3Functions funcs) {
 
 /* Unique name identifying this plugin */
 const char* ts3plugin_name() {
-    return "Task Force Arma 3 Radio";
+    return "Task Force Arrowhead Radio";
 }
 
 /* Plugin version */
