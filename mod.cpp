@@ -1,4 +1,4 @@
-name = "Task Force Arrowhead Radio 1.0.0 (dev)";
+name = "TFAR";
 actionName = "Website";
 action = "http://radio.task-force.ru/en";
 description = "Task Force Arrowhead Radio TeamSpeak Plugin";

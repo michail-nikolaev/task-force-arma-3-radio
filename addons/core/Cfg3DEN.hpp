@@ -64,6 +64,18 @@ class Cfg3DEN {
                         condition = "objectBrain";
                         defaultValue = "false";
                     };
+                    };
+                    class TFAR_defaultIntercomSlot {
+                        property = "TFAR_defaultIntercomSlot";
+                        control = "EditShort";
+                        displayName = "Default Intercom Channel";
+                        tooltip = "Default Intercom Channel when entering vehicle. Overwrites global setting. (-1 means Intercom disabled by default, -2 means this setting is ignored)";
+                        expression = QUOTE(diag_log [ARR_2('defaultIntercomSlot', _value)]; if (_value != -2) then {_this setVariable [ARR_2('TFAR_defaultIntercomSlot',_value)]};);
+                        typeName = "NUMBER";
+                        validate = "number";
+                        condition = "objectVehicle";
+                        defaultValue = "-2";
+                    };
                 };
             };
         };
