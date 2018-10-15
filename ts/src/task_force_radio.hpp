@@ -49,7 +49,7 @@ public:
         //_alive, speakVolume, _nickname, 
         //waves, TF_terrain_interception_coefficient, _globalVolume,
         //_receivingDistanceMultiplicator, TF_speakerDistance
-        LockGuard_exclusive<ReadWriteLock> lock(&m_lock);
+        LockGuard_exclusive lock(m_lock);
         mySwFrequencies = helpers::parseFrequencies(tokens[1]);
         myLrFrequencies = helpers::parseFrequencies(tokens[2]);
         alive = tokens[3] == "true";
@@ -84,8 +84,8 @@ public:
     int currentDataFrame{ INVALID_DATA_FRAME };
 
 
-    std::string getCurrentTransmittingRadio() const { LockGuard_shared<ReadWriteLock> lock(&m_lock); return currentTransmittingRadio; }
-    void setCurrentTransmittingRadio(std::string_view val) { LockGuard_exclusive<ReadWriteLock> lock(&m_lock); currentTransmittingRadio = val; }
+    std::string getCurrentTransmittingRadio() const { LockGuard_shared lock(m_lock); return currentTransmittingRadio; }
+    void setCurrentTransmittingRadio(std::string_view val) { LockGuard_exclusive lock(m_lock); currentTransmittingRadio = val; }
     bool tangentPressed{ false };
     std::chrono::milliseconds pttDelay{ 0ms };
 private:

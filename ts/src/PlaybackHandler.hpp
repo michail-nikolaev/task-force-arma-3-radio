@@ -280,8 +280,6 @@ public:
     static void playWavFile(const char* fileNameWithoutExtension);
     void playWavFile(TSServerID serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, stereoMode stereo);
 private:
-    using LockGuard_shared = LockGuard_shared<CriticalSectionLock>;
-    using LockGuard_exclusive = LockGuard_exclusive<CriticalSectionLock>;
     CriticalSectionLock playbackCriticalSection;
 };
 

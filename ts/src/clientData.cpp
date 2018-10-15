@@ -26,7 +26,7 @@ void LISTED_INFO::operator<<(std::ostream& str) const {
 }
 
 void clientData::updatePosition(const unitPositionPacket & packet) {
-    LockGuard_exclusive lock(&m_lock);
+    LockGuard_exclusive lock(m_lock);
 
     clientPosition = packet.position;//Could move assign if more performance is needed
     viewDirection = packet.viewDirection;
@@ -52,7 +52,7 @@ void clientData::updatePosition(const unitPositionPacket & packet) {
 }
 
 Position3D clientData::getClientPosition() const {
-    LockGuard_shared lock(&m_lock);
+    LockGuard_shared lock(m_lock);
 
     if (velocity.isNull())
         return clientPosition;
@@ -133,7 +133,7 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     const auto senderFrequency = getCurrentTransmittingFrequency();
     const bool isUnderwater = receiverUnderwater || senderUnderwater;
 
-    LockGuard_shared countLock(&TFAR::getInstance().m_gameData.m_lock);
+    LockGuard_shared countLock(TFAR::getInstance().m_gameData.m_lock);
     //Sender is sending on a Frequency we are listening to on our LR Radio
     const bool senderOnLRFrequency = TFAR::getInstance().m_gameData.myLrFrequencies.count(senderFrequency) != 0;
     //Sender is sending on a Frequency we are listening to on our SW Radio
@@ -178,7 +178,7 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
     }
 
     if (senderOnLRFrequency && myData->canUseLRRadio) {//to our LR
-        LockGuard_shared lock(&TFAR::getInstance().m_gameData.m_lock);
+        LockGuard_shared lock(TFAR::getInstance().m_gameData.m_lock);
         auto &frequencyInfo = TFAR::getInstance().m_gameData.myLrFrequencies[senderFrequency];
         if (!TFAR::config.get<bool>(Setting::full_duplex) && //If we are currently transmitting on that Radio we can't hear so we return before result gets valid
             frequencyInfo.radioClassname == currentTransmittingRadio) {
@@ -190,7 +190,7 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
         result.stereoMode = frequencyInfo.stereoMode;
         DIAGLOG("IOLR RECV! RC=" + frequencyInfo.radioClassname);
     } else if (senderOnSWFrequency && myData->canUseSWRadio) {//to our SW
-        LockGuard_shared lock(&TFAR::getInstance().m_gameData.m_lock);
+        LockGuard_shared lock(TFAR::getInstance().m_gameData.m_lock);
         auto &frequencyInfo = TFAR::getInstance().m_gameData.mySwFrequencies[senderFrequency];
         if (!TFAR::config.get<bool>(Setting::full_duplex) && //If we are currently transmitting on that Radio we can't hear so we return before result gets valid
             frequencyInfo.radioClassname == currentTransmittingRadio) {
@@ -265,7 +265,7 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
         (canUseSWRadio && (currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_SW || ignoreSwTangent)) || //Sending over SW
         (canUseLRRadio && (currentTransmittingTangentOverType == sendingRadioType::LISTEN_TO_LR || ignoreLrTangent))) { //Sending over LR
         auto currentFrequency = getCurrentTransmittingFrequency();
-        ::LockGuard_shared<ReadWriteLock> lock(&TFAR::getInstance().m_gameData.m_lock);
+        LockGuard_shared lock(TFAR::getInstance().m_gameData.m_lock);
         std::for_each(TFAR::getInstance().m_gameData.speakers.begin(), TFAR::getInstance().m_gameData.speakers.end(), [&](auto &it) {
             if (it.first != currentFrequency) return;
             SPEAKER_DATA& speaker = it.second;
@@ -301,12 +301,12 @@ std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& my
 }
 
 void clientData::addModificationLog(std::string mod) {
-    LockGuard_exclusive lock(&m_lock);
+    LockGuard_exclusive lock(m_lock);
     //Logger::log(LoggerTypes::pluginCommands, "mod " + mod);
     modificationLog.emplace_back(std::move(mod));
 }
 std::vector<std::string> clientData::getModificationLog() const {
-    LockGuard_shared lock(&m_lock);
+    LockGuard_shared lock(m_lock);
     return modificationLog;
 }
 
@@ -315,14 +315,14 @@ void clientData::circularLog(const std::string& message) {
     const auto now = std::chrono::system_clock::now();
     const auto in_time_t = std::chrono::system_clock::to_time_t(now);
     msg << std::put_time(std::localtime(&in_time_t), "%H:%M:%S") << " " << message;
-    LockGuard_exclusive lock(&m_lock);
+    LockGuard_exclusive lock(m_lock);
     messages.push_back(msg.str());
     if (++offset > messageCount) offset = 0;
 
 }
 
 void clientData::verboseDataLog(std::ostream& str) {
-    LockGuard_shared lock(&m_lock);
+    LockGuard_shared lock(m_lock);
 
     logParam(pluginEnabled);
     logParamN(clientId,clientId.baseType());

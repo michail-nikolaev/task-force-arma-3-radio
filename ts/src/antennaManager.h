@@ -128,8 +128,6 @@ private:
     //There are better containers for this. May rework this later
     std::vector<std::shared_ptr<Antenna>> antennas;
 
-    using LockGuard_shared = LockGuard_shared<ReadWriteLock>;
-    using LockGuard_exclusive = LockGuard_exclusive<ReadWriteLock>;
     ReadWriteLock m_lock;
 };
 

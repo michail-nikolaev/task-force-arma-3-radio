@@ -18,8 +18,6 @@ public:
 
     serverData() = default;
 private:
-    using LockGuard_shared = LockGuard_shared<ReadWriteLock>;
-    using LockGuard_exclusive = LockGuard_exclusive<ReadWriteLock>;
     mutable ReadWriteLock m_lock;
     void clientJoined(TSClientID clientID, const std::string& clientNickname);
     void clientLeft(TSClientID clientID);
@@ -95,8 +93,6 @@ public:
     bool hasDirectory(TSServerID serverConnectionHandlerID) const;
     void verify();
 private:
-    using LockGuard_shared = LockGuard_shared<ReadWriteLock>;
-    using LockGuard_exclusive = LockGuard_exclusive<ReadWriteLock>;
     mutable ReadWriteLock m_lock;
     std::map<TSServerID, std::shared_ptr<serverData>> data;
 

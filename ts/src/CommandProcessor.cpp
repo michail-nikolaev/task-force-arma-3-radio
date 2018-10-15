@@ -270,7 +270,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
             };
 
             if (pressed) {
-                LockGuard_shared<ReadWriteLock> frequencyLock(&TFAR::getInstance().m_gameData.m_lock);
+                LockGuard_shared frequencyLock(TFAR::getInstance().m_gameData.m_lock);
                 switch (PTTDelayArguments::stringToSubtype(subtype)) {
                     case PTTDelayArguments::subtypes::digital_lr:
                         playRadioSound("radio-sounds/lr/local_start", TFAR::getInstance().m_gameData.myLrFrequencies);
@@ -288,7 +288,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
                     TFAR::getInstance().m_gameData.setCurrentTransmittingRadio(tokens[5]);
                 }
                 //Force enable PTT
-                LockGuard_exclusive<CriticalSectionLock> lock(&tangentCriticalSection);
+                LockGuard_exclusive lock(tangentCriticalSection);
                 if (!waitingForTangentOff) {
                     vadEnabled = Teamspeak::hlp_checkVad();
                     if (vadEnabled) Teamspeak::hlp_disableVad();
@@ -303,7 +303,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
                 args.pttDelay = TFAR::getInstance().m_gameData.pttDelay;
                 args.tangentReleaseDelay = std::chrono::milliseconds(static_cast<int>(TFAR::config.get<float>(Setting::tangentReleaseDelay)));
                 std::thread([args]() {process_tangent_off(args); }).detach();
-                LockGuard_shared<ReadWriteLock> frequencyLock(&TFAR::getInstance().m_gameData.m_lock);
+                LockGuard_shared frequencyLock(TFAR::getInstance().m_gameData.m_lock);
                 switch (PTTDelayArguments::stringToSubtype(subtype)) {
                     case PTTDelayArguments::subtypes::digital_lr:
                         playRadioSound("radio-sounds/lr/local_end", TFAR::getInstance().m_gameData.myLrFrequencies);
@@ -423,7 +423,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
 
 void CommandProcessor::processSpeakers(std::vector<std::string_view>& tokens) const {
     //#TODO we don't really need to send Speakers every time.. Their pos is always static. Either on a person or on ground
-    LockGuard_exclusive<ReadWriteLock> lock(&TFAR::getInstance().m_gameData.m_lock);
+    LockGuard_exclusive lock(TFAR::getInstance().m_gameData.m_lock);
     TFAR::getInstance().m_gameData.speakers.clear();
     if (tokens.size() != 2)
         return;
@@ -563,7 +563,7 @@ void CommandProcessor::process_tangent_off(PTTDelayArguments arguments) {
     if (arguments.tangentReleaseDelay > 0ms)
         std::this_thread::sleep_for(arguments.tangentReleaseDelay);
 
-    LockGuard_exclusive<CriticalSectionLock> lock(&tangentCriticalSection);
+    LockGuard_exclusive lock(tangentCriticalSection);
     if (!skipTangentOff) {
         if (vadEnabled) Teamspeak::hlp_enableVad();
         disableVoiceAndSendCommand(arguments.commandToBroadcast, arguments.currentServerConnectionHandlerID, false);

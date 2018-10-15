@@ -29,7 +29,7 @@ PlaybackHandler::PlaybackHandler() {
 }
 
 void PlaybackHandler::onEditMixedPlaybackVoiceDataEvent(short * samples, int sampleCount, int channels, const unsigned int * channelSpeakerArray, unsigned int * channelFillMask) {
-    LockGuard_exclusive lock(&playbackCriticalSection);
+    LockGuard_exclusive lock(playbackCriticalSection);
     bool fill = false;
     std::vector<std::string> to_remove;
     if (!(*channelFillMask & 3)) {
@@ -73,7 +73,7 @@ void PlaybackHandler::onEditMixedPlaybackVoiceDataEvent(short * samples, int sam
 }
 
 void PlaybackHandler::appendPlayback(std::string name, short* samples, int sampleCount, int channels) {
-    LockGuard_exclusive lock(&playbackCriticalSection);
+    LockGuard_exclusive lock(playbackCriticalSection);
     if (playbacks.count(name) == 0) {
         std::shared_ptr<playbackWavRaw> d = std::make_shared<playbackWavRaw>();
         playbacks[name] = d;
@@ -91,7 +91,7 @@ void PlaybackHandler::appendPlayback(std::string name, short* samples, int sampl
 
 
 void PlaybackHandler::appendPlayback(std::string name, std::string filePath, stereoMode stereo, float gain) {
-    LockGuard_exclusive lock(&playbackCriticalSection);
+    LockGuard_exclusive lock(playbackCriticalSection);
     if (playbacks.count(name) == 0) {
         std::shared_ptr<clunk::WavFile> wave;
         if (wavCache.find(filePath) == wavCache.end()) {
@@ -126,7 +126,7 @@ void PlaybackHandler::appendPlayback(std::string name, std::string filePath, ste
 
 
 void PlaybackHandler::appendPlayback(std::string name, std::string filePath, std::vector<std::function<void(short*, size_t, uint8_t)>> functors) {
-    LockGuard_exclusive lock(&playbackCriticalSection);
+    LockGuard_exclusive lock(playbackCriticalSection);
     if (playbacks.count(name) == 0) {
 
         std::shared_ptr<clunk::WavFile> wave;

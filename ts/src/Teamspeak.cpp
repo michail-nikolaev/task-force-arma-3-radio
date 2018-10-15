@@ -13,67 +13,67 @@ using namespace dataType;
 struct TS3Functions ts3Functions;
 
 std::vector<dataType::TSClientID> TeamspeakServerData::getMutedClients() {
-    LockGuard_shared lock(&m_criticalSection);
+    LockGuard_shared lock(m_criticalSection);
     return mutedClients;
 }
 
 void TeamspeakServerData::setClientMuteStatus(TSClientID clientID, bool muted) {
     if (!clientID) return;
-    LockGuard_exclusive lock(&m_criticalSection);
+    LockGuard_exclusive lock(m_criticalSection);
     mutedClients.erase(std::remove(mutedClients.begin(), mutedClients.end(), clientID), mutedClients.end());
     if (muted)
         mutedClients.push_back(clientID);
 }
 
 void TeamspeakServerData::clearMutedClients() {
-    LockGuard_exclusive lock(&m_criticalSection);
+    LockGuard_exclusive lock(m_criticalSection);
     mutedClients.clear();
 }
 
 dataType::TSClientID TeamspeakServerData::getMyClientID() {
-    LockGuard_shared lock(&m_criticalSection);
+    LockGuard_shared lock(m_criticalSection);
     return myClientID;
 }
 
 void TeamspeakServerData::setMyClientID(dataType::TSClientID val) {
-    LockGuard_exclusive lock(&m_criticalSection);
+    LockGuard_exclusive lock(m_criticalSection);
     myClientID = val;
 }
 
 std::string TeamspeakServerData::getMyOriginalNickname() {
-    LockGuard_shared lock(&m_criticalSection);
+    LockGuard_shared lock(m_criticalSection);
     return myOriginalNickname;
 }
 
 void TeamspeakServerData::setMyOriginalNickname(std::string val) {
-    LockGuard_exclusive lock(&m_criticalSection);
+    LockGuard_exclusive lock(m_criticalSection);
     myOriginalNickname = std::move(val);
 }
 
 dataType::TSChannelID TeamspeakServerData::getMyOriginalChannel() {
-    LockGuard_shared lock(&m_criticalSection);
+    LockGuard_shared lock(m_criticalSection);
     return myOriginalChannel;
 }
 
 void TeamspeakServerData::setMyOriginalChannel(TSChannelID val) {
-    LockGuard_exclusive lock(&m_criticalSection);
+    LockGuard_exclusive lock(m_criticalSection);
     myOriginalChannel = val;
 }
 
 dataType::TSChannelID TeamspeakServerData::getChannelIDFromName(const std::string& channelName) {
-    LockGuard_shared lock(&m_criticalSection);
+    LockGuard_shared lock(m_criticalSection);
     const auto found = channelNameToID.find(channelName);
     if (found != channelNameToID.end()) return found->second;
     return -1;
 }
 
 void TeamspeakServerData::addChannelCache(const char* channelName, TSChannelID channelID) {
-    LockGuard_exclusive lock(&m_criticalSection);
+    LockGuard_exclusive lock(m_criticalSection);
     channelNameToID.insert_or_assign(channelName, channelID);
 }
 
 void TeamspeakServerData::clearChannelCache() {
-    LockGuard_exclusive lock(&m_criticalSection);
+    LockGuard_exclusive lock(m_criticalSection);
     channelNameToID.clear();
 }
 
