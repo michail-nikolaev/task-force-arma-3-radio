@@ -14,6 +14,10 @@ class CfgPatches {
 };
 
 #define Intercom_Variable format [ARR_2('TFAR_IntercomSlot_%1',(netID ACE_Player))]
+#define Intercom_Condition(chan) \
+    _vehicle = vehicle ACE_Player; _intercom = _vehicle getVariable [Intercom_Variable, -2];\
+    if (_intercom == -2) then {_intercom = _vehicle getVariable ['TFAR_defaultIntercomSlot', TFAR_defaultIntercomSlot]};\
+    _intercom != chan
 //INFO! First 20 channels should be reserved for TFAR use.
 
 #define IntercomMacro class ACE_SelfActions : ACE_SelfActions { \
@@ -24,32 +28,32 @@ class CfgPatches {
         icon = ""; \
         class TFAR_IntercomChannel_disabled { \
             displayName = "Disabled"; \
-            condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != -1); \
+            condition = QUOTE(Intercom_Condition(-1)); \
             statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,-1,true)];); \
         }; \
         class TFAR_IntercomChannel_1 { \
             displayName = CSTRING(Intercom_ACESelfAction_Channel1); \
-            condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 0); \
+            condition = QUOTE(Intercom_Condition(0)); \
             statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,0,true)];); \
         }; \
         class TFAR_IntercomChannel_2 { \
             displayName = CSTRING(Intercom_ACESelfAction_Channel2); \
-            condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 1); \
+            condition = QUOTE(Intercom_Condition(1)); \
             statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,1,true)];); \
         }; \
         class TFAR_IntercomChannel_Misc_1 { \
             displayName = "Misc channel 1"; \
-            condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 2); \
+            condition = QUOTE(Intercom_Condition(2)); \
             statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,2,true)];); \
         }; \
         class TFAR_IntercomChannel_Misc_2 { \
             displayName = "Misc channel 2"; \
-            condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 3); \
+            condition = QUOTE(Intercom_Condition(3)); \
             statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,3,true)];); \
         }; \
         class TFAR_IntercomChannel_Misc_3 { \
             displayName = "Misc channel 3"; \
-            condition = QUOTE(((vehicle ACE_Player) getVariable [ARR_2(Intercom_Variable,0)]) != 4); \
+            condition = QUOTE(Intercom_Condition(4)); \
             statement = QUOTE((vehicle ACE_Player) setVariable [ARR_3(Intercom_Variable,4,true)];); \
         }; \
     }; \

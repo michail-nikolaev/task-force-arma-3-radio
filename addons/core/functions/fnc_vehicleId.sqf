@@ -39,7 +39,9 @@ private _hasIntercom = ([(typeof _vehicle), "TFAR_hasIntercom", 0] call TFAR_fnc
 private _intercomSlot = -1;
 
 if (_hasIntercom) then {
-    _intercomSlot = _vehicle getVariable [format ["TFAR_IntercomSlot_%1",(netID _unit)],0];
+    _intercomSlot = _vehicle getVariable [format ["TFAR_IntercomSlot_%1",(netID _unit)],
+        _vehicle getVariable ["TFAR_defaultIntercomSlot", TFAR_defaultIntercomSlot]
+    ];
 };
 
 //could replace the "turnout" string by 0.0 scalar.. But maybe someday the plugin wants to differentiate between turned out or inside a 0 isolation vehicle

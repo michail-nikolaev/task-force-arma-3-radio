@@ -46,7 +46,7 @@ switch (_unit) do {
         private _cargos = [(typeof _vehicle), "TFAR_AdditionalLR_Cargo", []] call TFAR_fnc_getVehicleConfigProperty;
         private _cargoIndex = _vehicle getCargoIndex _unit;
         if (_cargoIndex in _cargos) exitWith {_result = [_vehicle, format ["cargoUnit_%1_radio_setting",_cargoIndex]]};
-    }
+    };
 };
 
 _result

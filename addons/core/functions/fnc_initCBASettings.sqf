@@ -555,3 +555,11 @@
     false,
     1
 ] call CBA_Settings_fnc_init;
+[
+    "TFAR_defaultIntercomSlot", 
+    "EDITBOX", 
+    ["Default Intercom Channel", "Default Intercom channel when entering the vehicle. Has to be number. -1 is Disabled."], 
+    localize ELSTRING(settings,global), 
+    "0",
+    1
+] call CBA_Settings_fnc_init;
