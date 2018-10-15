@@ -80,7 +80,8 @@ class CfgVehicles {
     MACRO_VEC_LR(C_Boat_Civil_01_police_F,Boat_Civil_01_base_F,1);
     MACRO_VEC_LR(C_Boat_Civil_01_rescue_F,Boat_Civil_01_base_F,1);
 
-
+    class Tank;
+    MACRO_VEC_LR(Tank_F,Tank,1);
 
     #include "ACEActions.hpp"
 };
