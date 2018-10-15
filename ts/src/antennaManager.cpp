@@ -13,7 +13,7 @@ AntennaManager::AntennaManager() {
 }
 
 AntennaConnection AntennaManager::findConnection(const Position3D& from, float maxDistanceToAnt, const Position3D& to) {
-    LockGuard_shared slock(&m_lock);
+    LockGuard_shared slock(m_lock);
     //Prefilter antennas that can be reached by sender / reach to receiver
     std::vector<std::shared_ptr<Antenna>> reachableAntennas;
     std::shared_ptr<Antenna> bestAntenna = nullptr;
@@ -42,10 +42,10 @@ AntennaConnection AntennaManager::findConnection(const Position3D& from, float m
 
 void AntennaManager::addAntenna(Antenna ant) {
     if (ant.getID().isNull()) return;
-    LockGuard_shared slock(&m_lock);
+    LockGuard_shared slock(m_lock);
     const auto found = findAntenna(ant);
     slock.unlock();
-    LockGuard_exclusive lock(&m_lock);
+    LockGuard_exclusive lock(m_lock);
     if (found != antennas.end()) {
         **found = std::move(ant);
         return;
@@ -55,10 +55,10 @@ void AntennaManager::addAntenna(Antenna ant) {
 
 void AntennaManager::removeAntenna(const NetID& antennaID) {
     if (antennaID.isNull()) return;
-    LockGuard_shared slock(&m_lock);
+    LockGuard_shared slock(m_lock);
     const auto found = findAntenna(antennaID);
     slock.unlock();
-    LockGuard_exclusive lock(&m_lock);
+    LockGuard_exclusive lock(m_lock);
     if (found == antennas.end()) return;
     antennas.erase(found);
 }

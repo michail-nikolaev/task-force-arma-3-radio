@@ -140,7 +140,7 @@ public:
     }
     template<typename TYPE>
     void set(Setting key, const TYPE& value) {
-        LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
+        LockGuard_exclusive lock(m_lock);
         values[key] = value;
         needRefresh = false;
         lock.unlock();
@@ -149,7 +149,7 @@ public:
 
     template<>
     void set(Setting key, const std::string& value) {
-        LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
+        LockGuard_exclusive lock(m_lock);
         values[key].setString(value);
         needRefresh = false;
         lock.unlock();
@@ -157,7 +157,7 @@ public:
     }
 
     void set(Setting key, std::string_view value) {
-        LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
+        LockGuard_exclusive lock(m_lock);
         values[key].setString(std::string(value));
         needRefresh = false;
         lock.unlock();
@@ -168,7 +168,7 @@ public:
     TYPE get(Setting key) {
         //Using an invalid key on get will crash. But get is only used with compile-time known keys for now anyway.
         if (std::is_same<TYPE, std::string>::value) {//Only lock for types that are big enough to need mutex
-            LockGuard_exclusive<CriticalSectionLock> lock(&m_lock);
+            LockGuard_exclusive lock(m_lock);
             return values[key];
         }
         return values[key];

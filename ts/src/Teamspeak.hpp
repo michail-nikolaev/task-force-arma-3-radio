@@ -29,8 +29,6 @@ public:
     void clearChannelCache();
 
 private:
-    using LockGuard_shared = LockGuard_shared<CriticalSectionLock>;
-    using LockGuard_exclusive = LockGuard_exclusive<CriticalSectionLock>;
     CriticalSectionLock m_criticalSection;
     std::vector<dataType::TSClientID> mutedClients;
     std::string myOriginalNickname;
