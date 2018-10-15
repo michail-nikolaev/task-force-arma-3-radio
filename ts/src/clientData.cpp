@@ -162,8 +162,8 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
                 effectiveDist = 0.f; //just use make the range check succeed
         }
     }
-
-    if (effectiveDist > range) {    //Out of range
+    
+    if (effectiveDist > range && antennaConnection.isNull()) {    //Out of range
         DIAGLOG("IOLR No reach ed=" + std::to_string(effectiveDist) + " rng=" + std::to_string(range));
         return result;
     }
