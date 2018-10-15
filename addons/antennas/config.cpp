@@ -2,7 +2,7 @@
 
 class CfgPatches {
     class ADDON {
-        units[] = {""};
+        units[] = {"TFAR_Land_Communication_F"};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
