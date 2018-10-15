@@ -14,7 +14,7 @@
     classnames of instanciated radios <ARRAY>
 
   Example:
-    ["TFAR_anprc_152", TFAR_currentUnit] call TFAR_fnc_instanciateRadios;
+    [["TFAR_anprc_152"], TFAR_currentUnit] call TFAR_fnc_instanciateRadios;
 
   Public: No
 */
