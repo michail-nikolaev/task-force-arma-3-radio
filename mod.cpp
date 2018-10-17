@@ -1,7 +1,7 @@
 name = "TFAR";
 actionName = "Website";
 action = "http://radio.task-force.ru/en";
-description = "Task Force Arrowhead Radio TeamSpeak Plugin";
+description = "Task Force Arrowhead Radio";
 
 picture = "\z\tfar\addons\core\task_force_arrowhead_logo.paa";
 contentBrowserPicture = "\z\tfar\addons\core\task_force_arrowhead_logo.paa";

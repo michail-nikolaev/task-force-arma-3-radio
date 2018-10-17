@@ -267,19 +267,6 @@ extern struct TS3Functions ts3Functions;
 bool pluginInitialized = false;
 int ts3plugin_init() {
 
-    if (
-        GetModuleHandleA("task_force_radio_win32") ||
-        GetModuleHandleA("task_force_radio_win64") ||
-        GetModuleHandleA("TFAR_dev_win64") ||
-        GetModuleHandleA("TFAR_dev_win64")
-        ) {
-        MessageBoxA(0,
-            "Multiple TFAR plugins are loaded. You probably need to disable the old \"Task Force Arma 3 Radio\"(task_force_radio_winXX.dll) plugin and delete the dll file manually.",
-            "Task Force Arrowhead Radio",
-            MB_OK | MB_ICONHAND);
-        return 0;
-    }
-
     pluginInitialized = true;
     char pluginPath[PATH_BUFSIZE];
     if (ts3plugin_apiVersion() <= 20) {
@@ -288,6 +275,23 @@ int ts3plugin_init() {
         typedef  void(*getPluginPath_20)(char* path, size_t maxLen, const char* pluginID);
         static_cast<getPluginPath_20>(static_cast<void*>(ts3Functions.getPluginPath))(pluginPath, PATH_BUFSIZE, TFAR::getInstance().getPluginID().c_str()); //This is ugly but keeps compatibility
     }
+
+
+    if (
+        GetModuleHandleA("task_force_radio_win32") ||
+        GetModuleHandleA("task_force_radio_win64") ||
+        GetModuleHandleA("TFAR_dev_win64") ||
+        GetModuleHandleA("TFAR_dev_win64")
+        ) {
+        MessageBoxA(0,
+            (std::string("Multiple TFAR plugins are loaded. You probably need to disable the old \"Task Force Arma 3 Radio\"(task_force_radio_winXX.dll) plugin and delete the dll file manually.\n"
+            "The plugins are probably in this directory: "sv) + std::string(pluginPath)).c_str(),
+            "Task Force Arrowhead Radio",
+            MB_OK | MB_ICONHAND);
+        return 0;
+    }
+
+
     TFAR::getInstance().setPluginPath(pluginPath);
 
 #if ENABLE_API_PROFILER

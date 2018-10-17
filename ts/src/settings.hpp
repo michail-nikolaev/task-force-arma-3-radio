@@ -21,7 +21,8 @@
     XX(spectatorCanHearFriendlies, true), \
     XX(tangentReleaseDelay, 0.f), \
     XX(moveWhileTabbedOut, false), \
-    XX(intercomDucking, 0.2f)
+    XX(intercomDucking, 0.2f), \
+    XX(minimumPluginVersion, 0.f)
 
 #define EnumEntry(x,y) x
 #define EnumString(x,y) #x
