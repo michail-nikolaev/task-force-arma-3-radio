@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="C++17DebugExe|Win32">
@@ -204,16 +204,16 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='C++17Release|x64'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='C++17ReleaseExe|x64'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='C++17DebugExe|x64'">false</LinkIncremental>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">task_force_radio_win64</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17Debug|x64'">task_force_radio_win64</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">task_force_radio_win32</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17Debug|Win32'">task_force_radio_win32</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">task_force_radio_win64</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17Release|x64'">task_force_radio_win64</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">TFAR_win64</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17Debug|x64'">TFAR_win64</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TFAR_win32</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17Debug|Win32'">TFAR_win32</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">TFAR_win64</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17Release|x64'">TFAR_win64</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17ReleaseExe|x64'">task_force_radio_win64test</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17DebugExe|x64'">task_force_radio_win64test</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">task_force_radio_win32</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17Release|Win32'">task_force_radio_win32</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TFAR_win32</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17Release|Win32'">TFAR_win32</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17ReleaseExe|Win32'">task_force_radio_win32test</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='C++17DebugExe|Win32'">task_force_radio_win32test</TargetName>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">G:\Dev\arma\task-force-arma-3-radio\ts\include\codec2;$(LibraryPath)</LibraryPath>
