@@ -266,6 +266,20 @@ extern struct TS3Functions ts3Functions;
 
 bool pluginInitialized = false;
 int ts3plugin_init() {
+
+    if (
+        GetModuleHandleA("task_force_radio_win32") ||
+        GetModuleHandleA("task_force_radio_win64") ||
+        GetModuleHandleA("TFAR_dev_win64") ||
+        GetModuleHandleA("TFAR_dev_win64")
+        ) {
+        MessageBoxA(0,
+            "Multiple TFAR plugins are loaded. You probably need to disable the old \"Task Force Arma 3 Radio\"(task_force_radio_winXX.dll) plugin and delete the dll file manually.",
+            "Task Force Arrowhead Radio",
+            MB_OK | MB_ICONHAND);
+        return 0;
+    }
+
     pluginInitialized = true;
     char pluginPath[PATH_BUFSIZE];
     if (ts3plugin_apiVersion() <= 20) {
