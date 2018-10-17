@@ -192,8 +192,7 @@ private _fnc_localizeLRChannel = {
 ["TFAR", "LRTransmitAdditional", [localize LSTRING(key_LRTransmitAdditional), localize LSTRING(key_LRTransmitAdditional)], {call TFAR_fnc_onAdditionalLRTangentPressed}, {call TFAR_fnc_onAdditionalLRTangentReleased}, [TF_tangent_additional_lr_scancode, TF_tangent_additional_lr_modifiers], false] call cba_fnc_addKeybind;
 
 
-["TFAR", "LowerHeadset", [localize LSTRING(key_LowerHeadset), localize LSTRING(key_LowerHeadset)], {}, {true call TFAR_fnc_setHeadsetLowered;}, [0, [false, false, false]], false] call cba_fnc_addKeybind;
-["TFAR", "RaiseHeadset", [localize LSTRING(key_RaiseHeadset), localize LSTRING(key_RaiseHeadset)], {}, {false call TFAR_fnc_setHeadsetLowered;}, [0, [false, false, false]], false] call cba_fnc_addKeybind;
+["TFAR", "ToggleHeadset", [localize LSTRING(key_RaiseLowerHeadset), localize LSTRING(key_RaiseLowerHeadset)], {}, {!(missionNamespace getVariable [QGVAR(isHeadsetLowered), false]) call TFAR_fnc_setHeadsetLowered;}, [0, [false, false, false]], false] call cba_fnc_addKeybind;
 
 ["TFAR", "TSDebugLog", ["TS Debug Log", "Makes TS collect debug info into one folder"], {}, {
     "task_force_radio_pipe" callExtension "collectDebugInfo~";
