@@ -27,20 +27,14 @@ params [["_radio","",[[],""]], "_channel", "_frequency"];
 _channel = _channel - 1;
 
 private _isLRRadio = _radio isEqualType [];
-private _settings = nil;
-
-if (_isLRRadio) then {
-    _settings = _radio call TFAR_fnc_getLrSettings;
-} else {
-    _settings = _radio call TFAR_fnc_getSwSettings;
-};
+private _settings = _radio call ([TFAR_fnc_getSwSettings, TFAR_fnc_getLrSettings] select _isLRRadio);
 
 if (isNil "_settings") exitWith {};
 
+private _oldFrequency = (_settings select TFAR_FREQ_OFFSET) param [_channel, 0];
+
 (_settings select TFAR_FREQ_OFFSET) set [_channel, _frequency];
 
-if (_isLRRadio) then {
-    [_radio, _settings] call TFAR_fnc_setLrSettings;
-} else {
-    [_radio, _settings] call TFAR_fnc_setSwSettings;
-};
+["OnFrequencyChanged", [TFAR_currentUnit, _radio, _channel, _oldFrequency, _frequency]] call TFAR_fnc_fireEventHandlers;
+
+[_radio, _settings] call ([TFAR_fnc_setSwSettings, TFAR_fnc_setLrSettings] select _isLRRadio);
