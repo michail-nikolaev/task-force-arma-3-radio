@@ -1744,21 +1744,13 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>長程無線電附加頻道 發送</Chinese>
                 <Chinesesimp>长程无线电附加频道 发送</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_CORE_key_LowerHeadset">
-                <Original>Lower Headset</Original>
-                <English>Lower Headset</English>
-                <Japanese>ヘッドセットを外す</Japanese>
-                <Korean>헤드셋 내리기</Korean>
-                <Chinese>取下耳機</Chinese>
-                <Chinesesimp>取下耳机</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_CORE_key_RaiseHeadset">
-                <Original>Raise Headset</Original>
-                <English>Raise Headset</English>
-                <Japanese>ヘッドセットを戻す</Japanese>
-                <Korean>헤드셋 올리기</Korean>
-                <Chinese>戴上耳機</Chinese>
-                <Chinesesimp>戴上耳机</Chinesesimp>
+            <Key ID="STR_TFAR_CORE_key_RaiseLowerHeadset">
+                <Original>Raise/Lower Headset</Original>
+                <English>Raise/Lower Headset</English>
+                <Japanese>ヘッドセットを戻す / ヘッドセットを外す</Japanese>
+                <Korean>헤드셋 올리기 / 헤드셋 내리기</Korean>
+                <Chinese>戴上耳機 / 取下耳機</Chinese>
+                <Chinesesimp>戴上耳机 / 取下耳机</Chinesesimp>
             </Key>
         </Container>
         <Key ID="STR_TFAR_CORE_different_version">
