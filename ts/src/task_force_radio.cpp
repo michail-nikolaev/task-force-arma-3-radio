@@ -80,6 +80,21 @@ TFAR::TFAR() {
             lastMove = std::chrono::system_clock::now();
         }
         checkIfSeriousModeEnabled(Teamspeak::getCurrentServerConnection());
+
+        if (setting == Setting::minimumPluginVersion) {
+            if (config.get<float>(Setting::minimumPluginVersion) >
+#ifdef AppVeyorBuild
+                AppVeyorBuildNum
+#else
+                5000
+#endif
+                )
+                MessageBoxA(0,
+                    "Arma requires a newer TFAR Plugin version than the one you have installed. Please update your Plugin.",
+                    "Task Force Arrowhead Radio",
+                    MB_OK | MB_ICONWARNING);
+        }
+
     });
 
     onTeamspeakChannelSwitched.connect([this](TSServerID serverID, TSChannelID channelID) {
