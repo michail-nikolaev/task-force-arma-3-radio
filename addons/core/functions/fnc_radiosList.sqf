@@ -25,14 +25,7 @@ private _fetchItems = {
     _allItems append ((getItemCargo (backpackContainer _this)) select 0);
     _allItems = _allItems arrayIntersect _allItems;//Remove duplicates
 
-    private _result = [];
-    {
-        if (_x call TFAR_fnc_isRadio) then {
-            _result pushBack _x;
-        };
-        true;
-    } count _allItems;
-    _result
+    _allItems select {_x call TFAR_fnc_isRadio}
 };
 
 //We only cache local player because TFAR_lastLoadoutChange only reflects local player
@@ -40,7 +33,7 @@ if (_this != TFAR_currentUnit) exitWith {_this call _fetchItems};
 
 //Caching
 private _lastCache = GVAR(VehicleConfigCacheNamespace) getVariable "TFAR_fnc_radiosList_lastCache";
-if (_lastCache > TFAR_lastLoadoutChange) exitWith {GVAR(VehicleConfigCacheNamespace) getVariable "TFAR_fnc_radiosList_CachedRadios"};
+if (_lastCache > TFAR_lastLoadoutChange) exitWith {+(GVAR(VehicleConfigCacheNamespace) getVariable "TFAR_fnc_radiosList_CachedRadios")};
 
 private _result = _this call _fetchItems;
 
