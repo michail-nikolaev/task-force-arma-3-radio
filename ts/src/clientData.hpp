@@ -74,7 +74,7 @@ public:
     clientDataEffects() {
 
         compressor.setSampleRate(48000);
-        compressor.setThresh(65);
+        compressor.setThresh(80);
         compressor.setRelease(300);
         compressor.setAttack(1);
         compressor.setRatio(0.1);
