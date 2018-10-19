@@ -1019,7 +1019,7 @@ void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char
     Logger::log(LoggerTypes::pluginCommands, std::string(pluginName) + ":" + std::string(pluginCommand));
     log_string(std::string("ON PLUGIN COMMAND ") + pluginName + " " + pluginCommand, LogLevel_DEVEL);
     if (Teamspeak::getCurrentServerConnection() == serverConnectionHandlerID) {
-        if (strncmp(pluginName, PLUGIN_NAME, strlen(PLUGIN_NAME)) == 0) {
+        if (strncmp(pluginName, "TFAR", "TFAR"sv.length()) == 0) {
             processPluginCommand(std::string_view(pluginCommand));
         } else {
             Logger::log(LoggerTypes::teamspeakClientlog, "Plugin command event failure", LogLevel_ERROR);

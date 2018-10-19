@@ -19,9 +19,9 @@ using namespace std::literals;
 
 #define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe"
 //#define PIPE_NAME L"\\\\.\\pipe\\task_force_radio_pipe_debug"
-#define PLUGIN_NAME "task_force_radio"
-#define PLUGIN_NAME_x32 "task_force_radio_win32"
-#define PLUGIN_NAME_x64 "task_force_radio_win64"
+#define PLUGIN_NAME "TFAR"
+#define PLUGIN_NAME_x32 "TFAR_win32"
+#define PLUGIN_NAME_x64 "TFAR_win64"
 #define MILLIS_TO_EXPIRE 4000ms  // 4 seconds without updates of client position to expire
 
 #define DD_MIN_DISTANCE 70
