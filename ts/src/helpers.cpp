@@ -175,8 +175,6 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     float* volumeMatrix = new float[channels];//#X3DAudio minimum 2 channels
     output.pMatrixCoefficients = volumeMatrix;
 
-
-
     X3DAudioCalculate(
         x3d_handle,
         &listener,
@@ -185,22 +183,9 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
         &output
     );
 
-
-
     float gainFrontLeft = volumeMatrix[0];
     float gainFrontRight = volumeMatrix[1];
     delete[] volumeMatrix;
-    const float totalVolume = (gainFrontRight + gainFrontLeft);
-    float mult = 2.f;
-    if (totalVolume > 1.f) {
-        mult *= 2.f / totalVolume;
-    }
-    //static uint64_t ind = 0;
-    //ind++;
-    //if (ind % 128)
-    //    OutputDebugStringA((std::to_string(gainFrontLeft) + "_" + std::to_string(gainFrontRight) + "_" + std::to_string(mult)+" total: "+std::to_string(totalVolume*mult)+ "\n").c_str());
-    gainFrontLeft *= mult; //make sure left+right = 1.25 else it would decrease overall volume too much which we don't want
-    gainFrontRight *= mult;
 
     size_t leftOver = sampleCount * channels;
     if (CAN_USE_SSE_ON(samples)) { //Can use SSE and memory is correctly aligned
