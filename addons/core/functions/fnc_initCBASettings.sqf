@@ -24,7 +24,7 @@
     "SLIDER",
     ELSTRING(settings,default_radioVolume),
     localize ELSTRING(settings,clientside),
-    [1, 9, 7, 0],
+    [1, 9, 6, 0],
     2
 ] call CBA_Settings_fnc_init;
 [
@@ -40,7 +40,7 @@
     "SLIDER",
     ELSTRING(settings,intercomVolume),
     localize ELSTRING(settings,clientside),
-    [0.01, 0.6, 0.3, 3],
+    [0.01, 0.6, 0.2, 3],
     2,
     {["intercomVolume", TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
