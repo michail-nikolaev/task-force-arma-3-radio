@@ -21,6 +21,6 @@ params ["_unit"];
 
 if (isNull (objectParent _unit)) exitWith {false};//Unit is not in vehicle
 
-if (!(isTurnedOut _unit) && {(vehicle _unit) call TFAR_fnc_isVehicleIsolated}) exitWith {true};
+if (!([_unit] call CBA_fnc_isTurnedOut) && {(vehicle _unit) call TFAR_fnc_isVehicleIsolated}) exitWith {true};
 
 false
