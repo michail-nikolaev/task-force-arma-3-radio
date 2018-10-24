@@ -164,6 +164,7 @@ PREP(isPrototypeRadio);
 PREP(isRadio);
 PREP(isLRRadio);
 PREP(isSameRadio);
+PREP(isTurnedOut);
 PREP(isVehicleIsolated);
 // L
 PREP(loadoutReplaceProcess);
