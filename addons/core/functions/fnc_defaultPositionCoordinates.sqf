@@ -26,7 +26,8 @@
 if (_isSpectating) exitWith {private _pctw = positionCameraToWorld [0,0,0]; [ATLToASL _pctw, (positionCameraToWorld [0,0,1]) vectorDiff _pctw]};
 
 //If this is not in here then positions inside fast moving vehicles will be weird. But this is also performance intensive
-if (_isNearPlayer && {vectorMagnitude velocity _unit > 3} && {_unit != TFAR_currentUnit}) exitWith {
-        [(visiblePosition _unit) vectorAdd ((eyepos _unit) vectorDiff (getPos _unit)), getCameraViewDirection _unit]
-};
-[eyepos _unit,  getCameraViewDirection _unit]
+//if (_isNearPlayer && {vectorMagnitude velocity _unit > 3} && {_unit != TFAR_currentUnit}) exitWith {
+//        [_unit modelToWorldVisualWorld (_unit selectionPosition "pilot"), getCameraViewDirection _unit]
+//};
+//eyePos _unit
+[_unit modelToWorldVisualWorld (_unit selectionPosition "pilot"),  getCameraViewDirection _unit]
