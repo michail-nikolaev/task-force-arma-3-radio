@@ -19,7 +19,7 @@ TFAR::TFAR() {
         Logger::log(LoggerTypes::profiler, "On Game Disconnected", LogLevel_DEVEL);
         Teamspeak::unmuteAll(ts3Functions.getCurrentServerConnectionHandlerID());
         if (getCurrentlyInGame()) {
-            TFAR::getPlaybackHandler()->playWavFile("radio-sounds/off");
+            TFAR::getPlaybackHandler()->playWavFile(SoundFile("radio-sounds/off"));
             onGameEnd();
             TFAR::config.setRefresh();
         }
@@ -29,7 +29,7 @@ TFAR::TFAR() {
     onGameConnected.connect([this]() {
         Logger::log(LoggerTypes::profiler, "On Game Connected", LogLevel_DEVEL);
         if (!getCurrentlyInGame()) {
-            getPlaybackHandler()->playWavFile("radio-sounds/on");
+            getPlaybackHandler()->playWavFile(SoundFile("radio-sounds/on"));
             setCurrentlyInGame(true);
             onGameStart();
             m_gameData.currentDataFrame = 0;
@@ -184,11 +184,11 @@ bool TFAR::isUpdateAvailable() {
     if (!InternetGetConnectedState(&r, 0)) return false;
     if (r & INTERNET_CONNECTION_OFFLINE) return false;
 
-    const HINTERNET Initialize = InternetOpen(L"TFAR", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
-    const HINTERNET Connection = InternetConnect(Initialize, UPDATE_URL, INTERNET_DEFAULT_HTTP_PORT, NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0);
-    const HINTERNET File = HttpOpenRequest(Connection, NULL, UPDATE_FILE, NULL, NULL, NULL, 0, 0);
+    const HINTERNET Initialize = InternetOpen(L"TFAR", INTERNET_OPEN_TYPE_PRECONFIG, nullptr, nullptr, 0);
+    const HINTERNET Connection = InternetConnect(Initialize, UPDATE_URL, INTERNET_DEFAULT_HTTP_PORT, nullptr, nullptr, INTERNET_SERVICE_HTTP, 0, 0);
+    const HINTERNET File = HttpOpenRequest(Connection, nullptr, UPDATE_FILE, nullptr, nullptr, nullptr, 0, 0);
 
-    if (HttpSendRequest(File, NULL, 0, NULL, 0)) {
+    if (HttpSendRequest(File, nullptr, 0, nullptr, 0)) {
         while (InternetReadFile(File, &ch, 1, &dwBytes)) {
             if (dwBytes != 1)break;
             pluginVersion += ch;
@@ -256,7 +256,7 @@ void TFAR::trackPiwik(const std::vector<std::string_view>& piwikDataIn) {
             auto trimWhitespaceColon = [](const std::string &s) -> std::string {
                 auto wsfront = std::find_if_not(s.begin(), s.end(), [](char c) {return c == ' ' || c == '"'; });
                 auto wsback = std::find_if_not(s.rbegin(), s.rend(), [](char c) {return c == ' ' || c == '"'; }).base();
-                return (wsback <= wsfront ? std::string() : std::string(wsfront, wsback));
+                return wsback <= wsfront ? std::string() : std::string(wsfront, wsback);
             };
 
 
@@ -337,14 +337,14 @@ void TFAR::trackPiwik(const std::vector<std::string_view>& piwikDataIn) {
         if (!InternetGetConnectedState(&r, 0)) return;
         if (r & INTERNET_CONNECTION_OFFLINE) return;
 
-        HINTERNET Initialize = InternetOpen(L"TFAR", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+        HINTERNET Initialize = InternetOpen(L"TFAR", INTERNET_OPEN_TYPE_PRECONFIG, nullptr, nullptr, 0);
         HINTERNET Connection;
         if (piwikData[1] == "beta")
-            Connection = InternetConnect(Initialize, L"piwik.dedmen.de", INTERNET_DEFAULT_HTTP_PORT, NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0);
+            Connection = InternetConnect(Initialize, L"piwik.dedmen.de", INTERNET_DEFAULT_HTTP_PORT, nullptr, nullptr, INTERNET_SERVICE_HTTP, 0, 0);
         else
-            Connection = InternetConnect(Initialize, PIWIK_URL, INTERNET_DEFAULT_HTTP_PORT, NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0);
-        HINTERNET File = HttpOpenRequestA(Connection, NULL, requestString.c_str(), NULL, NULL, NULL, 0, 0);
-        if (HttpSendRequest(File, NULL, 0, NULL, 0)) {
+            Connection = InternetConnect(Initialize, PIWIK_URL, INTERNET_DEFAULT_HTTP_PORT, nullptr, nullptr, INTERNET_SERVICE_HTTP, 0, 0);
+        HINTERNET File = HttpOpenRequestA(Connection, nullptr, requestString.c_str(), nullptr, nullptr, nullptr, 0, 0);
+        if (HttpSendRequest(File, nullptr, 0, nullptr, 0)) {
             while (InternetReadFile(File, &ch, 1, &dwBytes)) {
                 if (dwBytes != 1) break;
             }
@@ -358,7 +358,7 @@ void TFAR::trackPiwik(const std::vector<std::string_view>& piwikDataIn) {
 void TFAR::createCheckForUpdateThread() {
     std::thread([]() {
         if (isUpdateAvailable()) {
-            MessageBox(NULL, L"New version of Task Force Arrowhead Radio is available. Check radio.task-force.ru/en", L"Task Force Arrowhead Radio Update", MB_OK);
+            MessageBoxA(0, "New version of Task Force Arrowhead Radio is available. Check radio.task-force.ru/en", "Task Force Arrowhead Radio Update", MB_OK);
         }
     }).detach();
 }

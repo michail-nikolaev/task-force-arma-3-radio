@@ -187,6 +187,9 @@
     <ClCompile Include="TextRenderer.cpp">
       <Filter>DebugUI</Filter>
     </ClCompile>
+    <ClCompile Include="SampleBuffer.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugin.h" />
@@ -328,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>DebugUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleBuffer.hpp">
+      <Filter>Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

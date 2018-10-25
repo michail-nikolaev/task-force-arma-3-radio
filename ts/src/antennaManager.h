@@ -16,13 +16,13 @@ public:
         const auto dist = pos.distanceTo(other);
         if (dist > range) return 1.f;
         return dist / range;
-    };
+    }
     float lossFrom(const Position3D& from, float maxDistance) const {
         if (!maxDistance) return 1.f;
         const auto dist = pos.distanceTo(from);
         if (dist > maxDistance) return 1.f;
         return dist / maxDistance;
-    };
+    }
     bool canBeReachedBy(const Position3D& from, float maxDistanceSquared) const {
         return pos.distanceToSqr(from) < maxDistanceSquared;
     }

@@ -9,6 +9,8 @@
 #include <functional>
 #include <thread>
 #include "Locks.hpp"
+#include "SampleBuffer.hpp"
+
 //#define DEBUG_PLAYBACK_TIMES //Prints Processing/Use times to teamspeak log
 /*
  Dedmen:
@@ -203,7 +205,7 @@ private:
 //************************************
 class playbackWavProcessing : public playbackBase {
 public:
-    playbackWavProcessing(short* samples, size_t sampleCount, int channels, std::vector<std::function<void(short*, size_t, uint8_t)>> processors); //#DOCS
+    playbackWavProcessing(const short* samples, size_t sampleCount, int channels, std::vector<std::function<void(SampleBuffer&)>> processors); //#DOCS
     virtual ~playbackWavProcessing() {if (myThread) {
         myThread->join();
         delete myThread;
@@ -257,8 +259,60 @@ private:
     std::vector<short> sampleStore;
     size_t currentPosition;
     std::atomic<bool> processingDone;
-    std::vector<std::function<void(short*, size_t, uint8_t)>> functors;
+    std::vector<std::function<void(SampleBuffer&)>> functors;
     std::thread* myThread;
+};
+
+
+class SoundFile {
+public:
+    enum class SoundFileType {
+        PluginFolderFile,
+        RawSamples,
+        Empty
+    } type;
+    std::string fileName;
+    std::basic_string_view<short> samples;
+    uint8_t channels{0};
+
+    SoundFile() : type(SoundFileType::Empty) {}
+    SoundFile(std::string fileName) : type(SoundFileType::PluginFolderFile), fileName(std::move(fileName)) {}
+    SoundFile(const short* samples, size_t sampleCount, uint8_t channels) : type(SoundFileType::RawSamples), samples({ samples, sampleCount }), channels(channels) {}
+
+    bool isEmpty() const { return type == SoundFileType::Empty; }
+    std::string getFullPath() const;
+};
+
+class SoundDirectory {
+public:
+
+    static SoundFile getRadioSound(PTTDelayArguments::subtypes subtype, bool start) {
+        switch (subtype) {
+        case PTTDelayArguments::subtypes::digital_lr:
+            return SoundFile(start ? "radio-sounds/lr/local_start" : "radio-sounds/lr/local_end");
+            break;
+        case PTTDelayArguments::subtypes::digital:
+            return SoundFile(start ? "radio-sounds/sw/local_start" : "radio-sounds/sw/local_end");
+        case PTTDelayArguments::subtypes::airborne:
+            return SoundFile(start ? "radio-sounds/ab/local_start" : "radio-sounds/ab/local_end");
+        default:
+            return SoundFile();
+        }
+    }
+
+    static SoundFile getRemoteRadioSound(PTTDelayArguments::subtypes subtype, bool start) {
+        switch (subtype) {
+        case PTTDelayArguments::subtypes::digital_lr:
+            return SoundFile(start ? "radio-sounds/lr/remote_start" : "radio-sounds/lr/remote_end");
+            break;
+        case PTTDelayArguments::subtypes::digital:
+            return SoundFile(start ? "radio-sounds/sw/remote_start" : "radio-sounds/sw/remote_end");
+        case PTTDelayArguments::subtypes::airborne:
+            return SoundFile(start ? "radio-sounds/ab/remote_start" : "radio-sounds/ab/remote_end");
+        default:
+            return SoundFile();
+        }
+    }
 };
 
 class PlaybackHandler {
@@ -267,19 +321,20 @@ public:
     ~PlaybackHandler() = default;
 
     void onEditMixedPlaybackVoiceDataEvent(short* samples, int sampleCount, int channels, const unsigned int* channelSpeakerArray, unsigned int* channelFillMask);
-    void appendPlayback(std::string name, short* samples, int sampleCount, int channels);
-    void appendPlayback(std::string name, std::string filePath, stereoMode stereo = stereoMode::stereo, float gain = 1.0f);
+    void appendPlayback(std::string name, SoundFile file);
+    void appendPlayback(std::string name, SoundFile file, stereoMode stereo, float gain = 1.0f);
     //functors is short* samples,int sampleCount,int channels
-    void appendPlayback(std::string name, std::string filePath, std::vector<std::function<void(short*, size_t, uint8_t)>> functors);
+    void appendPlayback(std::string name, SoundFile file, std::vector<std::function<void(SampleBuffer&)>> functors);
     //tangentReleased(serverconhandler,clientID) iterates through playbacks and calls their onTangentReleased funcs
     std::map<std::string, std::shared_ptr<playbackBase>> playbacks;
     std::map<std::string, std::shared_ptr<clunk::WavFile>> wavCache;
 
 
-    void playWavFile(TSServerID serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, Position3D position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode = stereoMode::stereo);
-    static void playWavFile(const char* fileNameWithoutExtension);
-    void playWavFile(TSServerID serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, stereoMode stereo);
+    void playWavFile(SoundFile file);
+    void playWavFile(TSServerID serverConnectionHandlerID, SoundFile file, float gain, stereoMode stereo);
+    void playWavFile(TSServerID serverConnectionHandlerID, SoundFile file, float gain, Position3D position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode = stereoMode::stereo);
 private:
+    std::shared_ptr<clunk::WavFile> getWavFileFromPath(const std::string& filePath);
     CriticalSectionLock playbackCriticalSection;
 };
 

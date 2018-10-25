@@ -714,6 +714,7 @@
     <ClCompile Include="PlaybackHandler.cpp" />
     <ClCompile Include="plugin.cpp" />
     <ClCompile Include="profilers.cpp" />
+    <ClCompile Include="SampleBuffer.cpp" />
     <ClCompile Include="serverData.cpp" />
     <ClCompile Include="SharedMemoryHandler.cpp" />
     <ClCompile Include="task_force_radio.cpp" />
@@ -766,6 +767,7 @@
     <ClInclude Include="profilers.hpp" />
     <ClInclude Include="RadioEffect.hpp" />
     <ClInclude Include="plugin.h" />
+    <ClInclude Include="SampleBuffer.hpp" />
     <ClInclude Include="serverData.hpp" />
     <ClInclude Include="settings.hpp" />
     <ClInclude Include="Shader.h" />

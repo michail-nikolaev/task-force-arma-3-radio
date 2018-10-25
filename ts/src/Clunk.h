@@ -7,7 +7,7 @@ class Clunk
 public:
 
 
-	void process(short * samples, uint8_t channels, size_t sampleCount, Direction3D pos, AngleRadians direction)
+	void process(SampleBuffer& samples, Direction3D pos, AngleRadians direction)
 	{
 		auto [x, y, z] = pos.get();
 
@@ -19,8 +19,9 @@ public:
 		const auto x_ = x * direction.cosine() - y * direction.sine();
 		const auto y_ = x * direction.sine() + y * direction.cosine();	
 
-
-		input_buffer.insert(input_buffer.end(), samples, samples + (sampleCount*channels));
+        auto channels = samples.getChannels();
+        auto sampleCount = samples.getSampleCount();
+		input_buffer.insert(input_buffer.end(), samples.begin(), samples.end());
 
 		if (input_buffer.size() > clunk::Hrtf::WINDOW_SIZE * channels * 2u)
 		{
@@ -46,9 +47,9 @@ public:
 		}
 
 		if (output_buffer.size() < sampleCount * channels) {
-			memset(samples, 0, sampleCount * channels * sizeof(short));
+            samples.setToNull();
 		} else {
-			memcpy(samples, output_buffer.data(), sampleCount * channels * sizeof(short));
+			memcpy(samples.begin(), output_buffer.data(), sampleCount * channels * sizeof(short));
 			output_buffer.erase(output_buffer.begin(), output_buffer.begin() + sampleCount * channels);
 		}
 

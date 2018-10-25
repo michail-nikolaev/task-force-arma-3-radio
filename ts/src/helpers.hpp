@@ -9,6 +9,7 @@
 #include <array>
 #include <functional>
 #include <emmintrin.h>
+#include "SampleBuffer.hpp"
 
 constexpr int const_strlen(const char* str) {
     if (str == nullptr)
@@ -88,10 +89,9 @@ constexpr float DegToRad(float deg) {
 
 class helpers {
 public:
-    static void applyGain(short * samples, size_t sampleCount, int channels, float directTalkingVolume);
-    static void applyILD(short * samples, size_t sampleCount, int channels, Direction3D direction, AngleRadians viewAngle); //interaural level difference
+    static void applyILD(SampleBuffer& samples, Direction3D direction, AngleRadians viewAngle); //interaural level difference
 
-    static void applyILD(short * samples, size_t sampleCount, int channels, Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection, bool shouldPlayerHear, int emitterVoiceVolume); //interaural level difference
+    static void applyILD(SampleBuffer& samples, Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection, bool shouldPlayerHear, int emitterVoiceVolume); //interaural level difference
 
     static void shortFloatMultEx(short* data, size_t elementCount, __m128 multPack);
 
@@ -103,8 +103,6 @@ public:
     static std::vector<std::string> split(const std::string& s, char delim);
     static std::vector<std::string_view> split(std::string_view s, char delim);
     static bool isTrue(std::string_view string);
-    static short* allocatePool(int sampleCount, int channels, short* samples);
-    static void mix(short* to, const short* from, int sampleCount, int channels);
     static float volumeMultiplifier(float volumeValue);
     static std::map<std::string, FREQ_SETTINGS, std::less<>> parseFrequencies(std::string_view string);
     static vehicleDescriptor getVehicleDescriptor(std::string_view vehicleID);
@@ -114,8 +112,7 @@ public:
         if (coordinateString.length() > 2) {
             std::vector<std::string_view> coords(4);
             split(coordinateString.substr(1, coordinateString.length() - 2), ',', coords);
-            for (auto& coord : coords)
-                output.push_back(parseArmaNumber(coord));
+            std::transform(coords.begin(), coords.end(), std::back_inserter(output), parseArmaNumber);
         }
         return output;
     }
@@ -149,11 +146,15 @@ public:
     }
 
     template<class T>
-    static void processFilterStereo(short * samples, int channels, size_t sampleCount, float gain, T* filter) {
+    static void processFilterStereo(SampleBuffer& samples, float gain, T* filter) {
         static thread_local size_t allocatedFloatsSample = 0;
         static thread_local std::array<std::vector<float>, MAX_CHANNELS> floatsSample;
         if (allocatedFloatsSample != floatsSample[0].size())
             allocatedFloatsSample = 0; //It happened that allocatedFloatsSample==960 and floatsSample[0] was of size 0...
+
+        auto sampleCount = samples.getSampleCount();
+        auto channels = samples.getChannels();
+
 
         if (allocatedFloatsSample < sampleCount)  //Not enough buffer, create new one
         {
@@ -166,9 +167,9 @@ public:
         //Split channels into separate arrays
         for (size_t i = 0; i < sampleCount * channels; i += channels) {
             for (int j = 0; j < channels; j++) {
-                floatsSample[j][i / channels] = (static_cast<float>(samples[i + j]) / static_cast<float>(SHRT_MAX));
+                floatsSample[j][i / channels] = static_cast<float>(samples[i + j]) / static_cast<float>(SHRT_MAX);
             }
-        };
+        }
 
         filter->template process<float>(static_cast<int>(sampleCount), floatsSample);
 
@@ -186,13 +187,7 @@ public:
     }
 
     static float distanceForDiverRadio();
-
-
-
-
 };
-
-
 
 class execAtReturn {
 public:

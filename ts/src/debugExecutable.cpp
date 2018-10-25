@@ -297,7 +297,7 @@ auto speedTestGainOrigInt() {
 
 
                 _mm_store_si128(&xmm2, xmm4);
-                xmm1 = _mm_load_si128((__m128i*) (samples + i));
+                xmm1 = _mm_load_si128(reinterpret_cast<__m128i*>(samples + i));
                 xmm2 = _mm_cmpgt_epi16(xmm2, xmm1);
                 _mm_store_si128(&xmm0, xmm1);
                 xmm1 = _mm_unpackhi_epi16(xmm1, xmm2);
@@ -315,7 +315,7 @@ auto speedTestGainOrigInt() {
                 xmm0 = _mm_unpacklo_epi16(xmm0, xmm2);
                 xmm1 = _mm_unpackhi_epi16(xmm1, xmm2);
                 xmm0 = _mm_unpacklo_epi16(xmm0, xmm1);
-                _mm_store_si128((__m128i*) (samples + i), xmm0);
+                _mm_store_si128(reinterpret_cast<__m128i*>(samples + i), xmm0);
             }
 
 
