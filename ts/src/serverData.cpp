@@ -63,7 +63,7 @@ serverDataDirectory::serverDataDirectory() {
 
 std::shared_ptr<serverData> serverDataDirectory::getClientDataDirectory(TSServerID serverID) const {
     LockGuard_shared lock(m_lock);
-    if (!data.count(serverID)) {
+    if (data.find(serverID) == data.end()) {
         Logger::log(LoggerTypes::pluginCommands, "invalid getClientDataDirectory " + std::to_string(serverID.baseType()));
         return std::shared_ptr<serverData>();
     }
@@ -72,7 +72,7 @@ std::shared_ptr<serverData> serverDataDirectory::getClientDataDirectory(TSServer
 
 bool serverDataDirectory::hasDirectory(TSServerID serverConnectionHandlerID) const {
     LockGuard_shared lock(m_lock);
-    return data.count(serverConnectionHandlerID) > 0;
+    return data.find(serverConnectionHandlerID) != data.end();
 }
 
 void serverDataDirectory::verify() {

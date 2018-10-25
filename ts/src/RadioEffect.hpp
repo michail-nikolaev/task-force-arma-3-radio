@@ -227,7 +227,9 @@ private:
 };
 
 template<class T>
-void processRadioEffect(short* samples, int channels, int sampleCount, float gain, T* effect, stereoMode stereoMode) {
+void processRadioEffect(SampleBuffer& samples, float gain, T* effect, stereoMode stereoMode) {
+    auto sampleCount = samples.getSampleCount();
+    auto channels = samples.getChannels();
     int startChannel = 0;
     int endChannel = channels;
     if (stereoMode == stereoMode::leftOnly) {
@@ -239,8 +241,9 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
         endChannel = 2;
         gain *= 1.5f;
     }
-    float* buffer = new float[sampleCount];
-    for (auto i = 0; i < sampleCount * channels; i += channels) {
+    std::vector<float> buffer;
+    buffer.resize(sampleCount);
+    for (auto i = 0u; i < sampleCount * channels; i += channels) {
         // prepare mono for radio
         auto monoCombined = 0.f;
         for (auto j = 0; j < channels; j++) {
@@ -249,10 +252,9 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
 
         buffer[i / channels] = (static_cast<float>(monoCombined) * gain) / (32766.f * channels);
     }
-    effect->process(buffer, sampleCount);
+    effect->process(buffer.data(), sampleCount);
 
-    memset(samples, 0, sampleCount * channels * sizeof(short));
-    for (auto i = 0; i < sampleCount * channels; i += channels) {
+    for (auto i = 0u; i < sampleCount * channels; i += channels) {
         // put mixed output to stream
 
         float sample = buffer[i / channels];
@@ -261,17 +263,16 @@ void processRadioEffect(short* samples, int channels, int sampleCount, float gai
             samples[i + j] = newValue;
         }
     }
-    delete[] buffer;
 }
 
-inline void processCompressor(chunkware_simple::SimpleComp* compressor, short* samples, int channels, int sampleCount) {
-    if (channels >= 2) {
-        for (auto q = 0; q < sampleCount; q++) {
-            double left = samples[channels * q];
-            double right = samples[channels * q + 1];
-            compressor->process(left, right);
-            samples[channels * q] = static_cast<short>(left);
-            samples[channels * q + 1] = static_cast<short>(right);
+inline void processCompressor(chunkware_simple::SimpleComp* compressor, SampleBuffer& samples) {
+    if (samples.getChannels() >= 2) {
+        for (auto& [Sleft,Sright] : samples.iterateStereo()) {
+            auto Fleft = static_cast<double>(Sleft);
+            auto Fright = static_cast<double>(Sright);
+            compressor->process(Fleft, Fright);
+            Sleft = static_cast<short>(Fleft);
+            Sright = static_cast<short>(Fright);
         }
     }
 }

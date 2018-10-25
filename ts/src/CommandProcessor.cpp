@@ -65,7 +65,7 @@ void CommandProcessor::queueCommand(const std::string& command) {
 
 
 
-DEFINE_API_PROFILER(processCommand);
+DEFINE_API_PROFILER(processCommand)
 std::string CommandProcessor::processCommand(const std::string& command) {
     Logger::log(LoggerTypes::gameCommands, command);
     API_PROFILER(processCommand);
@@ -80,7 +80,7 @@ std::string CommandProcessor::processCommand(const std::string& command) {
         case gameCommand::POS:
             //POS nickname [x,y,z] [viewdirUnitvector(x,y,z)] canSpeak canUseSWRadio canUseLRRadio canUseDDRadio vehicleID terrainInterception voiceVolume objectInterception
             queueCommand(command);//do processing async
-            //This will automatically continue to IS_SPEAKING which is what we want
+            [[fallthrough]];
         case gameCommand::IS_SPEAKING: {
             const auto nickname = convertNickname(tokens[1]);
             const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
@@ -92,8 +92,8 @@ std::string CommandProcessor::processCommand(const std::string& command) {
 
             const bool clientTalkingOnRadio = clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE;
             if (clientData->clientTalkingNow || clientTalkingOnRadio)
-                return std::string("1").append(receivingTransmission ? "1" : "0", 1);
-            return  std::string("0").append(receivingTransmission ? "1" : "0", 1);
+                return receivingTransmission ? "11" : "10";
+            return receivingTransmission ? "01" : "00";
         }
         case gameCommand::RECV_FREQS: {
             const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
@@ -151,7 +151,7 @@ gameCommand CommandProcessor::toGameCommand(std::string_view textCommand, size_t
             return gameCommand::DeleteRadioTower;
         case FORCE_COMPILETIME(const_strhash("collectDebugInfo"sv)):
             return gameCommand::collectDebugInfo;
-    };
+    }
     return gameCommand::unknown;
 }
 
@@ -169,7 +169,7 @@ void CommandProcessor::threadRun() {
 }
 
 
-DEFINE_API_PROFILER(processAsynchronousCommand);
+DEFINE_API_PROFILER(processAsynchronousCommand)
 void CommandProcessor::processAsynchronousCommand(const std::string& command) const {
     if (command.substr(0,3) != "POS") //else double log as POS is also logged in sync processing
         Logger::log(LoggerTypes::gameCommands, command);
@@ -204,7 +204,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
                     TFAR::getInstance().onTeamspeakClientUpdated(currentServerConnectionHandlerID, clientDataDir->myClientData->clientId, nickname);
                 }
             }
-        }; return;
+        } return;
         case gameCommand::POS: {
             //POS nickname [x,y,z] [viewdirUnitvector(x,y,z)] canSpeak canUseSWRadio canUseLRRadio canUseDDRadio vehicleID terrainInterception voiceVolume objectInterception
             unitPositionPacket packet{
@@ -224,7 +224,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
             };
 
             processUnitPosition(currentServerConnectionHandlerID, packet);
-        }; return;
+        } return;
         case gameCommand::KILLED:
             processUnitKilled(convertNickname(tokens[1]), currentServerConnectionHandlerID);
             return;
@@ -242,14 +242,15 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
             auto myClientData = clientDataDir->myClientData;
             if (!myClientData) return; //safety first
 
-            const bool pressed = (tokens[1] == "PRESSED"sv);
+            const bool pressed = tokens[1] == "PRESSED"sv;
 
-            const auto subtype = tokens[4];
+            const auto subtypeString = tokens[4];
+            const auto subtype = PTTDelayArguments::stringToSubtype(tokens[4]);
 
-            const bool changed = (TFAR::getInstance().m_gameData.tangentPressed != pressed);
+            const bool changed = TFAR::getInstance().m_gameData.tangentPressed != pressed;
             TFAR::getInstance().m_gameData.tangentPressed = pressed;
 
-            myClientData->setCurrentTransmittingSubtype(subtype);
+            myClientData->setCurrentTransmittingSubtype(subtypeString);
 
             const float globalVolume = TFAR::getInstance().m_gameData.globalVolume;//used for playing radio sounds
 
@@ -258,32 +259,25 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
             const auto commandToBroadcast = command + "\t" + (myClientData->canUseSWRadio ? "1\t" : "0\t") + (myClientData->canUseDDRadio ? "1\t" : "0\t") + myClientData->getNickname();
             auto frequency = tokens[2];
             //convenience function to remove duplicate code
-            const auto playRadioSound = [currentServerConnectionHandlerID, globalVolume, &frequency](const char* fileNameWithoutExtension,
+            const auto playRadioSound = [currentServerConnectionHandlerID, globalVolume, &frequency](SoundFile& file,
                 const std::map<std::string, FREQ_SETTINGS, std::less<>>& frequencyMap) {
                 auto found = frequencyMap.find(frequency);
                 if (found != frequencyMap.end()) {
                     const auto& freq = found->second;
-                    TFAR::getPlaybackHandler()->playWavFile(currentServerConnectionHandlerID, fileNameWithoutExtension, helpers::volumeMultiplifier(static_cast<float>(freq.volume)) * globalVolume, freq.stereoMode);
+                    TFAR::getPlaybackHandler()->playWavFile(currentServerConnectionHandlerID, file, helpers::volumeMultiplifier(static_cast<float>(freq.volume)) * globalVolume, freq.stereoMode);
                 } else {
-                    TFAR::getPlaybackHandler()->playWavFile(fileNameWithoutExtension);
+                    TFAR::getPlaybackHandler()->playWavFile(file);
                 }
             };
 
+            auto soundToPlay = SoundDirectory::getRadioSound(subtype, pressed);
             if (pressed) {
+
                 LockGuard_shared frequencyLock(TFAR::getInstance().m_gameData.m_lock);
-                switch (PTTDelayArguments::stringToSubtype(subtype)) {
-                    case PTTDelayArguments::subtypes::digital_lr:
-                        playRadioSound("radio-sounds/lr/local_start", TFAR::getInstance().m_gameData.myLrFrequencies);
-                        break;
-                    case PTTDelayArguments::subtypes::digital:
-                        playRadioSound("radio-sounds/sw/local_start", TFAR::getInstance().m_gameData.mySwFrequencies);
-                        break;
-                    case PTTDelayArguments::subtypes::airborne:
-                        playRadioSound("radio-sounds/ab/local_start", TFAR::getInstance().m_gameData.myLrFrequencies);
-                        break;
-                    default: break;
-                }
+                if (!soundToPlay.isEmpty())
+                    playRadioSound(soundToPlay, subtype == PTTDelayArguments::subtypes::digital ? TFAR::getInstance().m_gameData.mySwFrequencies : TFAR::getInstance().m_gameData.myLrFrequencies);
                 frequencyLock.unlock();
+
                 if (!TFAR::config.get<bool>(Setting::full_duplex) && tokens.size() == 6) {
                     TFAR::getInstance().m_gameData.setCurrentTransmittingRadio(tokens[5]);
                 }
@@ -299,29 +293,21 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
                 PTTDelayArguments args;
                 args.commandToBroadcast = commandToBroadcast;
                 args.currentServerConnectionHandlerID = currentServerConnectionHandlerID;
-                args.subtype = subtype;
+                args.subtype = subtypeString;
                 args.pttDelay = TFAR::getInstance().m_gameData.pttDelay;
                 args.tangentReleaseDelay = std::chrono::milliseconds(static_cast<int>(TFAR::config.get<float>(Setting::tangentReleaseDelay)));
                 std::thread([args]() {process_tangent_off(args); }).detach();
+
                 LockGuard_shared frequencyLock(TFAR::getInstance().m_gameData.m_lock);
-                switch (PTTDelayArguments::stringToSubtype(subtype)) {
-                    case PTTDelayArguments::subtypes::digital_lr:
-                        playRadioSound("radio-sounds/lr/local_end", TFAR::getInstance().m_gameData.myLrFrequencies);
-                        break;
-                    case PTTDelayArguments::subtypes::digital:
-                        playRadioSound("radio-sounds/sw/local_end", TFAR::getInstance().m_gameData.mySwFrequencies);
-                        break;
-                    case PTTDelayArguments::subtypes::airborne:
-                        playRadioSound("radio-sounds/ab/local_end", TFAR::getInstance().m_gameData.myLrFrequencies);
-                        break;
-                    default: break;
-                }
+                if (!soundToPlay.isEmpty())
+                    playRadioSound(soundToPlay, subtype == PTTDelayArguments::subtypes::digital ? TFAR::getInstance().m_gameData.mySwFrequencies : TFAR::getInstance().m_gameData.myLrFrequencies);
                 frequencyLock.unlock(); //setCurTransRadio acquires lock. This can deadlock if we don't unlock here
+
                 if (!TFAR::config.get<bool>(Setting::full_duplex)) {
                     TFAR::getInstance().m_gameData.setCurrentTransmittingRadio("");
                 }
             }
-        }; return;
+        } return;
         case gameCommand::RELEASE_ALL_TANGENTS: {
             const auto commandToSend = "RELEASE_ALL_TANGENTS\t" + convertNickname(tokens[1]);
             Teamspeak::sendPluginCommand(Teamspeak::getCurrentServerConnection(), TFAR::getInstance().getPluginID(), commandToSend, PluginCommandTarget_CURRENT_CHANNEL);
@@ -346,7 +332,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
             } else {
                 TFAR::config.set(key, std::string(""));
             }
-        }; return;
+        } return;
         case gameCommand::MISSIONEND: //Handled by pipe extension. That sets last GameTick to 0 so SharedMemoryHandler::onDisconnected will fire
             //TFAR::getInstance().onGameDisconnected();
             return;
@@ -517,7 +503,7 @@ void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverCo
 }
 
 
-DEFINE_API_PROFILER(processUnitPosition);
+DEFINE_API_PROFILER(processUnitPosition)
 
 void CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet) {
     API_PROFILER(processUnitPosition);

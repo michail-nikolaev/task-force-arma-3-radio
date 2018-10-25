@@ -43,7 +43,7 @@ private:
 class Teamspeak {
 public:
     Teamspeak();
-    ~Teamspeak() = default;;
+    ~Teamspeak() = default;
     static TSServerID getCurrentServerConnection();
     static void unmuteAll(TSServerID serverConnectionHandlerID = Teamspeak::getCurrentServerConnection());
     static void setClientMute(TSServerID serverConnectionHandlerID, TSClientID clientID, bool mute);

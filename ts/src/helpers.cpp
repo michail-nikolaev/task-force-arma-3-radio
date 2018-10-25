@@ -8,49 +8,17 @@
 #include "task_force_radio.hpp"
 #include <bitset>
 
-#define CAN_USE_SSE_ON(x) (IsProcessorFeaturePresent(PF_XMMI64_INSTRUCTIONS_AVAILABLE) && (reinterpret_cast<uintptr_t>(x) % 16 == 0))
-
-void helpers::applyGain(short * samples, size_t sampleCount, int channels, float directTalkingVolume) {
-    if (directTalkingVolume == 0.0f) {
-        memset(samples, 0, sampleCount * channels * sizeof(short));
-        return;
-    }
-    if (directTalkingVolume == 1.0f) //no change in gain
-        return;
-
-
-
-    size_t leftOver = sampleCount * channels;
-    if (CAN_USE_SSE_ON(samples)) {
-        leftOver = (sampleCount * channels) % 8;
-        __m128 xmm3;
-        float multiplier[4] = { directTalkingVolume ,directTalkingVolume , directTalkingVolume, directTalkingVolume };//This is limiting to 4 channels max. But If we implement surround sound we don't really need a center
-        xmm3 = _mm_loadu_ps(multiplier);
-        helpers::shortFloatMultEx(samples, (sampleCount * channels) - leftOver, xmm3);
-    }
-    for (size_t i = sampleCount * channels - leftOver; i < sampleCount * channels; i++) samples[i] = static_cast<short>(samples[i] * directTalkingVolume);
-}
-
-
 //static_assert(static_cast<AngleRadians>(190.0_deg) > 3.f, "");
-void helpers::applyILD(short * samples, size_t sampleCount, int channels, Direction3D direction, AngleRadians viewAngle) {
-    if (channels == 2) {
-        AngleRadians dir = (direction.toPolarAngle() + viewAngle);
+void helpers::applyILD(SampleBuffer& samples, Direction3D direction, AngleRadians viewAngle) {
+    auto sampleCount = samples.getSampleCount();
+    auto channels = samples.getChannels();
+    if (samples.getChannels() == 2) {
+        AngleRadians dir = direction.toPolarAngle() + viewAngle;
         float gainFrontLeft = AngleDegrees(-21.5f).toRadians() * dir.cosine() + 0.625f;
         float gainFrontRight = AngleDegrees(21.5f).toRadians() * dir.cosine() + 0.625f;
         //Use https://msdn.microsoft.com/en-us/library/windows/desktop/ee415798(v=vs.85).aspx for more than 2 channels
 
-        size_t leftOver = sampleCount * channels;
-        if (CAN_USE_SSE_ON(samples)) {
-            leftOver = (sampleCount * channels) % 8;
-            float multiplier[4] = { gainFrontLeft ,gainFrontRight , gainFrontLeft, gainFrontRight };//This is limiting to 4 channels max. But If we implement surround sound we don't really need a center
-            __m128 xmm3 = _mm_loadu_ps(multiplier);
-            helpers::shortFloatMultEx(samples, (sampleCount * channels) - leftOver, xmm3);
-        }
-        for (size_t i = sampleCount * channels - leftOver; i < sampleCount * channels; i += channels) {
-            samples[i] = static_cast<short>(samples[i] * gainFrontLeft);
-            samples[i + 1] = static_cast<short>(samples[i + 1] * gainFrontRight);
-        }
+        samples.applyStereoGain(gainFrontLeft, gainFrontRight);
     }
 }
 #define _SPEAKER_POSITIONS_
@@ -59,7 +27,7 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Direct
 X3DAUDIO_HANDLE x3d_handle;
 bool x3d_initialized = false;
 
-void helpers::applyILD(short * samples, size_t sampleCount, int channels, Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection, bool shouldPlayerHear, int emitterVoiceVolume) {
+void helpers::applyILD(SampleBuffer& samples, Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection, bool shouldPlayerHear, int emitterVoiceVolume) {
     if (!x3d_initialized) {
         X3DAudioInitialize(
             SPEAKER_FRONT_LEFT | SPEAKER_FRONT_RIGHT,
@@ -68,6 +36,9 @@ void helpers::applyILD(short * samples, size_t sampleCount, int channels, Positi
         );
         x3d_initialized = true;
     }
+    auto channels = samples.getChannels();
+
+
     //#X3DAudio cache if position didn't change.
     //#X3DAudio make player local effect so X3DAudio objects are local to every player.
     //#X3DAudio fix up vector problem
@@ -172,8 +143,9 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
 
     output.SrcChannelCount = 1;
     output.DstChannelCount = channels;
-    float* volumeMatrix = new float[channels];//#X3DAudio minimum 2 channels
-    output.pMatrixCoefficients = volumeMatrix;
+    auto volumeMatrix = std::vector<float>();//#X3DAudio minimum 2 channels
+    volumeMatrix.resize(channels);
+    output.pMatrixCoefficients = volumeMatrix.data();
 
     X3DAudioCalculate(
         x3d_handle,
@@ -185,20 +157,9 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
 
     float gainFrontLeft = volumeMatrix[0];
     float gainFrontRight = volumeMatrix[1];
-    delete[] volumeMatrix;
 
-    size_t leftOver = sampleCount * channels;
-    if (CAN_USE_SSE_ON(samples)) { //Can use SSE and memory is correctly aligned
-        leftOver = (sampleCount * channels) % 8;
-        __m128 xmm3;
-        float multiplier[4] = { gainFrontLeft ,gainFrontRight , gainFrontLeft, gainFrontRight };//This is limiting to 4 channels max. But If we implement surround sound we don't really need a center
-        xmm3 = _mm_loadu_ps(multiplier);
-        helpers::shortFloatMultEx(samples, (sampleCount * channels) - leftOver, xmm3);
-    }
-    for (size_t i = sampleCount * channels - leftOver; i < sampleCount * channels; i += channels) {
-        samples[i] = static_cast<short>(samples[i] * gainFrontLeft);
-        samples[i + 1] = static_cast<short>(samples[i + 1] * gainFrontRight);
-    }
+
+    samples.applyStereoGain(gainFrontLeft, gainFrontRight);
 }
 
 void helpers::shortFloatMultEx(short * data, size_t elementCount, __m128 multPack) {//#TODO use in gain and ILD for ILD multPack is {left,right,left,right}
@@ -209,7 +170,7 @@ void helpers::shortFloatMultEx(short * data, size_t elementCount, __m128 multPac
     */
 
 #ifdef _DEBUG
-    if (!(CAN_USE_SSE_ON(data)) || (elementCount % 8)) __debugbreak();
+    if (!(CAN_USE_SSE_ON(data)) || elementCount % 8) __debugbreak();
 #endif
 
     for (size_t i = 0; i < elementCount; i += 8) {
@@ -252,10 +213,9 @@ inline int helpers::parseArmaNumberToInt(std::string_view armaNumber) {
 bool helpers::startsWith(const std::string& shouldStartWith, const  std::string& startIn) {
     if (startIn.size() >= shouldStartWith.size()) {
         const auto res = std::mismatch(shouldStartWith.begin(), shouldStartWith.end(), startIn.begin());
-        return (res.first == shouldStartWith.end());
-    } else {
-        return false;
+        return res.first == shouldStartWith.end();
     }
+    return false;
 }
 
 //http://stackoverflow.com/a/5506223
@@ -313,20 +273,6 @@ bool helpers::isTrue(std::string_view string) {
     if (string.length() != 4)//small speed optimization
         return string.length() == 1 && string.at(0) == '1';
     return string == "true";
-}
-
-short* helpers::allocatePool(int sampleCount, int channels, short* samples) {
-    short* result = new short[sampleCount * channels];
-    memcpy(result, samples, sampleCount * channels * sizeof(short));
-    return result;
-}
-
-void helpers::mix(short* to, const short* from, int sampleCount, int channels) {//#TODO SSE2 implementation
-    for (int q = 0; q < sampleCount * channels; q++) {
-        int sum = static_cast<int>(to[q]) + static_cast<int>(from[q]);
-
-        to[q] = std::clamp(sum, SHRT_MIN, SHRT_MAX);
-    }
 }
 
 float helpers::volumeMultiplifier(const float volumeValue) {
