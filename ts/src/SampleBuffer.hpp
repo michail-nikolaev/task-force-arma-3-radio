@@ -132,7 +132,7 @@ public:
     SIterHelper iterateStereo() {
         return SIterHelper{
             StereoIterator(getSamples(), getChannels()),
-            StereoIterator(getSamples() + getSampleCount() + getChannels(), getChannels())
+            StereoIterator(getSamples() + getSampleCount() * getChannels(), getChannels())
         };
     }
     short* begin() { return samples->begin(); }

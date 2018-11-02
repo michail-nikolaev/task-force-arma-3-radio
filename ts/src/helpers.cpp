@@ -257,6 +257,26 @@ std::vector<std::string_view>& helpers::split(std::string_view s, char delim, st
     return elems;
 }
 
+std::vector<std::string_view>& helpers::split(std::string_view s, char delim, std::vector<std::string_view>& elems, uint8_t maxTokens) {
+    std::string::size_type lastPos = 0;
+    const std::string::size_type length = s.length();
+
+    while (lastPos < length + 1) {
+        std::string::size_type pos = s.find_first_of(delim, lastPos);
+        if (pos == std::string::npos) {
+            pos = length;
+        }
+
+        //if (pos != lastPos || !trimEmpty)
+        elems.emplace_back(s.data() + lastPos, pos - lastPos);
+        if (!--maxTokens) return elems;
+
+        lastPos = pos + 1;
+    }
+
+    return elems;
+}
+
 std::vector<std::string> helpers::split(const std::string& s, char delim) {
     std::vector<std::string> elems;
     split(s, delim, elems);

@@ -100,6 +100,7 @@ public:
     static bool startsWith(const std::string& shouldStartWith, const std::string& startIn);
     static std::vector<std::string>& split(const std::string& s, char delim, std::vector<std::string>& elems);
     static std::vector<std::string_view>& split(std::string_view s, char delim, std::vector<std::string_view>& elems);
+    static std::vector<std::string_view>& split(std::string_view s, char delim, std::vector<std::string_view>& elems, uint8_t maxTokens);
     static std::vector<std::string> split(const std::string& s, char delim);
     static std::vector<std::string_view> split(std::string_view s, char delim);
     static bool isTrue(std::string_view string);
