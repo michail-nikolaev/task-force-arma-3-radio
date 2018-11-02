@@ -69,8 +69,8 @@ DEFINE_API_PROFILER(processCommand)
 std::string CommandProcessor::processCommand(const std::string& command) {
     Logger::log(LoggerTypes::gameCommands, command);
     API_PROFILER(processCommand);
-    std::vector<std::string_view> tokens; tokens.reserve(18);
-    helpers::split(command, '\t', tokens); //may not be used in nickname
+    std::vector<std::string_view> tokens; tokens.reserve(28);
+    helpers::split(command, '\t', tokens, 2); //may not be used in nickname
     const auto gameCommand = toGameCommand(tokens[0], tokens.size());
     if (gameCommand == gameCommand::unknown) return "UNKNOWN COMMAND";
 
