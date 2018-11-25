@@ -18,7 +18,7 @@
   Public: Yes
 */
 
-private _result = [];
+private _result = missionNamespace getVariable ["TFAR_OverrideActiveLRRadio", []];
 private _active_lr = missionNamespace getVariable ["TF_lr_active_radio", objNull];
 
 private _vehicle_lr = [_this call TFAR_fnc_vehicleLr];
