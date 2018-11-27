@@ -30,7 +30,7 @@ private _result = [];
 _result pushBackUnique _overrideLR; //This is either override or active
 _result pushBackUnique _activeLR; //This is either active or backpack
 _result pushBackUnique _backpackLR; //if active one was already backpack, this will do nothing
-if (!isNil "_vehicleLR") then {_result pushBackUnique _vehicleLR};
+_result pushBackUnique _vehicleLR; //Will be silently ignored if _vehicleLR is nil
 
 if ((player call TFAR_fnc_isForcedCurator) and {TFAR_currentUnit == player}) then {
     if !(isNil "TF_curator_backpack_1") then {
