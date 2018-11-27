@@ -18,20 +18,19 @@
   Public: Yes
 */
 
-private _result = missionNamespace getVariable ["TFAR_OverrideActiveLRRadio", []];
-private _active_lr = missionNamespace getVariable ["TF_lr_active_radio", objNull];
 
-private _vehicle_lr = [_this call TFAR_fnc_vehicleLr];
+private _backpackLR = (_this call TFAR_fnc_backpackLr); 
+private _activeLR = missionNamespace getVariable ["TF_lr_active_radio", _backpackLR];
+private _overrideLR = missionNamespace getVariable ["TFAR_OverrideActiveLRRadio", _activeLR];
+private _vehicleLR = _this call TFAR_fnc_vehicleLr;
 
-//I know that stuff with param is ugly hackerino stuff... But It's still faster than isNil or count check that was done before
 
-if (_active_lr isEqualTo (_vehicle_lr param [0,scriptNull])) then {//No! isEqualTo doesn't crash when presented a nil variable ;)
-    _result pushBack _active_lr;
-    _result pushBack (_this call TFAR_fnc_backpackLr);
-} else {
-    _result pushBack (_this call TFAR_fnc_backpackLr);
-    _result pushBack (_vehicle_lr param [0,nil]);
-};
+private _result = [];
+
+_result pushBackUnique _overrideLR; //This is either override or active
+_result pushBackUnique _activeLR; //This is either active or backpack
+_result pushBackUnique _backpackLR; //if active one was already backpack, this will do nothing
+if (!isNil "_vehicleLR") then {_result pushBackUnique _vehicleLR};
 
 if ((player call TFAR_fnc_isForcedCurator) and {TFAR_currentUnit == player}) then {
     if !(isNil "TF_curator_backpack_1") then {
@@ -45,7 +44,7 @@ if ((player call TFAR_fnc_isForcedCurator) and {TFAR_currentUnit == player}) the
     };
 };
 
-//If Player is remote Controling return Player and controlled Unit's radios.
+//If Player is remote Controlling return Player and controlled Unit's radios.
 if (_this isEqualTo TFAR_currentUnit && {player != TFAR_currentUnit}) exitWith {
         _result + (player call TFAR_fnc_LRRadiosList);
 };
