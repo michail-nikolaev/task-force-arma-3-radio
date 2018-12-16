@@ -929,6 +929,8 @@ void processTangentPress(TSServerID serverId, const std::vector<std::string_view
             
 
             if (playPressed && !transmissionCounted) {
+                //#TODO keep an array of client weak pointers of the receiving transmissions.
+                //#TODO what happens if WE change frequency while the other guy is still transmitting. Or when we change frequency into a currently active transmission
                 myClientData->receivingTransmission += 1; //Set that we are receiving a transmission. For the EventHandler
                 myClientData->receivingFrequencies.emplace(frequency);
                 transmissionCounted = true;//prevent from multiple adds if you have multiple radios on same freq
