@@ -20,4 +20,10 @@
   Public: Yes
 */
 
-(("task_force_radio_pipe" callExtension format ["IS_SPEAKING	%1", name _this]) == "SPEAKING")
+private _splitResult = ("task_force_radio_pipe" callExtension format ["IS_SPEAKING	%1", name _this]) splitString "";
+
+//_splitResult
+//1 - is Speaking
+//2 - is Speaking on a Radio frequency that we can currently receive
+
+(_splitResult select 0) == "1"
