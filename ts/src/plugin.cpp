@@ -629,7 +629,13 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
             const auto distanceFromRadio = myPosition.distanceTo(info.pos);
 
-            const auto radioVehicleVolumeLoss = std::clamp(myVehicleDescriptor.vehicleIsolation + info.vehicle.vehicleIsolation, 0.0f, 0.99f);
+
+            bool sameVehicleAsMe = myVehicleDescriptor.vehicleName == info.vehicle.vehicleName;
+
+            //If we are inside the vehicle, we hear it over the internal speakers, 0 isolation.
+            const auto radioVehicleVolumeLoss =
+                sameVehicleAsMe ? 0
+                    : std::clamp(myVehicleDescriptor.vehicleIsolation + info.vehicle.vehicleIsolation, 0.0f, 0.99f);
 
             helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(radio_buffer, SPEAKER_GAIN, clientData->effects.getSpeakerFilter(info.radio_id));
             //Special handling for Radios that are louder than normal max. == statically placed radios
