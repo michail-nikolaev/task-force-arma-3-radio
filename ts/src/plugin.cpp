@@ -503,7 +503,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     const auto hisVehicleDesriptor = clientData->getVehicleDescriptor();
 
     const auto vehicleVolumeLoss = std::clamp(myVehicleDescriptor.vehicleIsolation + hisVehicleDesriptor.vehicleIsolation, 0.0f, 0.99f);
-    const bool isInSameVehicle = myVehicleDescriptor.vehicleName == hisVehicleDesriptor.vehicleName;
+    const bool isInSameVehicle = myVehicleDescriptor.vehicleName == hisVehicleDesriptor.vehicleName && myVehicleDescriptor.vehicleName != "no";
     const auto distanceFromClient = myPosition.distanceTo(clientData->getClientPosition()) + 2 * clientData->objectInterception; //2m more dist for each obstacle
 
     //#### DIRECT SPEECH
