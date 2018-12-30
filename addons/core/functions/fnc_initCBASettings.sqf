@@ -188,6 +188,15 @@
     1
 ] call CBA_Settings_fnc_init;
 [
+    "TFAR_objectInterceptionStrength", 
+    "SLIDER", 
+    ["TFAR_objectInterceptionStrength", "TFAR_objectInterceptionStrength"], 
+    localize ELSTRING(settings,global), 
+    [0, 1800, 400, 1],
+    1,
+    {["objectInterceptionStrength", TFAR_objectInterceptionStrength] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+[
     "TFAR_takingRadio",
     "LIST",
     [ELSTRING(settings,TAKERADIO_HEADER), ELSTRING(settings,TAKERADIO_DESC)],

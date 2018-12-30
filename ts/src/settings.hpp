@@ -22,7 +22,8 @@
     XX(tangentReleaseDelay, 0.f), \
     XX(moveWhileTabbedOut, false), \
     XX(intercomDucking, 0.2f), \
-    XX(minimumPluginVersion, 0.f)
+    XX(minimumPluginVersion, 0.f), \
+    XX(objectInterceptionStrength, 400.f)
 
 #define EnumEntry(x,y) x
 #define EnumString(x,y) #x

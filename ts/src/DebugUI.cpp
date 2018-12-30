@@ -168,6 +168,10 @@ float lastFrame = 0.0f;
 
 std::shared_ptr<clientData> centerTarget;
 
+float debugDisplayThing = 0.f;
+float debugDisplayThing2 = 0.f;
+
+
 void DebugUI::threadRun() {
     // glfw: initialize and configure
     // ------------------------------
@@ -411,6 +415,8 @@ void DebugUI::threadRun() {
                     text << "object interception: " << cli->objectInterception << '\n';
                 auto vehDesc = cli->getVehicleDescriptor();
                 text << "vehicle: " << vehDesc.vehicleName << " iso: " << vehDesc.vehicleIsolation << " intercom:" << vehDesc.intercomSlot << '\n';
+
+                text << "d1:" << debugDisplayThing << "\nd2:" << debugDisplayThing2 << "\n";
 
 
                 textRenderer->addTextQueue(text.str(), position, .005f, cli->clientTalkingNow ? glm::vec3(1.f, 0.f, 0.2f) : glm::vec3(0.5, 0.8f, 0.2f));
