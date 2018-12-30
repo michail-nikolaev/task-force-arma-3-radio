@@ -352,6 +352,7 @@ private:
             vehicleId.vehicleIsolation = 0.f;
             vehicleId.intercomSlot = -1;
             velocity = { 0,0,0 };
+            return;
         }
         auto split = helpers::split(val, '\x10');
         if (split.size() < 3) return; //I don't listen to morons!!
@@ -362,7 +363,10 @@ private:
         else
             vehicleId.vehicleIsolation = helpers::parseArmaNumber(split[1]); // hear
         vehicleId.intercomSlot = helpers::parseArmaNumberToInt(split[2]);//vehicleDescriptor::stringToVehiclePosition(split[2]);
-        velocity = Vector3D(split[3]);
+        if (split.size() > 3)
+            velocity = Vector3D(split[3]);
+        else
+            velocity = { 0,0,0 };
     }
 };
 
