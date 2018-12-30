@@ -71,7 +71,7 @@ class Cfg3DEN {
                         tooltip = "Vehicles that share the same Vehicle ID share the same Intercom system.";
                         expression = QUOTE(if !(_value isEqualTo '') then {_this setVariable [ARR_2('TFAR_vehicleIDOverride',_value)]};);
                         typeName = "STRING";
-                        validate = "variable";
+                        validate = "none";
                         condition = "objectVehicle";
                         defaultValue = "''";
                     };
