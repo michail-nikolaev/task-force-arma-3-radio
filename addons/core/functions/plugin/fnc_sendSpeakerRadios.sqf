@@ -43,8 +43,7 @@ private _speakerRadios = TFAR_speakerRadios;
 
                 _speakerRadios pushBack ([_x/*radio_id*/,_frequencies joinString "|",""/*nickname*/,_pos,_x call TFAR_fnc_getSwVolume, "no"/*vehicle*/] joinString TF_new_line);
             };
-            true;
-        } count ((getItemCargo _x) select 0);
+        } forEach ((getItemCargo _x) select 0);
 
         {
             if  ((_x getVariable ["TFAR_LRSpeakersEnabled", false]) and {[typeof (_x), "tf_hasLRradio", 0] call TFAR_fnc_getVehicleConfigProperty == 1}) then {
@@ -60,11 +59,9 @@ private _speakerRadios = TFAR_speakerRadios;
                     _speakerRadios pushBack ([_radio_id,_frequencies joinString "|",""/*nickname*/,_pos,_manpack call TFAR_fnc_getLrVolume, "no"/*vehicle*/] joinString TF_new_line);
                 };
             };
-            true;
-        } count (everyBackpack _x);
+        } forEach (everyBackpack _x);
     };
-    true;
-} count ((TFAR_currentUnit nearSupplies TF_speakerDistance) - [TFAR_currentUnit]);
+} forEach ((TFAR_currentUnit nearSupplies TF_speakerDistance) - [TFAR_currentUnit]);
 //#TODO doesn't catch static LRRadio backpacks on ground because they are not in any Holder
 //Are you sure? nearestObjects seems to return a container and backpacks returns radio backpacks.. Should verify that again It may not see them because of TFAR_LRSpeakersEnabled not set
 
@@ -96,18 +93,22 @@ private _speakerRadios = TFAR_speakerRadios;
                     if (_additionalChannel > -1) then {
                         _frequencies pushBack format["%1%2", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
                     };
+
+                    private _vehicle = _x select 0;
+
                     private _radio_id = netId (_x select 0) + (_x select 1);
-                    private _isolation = netid (_x select 0) + "_" + str ([(typeof (_x select 0)), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty);
+
+                    //See fnc_vehicleId.sqf
+                    private _netID = _vehicle getVariable ["TFAR_vehicleIDOverride", netid _vehicle];
+                    private _isolation = [_netID, [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty, -1] joinString (toString [16]);
 
                     _speakerRadios pushBack ([_radio_id,_frequencies joinString "|","",_pos,_x call TFAR_fnc_getLrVolume, _isolation] joinString TF_new_line);
                 };
-                true;
-            } count (_lrs);
+            } forEach _lrs;
         };
 
     };
-    true;
-} count (TFAR_currentUnit nearEntities [["LandVehicle", "Air", "Ship"], TF_speakerDistance]);
+} forEach (TFAR_currentUnit nearEntities [["LandVehicle", "Air", "Ship"], TF_speakerDistance]);
 
 private _empty = (count _speakerRadios == 0);
 //If we didn't have speakers in last call and don't have any now. Skip calling Extension

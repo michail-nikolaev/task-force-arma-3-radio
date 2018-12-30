@@ -325,17 +325,23 @@ std::map<std::string, FREQ_SETTINGS, std::less<>> helpers::parseFrequencies(std:
 
 vehicleDescriptor helpers::getVehicleDescriptor(std::string_view vehicleID) {
     vehicleDescriptor result;
-    if (vehicleID.find("_turnout") != std::string::npos) {
-        result.vehicleName = vehicleID.substr(0, vehicleID.find("_turnout"));
-    } else {
-        if (vehicleID.find_last_of('_') != std::string::npos) {
-            result.vehicleName = vehicleID.substr(0, vehicleID.find_last_of('_'));
-           
-            result.vehicleIsolation = std::atof(vehicleID.substr(vehicleID.find_last_of('_') + 1).data()); //#TODO  std::from_chars()
-        } else {
-            result.vehicleName = vehicleID;
-        }
+    //"2:390\x100.6\x10gunner"
+    if (vehicleID == "no") {
+        result.vehicleName = "no";
+        result.vehicleIsolation = 0.f;
+        result.intercomSlot = -1;
+        return result;
     }
+    auto split = helpers::split(vehicleID, '\x10');
+    if (split.size() < 3) return result; //I don't listen to morons!!
+    result.vehicleName = split[0]; // hear vehicle
+    auto& isolation = split[1];
+    if (isolation == "turnout")
+        result.vehicleIsolation = 0.f;
+    else
+        result.vehicleIsolation = parseArmaNumber(split[1]); // hear
+    result.intercomSlot = parseArmaNumberToInt(split[2]);//vehicleDescriptor::stringToVehiclePosition(split[2]);
+
     return result;
 }
 
