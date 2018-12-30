@@ -18,6 +18,9 @@
   Public: Yes
 */
 
+
+["minimumPluginVersion", 303] call TFAR_fnc_setPluginSetting; //Keep this as first
+
 ["full_duplex",missionNamespace getVariable ["TFAR_fullDuplex",true]] call TFAR_fnc_setPluginSetting;
 ["addon_version",TFAR_ADDON_VERSION] call TFAR_fnc_setPluginSetting;
 ["serious_channelPassword",missionNamespace getVariable ["TFAR_Teamspeak_Channel_Password","123"]] call TFAR_fnc_setPluginSetting;
@@ -31,6 +34,6 @@
 ["tangentReleaseDelay",missionNamespace getVariable ["TFAR_tangentReleaseDelay",0]] call TFAR_fnc_setPluginSetting;
 ["headsetLowered",missionNamespace getVariable [QGVAR(isHeadsetLowered),false]] call TFAR_fnc_setPluginSetting;
 ["moveWhileTabbedOut", missionNamespace getVariable ["TFAR_moveWhileTabbedOut", false]] call TFAR_fnc_setPluginSetting;
-["minimumPluginVersion", 301] call TFAR_fnc_setPluginSetting;
+["objectInterceptionStrength", missionNamespace getVariable ["TFAR_objectInterceptionStrength", 400]] call TFAR_fnc_setPluginSetting;
 
 //If you add things that player could change in Mission call this PFH or tell players in WIKI

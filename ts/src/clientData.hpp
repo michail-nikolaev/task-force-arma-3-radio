@@ -203,17 +203,7 @@ public:
 
     std::map<uint8_t, std::unique_ptr<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>> filtersObjectInterception;
 
-    Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>* getFilterObjectInterception(uint8_t objectCount) {
-        objectCount = std::min(objectCount, static_cast<uint8_t>(5));
-        LockGuard_shared lock_shared(m_lock);
-        if (!filtersObjectInterception.count(objectCount)) {
-            lock_shared.unlock();
-            LockGuard_exclusive lock_exclusive(m_lock);
-            filtersObjectInterception[objectCount] = std::make_unique<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>();
-            filtersObjectInterception[objectCount]->setup(2, 48000, 1800 - ((objectCount - 1) * 400)); //#TODO not happy with that..
-        }
-        return filtersObjectInterception[objectCount].get();
-    }
+    Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>* getFilterObjectInterception(uint8_t objectCount);
 
 
     chunkware_simple::SimpleComp compressor;

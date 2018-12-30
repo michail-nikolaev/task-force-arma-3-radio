@@ -1,8 +1,11 @@
 #pragma once
 #include "public_definitions.h"
+#include <cmath>
 #include <cstdint>
 #include <vector>
 #include <chrono>
+#include <string_view>
+#include <stdexcept>
 
 #define M_PI_FLOAT 3.14159265358979323846f
 namespace dataType {
@@ -67,7 +70,7 @@ namespace dataType {
         float cosine() const { return cosf(toRadians()); }
         float sine() const { return sinf(toRadians()); }
         AngleDegrees to180() const {
-            AngleDegrees positive(fmod(angle, 360.f));
+            AngleDegrees positive(std::fmod(angle, 360.f));
             if (positive.angle < 0) positive.angle += 360.f;
             return positive;
         }
