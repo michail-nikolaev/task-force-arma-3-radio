@@ -18,8 +18,8 @@
   Public: No
 */
 
-
 params ["_control"];
+
 private _display = ctrlParent _control;
 private _logic = missionNamespace getVariable ["BIS_fnc_initCuratorAttributes_target",objNull];
 
@@ -27,6 +27,7 @@ private _unit = (attachedTo _logic);
 private _classname =  ((getItemCargo _unit) select 0) select 0;
 
 if !((_unit call TFAR_fnc_isLRRadio) || {(_classname call TFAR_fnc_isPrototypeRadio)} || {(_classname call TFAR_fnc_isRadio)}) exitWith {
+    //This is not a radio
     hint localize LSTRING(moduleStaticRadio_hint);
     _display closeDisplay 0;
     deleteVehicle _logic;
@@ -71,6 +72,16 @@ _control ctrlAddEventHandler ["buttonClick", _fnc_onConfirm];
 
 
 
+//Check if radio is already instanciated
+private _settings = [];
+if (_classname call TFAR_fnc_isRadio && {_classname call TFAR_fnc_hasSettings}) then {
+    _settings = _classname call TFAR_fnc_getSwSettings;
+};
+
+if (_classname call TFAR_fnc_isLRRadio && {[[_classname,"radio_settings"]] call TFAR_fnc_hasSettings}) then {
+    _settings = [_classname,"radio_settings"] call TFAR_fnc_getLrSettings;
+};
+
 private _FreqControl = _display displayCtrl 2611804;
 private _ChannelControl = _display displayCtrl 2611806;
 private _SpeakerControl = _display displayCtrl 2611808;
@@ -80,7 +91,14 @@ private _VolumeEditControl = _display displayCtrl 2611811;
 
 //Edit volume control
 _VolumeControl sliderSetRange [1, 50];
-_VolumeControl sliderSetPosition TFAR_default_radioVolume;
+
+if !(_settings isEqualTo []) then {
+    _VolumeControl sliderSetPosition (_settings param [VOLUME_OFFSET, TFAR_default_radioVolume]);
+    _SpeakerControl cbSetChecked (_settings param [TFAR_SW_SPEAKER_OFFSET, false]);
+} else {
+    _VolumeControl sliderSetPosition TFAR_default_radioVolume;
+};
+
 _VolumeControl ctrlSetTooltip (localize LSTRING(moduleStaticRadio_ATT_RadioVolume_tooltip));
 _VolumeControl ctrlAddEventHandler ["SliderPosChanged", {
     params ["_slider"];
@@ -88,6 +106,9 @@ _VolumeControl ctrlAddEventHandler ["SliderPosChanged", {
     private _value = sliderPosition _slider;
     _edit ctrlSetText ([_value, 1, 0] call CBA_fnc_formatNumber);
 }];
+
+private _value = sliderPosition _VolumeControl;
+_VolumeEditControl ctrlSetText ([_value, 1, 0] call CBA_fnc_formatNumber);
 
 _VolumeEditControl ctrlAddEventHandler ["KillFocus", {
     params ["_edit"];
@@ -97,8 +118,24 @@ _VolumeEditControl ctrlAddEventHandler ["KillFocus", {
     _edit ctrlSetText str _value;
 }];
 
-_FreqControl ctrlSetText (str (_classname call TFAR_static_radios_fnc_generateFrequencies));
-_ChannelControl ctrlSetText "1";
+private _frequencies = [];
+
+//If radio is already instanciated, load frequencies from it.
+if !(_settings isEqualTo []) then {
+    _frequencies = _settings param [TFAR_FREQ_OFFSET, []];
+};
+
+if (_frequencies isEqualTo []) then {
+    _frequencies = _classname call TFAR_static_radios_fnc_generateFrequencies;
+};
+
+_FreqControl ctrlSetText str _frequencies;
+
+private _currentChannel = if !(_settings isEqualTo []) then {
+                            _settings param [ACTIVE_CHANNEL_OFFSET, -1]+1; //We display channel+1 so that users think 1 is first channel
+                        } else {1};
+
+_ChannelControl ctrlSetText str _currentChannel;
 
 /*
 _listBox = _parent displayCtrl 20611802;
