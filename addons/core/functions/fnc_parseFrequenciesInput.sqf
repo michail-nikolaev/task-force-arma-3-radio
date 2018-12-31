@@ -32,10 +32,18 @@ params [
 ];
 
 // add brackets if they are missing
-if !(((_valueString find "[") isEqualTo 0) && {(_valueString find "]") isEqualTo ((count _valueString) - 1)}) then {
-    _valueString = format["[%1]",_valueString];
+private _firstChar = _valueString select [0,1];
+private _lastChar = _valueString select [(count _valueString) - 1,1];
+
+if (_firstChar != "[") then {
+    _valueString = "[" + _valueString;
 };
 
+if (_lastChar != "]") then {
+    _valueString = _valueString + "]";
+};
+
+_valueString = _valueString splitString " " joinString ""; //remove spaces
 private _parsedValue = (parseSimpleArray _valueString) apply {
     if (IS_STRING(_x)) then {parseNumber _x} else {_x};
 };
@@ -47,7 +55,6 @@ _parsedValue = _parsedValue select {
 };
 
 _parsedValue = _parsedValue apply {QTFAR_ROUND_FREQUENCYP(_x,_roundPower)};
-
 
 if ((count _parsedValue) < _minChannels) then {
     private _randomized = [_minChannels,_maxFreq,_minFreq,_roundPower] call DFUNC(generateFrequencies);
