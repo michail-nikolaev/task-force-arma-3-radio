@@ -38,9 +38,9 @@ class Cfg3DEN {
                         displayName = ECSTRING(settings,DefaultRadioFrequencies_SR);
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_SR_desc);
                         property = "TFAR_freq_sr";
-                        control = "EditArray";
-                        expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
-                        defaultValue = "[]";
+                        control = "Edit"; //#TODO make custom control. Look at EditArray for example. Maybe multiple text boxes?
+                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                        defaultValue = "''";
                         unique = 0;
                         condition = "objectControllable + logicModule";
                     };
@@ -48,9 +48,9 @@ class Cfg3DEN {
                         displayName = ECSTRING(settings,DefaultRadioFrequencies_LR);
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_LR_desc);
                         property = "TFAR_freq_lr";
-                        control = "EditArray";
-                        expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
-                        defaultValue = "[]";
+                        control = "Edit";
+                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                        defaultValue = "''";
                         unique = 0;
                         condition = "objectControllable + logicModule";
                     };
@@ -100,18 +100,18 @@ class Cfg3DEN {
                         displayName = ECSTRING(settings,DefaultRadioFrequencies_SR);
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_SR_desc);
                         property = "TFAR_freq_sr";
-                        expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
                         control = "EditArray";
-                        defaultValue = "[]";
+                        defaultValue = "''";
                         unique = 0;
                     };
                     class TFAR_freq_lr {
                         displayName = ECSTRING(settings,DefaultRadioFrequencies_LR);
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_LR_desc);
                         property = "TFAR_freq_lr";
-                        expression = QUOTE(if !(_value isEqualTo []) then {_value=[ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
                         control = "EditArray";
-                        defaultValue = "[]";
+                        defaultValue = "''";
                         unique = 0;
                     };
                 };
