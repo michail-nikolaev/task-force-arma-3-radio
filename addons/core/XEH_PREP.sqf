@@ -149,6 +149,7 @@ PREP(getLrSpeakers);
 PREP(getVehicleRadios);
 // H
 PREP(hasRadio);
+PREP(hasSettings);
 PREP(hasVehicleRadio);
 PREP(haveProgrammator);
 PREP(haveDDRadio);
