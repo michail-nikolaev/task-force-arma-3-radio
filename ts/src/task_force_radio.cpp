@@ -145,7 +145,7 @@ TFAR::TFAR() {
             diag << TS_INDENT << TS_INDENT << TS_INDENT << it.first << ":\n";
             auto lockedClient = it.second.client.lock();
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "client: " << lockedClient << " (" << (lockedClient ? lockedClient->getNickname() : "null") << ")\n";
-            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "pos: " << it.second.getPos() << "\n";
+            diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "pos: " << it.second.getPos().toString() << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "id: " << it.second.radio_id << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "vec: " << "\n";
             diag << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << TS_INDENT << "name: " << it.second.vehicle.vehicleName << "\n";

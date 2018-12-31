@@ -24,9 +24,15 @@ private _display = ctrlParent _control;
 private _logic = missionNamespace getVariable ["BIS_fnc_initCuratorAttributes_target",objNull];
 
 private _unit = (attachedTo _logic);
-private _classname =  ((getItemCargo _unit) select 0) select 0;
 
-if !((_unit call TFAR_fnc_isLRRadio) || {(_classname call TFAR_fnc_isPrototypeRadio)} || {(_classname call TFAR_fnc_isRadio)}) exitWith {
+private _classname =
+if (getItemCargo _unit isEqualTo [[],[]]) then {
+    (everyBackpack _unit) select 0; //Yes. _classname might be a object.
+} else {
+    ((getItemCargo _unit) select 0) select 0
+};
+
+if !((_classname call TFAR_fnc_isLRRadio) || {(_classname call TFAR_fnc_isPrototypeRadio)} || {(_classname call TFAR_fnc_isRadio)}) exitWith {
     //This is not a radio
     hint localize LSTRING(moduleStaticRadio_hint);
     _display closeDisplay 0;
@@ -73,14 +79,16 @@ _control ctrlAddEventHandler ["buttonClick", _fnc_onConfirm];
 
 
 //Check if radio is already instanciated
+diag_log [_unit, typeOf _unit, _classname, _classname isEqualType "" && {_classname call TFAR_fnc_isRadio}, _classname call TFAR_fnc_hasSettings];
 private _settings = [];
-if (_classname call TFAR_fnc_isRadio && {_classname call TFAR_fnc_hasSettings}) then {
+if (_classname isEqualType "" && {_classname call TFAR_fnc_isRadio} && {_classname call TFAR_fnc_hasSettings}) then {
     _settings = _classname call TFAR_fnc_getSwSettings;
 };
 
 if (_classname call TFAR_fnc_isLRRadio && {[[_classname,"radio_settings"]] call TFAR_fnc_hasSettings}) then {
     _settings = [_classname,"radio_settings"] call TFAR_fnc_getLrSettings;
 };
+diag_log ["set", _settings];
 
 private _FreqControl = _display displayCtrl 2611804;
 private _ChannelControl = _display displayCtrl 2611806;
@@ -132,7 +140,7 @@ if (_frequencies isEqualTo []) then {
 _FreqControl ctrlSetText str _frequencies;
 
 private _currentChannel = if !(_settings isEqualTo []) then {
-                            _settings param [ACTIVE_CHANNEL_OFFSET, -1]+1; //We display channel+1 so that users think 1 is first channel
+                            (_settings param [ACTIVE_CHANNEL_OFFSET, -1])+1; //We display channel+1 so that users think 1 is first channel
                         } else {1};
 
 _ChannelControl ctrlSetText str _currentChannel;
