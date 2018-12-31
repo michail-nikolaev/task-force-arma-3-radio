@@ -52,15 +52,15 @@ private _fnc_onConfirm = {
     if (isNull _logic) exitWith {};
     private _unit = (attachedTo _logic);
 
-    _FreqControl = _display displayCtrl 2611804;
-    _ChannelControl = _display displayCtrl 2611806;
-    _SpeakerControl = _display displayCtrl 2611808;
-    _VolumeControl = _parent displayCtrl 2611810;
+    private _FreqControl = _display displayCtrl 2611804;
+    private _ChannelControl = _display displayCtrl 2611806;
+    private _SpeakerControl = _display displayCtrl 2611808;
+    private _VolumeControl = _display displayCtrl 2611810;
 
-    _freq = ctrlText _FreqControl;
-    _channel = ctrlText _ChannelControl;
-    _speaker = cbChecked _SpeakerControl;
-    _volume = sliderPosition _VolumeControl;
+    private _freq = ctrlText _FreqControl;
+    private _channel = ctrlText _ChannelControl;
+    private _speaker = cbChecked _SpeakerControl;
+    private _volume = sliderPosition _VolumeControl;
 
     ["TFAR_StaticRadioEvent", [_unit,_freq,_channel,_speaker, round _volume]] call CBA_fnc_serverEvent;
 
