@@ -12,10 +12,8 @@ class Extended_InitPost_EventHandlers {
     };
 };
 
-class Extended_Delete_EventHandlers {
+class Extended_Deleted_EventHandlers {
     class TFAR_Land_Communication_F {
-        class ADDON {
-            clientInit = QUOTE((_this param [ARR_2(0,_this)]) call FUNC(deleteRadioTower));
-        };
+        ADDON = QUOTE((_this param [ARR_2(0,_this)]) call FUNC(deleteRadioTower));
     };
 };
