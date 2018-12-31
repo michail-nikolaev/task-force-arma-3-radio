@@ -51,12 +51,17 @@ TF_respawnedAt = time;//first spawn so.. respawned now
             call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
             GVAR(EHID_processPlayerPositions) = [PROFCONTEXT_NORTN(TFAR_fnc_processPlayerPositions), TFAR_PosUpdateMode] call CBA_fnc_addPerFrameHandler;
             [PROFCONTEXT_NORTN(TFAR_fnc_sendFrequencyInfo),0.3 /*300 milliseconds*/] call CBA_fnc_addPerFrameHandler;
-            [PROFCONTEXT_NORTN(TFAR_fnc_sessionTracker),60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
+
 
             //Only want this to run after initial spawn was processed
             [
                 {(time - TF_respawnedAt > 5)},
-                {GVAR(EHID_radioReplaceProcess) = [PROFCONTEXT_NORTN(TFAR_fnc_radioReplaceProcess),2/*2 seconds*/] call CBA_fnc_addPerFrameHandler;}
+                {
+                    GVAR(EHID_radioReplaceProcess) = [PROFCONTEXT_NORTN(TFAR_fnc_radioReplaceProcess),2/*2 seconds*/] call CBA_fnc_addPerFrameHandler;
+                    
+                    //This is here so that it cannot possibly fire before plugin settings are initialized
+                    [PROFCONTEXT_NORTN(TFAR_fnc_sessionTracker), 60 * 10/*10 minutes*/] call CBA_fnc_addPerFrameHandler;
+                }
             ] call CBA_fnc_waitUntilAndExecute;
         };
 }] call CBA_fnc_waitUntilAndExecute;

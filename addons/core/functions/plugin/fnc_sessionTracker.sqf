@@ -18,6 +18,8 @@
   Public: No
 */
 
+if (getClientStateNumber != 10) exitWith {}; //Prevents from firing on session lost or after disconnect
+
 private _variables = [
                         [1, "group"                     ,count (units group player)],
                         [2, "playableUnits"             ,count playableUnits],
