@@ -5,11 +5,12 @@
             <Key ID="STR_TFAR_CORE_AUTHORS">
                 <Original>Task Force Arrowhead Radio Team</Original>
                 <English>Task Force Arrowhead Radio Team</English>
-                <Japanese>タスクフォース アローヘッド ラジオ チーム</Japanese>
+                <Japanese>Task Force Arrowhead Radio チーム</Japanese>
             </Key>
             <Key ID="STR_TFAR_CORE_CATEGORY">
                 <Original>TFAR</Original>
                 <English>TFAR</English>
+                <Japanese>TFAR</Japanese>
             </Key>
             <Key ID="STR_TFAR_CORE_3DEN_Menu">
                 <Original>TFAR Preferences</Original>
@@ -88,7 +89,7 @@
             <Key ID="STR_TFAR_CORE_WM_NotLoad">
                 <Original>TASK FORCE RADIO NOT LOADED</Original>
                 <English>TASK FORCE RADIO NOT LOADED</English>
-                <Japanese>タスクフォース ラジオが読み込まれていません</Japanese>
+                <Japanese>TASK FORCE RADIO が読み込まれていません</Japanese>
                 <Korean>TFAR이 로드되지 않음</Korean>
                 <Chinese>TFAR模組沒有被載入</Chinese>
                 <Chinesesimp>TFAR模组没有被载入</Chinesesimp>
@@ -96,7 +97,7 @@
             <Key ID="STR_TFAR_CORE_WM_NotLoad_Desc">
                 <Original>LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0</Original>
                 <English>LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0</English>
-                <Japanese>タスクフォース ラジオが読み込まれていないか、バージョン 1.0 以下が使用されているようです</Japanese>
+                <Japanese>TASK FORCE RADIO が読み込まれていないか、バージョン 1.0 以下が使用されているようです</Japanese>
                 <Korean>TFAR 애드온이 활성화되지 않았거나 버전 1.0보다 작습니다.</Korean>
                 <Chinese>看來TFAR並沒有被載入，或是版本低於1.0</Chinese>
                 <Chinesesimp>看来TFAR并没有被载入，或是版本低于1.0</Chinesesimp>
@@ -107,11 +108,13 @@
                 <Original>TFAR - clientside settings</Original>
                 <English>TFAR - clientside settings</English>
                 <German>TFAR - Benutzereinstellungen</German>
+                <Japanese>TFAR - クライアント設定</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_global">
                 <Original>TFAR - global settings</Original>
                 <English>TFAR - global settings</English>
                 <German>TFAR - Allgemeine Einstellungen</German>
+                <Japanese>TFAR - グローバル設定</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_TerrainInterceptionCoefficient">
                 <Original>Terrain Interception Coefficient</Original>
@@ -338,9 +341,11 @@
             </Key>
             <Key ID="STR_TFAR_SETTINGS_intercomDucking">
                 <Original>Intercom Ducking</Original>
+                <Japanese>インターコムを絞る</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_intercomDucking_desc">
                 <Original>Intercom volume reduction on incoming vehicle radio transmission</Original>
+                <Japanese>車載無線機で受信中はインターコムの音量を絞ります</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_pluginTimeout">
                 <Original>Plugin Timeout in seconds</Original>
@@ -905,11 +910,13 @@
                 <Original>Instantiate during briefing (not recommended)</Original>
                 <English>Instantiate during briefing (not recommended)</English>
                 <German>Funkgeräte während des Briefings instanziieren (nicht empfohlen)</German>
+                <Japanese>ブリーフィング中にインスタンス化 (非推奨)</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_instantiateAtBriefing_desc">
                 <Original>Instantiate the radios as soon as possible. This is intended to be used ONLY in non persistent big missions > 100 players.</Original>
                 <English>Instantiate the radios as soon as possible. This is intended to be used ONLY in non persistent big missions > 100 players.</English>
                 <German>Funkgeräte Instanziierung wird bereits während des Briefings ausgeführt. Diese Option zielt NUR auf nicht persistente Missionen mit mehr als 100 Spielern ab.</German>
+                <Japanese>すぐさま無線機をインスタンス化します。これはプレイヤーが 100 人以上の、非永続大型ミッション用です。</Japanese>
             </Key>
         </Container>
         <Container name="diary">
@@ -981,8 +988,8 @@ Her aracın kendine özgü radyosu var, her biri ayrı olarak ayarlanması gerek
 &lt;br/&gt;
 Araçlar iki türlü sınıflandırılmıştır açık veya kapalı (izole). Eğer izole bir aracın içindeyseniz, dışarıdan gelen sesleri duyamazsınız (veya tersini). Ancak araçtan çıkılması halinde hem içeriden gelen sesleri hem de dışarıdan gelen sesleri duyarsınız.</Turkish>
                 <Japanese>&lt;br/&gt;
-長距離無線は運転手や車長、射手、副操縦士でつかえます。すべての車両に無線機は組み込まれていません。&lt;br/&gt;
-車両の各座席にはそれぞれ無線機があり、設定により分離されています。もし車両内で席を変わる場合は、あらかじめ設定を統一している必要があります。(例えば、運転手と射手席との間など)&lt;br/&gt;
+長距離無線は運転手や車長、射手、副操縦士で使えますが、全ての車両に無線機は組み込まれていません。&lt;br/&gt;
+車両の各座席にはそれぞれ無線機があり、設定により分離されています。もし車両内で席を変わる場合は、予め設定を統一している必要があります。(例えば、運転手と射手席との間など)&lt;br/&gt;
 車両は外部と内部の音声があります。もし閉め切っている車両では、外部の音声は聞こえません。ですが車両から身を乗り出したりすると、外部と内部の両方の音声が聞こえます。</Japanese>
                 <Korean>&lt;br/&gt;
 장파 무전기는 운전석, 지휘관석, 사수석, 부조종석에서 사용 할 수 있습니다. 모든 차량이 무전기를 내장하고 있지는 않습니다.&lt;br/&gt;
@@ -1781,7 +1788,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Russian>Несовпадение версий Task Force Radio. Версия на сервере: %1, Ваша версия: %2</Russian>
             <Spanish>Estas usando diferentes versiones de Task Force Radio. Versión del servidor : %1, Tu versión : %2</Spanish>
             <Turkish>Versiyon uyuşmazlığı. Server versiyonu: %1, Senin versiyonun: %2</Turkish>
-            <Japanese>使っているタスクフォース ラジオのバージョンが違います。サーバー バージョン: %1, あなたのバージョン: %2</Japanese>
+            <Japanese>使っている Task Force Radio のバージョンが違います。サーバー バージョン: %1, あなたのバージョン: %2</Japanese>
             <Korean>다른 버전의 Task Force Radio가 사용되고 있습니다. 서버 버전: %1, 설치된 버전: %2</Korean>
             <Chinese>你使用的Task Force Radio版本不對。伺服器版本: %1，你的版本: %2</Chinese>
             <Chinesesimp>你使用的Task Force Radio版本不对。伺服器版本: %1，你的版本: %2</Chinesesimp>
@@ -1949,7 +1956,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Russian>Не обнаружена серверная часть Task Force Radio!</Russian>
             <Spanish>¡El servidor no dispone de Task Force Radio!</Spanish>
             <Turkish>Radyo serverda oluşturulamadı!</Turkish>
-            <Japanese>サーバー上でタスクフォース ラジオが動作していません!</Japanese>
+            <Japanese>サーバー上で Task Force Radio が動作していません!</Japanese>
             <Korean>Task Force Radio가 서버에서 사용되고 있지 않습니다!</Korean>
             <Chinese>伺服器端並未掛載Task Force Radio模組!</Chinese>
             <Chinesesimp>伺服器端并未挂载Task Force Radio模组!</Chinesesimp>
@@ -2797,7 +2804,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
         <Key ID="STR_TFAR_CORE_Main_Desc">
             <Original>War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.</Original>
             <English>War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.</English>
-            <Japanese>戦争は移動と待機、交戦だけではありません。コミュニケーションがあります。タスクフォース アローヘッド ラジオは TeamSpeakとのシームレスな統合により、ゲームプレイの現実感と雰囲気を劇的に向上させます。</Japanese>
+            <Japanese>戦争は移動と待機、交戦だけではありません。コミュニケーションがあります。Task Force Radio は TeamSpeak とのシームレスな統合により、ゲームプレイの現実感と雰囲気を劇的に向上させます。</Japanese>
             <Korean>전쟁은 표적을 움직이고, 기다리고, 끌어들이는 것 뿐만이 아닙니다. 커뮤니케이션에 관한 것입니다. Task Force Arrowhead Radio는 TeamSpeak와의 완벽한 통합을 통해 게임 플레이의 현실감과 분위기를 극적으로 향상시킬 수있는 방법을 제공합니다.</Korean>
             <Chinese>戰爭不單單只有移動，等待與交戰。如何溝通也是一項重要的課題。箭頭特遣隊無線電透過與TeamSpeak無縫連動來增加遊戲的擬真度與真實感。</Chinese>
             <Chinesesimp>战争不单单只有移动，等待与交战。如何沟通也是一项重要的课题。箭头特遣队无线电透过与TeamSpeak无缝连动来增加游戏的拟真度与真实感。</Chinesesimp>
