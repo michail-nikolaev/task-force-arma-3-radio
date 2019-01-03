@@ -114,6 +114,11 @@ class fadak_radio_dialog {
         shadow = 1;
         tooltip = ECSTRING(core,current_freq);
         canModify = 1;
+        onKeyUp = QUOTE( \
+            if (_this select 1 in [ARR_2(28,156)]) then { \
+                [((ctrlParent (_this select 0))) displayCtrl IDC_FADAK_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter; \
+            }; \
+        );
     };
     class channel_edit: RscEditLCD {
         idc = IDC_FADAK_CHANNEL_EDIT;
