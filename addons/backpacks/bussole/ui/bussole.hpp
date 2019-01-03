@@ -87,6 +87,11 @@ class bussole_radio_dialog {
         moving = 1;
         canModify = 1;
         sizeEx = 0.06;
+        onKeyUp = QUOTE( \
+            if (_this select 1 in [ARR_2(28,156)]) then { \
+                [((ctrlParent (_this select 0))) displayCtrl IDC_BUSSOLE_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter; \
+            }; \
+        );
     };
     class enter: HiddenButton {
         idc = IDC_BUSSOLE_ENTER;

@@ -164,6 +164,11 @@ class anprc154_radio_dialog {
         shadow = 2;
         canModify = 1;
         tooltip = ECSTRING(core,current_freq);
+        onKeyUp = QUOTE( \
+            if (_this select 1 in [ARR_2(28,156)]) then { \
+                [((ctrlParent (_this select 0))) displayCtrl IDC_MICRODAGR_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter; \
+            }; \
+        );
     };
     class clear: HiddenButton {
         idc = IDC_MICRODAGR_CLEAR;

@@ -90,6 +90,11 @@ class mr6000l_radio_dialog {
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 22) * 1.2)";
         tooltip = ECSTRING(core,current_freq);
         canModify = 1;
+        onKeyUp = QUOTE( \
+            if (_this select 1 in [ARR_2(28,156)]) then { \
+                [((ctrlParent (_this select 0))) displayCtrl IDC_MR6000L_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter; \
+            }; \
+        );
     };
     class enter: HiddenButton {
         idc = IDC_MR6000L_ENTER;
