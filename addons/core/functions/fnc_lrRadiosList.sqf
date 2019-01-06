@@ -21,14 +21,14 @@
 
 private _backpackLR = (_this call TFAR_fnc_backpackLr); 
 private _activeLR = missionNamespace getVariable ["TF_lr_active_radio", _backpackLR];
-private _overrideLR = missionNamespace getVariable ["TFAR_OverrideActiveLRRadio", _activeLR];
+private _overrideLR = missionNamespace getVariable "TFAR_OverrideActiveLRRadio";
 private _vehicleLR = _this call TFAR_fnc_vehicleLr;
 
 
 private _result = [];
 
 _result pushBackUnique _overrideLR; //This is either override or active
-_result pushBackUnique _activeLR; //This is either active or backpack
+if (_activeLR isEqualTo _vehicleLR) then {_result pushBackUnique _activeLR}; //This is either active or backpack
 _result pushBackUnique _backpackLR; //if active one was already backpack, this will do nothing
 _result pushBackUnique _vehicleLR; //Will be silently ignored if _vehicleLR is nil
 
