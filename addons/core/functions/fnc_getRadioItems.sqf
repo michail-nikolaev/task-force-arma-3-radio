@@ -27,7 +27,7 @@ params [
 private _allItems = (assignedItems _unit);
 _allItems append ((getItemCargo (uniformContainer _unit)) select 0);
 _allItems append ((getItemCargo (vestContainer _unit)) select 0);
-_allItems append ((getItemCargo (backpackContainer _this)) select 0);
+_allItems append ((getItemCargo (backpackContainer _unit)) select 0);
 
 If (_withOutDuplicates) then {
     _allItems = _allItems arrayIntersect _allItems;
