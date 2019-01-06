@@ -46,4 +46,4 @@ if (_hasIntercom) then {
 
 //could replace the "turnout" string by 0.0 scalar.. But maybe someday the plugin wants to differentiate between turned out or inside a 0 isolation vehicle
 
-[_netID, if (isTurnedOut _unit) then {"turnout"} else {[(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty}, _intercomSlot, velocity _unit] joinString (toString [16])
+[_netID, if (_unit call TFAR_fnc_isTurnedOut) then {"turnout"} else {[(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty}, _intercomSlot, velocity _unit] joinString (toString [16])
