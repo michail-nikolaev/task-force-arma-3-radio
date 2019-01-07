@@ -1,25 +1,26 @@
 #include "script_component.hpp"
 
 /* ----------------------------------------------------------------------------
-Function: TFAR_fnc_isTurnedOut
+  Name: TFAR_fnc_isTurnedOut
 
-Description:
+  Author:
+    shukari
+
+  Description:
     Checks whether a unit is attenuated, meaning in another compartment outside of outside voice range.
 
-Parameters:
+  Arguments:
     _unit - Unit to check <OBJECT>
 
-Returns:
+  Return Value:
     [isTurnedOut, attenuation] <BOOL>
 
-Examples:
-    (begin example)
-        if ([player] call TFAR_fnc_isAttenuated) then {
-            player sideChat "I cant hear you outside guy!";
-        };
-    (end)
+  Example:
+    if ([player] call TFAR_fnc_isAttenuated) then {
+        player sideChat "I cant hear you outside guy!";
+    };
 
-Config & Variable API:
+  Config & Variable API:
     Example:
         Config: CBA_attenuatedRoles[] = {{"driver", -1, "ani_window_1"}, {"turret", {0}, "ani_window_2"}, {"gunner", -1, "ani_window_4"}};
         Variable:  _vehicle setVariable ["CBA_attenuatedRoles", ["driver", -1, "ani_window_1"]];
@@ -29,9 +30,6 @@ Config & Variable API:
         animation for attenuated ("" for always NOT attenuated)
     Info
         variable overrides config
-
-Author:
-    shukari
 ---------------------------------------------------------------------------- */
 params [["_unit", objNull, [objNull]]];
 
@@ -45,7 +43,7 @@ private _config = configFile >> "CfgVehicles" >> typeOf _vehicle;
 
 // class CfgSoundEffects >> class AttenuationsEffects
 private _attenuationType = getText (_config >> "attenuationEffectType");
-if (_attenuationType in ["OpenCarAttenuation", "OpenHeliAttenuation"]) exitWith {[true, 3]};
+if (_attenuationType in ["OpenCarAttenuation", "OpenHeliAttenuation", "jsrs_OpenCar_Attenuation", "jsrs_SemiOpenCar_Attenuation"]) exitWith {[true, 3]};
 
 private _fullCrew = fullCrew _vehicle;
 (_fullCrew select (_fullCrew findIf {_unit isEqualTo (_x param [0, objNull])})) params ["", "_role", "_cargoIndex", "_turretPath", "_isFFV"];

@@ -302,28 +302,38 @@ void playbackWavStereo::construct(std::string wavFilePath, stereoMode stereo, fl
 
 void playbackWavStereo::construct(const short* samples, size_t sampleCount, uint8_t channels, stereoMode stereo, float gain) {
     sampleStore.assign(samples, samples + sampleCount * 2);
+
+    //Behaviour of this code changed as you can see, we already copy samples into sampleStore, so we don't need to copy anything. We just need to set stuff to 0
+
+
     if (stereo == stereoMode::stereo) {
-        if (channels != 2) {
-            const auto target = sampleStore.data();
-            uint32_t posInTarget = 0;
-            for (uint32_t q = 0; q < sampleCount*channels; q += channels) {
-                target[posInTarget++] = samples[q];//copy left channel
-                target[posInTarget++] = samples[q + 1];//copy right channel
-            }
-        }
+        //if (channels != 2) {
+        //    const auto target = sampleStore.data();
+        //    uint32_t posInTarget = 0;
+        //    for (uint32_t q = 0; q < sampleCount*channels; q += channels) {
+        //        target[posInTarget++] = samples[q];//copy left channel
+        //        target[posInTarget++] = samples[q + 1];//copy right channel
+        //    }
+        //}
     } else if (stereo == stereoMode::leftOnly) {
         const auto target = sampleStore.data();
         uint32_t posInTarget = 0;
         for (uint32_t q = 0; q < sampleCount*channels; q += channels) {
-            target[posInTarget++] = samples[q];//only copy left channel
-            posInTarget++;//leave right channel 0
+            //target[posInTarget++] = samples[q];//only copy left channel
+            posInTarget++; //leave left channel
+            target[posInTarget++] = 0;//set right channel 0
+            //posInTarget++;//leave right channel 0
         }
     } else if (stereo == stereoMode::rightOnly) {
         const auto target = sampleStore.data();
         uint32_t posInTarget = 0;
         for (uint32_t q = 0; q < sampleCount*channels; q += channels) {
-            posInTarget++;//leave left channel 0
-            target[posInTarget++] = samples[q + 1];//only copy right channel
+            //posInTarget++;//leave left channel 0
+            //target[posInTarget++] = samples[q + 1];//only copy right channel
+
+            target[posInTarget++] = 0;//set left channel 0
+            posInTarget++;//leave right channel 0
+
         }
     }
     SampleBuffer(sampleStore.data(), sampleCount, 2).applyGain(gain);
