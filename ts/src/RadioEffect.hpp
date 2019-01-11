@@ -230,15 +230,7 @@ template<class T>
 void processRadioEffect(SampleBuffer& samples, float gain, T* effect, stereoMode stereoMode) {
     auto sampleCount = samples.getSampleCount();
     auto channels = samples.getChannels();
-    int startChannel = 0;
-    int endChannel = channels;
-    if (stereoMode == stereoMode::leftOnly) {
-        startChannel = 0;
-        endChannel = 1;
-        gain *= 1.5f;
-    } else if (stereoMode == stereoMode::rightOnly) {
-        startChannel = 1;
-        endChannel = 2;
+    if (stereoMode != stereoMode::stereo) {
         gain *= 1.5f;
     }
     std::vector<float> buffer;
@@ -254,15 +246,38 @@ void processRadioEffect(SampleBuffer& samples, float gain, T* effect, stereoMode
     }
     effect->process(buffer.data(), sampleCount);
 
-    for (auto i = 0u; i < sampleCount * channels; i += channels) {
+    //#TODO trust the optimizer
+    if (stereoMode == stereoMode::stereo) {
         // put mixed output to stream
-
-        float sample = buffer[i / channels];
-        const auto newValue = static_cast<short>(std::clamp(sample, -1.f, 1.f) * 32766.f);
-        for (int j = startChannel; j < endChannel; j++) {
-            samples[i + j] = newValue;
+        for (auto i = 0u; i < sampleCount * channels; i += channels) {
+            float sample = buffer[i / channels];
+            const auto newValue = static_cast<short>(std::clamp(sample, -1.f, 1.f) * 32766.f);
+            for (int j = 0; j < channels; j++) {
+                samples[i + j] = newValue;
+            }
         }
-    }
+    } else if (stereoMode == stereoMode::leftOnly) {
+        // put mixed output to stream
+        for (auto i = 0u; i < sampleCount * channels; i += channels) {
+            float sample = buffer[i / channels];
+            const auto newValue = static_cast<short>(std::clamp(sample, -1.f, 1.f) * 32766.f);
+            samples[i] = newValue;
+            for (int j = 1; j < channels; j++) {
+                samples[i + j] = 0;
+            }
+        }
+    } else if (stereoMode == stereoMode::rightOnly) {
+        // put mixed output to stream
+        for (auto i = 0u; i < sampleCount * channels; i += channels) {
+            float sample = buffer[i / channels];
+            const auto newValue = static_cast<short>(std::clamp(sample, -1.f, 1.f) * 32766.f);
+            samples[i] = 0;
+            samples[i+1] = newValue;
+            for (int j = 2; j < channels; j++) {
+                samples[i + j] = 0;
+            }
+        }
+    }    
 }
 
 inline void processCompressor(chunkware_simple::SimpleComp* compressor, SampleBuffer& samples) {
