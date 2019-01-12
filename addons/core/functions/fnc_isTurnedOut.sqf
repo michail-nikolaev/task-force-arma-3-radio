@@ -37,6 +37,36 @@ params [["_unit", objNull, [objNull]]];
 if (isNull objectParent _unit) exitWith {[true, 1]};
 if (isTurnedOut _unit) exitWith {[true, 2]};
 
+
+
+
+private _fnc_getAttenuationFromEffect = if (TFAR_experimentalVehicleIsolation) then {
+    {
+        private _type = configFile >> "CfgSoundEffects" >> "AttenuationsEffects" >> _attenuationType;
+
+        private _gains =  getArray (_type >> "Equalizer0" >> "gain") + getArray (_type >> "Equalizer1" >> "gain");
+        private _sum = 0;
+        {
+            _sum = _sum + _x;
+        } forEach _gains;
+
+        1- (_sum / count _gains)
+    }
+
+} else {
+    {
+        [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty
+    }
+};
+
+
+
+
+
+
+
+
+
 // open vehicle
 private _vehicle = vehicle _unit;
 private _config = configFile >> "CfgVehicles" >> typeOf _vehicle;
@@ -76,7 +106,7 @@ if !(_attenuationAPI isEqualTo []) then {
 };
 
 // Fix for vanilla tank commanders
-if (!_return && {_role isEqualTo "commander"}) exitWith {[false, [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty]};
+if (!_return && {_role isEqualTo "commander"}) exitWith {[false, call _fnc_getAttenuationFromEffect]};
 
 // This exit is crucial for the difference between FFV and Override and normale roles
 if (!_return) exitWith {[true, 4]}; // return
@@ -85,7 +115,7 @@ if (_role in ["gunner", "turret"]) exitWith {
     [
         animationState _unit == getText (_turret >> "gunnerAction")
     ,
-        [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty
+        call _fnc_getAttenuationFromEffect
     ]
 };
 
@@ -97,7 +127,7 @@ if (_role isEqualTo "cargo") exitWith {
     private _value = _attenuateCargo param [_cargoIndex, 1];
 
     if (_value == 1) then {
-        [false, [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty]
+        [false, call _fnc_getAttenuationFromEffect]
     } else {
         [_value == 0, _value]
     }
@@ -105,6 +135,6 @@ if (_role isEqualTo "cargo") exitWith {
 };
 
 // Specialcase
-if (_role isEqualTo "gunner") exitWith {[true, [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty]}; // return
+if (_role isEqualTo "gunner") exitWith {[true, call _fnc_getAttenuationFromEffect]}; // return
 
-[false, [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty]
+[false, call _fnc_getAttenuationFromEffect]
