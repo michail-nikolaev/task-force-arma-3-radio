@@ -196,6 +196,16 @@
     1,
     {["objectInterceptionStrength", TFAR_objectInterceptionStrength] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
+
+[
+    "TFAR_experimentalVehicleIsolation", 
+    "CHECKBOX", 
+    ["Experimental Vehicle Isolation", "Tries to read vehicle isolation amount from vehicles config"], 
+    localize ELSTRING(settings,global), 
+    true,
+    1
+] call CBA_Settings_fnc_init;
+
 [
     "TFAR_takingRadio",
     "LIST",
