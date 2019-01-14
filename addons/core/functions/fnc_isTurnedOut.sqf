@@ -45,6 +45,11 @@ private _fnc_getAttenuationFromEffect = if (TFAR_experimentalVehicleIsolation) t
         private _type = configFile >> "CfgSoundEffects" >> "AttenuationsEffects" >> _attenuationType;
 
         private _gains =  getArray (_type >> "Equalizer0" >> "gain") + getArray (_type >> "Equalizer1" >> "gain");
+
+        if (_gains isEqualTo []) exitWith {
+             [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty
+        };
+
         private _sum = 0;
         {
             _sum = _sum + _x;
