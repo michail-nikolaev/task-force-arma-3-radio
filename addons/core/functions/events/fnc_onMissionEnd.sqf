@@ -19,3 +19,5 @@
 */
 
 "task_force_radio_pipe" callExtension "MISSIONEND~"
+
+player call TFAR_fnc_releaseAllTangents;
