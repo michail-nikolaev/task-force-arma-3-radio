@@ -3,6 +3,7 @@
 #include <queue>
 #include <mutex>
 #include "common.hpp"
+#include <atomic>
 
 struct unitPositionPacket;
 
@@ -35,6 +36,8 @@ public:
     std::string processCommand(const std::string& command);
 
     static gameCommand toGameCommand(std::string_view textCommand, size_t tokenCount);
+
+    static inline std::atomic_bool vadEnabled = false;
 private:
     void threadRun();
     void processAsynchronousCommand(const std::string& command) const;//Called inside thread

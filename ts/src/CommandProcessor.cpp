@@ -15,7 +15,6 @@
 
 using namespace std::literals::string_view_literals;
 
-volatile bool vadEnabled = false;
 volatile bool skipTangentOff = false;
 volatile bool waitingForTangentOff = false;
 CriticalSectionLock tangentCriticalSection;
@@ -561,7 +560,7 @@ void CommandProcessor::process_tangent_off(PTTDelayArguments arguments) {
 
 void CommandProcessor::disableVoiceAndSendCommand(std::string_view commandToBroadcast, TSServerID currentServerConnectionHandlerID, bool pressed) {
     Teamspeak::setVoiceDisabled(currentServerConnectionHandlerID, !(pressed || vadEnabled));
-    Teamspeak::sendPluginCommand(Teamspeak::getCurrentServerConnection(), TFAR::getInstance().getPluginID(), commandToBroadcast, PluginCommandTarget_CURRENT_CHANNEL);
+    Teamspeak::sendPluginCommand(currentServerConnectionHandlerID, TFAR::getInstance().getPluginID(), commandToBroadcast, PluginCommandTarget_CURRENT_CHANNEL);
 }
 
 std::string CommandProcessor::convertNickname(std::string_view nickname) {
