@@ -17,6 +17,24 @@ class display3DEN {
     };
 };
 */
+
+#define SWCode  if (_value isEqualTo '' || _value isEqualTo []) exitWith {};\
+                if (_value isEqualType '') then {\
+                    _value = [ARR_5(_value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);\
+                    _this setVariable [ARR_3('%s',_value,true)];\
+                } else {\
+                    _value = [ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);\
+                    _this setVariable [ARR_3('%s',_value,true)];\
+                }
+#define LRCode  if (_value isEqualTo '' || _value isEqualTo []) exitWith {};\
+                if (_value isEqualType '') then {\
+                    _value = [ARR_5(_value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);\
+                    _this setVariable [ARR_3('%s',_value,true)];\
+                } else {\
+                    _value = [ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);\
+                    _this setVariable [ARR_3('%s',_value,true)];\
+                }
+
 class Cfg3DEN {
     /*
     class Mission {
@@ -39,7 +57,7 @@ class Cfg3DEN {
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_SR_desc);
                         property = "TFAR_freq_sr";
                         control = "Edit"; //#TODO make custom control. Look at EditArray for example. Maybe multiple text boxes?
-                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                        expression = QUOTE(SWCode);
                         defaultValue = "''";
                         typeName = "STRING";
                         unique = 0;
@@ -50,7 +68,7 @@ class Cfg3DEN {
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_LR_desc);
                         property = "TFAR_freq_lr";
                         control = "Edit";
-                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                        expression = QUOTE(LRCode);
                         defaultValue = "''";
                         typeName = "STRING";
                         unique = 0;
@@ -102,18 +120,20 @@ class Cfg3DEN {
                         displayName = ECSTRING(settings,DefaultRadioFrequencies_SR);
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_SR_desc);
                         property = "TFAR_freq_sr";
-                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
-                        control = "EditArray";
+                        expression = QUOTE(SWCode);
+                        control = "Edit";
                         defaultValue = "''";
+                        typeName = "STRING";
                         unique = 0;
                     };
                     class TFAR_freq_lr {
                         displayName = ECSTRING(settings,DefaultRadioFrequencies_LR);
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_LR_desc);
                         property = "TFAR_freq_lr";
-                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
-                        control = "EditArray";
+                        expression = QUOTE(LRCode);
+                        control = "Edit";
                         defaultValue = "''";
+                        typeName = "STRING";
                         unique = 0;
                     };
                 };
