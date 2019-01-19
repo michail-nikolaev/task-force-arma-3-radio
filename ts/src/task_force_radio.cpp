@@ -51,7 +51,7 @@ TFAR::TFAR() {
         Teamspeak::moveFromSeriousChannel(currentServer);
         Teamspeak::resetMyNickname(currentServer);
         Teamspeak::unmuteAll(currentServer); //this may be called twice. If End was caused by PluginDisconnect. But will return immediatly if there are no muted clients
-        Teamspeak::setVoiceDisabled(currentServer, true); //stop force PTT if we were in a transmission
+        Teamspeak::setVoiceDisabled(currentServer, !CommandProcessor::vadEnabled); //stop force PTT if we were in a transmission
         if (CommandProcessor::vadEnabled) Teamspeak::hlp_enableVad(); //If voice activation was enabled previously, we want to return it to it's original state
     });
 
