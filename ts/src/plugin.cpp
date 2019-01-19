@@ -512,6 +512,34 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         distanceFromClient <= (clientData->voiceVolume + 15)
         ) {
         //Direct Speech
+
+
+        if (shouldPlayerHear) {
+            if (vehicleVolumeLoss < 0.01 || isInSameVehicle) {
+
+                //auto atten = helpers::volumeAttenuation(distanceFromClient, shouldPlayerHear, clientData->voiceVolume);
+                //if (atten < 0.15)
+                //    LOG3DMUTE("TFAR SemiMute atten s1 <0.15");
+                //helpers::applyGain(samples, sampleCount, channels, atten);
+                if (!isInSameVehicle && clientData->objectInterception > 0) {
+                    auto filter = clientData->effects.getFilterObjectInterception(clientData->objectInterception);
+                    if (clientData->OISampleBuffer.getSampleCount() != 0) {
+                        helpers::processFilterStereo(clientData->OISampleBuffer, 1.0f, filter, false); //pre-seed the filter with last sample
+                    }
+                    sampleBuffer.copy(clientData->OISampleBuffer);
+                    helpers::processFilterStereo(sampleBuffer, 1.0f, filter); //getFilterObjectInterception
+                } else {
+                    sampleBuffer.copy(clientData->OISampleBuffer);
+                }
+            } else {
+                helpers::processFilterStereo(sampleBuffer, helpers::volumeAttenuation(distanceFromClient, shouldPlayerHear, clientData->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), clientData->effects.getFilterVehicle("local_vehicle", vehicleVolumeLoss));
+            }
+        } else {
+            LOG3DMUTE("TFAR SemiMute shouldn't hear");
+            helpers::processFilterStereo(sampleBuffer, helpers::volumeAttenuation(distanceFromClient, shouldPlayerHear, clientData->voiceVolume) * CANT_SPEAK_GAIN, clientData->effects.getFilterCantSpeak("local_cantspeak"));
+        }
+
+
         //process voice
         const auto relativePosition = myPosition.directionTo(clientData->getClientPosition());
         const auto myViewDirection = myData->getViewDirection();
@@ -524,25 +552,8 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
         processCompressor(&clientData->effects.compressor, sampleBuffer);
 
-        if (shouldPlayerHear) {
-            if (vehicleVolumeLoss < 0.01 || isInSameVehicle) {
 
 
-                //auto atten = helpers::volumeAttenuation(distanceFromClient, shouldPlayerHear, clientData->voiceVolume);
-                //if (atten < 0.15)
-                //    LOG3DMUTE("TFAR SemiMute atten s1 <0.15");
-                //helpers::applyGain(samples, sampleCount, channels, atten);
-                if (!isInSameVehicle && clientData->objectInterception > 0) {
-                    helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(sampleBuffer, 1.0f,
-                        clientData->effects.getFilterObjectInterception(clientData->objectInterception)); //getFilterObjectInterception
-                }
-            } else {
-                helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(sampleBuffer, helpers::volumeAttenuation(distanceFromClient, shouldPlayerHear, clientData->voiceVolume, 1.0f - vehicleVolumeLoss) * pow(1.0f - vehicleVolumeLoss, 1.2f), clientData->effects.getFilterVehicle("local_vehicle", vehicleVolumeLoss));
-            }
-        } else {
-            LOG3DMUTE("TFAR SemiMute shouldn't hear");
-            helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(sampleBuffer, helpers::volumeAttenuation(distanceFromClient, shouldPlayerHear, clientData->voiceVolume) * CANT_SPEAK_GAIN, clientData->effects.getFilterCantSpeak("local_cantspeak"));
-        }
 
     } else if (!isHearableInPureSpectator) { //.... unless we are both spectating
 
@@ -616,7 +627,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                     processRadioEffect(radio_buffer, volumeLevel * 0.35f, clientData->effects.getLrRadioEffect(info.radio_id), info.stereoMode);
                     break;
                 case  PTTDelayArguments::subtypes::phone:
-                    helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<2>, MAX_CHANNELS>>(radio_buffer, volumeLevel * 10.0f, clientData->effects.getSpeakerPhone(info.radio_id));
+                    helpers::processFilterStereo(radio_buffer, volumeLevel * 10.0f, clientData->effects.getSpeakerPhone(info.radio_id));
                     break;
                 default:
                     LOG3DMUTE("TFAR RMute unkwn subtype");
@@ -637,16 +648,16 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
                 sameVehicleAsMe ? 0
                     : std::clamp(myVehicleDescriptor.vehicleIsolation + info.vehicle.vehicleIsolation, 0.0f, 0.99f);
 
-            helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::BandPass<1>, MAX_CHANNELS>>(radio_buffer, SPEAKER_GAIN, clientData->effects.getSpeakerFilter(info.radio_id));
+            helpers::processFilterStereo(radio_buffer, SPEAKER_GAIN, clientData->effects.getSpeakerFilter(info.radio_id));
             //Special handling for Radios that are louder than normal max. == statically placed radios
             const auto speakerDistance = (info.volume < 20) ? (info.volume / 10.f) * TFAR::getInstance().m_gameData.speakerDistance : info.volume*1.9f;
             if (radioVehicleVolumeLoss < 0.01f || isInSameVehicle) {
                 radio_buffer.applyGain(helpers::volumeAttenuation(distanceFromRadio, shouldPlayerHear, speakerDistance));
             } else {
-                helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>>(radio_buffer, helpers::volumeAttenuation(distanceFromRadio, shouldPlayerHear, speakerDistance, 1.0f - radioVehicleVolumeLoss) * pow(1.0f - radioVehicleVolumeLoss, 1.2f), clientData->effects.getFilterVehicle(info.radio_id, radioVehicleVolumeLoss));
+                helpers::processFilterStereo(radio_buffer, helpers::volumeAttenuation(distanceFromRadio, shouldPlayerHear, speakerDistance, 1.0f - radioVehicleVolumeLoss) * pow(1.0f - radioVehicleVolumeLoss, 1.2f), clientData->effects.getFilterVehicle(info.radio_id, radioVehicleVolumeLoss));
             }
             if (info.waveZ < UNDERWATER_LEVEL) {
-                helpers::processFilterStereo<Dsp::SimpleFilter<Dsp::Butterworth::LowPass<4>, MAX_CHANNELS>>(radio_buffer, CANT_SPEAK_GAIN, clientData->effects.getFilterCantSpeak(info.radio_id));
+                helpers::processFilterStereo(radio_buffer, CANT_SPEAK_GAIN, clientData->effects.getFilterCantSpeak(info.radio_id));
             }
             const auto relativePosition = myPosition.directionTo(info.pos);
             const auto myViewDirection = myData->getViewDirection();
