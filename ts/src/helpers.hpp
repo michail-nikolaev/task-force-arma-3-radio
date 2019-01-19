@@ -147,7 +147,7 @@ public:
     }
 
     template<class T>
-    static void processFilterStereo(SampleBuffer& samples, float gain, T* filter) {
+    static void processFilterStereo(SampleBuffer& samples, float gain, T* filter, bool copyBack = true) {
         static thread_local size_t allocatedFloatsSample = 0;
         static thread_local std::array<std::vector<float>, MAX_CHANNELS> floatsSample;
         if (allocatedFloatsSample != floatsSample[0].size())
@@ -174,6 +174,7 @@ public:
 
         filter->template process<float>(static_cast<int>(sampleCount), floatsSample);
 
+        if (!copyBack) return;
         // put mixed output to stream
         for (size_t i = 0; i < sampleCount * channels; i += channels) {
             for (auto j = 0; j < channels; j++) {

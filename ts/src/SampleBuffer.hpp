@@ -6,22 +6,23 @@
 
 #define CAN_USE_SSE_ON(x) (IsProcessorFeaturePresent(PF_XMMI64_INSTRUCTIONS_AVAILABLE) && (reinterpret_cast<uintptr_t>(x) % 16 == 0))
 
-class SampleBuffer {
+template<typename Type = short>
+class SampleBufferT {
     class SampleBufferInternal {
         struct SampleStruct {
-            short* samples;
+            Type* samples;
             uint32_t sampleCount;
         };
-        std::variant < std::vector<short>, SampleStruct> samples;
+        std::variant < std::vector<Type>, SampleStruct> samples;
         uint8_t channels;
     public:
-        SampleBufferInternal(short* samples, uint32_t sampleCount, uint8_t channels) : samples(SampleStruct{ samples,sampleCount }), channels(channels) {}
-        SampleBufferInternal(uint32_t sampleCount, uint8_t channels) : samples([sampleCount, channels]() {std::vector<short> vec; vec.resize(sampleCount*channels); return vec; }()), channels(channels) {}
-        short* getSamples() {
+        SampleBufferInternal(Type* samples, uint32_t sampleCount, uint8_t channels) : samples(SampleStruct{ samples,sampleCount }), channels(channels) {}
+        SampleBufferInternal(uint32_t sampleCount, uint8_t channels) : samples([sampleCount, channels]() {std::vector<Type> vec; vec.resize(sampleCount*channels); return vec; }()), channels(channels) {}
+        Type* getSamples() {
             return begin();
         }
         uint32_t getSampleCount() const {
-            if (auto vec = std::get_if<std::vector<short>>(&samples)) {
+            if (auto vec = std::get_if<std::vector<Type>>(&samples)) {
                 return vec->size()/channels;
             }
             if (auto strct = std::get_if<SampleStruct>(&samples)) {
@@ -31,8 +32,8 @@ class SampleBuffer {
         }
         uint8_t getChannels() const { return channels; }
 
-        short* begin() {
-            if (auto vec = std::get_if<std::vector<short>>(&samples)) {
+        Type* begin() {
+            if (auto vec = std::get_if<std::vector<Type>>(&samples)) {
                 return vec->begin()._Ptr;
             }
             if (auto strct = std::get_if<SampleStruct>(&samples)) {
@@ -41,8 +42,8 @@ class SampleBuffer {
             return nullptr;
         }
 
-        short* end() {
-            if (auto vec = std::get_if<std::vector<short>>(&samples)) {
+        Type* end() {
+            if (auto vec = std::get_if<std::vector<Type>>(&samples)) {
                 return vec->end()._Ptr;
             }
             if (auto strct = std::get_if<SampleStruct>(&samples)) {
@@ -52,46 +53,71 @@ class SampleBuffer {
         }
         void copyTo(std::shared_ptr<SampleBufferInternal> target) {
             auto targetSpace = target->getSampleCount();
-            if (targetSpace < getSampleCount()) __debugbreak();
+            if (targetSpace != getSampleCount()) {
+                if (auto vec = std::get_if<std::vector<Type>>(&target->samples)) {
+                    vec->resize(getSampleCount() * 2);
+                }
+                if (auto strct = std::get_if<SampleStruct>(&target->samples)) {
+                    std::vector<Type> vec; 
+                    vec.resize(getSampleCount() * 2);
+                    target->samples = vec;
+                }
+            }
             std::copy(begin(), end(), target->begin());
         }
     };
     std::shared_ptr<SampleBufferInternal> samples;
 
 public:
-    SampleBuffer() {}
-    SampleBuffer(const SampleBuffer& other) : samples(other.samples) {}
-    SampleBuffer(SampleBuffer&& other) : samples(std::move(other.samples)) {}
-    SampleBuffer(short* samples, uint32_t sampleCount, uint8_t channels) : samples(std::make_shared<SampleBufferInternal>(samples, sampleCount, channels)) {}
-    SampleBuffer(uint32_t sampleCount, uint8_t channels) : samples(std::make_shared<SampleBufferInternal>(sampleCount, channels)) {}
+    SampleBufferT() {}
+    SampleBufferT(const SampleBufferT& other) : samples(other.samples) {}
+    SampleBufferT(SampleBufferT&& other) noexcept : samples(std::move(other.samples)) {}
+
+    SampleBufferT& operator=(const SampleBufferT& other) { samples = other.samples; return *this; }
+    SampleBufferT& operator=(SampleBufferT&& other) noexcept { samples = std::move(other.samples); return *this; }
+
+    SampleBufferT(Type* samples, uint32_t sampleCount, uint8_t channels) : samples(std::make_shared<SampleBufferInternal>(samples, sampleCount, channels)) {}
+    SampleBufferT(uint32_t sampleCount, uint8_t channels) : samples(std::make_shared<SampleBufferInternal>(sampleCount, channels)) {}
 
 
     class StereoIterator {
         using iterator_category = std::random_access_iterator_tag;
-        using value_type = std::pair<short, short>;
+        using value_type = std::pair<Type, Type>;
         using difference_type = size_t;
-        using pointer = std::pair<std::reference_wrapper<short>, std::reference_wrapper<short>>*;
-        using reference = std::pair<short&, short&>;
-        short* curSample{ nullptr };
+        using pointer = std::pair<std::reference_wrapper<Type>, std::reference_wrapper<Type>>*;
+        using reference = std::pair<Type&, Type&>;
+        Type* curSample{ nullptr };
         uint8_t channels{ 2 };
     public:
-        explicit StereoIterator(short* sample, uint8_t channels) : curSample(sample), channels(channels) {}
+        explicit StereoIterator(Type* sample, uint8_t channels) : curSample(sample), channels(channels) {}
         StereoIterator& operator++() {
             curSample += channels;
             return *this;
         }
         StereoIterator operator++(int) { StereoIterator retval = *this; ++(*this); return retval; }
+        StereoIterator& operator+=(int offs) { curSample += offs * channels; return *this; }
         bool operator==(StereoIterator other) const { return curSample == other.curSample; }
         bool operator!=(StereoIterator other) const { return !(*this == other); }
-        reference operator*() const { return std::pair<std::reference_wrapper<short>, std::reference_wrapper<short>>(*curSample, *(curSample + 1)); }
+        reference operator*() const { return std::pair<std::reference_wrapper<Type>, std::reference_wrapper<Type>>(*curSample, *(curSample + 1)); }
+        Type& left() { return *curSample; }
+        Type& right() { return *(curSample+1); }
     };
 
-    SampleBuffer copy() const {
-        SampleBuffer outbuf(samples->getSampleCount(), samples->getChannels());
+    SampleBufferT copy(SampleBufferT& outbuf) const {
+        if (!outbuf.samples) {
+            outbuf.samples = std::make_shared<SampleBufferInternal>(getSampleCount(), getChannels());
+        }
         samples->copyTo(outbuf.samples);
         return outbuf;
     }
-    void mixInto(SampleBuffer& target) const {
+
+    SampleBufferT copy() const {
+        SampleBufferT outbuf(samples->getSampleCount(), samples->getChannels());
+        samples->copyTo(outbuf.samples);
+        return outbuf;
+    }
+    void mixInto(SampleBufferT& target) const {
+        //#TODO implementation for float is different
         std::transform(target.samples->begin(), target.samples->end(), samples->begin(), target.samples->begin(), [](short left, short right)
         {
             return std::clamp(static_cast<int>(left) + static_cast<int>(right), SHRT_MIN, SHRT_MAX);
@@ -111,10 +137,10 @@ public:
         std::fill(samples->begin(), samples->end(), 0);
     }
 
-    const short* getSamples() const {
+    const Type* getSamples() const {
         return samples->getSamples();
     }
-    short* getSamples() {
+    Type* getSamples() {
         return samples->getSamples();
     }
     uint8_t getChannels() const {
@@ -135,9 +161,11 @@ public:
             StereoIterator(getSamples() + getSampleCount() * getChannels(), getChannels())
         };
     }
-    short* begin() { return samples->begin(); }
-    short* end() { return samples->end(); }
-    short& operator[](size_t offset) { return *(samples->begin() + offset); }
+    Type* begin() { return samples->begin(); }
+    Type* end() { return samples->end(); }
+    Type& operator[](size_t offset) { return *(samples->begin() + offset); }
 
 };
 
+using SampleBuffer = SampleBufferT<short>;
+using SampleBufferFloat = SampleBufferT<float>;
