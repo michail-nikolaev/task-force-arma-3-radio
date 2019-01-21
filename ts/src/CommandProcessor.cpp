@@ -22,6 +22,7 @@ extern bool isSeriousModeEnabled(TSServerID serverConnectionHandlerID, TSClientI
 extern void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false });
 
 CommandProcessor::CommandProcessor() {
+    vadEnabled = Teamspeak::hlp_checkVad();//Needed in case releaseAllTangents is called before the first tangent press
 
     TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
         diag << "CP:\n";
@@ -309,6 +310,7 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
         case gameCommand::RELEASE_ALL_TANGENTS: {
             const auto commandToSend = "RELEASE_ALL_TANGENTS\t" + convertNickname(tokens[1]);
 
+            //Need to release tangent in case it's currently pressed else player will hotmic
             PTTDelayArguments args;
             args.commandToBroadcast = commandToSend;
             args.currentServerConnectionHandlerID = currentServerConnectionHandlerID;
