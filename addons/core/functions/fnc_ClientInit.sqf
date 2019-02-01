@@ -201,6 +201,12 @@ if (player call TFAR_fnc_isForcedCurator) then {
     //current units loadout changed.. Should invalidate any caches about players loadout.
     TFAR_lastLoadoutChange = diag_tickTime;
     GVAR(VehicleConfigCacheNamespace) setVariable ["lastRadioSettingUpdate",diag_tickTime];//Also updates Radio settings for safety
+    
+    if !((missionNamespace getVariable ["TFAR_core_assignedItemsCache", []]) isEqualTo (assignedItems TFAR_currentUnit)) then {
+        TFAR_core_cacheNonRadioItems = []; //Reset cache, used in radiosToRequestCount
+    };
+
+    TFAR_core_assignedItemsCache = assignedItems TFAR_currentUnit;
 },true] call CBA_fnc_addPlayerEventHandler;
 
 
