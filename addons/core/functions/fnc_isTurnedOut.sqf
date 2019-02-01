@@ -40,14 +40,18 @@ if (isTurnedOut _unit) exitWith {[true, 2]};
 
 
 
-private _fnc_getAttenuationFromEffect = if (TFAR_experimentalVehicleIsolation) then {
+private _fnc_getAttenuationFromEffect = 
+[
+    {
+        [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty
+    },
     {
         private _type = configFile >> "CfgSoundEffects" >> "AttenuationsEffects" >> _attenuationType;
 
         private _gains =  getArray (_type >> "Equalizer0" >> "gain") + getArray (_type >> "Equalizer1" >> "gain");
 
         if (_gains isEqualTo []) exitWith {
-             [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty
+            [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty
         };
 
         private _sum = 0;
@@ -57,18 +61,7 @@ private _fnc_getAttenuationFromEffect = if (TFAR_experimentalVehicleIsolation) t
 
         1- (_sum / count _gains)
     }
-
-} else {
-    {
-        [(typeof _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty
-    }
-};
-
-
-
-
-
-
+] select TFAR_experimentalVehicleIsolation;
 
 
 
@@ -81,7 +74,9 @@ private _attenuationType = getText (_config >> "attenuationEffectType");
 if (_attenuationType in ["OpenCarAttenuation", "OpenHeliAttenuation", "jsrs_OpenCar_Attenuation", "jsrs_SemiOpenCar_Attenuation"]) exitWith {[true, 3]};
 
 private _fullCrew = fullCrew _vehicle;
-(_fullCrew select (_fullCrew findIf {_unit isEqualTo (_x param [0, objNull])})) params ["", "_role", "_cargoIndex", "_turretPath", "_isFFV"];
+private _crewIndex = _fullCrew findIf {_unit isEqualTo (_x param [0, objNull])};
+if (_crewIndex == -1) exitWith {[true,7]}; //This can apparently happen. No idea how but it happened.
+(_fullCrew select _crewIndex) params ["", "_role", "_cargoIndex", "_turretPath", "_isFFV"];
 _role = toLower _role;
 private _return = !_isFFV;
 
