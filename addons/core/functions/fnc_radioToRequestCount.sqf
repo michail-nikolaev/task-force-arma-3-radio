@@ -42,7 +42,15 @@ private _radioSelector = {
     }
 };
 
-private _radiosToRequest = (assignedItems TFAR_currentUnit) select _radioSelector;
+if (isNil "TFAR_core_cacheNonRadioItems") then {
+    TFAR_core_cacheNonRadioItems = [];
+};
+
+private _inputItems = (assignedItems TFAR_currentUnit - TFAR_core_cacheNonRadioItems);
+
+private _radiosToRequest = _inputItems select _radioSelector;
+
+TFAR_core_cacheNonRadioItems append (_inputItems - _radiosToRequest);
 
 //If we had a Radio assigned to the Radio slot before, then we want to assign one to it again when we get the instanciated radios back
 private _linkFirstItem = !(_radiosToRequest isEqualTo []);
