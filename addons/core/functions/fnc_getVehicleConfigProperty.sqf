@@ -24,7 +24,7 @@
 params ["_item", "_property", ["_default", ""]];
 
 //#TODO deprecate _api stuff
-if ((isNil "_item") or {!(_item isEqualType "") }) exitWith {_default};//This is probably not needed... +0.01ms calltime so.... ehh...
+if ((isNil "_item") || {!(_item isEqualType "") }) exitWith {_default};//This is probably not needed... +0.01ms calltime so.... ehh...
 
 //Caching reduces function calltime from ~0.4ms to 0.023ms
 private _cacheName = (_item + _property);
@@ -41,7 +41,7 @@ if (isNumber _cfgApiProperty) exitWith {
 if (isNumber _cfgProperty) exitWith {
     private _value = getNumber _cfgProperty;
     GVAR(VehicleConfigCacheNamespace) setVariable [_cacheName,_value];
-    _value;
+    _value
 };
 
 if (isText _cfgApiProperty) exitWith {
@@ -51,13 +51,13 @@ if (isText _cfgApiProperty) exitWith {
 if (isText _cfgProperty) exitWith {
     private _value = getText _cfgProperty;
     GVAR(VehicleConfigCacheNamespace) setVariable [_cacheName,_value];
-    _value;
+    _value
 };
 
 if (isArray _cfgProperty) exitWith {
     private _value = getArray _cfgProperty;
     GVAR(VehicleConfigCacheNamespace) setVariable [_cacheName,_value];
-    _value;
+    _value
 };
 
 GVAR(VehicleConfigCacheNamespace) setVariable [_cacheName,_default];
