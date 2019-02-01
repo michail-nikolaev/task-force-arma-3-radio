@@ -89,7 +89,7 @@ class Cfg3DEN {
                         control = "EditShort";
                         displayName = "Vehicle ID override";
                         tooltip = "Vehicles that share the same Vehicle ID share the same Intercom system.";
-                        expression = QUOTE(if !(_value isEqualTo '') then {_this setVariable [ARR_2('TFAR_vehicleIDOverride',_value)]};);
+                        expression = QUOTE(if !(_value isEqualTo '') then {_this setVariable [ARR_3('TFAR_vehicleIDOverride',_value,true)]};);
                         typeName = "STRING";
                         validate = "none";
                         condition = "objectVehicle";
@@ -100,7 +100,7 @@ class Cfg3DEN {
                         control = "EditShort";
                         displayName = "Default Intercom Channel";
                         tooltip = "Default Intercom Channel when entering vehicle. Overwrites global setting. (-1 means Intercom disabled by default, -2 means this setting is ignored)";
-                        expression = QUOTE(diag_log [ARR_2('defaultIntercomSlot', _value)]; if (_value != -2) then {_this setVariable [ARR_2('TFAR_defaultIntercomSlot',_value)]};);
+                        expression = QUOTE(diag_log [ARR_2('defaultIntercomSlot', _value)]; if (_value != -2) then {_this setVariable [ARR_3('TFAR_defaultIntercomSlot',_value,true)]};);
                         typeName = "NUMBER";
                         validate = "number";
                         condition = "objectVehicle";
