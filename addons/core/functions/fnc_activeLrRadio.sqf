@@ -18,6 +18,12 @@
   Public: Yes
 */
 
+if (canSuspend) exitWith {
+    private _ret = "";
+    isNil {_ret = call TFAR_fnc_activeLrRadio};
+    _ret
+};
+
 private _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
 
 if (isNil "TF_lr_active_radio") then {
