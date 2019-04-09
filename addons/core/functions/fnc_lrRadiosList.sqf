@@ -18,6 +18,11 @@
   Public: Yes
 */
 
+if (canSuspend) exitWith {
+    private _ret = "";
+    isNil {_ret = call TFAR_fnc_lrRadiosList};
+    _ret
+};
 
 private _backpackLR = (_this call TFAR_fnc_backpackLr); 
 private _activeLR = missionNamespace getVariable ["TF_lr_active_radio", _backpackLR];
