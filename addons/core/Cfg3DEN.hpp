@@ -17,6 +17,24 @@ class display3DEN {
     };
 };
 */
+
+#define SWCode  if (_value isEqualTo '' || _value isEqualTo []) exitWith {};\
+                if (_value isEqualType '') then {\
+                    _value = [ARR_5(_value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);\
+                    _this setVariable [ARR_3('%s',_value,true)];\
+                } else {\
+                    _value = [ARR_5(str _value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);\
+                    _this setVariable [ARR_3('%s',_value,true)];\
+                }
+#define LRCode  if (_value isEqualTo '' || _value isEqualTo []) exitWith {};\
+                if (_value isEqualType '') then {\
+                    _value = [ARR_5(_value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);\
+                    _this setVariable [ARR_3('%s',_value,true)];\
+                } else {\
+                    _value = [ARR_5(str _value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);\
+                    _this setVariable [ARR_3('%s',_value,true)];\
+                }
+
 class Cfg3DEN {
     /*
     class Mission {
@@ -39,8 +57,9 @@ class Cfg3DEN {
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_SR_desc);
                         property = "TFAR_freq_sr";
                         control = "Edit"; //#TODO make custom control. Look at EditArray for example. Maybe multiple text boxes?
-                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                        expression = QUOTE(SWCode);
                         defaultValue = "''";
+                        typeName = "STRING";
                         unique = 0;
                         condition = "objectControllable + logicModule";
                     };
@@ -49,8 +68,9 @@ class Cfg3DEN {
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_LR_desc);
                         property = "TFAR_freq_lr";
                         control = "Edit";
-                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
+                        expression = QUOTE(LRCode);
                         defaultValue = "''";
+                        typeName = "STRING";
                         unique = 0;
                         condition = "objectControllable + logicModule";
                     };
@@ -69,7 +89,7 @@ class Cfg3DEN {
                         control = "EditShort";
                         displayName = "Vehicle ID override";
                         tooltip = "Vehicles that share the same Vehicle ID share the same Intercom system.";
-                        expression = QUOTE(if !(_value isEqualTo '') then {_this setVariable [ARR_2('TFAR_vehicleIDOverride',_value)]};);
+                        expression = QUOTE(if !(_value isEqualTo '') then {_this setVariable [ARR_3('TFAR_vehicleIDOverride',_value,true)]};);
                         typeName = "STRING";
                         validate = "none";
                         condition = "objectVehicle";
@@ -80,7 +100,7 @@ class Cfg3DEN {
                         control = "EditShort";
                         displayName = "Default Intercom Channel";
                         tooltip = "Default Intercom Channel when entering vehicle. Overwrites global setting. (-1 means Intercom disabled by default, -2 means this setting is ignored)";
-                        expression = QUOTE(diag_log [ARR_2('defaultIntercomSlot', _value)]; if (_value != -2) then {_this setVariable [ARR_2('TFAR_defaultIntercomSlot',_value)]};);
+                        expression = QUOTE(diag_log [ARR_2('defaultIntercomSlot', _value)]; if (_value != -2) then {_this setVariable [ARR_3('TFAR_defaultIntercomSlot',_value,true)]};);
                         typeName = "NUMBER";
                         validate = "number";
                         condition = "objectVehicle";
@@ -100,18 +120,20 @@ class Cfg3DEN {
                         displayName = ECSTRING(settings,DefaultRadioFrequencies_SR);
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_SR_desc);
                         property = "TFAR_freq_sr";
-                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_CHANNELS,TFAR_MAX_SW_FREQ,TFAR_MIN_SW_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
-                        control = "EditArray";
+                        expression = QUOTE(SWCode);
+                        control = "Edit";
                         defaultValue = "''";
+                        typeName = "STRING";
                         unique = 0;
                     };
                     class TFAR_freq_lr {
                         displayName = ECSTRING(settings,DefaultRadioFrequencies_LR);
                         tooltip = ECSTRING(settings,DefaultRadioFrequencies_LR_desc);
                         property = "TFAR_freq_lr";
-                        expression = QUOTE(if !(_value isEqualTo '') then {_value=[ARR_5(_value,TFAR_MAX_LR_CHANNELS,TFAR_MAX_ASIP_FREQ,TFAR_MIN_ASIP_FREQ,TFAR_FREQ_ROUND_POWER)] call DFUNC(parseFrequenciesInput);_this setVariable [ARR_3('%s',_value,true)];});
-                        control = "EditArray";
+                        expression = QUOTE(LRCode);
+                        control = "Edit";
                         defaultValue = "''";
+                        typeName = "STRING";
                         unique = 0;
                     };
                 };

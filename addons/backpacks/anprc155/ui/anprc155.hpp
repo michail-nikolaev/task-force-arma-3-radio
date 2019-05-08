@@ -66,6 +66,11 @@ class anprc155_radio_dialog {
         tooltip = ECSTRING(core,current_freq);
         moving = 1;
         canModify = 1;
+        onKeyUp = QUOTE( \
+            if (_this select 1 in [ARR_2(28,156)]) then { \
+                [((ctrlParent (_this select 0))) displayCtrl IDC_ANPRC155_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter; \
+            }; \
+        );
     };
     class enter: HiddenButton {
         idc = IDC_ANPRC155_ENTER;

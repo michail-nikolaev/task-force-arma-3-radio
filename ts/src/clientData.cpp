@@ -28,8 +28,30 @@ void LISTED_INFO::operator<<(std::ostream& str) const {
 extern float debugDisplayThing;
 extern float debugDisplayThing2;
 
-Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, 2>* clientDataEffects::
-getFilterObjectInterception(uint8_t objectCount) {
+//double interpTo(double target) {
+//    static double lastFreq;
+//    static std::chrono::system_clock::time_point lastTick;
+//
+//    auto ms = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(std::chrono::system_clock::now() - lastTick).count();
+//    constexpr double freqPerMS = 10;
+//    lastTick = std::chrono::system_clock::now();
+//    if (lastFreq == target) return target;
+//
+//    double distance = std::abs(lastFreq - target);
+//    double maxDistance = ms * freqPerMS;
+//
+//    if (maxDistance > distance) {
+//        lastFreq = target;
+//    } else if (target < lastFreq) {
+//        lastFreq -= maxDistance;
+//    } else if (target > lastFreq) {
+//        lastFreq += maxDistance;
+//    }
+//    return lastFreq;
+//}
+
+Dsp::SimpleFilter<Dsp::Butterworth::LowPass<2>, MAX_CHANNELS>*
+ clientDataEffects::getFilterObjectInterception(uint8_t objectCount) {
     objectCount = std::min(objectCount, static_cast<uint8_t>(5));
     static float lastStrength = 400;
     if (auto newStrength = TFAR::config.get<float>(Setting::objectInterceptionStrength); newStrength != lastStrength) {

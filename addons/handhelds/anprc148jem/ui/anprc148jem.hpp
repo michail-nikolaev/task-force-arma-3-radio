@@ -81,6 +81,11 @@ class anprc148jem_radio_dialog {
         tooltip = ECSTRING(core,current_freq);
         canModify = 1;
         moving = 1;
+        onKeyUp = QUOTE( \
+            if (_this select 1 in [ARR_2(28,156)]) then { \
+                [((ctrlParent (_this select 0))) displayCtrl IDC_ANPRC148JEM_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter; \
+            }; \
+        );
     };
     class channel_edit: RscEditLCD {
         idc = IDC_ANPRC148JEM_CHANNEL_EDIT;

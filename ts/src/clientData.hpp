@@ -328,6 +328,7 @@ public:
     uint8_t receivingTransmission = 0; //This unit is currently receiving a transmission. Only works for local player
     std::set<std::string, std::less<>> receivingFrequencies;
     clientDataEffects effects;
+    SampleBuffer OISampleBuffer;
 private:
     mutable ReadWriteLock m_lock;
 

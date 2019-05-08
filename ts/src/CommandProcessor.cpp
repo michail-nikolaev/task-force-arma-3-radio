@@ -15,7 +15,6 @@
 
 using namespace std::literals::string_view_literals;
 
-volatile bool vadEnabled = false;
 volatile bool skipTangentOff = false;
 volatile bool waitingForTangentOff = false;
 CriticalSectionLock tangentCriticalSection;
@@ -23,6 +22,7 @@ extern bool isSeriousModeEnabled(TSServerID serverConnectionHandlerID, TSClientI
 extern void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false });
 
 CommandProcessor::CommandProcessor() {
+    vadEnabled = Teamspeak::hlp_checkVad();//Needed in case releaseAllTangents is called before the first tangent press
 
     TFAR::getInstance().doDiagReport.connect([this](std::stringstream& diag) {
         diag << "CP:\n";
@@ -293,7 +293,6 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
                 PTTDelayArguments args;
                 args.commandToBroadcast = commandToBroadcast;
                 args.currentServerConnectionHandlerID = currentServerConnectionHandlerID;
-                args.subtype = subtypeString;
                 args.pttDelay = TFAR::getInstance().m_gameData.pttDelay;
                 args.tangentReleaseDelay = std::chrono::milliseconds(static_cast<int>(TFAR::config.get<float>(Setting::tangentReleaseDelay)));
                 std::thread([args]() {process_tangent_off(args); }).detach();
@@ -310,7 +309,14 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
         } return;
         case gameCommand::RELEASE_ALL_TANGENTS: {
             const auto commandToSend = "RELEASE_ALL_TANGENTS\t" + convertNickname(tokens[1]);
-            Teamspeak::sendPluginCommand(Teamspeak::getCurrentServerConnection(), TFAR::getInstance().getPluginID(), commandToSend, PluginCommandTarget_CURRENT_CHANNEL);
+
+            //Need to release tangent in case it's currently pressed else player will hotmic
+            PTTDelayArguments args;
+            args.commandToBroadcast = commandToSend;
+            args.currentServerConnectionHandlerID = currentServerConnectionHandlerID;
+            args.pttDelay = 0ms;
+            args.tangentReleaseDelay = 0ms;
+            std::thread([args]() {process_tangent_off(args); }).detach();
         } return;
         case gameCommand::SETCFG: {//async
             const auto key = tokens[1];
@@ -561,7 +567,7 @@ void CommandProcessor::process_tangent_off(PTTDelayArguments arguments) {
 
 void CommandProcessor::disableVoiceAndSendCommand(std::string_view commandToBroadcast, TSServerID currentServerConnectionHandlerID, bool pressed) {
     Teamspeak::setVoiceDisabled(currentServerConnectionHandlerID, !(pressed || vadEnabled));
-    Teamspeak::sendPluginCommand(Teamspeak::getCurrentServerConnection(), TFAR::getInstance().getPluginID(), commandToBroadcast, PluginCommandTarget_CURRENT_CHANNEL);
+    Teamspeak::sendPluginCommand(currentServerConnectionHandlerID, TFAR::getInstance().getPluginID(), commandToBroadcast, PluginCommandTarget_CURRENT_CHANNEL);
 }
 
 std::string CommandProcessor::convertNickname(std::string_view nickname) {

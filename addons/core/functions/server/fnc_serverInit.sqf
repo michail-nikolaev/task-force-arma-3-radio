@@ -59,8 +59,8 @@ GVAR(instanciationIsReady) = false;
         GVAR(instanciationIsReady) = true;
 
         if (TFAR_instantiate_instantiateAtBriefing) then {
-            // instantiate the radio only on server
-            [] call DFUNC(instanciateRadios);
+            // instantiate the radios only on server
+            call DFUNC(instanciateRadiosServer);
         };
     }
 ] call CBA_fnc_waitUntilAndExecute;
