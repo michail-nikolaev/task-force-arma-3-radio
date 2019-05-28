@@ -275,8 +275,14 @@ void Teamspeak::_onConnectStatusChangeEvent(TSServerID serverConnectionHandlerID
         //Directory has to exist.. It should be added in onTeamspeakServerConnect
         auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
 
-        //set our clientData ptr
-        clientDataDir->myClientData = clientDataDir->getClientData(getMyId(serverConnectionHandlerID));
+        //It happened that onTeamspeakServerConnect didn't fire it's serverDataDirectory eventhandler thus clientDataDir was nullptr.
+        //TFAR Discord
+        //https://discordapp.com/channels/233658633957802016/233660277286109184/582760626145722369
+        //https://discordapp.com/channels/233658633957802016/233660277286109184/582834366699536394
+
+        if (clientDataDir) //#TODO throw a warning? Something is certainly going wrong at this point.
+            //set our clientData ptr
+            clientDataDir->myClientData = clientDataDir->getClientData(getMyId(serverConnectionHandlerID));
 
     } else if (newState == STATUS_DISCONNECTED) {
         TFAR::getInstance().onTeamspeakServerDisconnect(serverConnectionHandlerID);
