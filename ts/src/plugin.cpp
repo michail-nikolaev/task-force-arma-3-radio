@@ -659,6 +659,13 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
             if (info.waveZ < UNDERWATER_LEVEL) {
                 helpers::processFilterStereo(radio_buffer, CANT_SPEAK_GAIN, clientData->effects.getFilterCantSpeak(info.radio_id));
             }
+
+
+            //Also need distance loss on speakers
+            const auto errorLevel = std::min(info.antennaConnection.getLoss(), effectErrorFromDistance(info.over, radioDistance, clientData));
+            clientData->effects.getSwRadioEffect(info.radio_id)->setErrorLeveL(errorLevel);
+            processRadioEffect(radio_buffer, volumeLevel * 0.35f, clientData->effects.getSwRadioEffect(info.radio_id), info.stereoMode);
+
             const auto relativePosition = myPosition.directionTo(info.pos);
             const auto myViewDirection = myData->getViewDirection();
 
