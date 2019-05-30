@@ -1711,14 +1711,6 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>短程無線電 發送</Chinese>
                 <Chinesesimp>短程无线电 发送</Chinesesimp>
             </Key>
-            <Key ID="STR_TFAR_CORE_key_SWTransmitAlt">
-                <Original>SW Transmit Alt</Original>
-                <English>SW Transmit Alt</English>
-                <Japanese>代替短距離無線機で送信</Japanese>
-                <Korean>단파 송신 Alt</Korean>
-                <Chinese>短程無線電備用 發送</Chinese>
-                <Chinesesimp>短程无线电备用 发送</Chinesesimp>
-            </Key>
             <Key ID="STR_TFAR_CORE_key_SWTransmitAdditional">
                 <Original>SW Transmit Additional</Original>
                 <English>SW Transmit Additional</English>
@@ -1734,14 +1726,6 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>장파 송신</Korean>
                 <Chinese>長程無線電 發送</Chinese>
                 <Chinesesimp>长程无线电 发送</Chinesesimp>
-            </Key>
-            <Key ID="STR_TFAR_CORE_key_LRTransmitAlt">
-                <Original>LR Transmit Alt</Original>
-                <English>LR Transmit Alt</English>
-                <Japanese>代替長距離無線機で送信</Japanese>
-                <Korean>장파 송신 Alt</Korean>
-                <Chinese>長程無線電備用 發送</Chinese>
-                <Chinesesimp>长程无线电备用 发送</Chinesesimp>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRTransmitAdditional">
                 <Original>LR Transmit Additional</Original>

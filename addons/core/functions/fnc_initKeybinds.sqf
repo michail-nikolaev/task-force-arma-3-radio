@@ -23,9 +23,6 @@
 TF_tangent_sw_scancode = DIK_CAPSLOCK;
 TF_tangent_sw_modifiers = [false, false, false];
 
-TF_tangent_sw_2_scancode = 0;
-TF_tangent_sw_2_modifiers = [false, false, false];
-
 TF_tangent_additional_sw_scancode = DIK_T;
 TF_tangent_additional_sw_modifiers = [false, false, false];
 
@@ -73,9 +70,6 @@ TF_sw_channel_8_modifiers = [false, false, false];
 
 TF_tangent_lr_scancode = DIK_CAPSLOCK;
 TF_tangent_lr_modifiers = [false, true, false]; //ctrl,shift,alt
-
-TF_tangent_lr_2_scancode = 0;
-TF_tangent_lr_2_modifiers = [false, false, false];
 
 TF_tangent_additional_lr_scancode = DIK_T;
 TF_tangent_additional_lr_modifiers = [false, true, false]; //shift,ctrl,alt
@@ -184,11 +178,9 @@ private _fnc_localizeLRChannel = {
 
 
 ["TFAR", "SWTransmit", [localize LSTRING(key_SWTransmit), localize LSTRING(key_SWTransmit)], {call TFAR_fnc_onSwTangentPressed}, {call TFAR_fnc_onSwTangentReleased}, [TF_tangent_sw_scancode, TF_tangent_sw_modifiers], false] call cba_fnc_addKeybind;
-["TFAR", "SWTransmitAlt", [localize LSTRING(key_SWTransmitAlt), localize LSTRING(key_SWTransmitAlt)], {call TFAR_fnc_onSwTangentPressed}, {call TFAR_fnc_onSwTangentReleased}, [TF_tangent_sw_2_scancode, TF_tangent_sw_2_modifiers], false] call cba_fnc_addKeybind;
 ["TFAR", "SWTransmitAdditional", [localize LSTRING(key_SWTransmitAdditional), localize LSTRING(key_SWTransmitAdditional)], {call TFAR_fnc_onAdditionalSwTangentPressed}, {call TFAR_fnc_onAdditionalSwTangentReleased}, [TF_tangent_additional_sw_scancode, TF_tangent_additional_sw_modifiers], false] call cba_fnc_addKeybind;
 
 ["TFAR", "LRTransmit", [localize LSTRING(key_LRTransmit), localize LSTRING(key_LRTransmit)], {call TFAR_fnc_onLRTangentPressed}, {call TFAR_fnc_onLRTangentReleased}, [TF_tangent_lr_scancode, TF_tangent_lr_modifiers], false] call cba_fnc_addKeybind;
-["TFAR", "LRTransmitAlt", [localize LSTRING(key_LRTransmitAlt), localize LSTRING(key_LRTransmitAlt)], {call TFAR_fnc_onLRTangentPressed}, {call TFAR_fnc_onLRTangentReleased}, [TF_tangent_lr_2_scancode, TF_tangent_lr_2_modifiers], false] call cba_fnc_addKeybind;
 ["TFAR", "LRTransmitAdditional", [localize LSTRING(key_LRTransmitAdditional), localize LSTRING(key_LRTransmitAdditional)], {call TFAR_fnc_onAdditionalLRTangentPressed}, {call TFAR_fnc_onAdditionalLRTangentReleased}, [TF_tangent_additional_lr_scancode, TF_tangent_additional_lr_modifiers], false] call cba_fnc_addKeybind;
 
 
