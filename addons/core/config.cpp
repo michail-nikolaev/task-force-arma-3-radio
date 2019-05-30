@@ -21,6 +21,7 @@ class CfgPatches {
         };
         author = ECSTRING(core,AUTHORS);
         server_api = SERVER_API_VERSION;
+        VERSION_CONFIG;
     };
 
     class task_force_radio {

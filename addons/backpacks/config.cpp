@@ -40,6 +40,7 @@ class CfgPatches {
         "tfar_static_radios"
     };
     Url = "https://github.com/michail-nikolaev/task-force-arma-3-radio";
+    VERSION_CONFIG;
   };
 };
 
