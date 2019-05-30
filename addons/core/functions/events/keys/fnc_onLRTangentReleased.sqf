@@ -30,7 +30,7 @@ private _hintText = format[
                             format [
                                 "%1<img size='1.5' image='%2'/>",
                                 [_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty,
-                                getText(configFile >> "CfgVehicles"  >> typeof (_radio select 0) >> "picture")
+                                getText(configFile >> "CfgVehicles"  >> typeOf (_radio select 0) >> "picture")
                             ],
                             (_radio call TFAR_fnc_getLrChannel) + 1,
                             _currentFrequency

@@ -35,7 +35,7 @@ private _slot = "cargo";
 tolower _slot
 */
 //Get intercom slot of unit. By default everyone is Cargo
-private _hasIntercom = ([(typeof _vehicle), "TFAR_hasIntercom", 0] call TFAR_fnc_getVehicleConfigProperty) > 0;
+private _hasIntercom = ([(typeOf _vehicle), "TFAR_hasIntercom", 0] call TFAR_fnc_getVehicleConfigProperty) > 0;
 private _intercomSlot = -1;
 
 if (_hasIntercom) then {

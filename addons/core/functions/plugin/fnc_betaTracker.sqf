@@ -29,7 +29,7 @@ private _variables = [
                         [8,"currentLR"                 ,count (TFAR_currentUnit call TFAR_fnc_lrRadiosList)],
                         [9,"nearPlayers"               ,count TFAR_currentNearPlayers],
                         [10,"farPlayers"                ,count TFAR_currentFarPlayers],
-                        [11,"typeof"                    ,typeof TFAR_currentUnit],
+                        [11,"typeOf"                    ,typeOf TFAR_currentUnit],
                         [12,"diag_fps"                  ,round diag_fps],
                         [13,"diag_fpsmin"               ,round diag_fpsmin],
                         [14,"version"                   ,TFAR_ADDON_VERSION],

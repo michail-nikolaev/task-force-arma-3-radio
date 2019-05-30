@@ -33,11 +33,11 @@ private _variables = [
                         [10,"currentLR"                 ,count (TFAR_currentUnit call TFAR_fnc_lrRadiosList)],
                         [11,"nearPlayers"               ,count TFAR_currentNearPlayers],
                         [12,"farPlayers"                ,count TFAR_currentFarPlayers],
-                        [13,"typeof"                    ,typeof TFAR_currentUnit],
+                        [13,"typeOf"                    ,typeOf TFAR_currentUnit],
                         [14,"diag_fps"                  ,round diag_fps],
                         [15,"diag_fpsmin"               ,round diag_fpsmin],
                         [16,"daytime"                   ,round daytime],
-                        [17,"vehicle"                   ,typeof (vehicle TFAR_currentUnit)],
+                        [17,"vehicle"                   ,typeOf (vehicle TFAR_currentUnit)],
                         [18,"time"                      ,round time],
                         [19,"version"                   ,TFAR_ADDON_VERSION],
                         [20,"playerSide"                ,playerSide]

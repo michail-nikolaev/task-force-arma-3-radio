@@ -95,7 +95,7 @@ if (((count _lrRadios > 0) || _currentUnitIsRemote) and {[TFAR_currentUnit, _iso
                     _radioCode,
                     _volume,
                     _x call TFAR_fnc_getLrStereo,
-                    typeof (_x select 0)];
+                    typeOf (_x select 0)];
 
                 if (_additionalChannel > -1 && {_additionalChannel != (_x call TFAR_fnc_getLrChannel)}) then {
                     _freq_lr pushBack format ["%1%2|%3|%4|%5",
@@ -103,7 +103,7 @@ if (((count _lrRadios > 0) || _currentUnitIsRemote) and {[TFAR_currentUnit, _iso
                         _radioCode,
                         _volume,
                         _x call TFAR_fnc_getAdditionalLrStereo,
-                        typeof (_x select 0)];
+                        typeOf (_x select 0)];
                 };
             };
         };

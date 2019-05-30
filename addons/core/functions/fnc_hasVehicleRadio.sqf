@@ -23,4 +23,4 @@ params [["_vehicle", objNull, [objNull]]];
 private _result = _vehicle getVariable "tf_hasRadio";
 if (!isNil "_result") exitWith {_result};
 
-([(typeof _vehicle), "tf_hasLRradio", 0] call TFAR_fnc_getVehicleConfigProperty == 1)
+([(typeOf _vehicle), "tf_hasLRradio", 0] call TFAR_fnc_getVehicleConfigProperty == 1)

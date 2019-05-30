@@ -25,13 +25,13 @@ if (!isNil "_value") exitWith {_value};
 
 private _radioType = "";
 if (_radio_object isKindOf "Bag_Base") then {
-    _radioType = typeof _radio_object;
+    _radioType = typeOf _radio_object;
 } else {
     _radioType = _radio_object getVariable "TF_RadioType";
     if (isNil "_radioType") then {
-        _radioType = [typeof _radio_object, "tf_RadioType"] call TFAR_fnc_getVehicleConfigProperty;
+        _radioType = [typeOf _radio_object, "tf_RadioType"] call TFAR_fnc_getVehicleConfigProperty;
         if ((isNil "_radioType") or {_radioType == ""}) then {
-            private _isAirRadio = (typeof(_radio_object) isKindOf "Air");
+            private _isAirRadio = (typeOf(_radio_object) isKindOf "Air");
 
             switch (_radio_object call TFAR_fnc_getVehicleSide) do {
                 case west: {
