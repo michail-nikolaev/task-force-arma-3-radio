@@ -230,7 +230,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../include;../include/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_GLFW_WIN32;NOMINMAX;$(AppVeyor);WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;task_force_radio_EXPORTS;WINDOWS;CLUNKAPI=;CLUNK_USES_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
@@ -240,7 +239,7 @@
       <BrowseInformation>false</BrowseInformation>
       <ExpandAttributedSource>false</ExpandAttributedSource>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>

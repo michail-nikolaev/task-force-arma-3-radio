@@ -248,14 +248,28 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
             const auto subtype = PTTDelayArguments::stringToSubtype(tokens[4]);
 
             const bool changed = TFAR::getInstance().m_gameData.tangentPressed != pressed;
+
+            if (!changed) //If nothing changed there is nothing to do.
+                return;
+
             TFAR::getInstance().m_gameData.tangentPressed = pressed;
 
             myClientData->setCurrentTransmittingSubtype(subtypeString);
 
             const float globalVolume = TFAR::getInstance().m_gameData.globalVolume;//used for playing radio sounds
 
-            if (!changed) //If nothing changed there is nothing to do.
-                return;
+            if (pressed) {
+                myClientData->range = pressed ? helpers::parseArmaNumberToInt(tokens[3]) : 0; //range needs to be set to indicate that we are transmitting
+                myClientData->currentTransmittingTangentOverType = (tokens[0] == "TANGENT_LR") ? sendingRadioType::LISTEN_TO_LR : sendingRadioType::LISTEN_TO_SW;
+
+                myClientData->setCurrentTransmittingFrequency(tokens[2]);
+            } else {
+                myClientData->range = 0; //range needs to be set to indicate that we are transmitting
+                myClientData->currentTransmittingTangentOverType = sendingRadioType::LISTEN_TO_NONE;
+                myClientData->setCurrentTransmittingFrequency(std::string("prev_").append(tokens[2]));
+            }
+
+           
             const auto commandToBroadcast = command + "\t" + (myClientData->canUseSWRadio ? "1\t" : "0\t") + (myClientData->canUseDDRadio ? "1\t" : "0\t") + myClientData->getNickname();
             auto frequency = tokens[2];
             //convenience function to remove duplicate code
