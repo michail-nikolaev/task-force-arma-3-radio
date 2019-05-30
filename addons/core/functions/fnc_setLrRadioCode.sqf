@@ -21,6 +21,8 @@
 params [["_radio", [], [[]], 2], ["_value", "", [""]]];
 _radio params ["_radio_object", "_radio_qualifier"];
 
+ENCRYPTION_CODE_CHECK(_value != "", _value)
+
 private _settings = _radio call TFAR_fnc_getLrSettings;
 _settings set [TFAR_CODE_OFFSET, _value];
 [_radio, _settings] call TFAR_fnc_setLrSettings;

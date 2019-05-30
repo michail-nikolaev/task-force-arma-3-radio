@@ -54,6 +54,8 @@ if (isNil QGVAR(saved_active_lr_settings)) then {
 } else {
     _value = GVAR(saved_active_lr_settings);
     GVAR(saved_active_lr_settings) = nil;
+
+    ENCRYPTION_CODE_CHECK((_value select TFAR_CODE_OFFSET) != "", _value)
 };
 
 [[_radio_object, _radio_id], + _value] call TFAR_fnc_setLrSettings;

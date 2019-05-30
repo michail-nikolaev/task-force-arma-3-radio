@@ -25,6 +25,7 @@
 params [["_radio", [], [[]], 2], ["_value", [], [[]]]];
 _radio params ["_radio_object", "_radio_qualifier"];
 
+ENCRYPTION_CODE_CHECK((_value select TFAR_CODE_OFFSET) != "", _value)
 _radio_object setVariable [_radio_qualifier, + _value, true];
 
 GVAR(VehicleConfigCacheNamespace) setVariable ["lastRadioSettingUpdate", diag_tickTime];

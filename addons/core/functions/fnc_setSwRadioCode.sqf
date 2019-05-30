@@ -22,5 +22,6 @@
 params ["_radio_id", "_code_to_set"];
 
 private _settings = _radio_id call TFAR_fnc_getSwSettings;
+ENCRYPTION_CODE_CHECK(_code_to_set != "", [ARR_2(_settings, _code_to_set)])
 _settings set [TFAR_CODE_OFFSET, _code_to_set];
 [_radio_id, _settings] call TFAR_fnc_setSwSettings;

@@ -27,6 +27,8 @@ if (isNil QGVAR(saved_active_sr_settings)) then  {
 } else {
     _value = GVAR(saved_active_sr_settings);
     GVAR(saved_active_sr_settings) = nil;
+
+    ENCRYPTION_CODE_CHECK((_value select TFAR_CODE_OFFSET) != "", _value)
 };
 
 [_radio, _value, true] call TFAR_fnc_setSwSettings;

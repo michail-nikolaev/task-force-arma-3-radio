@@ -24,6 +24,8 @@
 
 params ["_radio_id", "_value", ["_local", false, [true]]];
 
+ENCRYPTION_CODE_CHECK((_value select TFAR_CODE_OFFSET) != "", _value)
+
 TFAR_RadioSettingsNamespace setVariable [_radio_id, + _value,!_local];
 TFAR_RadioSettingsNamespace setVariable [_radio_id + "_local", + _value];
 

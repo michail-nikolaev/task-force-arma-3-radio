@@ -132,3 +132,5 @@
 #define PROFCONTEXT_LOGTRAP(VAR,FUNC)
 
 #endif
+
+#define ENCRYPTION_CODE_CHECK(code, log) if (!(code)) then {diag_log ["##### TFAR ENCRYPTION CODE ERROR", __LINE__, __FILE__, #code, log]};
