@@ -33,7 +33,7 @@ if (_radio_object isKindOf "Bag_Base") then {
         if ((isNil "_radioType") or {_radioType == ""}) then {
             private _isAirRadio = (typeof(_radio_object) isKindOf "Air");
 
-            switch (_radio call TFAR_fnc_getVehicleSide) do {
+            switch (_radio_object call TFAR_fnc_getVehicleSide) do {
                 case west: {
                     _radioType = [TFAR_DefaultRadio_Backpack_West, TFAR_DefaultRadio_Airborne_West] select _isAirRadio;
                 };

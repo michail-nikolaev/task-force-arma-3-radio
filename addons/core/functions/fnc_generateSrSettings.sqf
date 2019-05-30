@@ -4,7 +4,7 @@
   Name: TFAR_fnc_generateSRSettings
 
   Author: NKey, Garth de Wet (L-H)
-    Generates settings for the LR radio
+    Generates settings for the SR radio
 
   Arguments:
     0: false to generate settings without generating frequencies. <BOOL> (default: true)
