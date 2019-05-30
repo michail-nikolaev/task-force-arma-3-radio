@@ -8,6 +8,7 @@
 #include "task_force_radio.hpp"
 #include "Teamspeak.hpp"
 #include "Logger.hpp"
+#include <filesystem>
 
 std::string SoundFile::getFullPath() const {
     return TFAR::getInstance().getPluginPath() + fileName + ".wav";
@@ -117,10 +118,9 @@ void PlaybackHandler::appendPlayback(std::string name, SoundFile file, std::vect
     LockGuard_exclusive lock(playbackCriticalSection);
     if (playbacks.count(name) == 0) {
         if (file.type == SoundFile::SoundFileType::PluginFolderFile) {
-        if (auto wave = getWavFileFromPath(file.getFullPath()))
-            playbacks[name] = std::make_shared<playbackWavProcessing>(static_cast<short*>(wave->_data.get_ptr()), (wave->_data.get_size() / sizeof(short)) / wave->_spec.channels, wave->_spec.channels, functors);
-        }
-        else {
+            if (auto wave = getWavFileFromPath(file.getFullPath()))
+                playbacks[name] = std::make_shared<playbackWavProcessing>(static_cast<short*>(wave->_data.get_ptr()), (wave->_data.get_size() / sizeof(short)) / wave->_spec.channels, wave->_spec.channels, functors);
+        } else {
             playbacks[name] = std::make_shared<playbackWavProcessing>(file.samples.data(), file.samples.size(), file.channels, functors);
         }
     } else {
@@ -257,7 +257,15 @@ std::shared_ptr<clunk::WavFile> PlaybackHandler::getWavFileFromPath(const std::s
     if (auto found = wavCache.find(filePath); found != wavCache.end())
         return found->second;
 
-    if (FILE *f = fopen(filePath.c_str(), "rb")) {
+    auto p = std::filesystem::u8path(filePath.c_str()); //Handle utf8 input path
+
+    if (FILE *f =
+#ifdef _MSC_VER
+        _wfopen(p.c_str(), L"rb")
+#else
+        std::fopen(p.c_str(), "rb")
+#endif
+        ) {
         std::shared_ptr<clunk::WavFile> wav = std::make_shared<clunk::WavFile>(f);
         wav->read();
         if (wav->ok() && wav->_spec.channels == 2 && wav->_spec.sample_rate == 48000) {
