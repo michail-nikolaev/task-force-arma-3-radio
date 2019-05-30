@@ -91,7 +91,10 @@ drawLine3D [ASLToAGL eyePos player2, ASLToAGL (eyePos player2) vectorAdd (upVec 
     emitterCone.InnerVolume = 1.8f;
     emitterCone.OuterVolume = 1.f;
 
-    emitter.pCone = &emitterCone;
+    if (TFAR::config.get<bool>(Setting::voiceCone))
+        emitter.pCone = &emitterCone;
+
+
     std::tie(emitter.Position.x, emitter.Position.y, emitter.Position.z) = myPosition.get();
     std::tie(emitter.OrientFront.x, emitter.OrientFront.y, emitter.OrientFront.z) = emitterViewDirection.normalized().get();
     emitter.OrientFront.y *= -1.f;

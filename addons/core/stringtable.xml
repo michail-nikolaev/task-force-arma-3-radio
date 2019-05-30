@@ -283,6 +283,11 @@
                 <Chinese>啟用物件攔截</Chinese>
                 <Chinesesimp>启用物件拦截</Chinesesimp>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_voice_cone">
+                <Original>Directional Voice</Original>
+                <English>Directional Voice</English>
+                <German>Direktionale Stimmen</German>
+            </Key>
             <Key ID="STR_TFAR_SETTINGS_spectator_hear_emy">
                 <Original>Spectator can hear enemy units</Original>
                 <English>Spectator can hear enemy units</English>

@@ -196,7 +196,15 @@
     1,
     {["objectInterceptionStrength", TFAR_objectInterceptionStrength] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
-
+[
+    "TFAR_voiceCone",
+    "CHECKBOX",
+    ELSTRING(settings,voice_cone),
+    localize ELSTRING(settings,global),
+    true,
+    1,
+    {["voiceCone", TFAR_voiceCone] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
 [
     "TFAR_experimentalVehicleIsolation", 
     "CHECKBOX", 
