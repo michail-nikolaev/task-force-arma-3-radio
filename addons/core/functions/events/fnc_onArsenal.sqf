@@ -35,6 +35,9 @@ switch _eventType do {
             } count (allVariables unitBackpack player);
             TFAR_ArsenalBackpackVariables = [backpack player,_backpackVariables];
         };//else non tfar backpack
+
+        call TFAR_fnc_onLRTangentReleased; //Stop transmitting as arsenal catches the keyUp event
+        call TFAR_fnc_onSWTangentReleased;
     };
     case "PostOpen": {
 
