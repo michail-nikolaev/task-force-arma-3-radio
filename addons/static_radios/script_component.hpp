@@ -18,3 +18,10 @@
 #endif
 
 #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QUOTE(DFUNC(fncName))] call CBA_fnc_compileFunction
+
+#define CBA_SETTINGS_GUARD(fncName) if !(TFAR_core_SettingsInitialized) exitWith {["CBA_settingsInitialized", {\
+diag_log ["delayed",#fncName];\
+                                        _thisArgs call fncName; [_thisType, _thisId] call CBA_fnc_removeEventHandler\
+                                    }, _this] call CBA_fnc_addEventHandlerArgs;}
+
+

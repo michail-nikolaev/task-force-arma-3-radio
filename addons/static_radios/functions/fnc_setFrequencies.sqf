@@ -20,6 +20,8 @@
 */
 params ["_radioContainer","_frequencies"];
 
+CBA_SETTINGS_GUARD(TFAR_static_radios_fnc_setFrequencies);
+
 _radio_id = _radioContainer call TFAR_static_radios_fnc_instanciatedRadio;
 
 if (_radio_id call TFAR_fnc_isLRRadio) then {
