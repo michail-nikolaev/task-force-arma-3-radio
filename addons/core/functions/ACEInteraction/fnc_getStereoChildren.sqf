@@ -22,22 +22,25 @@
 params ["_unit", "_radio"];
 
 //#TODO rename, its radio children now, not stereo
+#define ARG (_this select 2)
+#define ARG1 (ARG select 0)
+#define ARG2 (ARG select 1)
 
 ([[//SR Functions
     //Stereo
-    {(_this select 2) call TFAR_fnc_setSwStereo},
-    {!((((_this select 2)select 0) call TFAR_fnc_getSwStereo) isEqualTo ((_this select 2)select 1))},
+    {ARG call TFAR_fnc_setSwStereo},
+    {!((ARG1 call TFAR_fnc_getSwStereo) isEqualTo ARG2)},
 
-    {(_this select 2) call TFAR_fnc_setSwSpeakers},
-    {!(((_this select 2) call TFAR_fnc_getSwSpeakers) isEqualTo ((_this select 2)select 1))}
+    {ARG call TFAR_fnc_setSwSpeakers},
+    {!((ARG1 call TFAR_fnc_getSwSpeakers) isEqualTo ARG2)}
 
 ], [ //LR Functions
     //Stereo
-    {(_this select 2) call TFAR_fnc_setLrStereo},
-    {!((((_this select 2)select 0) call TFAR_fnc_getLrStereo) isEqualTo ((_this select 2)select 1))},
+    {ARG call TFAR_fnc_setLrStereo},
+    {!((ARG1 call TFAR_fnc_getLrStereo) isEqualTo ARG2)},
 
-    {(_this select 2) call TFAR_fnc_setLrSpeakers},
-    {!(((_this select 2) call TFAR_fnc_getLrSpeakers) isEqualTo ((_this select 2)select 1))}
+    {ARG call TFAR_fnc_setLrSpeakers},
+    {!((ARG1 call TFAR_fnc_getLrSpeakers) isEqualTo ARG2)}
 
 ]] select (_radio isEqualType [])) params ["_switchFnc","_switchCheck", "_speakerSet", "_speakerCheck"];
 
