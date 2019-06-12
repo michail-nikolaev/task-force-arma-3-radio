@@ -337,7 +337,13 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
             const auto value = tokens[2];
             const Setting keyEnum(key);
             if (!settings::isValidKey(keyEnum)) {
-                MessageBoxA(0, std::string("Used invalid config key: ").append(key).c_str(), "Task Force Radio", MB_OK);
+                std::string msg;
+                msg.reserve("Used invalid config key: "sv.length() + key.length() + " (You probably need to update your TFAR Teamspeak plugin)"sv.length());
+                msg += "Used invalid config key: "sv;
+                msg += key;
+                msg += " (You probably need to update your TFAR Teamspeak plugin)"sv;
+
+                MessageBoxA(0, msg.c_str(), "Task Force Radio", MB_OK);
                 return;
             }
             if (tokens.size() == 4) {
