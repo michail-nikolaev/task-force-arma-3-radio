@@ -1025,7 +1025,11 @@ void processPluginCommand(std::string_view command) {
     }
 }
 
-void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand) {
+void ts3plugin_onPluginCommandEventNew(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand, anyID invokerClientID, const char* invokerName, const char* invokerUniqueIdentity) {
+    ts3plugin_onPluginCommandEventOld(serverConnectionHandlerID, pluginName, pluginCommand);
+}
+
+void ts3plugin_onPluginCommandEventOld(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand) {
     Logger::log(LoggerTypes::pluginCommands, std::string(pluginName) + ":" + std::string(pluginCommand));
     log_string(std::string("ON PLUGIN COMMAND ") + pluginName + " " + pluginCommand, LogLevel_DEVEL);
     if (Teamspeak::getCurrentServerConnection() == serverConnectionHandlerID) {

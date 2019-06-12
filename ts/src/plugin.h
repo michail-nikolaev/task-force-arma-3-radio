@@ -64,7 +64,14 @@ extern "C" {
     /* Clientlib rare */
     PLUGINS_EXPORTDLL void ts3plugin_onClientSelfVariableUpdateEvent(uint64 serverConnectionHandlerID, int flag, const char* oldValue, const char* newValue);
     PLUGINS_EXPORTDLL int  ts3plugin_onServerPermissionErrorEvent(uint64 serverConnectionHandlerID, const char* errorMessage, unsigned int error, const char* returnCode, unsigned int failedPermissionID);
-    PLUGINS_EXPORTDLL void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand);
+    PLUGINS_EXPORTDLL void ts3plugin_onPluginCommandEventOld(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand);
+    PLUGINS_EXPORTDLL void ts3plugin_onPluginCommandEventNew(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand, anyID invokerClientID, const char* invokerName, const char* invokerUniqueIdentity);
+
+    //Magic
+    PLUGINS_EXPORTDLL void ts3plugin_onPluginCommandEventH();
+
+    extern char new_onPluginCommandEvent;
+
 #ifdef __cplusplus
 }
 #endif

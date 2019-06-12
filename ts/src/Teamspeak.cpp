@@ -681,6 +681,11 @@ void Teamspeak::setClient3DPosition(TSServerID serverConnectionHandlerID, TSClie
 */
 
 #pragma comment (lib, "version.lib")
+
+extern "C" {
+    char new_onPluginCommandEvent;
+}
+
 int ts3plugin_apiVersion() {
 
     WCHAR fileName[_MAX_PATH];
@@ -696,25 +701,45 @@ int ts3plugin_apiVersion() {
     UINT    len = 0;
     VS_FIXEDFILEINFO*   vsfi = nullptr;
     VerQueryValue(versionInfo, L"\\", reinterpret_cast<void**>(&vsfi), &len);
-    const short version = HIWORD(vsfi->dwFileVersionLS);
+
+    const short major = HIWORD(vsfi->dwFileVersionMS);
     const short minor = LOWORD(vsfi->dwFileVersionMS);
+    const short patch = HIWORD(vsfi->dwFileVersionLS);
     delete[] versionInfo;
-    if (minor == 1) return 22;//Teamspeak 3.1 
-    switch (version) {
-        case 9: return 19;
-        case 10: return 19;
-        case 11: return 19;
-        case 12: return 19;
-        case 13: return 19;
-        case 14: return 20;
-        case 15: return 20;
-        case 16: return 20;
-        case 17: return 20;
-        case 18: return 20;
-        case 19: return 20;
-        case 20: return 21;
-        default: return PLUGIN_API_VERSION;
+
+    int retVersion = 22;
+
+    switch (major) {
+        case 0: {
+            switch (patch) {
+                case 9: retVersion = 19; break;
+                case 10: retVersion = 19; break;
+                case 11: retVersion = 19; break;
+                case 12: retVersion = 19; break;
+                case 13: retVersion = 19; break;
+                case 14: retVersion = 20; break;
+                case 15: retVersion = 20; break;
+                case 16: retVersion = 20; break;
+                case 17: retVersion = 20; break;
+                case 18: retVersion = 20; break;
+                case 19: retVersion = 20; break;
+                case 20: retVersion = 21; break;
+                default: retVersion = 21;
+            }
+        } break;
+        case 1: retVersion = 22; break;
+        case 2: retVersion = 22; break;
+        case 3: retVersion = 23; break;
+        default: retVersion = 23;
     }
+
+    if (retVersion >= 23) {
+        new_onPluginCommandEvent = 1;
+    } else {
+        new_onPluginCommandEvent = 0;
+    }
+
+    return retVersion;
 }
 
 /* Set TeamSpeak 3 callback functions */

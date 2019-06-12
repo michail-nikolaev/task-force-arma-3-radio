@@ -374,4 +374,7 @@
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <MASM Include="apicompat.asm" />
+  </ItemGroup>
 </Project>
