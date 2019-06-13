@@ -709,7 +709,7 @@ int ts3plugin_apiVersion() {
 
     int retVersion = 22;
 
-    switch (major) {
+    switch (minor) {
         case 0: {
             switch (patch) {
                 case 9: retVersion = 19; break;

@@ -4,8 +4,8 @@ option casemap :none
 
 _TEXT    SEGMENT
 
-    EXTERN ts3plugin_onPluginCommandEventOld:      QWORD;
-    EXTERN ts3plugin_onPluginCommandEventNew:      QWORD;
+    EXTERN ts3plugin_onPluginCommandEventOld:       PROC;
+    EXTERN ts3plugin_onPluginCommandEventNew:       PROC;
     EXTERN new_onPluginCommandEvent:                BYTE;
 
     PUBLIC ts3plugin_onPluginCommandEvent
@@ -27,8 +27,8 @@ option casemap :none
 
 _TEXT    SEGMENT
 
-    EXTERN _ts3plugin_onPluginCommandEventOld:      DWORD;
-    EXTERN _ts3plugin_onPluginCommandEventNew:      DWORD;
+    EXTERN _ts3plugin_onPluginCommandEventOld:       PROC;
+    EXTERN _ts3plugin_onPluginCommandEventNew:       PROC;
     EXTERN _new_onPluginCommandEvent:                BYTE;
 
     PUBLIC ts3plugin_onPluginCommandEvent
