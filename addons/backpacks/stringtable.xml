@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project name="TFAR">
+    <Package name="backpacks">
+        <Key ID="STR_TFAR_backpacks_RT1523G">
+            <Original>RT-1523G (ASIP)</Original>
+            <English>RT-1523G (ASIP)</English>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_Desc">
+            <Original>RT-1523G (ASIP) long range radio 20km</Original>
+            <English>RT-1523G (ASIP) long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP) 長距離用無線機 20km</Japanese>
+            <Korean>RT-1523G (ASIP) 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP)長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP)长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_BWMOD">
+            <Original>RT-1523G (ASIP) BWMOD long range radio 20km</Original>
+            <English>RT-1523G (ASIP) BWMOD long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP) BW MOD 長距離用無線機 20km</Japanese>
+            <Korean>RT-1523G (ASIP) BWMOD 장거리 무전기 20km</Korean>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_BWMOD_Desc">
+            <Original>RT-1523G (ASIP) BWMOD long range radio 20km</Original>
+            <English>RT-1523G (ASIP) BWMOD long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP) BW MOD 長距離用無線機 20km</Japanese>
+            <Korean>RT-1523G (ASIP) BWMOD 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP) BWMOD長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP) BWMOD长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_RHS">
+            <Original>RT-1523G (ASIP) RHS long range radio 20km</Original>
+            <English>RT-1523G (ASIP) RHS long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP) RHS 長距離用無線機 20km</Japanese>
+            <Korean>RT-1523G (ASIP) RHS 장거리 무전기 20km</Korean>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_RHS_Desc">
+            <Original>RT-1523G (ASIP) RHS long range radio 20km</Original>
+            <English>RT-1523G (ASIP) RHS long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP) RHS 長距離用無線機 20km</Japanese>
+            <Korean>RT-1523G (ASIP) RHS 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP) RHS長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP) RHS长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_Big">
+            <Original>RT-1523G (ASIP) Big</Original>
+            <English>RT-1523G (ASIP) Big</English>
+            <Japanese>RT-1523G (ASIP - 大型)</Japanese>
+            <Korean>RT-1523G (ASIP) 대형</Korean>
+            <Chinese>RT-1523G (ASIP-大型)</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-大型)</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_Big_Desc">
+            <Original>RT-1523G (ASIP) Big long range radio 20km</Original>
+            <English>RT-1523G (ASIP) Big long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP - 大型) 長距離用無線機 20km</Japanese>
+            <Korean>RT-1523G (ASIP) 대형 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP-大型)長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-大型)长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_BigBWMOD">
+            <Original>RT-1523G (ASIP) Big BWMOD [Flecktarn]</Original>
+            <English>RT-1523G (ASIP) Big BWMOD [Flecktarn]</English>
+            <Japanese>RT-1523G (ASIP - 大型) BW MOD [森林迷彩]</Japanese>
+            <Korean>RT-1523G (ASIP) 대형 BWMOD [Flecktarn]</Korean>
+            <Chinese>RT-1523G (ASIP-大型) BWMOD [斑點迷彩]</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-大型) BWMOD [斑点迷彩]</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_BigBWMOD_Desc">
+            <Original>RT-1523G (ASIP) Big BWMOD long range radio 20km</Original>
+            <English>RT-1523G (ASIP) Big BWMOD long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP - 大型) BW MOD 長距離用無線機 20km</Japanese>
+            <Korean>RT-1523G (ASIP) 대형 BWMOD 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP-大型) BWMOD長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-大型) BWMOD长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_BigBWMOD_Tropen">
+            <Original>RT-1523G (ASIP) Big BWMOD [Tropentarn]</Original>
+            <English>RT-1523G (ASIP) Big BWMOD [Tropentarn]</English>
+            <Japanese>RT-1523G (ASIP - 大型) BW MOD [砂漠迷彩]</Japanese>
+            <Korean>RT-1523G (ASIP) 대형 BWMOD [Tropentarn]</Korean>
+            <Chinese>RT-1523G (ASIP-大型) BWMOD [荒漠斑點迷彩]</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-大型) BWMOD [荒漠斑点迷彩]</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_BigRHS">
+            <Original>RT-1523G (ASIP) Big RHS</Original>
+            <English>RT-1523G (ASIP) Big RHS</English>
+            <Japanese>RT-1523G (ASIP - 大型) RHS</Japanese>
+            <Korean>RT-1523G (ASIP) 대형 RHS</Korean>
+            <Chinese>RT-1523G (ASIP-大型) RHS</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-大型) RHS</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_BigRHS_Desc">
+            <Original>RT-1523G (ASIP) Big RHS long range radio 20km</Original>
+            <English>RT-1523G (ASIP) Big RHS long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP - 大型) RHS 長距離用無線機 20km</Japanese>
+            <Korean>RT-1523G (ASIP) 대형 RHS 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP-大型) RHS長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-大型) RHS长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_Sage">
+            <Original>RT-1523G (ASIP) Sage</Original>
+            <English>RT-1523G (ASIP) Sage</English>
+            <Japanese>RT-1523G (ASIP - セージ)</Japanese>
+            <Chinese>RT-1523G (ASIP-草綠色)</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-草绿色)</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_Sage_Desc">
+            <Original>RT-1523G (ASIP) Sage long range radio 20km</Original>
+            <English>RT-1523G (ASIP) Sage long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP - セージ) 長距離用無線機 20km</Japanese>
+            <Chinese>RT-1523G (ASIP-草綠色)長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-草绿色)长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_Green">
+            <Original>RT-1523G (ASIP) Green</Original>
+            <English>RT-1523G (ASIP) Green</English>
+            <Japanese>RT-1523G (ASIP - グリーン)</Japanese>
+            <Korean>RT-1523G (ASIP) Green 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP-綠色)</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-绿色)</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_Green_Desc">
+            <Original>RT-1523G (ASIP) Green long range radio 20km</Original>
+            <English>RT-1523G (ASIP) Green long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP - グリーン) 長距離用無線機 20km</Japanese>
+            <Korean>RT-1523G (ASIP) Green 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP-綠色)長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-绿色)长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_Fabric">
+            <Original>RT-1523G (ASIP) Fabric</Original>
+            <English>RT-1523G (ASIP) Fabric</English>
+            <Japanese>RT-1523G (ASIP - 布地)</Japanese>
+            <Chinese>RT-1523G (ASIP-布質)</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-布质)</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_Fabric_Desc">
+            <Original>RT-1523G (ASIP) Fabric long range radio 20km</Original>
+            <English>RT-1523G (ASIP) Fabric long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP - 布地) 長距離用無線機 20km</Japanese>
+            <Korean>RT-1523G (ASIP) Fabric 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP-布質)長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-布质)长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_Black">
+            <Original>RT-1523G (ASIP) Black</Original>
+            <English>RT-1523G (ASIP) Black</English>
+            <Japanese>RT-1523G (ASIP - ブラック)</Japanese>
+            <Chinese>RT-1523G (ASIP-黑色)</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-黑色)</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_RT1523G_Black_Desc">
+            <Original>RT-1523G (ASIP) Black long range radio 20km</Original>
+            <English>RT-1523G (ASIP) Black long range radio 20km</English>
+            <Japanese>RT-1523G (ASIP - ブラック) 長距離用無線機 20km</Japanese>
+            <Korean>RT-1523G (ASIP) Black 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP-黑色)長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP-黑色)长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR6000L">
+            <Original>MR6000L</Original>
+            <English>MR6000L</English>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR6000L_Desc">
+            <Original>MR6000L airborne radio 40km</Original>
+            <English>MR6000L airborne radio 40km</English>
+            <Japanese>MR6000L 航空機搭載無線機 40km</Japanese>
+            <Korean>MR6000L 공수 무전기 40km</Korean>
+            <Chinese>MR6000L空中載具無線電，有效距離40公里</Chinese>
+            <Chinesesimp>MR6000L空中载具无线电，有效距离40公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR3000">
+            <Original>MR3000</Original>
+            <English>MR3000</English>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR3000_Desc">
+            <Original>MR3000 long range radio 20km</Original>
+            <English>MR3000 long range radio 20km</English>
+            <Japanese>MR3000 長距離用無線機 20km</Japanese>
+            <Korean>MR3000 장거리 무전기 20km</Korean>
+            <Chinese>MR3000長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>MR3000长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR3000_Multicam">
+            <Original>MR3000 Multicam</Original>
+            <English>MR3000 Multicam</English>
+            <Japanese>MR3000 (マルチカム)</Japanese>
+            <Chinese>MR3000 (多地形迷彩)</Chinese>
+            <Chinesesimp>MR3000 (多地形迷彩)</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR3000_Multicam_Desc">
+            <Original>MR3000 Multicam long range radio 20km</Original>
+            <English>MR3000 Multicam long range radio 20km</English>
+            <Japanese>MR3000 (マルチカム) 長距離用無線機 20km</Japanese>
+            <Korean>MR3000 Multicam 장거리 무전기 20km</Korean>
+            <Chinese>MR3000 (多地形迷彩)長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>MR3000 (多地形迷彩)长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR3000_BWMOD">
+            <Original>MR3000 BWMOD [Flecktarn]</Original>
+            <English>MR3000 BWMOD [Flecktarn]</English>
+            <Japanese>MR3000 BW MOD [森林迷彩]</Japanese>
+            <Korean>MR3000 BWMOD [Flecktarn]</Korean>
+            <Chinese>MR3000 BWMOD [斑點迷彩]</Chinese>
+            <Chinesesimp>MR3000 BWMOD [斑点迷彩]</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR3000_BWMOD_Desc">
+            <Original>MR3000 BWMOD long range radio 20km</Original>
+            <English>MR3000 BWMOD long range radio 20km</English>
+            <Japanese>MR3000 BW MOD 長距離用無線機 20km</Japanese>
+            <Korean>MR3000 BWMOD 장거리 무전기 20km</Korean>
+            <Chinese>MR3000 BWMOD長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>MR3000 BWMOD长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR3000_BWMOD_Tropen">
+            <Original>MR3000 BWMOD [Tropentarn]</Original>
+            <English>MR3000 BWMOD [Tropentarn]</English>
+            <Japanese>MR3000 BW MOD [砂漠迷彩]</Japanese>
+            <Korean>MR3000 BWMOD [Tropentarn]</Korean>
+            <Chinese>MR3000 BWMOD [荒漠斑點迷彩]</Chinese>
+            <Chinesesimp>MR3000 BWMOD [荒漠斑点迷彩]</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR3000_RHS">
+            <Original>MR3000 RHS</Original>
+            <English>MR3000 RHS</English>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_MR3000_RHS_Desc">
+            <Original>MR3000 RHS long range radio 20km</Original>
+            <English>MR3000 RHS long range radio 20km</English>
+            <Japanese>MR3000 RHS 長距離用無線機 20km</Japanese>
+            <Korean>MR3000 RHS 장거리 무전기 20km</Korean>
+            <Chinese>MR3000 RHS長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>MR3000 RHS长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_Bussole">
+            <Original>Assault Pack Bussole</Original>
+            <English>Assault Pack Bussole</English>
+            <Japanese>アサルトパック (ブソレ)</Japanese>
+            <Korean>강습가방 Bussole</Korean>
+            <Chinese>突擊背包 (Bussole)</Chinese>
+            <Chinesesimp>突击背包 (Bussole)</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_Bussole_Desc">
+            <Original>Bussole long range radio 20km</Original>
+            <English>Bussole long range radio 20km</English>
+            <Japanese>ブソレ 長距離用無線機 20km</Japanese>
+            <Korean>Bussole 장거리 무전기 20km</Korean>
+            <Chinese>Bussole長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>Bussole长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_ANPRC155">
+            <Original>AN/PRC-155</Original>
+            <English>AN/PRC-155</English>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_ANPRC155_Desc">
+            <Original>AN/PRC-155 long range radio 20km</Original>
+            <English>AN/PRC-155 long range radio 20km</English>
+            <Japanese>AN/PRC-155 長距離用無線機 20km</Japanese>
+            <Korean>AN/PRC-155 장거리 무전기 20km</Korean>
+            <Chinese>AN/PRC 155長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>AN/PRC 155长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_ANPRC155_Coyote">
+            <Original>AN/PRC-155 Coyote</Original>
+            <English>AN/PRC-155 Coyote</English>
+            <Japanese>AN/PRC-155 (コヨーテ)</Japanese>
+            <Chinese>AN/PRC 155 (土狼棕色)</Chinese>
+            <Chinesesimp>AN/PRC 155 (土狼棕色)</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_ANPRC155_Coyote_Desc">
+            <Original>AN/PRC-155 Coyote long range radio 20km</Original>
+            <English>AN/PRC-155 Coyote long range radio 20km</English>
+            <Japanese>AN/PRC-155 (コヨーテ) 長距離用無線機 20km</Japanese>
+            <Korean>AN/PRC-155 Coyote 장거리 무전기 20km</Korean>
+            <Chinese>AN/PRC 155 (土狼棕色)長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>AN/PRC 155 (土狼棕色)长程无线电，有效距离20公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_ANARC210">
+            <Original>AN/ARC-210</Original>
+            <English>AN/ARC-210</English>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_ANARC210_Desc">
+            <Original>AN/ARC-210 airborne radio 40km</Original>
+            <English>AN/ARC-210 airborne radio 40km</English>
+            <Japanese>AN/PRC-210 航空機搭載無線機 40km</Japanese>
+            <Korean>AN/ARC-210 공수 무전기 40km</Korean>
+            <Chinese>AN/ARC-210空中載具無線電，有效距離40公里</Chinese>
+            <Chinesesimp>AN/ARC-210空中载具无线电，有效距离40公里</Chinesesimp>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_ANARC164">
+            <Original>AN/ARC-164</Original>
+            <English>AN/ARC-164</English>
+        </Key>
+        <Key ID="STR_TFAR_backpacks_ANARC164_Desc">
+            <Original>AN/ARC-164 airborne radio 40km</Original>
+            <English>AN/ARC-164 airborne radio 40km</English>
+            <Japanese>AN/PRC-164 航空機搭載無線機 40km</Japanese>
+            <Korean>AN/ARC-164 공수 무전기 40km</Korean>
+            <Chinese>AN/ARC-164空中載具無線電，有效距離40公里</Chinese>
+            <Chinesesimp>AN/ARC-164空中载具无线电，有效距离40公里</Chinesesimp>
+        </Key>
+    </Package>
+</Project>

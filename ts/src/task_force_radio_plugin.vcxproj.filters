@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="helpers.cpp" />
+    <ClCompile Include="plugin.cpp" />
+    <ClCompile Include="task_force_radio.cpp" />
+    <ClCompile Include="..\include\clunk\clunk_ex.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\hrtf.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\wav_file.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\Bessel.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\Biquad.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\Butterworth.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\Cascade.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\ChebyshevI.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\ChebyshevII.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\Custom.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\Design.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\Elliptic.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\Filter.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\Legendre.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\Param.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\PoleFilter.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\RBJ.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\RootFinder.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\State.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\dspfilters\source\Documentation.cpp">
+      <Filter>externals\Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\context.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\buffer.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\distance_model.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\kemar.c">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\sample.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\source.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\sse_fft_context.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\simpleSource\SimpleComp.cpp">
+      <Filter>externals\simpleSource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\simpleSource\SimpleEnvelope.cpp">
+      <Filter>externals\simpleSource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\simpleSource\SimpleGate.cpp">
+      <Filter>externals\simpleSource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\simpleSource\SimpleLimit.cpp">
+      <Filter>externals\simpleSource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\object.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\stream.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="serverData.cpp" />
+    <ClCompile Include="clientData.cpp" />
+    <ClCompile Include="Logger.cpp">
+      <Filter>Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="profilers.cpp">
+      <Filter>Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\clunk\clunk_logger.cpp">
+      <Filter>externals\clunk</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandProcessor.cpp" />
+    <ClCompile Include="pipe_handler.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="SharedMemoryHandler.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaybackHandler.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Teamspeak.cpp" />
+    <ClCompile Include="datatypes.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\sqlite3\sqlite3.c">
+      <Filter>externals</Filter>
+    </ClCompile>
+    <ClCompile Include="debugExecutable.cpp" />
+    <ClCompile Include="antennaManager.cpp" />
+    <ClCompile Include="DebugUI.cpp">
+      <Filter>DebugUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\egl_context.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\osmesa_context.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\wgl_context.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_init.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_joystick.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_monitor.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_thread.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_time.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_window.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glad\src\glad.c">
+      <Filter>DebugUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\context.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\init.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\input.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\monitor.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\vulkan.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\window.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>DebugUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleBuffer.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="plugin.h" />
+    <ClInclude Include="task_force_radio.hpp" />
+    <ClInclude Include="..\include\clunk\wav_file.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\buffer.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="Clunk.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\clunk_assert.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\clunk_ex.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\context.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\distance_model.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\export_clunk.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\fft_context.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\hrtf.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\kemar.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\logger.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\mdct_context.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\mixer.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\object.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\resample.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\sample.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\source.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\stream.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\types.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\v3.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sqlite3\sqlite3.h">
+      <Filter>externals</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h" />
+    <ClInclude Include="..\include\clientlib_publicdefinitions.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\plugin_definitions.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\public_definitions.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\public_errors.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\public_errors_rare.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\public_rare_definitions.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ts3_functions.h">
+      <Filter>externals\teamspeak</Filter>
+    </ClInclude>
+    <ClInclude Include="settings.hpp" />
+    <ClInclude Include="serverData.hpp" />
+    <ClInclude Include="clientData.hpp" />
+    <ClInclude Include="helpers.hpp" />
+    <ClInclude Include="enum.hpp">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Locks.hpp">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="datatypes.hpp">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Teamspeak.hpp" />
+    <ClInclude Include="CommandProcessor.hpp" />
+    <ClInclude Include="common.hpp" />
+    <ClInclude Include="Logger.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="profilers.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="SignalSlot.hpp">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedMemoryHandler.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="pipe_handler.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaybackHandler.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="RadioEffect.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\clunk\locker.h">
+      <Filter>externals\clunk</Filter>
+    </ClInclude>
+    <ClInclude Include="antennaManager.h" />
+    <ClInclude Include="DebugUI.h">
+      <Filter>DebugUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRenderer.h">
+      <Filter>DebugUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>DebugUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleBuffer.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="externals">
+      <UniqueIdentifier>{6d6dcb2e-936e-496b-864f-d6bb4c3f0cec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="externals\simpleSource">
+      <UniqueIdentifier>{683f7c41-50a5-4a79-a4b1-19ec42e13514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="externals\Dsp">
+      <UniqueIdentifier>{a0229c26-1002-43a6-a5bf-448351472959}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="externals\clunk">
+      <UniqueIdentifier>{b380b208-1500-423d-8ab7-bbb6b6294ab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="externals\teamspeak">
+      <UniqueIdentifier>{9409b456-1398-4b63-9116-9596f82faac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Networking">
+      <UniqueIdentifier>{ba17cb2a-bc9d-4345-9c4d-a37376199b0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{b9faa526-064f-4f13-b8fc-2b18f0b1405a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{fe91a6f4-c76c-41c8-bd4d-f8fd18055378}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{c64d3f43-52e8-4b0f-8dc5-789f81dbd86f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DebugUI">
+      <UniqueIdentifier>{b61a9cc7-6307-47c8-8254-6fd01d192006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DebugUI\glfw">
+      <UniqueIdentifier>{a961bdd4-a963-48a6-9679-366da13b7f5a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="apicompat.asm" />
+  </ItemGroup>
+</Project>
