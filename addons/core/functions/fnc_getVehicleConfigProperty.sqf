@@ -34,6 +34,8 @@ if (!isNil "_cachedEntry") exitWith {_cachedEntry};
 private _cfgApiProperty = (configFile >> "CfgVehicles" >> _item >> _property + "_api");
 private _cfgProperty = (configFile >> "CfgVehicles" >> _item >> _property);
 
+//#TODO if both are configNull, we can immediately return default
+
 if (isNumber _cfgApiProperty) exitWith {
     getNumber _cfgApiProperty
 };
