@@ -711,7 +711,7 @@ float volumeFromDistance(uint64 serverConnectionHandlerID, CLIENT_DATA* data, fl
 void playWavFile(uint64 serverConnectionHandlerID, const char* fileNameWithoutExtension, float gain, TS3_VECTOR position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck)
 {
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
-	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
+	//_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	if (!isConnected(serverConnectionHandlerID)) return;
 	std::string path = std::string(pluginPath);	
 	std::string to_play = path + std::string(fileNameWithoutExtension) + ".wav";
@@ -1969,7 +1969,7 @@ DWORD WINAPI UpdateThread(LPVOID lpParam)
 {
 	if (isUpdateAvaible())
 	{
-		MessageBox(NULL, L"New version of Task Force Arrowhead Radio is available. Check radio.task-force.ru/en", L"Task Force Arrowhead Radio Update", MB_OK);
+		MessageBox(NULL, L"New version of Task Force Arrowhead Radio is available. Check tfar.arma3.io", L"Task Force Arrowhead Radio Update", MB_OK);
 	}
 	return 0;
 }
@@ -2136,40 +2136,66 @@ const char* ts3plugin_version() {
 
 /* Plugin API version. Must be the same as the clients API major version, else the plugin fails to load. */
 #pragma comment (lib, "version.lib")
+
+extern "C" {
+    char new_onPluginCommandEvent;
+}
+
 int ts3plugin_apiVersion() {
 
-	WCHAR fileName[_MAX_PATH];
-	DWORD size = GetModuleFileName(0, fileName, _MAX_PATH);
-	fileName[size] = NULL;
-	DWORD handle = 0;
-	size = GetFileVersionInfoSize(fileName, &handle);
-	BYTE* versionInfo = new BYTE[size];
-	if (!GetFileVersionInfo(fileName, handle, size, versionInfo)) {
-		delete[] versionInfo;
-		return PLUGIN_API_VERSION;
-	}
-	UINT    			len = 0;
-	VS_FIXEDFILEINFO*   vsfi = NULL;
-	VerQueryValue(versionInfo, L"\\", (void**) &vsfi, &len);
-	short version = HIWORD(vsfi->dwFileVersionLS);
-    short minor = LOWORD(vsfi->dwFileVersionMS);
-	delete[] versionInfo;
-    if (minor == 1) return 21;//Teamspeak 3.1
-	switch (version) {
-		case 9: return 19;
-		case 10: return 19;
-		case 11: return 19;
-		case 12: return 19;
-		case 13: return 19;
-		case 14: return 20;
-		case 15: return 20;
-		case 16: return 20;
-		case 17: return 20;
-		case 18: return 20;
-		case 19: return 20;
-		case 20: return 21;//Teamspeak 3.1
-		default: return PLUGIN_API_VERSION;
-	}
+    WCHAR fileName[_MAX_PATH];
+    auto size = GetModuleFileName(nullptr, fileName, _MAX_PATH);
+    fileName[size] = NULL;
+    DWORD handle = 0;
+    size = GetFileVersionInfoSize(fileName, &handle);
+    auto* versionInfo = new BYTE[size];
+    if (!GetFileVersionInfo(fileName, handle, size, versionInfo)) {
+        delete[] versionInfo;
+        return PLUGIN_API_VERSION;
+    }
+    UINT    len = 0;
+    VS_FIXEDFILEINFO* vsfi = nullptr;
+    VerQueryValue(versionInfo, L"\\", reinterpret_cast<void**>(&vsfi), &len);
+
+    const short major = HIWORD(vsfi->dwFileVersionMS);
+    const short minor = LOWORD(vsfi->dwFileVersionMS);
+    const short patch = HIWORD(vsfi->dwFileVersionLS);
+    delete[] versionInfo;
+
+    int retVersion = 22;
+
+    switch (minor) {
+    case 0: {
+        switch (patch) {
+        case 9: retVersion = 19; break;
+        case 10: retVersion = 19; break;
+        case 11: retVersion = 19; break;
+        case 12: retVersion = 19; break;
+        case 13: retVersion = 19; break;
+        case 14: retVersion = 20; break;
+        case 15: retVersion = 20; break;
+        case 16: retVersion = 20; break;
+        case 17: retVersion = 20; break;
+        case 18: retVersion = 20; break;
+        case 19: retVersion = 20; break;
+        case 20: retVersion = 21; break;
+        default: retVersion = 21;
+        }
+    } break;
+    case 1: retVersion = 22; break;
+    case 2: retVersion = 22; break;
+    case 3: retVersion = 23; break;
+    default: retVersion = 23;
+    }
+
+    if (retVersion >= 23) {
+        new_onPluginCommandEvent = 1;
+    }
+    else {
+        new_onPluginCommandEvent = 0;
+    }
+
+    return retVersion;
 }
 
 /* Plugin author */
@@ -2654,7 +2680,7 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 
 void ts3plugin_onEditPostProcessVoiceDataEventStereo(uint64 serverConnectionHandlerID, anyID clientID, short* samples, int sampleCount, int channels) {
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
-	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
+	//_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	static DWORD last_no_info;
 	anyID myId = getMyId(serverConnectionHandlerID);
 	std::string myNickname = getMyNickname(serverConnectionHandlerID);
@@ -3111,7 +3137,7 @@ void processPluginCommand(std::string command)
 	}
 }
 
-void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand) {
+void ts3plugin_onPluginCommandEventOld(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand) {
 	log_string(std::string("ON PLUGIN COMMAND ") + pluginName + " " + pluginCommand, LogLevel_DEVEL);
 	if (serverConnectionHandlerID == ts3Functions.getCurrentServerConnectionHandlerID())
 	{
@@ -3128,4 +3154,8 @@ void ts3plugin_onPluginCommandEvent(uint64 serverConnectionHandlerID, const char
 	{
 		log("Plugin command unknown ID", LogLevel_ERROR);
 	}
+}
+
+void ts3plugin_onPluginCommandEventNew(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand, anyID invokerClientID, const char* invokerName, const char* invokerUniqueIdentity) {
+    ts3plugin_onPluginCommandEventOld(serverConnectionHandlerID, pluginName, pluginCommand);
 }
