@@ -113,17 +113,17 @@ GVAR(instanciationIsReady) = false;
             VARIABLE_DEFAULT(TFAR_freq_sr_west,true call DFUNC(generateSRSettings));
             VARIABLE_DEFAULT(TFAR_freq_sr_east,true call DFUNC(generateSRSettings));
             VARIABLE_DEFAULT(TFAR_freq_sr_independent,true call DFUNC(generateSRSettings));
-        };
 
-        if (TFAR_SameSRFrequenciesPerGroup) then {
-            {
-                _x params ["_unit"];
-                private _frequencies = _unit getVariable ["TFAR_freq_sr", (group _unit) getVariable "TFAR_freq_sr"];
-                if (isNil "_frequencies") then {
-                    _frequencies = [TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
-                    (group _unit) setVariable ["TFAR_freq_sr", _frequencies, true];
-                };
-            } forEach (playableUnits);
+            if (TFAR_SameSRFrequenciesPerGroup) then {
+                {
+                    _x params ["_unit"];
+                    private _frequencies = _unit getVariable ["TFAR_freq_sr", (group _unit) getVariable "TFAR_freq_sr"];
+                    if (isNil "_frequencies") then {
+                        _frequencies = [TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
+                        (group _unit) setVariable ["TFAR_freq_sr", _frequencies, true];
+                    };
+                } forEach (playableUnits);
+            };
         };
 
         if (TFAR_SameLRFrequenciesForSide) then {
