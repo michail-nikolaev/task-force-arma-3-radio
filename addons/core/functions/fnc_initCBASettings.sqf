@@ -299,6 +299,14 @@
     1
 ] call CBA_Settings_fnc_init;
 [
+    "TFAR_SameSRFrequenciesPerGroup",
+    "CHECKBOX",
+    ELSTRING(settings,same_sr_frequencies_per_group),
+    localize ELSTRING(settings,global),
+    false,
+    1
+] call CBA_Settings_fnc_init;
+[
     "TFAR_setting_defaultFrequencies_sr_west",
     "EDITBOX",
     [ELSTRING(settings,DefaultRadioFrequencies_SR_west), ELSTRING(settings,DefaultRadioFrequencies_SR_west_desc)],
