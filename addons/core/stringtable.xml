@@ -301,7 +301,7 @@
                 <Korean>물체 인터콤 활성</Korean>
                 <Chinese>啟用物件攔截</Chinese>
                 <Chinesesimp>启用物件拦截</Chinesesimp>
-                <Russian>Объекты создают преграды</Russian>
+                <Russian>Объекты создают препятствия для распространения голоса</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_voice_cone">
                 <Original>Directional Voice</Original>
@@ -325,6 +325,7 @@
                 <Korean>비활성되면 관전자는 관전자의 적으로 분류되는 플레이어의 육성을 들을 수 없다.</Korean>
                 <Chinese>假如本功能關閉的話，觀察者將不能聽到敵隊陣營玩家的語音通訊</Chinese>
                 <Chinesesimp>假如本功能关闭的话，观察者将不能听到敌队阵营玩家的语音通讯</Chinesesimp>
+                <Russian>Если отключено, наблюдатель не может слышать голоса противников</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_spectator_hear">
                 <Original>Spectator can hear units</Original>
@@ -351,6 +352,7 @@
                 <Korean>직접교신의 음량 배수</Korean>
                 <Chinese>使用音量修改器來直接發話</Chinese>
                 <Chinesesimp>使用音量修改器来直接发话</Chinesesimp>
+                <Russian>Голос при нажатии модификатора громкости</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_directSpeechModifier_desc">
                 <Original>Activate directSpeech when pressing volume modifier</Original>
@@ -359,6 +361,7 @@
                 <Korean>직접 교신의 음량 수정 활성화</Korean>
                 <Chinese>按下音量修改器時同時啟動直接發話</Chinese>
                 <Chinesesimp>按下音量修改器时同时启动直接发话</Chinesesimp>
+                <Russian>Активировать передачу голоса при нажатии клавиши модификатора громкости разговора</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_intercomVolume">
                 <Original>Intercom Volume</Original>
@@ -1759,6 +1762,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>육성 음량 병경</Korean>
                 <Chinese>變更發話音量</Chinese>
                 <Chinesesimp>变更发话音量</Chinesesimp>
+                <Russian>Изменить громкость разговора</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_YellingModifier">
                 <Original>Yelling Modifier</Original>
@@ -1767,6 +1771,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>소리지르기 설정</Korean>
                 <Chinese>嚎叫音量修改器</Chinese>
                 <Chinesesimp>嚎叫音量修改器</Chinesesimp>
+                <Russian>Крик</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_WhisperingModifier">
                 <Original>Whispering Modifier</Original>
@@ -1775,6 +1780,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>속삭이기 설정</Korean>
                 <Chinese>耳語音量修改器</Chinese>
                 <Chinesesimp>耳语音量修改器</Chinesesimp>
+                <Russian>Шепот</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CycleRightSWRadios">
                 <Original>Cycle Right SW Radios</Original>
@@ -1895,6 +1901,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>헤드셋 내리기</Korean>
                 <Chinese>取下耳機</Chinese>
                 <Chinesesimp>取下耳机</Chinesesimp>
+                <Russian>Снять гарнитуру</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_RaiseHeadset">
                 <Original>Raise Headset</Original>
@@ -1903,6 +1910,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>헤드셋 올리기</Korean>
                 <Chinese>戴上耳機</Chinese>
                 <Chinesesimp>戴上耳机</Chinesesimp>
+                <Russian>Надеть гарнитуру</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_RaiseLowerHeadset">
                 <Original>Raise/Lower Headset</Original>
@@ -1911,6 +1919,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>헤드셋 올리기 / 헤드셋 내리기</Korean>
                 <Chinese>戴上耳機 / 取下耳機</Chinese>
                 <Chinesesimp>戴上耳机 / 取下耳机</Chinesesimp>
+                <Russian>Снять/Надеть гарнитуру</Russian>
             </Key>
         </Container>
         <Key ID="STR_TFAR_CORE_different_version">
@@ -2804,7 +2813,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Italian>Normale</Italian>
             <Polish>normalna</Polish>
             <Portuguese>Normal</Portuguese>
-            <Russian>норма</Russian>
+            <Russian>Норма</Russian>
             <Spanish>Normal</Spanish>
             <Turkish>Normal</Turkish>
             <Japanese>通常</Japanese>
@@ -2821,7 +2830,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Italian>Gridare</Italian>
             <Polish>krzyk</Polish>
             <Portuguese>Voz alta</Portuguese>
-            <Russian>крик</Russian>
+            <Russian>Крик</Russian>
             <Spanish>Gritar</Spanish>
             <Turkish>Bağırma</Turkish>
             <Japanese>大声</Japanese>
@@ -2838,7 +2847,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Italian>Bassa voce</Italian>
             <Polish>szept</Polish>
             <Portuguese>Sussurrando</Portuguese>
-            <Russian>шепот</Russian>
+            <Russian>Шепот</Russian>
             <Spanish>Susurrar</Spanish>
             <Turkish>Fısıldama</Turkish>
             <Japanese>小声</Japanese>
@@ -2956,6 +2965,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>TFAR 볼륨 표시기</Korean>
             <Chinese>TFAR音量指示器</Chinese>
             <Chinesesimp>TFAR音量指示器</Chinesesimp>
+            <Russian>TFAR Индикатор громкости</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_copySetting_LR_SW_Warning">
             <Original>TFAR - unable to copy from LR to SW</Original>
@@ -2964,6 +2974,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>TFAR - LR에서 SW로 복사 할 수 없음</Korean>
             <Chinese>TFAR - 無法從長程無線電複製設定到短程無線電上</Chinese>
             <Chinesesimp>TFAR - 无法从长程无线电复制设定到短程无线电上</Chinesesimp>
+            <Russian>TFAR - невозможно скопировать из ДС в БС</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_copySetting_SW_LR_Warning">
             <Original>TFAR - unable to copy from SW to LR</Original>
@@ -2972,6 +2983,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>TFAR - SW에서 LR로 복사 할 수 없음</Korean>
             <Chinese>TFAR - 無法從短程無線電複製設定到長程無線電上</Chinese>
             <Chinesesimp>TFAR - 无法从短程无线电复制设定到长程无线电上</Chinesesimp>
+            <Russian>TFAR - невозможно скопировать из БС в ДС</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_openSWMenu">
             <Original>Open SW Radio Menu</Original>
@@ -2980,6 +2992,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>단파 무전기 메뉴 열기</Korean>
             <Chinese>打開短程無線電選單</Chinese>
             <Chinesesimp>打开短程无线电选单</Chinesesimp>
+            <Russian>Открыть меню БС рации</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_openLRMenu">
             <Original>Open LR Radio Menu</Original>
@@ -2988,6 +3001,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>장파 무전기 메뉴 열기</Korean>
             <Chinese>打開長程無線電選單</Chinese>
             <Chinesesimp>打开长程无线电选单</Chinesesimp>
+            <Russian>Открыть меню ДС рации</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_RADIOS">
             <Original>Radios</Original>
@@ -2995,6 +3009,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <German>Funkgeräte</German>
             <Japanese>無線機</Japanese>
             <Korean>무전기</Korean>
+            <Russian>Рации</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_TAKE">
             <Original>Take</Original>
@@ -3002,6 +3017,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <German>Nehmen</German>
             <Japanese>を取る</Japanese>
             <Korean>들기</Korean>
+            <Russian>Взять</Russian>
         </Key>
     </Package>
 </Project>
