@@ -32,7 +32,10 @@ if (getItemCargo _unit isEqualTo [[],[]]) then {
     ((getItemCargo _unit) select 0) select 0
 };
 
-if !((_classname call TFAR_fnc_isLRRadio) || {(_classname call TFAR_fnc_isPrototypeRadio)} || {(_classname call TFAR_fnc_isRadio)}) exitWith {
+
+//diag_log [isNull _unit, _unit, typeOf _unit, _classname, _classname isEqualType "" && {_classname call TFAR_fnc_isRadio}, _classname call TFAR_fnc_hasSettings];
+
+if (isNull _unit || {!((_classname call TFAR_fnc_isLRRadio) || {(_classname call TFAR_fnc_isPrototypeRadio)} || {(_classname call TFAR_fnc_isRadio)})}) exitWith {
     //This is not a radio
     hint localize LSTRING(moduleStaticRadio_hint);
     _display closeDisplay 0;
@@ -79,7 +82,6 @@ _control ctrlAddEventHandler ["buttonClick", _fnc_onConfirm];
 
 
 //Check if radio is already instanciated
-diag_log [_unit, typeOf _unit, _classname, _classname isEqualType "" && {_classname call TFAR_fnc_isRadio}, _classname call TFAR_fnc_hasSettings];
 private _settings = [];
 if (_classname isEqualType "" && {_classname call TFAR_fnc_isRadio} && {_classname call TFAR_fnc_hasSettings}) then {
     _settings = _classname call TFAR_fnc_getSwSettings;
