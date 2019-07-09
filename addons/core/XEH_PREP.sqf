@@ -89,6 +89,7 @@ PREP_SUB(server,serverInit);
 // A
 PREP(activeLrRadio);
 PREP(activeSwRadio);
+PREP(addDiaryRecord);
 // B
 PREP(backpackLr);
 // C
