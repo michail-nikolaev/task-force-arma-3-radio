@@ -134,6 +134,14 @@
     0
 ] call CBA_Settings_fnc_init;
 [
+    "TFAR_ShowDiaryRecord",
+    "CHECKBOX",
+    [ELSTRING(settings,showDiaryRecord), ELSTRING(settings,showDiaryRecord_desc)],
+    localize ELSTRING(settings,clientside),
+    true,
+    0
+] call CBA_Settings_fnc_init;
+[
     "TFAR_moveWhileTabbedOut",
     "CHECKBOX",
     ["Move while tabbed out", "Move to TFAR channel even while the Arma window is not in focus"], //#TODO translation
@@ -188,10 +196,10 @@
     1
 ] call CBA_Settings_fnc_init;
 [
-    "TFAR_objectInterceptionStrength", 
-    "SLIDER", 
-    ["TFAR_objectInterceptionStrength", "TFAR_objectInterceptionStrength"], 
-    localize ELSTRING(settings,global), 
+    "TFAR_objectInterceptionStrength",
+    "SLIDER",
+    ["TFAR_objectInterceptionStrength", "TFAR_objectInterceptionStrength"],
+    localize ELSTRING(settings,global),
     [0, 1800, 400, 1],
     1,
     {["objectInterceptionStrength", TFAR_objectInterceptionStrength] call TFAR_fnc_setPluginSetting;}
@@ -206,10 +214,10 @@
     {["voiceCone", TFAR_voiceCone] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
 [
-    "TFAR_experimentalVehicleIsolation", 
-    "CHECKBOX", 
-    ["Experimental Vehicle Isolation", "Tries to read vehicle isolation amount from vehicles config"], 
-    localize ELSTRING(settings,global), 
+    "TFAR_experimentalVehicleIsolation",
+    "CHECKBOX",
+    ["Experimental Vehicle Isolation", "Tries to read vehicle isolation amount from vehicles config"],
+    localize ELSTRING(settings,global),
     true,
     1
 ] call CBA_Settings_fnc_init;
@@ -575,18 +583,18 @@
     {tf_independent_radio_code = GVARMAIN(radiocode_independent);}
 ] call CBA_Settings_fnc_init;
 [
-    "TFAR_instantiate_instantiateAtBriefing", 
-    "CHECKBOX", 
-    [ELSTRING(settings,instantiateAtBriefing), ELSTRING(settings,instantiateAtBriefing_desc)], 
-    localize ELSTRING(settings,global), 
+    "TFAR_instantiate_instantiateAtBriefing",
+    "CHECKBOX",
+    [ELSTRING(settings,instantiateAtBriefing), ELSTRING(settings,instantiateAtBriefing_desc)],
+    localize ELSTRING(settings,global),
     false,
     1
 ] call CBA_Settings_fnc_init;
 [
-    "TFAR_defaultIntercomSlot", 
-    "SLIDER", 
-    ["Default Intercom Channel", "Default Intercom channel when entering the vehicle. Has to be number. -1 is Disabled."], 
-    localize ELSTRING(settings,global), 
+    "TFAR_defaultIntercomSlot",
+    "SLIDER",
+    ["Default Intercom Channel", "Default Intercom channel when entering the vehicle. Has to be number. -1 is Disabled."],
+    localize ELSTRING(settings,global),
     [-1, 20, 0, 0],
     1
 ] call CBA_Settings_fnc_init;

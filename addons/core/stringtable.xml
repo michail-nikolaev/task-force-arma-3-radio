@@ -488,6 +488,16 @@
                 <Chinese>當無線電頻道更改時在右下角顯示提示訊息</Chinese>
                 <Chinesesimp>当无线电频道更改时在右下角显示提示讯息</Chinesesimp>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_showDiaryRecord">
+                <Original>Show diary help page</Original>
+                <English>Show diary help page</English>
+                <Russian>Отображать страницу помощи</Russian>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_showDiaryRecord_desc">
+                <Original>Show diary help page on briefing</Original>
+                <English>Show diary help page on briefing</English>
+                <Russian>Отображать страницу помощи на брифинге</Russian>
+            </Key>
             <Key ID="STR_TFAR_SETTINGS_FullDuplex">
                 <Original>Full-Duplex</Original>
                 <English>Full-Duplex</English>
