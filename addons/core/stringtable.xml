@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Project ID="Arma3">
     <Package name="core">
         <Container name="shared" comment="These strings might be used by other components too">
