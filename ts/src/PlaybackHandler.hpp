@@ -207,7 +207,8 @@ class playbackWavProcessing : public playbackBase {
 public:
     playbackWavProcessing(const short* samples, size_t sampleCount, int channels, std::vector<std::function<void(SampleBuffer&)>> processors); //#DOCS
     virtual ~playbackWavProcessing() {if (myThread) {
-        myThread->join();
+        if (myThread->joinable())
+            myThread->join();
         delete myThread;
     }};
     //************************************

@@ -358,8 +358,10 @@ void ts3plugin_shutdown() {
     Logger::log(LoggerTypes::teamspeakClientlog, "shutdown...", LogLevel_DEVEL);
 
     exitThread = true;
-    threadPipeHandle.join();
-    threadService.join();
+    if (threadPipeHandle.joinable())
+        threadPipeHandle.join();
+    if (threadService.joinable())
+        threadService.join();
     TFAR::getInstance().onShutdown();//Call shutdown Signal
 
     TFAR::getInstance().m_gameData.alive = false;

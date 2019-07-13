@@ -103,7 +103,7 @@ public:
         //for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);
         //for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], errorLevel);
         //for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], static_cast<float>(0.3f * (1.0f - errorLevel) * x));
-        if (errorLevel > 1.f || errorLevel < 0.f) onError("errorLevel out of bounds");
+        //if (errorLevel > 1.f || errorLevel < 0.f) onError("errorLevel out of bounds");
 
 
         for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], static_cast<float>(0.3f * (1.0f - errorLevel) * x));
