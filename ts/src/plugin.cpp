@@ -690,11 +690,11 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
             processRadioEffect(radio_buffer, intercomVolume, clientData->effects.getLrRadioEffect("intercom"), stereoMode::stereo);
         }
 
-        radio_buffer.mixInto(sampleBuffer);//Mix current Radio into samples
+        radio_buffer.mixIntoAdditive(sampleBuffer);//Mix current Radio into samples
     }
 
     const auto globalGain = TFAR::getInstance().m_gameData.globalVolume;
-   sampleBuffer.applyGain(globalGain);
+    sampleBuffer.applyGain(globalGain);
 
 
 

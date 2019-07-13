@@ -116,11 +116,18 @@ public:
         samples->copyTo(outbuf.samples);
         return outbuf;
     }
-    void mixInto(SampleBufferT& target) const {
+
+    void mixIntoAdditive(SampleBufferT& target) const {
         //#TODO implementation for float is different
-        std::transform(target.samples->begin(), target.samples->end(), samples->begin(), target.samples->begin(), [](short left, short right)
-        {
-            return std::clamp(static_cast<int>(left) + static_cast<int>(right), SHRT_MIN, SHRT_MAX);
+        std::transform(target.samples->begin(), target.samples->end(), samples->begin(), target.samples->begin(), [](int a, int b) {
+            return std::clamp(a + b, SHRT_MIN, SHRT_MAX);
+        });
+    }
+
+    void mixIntoAverage(SampleBufferT& target) const {
+        //#TODO implementation for float is different
+        std::transform(target.samples->begin(), target.samples->end(), samples->begin(), target.samples->begin(), [](int a, int b) {
+            return std::clamp((a + b) / 2, SHRT_MIN, SHRT_MAX);
         });
     }
 

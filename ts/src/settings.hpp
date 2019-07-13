@@ -13,7 +13,7 @@
     XX(addon_version,"unknown"), \
     XX(serious_channelName,""), \
     XX(serious_channelPassword,""), \
-    XX(intercomVolume,0.3f), \
+    XX(intercomVolume,0.1f), \
     XX(intercomEnabled,true), \
     XX(pluginTimeout,4.f), \
     XX(headsetLowered,false), \
