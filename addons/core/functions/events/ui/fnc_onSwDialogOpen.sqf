@@ -1,6 +1,9 @@
 #include "script_component.hpp"
 
-if (!(alive TFAR_currentUnit) or {isNil "TF_sw_dialog_radio"} or {dialog}) exitWith {};
+if (
+    (!(alive TFAR_currentUnit) && !(TFAR_currentUnit getVariable ["TFAR_forceSpectator", false]))
+    || {isNil "TF_sw_dialog_radio"}
+    || {dialog}) exitWith {};
 
 private _dialog_to_open = getText(configFile >> "CfgWeapons" >> TF_sw_dialog_radio >> "tf_dialog");
 createDialog _dialog_to_open;
