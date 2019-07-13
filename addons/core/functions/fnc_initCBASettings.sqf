@@ -40,7 +40,7 @@
     "SLIDER",
     ELSTRING(settings,intercomVolume),
     localize ELSTRING(settings,clientside),
-    [0.01, 0.6, 0.2, 3],
+    [0.01, 0.6, 0.1, 3],
     2,
     {["intercomVolume", TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
