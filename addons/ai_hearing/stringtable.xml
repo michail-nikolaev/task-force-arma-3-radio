@@ -7,6 +7,8 @@
             <German>Hörende KI</German>
             <Japanese>AI の聴覚</Japanese>
             <Korean>AI 듣기</Korean>
+            <Chinese>AI 聽覺</Chinese>
+            <Chinesesimp>AI 听觉</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_AI_HEARING_SETTING_DESC">
             <Original>If enabled, the ai is able to detect speaking players.</Original>
