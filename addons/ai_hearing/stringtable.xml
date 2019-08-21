@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project name="TFAR">
     <Package name="ai_hearing">
         <Key ID="STR_TFAR_AI_HEARING_SETTING_HEADER">
@@ -14,18 +14,24 @@
             <German>Wenn aktiviert, dann reagiert die KI auf die Gespräche der Spieler.</German>
             <Japanese>有効化すると、AI はプレイヤーの話し声を検知します。</Japanese>
             <Korean>활성되면 AI가 말하고 있는 플레이어를 감지합니다.</Korean>
+            <Chinese>啟用後AI將可聽見玩家聲音，並且做出反應</Chinese>
+            <Chinesesimp>启用后AI将可听见玩家声音，并且做出反应</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_AI_HEARING_SETTING_SPEAKER_HEADER">
             <Original>AI Hearing Speakers</Original>
             <English>AI Hearing Speakers</English>
             <German>Lautsprecher hörende KI</German>
             <Japanese>AI のスピーカー聴覚</Japanese>
+            <Chinese>AI 聽覺(擴音器)</Chinese>
+            <Chinesesimp>AI 听觉(扩音器)</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_AI_HEARING_SETTING_SPEAKER_DESC">
             <Original>If enabled, the ai is able to detect active speakers.\n Currently the ai detects if they receive a call and have ANY speaker active.</Original>
             <English>If enabled, the ai is able to detect active speakers.\n Currently the ai detects if they receive a call and have ANY speaker active.</English>
             <German>Wenn aktiviert, dann reagiert die KI auf die aktive Lautsprecher der Spieler.\n Aktuell reagiert die KI auf eingehende Funksprüche, wenn ein BELIEBIGER Lautsprecher eingeschaltet ist.</German>
             <Japanese>有効化すると、AI はスピーカーからの話し声を検知します。\n 現在の AI は受信かいかなる稼働中のスピーカーを検知します。</Japanese>
+            <Chinese>啟用後若玩家無線電使用擴音器(非耳機麥克風)。\nAI可聽見玩家無線電聲音，並且做出反應</Chinese>
+            <Chinesesimp>启用后若玩家无线电使用扩音器(非耳机麦克风)。\nAI可听见玩家无线电声音，并且做出反应</Chinesesimp>
         </Key>
     </Package>
 </Project>

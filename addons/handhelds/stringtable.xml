@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project name="TFAR">
     <Package name="backpacks">
         <Key ID="STR_TFAR_handhelds_RF7800STR">
             <Original>RF-7800S-TR</Original>
             <English>RF-7800S-TR</English>
+            <Chinese>RF-7800S-TR</Chinese>
+            <Chinesesimp>RF-7800S-TR</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_handhelds_RF7800STR_Desc">
             <Original>RF-7800S-TR rifleman radio 2km</Original>
@@ -16,6 +18,8 @@
         <Key ID="STR_TFAR_handhelds_PNR1000A">
             <Original>PNR-1000A</Original>
             <English>PNR-1000A</English>
+            <Chinese>PNR-1000A</Chinese>
+            <Chinesesimp>PNR-1000A</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_handhelds_PNR1000A_Desc">
             <Original>PNR-1000A rifleman radio 2km</Original>
@@ -44,6 +48,8 @@
         <Key ID="STR_TFAR_handhelds_FADAK">
             <Original>FADAK</Original>
             <English>FADAK</English>
+            <Chinese>FADAK</Chinese>
+            <Chinesesimp>FADAK</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_handhelds_FADAK_Desc">
             <Original>FADAK personal radio 5km</Original>
@@ -56,6 +62,8 @@
         <Key ID="STR_TFAR_handhelds_ANPRC154">
             <Original>AN/PRC-154</Original>
             <English>AN/PRC-154</English>
+            <Chinese>AN/PRC-154</Chinese>
+            <Chinesesimp>AN/PRC-154</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC154_Desc">
             <Original>AN/PRC-154 rifleman radio 2km</Original>
@@ -68,6 +76,8 @@
         <Key ID="STR_TFAR_handhelds_ANPRC152">
             <Original>AN/PRC-152</Original>
             <English>AN/PRC-152</English>
+            <Chinese>AN/PRC-152</Chinese>
+            <Chinesesimp>AN/PRC-152</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC152_Desc">
             <Original>AN/PRC-152 personal radio 5km</Original>
@@ -80,6 +90,8 @@
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM">
             <Original>AN/PRC-148 JEM</Original>
             <English>AN/PRC-148 JEM</English>
+            <Chinese>AN/PRC-148 JEM</Chinese>
+            <Chinesesimp>AN/PRC-148 JEM</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM_Desc">
             <Original>AN/PRC-148 JEM personal radio 5km</Original>
