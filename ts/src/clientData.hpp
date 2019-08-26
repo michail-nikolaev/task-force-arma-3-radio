@@ -223,7 +223,7 @@ public:
         filtersVehicle.clear();
     }
 private:
-    ReadWriteLock m_lock;
+    ReadWriteLock m_lock{"clientDataEffects"};
 
     //Filters and Effects
     template<typename T>
@@ -330,7 +330,7 @@ public:
     clientDataEffects effects;
     SampleBuffer OISampleBuffer;
 private:
-    mutable ReadWriteLock m_lock;
+    mutable ReadWriteLock m_lock{"clientData"};
 
     std::vector<std::string> modificationLog;
 

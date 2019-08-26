@@ -17,7 +17,7 @@ using namespace std::literals::string_view_literals;
 
 volatile bool skipTangentOff = false;
 volatile bool waitingForTangentOff = false;
-CriticalSectionLock tangentCriticalSection;
+CriticalSectionLock tangentCriticalSection{ "tangentCriticalSection" };
 extern bool isSeriousModeEnabled(TSServerID serverConnectionHandlerID, TSClientID clientId);
 extern void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false });
 

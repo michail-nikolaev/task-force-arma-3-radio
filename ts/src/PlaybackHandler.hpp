@@ -336,6 +336,6 @@ public:
     void playWavFile(TSServerID serverConnectionHandlerID, SoundFile file, float gain, Position3D position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode = stereoMode::stereo);
 private:
     std::shared_ptr<clunk::WavFile> getWavFileFromPath(const std::string& filePath);
-    CriticalSectionLock playbackCriticalSection;
+    CriticalSectionLock playbackCriticalSection{ "PlaybackHandler" };
 };
 

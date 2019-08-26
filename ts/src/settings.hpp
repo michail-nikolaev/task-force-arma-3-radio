@@ -207,7 +207,7 @@ public:
 
     Signal<void(const Setting&)> configValueSet;
 private:
-    CriticalSectionLock m_lock;
+    CriticalSectionLock m_lock{ "settings" };
     bool needRefresh = true;
     std::array<settingValue, Setting::Setting_MAX + 1> values{
         Settings(EnumDefault)

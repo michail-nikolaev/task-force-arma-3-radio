@@ -67,7 +67,7 @@ public:
         receivingDistanceMultiplicator = helpers::parseArmaNumber(tokens[9]);
         speakerDistance = helpers::parseArmaNumber(tokens[10]);
     }
-    mutable ReadWriteLock m_lock;
+    mutable ReadWriteLock m_lock{ "gameData" };
     std::map<std::string, FREQ_SETTINGS, std::less<>> mySwFrequencies;
     std::map<std::string, FREQ_SETTINGS, std::less<>> myLrFrequencies;
 

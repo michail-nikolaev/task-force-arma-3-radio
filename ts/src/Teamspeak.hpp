@@ -29,7 +29,7 @@ public:
     void clearChannelCache();
 
 private:
-    CriticalSectionLock m_criticalSection;
+    CriticalSectionLock m_criticalSection{"TeamspeakServerData"};
     std::vector<dataType::TSClientID> mutedClients;
     std::string myOriginalNickname;
     TSClientID myClientID{ -1 };//Too small to need mutex
