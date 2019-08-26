@@ -112,13 +112,13 @@ public:
     }
 };
 
-#if ENABLE_TRACY_PROFILING
+#if ENABLE_TRACY_LOCK_PROFILING
 class ReadWriteLock {
     ProfilerScope sc;
     tracy::SharedLockable<ReadWriteLock_impl> lock;
 
 public:
-    ReadWriteLock(std::string_view name) : sc(name.data(), nullptr, 0), lock((tracy::SourceLocationData*)& sc.data) {
+    ReadWriteLock(std::string_view name) : sc(nullptr, name.data(), 0), lock((tracy::SourceLocationData*)& sc.data) {
 
     }
 
@@ -142,7 +142,7 @@ class CriticalSectionLock {
     ProfilerScope sc;
     tracy::SharedLockable<ReadWriteLock_impl> lock;
 public:
-    CriticalSectionLock(std::string_view name): sc(name.data(), nullptr, 0), lock((tracy::SourceLocationData*)&sc.data) {
+    CriticalSectionLock(std::string_view name): sc(nullptr, name.data(), 0), lock((tracy::SourceLocationData*)&sc.data) {
 
     }
 

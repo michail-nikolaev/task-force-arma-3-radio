@@ -1,9 +1,17 @@
 #pragma once
 #include <string_view>
 #include <memory>
+
+#define ENABLE_TRACY_PROFILING 1
+#define ENABLE_TRACY_LOCK_PROFILING 1
+
+
+#if ENABLE_TRACY_PROFILING
 #define TRACY_ENABLE
 #define TRACY_ON_DEMAND
+#define TRACY_NO_SYSTEM_TRACING
 #include <Tracy.hpp>
+#endif
 
 struct SourceLocationData
 {
@@ -19,7 +27,8 @@ class ProfilerScope {
 public:
     constexpr ProfilerScope(std::string_view scopeName, uint32_t line) : data({ scopeName.data(), scopeName.data(), nullptr, line, 0 }) {}
     constexpr ProfilerScope(const char* funcName, uint32_t line) : data({ funcName, nullptr, nullptr, line, 0 }) {}
-    constexpr ProfilerScope(const char* scopeName, const char* funcName,  uint32_t line) : data({scopeName, funcName, nullptr, line, 0}) {}
+    constexpr ProfilerScope(const char* scopeName, const char* funcName, uint32_t line) : data({ scopeName, funcName, nullptr, line, 0 }) {}
+    constexpr ProfilerScope(const char* scopeName, const char* funcName, const char* file, uint32_t line) : data({scopeName, funcName, file, line, 0}) {}
 
     const SourceLocationData data;
 };
@@ -59,7 +68,18 @@ extern ProfilerTracy GProfilerTracy;
 
 #define __CONCAT(x,y) x##y
 #define _CONCAT(x,y) __CONCAT(x,y)
+#if ENABLE_TRACY_PROFILING
+
 #define ProfileFunction static constexpr ProfilerScope _CONCAT(prof_scopeData_, __LINE__) (__FUNCTION__, __LINE__); auto _CONCAT(prof_run_, __LINE__) = GProfilerTracy.enterScope(_CONCAT(prof_scopeData_, __LINE__));
 #define ProfileFunctionN(name) static constexpr ProfilerScope _CONCAT(prof_scopeData_, __LINE__) (name, __FUNCTION__, __LINE__); auto _CONCAT(prof_run_, __LINE__) = GProfilerTracy.enterScope(_CONCAT(prof_scopeData_, __LINE__));
 #define ProfileScopeN(name) static constexpr ProfilerScope _CONCAT(prof_scopeData_, __LINE__) (name, __FUNCTION__, __LINE__); auto _CONCAT(prof_run_, __LINE__) = GProfilerTracy.enterScope(_CONCAT(prof_scopeData_, __LINE__));
 #define ProfilerLog(msg) GProfilerTracy.addLog(msg)
+
+#else
+
+#define ProfileFunction
+#define ProfileFunctionN(name)
+#define ProfileScopeN(name)
+#define ProfilerLog(msg)
+
+#endif
