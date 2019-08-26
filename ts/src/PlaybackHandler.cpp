@@ -34,6 +34,7 @@ PlaybackHandler::PlaybackHandler() {
 }
 
 void PlaybackHandler::onEditMixedPlaybackVoiceDataEvent(short * samples, int sampleCount, int channels, const unsigned int *, unsigned int * channelFillMask) {
+    ProfileFunction;
     LockGuard_exclusive lock(playbackCriticalSection);
     bool fill = false;
     std::vector<std::string> to_remove;
@@ -459,6 +460,7 @@ playbackWavProcessing::playbackWavProcessing(const short* samples, size_t sample
     std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 #endif
     myThread = new std::thread([this, sampleCount]() {
+        ProfileFunctionN("process audio functors");
         SampleBuffer buf(sampleStore.data(), sampleCount, 2);
         for (auto& it : functors) {
             it(buf);

@@ -53,6 +53,7 @@ void CommandProcessor::stopThread() {
 }
 
 void CommandProcessor::queueCommand(const std::string& command) {
+    ProfileFunction;
     if (!myThread) {
         myThread = std::make_unique<std::thread>(&CommandProcessor::threadRun, this);
     }
@@ -69,6 +70,8 @@ DEFINE_API_PROFILER(processCommand)
 std::string CommandProcessor::processCommand(const std::string& command) {
     Logger::log(LoggerTypes::gameCommands, command);
     API_PROFILER(processCommand);
+    ProfileFunction;
+    ProfilerLog(command);
     std::vector<std::string_view> tokens; tokens.reserve(28);
     helpers::split(command, '\t', tokens, 2); //may not be used in nickname
     const auto gameCommand = toGameCommand(tokens[0], tokens.size());
@@ -161,6 +164,7 @@ void CommandProcessor::threadRun() {
         std::unique_lock<std::mutex> lock(theadMutex);
         threadWorkCondition.wait(lock, [this] {return !commandQueue.empty() || !shouldRun; });
         if (!shouldRun) return;
+        ProfileFunction;
         const auto command(std::move(commandQueue.front()));
         commandQueue.pop();
         lock.unlock();
@@ -174,6 +178,8 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
     if (command.substr(0,3) != "POS") //else double log as POS is also logged in sync processing
         Logger::log(LoggerTypes::gameCommands, command);
     API_PROFILER(processAsynchronousCommand);
+    ProfileFunction;
+    ProfilerLog(command);
     std::vector<std::string_view> tokens; tokens.reserve(18);
     helpers::split(command, '\t', tokens); //may not be used in nickname
     const auto gameCommand = toGameCommand(tokens[0], tokens.size());
@@ -390,10 +396,10 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
             auto basePath = std::string(getenv("appdata")) + R"(\TS3Client\logs\)" + dateString + "\\";
             std::error_code err;
 
-            std::experimental::filesystem::create_directories(basePath,err);
+            std::filesystem::create_directories(basePath,err);
 
-            std::experimental::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_pluginCommands.log)", basePath + "TFAR_pluginCommands.log",err);
-            std::experimental::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_gameCommands.log)", basePath + "TFAR_gameCommands.log", err);
+            std::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_pluginCommands.log)", basePath + "TFAR_pluginCommands.log",err);
+            std::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_gameCommands.log)", basePath + "TFAR_gameCommands.log", err);
 
             clientDataDir->forEachClient([&basePath](const std::shared_ptr<clientData>& cli) {
                 auto messages = std::move(cli->messages);
@@ -439,6 +445,7 @@ void CommandProcessor::processSpeakers(std::vector<std::string_view>& tokens) co
     TFAR::getInstance().m_gameData.speakers.clear();
     if (tokens.size() != 2)
         return;
+    ProfileFunction;
 
     //if you switch TS tab... You don't get speakers bro!
     const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
@@ -471,6 +478,7 @@ void CommandProcessor::processSpeakers(std::vector<std::string_view>& tokens) co
 }
 
 void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverConnection) const {
+    ProfileFunction;
     const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
     if (clientDataDir) {
         if (const auto clientData = clientDataDir->getClientData(name); clientData) {
@@ -533,6 +541,7 @@ DEFINE_API_PROFILER(processUnitPosition)
 
 void CommandProcessor::processUnitPosition(TSServerID serverConnection, unitPositionPacket& packet) {
     API_PROFILER(processUnitPosition);
+    ProfileFunction;
     const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnection);
     if (!clientDataDir) return;
 
@@ -569,6 +578,7 @@ std::string CommandProcessor::ts_info(std::string_view command) {
 }
 
 void CommandProcessor::process_tangent_off(PTTDelayArguments arguments) {
+    ProfileFunction;
     waitingForTangentOff = true;
     if (arguments.pttDelay > 0ms)
         std::this_thread::sleep_for(arguments.pttDelay);
@@ -591,6 +601,7 @@ void CommandProcessor::disableVoiceAndSendCommand(std::string_view commandToBroa
 }
 
 std::string CommandProcessor::convertNickname(std::string_view nickname) {
+    ProfileFunction;
     if (!nickname.empty() && (nickname.front() == ' ' || nickname.back() == ' ')) {
         std::string newName(nickname);
         if (nickname.front() == ' ') {

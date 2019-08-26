@@ -36,6 +36,7 @@
 #include "Teamspeak.hpp"
 #include <chrono>
 #include "version.h"
+#include "profilers.hpp"
 
 #define PATH_BUFSIZE 512
 
@@ -178,8 +179,11 @@ void PipeThread() {
 
     std::string command;
     while (!exitThread) {
+        ProfileFunction;
+
         if (!pipeHandler.isConnected()) { //Need this call! It sets the lastPluginTick variable and causes on(dis)Connected events
-            std::this_thread::sleep_for(5ms);
+            ProfileScopeN("no connect sleep");
+            std::this_thread::sleep_for(100ms);
             continue;
         }
 
@@ -188,8 +192,8 @@ void PipeThread() {
     #endif
         if (!pipeHandler.getData(command, 20ms))//This will still wait. 1ms if SHAMEM error. 20ms if game unconnected
             continue;
-
-        speedTest gameCommandIn("gameCommandInPipe", false);
+        ProfileScopeN("got command");
+        //speedTest gameCommandIn("gameCommandInPipe", false);
 
         if (command.back() == '~') {//a ~ at the end identifies an Async call
             command.pop_back();//removes ~ from end
@@ -205,17 +209,17 @@ void PipeThread() {
             }
         #endif
         } else {
-            gameCommandIn.reset();
+            //gameCommandIn.reset();
         #ifdef USE_SHAREDMEM
             const auto commandResult = TFAR::getCommandProcessor()->processCommand(command);
             pipeHandler.sendData(commandResult);
-            if (gameCommandIn.getCurrentElapsedTime().count() >
-            #ifdef _DEBUG
-                400)
-            #else
-                200)
-            #endif
-                log_string("gameinteraction " + std::to_string(gameCommandIn.getCurrentElapsedTime().count()) + command, LogLevel_INFO);   //#Release remove logging and creation variable
+            //if (gameCommandIn.getCurrentElapsedTime().count() >
+            //#ifdef _DEBUG
+            //    400)
+            //#else
+            //    200)
+            //#endif
+            //    log_string("gameinteraction " + std::to_string(gameCommandIn.getCurrentElapsedTime().count()) + command, LogLevel_INFO);   //#Release remove logging and creation variable
         #else
             if (gameCommandIn.getCurrentElapsedTime().count() > 200)
                 log_string("gameinteraction " + std::to_string(gameCommandIn.getCurrentElapsedTime().count()) + command, LogLevel_INFO);   //#Release remove logging and creation variable
@@ -396,6 +400,7 @@ void ts3plugin_infoData(uint64 serverConnectionHandlerID, uint64 id, enum Plugin
 
 
 bool isPluginEnabledForUser(TSServerID serverConnectionHandlerID, TSClientID clientID) {
+    ProfileFunction;
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
     if (!clientDataDir) return false;
     auto clientData = clientDataDir->getClientData(clientID);
@@ -431,6 +436,7 @@ void ts3plugin_onEditMixedPlaybackVoiceDataEvent(uint64 serverConnectionHandlerI
 void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID, short* samples, int sampleCount, int channels, bool isFromMicrophone = false) {
     if (!TFAR::getInstance().getCurrentlyInGame())
         return;
+    ProfileFunction;
     _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
     _mm_setcsr((_mm_getcsr() & ~0x0040) | (0x0040));//_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
     static std::chrono::system_clock::time_point last_no_info;
@@ -514,7 +520,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
         distanceFromClient <= (clientData->voiceVolume + 15)
         ) {
         //Direct Speech
-
+        ProfileScopeN("direct speech");
 
         if (shouldPlayerHear) {
             if (vehicleVolumeLoss < 0.01 || isInSameVehicle) {
@@ -578,6 +584,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     const auto radioDistance = myData->effectiveDistanceTo(clientData);
     if (listed_info.empty() && distanceFromClient > 30) LOG3DMUTE("TFAR NOR");
     for (auto& info : listed_info) {
+        ProfileScopeN("listed info");
         if (isFromMicrophone && info.on == receivingRadioType::LISTED_ON_INTERCOM) continue; //We don't want to hear ourselves over intercom while doing direct speech
         auto radio_buffer = originalBuffer.copy();
         auto volumeLevel = helpers::volumeMultiplifier(static_cast<float>(info.volume));
@@ -730,6 +737,8 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
     if (!TFAR::getInstance().getCurrentlyInGame())
         return;
 
+    ProfileFunction;
+
     if (channels != 2) {
         short* stereo = new short[sampleCount * 2];
         for (auto q = 0; q < sampleCount; q++) {
@@ -754,6 +763,8 @@ void ts3plugin_onEditPostProcessVoiceDataEvent(uint64 serverConnectionHandlerID,
 void ts3plugin_onEditCapturedVoiceDataEvent(uint64 serverConnectionHandlerID, short* samples, int sampleCount, int channels, int* edited) {
     if (!TFAR::getInstance().getCurrentlyInGame() || !(*edited & 2))
         return;
+
+    ProfileFunction;
 
     if (!TFAR::getInstance().m_gameData.alive || TFAR::getInstance().m_gameData.speakers.empty()) return;
     auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
@@ -790,6 +801,7 @@ void ts3plugin_onCustom3dRolloffCalculationClientEvent(uint64 serverConnectionHa
 #pragma region pluginCommands
 /* Clientlib rare */
 void ts3plugin_onClientSelfVariableUpdateEvent(uint64 serverConnectionHandlerID, int flag, const char* oldValue, const char* newValue) {
+    ProfileFunction;
     if (flag == CLIENT_FLAG_TALKING && TFAR::getInstance().getCurrentlyInGame()) {
         std::string one = "1";
         const bool start = one == newValue;
@@ -839,6 +851,7 @@ void processAllTangentRelease(TSServerID serverId, const std::vector<std::string
 }
 
 void processTangentPress(TSServerID serverId, const std::vector<std::string_view> &tokens, std::string_view command) {
+    ProfileFunction;
     std::vector<LISTED_INFO> listedInfos;
     const auto nickname = tokens.back();
     //Input validation first.
@@ -985,6 +998,7 @@ void processTangentPress(TSServerID serverId, const std::vector<std::string_view
 }
 
 void processPluginCommand(std::string_view command) {
+    ProfileFunction;
     auto tokens = helpers::split(command, '\t'); // may not be used in nickname
     const auto serverId = Teamspeak::getCurrentServerConnection();
 
@@ -1032,6 +1046,7 @@ void ts3plugin_onPluginCommandEventNew(uint64 serverConnectionHandlerID, const c
 }
 
 void ts3plugin_onPluginCommandEventOld(uint64 serverConnectionHandlerID, const char* pluginName, const char* pluginCommand) {
+    ProfileFunction;
     Logger::log(LoggerTypes::pluginCommands, std::string(pluginName) + ":" + std::string(pluginCommand));
     log_string(std::string("ON PLUGIN COMMAND ") + pluginName + " " + pluginCommand, LogLevel_DEVEL);
     if (Teamspeak::getCurrentServerConnection() == serverConnectionHandlerID) {

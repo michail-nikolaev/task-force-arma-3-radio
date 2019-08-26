@@ -56,6 +56,19 @@ public:
     void unlockShared() {
         ReleaseSRWLockShared(&m_lock);
     }
+
+    void lock() {
+        lockExclusive();
+    }
+    void unlock() {
+        unlockExclusive();
+    }
+    void lock_shared() {
+        lockShared();
+    }
+    void unlock_shared() {
+        unlockShared();
+    }
 };
 
 class CriticalSectionLock {  //Consider SRW locks if you are reading at least 4:1 vs writing
@@ -76,5 +89,19 @@ public:
     }
     void unlockShared() {
         LeaveCriticalSection(&m_lock);
+    }
+
+
+    void lock() {
+        lockExclusive();
+    }
+    void unlock() {
+        unlockExclusive();
+    }
+    void lock_shared() {
+        lockShared();
+    }
+    void unlock_shared() {
+        unlockShared();
     }
 };

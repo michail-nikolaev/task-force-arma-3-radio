@@ -6,6 +6,7 @@
 #include <utility>
 #include "version.h"
 #include <string>
+#include "ProfilerTracy.hpp"
 
 namespace profiler {
     void log(const std::string& message);
@@ -16,7 +17,7 @@ namespace profiler {
 #define ENABLE_API_PROFILER 0     // Disabled for release builds
 #define ENABLE_PLUGIN_LOGS 1
 #else
-#define ENABLE_API_PROFILER 1     // Comment this line to disable the profiler
+//#define ENABLE_API_PROFILER 1     // Comment this line to disable the profiler
 #endif
 
 #if ENABLE_API_PROFILER

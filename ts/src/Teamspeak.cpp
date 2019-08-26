@@ -835,10 +835,10 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
         auto basePath = std::string(getenv("appdata")) + R"(\TS3Client\logs\)"+ dateString +"\\";
         std::error_code err;
 
-        std::experimental::filesystem::create_directories(basePath, err);
+        std::filesystem::create_directories(basePath, err);
 
-        std::experimental::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_pluginCommands.log)", basePath + "TFAR_pluginCommands.log", err);
-        std::experimental::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_gameCommands.log)", basePath + "TFAR_gameCommands.log", err);
+        std::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_pluginCommands.log)", basePath + "TFAR_pluginCommands.log", err);
+        std::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_gameCommands.log)", basePath + "TFAR_gameCommands.log", err);
 
         auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
         if (!clientDataDir) return 1;
