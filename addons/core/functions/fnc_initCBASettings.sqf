@@ -147,11 +147,19 @@
     "CHECKBOX",
     [ELSTRING(settings,curatorCamEars), ELSTRING(settings,curatorCamEars_desc)], 
     localize ELSTRING(settings,global),
-    true,
-    1
+    false,
+    0
 ] call CBA_Settings_fnc_init;
 
-
+[
+    "TFAR_noAutomoveSpectator",
+    "CHECKBOX",
+    [ELSTRING(settings,noAutomoveSpectator), ELSTRING(settings,noAutomoveSpectator_desc)], 
+    localize ELSTRING(settings,global),
+    false,
+    0,
+    {["oAutomoveSpectator", _this] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
 
 
 

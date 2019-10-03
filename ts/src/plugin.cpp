@@ -139,8 +139,18 @@ void ServiceThread() {
         if ((std::chrono::system_clock::now() - lastCheckForExpire.load()) > MILLIS_TO_EXPIRE) {
             //bool isSerious = isSeriousModeEnabled(Teamspeak::getCurrentServerConnection(), Teamspeak::getMyId());
 
-            if (TFAR::getInstance().getCurrentlyInGame())
-                Teamspeak::moveToSeriousChannel();//#TODO people may want to leave SeriousChannel on purpose and not be moved back
+            if (TFAR::getInstance().getCurrentlyInGame()) {
+                bool allowedToMove = true;
+                if (TFAR::config.get<bool>(Setting::noAutomoveSpectator)) {
+                    auto clientDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
+                    if (clientDir && clientDir->myClientData) {
+                        allowedToMove = !clientDir->myClientData->isSpectating;
+                    }
+                }
+                if (allowedToMove)
+                    Teamspeak::moveToSeriousChannel();//#TODO people may want to leave SeriousChannel on purpose and not be moved back
+            }
+                
             lastCheckForExpire = std::chrono::system_clock::now();
             TFAR::getServerDataDirectory()->verify();
         }

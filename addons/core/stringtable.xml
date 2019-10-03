@@ -512,6 +512,16 @@
                 <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
             </Key>
 
+            <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator">
+                <English>No Automove in Spectator</English>
+                <German>Kein Automove im Spectator</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator_desc">
+                <English>Don't force move to TFAR channel while in spectator mode</English>
+                <German>Nicht in den TFAR Channel verschieben während man im Spectator Modus ist</German>
+            </Key>
+
+
             <Key ID="STR_TFAR_SETTINGS_FullDuplex">
                 <Original>Full-Duplex</Original>
                 <English>Full-Duplex</English>
