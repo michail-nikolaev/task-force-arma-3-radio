@@ -207,7 +207,8 @@ class playbackWavProcessing : public playbackBase {
 public:
     playbackWavProcessing(const short* samples, size_t sampleCount, int channels, std::vector<std::function<void(SampleBuffer&)>> processors); //#DOCS
     virtual ~playbackWavProcessing() {if (myThread) {
-        myThread->join();
+        if (myThread->joinable())
+            myThread->join();
         delete myThread;
     }};
     //************************************
@@ -335,6 +336,6 @@ public:
     void playWavFile(TSServerID serverConnectionHandlerID, SoundFile file, float gain, Position3D position, bool onGround, int radioVolume, bool underwater, float vehicleVolumeLoss, bool vehicleCheck, stereoMode stereoMode = stereoMode::stereo);
 private:
     std::shared_ptr<clunk::WavFile> getWavFileFromPath(const std::string& filePath);
-    CriticalSectionLock playbackCriticalSection;
+    CriticalSectionLock playbackCriticalSection{ "PlaybackHandler" };
 };
 

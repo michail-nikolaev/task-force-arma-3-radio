@@ -28,6 +28,7 @@ X3DAUDIO_HANDLE x3d_handle;
 bool x3d_initialized = false;
 
 void helpers::applyILD(SampleBuffer& samples, Position3D myPosition, Direction3D myViewDirection, Position3D emitterPosition, Direction3D emitterViewDirection, bool shouldPlayerHear, int emitterVoiceVolume) {
+    ProfileFunction;
     if (!x3d_initialized) {
         X3DAudioInitialize(
             SPEAKER_FRONT_LEFT | SPEAKER_FRONT_RIGHT,

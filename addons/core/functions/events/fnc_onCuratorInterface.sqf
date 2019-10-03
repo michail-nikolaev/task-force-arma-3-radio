@@ -24,11 +24,6 @@ switch _eventType do {
         _display displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_processCuratorKey"];
         _display displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
 
-        _display displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
-        _display displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onTangentPressedHack"];
-        _display displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
-
-
         if (player call TFAR_fnc_isForcedCurator) then {
             //Add PFH that moves curatorLogic's position to camera position,
             //so we can hear players relative to camera
@@ -47,7 +42,7 @@ switch _eventType do {
         if (TFAR_ShowVolumeHUD) then {
             (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];
         };
-        if (player getVariable ["TFAR_curatorCamEars",false]) then {
+        if (TFAR_curatorCamEars) then {
             player setVariable ["TF_fnc_position", {private _pctw = positionCameraToWorld [0,0,0]; [ATLToASL _pctw, (positionCameraToWorld [0,0,1]) vectorDiff _pctw]}];
         }
     };
@@ -56,7 +51,7 @@ switch _eventType do {
             (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];
         };
         call TFAR_fnc_updateSpeakVolumeUI;
-        if (player getVariable ["TFAR_curatorCamEars",false]) then {
+        if (TFAR_curatorCamEars) then {
             player setVariable ["TF_fnc_position", nil];
         }
     };

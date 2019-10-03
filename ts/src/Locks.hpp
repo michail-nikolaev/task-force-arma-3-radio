@@ -10,6 +10,8 @@ But i already created this new one so.... nah
 
 */
 
+#include "ProfilerTracy.hpp"
+
 template<class LOCK>
 class LockGuard_exclusive {
     LOCK* m_lock;
@@ -41,9 +43,11 @@ public:
 
 };
 
-class ReadWriteLock {  //Consider SRW locks if you are reading at least 4:1 vs writing
+class ReadWriteLock_impl {  //Consider SRW locks if you are reading at least 4:1 vs writing
     SRWLOCK m_lock{ SRWLOCK_INIT };
 public:
+    ReadWriteLock_impl() {}
+    ReadWriteLock_impl(std::string_view) {}
     void lockExclusive() {
         AcquireSRWLockExclusive(&m_lock);
     }
@@ -56,13 +60,28 @@ public:
     void unlockShared() {
         ReleaseSRWLockShared(&m_lock);
     }
+
+    void lock() {
+        lockExclusive();
+    }
+    void unlock() {
+        unlockExclusive();
+    }
+    void lock_shared() {
+        lockShared();
+    }
+    void unlock_shared() {
+        unlockShared();
+    }
 };
 
-class CriticalSectionLock {  //Consider SRW locks if you are reading at least 4:1 vs writing
+class CriticalSectionLock_impl {  //Consider SRW locks if you are reading at least 4:1 vs writing
     CRITICAL_SECTION m_lock;
 public:
-    CriticalSectionLock() { InitializeCriticalSection(&m_lock); }
-    ~CriticalSectionLock() {
+    CriticalSectionLock_impl() { InitializeCriticalSection(&m_lock); }
+    CriticalSectionLock_impl(std::string_view) { InitializeCriticalSection(&m_lock); }
+
+    ~CriticalSectionLock_impl() {
         DeleteCriticalSection(&m_lock);
     }
     void lockExclusive() {
@@ -77,4 +96,72 @@ public:
     void unlockShared() {
         LeaveCriticalSection(&m_lock);
     }
+
+
+    void lock() {
+        lockExclusive();
+    }
+    void unlock() {
+        unlockExclusive();
+    }
+    void lock_shared() {
+        lockShared();
+    }
+    void unlock_shared() {
+        unlockShared();
+    }
 };
+
+#if ENABLE_TRACY_LOCK_PROFILING
+class ReadWriteLock {
+    ProfilerScope sc;
+    tracy::SharedLockable<ReadWriteLock_impl> lock;
+
+public:
+    ReadWriteLock(std::string_view name) : sc(nullptr, name.data(), 0), lock((tracy::SourceLocationData*)& sc.data) {
+
+    }
+
+
+    void lockExclusive() {
+        lock.lock();
+    }
+    void lockShared() {
+        lock.lock_shared();
+    }
+    void unlockExclusive() {
+        lock.unlock();
+    }
+    void unlockShared() {
+        lock.unlock_shared();
+    }
+
+};
+
+class CriticalSectionLock {
+    ProfilerScope sc;
+    tracy::SharedLockable<ReadWriteLock_impl> lock;
+public:
+    CriticalSectionLock(std::string_view name): sc(nullptr, name.data(), 0), lock((tracy::SourceLocationData*)&sc.data) {
+
+    }
+
+
+    void lockExclusive() {
+        lock.lock();
+    }
+    void lockShared() {
+        lock.lock_shared();
+    }
+    void unlockExclusive() {
+        lock.unlock();
+    }
+    void unlockShared() {
+        lock.unlock_shared();
+    }
+};
+
+#else
+using ReadWriteLock = ReadWriteLock_impl;
+using CriticalSectionLock = CriticalSectionLock_impl;
+#endif

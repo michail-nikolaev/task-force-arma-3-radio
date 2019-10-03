@@ -40,7 +40,7 @@
     "SLIDER",
     ELSTRING(settings,intercomVolume),
     localize ELSTRING(settings,clientside),
-    [0.01, 0.6, 0.2, 3],
+    [0.01, 0.6, 0.1, 3],
     2,
     {["intercomVolume", TFAR_intercomVolume] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
@@ -144,12 +144,36 @@
 [
     "TFAR_moveWhileTabbedOut",
     "CHECKBOX",
-    ["Move while tabbed out", "Move to TFAR channel even while the Arma window is not in focus"], //#TODO translation
+    [ELSTRING(settings,moveWhileTabbedOut), ELSTRING(settings,moveWhileTabbedOut_desc)],
     localize ELSTRING(settings,clientside),
     false,
     0,
     {["moveWhileTabbedOut", TFAR_moveWhileTabbedOut] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
+[
+    "TFAR_curatorCamEars",
+    "CHECKBOX",
+    [ELSTRING(settings,curatorCamEars), ELSTRING(settings,curatorCamEars_desc)], 
+    localize ELSTRING(settings,global),
+    false,
+    0
+] call CBA_Settings_fnc_init;
+
+[
+    "TFAR_noAutomoveSpectator",
+    "CHECKBOX",
+    [ELSTRING(settings,noAutomoveSpectator), ELSTRING(settings,noAutomoveSpectator_desc)], 
+    localize ELSTRING(settings,global),
+    false,
+    0,
+    {["noAutomoveSpectator", _this] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+
+
+
+
+
+
 
 // server
 [
@@ -598,3 +622,13 @@
     [-1, 20, 0, 0],
     1
 ] call CBA_Settings_fnc_init;
+[
+    "TFAR_allowDebugging",
+    "CHECKBOX",
+    [ELSTRING(settings,allowDebugging), ELSTRING(settings,allowDebugging_desc)], 
+    localize ELSTRING(settings,global),
+    true,
+    1,
+    {["allowDebugging", _this] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+

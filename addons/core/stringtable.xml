@@ -498,6 +498,40 @@
                 <English>Show diary help page on briefing</English>
                 <Russian>Отображать страницу помощи на брифинге</Russian>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_moveWhileTabbedOut">
+                <English>Move while tabbed out</English>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_moveWhileTabbedOut_desc">
+                <English>Move to TFAR channel even while the Arma window is not in focus</English>
+                <German>Verschiebe in den TFAR Channel selbst wenn das Arma Fenster nicht im Fokus ist</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_curatorCamEars">
+                <English>Hearing from Zeus Camera</English>
+                <German>Hören von Zeus Kamera</German>
+                <Japanese>キュレーター画面の時にカメラから聞く</Japanese>
+                <Korean>큐레이터 인터페이스에서 카메라 듣기</Korean>
+                <Chinese>宙斯編輯器聆聽玩家語音</Chinese>
+                <Chinesesimp>宙斯编辑器聆听玩家语音</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_curatorCamEars_desc">
+                <English>Hear voice from Curator Camera when in Zeus interface</English>
+                <German>Hören von der Zeus Kamera aus wenn das Zeus Interface offen ist</German>
+                <Japanese>キュレーター画面の時にキュレーター カメラから声を聞きます</Japanese>
+                <Korean>큐레이터 인터페이스에서 큐레이터 카메라의 음성 듣기</Korean>
+                <Chinese>使用宙斯編輯器時可以聆聽到玩家的語音</Chinese>
+                <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
+            </Key>
+
+            <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator">
+                <English>No Automove in Spectator</English>
+                <German>Kein Automove im Spectator</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator_desc">
+                <English>Don't force move to TFAR channel while in spectator mode</English>
+                <German>Nicht in den TFAR Channel verschieben während man im Spectator Modus ist</German>
+            </Key>
+
+
             <Key ID="STR_TFAR_SETTINGS_FullDuplex">
                 <Original>Full-Duplex</Original>
                 <English>Full-Duplex</English>
@@ -932,6 +966,14 @@
                 <English>Instantiate the radios as soon as possible. This is intended to be used ONLY in non persistent big missions > 100 players.</English>
                 <German>Funkgeräte Instanziierung wird bereits während des Briefings ausgeführt. Diese Option zielt NUR auf nicht persistente Missionen mit mehr als 100 Spielern ab.</German>
                 <Japanese>すぐさま無線機をインスタンス化します。これはプレイヤーが 100 人以上の、非永続大型ミッション用です。</Japanese>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_allowDebugging">
+                <English>Allow Debugging</English>
+                <German>Erlaube Debugging</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_instantiateAtBriefing_desc">
+                <English>Debug tools could allow players to see frequencies and positions of other players.</English>
+                <German>Debug tools könnten Spielern die Frequenzen und Positionen von anderen Spielern zeigen.</German>
             </Key>
         </Container>
         <Container name="diary">
@@ -2815,22 +2857,6 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>TFAR 볼륨 표시기</Korean>
             <Chinese>TFAR音量指示器</Chinese>
             <Chinesesimp>TFAR音量指示器</Chinesesimp>
-        </Key>
-        <Key ID="STR_TFAR_CORE_Att_CuratorCamEars">
-            <Original>Hear Camera when in Curator interface</Original>
-            <English>Hear Camera when in Curator interface</English>
-            <Japanese>キュレーター画面の時にカメラから聞く</Japanese>
-            <Korean>큐레이터 인터페이스에서 카메라 듣기</Korean>
-            <Chinese>宙斯編輯器聆聽玩家語音</Chinese>
-            <Chinesesimp>宙斯编辑器聆听玩家语音</Chinesesimp>
-        </Key>
-        <Key ID="STR_TFAR_CORE_Att_CuratorCamEars_tooltip">
-            <Original>Hear voice from Curator Camera when in Curator interface</Original>
-            <English>Hear voice from Curator Camera when in Curator interface</English>
-            <Japanese>キュレーター画面の時にキュレーター カメラから声を聞きます</Japanese>
-            <Korean>큐레이터 인터페이스에서 큐레이터 카메라의 음성 듣기</Korean>
-            <Chinese>使用宙斯編輯器時可以聆聽到玩家的語音</Chinese>
-            <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_CORE_copySetting_LR_SW_Warning">
             <Original>TFAR - unable to copy from LR to SW</Original>

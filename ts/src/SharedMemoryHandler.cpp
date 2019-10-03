@@ -6,6 +6,7 @@
 using namespace SharedMemoryHandlerInternal;
 
 bool SharedMemoryHandlerInternal::SharedMemoryData::getAsyncRequest(std::string& req) {
+    ProfileFunction;
     setLastPluginTick();
     const auto asyncBase = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128 + sizeof(SharedMemString) * 2);
     if (nextFreeAsyncMessage == 0)
@@ -15,12 +16,14 @@ bool SharedMemoryHandlerInternal::SharedMemoryData::getAsyncRequest(std::string&
 }
 
 bool SharedMemoryHandlerInternal::SharedMemoryData::getSyncRequest(std::string& req) {
+    ProfileFunction;
     setLastPluginTick();
     auto syncReq = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128);
     return syncReq->assignToAndClear(req);
 }
 
 void SharedMemoryHandlerInternal::SharedMemoryData::setSyncResponse(const std::string& response) {
+    ProfileFunction;
     setLastPluginTick();
     if (response.length() > SHAREDMEM_MAX_STRINGSIZE) {
         MessageBoxA(0, "TFAR Plugin Too big Sresponse", response.c_str(), 0);
@@ -102,7 +105,7 @@ SharedMemoryHandler::SharedMemoryHandler() {
 
         diag << TS_INDENT << TS_INDENT << "hasAsyncRequest: " << pData->hasAsyncRequest() << "\n";
         diag << TS_INDENT << TS_INDENT << "hasSyncRequest: " << pData->hasSyncRequest() << "\n";
-        diag << TS_INDENT << TS_INDENT << "lastGameTick: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now()-pData->getLastGameTick()).count() << u8"µs" << "\n";
+        diag << TS_INDENT << TS_INDENT << "lastGameTick: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now()-pData->getLastGameTick()).count() << u"µs" << "\n";
     });
 
 }
@@ -121,6 +124,7 @@ SharedMemoryHandler::~SharedMemoryHandler() {
 
 
 bool SharedMemoryHandler::getData(std::string& data, std::chrono::milliseconds timeout) {
+    ProfileFunction;
     if (!waitForRequest(timeout))
         return false;
     if (!getSyncRequest(data))
@@ -129,6 +133,7 @@ bool SharedMemoryHandler::getData(std::string& data, std::chrono::milliseconds t
 }
 
 bool SharedMemoryHandler::sendData(const std::string& data) {
+    ProfileFunction;
     return answerSyncRequest(data);
 }
 
@@ -153,6 +158,7 @@ bool SharedMemoryHandler::answerSyncRequest(const std::string& answer) {
     return true;
 }
 bool SharedMemoryHandler::waitForRequest(std::chrono::milliseconds timeout) {
+    ProfileFunction;
     if (!isReady()) {
         std::this_thread::sleep_for(1ms);//we don't want a loop running on 100% cpu
         return false;
@@ -179,6 +185,7 @@ bool SharedMemoryHandler::getAsyncRequest(std::string& request) {
 }
 
 bool SharedMemoryHandler::isConnected() {
+    ProfileFunction;
     const auto timeout = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<float>(TFAR::config.get<float>(Setting::pluginTimeout)));
     MutexLock lock(hMutex);
     auto pData = static_cast<SharedMemoryData*>(pMapView);

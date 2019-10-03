@@ -1,6 +1,9 @@
 #include "script_component.hpp"
 
-if (!(alive TFAR_currentUnit) or {!(call TFAR_fnc_haveLRRadio)} or {dialog}) exitWith {};
+if (
+    (!(alive TFAR_currentUnit) && !(TFAR_currentUnit getVariable ["TFAR_forceSpectator", false]))
+    || {!(call TFAR_fnc_haveLRRadio)}
+    || {dialog}) exitWith {};
 
 private _radio = (TF_lr_dialog_radio select 0);
 private _dialog_to_open = ([_radio, "tf_dialog"] call TFAR_fnc_getLrRadioProperty);
