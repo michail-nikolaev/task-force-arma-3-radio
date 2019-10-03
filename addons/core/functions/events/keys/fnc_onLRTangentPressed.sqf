@@ -39,7 +39,7 @@ private _currentFrequency = call TFAR_fnc_currentLRFrequency;
 private _hintText = format[
                             localize LSTRING(transmit),
                             format ["%1<img size='1.5' image='%2'/>",
-                                    [_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty,
+                                    ([_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty) select [0, 22],
                                     getText(configFile >> "CfgVehicles" >> typeOf (_radio select 0) >> "picture")
                                     ],
                             (_radio call TFAR_fnc_getLrChannel) + 1,
