@@ -32,11 +32,6 @@ class CfgPatches {
     weapons[] = {};
     requiredVersion = REQUIRED_VERSION;
     requiredAddons[] = {
-        "A3_Modules_F",
-        "A3_UI_F",
-        "A3_Structures_F_Items_Electronics",
-        "A3_Supplies_F_Enoch_Bags",
-        "A3_Weapons_F_ItemHolders",
         "tfar_core",
         "tfar_static_radios"
     };
