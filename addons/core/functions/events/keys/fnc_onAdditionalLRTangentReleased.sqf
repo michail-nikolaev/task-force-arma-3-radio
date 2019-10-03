@@ -32,7 +32,7 @@ private _hintText = format[
                             localize LSTRING(additional_transmit_end),
                             format [
                                 "%1<img size='1.5' image='%2'/>",
-                                ([_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty) select [0, 22],
+                                ([_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty) select [0, MAX_RADIONAME_LEN],
                                 getText(configFile >> "CfgVehicles"  >> typeOf (_radio select 0) >> "picture")
                             ],
                             _additionalChannel + 1,
