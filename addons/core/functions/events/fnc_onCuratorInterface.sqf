@@ -47,7 +47,7 @@ switch _eventType do {
         if (TFAR_ShowVolumeHUD) then {
             (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];
         };
-        if (player getVariable ["TFAR_curatorCamEars",false]) then {
+        if (TFAR_curatorCamEars) then {
             player setVariable ["TF_fnc_position", {private _pctw = positionCameraToWorld [0,0,0]; [ATLToASL _pctw, (positionCameraToWorld [0,0,1]) vectorDiff _pctw]}];
         }
     };
@@ -56,7 +56,7 @@ switch _eventType do {
             (QGVAR(HUDVolumeIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(HUDVolumeIndicatorRsc), "PLAIN", 0, true];
         };
         call TFAR_fnc_updateSpeakVolumeUI;
-        if (player getVariable ["TFAR_curatorCamEars",false]) then {
+        if (TFAR_curatorCamEars) then {
             player setVariable ["TF_fnc_position", nil];
         }
     };
