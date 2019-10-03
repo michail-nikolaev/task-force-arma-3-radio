@@ -22,6 +22,7 @@ class CfgVehicles {
     #include "mr3000\CfgVehicles.hpp"
     #include "mr6000l\CfgVehicles.hpp"
     #include "rt1523g\CfgVehicles.hpp"
+    #include "enoch\CfgVehicles.hpp"
 
 
     class Box_NATO_Support_F;
