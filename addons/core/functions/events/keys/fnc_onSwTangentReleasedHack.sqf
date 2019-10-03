@@ -18,6 +18,8 @@
   Public: No
 */
 
+if (!TF_tangent_sw_pressed) exitWith {false};
+
 private _scancode = _this select 1;
 
 {
