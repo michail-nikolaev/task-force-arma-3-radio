@@ -1815,36 +1815,36 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>耳语音量修改器</Chinesesimp>
                 <Russian>Шепот</Russian>
             </Key>
-            <Key ID="STR_TFAR_CORE_key_CycleRightSWRadios">
-                <Original>Cycle Right SR Radios</Original>
-                <English>Cycle Right SR Radios</English>
+            <Key ID="STR_TFAR_CORE_key_CycleNextSRRadios">
+                <Original>Cycle Next SR Radios</Original>
+                <English>Cycle Next SR Radios</English>
                 <Japanese>短距離無線機を右へ順に切替</Japanese>
                 <Korean>오른쪽으로 단파 채널 변경</Korean>
                 <Chinese>向右循環短程無線電</Chinese>
                 <Chinesesimp>向右循环短程无线电</Chinesesimp>
                 <Russian>Переключить на следующую рацию ближней связи</Russian>
             </Key>
-            <Key ID="STR_TFAR_CORE_key_CycleLeftSWRadios">
-                <Original>Cycle Left SR Radios</Original>
-                <English>Cycle Left SR Radios</English>
+            <Key ID="STR_TFAR_CORE_key_CyclePrevSRRadios">
+                <Original>Cycle Previous SR Radios</Original>
+                <English>Cycle Previous SR Radios</English>
                 <Japanese>短距離無線機を左へ順に切替</Japanese>
                 <Korean>왼쪽으로 단파 채널 변경</Korean>
                 <Chinese>向左循環短程無線電</Chinese>
                 <Chinesesimp>向左循环短程无线电</Chinesesimp>
                 <Russian>Переключить на предыдущую рацию ближней связи</Russian>
             </Key>
-            <Key ID="STR_TFAR_CORE_key_CycleRightLRRadios">
-                <Original>Cycle Right LR Radios</Original>
-                <English>Cycle Right LR Radios</English>
+            <Key ID="STR_TFAR_CORE_key_CycleNextLRRadios">
+                <Original>Cycle Next LR Radios</Original>
+                <English>Cycle Next LR Radios</English>
                 <Japanese>長距離無線機を右へ順に切替</Japanese>
                 <Korean>오른쪽으로 장파 채널 변경</Korean>
                 <Chinese>向右循環長程無線電</Chinese>
                 <Chinesesimp>向右循环长程无线电</Chinesesimp>
                 <Russian>Переключить на следующую дальней связи</Russian>
             </Key>
-            <Key ID="STR_TFAR_CORE_key_CycleLeftLRRadios">
-                <Original>Cycle Left LR Radios</Original>
-                <English>Cycle Left LR Radios</English>
+            <Key ID="STR_TFAR_CORE_key_CyclePrevLRRadios">
+                <Original>Cycle Previous LR Radios</Original>
+                <English>Cycle Previous LR Radios</English>
                 <Japanese>長距離無線機を左へ順に切替</Japanese>
                 <Korean>왼쪽으로 장파 채널 변경</Korean>
                 <Chinese>向左循環長程無線電</Chinese>
