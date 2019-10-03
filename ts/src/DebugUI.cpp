@@ -310,7 +310,7 @@ void DebugUI::threadRun() {
 
     // render loop
     // -----------
-    while (!glfwWindowShouldClose(window) && shouldRun) {
+    while (!glfwWindowShouldClose(window) && shouldRun && TFAR::config.get<bool>(Setting::allowDebugging)) {
         // per-frame time logic
         // --------------------
         float currentFrame = glfwGetTime();

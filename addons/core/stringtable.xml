@@ -923,6 +923,14 @@
                 <German>Funkgeräte Instanziierung wird bereits während des Briefings ausgeführt. Diese Option zielt NUR auf nicht persistente Missionen mit mehr als 100 Spielern ab.</German>
                 <Japanese>すぐさま無線機をインスタンス化します。これはプレイヤーが 100 人以上の、非永続大型ミッション用です。</Japanese>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_allowDebugging">
+                <English>Allow Debugging</English>
+                <German>Erlaube Debugging</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_instantiateAtBriefing_desc">
+                <English>Debug tools could allow players to see frequencies and positions of other players.</English>
+                <German>Debug tools könnten Spielern die Frequenzen und Positionen von anderen Spielern zeigen.</German>
+            </Key>
         </Container>
         <Container name="diary">
             <Key ID="STR_TFAR_CORE_radio_vehicle_text">

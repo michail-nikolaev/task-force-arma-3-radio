@@ -2,9 +2,10 @@
 #include <string_view>
 #include <memory>
 
+#if ENABLE_TRACY_PROFILER
 #define ENABLE_TRACY_PROFILING 1
 #define ENABLE_TRACY_LOCK_PROFILING 1
-
+#endif
 
 #if ENABLE_TRACY_PROFILING
 #define TRACY_ENABLE

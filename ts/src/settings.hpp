@@ -24,7 +24,8 @@
     XX(intercomDucking, 0.2f), \
     XX(minimumPluginVersion, 0.f), \
     XX(objectInterceptionStrength, 400.f), \
-    XX(voiceCone, true)
+    XX(voiceCone, true), \
+    XX(allowDebugging, true)
 
 #define EnumEntry(x,y) x
 #define EnumString(x,y) #x

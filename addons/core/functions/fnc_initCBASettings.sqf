@@ -590,3 +590,15 @@
     [-1, 20, 0, 0],
     1
 ] call CBA_Settings_fnc_init;
+[
+    "TFAR_allowDebugging",
+    "CHECKBOX",
+    ELSTRING(settings,allowDebugging),
+    localize ELSTRING(settings,global),
+    true,
+    1,
+    {["allowDebugging", _this] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+
+
+

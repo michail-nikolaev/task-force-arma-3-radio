@@ -1,4 +1,16 @@
+#ifdef isCI
+#define ENABLE_API_PROFILER 0     // Disabled for release builds
+#define ENABLE_PLUGIN_LOGS 1
+#else
+//#define ENABLE_API_PROFILER 1     // Comment this line to disable the profiler
+#define ENABLE_TRACY_PROFILER 1
+#endif
+
+
 #include "ProfilerTracy.hpp"
+
+
+
 #if ENABLE_TRACY_PROFILING
 #include <TracyClient.cpp>
 #endif
