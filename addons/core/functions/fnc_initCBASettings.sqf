@@ -76,7 +76,7 @@
     "LIST",
     [ELSTRING(settings,positionUpdateMode), ELSTRING(settings,positionUpdateMode_desc)],
     localize ELSTRING(settings,clientside),
-    [[0, 0.1, 0.2], ["Quality", "Normal", "Performance"], 1],
+    [[0, 0.1, 0.2], [localize ELSTRING(settings,positionUpdateMode_quality), localize ELSTRING(settings,positionUpdateMode_normal), localize ELSTRING(settings,positionUpdateMode_performance)], 1],
     2,
     {
         if ((!isNil QGVAR(EHID_processPlayerPositions)) && {hasInterface} && {isMultiplayer}) then {
@@ -188,7 +188,7 @@
 [
     "TFAR_globalRadioRangeCoef",
     "SLIDER",
-    ["Radio range coef", "A global coefficient to control any radio range. This is multiplied with the tf_receivingDistanceMultiplicator(default 100%) unit variable"],
+    [ELSTRING(settings,RadioRangeCoefficient), ELSTRING(settings,RadioRangeCoefficient_tooltip)],
     localize ELSTRING(settings,global),
     [0.01, 10, 1, 2],
     1
@@ -240,7 +240,7 @@
 [
     "TFAR_experimentalVehicleIsolation",
     "CHECKBOX",
-    ["Experimental Vehicle Isolation", "Tries to read vehicle isolation amount from vehicles config"],
+    [ELSTRING(settings,VehicleIsolation), ELSTRING(settings,VehicleIsolationDescription)],
     localize ELSTRING(settings,global),
     true,
     1
@@ -552,7 +552,7 @@
 [
     "TFAR_setting_DefaultRadio_Airborne_east",
     "EDITBOX",
-    [ELSTRING(settings,DefaultRadioAirborne_east), ELSTRING(settings,DefaultRadioAirborne_independent_east)],
+    [ELSTRING(settings,DefaultRadioAirborne_east), ELSTRING(settings,DefaultRadioAirborne_east_desc)],
     localize ELSTRING(settings,global),
     "TFAR_mr6000l",
     1,
@@ -617,7 +617,7 @@
 [
     "TFAR_defaultIntercomSlot",
     "SLIDER",
-    ["Default Intercom Channel", "Default Intercom channel when entering the vehicle. Has to be number. -1 is Disabled."],
+    [ELSTRING(settings,DefaultIntercomChannel), ELSTRING(settings,DefaultIntercomChannel_desc)],
     localize ELSTRING(settings,global),
     [-1, 20, 0, 0],
     1
