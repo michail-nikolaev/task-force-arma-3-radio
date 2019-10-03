@@ -1,3 +1,4 @@
+#include "version.h"
 #ifdef isCI
 #define ENABLE_API_PROFILER 0     // Disabled for release builds
 #define ENABLE_PLUGIN_LOGS 1
@@ -43,13 +44,13 @@ public:
 #endif
 
 std::unique_ptr<RunningScope> ProfilerTracy::enterScope(const ProfilerScope& info) const {
+#if ENABLE_TRACY_PROFILING
     if (!tracy::s_token.ptr) {
         tracy::rpmalloc_thread_initialize();
         tracy::s_token_detail = tracy::moodycamel::ProducerToken(tracy::s_queue);
         tracy::s_token = tracy::ProducerWrapper{ tracy::s_queue.get_explicit_producer(tracy::s_token_detail) };
     }
 
-#if ENABLE_TRACY_PROFILING
     return std::make_unique<RunningScopeTracy>(info);
 #else
     return nullptr;
