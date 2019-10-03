@@ -24,7 +24,7 @@ if !(isServer) exitWith {};
     private _unit = _x;
     private _newRadios = [];
     {
-            private _id = [[_x], _unit] call TFAR_fnc_instanciateRadios;
+            private _id = ([[_x], _unit] call TFAR_fnc_instanciateRadios) select 0;
             private _newItem = format["%1_%2", _x, _id];
             _unit linkItem _newItem;
             _newRadios pushBack _newItem;
@@ -35,7 +35,7 @@ if !(isServer) exitWith {};
     _allItems append ((getItemCargo (backpackContainer _unit)) select 0);
 
     {
-            private _id = [[_x], _unit] call TFAR_fnc_instanciateRadios;
+            private _id = ([[_x], _unit] call TFAR_fnc_instanciateRadios) select 0;
             _unit removeItem _x;
             private _newItem = format["%1_%2", _x, _id];
             if (_unit canAdd _newItem) then {
