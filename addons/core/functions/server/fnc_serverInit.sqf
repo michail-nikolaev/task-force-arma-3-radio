@@ -122,7 +122,7 @@ GVAR(instanciationIsReady) = false;
                         _frequencies = [TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
                         (group _unit) setVariable ["TFAR_freq_sr", _frequencies, true];
                     };
-                } forEach (playableUnits);
+                } forEach allPlayers;
             };
         };
 
