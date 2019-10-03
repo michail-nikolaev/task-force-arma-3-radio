@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project name="TFAR">
     <Package name="backpacks">
         <Key ID="STR_TFAR_backpacks_RT1523G">
             <Original>RT-1523G (ASIP)</Original>
             <English>RT-1523G (ASIP)</English>
+            <Chinese>RT-1523G (ASIP)</Chinese>
+            <Chinesesimp>RT-1523G (ASIP)</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Desc">
             <Original>RT-1523G (ASIP) long range radio 20km</Original>
@@ -18,6 +20,8 @@
             <English>RT-1523G (ASIP) BWMOD long range radio 20km</English>
             <Japanese>RT-1523G (ASIP) BW MOD 長距離用無線機 20km</Japanese>
             <Korean>RT-1523G (ASIP) BWMOD 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP) BWMOD長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP) BWMOD长程无线电，有效距离20公里</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BWMOD_Desc">
             <Original>RT-1523G (ASIP) BWMOD long range radio 20km</Original>
@@ -32,6 +36,8 @@
             <English>RT-1523G (ASIP) RHS long range radio 20km</English>
             <Japanese>RT-1523G (ASIP) RHS 長距離用無線機 20km</Japanese>
             <Korean>RT-1523G (ASIP) RHS 장거리 무전기 20km</Korean>
+            <Chinese>RT-1523G (ASIP) RHS長程無線電，有效距離20公里</Chinese>
+            <Chinesesimp>RT-1523G (ASIP) RHS长程无线电，有效距离20公里</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_RHS_Desc">
             <Original>RT-1523G (ASIP) RHS long range radio 20km</Original>
@@ -160,6 +166,8 @@
         <Key ID="STR_TFAR_backpacks_MR6000L">
             <Original>MR6000L</Original>
             <English>MR6000L</English>
+            <Chinese>MR6000L</Chinese>
+            <Chinesesimp>MR6000L</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR6000L_Desc">
             <Original>MR6000L airborne radio 40km</Original>
@@ -172,6 +180,8 @@
         <Key ID="STR_TFAR_backpacks_MR3000">
             <Original>MR3000</Original>
             <English>MR3000</English>
+            <Chinese>MR3000</Chinese>
+            <Chinesesimp>MR3000</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_Desc">
             <Original>MR3000 long range radio 20km</Original>
@@ -223,6 +233,8 @@
         <Key ID="STR_TFAR_backpacks_MR3000_RHS">
             <Original>MR3000 RHS</Original>
             <English>MR3000 RHS</English>
+            <Chinese>MR3000 RHS</Chinese>
+            <Chinesesimp>MR3000 RHS</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_RHS_Desc">
             <Original>MR3000 RHS long range radio 20km</Original>
@@ -251,6 +263,8 @@
         <Key ID="STR_TFAR_backpacks_ANPRC155">
             <Original>AN/PRC-155</Original>
             <English>AN/PRC-155</English>
+            <Chinese>AN/PRC-155</Chinese>
+            <Chinesesimp>AN/PRC-155</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANPRC155_Desc">
             <Original>AN/PRC-155 long range radio 20km</Original>
@@ -278,6 +292,8 @@
         <Key ID="STR_TFAR_backpacks_ANARC210">
             <Original>AN/ARC-210</Original>
             <English>AN/ARC-210</English>
+            <Chinese>AN/ARC-210</Chinese>
+            <Chinesesimp>AN/ARC-210</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANARC210_Desc">
             <Original>AN/ARC-210 airborne radio 40km</Original>
@@ -290,6 +306,8 @@
         <Key ID="STR_TFAR_backpacks_ANARC164">
             <Original>AN/ARC-164</Original>
             <English>AN/ARC-164</English>
+            <Chinese>AN/ARC-164</Chinese>
+            <Chinesesimp>AN/ARC-164</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANARC164_Desc">
             <Original>AN/ARC-164 airborne radio 40km</Original>
