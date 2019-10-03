@@ -19,11 +19,20 @@
 */
 
 private _scancode = _this select 1;
-private _keybind = ["TFAR", "SWTransmit"] call cba_fnc_getKeybind;
-if !(isNil "_keybind") then {
-    private _scancode_sw = ((_keybind) select 5) select 0;
-    if (_scancode == _scancode_sw) then {
-        call TFAR_fnc_onSwTangentReleased;
-    };
-};
+
+{
+    private _releasedAction = _x select 4; //https://cbateam.github.io/CBA_A3/docs/files/keybinding/fnc_getKeybind-sqf.html
+    private _keyBinds = _x select 8;
+
+    {
+        _x params ["_scanCodeTarget", "_mods"];
+
+         if (_scancode == _scanCodeTarget) then _releasedAction;
+    } forEach _keyBinds;
+} forEach [
+    ["TFAR", "SWTransmit"] call cba_fnc_getKeybind,
+    ["TFAR", "SWTransmitAdditional"] call cba_fnc_getKeybind
+];
+
+
 false

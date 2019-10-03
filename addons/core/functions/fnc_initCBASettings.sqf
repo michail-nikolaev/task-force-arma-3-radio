@@ -158,7 +158,7 @@
     localize ELSTRING(settings,global),
     false,
     0,
-    {["oAutomoveSpectator", _this] call TFAR_fnc_setPluginSetting;}
+    {["noAutomoveSpectator", _this] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
 
 
