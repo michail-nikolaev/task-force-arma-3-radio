@@ -310,7 +310,7 @@ void DebugUI::threadRun() {
 
     // render loop
     // -----------
-    while (!glfwWindowShouldClose(window) && shouldRun) {
+    while (!glfwWindowShouldClose(window) && shouldRun && TFAR::config.get<bool>(Setting::allowDebugging)) {
         // per-frame time logic
         // --------------------
         float currentFrame = glfwGetTime();
@@ -506,6 +506,7 @@ void processInput(GLFWwindow *window) {
    
 
     const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
+    if (!clientDataDir) return;
     if (!centerTarget) centerTarget = clientDataDir->myClientData;
 
     std::vector<std::shared_ptr<clientData>> clientList;
@@ -617,7 +618,7 @@ void DebugUI::run() {
 
 void DebugUI::stop() {
     shouldRun = false;
-    if (uiThread) {
+    if (uiThread && uiThread->joinable()) {
         uiThread->join();
         delete uiThread;
     }

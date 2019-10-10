@@ -74,16 +74,6 @@ class Cfg3DEN {
                         unique = 0;
                         condition = "objectControllable + logicModule";
                     };
-                    class TFAR_CuratorCamEars {
-                        property = "TFAR_CuratorCamEars";
-                        control = "Checkbox";
-                        displayName = CSTRING(Att_CuratorCamEars);
-                        tooltip = CSTRING(Att_CuratorCamEars_tooltip);
-                        expression = QUOTE(if (_value) then {_this setVariable [ARR_3('%s',_value,true)]};);
-                        typeName = "BOOL";
-                        condition = "objectBrain";
-                        defaultValue = "false";
-                    };
                     class TFAR_VehicleIDOverride {
                         property = "TFAR_VehicleIDOverride";
                         control = "EditShort";

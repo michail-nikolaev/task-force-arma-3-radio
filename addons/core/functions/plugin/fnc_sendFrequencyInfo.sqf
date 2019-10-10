@@ -41,7 +41,9 @@ private _currentUnitIsRemote = TFAR_currentUnit != player;
 
 private _swRadios = TFAR_currentUnit call TFAR_fnc_radiosList; //Calling haveSWRadio and radiosList will iterate players inventory twice == bad performance. (reference to old code)
 
-if (((count _swRadios > 0) || _currentUnitIsRemote) && {[TFAR_currentUnit, _isolated_and_inside, _can_speak, _depth] call TFAR_fnc_canUseSWRadio}) then {
+//Radios in spectator are disabled because of bug in CBA/ACE that disables CBA keybinds in spectator, doesn't make sense to have radios if you can't configure
+
+if (((count _swRadios > 0) || _currentUnitIsRemote) && {[TFAR_currentUnit, _isolated_and_inside, _can_speak, _depth] call TFAR_fnc_canUseSWRadio} && {!(TFAR_currentUnit getVariable ["TFAR_forceSpectator", false])}) then {
     _freq = [];
     private _playerRadios = [];
     if (_currentUnitIsRemote) then {
@@ -76,7 +78,7 @@ if (((count _swRadios > 0) || _currentUnitIsRemote) && {[TFAR_currentUnit, _isol
 
 private _lrRadios = TFAR_currentUnit call TFAR_fnc_lrRadiosList; //Calling haveLRRadio would call lrRadiosList anyway (reference to old code)
 
-if (((count _lrRadios > 0) || _currentUnitIsRemote) and {[TFAR_currentUnit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio}) then {
+if (((count _lrRadios > 0) || _currentUnitIsRemote) && {[TFAR_currentUnit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio} && {!(TFAR_currentUnit getVariable ["TFAR_forceSpectator", false])}) then {
     _freq_lr = [];
     private _playerRadios = [];
     if (_currentUnitIsRemote) then {

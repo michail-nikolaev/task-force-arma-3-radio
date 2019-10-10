@@ -13,7 +13,7 @@
     XX(addon_version,"unknown"), \
     XX(serious_channelName,""), \
     XX(serious_channelPassword,""), \
-    XX(intercomVolume,0.3f), \
+    XX(intercomVolume,0.1f), \
     XX(intercomEnabled,true), \
     XX(pluginTimeout,4.f), \
     XX(headsetLowered,false), \
@@ -24,7 +24,9 @@
     XX(intercomDucking, 0.2f), \
     XX(minimumPluginVersion, 0.f), \
     XX(objectInterceptionStrength, 400.f), \
-    XX(voiceCone, true)
+    XX(voiceCone, true), \
+    XX(allowDebugging, true), \
+    XX(noAutomoveSpectator, false)
 
 #define EnumEntry(x,y) x
 #define EnumString(x,y) #x
@@ -207,7 +209,7 @@ public:
 
     Signal<void(const Setting&)> configValueSet;
 private:
-    CriticalSectionLock m_lock;
+    CriticalSectionLock m_lock{ "settings" };
     bool needRefresh = true;
     std::array<settingValue, Setting::Setting_MAX + 1> values{
         Settings(EnumDefault)

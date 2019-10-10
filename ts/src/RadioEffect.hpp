@@ -103,7 +103,7 @@ public:
         //for (int q = 0; q < samplesNumber; q++) buffer[q] = delay(buffer[q]);
         //for (int q = 0; q < samplesNumber; q++) buffer[q] = ringmodulation(buffer[q], errorLevel);
         //for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], static_cast<float>(0.3f * (1.0f - errorLevel) * x));
-        if (errorLevel > 1.f || errorLevel < 0.f) onError("errorLevel out of bounds");
+        //if (errorLevel > 1.f || errorLevel < 0.f) onError("errorLevel out of bounds");
 
 
         for (int q = 0; q < samplesNumber; q++) buffer[q] = foldback(buffer[q], static_cast<float>(0.3f * (1.0f - errorLevel) * x));
@@ -142,9 +142,9 @@ protected:
         const auto to = levels[part + 1];
 
         const auto result = from + (to - from) * (errorLevel - part / 10.f);
-        if (result > levels.back() || result < levels.front()) { //#Release disable on release
-            onError(std::string("TFAR: errorLevel out of bounds! err:")+std::to_string(errorLevel)+"/"+std::to_string(result));
-        }
+        //if (result > levels.back() || result < levels.front()) { //#Release disable on release
+        //    onError(std::string("TFAR: errorLevel out of bounds! err:")+std::to_string(errorLevel)+"/"+std::to_string(result));
+        //}
         return result;
     }
 
@@ -235,6 +235,8 @@ void processRadioEffect(SampleBuffer& samples, float gain, T* effect, stereoMode
     }
     std::vector<float> buffer;
     buffer.resize(sampleCount);
+    //((monoCombined / channels) * gain) / 32766
+    float monoCombToGainFlt = 1/static_cast<float>(channels) * gain * (1.f/32766.f);
     for (auto i = 0u; i < sampleCount * channels; i += channels) {
         // prepare mono for radio
         auto monoCombined = 0.f;
@@ -242,7 +244,8 @@ void processRadioEffect(SampleBuffer& samples, float gain, T* effect, stereoMode
             monoCombined += samples[i + j];
         }
 
-        buffer[i / channels] = (static_cast<float>(monoCombined) * gain) / (32766.f * channels);
+        buffer[i / channels] = monoCombined * monoCombToGainFlt;
+        //buffer[i / channels] = (static_cast<float>(monoCombined) * gain) / (32766.f * channels);
     }
     effect->process(buffer.data(), sampleCount);
 

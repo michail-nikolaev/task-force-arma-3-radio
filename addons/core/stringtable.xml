@@ -18,21 +18,24 @@
                 <German>TFAR Einstellungen</German>
                 <Japanese>TFAR 設定</Japanese>
                 <Korean>TFAR 환경설정</Korean>
+                <Russian>TFAR Настройки</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_DEPRECATED">
                 <Original>TFAR-Deprecated</Original>
                 <English>TFAR-Deprecated</English>
                 <Japanese>TFAR-廃止予定</Japanese>
                 <Korean>TFAR 중단설정</Korean>
+                <Russian>TFAR-Устарело</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_3DEN_Properties">
-                <Original>TFAR properties</Original>
-                <English>TFAR properties</English>
+                <Original>TFAR Properties</Original>
+                <English>TFAR Properties</English>
                 <German>TFAR Eigenschaften</German>
                 <Japanese>TFAR プロパティ</Japanese>
                 <Korean>TFAR 설정</Korean>
                 <Chinese>TFAR設定</Chinese>
                 <Chinesesimp>TFAR设定</Chinesesimp>
+                <Russian>TFAR Параметры</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_NATO_crate">
                 <Original>TFAR Radio (NATO)</Original>
@@ -40,7 +43,7 @@
                 <Czech>TFAR Vysílačky (NATO)</Czech>
                 <French>Radio TFAR (OTAN)</French>
                 <German>TFAR-Funkgeräte (NATO)</German>
-                <Russian>TFAR Рации (НАТО)</Russian>
+                <Russian>TFAR Рации (NATO)</Russian>
                 <Spanish>TFAR Radio (NATO)</Spanish>
                 <Turkish>TFAR Radyo (NATO)</Turkish>
                 <Japanese>TFAR 無線機 (NATO)</Japanese>
@@ -85,6 +88,7 @@
                 <Korean>TFAR은 싱글 플레이에서 작동하지 않습니다. TFAR을 테스트해야하는 경우 멀티 플레이어 편집기를 사용하십시오.</Korean>
                 <Chinese>TFAR無法在單人遊戲模式下運作。請使用多人遊戲預覽模式來在編輯器中測試TFAR的功能。</Chinese>
                 <Chinesesimp>TFAR无法在单人游戏模式下运作。请使用多人游戏预览模式来在编辑器中测试TFAR的功能。</Chinesesimp>
+                <Russian>TFAR не работает в Одиночной игре. Для проверки работы TFAR можете воспользоваться режимом Сетевой игры в редакторе.</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_WM_NotLoad">
                 <Original>TASK FORCE RADIO NOT LOADED</Original>
@@ -93,6 +97,7 @@
                 <Korean>TFAR이 로드되지 않음</Korean>
                 <Chinese>TFAR模組沒有被載入</Chinese>
                 <Chinesesimp>TFAR模组没有被载入</Chinesesimp>
+                <Russian>TASK FORCE RADIO НЕ ЗАГРУЖЕН</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_WM_NotLoad_Desc">
                 <Original>LOOKS LIKE TASK FORCE RADIO ADDON IS NOT ENABLED OR VERSION LESS THAN 1.0</Original>
@@ -101,20 +106,23 @@
                 <Korean>TFAR 애드온이 활성화되지 않았거나 버전 1.0보다 작습니다.</Korean>
                 <Chinese>看來TFAR並沒有被載入，或是版本低於1.0</Chinese>
                 <Chinesesimp>看来TFAR并没有被载入，或是版本低于1.0</Chinesesimp>
+                <Russian>ПОХОЖЕ АДДОН TASK FORCE RADIO НЕ ВКЛЮЧЕН ИЛИ ВЕРСИЯ МЕНЬШЕ 1.0</Russian>
             </Key>
         </Container>
         <Container name="settings">
             <Key ID="STR_TFAR_SETTINGS_clientside">
-                <Original>TFAR - clientside settings</Original>
-                <English>TFAR - clientside settings</English>
+                <Original>TFAR - Clientside settings</Original>
+                <English>TFAR - Clientside settings</English>
                 <German>TFAR - Benutzereinstellungen</German>
                 <Japanese>TFAR - クライアント設定</Japanese>
+                <Russian>TFAR - Настройки клиента</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_global">
-                <Original>TFAR - global settings</Original>
-                <English>TFAR - global settings</English>
+                <Original>TFAR - Global settings</Original>
+                <English>TFAR - Global settings</English>
                 <German>TFAR - Allgemeine Einstellungen</German>
                 <Japanese>TFAR - グローバル設定</Japanese>
+                <Russian>TFAR - Глобальные настройки</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_TerrainInterceptionCoefficient">
                 <Original>Terrain Interception Coefficient</Original>
@@ -146,12 +154,33 @@
                 <Chinese>設定地形影響無線電通訊品質的係數</Chinese>
                 <Chinesesimp>设定地形影响无线电通讯品质的系数</Chinesesimp>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_RadioRangeCoefficient">
+                <Original>Radio range coefficient</Original>
+                <English>Radio range coefficient</English>
+                <Russian>Коэффициент радиуса действия</Russian>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_RadioRangeCoefficient_tooltip">
+                <Original>A global coefficient to control any radio range. This is multiplied with the tf_receivingDistanceMultiplicator(default 100%) unit variable</Original>
+                <English>A global coefficient to control any radio range. This is multiplied with the tf_receivingDistanceMultiplicator(default 100%) unit variable</English>
+                <Russian>Глобальный коэффициент для управления радиусом действия всех раций.</Russian>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_VehicleIsolation">
+                <Original>Experimental Vehicle Isolation</Original>
+                <English>Experimental Vehicle Isolation</English>
+                <Russian>Экспериментальная изоляция в технике</Russian>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_VehicleIsolationDescription">
+                <Original>Tries to read vehicle isolation amount from vehicles config</Original>
+                <English>Tries to read vehicle isolation amount from vehicles config</English>
+                <Russian>Пытаться получить значение изоляции из параметров техники</Russian>
+            </Key>
             <Key ID="STR_TFAR_SETTINGS_TAKERADIO_HEADER">
                 <Original>Taking away radios</Original>
                 <English>Taking away radios</English>
                 <German>Funkgeräte wegnehmen</German>
                 <Japanese>無線機を奪う</Japanese>
                 <Korean>무전기 돌려놓기</Korean>
+                <Russian>Отбирать рации</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_TAKERADIO_DESC">
                 <Original>Allows the taking of radios from immobilized units</Original>
@@ -159,6 +188,7 @@
                 <German>Erlaubt das Wegnehmen von Funkgeräten von handlungsunfähigen Personen</German>
                 <Japanese>無力化されたユニットから無線機の奪取を許可します</Japanese>
                 <Korean>고정된 유닛에게서 무전기를 가져올 수 있음</Korean>
+                <Russian>Позволить отбирать рации у обездвиженных юнитов</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_TAKERADIO_0">
                 <Original>Disallow</Original>
@@ -166,6 +196,7 @@
                 <German>Verbieten</German>
                 <Japanese>不許可</Japanese>
                 <Korean>금지</Korean>
+                <Russian>Запретить</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_TAKERADIO_1">
                 <Original>Only from dead</Original>
@@ -173,6 +204,7 @@
                 <German>Nur von Toten</German>
                 <Japanese>死体からのみ</Japanese>
                 <Korean>시체에서만</Korean>
+                <Russian>Только у трупов</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_TAKERADIO_2">
                 <Original>From immobilized units</Original>
@@ -180,6 +212,7 @@
                 <German>Von bewegungsunfähigen Personen</German>
                 <Japanese>無力化ユニットから</Japanese>
                 <Korean>고정된 유닛</Korean>
+                <Russian>У обездвиженных юнитов</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_default_radioVolume">
                 <Original>Default radio volume</Original>
@@ -192,6 +225,7 @@
                 <Korean>기본 무전기 볼륨</Korean>
                 <Chinese>預設無線電音量</Chinese>
                 <Chinesesimp>预设无线电音量</Chinesesimp>
+                <Russian>Громкость рации по умолчанию</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_same_lr_frequencies_for_side">
                 <Original>Same LR frequencies for side</Original>
@@ -204,10 +238,11 @@
                 <Korean>진영에 같은 장파 주파수</Korean>
                 <Chinese>同陣營使用相同的長程無線電頻率</Chinese>
                 <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
+                <Russian>Одинаковые частоты ДС для всей стороны</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_same_sw_frequencies_for_side">
-                <Original>Same SW frequencies for side</Original>
-                <English>Same SW frequencies for side</English>
+                <Original>Same SR frequencies for side</Original>
+                <English>Same SR frequencies for side</English>
                 <French>Mêmes fréquences CP pour le camp</French>
                 <German>Gleiche Kurzstrecken-Frequenzen für unterschiedlichen Fraktionen</German>
                 <Polish>Takie same częstotliwości SW dla strony</Polish>
@@ -216,6 +251,7 @@
                 <Korean>진영에 같은 단파 주파수</Korean>
                 <Chinese>同陣營使用相同的短程無線電頻率</Chinese>
                 <Chinesesimp>同阵营使用相同的短程无线电频率</Chinesesimp>
+                <Russian>Одинаковые частоты БС для всей стороны</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_give_microdagr_to_soldier">
                 <Original>Give MicroDAGR to soldier</Original>
@@ -228,6 +264,7 @@
                 <Korean>보병에게 MicroDAGR 부여</Korean>
                 <Chinese>給予士兵微型軍用GPS接收器</Chinese>
                 <Chinesesimp>给予士兵微型军用GPS接收器</Chinesesimp>
+                <Russian>Выдавать MicroDAGR солдатам</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_give_personal_radio_to_regular_soldier">
                 <Original>Give personal radio to regular soldier</Original>
@@ -240,6 +277,7 @@
                 <Korean>일반 보병에게 개인 무전기 부여</Korean>
                 <Chinese>給予一般士兵短程個人無線電</Chinese>
                 <Chinesesimp>给予一般士兵短程个人无线电</Chinesesimp>
+                <Russian>Выдавать командирские рации обычным солдатам</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_auto_long_range_radio">
                 <Original>Automatically give long range radio</Original>
@@ -251,6 +289,7 @@
                 <Korean>자동으로 장파 무전기 부여</Korean>
                 <Chinese>自動給予長程無線電</Chinese>
                 <Chinesesimp>自动给予长程无线电</Chinesesimp>
+                <Russian>Автоматически выдавать рацию дальней связи</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_auto_long_range_radio_desc">
                 <Original>Give each team leader the appropriate long range radio</Original>
@@ -274,6 +313,7 @@
                 <Korean>차량 인터콤 활성</Korean>
                 <Chinese>啟用載具內對講機</Chinese>
                 <Chinesesimp>启用载具内对讲机</Chinesesimp>
+                <Russian>Включить переговорное устройство в технике</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_enable_object_interception">
                 <Original>Enable Object Interception</Original>
@@ -282,11 +322,13 @@
                 <Korean>물체 인터콤 활성</Korean>
                 <Chinese>啟用物件攔截</Chinese>
                 <Chinesesimp>启用物件拦截</Chinesesimp>
+                <Russian>Объекты создают препятствия для голоса</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_voice_cone">
                 <Original>Directional Voice</Original>
                 <English>Directional Voice</English>
                 <German>Direktionale Stimmen</German>
+                <Russian>Направленный голос</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_spectator_hear_emy">
                 <Original>Spectator can hear enemy units</Original>
@@ -295,6 +337,7 @@
                 <Korean>관전자는 적의 음성을 들을 수 있습니다.</Korean>
                 <Chinese>觀察者可以聽到敵方的語音</Chinese>
                 <Chinesesimp>观察者可以听到敌方的语音</Chinesesimp>
+                <Russian>Наблюдатель может слышать противников</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_spectator_hear_emy_desc">
                 <Original>If disabled a Spectator can't hear direct speech from Units that are considered Enemy to the Spectators English faction</Original>
@@ -303,6 +346,7 @@
                 <Korean>비활성되면 관전자는 관전자의 적으로 분류되는 플레이어의 육성을 들을 수 없다.</Korean>
                 <Chinese>假如本功能關閉的話，觀察者將不能聽到敵隊陣營玩家的語音通訊</Chinese>
                 <Chinesesimp>假如本功能关闭的话，观察者将不能听到敌队阵营玩家的语音通讯</Chinesesimp>
+                <Russian>Если отключено, наблюдатель не может слышать голоса противников</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_spectator_hear">
                 <Original>Spectator can hear units</Original>
@@ -311,6 +355,7 @@
                 <Korean>관전자는 유닛 육성 들을 수 있음</Korean>
                 <Chinese>觀察者可以聽到其他玩家的語音</Chinese>
                 <Chinesesimp>观察者可以听到其他玩家的语音</Chinesesimp>
+                <Russian>Наблюдатель может слышать игроков</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_spectator_hear_desc">
                 <Original>If disabled a Spectator can't hear any Players besides other Spectators</Original>
@@ -319,6 +364,7 @@
                 <Korean>비활성되면 관전자는 다른 관전자를 제외한 플레이어의 육성을 들을 수 없음</Korean>
                 <Chinese>假如本功能關閉的話，觀察者將不能聽到其他還活著玩家的語音通訊，只能聽到其他觀察者的聲音</Chinese>
                 <Chinesesimp>假如本功能关闭的话，观察者将不能听到其他还活着玩家的语音通讯，只能听到其他观察者的声音</Chinesesimp>
+                <Russian>Если отключено, наблюдатель не может слышать игроков, кроме других наблюдателей</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_directSpeechModifier">
                 <Original>Direct speech on volume modifier</Original>
@@ -327,6 +373,7 @@
                 <Korean>직접교신의 음량 배수</Korean>
                 <Chinese>使用音量修改器來直接發話</Chinese>
                 <Chinesesimp>使用音量修改器来直接发话</Chinesesimp>
+                <Russian>Голос при нажатии модификатора громкости</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_directSpeechModifier_desc">
                 <Original>Activate directSpeech when pressing volume modifier</Original>
@@ -335,6 +382,7 @@
                 <Korean>직접 교신의 음량 수정 활성화</Korean>
                 <Chinese>按下音量修改器時同時啟動直接發話</Chinese>
                 <Chinesesimp>按下音量修改器时同时启动直接发话</Chinesesimp>
+                <Russian>Активировать передачу голоса при нажатии клавиши модификатора громкости разговора</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_intercomVolume">
                 <Original>Intercom Volume</Original>
@@ -343,14 +391,27 @@
                 <Korean>인터콤 음량</Korean>
                 <Chinese>對講機音量</Chinese>
                 <Chinesesimp>对讲机音量</Chinesesimp>
+                <Russian>Громкость переговорного устройства</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_intercomDucking">
                 <Original>Intercom Ducking</Original>
                 <Japanese>インターコムを絞る</Japanese>
+                <Russian>Снижение громкости переговорного устройства</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_intercomDucking_desc">
                 <Original>Intercom volume reduction on incoming vehicle radio transmission</Original>
                 <Japanese>車載無線機で受信中はインターコムの音量を絞ります</Japanese>
+                <Russian>Снижение громкости переговорного устройства при входящей радиопередаче</Russian>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultIntercomChannel">
+                <Original>Default Intercom Channel</Original>
+                <English>Default Intercom Channel</English>
+                <Russian>Канал переговорного устройства по умолчанию</Russian>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_DefaultIntercomChannel_desc">
+                <Original>Default Intercom channel when entering the vehicle. Has to be number. -1 is Disabled.</Original>
+                <English>Default Intercom channel when entering the vehicle. Has to be number. -1 is Disabled.</English>
+                <Russian>Канал переговорного устройства по умолчанию при посадке в технику. Должно быть число. -1 - Выключено.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_pluginTimeout">
                 <Original>Plugin Timeout in seconds</Original>
@@ -359,6 +420,7 @@
                 <Korean>플러그인 시간초과 (s)</Korean>
                 <Chinese>插件超時無回應秒數</Chinese>
                 <Chinesesimp>插件超时无回应秒数</Chinesesimp>
+                <Russian>Таймаут плагина в секундах</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_tangentReleaseDelay">
                 <Original>tangentReleaseDelay in milliseconds</Original>
@@ -367,6 +429,7 @@
                 <Korean>탄젠트릴리즈딜레이 (ms)</Korean>
                 <Chinese>tangentReleaseDelay (毫秒)</Chinese>
                 <Chinesesimp>tangentReleaseDelay (毫秒)</Chinesesimp>
+                <Russian>Задержка при отпускании тангенты (мсек)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_positionUpdateMode">
                 <Original>Position Update Mode</Original>
@@ -375,6 +438,7 @@
                 <Korean>위치 업데이트 모드</Korean>
                 <Chinese>位置更新模式</Chinese>
                 <Chinesesimp>位置更新模式</Chinesesimp>
+                <Russian>Режим обновления позиции</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_positionUpdateMode_desc">
                 <Original>The higher the quality the lower fps</Original>
@@ -383,6 +447,7 @@
                 <Korean>최고 품질 낮은 FPS</Korean>
                 <Chinese>品質設定越高越影響效能</Chinese>
                 <Chinesesimp>品质设定越高越影响效能</Chinesesimp>
+                <Russian>Чем выше качество, тем ниже FPS</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_positionUpdateMode_quality">
                 <Original>Quality</Original>
@@ -391,6 +456,7 @@
                 <Korean>품질</Korean>
                 <Chinese>品質</Chinese>
                 <Chinesesimp>品质</Chinesesimp>
+                <Russian>Качество</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_positionUpdateMode_normal">
                 <Original>Normal</Original>
@@ -399,6 +465,7 @@
                 <Korean>일반</Korean>
                 <Chinese>普通</Chinese>
                 <Chinesesimp>普通</Chinesesimp>
+                <Russian>Нормально</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_positionUpdateMode_performance">
                 <Original>Performance</Original>
@@ -407,6 +474,7 @@
                 <Korean>퍼포먼스</Korean>
                 <Chinese>效能</Chinese>
                 <Chinesesimp>效能</Chinesesimp>
+                <Russian>Производительность</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_hudVolumeIndicator">
                 <Original>Show HUD Voice Volume indicator</Original>
@@ -415,6 +483,7 @@
                 <Korean>HUD에 음량 표시기 보기</Korean>
                 <Chinese>在抬頭顯示器上顯示音量指示器</Chinese>
                 <Chinesesimp>在抬头显示器上显示音量指示器</Chinesesimp>
+                <Russian>Показывать индикатор громкости голоса</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_hudVolumeIndicator_desc">
                 <Original>If disabled it will pop up for a short time when changing Volume</Original>
@@ -423,6 +492,7 @@
                 <Korean>비활성되면 음량 변경시 짧은 시간 표기됨</Korean>
                 <Chinese>假如關閉本功能的話，音量切換時的提示訊息只會顯示在螢幕上一下下</Chinese>
                 <Chinesesimp>假如关闭本功能的话，音量切换时的提示讯息只会显示在荧幕上一下下</Chinesesimp>
+                <Russian>Если отключено, индикатор будет отображаться на короткое время при изменении громкости</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_volumeIndicatorTransparency">
                 <Original>Volume Indicator Transparency</Original>
@@ -431,6 +501,7 @@
                 <Korean>음량 표시기 투명도</Korean>
                 <Chinese>音量指示器透明度</Chinese>
                 <Chinesesimp>音量指示器透明度</Chinesesimp>
+                <Russian>Прозрачность индикатора громкости</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_volumeIndicatorTransparency_desc">
                 <Original>Volume Indicator Transparency (0 fully visible - 1 invisible)</Original>
@@ -439,6 +510,7 @@
                 <Korean>음량 표시의 투명도 (0 불투명 - 1 투명)</Korean>
                 <Chinese>音量指示器透明度 (0為完全透明，1為不透明)</Chinese>
                 <Chinesesimp>音量指示器透明度 (0为完全透明，1为不透明)</Chinesesimp>
+                <Russian>Прозрачность индикатора громкости (0 - полностью видимый. 1 - полностью прозрачный)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_useOldVolumeHint">
                 <Original>Use old Voice Volume Hint</Original>
@@ -447,6 +519,7 @@
                 <Korean>이전버전 음량 힌트 사용</Korean>
                 <Chinese>使用舊的語音音量提示</Chinese>
                 <Chinesesimp>使用旧的语音音量提示</Chinesesimp>
+                <Russian>Старое отображение громкости голоса</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_useOldVolumeHint_desc">
                 <Original>Use old Voice Volume Hint</Original>
@@ -455,6 +528,7 @@
                 <Korean>이전버전 음량 힌트 사용</Korean>
                 <Chinese>使用舊的語音音量提示</Chinese>
                 <Chinesesimp>使用旧的语音音量提示</Chinesesimp>
+                <Russian>Использовать старое отображение громкости голоса</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_showTransmittingHint">
                 <Original>Show Transmitting Hint</Original>
@@ -463,6 +537,7 @@
                 <Korean>송수신 표시 보기</Korean>
                 <Chinese>顯示無線電發送訊息提示</Chinese>
                 <Chinesesimp>显示无线电发送讯息提示</Chinesesimp>
+                <Russian>Отображать индикатор радиопередачи</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_showTransmittingHint_desc">
                 <Original>Show the Hint (Bottom right) when you are Transmitting</Original>
@@ -471,6 +546,7 @@
                 <Korean>송수신시 표시기(우측 아래)</Korean>
                 <Chinese>當無線電傳送訊息時在右下角顯示提示訊息</Chinese>
                 <Chinesesimp>当无线电传送讯息时在右下角显示提示讯息</Chinesesimp>
+                <Russian>Отображать индикатор радиопередачи (правый нижний угол)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_showChannelChangedHint">
                 <Original>Show Channel Changed Hint</Original>
@@ -479,6 +555,7 @@
                 <Korean>채널 변경 표시기</Korean>
                 <Chinese>顯示無線電頻道更改提示</Chinese>
                 <Chinesesimp>显示无线电频道更改提示</Chinesesimp>
+                <Russian>Отображать индикатор смены канала</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_showChannelChangedHint_desc">
                 <Original>Show the Hint (Bottom right) when you switch Channels via UI or Hotkey</Original>
@@ -487,7 +564,54 @@
                 <Korean>UI 혹은 단축기로 채널 변경시 표시기(우측 아래)</Korean>
                 <Chinese>當無線電頻道更改時在右下角顯示提示訊息</Chinese>
                 <Chinesesimp>当无线电频道更改时在右下角显示提示讯息</Chinesesimp>
+                <Russian>Отображать индикатор при смене канала через UI или Hotkey (правый нижний угол)</Russian>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_showDiaryRecord">
+                <Original>Show diary help page</Original>
+                <English>Show diary help page</English>
+                <Russian>Отображать страницу помощи</Russian>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_showDiaryRecord_desc">
+                <Original>Show diary help page on briefing</Original>
+                <English>Show diary help page on briefing</English>
+                <Russian>Отображать страницу помощи на брифинге</Russian>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_moveWhileTabbedOut">
+                <English>Move while tabbed out</English>
+                <Russian>Перемещать при alt-tab</Russian>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_moveWhileTabbedOut_desc">
+                <English>Move to TFAR channel even while the Arma window is not in focus</English>
+                <German>Verschiebe in den TFAR Channel selbst wenn das Arma Fenster nicht im Fokus ist</German>
+                <Russian>Перемещать в TFAR канал даже если окно ARMA не в фокусе.</Russian>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_curatorCamEars">
+                <English>Hearing from Zeus Camera</English>
+                <German>Hören von Zeus Kamera</German>
+                <Japanese>キュレーター画面の時にカメラから聞く</Japanese>
+                <Korean>큐레이터 인터페이스에서 카메라 듣기</Korean>
+                <Chinese>宙斯編輯器聆聽玩家語音</Chinese>
+                <Chinesesimp>宙斯编辑器聆听玩家语音</Chinesesimp>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_curatorCamEars_desc">
+                <English>Hear voice from Curator Camera when in Zeus interface</English>
+                <German>Hören von der Zeus Kamera aus wenn das Zeus Interface offen ist</German>
+                <Japanese>キュレーター画面の時にキュレーター カメラから声を聞きます</Japanese>
+                <Korean>큐레이터 인터페이스에서 큐레이터 카메라의 음성 듣기</Korean>
+                <Chinese>使用宙斯編輯器時可以聆聽到玩家的語音</Chinese>
+                <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
+            </Key>
+
+            <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator">
+                <English>No Automove in Spectator</English>
+                <German>Kein Automove im Spectator</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator_desc">
+                <English>Don't force move to TFAR channel while in spectator mode</English>
+                <German>Nicht in den TFAR Channel verschieben während man im Spectator Modus ist</German>
+            </Key>
+
+
             <Key ID="STR_TFAR_SETTINGS_FullDuplex">
                 <Original>Full-Duplex</Original>
                 <English>Full-Duplex</English>
@@ -497,6 +621,7 @@
                 <Korean>양방향 통신</Korean>
                 <Chinese>全雙工模式</Chinese>
                 <Chinesesimp>全双工模式</Chinesesimp>
+                <Russian>Full-Duplex</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_FullDuplexDescription">
                 <Original>Allows Radios to simultaneously receive while transmitting.</Original>
@@ -507,6 +632,7 @@
                 <Korean>전송하는 동안 동시에 수신을 가능하게 합니다.</Korean>
                 <Chinese>允許無線電能同時接收與發送訊號。</Chinese>
                 <Chinesesimp>允许无线电能同时接收与发送讯号。</Chinesesimp>
+                <Russian>Разрешает прием во время радиопередачи</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR">
                 <Original>Default SR-frequencies:</Original>
@@ -514,6 +640,7 @@
                 <German>Standard Kurzstrecken-Frequenzen:</German>
                 <Japanese>短距離無線機の標準設定:</Japanese>
                 <Korean>기본 단파 설정</Korean>
+                <Russian>Частоты БС по умолчанию:</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_desc">
                 <Original>Define the default SR-frequencies for this entity</Original>
@@ -521,6 +648,7 @@
                 <German>Das Festlegen der Standard Kurzstrecken-Frequenzen für diese Entität.</German>
                 <Japanese>短距離無線機の標準設定をこのエントリで定義します</Japanese>
                 <Korean>이 엔티티의 기본 단파 설정 정의</Korean>
+                <Russian>Установить частоты ближней связи по умолчанию для этого юнита</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR">
                 <Original>Default LR-frequencies:</Original>
@@ -528,6 +656,7 @@
                 <German>Standard Langstrecken-Frequenzen:</German>
                 <Japanese>長距離無線機の標準設定:</Japanese>
                 <Korean>기본 장파 설정</Korean>
+                <Russian>Частоты ДС по умолчанию:</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_desc">
                 <Original>Define the default LR-frequencies for this entity</Original>
@@ -535,13 +664,15 @@
                 <German>Das Festlegen der Standard Langstrecken-Frequenzen für diese Entität.</German>
                 <Japanese>長距離無線機の標準設定をこのエントリで定義します</Japanese>
                 <Korean>이 엔티티의 기본 장파 설정 정의</Korean>
+                <Russian>Установить частоты дальней связи по умолчанию для этого юнита</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_west">
-                <Original>Default SR-frequencies (NATO):</Original>
-                <English>Default SR-frequencies (NATO):</English>
-                <German>Standard Kurzstrecken-Frequenzen (NATO):</German>
-                <Japanese>短距離無線機の標準設定 (NATO):</Japanese>
+                <Original>Default SR-frequencies (NATO)</Original>
+                <English>Default SR-frequencies (NATO)</English>
+                <German>Standard Kurzstrecken-Frequenzen (NATO)</German>
+                <Japanese>短距離無線機の標準設定 (NATO)</Japanese>
                 <Korean>기본 단파 설정 (NATO)</Korean>
+                <Russian>Частоты ближней связи по умолчанию (NATO)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_west_desc">
                 <Original>Define the default SR-frequencies for the NATO side as a list. e.g.: 99,101,250</Original>
@@ -549,13 +680,15 @@
                 <German>Das Festlegen der Standard Kurzstrecken-Frequenzen für die NATO-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
                 <Japanese>NATO 側で使われる短距離無線機の標準設定をリストで定義します。(例: 99, 101, 250)</Japanese>
                 <Korean>NATO(청군)의 기본 단파 설정 정의 목록 (예: 99,101,250)</Korean>
+                <Russian>Задать частоты ближней связи по умолчанию для стороны NATO в виде списка. Например: 99,101,250</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_east">
-                <Original>Default SR-frequencies (CSAT):</Original>
-                <English>Default SR-frequencies (CSAT):</English>
-                <German>Standard Kurzstrecken-Frequenzen (CSAT):</German>
-                <Japanese>短距離無線機の標準設定 (CSAT):</Japanese>
+                <Original>Default SR-frequencies (CSAT)</Original>
+                <English>Default SR-frequencies (CSAT)</English>
+                <German>Standard Kurzstrecken-Frequenzen (CSAT)</German>
+                <Japanese>短距離無線機の標準設定 (CSAT)</Japanese>
                 <Korean>기본 단파 설정 (CSAT)</Korean>
+                <Russian>Частоты ближней связи по умолчанию (CSAT)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_east_desc">
                 <Original>Define the default SR-frequencies for the CSAT side as a list. e.g.: 99,101,250</Original>
@@ -563,13 +696,15 @@
                 <German>Das Festlegen der Standard Kurzstrecken-Frequenzen für die CSAT-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
                 <Japanese>CSAT 側で使われる短距離無線機の標準設定をリストで定義します。(例: 99, 101, 250)</Japanese>
                 <Korean>CSAT(대항군)의 기본 단파 설정 정의 목록 (예: 99,101,250)</Korean>
+                <Russian>Задать частоты ближней связи по умолчанию для стороны CSAT в виде списка. Например: 99,101,250</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_independent">
-                <Original>Default SR-frequencies (AAF):</Original>
-                <English>Default SR-frequencies (AAF):</English>
-                <German>Standard Kurzstrecken-Frequenzen (AAF):</German>
-                <Japanese>短距離無線機の標準設定 (AAF):</Japanese>
+                <Original>Default SR-frequencies (AAF)</Original>
+                <English>Default SR-frequencies (AAF)</English>
+                <German>Standard Kurzstrecken-Frequenzen (AAF)</German>
+                <Japanese>短距離無線機の標準設定 (AAF)</Japanese>
                 <Korean>기본 단파 설정 (AAF)</Korean>
+                <Russian>Частоты ближней связи по умолчанию (AAF)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_independent_desc">
                 <Original>Define the default SR-frequencies for the AAF side as a list. e.g.: 99,101,250</Original>
@@ -577,13 +712,15 @@
                 <German>Das Festlegen der Standard Kurzstrecken-Frequenzen für die AAF-Streitkräfte erfolgt als Liste. z.B.: 99,101,250</German>
                 <Japanese>AAF 側で使われる短距離無線機の標準設定をリストで定義します。(例: 99, 101, 250)</Japanese>
                 <Korean>AAF(해방군)의 기본 단파 설정 정의 목록 (예: 99,101,250)</Korean>
+                <Russian>Задать частоты ближней связи по умолчанию для стороны AAF в виде списка. Например: 99,101,250</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_west">
-                <Original>Default LR-frequencies (NATO):</Original>
-                <English>Default LR-frequencies (NATO):</English>
-                <German>Standard Langstrecken-Frequenzen (NATO):</German>
-                <Japanese>長距離無線機の標準設定 (NATO):</Japanese>
+                <Original>Default LR-frequencies (NATO)</Original>
+                <English>Default LR-frequencies (NATO)</English>
+                <German>Standard Langstrecken-Frequenzen (NATO)</German>
+                <Japanese>長距離無線機の標準設定 (NATO)</Japanese>
                 <Korean>기본 장파 설정 (NATO)</Korean>
+                <Russian>Частоты дальней связи по умолчанию (NATO)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_west_desc">
                 <Original>Define the default LR-frequencies for the NATO side as a list. e.g.: 45, 47, 70</Original>
@@ -591,13 +728,15 @@
                 <German>Das Festlegen der Standard Langstrecken-Frequenzen für die NATO-Streitkräfte erfolgt als Liste. z.B.: 45, 47, 70</German>
                 <Japanese>NATO 側で使われる長距離無線機の標準設定をリストで定義します。(例: 45, 47, 70)</Japanese>
                 <Korean>NATO(청군)의 기본 장파 설정 정의 목록 (예: 45, 47, 70)</Korean>
+                <Russian>Задать частоты дальней связи по умолчанию для стороны NATO в виде списка. Например: 45, 47, 70</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_east">
-                <Original>Default LR-frequencies (CSAT):</Original>
-                <English>Default LR-frequencies (CSAT):</English>
+                <Original>Default LR-frequencies (CSAT)</Original>
+                <English>Default LR-frequencies (CSAT)</English>
                 <German>Standard Langstrecken-Frequenzen Ost:</German>
-                <Japanese>長距離無線機の標準設定 (CSAT):</Japanese>
+                <Japanese>長距離無線機の標準設定 (CSAT)</Japanese>
                 <Korean>기본 장파 설정 (CSAT)</Korean>
+                <Russian>Частоты дальней связи по умолчанию (CSAT)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_east_desc">
                 <Original>Define the default LR-frequencies for the CSAT side as a list. e.g.: 45, 47, 70</Original>
@@ -605,13 +744,15 @@
                 <German>Das Festlegen der Standard Langstrecken-Frequenzen für die CSAT-Streitkräfte erfolgt als Liste. z.B.: 45, 47, 70</German>
                 <Japanese>CSAT 側で使われる長距離無線機の標準設定をリストで定義します。(例: 45, 47, 70)</Japanese>
                 <Korean>CSAT(대항군)의 기본 장파 설정 정의 목록 (예: 45, 47, 70)</Korean>
+                <Russian>Задать частоты дальней связи по умолчанию для стороны CSAT в виде списка. Например: 45, 47, 70</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_independent">
-                <Original>Default LR-frequencies (AAF):</Original>
-                <English>Default LR-frequencies (AAF):</English>
-                <German>Standard Langstrecken-Frequenzen (AAF):</German>
-                <Japanese>長距離無線機の標準設定 (AAF):</Japanese>
+                <Original>Default LR-frequencies (AAF)</Original>
+                <English>Default LR-frequencies (AAF)</English>
+                <German>Standard Langstrecken-Frequenzen (AAF)</German>
+                <Japanese>長距離無線機の標準設定 (AAF)</Japanese>
                 <Korean>기본 장파 설정 (AAF)</Korean>
+                <Russian>Частоты дальней связи по умолчанию (AAF)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_independent_desc">
                 <Original>Define the default LR-frequencies for the AAF side as a list. e.g.: 45, 47, 70</Original>
@@ -619,13 +760,15 @@
                 <German>Das Festlegen der Standard Langstrecken-Frequenzen für die AAF-Streitkräfte erfolgt als Liste. z.B.: 45, 47, 70</German>
                 <Japanese>AAF 側で使われる長距離無線機の標準設定をリストで定義します。(例: 45, 47, 70)</Japanese>
                 <Korean>AAF(해방군)의 기본 장파 설정 정의 목록 (예: 45, 47, 70)</Korean>
+                <Russian>Задать частоты дальней связи по умолчанию для стороны AAF в виде списка. Например: 45, 47, 70</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_west">
-                <Original>Default rifleman-radio (NATO):</Original>
-                <English>Default rifleman-radio (NATO):</English>
-                <German>Standard Soldatenfunkgerät (NATO):</German>
-                <Japanese>小銃手無線機の標準設定 (NATO):</Japanese>
+                <Original>Default rifleman-radio (NATO)</Original>
+                <English>Default rifleman-radio (NATO)</English>
+                <German>Standard Soldatenfunkgerät (NATO)</German>
+                <Japanese>小銃手無線機の標準設定 (NATO)</Japanese>
                 <Korean>기본 개인 무전 설정 (NATO)</Korean>
+                <Russian>Стандартная рация солдата (NATO)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_west_desc">
                 <Original>Define the default rifleman-radio class for the NATO-side.</Original>
@@ -633,13 +776,15 @@
                 <German>Lege das Standard-Funkgerät für NATO-Soldaten fest.</German>
                 <Japanese>NATO 側の小銃手無線機をクラスで定義します。</Japanese>
                 <Korean>NATO(청군)의 기본 개인 무전 설정 정의</Korean>
+                <Russian>Класс стандартной рации солдата для стороны NATO.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_east">
-                <Original>Default rifleman-radio (CSAT):</Original>
-                <English>Default rifleman-radio (CSAT):</English>
-                <German>Standard Soldatenfunkgerät (CSAT):</German>
-                <Japanese>小銃手無線機の標準設定 (CSAT):</Japanese>
+                <Original>Default rifleman-radio (CSAT)</Original>
+                <English>Default rifleman-radio (CSAT)</English>
+                <German>Standard Soldatenfunkgerät (CSAT)</German>
+                <Japanese>小銃手無線機の標準設定 (CSAT)</Japanese>
                 <Korean>기본 개인 무전 설정 (CSAT)</Korean>
+                <Russian>Стандартная рация солдата (CSAT)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_east_desc">
                 <Original>Define the default rifleman-radio class for the CAST side.</Original>
@@ -647,13 +792,15 @@
                 <German>Lege das Standard-Funkgerät für CAST-Soldaten fest.</German>
                 <Japanese>CSAT 側の小銃手無線機をクラスで定義します。</Japanese>
                 <Korean>CSAT(대항군)의 기본 개인 무전 설정 정의</Korean>
+                <Russian>Класс стандартной рации солдата для стороны CSAT.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_independent">
-                <Original>Default rifleman-radio (AAF):</Original>
-                <English>Default rifleman-radio (AAF):</English>
-                <German>Standard Soldatenfunkgerät (AAF):</German>
-                <Japanese>小銃手無線機の標準設定 (AAF):</Japanese>
+                <Original>Default rifleman-radio (AAF)</Original>
+                <English>Default rifleman-radio (AAF)</English>
+                <German>Standard Soldatenfunkgerät (AAF)</German>
+                <Japanese>小銃手無線機の標準設定 (AAF)</Japanese>
                 <Korean>기본 장파 설정 (AAF)</Korean>
+                <Russian>Стандартная рация солдата (AAF)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_independent_desc">
                 <Original>Define the default rifleman-radio class for the AAF side.</Original>
@@ -661,13 +808,15 @@
                 <German>Lege das Standard-Funkgerät für AAF-Soldaten fest.</German>
                 <Japanese>AAF 側の小銃手無線機をクラスで定義します。</Japanese>
                 <Korean>AAF(해방군)의 기본 개인 무전 설정 정의</Korean>
+                <Russian>Класс стандартной рации солдата для стороны AAF.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_west">
-                <Original>Default squadlead radio (NATO):</Original>
-                <English>Default squadlead radio (NATO):</English>
-                <German>Standard Truppführerfunkgerät (NATO):</German>
-                <Japanese>標準の分隊長用無線機を定義 (NATO):</Japanese>
+                <Original>Default squadlead radio (NATO)</Original>
+                <English>Default squadlead radio (NATO)</English>
+                <German>Standard Truppführerfunkgerät (NATO)</German>
+                <Japanese>標準の分隊長用無線機を定義 (NATO)</Japanese>
                 <Korean>기본 분대 무전 설정 (NATO)</Korean>
+                <Russian>Стандартная рация командира отделения (NATO)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_west_desc">
                 <Original>Define the default squadlead radio class for the NATO-side.</Original>
@@ -675,13 +824,15 @@
                 <German>Lege das Standard-Funkgerät für NATO-Offiziere fest.</German>
                 <Japanese>NATO 側の分隊長用無線機をクラスで定義します。</Japanese>
                 <Korean>NATO(청군)의 기본 분대 무전 설정 정의</Korean>
+                <Russian>Класс стандартной рации командира отделения для стороны NATO.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_east">
-                <Original>Default squadlead radio (CSAT):</Original>
-                <English>Default squadlead radio (CSAT):</English>
-                <German>Standard Truppführerfunkgerät (CSAT):</German>
-                <Japanese>標準の分隊長用無線機を定義 (CSAT):</Japanese>
+                <Original>Default squadlead radio (CSAT)</Original>
+                <English>Default squadlead radio (CSAT)</English>
+                <German>Standard Truppführerfunkgerät (CSAT)</German>
+                <Japanese>標準の分隊長用無線機を定義 (CSAT)</Japanese>
                 <Korean>기본 분대 무전 설정 (CSAT)</Korean>
+                <Russian>Стандартная рация командира отделения (CSAT)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_east_desc">
                 <Original>Define the default squadlead radio class for the CAST side.</Original>
@@ -689,13 +840,15 @@
                 <German>Lege das Standard-Funkgerät für CAST-Offiziere fest.</German>
                 <Japanese>CSAT 側の分隊長用無線機をクラスで定義します。</Japanese>
                 <Korean>CSAT(대항군)의 기본 분대 무전 설정 정의</Korean>
+                <Russian>Класс стандартной рации командира отделения для стороны CSAT.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_independent">
-                <Original>Default squadlead radio (AAF):</Original>
-                <English>Default squadlead radio (AAF):</English>
-                <German>Standard Truppführerfunkgerät (AAF):</German>
-                <Japanese>標準の分隊長用無線機を定義 (AAF):</Japanese>
+                <Original>Default squadlead radio (AAF)</Original>
+                <English>Default squadlead radio (AAF)</English>
+                <German>Standard Truppführerfunkgerät (AAF)</German>
+                <Japanese>標準の分隊長用無線機を定義 (AAF)</Japanese>
                 <Korean>기본 분대 무전 설정 (AAF)</Korean>
+                <Russian>Стандартная рация командира отделения (AAF)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioPersonal_independent_desc">
                 <Original>Define the default squadlead radio class for the AAF side.</Original>
@@ -703,13 +856,15 @@
                 <German>Lege das Standard-Funkgerät für AAF-Offiziere fest.</German>
                 <Japanese>AAF 側の分隊長用無線機をクラスで定義します。</Japanese>
                 <Korean>AAF(해방군)의 기본 분대 무전 설정 정의</Korean>
+                <Russian>Класс стандартной рации командира отделения для стороны AAF.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_west">
-                <Original>Default backpack-radio (NATO):</Original>
-                <English>Default backpack-radio (NATO):</English>
-                <German>Standard Rucksackfunkgerät (NATO):</German>
-                <Japanese>標準のマンパック無線機を定義 (NATO):</Japanese>
+                <Original>Default backpack-radio (NATO)</Original>
+                <English>Default backpack-radio (NATO)</English>
+                <German>Standard Rucksackfunkgerät (NATO)</German>
+                <Japanese>標準のマンパック無線機を定義 (NATO)</Japanese>
                 <Korean>기본 가방 무전 설정 (NATO)</Korean>
+                <Russian>Стандартная рация дальней связи (NATO)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_west_desc">
                 <Original>Define the default backpack-radio class for the NATO-side.</Original>
@@ -717,13 +872,15 @@
                 <German>Lege das Standard-Rucksackfunkgerät für die NATO fest.</German>
                 <Japanese>NATO 側のマンパック用無線機をクラスで定義します。</Japanese>
                 <Korean>NATO(청군)의 기본 가방 무전 설정 정의</Korean>
+                <Russian>Класс стандартной рации дальней связи для стороны NATO.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_east">
-                <Original>Default backpack-radio (CSAT):</Original>
-                <English>Default backpack-radio (CSAT):</English>
-                <German>Standard Rucksackfunkgerät (CSAT):</German>
-                <Japanese>標準のマンパック無線機を定義 (CSAT):</Japanese>
+                <Original>Default backpack-radio (CSAT)</Original>
+                <English>Default backpack-radio (CSAT)</English>
+                <German>Standard Rucksackfunkgerät (CSAT)</German>
+                <Japanese>標準のマンパック無線機を定義 (CSAT)</Japanese>
                 <Korean>기본 가방 무전 설정 (CSAT)</Korean>
+                <Russian>Стандартная рация дальней связи (CSAT)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_east_desc">
                 <Original>Define the default backpack-radio class for the CAST side.</Original>
@@ -731,13 +888,15 @@
                 <German>Lege das Standard-Rucksackfunkgerät für die CSAT fest.</German>
                 <Japanese>CSAT 側のマンパック用無線機をクラスで定義します。</Japanese>
                 <Korean>CSAT(대항군)의 기본 가방 무전 설정 정의</Korean>
+                <Russian>Класс стандартной рации дальней связи для стороны CSAT.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_independent">
-                <Original>Default backpack-radio (AAF):</Original>
-                <English>Default backpack-radio (AAF):</English>
-                <German>Standard Rucksackfunkgerät (AAF):</German>
-                <Japanese>標準のマンパック無線機を定義 (AAF):</Japanese>
+                <Original>Default backpack-radio (AAF)</Original>
+                <English>Default backpack-radio (AAF)</English>
+                <German>Standard Rucksackfunkgerät (AAF)</German>
+                <Japanese>標準のマンパック無線機を定義 (AAF)</Japanese>
                 <Korean>기본 가방 무전 설정 (AAF)</Korean>
+                <Russian>Стандартная рация дальней связи (AAF)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioBackpack_independent_desc">
                 <Original>Define the default backpack-radio class for the AAF side.</Original>
@@ -745,13 +904,15 @@
                 <German>Lege das Standard-Rucksackfunkgerät für die AAF fest.</German>
                 <Japanese>AAF 側のマンパック用無線機をクラスで定義します。</Japanese>
                 <Korean>AAF(해방군)의 기본 가방 무전 설정 정의</Korean>
+                <Russian>Класс стандартной рации дальней связи для стороны AAF.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_west">
-                <Original>Default airborne-radio (NATO):</Original>
-                <English>Default airborne-radio (NATO):</English>
-                <German>Standard Flugzeugfunkgerät (NATO):</German>
-                <Japanese>標準の航空機搭載無線機を定義 (NATO):</Japanese>
+                <Original>Default airborne-radio (NATO)</Original>
+                <English>Default airborne-radio (NATO)</English>
+                <German>Standard Flugzeugfunkgerät (NATO)</German>
+                <Japanese>標準の航空機搭載無線機を定義 (NATO)</Japanese>
                 <Korean>기본 공수 무전 설정 (NATO)</Korean>
+                <Russian>Стандартная авиационная рация (NATO)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_west_desc">
                 <Original>Define the default airborne-radio class for the NATO-side.</Original>
@@ -759,13 +920,15 @@
                 <German>Lege das Standard-Flugzeugfunkgerät für NATO-Soldaten fest.</German>
                 <Japanese>NATO 側の航空機搭載無線機をクラスで定義します。</Japanese>
                 <Korean>NATO(청군)의 기본 공수 무전 설정 정의</Korean>
+                <Russian>Класс стандартной авиационной рации для стороны NATO.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_east">
-                <Original>Default airborne-radio (CSAT):</Original>
-                <English>Default airborne-radio (CSAT):</English>
-                <German>Standard Flugzeugfunkgerät (CSAT):</German>
-                <Japanese>標準の航空機搭載無線機を定義 (CSAT):</Japanese>
+                <Original>Default airborne-radio (CSAT)</Original>
+                <English>Default airborne-radio (CSAT)</English>
+                <German>Standard Flugzeugfunkgerät (CSAT)</German>
+                <Japanese>標準の航空機搭載無線機を定義 (CSAT)</Japanese>
                 <Korean>기본 공수 무전 설정 (CSAT)</Korean>
+                <Russian>Стандартная авиационная рация (CSAT)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_east_desc">
                 <Original>Define the default airborne-radio class for the CAST side.</Original>
@@ -773,13 +936,15 @@
                 <German>Lege das Standard-Flugzeugfunkgerät für CAST-Soldaten fest.</German>
                 <Japanese>CSAT 側の航空機搭載無線機をクラスで定義します。</Japanese>
                 <Korean>CSAT(대항군)의 기본 공수 무전 설정 정의</Korean>
+                <Russian>Класс стандартной авиационной рации для стороны CSAT.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_independent">
-                <Original>Default airborne-radio (AAF):</Original>
-                <English>Default airborne-radio (AAF):</English>
-                <German>Standard Flugzeugfunkgerät (AAF):</German>
-                <Japanese>標準の航空機搭載無線機を定義 (AAF):</Japanese>
+                <Original>Default airborne-radio (AAF)</Original>
+                <English>Default airborne-radio (AAF)</English>
+                <German>Standard Flugzeugfunkgerät (AAF)</German>
+                <Japanese>標準の航空機搭載無線機を定義 (AAF)</Japanese>
                 <Korean>기본 공수 무전 설정 (AAF)</Korean>
+                <Russian>Стандартная авиационная рация (AAF)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioAirborne_independent_desc">
                 <Original>Define the default airborne-radio class for the AAF side.</Original>
@@ -787,6 +952,7 @@
                 <German>Lege das Standard-Flugzeugfunkgerät für AAF-Soldaten fest.</German>
                 <Japanese>AAF 側の航空機搭載無線機をクラスで定義します。</Japanese>
                 <Korean>AAF(해방군)의 기본 공수 무전 설정 정의</Korean>
+                <Russian>Класс стандартной авиационной рации для стороны AAF.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radioCodesDisabled">
                 <Original>Disable Radio Code:</Original>
@@ -794,6 +960,7 @@
                 <German>Abschalten der Verschlüsselung:</German>
                 <Japanese>無線コードを無効化</Japanese>
                 <Korean>무전 암호화 비활성</Korean>
+                <Russian>Отключить шифрование радио</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radioCodesDisabled_desc">
                 <Original>Disables the Radio Encryption (everyone can radio with everyone)</Original>
@@ -801,13 +968,15 @@
                 <German>Schalte die Verschlüsselung für alle Funkgeräte aus. Anschließend können alle Spieler miteinander funken.</German>
                 <Japanese>無線の暗号化を無効化 (誰しもがどの陣営用無線を使えるように)</Japanese>
                 <Korean>무전기의 암호화를 비활성합니다.(모든 세력 무전을 들을 수 있음)</Korean>
+                <Russian>Отключает шифрование радио. Все могут связаться со всеми.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radioCode_west">
-                <Original>NATO radio code:</Original>
-                <English>NATO radio code:</English>
-                <German>NATO-Verschlüsselung:</German>
+                <Original>NATO radio code</Original>
+                <English>NATO radio code</English>
+                <German>NATO-Verschlüsselung</German>
                 <Japanese>NATO 無線コード</Japanese>
                 <Korean>NATO 무전 암호</Korean>
+                <Russian>Код шифрования NATO</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radioCode_west_desc">
                 <Original>Define the radio encryption for NATO side.</Original>
@@ -815,13 +984,15 @@
                 <German>Festlegen der Verschlüsselung für alle NATO-Funkgeräte.</German>
                 <Japanese>NATO 側の無線暗号化を定義</Japanese>
                 <Korean>NATO 측 무전기 암호를 정의합니다.</Korean>
+                <Russian>Укажите код шифрования радио для стороны NATO.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radioCode_east">
-                <Original>CSAT radio code:</Original>
-                <English>CSAT radio code:</English>
-                <German>CSAT-Verschlüsselung:</German>
+                <Original>CSAT radio code</Original>
+                <English>CSAT radio code</English>
+                <German>CSAT-Verschlüsselung</German>
                 <Japanese>CSAT 無線コード</Japanese>
                 <Korean>CSAT 무전 암호</Korean>
+                <Russian>Код шифрования CSAT</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radioCode_east_desc">
                 <Original>Define the radio encryption for CSAT side.</Original>
@@ -829,13 +1000,15 @@
                 <German>Festlegen der Verschlüsselung für alle CSAT-Funkgeräte.</German>
                 <Japanese>CSAT 側の無線暗号化を定義</Japanese>
                 <Korean>CSAT 측 무전기 암호를 정의합니다.</Korean>
+                <Russian>Укажите код шифрования радио для стороны CSAT.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radioCode_independent">
-                <Original>AAF radio code:</Original>
-                <English>AAF radio code:</English>
+                <Original>AAF radio code</Original>
+                <English>AAF radio code</English>
                 <German>AAF-Verschlüsselung:</German>
                 <Japanese>AAF 無線コード</Japanese>
                 <Korean>AAF 무전 암호</Korean>
+                <Russian>Код шифрования AAF</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_radioCode_independent_desc">
                 <Original>Define the radio encryption for AAF side.</Original>
@@ -843,6 +1016,7 @@
                 <German>Festlegen der Verschlüsselung für alle AAF-Funkgeräte.</German>
                 <Japanese>AAF 側の無線暗号化を定義</Japanese>
                 <Korean>AAF 측 무전기 암호를 정의합니다.</Korean>
+                <Russian>Укажите код шифрования радио для стороны AAF.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_TeamspeakChannel">
                 <Original>Teamspeak Channel</Original>
@@ -916,12 +1090,22 @@
                 <English>Instantiate during briefing (not recommended)</English>
                 <German>Funkgeräte während des Briefings instanziieren (nicht empfohlen)</German>
                 <Japanese>ブリーフィング中にインスタンス化 (非推奨)</Japanese>
+                <Russian>Выдавать рации во время брифинга (не рекоменд.)</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_instantiateAtBriefing_desc">
-                <Original>Instantiate the radios as soon as possible. This is intended to be used ONLY in non persistent big missions > 100 players.</Original>
-                <English>Instantiate the radios as soon as possible. This is intended to be used ONLY in non persistent big missions > 100 players.</English>
+                <Original>Instantiate the radios as soon as possible. This is intended to be used ONLY in non persistent big missions &gt; 100 players.</Original>
+                <English>Instantiate the radios as soon as possible. This is intended to be used ONLY in non persistent big missions &gt; 100 players.</English>
                 <German>Funkgeräte Instanziierung wird bereits während des Briefings ausgeführt. Diese Option zielt NUR auf nicht persistente Missionen mit mehr als 100 Spielern ab.</German>
                 <Japanese>すぐさま無線機をインスタンス化します。これはプレイヤーが 100 人以上の、非永続大型ミッション用です。</Japanese>
+                <Russian>Выдавать рации как можно скорее. Предполагается использовать ТОЛЬКО на непостоянных больших миссиях &gt; 100 игроков.</Russian>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_allowDebugging">
+                <English>Allow Debugging</English>
+                <German>Erlaube Debugging</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_instantiateAtBriefing_desc">
+                <English>Debug tools could allow players to see frequencies and positions of other players.</English>
+                <German>Debug tools könnten Spielern die Frequenzen und Positionen von anderen Spielern zeigen.</German>
             </Key>
         </Container>
         <Container name="diary">
@@ -1589,8 +1773,8 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
         </Container>
         <Container name="Keybinding">
             <Key ID="STR_TFAR_CORE_key_SW_Channel">
-                <Original>SW Channel</Original>
-                <English>SW Channel</English>
+                <Original>SR Channel</Original>
+                <English>SR Channel</English>
                 <Japanese>短距離無線機 チャンネル</Japanese>
                 <Korean>단파 채널</Korean>
                 <Chinese>短程無線電頻道</Chinese>
@@ -1611,6 +1795,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>육성 음량 병경</Korean>
                 <Chinese>變更發話音量</Chinese>
                 <Chinesesimp>变更发话音量</Chinesesimp>
+                <Russian>Изменить громкость разговора</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_YellingModifier">
                 <Original>Yelling Modifier</Original>
@@ -1619,6 +1804,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>소리지르기 설정</Korean>
                 <Chinese>嚎叫音量修改器</Chinese>
                 <Chinesesimp>嚎叫音量修改器</Chinesesimp>
+                <Russian>Крик</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_WhisperingModifier">
                 <Original>Whispering Modifier</Original>
@@ -1627,62 +1813,70 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>속삭이기 설정</Korean>
                 <Chinese>耳語音量修改器</Chinese>
                 <Chinesesimp>耳语音量修改器</Chinesesimp>
+                <Russian>Шепот</Russian>
             </Key>
-            <Key ID="STR_TFAR_CORE_key_CycleRightSWRadios">
-                <Original>Cycle Right SW Radios</Original>
-                <English>Cycle Right SW Radios</English>
+            <Key ID="STR_TFAR_CORE_key_CycleNextSRRadios">
+                <Original>Cycle Next SR Radios</Original>
+                <English>Cycle Next SR Radios</English>
                 <Japanese>短距離無線機を右へ順に切替</Japanese>
                 <Korean>오른쪽으로 단파 채널 변경</Korean>
                 <Chinese>向右循環短程無線電</Chinese>
                 <Chinesesimp>向右循环短程无线电</Chinesesimp>
+                <Russian>Переключить на следующую рацию ближней связи</Russian>
             </Key>
-            <Key ID="STR_TFAR_CORE_key_CycleLeftSWRadios">
-                <Original>Cycle Left SW Radios</Original>
-                <English>Cycle Left SW Radios</English>
+            <Key ID="STR_TFAR_CORE_key_CyclePrevSRRadios">
+                <Original>Cycle Previous SR Radios</Original>
+                <English>Cycle Previous SR Radios</English>
                 <Japanese>短距離無線機を左へ順に切替</Japanese>
                 <Korean>왼쪽으로 단파 채널 변경</Korean>
                 <Chinese>向左循環短程無線電</Chinese>
                 <Chinesesimp>向左循环短程无线电</Chinesesimp>
+                <Russian>Переключить на предыдущую рацию ближней связи</Russian>
             </Key>
-            <Key ID="STR_TFAR_CORE_key_CycleRightLRRadios">
-                <Original>Cycle Right LR Radios</Original>
-                <English>Cycle Right LR Radios</English>
+            <Key ID="STR_TFAR_CORE_key_CycleNextLRRadios">
+                <Original>Cycle Next LR Radios</Original>
+                <English>Cycle Next LR Radios</English>
                 <Japanese>長距離無線機を右へ順に切替</Japanese>
                 <Korean>오른쪽으로 장파 채널 변경</Korean>
                 <Chinese>向右循環長程無線電</Chinese>
                 <Chinesesimp>向右循环长程无线电</Chinesesimp>
+                <Russian>Переключить на следующую дальней связи</Russian>
             </Key>
-            <Key ID="STR_TFAR_CORE_key_CycleLeftLRRadios">
-                <Original>Cycle Left LR Radios</Original>
-                <English>Cycle Left LR Radios</English>
+            <Key ID="STR_TFAR_CORE_key_CyclePrevLRRadios">
+                <Original>Cycle Previous LR Radios</Original>
+                <English>Cycle Previous LR Radios</English>
                 <Japanese>長距離無線機を左へ順に切替</Japanese>
                 <Korean>왼쪽으로 장파 채널 변경</Korean>
                 <Chinese>向左循環長程無線電</Chinese>
                 <Chinesesimp>向左循环长程无线电</Chinesesimp>
+                <Russian>Переключить на предыдущую рацию дальней связи</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWStereo_Both">
-                <Original>SW Stereo: Both</Original>
-                <English>SW Stereo: Both</English>
+                <Original>SR Stereo: Both</Original>
+                <English>SR Stereo: Both</English>
                 <Japanese>短距離無線機ステレオ: 左右</Japanese>
                 <Korean>단파 스테레오: 양쪽</Korean>
                 <Chinese>短程無線電聲道: 雙聲道</Chinese>
                 <Chinesesimp>短程无线电声道: 双声道</Chinesesimp>
+                <Russian>Рация БС: Оба наушника</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWStereo_Left">
-                <Original>SW Stereo: Left</Original>
-                <English>SW Stereo: Left</English>
+                <Original>SR Stereo: Left</Original>
+                <English>SR Stereo: Left</English>
                 <Japanese>短距離無線機ステレオ: 左</Japanese>
                 <Korean>단파 스테레오: 왼쪽</Korean>
                 <Chinese>短程無線電聲道: 左聲道</Chinese>
                 <Chinesesimp>短程无线电声道: 左声道</Chinesesimp>
+                <Russian>Рация БС: Левый наушник</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWStereo_Right">
-                <Original>SW Stereo: Right</Original>
-                <English>SW Stereo: Right</English>
+                <Original>SR Stereo: Right</Original>
+                <English>SR Stereo: Right</English>
                 <Japanese>短距離無線機ステレオ: 右</Japanese>
                 <Korean>단파 스테레오: 오른쪽</Korean>
                 <Chinese>短程無線電聲道: 右聲道</Chinese>
                 <Chinesesimp>短程无线电声道: 右声道</Chinesesimp>
+                <Russian>Рация БС: Правый наушник</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRStereo_Both">
                 <Original>LR Stereo: Both</Original>
@@ -1691,6 +1885,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>장파 스테레오: 양쪽</Korean>
                 <Chinese>長程無線電聲道: 雙聲道</Chinese>
                 <Chinesesimp>长程无线电声道: 双声道</Chinesesimp>
+                <Russian>Рация ДС: Оба наушника</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRStereo_Left">
                 <Original>LR Stereo: Left</Original>
@@ -1699,6 +1894,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>장파 스테레오: 왼쪽</Korean>
                 <Chinese>長程無線電聲道: 左聲道</Chinese>
                 <Chinesesimp>长程无线电声道: 左声道</Chinesesimp>
+                <Russian>Рация ДС: Левый наушник</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRStereo_Right">
                 <Original>LR Stereo: Right</Original>
@@ -1707,22 +1903,25 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>장파 스테레오: 오른쪽</Korean>
                 <Chinese>長程無線電聲道: 右聲道</Chinese>
                 <Chinesesimp>长程无线电声道: 右声道</Chinesesimp>
+                <Russian>Рация ДС: Правый наушник</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWTransmit">
-                <Original>SW Transmit</Original>
-                <English>SW Transmit</English>
+                <Original>SR Transmit</Original>
+                <English>SR Transmit</English>
                 <Japanese>短距離無線機で送信</Japanese>
                 <Korean>단파 송신</Korean>
                 <Chinese>短程無線電 發送</Chinese>
                 <Chinesesimp>短程无线电 发送</Chinesesimp>
+                <Russian>Тангента рации ближней связи</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWTransmitAdditional">
-                <Original>SW Transmit Additional</Original>
-                <English>SW Transmit Additional</English>
+                <Original>SR Transmit Additional</Original>
+                <English>SR Transmit Additional</English>
                 <Japanese>追加短距離無線機で送信</Japanese>
                 <Korean>단파 송신 추가채널</Korean>
                 <Chinese>短程無線電附加頻道 發送</Chinese>
                 <Chinesesimp>短程无线电附加频道 发送</Chinesesimp>
+                <Russian>Тангента доп. канала рации ближней связи</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRTransmit">
                 <Original>LR Transmit</Original>
@@ -1731,6 +1930,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>장파 송신</Korean>
                 <Chinese>長程無線電 發送</Chinese>
                 <Chinesesimp>长程无线电 发送</Chinesesimp>
+                <Russian>Тангента рации дальней связи</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRTransmitAdditional">
                 <Original>LR Transmit Additional</Original>
@@ -1739,6 +1939,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>장파 송신 추가채널</Korean>
                 <Chinese>長程無線電附加頻道 發送</Chinese>
                 <Chinesesimp>长程无线电附加频道 发送</Chinesesimp>
+                <Russian>Тангента доп. канала рации дальней связи</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LowerHeadset">
                 <Original>Lower Headset</Original>
@@ -1747,6 +1948,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>헤드셋 내리기</Korean>
                 <Chinese>取下耳機</Chinese>
                 <Chinesesimp>取下耳机</Chinesesimp>
+                <Russian>Снять гарнитуру</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_RaiseHeadset">
                 <Original>Raise Headset</Original>
@@ -1755,6 +1957,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>헤드셋 올리기</Korean>
                 <Chinese>戴上耳機</Chinese>
                 <Chinesesimp>戴上耳机</Chinesesimp>
+                <Russian>Надеть гарнитуру</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_RaiseLowerHeadset">
                 <Original>Raise/Lower Headset</Original>
@@ -1763,6 +1966,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>헤드셋 올리기 / 헤드셋 내리기</Korean>
                 <Chinese>戴上耳機 / 取下耳機</Chinese>
                 <Chinesesimp>戴上耳机 / 取下耳机</Chinesesimp>
+                <Russian>Снять/Надеть гарнитуру</Russian>
             </Key>
         </Container>
         <Key ID="STR_TFAR_CORE_different_version">
@@ -2656,7 +2860,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Italian>Normale</Italian>
             <Polish>normalna</Polish>
             <Portuguese>Normal</Portuguese>
-            <Russian>норма</Russian>
+            <Russian>Норма</Russian>
             <Spanish>Normal</Spanish>
             <Turkish>Normal</Turkish>
             <Japanese>通常</Japanese>
@@ -2673,7 +2877,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Italian>Gridare</Italian>
             <Polish>krzyk</Polish>
             <Portuguese>Voz alta</Portuguese>
-            <Russian>крик</Russian>
+            <Russian>Крик</Russian>
             <Spanish>Gritar</Spanish>
             <Turkish>Bağırma</Turkish>
             <Japanese>大声</Japanese>
@@ -2690,7 +2894,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Italian>Bassa voce</Italian>
             <Polish>szept</Polish>
             <Portuguese>Sussurrando</Portuguese>
-            <Russian>шепот</Russian>
+            <Russian>Шепот</Russian>
             <Spanish>Susurrar</Spanish>
             <Turkish>Fısıldama</Turkish>
             <Japanese>小声</Japanese>
@@ -2773,6 +2977,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>인터콤 채널</Korean>
             <Chinese>對講機頻道</Chinese>
             <Chinesesimp>对讲机频道</Chinesesimp>
+            <Russian>Интерком</Russian>
         </Key>
         <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Channel1">
             <Original>Cargo</Original>
@@ -2781,6 +2986,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>화물석</Korean>
             <Chinese>乘客</Chinese>
             <Chinesesimp>乘客</Chinesesimp>
+            <Russian>Пассажиры</Russian>
         </Key>
         <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Channel2">
             <Original>Crew</Original>
@@ -2789,6 +2995,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>승무원</Korean>
             <Chinese>機組員</Chinese>
             <Chinesesimp>机组员</Chinesesimp>
+            <Russian>Экипаж</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_Main_Desc">
             <Original>War is not only about moving, waiting and engaging targets. It is also about communication. Task Force Arrowhead Radio provides a way to dramatically increase gameplay realism and atmosphere by seamless integration with TeamSpeak.</Original>
@@ -2805,22 +3012,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>TFAR 볼륨 표시기</Korean>
             <Chinese>TFAR音量指示器</Chinese>
             <Chinesesimp>TFAR音量指示器</Chinesesimp>
-        </Key>
-        <Key ID="STR_TFAR_CORE_Att_CuratorCamEars">
-            <Original>Hear Camera when in Curator interface</Original>
-            <English>Hear Camera when in Curator interface</English>
-            <Japanese>キュレーター画面の時にカメラから聞く</Japanese>
-            <Korean>큐레이터 인터페이스에서 카메라 듣기</Korean>
-            <Chinese>宙斯編輯器聆聽玩家語音</Chinese>
-            <Chinesesimp>宙斯编辑器聆听玩家语音</Chinesesimp>
-        </Key>
-        <Key ID="STR_TFAR_CORE_Att_CuratorCamEars_tooltip">
-            <Original>Hear voice from Curator Camera when in Curator interface</Original>
-            <English>Hear voice from Curator Camera when in Curator interface</English>
-            <Japanese>キュレーター画面の時にキュレーター カメラから声を聞きます</Japanese>
-            <Korean>큐레이터 인터페이스에서 큐레이터 카메라의 음성 듣기</Korean>
-            <Chinese>使用宙斯編輯器時可以聆聽到玩家的語音</Chinese>
-            <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
+            <Russian>TFAR Индикатор громкости</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_copySetting_LR_SW_Warning">
             <Original>TFAR - unable to copy from LR to SW</Original>
@@ -2829,22 +3021,25 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>TFAR - LR에서 SW로 복사 할 수 없음</Korean>
             <Chinese>TFAR - 無法從長程無線電複製設定到短程無線電上</Chinese>
             <Chinesesimp>TFAR - 无法从长程无线电复制设定到短程无线电上</Chinesesimp>
+            <Russian>TFAR - невозможно скопировать из ДС в БС</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_copySetting_SW_LR_Warning">
-            <Original>TFAR - unable to copy from SW to LR</Original>
-            <English>TFAR - unable to copy from SW to LR</English>
+            <Original>TFAR - unable to copy from SR to LR</Original>
+            <English>TFAR - unable to copy from SR to LR</English>
             <Japanese>TFAR - 短距離無線機から長距離無線機へコピーできません</Japanese>
             <Korean>TFAR - SW에서 LR로 복사 할 수 없음</Korean>
             <Chinese>TFAR - 無法從短程無線電複製設定到長程無線電上</Chinese>
             <Chinesesimp>TFAR - 无法从短程无线电复制设定到长程无线电上</Chinesesimp>
+            <Russian>TFAR - невозможно скопировать из БС в ДС</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_openSWMenu">
-            <Original>Open SW Radio Menu</Original>
-            <English>Open SW Radio Menu</English>
+            <Original>Open SR Radio Menu</Original>
+            <English>Open SR Radio Menu</English>
             <Japanese>短距離無線機を開く</Japanese>
             <Korean>단파 무전기 메뉴 열기</Korean>
             <Chinese>打開短程無線電選單</Chinese>
             <Chinesesimp>打开短程无线电选单</Chinesesimp>
+            <Russian>Открыть меню рации ближней связи</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_openLRMenu">
             <Original>Open LR Radio Menu</Original>
@@ -2853,6 +3048,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>장파 무전기 메뉴 열기</Korean>
             <Chinese>打開長程無線電選單</Chinese>
             <Chinesesimp>打开长程无线电选单</Chinesesimp>
+            <Russian>Открыть меню рации дальней связи</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_RADIOS">
             <Original>Radios</Original>
@@ -2860,6 +3056,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <German>Funkgeräte</German>
             <Japanese>無線機</Japanese>
             <Korean>무전기</Korean>
+            <Russian>Рации</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_TAKE">
             <Original>Take</Original>
@@ -2867,6 +3064,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <German>Nehmen</German>
             <Japanese>を取る</Japanese>
             <Korean>들기</Korean>
+            <Russian>Взять</Russian>
         </Key>
     </Package>
 </Project>

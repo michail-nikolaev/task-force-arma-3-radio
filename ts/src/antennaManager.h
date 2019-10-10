@@ -129,6 +129,6 @@ private:
     //There are better containers for this. May rework this later
     std::vector<std::shared_ptr<Antenna>> antennas;
 
-    ReadWriteLock m_lock;
+    ReadWriteLock m_lock{"AntennaManager"};
 };
 

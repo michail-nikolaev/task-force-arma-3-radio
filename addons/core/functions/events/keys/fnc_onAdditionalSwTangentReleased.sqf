@@ -33,7 +33,7 @@ private _hintText = format[
                             localize LSTRING(additional_transmit_end),
                             format [
                                     "%1<img size='1.5' image='%2'/>",
-                                    ([_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty)),
+                                    ([_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty)) select [0, MAX_RADIONAME_LEN],
                                     ([_radio, "picture", ""] call DFUNC(getWeaponConfigProperty))
                                 ],
                             _additonalChannel + 1,
