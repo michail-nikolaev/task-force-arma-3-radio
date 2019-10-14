@@ -131,15 +131,14 @@ GVAR(oldGroups) = allGroups;
             if (TFAR_SameSRFrequenciesPerGroup) then {
                 [QGVAR(groupCreated), {
                     params ["_group"];
-                    _frequencies = [TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
+                    private _frequencies = [TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
                     _group setVariable ["TFAR_freq_sr", _frequencies, true];
                 }] call CBA_fnc_addEventhandler;
-                
+
                 {
-                    _x params ["_unit"];
-                    private _frequencies = _unit getVariable ["TFAR_freq_sr", (group _unit) getVariable "TFAR_freq_sr"];
+                    private _frequencies = _x getVariable ["TFAR_freq_sr", (group _x) getVariable "TFAR_freq_sr"];
                     if (isNil "_frequencies") then {
-                        [QGVAR(groupCreated), [group _unit]] call CBA_fnc_localEvent;
+                        [QGVAR(groupCreated), [group _x]] call CBA_fnc_localEvent;
                     };
                 } forEach allPlayers;
             };
