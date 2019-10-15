@@ -10,7 +10,6 @@
             <Key ID="STR_TFAR_CORE_CATEGORY">
                 <Original>TFAR</Original>
                 <English>TFAR</English>
-                <Japanese>TFAR</Japanese>
             </Key>
             <Key ID="STR_TFAR_CORE_3DEN_Menu">
                 <Original>TFAR Preferences</Original>
@@ -134,7 +133,7 @@
                 <Russian>Коэффициент помех от рельефа</Russian>
                 <Spanish>Coeficiente de intercepción del terreno</Spanish>
                 <Turkish>Kesişme Alan Katsayısı</Turkish>
-                <Japanese>地形による障害</Japanese>
+                <Japanese>地形障害の係数</Japanese>
                 <Korean>지형 방해 계수</Korean>
                 <Chinese>地形影響係數</Chinese>
                 <Chinesesimp>地形影响系数</Chinesesimp>
@@ -149,7 +148,7 @@
                 <Russian>Коэффициент помех от рельефа</Russian>
                 <Spanish>Coeficiente de intercepción del terreno</Spanish>
                 <Turkish>Kesişme Alan Katsayısı</Turkish>
-                <Japanese>地形による障害</Japanese>
+                <Japanese>地形によって引き起こされる電波通信の品質係数を設定できます</Japanese>
                 <Korean>지형 방해 계수</Korean>
                 <Chinese>設定地形影響無線電通訊品質的係數</Chinese>
                 <Chinesesimp>设定地形影响无线电通讯品质的系数</Chinesesimp>
@@ -158,21 +157,25 @@
                 <Original>Radio range coefficient</Original>
                 <English>Radio range coefficient</English>
                 <Russian>Коэффициент радиуса действия</Russian>
+                <Japanese>無線通信範囲の係数</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_RadioRangeCoefficient_tooltip">
                 <Original>A global coefficient to control any radio range. This is multiplied with the tf_receivingDistanceMultiplicator(default 100%) unit variable</Original>
                 <English>A global coefficient to control any radio range. This is multiplied with the tf_receivingDistanceMultiplicator(default 100%) unit variable</English>
                 <Russian>Глобальный коэффициент для управления радиусом действия всех раций.</Russian>
+                <Japanese>全ての無線機の通信範囲を管理するグローバル係数です。これは tf_receivingDistanceMultiplicator (標準で 100%) ユニット変数と乗算されます。</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_VehicleIsolation">
                 <Original>Experimental Vehicle Isolation</Original>
                 <English>Experimental Vehicle Isolation</English>
                 <Russian>Экспериментальная изоляция в технике</Russian>
+                <Japanese>実験的車両隔離</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_VehicleIsolationDescription">
                 <Original>Tries to read vehicle isolation amount from vehicles config</Original>
                 <English>Tries to read vehicle isolation amount from vehicles config</English>
                 <Russian>Пытаться получить значение изоляции из параметров техники</Russian>
+                <Japanese>車両の設定を読み取り隔離を試行します。</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_TAKERADIO_HEADER">
                 <Original>Taking away radios</Original>
@@ -260,7 +263,7 @@
                 <German>MicroDAGR an Soldaten vergeben</German>
                 <Polish>Przydziel żołnierzowi MicroDAGR</Polish>
                 <Portuguese>Entregar o MicroDAGR para os soldados</Portuguese>
-                <Japanese>兵士にマイクロDAGR を与えます</Japanese>
+                <Japanese>兵士にマイクロ DAGR を与えます</Japanese>
                 <Korean>보병에게 MicroDAGR 부여</Korean>
                 <Chinese>給予士兵微型軍用GPS接收器</Chinese>
                 <Chinesesimp>给予士兵微型军用GPS接收器</Chinesesimp>
@@ -329,6 +332,7 @@
                 <English>Directional Voice</English>
                 <German>Direktionale Stimmen</German>
                 <Russian>Направленный голос</Russian>
+                <Japanese>直接会話</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_spectator_hear_emy">
                 <Original>Spectator can hear enemy units</Original>
@@ -407,11 +411,13 @@
                 <Original>Default Intercom Channel</Original>
                 <English>Default Intercom Channel</English>
                 <Russian>Канал переговорного устройства по умолчанию</Russian>
+                <Japanese>インターコム標準チャンネル</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultIntercomChannel_desc">
                 <Original>Default Intercom channel when entering the vehicle. Has to be number. -1 is Disabled.</Original>
                 <English>Default Intercom channel when entering the vehicle. Has to be number. -1 is Disabled.</English>
                 <Russian>Канал переговорного устройства по умолчанию при посадке в технику. Должно быть число. -1 - Выключено.</Russian>
+                <Japanese>乗車時のインターコム標準チャンネルを設定します。数字で決定でき、-1 で無効化されます。</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_pluginTimeout">
                 <Original>Plugin Timeout in seconds</Original>
@@ -506,7 +512,7 @@
             <Key ID="STR_TFAR_SETTINGS_volumeIndicatorTransparency_desc">
                 <Original>Volume Indicator Transparency (0 fully visible - 1 invisible)</Original>
                 <English>Volume Indicator Transparency (0 fully visible - 1 invisible)</English>
-                <Japanese>音量インジケータの透明度を決定します (0 で表示 - 1 で透明)</Japanese>
+                <Japanese>音量インジケータの透明度を決定します (0 で表示、1 で透明)</Japanese>
                 <Korean>음량 표시의 투명도 (0 불투명 - 1 투명)</Korean>
                 <Chinese>音量指示器透明度 (0為完全透明，1為不透明)</Chinese>
                 <Chinesesimp>音量指示器透明度 (0为完全透明，1为不透明)</Chinesesimp>
@@ -570,25 +576,29 @@
                 <Original>Show diary help page</Original>
                 <English>Show diary help page</English>
                 <Russian>Отображать страницу помощи</Russian>
+                <Japanese>ダイアリー ヘルプを表示</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_showDiaryRecord_desc">
                 <Original>Show diary help page on briefing</Original>
                 <English>Show diary help page on briefing</English>
                 <Russian>Отображать страницу помощи на брифинге</Russian>
+                <Japanese>ブリーフィング画面にあるダイアリーにヘルプを表示します</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_moveWhileTabbedOut">
                 <English>Move while tabbed out</English>
                 <Russian>Перемещать при alt-tab</Russian>
+                <Japanese>非フォーカス時に移動</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_moveWhileTabbedOut_desc">
                 <English>Move to TFAR channel even while the Arma window is not in focus</English>
                 <German>Verschiebe in den TFAR Channel selbst wenn das Arma Fenster nicht im Fokus ist</German>
                 <Russian>Перемещать в TFAR канал даже если окно ARMA не в фокусе.</Russian>
+                <Japanese>ゲームがフォーカスされていなくても、 TFAR のチャンネルを移動できるようにします</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_curatorCamEars">
                 <English>Hearing from Zeus Camera</English>
                 <German>Hören von Zeus Kamera</German>
-                <Japanese>キュレーター画面の時にカメラから聞く</Japanese>
+                <Japanese>Zeus カメラから聞く</Japanese>
                 <Korean>큐레이터 인터페이스에서 카메라 듣기</Korean>
                 <Chinese>宙斯編輯器聆聽玩家語音</Chinese>
                 <Chinesesimp>宙斯编辑器聆听玩家语音</Chinesesimp>
@@ -596,7 +606,7 @@
             <Key ID="STR_TFAR_SETTINGS_curatorCamEars_desc">
                 <English>Hear voice from Curator Camera when in Zeus interface</English>
                 <German>Hören von der Zeus Kamera aus wenn das Zeus Interface offen ist</German>
-                <Japanese>キュレーター画面の時にキュレーター カメラから声を聞きます</Japanese>
+                <Japanese>Zeus 時にキュレーター カメラから声を聞きます</Japanese>
                 <Korean>큐레이터 인터페이스에서 큐레이터 카메라의 음성 듣기</Korean>
                 <Chinese>使用宙斯編輯器時可以聆聽到玩家的語音</Chinese>
                 <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
@@ -605,10 +615,12 @@
             <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator">
                 <English>No Automove in Spectator</English>
                 <German>Kein Automove im Spectator</German>
+                <Japanese>スペクテイターで自動移動を無効化</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator_desc">
                 <English>Don't force move to TFAR channel while in spectator mode</English>
                 <German>Nicht in den TFAR Channel verschieben während man im Spectator Modus ist</German>
+                <Japanese>スペクテイター モードでは TFR チャンネルの自動移動を無効化します</Japanese>
             </Key>
 
 
@@ -1102,10 +1114,12 @@
             <Key ID="STR_TFAR_SETTINGS_allowDebugging">
                 <English>Allow Debugging</English>
                 <German>Erlaube Debugging</German>
+                <Japanese>デバッグ有効化</Japanese>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_instantiateAtBriefing_desc">
                 <English>Debug tools could allow players to see frequencies and positions of other players.</English>
                 <German>Debug tools könnten Spielern die Frequenzen und Positionen von anderen Spielern zeigen.</German>
+                <Japanese>デバッグ ツールではプレイヤーに周波数と他プレイヤーの位置を表示できます</Japanese>
             </Key>
         </Container>
         <Container name="diary">
@@ -2676,7 +2690,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Russian>Настройки...</Russian>
             <Spanish>Configuración</Spanish>
             <Turkish>Ayarlar...</Turkish>
-            <Japanese>設定中・・・</Japanese>
+            <Japanese>設定・・・</Japanese>
             <Korean>설정...</Korean>
             <Chinese>設定...</Chinese>
             <Chinesesimp>设定...</Chinesesimp>
@@ -2914,7 +2928,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Russian>Инициализация...</Russian>
             <Spanish>Inicializando...</Spanish>
             <Turkish>Başlatılıyor...</Turkish>
-            <Japanese>初期化中・・・</Japanese>
+            <Japanese>初期化・・・</Japanese>
             <Korean>초기화...</Korean>
             <Chinese>初始化中...</Chinese>
             <Chinesesimp>初始化中...</Chinesesimp>
@@ -2931,7 +2945,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Russian>Скопировать настройки из....</Russian>
             <Spanish>Para copiar los ajustes de...</Spanish>
             <Turkish>Ayarları kopyala...</Turkish>
-            <Japanese>次から設定をコピー中・・・</Japanese>
+            <Japanese>次から設定をコピー・・・</Japanese>
             <Korean>설정 복사중...</Korean>
             <Chinese>複製設定從...</Chinese>
             <Chinesesimp>复制设定从...</Chinesesimp>
