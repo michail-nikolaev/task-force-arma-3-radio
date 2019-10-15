@@ -10,3 +10,6 @@
 [submodule "ts/include/freetype"]
 	path = ts/include/freetype
 	url = git://git.sv.nongnu.org/freetype/freetype2.git
+[submodule "ts/include/tracy"]
+	path = ts/include/tracy
+	url = https://dedmenmiller@bitbucket.org/dedmenmiller/tracy.git

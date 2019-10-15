@@ -13,17 +13,22 @@ class SampleBufferT {
             Type* samples;
             uint32_t sampleCount;
         };
+        //std::vector<Type>*,
         std::variant < std::vector<Type>, SampleStruct> samples;
         uint8_t channels;
     public:
+        //SampleBufferInternal(std::vector<Type>& ref, uint8_t channels) : samples(&ref), channels(channels) {}
         SampleBufferInternal(Type* samples, uint32_t sampleCount, uint8_t channels) : samples(SampleStruct{ samples,sampleCount }), channels(channels) {}
         SampleBufferInternal(uint32_t sampleCount, uint8_t channels) : samples([sampleCount, channels]() {std::vector<Type> vec; vec.resize(sampleCount*channels); return vec; }()), channels(channels) {}
         Type* getSamples() {
             return begin();
         }
         uint32_t getSampleCount() const {
+            //if (auto vec = std::get_if<std::vector<Type>*>(&samples)) {
+            //    return (*vec)->size() / channels;
+            //}
             if (auto vec = std::get_if<std::vector<Type>>(&samples)) {
-                return vec->size()/channels;
+                return vec->size() / channels;
             }
             if (auto strct = std::get_if<SampleStruct>(&samples)) {
                 return strct->sampleCount;
@@ -32,7 +37,22 @@ class SampleBufferT {
         }
         uint8_t getChannels() const { return channels; }
 
+        //void setSampleCount(size_t size) {
+        //    //if (auto vec = std::get_if<std::vector<Type>*>(&samples)) {
+        //    //    return (*vec)->resize(size * channels);
+        //    //}
+        //    if (auto vec = std::get_if<std::vector<Type>>(&samples)) {
+        //        vec->resize(size * channels);
+        //    }
+        //    if (auto strct = std::get_if<SampleStruct>(&samples)) {
+        //        __debugbreak();
+        //    }
+        //}
+
         Type* begin() {
+            //if (auto vec = std::get_if<std::vector<Type>*>(&samples)) {
+            //    return (*vec)->begin()._Ptr;
+            //}
             if (auto vec = std::get_if<std::vector<Type>>(&samples)) {
                 return vec->begin()._Ptr;
             }
@@ -43,6 +63,9 @@ class SampleBufferT {
         }
 
         Type* end() {
+            //if (auto vec = std::get_if<std::vector<Type>*>(&samples)) {
+            //    return (*vec)->end()._Ptr;
+            //}
             if (auto vec = std::get_if<std::vector<Type>>(&samples)) {
                 return vec->end()._Ptr;
             }
@@ -54,6 +77,9 @@ class SampleBufferT {
         void copyTo(std::shared_ptr<SampleBufferInternal> target) {
             auto targetSpace = target->getSampleCount();
             if (targetSpace != getSampleCount()) {
+                //if (auto vec = std::get_if<std::vector<Type>*>(&target->samples)) {
+                //    (*vec)->resize(getSampleCount() * 2);
+                //}
                 if (auto vec = std::get_if<std::vector<Type>>(&target->samples)) {
                     vec->resize(getSampleCount() * 2);
                 }
@@ -76,6 +102,7 @@ public:
     SampleBufferT& operator=(const SampleBufferT& other) { samples = other.samples; return *this; }
     SampleBufferT& operator=(SampleBufferT&& other) noexcept { samples = std::move(other.samples); return *this; }
 
+    //SampleBufferT(std::vector<Type>& ref, uint8_t channels) : samples(std::make_shared<SampleBufferInternal>(ref, channels)) {}
     SampleBufferT(Type* samples, uint32_t sampleCount, uint8_t channels) : samples(std::make_shared<SampleBufferInternal>(samples, sampleCount, channels)) {}
     SampleBufferT(uint32_t sampleCount, uint8_t channels) : samples(std::make_shared<SampleBufferInternal>(sampleCount, channels)) {}
 
@@ -116,11 +143,18 @@ public:
         samples->copyTo(outbuf.samples);
         return outbuf;
     }
-    void mixInto(SampleBufferT& target) const {
+
+    void mixIntoAdditive(SampleBufferT& target) const {
         //#TODO implementation for float is different
-        std::transform(target.samples->begin(), target.samples->end(), samples->begin(), target.samples->begin(), [](short left, short right)
-        {
-            return std::clamp(static_cast<int>(left) + static_cast<int>(right), SHRT_MIN, SHRT_MAX);
+        std::transform(target.samples->begin(), target.samples->end(), samples->begin(), target.samples->begin(), [](int a, int b) {
+            return std::clamp(a + b, SHRT_MIN, SHRT_MAX);
+        });
+    }
+
+    void mixIntoAverage(SampleBufferT& target) const {
+        //#TODO implementation for float is different
+        std::transform(target.samples->begin(), target.samples->end(), samples->begin(), target.samples->begin(), [](int a, int b) {
+            return std::clamp((a + b) / 2, SHRT_MIN, SHRT_MAX);
         });
     }
 
@@ -149,6 +183,9 @@ public:
     uint32_t getSampleCount() const {
         return samples->getSampleCount();
     }
+    //void setSampleCount(size_t count) const {
+    //    return samples->setSampleCount(count);
+    //}
     struct SIterHelper {
         StereoIterator begIt;
         StereoIterator endIt;

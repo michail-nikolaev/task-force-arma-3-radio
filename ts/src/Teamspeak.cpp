@@ -810,7 +810,9 @@ const char* ts3plugin_commandKeyword() {
 /* Plugin processes console command. Return 0 if plugin handled the command, 1 if not handled. */
 int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* command) {
 
-    if (std::string(command) == "diag") {
+    
+
+    if (TFAR::config.get<bool>(Setting::allowDebugging) && std::string(command) == "diag") {
         std::stringstream diag;
         const auto now = std::chrono::system_clock::now();
         const auto in_time_t = std::chrono::system_clock::to_time_t(now);
@@ -819,13 +821,13 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
         ts3Functions.printMessageToCurrentTab(diag.str().c_str());
         return 0; /* Plugin handled command */
     }
-    if (std::string(command) == "pos") {
+    if (TFAR::config.get<bool>(Setting::allowDebugging) && std::string(command) == "pos") {
         std::stringstream diag;
         TFAR::getInstance().doTypeDiagReport("pos",diag);
         ts3Functions.printMessageToCurrentTab(diag.str().c_str());
         return 0; /* Plugin handled command */
     }
-    if (std::string(command,4) == "full") {
+    if (TFAR::config.get<bool>(Setting::allowDebugging) && std::string(command,4) == "full") {
         std::stringstream date;
         const auto now = std::chrono::system_clock::now();
         const auto in_time_t = std::chrono::system_clock::to_time_t(now);
@@ -835,10 +837,10 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
         auto basePath = std::string(getenv("appdata")) + R"(\TS3Client\logs\)"+ dateString +"\\";
         std::error_code err;
 
-        std::experimental::filesystem::create_directories(basePath, err);
+        std::filesystem::create_directories(basePath, err);
 
-        std::experimental::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_pluginCommands.log)", basePath + "TFAR_pluginCommands.log", err);
-        std::experimental::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_gameCommands.log)", basePath + "TFAR_gameCommands.log", err);
+        std::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_pluginCommands.log)", basePath + "TFAR_pluginCommands.log", err);
+        std::filesystem::copy(std::string(getenv("appdata")) + R"(\TS3Client\TFAR_gameCommands.log)", basePath + "TFAR_gameCommands.log", err);
 
         auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
         if (!clientDataDir) return 1;
@@ -887,7 +889,7 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
         });
         return 0; /* Plugin handled command */
     }
-    if (std::string(command) == "debug") {
+    if (TFAR::config.get<bool>(Setting::allowDebugging) && std::string(command) == "debug") {
         TFAR::debugUI.run();
         return 0; /* Plugin handled command */
     }

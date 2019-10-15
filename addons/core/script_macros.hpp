@@ -132,3 +132,5 @@
 #define PROFCONTEXT_LOGTRAP(VAR,FUNC)
 
 #endif
+
+#define MAX_RADIONAME_LEN 20

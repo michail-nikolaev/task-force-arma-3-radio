@@ -190,6 +190,9 @@
     <ClCompile Include="SampleBuffer.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
+    <ClCompile Include="ProfilerTracy.cpp">
+      <Filter>Logging</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugin.h" />
@@ -334,6 +337,9 @@
     </ClInclude>
     <ClInclude Include="SampleBuffer.hpp">
       <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfilerTracy.hpp">
+      <Filter>Logging</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

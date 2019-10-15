@@ -146,6 +146,7 @@ clientData* lastORCheck = nullptr;
 #define DIAGLOG(x) if (lastORCheck != this) circularLog(x)
 
 LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent, AntennaConnection& antennaConnection) {
+    ProfileFunction;
     //Sender is this
     LISTED_INFO result;
     result.over = sendingRadioType::LISTEN_TO_NONE;
@@ -264,6 +265,7 @@ LISTED_INFO clientData::isOverLocalRadio(std::shared_ptr<clientData>& myData, bo
 }
 
 std::vector<LISTED_INFO> clientData::isOverRadio(std::shared_ptr<clientData>& myData, bool ignoreSwTangent, bool ignoreLrTangent) {
+    ProfileFunction;
     execAtReturn setLastOr([this](){
         lastORCheck = this;
     });

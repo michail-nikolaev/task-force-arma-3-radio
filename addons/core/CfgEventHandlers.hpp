@@ -27,6 +27,7 @@ class Extended_DisplayLoad_EventHandlers { //From commy2
         TFAR_CuratorInterfaceOpened = "[_this select 0, 'Open'] call TFAR_fnc_onCuratorInterface";
     };
     class RscDisplayEGSpectator {
+        //Can enable CBA keybinds with _display call (uiNamespace getVariable "cba_events_fnc_initDisplayCurator") see TFAR_fnc_sendFrequencyInfo note about spectator
         TFAR_RscDisplayEGSpectator = "[player, true] call TFAR_fnc_forceSpectator;";
     };
 };

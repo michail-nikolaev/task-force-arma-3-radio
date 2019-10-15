@@ -34,6 +34,7 @@ PlaybackHandler::PlaybackHandler() {
 }
 
 void PlaybackHandler::onEditMixedPlaybackVoiceDataEvent(short * samples, int sampleCount, int channels, const unsigned int *, unsigned int * channelFillMask) {
+    ProfileFunction;
     LockGuard_exclusive lock(playbackCriticalSection);
     bool fill = false;
     std::vector<std::string> to_remove;
@@ -43,7 +44,7 @@ void PlaybackHandler::onEditMixedPlaybackVoiceDataEvent(short * samples, int sam
     for (auto& [name,playback] : playbacks) {
         const short* playbackSamples = nullptr;
         const size_t playbackSampleCount = playback->getSamples(playbackSamples);
-
+        if (playbackSampleCount == 0) continue;
 
         int outputPosition = 0;
         int inputPosition = 0;
@@ -214,16 +215,27 @@ void PlaybackHandler::playWavFile(TSServerID serverConnectionHandlerID, SoundFil
 
         //3D Positioning
         if (!position.isNull())
-            processors.emplace_back([position, myClientDataWeak = std::weak_ptr<clientData>(myClientData), id](SampleBuffer& samples) {
-                auto myClientData = myClientDataWeak.lock();
-                if (!myClientData) return;
-                auto pClunk = myClientData->effects.getClunk(id);
-                auto relativePos = myClientData->getClientPosition().directionTo(position);
-                auto viewDirection = myClientData->getViewDirection().toAngle();
-                pClunk->process(samples, relativePos, viewDirection); //interaural time difference
-                helpers::applyILD(samples, relativePos, viewDirection); //interaural level difference
-                myClientData->effects.removeClunk(id);
-            });
+            if (file.type == SoundFile::SoundFileType::PluginFolderFile) //Clunk can't handle these somehow
+                processors.emplace_back([position, myClientDataWeak = std::weak_ptr<clientData>(myClientData), id](SampleBuffer& samples) {
+                    auto myClientData = myClientDataWeak.lock();
+                    if (!myClientData) return;
+                    auto pClunk = myClientData->effects.getClunk(id);
+                    auto relativePos = myClientData->getClientPosition().directionTo(position);
+                    auto viewDirection = myClientData->getViewDirection().toAngle();
+                    helpers::applyILD(samples, relativePos, viewDirection); //interaural level difference
+                    myClientData->effects.removeClunk(id);
+                });
+            else
+                processors.emplace_back([position, myClientDataWeak = std::weak_ptr<clientData>(myClientData), id](SampleBuffer& samples) {
+                    auto myClientData = myClientDataWeak.lock();
+                    if (!myClientData) return;
+                    auto pClunk = myClientData->effects.getClunk(id);
+                    auto relativePos = myClientData->getClientPosition().directionTo(position);
+                    auto viewDirection = myClientData->getViewDirection().toAngle();
+                    pClunk->process(samples, relativePos, viewDirection); //interaural time difference
+                    helpers::applyILD(samples, relativePos, viewDirection); //interaural level difference
+                    myClientData->effects.removeClunk(id);
+                });
 
     } else {
         //muting for stereo mode
@@ -448,6 +460,7 @@ playbackWavProcessing::playbackWavProcessing(const short* samples, size_t sample
     std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 #endif
     myThread = new std::thread([this, sampleCount]() {
+        ProfileFunctionN("process audio functors");
         SampleBuffer buf(sampleStore.data(), sampleCount, 2);
         for (auto& it : functors) {
             it(buf);

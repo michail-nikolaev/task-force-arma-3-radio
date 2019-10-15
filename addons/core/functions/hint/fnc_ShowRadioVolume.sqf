@@ -40,6 +40,6 @@ private _imagesize = "1.6";
 if ((_isLrRadio) and {!((_radio select 0) isKindOf "Bag_Base")}) then {
     _imagesize = "1.0";
 };
-_hintText = format [("<t size='1' align='center'>%1 <img size='" + _imagesize + "' image='%2'/></t><br /><t align='center'>%3</t><br /><t align='center'>%4</t><br /><t size='0.8' align='center'>%5</t>"), _name,_picture,_volume, _stereo, _add_stereo];
+_hintText = format [("<t size='1' align='center'>%1 <img size='" + _imagesize + "' image='%2'/></t><br /><t align='center'>%3</t><br /><t align='center'>%4</t><br /><t size='0.8' align='center'>%5</t>"), _name select [0, MAX_RADIONAME_LEN], _picture, _volume, _stereo, _add_stereo];
 
 [parseText (_hintText), 5] call TFAR_fnc_showHint;

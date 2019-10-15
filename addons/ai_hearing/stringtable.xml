@@ -7,6 +7,7 @@
             <German>Hörende KI</German>
             <Japanese>AI の聴覚</Japanese>
             <Korean>AI 듣기</Korean>
+            <Russian>AI Слух</Russian>
         </Key>
         <Key ID="STR_TFAR_AI_HEARING_SETTING_DESC">
             <Original>If enabled, the ai is able to detect speaking players.</Original>
@@ -14,18 +15,21 @@
             <German>Wenn aktiviert, dann reagiert die KI auf die Gespräche der Spieler.</German>
             <Japanese>有効化すると、AI はプレイヤーの話し声を検知します。</Japanese>
             <Korean>활성되면 AI가 말하고 있는 플레이어를 감지합니다.</Korean>
+            <Russian>Если включено, боты могут обнаруживать разговаривающих игроков.</Russian>
         </Key>
         <Key ID="STR_TFAR_AI_HEARING_SETTING_SPEAKER_HEADER">
             <Original>AI Hearing Speakers</Original>
             <English>AI Hearing Speakers</English>
             <German>Lautsprecher hörende KI</German>
             <Japanese>AI のスピーカー聴覚</Japanese>
+            <Russian>AI Слух: Динамики</Russian>
         </Key>
         <Key ID="STR_TFAR_AI_HEARING_SETTING_SPEAKER_DESC">
             <Original>If enabled, the ai is able to detect active speakers.\n Currently the ai detects if they receive a call and have ANY speaker active.</Original>
             <English>If enabled, the ai is able to detect active speakers.\n Currently the ai detects if they receive a call and have ANY speaker active.</English>
             <German>Wenn aktiviert, dann reagiert die KI auf die aktive Lautsprecher der Spieler.\n Aktuell reagiert die KI auf eingehende Funksprüche, wenn ein BELIEBIGER Lautsprecher eingeschaltet ist.</German>
             <Japanese>有効化すると、AI はスピーカーからの話し声を検知します。\n 現在の AI は受信かいかなる稼働中のスピーカーを検知します。</Japanese>
+            <Russian>Если включено, боты могут обнаруживать включенные динамики.\n В настоящее время AI реагирует на входящие радиосообщения, когда ЛЮБОЙ динамик включен.</Russian>
         </Key>
     </Package>
 </Project>

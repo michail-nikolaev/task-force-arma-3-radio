@@ -18,7 +18,7 @@ public:
 
     serverData() = default;
 private:
-    mutable ReadWriteLock m_lock;
+    mutable ReadWriteLock m_lock{ "serverData" };
     void clientJoined(TSClientID clientID, const std::string& clientNickname);
     void clientLeft(TSClientID clientID);
     void clientUpdated(TSClientID clientID, const std::string& clientNickname);
@@ -93,7 +93,7 @@ public:
     bool hasDirectory(TSServerID serverConnectionHandlerID) const;
     void verify();
 private:
-    mutable ReadWriteLock m_lock;
+    mutable ReadWriteLock m_lock{ "serverDataDirectory" };
     std::map<TSServerID, std::shared_ptr<serverData>> data;
 
 };
