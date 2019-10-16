@@ -1116,7 +1116,7 @@
                 <German>Erlaube Debugging</German>
                 <Japanese>デバッグ有効化</Japanese>
             </Key>
-            <Key ID="STR_TFAR_SETTINGS_instantiateAtBriefing_desc">
+            <Key ID="STR_TFAR_SETTINGS_allowDebugging_desc">
                 <English>Debug tools could allow players to see frequencies and positions of other players.</English>
                 <German>Debug tools könnten Spielern die Frequenzen und Positionen von anderen Spielern zeigen.</German>
                 <Japanese>デバッグ ツールではプレイヤーに周波数と他プレイヤーの位置を表示できます</Japanese>
