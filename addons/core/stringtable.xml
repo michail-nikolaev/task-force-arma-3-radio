@@ -1833,6 +1833,14 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>向左循环短程无线电</Chinesesimp>
                 <Russian>Переключить на предыдущую рацию ближней связи</Russian>
             </Key>
+            <Key ID="STR_TFAR_CORE_key_CycleNextSRChannel">
+                <Original>Cycle Next SR Channel</Original>
+                <English>Cycle Next SR Channel</English>
+            </Key>
+            <Key ID="STR_TFAR_CORE_key_CyclePrevSRChannel">
+                <Original>Cycle Previous SR Channel</Original>
+                <English>Cycle Previous SR Channel</English>
+            </Key>
             <Key ID="STR_TFAR_CORE_key_CycleNextLRRadios">
                 <Original>Cycle Next LR Radios</Original>
                 <English>Cycle Next LR Radios</English>
@@ -1850,6 +1858,14 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>向左循環長程無線電</Chinese>
                 <Chinesesimp>向左循环长程无线电</Chinesesimp>
                 <Russian>Переключить на предыдущую рацию дальней связи</Russian>
+            </Key>
+            <Key ID="STR_TFAR_CORE_key_CycleNextLRChannel">
+                <Original>Cycle Next LR Channel</Original>
+                <English>Cycle Next LR Channel</English>
+            </Key>
+            <Key ID="STR_TFAR_CORE_key_CyclePrevLRChannel">
+                <Original>Cycle Previous LR Channel</Original>
+                <English>Cycle Previous LR Channel</English>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWStereo_Both">
                 <Original>SR Stereo: Both</Original>

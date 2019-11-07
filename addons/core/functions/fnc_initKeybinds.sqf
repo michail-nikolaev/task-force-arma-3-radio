@@ -35,6 +35,12 @@ TF_sw_cycle_next_modifiers = [false, true, false];
 TF_sw_cycle_prev_scancode = 26;
 TF_sw_cycle_prev_modifiers = [false, true, false];
 
+TF_sw_cycle_next_channel_scancode = DIK_PRIOR;  // PAGEUP
+TF_sw_cycle_next_channel_modifiers = [false, true, false];
+
+TF_sw_cycle_prev_channel_scancode = DIK_NEXT;   // PAGEDOWN
+TF_sw_cycle_prev_channel_modifiers = [false, true, false];
+
 TF_sw_stereo_both_scancode = DIK_UP;//Arrow up
 TF_sw_stereo_both_modifiers = [false, true, false];
 
@@ -82,6 +88,12 @@ TF_lr_cycle_next_modifiers = [false, true, true];
 
 TF_lr_cycle_prev_scancode = 26;
 TF_lr_cycle_prev_modifiers = [false, true, true];
+
+TF_lr_cycle_next_channel_scancode = DIK_PRIOR;  // PAGEUP
+TF_lr_cycle_next_channel_modifiers = [false, false, true];
+
+TF_lr_cycle_prev_channel_scancode = DIK_NEXT;   // PAGEDOWN
+TF_lr_cycle_prev_channel_modifiers = [false, false, true];
 
 TF_lr_stereo_both_scancode = 200;
 TF_lr_stereo_both_modifiers = [false, false, true];
@@ -166,6 +178,10 @@ private _fnc_localizeLRChannel = {
 ["TFAR", "CycleLRRadiosNext", [localize LSTRING(key_CycleNextLRRadios), localize LSTRING(key_CycleNextLRRadios)], {true}, {["next"] call TFAR_fnc_processLRCycleKeys}, [TF_lr_cycle_next_scancode, TF_lr_cycle_next_modifiers], false] call cba_fnc_addKeybind;
 ["TFAR", "CycleLRRadiosPrev", [localize LSTRING(key_CyclePrevLRRadios), localize LSTRING(key_CyclePrevLRRadios)], {true}, {["prev"] call TFAR_fnc_processLRCycleKeys}, [TF_lr_cycle_prev_scancode, TF_lr_cycle_prev_modifiers], false] call cba_fnc_addKeybind;
 
+["TFAR", "CycleSRRadioChannelNext", [localize LSTRING(key_CycleNextSRChannel), localize LSTRING(key_CycleNextSRChannel)], {true}, {[1, false] call TFAR_fnc_setChannelViaDialog;}, [TF_sw_cycle_next_channel_scancode, TF_sw_cycle_next_channel_modifiers], false] call cba_fnc_addKeybind;
+["TFAR", "CycleSRRadioChannelPrev", [localize LSTRING(key_CyclePrevSRChannel), localize LSTRING(key_CyclePrevSRChannel)], {true}, {[0, false] call TFAR_fnc_setChannelViaDialog;}, [TF_sw_cycle_prev_channel_scancode, TF_sw_cycle_prev_channel_modifiers], false] call cba_fnc_addKeybind;
+["TFAR", "CycleLRRadioChannelNext", [localize LSTRING(key_CycleNextLRChannel), localize LSTRING(key_CycleNextLRChannel)], {true}, {[1, true] call TFAR_fnc_setChannelViaDialog;}, [TF_lr_cycle_next_channel_scancode, TF_lr_cycle_next_channel_modifiers], false] call cba_fnc_addKeybind;
+["TFAR", "CycleLRRadioChannelPrev", [localize LSTRING(key_CyclePrevLRChannel), localize LSTRING(key_CyclePrevLRChannel)], {true}, {[0, true] call TFAR_fnc_setChannelViaDialog;}, [TF_lr_cycle_prev_channel_scancode, TF_lr_cycle_prev_channel_modifiers], false] call cba_fnc_addKeybind;
 
 ["TFAR", "SWStereoBoth", [localize LSTRING(key_SWStereo_Both), localize LSTRING(key_SWStereo_Both)], {[0] call TFAR_fnc_processSWStereoKeys}, {true}, [TF_sw_stereo_both_scancode, TF_sw_stereo_both_modifiers], false] call cba_fnc_addKeybind;
 ["TFAR", "SWStereoLeft", [localize LSTRING(key_SWStereo_Left), localize LSTRING(key_SWStereo_Left)], {[1] call TFAR_fnc_processSWStereoKeys}, {true}, [TF_sw_stereo_left_scancode, TF_sw_stereo_left_modifiers], false] call cba_fnc_addKeybind;
