@@ -115,7 +115,7 @@ private _alive = alive TFAR_currentUnit;
 
 private _nickname = if (_alive) then {name player} else {profileName};
 
-_nickname = (TFAR_currentUnit getVariable ["TFAR_unitName", _nickname])
+_nickname = (TFAR_currentUnit getVariable ["TFAR_unitName", _nickname]);
 
 private _globalVolume = TFAR_currentUnit getVariable ["tf_globalVolume",1.0];//used API variable. Don't change
 
