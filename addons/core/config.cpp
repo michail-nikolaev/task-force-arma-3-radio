@@ -17,6 +17,7 @@ class CfgPatches {
             "cba_ui",
             "cba_xeh",
             "cba_settings",
+            "A3_Weapons_F", // for overwriting V_RebreatherB with attribute
             "A3_Soft_F_Offroad_01" //Offroad_01_base_F we are adding insolation and LR in CfgVehicles
         };
         author = ECSTRING(core,AUTHORS);
@@ -150,3 +151,4 @@ class ace_arsenal_stats {
 #include "CfgSounds.hpp"
 #include "CfgFontFamilies.hpp"
 #include "CfgVehicles.hpp"
+#include "CfgWeapons.hpp"
