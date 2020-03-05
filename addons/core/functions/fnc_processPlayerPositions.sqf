@@ -118,8 +118,8 @@ if (TFAR_currentNearPlayersProcessed) then {
     TFAR_currentNearPlayersProcessed = false;
 };
 
-//Only process FarPlayers once a TFAR_FAR_PLAYER_UPDATE_TIME
-if ((diag_tickTime - TFAR_lastFarPlayerProcessTime) < TFAR_FAR_PLAYER_UPDATE_TIME) exitWith {};
+//Process FarPlayers only once a TFAR_FAR_PLAYER_UPDATE_TIME - OR faster when in spectator
+if ((diag_tickTime - TFAR_lastFarPlayerProcessTime) < TFAR_FAR_PLAYER_UPDATE_TIME || !(TFAR_currentUnit getVariable ["TFAR_forceSpectator", false])) exitWith {};
 
 //Queue new updates to plugin if last one processed
 if (TFAR_currentFarPlayersProcessed) then {
