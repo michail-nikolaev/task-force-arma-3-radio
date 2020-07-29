@@ -2767,8 +2767,8 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Chinesesimp>等待伺服器唯一的无线电中...</Chinesesimp>
         </Key>
         <Key ID="STR_TFAR_Core_Intercom_ACESelfAction_Name">
-            <Original>IntercomChannel</Original>
-            <English>IntercomChannel</English>
+            <Original>Intercom Channel</Original>
+            <English>Intercom Channel</English>
             <Japanese>インターコム チャンネル</Japanese>
             <Korean>인터콤 채널</Korean>
             <Chinese>對講機頻道</Chinese>
