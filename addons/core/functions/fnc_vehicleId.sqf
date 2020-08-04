@@ -19,7 +19,7 @@
 */
 params ["_unit"];
 
-if (isNull (objectParent _unit) && isNil _unit getVariable "TFAR_vehicleIDOverride") exitWith {"no"};//Unit is not in vehicle
+if (isNull (objectParent _unit) && isNil {_unit getVariable "TFAR_vehicleIDOverride"}) exitWith {"no"};//Unit is not in vehicle
 private _vehicle = (vehicle _unit);
 private _netID = _vehicle getVariable ["TFAR_vehicleIDOverride", netid _vehicle];
 
