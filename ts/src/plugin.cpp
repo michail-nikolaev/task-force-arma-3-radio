@@ -376,6 +376,7 @@ void ts3plugin_shutdown() {
         threadPipeHandle.join();
     if (threadService.joinable())
         threadService.join();
+    TFAR::getCommandProcessor()->stopThread();
     TFAR::getInstance().onShutdown();//Call shutdown Signal
 
     TFAR::getInstance().m_gameData.alive = false;

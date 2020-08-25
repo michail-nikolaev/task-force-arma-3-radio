@@ -54,7 +54,8 @@ void CommandProcessor::stopThread() {
 
 void CommandProcessor::queueCommand(const std::string& command) {
     ProfileFunction;
-    if (!myThread) {
+    if (!myThread || !threadRunning) {
+        shouldRun = true; // thread somehow exited? wtf..
         myThread = std::make_unique<std::thread>(&CommandProcessor::threadRun, this);
     }
     {
@@ -159,7 +160,7 @@ gameCommand CommandProcessor::toGameCommand(std::string_view textCommand, size_t
 }
 
 void CommandProcessor::threadRun() {
-
+    threadRunning = true;
     while (shouldRun) {
         std::unique_lock<std::mutex> lock(theadMutex);
         threadWorkCondition.wait(lock, [this] {return !commandQueue.empty() || !shouldRun; });
@@ -170,6 +171,7 @@ void CommandProcessor::threadRun() {
         lock.unlock();
         processAsynchronousCommand(command);
     }
+    threadRunning = false;
 }
 
 
