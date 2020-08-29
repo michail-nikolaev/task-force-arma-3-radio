@@ -57,6 +57,7 @@ void CommandProcessor::queueCommand(const std::string& command) {
     if (!myThread || !threadRunning) {
         shouldRun = true; // thread somehow exited? wtf..
         myThread = std::make_unique<std::thread>(&CommandProcessor::threadRun, this);
+        threadRunning = true;
     }
     {
         std::lock_guard<std::mutex> lock(theadMutex);
