@@ -2,6 +2,8 @@
 #include <string_view>
 #include <memory>
 
+
+#include "version.h" //isCI
 #ifdef isCI
 #define ENABLE_API_PROFILER 0     // Disabled for release builds
 #define ENABLE_PLUGIN_LOGS 1
