@@ -15,6 +15,26 @@ bool SharedMemoryHandlerInternal::SharedMemoryData::getAsyncRequest(std::string&
     return asyncBase[position].assignToAndClear(req);
 }
 
+bool SharedMemoryData::getAsyncRequestMultiple(std::vector<std::string>& reqs) {
+    ProfileFunction;
+    setLastPluginTick();
+    const auto asyncBase = reinterpret_cast<SharedMemString*>(reinterpret_cast<char*>(this) + 128 + sizeof(SharedMemString) * 2);
+    if (nextFreeAsyncMessage == 0)
+        return false;
+
+    for (int position = 0; position < nextFreeAsyncMessage; ++position) { //Grab all messages in order
+        reqs.emplace_back();
+        auto& req = reqs.back();
+
+        if (!asyncBase[position].assignToAndClear(req))
+            reqs.pop_back();
+    }
+
+    nextFreeAsyncMessage = 0;
+
+    return true;
+}
+
 bool SharedMemoryHandlerInternal::SharedMemoryData::getSyncRequest(std::string& req) {
     ProfileFunction;
     setLastPluginTick();
@@ -132,6 +152,19 @@ bool SharedMemoryHandler::getData(std::string& data, std::chrono::milliseconds t
     return true;
 }
 
+bool SharedMemoryHandler::getDataMultiple(std::vector<std::string>& data, std::chrono::milliseconds timeout) {
+    ProfileFunction;
+    data.clear();
+    if (!waitForRequest(timeout))
+        return false;
+    std::string sync;
+    if (getSyncRequest(sync)) {
+        data.emplace_back(std::move(sync));
+        return true;
+    }
+    return getAsyncRequestMultiple(data);
+}
+
 bool SharedMemoryHandler::sendData(const std::string& data) {
     ProfileFunction;
     return answerSyncRequest(data);
@@ -182,6 +215,13 @@ bool SharedMemoryHandler::getAsyncRequest(std::string& request) {
     MutexLock lock(hMutex);
     auto* pData = static_cast<SharedMemoryData*>(pMapView);
     return pData->getAsyncRequest(request);
+}
+
+bool SharedMemoryHandler::getAsyncRequestMultiple(std::vector<std::string>& requests) {
+    if (!isReady()) return false;
+    MutexLock lock(hMutex);
+    auto* pData = static_cast<SharedMemoryData*>(pMapView);
+    return pData->getAsyncRequestMultiple(requests);
 }
 
 bool SharedMemoryHandler::isConnected() {
