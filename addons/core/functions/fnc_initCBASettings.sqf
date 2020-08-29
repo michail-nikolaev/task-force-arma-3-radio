@@ -153,7 +153,7 @@
 [
     "TFAR_curatorCamEars",
     "CHECKBOX",
-    [ELSTRING(settings,curatorCamEars), ELSTRING(settings,curatorCamEars_desc)], 
+    [ELSTRING(settings,curatorCamEars), ELSTRING(settings,curatorCamEars_desc)],
     localize ELSTRING(settings,clientside),
     false,
     0
@@ -161,12 +161,21 @@
 [
     "TFAR_noAutomoveSpectator",
     "CHECKBOX",
-    [ELSTRING(settings,noAutomoveSpectator), ELSTRING(settings,noAutomoveSpectator_desc)], 
+    [ELSTRING(settings,noAutomoveSpectator), ELSTRING(settings,noAutomoveSpectator_desc)],
     localize ELSTRING(settings,clientside),
     false,
     0,
     {["noAutomoveSpectator", _this] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
+[
+    QGVAR(noTSNotConnectedHint),
+    "CHECKBOX",
+    [ELSTRING(settings,noTSNotConnectedHint), ELSTRING(settings,noTSNotConnectedHint_desc)],
+    localize ELSTRING(settings,global),
+    false,
+    0
+] call CBA_Settings_fnc_init;
+
 
 
 
@@ -624,7 +633,7 @@
 [
     "TFAR_allowDebugging",
     "CHECKBOX",
-    [ELSTRING(settings,allowDebugging), ELSTRING(settings,allowDebugging_desc)], 
+    [ELSTRING(settings,allowDebugging), ELSTRING(settings,allowDebugging_desc)],
     localize ELSTRING(settings,global),
     true,
     1,

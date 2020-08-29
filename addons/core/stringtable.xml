@@ -611,6 +611,14 @@
                 <German>Nicht in den TFAR Channel verschieben während man im Spectator Modus ist</German>
             </Key>
 
+            <Key ID="STR_TFAR_SETTINGS_noTSNotConnectedHint">
+                <English>Hide "Not connected" message</English>
+                <German>Verstecke "Not connected" message</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_noTSNotConnectedHint_desc">
+                <English>Disables the displaying of the "Not connected to TeamSpeak" message</English>
+                <German>Deaktiviert das Anzeigen der "Not connected to TeamSpeak" nachricht</German>
+            </Key>
 
             <Key ID="STR_TFAR_SETTINGS_FullDuplex">
                 <Original>Full-Duplex</Original>
