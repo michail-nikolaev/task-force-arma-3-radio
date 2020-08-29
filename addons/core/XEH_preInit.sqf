@@ -139,6 +139,8 @@ GVAR(currentTransmittingRadio) = []; //List of radios that are currently transmi
 ["TFAR_event_OnSWchannelSet", {
     params ["", "_radio", "_newChannel", "_isAdditional", "_oldChannel"];
 
+    if (_newChannel == _oldChannel) exitWith {};
+
     if (_radio in GVAR(currentTransmittingRadio)) then {
         //Currently transmitting on that radio, stop transmission on old channel and start new one on new channel
         private _oldFrequency = [_radio, _oldChannel + 1] call TFAR_fnc_getChannelFrequency;
@@ -151,6 +153,8 @@ GVAR(currentTransmittingRadio) = []; //List of radios that are currently transmi
 
 ["TFAR_event_OnLRchannelSet", {
     params ["", "_radioObj", "_radioQualif", "_newChannel", "_isAdditional", "_oldChannel"];
+
+    if (_newChannel == _oldChannel) exitWith {};
 
     private _radio = [_radioObj, _radioQualif];
 
