@@ -22,8 +22,9 @@
 params ["_radio_id", "_channel_to_set"];
 
 private _settings = _radio_id call TFAR_fnc_getSwSettings;
+private _oldChannel = (_settings select ACTIVE_CHANNEL_OFFSET);
 _settings set [ACTIVE_CHANNEL_OFFSET, _channel_to_set];
 [_radio_id, _settings] call TFAR_fnc_setSwSettings;
 
-//							unit, radio ID,		channel, additional
-["OnSWchannelSet", [TFAR_currentUnit, _radio_id, _channel_to_set, false]] call TFAR_fnc_fireEventHandlers;
+//							unit, radio ID,		channel, additional, oldChannel
+["OnSWchannelSet", [TFAR_currentUnit, _radio_id, _channel_to_set, false, _oldChannel]] call TFAR_fnc_fireEventHandlers;

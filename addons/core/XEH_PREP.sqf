@@ -106,6 +106,10 @@ PREP(currentSWFrequency);
 PREP(currentUnit);
 // D
 PREP(defaultPositionCoordinates);
+PREP(doLRTransmit);
+PREP(doLRTransmitEnd);
+PREP(doSRTransmit);
+PREP(doSRTransmitEnd);
 // E
 PREP(eyeDepth);
 // F

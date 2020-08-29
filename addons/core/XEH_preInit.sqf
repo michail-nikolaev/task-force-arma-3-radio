@@ -116,4 +116,51 @@ if (isServer) then {//Serverside variables
     TFAR_RadioCountNamespace = false call CBA_fnc_createNamespace;
     TFAR_RadioSettingsNamespace = true call CBA_fnc_createNamespace;
     publicVariable "TFAR_RadioSettingsNamespace";
-}
+};
+
+if (isDedicated) exitWith {}; //Code below here only on clients
+
+//To support channel switching while transmitting, we need to stop transmission on old channel, and start new transmission on new channel
+
+GVAR(currentTransmittingRadio) = []; //List of radios that are currently transmitting
+
+["TFAR_event_OnTangent", {
+    params ["_unit", "_radio", "_type", "_isAdditional", "_start"];
+
+    private _activeRadios = GVAR(currentTransmittingRadio);
+
+    if (_start) then {
+        _activeRadios pushBackUnique _radio;
+    } else {
+        _activeRadios deleteAt (_activeRadios find _radio);
+    };
+}] call CBA_fnc_addEventHandler;
+
+["TFAR_event_OnSWchannelSet", {
+    params ["", "_radio", "_newChannel", "_isAdditional", "_oldChannel"];
+
+    if (_radio in GVAR(currentTransmittingRadio)) then {
+        //Currently transmitting on that radio, stop transmission on old channel and start new one on new channel
+        private _oldFrequency = [_radio, _oldChannel + 1] call TFAR_fnc_getChannelFrequency;
+        [_radio, _oldChannel, _oldFrequency, _isAdditional] call TFAR_fnc_doSRTransmitEnd;
+
+        private _newFrequency = [_radio, _newChannel + 1] call TFAR_fnc_getChannelFrequency;
+        [_radio, _newChannel, _newFrequency, _isAdditional] call TFAR_fnc_doSRTransmit;
+    };
+}] call CBA_fnc_addEventHandler;
+
+["TFAR_event_OnLRchannelSet", {
+    params ["", "_radioObj", "_radioQualif", "_newChannel", "_isAdditional", "_oldChannel"];
+
+    private _radio = [_radioObj, _radioQualif];
+
+    if (_radio in GVAR(currentTransmittingRadio)) then {
+        //Currently transmitting on that radio, stop transmission on old channel and start new one on new channel
+        private _oldFrequency = [_radio, _oldChannel + 1] call TFAR_fnc_getChannelFrequency;
+        [_radio, _oldChannel, _oldFrequency, _isAdditional] call TFAR_fnc_doLRTransmitEnd;
+
+        private _newFrequency = [_radio, _newChannel + 1] call TFAR_fnc_getChannelFrequency;
+        [_radio, _newChannel, _newFrequency, _isAdditional] call TFAR_fnc_doLRTransmit;
+    };
+}] call CBA_fnc_addEventHandler;
+
