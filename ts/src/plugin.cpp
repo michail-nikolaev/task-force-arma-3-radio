@@ -74,6 +74,7 @@ void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID cl
         if (clientDataDir)
             clientData = clientDataDir->getClientData(clientID);
         auto myData = clientDataDir->myClientData;
+        if (clientData == myData) return; //can't mute self... well you can but don't that's confusing to users
 
         if (clientData && myData && (TFAR::getInstance().m_gameData.alive && clientData->isAlive() || myData->isSpectating)) {
             auto distance = myData->getClientPosition().distanceTo(clientData->getClientPosition());
