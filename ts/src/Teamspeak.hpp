@@ -15,6 +15,7 @@ public:
     ~TeamspeakServerData() = default;
     std::vector<dataType::TSClientID> getMutedClients();
     void setClientMuteStatus(dataType::TSClientID, bool muted);
+    bool getClientMuteStatus(dataType::TSClientID);
     void clearMutedClients();
     dataType::TSClientID getMyClientID();
     void setMyClientID(dataType::TSClientID val);

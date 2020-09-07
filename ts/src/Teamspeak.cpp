@@ -25,6 +25,13 @@ void TeamspeakServerData::setClientMuteStatus(TSClientID clientID, bool muted) {
         mutedClients.push_back(clientID);
 }
 
+bool TeamspeakServerData::getClientMuteStatus(TSClientID clientID) {
+    if (!clientID) return false;
+    LockGuard_exclusive lock(m_criticalSection);
+
+    return std::find(mutedClients.begin(), mutedClients.end(), clientID) != mutedClients.end();
+}
+
 void TeamspeakServerData::clearMutedClients() {
     LockGuard_exclusive lock(m_criticalSection);
     mutedClients.clear();
@@ -143,7 +150,12 @@ void Teamspeak::setClientMute(TSServerID serverConnectionHandlerID, TSClientID c
     anyID clientIds[2];
     clientIds[0] = clientID.baseType();
     clientIds[1] = 0;
-    getInstance().serverData[serverConnectionHandlerID].setClientMuteStatus(clientID, mute);
+
+    auto& serverDataDir = getInstance().serverData[serverConnectionHandlerID];
+    auto isAlreadyMuted = serverDataDir.getClientMuteStatus(clientID);
+    if (isAlreadyMuted == mute) return; //Client already in state
+
+    serverDataDir.setClientMuteStatus(clientID, mute);
 
     DWORD error;
     if (mute) {
@@ -160,6 +172,12 @@ void Teamspeak::setClientMute(TSServerID serverConnectionHandlerID, TSClientID c
 void Teamspeak::setClientMute(TSServerID serverConnectionHandlerID, std::vector<TSClientID> clientIds, bool mute) {
 
     if (clientIds.empty()) return;
+    auto& serverDataDir = getInstance().serverData[serverConnectionHandlerID];
+
+    clientIds.erase(std::remove_if(clientIds.begin(), clientIds.end(), [&](TSClientID client) {
+        return serverDataDir.getClientMuteStatus(client); //#TODO this is O(N²) oof.
+    }), clientIds.end());
+
     for (auto& client : clientIds) {
         getInstance().serverData[serverConnectionHandlerID].setClientMuteStatus(client, mute);
     }
