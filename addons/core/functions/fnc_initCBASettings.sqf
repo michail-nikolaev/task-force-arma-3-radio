@@ -639,4 +639,12 @@
     1,
     {["allowDebugging", _this] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
-
+[
+    "TFAR_disableAutoMute",
+    "CHECKBOX",
+    [ELSTRING(settings,disableAutoMute), ELSTRING(settings,disableAutoMute_desc)],
+    localize ELSTRING(settings,global),
+    false,
+    1,
+    {["disableAutomaticMute", _this] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;

@@ -1115,6 +1115,14 @@
                 <English>Debug tools could allow players to see frequencies and positions of other players.</English>
                 <German>Debug tools könnten Spielern die Frequenzen und Positionen von anderen Spielern zeigen.</German>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_disableAutoMute">
+                <English>Disable Teamspeak Mute</English>
+                <German>Deaktiviere Teamspeak Mute</German>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_disableAutoMute_desc">
+                <English>Disables automatically local muting players in Teamspeak. (causes high Performance cost)</English>
+                <German>Deaktiviert automatisches Lokales Muten von Spielern im Teamspeak. (Erzeugt hohe Rechenlast)</German>
+            </Key>
         </Container>
         <Container name="diary">
             <Key ID="STR_TFAR_CORE_radio_vehicle_text">

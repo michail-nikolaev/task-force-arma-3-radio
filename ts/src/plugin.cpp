@@ -67,7 +67,7 @@ float effectErrorFromDistance(sendingRadioType radioType, float distance, std::s
 
 void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false }) {
     bool mute = false;
-    if (isSeriousModeEnabled(serverConnectionHandlerID, clientID)) {
+    if (isSeriousModeEnabled(serverConnectionHandlerID, clientID) && !TFAR::config.get<bool>(Setting::disableAutomaticMute)) {
 
         const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
         std::shared_ptr<clientData> clientData;

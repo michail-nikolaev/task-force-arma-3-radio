@@ -533,10 +533,10 @@ void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverCo
     dead can hear alive
     */
 
-
-    Teamspeak::setClientMute(serverConnection, deadClients, TFAR::getInstance().m_gameData.alive && isSeriousMode); //Mute dead people if seriousMode
-    Teamspeak::setClientMute(serverConnection, aliveClients, !TFAR::getInstance().m_gameData.alive && isSeriousMode);//Mute alive people if seriousMode
-
+    if (!TFAR::config.get<bool>(Setting::disableAutomaticMute)) {
+        Teamspeak::setClientMute(serverConnection, deadClients, TFAR::getInstance().m_gameData.alive && isSeriousMode); //Mute dead people if seriousMode
+        Teamspeak::setClientMute(serverConnection, aliveClients, !TFAR::getInstance().m_gameData.alive && isSeriousMode); //Mute alive people if seriousMode
+    }
 }
 
 

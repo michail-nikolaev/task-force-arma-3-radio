@@ -19,7 +19,7 @@
 */
 
 
-["minimumPluginVersion", 313] call TFAR_fnc_setPluginSetting; //Keep this as first
+["minimumPluginVersion", 327] call TFAR_fnc_setPluginSetting; //Keep this as first
 
 ["full_duplex",missionNamespace getVariable ["TFAR_fullDuplex",true]] call TFAR_fnc_setPluginSetting;
 ["addon_version",TFAR_ADDON_VERSION] call TFAR_fnc_setPluginSetting;
@@ -36,5 +36,6 @@
 ["moveWhileTabbedOut", missionNamespace getVariable ["TFAR_moveWhileTabbedOut", false]] call TFAR_fnc_setPluginSetting;
 ["objectInterceptionStrength", missionNamespace getVariable ["TFAR_objectInterceptionStrength", 400]] call TFAR_fnc_setPluginSetting;
 ["voiceCone", missionNamespace getVariable ["TFAR_voiceCone", true]] call TFAR_fnc_setPluginSetting;
+["disableAutomaticMute", missionNamespace getVariable ["TFAR_disableAutoMute", false]] call TFAR_fnc_setPluginSetting;
 
 //If you add things that player could change in Mission call this PFH or tell players in WIKI
