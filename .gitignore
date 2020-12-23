@@ -46,3 +46,9 @@ ts/src/task_force_radio_plugin.VC.db
 
 *.db
 *.exe
+
+# hemtt
+.hemtt/local
+*.biprivatekey
+keys/*
+releases/*

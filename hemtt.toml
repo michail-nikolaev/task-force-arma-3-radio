@@ -1,0 +1,14 @@
+name = "TFAR"
+prefix = "tfar"
+version = "1.0.0"
+author = "Nkey"
+files = [
+    "manw_winner_addon_1st_emblem.paa",
+    "meta.cpp",
+    "mod.cpp",
+    "task_force_arrowhead_logo.paa",
+]
+key_name = "tfar"
+reuse_private_key = false
+authority = "tfar"
+sig_version = 3

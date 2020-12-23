@@ -1,0 +1,164 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Validate config
+        run: python3 tools/validator_cfg.py
+
+      - name: Validate SQF
+        run: python3 tools/validator_sqf.py
+
+      - name: Validate XML
+        run: python3 tools/validator_xml.py
+
+  mod:
+    name: Mod
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      - name: HEMTT Build
+        uses: docker://hemtt/hemtt:0.7.6
+        with:
+          entrypoint: hemtt
+          args: build --ci --release
+
+      - name: Upload mod
+        uses: actions/upload-artifact@v1
+        with:
+          name: '@tfar'
+          path: releases/1.0.0/@tfar
+
+  extensions:
+    name: Extensions
+    runs-on: windows-2019
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Install Windows 8.1 SDK
+        shell: powershell
+        run: |
+          Invoke-WebRequest -Method Get -Uri https://go.microsoft.com/fwlink/p/?LinkId=323507 -OutFile sdksetup.exe -UseBasicParsing
+          Start-Process -Wait sdksetup.exe -ArgumentList "/q", "/norestart", "/features", "OptionId.WindowsDesktopSoftwareDevelopmentKit", "OptionId.NetFxSoftwareDevelopmentKit"
+
+      - name: Build Windows 32 bit
+        run: msbuild extensions/task_force_radio_pipe/task_force_radio_pipe.sln "/p:Configuration=Release;Platform=Win32"
+
+      - name: Build Windows 64 bit
+        run: msbuild extensions/task_force_radio_pipe/task_force_radio_pipe.sln "/p:Configuration=Release;Platform=x64"
+
+      - name: Upload Windows 32 bit
+        uses: actions/upload-artifact@v1
+        with:
+          name: task_force_radio_pipe.dll
+          path: extensions/task_force_radio_pipe/Release/task_force_radio_pipe.dll
+
+      - name: Upload Windows 64 bit
+        uses: actions/upload-artifact@v1
+        with:
+          name: task_force_radio_pipe_x64.dll
+          path: extensions/task_force_radio_pipe/x64/Release/task_force_radio_pipe_x64.dll
+
+  teamspeak:
+    name: Teamspeak
+    runs-on: windows-2019
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+          submodules: true
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Install Windows 8.1 SDK
+        shell: powershell
+        run: |
+          Invoke-WebRequest -Method Get -Uri https://go.microsoft.com/fwlink/p/?LinkId=323507 -OutFile sdksetup.exe -UseBasicParsing
+          Start-Process -Wait sdksetup.exe -ArgumentList "/q", "/norestart", "/features", "OptionId.WindowsDesktopSoftwareDevelopmentKit", "OptionId.NetFxSoftwareDevelopmentKit"
+
+      - name: Build Windows 32 bit
+        run: msbuild ts/src/task_force_radio_plugin.sln "/p:Configuration=Release;Platform=Win32"
+
+      - name: Build Windows 64 bit
+        run: msbuild ts/src/task_force_radio_plugin.sln "/p:Configuration=Release;Platform=x64"
+
+      - name: Package plugin
+        run: |
+          echo Name = Task Force Arrowhead Radio v1 >> package.ini
+          echo Type = Plugin >> package.ini
+          echo Author = [TF]Nkey and Dedmen >> package.ini
+          echo Version = 1.0.0 >> package.ini
+          echo Platforms= win64, win32 >> package.ini
+          echo Description = Radio Addon for Arma 3 >> package.ini
+
+          mkdir plugins
+          move ts\radio-sounds plugins
+          move ts\src\build\*.dll plugins
+
+          7z a plugin.zip package.ini
+          7z a plugin.zip plugins
+          move plugin.zip task_force_radio.ts3_plugin
+
+      - name: Upload plugin
+        uses: actions/upload-artifact@v1
+        with:
+          name: task_force_radio.ts3_plugin
+          path: task_force_radio.ts3_plugin
+
+  package:
+    name: Package
+    runs-on: ubuntu-20.04
+    needs:
+      - extensions
+      - mod
+      - teamspeak
+    steps:
+      - name: Download mod
+        uses: actions/download-artifact@v1
+        with:
+          name: '@tfar'
+          path: '@tfar'
+
+      - name: Download Windows 32 bit extension
+        uses: actions/download-artifact@v1
+        with:
+          name: task_force_radio_pipe.dll
+          path: '@tfar'
+
+      - name: Download Windows 64 bit extension
+        uses: actions/download-artifact@v1
+        with:
+          name: task_force_radio_pipe_x64.dll
+          path: '@tfar'
+
+      - name: Download Teamspeak plugin
+        uses: actions/download-artifact@v1
+        with:
+          name: task_force_radio.ts3_plugin
+          path: '@tfar/teamspeak/'
+
+      - name: Upload built mod
+        uses: actions/upload-artifact@1.0.0
+        with:
+          name: '@tfar'
+          path: .
