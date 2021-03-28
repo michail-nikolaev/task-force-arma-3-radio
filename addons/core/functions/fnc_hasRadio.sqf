@@ -22,5 +22,5 @@ params [["_unit", objNull, [objNull]]];
 
 if !(_unit isKindOf "CAManBase") exitWith {false};
 
-(!((_unit call TFAR_fnc_backpackLr) isEqualTo []))
-||{(count ([_unit] call TFAR_fnc_getRadioItems))>0}
+call TFAR_fnc_haveLRRadio || 
+{([_unit] call TFAR_fnc_getRadioItems) isNotEqualTo []}
