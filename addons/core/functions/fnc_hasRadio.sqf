@@ -3,7 +3,7 @@
 /*
   Name: TFAR_fnc_hasRadio
 
-  Author: Dorbedo
+  Author: Dorbedo, DomT602
     Check if a unit has a radio
 
   Arguments:
