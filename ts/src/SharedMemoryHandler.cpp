@@ -125,7 +125,7 @@ SharedMemoryHandler::SharedMemoryHandler() {
 
         diag << TS_INDENT << TS_INDENT << "hasAsyncRequest: " << pData->hasAsyncRequest() << "\n";
         diag << TS_INDENT << TS_INDENT << "hasSyncRequest: " << pData->hasSyncRequest() << "\n";
-        diag << TS_INDENT << TS_INDENT << "lastGameTick: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now()-pData->getLastGameTick()).count() << u"µs" << "\n";
+        diag << TS_INDENT << TS_INDENT << "lastGameTick: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now()-pData->getLastGameTick()).count() << "us" << "\n";
     });
 
 }
