@@ -280,6 +280,11 @@
                 <Russian>Одинаковые частоты БС для всей стороны</Russian>
                 <Turkish>Taraf için aynı SR frekansları</Turkish>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_same_sr_frequencies_per_group">
+                <Original>Same SR frequencies per group</Original>
+                <English>Same SR frequencies per group</English>
+                <Russian>Одинаковые частоты БС в каждой группе</Russian>
+            </Key>
             <Key ID="STR_TFAR_SETTINGS_give_microdagr_to_soldier">
                 <Original>Give MicroDAGR to soldier</Original>
                 <English>Give MicroDAGR to soldier</English>

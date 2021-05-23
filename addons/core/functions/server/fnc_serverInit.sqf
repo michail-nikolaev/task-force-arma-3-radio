@@ -65,6 +65,20 @@ GVAR(instanciationIsReady) = false;
     }
 ] call CBA_fnc_waitUntilAndExecute;
 
+// Fire CBA event on group creation
+GVAR(oldGroups) = allGroups;
+[{
+    private _newAllGroups = allGroups;
+    if !(_newAllGroups isEqualTo GVAR(oldGroups)) then {
+
+        {
+            [QGVAR(groupCreated), [_x]] call CBA_fnc_localEvent;
+        } forEach (_newAllGroups - GVAR(oldGroups));
+
+        GVAR(oldGroups) = _newAllGroups;
+    };
+}, 0] call CBA_fnc_addPerFrameHandler;
+
 [
     "CBA_settingsInitialized",
     {
@@ -113,6 +127,21 @@ GVAR(instanciationIsReady) = false;
             VARIABLE_DEFAULT(TFAR_freq_sr_west,true call DFUNC(generateSRSettings));
             VARIABLE_DEFAULT(TFAR_freq_sr_east,true call DFUNC(generateSRSettings));
             VARIABLE_DEFAULT(TFAR_freq_sr_independent,true call DFUNC(generateSRSettings));
+
+            if (TFAR_SameSRFrequenciesPerGroup) then {
+                [QGVAR(groupCreated), {
+                    params ["_group"];
+                    private _frequencies = [TFAR_MAX_CHANNELS, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call TFAR_fnc_generateFrequencies;
+                    _group setVariable ["TFAR_freq_sr", _frequencies, true];
+                }] call CBA_fnc_addEventhandler;
+
+                {
+                    private _frequencies = _x getVariable ["TFAR_freq_sr", (group _x) getVariable "TFAR_freq_sr"];
+                    if (isNil "_frequencies") then {
+                        [QGVAR(groupCreated), [group _x]] call CBA_fnc_localEvent;
+                    };
+                } forEach allPlayers;
+            };
         };
 
         if (TFAR_SameLRFrequenciesForSide) then {
