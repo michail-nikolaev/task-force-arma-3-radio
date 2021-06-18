@@ -23,10 +23,6 @@ params ["_vehicle"];
 
 // Get any occupants, from crew down to passengers
 private _crew = crew _vehicle;
-if (count _crew == 0) exitWith {
-    _vehicle getVariable ["TFAR_defaultIntercomSlot", TFAR_defaultIntercomSlot];
-};
-
-_vehicle getVariable [format ["TFAR_IntercomSlot_%1",(netID (_crew select 0))],
+_vehicle getVariable [format ["TFAR_IntercomSlot_%1",(netId (_crew select 0))],
     _vehicle getVariable ["TFAR_defaultIntercomSlot", TFAR_defaultIntercomSlot]
 ];

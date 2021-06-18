@@ -23,7 +23,9 @@ params ["_vehicle", "_player"];
 
 _player setVariable ["TFAR_vehicleIDOverride", nil, true];
 terminate (_player getVariable ["TFAR_IntercomPhoneLoopID", nil]);
-_player removeEventHandler ["GetInMan", _player getVariable ["TFAR_IntercomPhoneEHID", -1]];
+_EHIDs = _player getVariable ["TFAR_IntercomPhoneEHIDs", [-1, -1]];
+_player removeEventHandler ["GetInMan", _EHIDs select 0];
+_player removeMPEventHandler ["MPKilled", _EHIDs select 1];
 _player setVariable ["TFAR_IntercomPhoneLoopID", nil];
 _vehicle setVariable ["TFAR_IntercomPhoneSpeaker", nil, true];
 

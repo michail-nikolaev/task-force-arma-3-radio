@@ -32,12 +32,13 @@ if (!isNil "_phoneSpeaker") exitWith {
 private _vehicleID = _vehicle getVariable ["TFAR_vehicleIDOverride", netid _vehicle];
 _vehicle setVariable ["TFAR_vehicleIDOverride", _vehicleID, true];
 _vehicle setVariable ["TFAR_IntercomPhoneSpeaker", _player, true];
+_player setVariable ["TFAR_IntercomPhoneVehicle", _vehicle, true];
 _player setVariable ["TFAR_vehicleIDOverride", _vehicleID, true];
 
 // Get intercom channel, now that we've signed on to the intercom
-private _intercomSlot = [_vehicle] call fnc_getIntercomChannel;
-_vehicle setVariable [format ["TFAR_IntercomSlot_%1",(netID _player)], _intercomSlot];
-_player setVariable [format ["TFAR_IntercomSlot_%1",(netID _player)], _intercomSlot]; // Because TFAR checks the "vehicle", and thinks the unit is the vehicle when it's not in a vehicle, so we manually set it
+private _intercomSlot = [_vehicle] call TFAR_intercom_phone_fnc_getIntercomChannel;
+_vehicle setVariable [format ["TFAR_IntercomSlot_%1",(netID _player)], _intercomSlot, true];
+_player setVariable [format ["TFAR_IntercomSlot_%1",(netID _player)], _intercomSlot, true]; // Because TFAR checks the "vehicle", and thinks the unit is the vehicle when it's not in a vehicle, so we manually set it
 
 // Show indicator
 if (TFAR_oldVolumeHint) then {
@@ -60,9 +61,13 @@ private _loopID = [_vehicle, _player] spawn {
 _player setVariable ["TFAR_IntercomPhoneLoopID", _loopID];
 
 // Just in case the caller gets into the vehicle
-_player setVariable ["TFAR_IntercomPhoneEHID",
+_player setVariable ["TFAR_IntercomPhoneEHIDs", [
     _player addEventHandler ["GetInMan", {
         params ["_player", "_role", "_vehicle"];
         [_vehicle, _player] call TFAR_intercom_phone_fnc_deactivate;
+    }],
+    _player addMPEventHandler ["MPKilled", {
+        params ["_player"];
+        [_player getVariable ["TFAR_IntercomPhoneVehicle", nil], _player] call TFAR_intercom_phone_fnc_deactivate;
     }]
-];
+]];
