@@ -23,10 +23,10 @@
 */
 
 params["_target", "_player", "_params", "_actionData"];
-if (!isNil {_target getVariable ["IntercomPhoneSpeaker", nil]}) then {
+if (!isNil {_target getVariable ["TFAR_IntercomPhoneSpeaker", nil]}) then {
     _actionData set [1, localize LSTRING(SOMEONE_USING)];
     _actionData set [2, [QPATHTOF(ui\tfar_ace_interaction_intercom_phone.paa), "#FF8383"]];
 } else {
-    _actionData set [1, localize LSTRING(PICKUP_PHONE)];
+    _actionData set [1, localize LSTRING(PICKUP)];
     _actionData set [2, QPATHTOF(ui\tfar_ace_interaction_intercom_phone.paa)];
 };

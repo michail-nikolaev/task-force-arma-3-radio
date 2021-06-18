@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 /*
-  Name: TFAR_fnc_activateIntercomPhone
+  Name: TFAR_intercom_phone_fnc_activate
 
   Author: Arend(Saborknight)
     Connects the player to the intercom of a vehicle, if intercom is enabled on
@@ -15,23 +15,23 @@
     None
 
   Example:
-    [_vehicle, _player] call TFAR_fnc_activateIntercomPhone;
+    [_vehicle, _player] call TFAR_intercom_phone_fnc_activate;
 
   Public: Yes
 */
 
 params ["_vehicle", "_player"];
-hint format["Target: %1, Player: %2", _vehicle, _player];
-private _phoneSpeaker = _vehicle getVariable ["IntercomPhoneSpeaker", nil];
+
+private _phoneSpeaker = _vehicle getVariable ["TFAR_IntercomPhoneSpeaker", nil];
 
 if (!isNil "_phoneSpeaker") exitWith {
-    [parseText format["<br /><br /><t align='center'>%1 is currently on the phone.</t>", name _phoneSpeaker]] call TFAR_fnc_showHint;
+    // [parseText format["<br /><br /><t align='center'>%1 is currently on the phone.</t>", name _phoneSpeaker]] call TFAR_fnc_showHint;
     "no";
 };
 
 private _vehicleID = _vehicle getVariable ["TFAR_vehicleIDOverride", netid _vehicle];
 _vehicle setVariable ["TFAR_vehicleIDOverride", _vehicleID, true];
-_vehicle setVariable ["IntercomPhoneSpeaker", _player, true];
+_vehicle setVariable ["TFAR_IntercomPhoneSpeaker", _player, true];
 _player setVariable ["TFAR_vehicleIDOverride", _vehicleID, true];
 
 // Get intercom channel, now that we've signed on to the intercom
@@ -41,9 +41,9 @@ _player setVariable [format ["TFAR_IntercomSlot_%1",(netID _player)], _intercomS
 
 // Show indicator
 if (TFAR_oldVolumeHint) then {
-    [parseText "Connected to Vehicle Intercom", -1] call TFAR_fnc_showHint;
+    // [parseText "Connected to Vehicle Intercom", -1] call TFAR_fnc_showHint;
 } else {
-    ("TFAR_core_HUDIntercomPhoneIndicatorRsc" call BIS_fnc_rscLayer) cutRsc ["TFAR_core_HUDIntercomPhoneIndicatorRsc", "PLAIN", 0, true];
+    (QGVAR(ConnectionIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(ConnectionIndicatorRsc), "PLAIN", 0, true];
 };
 
 private _loopID = [_vehicle, _player] spawn {
@@ -51,18 +51,18 @@ private _loopID = [_vehicle, _player] spawn {
 
     while {true} do {
         if ((_vehicle distance _player) > ((((boundingBoxReal _vehicle) select 2) / 2) + 5)) then {
-            [_vehicle, _player] call fnc_deactivate;
+            [_vehicle, _player] call TFAR_intercom_phone_fnc_deactivate;
         };
         sleep 3;
     };
 };
 
-_player setVariable ["IntercomPhoneLoopID", _loopID];
+_player setVariable ["TFAR_IntercomPhoneLoopID", _loopID];
 
 // Just in case the caller gets into the vehicle
-_player setVariable ["IntercomPhoneEHID",
+_player setVariable ["TFAR_IntercomPhoneEHID",
     _player addEventHandler ["GetInMan", {
         params ["_player", "_role", "_vehicle"];
-        [_vehicle, _player] call fnc_deactivate;
+        [_vehicle, _player] call TFAR_intercom_phone_fnc_deactivate;
     }]
 ];

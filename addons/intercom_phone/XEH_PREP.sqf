@@ -1,4 +1,4 @@
-PREP(activateIntercomPhone);
-PREP(deactivateIntercomPhone);
+PREP(activate);
+PREP(deactivate);
 PREP(getIntercomChannel);
-PREP(intercomBusyInterction);
+PREP(busyInteraction);

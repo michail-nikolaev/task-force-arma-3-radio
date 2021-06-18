@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project ID="Arma3">
     <Package name="intercom_phone">
-        <Key ID="STR_TFAR_INTERCOM_PHONE_PICKUP_PHONE">
+        <Key ID="STR_TFAR_INTERCOM_PHONE_PICKUP">
             <Original>Pickup Intercom Phone</Original>
             <English>Pickup Intercom Phone</English>
         </Key>
-        <Key ID="STR_TFAR_INTERCOM_PHONE_PUT_AWAY_PHONE">
+        <Key ID="STR_TFAR_INTERCOM_PHONE_PUT_AWAY">
             <Original>Put away Intercom Phone</Original>
             <English>Put away Intercom Phone</English>
         </Key>
