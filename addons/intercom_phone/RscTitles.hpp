@@ -18,10 +18,10 @@ class RscTitles
                 font = "PuristaMedium";
                 sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
                 text=QPATHTOF(ui\tfar_intercom_phone.paa);
-                x="(profilenamespace getvariable [""IGUI_grid_TFAR_Volume_X"",  0.85 * safezoneW + safezoneX])";
-                y="(profilenamespace getvariable [""IGUI_grid_TFAR_Volume_Y"",  0.9 * safezoneH + safezoneY])";
-                w="(profilenamespace getvariable [""IGUI_grid_TFAR_Volume_W"",  2 * (((safezoneW / safezoneH) min 1.2) / 50)])";
-                h="(profilenamespace getvariable [""IGUI_grid_TFAR_Volume_W"",  2 * (((safezoneW / safezoneH) min 1.2) / 50)])";
+                x="(profilenamespace getvariable [""IGUI_grid_TFAR_Intercom_Phone_X"",  0.85 * safezoneW + safezoneX])";
+                y="(profilenamespace getvariable [""IGUI_grid_TFAR_Intercom_Phone_Y"",  0.9 * safezoneH + safezoneY])";
+                w="(profilenamespace getvariable [""IGUI_grid_TFAR_Intercom_Phone_W"",  2 * (((safezoneW / safezoneH) min 1.2) / 50)])";
+                h="(profilenamespace getvariable [""IGUI_grid_TFAR_Intercom_Phone_W"",  2 * (((safezoneW / safezoneH) min 1.2) / 50)])";
             };
         };
     };

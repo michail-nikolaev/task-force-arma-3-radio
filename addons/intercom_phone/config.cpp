@@ -38,7 +38,16 @@ class CfgUIGrids { //Thanks ACE guys!
         class Presets {
             class Arma3 {
                 class Variables {
-                    grid_TFAR_Intercom_Phone[] = {{"0.85 * safezoneW + safezoneX","0.9 * safezoneH + safezoneY","(4 * (2 * (((safezoneW / safezoneH) min 1.2) / 50)))","(4 * (2 * (((safezoneW / safezoneH) min 1.2) / 50)))"},"(1 * (((safezoneW / safezoneH) min 1.2) / 50))","(1 * (((safezoneW / safezoneH) min 1.2) / 50))"};
+                    grid_TFAR_Intercom_Phone[] = {
+                        {
+                            "0.80 * safezoneW + safezoneX",
+                            "0.9 * safezoneH + safezoneY",
+                            "(4 * (1.5 * (((safezoneW / safezoneH) min 1.2) / 50)))",
+                            "(4 * (1.8 * (((safezoneW / safezoneH) min 1.2) / 50)))"
+                        },
+                        "(1 * (((safezoneW / safezoneH) min 1.2) / 50))",
+                        "(1 * (((safezoneW / safezoneH) min 1.2) / 50))"
+                    };
                 };
             };
         };
