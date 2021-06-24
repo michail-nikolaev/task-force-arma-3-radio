@@ -59,24 +59,33 @@ private _intercomPhoneMaxRange = (((boundingBoxReal _vehicle) select 2) / 2) + 5
 }, [_vehicle, _player, _intercomPhoneMaxRange]] call CBA_fnc_waitUntilAndExecute;
 
 
-// Just in case the caller gets into the vehicle or dies/disconnects
-_player setVariable ["TFAR_IntercomPhoneEHIDs", [
-    _player addEventHandler ["GetInMan", {
-        params ["_player", "_role", "_vehicle"];
-        // Use 'TFAR_IntercomPhoneVehicle' variable, so that it doesn't matter
-        // what vehicle the player enters, the intercom phone will disconnect
-        [_player getVariable "TFAR_IntercomPhoneVehicle", _player] call TFAR_intercom_phone_fnc_deactivate;
-    }],
-    _player addMPEventHandler ["MPKilled", {
-        params ["_player"];
-        [_player getVariable "TFAR_IntercomPhoneVehicle", _player] call TFAR_intercom_phone_fnc_deactivate;
-    }]
-]];
+// Just in case the player gets into the vehicle or dies/disconnects
+_player addEventHandler ["GetInMan", {
+    params ["_player", "_role", "_vehicle"];
+    // Use 'TFAR_IntercomPhoneVehicle' variable, so that it doesn't matter
+    // what vehicle the player enters, the intercom phone will disconnect
+    [_player getVariable "TFAR_IntercomPhoneVehicle", _player] call TFAR_intercom_phone_fnc_deactivate;
+    _player removeEventHandler ["GetInMan", _thisEventHandler];
+}];
+
+_player addMPEventHandler ["MPKilled", {
+    params ["_player"];
+    [_player getVariable "TFAR_IntercomPhoneVehicle", _player] call TFAR_intercom_phone_fnc_deactivate;
+    _player removeMPEventHandler ["MPKilled", _thisEventHandler];
+}];
 
 // Just in case the vehicle is destroyed
-_vehicle setVariable ["TFAR_IntercomPhoneEHIDs", [
-    _vehicle addMPEventHandler ["MPKilled", {
-        params ["_vehicle"];
-        [_vehicle, _vehicle getVariable "TFAR_IntercomPhoneSpeaker"] call TFAR_intercom_phone_fnc_deactivate;
-    }]
-]];
+_vehicle addMPEventHandler ["MPKilled", {
+    params ["_vehicle"];
+    [_vehicle, _vehicle getVariable "TFAR_IntercomPhoneSpeaker"] call TFAR_intercom_phone_fnc_deactivate;
+    _vehicle removeMPEventHandler ["MPKilled", _thisEventHandler];
+}];
+
+_player setVariable ["TFAR_IntercomPhoneEHID",
+    ["ace_unconscious", {
+        params ["_player", "_active"];
+        if (_active) then {
+            [_player getVariable "TFAR_IntercomPhoneVehicle", _player] call TFAR_intercom_phone_fnc_deactivate;
+        };
+    }] call CBA_fnc_addEventHandler
+];

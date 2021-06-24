@@ -21,13 +21,9 @@
 
 params ["_vehicle", "_player"];
 
+["ace_unconscious", _player getVariable ["TFAR_IntercomPhoneEHID", -1]] call CBA_fnc_removeEventHandler;
 _player setVariable ["TFAR_vehicleIDOverride", nil, true];
-_playerEHIDs = _player getVariable ["TFAR_IntercomPhoneEHIDs", [-1, -1]];
-_vehicleEHIDs = _vehicle getVariable ["TFAR_IntercomPhoneEHIDs", [-1]];
-_player removeEventHandler ["GetInMan", _playerEHIDs select 0];
-_player removeMPEventHandler ["MPKilled", _playerEHIDs select 1];
-_vehicle removeMPEventHandler ["MPKilled", _vehicleEHIDs select 0];
-_player setVariable ["TFAR_IntercomPhoneVehicle", nil];
+_player setVariable ["TFAR_IntercomPhoneVehicle", nil, true];
 _vehicle setVariable ["TFAR_IntercomPhoneSpeaker", nil, true];
 
 // Hide indicator
