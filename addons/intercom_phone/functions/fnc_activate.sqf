@@ -22,14 +22,14 @@
 
 params ["_vehicle", "_player"];
 
-private _phoneSpeaker = _vehicle getVariable ["TFAR_IntercomPhoneSpeaker", nil];
+private _phoneSpeaker = _vehicle getVariable "TFAR_IntercomPhoneSpeaker";
 
 if (!isNil "_phoneSpeaker") exitWith {
     // [parseText format["<br /><br /><t align='center'>%1 is currently on the phone.</t>", name _phoneSpeaker]] call TFAR_fnc_showHint;
     "no";
 };
 
-private _vehicleID = _vehicle getVariable ["TFAR_vehicleIDOverride", netid _vehicle];
+private _vehicleID = _vehicle getVariable ["TFAR_vehicleIDOverride", netId _vehicle];
 _vehicle setVariable ["TFAR_vehicleIDOverride", _vehicleID, true];
 _vehicle setVariable ["TFAR_IntercomPhoneSpeaker", _player, true];
 _player setVariable ["TFAR_IntercomPhoneVehicle", _vehicle, true];
@@ -37,8 +37,9 @@ _player setVariable ["TFAR_vehicleIDOverride", _vehicleID, true];
 
 // Get intercom channel, now that we've signed on to the intercom
 private _intercomSlot = [_vehicle] call TFAR_intercom_phone_fnc_getIntercomChannel;
-_vehicle setVariable [format ["TFAR_IntercomSlot_%1",(netID _player)], _intercomSlot, true];
-_player setVariable [format ["TFAR_IntercomSlot_%1",(netID _player)], _intercomSlot, true]; // Because TFAR checks the "vehicle", and thinks the unit is the vehicle when it's not in a vehicle, so we manually set it
+
+_vehicle setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomSlot, true];
+_player setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomSlot, true]; // Because TFAR checks the "vehicle", and thinks the unit is the vehicle when it's not in a vehicle, so we manually set it
 
 // Show indicator
 if (TFAR_oldVolumeHint) then {
@@ -60,7 +61,7 @@ private _loopID = [_vehicle, _player] spawn {
 
 _player setVariable ["TFAR_IntercomPhoneLoopID", _loopID];
 
-// Just in case the caller gets into the vehicle
+// Just in case the caller gets into the vehicle or dies/disconnects
 _player setVariable ["TFAR_IntercomPhoneEHIDs", [
     _player addEventHandler ["GetInMan", {
         params ["_player", "_role", "_vehicle"];
