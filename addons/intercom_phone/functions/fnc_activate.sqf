@@ -23,10 +23,15 @@
 params ["_vehicle", "_player"];
 
 private _phoneSpeaker = _vehicle getVariable "TFAR_IntercomPhoneSpeaker";
-
 if (!isNil "_phoneSpeaker") exitWith {
     [parseText format["<br /><br /><t align='center'>%1 is currently on the phone.</t>", name _phoneSpeaker]] call TFAR_fnc_showHint;
     "no";
+};
+
+// Make sure we disconnect properly from any other connected vehicles
+private _oldVehicle = _player getVariable "TFAR_IntercomPhoneVehicle";
+if (!isNil {_oldVehicle}) then {
+    [_oldVehicle, _player] call TFAR_intercom_phone_fnc_deactivate;
 };
 
 private _vehicleID = _vehicle getVariable ["TFAR_vehicleIDOverride", netId _vehicle];
