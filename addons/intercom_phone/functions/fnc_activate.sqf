@@ -54,15 +54,22 @@ if (TFAR_oldVolumeHint) then {
 };
 
 // Keep connection alive until out of range or disconnected
-private _intercomPhoneMaxRange = (((boundingBoxReal _vehicle) select 2) / 2) + 5;
+private _interactionPointRelative = [_vehicle] call TFAR_intercom_phone_fnc_getInteractionPoint;
+private _intercomPhoneMaxRange = 5;
 [{
     params ["_vehicle", "_player", "_intercomPhoneMaxRange"];
-    (_vehicle distance _player) > _intercomPhoneMaxRange || isNil {_player getVariable "TFAR_IntercomPhoneVehicle"}
+    ((_vehicle modelToWorld _interactionPointRelative) distance _player) > _intercomPhoneMaxRange || isNil {_player getVariable "TFAR_IntercomPhoneVehicle"}
 }, {
     params ["_vehicle", "_player"];
     [_vehicle, _player] call TFAR_intercom_phone_fnc_deactivate;
 }, [_vehicle, _player, _intercomPhoneMaxRange]] call CBA_fnc_waitUntilAndExecute;
 
+
+private _handset = createSimpleObject [QPATHTOF(handset\data\TFAR_handset.p3d), _player selectionPosition "head"];
+_handset attachTo [_player, [-0.14,-0.02,0.02], "head", true];
+_handset setVectorDirAndUp [[-2.5,0.8,0.25],[-1,-1,1]];
+private _ropeID = ropeCreate [_vehicle, _interactionPointRelative, _handset, "plug", _intercomPhoneMaxRange]; // handset rope location[0,0.006,-0.7]
+_vehicle setVariable ["TFAR_IntercomPhoneRopeIDs", [_ropeID, _handset], true];
 
 // Just in case the player gets into the vehicle or dies/disconnects
 _player addEventHandler ["GetInMan", {
@@ -79,11 +86,19 @@ _player addMPEventHandler ["MPKilled", {
     _player removeMPEventHandler ["MPKilled", _thisEventHandler];
 }];
 
-// Just in case the vehicle is destroyed
+// Just in case the vehicle is destroyed or the rope breaks
 _vehicle addMPEventHandler ["MPKilled", {
     params ["_vehicle"];
     [_vehicle, _vehicle getVariable "TFAR_IntercomPhoneSpeaker"] call TFAR_intercom_phone_fnc_deactivate;
     _vehicle removeMPEventHandler ["MPKilled", _thisEventHandler];
+}];
+
+_vehicle addEventHandler ["RopeBreak", {
+    params ["_vehicle", "_ropeID", "_player"];
+    if (((_vehicle getVariable ["TFAR_IntercomPhoneRopeIDs", [nil, nil]]) select 0) isEqualTo _ropeID) then {
+        [_vehicle, _player] call fnc_deactivate;
+        _vehicle removeEventHandler ["RopeBreak", _thisEventHandler];
+    };
 }];
 
 _player setVariable ["TFAR_IntercomPhoneEHID",

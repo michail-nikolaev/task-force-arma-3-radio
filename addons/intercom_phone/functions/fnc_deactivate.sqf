@@ -26,6 +26,12 @@ _player setVariable ["TFAR_vehicleIDOverride", nil, true];
 _player setVariable ["TFAR_IntercomPhoneVehicle", nil, true];
 _vehicle setVariable ["TFAR_IntercomPhoneSpeaker", nil, true];
 
+// Kill the rope and model
+(_vehicle getVariable ["TFAR_IntercomPhoneRopeIDs", [nil, nil]]) params ["_ropeID", "_handset"];
+deleteVehicle _handset;
+ropeDestroy _ropeID;
+_vehicle setVariable ["TFAR_IntercomPhoneRopeIDs", [], true];
+
 // Hide indicator
 if (TFAR_oldVolumeHint) then {
     [parseText "Disconnected from Vehicle Intercom", 5] call TFAR_fnc_showHint;
