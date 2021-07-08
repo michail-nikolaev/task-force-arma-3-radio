@@ -25,12 +25,12 @@
 
 private _checkForRadio = {
     if !(call TFAR_fnc_haveSWRadio) exitWith {false};
-    //#TODO https://community.bistudio.com/wiki/isAbleToBreathe
-    if ((vest TFAR_currentUnit) == "V_RebreatherB") exitWith {true};
 
-    private _rebreather = configFile >> "CfgWeapons" >> "V_RebreatherB";
-    private _currentVest = configFile >> "CfgWeapons" >> (vest TFAR_currentUnit);
-    [_currentVest, _rebreather] call CBA_fnc_inheritsFrom
+    private _hasDDRadio = getNumber(configFile >> "CfgWeapons" >> (vest TFAR_currentUnit) >> "tf_hasDDradio");
+
+    if (_hasDDRadio isEqualTo 1) exitWith {true};
+
+    false;
 };
 
 private _result = call _checkForRadio;
