@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project ID="Arma3">
+    <Package name="external_intercom">
+        <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PICKUP_PHONE">
+            <Original>Pickup Intercom Phone</Original>
+            <English>Pickup Intercom Phone</English>
+        </Key>
+        <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PUT_AWAY_PHONE">
+            <Original>Put away Intercom Phone</Original>
+            <English>Put away Intercom Phone</English>
+        </Key>
+        <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PHONE_BUSY">
+            <Original>Intercom Phone in use</Original>
+            <English>Intercom Phone in use</English>
+        </Key>
+        <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SOMEONE_USING_PHONE">
+            <Original><br /><br /><t align='center'>%1 is currently on the phone.</t></Original>
+            <English>%1 is currently using the Intercom Phone</English>
+        </Key>
+        <Key ID="STR_TFAR_EXTERNAL_INTERCOM_DISCONNECT">
+            <Original>Disconnected from Vehicle Intercom</Original>
+            <English>Disconnected from Vehicle Intercom</English>
+        </Key>
+        <Key ID="STR_TFAR_EXTERNAL_INTERCOM_EXTERNAL_INTERCOM_PHONE_INDICATOR">
+            <Original>External Intercom Connection Indicator</Original>
+            <English>External Intercom Connection Indicator</English>
+        </Key>
+    </Package>
+</Project>

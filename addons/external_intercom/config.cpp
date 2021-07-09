@@ -38,7 +38,7 @@ class CfgUIGrids { //Thanks ACE guys!
         class Presets {
             class Arma3 {
                 class Variables {
-                    grid_TFAR_Intercom_Phone[] = {
+                    grid_TFAR_External_Intercom_Phone[] = {
                         {
                             "0.80 * safezoneW + safezoneX",
                             "0.9 * safezoneH + safezoneY",
@@ -52,10 +52,10 @@ class CfgUIGrids { //Thanks ACE guys!
             };
         };
         class Variables {
-            class grid_TFAR_Intercom_Phone{
-                displayName = CSTRING(IntercomPhoneIndicator);
-                description = CSTRING(IntercomPhoneIndicator);
-                preview = QPATHTOF(ui\tfar_intercom_phone.paa);
+            class grid_TFAR_External_Intercom_Phone{
+                displayName = CSTRING(EXTERNAL_INTERCOM_PHONE_INDICATOR);
+                description = CSTRING(EXTERNAL_INTERCOM_PHONE_INDICATOR);
+                preview = QPATHTOF(ui\tfar_external_intercom_phone.paa);
                 saveToProfile[] = {0,1,2,3};
                 canResize = 1;
             };

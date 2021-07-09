@@ -1,4 +1,4 @@
-PREP(activate);
-PREP(deactivate);
+PREP(connect);
+PREP(disconnect);
 PREP(getIntercomChannel);
 PREP(getInteractionPoint);

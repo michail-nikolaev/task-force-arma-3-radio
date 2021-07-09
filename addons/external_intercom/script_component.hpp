@@ -1,11 +1,11 @@
-#define COMPONENT intercom_phone
+#define COMPONENT external_intercom
 #include "\z\tfar\addons\core\script_mod.hpp"
 
-#ifdef DEBUG_ENABLED_INTERCOM_PHONE
+#ifdef DEBUG_ENABLED_EXTERNAL_INTERCOM
     #define DEBUG_MODE_FULL
 #endif
 
-#ifdef DEBUG_SETTINGS_INTERCOM_PHONE
+#ifdef DEBUG_SETTINGS_EXTERNAL_INTERCOM
     #define DEBUG_SETTINGS DEBUG_SETTINGS_MAIN
 #endif
 

@@ -10,7 +10,7 @@ if !(_customPosition isEqualTo []) exitWith {
 private [
    "_centerOfMass","_bbr","_p1","_p2","_rearCorner","_rearCorner2","_maxWidth",
    "_widthOffset","_widthFactor",
-   "_heightOffset","_intercomPhoneInset","_intercomPhonePoint"
+   "_heightOffset","_externalIntercomInset","_externalIntercomPoint"
 ];
 
 // Correct width and height factor
@@ -27,7 +27,7 @@ _heightOffset = (_centerOfMass select 2) * _heightFactor;
 _rearCorner = [(_centerOfMass select 0) + _widthOffset, _p1 select 1, _heightOffset];
 _rearCorner2 = [(_centerOfMass select 0) - _widthOffset, _p1 select 1, _heightOffset];
 
-_intercomPhoneInset = ((_rearCorner vectorDiff _rearCorner2) vectorMultiply 0.8) vectorAdd  _rearCorner2;
-_intercomPhonePoint = lineIntersectsSurfaces [AGLToASL (_vehicle modelToWorld _intercomPhoneInset), AGLToASL (_vehicle modelToWorld _centerOfMass)] select 0 select 0;
+_externalIntercomInset = ((_rearCorner vectorDiff _rearCorner2) vectorMultiply 0.8) vectorAdd  _rearCorner2;
+_externalIntercomPoint = lineIntersectsSurfaces [AGLToASL (_vehicle modelToWorld _externalIntercomInset), AGLToASL (_vehicle modelToWorld _centerOfMass)] select 0 select 0;
 
-ASLToAGL (_vehicle worldToModel _intercomPhonePoint);
+ASLToAGL (_vehicle worldToModel _externalIntercomPoint);
