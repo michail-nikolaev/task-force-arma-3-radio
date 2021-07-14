@@ -10,6 +10,7 @@
   Arguments:
     0: Vehicle object <OBJECT>
     1: Player unit <OBJECT>
+    2: Is Wireless connection? <BOOLEAN>
 
   Return Value:
     None
@@ -20,11 +21,19 @@
   Public: Yes
 */
 
-params ["_vehicle", "_player"];
+params ["_vehicle", "_player", "_actionParams"];
+_actionParams params [["_wireless", false, [false]]];
 
-private _phoneSpeaker = _vehicle getVariable "TFAR_ExternalIntercomSpeaker";
-if (!isNil "_phoneSpeaker") exitWith {
-    [parseText format[CSTRING(SOMEONE_USING_PHONE), name _phoneSpeaker]] call TFAR_fnc_showHint;
+if (_wireless && !((headgear _player) in TFAR_externalIntercomWirelessHeadgear)) exitWith {
+    [parseText format[CSTRING(HEADGEAR_NOT_WIRELESS_CAPABLE), getText(configFile >> "CfgWeapons" >> headgear _player >> "displayName")]] call TFAR_fnc_showHint;
+    "no";
+};
+
+private _externalSpeakers = _vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]];
+// External Speakers structure is always:
+//  [_playerUsingPhone, [_infinitePlayersConnectedWirelessly...]]
+if (!isNull (_externalSpeakers select 0) && !_wireless) exitWith {
+    [parseText format[CSTRING(SOMEONE_USING_PHONE), name (_externalSpeakers select 0)]] call TFAR_fnc_showHint;
     "no";
 };
 
@@ -36,9 +45,15 @@ if (!isNil {_oldVehicle}) then {
 
 private _vehicleID = _vehicle getVariable ["TFAR_vehicleIDOverride", netId _vehicle];
 _vehicle setVariable ["TFAR_vehicleIDOverride", _vehicleID, true];
-_vehicle setVariable ["TFAR_ExternalIntercomSpeaker", _player, true];
 _player setVariable ["TFAR_ExternalIntercomVehicle", _vehicle, true];
 _player setVariable ["TFAR_vehicleIDOverride", _vehicleID, true];
+
+if (_wireless) then {
+    (_externalSpeakers select 1) pushBack _player;
+} else {
+    _externalSpeakers set [0, _player];
+};
+_vehicle setVariable ["TFAR_ExternalIntercomSpeakers", _externalSpeakers, true];
 
 // Get intercom channel, now that we've signed on to the intercom
 private _intercomSlot = [_vehicle] call TFAR_external_intercom_fnc_getIntercomChannel;
@@ -54,29 +69,60 @@ if (TFAR_oldVolumeHint) then {
 };
 
 // Keep connection alive until out of range or disconnected
-private _interactionPointRelative = [_vehicle] call TFAR_external_intercom_fnc_getInteractionPoint;
-private _intercomPhoneMaxRange = 5;
+private _interactionPointRelative = getCenterOfMass _vehicle;
+private _intercomMaxRange = TFAR_externalIntercomMaxRange_Wireless;
+private _headgear = "";
+
+if !(_wireless) then {
+    _interactionPointRelative = [_vehicle] call TFAR_external_intercom_fnc_getInteractionPoint;
+    _intercomMaxRange = TFAR_externalIntercomMaxRange_Phone;
+} else {
+    _headgear = headgear _player;
+};
+
 [{
-    params ["_vehicle", "_player", "_intercomPhoneMaxRange"];
-    ((_vehicle modelToWorld _interactionPointRelative) distance _player) > _intercomPhoneMaxRange || isNil {_player getVariable "TFAR_ExternalIntercomVehicle"}
+    params ["_vehicle", "_player", "_intercomMaxRange", "_wireless", "_headgear"];
+    systemChat str [
+        _this,
+        ((_vehicle modelToWorld _interactionPointRelative) distance _player),
+        isNil {_player getVariable "TFAR_ExternalIntercomVehicle"},
+        _wireless,
+        !(_headgear isEqualTo (headgear _player)),
+        (_wireless && !(_headgear isEqualTo (headgear _player)))
+    ];
+    ((_vehicle modelToWorld _interactionPointRelative) distance _player) > _intercomMaxRange
+    || isNil {_player getVariable "TFAR_ExternalIntercomVehicle"}
+    || (_wireless && !(_headgear isEqualTo (headgear _player)))
 }, {
     params ["_vehicle", "_player"];
     systemChat "Yikes";
     [_vehicle, _player] call TFAR_external_intercom_fnc_disconnect;
-}, [_vehicle, _player, _intercomPhoneMaxRange]] call CBA_fnc_waitUntilAndExecute;
+}, [_vehicle, _player, _intercomMaxRange, _wireless, _headgear]] call CBA_fnc_waitUntilAndExecute;
 
 
-private _handset = createSimpleObject [QPATHTOF(data\TFAR_handset.p3d), _player selectionPosition "head"];
-_handset attachTo [_player, [-0.14,-0.02,0.02], "head", true];
-_handset setVectorDirAndUp [[-2.5,0.8,0.25],[-1,-1,1]];
-private _ropeID = ropeCreate [_vehicle, _interactionPointRelative vectorAdd [0,0.2,0], _handset, "plug", _intercomPhoneMaxRange]; // handset rope location[0,0.006,-0.7]
-_vehicle setVariable ["TFAR_ExternalIntercomRopeIDs", [_ropeID, _handset], true];
+if !(_wireless) then {
+    private _handset = createSimpleObject [QPATHTOF(data\TFAR_handset.p3d), _player selectionPosition "head"];
+    _handset attachTo [_player, [-0.14,-0.02,0.02], "head", true];
+    _handset setVectorDirAndUp [[-2.5,0.8,0.25],[-1,-1,1]];
+    private _ropeID = ropeCreate [_vehicle, _interactionPointRelative vectorAdd [0,0.2,0], _handset, "plug", _intercomMaxRange]; // handset rope location[0,0.006,-0.7]
+    _vehicle setVariable ["TFAR_ExternalIntercomRopeIDs", [_ropeID, _handset], true];
+
+    _vehicle addEventHandler ["RopeBreak", {
+        params ["_vehicle", "_ropeID", "_player"];
+        if (((_vehicle getVariable ["TFAR_ExternalIntercomRopeIDs", [nil, nil]]) select 0) isEqualTo _ropeID) then {
+            [_vehicle, _player] call TFAR_external_intercom_fnc_disconnect;
+            _vehicle removeEventHandler ["RopeBreak", _thisEventHandler];
+        };
+    }];
+} else {
+
+};
 
 // Just in case the player gets into the vehicle or dies/disconnects
 _player addEventHandler ["GetInMan", {
     params ["_player", "_role", "_vehicle"];
     // Use 'TFAR_ExternalIntercomVehicle' variable, so that it doesn't matter
-    // what vehicle the player enters, the intercom phone will disconnect
+    // what vehicle the player enters, the intercom will disconnect
     [_player getVariable "TFAR_ExternalIntercomVehicle", _player] call TFAR_external_intercom_fnc_disconnect;
     _player removeEventHandler ["GetInMan", _thisEventHandler];
 }];
@@ -87,20 +133,19 @@ _player addMPEventHandler ["MPKilled", {
     _player removeMPEventHandler ["MPKilled", _thisEventHandler];
 }];
 
-// Just in case the vehicle is destroyed or the rope breaks
-_vehicle addMPEventHandler ["MPKilled", {
-    params ["_vehicle"];
-    [_vehicle, _vehicle getVariable "TFAR_ExternalIntercomSpeaker"] call TFAR_external_intercom_fnc_disconnect;
-    _vehicle removeMPEventHandler ["MPKilled", _thisEventHandler];
-}];
-
-_vehicle addEventHandler ["RopeBreak", {
-    params ["_vehicle", "_ropeID", "_player"];
-    if (((_vehicle getVariable ["TFAR_ExternalIntercomRopeIDs", [nil, nil]]) select 0) isEqualTo _ropeID) then {
-        [_vehicle, _player] call TFAR_external_intercom_fnc_disconnect;
-        _vehicle removeEventHandler ["RopeBreak", _thisEventHandler];
-    };
-}];
+// Just in case the vehicle is destroyed
+if (isNil {_vehicle getVariable "TFAR_ExternalIntercomEH"}) then {
+    _vehicle setVariable ["TFAR_ExternalIntercomEH",
+        _vehicle addMPEventHandler ["MPKilled", {
+            params ["_vehicle"];
+            {
+                [_vehicle, _x] call TFAR_external_intercom_fnc_disconnect;
+            } forEach ((_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]]) select 1);
+            _vehicle removeMPEventHandler ["MPKilled", _thisEventHandler];
+        }],
+        true
+    ];
+};
 
 _player setVariable ["TFAR_ExternalIntercomEHID",
     ["ace_unconscious", {

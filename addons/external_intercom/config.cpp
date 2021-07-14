@@ -53,8 +53,8 @@ class CfgUIGrids { //Thanks ACE guys!
         };
         class Variables {
             class grid_TFAR_External_Intercom_Phone{
-                displayName = CSTRING(EXTERNAL_INTERCOM_PHONE_INDICATOR);
-                description = CSTRING(EXTERNAL_INTERCOM_PHONE_INDICATOR);
+                displayName = CSTRING(PHONE_INDICATOR);
+                description = CSTRING(PHONE_INDICATOR);
                 preview = QPATHTOF(ui\tfar_external_intercom_phone.paa);
                 saveToProfile[] = {0,1,2,3};
                 canResize = 1;

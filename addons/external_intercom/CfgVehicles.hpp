@@ -2,10 +2,13 @@ class CfgVehicles {
     #include "ACEActions.hpp"
 
     class LandVehicle;
-    ADD_ACTIONS(LandVehicle, Car)
-    ADD_ACTIONS(LandVehicle, Tank)
+    ADD_PHONE_ACTIONS(LandVehicle, Car)
+    ADD_WIRELESS_ACTIONS(LandVehicle, Car)
 
-    // class Air;
-    // ADD_ACTIONS(Air, Helicopter)
-    // ADD_ACTIONS(Air, Plane)
+    ADD_PHONE_ACTIONS(LandVehicle, Tank)
+    ADD_WIRELESS_ACTIONS(LandVehicle, Tank)
+
+    class Air;
+    ADD_WIRELESS_ACTIONS(Air, Helicopter)
+    ADD_WIRELESS_ACTIONS(Air, Plane)
 };

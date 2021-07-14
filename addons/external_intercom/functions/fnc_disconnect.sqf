@@ -24,13 +24,23 @@ params ["_vehicle", "_player"];
 ["ace_unconscious", _player getVariable ["TFAR_ExternalIntercomEHID", -1]] call CBA_fnc_removeEventHandler;
 _player setVariable ["TFAR_vehicleIDOverride", nil, true];
 _player setVariable ["TFAR_ExternalIntercomVehicle", nil, true];
-_vehicle setVariable ["TFAR_ExternalIntercomSpeaker", nil, true];
+
+_externalIntercomSpeakers = _vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]];
+
+if ((_externalIntercomSpeakers select 0) isEqualTo _player) then {
+    _externalIntercomSpeakers set [0, objNull];
+};
+(_externalIntercomSpeakers select 1) deleteAt ((_externalIntercomSpeakers select 1) find _player);
+
+_vehicle setVariable ["TFAR_ExternalIntercomSpeakers", _externalIntercomSpeakers, true];
 
 // Kill the rope and model
 (_vehicle getVariable ["TFAR_ExternalIntercomRopeIDs", [nil, nil]]) params ["_ropeID", "_handset"];
-deleteVehicle _handset;
-ropeDestroy _ropeID;
-_vehicle setVariable ["TFAR_ExternalIntercomRopeIDs", [], true];
+if !(isNil "_ropeID" || isNil "_handset") then {
+    deleteVehicle _handset;
+    ropeDestroy _ropeID;
+    _vehicle setVariable ["TFAR_ExternalIntercomRopeIDs", nil, true];
+};
 
 // Hide indicator
 if (TFAR_oldVolumeHint) then {
