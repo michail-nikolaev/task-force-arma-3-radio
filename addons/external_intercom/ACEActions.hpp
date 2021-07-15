@@ -51,7 +51,7 @@ class child : parent { \
     }; \
     class EventHandlers : EventHandlers { \
         class TFAR_ExternalIntercomWireless { \
-            getOut = "if ((alive (_this select 2)) && (headgear (_this select 2)) in TFAR_externalIntercomWirelessHeadgear) then { [_this select 0, _this select 2, [true]] call TFAR_external_intercom_fnc_connect; };"; \
+            getOut = "if ((alive (_this select 2)) && (headgear (_this select 2)) in TFAR_externalIntercomWirelessHeadgear && !((_this select 1) isEqualTo 'cargo')) then { [_this select 0, _this select 2, [true]] call TFAR_external_intercom_fnc_connect; };"; \
         }; \
     }; \
 };
