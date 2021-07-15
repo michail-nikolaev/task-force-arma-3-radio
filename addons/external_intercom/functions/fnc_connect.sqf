@@ -73,7 +73,7 @@ private _interactionPointRelative = getCenterOfMass _vehicle;
 private _intercomMaxRange = TFAR_externalIntercomMaxRange_Wireless;
 private _headgear = "";
 
-if !(_wireless) then {
+if (!_wireless) then {
     _interactionPointRelative = [_vehicle] call TFAR_external_intercom_fnc_getInteractionPoint;
     _intercomMaxRange = TFAR_externalIntercomMaxRange_Phone;
 } else {
@@ -81,23 +81,14 @@ if !(_wireless) then {
 };
 
 [{
-    params ["_vehicle", "_player", "_intercomMaxRange", "_wireless", "_headgear"];
-    systemChat str [
-        _this,
-        ((_vehicle modelToWorld _interactionPointRelative) distance _player),
-        isNil {_player getVariable "TFAR_ExternalIntercomVehicle"},
-        _wireless,
-        !(_headgear isEqualTo (headgear _player)),
-        (_wireless && !(_headgear isEqualTo (headgear _player)))
-    ];
+    params ["_vehicle", "_player", "_intercomMaxRange", "_interactionPointRelative", "_wireless", "_headgear"];
     ((_vehicle modelToWorld _interactionPointRelative) distance _player) > _intercomMaxRange
     || isNil {_player getVariable "TFAR_ExternalIntercomVehicle"}
     || (_wireless && !(_headgear isEqualTo (headgear _player)))
 }, {
     params ["_vehicle", "_player"];
-    systemChat "Yikes";
     [_vehicle, _player] call TFAR_external_intercom_fnc_disconnect;
-}, [_vehicle, _player, _intercomMaxRange, _wireless, _headgear]] call CBA_fnc_waitUntilAndExecute;
+}, [_vehicle, _player, _intercomMaxRange, _interactionPointRelative, _wireless, _headgear]] call CBA_fnc_waitUntilAndExecute;
 
 
 if !(_wireless) then {
