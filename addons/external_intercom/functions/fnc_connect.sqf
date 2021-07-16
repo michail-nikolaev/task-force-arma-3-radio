@@ -24,7 +24,7 @@
 params ["_vehicle", "_player", "_actionParams"];
 _actionParams params [["_wireless", false, [false]]];
 
-if (_wireless && !((headgear _player) in TFAR_externalIntercomWirelessHeadgear)) exitWith {
+if (_wireless && !isClass(configFile >> "TFAR_External_Intercom_Wireless_Headgear" >> (headgear _player))) exitWith {
     [parseText format[CSTRING(HEADGEAR_NOT_WIRELESS_CAPABLE), getText(configFile >> "CfgWeapons" >> headgear _player >> "displayName")]] call TFAR_fnc_showHint;
     "no";
 };

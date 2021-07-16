@@ -1,6 +1,6 @@
 params ["_vehicle"];
 
-private _customPosition = getArray(configOf _vehicle);
+private _customPosition = getArray((configOf _vehicle) >> "TFAR_ExternalIntercomInteractionPoint");
 
 // If there's a custom position, then don't bother calculating
 if !(_customPosition isEqualTo []) exitWith {

@@ -43,7 +43,9 @@ private _parsedValue = (parseSimpleArray _valueString) apply {
 _parsedValue = _parsedValue arrayIntersect _parsedValue; // Retain only unique elements
 
 _parsedValue = _parsedValue apply {
-    if (IS_CONFIG(configFile >> "CfgWeapons" >> _x)) then {_x} else {""};
+    if (isClass(configFile >> "CfgWeapons" >> _x)) then {
+        configName(configFile >> "CfgWeapons" >> _x);
+    } else {""};
 };
 
 _parsedValue

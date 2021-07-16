@@ -1,22 +1,47 @@
+#include "ACEActions.hpp"
+
+#define ADD_EVENTHANDLERS \
+class EventHandlers : EventHandlers { \
+    class TFAR_ExternalIntercomWireless { \
+        getOut = "if ((alive (_this select 2)) && (headgear (_this select 2)) in TFAR_externalIntercomWirelessHeadgear && !((_this select 1) isEqualTo 'cargo')) then { [_this select 0, _this select 2, [true]] call TFAR_external_intercom_fnc_connect; };"; \
+    }; \
+};
+
+#define LAND_CLASS(parent, child) \
+class child : parent { \
+    class ACE_Actions { \
+        ADD_PHONE_ACTIONS \
+        ADD_WIRELESS_ACTIONS \
+    }; \
+    ADD_EVENTHANDLERS \
+};
+
+#define AIR_CLASS(parent, child) \
+class child : parent { \
+    class ACE_Actions { \
+        ADD_PHONE_ACTIONS \
+        ADD_WIRELESS_ACTIONS \
+    }; \
+    ADD_EVENTHANDLERS \
+};
+
 class CfgVehicles {
-    #include "ACEActions.hpp"
 
     class AllVehicles;
     class Land;
     class LandVehicle : Land {
         class EventHandlers;
     };
-    ADD_PHONE_ACTIONS(LandVehicle, Car)
-    ADD_WIRELESS_ACTIONS(LandVehicle, Car)
-
-    ADD_PHONE_ACTIONS(LandVehicle, Tank)
-    ADD_WIRELESS_ACTIONS(LandVehicle, Tank)
-
-    ADD_WIRELESS_ACTIONS(LandVehicle, Tank_F)
+    LAND_CLASS(LandVehicle, Car)
+    LAND_CLASS(LandVehicle, Tank)
+    LAND_CLASS(Tank, Tank_F)
 
     class Air : AllVehicles {
         class EventHandlers;
     };
-    ADD_WIRELESS_ACTIONS(Air, Helicopter)
-    ADD_WIRELESS_ACTIONS(Air, Plane)
+    AIR_CLASS(Air, Helicopter)
+    AIR_CLASS(Air, Plane)
+
+    // Custom Interaction Points
+    #include "CustomInteractionPoints.hpp"
 };
