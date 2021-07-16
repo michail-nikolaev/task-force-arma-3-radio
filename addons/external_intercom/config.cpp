@@ -65,4 +65,5 @@ class CfgUIGrids { //Thanks ACE guys!
 
 #include "RscTitles.hpp"
 #include "CfgVehicles.hpp"
+#include "CustomRope.hpp"
 #include "WirelessHeadgear.hpp"

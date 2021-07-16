@@ -97,7 +97,7 @@ if (_wireless) then {
     private _handset = createSimpleObject [QPATHTOF(data\TFAR_handset.p3d), _player selectionPosition "head"];
     _handset attachTo [_player, [-0.14,-0.02,0.02], "head", true];
     _handset setVectorDirAndUp [[-2.5,0.8,0.25],[-1,-1,1]];
-    private _ropeID = ropeCreate [_vehicle, _interactionPointRelative vectorAdd [0,0.2,0], _handset, "plug", _intercomMaxRange - 1];
+    private _ropeID = ropeCreate [_vehicle, _interactionPointRelative vectorAdd [0,0.2,0], _handset, "plug", _intercomMaxRange - 1, ["", [0,0,-1]], ["", [0,0,-1]], "RopeSmallWire"];
     _vehicle setVariable ["TFAR_ExternalIntercomRopeIDs", [_ropeID, _handset], true];
 
     // Eventhandlers
