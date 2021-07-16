@@ -61,12 +61,8 @@ private _intercomSlot = [_vehicle] call TFAR_external_intercom_fnc_getIntercomCh
 _vehicle setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomSlot, true];
 _player setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomSlot, true]; // Because TFAR checks the "vehicle", and thinks the unit is the vehicle when it's not in a vehicle, so we manually set it
 
-// Show indicator
-if (TFAR_oldVolumeHint) then {
-    [parseText "Connected to Vehicle Intercom", -1] call TFAR_fnc_showHint;
-} else {
-    (QGVAR(PhoneConnectionIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(PhoneConnectionIndicatorRsc), "PLAIN", 0, true];
-};
+
+(QGVAR(PhoneConnectionIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(PhoneConnectionIndicatorRsc), "PLAIN", 0, true];
 
 // Keep connection alive until out of range or disconnected
 private _interactionPointRelative = getCenterOfMass _vehicle;

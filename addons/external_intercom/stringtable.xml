@@ -29,10 +29,6 @@
             <Original><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable.</t></Original>
             <English><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable.</t></English>
         </Key>
-        <Key ID="STR_TFAR_EXTERNAL_INTERCOM_DISCONNECT">
-            <Original>Disconnected from Vehicle Intercom</Original>
-            <English>Disconnected from Vehicle Intercom</English>
-        </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PHONE_INDICATOR">
             <Original>External Intercom Connection Indicator</Original>
             <English>External Intercom Connection Indicator</English>

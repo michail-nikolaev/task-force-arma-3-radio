@@ -43,8 +43,4 @@ if !(isNil "_ropeID" || isNil "_handset") then {
 };
 
 // Hide indicator
-if (TFAR_oldVolumeHint) then {
-    [parseText CSTRING(DISCONNECT), 5] call TFAR_fnc_showHint;
-} else {
-    (QGVAR(PhoneConnectionIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];
-};
+(QGVAR(PhoneConnectionIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];
