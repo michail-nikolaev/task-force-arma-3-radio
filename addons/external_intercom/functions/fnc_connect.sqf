@@ -65,35 +65,42 @@ _player setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomS
 (QGVAR(PhoneConnectionIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(PhoneConnectionIndicatorRsc), "PLAIN", 0, true];
 
 // Keep connection alive until out of range or disconnected
-private _interactionPointRelative = getCenterOfMass _vehicle;
 private _intercomMaxRange = TFAR_externalIntercomMaxRange_Wireless;
-private _headgear = "";
 
-if (!_wireless) then {
-    _interactionPointRelative = [_vehicle] call TFAR_external_intercom_fnc_getInteractionPoint;
-    _intercomMaxRange = TFAR_externalIntercomMaxRange_Phone;
+if (_wireless) then {
+    private _headgear = headgear _player;
+    _intercomMaxRange = ((((boundingBoxReal _vehicle) select 2) / 2) + TFAR_externalIntercomMaxRange_Wireless);
+
+    [{
+        params ["_vehicle", "_player", "_intercomMaxRange", "_wireless", "_headgear"];
+        (_vehicle distance _player) > _intercomMaxRange
+        || isNil {_player getVariable "TFAR_ExternalIntercomVehicle"}
+        || !(_headgear isEqualTo (headgear _player))
+    }, {
+        params ["_vehicle", "_player"];
+        [_vehicle, _player] call TFAR_external_intercom_fnc_disconnect;
+    }, [_vehicle, _player, _intercomMaxRange, _wireless, _headgear]] call CBA_fnc_waitUntilAndExecute;
+
 } else {
-    _headgear = headgear _player;
-};
+    private _interactionPointRelative = [_vehicle] call TFAR_external_intercom_fnc_getInteractionPoint;
+    _intercomMaxRange = TFAR_externalIntercomMaxRange_Phone;
 
-[{
-    params ["_vehicle", "_player", "_intercomMaxRange", "_interactionPointRelative", "_wireless", "_headgear"];
-    ((_vehicle modelToWorld _interactionPointRelative) distance _player) > _intercomMaxRange
-    || isNil {_player getVariable "TFAR_ExternalIntercomVehicle"}
-    || (_wireless && !(_headgear isEqualTo (headgear _player)))
-}, {
-    params ["_vehicle", "_player"];
-    [_vehicle, _player] call TFAR_external_intercom_fnc_disconnect;
-}, [_vehicle, _player, _intercomMaxRange, _interactionPointRelative, _wireless, _headgear]] call CBA_fnc_waitUntilAndExecute;
+    [{
+        params ["_vehicle", "_player", "_intercomMaxRange", "_interactionPointRelative"];
+        ((_vehicle modelToWorld _interactionPointRelative) distance _player) > _intercomMaxRange
+        || isNil {_player getVariable "TFAR_ExternalIntercomVehicle"}
+    }, {
+        params ["_vehicle", "_player"];
+        [_vehicle, _player] call TFAR_external_intercom_fnc_disconnect;
+    }, [_vehicle, _player, _intercomMaxRange, _interactionPointRelative]] call CBA_fnc_waitUntilAndExecute;
 
-
-if !(_wireless) then {
     private _handset = createSimpleObject [QPATHTOF(data\TFAR_handset.p3d), _player selectionPosition "head"];
     _handset attachTo [_player, [-0.14,-0.02,0.02], "head", true];
     _handset setVectorDirAndUp [[-2.5,0.8,0.25],[-1,-1,1]];
-    private _ropeID = ropeCreate [_vehicle, _interactionPointRelative vectorAdd [0,0.2,0], _handset, "plug", _intercomMaxRange]; // handset rope location[0,0.006,-0.7]
+    private _ropeID = ropeCreate [_vehicle, _interactionPointRelative vectorAdd [0,0.2,0], _handset, "plug", _intercomMaxRange - 1];
     _vehicle setVariable ["TFAR_ExternalIntercomRopeIDs", [_ropeID, _handset], true];
 
+    // Eventhandlers
     _vehicle addEventHandler ["RopeBreak", {
         params ["_vehicle", "_ropeID", "_player"];
         if (((_vehicle getVariable ["TFAR_ExternalIntercomRopeIDs", [nil, nil]]) select 0) isEqualTo _ropeID) then {
@@ -101,8 +108,15 @@ if !(_wireless) then {
             _vehicle removeEventHandler ["RopeBreak", _thisEventHandler];
         };
     }];
-} else {
 
+    _player setVariable ["TFAR_ExternalIntercomEHID",
+        ["ace_unconscious", {
+            params ["_player", "_active"];
+            if (_active && isPlayer _player) then {
+                [_player getVariable "TFAR_ExternalIntercomVehicle", _player] call TFAR_external_intercom_fnc_disconnect;
+            };
+        }] call CBA_fnc_addEventHandler
+    ];
 };
 
 // Just in case the player gets into the vehicle or dies/disconnects
@@ -133,12 +147,3 @@ if (isNil {_vehicle getVariable "TFAR_ExternalIntercomEH"}) then {
         true
     ];
 };
-
-_player setVariable ["TFAR_ExternalIntercomEHID",
-    ["ace_unconscious", {
-        params ["_player", "_active"];
-        if (_active) then {
-            [_player getVariable "TFAR_ExternalIntercomVehicle", _player] call TFAR_external_intercom_fnc_disconnect;
-        };
-    }] call CBA_fnc_addEventHandler
-];
