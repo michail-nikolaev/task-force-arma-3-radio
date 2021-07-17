@@ -14,4 +14,6 @@ class TFAR_External_Intercom_Wireless_Headgear {
     class H_HelmetCrew_I_E;
     class H_PilotHelmetHeli_I_E;
     class H_CrewHelmetHeli_I_E;
+    class H_Tank_eaf_F;
+    class H_Tank_black_F;
 };
