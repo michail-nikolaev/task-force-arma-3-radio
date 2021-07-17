@@ -18,6 +18,28 @@
 ] call CBA_Settings_fnc_init;
 
 [
+    "TFAR_externalIntercomEnable",
+    "LIST",
+    [LSTRING(SETTING_ENABLE_FOR_HEADER), LSTRING(SETTING_ENABLE_FOR_DESC)],
+    [localize ELSTRING(settings,global), localize LSTRING(SETTINGS_CATEGORY_EXTERNAL_INTERCOM)],
+    [[0,1,2], [LSTRING(SETTING_ENABLE_FOR_ENABLED), LSTRING(SETTING_ENABLE_FOR_SIDE), LSTRING(SETTING_ENABLE_FOR_DISABLED)], 0],
+    1,
+    {
+        _vehicle = player getVariable "TFAR_ExternalIntercomVehicle";
+        if (_this > 0 && !isNil "_vehicle") then {
+            [_vehicle, _player] call TFAR_external_intercom_fnc_disconnect;
+
+            [
+                _vehicle,
+                _player,
+                [(_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]] select 1) find player > -1] // Is wireless?
+            ] call TFAR_external_intercom_fnc_connect;
+            [parseText CSTRING(RESET)] call TFAR_fnc_showHint;
+        };
+    }
+] call CBA_Settings_fnc_init;
+
+[
     "TFAR_externalIntercomMaxRange_Wireless",
     "SLIDER",
     [LSTRING(SETTING_WIRELESS_RANGE_HEADER), LSTRING(SETTING_WIRELESS_RANGE_DESC)],

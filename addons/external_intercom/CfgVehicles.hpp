@@ -19,14 +19,12 @@ class child : parent { \
 #define AIR_CLASS(parent, child) \
 class child : parent { \
     class ACE_Actions { \
-        ADD_PHONE_ACTIONS \
         ADD_WIRELESS_ACTIONS \
     }; \
     ADD_EVENTHANDLERS \
 };
 
 class CfgVehicles {
-
     class AllVehicles;
     class Land;
     class LandVehicle : Land {

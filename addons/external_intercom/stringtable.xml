@@ -22,12 +22,16 @@
             <English>Intercom Phone in use</English>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SOMEONE_USING_PHONE">
-            <Original><br /><br /><t align='center'>%1 is currently using the Intercom Phone.</t></Original>
-            <English><br /><br /><t align='center'>%1 is currently using the Intercom Phone.</t></English>
+            <Original><br /><br /><t align='center'>%1 is currently using the Intercom Phone</t></Original>
+            <English><br /><br /><t align='center'>%1 is currently using the Intercom Phone</t></English>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_HEADGEAR_NOT_WIRELESS_CAPABLE">
-            <Original><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable.</t></Original>
-            <English><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable.</t></English>
+            <Original><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable</t></Original>
+            <English><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable</t></English>
+        </Key>
+        <Key ID="STR_TFAR_EXTERNAL_INTERCOM_RESET">
+            <Original>External Intercom has been Reset</Original>
+            <English>External Intercom has been Reset</English>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PHONE_INDICATOR">
             <Original>External Intercom Connection Indicator</Original>
@@ -45,6 +49,26 @@
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_HEADGEAR_DESC">
                 <Original>A list of Headgear, in addition to the base list that are able to be connected to a vehicle's intercom system wirelessly</Original>
                 <English>A list of Headgear, in addition to the base list that are able to be connected to a vehicle's intercom system wirelessly</English>
+            </Key>
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_HEADER">
+                <Original>Enable for</Original>
+                <English>Enable for</English>
+            </Key>
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_DESC">
+                <Original>Enable, Enable for player on the same side only, or just Disable</Original>
+                <English>Enable, Enable for player on the same side only, or just Disable</English>
+            </Key>
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_ENABLED">
+                <Original>Enable</Original>
+                <English>Enable</English>
+            </Key>
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_SIDE">
+                <Original>Same Side Only</Original>
+                <English>Same Side Only</English>
+            </Key>
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_DISABLED">
+                <Original>Disable</Original>
+                <English>Disable</English>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_RANGE_HEADER">
                 <Original>External Intercom Range - Wireless</Original>
