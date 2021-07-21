@@ -34,6 +34,10 @@ if (TFAR_externalIntercomEnable > 0) then {
     };
 };
 
+if (!alive _vehicle) exitWith {
+    "no";
+};
+
 if (_wireless && !((headgear _player) in TFAR_externalIntercomWirelessHeadgear)) exitWith {
     [parseText format[CSTRING(HEADGEAR_NOT_WIRELESS_CAPABLE), getText(configFile >> "CfgWeapons" >> headgear _player >> "displayName")]] call TFAR_fnc_showHint;
     "no";
