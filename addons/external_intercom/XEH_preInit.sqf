@@ -25,14 +25,14 @@
     [[0,1,2], [LSTRING(SETTING_ENABLE_FOR_ENABLED), LSTRING(SETTING_ENABLE_FOR_SIDE), LSTRING(SETTING_ENABLE_FOR_DISABLED)], 0],
     1,
     {
-        _vehicle = player getVariable "TFAR_ExternalIntercomVehicle";
+        _vehicle = ACE_Player getVariable "TFAR_ExternalIntercomVehicle";
         if (_this > 0 && !isNil "_vehicle") then {
-            [_vehicle, _player] call TFAR_external_intercom_fnc_disconnect;
+            [_vehicle, ACE_Player] call TFAR_external_intercom_fnc_disconnect;
 
             [
                 _vehicle,
-                _player,
-                [(_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]] select 1) find player > -1] // Is wireless?
+                ACE_Player,
+                [(_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]] select 1) find ACE_Player > -1] // Is wireless?
             ] call TFAR_external_intercom_fnc_connect;
             [parseText CSTRING(RESET)] call TFAR_fnc_showHint;
         };

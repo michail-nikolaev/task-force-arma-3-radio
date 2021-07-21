@@ -69,3 +69,24 @@ class ACE_MainActions { \
         icon = QPATHTOF(ui\tfar_ace_interaction_external_intercom_wireless_disconnect.paa); \
     }; \
 };
+
+#define ADD_PLAYER_SELF_ACTIONS \
+class ACE_SelfActions { \
+    class TFAR_External_Intercom_Wireless { \
+            displayName = CSTRING(WIRELESS_SELFACTIONS); \
+            condition = "!isNil {_player getVariable 'TFAR_ExternalIntercomVehicle'} \
+                && (_player getVariable ['TFAR_ExternalIntercomVehicle', objNull]) getVariable ['TFAR_ExternalIntercomSpeakers', [objNull, []]] select 1 find _player > -1"; \
+            statement = " "; \
+        class TFAR_External_Intercom_Wireless_Disconnect { \
+            displayName = CSTRING(DISCONNECT_WIRELESS); \
+            icon = QPATHTOF(ui\tfar_ace_interaction_external_intercom_wireless_disconnect.paa); \
+            statement = QUOTE([ARR_2(_player getVariable 'TFAR_ExternalIntercomVehicle', _player)] call TFAR_external_intercom_fnc_disconnect;); \
+        }; \
+        class TFAR_External_Intercom_Wireless_Channels { \
+            displayName = ECSTRING(Core, Intercom_ACESelfAction_Name); \
+            condition = "true"; \
+            statement = " "; \
+            insertChildren = "call TFAR_external_intercom_fnc_addIntercomChannels;"; \
+        }; \
+    }; \
+};

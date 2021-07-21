@@ -1,3 +1,4 @@
+PREP(addIntercomChannels);
 PREP(connect);
 PREP(disconnect);
 PREP(getIntercomChannel);

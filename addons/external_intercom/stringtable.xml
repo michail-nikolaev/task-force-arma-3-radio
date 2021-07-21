@@ -9,6 +9,10 @@
             <Original>Disconnect from Intercom</Original>
             <English>Disconnect from Intercom</English>
         </Key>
+        <Key ID="STR_TFAR_EXTERNAL_INTERCOM_WIRELESS_SELFACTIONS">
+            <Original>Wireless Intercom</Original>
+            <English>Wireless Intercom</English>
+        </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PICKUP_PHONE">
             <Original>Pickup Intercom Phone</Original>
             <English>Pickup Intercom Phone</English>

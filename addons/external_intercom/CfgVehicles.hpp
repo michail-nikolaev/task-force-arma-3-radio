@@ -25,6 +25,11 @@ class child : parent { \
 };
 
 class CfgVehicles {
+    class Man;
+    class CAManBase : Man {
+        ADD_PLAYER_SELF_ACTIONS
+    };
+
     class AllVehicles;
     class Land;
     class LandVehicle : Land {
