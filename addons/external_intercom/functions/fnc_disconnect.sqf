@@ -21,7 +21,12 @@
 
 params ["_vehicle", "_player"];
 
-["ace_unconscious", _player getVariable ["TFAR_ExternalIntercomEHID", -1]] call CBA_fnc_removeEventHandler;
+{
+    if (count _x isEqualTo 2) then {
+        [_player, _x select 1] call (_x select 0);
+    };
+} forEach (_player getVariable ["TFAR_ExternalIntercomEHs", []]);
+_player setVariable ["TFAR_ExternalIntercomEHs", nil];
 _player setVariable ["TFAR_vehicleIDOverride", nil, true];
 _player setVariable ["TFAR_ExternalIntercomVehicle", nil, true];
 
