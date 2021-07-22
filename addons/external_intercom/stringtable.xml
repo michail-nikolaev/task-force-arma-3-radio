@@ -91,5 +91,23 @@
                 <English>The maximum range until which the player will remain connected to the intercom of a vehicle</English>
             </Key>
         </Container>
+        <Container name="3den">
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_3DEN_ATTRIBUTE_MAX_RANGE_PHONE_HEADER">
+                <Original>Ext. Intercom Phone Max Range</Original>
+                <English>Ext. Intercom Phone Max Range</English>
+            </Key>
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_3DEN_ATTRIBUTE_MAX_RANGE_PHONE_DESC">
+                <Original>The maximum range a player can stand from the connection point and remain connected. Set to 0 for this to be ignored and global settings to apply.</Original>
+                <English>The maximum range a player can stand from the connection point and remain connected. Set to 0 for this to be ignored and global settings to apply.</English>
+            </Key>
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_3DEN_ATTRIBUTE_MAX_RANGE_WIRELESS_HEADER">
+                <Original>Ext. Intercom Wireless Max Range</Original>
+                <English>Ext. Intercom Wireless Max Range</English>
+            </Key>
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_3DEN_ATTRIBUTE_MAX_RANGE_WIRELESS_DESC">
+                <Original>The maximum range a player can stand from the vehicle and remain connected. Set to 0 for this to be ignored and global settings to apply.</Original>
+                <English>The maximum range a player can stand from the vehicle and remain connected. Set to 0 for this to be ignored and global settings to apply.</English>
+            </Key>
+        </Container>
     </Package>
 </Project>

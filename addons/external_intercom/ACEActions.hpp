@@ -25,6 +25,7 @@ class TFAR_External_Intercom_Phone_Disconnect : TFAR_External_Intercom_Phone_Bas
     condition = alive _target \
     && (_target getVariable [ARR_2('TFAR_ExternalIntercomSpeakers', [ARR_2(objNull, [])])] select 0) isEqualTo _player; \
     statement = QUOTE(call TFAR_external_intercom_fnc_disconnect;); \
+    insertChildren = QUOTE(diag_log _target; call TFAR_external_intercom_fnc_addIntercomChannels;); \
 }; \
 class TFAR_External_Intercom_Phone_Busy : TFAR_External_Intercom_Phone_Base { \
     displayName = CSTRING(PHONE_BUSY); \

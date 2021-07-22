@@ -86,7 +86,7 @@ private _playerEventhandlers = [];
 
 if (_wireless) then {
     private _headgear = headgear _player;
-    private _intercomMaxRange = ((((boundingBoxReal _vehicle) select 2) / 2) + TFAR_externalIntercomMaxRange_Wireless);
+    private _intercomMaxRange = ((((boundingBoxReal _vehicle) select 2) / 2) + (_vehicle getVariable ["TFAR_externalIntercomMaxRange_Wireless", TFAR_externalIntercomMaxRange_Wireless]));
 
     // Keep connection alive until out of range or disconnected
     [{
@@ -129,7 +129,7 @@ if (_wireless) then {
     // Keep connection alive until out of range or disconnected
     [{
         params ["_vehicle", "_player", "_interactionPointRelative"];
-        ((_vehicle modelToWorld _interactionPointRelative) distance _player) > TFAR_externalIntercomMaxRange_Phone
+        ((_vehicle modelToWorld _interactionPointRelative) distance _player) > _vehicle getVariable ["TFAR_externalIntercomMaxRange_Phone", TFAR_externalIntercomMaxRange_Phone]
         || isNil {_player getVariable "TFAR_ExternalIntercomVehicle"}
     }, {
         params ["_vehicle", "_player"];
@@ -139,7 +139,7 @@ if (_wireless) then {
     private _handset = createSimpleObject [QPATHTOF(data\TFAR_handset.p3d), _player selectionPosition "head"];
     _handset attachTo [_player, [-0.14,-0.02,0.02], "head", true];
     _handset setVectorDirAndUp [[-2.5,0.8,0.25],[-1,-1,1]];
-    private _ropeID = ropeCreate [_vehicle, _interactionPointRelative vectorAdd [0,0.2,0], _handset, "plug", TFAR_externalIntercomMaxRange_Phone - 1, ["", [0,0,-1]], ["", [0,0,-1]], "RopeSmallWire"];
+    private _ropeID = ropeCreate [_vehicle, _interactionPointRelative vectorAdd [0,0.2,0], _handset, "plug", (_vehicle getVariable ["TFAR_externalIntercomMaxRange_Phone", TFAR_externalIntercomMaxRange_Phone]) - 1, ["", [0,0,-1]], ["", [0,0,-1]], "RopeSmallWire"];
     _vehicle setVariable ["TFAR_ExternalIntercomRopeIDs", [_ropeID, _handset], true];
 
     // Eventhandlers
