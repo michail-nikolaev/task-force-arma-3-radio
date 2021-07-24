@@ -69,21 +69,10 @@ class ACE_MainActions { \
 
 #define ADD_PLAYER_SELF_ACTIONS \
 class ACE_SelfActions { \
-    class TFAR_External_Intercom_Wireless { \
-            displayName = CSTRING(WIRELESS_SELFACTIONS); \
-            condition = QUOTE(!isNil {_player getVariable 'TFAR_ExternalIntercomVehicle'} \
-                && (_player getVariable [ARR_2('TFAR_ExternalIntercomVehicle', objNull)]) getVariable [ARR_2('TFAR_ExternalIntercomSpeakers', [ARR_2(objNull, [])])] select 1 find _player > -1); \
-            statement = " "; \
-        class TFAR_External_Intercom_Wireless_Disconnect { \
-            displayName = CSTRING(DISCONNECT_WIRELESS); \
-            icon = QPATHTOF(ui\tfar_ace_interaction_external_intercom_wireless_disconnect.paa); \
-            statement = QUOTE([ARR_2(_player getVariable 'TFAR_ExternalIntercomVehicle', _player)] call TFAR_external_intercom_fnc_disconnect;); \
-        }; \
-        class TFAR_External_Intercom_Wireless_Channels { \
-            displayName = ECSTRING(Core, Intercom_ACESelfAction_Name); \
-            condition = QUOTE(true); \
-            statement = " "; \
-            insertChildren = QUOTE(call TFAR_external_intercom_fnc_addIntercomChannels;); \
-        }; \
+    class TFAR_Radio; \
+    class TFAR_Radio : TFAR_Radio { \
+        condition = QUOTE((([] call TFAR_fnc_haveSWRadio) || ([] call TFAR_fnc_haveLRRadio) || !isNil {_player getVariable 'TFAR_ExternalIntercomVehicle'})); \
+        insertChildren = QUOTE(([_player] call tfar_core_fnc_getOwnRadiosChildren) + (call TFAR_external_intercom_fnc_addWirelessIntercomMenu)); \
+        statement = " "; \
     }; \
 };

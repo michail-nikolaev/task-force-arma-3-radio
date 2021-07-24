@@ -3,7 +3,12 @@
 #define ADD_EVENTHANDLERS \
 class EventHandlers : EventHandlers { \
     class TFAR_ExternalIntercomWireless { \
-        getOut = "if ((alive (_this select 2)) && (headgear (_this select 2)) in TFAR_externalIntercomWirelessHeadgear && !((_this select 1) isEqualTo 'cargo')) then { [_this select 0, _this select 2, [true]] call TFAR_external_intercom_fnc_connect; };"; \
+        getOut = QUOTE(params[ARR_3('_vehicle', '_role', '_player')]; if ( \
+            alive (_player) \
+            && isPlayer _player \
+            && (headgear (_player)) in TFAR_externalIntercomWirelessHeadgear \
+            && !((_role) isEqualTo 'cargo') \
+        ) then { [ARR_3(_vehicle, _player, [true])] call TFAR_external_intercom_fnc_connect; };); \
     }; \
 };
 
