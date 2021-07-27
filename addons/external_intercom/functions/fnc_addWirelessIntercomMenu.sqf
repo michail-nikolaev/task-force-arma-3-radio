@@ -23,7 +23,9 @@ params ["_target", "_player"];
 
 _vehicle = _player getVariable "TFAR_ExternalIntercomVehicle";
 
-if (isNil "_vehicle") exitWith {};
+if (isNil "_vehicle") exitWith {
+    [];
+};
 
 private _actions = [];
 
