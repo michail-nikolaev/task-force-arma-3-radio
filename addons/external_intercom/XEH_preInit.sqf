@@ -3,11 +3,11 @@
 #include "XEH_PREP.sqf"
 
 [
-    "TFAR_externalIntercomWirelessHeadgear",
+    "TFAR_setting_externalIntercomWirelessHeadgear",
     "EDITBOX",
     [LSTRING(SETTING_WIRELESS_HEADGEAR_HEADER), LSTRING(SETTING_WIRELESS_HEADGEAR_DESC)],
     [localize ELSTRING(settings,global), localize LSTRING(SETTINGS_CATEGORY_EXTERNAL_INTERCOM)],
-    ["", false, DFUNC(settingForceArray)],
+    ["", false, FUNC(settingForceAlphaNumericArray)],
     1,
     {
         if (isServer) then {
