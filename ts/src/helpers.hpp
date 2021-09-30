@@ -9,6 +9,8 @@
 #include <array>
 #include <functional>
 #include <emmintrin.h>
+#include <iterator>
+
 #include "SampleBuffer.hpp"
 
 constexpr int const_strlen(const char* str) {

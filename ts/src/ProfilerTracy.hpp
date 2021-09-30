@@ -2,6 +2,25 @@
 #include <string_view>
 #include <memory>
 
+
+#include "version.h" //isCI
+#ifdef isCI
+#define ENABLE_API_PROFILER 0     // Disabled for release builds
+#define ENABLE_PLUGIN_LOGS 1
+#else
+//#define ENABLE_API_PROFILER 1     // Comment this line to disable the profiler
+
+#ifdef _DEBUG
+#define ENABLE_TRACY_PROFILER 0 //Can't use __LINE__ in /ZI build
+#else
+#define ENABLE_TRACY_PROFILER 1
+#endif
+
+#endif
+
+
+
+
 #if ENABLE_TRACY_PROFILER
 #define ENABLE_TRACY_PROFILING 1
 #define ENABLE_TRACY_LOCK_PROFILING 1

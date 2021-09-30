@@ -60,5 +60,6 @@ private:
     std::condition_variable threadWorkCondition;
     std::mutex theadMutex;
     bool shouldRun = true;//don't need atomic here. believe me.
+    bool threadRunning = false;
 };
 

@@ -67,13 +67,14 @@ float effectErrorFromDistance(sendingRadioType radioType, float distance, std::s
 
 void setGameClientMuteStatus(TSServerID serverConnectionHandlerID, TSClientID clientID, std::pair<bool, bool> isOverRadio = { false,false }) {
     bool mute = false;
-    if (isSeriousModeEnabled(serverConnectionHandlerID, clientID)) {
+    if (isSeriousModeEnabled(serverConnectionHandlerID, clientID) && !TFAR::config.get<bool>(Setting::disableAutomaticMute)) {
 
         const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(serverConnectionHandlerID);
         std::shared_ptr<clientData> clientData;
         if (clientDataDir)
             clientData = clientDataDir->getClientData(clientID);
         auto myData = clientDataDir->myClientData;
+        if (clientData == myData) return; //can't mute self... well you can but don't that's confusing to users
 
         if (clientData && myData && (TFAR::getInstance().m_gameData.alive && clientData->isAlive() || myData->isSpectating)) {
             auto distance = myData->getClientPosition().distanceTo(clientData->getClientPosition());
@@ -187,7 +188,7 @@ void PipeThread() {
 #endif
 
 
-    std::string command;
+    std::vector<std::string> commands;
     while (!exitThread) {
         ProfileFunction;
 
@@ -200,51 +201,58 @@ void PipeThread() {
     #ifdef USE_SHAREDMEM
         pipeHandler.setConfigNeedsRefresh(TFAR::config.needsRefresh());//#TODO Signal/Slot ?
     #endif
-        if (!pipeHandler.getData(command, 20ms))//This will still wait. 1ms if SHAMEM error. 20ms if game unconnected
+
+        commands.resize(1);
+        // pipeHandler.getDataMultiple
+        if (!pipeHandler.getData(commands[0], 20ms))//This will still wait. 1ms if SHAMEM error. 20ms if game unconnected
             continue;
-        ProfileScopeN("got command");
-        //speedTest gameCommandIn("gameCommandInPipe", false);
 
-        if (command.back() == '~') {//a ~ at the end identifies an Async call
-            command.pop_back();//removes ~ from end
-        #ifdef USE_SHAREDMEM
-            TFAR::getCommandProcessor()->queueCommand(command);
-        #else
-            bool dataReturned = false;
-            if (pipeHandler.sendData("OK", 2)) {
-                log_string("Info to ARMA send async", LogLevel_DEBUG);
-                dataReturned = true;
-            } else {
-                log_string("Can't send info to ARMA async", LogLevel_ERROR);
-            }
-        #endif
-        } else {
-            //gameCommandIn.reset();
-        #ifdef USE_SHAREDMEM
-            const auto commandResult = TFAR::getCommandProcessor()->processCommand(command);
-            pipeHandler.sendData(commandResult);
-            //if (gameCommandIn.getCurrentElapsedTime().count() >
-            //#ifdef _DEBUG
-            //    400)
-            //#else
-            //    200)
-            //#endif
-            //    log_string("gameinteraction " + std::to_string(gameCommandIn.getCurrentElapsedTime().count()) + command, LogLevel_INFO);   //#Release remove logging and creation variable
-        #else
-            if (gameCommandIn.getCurrentElapsedTime().count() > 200)
-                log_string("gameinteraction " + std::to_string(gameCommandIn.getCurrentElapsedTime().count()) + command, LogLevel_INFO);   //#Release remove logging and creation variable
+        for (auto& command : commands) {
 
-            if (!dataReturned) {
-                if (pipeHandler.sendData(commandResult)) {
-                    log_string("Info to ARMA send", LogLevel_DEBUG);
+            ProfileScopeN("got command");
+            //speedTest gameCommandIn("gameCommandInPipe", false);
+
+            if (command.back() == '~') {//a ~ at the end identifies an Async call
+                command.pop_back();//removes ~ from end
+#ifdef USE_SHAREDMEM
+                TFAR::getCommandProcessor()->queueCommand(command);
+#else
+                bool dataReturned = false;
+                if (pipeHandler.sendData("OK", 2)) {
+                    log_string("Info to ARMA send async", LogLevel_DEBUG);
+                    dataReturned = true;
                 } else {
-                    log_string("Can't send info to ARMA", LogLevel_ERROR);
+                    log_string("Can't send info to ARMA async", LogLevel_ERROR);
                 }
+#endif
+            } else {
+                //gameCommandIn.reset();
+#ifdef USE_SHAREDMEM
+                const auto commandResult = TFAR::getCommandProcessor()->processCommand(command);
+                pipeHandler.sendData(commandResult);
+                //if (gameCommandIn.getCurrentElapsedTime().count() >
+                //#ifdef _DEBUG
+                //    400)
+                //#else
+                //    200)
+                //#endif
+                //    log_string("gameinteraction " + std::to_string(gameCommandIn.getCurrentElapsedTime().count()) + command, LogLevel_INFO);   //#Release remove logging and creation variable
+#else
+                if (gameCommandIn.getCurrentElapsedTime().count() > 200)
+                    log_string("gameinteraction " + std::to_string(gameCommandIn.getCurrentElapsedTime().count()) + command, LogLevel_INFO);   //#Release remove logging and creation variable
+
+                if (!dataReturned) {
+                    if (pipeHandler.sendData(commandResult)) {
+                        log_string("Info to ARMA send", LogLevel_DEBUG);
+                    } else {
+                        log_string("Can't send info to ARMA", LogLevel_ERROR);
+                    }
+                }
+#endif
+
             }
-        #endif
 
         }
-
     }
 }
 
@@ -376,6 +384,7 @@ void ts3plugin_shutdown() {
         threadPipeHandle.join();
     if (threadService.joinable())
         threadService.join();
+    TFAR::getCommandProcessor()->stopThread();
     TFAR::getInstance().onShutdown();//Call shutdown Signal
 
     TFAR::getInstance().m_gameData.alive = false;

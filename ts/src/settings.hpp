@@ -26,7 +26,8 @@
     XX(objectInterceptionStrength, 400.f), \
     XX(voiceCone, true), \
     XX(allowDebugging, true), \
-    XX(noAutomoveSpectator, false)
+    XX(noAutomoveSpectator, false), \
+    XX(disableAutomaticMute, false)
 
 #define EnumEntry(x,y) x
 #define EnumString(x,y) #x

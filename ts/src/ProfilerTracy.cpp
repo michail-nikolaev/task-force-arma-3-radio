@@ -1,12 +1,4 @@
 #include "version.h"
-#ifdef isCI
-#define ENABLE_API_PROFILER 0     // Disabled for release builds
-#define ENABLE_PLUGIN_LOGS 1
-#else
-//#define ENABLE_API_PROFILER 1     // Comment this line to disable the profiler
-#define ENABLE_TRACY_PROFILER 1
-#endif
-
 
 #include "ProfilerTracy.hpp"
 
@@ -73,5 +65,7 @@ void ProfilerTracy::setCounter(std::string_view name, float val) {
 bool ProfilerTracy::isConnected() {
 #if ENABLE_TRACY_PROFILING
     return tracy::s_profiler.IsConnected();
+#else
+    return false;
 #endif
 }

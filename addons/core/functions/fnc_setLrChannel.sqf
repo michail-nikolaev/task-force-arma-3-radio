@@ -22,8 +22,9 @@ params [["_radio", [], [[]], 2], ["_value", 0, [0]]];
 _radio params ["_radio_object", "_radio_qualifier"];
 
 private _settings = _radio call TFAR_fnc_getLrSettings;
+private _oldChannel = (_settings select ACTIVE_CHANNEL_OFFSET);
 _settings set [ACTIVE_CHANNEL_OFFSET, _value];
 [_radio, _settings] call TFAR_fnc_setLrSettings;
 
-//							unit, radio object,		radio ID			channel, additional
-["OnLRchannelSet", [TFAR_currentUnit, _radio_object, _radio_qualifier, _value, false]] call TFAR_fnc_fireEventHandlers;
+//							unit, radio object,		radio ID			channel, additional, oldChannel
+["OnLRchannelSet", [TFAR_currentUnit, _radio_object, _radio_qualifier, _value, false, _oldChannel]] call TFAR_fnc_fireEventHandlers;
