@@ -30,7 +30,7 @@ _player setVariable ["TFAR_ExternalIntercomEHs", nil];
 _player setVariable ["TFAR_vehicleIDOverride", nil, true];
 _player setVariable ["TFAR_ExternalIntercomVehicle", nil, true];
 
-_externalIntercomSpeakers = _vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]];
+_externalIntercomSpeakers = +(_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]]);
 
 if ((_externalIntercomSpeakers select 0) isEqualTo _player) then {
     _externalIntercomSpeakers set [0, objNull];

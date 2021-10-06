@@ -27,12 +27,13 @@
     {
         _vehicle = ACE_Player getVariable "TFAR_ExternalIntercomVehicle";
         if (_this > 0 && !isNil "_vehicle") then {
+            private _preChangeSpeakers = +(_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]]);
             [_vehicle, ACE_Player] call TFAR_external_intercom_fnc_disconnect;
 
             [
                 _vehicle,
                 ACE_Player,
-                [(_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]] select 1) find ACE_Player > -1] // Is wireless?
+                [(_preChangeSpeakers select 1) find ACE_Player > -1] // Is wireless?
             ] call TFAR_external_intercom_fnc_connect;
             [parseText CSTRING(RESET)] call TFAR_fnc_showHint;
         };

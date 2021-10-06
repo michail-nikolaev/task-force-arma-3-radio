@@ -43,7 +43,7 @@ if (_wireless && !((headgear _player) in TFAR_externalIntercomWirelessHeadgear))
     "no";
 };
 
-private _externalSpeakers = _vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]];
+private _externalSpeakers = +(_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]]);
 // External Speakers structure is always:
 //  [_playerUsingPhone, [_infinitePlayersConnectedWirelessly...]]
 if (!isNull (_externalSpeakers select 0) && !_wireless) exitWith {
