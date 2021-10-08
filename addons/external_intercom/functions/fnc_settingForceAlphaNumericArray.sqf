@@ -17,7 +17,6 @@
 
   Public: No
 */
-
 params [["_input", "", [""]]];
 
 if (_input isEqualTo "") exitWith {""};

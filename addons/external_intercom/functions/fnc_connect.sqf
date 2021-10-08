@@ -20,21 +20,18 @@
 
   Public: Yes
 */
-
 params ["_vehicle", "_player", "_actionParams"];
 _actionParams params [["_wireless", false, [false]]];
 
-if (TFAR_externalIntercomEnable > 0) then {
-    if (TFAR_externalIntercomEnable isEqualTo 2) exitWith {
-        "no";
-    };
-
-    if ([side _player, side _vehicle] call BIS_fnc_sideIsEnemy) exitWith {
-        "no";
-    };
+if (!alive _vehicle) exitWith {
+    "no";
 };
 
-if (!alive _vehicle) exitWith {
+if (TFAR_externalIntercomEnable isEqualTo 2) exitWith {
+    "no";
+};
+
+if (TFAR_externalIntercomEnable isEqualTo 1 && [side _player, side _vehicle] call BIS_fnc_sideIsEnemy) exitWith {
     "no";
 };
 
@@ -51,34 +48,36 @@ if (!isNull (_externalSpeakers select 0) && !_wireless) exitWith {
     "no";
 };
 
-// Make sure we disconnect properly from any other connected vehicles
+// Make sure we disconnect properly from any other connected vehicles & intercoms
 private _oldVehicle = _player getVariable "TFAR_ExternalIntercomVehicle";
-if (!isNil {_oldVehicle}) then {
+if (!isNil "_oldVehicle") then {
     [_oldVehicle, _player] call TFAR_external_intercom_fnc_disconnect;
+    _externalSpeakers = +(_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]]);
 };
 
 if !(_player getVariable ["TFAR_ExternalIntercomOutOfRangeVehicle", objNull] isEqualTo _vehicle) then {
     _player setVariable ["TFAR_ExternalIntercomOutOfRangeVehicle", nil];
 };
 
+// Do the actual sign-on to intercom shit
 private _vehicleID = _vehicle getVariable ["TFAR_vehicleIDOverride", netId _vehicle];
 _vehicle setVariable ["TFAR_vehicleIDOverride", _vehicleID, true];
 _player setVariable ["TFAR_ExternalIntercomVehicle", _vehicle, true];
 _player setVariable ["TFAR_vehicleIDOverride", _vehicleID, true];
 
 if (_wireless) then {
-    (_externalSpeakers select 1) pushBack _player;
+    _externalSpeakers select 1 pushBack _player;
 } else {
     _externalSpeakers set [0, _player];
 };
 _vehicle setVariable ["TFAR_ExternalIntercomSpeakers", _externalSpeakers, true];
 
 // Get intercom channel, now that we've signed on to the intercom
-private _intercomSlot = [_vehicle] call TFAR_external_intercom_fnc_getIntercomChannel;
+private _intercomSlot = [_vehicle, _player] call TFAR_external_intercom_fnc_getIntercomChannel;
 
 _vehicle setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomSlot, true];
-_player setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomSlot, true]; // Because TFAR checks the "vehicle", and thinks the unit is the vehicle when it's not in a vehicle, so we manually set it
-
+// Because TFAR checks the "vehicle", and thinks the unit is the vehicle when it's not in a vehicle, so we manually set it
+_player setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomSlot, true];
 
 (QGVAR(PhoneConnectionIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(PhoneConnectionIndicatorRsc), "PLAIN", 0, true];
 

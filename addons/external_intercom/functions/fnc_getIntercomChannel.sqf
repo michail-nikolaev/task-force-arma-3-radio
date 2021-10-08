@@ -20,7 +20,6 @@
 
   Public: Yes
 */
-
 params ["_vehicle", "_player"];
 
 // Get any occupants, from crew down to passengers

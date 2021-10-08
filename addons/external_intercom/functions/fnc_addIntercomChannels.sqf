@@ -9,16 +9,17 @@
 
   Arguments:
     0: Vehicle object <OBJECT>
+    1: Player unit <OBJECT>
+    2: Params <ARRAY>
 
   Return Value:
     ACE Actions of the Intercom Channels to insert as children <ARRAY>
 
   Example:
-    [_vehicle] call TFAR_external_intercom_fnc_addIntercomChannels;
+    call TFAR_external_intercom_fnc_addIntercomChannels;
 
   Public: Yes
 */
-
 params ["_target", "_player", "_params"];
 
 _vehicle = _player getVariable "TFAR_ExternalIntercomVehicle";

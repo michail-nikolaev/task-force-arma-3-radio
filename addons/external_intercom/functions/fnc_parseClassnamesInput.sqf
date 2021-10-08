@@ -18,7 +18,6 @@
 
   Public: Yes
 */
-
 params [
     ["_valueString", "", [""]]
 ];

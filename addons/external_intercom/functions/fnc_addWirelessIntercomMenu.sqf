@@ -18,7 +18,6 @@
 
   Public: Yes
 */
-
 params ["_target", "_player"];
 
 _vehicle = _player getVariable "TFAR_ExternalIntercomVehicle";

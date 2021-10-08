@@ -18,7 +18,6 @@
 
   Public: Yes
 */
-
 params ["_vehicle", "_player"];
 
 {
@@ -32,20 +31,26 @@ _player setVariable ["TFAR_ExternalIntercomVehicle", nil, true];
 
 _externalIntercomSpeakers = +(_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]]);
 
+diag_log format["Disconnecting %1 from %2 with %3", _player, _vehicle, _externalIntercomSpeakers];
 if ((_externalIntercomSpeakers select 0) isEqualTo _player) then {
     _externalIntercomSpeakers set [0, objNull];
+
+    // Kill the rope and model
+    (_vehicle getVariable ["TFAR_ExternalIntercomRopeIDs", [nil, nil]]) params ["_ropeID", "_handset"];
+    if !(isNil "_ropeID" || isNil "_handset") then {
+        deleteVehicle _handset;
+        ropeDestroy _ropeID;
+        _vehicle setVariable ["TFAR_ExternalIntercomRopeIDs", nil, true];
+    };
 };
+
+_externalIntercomSpeakers set [1, (_externalIntercomSpeakers select 1) arrayIntersect (_externalIntercomSpeakers select 1)];
 (_externalIntercomSpeakers select 1) deleteAt ((_externalIntercomSpeakers select 1) find _player);
 
 _vehicle setVariable ["TFAR_ExternalIntercomSpeakers", _externalIntercomSpeakers, true];
 
-// Kill the rope and model
-(_vehicle getVariable ["TFAR_ExternalIntercomRopeIDs", [nil, nil]]) params ["_ropeID", "_handset"];
-if !(isNil "_ropeID" || isNil "_handset") then {
-    deleteVehicle _handset;
-    ropeDestroy _ropeID;
-    _vehicle setVariable ["TFAR_ExternalIntercomRopeIDs", nil, true];
+if (ACE_player isEqualTo _player) then { // This feels redundant but... maybe it helps?
+    diag_log format["PhoneConnectionIndicatorRsc is being removed for %1 also %2", ACE_player, _player];
+    // Hide indicator
+    (QGVAR(PhoneConnectionIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];
 };
-
-// Hide indicator
-(QGVAR(PhoneConnectionIndicatorRsc) call BIS_fnc_rscLayer) cutText ["", "PLAIN"];
