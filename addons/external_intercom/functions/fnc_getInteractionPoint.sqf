@@ -28,7 +28,7 @@ if !(_customPosition isEqualTo []) exitWith {
 };
 
 // Correct width and height factor
-private _widthFactor = 0.6;
+private _widthFactor = 0.5;
 private _heightFactor = 0.8;
 
 private _centerOfMass = getCenterOfMass _vehicle;
@@ -36,7 +36,7 @@ private _boundingBox = boundingBoxReal _vehicle;
 private _backLeftCorner = _boundingBox select 0;
 private _frontRightCorner = _boundingBox select 1;
 
-_externalIntercomInset = [_backLeftCorner select 0, ((_frontRightCorner select 1) * _widthFactor), (_centerOfMass * _heightFactor)]
+_externalIntercomInset = [(_frontRightCorner select 0) * _widthFactor, _backLeftCorner select 1, ((_centerOfMass select 2) * _heightFactor)];
 _externalIntercomPoint = lineIntersectsSurfaces [AGLToASL (_vehicle modelToWorld _externalIntercomInset), AGLToASL (_vehicle modelToWorld _centerOfMass)] select 0 select 0;
 
 _vehicle worldToModel ASLToAGL _externalIntercomPoint;
