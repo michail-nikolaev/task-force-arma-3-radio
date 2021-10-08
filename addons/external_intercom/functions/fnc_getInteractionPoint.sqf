@@ -1,3 +1,23 @@
+#include "script_component.hpp"
+
+/*
+  Name: TFAR_fnc_getInteractionPoint
+
+  Author: Arend(Saborknight)
+    Gets the vehicle's interaction point for the telephone, either inferred or
+    by using a custom position if it was defined in the vehicle's class
+
+  Arguments:
+    0: Vehicle object <OBJECT>
+
+  Return Value:
+    Interaction Position (AGL) <POSITION>
+
+  Example:
+    [_vehicle] call TFAR_fnc_getInteractionPoint;
+
+  Public: Yes
+*/
 params ["_vehicle"];
 
 private _customPosition = getArray((configOf _vehicle) >> "TFAR_ExternalIntercomInteractionPoint");
@@ -24,4 +44,4 @@ private _rearCorner2 = [(_centerOfMass select 0) - _widthOffset, _p1 select 1, _
 _externalIntercomInset = ((_rearCorner vectorDiff _rearCorner2) vectorMultiply 0.8) vectorAdd  _rearCorner2;
 _externalIntercomPoint = lineIntersectsSurfaces [AGLToASL (_vehicle modelToWorld _externalIntercomInset), AGLToASL (_vehicle modelToWorld _centerOfMass)] select 0 select 0;
 
-ASLToAGL (_vehicle worldToModel _externalIntercomPoint);
+_vehicle worldToModel ASLToAGL _externalIntercomPoint;
