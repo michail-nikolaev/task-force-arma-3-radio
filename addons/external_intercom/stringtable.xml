@@ -62,15 +62,15 @@
                 <Original>Enable, Enable for player on the same side only, or just Disable</Original>
                 <English>Enable, Enable for player on the same side only, or just Disable</English>
             </Key>
-            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_ENABLED">
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_0">
                 <Original>Enable</Original>
                 <English>Enable</English>
             </Key>
-            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_SIDE">
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_1">
                 <Original>Same Side Only</Original>
                 <English>Same Side Only</English>
             </Key>
-            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_DISABLED">
+            <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_2">
                 <Original>Disable</Original>
                 <English>Disable</English>
             </Key>

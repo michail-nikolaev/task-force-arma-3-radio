@@ -22,13 +22,15 @@
     "LIST",
     [LSTRING(SETTING_ENABLE_FOR_HEADER), LSTRING(SETTING_ENABLE_FOR_DESC)],
     [localize ELSTRING(settings,global), localize LSTRING(SETTINGS_CATEGORY_EXTERNAL_INTERCOM)],
-    [[0,1,2], [LSTRING(SETTING_ENABLE_FOR_ENABLED), LSTRING(SETTING_ENABLE_FOR_SIDE), LSTRING(SETTING_ENABLE_FOR_DISABLED)], 0],
+    [[0, 1, 2], [LSTRING(SETTING_ENABLE_0), LSTRING(SETTING_ENABLE_1), LSTRING(SETTING_ENABLE_2)], 0],
     1,
     {
         _vehicle = ACE_Player getVariable "TFAR_ExternalIntercomVehicle";
         if (_this > 0 && !isNil "_vehicle") then {
             private _preChangeSpeakers = +(_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]]);
             [_vehicle, ACE_Player] call TFAR_external_intercom_fnc_disconnect;
+
+            if (_this isEqualTo 2) exitWith {};
 
             [
                 _vehicle,
