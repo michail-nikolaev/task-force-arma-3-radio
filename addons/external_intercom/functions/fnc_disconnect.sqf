@@ -29,7 +29,7 @@ _player setVariable ["TFAR_ExternalIntercomEHs", nil];
 _player setVariable ["TFAR_vehicleIDOverride", nil, true];
 _player setVariable ["TFAR_ExternalIntercomVehicle", nil, true];
 
-_externalIntercomSpeakers = +(_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]]);
+private _externalIntercomSpeakers = _vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]];
 
 diag_log format["Disconnecting %1 from %2 with %3", _player, _vehicle, _externalIntercomSpeakers];
 if ((_externalIntercomSpeakers select 0) isEqualTo _player) then {
