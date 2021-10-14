@@ -12,8 +12,8 @@ class Cfg3DEN {
             };
         };
         class TFAR_RangeSlider : Slider {
-            onLoad = "      comment 'DO NOT COPY THIS CODE TO YOUR ATTRIBUTE CONFIG UNLESS YOU ARE CHANGING SOMETHING IN THE CODE!';        _ctrlGroup = _this select 0;        [_ctrlGroup controlsgroupctrl 100,_ctrlGroup controlsgroupctrl 101,''] call bis_fnc_initSliderValue;        ";
-            attributeLoad = "        comment 'DO NOT COPY THIS CODE TO YOUR ATTRIBUTE CONFIG UNLESS YOU ARE CHANGING SOMETHING IN THE CODE!';        _ctrlGroup = _this;        [_ctrlGroup controlsgroupctrl 100,_ctrlGroup controlsgroupctrl 101,'',_value] call bis_fnc_initSliderValue;    ";
+            onLoad = "      _ctrlGroup = _this select 0;        [_ctrlGroup controlsgroupctrl 100,_ctrlGroup controlsgroupctrl 101,''] call bis_fnc_initSliderValue;        ";
+            attributeLoad = "        _ctrlGroup = _this;        [_ctrlGroup controlsgroupctrl 100,_ctrlGroup controlsgroupctrl 101,'',_value] call bis_fnc_initSliderValue;    ";
 
             class Controls : Controls {
                 class Title : Title {};
@@ -39,7 +39,7 @@ class Cfg3DEN {
                         control = "TFAR_RangeSlider";
                         displayName = CSTRING(3DEN_ATTRIBUTE_MAX_RANGE_PHONE_HEADER);
                         tooltip = CSTRING(3DEN_ATTRIBUTE_MAX_RANGE_PHONE_DESC);
-                        expression = QUOTE(if (_value > 0) then {_this setVariable [ARR_3('TFAR_externalIntercomMaxRange_Phone',_value,true)]};);
+                        expression = QUOTE(if (_value > 0) then {_this setVariable [ARR_2('TFAR_externalIntercomMaxRange_Phone',_value)]};);
                         typeName = "NUMBER";
                         validate = "number";
                         condition = "objectVehicle";
@@ -50,7 +50,7 @@ class Cfg3DEN {
                         control = "TFAR_RangeSlider";
                         displayName = CSTRING(3DEN_ATTRIBUTE_MAX_RANGE_WIRELESS_HEADER);
                         tooltip = CSTRING(3DEN_ATTRIBUTE_MAX_RANGE_WIRELESS_DESC);
-                        expression = QUOTE(if (_value > 0) then {_this setVariable [ARR_3('TFAR_externalIntercomMaxRange_Wireless',_value,true)]};);
+                        expression = QUOTE(if (_value > 0) then {_this setVariable [ARR_2('TFAR_externalIntercomMaxRange_Wireless',_value)]};);
                         typeName = "NUMBER";
                         validate = "number";
                         condition = "objectVehicle";

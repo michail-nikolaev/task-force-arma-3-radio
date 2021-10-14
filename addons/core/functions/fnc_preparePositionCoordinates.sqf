@@ -28,7 +28,7 @@ private _isSpectating = _unit getVariable ["TFAR_forceSpectator",false];
 private _isolated_and_inside = false; //_isInVehicle && {_unit call TFAR_fnc_vehicleIsIsolatedAndInside};
 private _vehicle = "no"; //if (_isInVehicle) then {_unit call TFAR_fnc_vehicleId} else {"no"};
 private _isInVehicle = !isNull (objectParent _unit);
-if ((!(isNil {_unit getVariable "TFAR_vehicleIDOverride"}) || _isInVehicle) && !_isSpectating) then {//_isInVehicle
+if ((_isInVehicle || {!isNil {_unit getVariable "TFAR_vehicleIDOverride"}}) && !_isSpectating) then { // _isInVehicle
     _vehicle = _unit call TFAR_fnc_vehicleId;
 
     if (_isInVehicle) then {

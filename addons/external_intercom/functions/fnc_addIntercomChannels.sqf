@@ -37,7 +37,7 @@ _intercomChannels = _intercomChannels apply {
     [getText(_intercomRootClass >> _x >> "displayName"), _channelId];
 };
 
-if (_intercomChannels isEqualTo []) exitWith {false;};
+if (_intercomChannels isEqualTo []) exitWith {false};
 
 private _actions = [];
 
@@ -46,7 +46,7 @@ private _actions = [];
 
     _actions pushBack [
         [
-            format["TFAR_ExternalIntercomChannel_%1", _intercomChannel],
+            format ["TFAR_ExternalIntercomChannel_%1", _intercomChannel],
             _displayName,
             "",
             {
@@ -54,8 +54,8 @@ private _actions = [];
                 _params params ["_intercomChannel", "_displayName"];
 
                 if (!isNil "_vehicle") then {
-                    _vehicle setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomChannel, true];
-                    _player setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomChannel, true];
+                    _vehicle setVariable [format ["TFAR_IntercomSlot_%1", (netId _player)], _intercomChannel, true];
+                    _player setVariable [format ["TFAR_IntercomSlot_%1", (netId _player)], _intercomChannel, true];
                 };
             },
             {!isNil {_this select 0}}, // Vehicle is not nil
@@ -68,7 +68,7 @@ private _actions = [];
                 params ["_vehicle", "_player", "_args", "_actionData"];
                 _args params ["_intercomChannel", "_displayName"];
 
-                _intercom = _player getVariable [format ['TFAR_IntercomSlot_%1',(netID _player)], -2];
+                _intercom = _player getVariable [format ['TFAR_IntercomSlot_%1', (netID _player)], -2];
 
                 if (_intercom isEqualTo -2) then {
                     _intercom = _vehicle getVariable ['TFAR_defaultIntercomSlot', TFAR_defaultIntercomSlot];

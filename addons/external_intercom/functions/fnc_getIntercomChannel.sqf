@@ -25,7 +25,7 @@ params ["_vehicle", "_player"];
 // Get any occupants, from crew down to passengers
 private _crew = crew _vehicle;
 _vehicle getVariable [format ["TFAR_IntercomSlot_%1", netId _player],
-    _vehicle getVariable [format ["TFAR_IntercomSlot_%1",(netId (_crew select 0))],
+    _vehicle getVariable [format ["TFAR_IntercomSlot_%1", (netId (_crew select 0))],
         _vehicle getVariable ["TFAR_defaultIntercomSlot", TFAR_defaultIntercomSlot]
     ]
 ];

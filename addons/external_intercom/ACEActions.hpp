@@ -25,7 +25,7 @@ class TFAR_External_Intercom_Phone_Disconnect : TFAR_External_Intercom_Phone_Bas
     condition = alive _target \
     && (_target getVariable [ARR_2('TFAR_ExternalIntercomSpeakers', [ARR_2(objNull, [])])] select 0) isEqualTo _player; \
     statement = QUOTE(call TFAR_external_intercom_fnc_disconnect;); \
-    insertChildren = QUOTE(diag_log _target; call TFAR_external_intercom_fnc_addIntercomChannels;); \
+    insertChildren = QUOTE(call TFAR_external_intercom_fnc_addIntercomChannels;); \
 }; \
 class TFAR_External_Intercom_Phone_Busy : TFAR_External_Intercom_Phone_Base { \
     displayName = CSTRING(PHONE_BUSY); \
@@ -46,11 +46,11 @@ class ACE_MainActions { \
         condition = QUOTE((alive _target && ([ARR_3((typeOf _target), 'TFAR_hasIntercom', 0)] call TFAR_fnc_getVehicleConfigProperty) > 0) \
                     && ( \
                         ( \
-                            ((_target getVariable [ARR_2('TFAR_ExternalIntercomSpeakers', [ARR_2(objNull, [])])] select 1) find _player) < 0 \
+                            !(_player in (_target getVariable [ARR_2('TFAR_ExternalIntercomSpeakers', [ARR_2(objNull, [])])] select 1)) \
                             && (headgear _player) in TFAR_externalIntercomWirelessHeadgear \
                             && TFAR_externalIntercomEnable isEqualTo 0 \
                          ) || ( \
-                            ((_target getVariable [ARR_2('TFAR_ExternalIntercomSpeakers', [ARR_2(objNull, [])])] select 1) find _player) < 0 \
+                            !(_player in (_target getVariable [ARR_2('TFAR_ExternalIntercomSpeakers', [ARR_2(objNull, [])])] select 1)) \
                             && (headgear _player) in TFAR_externalIntercomWirelessHeadgear \
                             && [ARR_2(side _player, side _target)] call BIS_fnc_sideIsFriendly \
                             && TFAR_externalIntercomEnable isEqualTo 1 \
@@ -61,7 +61,7 @@ class ACE_MainActions { \
     class TFAR_External_Intercom_Wireless_Disconnect : TFAR_External_Intercom_Wireless_Base { \
         displayName = CSTRING(DISCONNECT_WIRELESS); \
         condition = QUOTE(alive _target \
-            && ((_target getVariable [ARR_2('TFAR_ExternalIntercomSpeakers', [ARR_2(objNull, [])])] select 1) find _player) > -1); \
+            && _player in (_target getVariable [ARR_2('TFAR_ExternalIntercomSpeakers', [ARR_2(objNull, [])])] select 1)); \
         statement = QUOTE(call TFAR_external_intercom_fnc_disconnect;); \
         icon = QPATHTOF(ui\tfar_ace_interaction_external_intercom_wireless_disconnect.paa); \
     }; \
@@ -71,7 +71,7 @@ class ACE_MainActions { \
 class ACE_SelfActions { \
     class TFAR_Radio; \
     class TFAR_Radio : TFAR_Radio { \
-        condition = QUOTE((([] call TFAR_fnc_haveSWRadio) || ([] call TFAR_fnc_haveLRRadio) || !isNil {_player getVariable 'TFAR_ExternalIntercomVehicle'})); \
+        condition = QUOTE((([] call TFAR_fnc_haveSWRadio) || {([] call TFAR_fnc_haveLRRadio) || !isNil {_player getVariable 'TFAR_ExternalIntercomVehicle'}})); \
         insertChildren = QUOTE(([_player] call tfar_core_fnc_getOwnRadiosChildren) + (call TFAR_external_intercom_fnc_addWirelessIntercomMenu)); \
         statement = " "; \
     }; \

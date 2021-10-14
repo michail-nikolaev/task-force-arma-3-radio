@@ -22,7 +22,7 @@ params [["_input", "", [""]]];
 if (_input isEqualTo "") exitWith {""};
 // keep the last sign, if you want to type a new value
 private _lastSign = _input select [count _input - 1];
-_lastSign = if !((_lastSign isEqualTo ",")||{_lastSign isEqualTo " "}) then {""};
+_lastSign = if !((_lastSign isEqualTo ",") || {_lastSign isEqualTo " "}) then {""};
 
 private _inputArray = _input splitString " ,";
 

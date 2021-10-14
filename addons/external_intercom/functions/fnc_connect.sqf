@@ -16,27 +16,21 @@
     None
 
   Example:
-    [_vehicle, _player] call TFAR_external_intercom_fnc_connect;
+    [_vehicle, _player, [true]] call TFAR_external_intercom_fnc_connect;
 
   Public: Yes
 */
 params ["_vehicle", "_player", "_actionParams"];
 _actionParams params [["_wireless", false, [false]]];
 
-if (!alive _vehicle) exitWith {
-    "no";
-};
+if (!alive _vehicle) exitWith {"no"};
 
-if (TFAR_externalIntercomEnable isEqualTo 2) exitWith {
-    "no";
-};
+if (TFAR_externalIntercomEnable isEqualTo 2) exitWith {"no"};
 
-if (TFAR_externalIntercomEnable isEqualTo 1 && [side _player, side _vehicle] call BIS_fnc_sideIsEnemy) exitWith {
-    "no";
-};
+if (TFAR_externalIntercomEnable isEqualTo 1 && [side _player, side _vehicle] call BIS_fnc_sideIsEnemy) exitWith {"no"};
 
 if (_wireless && !((headgear _player) in TFAR_externalIntercomWirelessHeadgear)) exitWith {
-    [parseText format[CSTRING(HEADGEAR_NOT_WIRELESS_CAPABLE), getText(configFile >> "CfgWeapons" >> headgear _player >> "displayName")]] call TFAR_fnc_showHint;
+    [parseText format [CSTRING(HEADGEAR_NOT_WIRELESS_CAPABLE), getText(configFile >> "CfgWeapons" >> headgear _player >> "displayName")]] call TFAR_fnc_showHint;
     "no";
 };
 
@@ -44,7 +38,7 @@ private _externalSpeakers = +(_vehicle getVariable ["TFAR_ExternalIntercomSpeake
 // External Speakers structure is always:
 //  [_playerUsingPhone, [_infinitePlayersConnectedWirelessly...]]
 if (!isNull (_externalSpeakers select 0) && !_wireless) exitWith {
-    [parseText format[CSTRING(SOMEONE_USING_PHONE), name (_externalSpeakers select 0)]] call TFAR_fnc_showHint;
+    [parseText format [CSTRING(SOMEONE_USING_PHONE), name (_externalSpeakers select 0)]] call TFAR_fnc_showHint;
     "no";
 };
 
@@ -75,9 +69,9 @@ _vehicle setVariable ["TFAR_ExternalIntercomSpeakers", _externalSpeakers, true];
 // Get intercom channel, now that we've signed on to the intercom
 private _intercomSlot = [_vehicle, _player] call TFAR_external_intercom_fnc_getIntercomChannel;
 
-_vehicle setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomSlot, true];
+_vehicle setVariable [format ["TFAR_IntercomSlot_%1", (netId _player)], _intercomSlot, true];
 // Because TFAR checks the "vehicle", and thinks the unit is the vehicle when it's not in a vehicle, so we manually set it
-_player setVariable [format ["TFAR_IntercomSlot_%1",(netId _player)], _intercomSlot, true];
+_player setVariable [format ["TFAR_IntercomSlot_%1", (netId _player)], _intercomSlot, true];
 
 (QGVAR(PhoneConnectionIndicatorRsc) call BIS_fnc_rscLayer) cutRsc [QGVAR(PhoneConnectionIndicatorRsc), "PLAIN", 0, true];
 
@@ -138,7 +132,7 @@ if (_wireless) then {
     private _handset = createSimpleObject [QPATHTOF(data\TFAR_handset.p3d), _player selectionPosition "head"];
     _handset attachTo [_player, [-0.14,-0.02,0.02], "head", true];
     _handset setVectorDirAndUp [[-2.5,0.8,0.25],[-1,-1,1]];
-    private _ropeID = ropeCreate [_vehicle, _interactionPointRelative vectorAdd [0,0.2,0], _handset, "plug", (_vehicle getVariable ["TFAR_externalIntercomMaxRange_Phone", TFAR_externalIntercomMaxRange_Phone]) - 1, ["", [0,0,-1]], ["", [0,0,-1]], "RopeSmallWire"];
+    private _ropeID = ropeCreate [_vehicle, _interactionPointRelative vectorAdd [0,0.2,0], _handset, "plug", (_vehicle getVariable ["TFAR_externalIntercomMaxRange_Phone", TFAR_externalIntercomMaxRange_Phone]) - 1, ["", [0,0,-1]], ["", [0,0,-1]], "TFAR_RopeSmallWire"];
     _vehicle setVariable ["TFAR_ExternalIntercomRopeIDs", [_ropeID, _handset], true];
 
     // Eventhandlers
@@ -146,17 +140,15 @@ if (_wireless) then {
         _vehicle setVariable ["TFAR_ExternalIntercomRopeEH",
             _vehicle addEventHandler ["RopeBreak", {
                 params ["_vehicle", "_ropeID"];
-                systemChat "Rope broke";
-                systemChat str _this;
+                TRACE_1("Rope broke", _this);
+
                 if ((_vehicle getVariable ["TFAR_ExternalIntercomRopeIDs", [nil, nil]] select 0) isEqualTo _ropeID) then {
                     [_vehicle, _vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]] select 0] call TFAR_external_intercom_fnc_disconnect;
                     _vehicle removeEventHandler ["RopeBreak", _thisEventHandler];
                 };
-            }],
-            true
+            }]
         ];
-        diag_log "Registered RopeBreak EH";
-        diag_log (_vehicle getVariable "TFAR_ExternalIntercomRopeEH");
+        TRACE_1("Registered RopeBreak EH", _vehicle getVariable "TFAR_ExternalIntercomRopeEH");
     };
 
     _playerEventhandlers pushBack [

@@ -22,23 +22,21 @@ params ["_target", "_player"];
 
 _vehicle = _player getVariable "TFAR_ExternalIntercomVehicle";
 
-if (isNil "_vehicle") exitWith {
-    [];
-};
+if (isNil "_vehicle") exitWith {[]};
 
 private _actions = [];
 
 _actions pushBack [
     [
-        format["TFAR_External_Intercom_Wireless_Disconnect", _intercomChannel],
+        format ["TFAR_External_Intercom_Wireless_Disconnect", _intercomChannel],
         localize LSTRING(DISCONNECT_WIRELESS),
         QPATHTOF(ui\tfar_ace_interaction_external_intercom_wireless_disconnect.paa),
         {
-            params ["_vehicle", "_player"];
+            params ["", "_player"];
             [_player getVariable 'TFAR_ExternalIntercomVehicle', _player] call TFAR_external_intercom_fnc_disconnect;
         },
         {
-            params ["_vehicle", "_player"];
+            params ["", "_player"];
            !isNil {_player getVariable 'TFAR_ExternalIntercomVehicle'}
             && (_player getVariable ['TFAR_ExternalIntercomVehicle', objNull]) getVariable ['TFAR_ExternalIntercomSpeakers', [objNull, []]] select 1 find _player > -1;
         }
@@ -49,12 +47,12 @@ _actions pushBack [
 
 _actions pushBack [
     [
-        format["TFAR_External_Intercom_Wireless_Channels", _intercomChannel],
+        format ["TFAR_External_Intercom_Wireless_Channels", _intercomChannel],
         localize ELSTRING(Core,Intercom_ACESelfAction_Name),
         "",
         {},
         {
-            params ["_vehicle", "_player"];
+            params ["", "_player"];
            !isNil {_player getVariable 'TFAR_ExternalIntercomVehicle'}
             && (_player getVariable ['TFAR_ExternalIntercomVehicle', objNull]) getVariable ['TFAR_ExternalIntercomSpeakers', [objNull, []]] select 1 find _player > -1;
         },
