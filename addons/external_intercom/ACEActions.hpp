@@ -47,11 +47,11 @@ class ACE_MainActions { \
                     && ( \
                         ( \
                             !(_player in (_target getVariable [ARR_2('TFAR_ExternalIntercomSpeakers', [ARR_2(objNull, [])])] select 1)) \
-                            && (headgear _player) in TFAR_externalIntercomWirelessHeadgear \
+                            && [_player] call FUNC(hasWirelessHeadgear) \
                             && TFAR_externalIntercomEnable isEqualTo 0 \
                          ) || ( \
                             !(_player in (_target getVariable [ARR_2('TFAR_ExternalIntercomSpeakers', [ARR_2(objNull, [])])] select 1)) \
-                            && (headgear _player) in TFAR_externalIntercomWirelessHeadgear \
+                            && [_player] call FUNC(hasWirelessHeadgear) \
                             && [ARR_2(side _player, side _target)] call BIS_fnc_sideIsFriendly \
                             && TFAR_externalIntercomEnable isEqualTo 1 \
                         ) \

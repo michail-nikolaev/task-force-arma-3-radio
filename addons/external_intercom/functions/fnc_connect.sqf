@@ -29,7 +29,7 @@ if (TFAR_externalIntercomEnable isEqualTo 2) exitWith {"no"};
 
 if (TFAR_externalIntercomEnable isEqualTo 1 && [side _player, side _vehicle] call BIS_fnc_sideIsEnemy) exitWith {"no"};
 
-if (_wireless && !((headgear _player) in TFAR_externalIntercomWirelessHeadgear)) exitWith {
+if (_wireless && !([_player] call FUNC(hasWirelessHeadgear))) exitWith {
     [parseText format [CSTRING(HEADGEAR_NOT_WIRELESS_CAPABLE), getText(configFile >> "CfgWeapons" >> headgear _player >> "displayName")]] call TFAR_fnc_showHint;
     "no";
 };

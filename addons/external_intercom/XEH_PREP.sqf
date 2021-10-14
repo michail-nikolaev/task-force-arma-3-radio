@@ -4,5 +4,6 @@ PREP(connect);
 PREP(disconnect);
 PREP(getIntercomChannel);
 PREP(getInteractionPoint);
+PREP(hasWirelessHeadgear);
 PREP(parseClassnamesInput);
 PREP(settingForceAlphaNumericArray);

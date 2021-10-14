@@ -11,7 +11,7 @@
     1,
     {
         if (isServer) then {
-            TFAR_externalIntercomWirelessHeadgear = ((configFile >> "TFAR_External_Intercom_Wireless_Headgear") call BIS_fnc_getCfgSubClasses) + ([_this] call FUNC(parseClassnamesInput));
+            TFAR_externalIntercomWirelessHeadgear = [_this] call FUNC(parseClassnamesInput);
             publicVariable "TFAR_externalIntercomWirelessHeadgear";
         };
     }
