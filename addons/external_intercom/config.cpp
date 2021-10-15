@@ -63,6 +63,7 @@ class CfgUIGrids { //Thanks ACE guys!
     };
 };
 
+#include "ArsenalStats.hpp"
 #include "Cfg3DEN.hpp"
 #include "RscTitles.hpp"
 #include "CfgVehicles.hpp"
