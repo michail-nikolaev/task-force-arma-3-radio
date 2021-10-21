@@ -650,6 +650,12 @@
                 <Chinese>使用宙斯編輯器時可以聆聽到玩家的語音</Chinese>
                 <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_splendidCamEars">
+                <English>Hearing from Splendid Camera</English>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_splendidCamEars_desc">
+                <English>Hear voice from Splendid Camera when in Splendid Camera interface</English>
+            </Key>
 
             <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator">
                 <English>No Automove in Spectator</English>
