@@ -20,6 +20,8 @@
 */
 params [["_display",displayNull], ["_eventType","Open"]];
 
+player call TFAR_fnc_releaseAllTangents; //Stop all radio transmissions
+
 switch _eventType do {
     case "Open": {
         if (TFAR_splendidCamEars) then {
