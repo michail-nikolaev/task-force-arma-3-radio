@@ -14,6 +14,7 @@
             <Chinese>RT-1523G (ASIP)長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>RT-1523G (ASIP)长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>RT-1523G (ASIP) uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BWMOD">
             <Original>RT-1523G (ASIP) BWMOD long range radio 20km</Original>
@@ -21,6 +22,7 @@
             <Japanese>RT-1523G (ASIP) BW MOD 長距離用無線機 20km</Japanese>
             <Korean>RT-1523G (ASIP) BWMOD 장거리 무전기 20km</Korean>
             <Turkish>RT-1523G (ASIP) BWMOD uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) BWMOD radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BWMOD_Desc">
             <Original>RT-1523G (ASIP) BWMOD long range radio 20km</Original>
@@ -30,6 +32,7 @@
             <Chinese>RT-1523G (ASIP) BWMOD長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>RT-1523G (ASIP) BWMOD长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>RT-1523G (ASIP) BWMOD uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) BWMOD radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_RHS">
             <Original>RT-1523G (ASIP) RHS long range radio 20km</Original>
@@ -37,6 +40,7 @@
             <Japanese>RT-1523G (ASIP) RHS 長距離用無線機 20km</Japanese>
             <Korean>RT-1523G (ASIP) RHS 장거리 무전기 20km</Korean>
             <Turkish>RT-1523G (ASIP) RHS uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) RHS radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_RHS_Desc">
             <Original>RT-1523G (ASIP) RHS long range radio 20km</Original>
@@ -46,6 +50,7 @@
             <Chinese>RT-1523G (ASIP) RHS長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>RT-1523G (ASIP) RHS长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>RT-1523G (ASIP) RHS uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) RHS radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Big">
             <Original>RT-1523G (ASIP) Big</Original>
@@ -55,6 +60,7 @@
             <Chinese>RT-1523G (ASIP-大型)</Chinese>
             <Chinesesimp>RT-1523G (ASIP-大型)</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Büyük</Turkish>
+            <Italian>RT-1523G (ASIP) Grande</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Big_Desc">
             <Original>RT-1523G (ASIP) Big long range radio 20km</Original>
@@ -64,6 +70,7 @@
             <Chinese>RT-1523G (ASIP-大型)長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>RT-1523G (ASIP-大型)长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Büyük uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) Grande radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BigBWMOD">
             <Original>RT-1523G (ASIP) Big BWMOD [Flecktarn]</Original>
@@ -73,6 +80,7 @@
             <Chinese>RT-1523G (ASIP-大型) BWMOD [斑點迷彩]</Chinese>
             <Chinesesimp>RT-1523G (ASIP-大型) BWMOD [斑点迷彩]</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Büyük BWMOD [Flecktarn]</Turkish>
+            <Italian>RT-1523G (ASIP) Grande BWMOD [Flecktarn]</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BigBWMOD_Desc">
             <Original>RT-1523G (ASIP) Big BWMOD long range radio 20km</Original>
@@ -82,6 +90,7 @@
             <Chinese>RT-1523G (ASIP-大型) BWMOD長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>RT-1523G (ASIP-大型) BWMOD长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Büyük BWMOD uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) Grande BWMOD radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BigBWMOD_Tropen">
             <Original>RT-1523G (ASIP) Big BWMOD [Tropentarn]</Original>
@@ -91,6 +100,7 @@
             <Chinese>RT-1523G (ASIP-大型) BWMOD [荒漠斑點迷彩]</Chinese>
             <Chinesesimp>RT-1523G (ASIP-大型) BWMOD [荒漠斑点迷彩]</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Büyük BWMOD [Tropentarn]</Turkish>
+            <Italian>RT-1523G (ASIP) Grande BWMOD [Tropentarn]</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BigRHS">
             <Original>RT-1523G (ASIP) Big RHS</Original>
@@ -100,6 +110,7 @@
             <Chinese>RT-1523G (ASIP-大型) RHS</Chinese>
             <Chinesesimp>RT-1523G (ASIP-大型) RHS</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Büyük RHS</Turkish>
+            <Italian>RT-1523G (ASIP) Grande RHS</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BigRHS_Desc">
             <Original>RT-1523G (ASIP) Big RHS long range radio 20km</Original>
@@ -109,6 +120,7 @@
             <Chinese>RT-1523G (ASIP-大型) RHS長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>RT-1523G (ASIP-大型) RHS长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Büyük RHS uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) Grande RHS radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Sage">
             <Original>RT-1523G (ASIP) Sage</Original>
@@ -117,6 +129,7 @@
             <Chinese>RT-1523G (ASIP-草綠色)</Chinese>
             <Chinesesimp>RT-1523G (ASIP-草绿色)</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Adaçayı Rengi</Turkish>
+            <Italian>RT-1523G (ASIP) Salvia</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Sage_Desc">
             <Original>RT-1523G (ASIP) Sage long range radio 20km</Original>
@@ -125,6 +138,7 @@
             <Chinese>RT-1523G (ASIP-草綠色)長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>RT-1523G (ASIP-草绿色)长程无线电，有效距离20公里</Chinesesimp>
             <Turkish></Turkish>
+            <Italian>RT-1523G (ASIP) Salvia radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Green">
             <Original>RT-1523G (ASIP) Green</Original>
@@ -134,6 +148,7 @@
             <Chinese>RT-1523G (ASIP-綠色)</Chinese>
             <Chinesesimp>RT-1523G (ASIP-绿色)</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Adaçayı Rengi uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) Verde</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Green_Desc">
             <Original>RT-1523G (ASIP) Green long range radio 20km</Original>
@@ -143,6 +158,7 @@
             <Chinese>RT-1523G (ASIP-綠色)長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>RT-1523G (ASIP-绿色)长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Yeşil uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) Verde radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Fabric">
             <Original>RT-1523G (ASIP) Fabric</Original>
@@ -151,6 +167,7 @@
             <Chinese>RT-1523G (ASIP-布質)</Chinese>
             <Chinesesimp>RT-1523G (ASIP-布质)</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Kumaş</Turkish>
+            <Italian>RT-1523G (ASIP) Tessuto</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Fabric_Desc">
             <Original>RT-1523G (ASIP) Fabric long range radio 20km</Original>
@@ -160,6 +177,7 @@
             <Chinese>RT-1523G (ASIP-布質)長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>RT-1523G (ASIP-布质)长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Kumaş uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) Tessuto radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Black">
             <Original>RT-1523G (ASIP) Black</Original>
@@ -168,6 +186,7 @@
             <Chinese>RT-1523G (ASIP-黑色)</Chinese>
             <Chinesesimp>RT-1523G (ASIP-黑色)</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Siyah</Turkish>
+            <Italian>RT-1523G (ASIP) Nero</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Black_Desc">
             <Original>RT-1523G (ASIP) Black long range radio 20km</Original>
@@ -177,6 +196,7 @@
             <Chinese>RT-1523G (ASIP-黑色)長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>RT-1523G (ASIP-黑色)长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>RT-1523G (ASIP) Siyah uzun menzilli radyo 20km</Turkish>
+            <Italian>RT-1523G (ASIP) Nero radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR6000L">
             <Original>MR6000L</Original>
@@ -191,6 +211,7 @@
             <Chinese>MR6000L空中載具無線電，有效距離40公里</Chinese>
             <Chinesesimp>MR6000L空中载具无线电，有效距离40公里</Chinesesimp>
             <Turkish>MR6000L airborne telsiz 40km</Turkish>
+            <Italian>MR6000L radio aviotrasportata 40 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000">
             <Original>MR3000</Original>
@@ -205,6 +226,7 @@
             <Chinese>MR3000長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>MR3000长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>MR3000 uzun menzilli radyo 20km</Turkish>
+            <Italian>MR3000 radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_Multicam">
             <Original>MR3000 Multicam</Original>
@@ -222,6 +244,7 @@
             <Chinese>MR3000 (多地形迷彩)長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>MR3000 (多地形迷彩)长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>MR3000 Multicam uzun menzilli radyo 20km</Turkish>
+            <Italian>MR3000 Multicam radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_BWMOD">
             <Original>MR3000 BWMOD [Flecktarn]</Original>
@@ -240,6 +263,7 @@
             <Chinese>MR3000 BWMOD長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>MR3000 BWMOD长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>MR3000 BWMOD uzun menzilli radyo 20km</Turkish>
+            <Italian>MR3000 BWMOD radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_BWMOD_Tropen">
             <Original>MR3000 BWMOD [Tropentarn]</Original>
@@ -263,6 +287,7 @@
             <Chinese>MR3000 RHS長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>MR3000 RHS长程无线电，有效距离20公里</Chinesesimp>
             <Turkish>MR3000 RHS uzun menzilli radyo 20km</Turkish>
+            <Italian>MR3000 RHS radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_Bussole">
             <Original>Assault Pack Bussole</Original>
@@ -271,6 +296,7 @@
             <Korean>강습가방 Bussole</Korean>
             <Chinese>突擊背包 (Bussole)</Chinese>
             <Chinesesimp>突击背包 (Bussole)</Chinesesimp>
+            <Italian>Pacchetto d'assalto Bussole</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_Bussole_Desc">
             <Original>Bussole long range radio 20km</Original>
@@ -279,6 +305,7 @@
             <Korean>Bussole 장거리 무전기 20km</Korean>
             <Chinese>Bussole長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>Bussole长程无线电，有效距离20公里</Chinesesimp>
+            <Italian>Bussole radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANPRC155">
             <Original>AN/PRC-155</Original>
@@ -292,7 +319,8 @@
             <Korean>AN/PRC-155 장거리 무전기 20km</Korean>
             <Chinese>AN/PRC 155長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>AN/PRC 155长程无线电，有效距离20公里</Chinesesimp>
-            <Turkish>AN / PRC-155 uzun menzilli radyo 20km</Turkish>
+            <Turkish>AN/PRC-155 uzun menzilli radyo 20km</Turkish>
+            <Italian>AN/PRC-155 radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANPRC155_Coyote">
             <Original>AN/PRC-155 Coyote</Original>
@@ -309,7 +337,8 @@
             <Korean>AN/PRC-155 Coyote 장거리 무전기 20km</Korean>
             <Chinese>AN/PRC 155 (土狼棕色)長程無線電，有效距離20公里</Chinese>
             <Chinesesimp>AN/PRC 155 (土狼棕色)长程无线电，有效距离20公里</Chinesesimp>
-            <Turkish>AN / PRC-155 Çöl Rengi uzun menzilli radyo 20km</Turkish>
+            <Turkish>AN/PRC-155 Çöl Rengi uzun menzilli radyo 20km</Turkish>
+            <Italian>AN/PRC-155 Coyote radio a lungo raggio 20 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANARC210">
             <Original>AN/ARC-210</Original>
@@ -324,6 +353,7 @@
             <Chinese>AN/ARC-210空中載具無線電，有效距離40公里</Chinese>
             <Chinesesimp>AN/ARC-210空中载具无线电，有效距离40公里</Chinesesimp>
             <Turkish>AN/ARC-210 airborne radyo 40km</Turkish>
+            <Italian>AN/ARC-210 radio aviotrasportata 40 km</Italian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANARC164">
             <Original>AN/ARC-164</Original>
@@ -338,6 +368,7 @@
             <Chinese>AN/ARC-164空中載具無線電，有效距離40公里</Chinese>
             <Chinesesimp>AN/ARC-164空中载具无线电，有效距离40公里</Chinesesimp>
             <Turkish>AN/ARC-164 airborne radyo 40km</Turkish>
+            <Italian>AN/ARC-164 radio aviotrasportata 40 km</Italian>
         </Key>
     </Package>
 </Project>
