@@ -22,8 +22,6 @@ params [["_display",displayNull], ["_eventType","Open"]];
 
 switch _eventType do {
     case "Open": {
-        _display displayAddEventHandler ["KeyDown", "[_this, 'keydown'] call TFAR_fnc_processCuratorKey"];
-        _display displayAddEventHandler ["KeyUp", "[_this, 'keyup'] call TFAR_fnc_processCuratorKey"];
         if (TFAR_splendidCamEars) then {
             player setVariable ["TF_fnc_position", {private _pctw = positionCameraToWorld [0,0,0]; [ATLToASL _pctw, (positionCameraToWorld [0,0,1]) vectorDiff _pctw]}];
         }
