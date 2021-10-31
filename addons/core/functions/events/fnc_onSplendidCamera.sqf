@@ -25,7 +25,7 @@ player call TFAR_fnc_releaseAllTangents; //Stop all radio transmissions
 switch _eventType do {
     case "Open": {
         if (TFAR_splendidCamEars) then {
-            player setVariable ["TF_fnc_position", {private _pctw = positionCameraToWorld [0,0,0]; [ATLToASL _pctw, (positionCameraToWorld [0,0,1]) vectorDiff _pctw]}];
+            player setVariable ["TF_fnc_position", {private _pctw = positionCameraToWorld [0,0,0]; [AGLToASL _pctw, (positionCameraToWorld [0,0,1]) vectorDiff _pctw]}];
         }
     };
     case 2: {
