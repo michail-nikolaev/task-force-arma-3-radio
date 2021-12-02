@@ -47,6 +47,7 @@ if ((_externalIntercomSpeakers select 0) isEqualTo _player) then {
 _externalIntercomSpeakers set [1, (_externalIntercomSpeakers select 1) arrayIntersect (_externalIntercomSpeakers select 1)];
 (_externalIntercomSpeakers select 1) deleteAt ((_externalIntercomSpeakers select 1) find _player);
 
+// TODO: Fix possible race condition that could occur here. I'm too dumb to know how
 _vehicle setVariable ["TFAR_ExternalIntercomSpeakers", _externalIntercomSpeakers, true];
 
 if (ACE_player isEqualTo _player) then { // This feels redundant but... maybe it helps?

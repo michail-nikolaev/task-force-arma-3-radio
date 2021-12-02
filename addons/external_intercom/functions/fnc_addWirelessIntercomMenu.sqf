@@ -4,17 +4,19 @@
   Name: TFAR_external_intercom_fnc_addWirelessIntercomMenu
 
   Author: Arend(Saborknight)
-    Adds all the intercom channels from the target vehicle as children to the
-    current interaction menu parent.
+    Adds ACE self-interact actions for the wireless intercom and all the
+    intercom channels from the target vehicle as children to the current
+    interaction menu parent.
 
   Arguments:
-    0: Vehicle object <OBJECT>
+    0: Target vehicle <OBJECT>
+    1: Player <OBJECT>
 
   Return Value:
-    ACE Actions of the Intercom Channels to insert as children <ARRAY>
+    ACE Self-Actions of the Wireless controls to insert as children <ARRAY>
 
   Example:
-    [_vehicle] call TFAR_external_intercom_fnc_addWirelessIntercomMenu;
+    [_target, _player] call TFAR_external_intercom_fnc_addWirelessIntercomMenu;
 
   Public: Yes
 */

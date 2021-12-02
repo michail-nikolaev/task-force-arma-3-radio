@@ -4,16 +4,16 @@
     Name: TFAR_external_intercom_fnc_addPhoneInteractions
 
     Author: Arend(Saborknight)
-        Disconnects the player from the intercom of a vehicle.    
+        Adds ACE interactions for the intercom phone.
 
     Arguments:
-        0: frequencies input <STRING>
+        0: Vehicle object <OBJECT>
 
     Return Value:
-        cleaned input <STRING>
+        None
 
     Example:
-        ["123 123 , 332 23"] call TFAR_external_intercom_fnc_addPhoneInteractions;
+        [vehicle player] call TFAR_external_intercom_fnc_addPhoneInteractions;
 
     Public: No
 */
