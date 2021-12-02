@@ -34,11 +34,11 @@ _action = [
             (
                 (_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]] select 0) isEqualTo objNull
                 && TFAR_externalIntercomEnable isEqualTo 0
-            ) || (
+            ) || {
                 (_vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]] select 0) isEqualTo objNull
                 && [side _player, side _vehicle] call BIS_fnc_sideIsFriendly
                 && TFAR_externalIntercomEnable isEqualTo 1
-            )
+            }
         )
     },
     {},

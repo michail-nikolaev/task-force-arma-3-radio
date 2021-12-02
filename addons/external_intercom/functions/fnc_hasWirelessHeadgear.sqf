@@ -19,4 +19,4 @@
 */
 params ["_player"];
 
-getNumber (configFile >> "CfgWeapons" >> (headgear _player) >> "TFAR_ExternalIntercomWirelessCapable") > 0 || (headgear _player) in TFAR_externalIntercomWirelessHeadgear;
+getNumber (configFile >> "CfgWeapons" >> (headgear _player) >> "TFAR_ExternalIntercomWirelessCapable") > 0 || {(headgear _player) in TFAR_externalIntercomWirelessHeadgear};
