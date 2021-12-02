@@ -28,11 +28,11 @@ if (!isNil "_cachedEntry") exitWith {_cachedEntry};
 private _customPosition = [(typeOf _vehicle), "TFAR_ExternalIntercomInteractionPoint"] call TFAR_fnc_getVehicleConfigProperty;
 
 // If there's a custom position, then don't bother calculating
-if !(_customPosition isEqualTo "") then {
+if (_customPosition isNotEqualTo "") then {
     if (_customPosition isEqualType "") then {
         _customPosition = _vehicle selectionPosition _customPosition;
 
-        if !(_customPosition isEqualTo [0, 0, 0]) exitWith {
+        if (_customPosition isNotEqualTo [0, 0, 0]) exitWith {
             EGVAR(core,VehicleConfigCacheNamespace) setVariable [_cacheName, _customPosition];
             _customPosition;
         };

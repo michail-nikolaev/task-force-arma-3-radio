@@ -73,7 +73,7 @@ _action = [
     {
         params ["_vehicle", "_player"];
         _vehiclePhoneSpeaker = _vehicle getVariable ["TFAR_ExternalIntercomSpeakers", [objNull, []]] select 0;
-        alive _vehicle && !isNull _vehiclePhoneSpeaker && !(_vehiclePhoneSpeaker isEqualTo _player)
+        alive _vehicle && !isNull _vehiclePhoneSpeaker && (_vehiclePhoneSpeaker isNotEqualTo _player)
     },
     {},
     [],
