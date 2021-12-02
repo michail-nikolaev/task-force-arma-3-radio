@@ -21,7 +21,7 @@ params ["_vehicle"];
 
 if (([typeOf _vehicle, 'TFAR_hasIntercom', 0] call TFAR_fnc_getVehicleConfigProperty) isEqualTo 0 || !alive _vehicle || (_vehicle getVariable [QGVAR(phoneInteractionsSet), false])) exitWith {"no"};
 
-#define ADD_TO_CLASS [_vehicle, 0, [], _action] call ace_interact_menu_fnc_addActionToObject;
+#define ADD_TO_OBJECT [_vehicle, 0, [], _action] call ace_interact_menu_fnc_addActionToObject
 
 _action = [
     QGVAR(phoneConnect),
@@ -46,7 +46,7 @@ _action = [
     {[_this select 0] call TFAR_external_intercom_fnc_getInteractionPoint}
 ] call ace_interact_menu_fnc_createAction;
 
-ADD_TO_CLASS
+ADD_TO_OBJECT;
 
 _action = [
     QGVAR(phoneDisconnect),
@@ -63,7 +63,7 @@ _action = [
     {[_this select 0] call TFAR_external_intercom_fnc_getInteractionPoint}
 ] call ace_interact_menu_fnc_createAction;
 
-ADD_TO_CLASS
+ADD_TO_OBJECT;
 
 _action = [
     QGVAR(phoneBusy),
@@ -80,6 +80,6 @@ _action = [
     {[_this select 0] call TFAR_external_intercom_fnc_getInteractionPoint}
 ] call ace_interact_menu_fnc_createAction;
 
-ADD_TO_CLASS
+ADD_TO_OBJECT;
 
 _vehicle setVariable [QGVAR(phoneInteractionsSet), true];

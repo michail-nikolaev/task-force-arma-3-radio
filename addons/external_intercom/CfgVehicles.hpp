@@ -1,15 +1,15 @@
 #include "ACEActions.hpp"
 
 #define LAND_INTERACTIONS \
-init = QUOTE(call FUNC(addWirelessInteractions);call FUNC(addPhoneInteractions));
+init = QUOTE(call FUNC(addWirelessInteractions);call FUNC(addPhoneInteractions))
 
 #define AIR_INTERACTIONS \
-init = QUOTE(call FUNC(addWirelessInteractions));
+init = QUOTE(call FUNC(addWirelessInteractions))
 
 class CfgVehicles {
     class Man;
     class CAManBase : Man {
-        ADD_PLAYER_SELF_ACTIONS
+        ADD_PLAYER_SELF_ACTIONS;
     };
 
     // Custom Interaction Points
@@ -34,22 +34,22 @@ class Extended_GetOutMan_EventHandlers {
 class Extended_InitPost_Eventhandlers {
     class Car {
         class TFAR_ExternalIntercom_Interactions {
-            LAND_INTERACTIONS
+            LAND_INTERACTIONS;
         };
     };
     class Tank {
         class TFAR_ExternalIntercom_Interactions {
-            LAND_INTERACTIONS
+            LAND_INTERACTIONS;
         };
     };
     class Helicopter {
         class TFAR_ExternalIntercom_Interactions {
-            AIR_INTERACTIONS
+            AIR_INTERACTIONS;
         };
     };
     class Plane {
         class TFAR_ExternalIntercom_Interactions {
-            AIR_INTERACTIONS
+            AIR_INTERACTIONS;
         };
     };
 };

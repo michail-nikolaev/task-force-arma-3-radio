@@ -21,7 +21,7 @@ params ["_vehicle"];
 
 if (([typeOf _vehicle, 'TFAR_hasIntercom', 0] call TFAR_fnc_getVehicleConfigProperty) isEqualTo 0 || !alive _vehicle || (_vehicle getVariable [QGVAR(wirelessInteractionsSet), false])) exitWith {"no"};
 
-#define ADD_TO_CLASS [_vehicle, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
+#define ADD_TO_OBJECT [_vehicle, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject
 
 _action = [
     QGVAR(wirelessConnect),
@@ -46,7 +46,7 @@ _action = [
     }
 ] call ace_interact_menu_fnc_createAction;
 
-ADD_TO_CLASS
+ADD_TO_OBJECT;
 
 _action = [
     QGVAR(wirelessDisconnect),
@@ -60,6 +60,6 @@ _action = [
     }
 ] call ace_interact_menu_fnc_createAction;
 
-ADD_TO_CLASS
+ADD_TO_OBJECT;
 
 _vehicle setVariable [QGVAR(wirelessInteractionsSet), true];

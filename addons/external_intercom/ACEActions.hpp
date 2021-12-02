@@ -6,4 +6,4 @@ class ACE_SelfActions { \
         insertChildren = QUOTE(([_player] call tfar_core_fnc_getOwnRadiosChildren) + (call TFAR_external_intercom_fnc_addWirelessIntercomMenu)); \
         statement = " "; \
     }; \
-};
+}
