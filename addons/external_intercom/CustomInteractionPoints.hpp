@@ -14,12 +14,10 @@ class B_AFV_Wheeled_01_cannon_F : AFV_Wheeled_01_base_F {
     TFAR_ExternalIntercomInteractionPoint[] = {1.21875,-4.34796,-0.82896};
 };
 
-class B_APC_Tracked_01_base_F;
 class B_APC_Tracked_01_CRV_F : B_APC_Tracked_01_base_F {
     TFAR_ExternalIntercomInteractionPoint[] = {1.55518,-4.79966,-0.811272};
 };
 
-class B_APC_Tracked_01_base_F;
 class B_APC_Tracked_01_rcws_F : B_APC_Tracked_01_base_F {
     TFAR_ExternalIntercomInteractionPoint[] = {1.54883,-4.79953,-0.84446};
 };
@@ -55,7 +53,6 @@ class O_APC_Wheeled_02_rcws_v2_F : APC_Wheeled_02_base_v2_F {
     TFAR_ExternalIntercomInteractionPoint[] = {0.670898,-4.32084,-0.725672};
 };
 
-class O_APC_Tracked_02_base_F;
 class O_APC_Tracked_02_cannon_F : O_APC_Tracked_02_base_F {
     TFAR_ExternalIntercomInteractionPoint[] = {0.964355,-4.93802,-0.765622};
 };
@@ -70,18 +67,15 @@ class MBT_04_base_F : Tank_F {
     TFAR_ExternalIntercomInteractionPoint[] = {-1.44043,-5.65282,-1.23575};
 };
 
-class Tank_F;
 class MBT_02_base_F : Tank_F {
     TFAR_ExternalIntercomInteractionPoint[] = {-1.26074,-4.75584,-0.938046};
 };
 
 // Vanilla AAF
-class Tank_F;
 class LT_01_base_F : Tank_F {
     TFAR_ExternalIntercomInteractionPoint[] = {0.683105,-1.6731,-0.883865};
 };
 
-class Tank_F;
 class APC_Tracked_03_base_F : Tank_F {
     TFAR_ExternalIntercomInteractionPoint[] = {1.07031,-3.85647,-0.856963};
 };
@@ -91,7 +85,6 @@ class I_APC_Wheeled_03_cannon_F : I_APC_Wheeled_03_base_F {
     TFAR_ExternalIntercomInteractionPoint[] = {-0.702148,-4.40593,-0.687622};
 };
 
-class Tank_F;
 class MBT_03_base_F : Tank_F {
     TFAR_ExternalIntercomInteractionPoint[] = {0.0117188,-5.45996,-0.75563};
 };
