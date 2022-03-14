@@ -19,7 +19,9 @@
 */
 params ["_unit"];
 
-if (isNull (objectParent _unit) && isNil {_unit getVariable "TFAR_vehicleIDOverride"}) exitWith {"no"};//Unit is not in vehicle
+private _vehicleOverrideDisabled = isNil {_unit getVariable "TFAR_vehicleIDOverride"};
+
+if (isNull (objectParent _unit) && _vehicleOverrideDisabled) exitWith {"no"}; // Unit is not in vehicle and not on external intercom
 private _vehicle = (vehicle _unit);
 private _netID = _vehicle getVariable ["TFAR_vehicleIDOverride", netid _vehicle];
 
@@ -35,7 +37,7 @@ private _slot = "cargo";
 tolower _slot
 */
 //Get intercom slot of unit. By default everyone is Cargo
-private _hasIntercom = ([(typeOf _vehicle), "TFAR_hasIntercom", 0] call TFAR_fnc_getVehicleConfigProperty) > 0;
+private _hasIntercom = ([(typeOf _vehicle), "TFAR_hasIntercom", 0] call TFAR_fnc_getVehicleConfigProperty) > 0 || !_vehicleOverrideDisabled;
 private _intercomSlot = -1;
 
 if (_hasIntercom) then {
