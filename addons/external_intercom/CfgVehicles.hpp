@@ -50,7 +50,7 @@ class Extended_GetOutMan_EventHandlers {
                 && !((_role) isEqualTo 'cargo') \
                 && local _player \
                 && [ARR_3((typeOf _vehicle), 'TFAR_hasIntercom', 0)] call TFAR_fnc_getVehicleConfigProperty == 1 \
-            ) then { TRACE_2('%1 is getting out of %2', _player, _vehicle); [ARR_3(_vehicle, _player, [true])] call TFAR_external_intercom_fnc_connect; };);
+            ) then { [ARR_3(_vehicle, _player, [true])] call TFAR_external_intercom_fnc_connect; };);
         };
     };
 };

@@ -23,6 +23,8 @@
 params ["_vehicle", "_player", "_actionParams"];
 _actionParams params [["_wireless", false, [false]]];
 
+TRACE_3('Connect',_player,_vehicle,_actionParams);
+
 if (!alive _vehicle) exitWith {"no"};
 
 if (TFAR_externalIntercomEnable isEqualTo 2) exitWith {"no"};
