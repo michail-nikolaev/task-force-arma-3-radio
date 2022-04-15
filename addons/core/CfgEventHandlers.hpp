@@ -30,6 +30,10 @@ class Extended_DisplayLoad_EventHandlers { //From commy2
         //Can enable CBA keybinds with _display call (uiNamespace getVariable "cba_events_fnc_initDisplayCurator") see TFAR_fnc_sendFrequencyInfo note about spectator
         TFAR_RscDisplayEGSpectator = "[player, true] call TFAR_fnc_forceSpectator;";
     };
+    class RscDisplayCamera {
+        //_this -> [Display #314]
+        TFAR_SplendidCameraOpened = "[_this select 1] call TFAR_fnc_onSplendidCamera";
+    };
 };
 
 class Extended_DisplayUnload_EventHandlers {
@@ -41,6 +45,10 @@ class Extended_DisplayUnload_EventHandlers {
     };
     class RscDisplayEGSpectator {
         TFAR_RscDisplayEGSpectator = "[player, false] call TFAR_fnc_forceSpectator;";
+    };
+    class RscDisplayCamera {
+        //_this -> [Display #314,2]
+        TFAR_SplendidCameraOpened = "[_this select 1] call TFAR_fnc_onSplendidCamera";
     };
 };
 

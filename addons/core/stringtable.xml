@@ -718,6 +718,12 @@
                 <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
                 <Italian>Ascolta la voce dalla fotocamera del curatore quando sei nell'interfaccia di Zeus</Italian>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_splendidCamEars">
+                <English>Hearing from Splendid Camera</English>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_splendidCamEars_desc">
+                <English>Hear voice from Splendid Camera when in Splendid Camera interface</English>
+            </Key>
 
             <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator">
                 <English>No Automove in Spectator</English>
