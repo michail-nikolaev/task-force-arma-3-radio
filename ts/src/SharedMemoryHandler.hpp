@@ -48,6 +48,7 @@ namespace SharedMemoryHandlerInternal {
     public:
         explicit SharedMemoryData(uint32_t _size) :sharedMemSize(_size) {}
         bool getAsyncRequest(std::string& req);
+        bool getAsyncRequestMultiple(std::vector<std::string>& reqs);
         bool getSyncRequest(std::string& req);
         void setSyncResponse(const std::string& response);
         bool hasAsyncRequest() const;
@@ -55,7 +56,7 @@ namespace SharedMemoryHandlerInternal {
         std::chrono::system_clock::time_point getLastGameTick() const { return lastGameTick; }
         void setLastPluginTick() { lastPluginTick = std::chrono::system_clock::now(); }
         void setLastGameTick(std::chrono::system_clock::time_point time) { lastGameTick = time; }
-        void setConfigNeedsRefresh(bool needs) { configNeedsRefresh = needs; };
+        void setConfigNeedsRefresh(bool needs) { configNeedsRefresh = needs; }
         void onShutdown() { lastPluginTick = std::chrono::system_clock::time_point(0us); }
     private:
         uint32_t sharedMemSize{ 0 };
@@ -98,6 +99,7 @@ public:
     SharedMemoryHandler();
     ~SharedMemoryHandler();
     bool getData(std::string& data, std::chrono::milliseconds timeout);
+    bool getDataMultiple(std::vector<std::string>& data, std::chrono::milliseconds timeout);
     bool sendData(const std::string& data);
     bool sendData(const char* data, size_t length);
     bool hasRequests();
@@ -105,6 +107,7 @@ public:
     bool waitForRequest(std::chrono::milliseconds timeout);
     bool getSyncRequest(std::string& request);
     bool getAsyncRequest(std::string& request);
+    bool getAsyncRequestMultiple(std::vector<std::string>& requests);
     bool isConnected();
     void setConfigNeedsRefresh(bool param1) const;
     std::chrono::system_clock::time_point lastConnectedEvent;

@@ -54,8 +54,10 @@ void CommandProcessor::stopThread() {
 
 void CommandProcessor::queueCommand(const std::string& command) {
     ProfileFunction;
-    if (!myThread) {
+    if (!myThread || !threadRunning) {
+        shouldRun = true; // thread somehow exited? wtf..
         myThread = std::make_unique<std::thread>(&CommandProcessor::threadRun, this);
+        threadRunning = true;
     }
     {
         std::lock_guard<std::mutex> lock(theadMutex);
@@ -159,7 +161,7 @@ gameCommand CommandProcessor::toGameCommand(std::string_view textCommand, size_t
 }
 
 void CommandProcessor::threadRun() {
-
+    threadRunning = true;
     while (shouldRun) {
         std::unique_lock<std::mutex> lock(theadMutex);
         threadWorkCondition.wait(lock, [this] {return !commandQueue.empty() || !shouldRun; });
@@ -170,6 +172,7 @@ void CommandProcessor::threadRun() {
         lock.unlock();
         processAsynchronousCommand(command);
     }
+    threadRunning = false;
 }
 
 
@@ -372,7 +375,11 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
             auto data = helpers::split(tokens[1], 0xA);
             for (auto& element : data) {
                 auto antennaData = helpers::split(element, ';');
-                TFAR::getAntennaManager()->addAntenna(Antenna(NetID(antennaData[0]), Position3D(antennaData[2]), helpers::parseArmaNumber(antennaData[1])));
+                if (antennaData.size() == 3)
+                  TFAR::getAntennaManager()->addAntenna(Antenna(NetID(antennaData[0]), Position3D(antennaData[2]), helpers::parseArmaNumber(antennaData[1])));
+                else {
+                    //#TODO log?
+                }
             }
             return;
 
@@ -530,10 +537,10 @@ void CommandProcessor::processUnitKilled(std::string &&name, TSServerID serverCo
     dead can hear alive
     */
 
-
-    Teamspeak::setClientMute(serverConnection, deadClients, TFAR::getInstance().m_gameData.alive && isSeriousMode); //Mute dead people if seriousMode
-    Teamspeak::setClientMute(serverConnection, aliveClients, !TFAR::getInstance().m_gameData.alive && isSeriousMode);//Mute alive people if seriousMode
-
+    if (!TFAR::config.get<bool>(Setting::disableAutomaticMute)) {
+        Teamspeak::setClientMute(serverConnection, deadClients, TFAR::getInstance().m_gameData.alive && isSeriousMode); //Mute dead people if seriousMode
+        Teamspeak::setClientMute(serverConnection, aliveClients, !TFAR::getInstance().m_gameData.alive && isSeriousMode); //Mute alive people if seriousMode
+    }
 }
 
 

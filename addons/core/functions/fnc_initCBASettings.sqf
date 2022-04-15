@@ -153,21 +153,37 @@
 [
     "TFAR_curatorCamEars",
     "CHECKBOX",
-    [ELSTRING(settings,curatorCamEars), ELSTRING(settings,curatorCamEars_desc)], 
+    [ELSTRING(settings,curatorCamEars), ELSTRING(settings,curatorCamEars_desc)],
+    localize ELSTRING(settings,clientside),
+    false,
+    0
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_splendidCamEars",
+    "CHECKBOX",
+    [ELSTRING(settings,splendidCamEars), ELSTRING(settings,splendidCamEars_desc)],
+    localize ELSTRING(settings,clientside),
+    false,
+    0
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_noAutomoveSpectator",
+    "CHECKBOX",
+    [ELSTRING(settings,noAutomoveSpectator), ELSTRING(settings,noAutomoveSpectator_desc)],
+    localize ELSTRING(settings,clientside),
+    false,
+    0,
+    {["noAutomoveSpectator", _this] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
+[
+    QGVAR(noTSNotConnectedHint),
+    "CHECKBOX",
+    [ELSTRING(settings,noTSNotConnectedHint), ELSTRING(settings,noTSNotConnectedHint_desc)],
     localize ELSTRING(settings,global),
     false,
     0
 ] call CBA_Settings_fnc_init;
 
-[
-    "TFAR_noAutomoveSpectator",
-    "CHECKBOX",
-    [ELSTRING(settings,noAutomoveSpectator), ELSTRING(settings,noAutomoveSpectator_desc)], 
-    localize ELSTRING(settings,global),
-    false,
-    0,
-    {["noAutomoveSpectator", _this] call TFAR_fnc_setPluginSetting;}
-] call CBA_Settings_fnc_init;
 
 
 
@@ -625,10 +641,18 @@
 [
     "TFAR_allowDebugging",
     "CHECKBOX",
-    [ELSTRING(settings,allowDebugging), ELSTRING(settings,allowDebugging_desc)], 
+    [ELSTRING(settings,allowDebugging), ELSTRING(settings,allowDebugging_desc)],
     localize ELSTRING(settings,global),
     true,
     1,
     {["allowDebugging", _this] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
-
+[
+    "TFAR_disableAutoMute",
+    "CHECKBOX",
+    [ELSTRING(settings,disableAutoMute), ELSTRING(settings,disableAutoMute_desc)],
+    localize ELSTRING(settings,global),
+    false,
+    1,
+    {["disableAutomaticMute", _this] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;

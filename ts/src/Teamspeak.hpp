@@ -6,6 +6,7 @@
 #include <clientlib_publicdefinitions.h>
 #include <public_rare_definitions.h>
 #include <unordered_map>
+#include <unordered_set>
 
 //All Teamspeak interaction should be in here as static methods.
 
@@ -15,6 +16,7 @@ public:
     ~TeamspeakServerData() = default;
     std::vector<dataType::TSClientID> getMutedClients();
     void setClientMuteStatus(dataType::TSClientID, bool muted);
+    bool getClientMuteStatus(dataType::TSClientID);
     void clearMutedClients();
     dataType::TSClientID getMyClientID();
     void setMyClientID(dataType::TSClientID val);
@@ -30,7 +32,7 @@ public:
 
 private:
     CriticalSectionLock m_criticalSection{"TeamspeakServerData"};
-    std::vector<dataType::TSClientID> mutedClients;
+    std::unordered_set<dataType::TSClientID> mutedClients;
     std::string myOriginalNickname;
     TSClientID myClientID{ -1 };//Too small to need mutex
     TSChannelID myOriginalChannel{ -1 };

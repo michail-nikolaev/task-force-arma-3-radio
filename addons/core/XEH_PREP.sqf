@@ -42,6 +42,7 @@ PREP_SUB(events\ui,updateLRDialogToChannel);
 
 PREP_SUB(events,onArsenal);
 PREP_SUB(events,onCuratorInterface);
+PREP_SUB(events,onSplendidCamera);
 PREP_SUB(events,onMissionEnd);
 
 // /flexiUI
@@ -106,6 +107,10 @@ PREP(currentSWFrequency);
 PREP(currentUnit);
 // D
 PREP(defaultPositionCoordinates);
+PREP(doLRTransmit);
+PREP(doLRTransmitEnd);
+PREP(doSRTransmit);
+PREP(doSRTransmitEnd);
 // E
 PREP(eyeDepth);
 // F

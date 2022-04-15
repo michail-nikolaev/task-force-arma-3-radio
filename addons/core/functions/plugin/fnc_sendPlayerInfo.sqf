@@ -28,6 +28,9 @@ private _result = "task_force_radio_pipe" callExtension _request;
 _splitResult = _result splitString "";
 
 if ((_result != "OK") and {(count _splitResult) != 2}) then {
+
+    if (GVAR(noTSNotConnectedHint) && {_result == "Not connected to TeamSpeak"}) exitWith {};
+
     [parseText (_result), 10] call TFAR_fnc_showHint;
     tf_lastError = true;
 } else {
