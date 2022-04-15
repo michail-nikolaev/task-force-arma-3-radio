@@ -14,6 +14,7 @@
             <Chinese>RF-7800S-TR短程步兵無線電，有效距離2公里</Chinese>
             <Chinesesimp>RF-7800S-TR短程步兵无线电，有效距离2公里</Chinesesimp>
             <Turkish>RF-7800S-TR rifleman telsiz 2km</Turkish>
+            <Italian>Radio da fuciliere RF-7800S-TR 2km</Italian>
         </Key>
         <Key ID="STR_TFAR_handhelds_PNR1000A">
             <Original>PNR-1000A</Original>
@@ -28,6 +29,7 @@
             <Chinese>PNR-1000A短程步兵無線電，有效距離2公里</Chinese>
             <Chinesesimp>PNR-1000A短程步兵无线电，有效距离2公里</Chinesesimp>
             <Turkish>PNR-1000A rifleman telsiz 2km</Turkish>
+            <Italian>Radio da fuciliere PNR-1000A 2km</Italian>
         </Key>
         <Key ID="STR_TFAR_handhelds_MicroDagr">
             <Original>MicroDAGR Radio Programmer</Original>
@@ -37,6 +39,7 @@
             <Chinese>微型軍用GPS接收器 (無線電編碼器)</Chinese>
             <Chinesesimp>微型军用GPS接收器 (无线电编码器)</Chinesesimp>
             <Turkish>MicroDAGR Radyo Programcısı</Turkish>
+            <Italian>Programmatore radio MicroDAGR</Italian>
         </Key>
         <Key ID="STR_TFAR_handhelds_MicroDagr_Desc">
             <Original>Provides ability to program rifleman radios in the field</Original>
@@ -46,6 +49,7 @@
             <Chinese>使持有人能在戰場上調整短程步兵無線電的頻率設定</Chinese>
             <Chinesesimp>使持有人能在战场上调整短程步兵无线电的频率设定</Chinesesimp>
             <Turkish>Sahada rifleman radyoları programlama yeteneği sağlar</Turkish>
+            <Italian>Fornisce la capacità di programmare le radio dei fucilieri sul campo.</Italian>
         </Key>
         <Key ID="STR_TFAR_handhelds_FADAK">
             <Original>FADAK</Original>
@@ -59,6 +63,7 @@
             <Chinese>FADAK短程個人無線電，有效距離5公里</Chinese>
             <Chinesesimp>FADAK短程个人无线电，有效距离5公里</Chinesesimp>
             <Turkish>FADAK kişisel telsiz 5km</Turkish>
+            <Italian>FADAK radio personale 5km</Italian>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC154">
             <Original>AN/PRC-154</Original>
@@ -73,6 +78,7 @@
             <Chinese>AN/PRC-154短程步兵無線電，有效距離2公里</Chinese>
             <Chinesesimp>AN/PRC-154短程步兵无线电，有效距离2公里</Chinesesimp>
             <Turkish>AN/PRC-154 rifleman radyo 2km</Turkish>
+            <Italian>Fuciliere radiofonico AN/PRC-154 2km</Italian>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC152">
             <Original>AN/PRC-152</Original>
@@ -87,6 +93,7 @@
             <Chinese>AN/PRC-152短程個人無線電，有效距離5公里</Chinese>
             <Chinesesimp>AN/PRC-152短程个人无线电，有效距离5公里</Chinesesimp>
             <Turkish>AN/PRC-152 kişisel telsiz 5km</Turkish>
+            <Italian>AN/PRC-152 radio personale 5 km</Italian>
         </Key>
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM">
             <Original>AN/PRC-148 JEM</Original>
@@ -101,6 +108,7 @@
             <Chinese>AN/PRC-148 JEM短程個人無線電，有效距離5公里</Chinese>
             <Chinesesimp>AN/PRC-148 JEM短程个人无线电，有效距离5公里</Chinesesimp>
             <Turkish>AN/PRC-148 JEM kişisel telsiz 5km</Turkish>
+            <Italian>AN/PRC-148 JEM radio personale 5 km</Italian>
         </Key>
     </Package>
 </Project>

@@ -212,3 +212,13 @@ namespace dataType {
     };
 
 }
+
+
+
+
+namespace std {
+    template <typename Type>
+    struct hash<dataType::TeamspeakID<Type> > {
+        size_t operator()(const dataType::TeamspeakID<Type>& id) const noexcept { return id.baseType(); }
+    };
+}

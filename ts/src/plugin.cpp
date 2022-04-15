@@ -201,7 +201,10 @@ void PipeThread() {
     #ifdef USE_SHAREDMEM
         pipeHandler.setConfigNeedsRefresh(TFAR::config.needsRefresh());//#TODO Signal/Slot ?
     #endif
-        if (!pipeHandler.getDataMultiple(commands, 20ms))//This will still wait. 1ms if SHAMEM error. 20ms if game unconnected
+
+        commands.resize(1);
+        // pipeHandler.getDataMultiple
+        if (!pipeHandler.getData(commands[0], 20ms))//This will still wait. 1ms if SHAMEM error. 20ms if game unconnected
             continue;
 
         for (auto& command : commands) {

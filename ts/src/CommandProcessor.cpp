@@ -375,7 +375,11 @@ void CommandProcessor::processAsynchronousCommand(const std::string& command) co
             auto data = helpers::split(tokens[1], 0xA);
             for (auto& element : data) {
                 auto antennaData = helpers::split(element, ';');
-                TFAR::getAntennaManager()->addAntenna(Antenna(NetID(antennaData[0]), Position3D(antennaData[2]), helpers::parseArmaNumber(antennaData[1])));
+                if (antennaData.size() == 3)
+                  TFAR::getAntennaManager()->addAntenna(Antenna(NetID(antennaData[0]), Position3D(antennaData[2]), helpers::parseArmaNumber(antennaData[1])));
+                else {
+                    //#TODO log?
+                }
             }
             return;
 

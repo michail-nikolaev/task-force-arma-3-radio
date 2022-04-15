@@ -62,7 +62,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='C++17Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -86,7 +86,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='C++17Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -109,7 +109,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='C++17Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -241,7 +241,7 @@
       <ExpandAttributedSource>false</ExpandAttributedSource>
       <FloatingPointModel>Fast</FloatingPointModel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <Link>
@@ -307,7 +307,7 @@
       <BrowseInformation>false</BrowseInformation>
       <ExpandAttributedSource>false</ExpandAttributedSource>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -365,7 +365,7 @@
       <BrowseInformation>false</BrowseInformation>
       <FloatingPointModel>Fast</FloatingPointModel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
@@ -501,7 +501,8 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -688,11 +689,17 @@
     <ClCompile Include="..\include\glfw\src\init.c" />
     <ClCompile Include="..\include\glfw\src\input.c" />
     <ClCompile Include="..\include\glfw\src\monitor.c" />
+    <ClCompile Include="..\include\glfw\src\null_init.c" />
+    <ClCompile Include="..\include\glfw\src\null_joystick.c" />
+    <ClCompile Include="..\include\glfw\src\null_monitor.c" />
+    <ClCompile Include="..\include\glfw\src\null_window.c" />
     <ClCompile Include="..\include\glfw\src\osmesa_context.c" />
+    <ClCompile Include="..\include\glfw\src\platform.c" />
     <ClCompile Include="..\include\glfw\src\vulkan.c" />
     <ClCompile Include="..\include\glfw\src\wgl_context.c" />
     <ClCompile Include="..\include\glfw\src\win32_init.c" />
     <ClCompile Include="..\include\glfw\src\win32_joystick.c" />
+    <ClCompile Include="..\include\glfw\src\win32_module.c" />
     <ClCompile Include="..\include\glfw\src\win32_monitor.c" />
     <ClCompile Include="..\include\glfw\src\win32_thread.c" />
     <ClCompile Include="..\include\glfw\src\win32_time.c" />
@@ -755,6 +762,8 @@
     <ClInclude Include="..\include\clunk\types.h" />
     <ClInclude Include="..\include\clunk\v3.h" />
     <ClInclude Include="..\include\clunk\wav_file.h" />
+    <ClInclude Include="..\include\glfw\src\null_joystick.h" />
+    <ClInclude Include="..\include\glfw\src\null_platform.h" />
     <ClInclude Include="..\include\plugin_definitions.h" />
     <ClInclude Include="..\include\public_definitions.h" />
     <ClInclude Include="..\include\public_errors.h" />

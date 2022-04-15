@@ -193,6 +193,24 @@
     <ClCompile Include="ProfilerTracy.cpp">
       <Filter>Logging</Filter>
     </ClCompile>
+    <ClCompile Include="..\include\glfw\src\platform.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\win32_module.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\null_init.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\null_joystick.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\null_monitor.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\glfw\src\null_window.c">
+      <Filter>DebugUI\glfw</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugin.h" />
@@ -340,6 +358,12 @@
     </ClInclude>
     <ClInclude Include="ProfilerTracy.hpp">
       <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\glfw\src\null_joystick.h">
+      <Filter>DebugUI\glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\glfw\src\null_platform.h">
+      <Filter>DebugUI\glfw</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

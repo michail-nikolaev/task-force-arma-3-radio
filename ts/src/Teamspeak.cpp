@@ -14,15 +14,29 @@ struct TS3Functions ts3Functions;
 
 std::vector<dataType::TSClientID> TeamspeakServerData::getMutedClients() {
     LockGuard_shared lock(m_criticalSection);
-    return mutedClients;
+
+    std::vector<dataType::TSClientID> result;
+    result.reserve(mutedClients.size());
+    std::copy(mutedClients.begin(), mutedClients.end(), std::back_inserter(result));
+
+    return result;
 }
 
 void TeamspeakServerData::setClientMuteStatus(TSClientID clientID, bool muted) {
     if (!clientID) return;
     LockGuard_exclusive lock(m_criticalSection);
-    mutedClients.erase(std::remove(mutedClients.begin(), mutedClients.end(), clientID), mutedClients.end());
+
     if (muted)
-        mutedClients.push_back(clientID);
+        mutedClients.emplace(clientID);
+    else
+        mutedClients.erase(clientID);
+}
+
+bool TeamspeakServerData::getClientMuteStatus(TSClientID clientID) {
+    if (!clientID) return false;
+    LockGuard_exclusive lock(m_criticalSection);
+
+    return mutedClients.find(clientID) != mutedClients.end();
 }
 
 void TeamspeakServerData::clearMutedClients() {
@@ -143,7 +157,12 @@ void Teamspeak::setClientMute(TSServerID serverConnectionHandlerID, TSClientID c
     anyID clientIds[2];
     clientIds[0] = clientID.baseType();
     clientIds[1] = 0;
-    getInstance().serverData[serverConnectionHandlerID].setClientMuteStatus(clientID, mute);
+
+    auto& serverDataDir = getInstance().serverData[serverConnectionHandlerID];
+    auto isAlreadyMuted = serverDataDir.getClientMuteStatus(clientID);
+    if (isAlreadyMuted == mute) return; //Client already in state
+
+    serverDataDir.setClientMuteStatus(clientID, mute);
 
     DWORD error;
     if (mute) {
@@ -160,9 +179,17 @@ void Teamspeak::setClientMute(TSServerID serverConnectionHandlerID, TSClientID c
 void Teamspeak::setClientMute(TSServerID serverConnectionHandlerID, std::vector<TSClientID> clientIds, bool mute) {
 
     if (clientIds.empty()) return;
+    auto& serverDataDir = getInstance().serverData[serverConnectionHandlerID];
+
+    // remove clients that are already in desired muted state
+    clientIds.erase(std::remove_if(clientIds.begin(), clientIds.end(), [&](TSClientID client) {
+        return serverDataDir.getClientMuteStatus(client) == mute;
+    }), clientIds.end());
+
     for (auto& client : clientIds) {
         getInstance().serverData[serverConnectionHandlerID].setClientMuteStatus(client, mute);
     }
+    // terminating null for teamspeak API
     clientIds.emplace_back(0);
 
     DWORD error;
@@ -322,8 +349,7 @@ void Teamspeak::_onClientMoved(TSServerID serverConnectionHandlerID, TSClientID 
         if (clientNickname.empty()) return;
         TFAR::getInstance().onTeamspeakClientJoined(serverConnectionHandlerID, clientID, clientNickname);
     } else if (getInstance().serverData[serverConnectionHandlerID].myLastKnownChannel == oldChannel) {
-        auto mutedClients = getInstance().serverData[serverConnectionHandlerID].getMutedClients();
-        if (std::find(mutedClients.begin(),mutedClients.end(),clientID) != mutedClients.end())
+        if (getInstance().serverData[serverConnectionHandlerID].getClientMuteStatus(clientID))
             setClientMute(serverConnectionHandlerID, clientID, false); //Unmute him if he is muted
         TFAR::getInstance().onTeamspeakClientLeft(serverConnectionHandlerID, clientID);
     }
@@ -348,9 +374,7 @@ void Teamspeak::_onClientJoined(TSServerID serverConnectionHandlerID, TSClientID
 }
 
 void Teamspeak::_onClientLeft(TSServerID serverConnectionHandlerID, TSClientID clientID) {
-    //#TODO performance? :u
-    auto mutedClients = getInstance().serverData[serverConnectionHandlerID].getMutedClients();
-    if (std::find(mutedClients.begin(), mutedClients.end(), clientID) != mutedClients.end())
+    if (getInstance().serverData[serverConnectionHandlerID].getClientMuteStatus(clientID))
         setClientMute(serverConnectionHandlerID, clientID, false); //Unmute him if he was muted
     TFAR::getInstance().onTeamspeakClientLeft(serverConnectionHandlerID, clientID);
 }
