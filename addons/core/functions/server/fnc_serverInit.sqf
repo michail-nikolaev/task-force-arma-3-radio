@@ -165,4 +165,25 @@ GVAR(oldGroups) = allGroups;
     }
 ] call CBA_fnc_addEventhandler;
 
+addMissionEventHandler ["GroupCreated", {
+    params ["_group"];
+    [
+        {
+            // We need to wait objects in group before trying to broadcast values over network
+            !isNil "TFAR_SameSRFrequenciesPerGroup" && count units (_this select 0) > 0
+        },
+        {
+            if (TFAR_SameSRFrequenciesPerGroup) then {
+                private _predefinedFreqs = (_this select 0) getVariable ["TFAR_freq_sr", []];
+                private _randomized = [TFAR_MAX_CHANNELS - count _predefinedFreqs, TFAR_MAX_SW_FREQ, TFAR_MIN_SW_FREQ, TFAR_FREQ_ROUND_POWER] call DFUNC(generateFrequencies);
+                private _appendedFreqs = _predefinedFreqs append _randomized;
+                (_this select 0) setVariable ["TFAR_freq_sr", _appendedFreqs, true];
+            };
+        },
+        [_group]
+    ] call CBA_fnc_waitUntilAndExecute;
+}];
+
+
+
 publicVariable QUOTE(DFUNC(missingModMessage));

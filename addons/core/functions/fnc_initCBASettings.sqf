@@ -291,17 +291,17 @@
     {["serious_channelPassword", _this] call TFAR_fnc_setPluginSetting; ["serious_channelName", _this] call TFAR_fnc_setPluginSetting;}
 ] call CBA_Settings_fnc_init;
 [
-    "TFAR_SameSRFrequenciesForSide",
+    "TFAR_SameSRFrequenciesPerGroup",
     "CHECKBOX",
-    ELSTRING(settings,same_sw_frequencies_for_side),
+    ELSTRING(settings,same_sr_frequencies_per_group),
     localize ELSTRING(settings,global),
     false,
     1
 ] call CBA_Settings_fnc_init;
 [
-    "TFAR_SameSRFrequenciesPerGroup",
+    "TFAR_SameSRFrequenciesForSide",
     "CHECKBOX",
-    ELSTRING(settings,same_sr_frequencies_per_group),
+    ELSTRING(settings,same_sw_frequencies_for_side),
     localize ELSTRING(settings,global),
     false,
     1
