@@ -28,7 +28,7 @@ params ["_channels", "_max_freq", "_min_freq", "_freq_rp"];
 
 private _frequencies = [];
 
-for "_i" from 0 to _channels step 1 do {
+for "_i" from 0 to (_channels - 1) step 1 do {
     _frequencies pushBack ((random (_max_freq - _min_freq)) + _min_freq);
 };
 
