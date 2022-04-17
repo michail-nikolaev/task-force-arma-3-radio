@@ -65,20 +65,6 @@ GVAR(instanciationIsReady) = false;
     }
 ] call CBA_fnc_waitUntilAndExecute;
 
-// Fire CBA event on group creation
-GVAR(oldGroups) = allGroups;
-[{
-    private _newAllGroups = allGroups;
-    if !(_newAllGroups isEqualTo GVAR(oldGroups)) then {
-
-        {
-            [QGVAR(groupCreated), [_x]] call CBA_fnc_localEvent;
-        } forEach (_newAllGroups - GVAR(oldGroups));
-
-        GVAR(oldGroups) = _newAllGroups;
-    };
-}, 0] call CBA_fnc_addPerFrameHandler;
-
 [
     "CBA_settingsInitialized",
     {
