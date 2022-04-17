@@ -23,6 +23,10 @@
 
 params ["_side", "_radioType"];
 
+if (_side == independent) then {
+    _side = "Independent";
+};
+
 private _result = "";
 switch (_radioType) do {
     case 0: {
