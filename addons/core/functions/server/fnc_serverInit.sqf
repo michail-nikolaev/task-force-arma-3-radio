@@ -155,6 +155,4 @@ addMissionEventHandler ["GroupCreated", {
     ] call CBA_fnc_waitUntilAndExecute;
 }];
 
-
-
 publicVariable QUOTE(DFUNC(missingModMessage));
