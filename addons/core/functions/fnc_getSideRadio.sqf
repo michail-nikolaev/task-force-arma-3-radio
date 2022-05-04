@@ -23,7 +23,7 @@
 
 params ["_side", "_radioType"];
 
-if (_side == independent) then {
+if (_side == independent) then { // hotfix, we want "independent" instead of "guer"
     _side = "Independent";
 };
 
