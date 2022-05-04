@@ -4,109 +4,135 @@
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_CONNECT_WIRELESS">
             <Original>Connect to Intercom</Original>
             <English>Connect to Intercom</English>
+            <Czech>Připojit k intercomu</Czech>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_DISCONNECT_WIRELESS">
             <Original>Disconnect from Intercom</Original>
             <English>Disconnect from Intercom</English>
+            <Czech>Odpojit od intercomu</Czech>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_WIRELESS_SELFACTIONS">
             <Original>Wireless Intercom</Original>
             <English>Wireless Intercom</English>
+            <Czech>Bezdrátový intercom</Czech>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PICKUP_PHONE">
             <Original>Pickup Intercom Phone</Original>
             <English>Pickup Intercom Phone</English>
+            <Czech>Vzít intercom telefon</Czech>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PUT_AWAY_PHONE">
             <Original>Put away Intercom Phone</Original>
             <English>Put away Intercom Phone</English>
+            <Czech>Dát pryč intercom telefon</Czech>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PHONE_BUSY">
             <Original>Intercom Phone in use</Original>
             <English>Intercom Phone in use</English>
+            <Czech>Intercom telefon je používán</Czech>
         </Key>
-        <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SOMEONE_USING_PHONE">
+		<Key ID="STR_TFAR_EXTERNAL_INTERCOM_SOMEONE_USING_PHONE">
             <Original><br /><br /><t align='center'>%1 is currently using the Intercom Phone</t></Original>
             <English><br /><br /><t align='center'>%1 is currently using the Intercom Phone</t></English>
+			<Czech><br /><br /><t align='center'>%1 is momentálně používá telefon intercomu</t></Czech>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_HEADGEAR_NOT_WIRELESS_CAPABLE">
             <Original><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable</t></Original>
             <English><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable</t></English>
+			<Czech><br /><br /><t align='center'>Your %1 není schopno bezdrátového spojení</t></Czech>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_RESET">
             <Original>External Intercom has been Reset</Original>
             <English>External Intercom has been Reset</English>
+            <Czech>Vnější intercom byl resetován</Czech>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PHONE_INDICATOR">
             <Original>External Intercom Connection Indicator</Original>
             <English>External Intercom Connection Indicator</English>
+            <Czech>Indikátor spojení vnějšího intercomu</Czech>
         </Key>
         <Container name="settings">
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTINGS_CATEGORY_EXTERNAL_INTERCOM">
                 <Original>External Intercom</Original>
                 <English>External Intercom</English>
+                <Czech>Vnější intercom</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_HEADGEAR_HEADER">
                 <Original>Additional Wireless Compatible Headgear</Original>
                 <English>Additional Wireless Compatible Headgear</English>
+                <Czech>Další vybavení compatibilní s bezdrátem</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_HEADGEAR_DESC">
                 <Original>A list of Headgear, in addition to the base list that are able to be connected to a vehicle's intercom system wirelessly</Original>
                 <English>A list of Headgear, in addition to the base list that are able to be connected to a vehicle's intercom system wirelessly</English>
+                <Czech>Seznam vybavení, které rozšíří základní seznam vybavení schopnýchse bezdrátově připojit k intercomu vozidla</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_HEADER">
                 <Original>Enable for</Original>
                 <English>Enable for</English>
+                <Czech>Povolit pro</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_DESC">
                 <Original>Enable, Enable for player on the same side only, or just Disable</Original>
                 <English>Enable, Enable for player on the same side only, or just Disable</English>
+                <Czech>Povolit. Povolit pro hráče na stejně straně, nebo prostě jen zakázat.</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_0">
                 <Original>Enable</Original>
                 <English>Enable</English>
+                <Czech>Povolit</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_1">
                 <Original>Same Side Only</Original>
                 <English>Same Side Only</English>
+                <Czech>Pouze stejná strana</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_2">
                 <Original>Disable</Original>
                 <English>Disable</English>
+                <Czech>Zakázat</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_RANGE_HEADER">
                 <Original>External Intercom Range - Wireless</Original>
                 <English>External Intercom Range - Wireless</English>
+                <Czech>Dosah vnějšího intercomu - Bezdrátový</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_RANGE_DESC">
                 <Original>The maximum range until which the player will remain connected to the intercom of a vehicle</Original>
                 <English>The maximum range until which the player will remain connected to the intercom of a vehicle</English>
+                <Czech>Maximální dosah po který hráč zůstane připojen k intercomu vozidla</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_PHONE_RANGE_HEADER">
                 <Original>External Intercom Range - Phone</Original>
                 <English>External Intercom Range - Phone</English>
+                <Czech>Dosah vnějšího intercomu - Telefon</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_PHONE_RANGE_DESC">
                 <Original>The maximum range until which the player will remain connected to the intercom of a vehicle</Original>
                 <English>The maximum range until which the player will remain connected to the intercom of a vehicle</English>
+                <Czech>Maximální dosah po který hráč zůstane připojen k intercomu vozidla</Czech>
             </Key>
         </Container>
         <Container name="3den">
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_3DEN_ATTRIBUTE_MAX_RANGE_PHONE_HEADER">
                 <Original>Ext. Intercom Phone Max Range</Original>
                 <English>Ext. Intercom Phone Max Range</English>
+                <Czech>Dosah telefonu vnějšího intercomu</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_3DEN_ATTRIBUTE_MAX_RANGE_PHONE_DESC">
                 <Original>The maximum range a player can stand from the connection point and remain connected. Set to 0 for this to be ignored and global settings to apply.</Original>
                 <English>The maximum range a player can stand from the connection point and remain connected. Set to 0 for this to be ignored and global settings to apply.</English>
+                <Czech>Maximální dosah po který hráč zůstane připojen k intercomu vozidla. Nastavte na 0 pro ignorování tohoto nastavení a globální nastavení bude aplikováno.</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_3DEN_ATTRIBUTE_MAX_RANGE_WIRELESS_HEADER">
                 <Original>Ext. Intercom Wireless Max Range</Original>
                 <English>Ext. Intercom Wireless Max Range</English>
+                <Czech>Dosah bezdrátu vnějšího intercomu</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_3DEN_ATTRIBUTE_MAX_RANGE_WIRELESS_DESC">
                 <Original>The maximum range a player can stand from the vehicle and remain connected. Set to 0 for this to be ignored and global settings to apply.</Original>
                 <English>The maximum range a player can stand from the vehicle and remain connected. Set to 0 for this to be ignored and global settings to apply.</English>
+                <Czech>Maximální dosah po který hráč zůstane připojen k intercomu vozidla. Nastavte na 0 pro ignorování tohoto nastavení a globální nastavení bude aplikováno.</Czech>
             </Key>
         </Container>
     </Package>
