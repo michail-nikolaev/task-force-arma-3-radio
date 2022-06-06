@@ -310,7 +310,7 @@
                 <Russian>Одинаковые частоты ДС для всей стороны</Russian>
                 <Turkish>Taraf için aynı LR frekansları</Turkish>
                 <Italian>Stesse frequenze LR per lato</Italian>
-                <Czech>Stejné LR frekvence pro stranu</Czech>
+                <Czech>Stejné DV frekvence pro stranu</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_same_sw_frequencies_for_side">
                 <Original>Same SR frequencies for side</Original>
@@ -326,7 +326,7 @@
                 <Russian>Одинаковые частоты БС для всей стороны</Russian>
                 <Turkish>Taraf için aynı SR frekansları</Turkish>
                 <Italian>Stesse frequenze SR per lato</Italian>
-                <Czech>Stejné SR frekvence pro stranu</Czech>
+                <Czech>Stejné KV frekvence pro stranu</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_give_microdagr_to_soldier">
                 <Original>Give MicroDAGR to soldier</Original>
@@ -856,7 +856,7 @@
                 <Korean>기본 단파 설정</Korean>
                 <Russian>Частоты БС по умолчанию:</Russian>
                 <Italian>Frequenze standard a corto raggio:</Italian>
-                <Czech>Výchozí SR frekvence:</Czech>
+                <Czech>Výchozí KV frekvence:</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_desc">
                 <Original>Define the default SR-frequencies for this entity</Original>
@@ -866,7 +866,7 @@
                 <Italian>Definire le frequenze corto raggio predefinite per questa entità</Italian>
                 <Korean>이 엔티티의 기본 단파 설정 정의</Korean>
                 <Russian>Установить частоты ближней связи по умолчанию для этого юнита</Russian>
-                <Czech>Definuje výchozí SR-frekvence pro tuto entitu</Czech>
+                <Czech>Definuje výchozí KV frekvence pro tuto entitu</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR">
                 <Original>Default LR-frequencies:</Original>
@@ -876,7 +876,7 @@
                 <Korean>기본 장파 설정</Korean>
                 <Russian>Частоты ДС по умолчанию:</Russian>
                 <Italian>Frequenze a lungo raggio predefinite:</Italian>
-                <Czech>Výchozí LR frekvence:</Czech>
+                <Czech>Výchozí DV frekvence:</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_desc">
                 <Original>Define the default LR-frequencies for this entity</Original>
@@ -886,7 +886,7 @@
                 <Korean>이 엔티티의 기본 장파 설정 정의</Korean>
                 <Russian>Установить частоты дальней связи по умолчанию для этого юнита</Russian>
                 <Italian>Definire le frequenze a lungo raggio predefinite per questa entità</Italian>
-                <Czech>Definujte výchozí LR-frekvence pro tuto entitu</Czech>
+                <Czech>Definujte výchozí DV frekvence pro tuto entitu</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_west">
                 <Original>Default SR-frequencies (NATO)</Original>
@@ -896,7 +896,7 @@
                 <Korean>기본 단파 설정 (NATO)</Korean>
                 <Russian>Частоты ближней связи по умолчанию (NATO)</Russian>
                 <Italian>Frequenze standard a corto raggio (NATO)</Italian>
-                <Czech>Výchozí SR-frekvence (NATO)</Czech>
+                <Czech>Výchozí KV frekvence (NATO)</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_west_desc">
                 <Original>Define the default SR-frequencies for the NATO side as a list. e.g.: 99,101,250</Original>
@@ -916,7 +916,7 @@
                 <Korean>기본 단파 설정 (CSAT)</Korean>
                 <Russian>Частоты ближней связи по умолчанию (CSAT)</Russian>
                 <Italian>Frequenze standard a corto raggio (CSAT)</Italian>
-                <Czech>Výchozí SR-frekvence (CSAT)</Czech>
+                <Czech>Výchozí KV frekvence (CSAT)</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_east_desc">
                 <Original>Define the default SR-frequencies for the CSAT side as a list. e.g.: 99,101,250</Original>
@@ -936,7 +936,7 @@
                 <Korean>기본 단파 설정 (AAF)</Korean>
                 <Russian>Частоты ближней связи по умолчанию (AAF)</Russian>
                 <Italian>Frequenze standard a corto raggio (AAF)</Italian>
-                <Czech>Výchozí SR-frekvence (AAF)</Czech>
+                <Czech>Výchozí KV frekvence (AAF)</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR_independent_desc">
                 <Original>Define the default SR-frequencies for the AAF side as a list. e.g.: 99,101,250</Original>
@@ -946,7 +946,7 @@
                 <Korean>AAF(해방군)의 기본 단파 설정 정의 목록 (예: 99,101,250)</Korean>
                 <Russian>Задать частоты ближней связи по умолчанию для стороны AAF в виде списка. Например: 99,101,250</Russian>
                 <Italian>Definire le frequenze a corto raggio predefinite per la AAF come un elenco. es.: 99,101,250</Italian>
-                <Czech>Definuje výchozí SR-frekvence pro stranu AAF jako seznam. např.: 99,101,250</Czech>
+                <Czech>Definuje výchozí KV frekvence pro stranu AAF jako seznam. např.: 99,101,250</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_west">
                 <Original>Default LR-frequencies (NATO)</Original>
@@ -956,7 +956,7 @@
                 <Korean>기본 장파 설정 (NATO)</Korean>
                 <Russian>Частоты дальней связи по умолчанию (NATO)</Russian>
                 <Italian>Frequenze a lungo raggio predefinite (NATO)</Italian>
-                <Czech>Výchozí LR-frekvence (NATO)</Czech>
+                <Czech>Výchozí DV frekvence (NATO)</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_west_desc">
                 <Original>Define the default LR-frequencies for the NATO side as a list. e.g.: 45, 47, 70</Original>
@@ -966,7 +966,7 @@
                 <Korean>NATO(청군)의 기본 장파 설정 정의 목록 (예: 45, 47, 70)</Korean>
                 <Russian>Задать частоты дальней связи по умолчанию для стороны NATO в виде списка. Например: 45, 47, 70</Russian>
                 <Italian>Definire le frequenze a lungo raggio predefinite per la NATO come un elenco. es.: 45, 47, 70</Italian>
-                <Czech>Definuje výchozí LR-frekvence pro stranu NATO jako seznam. např.: 45, 47, 70</Czech>
+                <Czech>Definuje výchozí DV frekvence pro stranu NATO jako seznam. např.: 45, 47, 70</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_east">
                 <Original>Default LR-frequencies (CSAT)</Original>
@@ -976,7 +976,7 @@
                 <Korean>기본 장파 설정 (CSAT)</Korean>
                 <Russian>Частоты дальней связи по умолчанию (CSAT)</Russian>
                 <Italian>Frequenze a lungo raggio predefinite (CSAT)</Italian>
-                <Czech>Výchozí LR-frekvence (CSAT)</Czech>
+                <Czech>Výchozí DV frekvence (CSAT)</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_east_desc">
                 <Original>Define the default LR-frequencies for the CSAT side as a list. e.g.: 45, 47, 70</Original>
@@ -986,7 +986,7 @@
                 <Korean>CSAT(대항군)의 기본 장파 설정 정의 목록 (예: 45, 47, 70)</Korean>
                 <Russian>Задать частоты дальней связи по умолчанию для стороны CSAT в виде списка. Например: 45, 47, 70</Russian>
                 <Italian>Definire le frequenze a lungo raggio predefinite per la CSAT come un elenco. es.: 45, 47, 70</Italian>
-                <Czech>Definuje výchozí LR-frekvence pro stranu CSAT jako seznam. např.: 45, 47, 70</Czech>
+                <Czech>Definuje výchozí DV frekvence pro stranu CSAT jako seznam. např.: 45, 47, 70</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_independent">
                 <Original>Default LR-frequencies (AAF)</Original>
@@ -996,7 +996,7 @@
                 <Korean>기본 장파 설정 (AAF)</Korean>
                 <Russian>Частоты дальней связи по умолчанию (AAF)</Russian>
                 <Italian>Frequenze a lungo raggio predefinite (AAF)</Italian>
-                <Czech>Výchozí LR-frekvence (AAF)</Czech>
+                <Czech>Výchozí DV frekvence (AAF)</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_LR_independent_desc">
                 <Original>Define the default LR-frequencies for the AAF side as a list. e.g.: 45, 47, 70</Original>
@@ -1006,7 +1006,7 @@
                 <Korean>AAF(해방군)의 기본 장파 설정 정의 목록 (예: 45, 47, 70)</Korean>
                 <Russian>Задать частоты дальней связи по умолчанию для стороны AAF в виде списка. Например: 45, 47, 70</Russian>
                 <Italian>Definire le frequenze a lungo raggio predefinite per la AAF come un elenco. es.: 45, 47, 70</Italian>
-                <Czech>Definuje výchozí LR-frekvence pro stranu AAF jako seznam. např.: 45, 47, 70</Czech>
+                <Czech>Definuje výchozí DV frekvence pro stranu AAF jako seznam. např.: 45, 47, 70</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_west">
                 <Original>Default rifleman-radio (NATO)</Original>
@@ -2118,7 +2118,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>短程無線電頻道</Chinese>
                 <Chinesesimp>短程无线电频道</Chinesesimp>
                 <Italian>Canale a corto raggio</Italian>
-                <Czech>SR kanál</Czech>
+                <Czech>KV kanál</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LR_Channel">
                 <Original>LR Channel</Original>
@@ -2128,7 +2128,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>長程無線電頻道</Chinese>
                 <Chinesesimp>长程无线电频道</Chinesesimp>
                 <Italian>Canale a lungo raggio</Italian>
-                <Czech>LR kanál</Czech>
+                <Czech>DV kanál</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_ChangeSpeechVolume">
                 <Original>Change Speaking Volume</Original>
@@ -2172,7 +2172,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>向右循环短程无线电</Chinesesimp>
                 <Russian>Переключить на следующую рацию ближней связи</Russian>
                 <Italian>Ciclo successivo radio a corto raggio</Italian>
-                <Czech>Cyklovat další SR rádia</Czech>
+                <Czech>Cyklovat další KV rádia</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CyclePrevSRRadios">
                 <Original>Cycle Previous SR Radios</Original>
@@ -2183,17 +2183,17 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>向左循环短程无线电</Chinesesimp>
                 <Russian>Переключить на предыдущую рацию ближней связи</Russian>
                 <Italian>Ciclo di radio a corto raggio precedenti</Italian>
-                <Czech>Cyklovat předchozí SR rádia</Czech>
+                <Czech>Cyklovat předchozí KV rádia</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CycleNextSRChannel">
                 <Original>Cycle Next SR Channel</Original>
                 <English>Cycle Next SR Channel</English>
-                <Czech>Cyklovat další SR kanál</Czech>
+                <Czech>Cyklovat další KV kanál</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CyclePrevSRChannel">
                 <Original>Cycle Previous SR Channel</Original>
                 <English>Cycle Previous SR Channel</English>
-                <Czech>Cyklovat předchozí SR kanál</Czech>
+                <Czech>Cyklovat předchozí KV kanál</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CycleNextLRRadios">
                 <Original>Cycle Next LR Radios</Original>
@@ -2204,7 +2204,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>向右循环长程无线电</Chinesesimp>
                 <Russian>Переключить на следующую дальней связи</Russian>
                 <Italian>Scorri le prossime radio a lungo raggio</Italian>
-                <Czech>Cyklovat další LR rádia</Czech>
+                <Czech>Cyklovat další DV rádia</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CyclePrevLRRadios">
                 <Original>Cycle Previous LR Radios</Original>
@@ -2215,17 +2215,17 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>向左循环长程无线电</Chinesesimp>
                 <Russian>Переключить на предыдущую рацию дальней связи</Russian>
                 <Italian>Ciclo radio a lungo raggio precedenti</Italian>
-                <Czech>Cyklovat předchozí LR rádia</Czech>
+                <Czech>Cyklovat předchozí DV rádia</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CycleNextLRChannel">
                 <Original>Cycle Next LR Channel</Original>
                 <English>Cycle Next LR Channel</English>
-                <Czech>Cyklovat další LR kanál</Czech>
+                <Czech>Cyklovat další DV kanál</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CyclePrevLRChannel">
                 <Original>Cycle Previous LR Channel</Original>
                 <English>Cycle Previous LR Channel</English>
-                <Czech>Cyklovat předchozí LR kanál</Czech>
+                <Czech>Cyklovat předchozí DV kanál</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWStereo_Both">
                 <Original>SR Stereo: Both</Original>
@@ -2236,7 +2236,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>短程无线电声道: 双声道</Chinesesimp>
                 <Russian>Рация БС: Оба наушника</Russian>
                 <Italian>Stereo SR: entrambi</Italian>
-                <Czech>SR Stereo: Obojí</Czech>
+                <Czech>KV Stereo: Obojí</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWStereo_Left">
                 <Original>SR Stereo: Left</Original>
@@ -2247,7 +2247,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>短程无线电声道: 左声道</Chinesesimp>
                 <Russian>Рация БС: Левый наушник</Russian>
                 <Italian>Stereo SR: Sinistra</Italian>
-                <Czech>SR Stereo: Levý</Czech>
+                <Czech>KV Stereo: Levý</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWStereo_Right">
                 <Original>SR Stereo: Right</Original>
@@ -2258,7 +2258,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>短程无线电声道: 右声道</Chinesesimp>
                 <Russian>Рация БС: Правый наушник</Russian>
                 <Italian>Stereo SR: Destra</Italian>
-                <Czech>SR Stereo: Pravý</Czech>
+                <Czech>KV Stereo: Pravý</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRStereo_Both">
                 <Original>LR Stereo: Both</Original>
@@ -2269,7 +2269,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>长程无线电声道: 双声道</Chinesesimp>
                 <Russian>Рация ДС: Оба наушника</Russian>
                 <Italian>Stereo LR: entrambi</Italian>
-                <Czech>LR Stereo: Obojí</Czech>
+                <Czech>DV Stereo: Obojí</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRStereo_Left">
                 <Original>LR Stereo: Left</Original>
@@ -2280,7 +2280,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>长程无线电声道: 左声道</Chinesesimp>
                 <Russian>Рация ДС: Левый наушник</Russian>
                 <Italian>Stereo LR: Sinistra</Italian>
-                <Czech>LR Stereo: Levý</Czech>
+                <Czech>DV Stereo: Levý</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRStereo_Right">
                 <Original>LR Stereo: Right</Original>
@@ -2291,7 +2291,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>长程无线电声道: 右声道</Chinesesimp>
                 <Russian>Рация ДС: Правый наушник</Russian>
                 <Italian>Stereo LR: Destra</Italian>
-                <Czech>LR Stereo: Pravý</Czech>
+                <Czech>DV Stereo: Pravý</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWTransmit">
                 <Original>SR Transmit</Original>
@@ -2302,7 +2302,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>短程无线电 发送</Chinesesimp>
                 <Russian>Тангента рации ближней связи</Russian>
                 <Italian>Trasmissione SR</Italian>
-                <Czech>SR vysílání</Czech>
+                <Czech>KV vysílání</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWTransmitAdditional">
                 <Original>SR Transmit Additional</Original>
@@ -2313,7 +2313,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>短程无线电附加频道 发送</Chinesesimp>
                 <Russian>Тангента доп. канала рации ближней связи</Russian>
                 <Italian>SR Trasmissione aggiuntiva</Italian>
-                <Czech>SR dodatečné vysílání</Czech>
+                <Czech>KV dodatečné vysílání</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRTransmit">
                 <Original>LR Transmit</Original>
@@ -2324,7 +2324,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>长程无线电 发送</Chinesesimp>
                 <Russian>Тангента рации дальней связи</Russian>
                 <Italian>Trasmissione LR</Italian>
-                <Czech>LR vysílání</Czech>
+                <Czech>DV vysílání</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LRTransmitAdditional">
                 <Original>LR Transmit Additional</Original>
@@ -2335,7 +2335,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>长程无线电附加频道 发送</Chinesesimp>
                 <Russian>Тангента доп. канала рации дальней связи</Russian>
                 <Italian>LR Trasmissione aggiuntiva</Italian>
-                <Czech>LR dodatečné vysílání</Czech>
+                <Czech>DV dodatečné vysílání</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LowerHeadset">
                 <Original>Lower Headset</Original>
@@ -2986,7 +2986,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
         <Key ID="STR_TFAR_CORE_active_lr_channel">
             <Original>LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
             <English>LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</English>
-            <Czech>LR kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
+            <Czech>DV kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
             <French>Canal LP : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
             <German>LS-Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
             <Italian>Canale OL: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
@@ -3003,7 +3003,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
         <Key ID="STR_TFAR_CORE_active_additional_lr_channel">
             <Original>Additional LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Original>
             <English>Additional LR channel: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</English>
-            <Czech>Dodatečný LR kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
+            <Czech>Dodatečný DV kanál: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Czech>
             <French>Canal additionnel LP : &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</French>
             <German>Zusätzlicher LS-Kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</German>
             <Italian>Canale aggiuntivo OL: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
@@ -3440,7 +3440,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Chinesesimp>TFAR - 无法从长程无线电复制设定到短程无线电上</Chinesesimp>
             <Russian>TFAR - невозможно скопировать из ДС в БС</Russian>
             <Italian>TFAR - impossibile copiare da LR a SW</Italian>
-            <Czech>TFAR - nelze kopírovat z LR do SR</Czech>
+            <Czech>TFAR - nelze kopírovat z LR do KV</Czech>
         </Key>
         <Key ID="STR_TFAR_CORE_copySetting_SW_LR_Warning">
             <Original>TFAR - unable to copy from SR to LR</Original>
@@ -3451,7 +3451,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Chinesesimp>TFAR - 无法从短程无线电复制设定到长程无线电上</Chinesesimp>
             <Russian>TFAR - невозможно скопировать из БС в ДС</Russian>
             <Italian>TFAR - impossibile copiare da SR a LR</Italian>
-            <Czech>TFAR - nelze kopírovat ze SR do LR</Czech>
+            <Czech>TFAR - nelze kopírovat ze KV do DV</Czech>
         </Key>
         <Key ID="STR_TFAR_CORE_openSWMenu">
             <Original>Open SR Radio Menu</Original>
@@ -3463,7 +3463,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Russian>Открыть меню рации ближней связи</Russian>
             <Turkish>KM Radyo Menüsünü Aç</Turkish>
             <Italian>Apri il menu della radio SR</Italian>
-            <Czech>Otevřít SR Rádio Menu</Czech>
+            <Czech>Otevřít KV Rádio Menu</Czech>
         </Key>
         <Key ID="STR_TFAR_CORE_openLRMenu">
             <Original>Open LR Radio Menu</Original>
@@ -3475,7 +3475,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Russian>Открыть меню рации дальней связи</Russian>
             <Turkish>UM Radyo Menüsünü Aç</Turkish>
             <Italian>Apri il menu della radio LR</Italian>
-            <Czech>Otevřít LR Rádio Menu</Czech>
+            <Czech>Otevřít DV Rádio Menu</Czech>
         </Key>
         <Key ID="STR_TFAR_CORE_RADIOS">
             <Original>Radios</Original>
