@@ -37,7 +37,7 @@
                 <Russian>TFAR-Устарело</Russian>
                 <Turkish>TFAR Tarafından Kullanımdan Kaldırıldı</Turkish>
                 <Italian>TFAR Deprecato</Italian>
-                <Czech>TFAR-zastaralé</Czech>
+                <Czech>TFAR zastaralé</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_3DEN_Properties">
                 <Original>TFAR Properties</Original>
@@ -109,7 +109,7 @@
                 <Russian>TFAR не работает в Одиночной игре. Для проверки работы TFAR можете воспользоваться режимом Сетевой игры в редакторе.</Russian>
                 <Turkish>TFAR, Tek Oyunculu'da çalışmaz. TFAR malzemelerini test etmeniz gerekiyorsa Çok Oyunculu Editor'ü kullanın.</Turkish>
                 <Italian>TFAR non funziona in Giocatore singolo. Usa l'editor multigiocatore se hai bisogno di testare cose TFAR.</Italian>
-                <Czech>TFAR nefunguje v režimu jednoho hráče. Pokud potřebujete otestovat  TFAR, použijte Editor pro více hráčů.</Czech>
+                <Czech>TFAR nefunguje v režimu jednoho hráče. Pokud potřebujete otestovat TFAR, použijte Editor pro více hráčů.</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_WM_NotLoad">
                 <Original>TASK FORCE RADIO NOT LOADED</Original>
@@ -521,7 +521,7 @@
                 <Russian>Снижение громкости переговорного устройства при входящей радиопередаче</Russian>
                 <Italian>Riduzione volume interfono su trasmissione radio veicolare in arrivo</Italian>
                 <English>Intercom volume reduction on incoming vehicle radio transmission</English>
-                <Czech>Snížení hlasitosti interkomu při příchozím rádivém přenosu vozidla</Czech>
+                <Czech>Snížení hlasitosti interkomu při příchozí komunikaci na rádiu vozidla</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultIntercomChannel">
                 <Original>Default Intercom Channel</Original>
@@ -623,7 +623,7 @@
                 <Russian>Производительность</Russian>
                 <Turkish>Performans</Turkish>
                 <Italian>Prestazione</Italian>
-                <Czech>Výkonnostní</Czech>
+                <Czech>Výkon</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_hudVolumeIndicator">
                 <Original>Show HUD Voice Volume indicator</Original>
@@ -786,7 +786,7 @@
                 <Chinese>使用宙斯編輯器時可以聆聽到玩家的語音</Chinese>
                 <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
                 <Italian>Ascolta la voce dalla fotocamera del curatore quando sei nell'interfaccia di Zeus</Italian>
-                <Czech>Slyšet hlasy z kamery kurátory, když jste v rozhraní Dia</Czech>
+                <Czech>Slyšet hlasy z kamery kurátora, když jste v rozhraní Dia</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_splendidCamEars">
                 <English>Hearing from Splendid Camera</English>
@@ -801,7 +801,7 @@
                 <German>Kein Automove im Spectator</German>
                 <Japanese>スペクテイターで自動移動を無効化</Japanese>
                 <Italian>Nessun movimento automatico in spettatore</Italian>
-                <Czech>Žádný automatický pohyb v režimu diváka</Czech>
+                <Czech>Nepřesouvat hráče automaticky v režimu diváka</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator_desc">
                 <English>Don't force move to TFAR channel while in spectator mode</English>
@@ -833,7 +833,7 @@
                 <Chinesesimp>全双工模式</Chinesesimp>
                 <Russian>Full-Duplex</Russian>
                 <Italian>Full-Duplex</Italian>
-                <Czech>Plně Duplexní</Czech>
+                <Czech>Plný duplex</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_FullDuplexDescription">
                 <Original>Allows Radios to simultaneously receive while transmitting.</Original>
@@ -846,7 +846,7 @@
                 <Chinesesimp>允许无线电能同时接收与发送讯号。</Chinesesimp>
                 <Russian>Разрешает прием во время радиопередачи</Russian>
                 <Italian>Consente alle radio di ricevere simultaneamente durante la trasmissione.</Italian>
-                <Czech>Umožňuje rádiům současně přijímat při vysílání.</Czech>
+                <Czech>Umožňuje rádiům přijímat a vysílat současně.</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioFrequencies_SR">
                 <Original>Default SR-frequencies:</Original>
@@ -1026,7 +1026,7 @@
                 <Korean>NATO(청군)의 기본 개인 무전 설정 정의</Korean>
                 <Russian>Класс стандартной рации солдата для стороны NATO.</Russian>
                 <Italian>Definire la classe radio-fuciliere predefinita per la NATO.</Italian>
-                <Czech>Definuje výchozí třídu rádia střelec pro stranu NATO.</Czech>
+                <Czech>Definuje výchozí třídu rádia střelce pro stranu NATO.</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_east">
                 <Original>Default rifleman-radio (CSAT)</Original>
@@ -1036,7 +1036,7 @@
                 <Korean>기본 개인 무전 설정 (CSAT)</Korean>
                 <Russian>Стандартная рация солдата (CSAT)</Russian>
                 <Italian>Radio-fuciliere predefinita (CSAT)</Italian>
-                <Czech>Výchozí rádi střelce (CSAT)</Czech>
+                <Czech>Výchozí rádio střelce (CSAT)</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_east_desc">
                 <Original>Define the default rifleman-radio class for the CAST side.</Original>
@@ -1046,7 +1046,7 @@
                 <Korean>CSAT(대항군)의 기본 개인 무전 설정 정의</Korean>
                 <Russian>Класс стандартной рации солдата для стороны CSAT.</Russian>
                 <Italian>Definire la classe radio-fuciliere predefinita per la CSAT.</Italian>
-                <Czech>Definuje výchozí třídu rádia střelec pro stranu CAST.</Czech>
+                <Czech>Definuje výchozí třídu rádia střelce pro stranu CAST.</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_DefaultRadioRifleman_independent">
                 <Original>Default rifleman-radio (AAF)</Original>
@@ -1408,7 +1408,7 @@
                 <Japanese>ブリーフィング中にインスタンス化 (非推奨)</Japanese>
                 <Russian>Выдавать рации во время брифинга (не рекоменд.)</Russian>
                 <Italian>Crea un'istanza durante il briefing (non consigliato)</Italian>
-                <Czech>Instantovat během briefingu(není doporučeno)</Czech>
+                <Czech>Inicializovat během briefingu (není doporučeno)</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_instantiateAtBriefing_desc">
                 <Original>Instantiate the radios as soon as possible. This is intended to be used ONLY in non persistent big missions &gt; 100 players.</Original>
@@ -1443,7 +1443,7 @@
                 <English>Disables automatically local muting players in Teamspeak. (causes high Performance cost)</English>
                 <German>Deaktiviert automatisches Lokales Muten von Spielern im Teamspeak. (Erzeugt hohe Rechenlast)</German>
                 <Italian>Disabilitato automaticamente l'audio locale dei giocatori in Teamspeak. (causa un alto costo delle prestazioni)</Italian>
-                <Czech>Zakáže automatické ztlumení ztlumení hráčů v Teamspeaku. (vysoce náročné na výkon)</Czech>
+                <Czech>Zakáže automatické ztlumení hráčů v Teamspeaku. (vysoce náročné na výkon)</Czech>
             </Key>
         </Container>
         <Container name="diary">
@@ -2346,7 +2346,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>取下耳机</Chinesesimp>
                 <Russian>Снять гарнитуру</Russian>
                 <Italian>Auricolare inferiore</Italian>
-                <Czech>Snížit headset</Czech>
+                <Czech>Sundat headset</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_RaiseHeadset">
                 <Original>Raise Headset</Original>
@@ -2357,7 +2357,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>戴上耳机</Chinesesimp>
                 <Russian>Надеть гарнитуру</Russian>
                 <Italian>Alza auricolare</Italian>
-                <Czech>Zvýšit headset</Czech>
+                <Czech>Nasadit headset</Czech>
             </Key>
             <Key ID="STR_TFAR_CORE_key_RaiseLowerHeadset">
                 <Original>Raise/Lower Headset</Original>
@@ -2368,7 +2368,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>戴上耳机 / 取下耳机</Chinesesimp>
                 <Russian>Снять/Надеть гарнитуру</Russian>
                 <Italian>Alza/abbassa l'auricolare</Italian>
-                <Czech>Zvýšit/snížit headset</Czech>
+                <Czech>Nasadit/Sundat headset</Czech>
             </Key>
         </Container>
         <Key ID="STR_TFAR_CORE_different_version">
