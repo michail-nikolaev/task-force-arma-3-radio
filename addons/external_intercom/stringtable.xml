@@ -24,7 +24,7 @@
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PUT_AWAY_PHONE">
             <Original>Put away Intercom Phone</Original>
             <English>Put away Intercom Phone</English>
-            <Czech>Dát pryč interkom telefon</Czech>
+            <Czech>Odložit interkom telefon</Czech>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PHONE_BUSY">
             <Original>Intercom Phone in use</Original>
@@ -34,12 +34,12 @@
 		<Key ID="STR_TFAR_EXTERNAL_INTERCOM_SOMEONE_USING_PHONE">
             <Original><br /><br /><t align='center'>%1 is currently using the Intercom Phone</t></Original>
             <English><br /><br /><t align='center'>%1 is currently using the Intercom Phone</t></English>
-			<Czech><br /><br /><t align='center'>%1 is momentálně používá telefon interkomu</t></Czech>
+			<Czech><br /><br /><t align='center'>%1 momentálně používá telefon interkomu</t></Czech>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_HEADGEAR_NOT_WIRELESS_CAPABLE">
             <Original><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable</t></Original>
             <English><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable</t></English>
-			<Czech><br /><br /><t align='center'>Your %1 není schopno bezdrátového spojení</t></Czech>
+			<Czech><br /><br /><t align='center'>Tvůj %1 není schopno bezdrátového spojení</t></Czech>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_RESET">
             <Original>External Intercom has been Reset</Original>
@@ -60,12 +60,12 @@
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_HEADGEAR_HEADER">
                 <Original>Additional Wireless Compatible Headgear</Original>
                 <English>Additional Wireless Compatible Headgear</English>
-                <Czech>Další vybavení compatibilní s bezdrátem</Czech>
+                <Czech>Další vybavení kompatibilní s bezdrátem</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_HEADGEAR_DESC">
                 <Original>A list of Headgear, in addition to the base list that are able to be connected to a vehicle's intercom system wirelessly</Original>
                 <English>A list of Headgear, in addition to the base list that are able to be connected to a vehicle's intercom system wirelessly</English>
-                <Czech>Seznam vybavení, které rozšíří základní seznam vybavení schopnýchse bezdrátově připojit k interkomu vozidla</Czech>
+                <Czech>Seznam vybavení, které rozšíří základní seznam vybavení schopných se bezdrátově připojit k interkomu vozidla</Czech>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_HEADER">
                 <Original>Enable for</Original>
