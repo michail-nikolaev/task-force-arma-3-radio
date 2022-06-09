@@ -205,7 +205,7 @@
                 <Japanese>全ての無線機の通信範囲を管理するグローバル係数です。これは tf_receivingDistanceMultiplicator (標準で 100%) ユニット変数と乗算されます。</Japanese>
                 <Turkish>Herhangi bir radyo aralığını kontrol etmek için küresel bir katsayı. Bu, tf_receivingDistanceMultiplicator (varsayılan% 100) birim değişkeni ile çarpılır</Turkish>
                 <Italian>Un coefficiente globale per controllare qualsiasi portata radio. Questo viene moltiplicato con la variabile unitaria tf_receivingDistanceMultiplicator (predefinito 100%)</Italian>
-                <Czech>Globální koeficient pro ovládání jakéhokoli rádiového dosahu. To se vynásobí proměnnou jednotek tf_receivingDistanceMultiplicator (výchozí 100 %)</Czech>
+                <Czech>Globální koeficient pro ovládání jakéhokoli rádiového dosahu. To se vynásobí proměnnou jednotek tf_receivingDistanceMultiplicator (výchozí 100%)</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_VehicleIsolation">
                 <Original>Experimental Vehicle Isolation</Original>
@@ -563,7 +563,7 @@
                 <Russian>Задержка при отпускании тангенты (мсек)</Russian>
                 <Turkish>milisaniye cinsinden tangentReleaseDelay</Turkish>
                 <Italian>tangentReleaseDelay in millisecondi</Italian>
-                <Czech>tangentReleaseDelay v milisekundách</Czech>
+                <Czech>Opoždění vypnutí komunikace v milisekundách</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_positionUpdateMode">
                 <Original>Position Update Mode</Original>
@@ -820,7 +820,7 @@
                 <English>Disables the displaying of the "Not connected to TeamSpeak" message</English>
                 <German>Deaktiviert das Anzeigen der "Not connected to TeamSpeak" nachricht</German>
                 <Italian>Disabilita la visualizzazione del messaggio "Non connesso a TeamSpeak"</Italian>
-                <Czech>Zakáže zobrazování zprávy „Nepřipojeno k TeamSpeak“.</Czech>
+                <Czech>Zakáže zobrazování zprávy „Nepřipojeno k TeamSpeaku“.</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_FullDuplex">
                 <Original>Full-Duplex</Original>
