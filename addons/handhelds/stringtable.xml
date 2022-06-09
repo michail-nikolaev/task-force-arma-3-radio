@@ -105,7 +105,7 @@
             <Chinesesimp>AN/PRC-152短程个人无线电，有效距离5公里</Chinesesimp>
             <Turkish>AN/PRC-152 kişisel telsiz 5km</Turkish>
             <Italian>AN/PRC-152 radio personale 5 km</Italian>
-            <Czech>AN/PRC-152  Osobní rádio 5km</Czech>
+            <Czech>AN/PRC-152 Osobní rádio 5km</Czech>
         </Key>
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM">
             <Original>AN/PRC-148 JEM</Original>
@@ -122,7 +122,7 @@
             <Chinesesimp>AN/PRC-148 JEM短程个人无线电，有效距离5公里</Chinesesimp>
             <Turkish>AN/PRC-148 JEM kişisel telsiz 5km</Turkish>
             <Italian>AN/PRC-148 JEM radio personale 5 km</Italian>
-            <Czech>AN/PRC-148 JEM  Osobní rádio 5km</Czech>
+            <Czech>AN/PRC-148 JEM Osobní rádio 5km</Czech>
         </Key>
     </Package>
 </Project>
