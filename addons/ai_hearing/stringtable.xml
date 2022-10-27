@@ -7,7 +7,7 @@
             <German>Hörende KI</German>
             <Japanese>AI の聴覚</Japanese>
             <Korean>AI 듣기</Korean>
-            <Russian>AI Слух</Russian>
+            <Russian>ИИ Слух</Russian>
             <Turkish>BOT Algılaması</Turkish>
             <Italian>Udito AI</Italian>
             <Czech>Sluch AI</Czech>
@@ -28,7 +28,7 @@
             <English>AI Hearing Speakers</English>
             <German>Lautsprecher hörende KI</German>
             <Japanese>AI のスピーカー聴覚</Japanese>
-            <Russian>AI Слух: Динамики</Russian>
+            <Russian>ИИ Слух: Динамики</Russian>
             <Turkish>BOT İşitme Katsayısı</Turkish>
             <Italian>Altoparlante udito AI</Italian>
             <Czech>AI slyšící reproduktory</Czech>
@@ -38,7 +38,7 @@
             <English>If enabled, the ai is able to detect active speakers.\n Currently the ai detects if they receive a call and have ANY speaker active.</English>
             <German>Wenn aktiviert, dann reagiert die KI auf die aktive Lautsprecher der Spieler.\n Aktuell reagiert die KI auf eingehende Funksprüche, wenn ein BELIEBIGER Lautsprecher eingeschaltet ist.</German>
             <Japanese>有効化すると、AI はスピーカーからの話し声を検知します。\n 現在の AI は受信かいかなる稼働中のスピーカーを検知します。</Japanese>
-            <Russian>Если включено, боты могут обнаруживать включенные динамики.\n В настоящее время AI реагирует на входящие радиосообщения, когда ЛЮБОЙ динамик включен.</Russian>
+            <Russian>Если включено, боты могут обнаруживать включенные динамики.\n В настоящее время ИИ реагирует на входящие радиосообщения, когда ЛЮБОЙ динамик включен.</Russian>
             <Turkish>Etkinleştirilirse, BOT aktif konuşmacıları algılayabilir. \n Şu anda BOT, bir çağrı alıp almadığını ve HERHANGİ bir konuşmanın etkin olup olmadığını algılar.</Turkish>
             <Italian>Se abilitato, l'ai è in grado di rilevare gli altoparlanti attivi.\n Attualmente l'IA rileva se ricevono una chiamata e hanno QUALSIASI altoparlante attivo.</Italian>
             <Czech>Pokud povoleno, AI bude schopno detekovat aktivní reproduktory.\n Momentálně AI detekuje, jestli přijímají hovor a jsou NĚJAKÉ reproduktory aktivní.</Czech>

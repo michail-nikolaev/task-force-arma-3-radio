@@ -10,6 +10,7 @@
             <Chinesesimp>此模块必须用在无线电上</Chinesesimp>
             <Turkish>Bu bir Radyoda kullanılmalıdır</Turkish>
             <Czech>Toto musí být použito na rádio</Czech>
+            <Russian>Это должно быть использовано на рации</Russian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_FreqTitle">
             <Original>Frequency</Original>
@@ -20,6 +21,7 @@
             <Chinesesimp>频率</Chinesesimp>
             <Turkish>Frekans</Turkish>
             <Czech>Frekvence</Czech>
+            <Russian>Частота</Russian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ChannelTitle">
             <Original>Channel</Original>
@@ -30,6 +32,7 @@
             <Chinesesimp>频道</Chinesesimp>
             <Turkish>Kanal</Turkish>
             <Czech>Kanál</Czech>
+            <Russian>Канал</Russian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_SpeakerTitle">
             <Original>Speaker</Original>
@@ -40,6 +43,7 @@
             <Chinesesimp>扩音器</Chinesesimp>
             <Turkish>Hoparlör</Turkish>
             <Czech>Reproduktor</Czech>
+            <Russian>Динамики</Russian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_VolumeTitle">
             <Original>Volume</Original>
@@ -50,6 +54,7 @@
             <Chinesesimp>音量</Chinesesimp>
             <Turkish>Ses</Turkish>
             <Czech>Hlasitost</Czech>
+            <Russian>Громкость</Russian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_DisplayName">
             <Original>Static Radio</Original>
@@ -60,6 +65,7 @@
             <Chinesesimp>固定式无线电</Chinesesimp>
             <Turkish>Sabit Telsiz</Turkish>
             <Czech>Statické rádio</Czech>
+            <Russian>Статическая радиостанция</Russian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_Frequency_tooltip">
             <Original>The static Frequencies for this radio</Original>
@@ -70,6 +76,7 @@
             <Chinesesimp>此无线电的固定频率</Chinesesimp>
             <Turkish>Sabit Frekans bu telsiz içindir</Turkish>
             <Czech>Statické frekvence pro toto rádio</Czech>
+            <Russian>Статические частоты для этой радиостанции</Russian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_Channel_tooltip">
             <Original>The current selected Channel for this radio</Original>
@@ -80,6 +87,7 @@
             <Chinesesimp>当前无线电选择的频道</Chinesesimp>
             <Turkish>Bu radyo için mevcut seçili Kanal</Turkish>
             <Czech>Momentálně zvolený kanál pro toto rádio</Czech>
+            <Russian>Текущий выбранный канал для этой радиостанции</Russian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_SpeakerEnabled">
             <Original>Speaker enabled</Original>
@@ -90,6 +98,7 @@
             <Chinesesimp>开启扩音器</Chinesesimp>
             <Turkish>Hoparlör Aktif</Turkish>
             <Czech>Reproduktory zapnuty</Czech>
+            <Russian>Динамики включены</Russian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_SpeakerEnabled_tooltip">
             <Original>Whether the Radios Speaker is enabled.</Original>
@@ -100,6 +109,7 @@
             <Chinesesimp>决定是否开启无线电的扩音器。</Chinesesimp>
             <Turkish>Radyo Hoparlörünün etkin olup olmadığı.</Turkish>
             <Czech>Jestli jsou reproduktory rádia zapnuty</Czech>
+            <Russian>Включены ли динамики радиостанции</Russian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_RadioVolume">
             <Original>Radio Volume</Original>
@@ -110,6 +120,7 @@
             <Chinesesimp>无线电音量</Chinesesimp>
             <Turkish>Telsiz Sesi</Turkish>
             <Czech>Hlasitost rádia</Czech>
+            <Russian>Громкость радиостанции</Russian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_RadioVolume_tooltip">
             <Original>The normal max for this setting is 10. But for static Radios their volume can be amplified. Be careful using this on Radios that can be picked up by Players! A too high setting can cause performance problems on clients.</Original>
@@ -120,6 +131,7 @@
             <Chinesesimp>此设定在普通的状态下最大值为10。但对于固定式无线电来说，它们的音量还可以再被放大。请小心使用在可以被玩家捡起来的无线电上!过高的设定可能会影响客户端电脑的效能。</Chinesesimp>
             <Turkish>Bu ayar için normal maksimum 10'dur. Ancak sabit Radyolar için ses seviyesi yükseltilebilir. Bunu Oyuncular tarafından alınabilen Radyolarda kullanırken dikkatli olun! Çok yüksek bir ayar, istemcilerde performans sorunlarına neden olabilir.</Turkish>
             <Czech>Normální maximum pro toto nastavení je 10. Ovšem pro statická rádia platí, že jejich hlasitost může být zvýšena. Buďte opatrní s používám tohoto na rádia, která mohou být zvednuta hráči! Moc vysoká nastavení mohou způsobit problémy s výkonem na klientech.</Czech>
+            <Russian>Нормальное макс. значение - 10, но для статических радиостанций оно может быть усилено. Будьте осторожны используя это на радиостанциях, которые могут быть подобраны игроками! Слишком высокое значение может негативно повлиять на производительности клиентов.</Russian>
         </Key>
     </Package>
 </Project>

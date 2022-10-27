@@ -6,6 +6,7 @@
             <English>RT-1523G (ASIP)</English>
             <Turkish>RT-1523G (ASIP)</Turkish>
             <Czech>RT-1523G (ASIP)</Czech>
+            <Russian>RT-1523G (ASIP)</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Desc">
             <Original>RT-1523G (ASIP) long range radio 20km</Original>
@@ -17,6 +18,7 @@
             <Turkish>RT-1523G (ASIP) uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BWMOD">
             <Original>RT-1523G (ASIP) BWMOD long range radio 20km</Original>
@@ -26,6 +28,7 @@
             <Turkish>RT-1523G (ASIP) BWMOD uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) BWMOD radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) BWMOD dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) BWMOD радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BWMOD_Desc">
             <Original>RT-1523G (ASIP) BWMOD long range radio 20km</Original>
@@ -37,6 +40,7 @@
             <Turkish>RT-1523G (ASIP) BWMOD uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) BWMOD radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) BWMOD dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) BWMOD радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_RHS">
             <Original>RT-1523G (ASIP) RHS long range radio 20km</Original>
@@ -46,6 +50,7 @@
             <Turkish>RT-1523G (ASIP) RHS uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) RHS radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) RHS dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) RHS радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_RHS_Desc">
             <Original>RT-1523G (ASIP) RHS long range radio 20km</Original>
@@ -57,6 +62,7 @@
             <Turkish>RT-1523G (ASIP) RHS uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) RHS radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) RHS dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) RHS радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Big">
             <Original>RT-1523G (ASIP) Big</Original>
@@ -68,6 +74,7 @@
             <Turkish>RT-1523G (ASIP) Büyük</Turkish>
             <Italian>RT-1523G (ASIP) Grande</Italian>
             <Czech>RT-1523G (ASIP) Velké</Czech>
+            <Russian>RT-1523G (ASIP) Большая</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Big_Desc">
             <Original>RT-1523G (ASIP) Big long range radio 20km</Original>
@@ -79,6 +86,7 @@
             <Turkish>RT-1523G (ASIP) Büyük uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) Grande radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) Velké dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) Большая радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BigBWMOD">
             <Original>RT-1523G (ASIP) Big BWMOD [Flecktarn]</Original>
@@ -90,6 +98,7 @@
             <Turkish>RT-1523G (ASIP) Büyük BWMOD [Flecktarn]</Turkish>
             <Italian>RT-1523G (ASIP) Grande BWMOD [Flecktarn]</Italian>
             <Czech>RT-1523G (ASIP) Velké BWMOD [Flecktarn]</Czech>
+            <Russian>RT-1523G (ASIP) Большая BWMOD [Флектарн]</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BigBWMOD_Desc">
             <Original>RT-1523G (ASIP) Big BWMOD long range radio 20km</Original>
@@ -101,6 +110,7 @@
             <Turkish>RT-1523G (ASIP) Büyük BWMOD uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) Grande BWMOD radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) Velké BWMOD dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) Большая BWMOD радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BigBWMOD_Tropen">
             <Original>RT-1523G (ASIP) Big BWMOD [Tropentarn]</Original>
@@ -112,6 +122,7 @@
             <Turkish>RT-1523G (ASIP) Büyük BWMOD [Tropentarn]</Turkish>
             <Italian>RT-1523G (ASIP) Grande BWMOD [Tropentarn]</Italian>
             <Czech>RT-1523G (ASIP) Velké BWMOD [Tropentarn]</Czech>
+            <Russian>RT-1523G (ASIP) Большая BWMOD [Тропентарн]</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BigRHS">
             <Original>RT-1523G (ASIP) Big RHS</Original>
@@ -123,6 +134,7 @@
             <Turkish>RT-1523G (ASIP) Büyük RHS</Turkish>
             <Italian>RT-1523G (ASIP) Grande RHS</Italian>
             <Czech>RT-1523G (ASIP) Velké RHS</Czech>
+            <Russian>RT-1523G (ASIP) Большая RHS</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_BigRHS_Desc">
             <Original>RT-1523G (ASIP) Big RHS long range radio 20km</Original>
@@ -134,6 +146,7 @@
             <Turkish>RT-1523G (ASIP) Büyük RHS uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) Grande RHS radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) Velké RHS dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) Большая RHS радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Sage">
             <Original>RT-1523G (ASIP) Sage</Original>
@@ -144,6 +157,7 @@
             <Turkish>RT-1523G (ASIP) Adaçayı Rengi</Turkish>
             <Italian>RT-1523G (ASIP) Salvia</Italian>
             <Czech>RT-1523G (ASIP) Sage</Czech>
+            <Russian>RT-1523G (ASIP) Шалфей</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Sage_Desc">
             <Original>RT-1523G (ASIP) Sage long range radio 20km</Original>
@@ -153,6 +167,7 @@
             <Chinesesimp>RT-1523G (ASIP-草绿色)长程无线电，有效距离20公里</Chinesesimp>
             <Italian>RT-1523G (ASIP) Salvia radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) Sage dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) Шалфей радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Green">
             <Original>RT-1523G (ASIP) Green</Original>
@@ -164,6 +179,7 @@
             <Turkish>RT-1523G (ASIP) Adaçayı Rengi uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) Verde</Italian>
             <Czech>RT-1523G (ASIP) Zelené</Czech>
+            <Russian>RT-1523G (ASIP) Зеленая</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Green_Desc">
             <Original>RT-1523G (ASIP) Green long range radio 20km</Original>
@@ -175,6 +191,7 @@
             <Turkish>RT-1523G (ASIP) Yeşil uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) Verde radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) Zelené dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) Зеленая радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Fabric">
             <Original>RT-1523G (ASIP) Fabric</Original>
@@ -185,6 +202,7 @@
             <Turkish>RT-1523G (ASIP) Kumaş</Turkish>
             <Italian>RT-1523G (ASIP) Tessuto</Italian>
             <Czech>RT-1523G (ASIP) Látkové</Czech>
+            <Russian>RT-1523G (ASIP) Тканевая</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Fabric_Desc">
             <Original>RT-1523G (ASIP) Fabric long range radio 20km</Original>
@@ -196,6 +214,7 @@
             <Turkish>RT-1523G (ASIP) Kumaş uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) Tessuto radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) Látkové dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) Тканевая радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Black">
             <Original>RT-1523G (ASIP) Black</Original>
@@ -206,6 +225,7 @@
             <Turkish>RT-1523G (ASIP) Siyah</Turkish>
             <Italian>RT-1523G (ASIP) Nero</Italian>
             <Czech>RT-1523G (ASIP) Černé</Czech>
+            <Russian>RT-1523G (ASIP) Черная</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_RT1523G_Black_Desc">
             <Original>RT-1523G (ASIP) Black long range radio 20km</Original>
@@ -217,12 +237,14 @@
             <Turkish>RT-1523G (ASIP) Siyah uzun menzilli radyo 20km</Turkish>
             <Italian>RT-1523G (ASIP) Nero radio a lungo raggio 20 km</Italian>
             <Czech>RT-1523G (ASIP) Černé dlouhovlnné rádio 20km</Czech>
+            <Russian>RT-1523G (ASIP) Черная радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR6000L">
             <Original>MR6000L</Original>
             <English>MR6000L</English>
             <Turkish>MR6000L</Turkish>
             <Czech>MR6000L</Czech>
+            <Russian>MR6000L</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR6000L_Desc">
             <Original>MR6000L airborne radio 40km</Original>
@@ -234,12 +256,14 @@
             <Turkish>MR6000L airborne telsiz 40km</Turkish>
             <Italian>MR6000L radio aviotrasportata 40 km</Italian>
             <Czech>MR6000L výsadkářské rádio 40km</Czech>
+            <Russian>MR6000L воздушно-десантная радиостанция на 40 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000">
             <Original>MR3000</Original>
             <English>MR3000</English>
             <Turkish>MR3000</Turkish>
             <Czech>MR3000</Czech>
+            <Russian>MR3000</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_Desc">
             <Original>MR3000 long range radio 20km</Original>
@@ -251,6 +275,7 @@
             <Turkish>MR3000 uzun menzilli radyo 20km</Turkish>
             <Italian>MR3000 radio a lungo raggio 20 km</Italian>
             <Czech>MR3000 dlouhovlnné rádio 20km</Czech>
+            <Russian>MR3000 радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_Multicam">
             <Original>MR3000 Multicam</Original>
@@ -260,6 +285,7 @@
             <Chinesesimp>MR3000 (多地形迷彩)</Chinesesimp>
             <Turkish>MR3000 Multicam</Turkish>
             <Czech>MR3000 Multicam</Czech>
+            <Russian>MR3000 Мультикам</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_Multicam_Desc">
             <Original>MR3000 Multicam long range radio 20km</Original>
@@ -271,6 +297,7 @@
             <Turkish>MR3000 Multicam uzun menzilli radyo 20km</Turkish>
             <Italian>MR3000 Multicam radio a lungo raggio 20 km</Italian>
             <Czech>MR3000 Multicam dlouhovlnné rádio 20km</Czech>
+            <Russian>MR3000 Мульткам радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_BWMOD">
             <Original>MR3000 BWMOD [Flecktarn]</Original>
@@ -281,6 +308,7 @@
             <Chinesesimp>MR3000 BWMOD [斑点迷彩]</Chinesesimp>
             <Turkish>MR3000 BWMOD [Flecktarn]</Turkish>
             <Czech>MR3000 BWMOD [Flecktarn]</Czech>
+            <Russian>MR3000 BWMOD [Флектарн]</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_BWMOD_Desc">
             <Original>MR3000 BWMOD long range radio 20km</Original>
@@ -292,6 +320,7 @@
             <Turkish>MR3000 BWMOD uzun menzilli radyo 20km</Turkish>
             <Italian>MR3000 BWMOD radio a lungo raggio 20 km</Italian>
             <Czech>MR3000 BWMOD dlouhovlnné rádio 20km</Czech>
+            <Russian>MR3000 BWMOD радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_BWMOD_Tropen">
             <Original>MR3000 BWMOD [Tropentarn]</Original>
@@ -302,12 +331,14 @@
             <Chinesesimp>MR3000 BWMOD [荒漠斑点迷彩]</Chinesesimp>
             <Turkish>MR3000 BWMOD [Tropentarn]</Turkish>
             <Czech>MR3000 BWMOD [Tropentarn]</Czech>
+            <Russian>MR3000 BWMOD [Тропентарн]</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_RHS">
             <Original>MR3000 RHS</Original>
             <English>MR3000 RHS</English>
             <Turkish>MR3000 RHS</Turkish>
             <Czech>MR3000 RHS</Czech>
+            <Russian>MR3000 RHS</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_MR3000_RHS_Desc">
             <Original>MR3000 RHS long range radio 20km</Original>
@@ -319,6 +350,7 @@
             <Turkish>MR3000 RHS uzun menzilli radyo 20km</Turkish>
             <Italian>MR3000 RHS radio a lungo raggio 20 km</Italian>
             <Czech>MR3000 RHS dlouhovlnné rádio 20km</Czech>
+            <Russian>MR3000 RHS радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_Bussole">
             <Original>Assault Pack Bussole</Original>
@@ -329,6 +361,7 @@
             <Chinesesimp>突击背包 (Bussole)</Chinesesimp>
             <Italian>Pacchetto d'assalto Bussole</Italian>
             <Czech>Assault Pack Buzola</Czech>
+            <Russian>Штурмовой рюкзак (бусоль)</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_Bussole_Desc">
             <Original>Bussole long range radio 20km</Original>
@@ -339,12 +372,14 @@
             <Chinesesimp>Bussole长程无线电，有效距离20公里</Chinesesimp>
             <Italian>Bussole radio a lungo raggio 20 km</Italian>
             <Czech>Buzola dlouhovlnné rádio 20km</Czech>
+            <Russian>Бусоль радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANPRC155">
             <Original>AN/PRC-155</Original>
             <English>AN/PRC-155</English>
             <Turkish>AN/PRC-155</Turkish>
             <Czech>AN/PRC-155</Czech>
+            <Russian>AN/PRC-155</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANPRC155_Desc">
             <Original>AN/PRC-155 long range radio 20km</Original>
@@ -356,6 +391,7 @@
             <Turkish>AN/PRC-155 uzun menzilli radyo 20km</Turkish>
             <Italian>AN/PRC-155 radio a lungo raggio 20 km</Italian>
             <Czech>AN/PRC-155 dlouhovlnné rádio 20km</Czech>
+            <Russian>AN/PRC-155 радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANPRC155_Coyote">
             <Original>AN/PRC-155 Coyote</Original>
@@ -365,6 +401,7 @@
             <Chinesesimp>AN/PRC 155 (土狼棕色)</Chinesesimp>
             <Turkish>AN/PRC-155 Çöl Rengi</Turkish>
             <Czech>AN/PRC-155 Kojot</Czech>
+            <Russian>AN/PRC-155 Койот</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANPRC155_Coyote_Desc">
             <Original>AN/PRC-155 Coyote long range radio 20km</Original>
@@ -376,12 +413,14 @@
             <Turkish>AN/PRC-155 Çöl Rengi uzun menzilli radyo 20km</Turkish>
             <Italian>AN/PRC-155 Coyote radio a lungo raggio 20 km</Italian>
             <Czech>AN/PRC-155 Kojot dlouhovlnné rádio 20km</Czech>
+            <Russian>AN/PRC-155 Койот радиостанция дальнего радиуса действия на 20 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANARC210">
             <Original>AN/ARC-210</Original>
             <English>AN/ARC-210</English>
             <Turkish>AN/ARC-210</Turkish>
             <Czech>AN/ARC-210</Czech>
+            <Russian>AN/ARC-210</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANARC210_Desc">
             <Original>AN/ARC-210 airborne radio 40km</Original>
@@ -393,12 +432,14 @@
             <Turkish>AN/ARC-210 airborne radyo 40km</Turkish>
             <Italian>AN/ARC-210 radio aviotrasportata 40 km</Italian>
             <Czech>AN/ARC-210 výsadkářské 40km</Czech>
+            <Russian>AN/ARC-210 воздушно-десантная радиостанция на 40 км</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANARC164">
             <Original>AN/ARC-164</Original>
             <English>AN/ARC-164</English>
             <Turkish>AN/ARC-164</Turkish>
             <Czech>AN/ARC-164</Czech>
+            <Russian>AN/ARC-164</Russian>
         </Key>
         <Key ID="STR_TFAR_backpacks_ANARC164_Desc">
             <Original>AN/ARC-164 airborne radio 40km</Original>
@@ -410,6 +451,7 @@
             <Turkish>AN/ARC-164 airborne radyo 40km</Turkish>
             <Italian>AN/ARC-164 radio aviotrasportata 40 km</Italian>
             <Czech>AN/ARC-164 výsadkářské 40km</Czech>
+            <Russian>AN/ARC-164 воздушно-десантная радиостанция на 40 км</Russian>
         </Key>
     </Package>
 </Project>
