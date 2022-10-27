@@ -5,6 +5,7 @@
             <Original>RF-7800S-TR</Original>
             <English>RF-7800S-TR</English>
             <Turkish>RF-7800S-TR</Turkish>
+            <Czech>RF-7800S-TR</Czech>
         </Key>
         <Key ID="STR_TFAR_handhelds_RF7800STR_Desc">
             <Original>RF-7800S-TR rifleman radio 2km</Original>
@@ -15,11 +16,13 @@
             <Chinesesimp>RF-7800S-TR短程步兵无线电，有效距离2公里</Chinesesimp>
             <Turkish>RF-7800S-TR rifleman telsiz 2km</Turkish>
             <Italian>Radio da fuciliere RF-7800S-TR 2km</Italian>
+            <Czech>RF-7800S-TR Střelecké rádio 2km</Czech>
         </Key>
         <Key ID="STR_TFAR_handhelds_PNR1000A">
             <Original>PNR-1000A</Original>
             <English>PNR-1000A</English>
             <Turkish>PNR-1000A</Turkish>
+            <Czech>PNR-1000A</Czech>
         </Key>
         <Key ID="STR_TFAR_handhelds_PNR1000A_Desc">
             <Original>PNR-1000A rifleman radio 2km</Original>
@@ -30,6 +33,7 @@
             <Chinesesimp>PNR-1000A短程步兵无线电，有效距离2公里</Chinesesimp>
             <Turkish>PNR-1000A rifleman telsiz 2km</Turkish>
             <Italian>Radio da fuciliere PNR-1000A 2km</Italian>
+            <Czech>PNR-1000A Střelecké rádio 2km</Czech>
         </Key>
         <Key ID="STR_TFAR_handhelds_MicroDagr">
             <Original>MicroDAGR Radio Programmer</Original>
@@ -40,6 +44,7 @@
             <Chinesesimp>微型军用GPS接收器 (无线电编码器)</Chinesesimp>
             <Turkish>MicroDAGR Radyo Programcısı</Turkish>
             <Italian>Programmatore radio MicroDAGR</Italian>
+            <Czech>MicroDAGR Programátor rádií</Czech>
         </Key>
         <Key ID="STR_TFAR_handhelds_MicroDagr_Desc">
             <Original>Provides ability to program rifleman radios in the field</Original>
@@ -50,10 +55,12 @@
             <Chinesesimp>使持有人能在战场上调整短程步兵无线电的频率设定</Chinesesimp>
             <Turkish>Sahada rifleman radyoları programlama yeteneği sağlar</Turkish>
             <Italian>Fornisce la capacità di programmare le radio dei fucilieri sul campo.</Italian>
+            <Czech>Poskytuje pro střelce schopnost programovat rádia v poli.</Czech>
         </Key>
         <Key ID="STR_TFAR_handhelds_FADAK">
             <Original>FADAK</Original>
             <English>FADAK</English>
+            <Czech>FADAK</Czech>
         </Key>
         <Key ID="STR_TFAR_handhelds_FADAK_Desc">
             <Original>FADAK personal radio 5km</Original>
@@ -64,11 +71,13 @@
             <Chinesesimp>FADAK短程个人无线电，有效距离5公里</Chinesesimp>
             <Turkish>FADAK kişisel telsiz 5km</Turkish>
             <Italian>FADAK radio personale 5km</Italian>
+            <Czech>FADAK Osobní rádio 5km</Czech>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC154">
             <Original>AN/PRC-154</Original>
             <English>AN/PRC-154</English>
             <Turkish>AN/PRC-154</Turkish>
+            <Czech>AN/PRC-154</Czech>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC154_Desc">
             <Original>AN/PRC-154 rifleman radio 2km</Original>
@@ -79,11 +88,13 @@
             <Chinesesimp>AN/PRC-154短程步兵无线电，有效距离2公里</Chinesesimp>
             <Turkish>AN/PRC-154 rifleman radyo 2km</Turkish>
             <Italian>Fuciliere radiofonico AN/PRC-154 2km</Italian>
+            <Czech>AN/PRC-154 Střelecké rádio 2km</Czech>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC152">
             <Original>AN/PRC-152</Original>
             <English>AN/PRC-152</English>
             <Turkish>AN/PRC-152</Turkish>
+            <Czech>AN/PRC-152</Czech>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC152_Desc">
             <Original>AN/PRC-152 personal radio 5km</Original>
@@ -94,11 +105,13 @@
             <Chinesesimp>AN/PRC-152短程个人无线电，有效距离5公里</Chinesesimp>
             <Turkish>AN/PRC-152 kişisel telsiz 5km</Turkish>
             <Italian>AN/PRC-152 radio personale 5 km</Italian>
+            <Czech>AN/PRC-152 Osobní rádio 5km</Czech>
         </Key>
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM">
             <Original>AN/PRC-148 JEM</Original>
             <English>AN/PRC-148 JEM</English>
             <Turkish>AN/PRC-148 JEM</Turkish>
+            <Czech>AN/PRC-148 JEM</Czech>
         </Key>
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM_Desc">
             <Original>AN/PRC-148 JEM personal radio 5km</Original>
@@ -109,6 +122,7 @@
             <Chinesesimp>AN/PRC-148 JEM短程个人无线电，有效距离5公里</Chinesesimp>
             <Turkish>AN/PRC-148 JEM kişisel telsiz 5km</Turkish>
             <Italian>AN/PRC-148 JEM radio personale 5 km</Italian>
+            <Czech>AN/PRC-148 JEM Osobní rádio 5km</Czech>
         </Key>
     </Package>
 </Project>

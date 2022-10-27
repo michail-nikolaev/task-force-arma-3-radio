@@ -10,6 +10,7 @@
             <Russian>AI Слух</Russian>
             <Turkish>BOT Algılaması</Turkish>
             <Italian>Udito AI</Italian>
+            <Czech>Sluch AI</Czech>
         </Key>
         <Key ID="STR_TFAR_AI_HEARING_SETTING_DESC">
             <Original>If enabled, the ai is able to detect speaking players.</Original>
@@ -20,6 +21,7 @@
             <Russian>Если включено, боты могут обнаруживать разговаривающих игроков.</Russian>
             <Turkish>Etkinleştirilirse, BOT konuşan oyuncuları algılayabilir.</Turkish>
             <Italian>Se abilitato, l'IA è in grado di rilevare i giocatori che parlano.</Italian>
+            <Czech>Pokud povoleno, AI budou schopná detekovat mluvící hráče.</Czech>
         </Key>
         <Key ID="STR_TFAR_AI_HEARING_SETTING_SPEAKER_HEADER">
             <Original>AI Hearing Speakers</Original>
@@ -29,6 +31,7 @@
             <Russian>AI Слух: Динамики</Russian>
             <Turkish>BOT İşitme Katsayısı</Turkish>
             <Italian>Altoparlante udito AI</Italian>
+            <Czech>AI slyšící reproduktory</Czech>
         </Key>
         <Key ID="STR_TFAR_AI_HEARING_SETTING_SPEAKER_DESC">
             <Original>If enabled, the ai is able to detect active speakers.\n Currently the ai detects if they receive a call and have ANY speaker active.</Original>
@@ -38,6 +41,7 @@
             <Russian>Если включено, боты могут обнаруживать включенные динамики.\n В настоящее время AI реагирует на входящие радиосообщения, когда ЛЮБОЙ динамик включен.</Russian>
             <Turkish>Etkinleştirilirse, BOT aktif konuşmacıları algılayabilir. \n Şu anda BOT, bir çağrı alıp almadığını ve HERHANGİ bir konuşmanın etkin olup olmadığını algılar.</Turkish>
             <Italian>Se abilitato, l'ai è in grado di rilevare gli altoparlanti attivi.\n Attualmente l'IA rileva se ricevono una chiamata e hanno QUALSIASI altoparlante attivo.</Italian>
+            <Czech>Pokud povoleno, AI bude schopno detekovat aktivní reproduktory.\n Momentálně AI detekuje, jestli přijímají hovor a jsou NĚJAKÉ reproduktory aktivní.</Czech>
         </Key>
     </Package>
 </Project>
