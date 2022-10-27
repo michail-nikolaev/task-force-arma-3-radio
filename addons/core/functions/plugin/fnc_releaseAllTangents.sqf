@@ -18,4 +18,4 @@
   Public: Yes
 */
 
-"task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~", name _this]);//Async call will always return "OK"
+"task_force_radio_pipe" callExtension (format ["RELEASE_ALL_TANGENTS	%1~",(_this getVariable ["TFAR_unitName", name _this])]);//Async call will always return "OK"
