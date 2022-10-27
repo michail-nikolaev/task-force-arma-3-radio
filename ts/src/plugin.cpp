@@ -502,7 +502,7 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
 
     const bool isSpectator = clientData->isSpectating;
     //NonPure normalPlayer->Spectator
-    const bool isNotHearableInNonPureSpectator = clientDataDir->myClientData->isSpectating && (clientData->isEnemyToPlayer && TFAR::config.get<bool>(Setting::spectatorNotHearEnemies)) && TFAR::config.get<bool>(Setting::spectatorCanHearFriendlies);
+    const bool isNotHearableInNonPureSpectator = clientDataDir->myClientData->isSpectating && ((clientData->isEnemyToPlayer && TFAR::config.get<bool>(Setting::spectatorNotHearEnemies)) || (!clientData->isEnemyToPlayer && !TFAR::config.get<bool>(Setting::spectatorCanHearFriendlies)));
     //Other player is also a spectator. So we always hear him without 3D positioning
     const bool isHearableInPureSpectator = clientDataDir->myClientData->isSpectating && clientData->isSpectating;
     const bool isHearableInSpectator = isHearableInPureSpectator || !isNotHearableInNonPureSpectator;
