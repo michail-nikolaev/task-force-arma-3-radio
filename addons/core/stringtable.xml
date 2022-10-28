@@ -9,6 +9,7 @@
                 <Turkish>Task Force Arrowhead Radio Takımı</Turkish>
                 <Italian>Task Force Arrowhead Radio Squadra</Italian>
                 <Czech>Task Force Arrowhead Radio Tým</Czech>
+                <Russian>Команда Task Force Arrowhead Radio</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_CATEGORY">
                 <Original>TFAR</Original>
@@ -17,6 +18,7 @@
                 <Turkish>TFAR</Turkish>
                 <Italian>TFAR</Italian>
                 <Czech>TFAR</Czech>
+                <Russian>TFAR</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_3DEN_Menu">
                 <Original>TFAR Preferences</Original>
@@ -307,7 +309,7 @@
                 <Korean>진영에 같은 장파 주파수</Korean>
                 <Chinese>同陣營使用相同的長程無線電頻率</Chinese>
                 <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
-                <Russian>Одинаковые частоты ДС для всей стороны</Russian>
+                <Russian>Одинаковые частоты ДВ для всей стороны</Russian>
                 <Turkish>Taraf için aynı LR frekansları</Turkish>
                 <Italian>Stesse frequenze LR per lato</Italian>
                 <Czech>Stejné DV frekvence pro stranu</Czech>
@@ -323,7 +325,7 @@
                 <Korean>진영에 같은 단파 주파수</Korean>
                 <Chinese>同陣營使用相同的短程無線電頻率</Chinese>
                 <Chinesesimp>同阵营使用相同的短程无线电频率</Chinesesimp>
-                <Russian>Одинаковые частоты БС для всей стороны</Russian>
+                <Russian>Одинаковые частоты КВ для всей стороны</Russian>
                 <Turkish>Taraf için aynı SR frekansları</Turkish>
                 <Italian>Stesse frequenze SR per lato</Italian>
                 <Czech>Stejné KV frekvence pro stranu</Czech>
@@ -777,6 +779,7 @@
                 <Chinesesimp>宙斯编辑器聆听玩家语音</Chinesesimp>
                 <Italian>Ascolto da Zeus Camera</Italian>
                 <Czech>Slyšení z kamery Dia</Czech>
+                <Russian>Слышать из камеры Zeus</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_curatorCamEars_desc">
                 <English>Hear voice from Curator Camera when in Zeus interface</English>
@@ -787,14 +790,17 @@
                 <Chinesesimp>使用宙斯编辑器时可以聆听到玩家的语音</Chinesesimp>
                 <Italian>Ascolta la voce dalla fotocamera del curatore quando sei nell'interfaccia di Zeus</Italian>
                 <Czech>Slyšet hlasy z kamery kurátora, když jste v rozhraní Dia</Czech>
+                <Russian>Слышать голос из камеры Куратора в интерфейсе Zeus</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_splendidCamEars">
                 <English>Hearing from Splendid Camera</English>
                 <Czech>Slyšení ze Splendid kamery</Czech>
+                <Russian>Слышать из Splendid камеры</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_splendidCamEars_desc">
                 <English>Hear voice from Splendid Camera when in Splendid Camera interface</English>
                 <Czech>V rozhraní Splendid Kamery uslyšíte hlas ze Splendid kamery</Czech>
+                <Russian>Слышать голос из Splendid камеры в интерфейсе Splendid камеры</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator">
                 <English>No Automove in Spectator</English>
@@ -802,6 +808,7 @@
                 <Japanese>スペクテイターで自動移動を無効化</Japanese>
                 <Italian>Nessun movimento automatico in spettatore</Italian>
                 <Czech>Nepřesouvat hráče automaticky v režimu diváka</Czech>
+                <Russian>Не перемещать наблюдателя в канал</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_noAutomoveSpectator_desc">
                 <English>Don't force move to TFAR channel while in spectator mode</English>
@@ -809,18 +816,21 @@
                 <Japanese>スペクテイター モードでは TFR チャンネルの自動移動を無効化します</Japanese>
                 <Italian>Non forzare il passaggio al canale TFAR in modalità spettatore</Italian>
                 <Czech>Nevynucovat přesun do kanálu TFAR v režimu diváka</Czech>
+                <Russian>Не перемещать принудительно в канал TFAR в режиме наблюдателя</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_noTSNotConnectedHint">
                 <English>Hide "Not connected" message</English>
                 <German>Verstecke "Not connected" message</German>
                 <Italian>Nascondi il messaggio "Non connesso"</Italian>
                 <Czech>Skrýt zprávu „Nepřipojeno“.</Czech>
+                <Russian>Спрятать сообщение "Нет подключения"</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_noTSNotConnectedHint_desc">
                 <English>Disables the displaying of the "Not connected to TeamSpeak" message</English>
                 <German>Deaktiviert das Anzeigen der "Not connected to TeamSpeak" nachricht</German>
                 <Italian>Disabilita la visualizzazione del messaggio "Non connesso a TeamSpeak"</Italian>
                 <Czech>Zakáže zobrazování zprávy „Nepřipojeno k TeamSpeaku“.</Czech>
+                <Russian>Отключить сообщение "Не подключен к TeamSpeak"</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_FullDuplex">
                 <Original>Full-Duplex</Original>
@@ -831,7 +841,7 @@
                 <Korean>양방향 통신</Korean>
                 <Chinese>全雙工模式</Chinese>
                 <Chinesesimp>全双工模式</Chinesesimp>
-                <Russian>Full-Duplex</Russian>
+                <Russian>Дуплекс</Russian>
                 <Italian>Full-Duplex</Italian>
                 <Czech>Plný duplex</Czech>
             </Key>
@@ -854,7 +864,7 @@
                 <German>Standard Kurzstrecken-Frequenzen:</German>
                 <Japanese>短距離無線機の標準設定:</Japanese>
                 <Korean>기본 단파 설정</Korean>
-                <Russian>Частоты БС по умолчанию:</Russian>
+                <Russian>Частоты КВ по умолчанию:</Russian>
                 <Italian>Frequenze standard a corto raggio:</Italian>
                 <Czech>Výchozí KV frekvence:</Czech>
             </Key>
@@ -874,7 +884,7 @@
                 <German>Standard Langstrecken-Frequenzen:</German>
                 <Japanese>長距離無線機の標準設定:</Japanese>
                 <Korean>기본 장파 설정</Korean>
-                <Russian>Частоты ДС по умолчанию:</Russian>
+                <Russian>Частоты ДВ по умолчанию:</Russian>
                 <Italian>Frequenze a lungo raggio predefinite:</Italian>
                 <Czech>Výchozí DV frekvence:</Czech>
             </Key>
@@ -1336,6 +1346,7 @@
                 <Korean>팀스피크 채널</Korean>
                 <Italian>Canale Teamspeak</Italian>
                 <Czech>Kanál Teamspeaku</Czech>
+                <Russian>Канал TeamSpeak</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_TeamspeakChannel_name">
                 <Original>Channel Name</Original>
@@ -1425,6 +1436,7 @@
                 <Japanese>デバッグ有効化</Japanese>
                 <Italian>Consenti debug</Italian>
                 <Czech>Povolit ladění</Czech>
+                <Russian>Разрешить отладку</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_allowDebugging_desc">
                 <English>Debug tools could allow players to see frequencies and positions of other players.</English>
@@ -1432,18 +1444,21 @@
                 <Japanese>デバッグ ツールではプレイヤーに周波数と他プレイヤーの位置を表示できます</Japanese>
                 <Italian>Gli strumenti di debug potrebbero consentire ai giocatori di vedere le frequenze e le posizioni degli altri giocatori.</Italian>
                 <Czech>Nástroje ladění by mohly hráčům umožnit vidět frekvence a pozice ostatních hráčů.</Czech>
+                <Russian>Инструменты отладки позволяют игрокам видеть частоты и позиции других игроков.</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_disableAutoMute">
                 <English>Disable Teamspeak Mute</English>
                 <German>Deaktiviere Teamspeak Mute</German>
                 <Italian>Disabilita Teamspeak Mute</Italian>
                 <Czech>Zakázat ztlumení Teamspeaku</Czech>
+                <Russian>Отключить локальное заглушение в TeamSpeak</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_disableAutoMute_desc">
                 <English>Disables automatically local muting players in Teamspeak. (causes high Performance cost)</English>
                 <German>Deaktiviert automatisches Lokales Muten von Spielern im Teamspeak. (Erzeugt hohe Rechenlast)</German>
                 <Italian>Disabilitato automaticamente l'audio locale dei giocatori in Teamspeak. (causa un alto costo delle prestazioni)</Italian>
                 <Czech>Zakáže automatické ztlumení hráčů v Teamspeaku. (vysoce náročné na výkon)</Czech>
+                <Russian>Отключить автоматическое локальное отключение микрофона игроков в TeamSpeak (ухудшает производительность)</Russian>
             </Key>
         </Container>
         <Container name="diary">
@@ -2119,6 +2134,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>短程无线电频道</Chinesesimp>
                 <Italian>Canale a corto raggio</Italian>
                 <Czech>KV kanál</Czech>
+                <Russian>КВ канал</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_LR_Channel">
                 <Original>LR Channel</Original>
@@ -2129,6 +2145,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinesesimp>长程无线电频道</Chinesesimp>
                 <Italian>Canale a lungo raggio</Italian>
                 <Czech>DV kanál</Czech>
+                <Russian>ДВ канал</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_ChangeSpeechVolume">
                 <Original>Change Speaking Volume</Original>
@@ -2189,11 +2206,13 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Original>Cycle Next SR Channel</Original>
                 <English>Cycle Next SR Channel</English>
                 <Czech>Cyklovat další KV kanál</Czech>
+                <Russian>Цикл. следующий канал КВ</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CyclePrevSRChannel">
                 <Original>Cycle Previous SR Channel</Original>
                 <English>Cycle Previous SR Channel</English>
                 <Czech>Cyklovat předchozí KV kanál</Czech>
+                <Russian>Цикл. предыдущий канал КВ</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CycleNextLRRadios">
                 <Original>Cycle Next LR Radios</Original>
@@ -2221,11 +2240,13 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Original>Cycle Next LR Channel</Original>
                 <English>Cycle Next LR Channel</English>
                 <Czech>Cyklovat další DV kanál</Czech>
+                <Russian>Цикл. следующий канал ДВ</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_CyclePrevLRChannel">
                 <Original>Cycle Previous LR Channel</Original>
                 <English>Cycle Previous LR Channel</English>
                 <Czech>Cyklovat předchozí DV kanál</Czech>
+                <Russian>Цикл. предыдущий канал ДВ</Russian>
             </Key>
             <Key ID="STR_TFAR_CORE_key_SWStereo_Both">
                 <Original>SR Stereo: Both</Original>
@@ -2234,7 +2255,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>단파 스테레오: 양쪽</Korean>
                 <Chinese>短程無線電聲道: 雙聲道</Chinese>
                 <Chinesesimp>短程无线电声道: 双声道</Chinesesimp>
-                <Russian>Рация БС: Оба наушника</Russian>
+                <Russian>Рация КВ: Оба наушника</Russian>
                 <Italian>Stereo SR: entrambi</Italian>
                 <Czech>KV Stereo: Obojí</Czech>
             </Key>
@@ -2245,7 +2266,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>단파 스테레오: 왼쪽</Korean>
                 <Chinese>短程無線電聲道: 左聲道</Chinese>
                 <Chinesesimp>短程无线电声道: 左声道</Chinesesimp>
-                <Russian>Рация БС: Левый наушник</Russian>
+                <Russian>Рация КВ: Левый наушник</Russian>
                 <Italian>Stereo SR: Sinistra</Italian>
                 <Czech>KV Stereo: Levý</Czech>
             </Key>
@@ -2256,7 +2277,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>단파 스테레오: 오른쪽</Korean>
                 <Chinese>短程無線電聲道: 右聲道</Chinese>
                 <Chinesesimp>短程无线电声道: 右声道</Chinesesimp>
-                <Russian>Рация БС: Правый наушник</Russian>
+                <Russian>Рация КВ: Правый наушник</Russian>
                 <Italian>Stereo SR: Destra</Italian>
                 <Czech>KV Stereo: Pravý</Czech>
             </Key>
@@ -2267,7 +2288,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>장파 스테레오: 양쪽</Korean>
                 <Chinese>長程無線電聲道: 雙聲道</Chinese>
                 <Chinesesimp>长程无线电声道: 双声道</Chinesesimp>
-                <Russian>Рация ДС: Оба наушника</Russian>
+                <Russian>Рация ДВ: Оба наушника</Russian>
                 <Italian>Stereo LR: entrambi</Italian>
                 <Czech>DV Stereo: Obojí</Czech>
             </Key>
@@ -2278,7 +2299,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>장파 스테레오: 왼쪽</Korean>
                 <Chinese>長程無線電聲道: 左聲道</Chinese>
                 <Chinesesimp>长程无线电声道: 左声道</Chinesesimp>
-                <Russian>Рация ДС: Левый наушник</Russian>
+                <Russian>Рация ДВ: Левый наушник</Russian>
                 <Italian>Stereo LR: Sinistra</Italian>
                 <Czech>DV Stereo: Levý</Czech>
             </Key>
@@ -2289,7 +2310,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Korean>장파 스테레오: 오른쪽</Korean>
                 <Chinese>長程無線電聲道: 右聲道</Chinese>
                 <Chinesesimp>长程无线电声道: 右声道</Chinesesimp>
-                <Russian>Рация ДС: Правый наушник</Russian>
+                <Russian>Рация ДВ: Правый наушник</Russian>
                 <Italian>Stereo LR: Destra</Italian>
                 <Czech>DV Stereo: Pravý</Czech>
             </Key>
@@ -2992,7 +3013,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Italian>Canale OL: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
             <Polish>Kanał LR: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
             <Portuguese>Canal de longa: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Portuguese>
-            <Russian>Kанал ДС: &lt;t color='#ff00ff'&gt;%1&lt;/t&gt;</Russian>
+            <Russian>Kанал ДВ: &lt;t color='#ff00ff'&gt;%1&lt;/t&gt;</Russian>
             <Spanish>Canal RL:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
             <Turkish>UM(Uzun Menzil) kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
             <Japanese>長距離無線機 チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
@@ -3009,7 +3030,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Italian>Canale aggiuntivo OL: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Italian>
             <Polish>Dodatkowy kanał LR: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Polish>
             <Portuguese>Canal adicional de longa: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Portuguese>
-            <Russian>Дополнительный канал ДС: &lt;t color='#ff00ff'&gt;%1&lt;/t&gt;</Russian>
+            <Russian>Дополнительный канал ДВ: &lt;t color='#ff00ff'&gt;%1&lt;/t&gt;</Russian>
             <Spanish>Canal adicional RL:  &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Spanish>
             <Turkish>Ek UM(Uzun Menzil) kanal: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Turkish>
             <Japanese>追加長距離無線機 チャンネル: &lt;t color='#ffff00'&gt;%1&lt;/t&gt;</Japanese>
@@ -3419,6 +3440,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Chinesesimp>战争不单单只有移动，等待与交战。如何沟通也是一项重要的课题。箭头特遣队无线电透过与TeamSpeak无缝连动来增加游戏的拟真度与真实感。</Chinesesimp>
             <Italian>La guerra non riguarda solo lo spostamento, l'attesa e l'ingaggio di obiettivi. Si tratta anche di comunicazione. Task Force Arrowhead Radio offre un modo per aumentare notevolmente il realismo e l'atmosfera del gameplay grazie alla perfetta integrazione con TeamSpeak.</Italian>
             <Czech>Válka není jenom o přesouvání, čekání a útočení na cíle. Je také o komunikaci. Task Force Arrowhead Radio poskytuje způsob, jak dramaticky zvýšit realističnost hry a atmosféru pomocí hladké integrace s TeamSpeakem.</Czech>
+            <Russian>Война - это не только про движение, ожидание и уничтожение врагов. Это также про общение. Task Force Arrowhead Radio предоставляет способ значительно увеличить игровой реализм и атмосферу с помощью интеграции с TeamSpeak.</Russian>
         </Key>
         <Key ID="STR_TFAR_CORE_VolumeIndicator">
             <Original>TFAR Volume Indicator</Original>
@@ -3438,7 +3460,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>TFAR - LR에서 SW로 복사 할 수 없음</Korean>
             <Chinese>TFAR - 無法從長程無線電複製設定到短程無線電上</Chinese>
             <Chinesesimp>TFAR - 无法从长程无线电复制设定到短程无线电上</Chinesesimp>
-            <Russian>TFAR - невозможно скопировать из ДС в БС</Russian>
+            <Russian>TFAR - невозможно скопировать из ДВ в КВ</Russian>
             <Italian>TFAR - impossibile copiare da LR a SW</Italian>
             <Czech>TFAR - nelze kopírovat z LR do KV</Czech>
         </Key>
@@ -3449,7 +3471,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>TFAR - SW에서 LR로 복사 할 수 없음</Korean>
             <Chinese>TFAR - 無法從短程無線電複製設定到長程無線電上</Chinese>
             <Chinesesimp>TFAR - 无法从短程无线电复制设定到长程无线电上</Chinesesimp>
-            <Russian>TFAR - невозможно скопировать из БС в ДС</Russian>
+            <Russian>TFAR - невозможно скопировать из КВ в ДВ</Russian>
             <Italian>TFAR - impossibile copiare da SR a LR</Italian>
             <Czech>TFAR - nelze kopírovat ze KV do DV</Czech>
         </Key>
@@ -3460,7 +3482,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>단파 무전기 메뉴 열기</Korean>
             <Chinese>打開短程無線電選單</Chinese>
             <Chinesesimp>打开短程无线电选单</Chinesesimp>
-            <Russian>Открыть меню рации ближней связи</Russian>
+            <Russian>Открыть меню КВ рации</Russian>
             <Turkish>KM Radyo Menüsünü Aç</Turkish>
             <Italian>Apri il menu della radio SR</Italian>
             <Czech>Otevřít KV Rádio Menu</Czech>
@@ -3472,7 +3494,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Korean>장파 무전기 메뉴 열기</Korean>
             <Chinese>打開長程無線電選單</Chinese>
             <Chinesesimp>打开长程无线电选单</Chinesesimp>
-            <Russian>Открыть меню рации дальней связи</Russian>
+            <Russian>Открыть меню ДВ рации</Russian>
             <Turkish>UM Radyo Menüsünü Aç</Turkish>
             <Italian>Apri il menu della radio LR</Italian>
             <Czech>Otevřít DV Rádio Menu</Czech>
