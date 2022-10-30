@@ -27,7 +27,7 @@ if (terrainIntersectASL[_p1, _p2]) then {
     private _r = 250.0;
     private _m = 100.0;
 
-    private _middle = [((_p1 select 0) + (_p2 select 0)) / 2.0, ((_p1 select 1) + (_p2 select 1)) / 2.0, ((_p1 select 2) + (_p2 select 2)) / 2.0];
+    private _middle = (_p1 vectorAdd _p2) vectorMultiply 0.5;
     private _base = _middle select 2;
 
     while {(_r - _l) > 10} do {
