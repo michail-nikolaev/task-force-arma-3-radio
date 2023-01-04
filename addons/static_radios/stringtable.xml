@@ -11,6 +11,7 @@
             <Turkish>Bu bir Radyoda kullanılmalıdır</Turkish>
             <Czech>Toto musí být použito na rádio</Czech>
             <Russian>Это должно быть использовано на рации</Russian>
+            <Italian>Questo va utilizzato su una radio</Italian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_FreqTitle">
             <Original>Frequency</Original>
@@ -22,6 +23,7 @@
             <Turkish>Frekans</Turkish>
             <Czech>Frekvence</Czech>
             <Russian>Частота</Russian>
+            <Italian>Frequenza</Italian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ChannelTitle">
             <Original>Channel</Original>
@@ -33,6 +35,7 @@
             <Turkish>Kanal</Turkish>
             <Czech>Kanál</Czech>
             <Russian>Канал</Russian>
+            <Italian>Canale</Italian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_SpeakerTitle">
             <Original>Speaker</Original>
@@ -44,6 +47,7 @@
             <Turkish>Hoparlör</Turkish>
             <Czech>Reproduktor</Czech>
             <Russian>Динамики</Russian>
+            <Italian>Altoparlante</Italian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_VolumeTitle">
             <Original>Volume</Original>
@@ -55,6 +59,7 @@
             <Turkish>Ses</Turkish>
             <Czech>Hlasitost</Czech>
             <Russian>Громкость</Russian>
+            <Italian>Volume</Italian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_DisplayName">
             <Original>Static Radio</Original>
@@ -66,6 +71,7 @@
             <Turkish>Sabit Telsiz</Turkish>
             <Czech>Statické rádio</Czech>
             <Russian>Статическая радиостанция</Russian>
+            <Italian>Radio statica</Italian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_Frequency_tooltip">
             <Original>The static Frequencies for this radio</Original>
@@ -77,6 +83,7 @@
             <Turkish>Sabit Frekans bu telsiz içindir</Turkish>
             <Czech>Statické frekvence pro toto rádio</Czech>
             <Russian>Статические частоты для этой радиостанции</Russian>
+            <Italian>Le frequenze statiche per questa radio</Italian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_Channel_tooltip">
             <Original>The current selected Channel for this radio</Original>
@@ -88,6 +95,7 @@
             <Turkish>Bu radyo için mevcut seçili Kanal</Turkish>
             <Czech>Momentálně zvolený kanál pro toto rádio</Czech>
             <Russian>Текущий выбранный канал для этой радиостанции</Russian>
+            <Italian>Il canale attualmente selezionato su questa radio</Italian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_SpeakerEnabled">
             <Original>Speaker enabled</Original>
@@ -99,6 +107,7 @@
             <Turkish>Hoparlör Aktif</Turkish>
             <Czech>Reproduktory zapnuty</Czech>
             <Russian>Динамики включены</Russian>
+            <Italian>Altoparlante abilitato</Italian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_SpeakerEnabled_tooltip">
             <Original>Whether the Radios Speaker is enabled.</Original>
@@ -110,6 +119,7 @@
             <Turkish>Radyo Hoparlörünün etkin olup olmadığı.</Turkish>
             <Czech>Jestli jsou reproduktory rádia zapnuty</Czech>
             <Russian>Включены ли динамики радиостанции</Russian>
+            <Italian>Se selezionato, l'altoparlante è acceso.</Italian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_RadioVolume">
             <Original>Radio Volume</Original>
@@ -121,6 +131,7 @@
             <Turkish>Telsiz Sesi</Turkish>
             <Czech>Hlasitost rádia</Czech>
             <Russian>Громкость радиостанции</Russian>
+            <Italian>Volume Radio</Italian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_RadioVolume_tooltip">
             <Original>The normal max for this setting is 10. But for static Radios their volume can be amplified. Be careful using this on Radios that can be picked up by Players! A too high setting can cause performance problems on clients.</Original>
@@ -132,6 +143,7 @@
             <Turkish>Bu ayar için normal maksimum 10'dur. Ancak sabit Radyolar için ses seviyesi yükseltilebilir. Bunu Oyuncular tarafından alınabilen Radyolarda kullanırken dikkatli olun! Çok yüksek bir ayar, istemcilerde performans sorunlarına neden olabilir.</Turkish>
             <Czech>Normální maximum pro toto nastavení je 10. Ovšem pro statická rádia platí, že jejich hlasitost může být zvýšena. Buďte opatrní s používám tohoto na rádia, která mohou být zvednuta hráči! Moc vysoká nastavení mohou způsobit problémy s výkonem na klientech.</Czech>
             <Russian>Нормальное макс. значение - 10, но для статических радиостанций оно может быть усилено. Будьте осторожны используя это на радиостанциях, которые могут быть подобраны игроками! Слишком высокое значение может негативно повлиять на производительности клиентов.</Russian>
+            <Italian>Il valore massimo normalmente è 10, ma per le radio statiche il volume può essere amplificato. Fai attenzione ad usare questo settaggio su radio che possono essere raccolte dai giocatori. Un settaggio troppo alto può causare problemi di performance sui client.</Italian>
         </Key>
     </Package>
 </Project>
