@@ -40,7 +40,7 @@
             <Japanese>有効化すると、AI はスピーカーからの話し声を検知します。\n 現在の AI は受信かいかなる稼働中のスピーカーを検知します。</Japanese>
             <Russian>Если включено, боты могут обнаруживать включенные динамики.\n В настоящее время ИИ реагирует на входящие радиосообщения, когда ЛЮБОЙ динамик включен.</Russian>
             <Turkish>Etkinleştirilirse, BOT aktif konuşmacıları algılayabilir. \n Şu anda BOT, bir çağrı alıp almadığını ve HERHANGİ bir konuşmanın etkin olup olmadığını algılar.</Turkish>
-            <Italian>Se abilitato, l'ai è in grado di rilevare gli altoparlanti attivi.\n Attualmente l'IA rileva se ricevono una chiamata e hanno QUALSIASI altoparlante attivo.</Italian>
+            <Italian>Se abilitato, l'IA è in grado di rilevare gli altoparlanti attivi.\n Attualmente l'IA rileva se ricevono una chiamata e hanno QUALSIASI altoparlante attivo.</Italian>
             <Czech>Pokud povoleno, AI bude schopno detekovat aktivní reproduktory.\n Momentálně AI detekuje, jestli přijímají hovor a jsou NĚJAKÉ reproduktory aktivní.</Czech>
         </Key>
     </Package>

@@ -311,7 +311,7 @@
                 <Chinesesimp>同阵营使用相同的长程无线电频率</Chinesesimp>
                 <Russian>Одинаковые частоты ДВ для всей стороны</Russian>
                 <Turkish>Taraf için aynı LR frekansları</Turkish>
-                <Italian>Stesse frequenze LR per lato</Italian>
+                <Italian>Stesse frequenze LR per fazione</Italian>
                 <Czech>Stejné DV frekvence pro stranu</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_same_sw_frequencies_for_side">
@@ -327,7 +327,7 @@
                 <Chinesesimp>同阵营使用相同的短程无线电频率</Chinesesimp>
                 <Russian>Одинаковые частоты КВ для всей стороны</Russian>
                 <Turkish>Taraf için aynı SR frekansları</Turkish>
-                <Italian>Stesse frequenze SR per lato</Italian>
+                <Italian>Stesse frequenze SR per fazione</Italian>
                 <Czech>Stejné KV frekvence pro stranu</Czech>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_give_microdagr_to_soldier">
@@ -513,7 +513,7 @@
                 <Japanese>インターコムを絞る</Japanese>
                 <Russian>Снижение громкости переговорного устройства</Russian>
                 <Turkish>Interkom Ducking</Turkish>
-                <Italian>Ducking interfono</Italian>
+                <Italian>Attenuazione interfono</Italian>
                 <English>Intercom Ducking</English>
                 <Czech>Utlumení hlasitosti intercomu</Czech>
             </Key>
@@ -1669,7 +1669,7 @@ Sie können nicht unter Wasser reden, selbst wenn Sie einen Taucheranzug tragen.
 Wenn Sie sich unter Wasser befinden, können Sie Unterhaltungen an Land gedämpft wahrnehmen.&lt;br/&gt;
 Nutzen Sie den Unterwasser-Transceiver, um sich mit anderen Tauchern zu unterhalten.&lt;br/&gt;Sie können normale Funkgeräte unter Wasser nicht nutzen (weder Senden noch Empfangen).&lt;br/&gt;Ausnahme: U-Boot auf Periskoptiefe. Hier kann der Langstreckenfunk verwendet werden.</German>
                 <Italian>&lt;br/&gt;
-Non puoi parlare sott'acqua (anche se indossi una muta). Comunque, se sei vicino al tuo gregario puoi sentire sulle brevi distanze la propria voce distorta (ad eccezione se siete sott'acquea in un veicolo isolato).&lt;br/&gt;
+Non puoi parlare sott'acqua (anche se indossi una muta). Comunque, se sei vicino al tuo gregario puoi sentire sulle brevi distanze la propria voce distorta (ad eccezione se siete sott'acqua in un veicolo isolato).&lt;br/&gt;
 Essendo sott'acqua, non potrai capire le comunicazioni sulla terra ferma.&lt;br/&gt;
 Usa il ricetrasmettitore subacqueo per comunicare con gli altri sommozzatori.&lt;br/&gt;
 Non puoi usare le normali radio sott'acqua (nè trasmettere nè ricevere). Se vuoi usare la normale radio emergi in superfice. &lt;br/&gt;Eccezione - sottomarino a quota periscopio (i sommozzatori possono usare una radio ad onde lunghe).</Italian>
@@ -2483,7 +2483,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Czech>Sluchátka</Czech>
             <French>Écouteurs</French>
             <German>Kopfhörer</German>
-            <Italian>Сuffia</Italian>
+            <Italian>Cuffia</Italian>
             <Polish>Słuchawki</Polish>
             <Portuguese>Fones de Ouvido</Portuguese>
             <Russian>Наушники</Russian>
@@ -3231,7 +3231,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Czech>&lt;t size='1' align='center' color='#00FF00'&gt;Vysílání&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
             <French>&lt;t size='1' align='center' color='#00FF00'&gt;Transmission&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio : %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
             <German>&lt;t size='1' align='center' color='#00FF00'&gt;Sende&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
-            <Italian>&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
+            <Italian>&lt;t size='1' align='center' color='#00FF00'&gt;Trasmettendo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntivo: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
             <Polish>&lt;t size='1' align='center' color='#00FF00'&gt;Nadawanie&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
             <Portuguese>&lt;t size='1' align='center' color='#00FF00'&gt;Transmitindo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Rádio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal Adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Portuguese>
             <Russian>&lt;t size='1' align='center' color='#00FF00'&gt;Передача&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Дополнительный канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
@@ -3248,7 +3248,7 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Czech>&lt;t size='1' align='center' color='#FF9900'&gt;Vysílání ukončeno&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Vysílačka: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatečný kanál: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Frek: %3&lt;/t&gt;</Czech>
             <French>&lt;t size='1' align='center' color='#FF9900'&gt;Transmis avec&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal supplémentaires : %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Fréquence : %3&lt;/t&gt;</French>
             <German>&lt;t size='1' align='center' color='#FF9900'&gt;Gesendet&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Funkgerät: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Zusätzlicher Kanal: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</German>
-            <Italian>&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntive: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
+            <Italian>&lt;t size='1' align='center' color='#FF9900'&gt;Trasmesso con&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canale aggiuntivo: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Italian>
             <Polish>&lt;t size='1' align='center' color='#FF9900'&gt;Wysłano&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Radio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Dodatkowy kanał: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Częst.: %3&lt;/t&gt;</Polish>
             <Portuguese>&lt;t size='1' align='center' color='#FF9900'&gt;Transmitindo&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Rádio: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Canal adicional: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Freq: %3&lt;/t&gt;</Portuguese>
             <Russian>&lt;t size='1' align='center' color='#FF9900'&gt;Передано&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Рация: %1&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Дополнительный канал: %2&lt;/t&gt;&lt;br /&gt;&lt;t size='1' align='center'&gt;Частота: %3&lt;/t&gt;</Russian>
