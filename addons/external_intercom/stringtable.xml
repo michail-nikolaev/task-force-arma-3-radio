@@ -41,7 +41,7 @@
             <English>Intercom Phone in use</English>
             <Czech>Interkom telefon je používán</Czech>
             <Russian>Телефон интеркома используется</Russian>
-            <Italian>Telefono iterfono in uso</Italian>
+            <Italian>Telefono iterfono già in uso</Italian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SOMEONE_USING_PHONE">
             <Original><br /><br /><t align='center'>%1 is currently using the Intercom Phone</t></Original>
@@ -62,7 +62,7 @@
             <English>External Intercom has been Reset</English>
             <Czech>Vnější interkom byl resetován</Czech>
             <Russian>Внешний интерком может быть сброшен</Russian>
-            <Italian>L'interfono esterno è stata riagganciato</Italian>
+            <Italian>L'interfono esterno è stato riagganciato</Italian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PHONE_INDICATOR">
             <Original>External Intercom Connection Indicator</Original>
