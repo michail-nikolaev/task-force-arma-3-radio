@@ -41,6 +41,7 @@ if !(missionNamespace getVariable ["TFAR_spectatorCanHearFriendlies",true]) then
 ["objectInterceptionStrength", missionNamespace getVariable ["TFAR_objectInterceptionStrength", 400]] call TFAR_fnc_setPluginSetting;
 ["voiceCone", missionNamespace getVariable ["TFAR_voiceCone", true]] call TFAR_fnc_setPluginSetting;
 ["disableAutomaticMute", missionNamespace getVariable ["TFAR_disableAutoMute", false]] call TFAR_fnc_setPluginSetting;
-["noAutomoveSpectator", missionNamespace getVariable ["TFAR_noAutomoveSpectator", false]] call TFAR_fnc_setPluginSetting;
+["noAutomoveSpectator", missionNamespace getVariable ["TFAR_noAutomoveSpectator", true]] call TFAR_fnc_setPluginSetting;
+["allowDebugging", missionNamespace getVariable ["TFAR_allowDebugging", false]] call TFAR_fnc_setPluginSetting;
 
 //If you add things that player could change in Mission call this PFH or tell players in WIKI
