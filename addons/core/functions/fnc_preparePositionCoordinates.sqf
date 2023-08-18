@@ -100,7 +100,7 @@ private _data = [
     _pos, _curViewDir,//Position
     _can_speak, _useSw, _useLr, _useDd, _vehicle,
     _terrainInterception,
-    _unit getVariable ["tf_voiceVolume", 1.0],//Externally used API variable. Don't change name
+    if (_isSpectating) then { 1 } else { _unit getVariable ["tf_voiceVolume", 1.0] }, //Externally used API variable. Don't change name
     _object_interception, //Interceptions
     _isSpectating, _isEnemy
     ];
