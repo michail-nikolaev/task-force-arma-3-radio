@@ -18,7 +18,7 @@
   Public: No
 */
 
-if (!(TF_tangent_lr_pressed) or {!alive TFAR_currentUnit}) exitWith {false};
+if (!TF_tangent_lr_pressed) exitWith {false};
 
 private _radio = call TFAR_fnc_activeLrRadio;
 private _channel = _radio call TFAR_fnc_getLrChannel;

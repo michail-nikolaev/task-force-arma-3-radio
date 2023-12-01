@@ -18,8 +18,7 @@
   Public: No
 */
 
-
-if ((!TF_tangent_sw_pressed) or {!alive TFAR_currentUnit}) exitWith {false};
+if (!TF_tangent_sw_pressed) exitWith {false};
 private _radio = call TFAR_fnc_activeSwRadio;
 
 private _additionalChannel = _radio call TFAR_fnc_getAdditionalSwChannel;
