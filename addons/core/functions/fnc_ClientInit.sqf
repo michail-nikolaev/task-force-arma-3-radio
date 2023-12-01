@@ -153,17 +153,23 @@ if (player call TFAR_fnc_isForcedCurator) then {
 //From ACEMOD
 // "playerChanged" event
 ["unit", {
-    //current unit changed (Curator took control of unit)
+    // Current unit changed (can be due to curator control (activation and release) or respawn)
+    params ["_newUnit", "_oldUnit"];
 
-    if (player != (_this select 0)) then {
-        player setVariable ["TFAR_controlledUnit",(_this select 0), true];//This tells other players that our position is different
+    if (player != _newUnit) then {
+        player setVariable ["TFAR_controlledUnit", _newUnit, true]; //This tells other players that our position is different
     } else {
-        player setVariable ["TFAR_controlledUnit",nil, true];
+        player setVariable ["TFAR_controlledUnit", nil, true];
     };
 
-    TFAR_currentUnit = (_this select 0);
-    player call TFAR_fnc_releaseAllTangents;
-    TFAR_currentUnit call TFAR_fnc_releaseAllTangents;//Shouldn't be needed. But it doesn't hurt
+    // Release pressed tangents as old unit
+    _oldUnit call TFAR_fnc_releaseAllTangents;
+
+    // Needs to be assigned between the tangent releases
+    TFAR_currentUnit = _newUnit;
+
+    // Release pressed tangents as new unit
+    _newUnit call TFAR_fnc_releaseAllTangents;
 
     TFAR_lastLoadoutChange = diag_tickTime; //Switching unit also switches loadout
     GVAR(VehicleConfigCacheNamespace) setVariable ["lastRadioSettingUpdate",diag_tickTime]; //And changes Radios
