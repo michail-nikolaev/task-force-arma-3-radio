@@ -818,6 +818,14 @@
                 <Czech>Nevynucovat přesun do kanálu TFAR v režimu diváka</Czech>
                 <Russian>Не перемещать принудительно в канал TFAR в режиме наблюдателя</Russian>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_muteSpectators">
+                <English>Mute other spectators</English>
+                <Czech>Ztišit ostatní diváky</Czech>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_muteSpectators_desc">
+                <English>When spectating, mute other spectators and listen to alive players only</English>
+                <Czech>Při sledování ztišit ostatní diváky zatímco lze poslouchat hráče kteří jsou stále živí</Czech>
+            </Key>
             <Key ID="STR_TFAR_SETTINGS_noTSNotConnectedHint">
                 <English>Hide "Not connected" message</English>
                 <German>Verstecke "Not connected" message</German>
