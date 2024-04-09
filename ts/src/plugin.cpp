@@ -501,6 +501,13 @@ void processVoiceData(TSServerID serverConnectionHandlerID, TSClientID clientID,
     //If we are dead we can't hear anyone in seriousMode. And if we are alive we can't hear the dead.
 
     const bool isSpectator = clientData->isSpectating;
+
+    // If I am dead and the speaker spectating, ignore if other spectators should be muted
+    if ((TFAR::config.get<bool>(Setting::muteSpectators)) && clientDataDir->myClientData->isSpectating && isSpectator) {
+        sampleBuffer.setToNull();
+        return;
+    }
+
     //NonPure normalPlayer->Spectator
     const bool isNotHearableInNonPureSpectator = clientDataDir->myClientData->isSpectating && ((clientData->isEnemyToPlayer && TFAR::config.get<bool>(Setting::spectatorNotHearEnemies)) || (!clientData->isEnemyToPlayer && !TFAR::config.get<bool>(Setting::spectatorCanHearFriendlies)));
     //Other player is also a spectator. So we always hear him without 3D positioning
