@@ -184,7 +184,15 @@
     0
 ] call CBA_Settings_fnc_init;
 
-
+[
+    "TFAR_muteSpectators",
+    "CHECKBOX",
+    [ELSTRING(settings,muteSpectators), ELSTRING(settings,muteSpectators_desc)],
+    localize ELSTRING(settings,clientside),
+    false,
+    0,
+    {["muteSpectators", _this] call TFAR_fnc_setPluginSetting;}
+] call CBA_Settings_fnc_init;
 
 
 
