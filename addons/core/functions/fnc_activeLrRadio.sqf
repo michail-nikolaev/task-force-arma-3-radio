@@ -18,6 +18,8 @@
   Public: Yes
 */
 
+private TF_lr_active_radio = nil;
+
 private _radios = TFAR_currentUnit call TFAR_fnc_lrRadiosList;
 
 if (isNil "TF_lr_active_radio") then {
