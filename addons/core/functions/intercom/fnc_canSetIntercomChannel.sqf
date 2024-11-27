@@ -20,11 +20,7 @@
   Public: No
 */
 
-params [
-    ["_vehicle", objNull, [objNull]],
-    ["_player", objNull, [objNull]],
-    ["_channel", -2, [0]]
-];
+params ["_vehicle", "_player", ["_channel", -2]];
 
 private _intercom = _vehicle getVariable [format ["TFAR_IntercomSlot_%1", netId _player], -2];
 if (_intercom == -2) then {

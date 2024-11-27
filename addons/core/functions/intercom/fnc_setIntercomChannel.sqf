@@ -26,6 +26,8 @@ params [
     ["_channel", 1, [1]]
 ];
 
+if (!alive _vehicle || !alive _player) exitWith {};
+
 _vehicle setVariable [format ["TFAR_IntercomSlot_%1", netId _player], _channel, true];
 ["TFAR_intercomChannelSet", [_vehicle, _player, _channel]] call CBA_fnc_localEvent;
 nil
