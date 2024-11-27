@@ -17,7 +17,7 @@
   Example:
     [vehicle player, player, 1] = call TFAR_fnc_canSetIntercomChannel;
 
-  Public: Yes
+  Public: No
 */
 
 params [
