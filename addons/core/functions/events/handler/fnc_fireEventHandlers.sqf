@@ -21,4 +21,4 @@
 
 params ["_eventName", "_parameters"];
 
-[format["TFAR_event_%1", _eventName],_parameters] call CBA_fnc_localEvent;
+[format ["TFAR_event_%1", _eventName], _parameters] call CBA_fnc_localEvent;
