@@ -24,7 +24,7 @@ params [
     ["_player", objNull, [objNull]]
 ];
 
-if (!isPlayer _player) exitWith {};
+if (isNull _vehicle || !isPlayer _player) exitWith {};
 
 private _intercom = _vehicle getVariable [format ["TFAR_IntercomSlot_%1", netId _player], -2];
 if (_intercom == -2) then {
