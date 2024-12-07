@@ -29,5 +29,5 @@ params [
 if (!alive _vehicle || !alive _player || !isPlayer _player) exitWith {};
 
 _vehicle setVariable [format ["TFAR_IntercomSlot_%1", netId _player], _channel, true];
-["onIntercomChannelSet", [_vehicle, _player, _channel]] call TFAR_fnc_fireEventHandlers;
+["OnIntercomChannelSet", [_vehicle, _player, _channel]] call TFAR_fnc_fireEventHandlers;
 nil
