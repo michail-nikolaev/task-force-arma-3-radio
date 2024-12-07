@@ -22,9 +22,6 @@
 
 params ["_vehicle", "_player", ["_channel", -2]];
 
-private _intercom = _vehicle getVariable [format ["TFAR_IntercomSlot_%1", netId _player], -2];
-if (_intercom == -2) then {
-    _intercom = _vehicle getVariable ["TFAR_defaultIntercomSlot", TFAR_defaultIntercomSlot];
-};
+private _intercom = [_vehicle, _player] call TFAR_fnc_getIntercomChannel;
 
 _intercom != _channel

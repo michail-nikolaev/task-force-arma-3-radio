@@ -63,6 +63,7 @@ PREP_SUB(hint,unableToUseHint);
 
 // /intercom
 PREP_SUB(intercom,canSetIntercomChannel);
+PREP_SUB(intercom,getIntercomChannel);
 PREP_SUB(intercom,setIntercomChannel);
 
 // /plugin
