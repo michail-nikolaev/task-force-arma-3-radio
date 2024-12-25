@@ -14,7 +14,7 @@
     Stat text <STRING>
 
   Example:
-    [["tf_encryptionCode"], _config] call TFAR_fnc_statCondition_isRadio
+    [["tf_encryptionCode"], _config] call TFAR_fnc_statCondition_encryptionCode
 
   Public: Yes
 */
