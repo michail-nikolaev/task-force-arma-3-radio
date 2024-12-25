@@ -1,10 +1,10 @@
 #include "script_component.hpp"
 
 /*
-  Name: TFAR_fnc_statCondition_isRadio
+  Name: TFAR_fnc_statCondition_encryptionCode
 
   Author: DartRuffian
-    Checks if a given item is a SR or LR radio
+    Checks if an item is a radio and has an encyrption code
 
   Arguments:
     Stats  - Stats to use <ARRAY>
