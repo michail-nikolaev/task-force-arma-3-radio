@@ -6,6 +6,9 @@ PREP_SUB2(ACEInteraction,getStereoChildren);
 PREP_SUB2(ACEInteraction,getTakeChildren);
 PREP_SUB2(ACEInteraction,takeRadio);
 
+PREP_SUB(stats,statCondition_encryptionCode);
+PREP_SUB(stats,statCondition_isRadio);
+
 // /Events
 PREP_SUB(events\handler,addEventHandler);
 PREP_SUB(events\handler,fireEventHandlers);
