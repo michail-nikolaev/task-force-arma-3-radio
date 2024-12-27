@@ -11,12 +11,12 @@
     Config - Config path to item <CONFIG>
 
   Return Value:
-    Stat text <STRING>
+    True if item has an encryption code and is a radio, otherwise false <BOOL>
 
   Example:
     [["tf_encryptionCode"], _config] call TFAR_fnc_statCondition_encryptionCode
 
-  Public: Yes
+  Public: No
 */
 
 params ["_stats", "_config"];

@@ -11,12 +11,12 @@
     Config - Config path to item <CONFIG>
 
   Return Value:
-    Stat text <STRING>
+    True if given item is a radio, otherwise. <BOOL>
 
   Example:
     [["tf_hasLRradio", "tf_radio"], _config] call TFAR_fnc_statCondition_isRadio
 
-  Public: Yes
+  Public: No
 */
 
 params ["_stats", "_config"];
