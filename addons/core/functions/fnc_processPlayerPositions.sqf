@@ -29,8 +29,18 @@ if (!TFAR_currentNearPlayersProcessed) then {
 
     private _nearPlayersCount = count TFAR_currentNearPlayersProcessing;
 
-    private _playersToProcess = _nearPlayersCount min 30; //Plugin POS info takes about 100 microseconds meaning 10 position updates block for 1 ms
-    if (_playersToProcess == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
+    private _playersToProcessCount = _nearPlayersCount min 30; //Plugin POS info takes about 100 microseconds meaning 10 position updates block for 1 ms
+    if (_playersToProcessCount == 0) exitWith {TFAR_currentNearPlayersProcessed = true};
+
+    private _playersToProcess = TFAR_currentNearPlayersProcessing select [0, _playersToProcessCount];
+
+#if __GAME_BUILD__ > 152566 // Profiling branch 2.18 v19 //#TODO remove this after 2.20 release
+    // Bulk calculate object interception, we can use multithreading for it and its quite expensive
+    if (TFAR_objectInterceptionEnabled) then {
+        GVAR(ObjectInterceptionCache) = createHashMap;
+        _playersToProcess call TFAR_fnc_objectInterceptionBulkToCache;
+    };
+#endif
 
     {
         private _controlled = _x getVariable ["TFAR_controlledUnit", objNull];
@@ -38,17 +48,14 @@ if (!TFAR_currentNearPlayersProcessed) then {
         if (_x getVariable ["TFAR_forceSpectator", false]) then {
             _unitName = _x getVariable ["TFAR_spectatorName", _unitName];
         };
-        if (isNull _controlled) then {
-            [_x, true, _unitName] call TFAR_fnc_sendPlayerInfo;
-        } else {
-            [_controlled, true, _unitName] call TFAR_fnc_sendPlayerInfo;
-        };
-    } count (TFAR_currentNearPlayersProcessing select [0, _playersToProcess]); //commy2
+
+        [[_controlled, _x] select (isNull _controlled), true, _unitName] call TFAR_fnc_sendPlayerInfo;
+    } count _playersToProcess; //commy2
 
     //Remove processed Units from array
-    TFAR_currentNearPlayersProcessing deleteRange [0, _playersToProcess];
+    TFAR_currentNearPlayersProcessing deleteRange [0, _playersToProcessCount];
     //We just processed the last players
-    if ((_nearPlayersCount - _playersToProcess) isEqualTo 0) exitWith {TFAR_currentNearPlayersProcessed = true};
+    if ((_nearPlayersCount - _playersToProcessCount) isEqualTo 0) exitWith {TFAR_currentNearPlayersProcessed = true};
 };
 
 //Don't process anymore if we already blocked too long (5 millisec)

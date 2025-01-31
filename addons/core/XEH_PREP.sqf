@@ -178,6 +178,7 @@ PREP(loadoutReplaceProcess);
 PREP(lrRadiosList);
 // O
 PREP(objectInterception);
+PREP(objectInterceptionBulkToCache);
 // P
 PREP(parseFrequenciesInput);
 PREP(preparePositionCoordinates);

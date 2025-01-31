@@ -40,28 +40,29 @@ if ((_result != "OK") and {(count _splitResult) != 2}) then {
     };
 };
 
-private _isSpeaking = (_splitResult select 0) == "1";
-private _isReceiving = (_splitResult param [1,""]) == "1";
+private _isSpeaking = (_splitResult select 0) isEqualTo "1";
+private _isReceiving = (_splitResult param [1,""]) isEqualTo "1";
 
-if (_isSpeaking) then {
-    _player setVariable ["TFAR_speakingSince", diag_tickTime];
-};
+// Only run this code if speaking state has changed
+if ((_player getVariable ["TFAR_isSpeaking", false]) isNotEqualTo _isSpeaking) then {
 
-_player setRandomLip _isSpeaking;
-//Only want to fire EH once
-if !((_player getVariable ["TFAR_isSpeaking", false]) isEqualTo _isSpeaking) then {
+    _player setRandomLip _isSpeaking;
+
+    if (_isSpeaking) then {
+        _player setVariable ["TFAR_speakingSince", diag_tickTime];
+    };
+
     _player setVariable ["TFAR_isSpeaking", _isSpeaking];
     _player setVariable ["TF_isSpeaking", _isSpeaking];//#Deprecated variable
     ["OnSpeak", [_player, _isSpeaking]] call TFAR_fnc_fireEventHandlers;
 };
 
-if !((_player getVariable ["TFAR_isReceiving", false]) isEqualTo _isReceiving) then {
+if ((_player getVariable ["TFAR_isReceiving", false]) isNotEqualTo _isReceiving) then {
     _player setVariable ["TFAR_isReceiving", _isReceiving];
     ["OnRadioReceive", [_player, _isReceiving]] call TFAR_fnc_fireEventHandlers;
 };
 
-
-
+//#TODO this is a bad place to do it, why check every update... 
 if !(_player getVariable ["TFAR_killedEHAttached",false]) then {
     _player addEventHandler ["Killed", {_player call TFAR_fnc_sendPlayerKilled}];
     _player setVariable ["TFAR_killedEHAttached", true];
