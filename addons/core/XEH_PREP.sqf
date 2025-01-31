@@ -64,6 +64,11 @@ PREP_SUB(hint,showRadioSpeakers);
 PREP_SUB(hint,showRadioVolume);
 PREP_SUB(hint,unableToUseHint);
 
+// /intercom
+PREP_SUB(intercom,canSetIntercomChannel);
+PREP_SUB(intercom,getIntercomChannel);
+PREP_SUB(intercom,setIntercomChannel);
+
 // /plugin
 PREP_SUB(plugin,betaTracker); //#TODO remove on release
 PREP_SUB(plugin,getTeamSpeakChannelID);
