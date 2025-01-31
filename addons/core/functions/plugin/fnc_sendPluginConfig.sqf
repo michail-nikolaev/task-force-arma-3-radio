@@ -18,12 +18,7 @@
   Public: Yes
 */
 
-
-if !(missionNamespace getVariable ["TFAR_spectatorCanHearFriendlies",true]) then {
-    ["minimumPluginVersion", 331] call TFAR_fnc_setPluginSetting; //Temporary until next plugin update. This is only needed when using non-default settings for spectators
-} else {
-    ["minimumPluginVersion", 327] call TFAR_fnc_setPluginSetting; //Keep this as first
-};
+["minimumPluginVersion", 336] call TFAR_fnc_setPluginSetting; //Keep this as first
 
 ["full_duplex",missionNamespace getVariable ["TFAR_fullDuplex",true]] call TFAR_fnc_setPluginSetting;
 ["addon_version",TFAR_ADDON_VERSION] call TFAR_fnc_setPluginSetting;
