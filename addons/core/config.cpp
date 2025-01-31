@@ -138,7 +138,7 @@ class ace_arsenal_stats {
         displayName = "Encryption Code";//#Todo Translate
         showText= 1;
         textStatement = QUOTE(params [ARR_2('_stat', '_config')]; private _enc = getText (_config >> _stat select 0); _enc);
-        condition = QUOTE(params [ARR_2('_stat', '_config')]; isText (_config >> _stat select 0) && (getText (_config >> _stat select 0) != ''));
+        condition = QUOTE(call TFAR_fnc_statCondition_encryptionCode);
         tabs[] = {{12, 5}, {}};
     };
 };
