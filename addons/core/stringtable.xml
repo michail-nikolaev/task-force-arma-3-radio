@@ -2114,6 +2114,23 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
                 <Chinese>控制</Chinese>
                 <Chinesesimp>控制</Chinesesimp>
             </Key>
+            <Key ID="STR_TFAR_CORE_radio_encryption_code">
+                <Original>Encryption code</Original>
+                <English>Encryption code</English>
+                <Czech>Šifrovací kód</Czech>
+                <French>Code de cryptage</French>
+                <German>Verschlüsselungscode</German>
+                <Italian>Codice di crittografia</Italian>
+                <Polish>Kod szyfrowania</Polish>
+                <Portuguese>Código de criptografia</Portuguese>
+                <Russian>Код шифрования</Russian>
+                <Spanish>Código de cifrado</Spanish>
+                <Turkish>Şifreleme kodu</Turkish>
+                <Japanese>暗号化コード</Japanese>
+                <Korean>암호화 코드</Korean>
+                <Chinese>加密代碼</Chinese>
+                <Chinesesimp>加密代码</Chinesesimp>
+            </Key>
             <Key ID="STR_TFAR_CORE_subject_name">
                 <Original>Radio</Original>
                 <English>Radio</English>
