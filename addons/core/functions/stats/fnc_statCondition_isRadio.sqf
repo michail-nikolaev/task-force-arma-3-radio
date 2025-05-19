@@ -14,11 +14,11 @@
     True if given item is a radio, otherwise. <BOOL>
 
   Example:
-    [["tf_hasLRradio", "tf_radio"], _config] call TFAR_fnc_statCondition_isRadio
+    [["tf_hasLRradio", "tf_radio", "tf_prototype"], _config] call TFAR_fnc_statCondition_isRadio
 
   Public: No
 */
 
 params ["_stats", "_config"];
 
-getNumber (_config >> _stats select 0) == 1 || {getNumber (_config >> _stats select 1) == 1}
+_stats findIf { getNumber (_config >> _x) == 1 } != -1

@@ -21,4 +21,4 @@
 
 params ["_stats", "_config"];
 
-[["tf_hasLRradio", "tf_radio"], _config] call TFAR_fnc_statCondition_isRadio && {getText (_config >> _stats select 0) != ""}
+[["tf_hasLRradio", "tf_radio", "tf_prototype"], _config] call TFAR_fnc_statCondition_isRadio && {getText (_config >> _stats select 0) != ""}
