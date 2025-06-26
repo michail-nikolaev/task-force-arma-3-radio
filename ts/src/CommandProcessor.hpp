@@ -11,6 +11,7 @@ enum class gameCommand {
     TS_INFO,                //Synchronous
     POS,                    //Synchronous
     IS_SPEAKING,            //Synchronous
+    IS_SPEAKING_BULK,      //Synchronous
     FREQ,                   //Async
     KILLED,                 //Async
     TRACK,                  //Async

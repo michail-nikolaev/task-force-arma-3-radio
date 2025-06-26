@@ -100,6 +100,48 @@ std::string CommandProcessor::processCommand(const std::string& command) {
                 return receivingTransmission ? "11" : "10";
             return receivingTransmission ? "01" : "00";
         }
+        case gameCommand::IS_SPEAKING_BULK:
+        {
+            tokens.clear();
+            helpers::split(command, '\t', tokens); // Previously we only split two tokens for performance reasons
+
+            std::string result;
+            result.reserve((tokens.size() - 1) * 3 + 1);
+
+            const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
+            if (!clientDataDir) // No data available, lets say no-one is speaking
+            {
+                for (size_t i = 1; i < tokens.size(); ++i)
+                {
+                    result += "00\t";
+                }
+                return result;
+            }
+
+
+            for (size_t i = 1; i < tokens.size(); ++i)
+            {
+                const auto nickname = convertNickname(tokens[i]);
+
+                const auto clientData = clientDataDir->getClientData(nickname);
+                if (!clientData) // Client not known, lets say they are not speaking
+                {
+                    result += "00\t";
+                    continue;
+                }
+
+                const bool receivingTransmission = clientData->receivingTransmission > 0;
+                const bool clientTalkingOnRadio = clientData->currentTransmittingTangentOverType != sendingRadioType::LISTEN_TO_NONE;
+                // talking, receiving transmission
+
+                if (clientData->clientTalkingNow || clientTalkingOnRadio)
+                    result += receivingTransmission ? "11\t" : "10\t";
+                else
+                    result += receivingTransmission ? "01\t" : "00\t";
+            }
+
+            return result;
+        }
         case gameCommand::RECV_FREQS: {
             const auto clientDataDir = TFAR::getServerDataDirectory()->getClientDataDirectory(Teamspeak::getCurrentServerConnection());
             if (!clientDataDir) return "[]";
@@ -128,6 +170,8 @@ gameCommand CommandProcessor::toGameCommand(std::string_view textCommand, size_t
             return gameCommand::POS;
         case FORCE_COMPILETIME(const_strhash("IS_SPEAKING"sv)):
             return gameCommand::IS_SPEAKING;
+        case FORCE_COMPILETIME(const_strhash("IS_SPEAKING_BULK"sv)):
+            return gameCommand::IS_SPEAKING_BULK;
         case FORCE_COMPILETIME(const_strhash("TS_INFO"sv)):
             return gameCommand::TS_INFO;
         case FORCE_COMPILETIME(const_strhash("FREQ"sv)):

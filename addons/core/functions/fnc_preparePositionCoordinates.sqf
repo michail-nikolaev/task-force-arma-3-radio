@@ -95,7 +95,7 @@ if (_isRemotePlayer && {TFAR_currentUnit getVariable ["TFAR_forceSpectator",fals
 };
 
 private _data = [
-    "POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12	%13",
+    "POS	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11	%12	%13~",
     _unitName,
     _pos, _curViewDir,//Position
     _can_speak, _useSw, _useLr, _useDd, _vehicle,

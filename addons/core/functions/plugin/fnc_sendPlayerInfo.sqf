@@ -27,7 +27,7 @@ private _result = "task_force_radio_pipe" callExtension _request;
 
 _splitResult = _result splitString "";
 
-if ((_result != "OK") and {(count _splitResult) != 2}) then {
+if (_result != "OK") then {
 
     if (GVAR(noTSNotConnectedHint) && {_result == "Not connected to TeamSpeak"}) exitWith {};
 
@@ -38,28 +38,6 @@ if ((_result != "OK") and {(count _splitResult) != 2}) then {
         call TFAR_fnc_hideHint;
         tf_lastError = false;
     };
-};
-
-private _isSpeaking = (_splitResult select 0) isEqualTo "1";
-private _isReceiving = (_splitResult param [1,""]) isEqualTo "1";
-
-// Only run this code if speaking state has changed
-if ((_player getVariable ["TFAR_isSpeaking", false]) isNotEqualTo _isSpeaking) then {
-
-    _player setRandomLip _isSpeaking;
-
-    if (_isSpeaking) then {
-        _player setVariable ["TFAR_speakingSince", diag_tickTime];
-    };
-
-    _player setVariable ["TFAR_isSpeaking", _isSpeaking];
-    _player setVariable ["TF_isSpeaking", _isSpeaking];//#Deprecated variable
-    ["OnSpeak", [_player, _isSpeaking]] call TFAR_fnc_fireEventHandlers;
-};
-
-if ((_player getVariable ["TFAR_isReceiving", false]) isNotEqualTo _isReceiving) then {
-    _player setVariable ["TFAR_isReceiving", _isReceiving];
-    ["OnRadioReceive", [_player, _isReceiving]] call TFAR_fnc_fireEventHandlers;
 };
 
 //#TODO this is a bad place to do it, why check every update... 

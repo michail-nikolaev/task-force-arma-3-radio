@@ -18,7 +18,7 @@
   Public: Yes
 */
 
-["minimumPluginVersion", 336] call TFAR_fnc_setPluginSetting; //Keep this as first
+["minimumPluginVersion", 339] call TFAR_fnc_setPluginSetting; //Keep this as first
 
 ["full_duplex",missionNamespace getVariable ["TFAR_fullDuplex",true]] call TFAR_fnc_setPluginSetting;
 ["addon_version",TFAR_ADDON_VERSION] call TFAR_fnc_setPluginSetting;
