@@ -36,17 +36,21 @@ private _requests = _this apply {
 
 private _results = lineIntersectsSurfaces [_requests];
 
+private _localParent = objectParent TFAR_currentUnit;
+private _exclList = [_localParent, objNull]; // Second one will be filled in with remoteParent
+
 {
-  private _ins = _x;
-  private _unit = _this select _forEachIndex;
+    private _unit = _this select _forEachIndex;
 
-  private _localParent = objectParent TFAR_currentUnit;
-  private _remoteParent = objectParent _unit;
-  private _count = {
-      private _obj = (_x select 2);
-      !(_obj isEqualTo _localParent || _obj isEqualTo _remoteParent) && !isPlayer _obj
-    } count _ins;
+    _exclList set [1, objectParent _unit];
 
-    GVAR(ObjectInterceptionCache) set [hashValue _unit, _count];
-}
-forEach _results;
+    _results set [_forEachIndex, [
+      hashValue _unit, 
+      {
+        //private _obj = (_x select 2);
+        !((_x select 2) in _exclList) && !isPlayer (_x select 2)
+      } count _x
+    ]];
+} forEach _results;
+
+GVAR(ObjectInterceptionCache) insert _results;

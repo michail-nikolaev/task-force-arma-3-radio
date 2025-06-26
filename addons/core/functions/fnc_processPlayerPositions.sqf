@@ -36,7 +36,7 @@ if (!TFAR_currentNearPlayersProcessed) then {
 
     // Bulk calculate object interception, we can use multithreading for it and its quite expensive
     if (TFAR_objectInterceptionEnabled) then {
-        GVAR(ObjectInterceptionCache) = createHashMap;
+        //GVAR(ObjectInterceptionCache) = createHashMap; // We don't need to reset, we will just overwrite when we insert anyway. Downside is that we accumulate all players that ever were on the server. But a hundred hashmap entries is fine.
         _playersToProcess call TFAR_fnc_objectInterceptionBulkToCache;
     };
 
