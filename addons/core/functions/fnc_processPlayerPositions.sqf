@@ -34,13 +34,11 @@ if (!TFAR_currentNearPlayersProcessed) then {
 
     private _playersToProcess = TFAR_currentNearPlayersProcessing select [0, _playersToProcessCount];
 
-#if __GAME_BUILD__ > 152566 // Profiling branch 2.18 v19 //#TODO remove this after 2.20 release
     // Bulk calculate object interception, we can use multithreading for it and its quite expensive
     if (TFAR_objectInterceptionEnabled) then {
         GVAR(ObjectInterceptionCache) = createHashMap;
         _playersToProcess call TFAR_fnc_objectInterceptionBulkToCache;
     };
-#endif
 
     {
         private _controlled = _x getVariable ["TFAR_controlledUnit", objNull];

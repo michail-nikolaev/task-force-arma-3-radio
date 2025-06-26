@@ -39,6 +39,5 @@ GVAR(ObjectInterceptionCache) getOrDefaultCall [hashValue _this, {
         !(_obj isEqualTo _localParent || _obj isEqualTo _remoteParent) && !isPlayer _obj
       } count _ins;
 
-
     _count
 }, true];

@@ -19,7 +19,7 @@
 */
 //#TODO check isKindOf "House" and other types and transmit that. Houses isolate stronger than freestanding walls
 
-// Multithread the lineIntersects, this function only works in 2.20 (and is only called there);
+// Multithread the lineIntersects, this function requires minimum game 2.20
 
 private _requests = _this apply {
     [
