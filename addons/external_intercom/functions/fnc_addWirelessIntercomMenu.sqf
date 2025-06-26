@@ -39,7 +39,7 @@ _actions pushBack [
         },
         {
             params ["", "_player"];
-           !isNil {_player getVariable 'TFAR_ExternalIntercomVehicle'}
+            !(_player isNil 'TFAR_ExternalIntercomVehicle')
             && (_player getVariable ['TFAR_ExternalIntercomVehicle', objNull]) getVariable ['TFAR_ExternalIntercomSpeakers', [objNull, []]] select 1 find _player > -1;
         }
     ] call ace_interact_menu_fnc_createAction,
@@ -55,7 +55,7 @@ _actions pushBack [
         {},
         {
             params ["", "_player"];
-           !isNil {_player getVariable 'TFAR_ExternalIntercomVehicle'}
+            !(_player isNil 'TFAR_ExternalIntercomVehicle')
             && (_player getVariable ['TFAR_ExternalIntercomVehicle', objNull]) getVariable ['TFAR_ExternalIntercomSpeakers', [objNull, []]] select 1 find _player > -1;
         },
         {call TFAR_external_intercom_fnc_addIntercomChannels;}

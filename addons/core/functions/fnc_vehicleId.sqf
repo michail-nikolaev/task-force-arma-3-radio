@@ -19,7 +19,7 @@
 */
 params ["_unit"];
 
-private _vehicleOverrideDisabled = isNil {_unit getVariable "TFAR_vehicleIDOverride"};
+private _vehicleOverrideDisabled = _unit isNil "TFAR_vehicleIDOverride";
 
 if (isNull (objectParent _unit) && _vehicleOverrideDisabled) exitWith {"no"}; // Unit is not in vehicle and not on external intercom
 private _vehicle = (vehicle _unit);
