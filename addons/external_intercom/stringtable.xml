@@ -44,18 +44,18 @@
             <Italian>Telefono iterfono già in uso</Italian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SOMEONE_USING_PHONE">
-            <Original><br /><br /><t align='center'>%1 is currently using the Intercom Phone</t></Original>
-            <English><br /><br /><t align='center'>%1 is currently using the Intercom Phone</t></English>
-            <Czech><br /><br /><t align='center'>%1 momentálně používá telefon interkomu</t></Czech>
-            <Russian><br /><br /><t align='center'>%1 сейчас использует телефон интеркома</t></Russian>
-            <Italian><br /><br /><t align='center'>%1 sta già usando il telefono dell'interfono</t></Italian>
+            <Original>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 is currently using the Intercom Phone&lt;/t&gt;</Original>
+            <English>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 is currently using the Intercom Phone&lt;/t&gt;</English>
+            <Czech>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 momentálně používá telefon interkomu&lt;/t&gt;</Czech>
+            <Russian>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 сейчас использует телефон интеркома&lt;/t&gt;</Russian>
+            <Italian>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 sta già usando il telefono dell'interfono&lt;/t&gt;</Italian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_HEADGEAR_NOT_WIRELESS_CAPABLE">
-            <Original><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable</t></Original>
-            <English><br /><br /><t align='center'>Your %1 is not Wireless Intercom capable</t></English>
-            <Czech><br /><br /><t align='center'>Tvůj %1 není schopno bezdrátového spojení</t></Czech>
-            <Russian><br /><br /><t align='center'>Твое устройство %1 не подходит для беспроводного интеркома</t></Russian>
-            <Italian><br /><br /><t align='center'>%1 non è un interfono wireless</t></Italian>
+            <Original>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;Your %1 is not Wireless Intercom capable&lt;/t&gt;</Original>
+            <English>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;Your %1 is not Wireless Intercom capable&lt;/t&gt;</English>
+            <Czech>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;Tvůj %1 není schopno bezdrátového spojení&lt;/t&gt;</Czech>
+            <Russian>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;Твое устройство %1 не подходит для беспроводного интеркома&lt;/t&gt;</Russian>
+            <Italian>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 non è un interfono wireless&lt;/t&gt;</Italian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_RESET">
             <Original>External Intercom has been Reset</Original>
