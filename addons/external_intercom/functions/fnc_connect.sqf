@@ -125,7 +125,7 @@ if (_wireless) then {
     [{
         params ["_vehicle", "_player", "_interactionPointRelative"];
         ((_vehicle modelToWorld _interactionPointRelative) distance _player) > _vehicle getVariable ["TFAR_externalIntercomMaxRange_Phone", TFAR_externalIntercomMaxRange_Phone]
-        || (!(_player isNil 'TFAR_ExternalIntercomVehicle'))
+        || (_player isNil "TFAR_ExternalIntercomVehicle")
     }, {
         params ["_vehicle", "_player"];
         [_vehicle, _player] call TFAR_external_intercom_fnc_disconnect;
