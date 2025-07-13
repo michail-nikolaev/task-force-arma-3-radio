@@ -13,8 +13,8 @@ class CfgPatches {
     };
 };
 
-#define Intercom_Condition(chan) [ARR_3(_target,_player,chan)] call FUNC(canSetIntercomChannel)
-#define Intercom_Statement(chan) [ARR_3(_target,_player,chan)] call FUNC(setIntercomChannel)
+#define Intercom_Condition(chan) [ARR_3(_target,_player,chan)] call TFAR_fnc_canSetIntercomChannel
+#define Intercom_Statement(chan) [ARR_3(_target,_player,chan)] call TFAR_fnc_setIntercomChannel
 //INFO! First 20 channels should be reserved for TFAR use.
 
 #define IntercomMacro class ACE_SelfActions : ACE_SelfActions { \
