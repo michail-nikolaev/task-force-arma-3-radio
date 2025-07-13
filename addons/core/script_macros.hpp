@@ -67,15 +67,20 @@
                 condition = QUOTE(true); \
                 statement = ""; \
                 icon = ""; \
+                class TFAR_IntercomChannel_disabled { \
+                    displayName = "Disabled"; \
+                    condition = QUOTE([ARR_3(_target,_player,-1)] call FUNC(canSetIntercomChannel)); \
+                    statement = QUOTE([ARR_3(_target,_player,-1)] call FUNC(setIntercomChannel)); \
+                }; \
                 class TFAR_IntercomChannel_1 { \
                     displayName = CSTRING(Intercom_ACESelfAction_Channel1); \
-                    condition = QUOTE(true); \
-                    statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],0,true];"; \
+                    condition = QUOTE([ARR_3(_target,_player,0)] call FUNC(canSetIntercomChannel)); \
+                    statement = QUOTE([ARR_3(_target,_player,0)] call FUNC(setIntercomChannel)); \
                 }; \
                 class TFAR_IntercomChannel_2 { \
                     displayName = CSTRING(Intercom_ACESelfAction_Channel2); \
-                    condition = QUOTE(true); \
-                    statement = "(vehicle ACE_Player) setVariable [format ['TFAR_IntercomSlot_%1',(netID ACE_Player)],1,true];"; \
+                    condition = QUOTE([ARR_3(_target,_player,1)] call FUNC(canSetIntercomChannel)); \
+                    statement = QUOTE([ARR_3(_target,_player,1)] call FUNC(setIntercomChannel)); \
                 }; \
             }; \
         }; \
