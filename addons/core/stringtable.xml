@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ID="Arma3">
     <Package name="core">
         <Container name="shared" comment="These strings might be used by other components too">
@@ -821,10 +821,12 @@
             <Key ID="STR_TFAR_SETTINGS_muteSpectators">
                 <English>Mute other spectators</English>
                 <Czech>Ztišit ostatní diváky</Czech>
+                <Russian>Не слышать других наблюдателей</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_muteSpectators_desc">
                 <English>When spectating, mute other spectators and listen to alive players only</English>
                 <Czech>Při sledování ztišit ostatní diváky zatímco lze poslouchat hráče kteří jsou stále živí</Czech>
+                <Russian>Не слышать во время наблюдения других наблюдателей, но слышать только живых игроков</Russian>
             </Key>
             <Key ID="STR_TFAR_SETTINGS_noTSNotConnectedHint">
                 <English>Hide "Not connected" message</English>
