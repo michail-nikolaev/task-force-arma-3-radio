@@ -46,3 +46,9 @@ ts/src/task_force_radio_plugin.VC.db
 
 *.db
 *.exe
+
+pdb/
+
+ts/src/.vs/
+
+ts/src/task_force_radio_plugin.sln.DotSettings.user
