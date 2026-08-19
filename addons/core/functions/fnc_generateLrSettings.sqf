@@ -20,6 +20,7 @@
     7: Empty <NIL>
     8: Speaker mode <NUMBER>
     9: turned on <BOOL>
+    10: Additional channel volume <NUMBER>
 
   Example:
     _settings = call TFAR_fnc_generateLrSettings;
@@ -29,7 +30,7 @@
 
 params [["_generateFrequencies", true, [true]]];
 
-private _lr_settings = [0, TFAR_default_radioVolume, [], 0, nil, -1, 0, nil, false, true];
+private _lr_settings = [0, TFAR_default_radioVolume, [], 0, nil, -1, 0, nil, false, true, TFAR_default_radioVolume];
 private _lr_frequencies = [];
 if (!_generateFrequencies) then {
     for "_i" from 0 to TFAR_MAX_LR_CHANNELS step 1 do {

@@ -56,18 +56,19 @@ if (((count _swRadios > 0) || _currentUnitIsRemote) && {[TFAR_currentUnit, _isol
             ) then {
                 private _radioCode = _x call TFAR_fnc_getSwRadioCode;
                 private _volume = _x call TFAR_fnc_getSwVolume;
+                private _additionalChannel = _x call TFAR_fnc_getAdditionalSwChannel;
+                private _currentIsAdditional = _additionalChannel > -1 && {_additionalChannel isEqualTo (_x call TFAR_fnc_getSwChannel)};
                 _freq pushBack format ["%1%2|%3|%4|%5",
                     _x call TFAR_fnc_getSwFrequency,
                     _radioCode,
-                    _volume,
-                    _x call TFAR_fnc_getSwStereo,
+                    [_volume, _x call TFAR_fnc_getAdditionalSwVolume] select _currentIsAdditional,
+                    [_x call TFAR_fnc_getSwStereo, _x call TFAR_fnc_getAdditionalSwStereo] select _currentIsAdditional,
                     _x];
-                private _additionalChannel = _x call TFAR_fnc_getAdditionalSwChannel;
                 if (_additionalChannel > -1 && {_additionalChannel != (_x call TFAR_fnc_getSwChannel)}) then {
                     _freq pushBack format ["%1%2|%3|%4|%5",
                         [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency,
                         _radioCode,
-                        _volume,
+                        _x call TFAR_fnc_getAdditionalSwVolume,
                         _x call TFAR_fnc_getAdditionalSwStereo,
                         _x];
                 };
@@ -92,18 +93,19 @@ if (((count _lrRadios > 0) || _currentUnitIsRemote) && {[TFAR_currentUnit, _isol
                 private _radioCode = _x call TFAR_fnc_getLrRadioCode;
                 private _volume = _x call TFAR_fnc_getLrVolume;
                 private _additionalChannel = _x call TFAR_fnc_getAdditionalLrChannel;
+                private _currentIsAdditional = _additionalChannel > -1 && {_additionalChannel isEqualTo (_x call TFAR_fnc_getLrChannel)};
                 _freq_lr pushBack format ["%1%2|%3|%4|%5",
                     _x call TFAR_fnc_getLrFrequency,
                     _radioCode,
-                    _volume,
-                    _x call TFAR_fnc_getLrStereo,
+                    [_volume, _x call TFAR_fnc_getAdditionalLrVolume] select _currentIsAdditional,
+                    [_x call TFAR_fnc_getLrStereo, _x call TFAR_fnc_getAdditionalLrStereo] select _currentIsAdditional,
                     typeOf (_x select 0)];
 
                 if (_additionalChannel > -1 && {_additionalChannel != (_x call TFAR_fnc_getLrChannel)}) then {
                     _freq_lr pushBack format ["%1%2|%3|%4|%5",
                         [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency,
                         _radioCode,
-                        _volume,
+                        _x call TFAR_fnc_getAdditionalLrVolume,
                         _x call TFAR_fnc_getAdditionalLrStereo,
                         typeOf (_x select 0)];
                 };

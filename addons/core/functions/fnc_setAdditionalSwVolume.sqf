@@ -1,10 +1,10 @@
 #include "script_component.hpp"
 
 /*
-  Name: TFAR_fnc_setSwVolume
+  Name: TFAR_fnc_setAdditionalSwVolume
 
-  Author: NKey
-    Sets the volume for the SW radio
+  Author: Darojax
+    Sets the listening volume for the additional channel of an SW radio.
 
   Arguments:
     0: Radio <STRING>
@@ -14,7 +14,7 @@
     None
 
   Example:
-    [call TFAR_fnc_activeSWRadio, 10] call TFAR_fnc_setSwVolume;
+    [call TFAR_fnc_activeSwRadio, 5] call TFAR_fnc_setAdditionalSwVolume;
 
   Public: Yes
 */
@@ -22,8 +22,8 @@
 params ["_radio_id", "_value"];
 
 private _settings = _radio_id call TFAR_fnc_getSwSettings;
-_settings set [VOLUME_OFFSET, _value];
+_settings set [TFAR_ADDITIONAL_VOLUME_OFFSET, _value];
 [_radio_id, _settings] call TFAR_fnc_setSwSettings;
 
 // Unit, radio ID, volume, additional channel
-["OnSWvolumeSet", [TFAR_currentUnit, _radio_id, _value, false]] call TFAR_fnc_fireEventHandlers;
+["OnSWvolumeSet", [TFAR_currentUnit, _radio_id, _value, true]] call TFAR_fnc_fireEventHandlers;
