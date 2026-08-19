@@ -2827,6 +2827,10 @@ Normal radyo su altı radyosuyla iletişim kuramaz (herhangi bir ses gelmez). Da
             <Chinese>音量: %1</Chinese>
             <Chinesesimp>音量: %1</Chinesesimp>
         </Key>
+        <Key ID="STR_TFAR_CORE_additional_radio_volume">
+            <Original>Additional volume: %1</Original>
+            <English>Additional volume: %1</English>
+        </Key>
         <Key ID="STR_TFAR_CORE_radio_channel_1">
             <Original>Channel 1</Original>
             <English>Channel 1</English>
