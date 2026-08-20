@@ -44,7 +44,7 @@ private _hintText = format[
                                     ([_radio select 0, "displayName"] call TFAR_fnc_getLrRadioProperty) select [0, MAX_RADIONAME_LEN],
                                     getText(configFile >> "CfgVehicles" >> typeOf (_radio select 0) >> "picture")
                                     ],
-                            _channel + 1,
+                            [_radio, _channel + 1] call TFAR_fnc_formatChannel,
                             _frequency
                         ];
 private _pluginCommand = format[

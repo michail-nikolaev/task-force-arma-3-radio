@@ -72,6 +72,7 @@ class anarc164_radio_dialog {
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 23) * 1.2)";
         tooltip = ECSTRING(core,current_freq);
         canModify = 1;
+        TFAR_CHANNEL_NAME_EDIT_HANDLER(TF_lr_dialog_radio,LR_CHANNEL);
         onKeyUp = QUOTE( \
             if (_this select 1 in [ARR_2(28,156)]) then { \
                 [((ctrlParent (_this select 0))) displayCtrl IDC_ANARC164_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter; \
@@ -100,8 +101,7 @@ class anarc164_radio_dialog {
         tooltip = ECSTRING(core,clear_frequency);
         action = QUOTE( \
             playSound 'TFAR_rotatorPush'; \
-            ctrlSetText [ARR_2(IDC_ANARC164_EDIT,'')]; \
-            ctrlSetFocus ((findDisplay IDD_ANARC164_RADIO_DIALOG) displayCtrl IDC_ANARC164_EDIT); \
+            [ARR_2((findDisplay IDD_ANARC164_RADIO_DIALOG) displayCtrl IDC_ANARC164_EDIT,LR_CHANNEL)] call TFAR_fnc_clearRadioDialogFrequency; \
         );
     };
     class prev_channel: HiddenRotator {

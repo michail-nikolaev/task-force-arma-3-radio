@@ -27,10 +27,34 @@ if ((_this isEqualType []) and {count _this > 0} and  {(_this select 0) isEqualT
     _formatText = _this select 0;
 };
 
-if ((TF_lr_dialog_radio call TFAR_fnc_getAdditionalLrChannel) == (TF_lr_dialog_radio call TFAR_fnc_getLrChannel)) then {
+private _channel = TF_lr_dialog_radio call TFAR_fnc_getLrChannel;
+
+if ((TF_lr_dialog_radio call TFAR_fnc_getAdditionalLrChannel) == _channel) then {
     _formatText = "CA:%1";
 };
 
-ctrlSetText [LR_EDIT, TF_lr_dialog_radio call TFAR_fnc_getLrFrequency];
-private _channelText =  format[_formatText, (TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1];
+private _frequency = TF_lr_dialog_radio call TFAR_fnc_getLrFrequency;
+private _channelName = [TF_lr_dialog_radio, _channel + 1] call TFAR_fnc_getChannelName;
+private _radioObject = TF_lr_dialog_radio select 0;
+private _showChannelName = _channelName isNotEqualTo "" && {
+    [_radioObject, "tf_showChannelName", 0] call TFAR_fnc_getLrRadioProperty > 0
+};
+
+private _dialogIdd = [_radioObject, "tf_channelNameDialogIdd", -1] call TFAR_fnc_getLrRadioProperty;
+private _offsetPixels = [_radioObject, "tf_channelNameOffset", 0] call TFAR_fnc_getLrRadioProperty;
+
+if !(_dialogIdd isEqualType 0) then {_dialogIdd = -1;};
+if !(_offsetPixels isEqualType 0) then {_offsetPixels = 0;};
+
+[
+    _frequency,
+    _channelName,
+    _showChannelName,
+    _dialogIdd,
+    _offsetPixels,
+    LR_EDIT,
+    LR_CHANNEL
+] call TFAR_fnc_updateRadioDialogFrequency;
+
+private _channelText = format [_formatText, _channel + 1];
 ctrlSetText [LR_CHANNEL, _channelText];

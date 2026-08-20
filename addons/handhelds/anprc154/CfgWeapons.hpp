@@ -11,6 +11,9 @@ class TFAR_anprc154: ItemRadio {
     tf_dialog = "anprc154_radio_dialog";
     tf_encryptionCode = "tf_independent_radio_code";
     tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
+    tf_showChannelName = 1;
+    tf_channelNameDialogIdd = 3198;
+    tf_channelNameOffset = 44;
     tf_subtype = "digital";
     tf_parent = "TFAR_anprc154";
     tf_additional_channel = 0;

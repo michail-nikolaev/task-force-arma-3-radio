@@ -66,6 +66,7 @@ class anprc155_radio_dialog {
         tooltip = ECSTRING(core,current_freq);
         moving = 1;
         canModify = 1;
+        TFAR_CHANNEL_NAME_EDIT_HANDLER(TF_lr_dialog_radio,LR_CHANNEL);
         onKeyUp = QUOTE( \
             if (_this select 1 in [ARR_2(28,156)]) then { \
                 [((ctrlParent (_this select 0))) displayCtrl IDC_ANPRC155_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter; \
@@ -89,10 +90,7 @@ class anprc155_radio_dialog {
         w = 0.0180469 * safezoneW;
         h = 0.0286 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE( \
-            ctrlSetText [ARR_2(IDC_ANPRC155_EDIT, '')]; \
-            ctrlSetFocus ((findDisplay IDD_ANPRC155_RADIO_DIALOG) displayCtrl IDC_ANPRC155_EDIT); \
-        );
+        TFAR_CHANNEL_NAME_CLEAR_ACTION(IDD_ANPRC155_RADIO_DIALOG,IDC_ANPRC155_EDIT,LR_CHANNEL);
     };
     class prev_channel: HiddenButton {
         idc = IDC_ANPRC155_PREV_CHANNEL;

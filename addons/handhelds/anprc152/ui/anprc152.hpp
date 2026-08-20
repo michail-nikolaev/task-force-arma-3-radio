@@ -57,6 +57,7 @@ class anprc152_radio_dialog {
         shadow = 2;
         tooltip = ECSTRING(core,current_freq);
         canModify = 1;
+        TFAR_CHANNEL_NAME_EDIT_HANDLER(TF_sw_dialog_radio,SW_CHANNEL);
         onKeyUp = QUOTE( \
             if (_this select 1 in [ARR_2(28,156)]) then { \
                 [((ctrlParent (_this select 0))) displayCtrl IDC_ANPRC152_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter; \
@@ -92,10 +93,7 @@ class anprc152_radio_dialog {
         w = 0.0146438 * safezoneW;
         h = 0.0198 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE( \
-            ctrlSetText [ARR_2(IDC_ANPRC152_EDIT, '')]; \
-            ctrlSetFocus ((findDisplay IDD_ANPRC152_RADIO_DIALOG) displayCtrl IDC_ANPRC152_EDIT); \
-        );
+        TFAR_CHANNEL_NAME_CLEAR_ACTION(IDD_ANPRC152_RADIO_DIALOG,IDC_ANPRC152_EDIT,SW_CHANNEL);
     };
     class additional: HiddenButton {
         idc = IDC_ANPRC152_RADIO_DIALOG_ADDITIONAL;

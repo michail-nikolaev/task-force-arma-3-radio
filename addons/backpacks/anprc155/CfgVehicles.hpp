@@ -12,6 +12,9 @@ class TFAR_anprc155: TFAR_Bag_Base {
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_nicecomm2_aff_digital_co.paa)};
     tf_encryptionCode = "tf_independent_radio_code";
     tf_dialog = "anprc155_radio_dialog";
+    tf_showChannelName = 1;
+    tf_channelNameDialogIdd = 7666;
+    tf_channelNameOffset = 44;
     tf_subtype = "digital_lr";
 };
 HIDDEN_CLASS(tf_anprc155 : TFAR_anprc155); //#Deprecated dummy class for backwards compat

@@ -86,9 +86,7 @@ class mr3000_radio_dialog {
         w = 0.0223125 * safezoneW;
         h = 0.0308069 * safezoneH;
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE(ctrlSetText [ARR_2(IDC_MR3000_EDIT, '')]; \
-            ctrlSetFocus ((findDisplay IDD_MR3000_RADIO_DIALOG) displayCtrl IDC_MR3000_EDIT); \
-        );
+        TFAR_CHANNEL_NAME_CLEAR_ACTION(IDD_MR3000_RADIO_DIALOG,IDC_MR3000_EDIT,LR_CHANNEL);
     };
     class next_channel: HiddenButton {
         idc = IDC_MR3000_NEXT_CHANNEL;
@@ -218,6 +216,7 @@ class mr3000_radio_dialog {
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 30) * 1.2)";
         tooltip = ECSTRING(core,current_freq);
         canModify = 1;
+        TFAR_CHANNEL_NAME_EDIT_HANDLER(TF_lr_dialog_radio,LR_CHANNEL);
         onKeyUp = QUOTE( \
             if (_this select 1 in [ARR_2(28,156)]) then { \
                 [((ctrlParent (_this select 0))) displayCtrl IDC_MR3000_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter; \

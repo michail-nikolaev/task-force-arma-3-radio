@@ -98,6 +98,7 @@ PREP_SUB(server,serverInit);
 // A
 PREP(activeLrRadio);
 PREP(activeSwRadio);
+PREP(applyFrequencyNamesSetting);
 PREP(addDiaryRecord);
 // B
 PREP(backpackLr);
@@ -109,6 +110,7 @@ PREP(canUseLRRadio);
 PREP(canUseDDRadio);
 PREP(clientInit);
 PREP(copySettings);
+PREP(clearRadioDialogFrequency);
 PREP(currentDirection);
 PREP(currentLRFrequency);
 PREP(currentSWFrequency);
@@ -122,6 +124,7 @@ PREP(doSRTransmitEnd);
 // E
 PREP(eyeDepth);
 // F
+PREP(formatChannel);
 PREP(forceSpectator);
 // G
 PREP(generateLrSettings);
@@ -134,6 +137,8 @@ PREP(getSwChannel);
 PREP(getLrChannel);
 PREP(getSwStereo);
 PREP(getSwFrequency);
+PREP(getRadioDialogFrequencyPosition);
+PREP(getSwDialogFrequencyPosition);
 PREP(getLrFrequency);
 PREP(getLrStereo);
 PREP(getSwVolume);
@@ -146,6 +151,9 @@ PREP(getWeaponConfigProperty);
 PREP(getCopilot);
 PREP(getLrRadioProperty);
 PREP(getChannelFrequency);
+PREP(getChannelName);
+PREP(getFrequencyName);
+PREP(getRadioSide);
 PREP(getRadioItems);
 PREP(getSideRadio);
 PREP(getTransmittingDistanceMultiplicator);
@@ -189,6 +197,7 @@ PREP(objectInterception);
 PREP(objectInterceptionBulkToCache);
 // P
 PREP(parseFrequenciesInput);
+PREP(parseFrequencyNamesInput);
 PREP(preparePositionCoordinates);
 PREP(processPlayerPositions);
 PREP(processRespawn);
@@ -224,10 +233,13 @@ PREP(setActiveLrRadio);
 PREP(setLongRangeRadioFrequency);
 PREP(setPersonalRadioFrequency);
 PREP(setChannelFrequency);
+PREP(setFrequencyName);
 PREP(setRadioOwner);
 PREP(setLrSpeakers);
 PREP(settingForceArray);
+PREP(showRadioDialogFrequency);
 // U
+PREP(updateRadioDialogFrequency);
 PREP(updateSpeakVolumeUI);
 // V
 PREP(vehicleId);
