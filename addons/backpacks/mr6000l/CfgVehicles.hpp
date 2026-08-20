@@ -10,6 +10,9 @@ class TFAR_mr6000l: TFAR_Bag_Base {
     tf_range = 40000;
     tf_encryptionCode = "tf_east_radio_code";
     tf_dialog = "mr6000l_radio_dialog";
+    tf_showChannelName = 1;
+    tf_channelNameDialogIdd = 20135;
+    tf_channelNameOffset = 0;
     tf_subtype = "airborne";
     tf_dialogUpdate = "[""PRE %1""] call TFAR_fnc_updateLRDialogToChannel;";
 };

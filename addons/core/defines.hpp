@@ -28,6 +28,8 @@
 #define TFAR_FREQUENCYSTRING_TO_FREQNUMBER(frequency) parseNumber ( ((frequency) splitString ",.") joinString "." )
 
 #define TFAR_MAX_CHANNELS 8
+#define TFAR_MAX_CHANNEL_NAME_LENGTH 8
+#define TFAR_MAX_FREQUENCY_NAMES 16
 #define TFAR_MIN_SW_FREQ 30
 #define TFAR_MAX_SW_FREQ 512
 

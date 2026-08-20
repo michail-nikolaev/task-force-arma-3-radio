@@ -11,6 +11,9 @@ class TFAR_anprc148jem: ItemRadio {
     tf_dialog = "anprc148jem_radio_dialog";
     tf_encryptionCode = "tf_independent_radio_code";
     tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
+    tf_showChannelName = 1;
+    tf_channelNameDialogIdd = 6000;
+    tf_channelNameOffset = 44;
     tf_subtype = "digital";
     tf_parent = "TFAR_anprc148jem";
     tf_additional_channel = 1;

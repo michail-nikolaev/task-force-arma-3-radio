@@ -7,6 +7,11 @@ class HiddenRotator;
 class HiddenFlip;
 
 #define TF_IDD_BACKGROUND 67676
+
+#define TFAR_CHANNEL_NAME_EDIT_HANDLER(RADIO,CHANNEL_IDC) \
+    onMouseButtonDown = QUOTE([ARR_4(_this select 0,RADIO,true,CHANNEL_IDC)] call TFAR_fnc_showRadioDialogFrequency;)
+#define TFAR_CHANNEL_NAME_CLEAR_ACTION(DISPLAY_IDD,EDIT_IDC,CHANNEL_IDC) \
+    action = QUOTE([ARR_2((findDisplay DISPLAY_IDD) displayCtrl EDIT_IDC,CHANNEL_IDC)] call TFAR_fnc_clearRadioDialogFrequency;)
 //--- rt1523g_radio_dialog
 #define IDD_RT1523G_RADIO_DIALOG  1666
 #define IDC_RT1523G_BACKGROUND TF_IDD_BACKGROUND

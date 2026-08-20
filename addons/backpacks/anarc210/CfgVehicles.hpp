@@ -12,6 +12,9 @@ class TFAR_anarc210: TFAR_Bag_Base {
     tf_range = 40000;
     tf_encryptionCode = "tf_west_radio_code";
     tf_dialog = "anarc210_radio_dialog";
+    tf_showChannelName = 1;
+    tf_channelNameDialogIdd = 8423;
+    tf_channelNameOffset = 44;
     tf_subtype = "airborne";
     tf_dialogUpdate = "[""CH%1""] call TFAR_fnc_updateLRDialogToChannel;";
 };

@@ -440,6 +440,60 @@
     }
 ] call CBA_Settings_fnc_init;
 [
+    "TFAR_setting_frequencyNames_sr_west",
+    "EDITBOX",
+    [ELSTRING(settings,FrequencyNames_SR_west), ELSTRING(settings,FrequencyNames_desc)],
+    localize ELSTRING(settings,global),
+    "",
+    1,
+    {[_this, "TFAR_frequencyNames_sr_west", false] call DFUNC(applyFrequencyNamesSetting);}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_frequencyNames_sr_east",
+    "EDITBOX",
+    [ELSTRING(settings,FrequencyNames_SR_east), ELSTRING(settings,FrequencyNames_desc)],
+    localize ELSTRING(settings,global),
+    "",
+    1,
+    {[_this, "TFAR_frequencyNames_sr_east", false] call DFUNC(applyFrequencyNamesSetting);}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_frequencyNames_sr_independent",
+    "EDITBOX",
+    [ELSTRING(settings,FrequencyNames_SR_independent), ELSTRING(settings,FrequencyNames_desc)],
+    localize ELSTRING(settings,global),
+    "",
+    1,
+    {[_this, "TFAR_frequencyNames_sr_independent", false] call DFUNC(applyFrequencyNamesSetting);}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_frequencyNames_lr_west",
+    "EDITBOX",
+    [ELSTRING(settings,FrequencyNames_LR_west), ELSTRING(settings,FrequencyNames_desc)],
+    localize ELSTRING(settings,global),
+    "",
+    1,
+    {[_this, "TFAR_frequencyNames_lr_west", true] call DFUNC(applyFrequencyNamesSetting);}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_frequencyNames_lr_east",
+    "EDITBOX",
+    [ELSTRING(settings,FrequencyNames_LR_east), ELSTRING(settings,FrequencyNames_desc)],
+    localize ELSTRING(settings,global),
+    "",
+    1,
+    {[_this, "TFAR_frequencyNames_lr_east", true] call DFUNC(applyFrequencyNamesSetting);}
+] call CBA_Settings_fnc_init;
+[
+    "TFAR_setting_frequencyNames_lr_independent",
+    "EDITBOX",
+    [ELSTRING(settings,FrequencyNames_LR_independent), ELSTRING(settings,FrequencyNames_desc)],
+    localize ELSTRING(settings,global),
+    "",
+    1,
+    {[_this, "TFAR_frequencyNames_lr_independent", true] call DFUNC(applyFrequencyNamesSetting);}
+] call CBA_Settings_fnc_init;
+[
     "TFAR_giveMicroDagrToSoldier",
     "CHECKBOX",
     ELSTRING(settings,give_microdagr_to_soldier),

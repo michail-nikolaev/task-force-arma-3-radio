@@ -12,6 +12,9 @@ class TFAR_mr3000: TFAR_Bag_Base {
     hiddenSelectionsTextures[] = {QPATHTOF(models\data\clf_nicecomm2_csat_multi_co.paa)};
     tf_encryptionCode = "tf_east_radio_code";
     tf_dialog = "mr3000_radio_dialog";
+    tf_showChannelName = 1;
+    tf_channelNameDialogIdd = 1998;
+    tf_channelNameOffset = 44;
     tf_subtype = "digital_lr";
 };
 HIDDEN_CLASS(tf_mr3000 : TFAR_mr3000); //#Deprecated dummy class for backwards compat
