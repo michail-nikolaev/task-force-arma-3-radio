@@ -1,0 +1,31 @@
+name = "Task Force Arrowhead Radio"
+author = "Nkey, Deadmen"
+prefix = "tfar"
+mainprefix = "z"
+
+[files]
+include=["mod.cpp"]
+exclude=[".vscode/**/*"]
+
+[version]
+major=1
+minor=0
+patch=342
+
+git_hash=0
+
+[hemtt.release]
+sign   =true
+archive=false
+
+[hemtt.launch.default]
+workshop = [
+    "450814997", # CBA_A3
+]
+
+[hemtt.launch.ace]
+workshop = [
+    "450814997", # CBA_A3
+    "463939057", # ACE
+    "3499977893", # Advanced Developer Tools
+]
