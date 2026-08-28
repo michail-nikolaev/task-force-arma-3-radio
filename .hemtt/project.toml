@@ -1,0 +1,36 @@
+name = "Task Force Arrowhead Radio"
+author = "Nkey, Deadmen"
+prefix = "tfar"
+mainprefix = "z"
+
+[files]
+include = [
+    "mod.cpp",
+    "meta.cpp",
+    "README.md",
+    "CONTRIBUTORS.md",
+    "LICENSE.md",
+    "manw_winner_addon_1st_emblem.paa",
+    "task_force_arrowhead_logo.paa",
+]
+exclude = [".vscode/**/*"]
+
+[version]
+path = "addons/core/script_version.hpp"
+git_hash = 0
+
+[hemtt.release]
+sign = true
+archive = false
+
+[hemtt.launch.default]
+workshop = [
+    "450814997", # CBA_A3
+]
+
+[hemtt.launch.ace]
+workshop = [
+    "450814997", # CBA_A3
+    "463939057", # ACE
+    "3499977893", # Advanced Developer Tools
+]

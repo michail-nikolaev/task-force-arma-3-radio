@@ -9,7 +9,7 @@ class RscTitles
         onUnload = "uiNamespace setVariable ['TFAR_Hint_Display', displayNull]";
         fadeIn=0.2;
         fadeOut=0.2;
-        movingEnable = false;
+        movingEnable = 0;
         duration = 10e10;
         name = "RscTaskForceHint";
         class controls
@@ -20,10 +20,10 @@ class RscTitles
                 text = "";
                 type = 13;
                 style = 0;
-                x = 0.85 * safezoneW + safezoneX;
-                y = 0.9 * safezoneH + safezoneY;
-                w = 0.15 * safezoneW;
-                h = 0.1 * safezoneH;
+                x = "0.85 * safezoneW + safezoneX";
+                y = "0.9 * safezoneH + safezoneY";
+                w = "0.15 * safezoneW";
+                h = "0.1 * safezoneH";
                 colorText[] = {1,1,1,1};
                 colorBackground[] = {0.1,0.1,0.1,0.5};
                 sizeEx = 1;

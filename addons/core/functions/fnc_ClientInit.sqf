@@ -3,7 +3,7 @@
 disableSerialization;
 
 // Menus
-#include "flexiUI\flexiInit.sqf"
+#include "flexiUI\flexiInit.hpp"
 
 //#API Variables
 DEPRECATE_VARIABLE(tf_give_personal_radio_to_regular_soldier,TFAR_givePersonalRadioToRegularSoldier);

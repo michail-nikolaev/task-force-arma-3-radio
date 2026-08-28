@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ID="Arma3">
+<Project name="TFAR">
     <Package name="core">
         <Container name="shared" comment="These strings might be used by other components too">
             <Key ID="STR_TFAR_CORE_AUTHORS">

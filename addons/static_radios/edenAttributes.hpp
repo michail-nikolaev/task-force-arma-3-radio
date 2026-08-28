@@ -23,7 +23,7 @@ class Attributes {
 
         expression = QUOTE(if (isMultiplayer) then {[ARR_2(_this,_value)] call TFAR_static_radios_fnc_setActiveChannel});
 
-        defaultValue = '1';
+        defaultValue = "1";
 
         validate = "none";
         condition = "objectHasInventoryCargo";
