@@ -20,7 +20,7 @@
 */
 
 params [["_unit", objNull, [objNull, []]], ["_distance", 5, [0]]];
-TRACE_2(_unit,_distance);
+TRACE_2("revealInArea",_unit,_distance);
 {
     if (!(isPlayer _x) &&
         {!((vehicle _x) call TFAR_fnc_isVehicleIsolated)} &&

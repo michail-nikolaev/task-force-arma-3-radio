@@ -4,19 +4,24 @@ prefix = "tfar"
 mainprefix = "z"
 
 [files]
-include=["mod.cpp"]
-exclude=[".vscode/**/*"]
+include = [
+    "mod.cpp",
+    "meta.cpp",
+    "README.md",
+    "CONTRIBUTORS.md",
+    "LICENSE.md",
+    "manw_winner_addon_1st_emblem.paa",
+    "task_force_arrowhead_logo.paa",
+]
+exclude = [".vscode/**/*"]
 
 [version]
-major=1
-minor=0
-patch=342
-
-git_hash=0
+path = "addons/core/script_version.hpp"
+git_hash = 0
 
 [hemtt.release]
-sign   =true
-archive=false
+sign = true
+archive = false
 
 [hemtt.launch.default]
 workshop = [
