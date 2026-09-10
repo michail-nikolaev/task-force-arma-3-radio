@@ -10,7 +10,7 @@
     None
 
   Return Value:
-    None
+    <NUMBER>
 
   Example:
     call TFAR_fnc_getTransmittingDistanceMultiplicator;

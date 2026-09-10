@@ -76,8 +76,8 @@ private _fnc_onConfirm = {
     deleteVehicle _logic;
 };
 
-_display displayAddEventHandler ["unload", _fnc_onUnload];
-_control ctrlAddEventHandler ["buttonClick", _fnc_onConfirm];
+_display displayAddEventHandler ["Unload", _fnc_onUnload];
+_control ctrlAddEventHandler ["ButtonClick", _fnc_onConfirm];
 
 
 

@@ -13,7 +13,7 @@
     3: Unit to use as filter. <OBJECT> (default: nil)
 
   Return Value:
-    Unique ID of the event handler <NUMBER>
+    Events (CBA Hash) <ARRAY>
 
   Example:
     ["MyID", "OnSpeak", {

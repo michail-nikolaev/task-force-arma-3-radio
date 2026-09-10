@@ -42,6 +42,6 @@ if (_result != "OK") then {
 
 //#TODO this is a bad place to do it, why check every update... 
 if !(_player getVariable ["TFAR_killedEHAttached",false]) then {
-    _player addEventHandler ["Killed", {_player call TFAR_fnc_sendPlayerKilled}];
+    _player addEventHandler ["Killed", {(_this select 0) call TFAR_fnc_sendPlayerKilled}];
     _player setVariable ["TFAR_killedEHAttached", true];
 };
