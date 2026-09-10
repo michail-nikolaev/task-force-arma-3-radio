@@ -11,7 +11,7 @@
     1: Radio ID <STRING>
 
   Return Value:
-    Frequency <NUMBER>
+    Frequency <STRING>
 
   Example:
     _frequency = (call TFAR_fnc_activeLrRadio) call TFAR_fnc_getLrFrequency;

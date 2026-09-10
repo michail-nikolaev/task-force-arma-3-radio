@@ -10,7 +10,7 @@
     0: Player unit <OBJECT>
 
   Return Value:
-    None
+    <BOOL>
 
   Example:
     [_player] call TFAR_external_intercom_fnc_hasWirelessHeadgear;

@@ -10,7 +10,7 @@
     None
 
   Return Value:
-    None
+    <BOOL>
 
   Example:
     _hasLR = call TFAR_fnc_haveLRRadio;

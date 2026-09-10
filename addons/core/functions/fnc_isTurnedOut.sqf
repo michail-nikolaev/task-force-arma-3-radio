@@ -13,7 +13,7 @@
     _unit - Unit to check <OBJECT>
 
   Return Value:
-    [isTurnedOut, attenuation] <BOOL>
+    [isTurnedOut, attenuation] <ARRAY of BOOLs>
 
   Example:
     if ([player] call TFAR_fnc_isAttenuated) then {

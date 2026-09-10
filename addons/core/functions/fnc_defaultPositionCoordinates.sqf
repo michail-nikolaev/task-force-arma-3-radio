@@ -21,6 +21,7 @@
 */
 
 //Implicitly passed by TFAR_fnc_preparePositionCoordinates
+// #pragma hemtt ignore_variables ["_unit", "_isNearPlayer", "_isSpectating"]
 //params ["_unit", "_isNearPlayer"];
 
 if (_isSpectating) exitWith {private _pctw = positionCameraToWorld [0,0,0]; [AGLToASL _pctw, (positionCameraToWorld [0,0,1]) vectorDiff _pctw]};
