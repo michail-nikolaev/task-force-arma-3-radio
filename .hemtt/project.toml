@@ -1,10 +1,11 @@
 name = "Task Force Arrowhead Radio"
-author = "Nkey, Deadmen"
+author = "Task Force Arrowhead Radio Team"
 prefix = "tfar"
 mainprefix = "z"
 
 [files]
 include = [
+    "*.dll",
     "mod.cpp",
     "meta.cpp",
     "README.md",
@@ -16,7 +17,9 @@ include = [
 exclude = [".vscode/**/*"]
 
 [version]
-path = "addons/core/script_version.hpp"
+major = 1
+minor = 0
+patch = 0
 git_hash = 0
 
 [hemtt.release]
@@ -29,8 +32,18 @@ workshop = [
 ]
 
 [hemtt.launch.ace]
+extends = "default"
 workshop = [
-    "450814997", # CBA_A3
     "463939057", # ACE
+]
+
+[hemtt.launch.ace_adt]
+extends = "ace"
+workshop = [
     "3499977893", # Advanced Developer Tools
 ]
+
+[inspector]
+header_regex = "ace"
+vars_to_ignore = []
+check_function_calls = true

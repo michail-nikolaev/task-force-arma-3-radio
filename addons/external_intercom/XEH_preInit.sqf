@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-#include "XEH_PREP.hpp"
+#include "XEH_PREP.inc.sqf"
 
 [
     "TFAR_setting_externalIntercomWirelessHeadgear",

@@ -5,11 +5,10 @@
 
 #include "script_version.hpp"
 
-#define VERSION MAJOR.MINOR
-#define VERSION_STR MAJOR.MINOR.PATCHLVL.BUILD
+#define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 #define VERSION_AR MAJOR,MINOR,PATCHLVL,BUILD
-#define VERSION_CONFIG version = VERSION; versionStr = QUOTE(VERSION_STR); versionAr[] = {VERSION_AR}
-#define TFAR_ADDON_VERSION QUOTE(VERSION_STR)
+#define VERSION_CONFIG version = QUOTE(VERSION); versionStr = QUOTE(VERSION); versionAr[] = {VERSION_AR}
+#define TFAR_ADDON_VERSION QUOTE(VERSION)
 #define SERVER_API_VERSION 1
 
 // MINIMAL required version for the Mod. Components can specify others..

@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-#include "XEH_PREP.hpp"
+#include "XEH_PREP.inc.sqf"
 
 if (!hasInterface) exitWith {}; //Don't need on Headless and dedicated Servers
 
