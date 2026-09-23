@@ -19,6 +19,7 @@
   Public: No
 */
 
+// #pragma hemtt ignore_variables ["_thisSetting"] // from CBA_Settings
 if !(hasInterface) exitWith {};
 TRACE_2("AI Hearing Settings changed:",_thisSetting,_this);
 

@@ -3,7 +3,7 @@
 disableSerialization;
 
 // Menus
-#include "flexiUI\flexiInit.sqf"
+#include "flexiUI\flexiInit.inc.sqf"
 
 //#API Variables
 DEPRECATE_VARIABLE(tf_give_personal_radio_to_regular_soldier,TFAR_givePersonalRadioToRegularSoldier);
@@ -41,9 +41,9 @@ TF_respawnedAt = time;//first spawn so.. respawned now
 
 [   {!(isNull (findDisplay 46))},
     {
-        (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
-        (findDisplay 46) displayAddEventHandler ["keyDown", "_this call TFAR_fnc_onTangentPressedHack"];
-        (findDisplay 46) displayAddEventHandler ["keyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
+        (findDisplay 46) displayAddEventHandler ["KeyUp", "_this call TFAR_fnc_onSwTangentReleasedHack"];
+        (findDisplay 46) displayAddEventHandler ["KeyDown", "_this call TFAR_fnc_onTangentPressedHack"];
+        (findDisplay 46) displayAddEventHandler ["KeyUp", "_this call TFAR_fnc_onLRTangentReleasedHack"];
 
         if (isMultiplayer) then {
             call TFAR_fnc_pluginNextDataFrame; //tell plugin that we are ingame
@@ -194,7 +194,7 @@ if (player call TFAR_fnc_isForcedCurator) then {
             params ["_unit"];
             {
                 [_x, ""] call TFAR_fnc_setRadioOwner;
-            } forEach ([_unit] call CBA_fnc_uniqueUnitItems) select {_x call TFAR_fnc_isRadio};
+            } forEach (([_unit] call CBA_fnc_uniqueUnitItems) select {_x call TFAR_fnc_isRadio});
         }];
         TFAR_currentUnit setVariable ["TFAR_HandlersSet", true];
     };
@@ -227,13 +227,13 @@ if (player call TFAR_fnc_isForcedCurator) then {
     "PostClose" call TFAR_fnc_onArsenal;
 }] call bis_fnc_addScriptedEventhandler;
 
-player addEventHandler ["respawn", {call TFAR_fnc_processRespawn}];
+player addEventHandler ["Respawn", {call TFAR_fnc_processRespawn}];
 
 if (getMissionConfigValue["respawnOnStart", 0] >= 0) then {
     [{GVAR(SettingsInitialized) && (alive TFAR_currentUnit)}, TFAR_fnc_processRespawn, []] call CBA_fnc_waitUntilAndExecute;
 };
 
-player addEventHandler ["killed", {
+player addEventHandler ["Killed", {
     GVAR(use_saved_sr_setting) = true;
     GVAR(use_saved_lr_setting) = true;
     call TFAR_fnc_hideHint;

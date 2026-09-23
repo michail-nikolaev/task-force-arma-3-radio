@@ -1,0 +1,18 @@
+[sqf.var_all_caps]
+options.ignore = [
+    "TF_MAX_LR_VOLUME", "TF_MAX_SW_VOLUME", "TF_UNDERWATER_RADIO_DEPTH"
+]
+
+# These are good lints, but may want to disable at first while dealing with more important issues
+[config.file_type]
+enabled = "pedantic"
+[sqf.command_case]
+enabled = "pedantic"
+[sqf.extra_not]
+enabled = "pedantic"
+[sqf.config_of]
+enabled = "pedantic"
+[sqf.if_assign]
+enabled = "pedantic"
+[sqf.in_vehicle_check]
+enabled = "pedantic"

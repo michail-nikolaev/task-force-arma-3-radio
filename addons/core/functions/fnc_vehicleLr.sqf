@@ -11,6 +11,7 @@
     0: unit <OBJECT>
 
   Return Value:
+    <ARRAY><NIL>
     0: Vehicle <OBJECT>
     1: Radio Settings ID <STRING>
 

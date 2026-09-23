@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ID="Arma3">
+<Project name="TFAR">
     <Package name="external_intercom">
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_CONNECT_WIRELESS">
             <Original>Connect to Intercom</Original>

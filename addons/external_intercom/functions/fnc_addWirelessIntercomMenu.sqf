@@ -30,8 +30,8 @@ private _actions = [];
 
 _actions pushBack [
     [
-        format ["TFAR_External_Intercom_Wireless_Disconnect", _intercomChannel],
-        localize LSTRING(DISCONNECT_WIRELESS),
+        "TFAR_External_Intercom_Wireless_Disconnect",
+        LLSTRING(DISCONNECT_WIRELESS),
         QPATHTOF(ui\tfar_ace_interaction_external_intercom_wireless_disconnect.paa),
         {
             params ["", "_player"];
@@ -49,7 +49,7 @@ _actions pushBack [
 
 _actions pushBack [
     [
-        format ["TFAR_External_Intercom_Wireless_Channels", _intercomChannel],
+        "TFAR_External_Intercom_Wireless_Channels",
         localize ELSTRING(Core,Intercom_ACESelfAction_Name),
         "",
         {},

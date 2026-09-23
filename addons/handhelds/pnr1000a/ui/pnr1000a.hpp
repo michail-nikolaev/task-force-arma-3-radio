@@ -30,72 +30,71 @@ class pnr1000a_radio_dialog {
         _this call TFAR_fnc_updateProgrammatorDialog; \
     );
     controls[]= {
-        background,
-        prev_channel,
-        next_channel,
-        increase_volume,
-        decrease_volume,
-        stereo,
-        reset_channel,
-        speakers,
-        microdagr_background,
-        channel_edit,
-        edit,
-        clear,
-        enter
-    };
+        "background",
+        "prev_channel",
+        "next_channel",
+        "increase_volume",
+        "decrease_volume",
+        "stereo",
+        "reset_channel",
+        "speakers",
+        "microdagr_background",
+        "channel_edit",
+        "edit",
+        "clear",
+        "enter"};
 
     class background: RscBackPicture {
         idc = IDC_PNR1000A_BACKGROUND;
         text = QPATHTOF(pnr1000a\ui\pnr1000a.paa);
-        x = -0.0153696 * safezoneW + safezoneX;
-        y = -0.323109 * safezoneH + safezoneY;
-        w = 0.38292 * safezoneW;
-        h = 1.31752 * safezoneH;
+        x = "-0.0153696 * safezoneW + safezoneX";
+        y = "-0.323109 * safezoneH + safezoneY";
+        w = "0.38292 * safezoneW";
+        h = "1.31752 * safezoneH";
         moving = 1;
     };
     class prev_channel: HiddenButton {
         idc = IDC_PNR1000A_PREV_CHANNEL;
-        x = 0.198509 * safezoneW + safezoneX;
-        y = 0.521995 * safezoneH + safezoneY;
-        w = 0.013915 * safezoneW;
-        h = 0.037392 * safezoneH;
+        x = "0.198509 * safezoneW + safezoneX";
+        y = "0.521995 * safezoneH + safezoneY";
+        w = "0.013915 * safezoneW";
+        h = "0.037392 * safezoneH";
         tooltip = ECSTRING(core,previous_channel);
         action = "[0, false] call TFAR_fnc_setChannelViaDialog;";
     };
     class next_channel: HiddenButton {
         idc = IDC_PNR1000A_NEXT_CHANNEL;
-        x = 0.197993 * safezoneW + safezoneX;
-        y = 0.479104 * safezoneH + safezoneY;
-        w = 0.0133996 * safezoneW;
-        h = 0.0406913 * safezoneH;
+        x = "0.197993 * safezoneW + safezoneX";
+        y = "0.479104 * safezoneH + safezoneY";
+        w = "0.0133996 * safezoneW";
+        h = "0.0406913 * safezoneH";
         tooltip = ECSTRING(core,next_channel);
         action = "[1, false] call TFAR_fnc_setChannelViaDialog;";
     };
     class increase_volume: HiddenButton {
         idc = IDC_PNR1000A_INCREASE_VOLUME;
-        x = 0.13048 * safezoneW + safezoneX;
-        y = 0.471406 * safezoneH + safezoneY;
-        w = 0.0134062 * safezoneW;
-        h = 0.0407 * safezoneH;
+        x = "0.13048 * safezoneW + safezoneX";
+        y = "0.471406 * safezoneH + safezoneY";
+        w = "0.0134062 * safezoneW";
+        h = "0.0407 * safezoneH";
         tooltip = ECSTRING(core,increase_volume);
         action = "[1, false] call TFAR_fnc_setVolumeViaDialog;";
     };
     class decrease_volume: HiddenButton {
         idc = IDC_PNR1000A_DECREASE_VOLUME;
-        x = 0.129449 * safezoneW + safezoneX;
-        y = 0.526394 * safezoneH + safezoneY;
-        w = 0.0128906 * safezoneW;
-        h = 0.0319 * safezoneH;
+        x = "0.129449 * safezoneW + safezoneX";
+        y = "0.526394 * safezoneH + safezoneY";
+        w = "0.0128906 * safezoneW";
+        h = "0.0319 * safezoneH";
         tooltip = ECSTRING(core,decrease_volume);
         action = "[0, false] call TFAR_fnc_setVolumeViaDialog;";
     };
     class stereo: HiddenButton {
         idc = IDC_PNR1000A_STEREO;
-        x = 0.162948 * safezoneW + safezoneX;
-        y = 0.5022 * safezoneH + safezoneY;
-        w = 0.0159844 * safezoneW;
-        h = 0.0374 * safezoneH;
+        x = "0.162948 * safezoneW + safezoneX";
+        y = "0.5022 * safezoneH + safezoneY";
+        w = "0.0159844 * safezoneW";
+        h = "0.0374 * safezoneH";
         action = QUOTE( \
             [ARR_2(TF_sw_dialog_radio, ((TF_sw_dialog_radio call TFAR_fnc_getCurrentSwStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setSwStereo; \
             [TF_sw_dialog_radio] call TFAR_fnc_showRadioVolume; \
@@ -104,38 +103,38 @@ class pnr1000a_radio_dialog {
     };
     class reset_channel: HiddenButton {
         idc = IDC_PNR1000A_RESET_CHANNEL;
-        x = 0.154187 * safezoneW + safezoneX;
-        y = 0.562687 * safezoneH + safezoneY;
-        w = 0.0340144 * safezoneW;
-        h = 0.0307934 * safezoneH;
+        x = "0.154187 * safezoneW + safezoneX";
+        y = "0.562687 * safezoneH + safezoneY";
+        w = "0.0340144 * safezoneW";
+        h = "0.0307934 * safezoneH";
         tooltip = ECSTRING(core,radio_channel_1);
         action = "[TF_sw_dialog_radio, 0] call TFAR_fnc_setSwChannel; call TFAR_fnc_updateSWDialogToChannel;[TF_sw_dialog_radio, false] call TFAR_fnc_showRadioInfo;";
     };
     class speakers: HiddenRotator {
         idc = IDC_PNR1000A_SPEAKERS;
-        x = 0.160371 * safezoneW + safezoneX;
-        y = 0.436214 * safezoneH + safezoneY;
-        w = 0.019584 * safezoneW;
-        h = 0.037392 * safezoneH;
+        x = "0.160371 * safezoneW + safezoneX";
+        y = "0.436214 * safezoneH + safezoneY";
+        w = "0.019584 * safezoneW";
+        h = "0.037392 * safezoneH";
         tooltip = ECSTRING(core,speakers_settings_true);
         action = "[TF_sw_dialog_radio] call TFAR_fnc_setSwSpeakers;[TF_sw_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
     };
     class microdagr_background: RscBackPicture {
         idc = IDC_MICRODAGR_BACKGROUND;
         text = QPATHTOF(microdagr\ui\microdagr.paa);
-        x = 0.217953 * safezoneW + safezoneX;
-        y = -0.1611 * safezoneH + safezoneY;
-        w = 0.551203 * safezoneW;
-        h = 1.1484 * safezoneH;
+        x = "0.217953 * safezoneW + safezoneX";
+        y = "-0.1611 * safezoneH + safezoneY";
+        w = "0.551203 * safezoneW";
+        h = "1.1484 * safezoneH";
         moving = 1;
     };
     class channel_edit: RscEditLCD {
         idc = IDC_MICRODAGR_CHANNEL_EDIT;
         text = "CH1";
-        x = 0.437609 * safezoneW + safezoneX;
-        y = 0.3504 * safezoneH + safezoneY;
-        w = 0.0381562 * safezoneW;
-        h = 0.0528 * safezoneH;
+        x = "0.437609 * safezoneW + safezoneX";
+        y = "0.3504 * safezoneH + safezoneY";
+        w = "0.0381562 * safezoneW";
+        h = "0.0528 * safezoneH";
         moving = 1;
         font = "TFAR_font_dots";
         shadow = 2;
@@ -145,10 +144,10 @@ class pnr1000a_radio_dialog {
     class edit: RscEditLCD {
         idc = IDC_MICRODAGR_EDIT;
         text = "";
-        x = 0.476281 * safezoneW + safezoneX;
-        y = 0.3504 * safezoneH + safezoneY;
-        w = 0.0613594 * safezoneW;
-        h = 0.0528 * safezoneH;
+        x = "0.476281 * safezoneW + safezoneX";
+        y = "0.3504 * safezoneH + safezoneY";
+        w = "0.0613594 * safezoneW";
+        h = "0.0528 * safezoneH";
         moving = 1;
         font = "TFAR_font_dots";
         shadow = 2;
@@ -163,10 +162,10 @@ class pnr1000a_radio_dialog {
     class clear: HiddenButton {
         idc = IDC_MICRODAGR_CLEAR;
         text = "CLR";
-        x = 0.435547 * safezoneW + safezoneX;
-        y = 0.4329 * safezoneH + safezoneY;
-        w = 0.0402187 * safezoneW;
-        h = 0.0517 * safezoneH;
+        x = "0.435547 * safezoneW + safezoneX";
+        y = "0.4329 * safezoneH + safezoneY";
+        w = "0.0402187 * safezoneW";
+        h = "0.0517 * safezoneH";
         tooltip = ECSTRING(core,clear_frequency);
         font = "TFAR_font_dots";
         shadow = 2;
@@ -178,10 +177,10 @@ class pnr1000a_radio_dialog {
     class enter: HiddenButton {
         idc = IDC_MICRODAGR_ENTER;
         text = "ENT";
-        x = 0.498453 * safezoneW + safezoneX;
-        y = 0.4318 * safezoneH + safezoneY;
-        w = 0.04125 * safezoneW;
-        h = 0.055 * safezoneH;
+        x = "0.498453 * safezoneW + safezoneX";
+        y = "0.4318 * safezoneH + safezoneY";
+        w = "0.04125 * safezoneW";
+        h = "0.055 * safezoneH";
         tooltip = ECSTRING(core,set_frequency);
         font = "TFAR_font_dots";
         shadow = 2;
