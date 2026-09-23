@@ -55,3 +55,6 @@ _registeredEHIDs pushBackUnique _eventID;
 //Theoretically _registeredEHIDs is a reference so we don't have to call hashSet.. But I'm too lazy to check that now
 [_handlersHash,_customID,_registeredEHIDs] call CBA_fnc_hashSet;
 //We were editing _handlersHash by reference so we don't call setVariable again
+
+_eventID
+
