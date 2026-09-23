@@ -13,7 +13,7 @@
     3: Unit to use as filter. <OBJECT> (default: nil)
 
   Return Value:
-    Events (CBA Hash) <ARRAY>
+    Unique ID of the event handler (can be used with CBA_fnc_removeEventHandler) <NUMBER>
 
   Example:
     ["MyID", "OnSpeak", {
