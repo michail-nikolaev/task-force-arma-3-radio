@@ -13,7 +13,7 @@
     3: Unit to use as filter. <OBJECT> (default: nil)
 
   Return Value:
-    Events (CBA Hash) <ARRAY>
+    Unique ID of the event handler (can be used with CBA_fnc_removeEventHandler) <NUMBER>
 
   Example:
     ["MyID", "OnSpeak", {
@@ -55,3 +55,5 @@ _registeredEHIDs pushBackUnique _eventID;
 //Theoretically _registeredEHIDs is a reference so we don't have to call hashSet.. But I'm too lazy to check that now
 [_handlersHash,_customID,_registeredEHIDs] call CBA_fnc_hashSet;
 //We were editing _handlersHash by reference so we don't call setVariable again
+
+_eventID
