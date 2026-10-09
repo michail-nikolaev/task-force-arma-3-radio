@@ -7,6 +7,7 @@
             <Turkish>RF-7800S-TR</Turkish>
             <Czech>RF-7800S-TR</Czech>
             <Russian>RF-7800S-TR</Russian>
+            <Ukrainian>RF-7800S-TR</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_handhelds_RF7800STR_Desc">
             <Original>RF-7800S-TR rifleman radio 2km</Original>
@@ -19,6 +20,7 @@
             <Italian>Radio da fuciliere RF-7800S-TR 2km</Italian>
             <Czech>RF-7800S-TR Střelecké rádio 2km</Czech>
             <Russian>RF-7800S-TR персональная рация на 2 км</Russian>
+            <Ukrainian>RF-7800S-TR рація стрільця 2 км</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_handhelds_PNR1000A">
             <Original>PNR-1000A</Original>
@@ -26,6 +28,7 @@
             <Turkish>PNR-1000A</Turkish>
             <Czech>PNR-1000A</Czech>
             <Russian>PNR-1000A</Russian>
+            <Ukrainian>PNR-1000A</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_handhelds_PNR1000A_Desc">
             <Original>PNR-1000A rifleman radio 2km</Original>
@@ -38,6 +41,7 @@
             <Italian>Radio da fuciliere PNR-1000A 2km</Italian>
             <Czech>PNR-1000A Střelecké rádio 2km</Czech>
             <Russian>PNR-1000A персональная рация на 2 км</Russian>
+            <Ukrainian>PNR-1000A рація стрільця 2 км</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_handhelds_MicroDagr">
             <Original>MicroDAGR Radio Programmer</Original>
@@ -50,6 +54,7 @@
             <Italian>Programmatore radio MicroDAGR</Italian>
             <Czech>MicroDAGR Programátor rádií</Czech>
             <Russian>MicroDAGR программатор для рации</Russian>
+            <Ukrainian>MicroDAGR програматор рацій</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_handhelds_MicroDagr_Desc">
             <Original>Provides ability to program rifleman radios in the field</Original>
@@ -62,12 +67,14 @@
             <Italian>Fornisce la capacità di programmare le radio dei fucilieri sul campo.</Italian>
             <Czech>Poskytuje pro střelce schopnost programovat rádia v poli.</Czech>
             <Russian>Позволяет настраивать рации в полевых условиях</Russian>
+            <Ukrainian>Дає змогу програмувати рації стрільців у польових умовах</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_handhelds_FADAK">
             <Original>FADAK</Original>
             <English>FADAK</English>
             <Czech>FADAK</Czech>
             <Russian>FADAK</Russian>
+            <Ukrainian>FADAK</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_handhelds_FADAK_Desc">
             <Original>FADAK personal radio 5km</Original>
@@ -80,6 +87,7 @@
             <Italian>FADAK radio personale 5km</Italian>
             <Czech>FADAK Osobní rádio 5km</Czech>
             <Russian>FADAK персональная рация на 5 км</Russian>
+            <Ukrainian>FADAK особиста рація 5 км</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC154">
             <Original>AN/PRC-154</Original>
@@ -87,6 +95,7 @@
             <Turkish>AN/PRC-154</Turkish>
             <Czech>AN/PRC-154</Czech>
             <Russian>AN/PRC-154</Russian>
+            <Ukrainian>AN/PRC-154</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC154_Desc">
             <Original>AN/PRC-154 rifleman radio 2km</Original>
@@ -99,6 +108,7 @@
             <Italian>Fuciliere radiofonico AN/PRC-154 2km</Italian>
             <Czech>AN/PRC-154 Střelecké rádio 2km</Czech>
             <Russian>AN/PRC-154 персональная рация на 2 км</Russian>
+            <Ukrainian>AN/PRC-154 рація стрільця 2 км</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC152">
             <Original>AN/PRC-152</Original>
@@ -106,6 +116,7 @@
             <Turkish>AN/PRC-152</Turkish>
             <Czech>AN/PRC-152</Czech>
             <Russian>AN/PRC-152</Russian>
+            <Ukrainian>AN/PRC-152</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_handhelds_ANPRC152_Desc">
             <Original>AN/PRC-152 personal radio 5km</Original>
@@ -118,6 +129,7 @@
             <Italian>AN/PRC-152 radio personale 5 km</Italian>
             <Czech>AN/PRC-152 Osobní rádio 5km</Czech>
             <Russian>AN/PRC-152 персональная рация на 5 км</Russian>
+            <Ukrainian>AN/PRC-152 особиста рація 5 км</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM">
             <Original>AN/PRC-148 JEM</Original>
@@ -125,6 +137,7 @@
             <Turkish>AN/PRC-148 JEM</Turkish>
             <Czech>AN/PRC-148 JEM</Czech>
             <Russian>AN/PRC-148 JEM</Russian>
+            <Ukrainian>AN/PRC-148 JEM</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_Handhelds_ANPRC148JEM_Desc">
             <Original>AN/PRC-148 JEM personal radio 5km</Original>
@@ -137,6 +150,7 @@
             <Italian>AN/PRC-148 JEM radio personale 5 km</Italian>
             <Czech>AN/PRC-148 JEM Osobní rádio 5km</Czech>
             <Russian>AN/PRC-148 JEM персональная рация на 5 км</Russian>
+            <Ukrainian>AN/PRC-148 JEM особиста рація 5 км</Ukrainian>
         </Key>
     </Package>
 </Project>
