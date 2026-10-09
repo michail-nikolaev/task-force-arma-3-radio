@@ -7,6 +7,7 @@
             <Czech>Připojit k interkomu</Czech>
             <Russian>Подключиться к интеркому</Russian>
             <Italian>Connettiti all'interfono</Italian>
+            <Ukrainian>Підключитися до інтеркому</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_DISCONNECT_WIRELESS">
             <Original>Disconnect from Intercom</Original>
@@ -14,6 +15,7 @@
             <Czech>Odpojit od interkomu</Czech>
             <Russian>Отключиться от интеркома</Russian>
             <Italian>Sconnettiti dall'interfono</Italian>
+            <Ukrainian>Відключитися від інтеркому</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_WIRELESS_SELFACTIONS">
             <Original>Wireless Intercom</Original>
@@ -21,6 +23,7 @@
             <Czech>Bezdrátový interkom</Czech>
             <Russian>Беспроводной интерком</Russian>
             <Italian>Interfono wireless</Italian>
+            <Ukrainian>Бездротовий інтерком</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PICKUP_PHONE">
             <Original>Pickup Intercom Phone</Original>
@@ -28,6 +31,7 @@
             <Czech>Vzít interkom telefon</Czech>
             <Russian>Взять телефон интеркома</Russian>
             <Italian>Prendi telefono iterfono</Italian>
+            <Ukrainian>Взяти телефон інтеркому</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PUT_AWAY_PHONE">
             <Original>Put away Intercom Phone</Original>
@@ -35,6 +39,7 @@
             <Czech>Odložit interkom telefon</Czech>
             <Russian>Положить телефон интеркома</Russian>
             <Italian>Riaggancia telefono iterfono</Italian>
+            <Ukrainian>Покласти телефон інтеркому</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PHONE_BUSY">
             <Original>Intercom Phone in use</Original>
@@ -42,6 +47,7 @@
             <Czech>Interkom telefon je používán</Czech>
             <Russian>Телефон интеркома используется</Russian>
             <Italian>Telefono iterfono già in uso</Italian>
+            <Ukrainian>Телефон інтеркому зайнятий</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SOMEONE_USING_PHONE">
             <Original>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 is currently using the Intercom Phone&lt;/t&gt;</Original>
@@ -49,6 +55,7 @@
             <Czech>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 momentálně používá telefon interkomu&lt;/t&gt;</Czech>
             <Russian>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 сейчас использует телефон интеркома&lt;/t&gt;</Russian>
             <Italian>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 sta già usando il telefono dell'interfono&lt;/t&gt;</Italian>
+            <Ukrainian>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 зараз використовує телефон інтеркому&lt;/t&gt;</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_HEADGEAR_NOT_WIRELESS_CAPABLE">
             <Original>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;Your %1 is not Wireless Intercom capable&lt;/t&gt;</Original>
@@ -56,6 +63,7 @@
             <Czech>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;Tvůj %1 není schopno bezdrátového spojení&lt;/t&gt;</Czech>
             <Russian>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;Твое устройство %1 не подходит для беспроводного интеркома&lt;/t&gt;</Russian>
             <Italian>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 non è un interfono wireless&lt;/t&gt;</Italian>
+            <Ukrainian>&lt;br/&gt;&lt;br/&gt;&lt;t align='center'&gt;%1 не підтримує бездротовий інтерком&lt;/t&gt;</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_RESET">
             <Original>External Intercom has been Reset</Original>
@@ -63,6 +71,7 @@
             <Czech>Vnější interkom byl resetován</Czech>
             <Russian>Внешний интерком был сброшен</Russian>
             <Italian>L'interfono esterno è stato riagganciato</Italian>
+            <Ukrainian>Зовнішній інтерком скинуто</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_EXTERNAL_INTERCOM_PHONE_INDICATOR">
             <Original>External Intercom Connection Indicator</Original>
@@ -70,6 +79,7 @@
             <Czech>Indikátor spojení vnějšího interkomu</Czech>
             <Russian>Индикатор соединения внешнего интеркома</Russian>
             <Italian>Indicatore di connessione interfono esterno</Italian>
+            <Ukrainian>Індикатор з'єднання зовнішнього інтеркому</Ukrainian>
         </Key>
         <Container name="settings">
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTINGS_CATEGORY_EXTERNAL_INTERCOM">
@@ -78,6 +88,7 @@
                 <Czech>Vnější interkom</Czech>
                 <Russian>Внешний интерком</Russian>
                 <Italian>Interfono esterno</Italian>
+                <Ukrainian>Зовнішній інтерком</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_HEADGEAR_HEADER">
                 <Original>Additional Wireless Compatible Headgear</Original>
@@ -85,6 +96,7 @@
                 <Czech>Další vybavení kompatibilní s bezdrátem</Czech>
                 <Russian>Дополнительные беспроводные совместимые наушники</Russian>
                 <Italian>Aggiungi cuffie wireless compatibili</Italian>
+                <Ukrainian>Додаткові бездротові головні убори</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_HEADGEAR_DESC">
                 <Original>A list of Headgear, in addition to the base list that are able to be connected to a vehicle's intercom system wirelessly</Original>
@@ -92,6 +104,7 @@
                 <Czech>Seznam vybavení, které rozšíří základní seznam vybavení schopných se bezdrátově připojit k interkomu vozidla</Czech>
                 <Russian>Список наушников дополняющий базовый список устройств, которые могут беспроводно подключаться к интеркому техники</Russian>
                 <Italian>Una lista di cuffie, in aggiunta alla lista base, che sono in grado di connettersi senza fili all'interfono di un veicolo</Italian>
+                <Ukrainian>Список головних уборів, які, на додачу до базового списку, можуть бездротово підключатися до інтеркому техніки</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_HEADER">
                 <Original>Enable for</Original>
@@ -99,6 +112,7 @@
                 <Czech>Povolit pro</Czech>
                 <Russian>Включить для</Russian>
                 <Italian>Abilita per</Italian>
+                <Ukrainian>Увімкнути для</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_FOR_DESC">
                 <Original>Enable, Enable for player on the same side only, or just Disable</Original>
@@ -106,6 +120,7 @@
                 <Czech>Povolit. Povolit pro hráče na stejně straně, nebo prostě jen zakázat.</Czech>
                 <Russian>Включить, включить только для игрока той же стороны, или просто отключить</Russian>
                 <Italian>Abilita, Abilita per giocatori della stessa fazione, o disabilita</Italian>
+                <Ukrainian>Увімкнути, увімкнути лише для своєї сторони або вимкнути</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_0">
                 <Original>Enable</Original>
@@ -113,6 +128,7 @@
                 <Czech>Povolit</Czech>
                 <Russian>Включить</Russian>
                 <Italian>Abilitato</Italian>
+                <Ukrainian>Увімкнути</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_1">
                 <Original>Same Side Only</Original>
@@ -120,6 +136,7 @@
                 <Czech>Pouze stejná strana</Czech>
                 <Russian>Только для той же стороны</Russian>
                 <Italian>Solo stessa fazione</Italian>
+                <Ukrainian>Лише своя сторона</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_ENABLE_2">
                 <Original>Disable</Original>
@@ -127,6 +144,7 @@
                 <Czech>Zakázat</Czech>
                 <Russian>Отключить</Russian>
                 <Italian>Disabilita</Italian>
+                <Ukrainian>Вимкнути</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_RANGE_HEADER">
                 <Original>External Intercom Range - Wireless</Original>
@@ -134,6 +152,7 @@
                 <Czech>Dosah vnějšího interkomu - Bezdrátový</Czech>
                 <Russian>Дальность внешнего интеркома - беспроводная связь</Russian>
                 <Italian>Raggio d'azione interfono esterno - Wireless</Italian>
+                <Ukrainian>Дальність зовн. інтеркому - бездротовий</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_WIRELESS_RANGE_DESC">
                 <Original>The maximum range until which the player will remain connected to the intercom of a vehicle</Original>
@@ -141,6 +160,7 @@
                 <Czech>Maximální dosah po který hráč zůstane připojen k interkomu vozidla</Czech>
                 <Russian>Максимальная дистанция на которой игроки будут подключены к интеркому техники беспроводным соединением</Russian>
                 <Italian>La distanza massima alla quale il giocatore rimane connesso all'interfono di un veicolo</Italian>
+                <Ukrainian>Максимальна відстань, на якій гравець залишатиметься підключеним до інтеркому техніки</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_PHONE_RANGE_HEADER">
                 <Original>External Intercom Range - Phone</Original>
@@ -148,6 +168,7 @@
                 <Czech>Dosah vnějšího interkomu - Telefon</Czech>
                 <Russian>Дальность внешнего интеркома - телефон</Russian>
                 <Italian>Raggio d'azione interfono esterno - Telefono</Italian>
+                <Ukrainian>Дальність зовн. інтеркому - телефон</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_SETTING_PHONE_RANGE_DESC">
                 <Original>The maximum range until which the player will remain connected to the intercom of a vehicle</Original>
@@ -155,6 +176,7 @@
                 <Czech>Maximální dosah po který hráč zůstane připojen k interkomu vozidla</Czech>
                 <Russian>Максимальная дистанция на которой игроки будут подключены к интеркому техники через телефон</Russian>
                 <Italian>La distanza massima alla quale il giocatore rimane connesso all'interfono di un veicolo</Italian>
+                <Ukrainian>Максимальна відстань, на якій гравець залишатиметься підключеним до інтеркому техніки</Ukrainian>
             </Key>
         </Container>
         <Container name="3den">
@@ -164,6 +186,7 @@
                 <Czech>Dosah telefonu vnějšího interkomu</Czech>
                 <Russian>Макс. дальность телефона внеш. интеркома</Russian>
                 <Italian>Max raggio d'azione interfono esterno</Italian>
+                <Ukrainian>Макс. дальність телефону інтеркому</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_3DEN_ATTRIBUTE_MAX_RANGE_PHONE_DESC">
                 <Original>The maximum range a player can stand from the connection point and remain connected. Set to 0 for this to be ignored and global settings to apply.</Original>
@@ -171,6 +194,7 @@
                 <Czech>Maximální dosah po který hráč zůstane připojen k interkomu vozidla. Nastavte na 0 pro ignorování tohoto nastavení a globální nastavení bude aplikováno.</Czech>
                 <Russian>Максимальная дистанция которая позволит игрокам отойти от места подключения и оставаться подключенным. Установите на 0 чтобы это значение игнорировалось и применилась глобальная настройка</Russian>
                 <Italian>La distanza massima alla quale il giocatore può stare dal punto di connessione e rimanere connesso. Setta a 0 per ignorare questa impostazione e utilizzare le impostazioni globali.</Italian>
+                <Ukrainian>Макс. відстань від точки підключення, на якій гравець лишається підключеним. 0 - ігнорувати й застосувати глобальне налаштування.</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_3DEN_ATTRIBUTE_MAX_RANGE_WIRELESS_HEADER">
                 <Original>Ext. Intercom Wireless Max Range</Original>
@@ -178,6 +202,7 @@
                 <Czech>Dosah bezdrátu vnějšího interkomu</Czech>
                 <Russian>Макс. дальность беспроводного внешнего интеркома</Russian>
                 <Italian>Max raggio d'azione interfono esterno Wireless</Italian>
+                <Ukrainian>Макс. дальність бездротового інтеркому</Ukrainian>
             </Key>
             <Key ID="STR_TFAR_EXTERNAL_INTERCOM_3DEN_ATTRIBUTE_MAX_RANGE_WIRELESS_DESC">
                 <Original>The maximum range a player can stand from the vehicle and remain connected. Set to 0 for this to be ignored and global settings to apply.</Original>
@@ -185,6 +210,7 @@
                 <Czech>Maximální dosah po který hráč zůstane připojen k interkomu vozidla. Nastavte na 0 pro ignorování tohoto nastavení a globální nastavení bude aplikováno.</Czech>
                 <Russian>Максимальная дистанция которая позволит игрокам отойти от места подключения и оставаться подключенным. Установите на 0 чтобы это значение игнорировалось и применилась глобальная настройка</Russian>
                 <Italian>La distanza massima alla quale il giocatore può stare dal veicolo e rimanere connesso. Setta a 0 per ignorare questa impostazione e utilizzare le impostazioni globali.</Italian>
+                <Ukrainian>Макс. відстань від техніки, на якій гравець лишається підключеним. 0 - ігнорувати й застосувати глобальне налаштування.</Ukrainian>
             </Key>
         </Container>
     </Package>
