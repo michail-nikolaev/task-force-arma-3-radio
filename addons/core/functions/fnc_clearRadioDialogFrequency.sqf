@@ -24,6 +24,8 @@ params [
 
 if (isNull _frequencyControl) exitWith {};
 
+_frequencyControl setVariable ["TFAR_frequencyIsName", false];
+_frequencyControl setVariable ["TFAR_frequencyEditing", true];
 _frequencyControl ctrlSetPosition ([_frequencyControl, _channelControlIdc] call TFAR_fnc_getRadioDialogFrequencyPosition);
 _frequencyControl ctrlCommit 0;
 _frequencyControl ctrlSetText "";

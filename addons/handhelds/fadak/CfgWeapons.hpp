@@ -10,6 +10,9 @@ class TFAR_fadak: ItemRadio {
     tf_dialog = "fadak_radio_dialog";
     tf_encryptionCode = "tf_east_radio_code";
     tf_dialogUpdate = "call TFAR_fnc_updateSWDialogToChannel;";
+    tf_showChannelName = 1;
+    tf_channelNameDialogIdd = 7777;
+    tf_channelNameOffset = 44;
     tf_subtype = "digital";
     tf_parent = "TFAR_fadak";
     tf_additional_channel = 1;

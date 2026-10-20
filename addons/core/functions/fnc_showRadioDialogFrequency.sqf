@@ -5,7 +5,7 @@
 
   Author: Darojax
     Replaces a displayed channel name with its editable frequency when the
-    player clicks the frequency field.
+    player focuses or types in the frequency field, or confirms its contents.
 
   Arguments:
     0: Frequency edit control <CONTROL>
@@ -28,11 +28,10 @@ params [
 
 if (isNull _frequencyControl) exitWith {};
 
-private _channel = _radio call ([TFAR_fnc_getSwChannel, TFAR_fnc_getLrChannel] select _isLrRadio);
-private _channelName = [_radio, _channel + 1] call TFAR_fnc_getChannelName;
+_frequencyControl setVariable ["TFAR_frequencyEditing", true];
+if !(_frequencyControl getVariable ["TFAR_frequencyIsName", false]) exitWith {};
 
-if (_channelName isEqualTo "" || {ctrlText _frequencyControl isNotEqualTo _channelName}) exitWith {};
-
+_frequencyControl setVariable ["TFAR_frequencyIsName", false];
 _frequencyControl ctrlSetPosition ([_frequencyControl, _channelControlIdc] call TFAR_fnc_getRadioDialogFrequencyPosition);
 _frequencyControl ctrlCommit 0;
 _frequencyControl ctrlSetText (_radio call ([TFAR_fnc_getSwFrequency, TFAR_fnc_getLrFrequency] select _isLrRadio));

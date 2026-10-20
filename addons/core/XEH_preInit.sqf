@@ -6,7 +6,38 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     [] call DFUNC(serverInit);
 };
 GVAR(SettingsInitialized) = false;
-["CBA_settingsInitialized", {GVAR(SettingsInitialized) = true;}] call CBA_fnc_addEventhandler;
+["CBA_settingsInitialized", {
+    GVAR(SettingsInitialized) = true;
+    if (isServer) then {
+        // Replay once more after every CBA callback: other initialization
+        // callbacks may themselves have assigned names through the public API.
+        {
+            private _isLrRadio = _x;
+            private _radioType = ["sr", "lr"] select _isLrRadio;
+            {
+                private _suffix = format ["%1_%2", _radioType, _x];
+                private _variableName = "TFAR_frequencyNames_" + _suffix;
+                if (!isNil {missionNamespace getVariable (_variableName + "_pending")}) then {
+                    [
+                        missionNamespace getVariable ["TFAR_setting_frequencyNames_" + _suffix, ""],
+                        _variableName,
+                        _isLrRadio
+                    ] call TFAR_fnc_applyFrequencyNamesSetting;
+                };
+            } forEach ["west", "east", "independent"];
+        } forEach [false, true];
+    };
+}] call CBA_fnc_addEventhandler;
+
+if (hasInterface) then {
+    ["TFAR_frequencyNamesChanged", {
+        params ["_variableName", "_definitions"];
+        // Carry the table in the event as well as publishing it for JIP, so UI
+        // refresh does not depend on public-variable/event delivery order.
+        missionNamespace setVariable [_variableName, _definitions];
+        call TFAR_fnc_refreshRadioDialogFrequency;
+    }] call CBA_fnc_addEventHandler;
+};
 
 [] call DFUNC(initCBASettings);
 

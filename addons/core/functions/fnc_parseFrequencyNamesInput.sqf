@@ -35,8 +35,6 @@ private _trimString = {
     toString _characters
 };
 
-private _minimumFrequency = [TFAR_MIN_SW_FREQ, TFAR_MIN_ASIP_FREQ] select _isLrRadio;
-private _maximumFrequency = [TFAR_MAX_SW_FREQ, TFAR_MAX_ASIP_FREQ] select _isLrRadio;
 private _definitions = [];
 
 {
@@ -44,17 +42,15 @@ private _definitions = [];
     if (_separatorIndex > 0) then {
         private _frequencyString = (_x select [0, _separatorIndex]) call _trimString;
         private _name = (_x select [_separatorIndex + 1]) call _trimString;
-        private _frequency = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(_frequencyString);
+        _frequencyString = [_frequencyString, _isLrRadio] call TFAR_fnc_normalizeFrequency;
 
         if (
             _frequencyString isNotEqualTo "" &&
-            {_name isNotEqualTo ""} &&
-            {_frequency >= _minimumFrequency} &&
-            {_frequency <= _maximumFrequency}
+            {_name isNotEqualTo ""}
         ) then {
             _name = _name select [0, TFAR_MAX_CHANNEL_NAME_LENGTH];
             private _definitionIndex = _definitions findIf {
-                TFAR_FREQUENCYSTRING_TO_FREQNUMBER(_x select 0) == _frequency
+                (_x select 0) isEqualTo _frequencyString
             };
 
             if (_definitionIndex >= 0) then {

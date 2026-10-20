@@ -3,7 +3,9 @@
 #define TF_IDD_BACKGROUND 67676
 
 #define TFAR_CHANNEL_NAME_EDIT_HANDLER(RADIO,CHANNEL_IDC) \
-    onMouseButtonDown = QUOTE([ARR_4(_this select 0,RADIO,false,CHANNEL_IDC)] call TFAR_fnc_showRadioDialogFrequency;)
+    onMouseButtonDown = QUOTE([ARR_4(_this select 0,RADIO,false,CHANNEL_IDC)] call TFAR_fnc_showRadioDialogFrequency;); \
+    onSetFocus = QUOTE([ARR_4(_this select 0,RADIO,false,CHANNEL_IDC)] call TFAR_fnc_showRadioDialogFrequency;); \
+    onKeyDown = QUOTE([ARR_4(_this select 0,RADIO,false,CHANNEL_IDC)] call TFAR_fnc_showRadioDialogFrequency;)
 #define TFAR_CHANNEL_NAME_CLEAR_ACTION(DISPLAY_IDD,EDIT_IDC,CHANNEL_IDC) \
     action = QUOTE([ARR_2((findDisplay DISPLAY_IDD) displayCtrl EDIT_IDC,CHANNEL_IDC)] call TFAR_fnc_clearRadioDialogFrequency;)
 //--- anprc152_radio_dialog

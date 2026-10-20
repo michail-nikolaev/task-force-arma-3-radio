@@ -19,7 +19,7 @@ $[
 ]
 */
 class anprc154_radio_dialog {
-    idd = IDD_ANPRC152_RADIO_DIALOG;
+    idd = IDD_ANPRC154_RADIO_DIALOG;
     movingEnable = 1;
     controlsBackground[] = { };
     objects[] = { };

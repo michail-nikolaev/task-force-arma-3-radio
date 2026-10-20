@@ -5,8 +5,8 @@
 
   Author: Darojax
     Returns the TFAR side affiliation of an SW or LR radio. The current radio
-    code is preferred when it matches a configured side code; the radio type's
-    encryption-code property is used as the fallback.
+    code is preferred when it uniquely matches a configured side code. Shared
+    codes and custom codes fall back to the radio type's encryption property.
 
   Arguments:
     Radio <ARRAY|STRING>
@@ -28,9 +28,20 @@ private _settings = _radio call ([TFAR_fnc_getSwSettings, TFAR_fnc_getLrSettings
 if (isNil "_settings") exitWith {sideUnknown};
 
 private _radioCode = _settings param [TFAR_CODE_OFFSET, "", [""]];
-if (_radioCode isEqualTo (missionNamespace getVariable ["tf_west_radio_code", "_bluefor"])) exitWith {west};
-if (_radioCode isEqualTo (missionNamespace getVariable ["tf_east_radio_code", "_opfor"])) exitWith {east};
-if (_radioCode isEqualTo (missionNamespace getVariable ["tf_independent_radio_code", "_independent"])) exitWith {independent};
+private _sides = [west, east, independent];
+private _matchingSides = [];
+if (_radioCode isNotEqualTo "") then {
+    {
+        if (_radioCode isEqualTo _x) then {
+            _matchingSides pushBack (_sides select _forEachIndex);
+        };
+    } forEach [
+        missionNamespace getVariable ["tf_west_radio_code", "_bluefor"],
+        missionNamespace getVariable ["tf_east_radio_code", "_opfor"],
+        missionNamespace getVariable ["tf_independent_radio_code", "_independent"]
+    ];
+};
+if (count _matchingSides == 1) exitWith {_matchingSides select 0};
 
 private _encryptionCodeProperty = if (_isLrRadio) then {
     [_radio select 0, "tf_encryptionCode", ""] call TFAR_fnc_getLrRadioProperty

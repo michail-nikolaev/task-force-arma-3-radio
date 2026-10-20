@@ -154,6 +154,8 @@ PREP(getChannelFrequency);
 PREP(getChannelName);
 PREP(getFrequencyName);
 PREP(getRadioSide);
+PREP(normalizeFrequency);
+PREP(refreshRadioDialogFrequency);
 PREP(getRadioItems);
 PREP(getSideRadio);
 PREP(getTransmittingDistanceMultiplicator);

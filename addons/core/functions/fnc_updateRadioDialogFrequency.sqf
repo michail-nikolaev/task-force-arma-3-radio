@@ -32,13 +32,18 @@ params [
     ["_channelControlIdc", -1, [0]]
 ];
 
-ctrlSetText [_frequencyControlIdc, [_frequency, _channelName] select _showChannelName];
-
-if (_dialogIdd < 0) exitWith {};
+// Third-party dialogs without name support retain their numeric frequency.
+if (_dialogIdd < 0) exitWith {ctrlSetText [_frequencyControlIdc, _frequency];};
 
 disableSerialization;
 private _frequencyControl = (findDisplay _dialogIdd) displayCtrl _frequencyControlIdc;
 if (isNull _frequencyControl) exitWith {};
+
+// Presentation state must not be inferred from the current name table: that
+// table can change while the dialog is open, and names may themselves be numeric.
+_frequencyControl setVariable ["TFAR_frequencyIsName", _showChannelName];
+_frequencyControl setVariable ["TFAR_frequencyEditing", false];
+_frequencyControl ctrlSetText ([_frequency, _channelName] select _showChannelName);
 
 private _displayPosition = [_frequencyControl, _channelControlIdc] call TFAR_fnc_getRadioDialogFrequencyPosition;
 
