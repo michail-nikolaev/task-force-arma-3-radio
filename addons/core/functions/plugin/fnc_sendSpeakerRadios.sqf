@@ -34,14 +34,7 @@ private _speakerRadios = TFAR_speakerRadios;
     if (_waveZ > 0) then {
         {
             if ((_x call TFAR_fnc_isRadio) and {_x call TFAR_fnc_getSwSpeakers}) then {
-                private _radioCode = _x call TFAR_fnc_getSwRadioCode;
-                private _frequencies = [format ["%1%2", _x call TFAR_fnc_getSwFrequency, _radioCode]];
-                private _additionalChannel = _x call TFAR_fnc_getAdditionalSwChannel;
-                if (_additionalChannel > -1) then {
-                    _frequencies pushBack format ["%1%2", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
-                };
-
-                _speakerRadios pushBack ([_x/*radio_id*/,_frequencies joinString "|",""/*nickname*/,_pos,_x call TFAR_fnc_getSwVolume, "no"/*vehicle*/] joinString TF_new_line);
+                _speakerRadios append ([_x, _x, "", _pos, "no"] call TFAR_fnc_getSpeakerRadioData);
             };
         } forEach ((getItemCargo _x) select 0);
 
@@ -49,14 +42,8 @@ private _speakerRadios = TFAR_speakerRadios;
             if  ((_x getVariable ["TFAR_LRSpeakersEnabled", false]) and {[typeOf (_x), "tf_hasLRradio", 0] call TFAR_fnc_getVehicleConfigProperty == 1}) then {
                 private _manpack = [_x, "radio_settings"];
                 if (_manpack call TFAR_fnc_getLrSpeakers) then {
-                    private _radioCode = _manpack call TFAR_fnc_getLrRadioCode;
-                    private _frequencies = [format ["%1%2", _manpack call TFAR_fnc_getLrFrequency, _radioCode]];
-                    private _additionalChannel = _manpack call TFAR_fnc_getAdditionalLrChannel;
-                    if (_additionalChannel > -1) then {
-                        _frequencies pushBack format ["%1%2", [_manpack, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
-                    };
                     private _radio_id = netId _x;
-                    _speakerRadios pushBack ([_radio_id,_frequencies joinString "|",""/*nickname*/,_pos,_manpack call TFAR_fnc_getLrVolume, "no"/*vehicle*/] joinString TF_new_line);
+                    _speakerRadios append ([_manpack, _radio_id, "", _pos, "no"] call TFAR_fnc_getSpeakerRadioData);
                 };
             };
         } forEach (everyBackpack _x);
@@ -87,13 +74,6 @@ private _speakerRadios = TFAR_speakerRadios;
 
             {
                 if (_x call TFAR_fnc_getLrSpeakers) then {
-                    private _radioCode = _x call TFAR_fnc_getLrRadioCode;
-                    private _frequencies = [format ["%1%2", _x call TFAR_fnc_getLrFrequency, _radioCode]];
-                    private _additionalChannel = _x call TFAR_fnc_getAdditionalLrChannel;
-                    if (_additionalChannel > -1) then {
-                        _frequencies pushBack format["%1%2", [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
-                    };
-
                     private _vehicle = _x select 0;
 
                     private _radio_id = netId (_x select 0) + (_x select 1);
@@ -102,7 +82,7 @@ private _speakerRadios = TFAR_speakerRadios;
                     private _netID = _vehicle getVariable ["TFAR_vehicleIDOverride", netid _vehicle];
                     private _isolation = [_netID, [(typeOf _vehicle), "tf_isolatedAmount", 0.0] call TFAR_fnc_getVehicleConfigProperty, -1] joinString (toString [16]);
 
-                    _speakerRadios pushBack ([_radio_id,_frequencies joinString "|","",_pos,_x call TFAR_fnc_getLrVolume, _isolation] joinString TF_new_line);
+                    _speakerRadios append ([_x, _radio_id, "", _pos, _isolation] call TFAR_fnc_getSpeakerRadioData);
                 };
             } forEach _lrs;
         };

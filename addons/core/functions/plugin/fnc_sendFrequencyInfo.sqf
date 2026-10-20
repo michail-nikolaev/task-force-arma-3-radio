@@ -54,24 +54,11 @@ if (((count _swRadios > 0) || _currentUnitIsRemote) && {[TFAR_currentUnit, _isol
             if (!(_x call TFAR_fnc_getSwSpeakers) //If speakers are enabled we will not have it on our headset at the same time... I think...
                 or {(_currentUnitIsRemote) and {_x in _playerRadios}} //When remote controlling a unit.. Still hear your original Radios
             ) then {
-                private _radioCode = _x call TFAR_fnc_getSwRadioCode;
-                private _volume = _x call TFAR_fnc_getSwVolume;
-                private _additionalChannel = _x call TFAR_fnc_getAdditionalSwChannel;
-                private _currentIsAdditional = _additionalChannel > -1 && {_additionalChannel isEqualTo (_x call TFAR_fnc_getSwChannel)};
-                _freq pushBack format ["%1%2|%3|%4|%5",
-                    _x call TFAR_fnc_getSwFrequency,
-                    _radioCode,
-                    [_volume, _x call TFAR_fnc_getAdditionalSwVolume] select _currentIsAdditional,
-                    [_x call TFAR_fnc_getSwStereo, _x call TFAR_fnc_getAdditionalSwStereo] select _currentIsAdditional,
-                    _x];
-                if (_additionalChannel > -1 && {_additionalChannel != (_x call TFAR_fnc_getSwChannel)}) then {
-                    _freq pushBack format ["%1%2|%3|%4|%5",
-                        [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency,
-                        _radioCode,
-                        _x call TFAR_fnc_getAdditionalSwVolume,
-                        _x call TFAR_fnc_getAdditionalSwStereo,
-                        _x];
-                };
+                private _radioId = _x;
+                {
+                    _x params ["_frequency", "_volume", "_stereo"];
+                    _freq pushBack format ["%1|%2|%3|%4", _frequency, _volume, _stereo, _radioId];
+                } forEach (_x call TFAR_fnc_getRadioChannelSettings);
             };
         };
     } forEach _swRadios;
@@ -90,25 +77,11 @@ if (((count _lrRadios > 0) || _currentUnitIsRemote) && {[TFAR_currentUnit, _isol
             if (!(_x call TFAR_fnc_getLrSpeakers)
                 || {_currentUnitIsRemote && {_x in _playerRadios}} //When remote controlling a unit.. Still hear your original Radios
             ) then {
-                private _radioCode = _x call TFAR_fnc_getLrRadioCode;
-                private _volume = _x call TFAR_fnc_getLrVolume;
-                private _additionalChannel = _x call TFAR_fnc_getAdditionalLrChannel;
-                private _currentIsAdditional = _additionalChannel > -1 && {_additionalChannel isEqualTo (_x call TFAR_fnc_getLrChannel)};
-                _freq_lr pushBack format ["%1%2|%3|%4|%5",
-                    _x call TFAR_fnc_getLrFrequency,
-                    _radioCode,
-                    [_volume, _x call TFAR_fnc_getAdditionalLrVolume] select _currentIsAdditional,
-                    [_x call TFAR_fnc_getLrStereo, _x call TFAR_fnc_getAdditionalLrStereo] select _currentIsAdditional,
-                    typeOf (_x select 0)];
-
-                if (_additionalChannel > -1 && {_additionalChannel != (_x call TFAR_fnc_getLrChannel)}) then {
-                    _freq_lr pushBack format ["%1%2|%3|%4|%5",
-                        [_x, _additionalChannel + 1] call TFAR_fnc_getChannelFrequency,
-                        _radioCode,
-                        _x call TFAR_fnc_getAdditionalLrVolume,
-                        _x call TFAR_fnc_getAdditionalLrStereo,
-                        typeOf (_x select 0)];
-                };
+                private _radioType = typeOf (_x select 0);
+                {
+                    _x params ["_frequency", "_volume", "_stereo"];
+                    _freq_lr pushBack format ["%1|%2|%3|%4", _frequency, _volume, _stereo, _radioType];
+                } forEach (_x call TFAR_fnc_getRadioChannelSettings);
             };
         };
     } forEach _lrRadios;

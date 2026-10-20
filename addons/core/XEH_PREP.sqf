@@ -140,6 +140,8 @@ PREP(getSwVolume);
 PREP(getLrVolume);
 PREP(getAdditionalSwVolume);
 PREP(getAdditionalLrVolume);
+PREP(getRadioChannelSettings);
+PREP(getSpeakerRadioData);
 PREP(getSwSettings);
 PREP(getLrSettings);
 PREP(getNearPlayers);
