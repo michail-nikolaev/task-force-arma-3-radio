@@ -1,6 +1,10 @@
 *.pbo
 /release
 /.vscode
+.hemttout/
+releases/
+*.biprivatekey
+.hemttprivatekey
 
 /ts/bin/plugins/task_force_radio.ilk
 /ts/bin/plugins/task_force_radio.pdb

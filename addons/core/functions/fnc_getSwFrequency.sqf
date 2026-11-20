@@ -10,7 +10,7 @@
     Radio classname <STRING>
 
   Return Value:
-    Frequency <NUMBER>
+    Frequency <STRING>
 
   Example:
     _frequency = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwFrequency;

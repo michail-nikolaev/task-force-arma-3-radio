@@ -10,7 +10,7 @@
     0: Unit <OBJECT>
 
   Return Value:
-    Manpack or nil if no radio <ARRAY>
+    Manpack or nil if no radio <ARRAY><NIL>
 
   Example:
     _radio = player call TFAR_fnc_backpackLR;

@@ -22,33 +22,32 @@ class anarc164_radio_dialog {
     onUnload = "['OnRadioOpen', [player, TF_lr_dialog_radio, true, 'anarc164_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;";
     objects[] = {};
     controls[]= {
-        background,
-        enter,
-        channel_edit,
-        edit,
-        clear,
-        prev_channel,
-        increase_volume,
-        stereo,
-        additional,
-        speakers
-    };
+        "background",
+        "enter",
+        "channel_edit",
+        "edit",
+        "clear",
+        "prev_channel",
+        "increase_volume",
+        "stereo",
+        "additional",
+        "speakers"};
 
     class background: RscBackPicture {
         idc = IDC_ANARC164_BACKGROUND;
         text = QPATHTOF(anarc164\ui\anarc164.paa);
-        x = 0.0413536 * safezoneW + safezoneX;
-        y = 0.0434751 * safezoneH + safezoneY;
-        w = 0.431062 * safezoneW;
-        h = 0.7513 * safezoneH;
+        x = "0.0413536 * safezoneW + safezoneX";
+        y = "0.0434751 * safezoneH + safezoneY";
+        w = "0.431062 * safezoneW";
+        h = "0.7513 * safezoneH";
         moving = 1;
     };
     class channel_edit: RscEditLCD {
         idc = IDC_ANARC164_CHANNEL_EDIT;
-        x = 0.288078 * safezoneW + safezoneX;
-        y = 0.2382 * safezoneH + safezoneY;
-        w = 0.0324844 * safezoneW;
-        h = 0.0374 * safezoneH;
+        x = "0.288078 * safezoneW + safezoneX";
+        y = "0.2382 * safezoneH + safezoneY";
+        w = "0.0324844 * safezoneW";
+        h = "0.0374 * safezoneH";
         colorText[] = {1,0.5,0,1};
         colorBackground[] = {0,0,0,0};
         colorActive[] = {0,1,0,1};
@@ -60,10 +59,10 @@ class anarc164_radio_dialog {
     };
     class edit: RscEditLCD {
         idc = IDC_ANARC164_EDIT;
-        x = 0.201969 * safezoneW + safezoneX;
-        y = 0.3515 * safezoneH + safezoneY;
-        w = 0.0995156 * safezoneW;
-        h = 0.0352 * safezoneH;
+        x = "0.201969 * safezoneW + safezoneX";
+        y = "0.3515 * safezoneH + safezoneY";
+        w = "0.0995156 * safezoneW";
+        h = "0.0352 * safezoneH";
         colorText[] = {1,0.5,0,1};
         colorBackground[] = {0,0,0,0};
         colorActive[] = {0,0,0,1};
@@ -80,10 +79,10 @@ class anarc164_radio_dialog {
     };
     class enter: HiddenRotator {
         idc = IDC_ANARC164_ENTER;
-        x = 0.233422 * safezoneW + safezoneX;
-        y = 0.4373 * safezoneH + safezoneY;
-        w = 0.037125 * safezoneW;
-        h = 0.0693 * safezoneH;
+        x = "0.233422 * safezoneW + safezoneX";
+        y = "0.4373 * safezoneH + safezoneY";
+        w = "0.037125 * safezoneW";
+        h = "0.0693 * safezoneH";
         tooltip = ECSTRING(core,set_frequency);
         onButtonClick = QUOTE( \
             playSound 'TFAR_rotatorPush'; \
@@ -93,10 +92,10 @@ class anarc164_radio_dialog {
     };
     class clear: HiddenRotator {
         idc = IDC_ANARC164_CLEAR;
-        x = 0.168453 * safezoneW + safezoneX;
-        y = 0.4362 * safezoneH + safezoneY;
-        w = 0.0376406 * safezoneW;
-        h = 0.0715 * safezoneH;
+        x = "0.168453 * safezoneW + safezoneX";
+        y = "0.4362 * safezoneH + safezoneY";
+        w = "0.0376406 * safezoneW";
+        h = "0.0715 * safezoneH";
         tooltip = ECSTRING(core,clear_frequency);
         action = QUOTE( \
             playSound 'TFAR_rotatorPush'; \
@@ -106,28 +105,28 @@ class anarc164_radio_dialog {
     };
     class prev_channel: HiddenRotator {
         idc = IDC_ANARC164_PREV_CHANNEL;
-        x = 0.297875 * safezoneW + safezoneX;
-        y = 0.4384 * safezoneH + safezoneY;
-        w = 0.0360937 * safezoneW;
-        h = 0.0671 * safezoneH;
+        x = "0.297875 * safezoneW + safezoneX";
+        y = "0.4384 * safezoneH + safezoneY";
+        w = "0.0360937 * safezoneW";
+        h = "0.0671 * safezoneH";
         tooltip = ECSTRING(core,rotator_channel);
         onMouseButtonDown = "[_this select 1, true, '%1'] call TFAR_fnc_setChannelViaDialog;";
     };
     class increase_volume: HiddenRotator {
         idc = IDC_ANARC164_INCREASE_VOLUME;
-        x = 0.239094 * safezoneW + safezoneX;
-        y = 0.5451 * safezoneH + safezoneY;
-        w = 0.02475 * safezoneW;
-        h = 0.0462 * safezoneH;
+        x = "0.239094 * safezoneW + safezoneX";
+        y = "0.5451 * safezoneH + safezoneY";
+        w = "0.02475 * safezoneW";
+        h = "0.0462 * safezoneH";
         tooltip = ECSTRING(core,rotator_volume);
         onMouseButtonDown = "[_this select 1, true] call TFAR_fnc_setVolumeViaDialog;";
     };
     class stereo: HiddenRotator {
         idc = IDC_ANARC164_STEREO;
-        x = 0.115344 * safezoneW + safezoneX;
-        y = 0.566 * safezoneH + safezoneY;
-        w = 0.0665527 * safezoneW;
-        h = 0.110006 * safezoneH;
+        x = "0.115344 * safezoneW + safezoneX";
+        y = "0.566 * safezoneH + safezoneY";
+        w = "0.0665527 * safezoneW";
+        h = "0.110006 * safezoneH";
         action = QUOTE( \
             playSound 'TFAR_rotatorPush'; \
             [ARR_2(TF_lr_dialog_radio, ((TF_lr_dialog_radio call TFAR_fnc_getCurrentLrStereo) + 1) mod TFAR_MAX_STEREO)] call TFAR_fnc_setLrStereo; \
@@ -137,19 +136,19 @@ class anarc164_radio_dialog {
     };
     class additional: HiddenRotator {
         idc = IDC_ANARC164_ADDITIONAL;
-        x = 0.103008 * safezoneW + safezoneX;
-        y = 0.434185 * safezoneH + safezoneY;
-        w = 0.0374025 * safezoneW;
-        h = 0.0700156 * safezoneH;
+        x = "0.103008 * safezoneW + safezoneX";
+        y = "0.434185 * safezoneH + safezoneY";
+        w = "0.0374025 * safezoneW";
+        h = "0.0700156 * safezoneH";
         tooltip = ECSTRING(core,set_additional);
         action ="playSound 'TFAR_rotatorPush';[TF_lr_dialog_radio,TF_lr_dialog_radio call TFAR_fnc_getLrChannel] call TFAR_fnc_setAdditionalLrChannel;call TFAR_fnc_updateLRDialogToChannel;[TF_lr_dialog_radio, true] call TFAR_fnc_showRadioInfo;";
     };
     class speakers: HiddenFlip {
         idc = IDC_ANARC164_SPEAKERS;
-        x = 0.27633 * safezoneW + safezoneX;
-        y = 0.630886 * safezoneH + safezoneY;
-        w = 0.0293761 * safezoneW;
-        h = 0.0406957 * safezoneH;
+        x = "0.27633 * safezoneW + safezoneX";
+        y = "0.630886 * safezoneH + safezoneY";
+        w = "0.0293761 * safezoneW";
+        h = "0.0406957 * safezoneH";
         tooltip = ECSTRING(core,speakers_settings_true);
         action = "TF_lr_dialog_radio call TFAR_fnc_setLrSpeakers;[TF_lr_dialog_radio] call TFAR_fnc_showRadioSpeakers;";
     };
