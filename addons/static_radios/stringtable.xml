@@ -12,6 +12,7 @@
             <Czech>Toto musí být použito na rádio</Czech>
             <Russian>Это должно быть использовано на рации</Russian>
             <Italian>Questo va utilizzato su una radio</Italian>
+            <Ukrainian>Використовувати лише на рації</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_FreqTitle">
             <Original>Frequency</Original>
@@ -24,6 +25,7 @@
             <Czech>Frekvence</Czech>
             <Russian>Частота</Russian>
             <Italian>Frequenza</Italian>
+            <Ukrainian>Частота</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ChannelTitle">
             <Original>Channel</Original>
@@ -36,6 +38,7 @@
             <Czech>Kanál</Czech>
             <Russian>Канал</Russian>
             <Italian>Canale</Italian>
+            <Ukrainian>Канал</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_SpeakerTitle">
             <Original>Speaker</Original>
@@ -48,6 +51,7 @@
             <Czech>Reproduktor</Czech>
             <Russian>Динамики</Russian>
             <Italian>Altoparlante</Italian>
+            <Ukrainian>Динамік</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_VolumeTitle">
             <Original>Volume</Original>
@@ -60,6 +64,7 @@
             <Czech>Hlasitost</Czech>
             <Russian>Громкость</Russian>
             <Italian>Volume</Italian>
+            <Ukrainian>Гучність</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_DisplayName">
             <Original>Static Radio</Original>
@@ -72,6 +77,7 @@
             <Czech>Statické rádio</Czech>
             <Russian>Статическая радиостанция</Russian>
             <Italian>Radio statica</Italian>
+            <Ukrainian>Стаціонарна рація</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_Frequency_tooltip">
             <Original>The static Frequencies for this radio</Original>
@@ -84,6 +90,7 @@
             <Czech>Statické frekvence pro toto rádio</Czech>
             <Russian>Статические частоты для этой радиостанции</Russian>
             <Italian>Le frequenze statiche per questa radio</Italian>
+            <Ukrainian>Фіксовані частоти цієї рації</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_Channel_tooltip">
             <Original>The current selected Channel for this radio</Original>
@@ -96,6 +103,7 @@
             <Czech>Momentálně zvolený kanál pro toto rádio</Czech>
             <Russian>Текущий выбранный канал для этой радиостанции</Russian>
             <Italian>Il canale attualmente selezionato su questa radio</Italian>
+            <Ukrainian>Поточний вибраний канал цієї рації</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_SpeakerEnabled">
             <Original>Speaker enabled</Original>
@@ -108,6 +116,7 @@
             <Czech>Reproduktory zapnuty</Czech>
             <Russian>Динамики включены</Russian>
             <Italian>Altoparlante abilitato</Italian>
+            <Ukrainian>Динамік увімкнено</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_SpeakerEnabled_tooltip">
             <Original>Whether the Radios Speaker is enabled.</Original>
@@ -120,6 +129,7 @@
             <Czech>Jestli jsou reproduktory rádia zapnuty</Czech>
             <Russian>Включены ли динамики радиостанции</Russian>
             <Italian>Se selezionato, l'altoparlante è acceso.</Italian>
+            <Ukrainian>Чи увімкнено динамік рації.</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_RadioVolume">
             <Original>Radio Volume</Original>
@@ -132,6 +142,7 @@
             <Czech>Hlasitost rádia</Czech>
             <Russian>Громкость радиостанции</Russian>
             <Italian>Volume Radio</Italian>
+            <Ukrainian>Гучність рації</Ukrainian>
         </Key>
         <Key ID="STR_TFAR_static_radios_moduleStaticRadio_ATT_RadioVolume_tooltip">
             <Original>The normal max for this setting is 10. But for static Radios their volume can be amplified. Be careful using this on Radios that can be picked up by Players! A too high setting can cause performance problems on clients.</Original>
@@ -144,6 +155,7 @@
             <Czech>Normální maximum pro toto nastavení je 10. Ovšem pro statická rádia platí, že jejich hlasitost může být zvýšena. Buďte opatrní s používám tohoto na rádia, která mohou být zvednuta hráči! Moc vysoká nastavení mohou způsobit problémy s výkonem na klientech.</Czech>
             <Russian>Нормальное макс. значение - 10, но для статических радиостанций оно может быть усилено. Будьте осторожны используя это на радиостанциях, которые могут быть подобраны игроками! Слишком высокое значение может негативно повлиять на производительности клиентов.</Russian>
             <Italian>Il valore massimo normalmente è 10, ma per le radio statiche il volume può essere amplificato. Fai attenzione ad usare questo settaggio su radio che possono essere raccolte dai giocatori. Un settaggio troppo alto può causare problemi di performance sui client.</Italian>
+            <Ukrainian>Звичайний максимум - 10, але для стаціонарних рацій гучність можна підсилити. Обережно з раціями, які можуть підібрати гравці! Надто високе значення може знизити продуктивність клієнтів.</Ukrainian>
         </Key>
     </Package>
 </Project>
