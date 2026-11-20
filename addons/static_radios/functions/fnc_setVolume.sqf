@@ -23,22 +23,11 @@ params ["_radioContainer","_volume"];
 
 CBA_SETTINGS_GUARD(TFAR_static_radios_fnc_setVolume);
 
-_radio_id = _radioContainer call TFAR_static_radios_fnc_instanciatedRadio;
-
-if (_radio_id call TFAR_fnc_isLRRadio) then {
-    _radio_id = [_radio_id, "radio_settings"];
-    private _settings = _radio_id call TFAR_fnc_getLrSettings;
-
-    _settings set [VOLUME_OFFSET, _volume];
-
-    [_radio_id, _settings] call TFAR_fnc_setLrSettings;
-} else {
-    private _settings = _radio_id call TFAR_fnc_getSwSettings;
-
-    _settings set [VOLUME_OFFSET, _volume];
-
-    [_radio_id, _settings] call TFAR_fnc_setSwSettings;
+private _radio = _radioContainer call TFAR_static_radios_fnc_instanciatedRadio;
+if (_radio call TFAR_fnc_isLRRadio) then {
+    _radio = [_radio, "radio_settings"];
 };
+[_radio, _volume] call TFAR_fnc_setRadioVolume;
 
 if (_volume+10 > TF_speakerDistance) then { //If volume is bigger than normal hearing Range.. Increase hearing range.
     missionNamespace setVariable ["TF_speakerDistance",_volume+20,true];

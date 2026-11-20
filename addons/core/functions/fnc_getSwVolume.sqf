@@ -18,6 +18,6 @@
   Public: Yes
 */
 
-params[["_radio", "", [""]]];
+params [["_radio", "", [""]]];
 
-(_radio call TFAR_fnc_getSwSettings) param [VOLUME_OFFSET, false]
+(_radio call TFAR_fnc_getSwSettings) param [VOLUME_OFFSET, 0]

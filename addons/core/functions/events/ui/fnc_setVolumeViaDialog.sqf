@@ -8,7 +8,7 @@
 
   Arguments:
     0: Mouse button pressed (0,1) <NUMBER>
-    1: LR radio (0,1) <BOOL>
+    1: Long-range radio <BOOL>
 
   Return Value:
     None
@@ -24,28 +24,20 @@
 
 playSound "TFAR_rotatorPush";
 
-params ["_btn", "_lr"];
+params ["_button", "_isLrRadio"];
 
-private _maxVolume = 0;
-private _radio = "";
-private _fnc_GetVolume = {};
+private _radio = missionNamespace getVariable (["TF_sw_dialog_radio", "TF_lr_dialog_radio"] select _isLrRadio);
+private _maxVolume = missionNamespace getVariable (["TF_MAX_SW_VOLUME", "TF_MAX_LR_VOLUME"] select _isLrRadio);
+private _settings = _radio call ([TFAR_fnc_getSwSettings, TFAR_fnc_getLrSettings] select _isLrRadio);
+private _additionalChannel = _settings param [TFAR_ADDITIONAL_CHANNEL_OFFSET, -1];
+private _additional = _additionalChannel >= 0 && {_additionalChannel == (_settings param [ACTIVE_CHANNEL_OFFSET, 0])};
 
-if (_lr) then {
-    _maxVolume = TF_MAX_LR_VOLUME;
-    _radio = TF_lr_dialog_radio;
-    _fnc_GetVolume = TFAR_fnc_getLrVolume;
-} else {
-    _maxVolume = TF_MAX_SW_VOLUME;
-    _radio = TF_sw_dialog_radio;
-    _fnc_GetVolume = TFAR_fnc_getSwVolume;
+private _volume = _settings param [VOLUME_OFFSET, 0];
+private _setVolume = [TFAR_fnc_setSwVolume, TFAR_fnc_setLrVolume] select _isLrRadio;
+if (_additional) then {
+    _volume = _settings param [TFAR_ADDITIONAL_VOLUME_OFFSET, _volume];
+    _setVolume = [TFAR_fnc_setAdditionalSwVolume, TFAR_fnc_setAdditionalLrVolume] select _isLrRadio;
 };
-
-private _vChange = if(_btn == 0)then{-1 + _maxVolume}else {1};
-_vChange = ((_radio call _fnc_GetVolume) + _vChange) mod _maxVolume;
-
-if (_lr) then {
-    [_radio, _vChange] call TFAR_fnc_setLrVolume;
-} else {
-    [_radio,_vChange] call TFAR_fnc_setSwVolume;
-};
-[_radio] call TFAR_fnc_showRadioVolume;
+private _step = if (_button == 0) then {_maxVolume - 1} else {1};
+[_radio, (_volume + _step) mod _maxVolume] call _setVolume;
+[_radio, _additional] call TFAR_fnc_showRadioVolume;

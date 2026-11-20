@@ -8,7 +8,7 @@
 
   Arguments:
     0: Radio <STRING|ARRAY>
-    1: On Status <BOOL> (default: false)
+    1: New power state <BOOL> (omit to read the current state)
 
   Return Value:
     On Status <BOOL>
@@ -21,26 +21,17 @@
 
 params ["_radio", ["_status", false]];
 
-_isLRRadio = _radio isEqualType [];
-_settings = [];
+private _isLrRadio = _radio isEqualType [];
+private _settings = _radio call ([TFAR_fnc_getSwSettings, TFAR_fnc_getLrSettings] select _isLrRadio);
 
-if (_isLRRadio) then {
-    _settings = (_radio call TFAR_fnc_getLrSettings);
-} else {
-    _settings = (_radio call TFAR_fnc_getSwSettings);
+if (isNil "_settings") exitWith {
+    WARNING("Radio settings are unavailable");
+    false
 };
 
-if (isNil "_settings") then {//TFAR_fnc_getLrSettings may return Nil if some script in there is screwed up
-    WARNING("_settings was Nil!");
-};
-
-if (count _this == 2) then {//want to set status
+if (count _this == 2) then {
     _settings set [POWER_OFFSET, _status];
-    if (_isLRRadio) then {
-        [_radio, _settings] call TFAR_fnc_setLrSettings;
-    } else {
-        [_radio, _settings] call TFAR_fnc_setSwSettings;
-    };
+    [_radio, _settings] call ([TFAR_fnc_setSwSettings, TFAR_fnc_setLrSettings] select _isLrRadio);
 };
 
-_settings param [POWER_OFFSET,true]
+isNil {_settings param [POWER_OFFSET]} || {_settings select POWER_OFFSET}

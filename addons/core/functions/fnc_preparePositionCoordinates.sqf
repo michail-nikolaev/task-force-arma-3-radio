@@ -56,13 +56,8 @@ if (_nearPlayer) then {
         if (_unit getVariable ["TFAR_LRSpeakersEnabled", false] && _useLr) then {
             {
                 if (_x call TFAR_fnc_getLrSpeakers) then {
-                    private _radioCode = _x call TFAR_fnc_getLrRadioCode;
-                    private _frequencies = [format ["%1%2", _x call TFAR_fnc_getLrFrequency, _radioCode]];
-                    if ((_x call TFAR_fnc_getAdditionalLrChannel) > -1) then {
-                        _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalLrChannel) + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
-                    };
                     private _radio_id = netId (_x select 0);
-                    TFAR_speakerRadios pushBack ([_radio_id,_frequencies joinString "|",_unitName,[], _x call TFAR_fnc_getLrVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);
+                    TFAR_speakerRadios append ([_x, _radio_id, _unitName, [], _vehicle, (getPosASL _unit) select 2] call TFAR_fnc_getSpeakerRadioData);
                 };
             } forEach (_unit call TFAR_fnc_lrRadiosList);
         };
@@ -70,13 +65,7 @@ if (_nearPlayer) then {
         if (_unit getVariable ["TFAR_SRSpeakersEnabled", false] && _useSw) then {
             {
                 if (_x call TFAR_fnc_getSwSpeakers) then {
-                    private _radioCode = _x call TFAR_fnc_getSwRadioCode;
-                    private _frequencies = [format ["%1%2", _x call TFAR_fnc_getSwFrequency, _radioCode]];
-                    if ((_x call TFAR_fnc_getAdditionalSwChannel) > -1) then {
-                        _frequencies pushBack format ["%1%2", [_x, (_x call TFAR_fnc_getAdditionalSwChannel) + 1] call TFAR_fnc_getChannelFrequency, _radioCode];
-                    };
-
-                    TFAR_speakerRadios pushBack ([_x,_frequencies joinString "|",_unitName,[], _x call TFAR_fnc_getSwVolume, _vehicle, (getPosASL _unit) select 2] joinString TF_new_line);
+                    TFAR_speakerRadios append ([_x, _x, _unitName, [], _vehicle, (getPosASL _unit) select 2] call TFAR_fnc_getSpeakerRadioData);
                 };
             } forEach (_unit call TFAR_fnc_radiosList);
         };
