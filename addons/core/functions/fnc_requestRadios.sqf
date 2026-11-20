@@ -40,7 +40,7 @@ GVAR(lastRadioRequestEH_ID) = [
         params [["_response", [], [[]]]];
         if ((_response isEqualTo []) || {(_response select 0) isEqualTo "ERROR:47"}) exitWith {
             diag_log ["TFAR_ReceiveRadioRequestResponse", _response];
-            hintC _response;
+            // hintC _response; - takes STRING not ARRAY?
             call TFAR_fnc_hideHint;
             ["TFAR_RadioRequestResponseEvent", _thisId] call CBA_fnc_removeEventHandler;
             [[15, "radioRequest", round ((diag_tickTime-TFAR_beta_RadioRequestStart)*1000)]] call TFAR_fnc_betaTracker;//#TODO remove on release

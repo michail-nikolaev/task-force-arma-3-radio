@@ -2,7 +2,7 @@
 
 class CfgPatches {
     class ADDON {
-        units[] = {""};
+        units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {

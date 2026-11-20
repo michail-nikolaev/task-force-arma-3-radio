@@ -20,6 +20,7 @@
     7: Owner's UID <STRING>
     8: Speaker mode <NUMBER>
     9: turned on <BOOL>
+    10: Additional channel volume <NUMBER>
 
   Example:
     _settings = call TFAR_fnc_generateSRSettings;
@@ -27,7 +28,7 @@
   Public: Yes
 */
 
-private _sw_settings = [0, TFAR_default_radioVolume, [], 0, nil, -1, 0, getPlayerUID player, false, true];
+private _sw_settings = [0, TFAR_default_radioVolume, [], 0, nil, -1, 0, getPlayerUID player, false, true, TFAR_default_radioVolume];
 private _set = false;
 private _sw_frequencies = [];
 

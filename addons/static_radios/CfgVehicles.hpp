@@ -137,7 +137,7 @@ class RscDisplayAttributesModuleTFARStaticRadio: RscDisplayAttributes {
         class Background: Background {};
         class Title: Title {};
         class Content: Content {
-            class Controls: controls {
+            class Controls: Controls {
                 class StaticRadioSettings: RscAttributeTFARStaticRadioThingy {};
             };
         };

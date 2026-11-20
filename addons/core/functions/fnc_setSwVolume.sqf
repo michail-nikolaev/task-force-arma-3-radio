@@ -21,9 +21,7 @@
 
 params ["_radio_id", "_value"];
 
-private _settings = _radio_id call TFAR_fnc_getSwSettings;
-_settings set [VOLUME_OFFSET, _value];
-[_radio_id, _settings] call TFAR_fnc_setSwSettings;
+[_radio_id, _value] call TFAR_fnc_setRadioVolume;
 
-//							Unit, radio ID, volume
-["OnSWvolumeSet", [TFAR_currentUnit, _radio_id, _value]] call TFAR_fnc_fireEventHandlers;
+// Unit, radio ID, volume, additional channel
+["OnSWvolumeSet", [TFAR_currentUnit, _radio_id, _value, false]] call TFAR_fnc_fireEventHandlers;

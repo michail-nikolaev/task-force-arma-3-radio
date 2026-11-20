@@ -37,7 +37,7 @@ _intercomChannels = _intercomChannels apply {
     [getText(_intercomRootClass >> _x >> "displayName"), _channelId];
 };
 
-if (_intercomChannels isEqualTo []) exitWith {false};
+if (_intercomChannels isEqualTo []) exitWith { [] };
 
 private _actions = [];
 

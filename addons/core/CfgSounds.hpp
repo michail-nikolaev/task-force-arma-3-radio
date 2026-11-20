@@ -3,7 +3,7 @@ class CfgSounds
     class TFAR_rotatorPush
     {
         name = "TFAR - Rotator Switch (Push)";
-        sound[] = {PATHTOF(sounds\hardPush.wss), 0.5, 1};
+        sound[] = {QPATHTOF(sounds\hardPush.wss), 0.5, 1};
         titles[] = {};
     };
 

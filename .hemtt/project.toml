@@ -1,0 +1,49 @@
+name = "Task Force Arrowhead Radio"
+author = "Task Force Arrowhead Radio Team"
+prefix = "tfar"
+mainprefix = "z"
+
+[files]
+include = [
+    "*.dll",
+    "mod.cpp",
+    "meta.cpp",
+    "README.md",
+    "CONTRIBUTORS.md",
+    "LICENSE.md",
+    "manw_winner_addon_1st_emblem.paa",
+    "task_force_arrowhead_logo.paa",
+]
+exclude = [".vscode/**/*"]
+
+[version]
+major = 1
+minor = 0
+patch = 0
+git_hash = 0
+
+[hemtt.release]
+sign = true
+archive = false
+
+[hemtt.launch.default]
+workshop = [
+    "450814997", # CBA_A3
+]
+
+[hemtt.launch.ace]
+extends = "default"
+workshop = [
+    "463939057", # ACE
+]
+
+[hemtt.launch.ace_adt]
+extends = "ace"
+workshop = [
+    "3499977893", # Advanced Developer Tools
+]
+
+[inspector]
+header_regex = "ace"
+vars_to_ignore = []
+check_function_calls = true
