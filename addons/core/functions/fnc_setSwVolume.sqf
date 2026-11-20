@@ -21,11 +21,7 @@
 
 params ["_radio_id", "_value"];
 
-private _settings = _radio_id call TFAR_fnc_getSwSettings;
-// Snapshot the inherited volume before changing legacy settings without slot 10.
-_settings set [TFAR_ADDITIONAL_VOLUME_OFFSET, _settings param [TFAR_ADDITIONAL_VOLUME_OFFSET, _settings param [VOLUME_OFFSET, 0]]];
-_settings set [VOLUME_OFFSET, _value];
-[_radio_id, _settings] call TFAR_fnc_setSwSettings;
+[_radio_id, _value] call TFAR_fnc_setRadioVolume;
 
 // Unit, radio ID, volume, additional channel
 ["OnSWvolumeSet", [TFAR_currentUnit, _radio_id, _value, false]] call TFAR_fnc_fireEventHandlers;

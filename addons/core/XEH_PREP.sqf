@@ -209,6 +209,7 @@ PREP(setLrSettings);
 PREP(setSwStereo);
 PREP(setLrChannel);
 PREP(setSwChannel);
+PREP(setRadioVolume);
 PREP(setSwVolume);
 PREP(setLrVolume);
 PREP(setAdditionalSwVolume);

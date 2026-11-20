@@ -34,6 +34,14 @@ GVAR(VehicleConfigCacheNamespace) setVariable ["TFAR_fnc_sendFrequencyInfo_lastE
 private _freq = ["No_SW_Radio"];
 private _freq_lr = ["No_LR_Radio"];
 
+private _appendFrequencies = {
+    params ["_entries", "_radio", "_radioId"];
+    {
+        _x params ["_frequency", "_volume", "_stereo"];
+        _entries pushBack format ["%1|%2|%3|%4", _frequency, _volume, _stereo, _radioId];
+    } forEach (_radio call TFAR_fnc_getRadioChannelSettings);
+};
+
 private _isolated_and_inside = TFAR_currentUnit call TFAR_fnc_vehicleIsIsolatedAndInside;
 private _depth = TFAR_currentUnit call TFAR_fnc_eyeDepth;
 private _can_speak = [_isolated_and_inside, _depth] call TFAR_fnc_canSpeak;
@@ -47,19 +55,13 @@ if (((count _swRadios > 0) || _currentUnitIsRemote) && {[TFAR_currentUnit, _isol
     _freq = [];
     private _playerRadios = [];
     if (_currentUnitIsRemote) then {
-        _swRadios append (player call TFAR_fnc_radiosList);
+        _playerRadios = player call TFAR_fnc_radiosList;
+        _swRadios = _swRadios + _playerRadios;
     };
     {
-        if ([_x] call TFAR_fnc_RadioOn) then {
-            if (!(_x call TFAR_fnc_getSwSpeakers) //If speakers are enabled we will not have it on our headset at the same time... I think...
-                or {(_currentUnitIsRemote) and {_x in _playerRadios}} //When remote controlling a unit.. Still hear your original Radios
-            ) then {
-                private _radioId = _x;
-                {
-                    _x params ["_frequency", "_volume", "_stereo"];
-                    _freq pushBack format ["%1|%2|%3|%4", _frequency, _volume, _stereo, _radioId];
-                } forEach (_x call TFAR_fnc_getRadioChannelSettings);
-            };
+        // While remote controlling, the player can still hear their own radios.
+        if (_x in _playerRadios || {!(_x call TFAR_fnc_getSwSpeakers)}) then {
+            [_freq, _x, _x] call _appendFrequencies;
         };
     } forEach _swRadios;
 };
@@ -68,21 +70,11 @@ private _lrRadios = TFAR_currentUnit call TFAR_fnc_lrRadiosList; //Calling haveL
 
 if (((count _lrRadios > 0) || _currentUnitIsRemote) && {[TFAR_currentUnit, _isolated_and_inside, _depth] call TFAR_fnc_canUseLRRadio} && {!(TFAR_currentUnit getVariable ["TFAR_forceSpectator", false])}) then {
     _freq_lr = [];
-    private _playerRadios = [];
-    if (_currentUnitIsRemote) then {
-        _lrRadios append (player call TFAR_fnc_lrRadiosList);
-    };
+    // lrRadiosList already includes the player's radios during remote control.
+    private _playerRadios = if (_currentUnitIsRemote) then {player call TFAR_fnc_lrRadiosList} else {[]};
     {
-        if ([_x] call TFAR_fnc_RadioOn) then {
-            if (!(_x call TFAR_fnc_getLrSpeakers)
-                || {_currentUnitIsRemote && {_x in _playerRadios}} //When remote controlling a unit.. Still hear your original Radios
-            ) then {
-                private _radioType = typeOf (_x select 0);
-                {
-                    _x params ["_frequency", "_volume", "_stereo"];
-                    _freq_lr pushBack format ["%1|%2|%3|%4", _frequency, _volume, _stereo, _radioType];
-                } forEach (_x call TFAR_fnc_getRadioChannelSettings);
-            };
+        if (_x in _playerRadios || {!(_x call TFAR_fnc_getLrSpeakers)}) then {
+            [_freq_lr, _x, typeOf (_x select 0)] call _appendFrequencies;
         };
     } forEach _lrRadios;
 };

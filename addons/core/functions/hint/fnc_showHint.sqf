@@ -31,8 +31,8 @@ _control ctrlSetStructuredText _text;
 
 // Keep multiline hints fully visible while preserving the original bottom-right anchor.
 private _position = ctrlPosition _control;
-private _height = (ctrlTextHeight _control) max (0.1 * safezoneH);
-_position set [1, safezoneY + safezoneH - _height];
+private _height = (ctrlTextHeight _control) max (0.1 * safeZoneH);
+_position set [1, safeZoneY + safeZoneH - _height];
 _position set [3, _height];
 _control ctrlSetPosition _position;
 _control ctrlCommit 0;
