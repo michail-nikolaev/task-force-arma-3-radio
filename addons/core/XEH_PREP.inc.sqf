@@ -36,6 +36,11 @@ PREP_SUB(events\keys,processSWChannelKeys);
 PREP_SUB(events\keys,processSWCycleKeys);
 PREP_SUB(events\keys,processSWStereoKeys);
 
+PREP_SUB(events\ui,editRadioDialogFrequency);
+PREP_SUB(events\ui,getRadioDialogConfig);
+PREP_SUB(events\ui,getRadioDialogFrequencyPosition);
+PREP_SUB(events\ui,refreshRadioDialogFrequency);
+PREP_SUB(events\ui,updateRadioDialogFrequency);
 PREP_SUB(events\ui,onSwDialogOpen);
 PREP_SUB(events\ui,onLRDialogOpen);
 PREP_SUB(events\ui,setVolumeViaDialog);
@@ -56,6 +61,7 @@ PREP_SUB(flexiUI,swRadioSubMenu);
 PREP_SUB(flexiUI,swRadioMenu);
 
 // /hint
+PREP_SUB(hint,formatChannel);
 PREP_SUB(hint,hideHint);
 PREP_SUB(hint,inWaterHint);
 PREP_SUB(hint,showHint);
@@ -98,8 +104,8 @@ PREP_SUB(server,serverInit);
 // A
 PREP(activeLrRadio);
 PREP(activeSwRadio);
-PREP(applyFrequencyNamesSetting);
 PREP(addDiaryRecord);
+PREP(applyFrequencyNamesSetting);
 // B
 PREP(backpackLr);
 // C
@@ -110,7 +116,6 @@ PREP(canUseLRRadio);
 PREP(canUseDDRadio);
 PREP(clientInit);
 PREP(copySettings);
-PREP(clearRadioDialogFrequency);
 PREP(currentDirection);
 PREP(currentLRFrequency);
 PREP(currentSWFrequency);
@@ -124,7 +129,6 @@ PREP(doSRTransmitEnd);
 // E
 PREP(eyeDepth);
 // F
-PREP(formatChannel);
 PREP(forceSpectator);
 // G
 PREP(generateLrSettings);
@@ -137,8 +141,6 @@ PREP(getSwChannel);
 PREP(getLrChannel);
 PREP(getSwStereo);
 PREP(getSwFrequency);
-PREP(getRadioDialogFrequencyPosition);
-PREP(getSwDialogFrequencyPosition);
 PREP(getLrFrequency);
 PREP(getLrStereo);
 PREP(getSwVolume);
@@ -158,8 +160,6 @@ PREP(getChannelFrequency);
 PREP(getChannelName);
 PREP(getFrequencyName);
 PREP(getRadioSide);
-PREP(normalizeFrequency);
-PREP(refreshRadioDialogFrequency);
 PREP(getRadioItems);
 PREP(getSideRadio);
 PREP(getTransmittingDistanceMultiplicator);
@@ -198,6 +198,8 @@ PREP(isVehicleIsolated);
 // L
 PREP(loadoutReplaceProcess);
 PREP(lrRadiosList);
+// N
+PREP(normalizeFrequency);
 // O
 PREP(objectInterception);
 PREP(objectInterceptionBulkToCache);
@@ -246,9 +248,8 @@ PREP(setFrequencyName);
 PREP(setRadioOwner);
 PREP(setLrSpeakers);
 PREP(settingForceArray);
-PREP(showRadioDialogFrequency);
+PREP(storeFrequencyNames);
 // U
-PREP(updateRadioDialogFrequency);
 PREP(updateSpeakVolumeUI);
 // V
 PREP(vehicleId);

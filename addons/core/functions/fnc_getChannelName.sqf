@@ -27,8 +27,9 @@ params [
 ];
 
 private _isLrRadio = _radio isEqualType [];
+if (!TFAR_VALID_NAME_RADIO(_radio)) exitWith {""};
 private _maxChannels = [TFAR_MAX_CHANNELS, TFAR_MAX_LR_CHANNELS] select _isLrRadio;
-if (_channel < 1 || {_channel > _maxChannels}) exitWith {""};
+if (_channel < 1 || {_channel > _maxChannels} || {_channel != floor _channel}) exitWith {""};
 
 private _frequency = [_radio, _channel] call TFAR_fnc_getChannelFrequency;
 [_radio, _frequency] call TFAR_fnc_getFrequencyName

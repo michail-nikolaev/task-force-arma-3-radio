@@ -25,13 +25,12 @@ params [
 if (isNull _frequencyControl) exitWith {[]};
 
 private _channelControl = (ctrlParent _frequencyControl) displayCtrl _channelControlIdc;
-if (isNull _channelControl) exitWith {ctrlPosition _frequencyControl};
+private _channelPosition = if (isNull _channelControl) then {[0, 0]} else {ctrlPosition _channelControl};
 
 private _relativePosition = _frequencyControl getVariable ["TFAR_frequencyPositionRelativeToChannel", []];
 
 if (count _relativePosition != 4) then {
     private _frequencyPosition = ctrlPosition _frequencyControl;
-    private _channelPosition = ctrlPosition _channelControl;
 
     _relativePosition = [
         (_frequencyPosition select 0) - (_channelPosition select 0),
@@ -42,7 +41,6 @@ if (count _relativePosition != 4) then {
     _frequencyControl setVariable ["TFAR_frequencyPositionRelativeToChannel", _relativePosition];
 };
 
-private _channelPosition = ctrlPosition _channelControl;
 [
     (_channelPosition select 0) + (_relativePosition select 0),
     (_channelPosition select 1) + (_relativePosition select 1),

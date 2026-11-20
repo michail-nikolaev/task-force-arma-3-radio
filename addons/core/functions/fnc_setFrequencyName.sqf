@@ -38,60 +38,45 @@ if (!isServer || {!(_side in [west, east, independent])}) exitWith {false};
 private _frequencyString = [_frequency, _isLrRadio] call TFAR_fnc_normalizeFrequency;
 if (_frequencyString isEqualTo "") exitWith {false};
 
-_name = _name select [0, TFAR_MAX_CHANNEL_NAME_LENGTH];
+if (count _name > TFAR_MAX_CHANNEL_NAME_LENGTH) then {_name = _name select [0, TFAR_MAX_CHANNEL_NAME_LENGTH]};
 
-private _radioType = ["sr", "lr"] select _isLrRadio;
-private _sideName = switch (_side) do {
-    case west: {"west"};
-    case east: {"east"};
-    default {"independent"};
-};
-private _variableName = format ["TFAR_frequencyNames_%1_%2", _radioType, _sideName];
-private _frequencyNames = +(missionNamespace getVariable [_variableName, []]);
-private _definitionIndex = _frequencyNames findIf {
-    _x isEqualType [] &&
-    {count _x >= 2} &&
-    {
-        private _definedFrequency = _x param [0, "", [0, ""]];
-        ([_definedFrequency, _isLrRadio] call TFAR_fnc_normalizeFrequency) isEqualTo _frequencyString
-    }
-};
-
+private _variableName = TFAR_FREQUENCY_NAMES_VAR(_side,_isLrRadio);
+// Scheduled mission scripts must see each other's completed table changes.
+private _accepted = false;
 private _oldName = "";
-if (_definitionIndex >= 0) then {
-    _oldName = (_frequencyNames select _definitionIndex) param [1, "", [""]];
-};
-
-if (_name isNotEqualTo "" && {_definitionIndex < 0} && {count _frequencyNames >= TFAR_MAX_FREQUENCY_NAMES}) exitWith {false};
-
-if (_name isEqualTo "") then {
-    if (_definitionIndex >= 0) then {
-        _frequencyNames deleteAt _definitionIndex;
+isNil {
+    private _definitions = +(missionNamespace getVariable [_variableName, []]);
+    if (_definitions isNotEqualTo [] && {isNil {missionNamespace getVariable (_variableName + "_index")}}) then {
+        _definitions = [_definitions, _isLrRadio] call TFAR_fnc_parseFrequencyNamesInput;
     };
-} else {
-    if (_definitionIndex >= 0) then {
-        _frequencyNames set [_definitionIndex, [_frequencyString, _name]];
+    private _index = _definitions findIf {(_x select 0) isEqualTo _frequencyString};
+    if (_index < 0 && {_name isNotEqualTo ""} && {count _definitions >= TFAR_MAX_FREQUENCY_NAMES}) exitWith {nil};
+
+    if (_index >= 0) then {
+        _oldName = (_definitions select _index) select 1;
+        if (_name isEqualTo "") then {
+            _definitions deleteAt _index;
+        } else {
+            _definitions set [_index, [_frequencyString, _name]];
+        };
     } else {
-        _frequencyNames pushBack [_frequencyString, _name];
+        if (_name isNotEqualTo "") then {_definitions pushBack [_frequencyString, _name]};
     };
-};
 
-// CBA executes its initial callbacks after mission init scripts. Remember early
-// mutations (including removals) so that those callbacks cannot erase them.
-if !(missionNamespace getVariable [QGVAR(SettingsInitialized), false]) then {
-    private _pendingVariable = _variableName + "_pending";
-    private _pending = +(missionNamespace getVariable [_pendingVariable, []]);
-    private _pendingIndex = _pending findIf {(_x select 0) isEqualTo _frequencyString};
-    if (_pendingIndex < 0) then {
-        _pending pushBack [_frequencyString, _name];
-    } else {
-        _pending set [_pendingIndex, [_frequencyString, _name]];
+    // A removal before CBA applies its initial setting must also override that setting.
+    if (!isNil QGVAR(pendingFrequencyNames)) then {
+        if !(_variableName in GVAR(pendingFrequencyNames)) then {
+            GVAR(pendingFrequencyNames) set [_variableName, createHashMap];
+        };
+        private _pending = GVAR(pendingFrequencyNames) get _variableName;
+        _pending set [_frequencyString, _name];
     };
-    missionNamespace setVariable [_pendingVariable, _pending];
+
+    [_variableName, _definitions, true] call TFAR_fnc_storeFrequencyNames;
+    _accepted = true;
+    nil
 };
-
-missionNamespace setVariable [_variableName, _frequencyNames, true];
-["TFAR_frequencyNamesChanged", [_variableName, _frequencyNames]] call CBA_fnc_globalEvent;
-["OnFrequencyNameChanged", [_side, _isLrRadio, _frequencyString, _oldName, _name]] call TFAR_fnc_fireEventHandlers;
-
-true
+if (_accepted) then {
+    ["OnFrequencyNameChanged", [_side, _isLrRadio, _frequencyString, _oldName, _name]] call TFAR_fnc_fireEventHandlers;
+};
+_accepted

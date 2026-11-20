@@ -50,7 +50,7 @@ private _hintText = format[
                                     ([_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty)) select [0, MAX_RADIONAME_LEN],
                                     ([_radio, "picture", ""] call DFUNC(getWeaponConfigProperty))
                                     ],
-                            [_radio, _channel + 1] call TFAR_fnc_formatChannel,
+                            [_radio, _channel + 1, _frequency] call TFAR_fnc_formatChannel,
                             _frequency
                         ];
 

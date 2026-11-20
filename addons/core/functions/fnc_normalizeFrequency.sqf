@@ -23,7 +23,11 @@ params [
 ];
 
 private _number = if (_frequency isEqualType "") then {
-    TFAR_FREQUENCYSTRING_TO_FREQNUMBER(_frequency)
+    // parseNumber accepts a numeric prefix; require the entire tuning string to be numeric.
+    private _text = [_frequency] call CBA_fnc_trim;
+    if (_text select [0, 1] == "+") then {_text = _text select [1]};
+    if !((_text splitString "0123456789") in [[], ["."], [","]]) exitWith {-1};
+    TFAR_FREQUENCYSTRING_TO_FREQNUMBER(_text)
 } else {
     _frequency
 };

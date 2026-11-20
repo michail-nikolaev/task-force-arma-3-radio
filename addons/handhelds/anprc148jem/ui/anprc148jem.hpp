@@ -64,7 +64,7 @@ class anprc148jem_radio_dialog {
         w = "0.0249375 * safezoneW";
         h = "0.0280062 * safezoneH";
         tooltip = ECSTRING(core,clear_frequency);
-        TFAR_CHANNEL_NAME_CLEAR_ACTION(IDD_ANPRC148JEM_RADIO_DIALOG,IDC_ANPRC148JEM_EDIT,SW_CHANNEL);
+        action = QUOTE(TFAR_CLEAR_FREQUENCY(IDD_ANPRC148JEM_RADIO_DIALOG,IDC_ANPRC148JEM_EDIT););
     };
     class edit: RscEditLCD {
         idc = IDC_ANPRC148JEM_EDIT;
@@ -77,7 +77,7 @@ class anprc148jem_radio_dialog {
         tooltip = ECSTRING(core,current_freq);
         canModify = 1;
         moving = 1;
-        TFAR_CHANNEL_NAME_EDIT_HANDLER(TF_sw_dialog_radio,SW_CHANNEL);
+        TFAR_FREQUENCY_EDIT_EVENTS()
         onKeyUp = QUOTE( \
             if (_this select 1 in [ARR_2(28,156)]) then { \
                 [((ctrlParent (_this select 0))) displayCtrl IDC_ANPRC148JEM_EDIT] call TFAR_handhelds_fnc_onButtonClick_Enter; \

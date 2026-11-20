@@ -439,60 +439,27 @@
         };
     }
 ] call CBA_Settings_fnc_init;
-[
-    "TFAR_setting_frequencyNames_sr_west",
-    "EDITBOX",
-    [ELSTRING(settings,FrequencyNames_SR_west), ELSTRING(settings,FrequencyNames_desc)],
-    localize ELSTRING(settings,global),
-    "",
-    1,
-    {[_this, "TFAR_frequencyNames_sr_west", false] call DFUNC(applyFrequencyNamesSetting);}
-] call CBA_Settings_fnc_init;
-[
-    "TFAR_setting_frequencyNames_sr_east",
-    "EDITBOX",
-    [ELSTRING(settings,FrequencyNames_SR_east), ELSTRING(settings,FrequencyNames_desc)],
-    localize ELSTRING(settings,global),
-    "",
-    1,
-    {[_this, "TFAR_frequencyNames_sr_east", false] call DFUNC(applyFrequencyNamesSetting);}
-] call CBA_Settings_fnc_init;
-[
-    "TFAR_setting_frequencyNames_sr_independent",
-    "EDITBOX",
-    [ELSTRING(settings,FrequencyNames_SR_independent), ELSTRING(settings,FrequencyNames_desc)],
-    localize ELSTRING(settings,global),
-    "",
-    1,
-    {[_this, "TFAR_frequencyNames_sr_independent", false] call DFUNC(applyFrequencyNamesSetting);}
-] call CBA_Settings_fnc_init;
-[
-    "TFAR_setting_frequencyNames_lr_west",
-    "EDITBOX",
-    [ELSTRING(settings,FrequencyNames_LR_west), ELSTRING(settings,FrequencyNames_desc)],
-    localize ELSTRING(settings,global),
-    "",
-    1,
-    {[_this, "TFAR_frequencyNames_lr_west", true] call DFUNC(applyFrequencyNamesSetting);}
-] call CBA_Settings_fnc_init;
-[
-    "TFAR_setting_frequencyNames_lr_east",
-    "EDITBOX",
-    [ELSTRING(settings,FrequencyNames_LR_east), ELSTRING(settings,FrequencyNames_desc)],
-    localize ELSTRING(settings,global),
-    "",
-    1,
-    {[_this, "TFAR_frequencyNames_lr_east", true] call DFUNC(applyFrequencyNamesSetting);}
-] call CBA_Settings_fnc_init;
-[
-    "TFAR_setting_frequencyNames_lr_independent",
-    "EDITBOX",
-    [ELSTRING(settings,FrequencyNames_LR_independent), ELSTRING(settings,FrequencyNames_desc)],
-    localize ELSTRING(settings,global),
-    "",
-    1,
-    {[_this, "TFAR_frequencyNames_lr_independent", true] call DFUNC(applyFrequencyNamesSetting);}
-] call CBA_Settings_fnc_init;
+GVAR(frequencyNameVariables) = [];
+{
+    _x params ["_suffix", "_label"];
+    GVAR(frequencyNameVariables) pushBack ("TFAR_frequencyNames_" + _suffix);
+    [
+        "TFAR_setting_frequencyNames_" + _suffix, "EDITBOX",
+        [_label, ELSTRING(settings,FrequencyNames_desc)], localize ELSTRING(settings,global),
+        "", 1, {
+            // CBA passes the setting name in _thisSetting and its value in _this.
+            private _suffix = _thisSetting select [count "TFAR_setting_frequencyNames_"];
+            [_this, "TFAR_frequencyNames_" + _suffix, _suffix select [0, 2] == "lr"] call TFAR_fnc_applyFrequencyNamesSetting;
+        }
+    ] call CBA_Settings_fnc_init;
+} forEach [
+    ["sr_west", ELSTRING(settings,FrequencyNames_SR_west)],
+    ["sr_east", ELSTRING(settings,FrequencyNames_SR_east)],
+    ["sr_independent", ELSTRING(settings,FrequencyNames_SR_independent)],
+    ["lr_west", ELSTRING(settings,FrequencyNames_LR_west)],
+    ["lr_east", ELSTRING(settings,FrequencyNames_LR_east)],
+    ["lr_independent", ELSTRING(settings,FrequencyNames_LR_independent)]
+];
 [
     "TFAR_giveMicroDagrToSoldier",
     "CHECKBOX",

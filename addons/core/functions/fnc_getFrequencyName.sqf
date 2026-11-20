@@ -24,30 +24,15 @@ params [
     ["_frequency", "", [0, ""]]
 ];
 
-private _isLrRadio = _radio isEqualType [];
-private _frequencyString = [_frequency, _isLrRadio] call TFAR_fnc_normalizeFrequency;
-if (_frequencyString isEqualTo "") exitWith {""};
-
 private _radioSide = _radio call TFAR_fnc_getRadioSide;
 if !(_radioSide in [west, east, independent]) exitWith {""};
 
-private _radioType = ["sr", "lr"] select _isLrRadio;
-private _sideName = switch (_radioSide) do {
-    case west: {"west"};
-    case east: {"east"};
-    default {"independent"};
-};
+private _isLrRadio = _radio isEqualType [];
+private _variableName = TFAR_FREQUENCY_NAMES_VAR(_radioSide,_isLrRadio);
+private _names = missionNamespace getVariable (_variableName + "_index");
+if (isNil "_names" || {count _names == 0}) exitWith {""};
 
-private _frequencyNames = missionNamespace getVariable [format ["TFAR_frequencyNames_%1_%2", _radioType, _sideName], []];
-private _definitionIndex = _frequencyNames findIf {
-    _x isEqualType [] &&
-    {count _x >= 2} &&
-    {
-        private _definedFrequency = _x param [0, "", [0, ""]];
-        ([_definedFrequency, _isLrRadio] call TFAR_fnc_normalizeFrequency) isEqualTo _frequencyString
-    }
-};
-
-if (_definitionIndex < 0) exitWith {""};
-
-((_frequencyNames select _definitionIndex) param [1, "", [""]]) select [0, TFAR_MAX_CHANNEL_NAME_LENGTH]
+// Frequencies supplied by the radio are already in canonical form.
+if (_frequency in _names) exitWith {_names get _frequency};
+private _frequencyString = [_frequency, _isLrRadio] call TFAR_fnc_normalizeFrequency;
+_names getOrDefault [_frequencyString, ""]

@@ -7,7 +7,7 @@
     Parses a comma-separated list of frequency=name definitions.
 
   Arguments:
-    0: Frequency-name definitions <STRING>
+    0: Comma-separated definitions or saved frequency/name pairs <STRING|ARRAY>
     1: Is long-range frequency list <BOOL>
 
   Return Value:
@@ -20,48 +20,32 @@
 */
 
 params [
-    ["_input", "", [""]],
+    ["_input", "", ["", []]],
     ["_isLrRadio", false, [false]]
 ];
 
-private _trimString = {
-    private _characters = toArray _this;
-    while {count _characters > 0 && {(_characters select 0) <= 32}} do {
-        _characters deleteAt 0;
+private _pairs = _input;
+if (_input isEqualType "") then {
+    _pairs = (_input splitString ",") apply {
+        private _separator = _x find "=";
+        if (_separator < 1) then {[]} else {
+            [_x select [0, _separator], [_x select [_separator + 1]] call CBA_fnc_trim]
+        }
     };
-    while {count _characters > 0 && {(_characters select (count _characters - 1)) <= 32}} do {
-        _characters deleteAt (count _characters - 1);
-    };
-    toString _characters
 };
 
 private _definitions = [];
-
 {
-    private _separatorIndex = _x find "=";
-    if (_separatorIndex > 0) then {
-        private _frequencyString = (_x select [0, _separatorIndex]) call _trimString;
-        private _name = (_x select [_separatorIndex + 1]) call _trimString;
-        _frequencyString = [_frequencyString, _isLrRadio] call TFAR_fnc_normalizeFrequency;
-
-        if (
-            _frequencyString isNotEqualTo "" &&
-            {_name isNotEqualTo ""}
-        ) then {
-            _name = _name select [0, TFAR_MAX_CHANNEL_NAME_LENGTH];
-            private _definitionIndex = _definitions findIf {
-                (_x select 0) isEqualTo _frequencyString
-            };
-
-            if (_definitionIndex >= 0) then {
-                _definitions set [_definitionIndex, [_frequencyString, _name]];
-            } else {
-                if (count _definitions < TFAR_MAX_FREQUENCY_NAMES) then {
-                    _definitions pushBack [_frequencyString, _name];
-                };
+    if (_x isEqualTypeParams ["", ""] || {_x isEqualTypeParams [0, ""]}) then {
+        _x params ["_frequency", "_name"];
+        _frequency = [_frequency, _isLrRadio] call TFAR_fnc_normalizeFrequency;
+        if (_frequency isNotEqualTo "" && {_name isNotEqualTo ""}) then {
+            private _index = _definitions findIf {(_x select 0) isEqualTo _frequency};
+            if (_index >= 0 || {count _definitions < TFAR_MAX_FREQUENCY_NAMES}) then {
+                if (_index < 0) then {_index = count _definitions};
+                _definitions set [_index, [_frequency, _name select [0, TFAR_MAX_CHANNEL_NAME_LENGTH]]];
             };
         };
     };
-} forEach (_input splitString ",");
-
+} forEach _pairs;
 _definitions

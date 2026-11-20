@@ -8,6 +8,15 @@
 #define LR_EDIT 1410
 #define LR_CHANNEL 1411
 
+// Hooks shared by the edit and clear controls in the radio dialogs.
+#define TFAR_FREQUENCY_EDIT_EVENTS_OFFSET(OFFSET) \
+    tf_channelNameOffset = OFFSET; \
+    onMouseButtonDown = QUOTE([_this select 0] call TFAR_fnc_editRadioDialogFrequency; false); \
+    onSetFocus = QUOTE([_this select 0] call TFAR_fnc_editRadioDialogFrequency); \
+    onKeyDown = QUOTE([_this select 0] call TFAR_fnc_editRadioDialogFrequency; false);
+#define TFAR_FREQUENCY_EDIT_EVENTS() TFAR_FREQUENCY_EDIT_EVENTS_OFFSET(44)
+#define TFAR_CLEAR_FREQUENCY(DISPLAY_IDD,EDIT_IDC) [ARR_2((findDisplay DISPLAY_IDD) displayCtrl EDIT_IDC,true)] call TFAR_fnc_editRadioDialogFrequency
+
 #define SHIFTL 42
 #define CTRLL 29
 #define ALTL 56
@@ -20,7 +29,8 @@
 #define MAX_RADIO_COUNT 1000
 
 #define TFAR_FREQ_OFFSET 2
-#define TFAR_FREQ_ROUND_POWER 10 // (log x) decimals after decimal point 10 = 1.1, 100 = 1.11
+// Tuning precision: 10 gives one decimal place, 100 gives two.
+#define TFAR_FREQ_ROUND_POWER 10
 
 #define TFAR_ROUND_FREQUENCYP(frequency,pwr) (round (frequency * pwr) / pwr)
 #define QTFAR_ROUND_FREQUENCYP(frequency,pwr) (if (( (round(frequency*pwr)) mod pwr) == 0) then {frequency toFixed 0} else {frequency toFixed (log pwr)})
@@ -31,8 +41,13 @@
 #define TFAR_FREQUENCYSTRING_TO_FREQNUMBER(frequency) parseNumber ( ((frequency) splitString ",.") joinString "." )
 
 #define TFAR_MAX_CHANNELS 8
+#define TFAR_VALID_NAME_RADIO(RADIO) (if ((RADIO) isEqualType "") then {(RADIO) isNotEqualTo ""} else { \
+    (RADIO) isEqualTypeParams [objNull,""] && {!isNull ((RADIO) select 0)} && {((RADIO) select 1) isNotEqualTo ""} \
+})
 #define TFAR_MAX_CHANNEL_NAME_LENGTH 8
 #define TFAR_MAX_FREQUENCY_NAMES 16
+#define TFAR_FREQUENCY_NAMES_VAR(SIDE,IS_LR) \
+    format ["TFAR_frequencyNames_%1_%2", ["sr","lr"] select (IS_LR), if ((SIDE) isEqualTo independent) then {"independent"} else {toLower str (SIDE)}]
 #define TFAR_MIN_SW_FREQ 30
 #define TFAR_MAX_SW_FREQ 512
 

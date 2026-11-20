@@ -12,9 +12,6 @@ class TFAR_rt1523g: TFAR_Bag_Base {
     mass = 80;
     tf_encryptionCode = "tf_west_radio_code";
     tf_dialog = "rt1523g_radio_dialog";
-    tf_showChannelName = 1;
-    tf_channelNameDialogIdd = 1666;
-    tf_channelNameOffset = 44;
     tf_subtype = "digital_lr";
 };
 HIDDEN_CLASS(tf_rt1523g : TFAR_rt1523g); //#Deprecated dummy class for backwards compat

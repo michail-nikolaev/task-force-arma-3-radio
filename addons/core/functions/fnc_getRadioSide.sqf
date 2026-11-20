@@ -21,27 +21,21 @@
 */
 
 private _radio = _this;
-if !(_radio isEqualType [] || {_radio isEqualType ""}) exitWith {sideUnknown};
 
 private _isLrRadio = _radio isEqualType [];
+if (!TFAR_VALID_NAME_RADIO(_radio)) exitWith {sideUnknown};
 private _settings = _radio call ([TFAR_fnc_getSwSettings, TFAR_fnc_getLrSettings] select _isLrRadio);
 if (isNil "_settings") exitWith {sideUnknown};
 
 private _radioCode = _settings param [TFAR_CODE_OFFSET, "", [""]];
-private _sides = [west, east, independent];
-private _matchingSides = [];
-if (_radioCode isNotEqualTo "") then {
-    {
-        if (_radioCode isEqualTo _x) then {
-            _matchingSides pushBack (_sides select _forEachIndex);
-        };
-    } forEach [
-        missionNamespace getVariable ["tf_west_radio_code", "_bluefor"],
-        missionNamespace getVariable ["tf_east_radio_code", "_opfor"],
-        missionNamespace getVariable ["tf_independent_radio_code", "_independent"]
-    ];
+private _codes = [
+    missionNamespace getVariable ["tf_west_radio_code", "_bluefor"],
+    missionNamespace getVariable ["tf_east_radio_code", "_opfor"],
+    missionNamespace getVariable ["tf_independent_radio_code", "_independent"]
+];
+if (_radioCode isNotEqualTo "" && {{_x isEqualTo _radioCode} count _codes == 1}) exitWith {
+    [west, east, independent] select (_codes find _radioCode)
 };
-if (count _matchingSides == 1) exitWith {_matchingSides select 0};
 
 private _encryptionCodeProperty = if (_isLrRadio) then {
     [_radio select 0, "tf_encryptionCode", ""] call TFAR_fnc_getLrRadioProperty
@@ -49,6 +43,7 @@ private _encryptionCodeProperty = if (_isLrRadio) then {
     [_radio, "tf_encryptionCode", ""] call TFAR_fnc_getWeaponConfigProperty
 };
 
+if !(_encryptionCodeProperty isEqualType "") exitWith {sideUnknown};
 switch (toLower _encryptionCodeProperty) do {
     case "tf_west_radio_code": {west};
     case "tf_east_radio_code": {east};
