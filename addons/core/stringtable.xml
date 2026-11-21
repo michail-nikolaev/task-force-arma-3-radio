@@ -323,6 +323,34 @@
                 <Czech>Výchozí hlasitost rádia</Czech>
                 <Ukrainian>Гучність рації за замовч.</Ukrainian>
             </Key>
+            <Key ID="STR_TFAR_SETTINGS_FrequencyNames_SR_west">
+                <Original>SR frequency names (WEST)</Original>
+                <English>SR frequency names (WEST)</English>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_FrequencyNames_SR_east">
+                <Original>SR frequency names (EAST)</Original>
+                <English>SR frequency names (EAST)</English>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_FrequencyNames_SR_independent">
+                <Original>SR frequency names (Independent)</Original>
+                <English>SR frequency names (Independent)</English>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_FrequencyNames_LR_west">
+                <Original>LR frequency names (WEST)</Original>
+                <English>LR frequency names (WEST)</English>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_FrequencyNames_LR_east">
+                <Original>LR frequency names (EAST)</Original>
+                <English>LR frequency names (EAST)</English>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_FrequencyNames_LR_independent">
+                <Original>LR frequency names (Independent)</Original>
+                <English>LR frequency names (Independent)</English>
+            </Key>
+            <Key ID="STR_TFAR_SETTINGS_FrequencyNames_desc">
+                <Original>Comma-separated frequency=name pairs, using a decimal point for fractional frequencies. Up to 16 definitions; names are limited to 8 characters. Example: 50=COY NET,60.2=1/2 SEC</Original>
+                <English>Comma-separated frequency=name pairs, using a decimal point for fractional frequencies. Up to 16 definitions; names are limited to 8 characters. Example: 50=COY NET,60.2=1/2 SEC</English>
+            </Key>
             <Key ID="STR_TFAR_SETTINGS_same_lr_frequencies_for_side">
                 <Original>Same LR frequencies for side</Original>
                 <English>Same LR frequencies for side</English>

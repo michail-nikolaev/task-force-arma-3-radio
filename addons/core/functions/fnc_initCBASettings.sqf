@@ -439,6 +439,27 @@
         };
     }
 ] call CBA_Settings_fnc_init;
+GVAR(frequencyNameVariables) = [];
+{
+    _x params ["_suffix", "_label"];
+    GVAR(frequencyNameVariables) pushBack ("TFAR_frequencyNames_" + _suffix);
+    [
+        "TFAR_setting_frequencyNames_" + _suffix, "EDITBOX",
+        [_label, ELSTRING(settings,FrequencyNames_desc)], localize ELSTRING(settings,global),
+        "", 1, {
+            // CBA passes the setting name in _thisSetting and its value in _this.
+            private _suffix = _thisSetting select [count "TFAR_setting_frequencyNames_"];
+            [_this, "TFAR_frequencyNames_" + _suffix, _suffix select [0, 2] == "lr"] call TFAR_fnc_applyFrequencyNamesSetting;
+        }
+    ] call CBA_Settings_fnc_init;
+} forEach [
+    ["sr_west", ELSTRING(settings,FrequencyNames_SR_west)],
+    ["sr_east", ELSTRING(settings,FrequencyNames_SR_east)],
+    ["sr_independent", ELSTRING(settings,FrequencyNames_SR_independent)],
+    ["lr_west", ELSTRING(settings,FrequencyNames_LR_west)],
+    ["lr_east", ELSTRING(settings,FrequencyNames_LR_east)],
+    ["lr_independent", ELSTRING(settings,FrequencyNames_LR_independent)]
+];
 [
     "TFAR_giveMicroDagrToSoldier",
     "CHECKBOX",

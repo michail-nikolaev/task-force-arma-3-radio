@@ -27,10 +27,13 @@ if ((_this isEqualType []) and {count _this > 0} and  {(_this select 0) isEqualT
     _formatText = _this select 0;
 };
 
-if ((TF_lr_dialog_radio call TFAR_fnc_getAdditionalLrChannel) == (TF_lr_dialog_radio call TFAR_fnc_getLrChannel)) then {
+private _channel = TF_lr_dialog_radio call TFAR_fnc_getLrChannel;
+
+if ((TF_lr_dialog_radio call TFAR_fnc_getAdditionalLrChannel) == _channel) then {
     _formatText = "CA:%1";
 };
 
-ctrlSetText [LR_EDIT, TF_lr_dialog_radio call TFAR_fnc_getLrFrequency];
-private _channelText =  format[_formatText, (TF_lr_dialog_radio call TFAR_fnc_getLrChannel) + 1];
+TF_lr_dialog_radio call TFAR_fnc_updateRadioDialogFrequency;
+
+private _channelText = format [_formatText, _channel + 1];
 ctrlSetText [LR_CHANNEL, _channelText];

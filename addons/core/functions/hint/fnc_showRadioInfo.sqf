@@ -27,7 +27,9 @@ params ["_radio", "_isLrRadio"];
 private _name = if(_isLrRadio) then {[typeOf (_radio select 0), "displayName", ""] call DFUNC(getVehicleConfigProperty)} else {[_radio, "displayName", ""] call DFUNC(getWeaponConfigProperty)};
 private _picture = if(_isLrRadio) then {[typeOf (_radio select 0), "picture", ""] call DFUNC(getVehicleConfigProperty)} else {[_radio, "picture", ""] call DFUNC(getWeaponConfigProperty)};
 
-private _channel = if(_isLrRadio) then {format[localize LSTRING(active_lr_channel), (_radio call TFAR_fnc_getLrChannel) + 1]} else {format[localize LSTRING(active_sw_channel), (_radio call TFAR_fnc_getSwChannel) + 1]};
+private _channelIndex = if (_isLrRadio) then {_radio call TFAR_fnc_getLrChannel} else {_radio call TFAR_fnc_getSwChannel};
+private _channelDisplay = [_radio, _channelIndex + 1] call TFAR_fnc_formatChannel;
+private _channel = if (_isLrRadio) then {format [localize LSTRING(active_lr_channel), _channelDisplay]} else {format [localize LSTRING(active_sw_channel), _channelDisplay]};
 private _additional = nil;
 if (_isLrRadio) then {
     _additional = _radio call TFAR_fnc_getAdditionalLrChannel;
@@ -36,7 +38,8 @@ if (_isLrRadio) then {
 };
 private _add_channel = "";
 if (_additional > -1) then {
-    _add_channel = if(_isLrRadio) then {format[localize LSTRING(active_additional_lr_channel), (_radio call TFAR_fnc_getAdditionalLrChannel) + 1]} else {format[localize LSTRING(active_additional_sw_channel), (_radio call TFAR_fnc_getAdditionalSwChannel) + 1]};
+    private _additionalDisplay = [_radio, _additional + 1] call TFAR_fnc_formatChannel;
+    _add_channel = if (_isLrRadio) then {format [localize LSTRING(active_additional_lr_channel), _additionalDisplay]} else {format [localize LSTRING(active_additional_sw_channel), _additionalDisplay]};
 };
 
 private _imagesize = "1.6";

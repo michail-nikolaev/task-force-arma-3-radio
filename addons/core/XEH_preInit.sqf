@@ -6,7 +6,19 @@ if (isServer && {isMultiplayer || is3DENMultiplayer}) then {
     [] call DFUNC(serverInit);
 };
 GVAR(SettingsInitialized) = false;
-["CBA_settingsInitialized", {GVAR(SettingsInitialized) = true;}] call CBA_fnc_addEventhandler;
+GVAR(pendingFrequencyNames) = createHashMap;
+["CBA_settingsInitialized", {
+    GVAR(SettingsInitialized) = true;
+    GVAR(pendingFrequencyNames) = nil;
+}] call CBA_fnc_addEventHandler;
+if (!isServer) then {
+    ["TFAR_frequencyNamesChanged", {
+        params [["_variableName", "", [""]], ["_definitions", [], [[]]]];
+        if (_variableName in GVAR(frequencyNameVariables)) then {
+            [_variableName, _definitions] call TFAR_fnc_storeFrequencyNames;
+        };
+    }] call CBA_fnc_addEventHandler;
+};
 
 [] call DFUNC(initCBASettings);
 
