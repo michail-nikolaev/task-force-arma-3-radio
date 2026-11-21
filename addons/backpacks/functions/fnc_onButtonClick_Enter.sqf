@@ -29,11 +29,15 @@ if (isNull _ctrlEdit) exitWith {};
 if ((_ctrlEdit getVariable ["TFAR_frequencyState", ""]) == "name") exitWith {call TFAR_fnc_updateLRDialogToChannel};
 
 private _frequency = TFAR_FREQUENCYSTRING_TO_FREQNUMBER(ctrlText _ctrlEdit);
-if ((_frequency >= TFAR_MIN_ASIP_FREQ) and {_frequency <= TFAR_MAX_ASIP_FREQ}) then {
-    [TF_lr_dialog_radio, QTFAR_ROUND_FREQUENCY(_frequency)] call TFAR_fnc_setLrFrequency;
-    ["OnFrequencyChangedFromUI", [TFAR_currentUnit, TF_lr_dialog_radio, QTFAR_ROUND_FREQUENCY(_frequency)]] call TFAR_fnc_fireEventHandlers;
-    call TFAR_fnc_hideHint;
-} else {
+if !(_frequency >= TFAR_MIN_ASIP_FREQ && {_frequency <= TFAR_MAX_ASIP_FREQ}) exitWith {
     hint formatText [localize 'STR_TFAR_CORE_incorrect_frequency', TFAR_MIN_ASIP_FREQ, TFAR_MAX_ASIP_FREQ];
+    if ((_ctrlEdit getVariable ["TFAR_frequencyState", ""]) == "editing") then {
+        ctrlSetFocus _ctrlEdit;
+    } else {
+        call TFAR_fnc_updateLRDialogToChannel;
+    };
 };
+[TF_lr_dialog_radio, QTFAR_ROUND_FREQUENCY(_frequency)] call TFAR_fnc_setLrFrequency;
+["OnFrequencyChangedFromUI", [TFAR_currentUnit, TF_lr_dialog_radio, QTFAR_ROUND_FREQUENCY(_frequency)]] call TFAR_fnc_fireEventHandlers;
+call TFAR_fnc_hideHint;
 call TFAR_fnc_updateLRDialogToChannel;

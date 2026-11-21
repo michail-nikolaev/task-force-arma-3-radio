@@ -10,7 +10,8 @@ private _offset = _dialog >> "edit" >> "tf_channelNameOffset";
 if (!isNumber _offset || {!isNumber (_dialog >> "idd")} || {getNumber (_dialog >> "idd") < 0}) exitWith {ctrlSetText [_editIdc, _frequency]};
 
 disableSerialization;
-private _control = (findDisplay getNumber (_dialog >> "idd")) displayCtrl _editIdc;
+private _display = findDisplay getNumber (_dialog >> "idd");
+private _control = _display displayCtrl _editIdc;
 if (isNull _control) exitWith {};
 
 private _name = [_radio, _frequency] call TFAR_fnc_getFrequencyName;
@@ -32,3 +33,15 @@ if (_named) then {
 };
 _control ctrlSetPosition _position;
 _control ctrlCommit 0;
+
+// Keyboard Enter leaves focus on the edit. Return it to the radio's Set button.
+if (focusedCtrl _display isNotEqualTo _control) exitWith {};
+private _enterIdc = _dialog >> "enter" >> "idc";
+private _enter = if (isNumber _enterIdc) then {_display displayCtrl getNumber _enterIdc} else {controlNull};
+if (!isNull _enter && {ctrlEnabled _enter} && {ctrlShown _enter}) then {
+    ctrlSetFocus _enter;
+};
+if (focusedCtrl _display isEqualTo _control) then {
+    // A custom layout can show names without providing a focusable Set button.
+    _control ctrlSetTextSelection [count toArray ctrlText _control, 0];
+};
