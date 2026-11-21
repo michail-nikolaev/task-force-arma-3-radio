@@ -8,6 +8,11 @@
 #define LR_EDIT 1410
 #define LR_CHANNEL 1411
 
+// Hooks shared by the edit and clear controls in the radio dialogs.
+#define TFAR_FREQUENCY_EDIT_EVENTS()
+#define TFAR_CLEAR_FREQUENCY(DISPLAY_IDD,EDIT_IDC) \
+    ctrlSetText [ARR_2(EDIT_IDC,'')]; ctrlSetFocus ((findDisplay DISPLAY_IDD) displayCtrl EDIT_IDC)
+
 #define SHIFTL 42
 #define CTRLL 29
 #define ALTL 56

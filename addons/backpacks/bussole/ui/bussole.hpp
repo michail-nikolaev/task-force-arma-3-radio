@@ -86,6 +86,7 @@ class bussole_radio_dialog {
         moving = 1;
         canModify = 1;
         sizeEx = 0.06;
+        TFAR_FREQUENCY_EDIT_EVENTS()
         onKeyUp = QUOTE( \
             if (_this select 1 in [ARR_2(28,156)]) then { \
                 [((ctrlParent (_this select 0))) displayCtrl IDC_BUSSOLE_EDIT] call TFAR_backpacks_fnc_onButtonClick_Enter; \
@@ -109,10 +110,7 @@ class bussole_radio_dialog {
         w = "0.020625 * safezoneW";
         h = "0.0286 * safezoneH";
         tooltip = ECSTRING(core,clear_frequency);
-        action = QUOTE( \
-            ctrlSetText [ARR_2(IDC_BUSSOLE_EDIT, '')]; \
-            ctrlSetFocus ((findDisplay IDD_BUSSOLE_RADIO_DIALOG) displayCtrl IDC_BUSSOLE_EDIT); \
-        );
+        action = QUOTE(TFAR_CLEAR_FREQUENCY(IDD_BUSSOLE_RADIO_DIALOG,IDC_BUSSOLE_EDIT););
     };
     class prev_channel: HiddenButton {
         idc = IDC_BUSSOLE_PREV_CHANNEL;
